@@ -19547,5 +19547,432 @@
         }
       ]
     }
+  },
+  "proposal_material_formation_detail": {
+    "id": "HARNESS-L5-009-proposal_material_formation_detail",
+    "status": "candidate_detail_design_not_implemented",
+    "requirement_refs": [
+      "HARNESS-L3-009-F02",
+      "HARNESS-L3-009-F03"
+    ],
+    "basic_design_ref": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/contracts/3/proposal_material_formation",
+      "revision": "9fdd43c261722375eb2006c001de6798e8a2b446"
+    },
+    "paired_oracle_ref": {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "pointer": "/proposal_material_formation_native_oracle",
+      "binding": "同一候補のL8 native oracle。L8候補内のcandidate_l5_bindingでL5候補bytesとcanonical subtreeを束縛する。"
+    },
+    "authority_and_operation_boundary_ja": "L4 HARNESS-L4-009-F02の候補材料形成を、既存のCORE側入力・比較・caller返却から導く詳細案である。要求意味、COREの承認権限、OSのproposal集合・selected/used/record、実配送、実装成立を追加しない。既存L3-F02/F03およびL4の入力・出力・Backflow・四判定を保持する。",
+    "legacy_and_failure_basis_ja": {
+      "legacy_source": {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+        "section": "§0–1",
+        "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+        "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+      },
+      "preserved": "入力と由来、処理段階、返却、失敗、順序、consumer境界を明示する。参照のidentityとopaque locatorを分ける。",
+      "changed": "旧モデルの一般化した抽象構造や実行基盤は移植せず、既存CORE/F02/F03の型・caller・policy occurrenceに限定して詳細化する。",
+      "failure_basis": "L4/L9の提案候補setとOS使用setの混同、同template複数policyの勝者選択、未解決時に有効兄弟を一括消去する誤り、条件集約値を原rawへ戻す混同を反例で防ぐ。"
+    },
+    "entry_points": {
+      "private_wrapper": {
+        "symbol": "build_proposal_material_detail",
+        "signature": "CallerInputs -> CoreProposalDetailedReturn",
+        "runtime_argument": "既存CallerInputsのみ。caller_return、期待値、cache、資格bool、same-call bool、追加sourceは引数として受け取らない。",
+        "call_sequence": [
+          {
+            "symbol": "build_application_analysis_detail",
+            "count": 1,
+            "arguments": "同一CallerInputsの全値",
+            "return": "実呼出しが返したCoreApplicationDetailReturn全値をそのまま局所束縛する。"
+          },
+          {
+            "symbol": "form_proposal_material_detail",
+            "count": 1,
+            "arguments": "ProposalActualCallerCapture={caller_inputs:同入力全値,caller_return:直前の同一呼出し全返却}",
+            "return": "CoreProposalDetailedReturn={capture:同一capture全値,proposal:proposal reader返却全値}"
+          },
+          {
+            "return": "formerが作ったCoreProposalDetailedReturn全体をwrapper返却としてそのまま返す。"
+          }
+        ],
+        "nonclaim": "call traceは静的設計期待であり、実呼出し・producer資格・実配送を観測した証拠ではない。"
+      },
+      "private_former": {
+        "symbol": "form_proposal_material_detail",
+        "signature": "ProposalActualCallerCapture -> CoreProposalDetailedReturn",
+        "return_contract": "{capture:引数全値,proposal:read_proposal_native_materialの返却全値}",
+        "purity": "渡された捕捉値だけを読む。外部状態、OS、追加API、既定値補完は使わない。"
+      }
+    },
+    "private_types": {
+      "ProposalActualCallerCapture": {
+        "kind": "closed_record",
+        "members": {
+          "caller_inputs": "既存 CallerInputs 全値",
+          "caller_return": "既存 CoreApplicationDetailReturn 全値"
+        }
+      },
+      "CoreProposalDetailedReturn": {
+        "kind": "closed_record",
+        "members": {
+          "capture": "ProposalActualCallerCapture",
+          "proposal": "ProposalObservation"
+        }
+      },
+      "ProposalObservation": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "observed": {
+            "considered_read": "Read<CoreJsonValue>",
+            "policy_decisions_read": "Read<CoreJsonValue>",
+            "source_rows_read": "Read<CoreJsonValue>",
+            "template_results": "ProposalTemplateResult[]",
+            "causes": "Cause[]"
+          },
+          "unavailable": {
+            "causes": "Cause[]"
+          }
+        }
+      },
+      "ProposalTemplateResult": {
+        "kind": "closed_record",
+        "members": {
+          "member_index": "Natural",
+          "member_read": "Read<CoreRef>",
+          "policy_occurrences": "PolicySelectionOccurrence[]",
+          "source_row_reads": "ProposalSourceRowRead[]",
+          "membership": "ProposalMembership",
+          "causes": "Cause[]"
+        }
+      },
+      "ProposalSourceRowRead": {
+        "kind": "closed_record",
+        "members": {
+          "row_index": "Natural",
+          "read": "Read<CoreJsonValue>"
+        }
+      },
+      "ProposalMembership": {
+        "kind": "tagged_union",
+        "tag": "tag",
+        "variants": {
+          "candidate": {
+            "kind": "required_candidate|conditional_candidate|na_exclusion_candidate"
+          },
+          "unresolved": {
+            "causes": "Cause[]"
+          },
+          "unformed": {
+            "causes": "Cause[]"
+          }
+        }
+      }
+    },
+    "current_type_bindings": {
+      "binding_basis_ja": "下記pointerはこの候補文書内で現在使う型・規範そのものを指す。M revisionの調査来歴だけから将来の型定義を推測しない。各canonical hashはpointer先objectの値をkey sort/compact UTF-8で算出する。",
+      "selected_objects": [
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CallerInputs",
+          "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+          "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/PolicySelectionOccurrence",
+          "canonical_sha256": "3626d594a11eeeda496bab4e8a635346945efc2d5879ed8fe5f12d17b9d27689"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Read",
+          "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Cause",
+          "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreComparison",
+          "canonical_sha256": "d56afcae9ca4f80bebc363743017f239922dd67806ff1a00c40f613f5efbd93f"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreRef",
+          "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/CoreJsonValue",
+          "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/types/Natural",
+          "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/selection_contract",
+          "canonical_sha256": "d3a0ccaa8cadfdd7649fbbaa19e01da26b0ed2c2f9589afe1c8e303321a85327"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/reference_resolution_contract/identity",
+          "canonical_sha256": "91a085bd086a65f591120f17521f50b6cb9a129c01a2cbd63797b5662e4647cd"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/caller_return_writer_contract",
+          "canonical_sha256": "dad2e7e858dc0cbd1088262c9d460191efab521e3a06df2d150f82dd42b73c76"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/entry_points/private_caller",
+          "canonical_sha256": "f34b26dd38461821ac76e797ca9f0da150914d8e0d837f6953e11f343e2a09ac"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/source_result_reference_projection/producer_row_materialization",
+          "canonical_sha256": "738e5ad7841d2fa1cf1f10928807d6ee8fdfe7acc74f4a488b3700ba92f4c889"
+        }
+      ]
+    },
+    "fixed_m_source_basis": {
+      "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+      "purpose_ja": "設計起草時の調査来歴。現在の候補文書内の参照は上のcurrent_type_bindingsに固定し、M source hashだけを現在の規範参照とみなさない。",
+      "selected_objects": [
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "pointer": "/functions/2",
+          "canonical_sha256": "61050802abe605f012d7945e86f08c030a3c4dc553aa50a6e21e0cbf725f2f04"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "pointer": "/functions/3",
+          "canonical_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1",
+          "canonical_sha256": "e7b6acd9bd0b79cbe2e4c9e50503f0ae0307fd48db1ee15b8afff38049a48cc6"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2",
+          "canonical_sha256": "e98aabeb50c19be98a84d5c764aaa06b4ee6bf287ce2b808eebd84e8f4122f9d"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "pointer": "/f05_detail_contract/caller_return_writer_contract/return_roots",
+          "canonical_sha256": "d937b29e367ec43261be89dd0d88e58e57897700c8af8c352eb0ed8e48ac05c9"
+        }
+      ]
+    },
+    "guards": {
+      "producer_unavailable": {
+        "right_literal": "returned comparison from designated same-call producer",
+        "meaning_ja": "指定symbolの同一caller returnにreturned Comparisonが無ければproposalだけunavailableとし、元caller全体はcaptureに残す。"
+      },
+      "decision_collection": {
+        "right_literal": "observed array of PolicyApplicabilityDecision",
+        "meaning_ja": "原Readがpresentかつarrayの場合にだけ要素を読む。Absent/null/非arrayを空配列へ丸めない。"
+      },
+      "policy_index": {
+        "right_literal": "original in-range Natural policy_occurrence_index",
+        "meaning_ja": "原policy配列に対する厳密なNatural indexで、boolを含む型外値、負値、範囲外を補完しない。"
+      },
+      "policy_ref": {
+        "meaning_ja": "既存selection contractとreference identity規則でpolicy/template/bindingの対応を判定する。供給済みRef member、identity、revision、scope、owner、digest値を保持し、opaque source_locatorはidentityにしない。digest absent/nullを新しい拒否条件にしない。"
+      },
+      "multiple_policy": {
+        "right_literal": "one policy occurrence or uniquely supplied original composition",
+        "meaning_ja": "同一templateに複数policy occurrenceがあり既存入力に一意の合成規則がなければ、そのtemplateのmembershipだけunformedとする。全occurrence・順序・個別reasonと他の有効兄弟を保持する。"
+      },
+      "na_attribute": {
+        "right_literal": "original N/A reason, decider, target_revision and reentry_condition",
+        "meaning_ja": "原N/A材料の四属性keyの欠落を補完せず、その出現をN/A除外候補にしない。代表oracleはreason欠落だけを固定し、null/型外の一般意味を定めない。"
+      },
+      "row_shape": {
+        "right_literal": "original policy source projection object",
+        "meaning_ja": "原source projection rowの型外値をobjectへ補正しない。対象rowとそのraw valueを局所Read/Causeに保持する。"
+      }
+    },
+    "native_reader_and_leaf_writer": {
+      "reader_symbol": "read_proposal_native_material",
+      "reader_signature": "ProposalActualCallerCapture -> ProposalObservation",
+      "typed_input": "caller returnは既存の閉じたCoreApplicationDetailReturnである。producer観測はtag付きDispatchObservationとして扱い、型付き返却をserialization往復しない。",
+      "material_boundary": "既存CoreComparison.materialのnative JSON valueに限り、以下で明記したmaterial pointerを読む。読取結果は既存Read<CoreJsonValue>とし、型付きwholeをCoreJsonValueへcastせず、未知memberも黙って捨てない。",
+      "producer_selection": [
+        {
+          "index": 1,
+          "symbol": "compare_candidate_universe",
+          "return_requirement": "捕捉した同一caller_return内でtag=returnedのproducer観測を取り、その元CoreComparison全値を使う。"
+        },
+        {
+          "index": 2,
+          "symbol": "compare_applicability",
+          "return_requirement": "捕捉した同一caller_return内でtag=returnedのproducer観測を取り、その元CoreComparison全値を使う。"
+        }
+      ],
+      "producer_name_caution": "これらは/f05_detail_contract/caller_return_writer_contract/call_rows/1,2のproducer symbol。leaf_writer_ledgerのC02/C03行名とは別の構造であり同一視しない。",
+      "material_pointers": {
+        "considered": "/producer_observations/1/comparison/material",
+        "policy_decisions": "/producer_observations/2/comparison/material/policy_decisions",
+        "source_projection_rows": "/producer_observations/2/comparison/material/source_projection_rows",
+        "source_row_authority": "/source_result_reference_projection/producer_row_materialization"
+      },
+      "leaf_operations": [
+        "candidate_member_refsを原配列順に読み、member_indexと全CoreRef leafを保つ。",
+        "policy_decisionsをReadとして保持し、arrayの場合のみ各decisionを原順で処理する。Absent、null、非arrayを空配列へ正規化しない。",
+        "decision.policy_occurrence_indexは原validation_input.application_policiesに対する厳密なNatural index（boolを含む型外値を除外）として境界検査する。原値と範囲外を0へ補わない。",
+        "PolicySelectionOccurrenceへdecision/policyのRead、index、既存三Relation、disposition Read、Causes全値を記録する。policy_ref/template/binding照合は既存selection_contractとreference_resolution_contract/identityに従い、Refの供給済み全memberを保持する。source_locatorはidentityにしない。sha256のAbsent/nullを新たな不成立条件にしない。",
+        "source_projection_rowsは既存/source_result_reference_projection/producer_row_materializationの同一branch規則から得た配列を、原順でrow_indexとraw Readとして保持する。first-match、dedupe、aggregate disposition/original_condition_valuesのzipや別policy属性からの補完をしない。",
+        "各template memberについて、同templateに結び得るpolicy occurrenceを全て原順で保持する。一意な対応がある時だけ該当出現の既存dispositionと根拠からrequired_candidate/conditional_candidateを形成する。conditionalの原条件、未完義務、元Comparison全体をcaptureに残す。",
+        "N/AはL3-F03/L4-F03の原根拠に基づく除外候補材料だけを扱う。代表的missing-key guardはna_candidate_records内のreason/decider/target_revision/reentry_conditionのいずれかがAbsentであること。nullや型外値の一般解釈を新設しない。",
+        "同じtemplate Refに複数policy occurrenceがあり既存契約で合成が一意に定まらない場合、そのtemplateのmembershipをunformedとして全occurrenceと原因を残す。他の有効template結果を消去しない。",
+        "F03の明示unresolvedはmembership.tag=unresolvedで保ち、形成済みのunresolved candidate kindへ変換しない。"
+      ],
+      "raw_condition_preservation": "condition_value raw ReadがAbsentでも、既存original_condition_values=[true]の観測と分離してcaptureへ保つ。集約trueをraw pairへ逆投影せず、新しい必須gateにもしない。",
+      "leaf_output_binding": {
+        "source_whole_preservation_ja": "指定producerのCoreComparison wholeとcaller_return全体はcaptureのCoreApplicationDetailReturn内に元順で保持する。proposal.considered_readは凍結expectedどおりproducer_observations/1/comparison/material全体の元Readである。templateごとのmember_readだけをcandidate_member_refs/{member_index}から読む。",
+        "ProposalObservation": [
+          {
+            "field": "considered_read",
+            "source": "/producer_observations/1/comparison/material",
+            "shape": "producer_observations/1/comparison/material全体に対する元Read。配列反復はtemplate_results.member_readで行う。"
+          },
+          {
+            "field": "policy_decisions_read",
+            "source": "/producer_observations/2/comparison/material/policy_decisions",
+            "shape": "Absent/null/nonarrayを区別する元Read全体。"
+          },
+          {
+            "field": "source_rows_read",
+            "source": "/producer_observations/2/comparison/material/source_projection_rows",
+            "shape": "producer_row_materializationと同じbranchから返る配列の元Read全体。"
+          }
+        ],
+        "ProposalTemplateResult": [
+          {
+            "field": "member_index",
+            "source": "candidate_member_refsの元配列index",
+            "order": "原配列順。"
+          },
+          {
+            "field": "member_read",
+            "source": "/producer_observations/1/comparison/material/candidate_member_refs/{member_index}",
+            "shape": "元Readを省略せず保持。"
+          },
+          {
+            "field": "policy_occurrences",
+            "source": "policy_decisions各配列出現とvalidation_input.application_policiesのpolicy_occurrence_index",
+            "order": "decision配列順を保ち、各PolicySelectionOccurrenceの全memberとrelation/causeを保持。"
+          },
+          {
+            "field": "source_row_reads",
+            "source": "source_projection_rowsの各元配列出現",
+            "order": "source row配列順でindexとReadを保持し、同一出現のfirst-match/dedupeをしない。"
+          },
+          {
+            "field": "membership",
+            "source": "該当template occurrenceの一意な既存policy根拠、元N/A属性または元unresolved",
+            "shape": "candidate/unresolved/unformedのタグと原因を凍結期待どおり出す。"
+          },
+          {
+            "field": "causes",
+            "source": "凍結した10例では全template_results[*].causesが空配列。membership/occurrence/proposal Causeを汎用集約しない。",
+            "order": "この有限例の空配列を保持し、発生順の汎用集約意味はここでは定義しない。"
+          }
+        ],
+        "fixed_cause_leaf_mapping": [
+          {
+            "case": "decisions_absent|decisions_null|decisions_typeoutside",
+            "kind": "native_leaf_unformed",
+            "target": "/producer_observations/2/comparison/material/policy_decisions",
+            "left": "targetと同じpointerの元Read",
+            "right_literal": "observed array of PolicyApplicabilityDecision",
+            "rule_pointer": "/proposal_material_formation_detail/guards/decision_collection"
+          },
+          {
+            "case": "policy_ref_revision_mismatch",
+            "kind": "target_mismatch",
+            "target": "/producer_observations/2/comparison/material/policy_decisions/0/policy_ref",
+            "left": "/producer_observations/2/comparison/material/policy_decisions/0/policy_refの元present Readと6 member全値",
+            "right": "/validation_input/application_policies/0/refの元present Readと6 member全値",
+            "rule_pointer": "/proposal_material_formation_detail/guards/policy_ref"
+          },
+          {
+            "case": "same_template_multiple_policy",
+            "kind": "aggregation_unestablished",
+            "target": "/producer_observations/2/comparison/material/policy_decisions",
+            "left": "policy_decisions pointerをrequestedとする元present Readと、policy_occurrence_index 0,1の二出現・元順",
+            "right_literal": "one policy occurrence or uniquely supplied original composition",
+            "rule_pointer": "/proposal_material_formation_detail/guards/multiple_policy"
+          },
+          {
+            "case": "na_missing_reason",
+            "kind": "target_unformed",
+            "target": "/producer_observations/2/comparison/material/source_projection_rows/0/na_attributes/reason",
+            "left": "reason pointerをrequestedとする元Absent Read、親na_attributesのwhole value、残る三属性の元値",
+            "right_literal": "original N/A reason, decider, target_revision and reentry_condition",
+            "rule_pointer": "/proposal_material_formation_detail/guards/na_attribute"
+          },
+          {
+            "case": "existing_allskip_unavailable",
+            "kind": "context_unformed",
+            "target_order": [
+              "/producer_observations/1",
+              "/producer_observations/2"
+            ],
+            "left_order": "各targetと同位置の元observation枝wholeを保持する。この固定例のproducer index 1,2はexplicit_skipであり、index 0のunobservedとは区別する。left.readの根位置とproducer indexを保つ。",
+            "right_literal": "returned comparison from designated same-call producer",
+            "rule_pointer": "/proposal_material_formation_detail/guards/producer_unavailable"
+          }
+        ],
+        "cause_member_and_aggregation_order_ja": "Cause各closed recordは既存member順 kind,target,left,right,rule_pointer とし、各left.Read/right literalを改変しない。有限10例で観測されたCauseの格納先と配列順はfixed_case_cause_storage_jaおよび固定whole期待に従う。未行使guardのCauseや汎用集約意味を追加しない。",
+        "fixed_case_cause_storage_ja": {
+          "collection_anomaly": "固定例ではcollection異常Causeをproposal.causesと該当membership.causesへ格納する。",
+          "revision_difference": "固定例ではrevision差CauseをPolicySelectionOccurrence.causesと該当membership.causesへ格納する。",
+          "multiple_or_na_reason_difference": "固定例では複数policyまたはN/A理由差のCauseを該当membership.causesだけへ格納する。",
+          "allskip_unavailable": "固定例のallskip由来2 Causeはproposal.causesだけへ格納する。",
+          "template_result_causes": "凍結した全10例でtemplate_results[*].causesは空配列を保持する。旧caller Causeをflattenしたり、汎用集約先にしたりしない。この有限oracle外の格納意味はここでは定義しない。"
+        }
+      },
+      "cause_rules": "新Causeは既存Cause closed record/kindだけで作り、left側は原Read全値、right側は必要な既定literalとrule_pointerを持つ。null/nonarray/index端不足は原因に対応する局所Readだけへ記録し、caller全体や有効兄弟を巻き込まない。"
+    },
+    "formation_and_failure_semantics": {
+      "observed": "入力・producer材料を観測したことを示す。proposal membership成立を意味しない。",
+      "unavailable": "指定producerの同一caller returnにreturned Comparisonが無い場合のproposal状態。元caller全体はcaptureに残る。",
+      "candidate": "required/conditional/N/A除外の候補材料だけ。選択・使用・OS集合ではない。",
+      "unresolved": "F03等で明示された未解決の意味を保持する。",
+      "unformed": "対応する局所材料や一意な根拠が不足する。原因とRaw Readを保持する。",
+      "sibling_preservation": "一つのtemplateの未形成は他templateの観測済み有効結果を一律unavailableにしない。",
+      "identity_locator_digest": "identity比較とsource_locator/digest保存を区別する。ref全6 memberの原供給状況を維持する。"
+    },
+    "bounded_unexercised_cases_ja": [
+      "N/A四属性のうち個別欠落として固定するのはreasonだけ。他の三属性の個別欠落は未行使。",
+      "boolean/負値/out-of-range policy index、一般source row型外、任意の数値/host object型、全Cause種別と全組合せは未行使。",
+      "N/A属性のnull/型外の一般意味、複数policy合成規則、producer資格、実caller実行は本詳細で確定しない。"
+    ],
+    "nonclaims_ja": [
+      "実製品実装、実producer資格、実caller実行、runtime Red/Green、OSRef4、三集合、配送、record、権限昇格、受入、Releaseは成立を主張しない。",
+      "proposalはCOREの候補材料であり、L4/F02が定める責務境界を越えない。"
+    ]
   }
 }
