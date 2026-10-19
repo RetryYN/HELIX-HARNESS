@@ -156218,7 +156218,7 @@
       "pointer": "/selected_source_caller_verification",
       "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "1339ff10c5f5aae1c8a042587af3979f7037a51cc018bb76342e1db7c62f5528",
+      "sha256": "9f4c20e5ef556fba792b9473dcd352cd471df320a0cee668eda94544f8dc5003",
       "canonical_sha256": "28e24ad3834fd837c5d30230d1d1fbc1e81fa82aeb204e97e4fe1f7d0637eb49"
     },
     "source_basis": [

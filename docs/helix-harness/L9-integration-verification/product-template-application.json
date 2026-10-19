@@ -2732,7 +2732,7 @@
             "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
             "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
             "pointer": "/cases/3/proposal_native_record_material_cases/cases/0",
-            "source_case_id": "normal",
+            "source_case_id": "required_raw_condition_absent",
             "canonical_sha256": "d4ce74be064b0fa4e5072596a7dae067215f36c28fa660f18c1c262f18c6b2c0",
             "ordered_sha256": "d0ecc7e89cb56107b6d1d91f161229b93be4b4ae9db4238951c2509f941a6748",
             "byte_length": 53432604,
@@ -2786,7 +2786,7 @@
               "state": "returned",
               "symbol": "build_native_proposal_record_detail",
               "call_count": 1,
-              "argument_pointer": "/source_occurrences/0/decoded_records/0/payload/caller_inputs",
+              "argument_pointer": "/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs",
               "native_return": "fixed_native_returnをcopyした全値"
             },
             "proposed_body": {
@@ -3410,7 +3410,7 @@
             "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
             "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
             "pointer": "/cases/3/proposal_native_record_material_cases/cases/3",
-            "source_case_id": "partial_counterfactual",
+            "source_case_id": "missing_result_preserves_known_sibling",
             "canonical_sha256": "03e756cf038df66fde629d8ffc6a95766b197ddc5489bda37fc20e5d216859ba",
             "ordered_sha256": "37d1edcf67dd55072834e9025f7fefe7061629a4684ba0a504286db9ace64fdc",
             "byte_length": 53891213,
@@ -3464,7 +3464,7 @@
               "state": "returned",
               "symbol": "build_native_proposal_record_detail",
               "call_count": 1,
-              "argument_pointer": "/source_occurrences/0/decoded_records/0/payload/caller_inputs",
+              "argument_pointer": "/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs",
               "native_return": "fixed_native_returnをcopyした全値"
             },
             "proposed_body": {
@@ -4142,7 +4142,7 @@
             "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
             "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
             "pointer": "/cases/3/proposal_native_record_material_cases/cases/0",
-            "source_case_id": "normal",
+            "source_case_id": "required_raw_condition_absent",
             "canonical_sha256": "d4ce74be064b0fa4e5072596a7dae067215f36c28fa660f18c1c262f18c6b2c0",
             "ordered_sha256": "d0ecc7e89cb56107b6d1d91f161229b93be4b4ae9db4238951c2509f941a6748",
             "byte_length": 53432604,
@@ -4196,7 +4196,7 @@
               "state": "returned",
               "symbol": "build_native_proposal_record_detail",
               "call_count": 1,
-              "argument_pointer": "/source_occurrences/0/decoded_records/0/payload/caller_inputs",
+              "argument_pointer": "/source_frame/source_occurrences/0/decoded_records/0/payload/caller_inputs",
               "native_return": "fixed_native_returnをcopyした全値"
             },
             "proposed_body": {
