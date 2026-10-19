@@ -81,22 +81,24 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
 
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
-2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。作業側に未完了の作業依頼があれば拒否する（1つの作業側が同時に持つのは1件）。
+2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Devinは未完了の依頼（処理中の1件と待機中を合わせて）を最大3件まで保持し、Antigravityと他の作業側は従来どおり1件まで保持する。DevinはFIFOで1件ずつ受け取り、先頭の作業結果か取り下げが届くまで後続をclaimしない。
 3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行い、push・PR作成はしない。
 4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で依頼側へ返す。
    - `proposal`：依頼baseを祖先に持つcommitの`result_sha`とbranch名。
    - `incomplete`／`declined`：commitなしで、理由を`summary`に書く。
    作業結果を送ると、その作業側は次の依頼を受けられる。
 5. 依頼側は提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
-6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
+6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。未完了依頼が複数ある場合は、対象の`event ID`を`--id EVENT_ID`で指定する。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
    - ACKされないまま期限を過ぎた依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。
+
+Devinの2件目以降をqueueへ積む切替時は、更新前receiverのwaitが残っていないことを運転側で確かめる。更新前receiverはFIFO制御を知らず後続通知をclaimし得るが、新しいACK処理は先頭以外を拒否する。その場合は先頭の結果またはrelease後に、依頼側が既存の`retry`経路で通知を再送する。既存singleton状態は`work`を先頭として読み、待機分だけを`work_queue`に保持する。
 
 ```sh
 python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind work_request --request scaffold/review-handoff/local/work.json --base BASE_FULL_SHA
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session DEVIN_SESSION --id RESULT_EVENT_ID --kind work_result --request scaffold/review-handoff/local/work.json --response scaffold/review-handoff/local/work-result.json --base BASE_FULL_SHA
-python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin
+python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
 PRの`review_request`／`review_response`は、`author`と`reviewer`がClaudeとCodexの組である場合だけ送れる。DevinとAntigravityはPRの作成側にもreview側にもならない。

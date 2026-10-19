@@ -652,7 +652,7 @@ class GuiChecks(unittest.TestCase):
         g.bind(data, "codex", "codex-gui", "review_merge", 60, self.now)
         with self.assertRaises(ValueError): g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
 
-    def test_work_request_routing_and_single_outstanding(self):
+    def test_work_request_routing_and_devin_three_entry_fifo(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
         g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
         work = self.work()
@@ -661,10 +661,19 @@ class GuiChecks(unittest.TestCase):
         self.assertIsNone(g.claim(self.data, "codex", "codex-gui", self.now))
         claimed = g.claim(self.data, "devin", "devin-gui", self.now)
         g.ack(self.data, "work-1", "devin", "devin-gui", claimed["digest"], claimed["claim"]["nonce"], self.now)
-        # 同じ作業側へ2件目は送れない。別の作業側へは送れる。
+        # Devinは最大3件を順に積める。ACK済みの先頭作業が終わるまでは、後続をclaimできない。
+        work2 = self.work(request_id="WORK-2")
+        work3 = self.work(request_id="WORK-3")
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", work2, None, 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-3", "work_request", work3, None, 60, self.now)
         with self.assertRaises(ValueError):
-            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
-        g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work("antigravity", "WORK-3"), None, 60, self.now)
+            g.send(self.data, "claude", "claude-gui", "work-4", "work_request", self.work(request_id="WORK-4"), None, 60, self.now)
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1", "work-2", "work-3"])
+        self.assertIsNone(g.claim(self.data, "devin", "devin-gui", self.now))
+        # 他workerの従来上限1件は維持。
+        g.send(self.data, "claude", "claude-gui", "agy-work-1", "work_request", self.work("antigravity", "WORK-AGY-1"), None, 60, self.now)
+        with self.assertRaises(ValueError):
+            g.send(self.data, "claude", "claude-gui", "agy-work-2", "work_request", self.work("antigravity", "WORK-4"), None, 60, self.now)
         # 作業側は依頼を送れず、PRのreview依頼・応答も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
         with self.assertRaises(ValueError):
             g.send(self.data, "devin", "devin-gui", "work-4", "work_request", dict(work, dispatcher="devin"), None, 60, self.now)
@@ -675,8 +684,15 @@ class GuiChecks(unittest.TestCase):
             g.send(self.data, "antigravity", "agy-gui", "result-x", "work_result", work, result, 60, self.now)
         sent = g.send(self.data, "devin", "devin-gui", "result-1", "work_result", work, result, 60, self.now)
         self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        second = g.claim(self.data, "devin", "devin-gui", self.now)
+        self.assertEqual(second["payload"]["event_id"], "work-2")
+        g.ack(self.data, "work-2", "devin", "devin-gui", second["digest"], second["claim"]["nonce"], self.now)
+        g.send(self.data, "devin", "devin-gui", "result-2", "work_result", work2, self.result(work2), 60, self.now)
+        third = g.claim(self.data, "devin", "devin-gui", self.now)
+        self.assertEqual(third["payload"]["event_id"], "work-3")
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now, "work-3")
         self.assertNotIn("devin", self.data["work"])
-        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now)
         # 中止は依頼した側か作業側だけ。
         with self.assertRaises(ValueError): g.release_work(self.data, "codex", "codex-gui", "antigravity", self.now)
         g.release_work(self.data, "antigravity", "agy-gui", "antigravity", self.now)
@@ -704,6 +720,77 @@ class GuiChecks(unittest.TestCase):
         records = g.compact(self.data, self.now)
         self.assertEqual(sorted((r["event_id"], r["status"]) for r in records), [("work-1", "cancelled"), ("work-2", "cancelled")])
 
+    def test_multi_work_release_requires_exact_event_id(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        for number in (1, 2):
+            request = self.work(request_id=f"WORK-{number}")
+            g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, 60, self.now)
+        with self.assertRaisesRegex(ValueError, "--id"):
+            g.release_work(self.data, "claude", "claude-gui", "devin", self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now, "work-2")
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1"])
+        self.assertEqual(self.data["messages"]["work-2"]["status"], "cancelled")
+
+    def test_devin_queue_deduplicates_after_session_change(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        work = self.work()
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", work, None, 60, self.now)
+        self.data["lanes"]["devin"]["session"] = "devin-next"
+        with self.assertRaisesRegex(ValueError, "同じ作業依頼"):
+            g.send(self.data, "claude", "claude-gui", "work-duplicate", "work_request", work, None, 60, self.now)
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1"])
+
+    def test_all_expired_unacked_queue_entries_free_slots(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        for number, ttl in ((1, 1), (2, 1), (3, 60)):
+            request = self.work(request_id=f"WORK-{number}")
+            g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, ttl, self.now)
+        claimed = g.claim(self.data, "devin", "devin-gui", self.now + 2)
+        self.assertEqual(claimed["payload"]["event_id"], "work-3")
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-3"])
+        self.assertEqual([self.data["messages"][f"work-{number}"]["status"] for number in (1, 2)], ["expired", "expired"])
+
+    def test_legacy_singleton_work_state_accepts_devin_queue_extension(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        first = self.work()
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", first, None, 60, self.now)
+        self.assertNotIn("work_queue", self.data)
+        second = self.work(request_id="WORK-2")
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, self.now)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        self.assertEqual(self.data["work_queue"]["devin"][0]["event_id"], "work-2")
+
+    def test_preexisting_receiver_nonhead_ack_is_rejected_until_head_advances(self):
+        # 更新前receiverが後続をclaimしても、非head ACKは拒否し、先頭完了後の明示retryで回復する。
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        first, second = self.work(), self.work(request_id="WORK-2")
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", first, None, 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, self.now)
+        head = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", head["digest"], head["claim"]["nonce"], self.now)
+        legacy_claim = self.data["messages"]["work-2"]
+        legacy_claim["status"] = "claimed"
+        legacy_claim["claim"] = dict(session="devin-gui", at=self.now, nonce="1" * 32)
+        with self.assertRaisesRegex(ValueError, "FIFO"):
+            g.ack(self.data, "work-2", "devin", "devin-gui", legacy_claim["digest"], legacy_claim["claim"]["nonce"], self.now)
+        self.assertIsNone(g.work_items(self.data, "devin")[1].get("acked_at"))
+        g.retry(self.data, "claude", "claude-gui", "work-2", self.now)
+        g.send(self.data, "devin", "devin-gui", "result-1", "work_result", first, self.result(first), 60, self.now)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        promoted = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-2", "devin", "devin-gui", promoted["digest"], promoted["claim"]["nonce"], self.now)
+        self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-2"])
+        self.assertIsNotNone(g.work_items(self.data, "devin")[0].get("acked_at"))
+
+    def test_result_before_ack_cancels_queued_request_without_orphan_delivery(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        work = self.work()
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request", work, None, 60, self.now)
+        g.send(self.data, "devin", "devin-gui", "result-early", "work_result", work, self.result(work), 60, self.now)
+        self.assertEqual(self.data["messages"]["work-1"]["status"], "cancelled")
+        self.assertNotIn("devin", self.data["work"])
+        self.assertIsNone(g.claim(self.data, "devin", "devin-gui", self.now))
+
     def test_late_result_does_not_release_current_work(self):
         # R1 F2: 取り下げた割当への遅い結果で、同じrequest IDを持つ別内容の現在の割当を外さない。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
@@ -726,20 +813,21 @@ class GuiChecks(unittest.TestCase):
         m = g.claim(self.data, "devin", "devin-gui", self.now)
         g.ack(self.data, "work-1", "devin", "devin-gui", m["digest"], m["claim"]["nonce"], self.now)
         g.compact(self.data, self.now + 2)
-        with self.assertRaises(ValueError):
-            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, self.now + 2)
+        second = self.work(request_id="WORK-2")
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, self.now + 2)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
+        self.assertEqual(self.data["work_queue"]["devin"][0]["event_id"], "work-2")
         # R2 F4: 終了通知の記録（closed）が保持期限で消えても、ACK済みの作業は結果かreleaseまで外れない。
         later = self.now + 2 + g.CLOSED_RETENTION_SECONDS + 1
         g.compact(self.data, later)
         self.assertNotIn("work-1", self.data.get("closed", {}))
         g.bind(self.data, "claude", "claude-gui", "review_merge", 60, later)
         g.bind(self.data, "devin", "devin-gui", "worker", 60, later)
-        with self.assertRaises(ValueError):
-            g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
+        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, later)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
         g.release_work(self.data, "claude", "claude-gui", "devin", later)
-        g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work(request_id="WORK-2"), None, 60, later)
+        g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work(request_id="WORK-3"), None, 60, later)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-3")
 
     def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
         # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
