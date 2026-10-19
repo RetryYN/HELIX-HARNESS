@@ -164500,7 +164500,7 @@
       "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
       "selected_object": {
         "pointer": "/proposal_material_formation_detail",
-        "canonical_sha256": "54b5df00b0d906a6cd96434859b41bce632942262e2e84d0822b3a4b767ad8e7"
+        "canonical_sha256": "79ba70e9c3d18a205ffd038f65c5b8ad8874ed83c9eda5cff54b261a66a3fef9"
       },
       "rebind_rule_ja": "親側のcurrent-hash追随が終わった最終L5 bytesへ、このbindingを再計算して差し替える。L5からL8 file hashへの逆参照は持たせない。"
     },
