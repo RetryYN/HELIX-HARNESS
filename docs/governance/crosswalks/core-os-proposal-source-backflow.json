@@ -1,0 +1,837 @@
+{
+  "document_id": "CORE-OS-PROPOSAL-SOURCE-BACKFLOW-CANDIDATE-3403",
+  "title": "CORE009→OS002 F02の生成側・利用側の意味をL3/L10へ還流する候補",
+  "status": "candidate_for_existing_l3_l10_authority_review",
+  "authority_effect": "none",
+  "issue_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3403",
+  "proposal_base_revision": "14b768885e8a92b0a4d595561e4ed7301a5e7f3d",
+  "source_baseline_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+  "scope": {
+    "route": "CORE009 F02の生成側からOS002 F02の利用側への受け渡し",
+    "requirement_pairs": [
+      "HARNESS-L3-009-F02 ↔ HARNESS-L10-009-F02",
+      "HELIXOS-L3-002-F02 ↔ HELIXOS-L10-002-F02"
+    ],
+    "files_to_edit_if_adopted": [
+      "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "docs/helix-harness/L10-verification/functional-verification.json",
+      "docs/helix-os/L3-requirements/functional-requirements.json",
+      "docs/helix-os/L10-verification/functional-verification.json"
+    ],
+    "out_of_scope": [
+      "L2/L11の編集",
+      "この候補作成作業中のL3/L10編集",
+      "L4/L5原資料の編集",
+      "実装・実行時機構・schema・codec・adapter",
+      "新しいgateまたは承認手続き",
+      "既存のBRAIN032→CORE F05の一項目接続",
+      "L3承認・設計閉包・実行時接続・実装準備判定・受入"
+    ]
+  },
+  "authority_baseline": {
+    "meaning_sources_and_status": [
+      {
+        "statement": "HARNESS-L3-009-F02は、要素ごとの適用／非適用／未解決の理由、比較境界、製品・要求scope、契約版を伴う対象集合を要求する。candidate/proposedとOS selected/usedを区別するが、proposalの要素集合をどう作るかは定めていない。",
+        "source": {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "anchors": [
+            "/requirements/24"
+          ],
+          "role": "approved_exact_object",
+          "approval_status": "approved_for_exact_object_only",
+          "authority_effect": "effective_when_this_record_is_admitted_to_main",
+          "approval_verification": "verified_exact_object_match",
+          "approval_basis": {
+            "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+            "decision_record_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+            "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+            "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+            "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+            "approved_file_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+            "approved_pointer": "/requirements/24",
+            "approved_object_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1",
+            "decision_record_anchors": [
+              "/reviewed_content_head (6行目)",
+              "/authority_effect (8行目)",
+              "承認対象の限定 (13行目)",
+              "独立結論と固定bytes (28行目)",
+              "functional-requirements.json / SHA-256 (38行目)",
+              "functional-verification.json / SHA-256 (44行目)",
+              "未完の引継ぎ (49行目)"
+            ],
+            "current_snapshot_object_equality": "approved revision・decision record source snapshot・current source_baseline_revisionの3点でcanonical object SHA-256が一致。承認範囲はこのpointerのobjectに限り、現在のファイル全体や新規候補には及ばない。",
+            "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+          },
+          "object_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+        }
+      },
+      {
+        "statement": "HARNESS-L10-009-F02は、全体集合と要素ごとの判定を区別する。件数だけでは足りず、proposalはOS usedを意味しない。",
+        "source": {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "anchors": [
+            "/cases/24"
+          ],
+          "role": "approved_exact_object",
+          "approval_status": "approved_for_exact_object_only",
+          "authority_effect": "effective_when_this_record_is_admitted_to_main",
+          "approval_verification": "verified_exact_object_match",
+          "approval_basis": {
+            "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+            "decision_record_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+            "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+            "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+            "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+            "approved_file_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+            "approved_pointer": "/cases/24",
+            "approved_object_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4",
+            "decision_record_anchors": [
+              "/reviewed_content_head (6行目)",
+              "/authority_effect (8行目)",
+              "承認対象の限定 (13行目)",
+              "独立結論と固定bytes (28行目)",
+              "functional-requirements.json / SHA-256 (38行目)",
+              "functional-verification.json / SHA-256 (44行目)",
+              "未完の引継ぎ (49行目)"
+            ],
+            "current_snapshot_object_equality": "approved revision・decision record source snapshot・current source_baseline_revisionの3点でcanonical object SHA-256が一致。承認範囲はこのpointerのobjectに限り、現在のファイル全体や新規候補には及ばない。",
+            "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+          },
+          "object_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4"
+        }
+      },
+      {
+        "statement": "HELIXOS-L3-002-F02は、proposal・selected・usedの集合と各根拠を区別して保つことを要求する。",
+        "source": {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "anchors": [
+            "/requirements/9"
+          ],
+          "role": "approved_exact_object",
+          "approval_status": "approved_for_exact_object_only",
+          "authority_effect": "effective_when_this_record_is_admitted_to_main",
+          "approval_verification": "verified_exact_object_match",
+          "approval_basis": {
+            "decision_record_path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+            "decision_record_sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0",
+            "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+            "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+            "reviewed_content_head": "a2f6961068619e550dd0467898927b6bc8451c75",
+            "approved_file_sha256": "747a6c939d1eafe851561e774728b8b410e7c2f2375ede613427c873735701a8",
+            "approved_pointer": "/requirements/9",
+            "approved_object_sha256": "732060fd48175f697fd95a4c49180a45f82ab5258c3271e4f0cb50b82dadaa3d",
+            "decision_record_anchors": [
+              "/reviewed_content_head (6行目)",
+              "/authority_effect (9行目)",
+              "承認対象の限定 (14行目)",
+              "独立結論と固定bytes (29行目)",
+              "functional-requirements.json / SHA-256 (41行目)",
+              "functional-verification.json / SHA-256 (47行目)",
+              "未完の引継ぎ (52行目)"
+            ],
+            "current_snapshot_object_equality": "approved revision・decision record source snapshot・current source_baseline_revisionの3点でcanonical object SHA-256が一致。承認範囲はこのpointerのobjectに限り、現在のファイル全体や新規候補には及ばない。",
+            "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+          },
+          "object_sha256": "732060fd48175f697fd95a4c49180a45f82ab5258c3271e4f0cb50b82dadaa3d"
+        }
+      },
+      {
+        "statement": "HELIXOS-L10-002-F02は、独立に与えられた各集合とその出所を入力とする。COREのproposal要素集合の形成方法は定めていない。",
+        "source": {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+          "anchors": [
+            "/cases/9"
+          ],
+          "role": "approved_exact_object",
+          "approval_status": "approved_for_exact_object_only",
+          "authority_effect": "effective_when_this_record_is_admitted_to_main",
+          "approval_verification": "verified_exact_object_match",
+          "approval_basis": {
+            "decision_record_path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+            "decision_record_sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0",
+            "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+            "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+            "reviewed_content_head": "a2f6961068619e550dd0467898927b6bc8451c75",
+            "approved_file_sha256": "951bd0ae98d71bb56046628c3a8bc8e79b45ae082f2f1e80b18f9c72411faf1c",
+            "approved_pointer": "/cases/9",
+            "approved_object_sha256": "8f990faff7c4eaf35d67f2f1f974557db32fafab9a5d8ae38a40c7eba227a98c",
+            "decision_record_anchors": [
+              "/reviewed_content_head (6行目)",
+              "/authority_effect (9行目)",
+              "承認対象の限定 (14行目)",
+              "独立結論と固定bytes (29行目)",
+              "functional-requirements.json / SHA-256 (41行目)",
+              "functional-verification.json / SHA-256 (47行目)",
+              "未完の引継ぎ (52行目)"
+            ],
+            "current_snapshot_object_equality": "approved revision・decision record source snapshot・current source_baseline_revisionの3点でcanonical object SHA-256が一致。承認範囲はこのpointerのobjectに限り、現在のファイル全体や新規候補には及ばない。",
+            "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+          },
+          "object_sha256": "8f990faff7c4eaf35d67f2f1f974557db32fafab9a5d8ae38a40c7eba227a98c"
+        }
+      },
+      {
+        "statement": "2026-09-28のPO判断は、固定したHARNESS L2/L11原資料revisionと明示された24候補集合を採用し、版指定と適用性を保持した。この判断はF02の要素集合形成規則を決めていない。",
+        "source": {
+          "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+          "anchors": [
+            "判断の対象",
+            "選択された候補集合",
+            "保持する境界"
+          ],
+          "role": "decision_record"
+        }
+      },
+      {
+        "statement": "2026-09-28のPO判断は、固定したOS L2/L11原資料revisionと明示された16候補集合を採用した。この判断はF02の要素集合形成規則を決めていない。",
+        "source": {
+          "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+          "anchors": [
+            "判断の対象",
+            "選択された候補集合",
+            "保持する境界"
+          ],
+          "role": "decision_record"
+        }
+      },
+      {
+        "statement": "HARNESS-L2-009は単体・接続・構成体の設計義務を区別している。この候補はそれらを統合せず、実装上の都合から義務を導かない。",
+        "source": {
+          "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+          "anchors": [
+            "119行目"
+          ],
+          "role": "current_selected_l2_clause",
+          "selection_basis": {
+            "fixed_approved_subject_index": 0,
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "fixed_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+            "fixed_file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+            "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+            "decision_record_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+            "current_source_comparison_index": 0,
+            "selected_anchor": "HARNESS-L2-009概要行および単体／接続／構成体の義務行",
+            "comparison_result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。",
+            "scope_limit": "PO承認はfixed_revisionの対象に限る。source_baseline_revisionから示すのはselected_anchorに対応する条文だけであり、後続のcurrent file全体には承認を継承しない。"
+          }
+        }
+      },
+      {
+        "statement": "HARNESS-L11-009は適用性と必須入力のBackflowを扱い、AIによる欠落入力の補完と誤ったtemplateへの代替を拒否する。",
+        "source": {
+          "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+          "anchors": [
+            "29、70、130〜131行目"
+          ],
+          "role": "current_selected_l11_clause",
+          "selection_basis": {
+            "fixed_approved_subject_index": 1,
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "fixed_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+            "fixed_file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+            "decision_record_path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+            "decision_record_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+            "current_source_comparison_index": 1,
+            "selected_anchor": "HARNESS-L2-009の要約と受入例",
+            "comparison_result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。",
+            "scope_limit": "PO承認はfixed_revisionの対象に限る。source_baseline_revisionから示すのはselected_anchorに対応する条文だけであり、後続のcurrent file全体には承認を継承しない。"
+          }
+        }
+      },
+      {
+        "statement": "HELIXOS-L2-002は案件追跡とmissing／conflict／未検証状態の区別を担う。COREの出力がOSのproposalであることを意味しない。",
+        "source": {
+          "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+          "anchors": [
+            "55〜56行目"
+          ],
+          "role": "current_selected_l2_clause",
+          "selection_basis": {
+            "fixed_approved_subject_index": 2,
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "fixed_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+            "fixed_file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+            "decision_record_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+            "decision_record_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+            "current_source_comparison_index": 2,
+            "selected_anchor": "HELIXOS-L2-002の要約行",
+            "comparison_result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。",
+            "scope_limit": "PO承認はfixed_revisionの対象に限る。source_baseline_revisionから示すのはselected_anchorに対応する条文だけであり、後続のcurrent file全体には承認を継承しない。"
+          }
+        }
+      },
+      {
+        "statement": "HELIXOS-L11-002の案件追跡および未完了・競合状態の受入は、proposal形成とは別である。",
+        "source": {
+          "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+          "anchors": [
+            "22、49、78、98行目"
+          ],
+          "role": "current_selected_l11_clause",
+          "selection_basis": {
+            "fixed_approved_subject_index": 3,
+            "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+            "fixed_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+            "fixed_file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+            "decision_record_path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+            "decision_record_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
+            "current_source_comparison_index": 3,
+            "selected_anchor": "HELIXOS-L2-002の要約と受入例",
+            "comparison_result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。",
+            "scope_limit": "PO承認はfixed_revisionの対象に限る。source_baseline_revisionから示すのはselected_anchorに対応する条文だけであり、後続のcurrent file全体には承認を継承しない。"
+          }
+        }
+      },
+      {
+        "statement": "2026-09-25のPO意図は、製品固有の意味・設計をCOREに、汎用pattern知識をBRAINに置き、connectorで接続する。この意図はF02の要素集合形成algorithmやRef投影を定義していない。",
+        "source": {
+          "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657",
+          "anchors": [
+            "PO発言および記録されたConcept適用"
+          ],
+          "role": "decision_record"
+        }
+      },
+      {
+        "statement": "2026-10-10の巻戻し判断は、下流作業を限定再開と既存のauthority順序の範囲内に保つ。この候補はそのscopeを広げない。",
+        "source": {
+          "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+          "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+          "file_sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198",
+          "anchors": [
+            "限定再開と停止条件"
+          ],
+          "role": "decision_record"
+        }
+      }
+    ],
+    "not_adopted_by_this_candidate": [
+      "candidate_member_refsをproposed_refsへ対応付けること",
+      "適用性で候補を絞りproposal集合を作ること",
+      "全universeをproposal集合として複写すること",
+      "proposal欠落時に空集合を既定値とすること",
+      "CORE Ref(6)からOS Ref(4)への情報損失を伴うcast",
+      "proposalからselected_refsまたはused_refsを導出すること"
+    ],
+    "exact_approved_l2_l11_subjects": [
+      {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "file_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "decision_record_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      {
+        "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "file_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "decision_record_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23"
+      },
+      {
+        "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "file_sha256": "c92d3c052884c05fbbba89fc86f6e6e0c576846e87073327fb0917e32a1747cf",
+        "decision_record_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      },
+      {
+        "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+        "fixed_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "file_sha256": "925e06cd08056d9569dd31703d7f76e5be59b34f85980646c733367af5edd680",
+        "decision_record_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da"
+      }
+    ],
+    "later_source_comparison": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "anchor": "HARNESS-L2-009概要行および単体／接続／構成体の義務行",
+        "source_baseline_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。"
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "anchor": "HARNESS-L2-009の要約と受入例",
+        "source_baseline_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。"
+      },
+      {
+        "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+        "anchor": "HELIXOS-L2-002の要約行",
+        "source_baseline_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。"
+      },
+      {
+        "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+        "anchor": "HELIXOS-L2-002の要約と受入例",
+        "source_baseline_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "result": "該当行は2026-09-28の固定revisionとbyte単位で一致する。後続版のファイル全体をPOが固定した対象の代わりにはしない。"
+      }
+    ]
+  },
+  "source_inventory": [
+    {
+      "source_type": "approved_exact_object",
+      "label": "CORE要求",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/24",
+      "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "object_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1",
+      "approval_status": "approved_for_exact_object_only",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approval_verification": "verified_exact_object_match",
+      "approval_basis": {
+        "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+        "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+        "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "approved_file_sha256": "7701a9eabe86c6fc4fd1a81531421c40f1b1850cca7defdb30208511e183ffc1",
+        "approved_pointer": "/requirements/24",
+        "approved_object_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1",
+        "decision_record_anchors": [
+          "/reviewed_content_head (6行目)",
+          "/authority_effect (8行目)",
+          "承認対象の限定 (13行目)",
+          "独立結論と固定bytes (28行目)",
+          "functional-requirements.json / SHA-256 (38行目)",
+          "functional-verification.json / SHA-256 (44行目)",
+          "未完の引継ぎ (49行目)"
+        ],
+        "scope_limit": "このpointer対象のexact objectだけが委任承認対象。後続のファイル全体、新しい追補候補、隣接内容へ承認を継承しない。",
+        "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+      }
+    },
+    {
+      "source_type": "approved_exact_object",
+      "label": "CORE対oracle",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/24",
+      "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "object_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4",
+      "approval_status": "approved_for_exact_object_only",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approval_verification": "verified_exact_object_match",
+      "approval_basis": {
+        "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108",
+        "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+        "reviewed_content_head": "e509851ce7c27c09f85cb1a6e3b9a1d231885de3",
+        "approved_file_sha256": "a7a10f1f13ff3399a14b4697b7dc841ae0c3ef174cbe43f0ada7aa2535ce046c",
+        "approved_pointer": "/cases/24",
+        "approved_object_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4",
+        "decision_record_anchors": [
+          "/reviewed_content_head (6行目)",
+          "/authority_effect (8行目)",
+          "承認対象の限定 (13行目)",
+          "独立結論と固定bytes (28行目)",
+          "functional-requirements.json / SHA-256 (38行目)",
+          "functional-verification.json / SHA-256 (44行目)",
+          "未完の引継ぎ (49行目)"
+        ],
+        "scope_limit": "このpointer対象のexact objectだけが委任承認対象。後続のファイル全体、新しい追補候補、隣接内容へ承認を継承しない。",
+        "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+      }
+    },
+    {
+      "source_type": "approved_exact_object",
+      "label": "OS要求",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/9",
+      "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "object_sha256": "732060fd48175f697fd95a4c49180a45f82ab5258c3271e4f0cb50b82dadaa3d",
+      "approval_status": "approved_for_exact_object_only",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approval_verification": "verified_exact_object_match",
+      "approval_basis": {
+        "decision_record_path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0",
+        "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+        "reviewed_content_head": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "approved_file_sha256": "747a6c939d1eafe851561e774728b8b410e7c2f2375ede613427c873735701a8",
+        "approved_pointer": "/requirements/9",
+        "approved_object_sha256": "732060fd48175f697fd95a4c49180a45f82ab5258c3271e4f0cb50b82dadaa3d",
+        "decision_record_anchors": [
+          "/reviewed_content_head (6行目)",
+          "/authority_effect (9行目)",
+          "承認対象の限定 (14行目)",
+          "独立結論と固定bytes (29行目)",
+          "functional-requirements.json / SHA-256 (41行目)",
+          "functional-verification.json / SHA-256 (47行目)",
+          "未完の引継ぎ (52行目)"
+        ],
+        "scope_limit": "このpointer対象のexact objectだけが委任承認対象。後続のファイル全体、新しい追補候補、隣接内容へ承認を継承しない。",
+        "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+      }
+    },
+    {
+      "source_type": "approved_exact_object",
+      "label": "OS対oracle",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "pointer": "/cases/9",
+      "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "object_sha256": "8f990faff7c4eaf35d67f2f1f974557db32fafab9a5d8ae38a40c7eba227a98c",
+      "approval_status": "approved_for_exact_object_only",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main",
+      "approval_verification": "verified_exact_object_match",
+      "approval_basis": {
+        "decision_record_path": "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+        "decision_record_sha256": "bc43990ff996350a96ca53284c0bd8b102f7b224daf755a5b890257a9390d7f0",
+        "decision_record_source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+        "recorded_decision_status": "recorded_pending_final_review_and_main_admission",
+        "reviewed_content_head": "a2f6961068619e550dd0467898927b6bc8451c75",
+        "approved_file_sha256": "951bd0ae98d71bb56046628c3a8bc8e79b45ae082f2f1e80b18f9c72411faf1c",
+        "approved_pointer": "/cases/9",
+        "approved_object_sha256": "8f990faff7c4eaf35d67f2f1f974557db32fafab9a5d8ae38a40c7eba227a98c",
+        "decision_record_anchors": [
+          "/reviewed_content_head (6行目)",
+          "/authority_effect (9行目)",
+          "承認対象の限定 (14行目)",
+          "独立結論と固定bytes (29行目)",
+          "functional-requirements.json / SHA-256 (41行目)",
+          "functional-verification.json / SHA-256 (47行目)",
+          "未完の引継ぎ (52行目)"
+        ],
+        "scope_limit": "このpointer対象のexact objectだけが委任承認対象。後続のファイル全体、新しい追補候補、隣接内容へ承認を継承しない。",
+        "decision_record_admission_evidence": "判断記録本文はsource_baseline_revisionに存在する。記録本文は対象exact revisionを承認し、authority_effectをmainへの記録取込み時に有効と定めている。recorded_decision_statusの履歴値は併記し、元JSONのdraft metadataから承認状態を推定しない。"
+      }
+    },
+    {
+      "source_type": "l5_producer_type",
+      "label": "CORE候補出力型",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/type_contract/types/CandidateUniverseMaterial",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "object_sha256": "8333fc255d1b6dcff8c189a1ad3c98920eaa3f7573aa7178e29c270d93f3dd40"
+    },
+    {
+      "source_type": "l5_producer_type",
+      "label": "CORE公開結果型",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/type_contract/types/ApplicationAnalysis",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "object_sha256": "8231d61f5f2e5e34acd07ad0ecff8ba2f4959762dafaaf6fb1cbbaf858e6f5b4"
+    },
+    {
+      "source_type": "l5_producer_algorithm",
+      "label": "CORE F02 producer算法",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/2/algorithm",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "object_sha256": "6db9bd890f6bc31ab36cf5ceb38df062d11cb695b848340ca537b9fb7f8bf694"
+    },
+    {
+      "source_type": "l5_builder_algorithm",
+      "label": "CORE builder算法",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/10/algorithm",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "object_sha256": "20593317ee37ab096c238741483a042ade3ab7c47b5323e0175cd0f8f77403f1"
+    },
+    {
+      "source_type": "l5_source_type",
+      "label": "CORE Ref",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/type_contract/types/Ref",
+      "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+      "object_sha256": "efed2e1170957f3e7d292636c4f965280873d28c120b51aa101f517472236b4b"
+    },
+    {
+      "source_type": "l5_consumer_type",
+      "label": "OS F02 consumer型",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/type_contract/types/F02RecordInput",
+      "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+      "object_sha256": "b6f25d35137b2ec488c7feba029c869b029576a88ff0a61c13a8f0da6b046067"
+    },
+    {
+      "source_type": "l5_consumer_type",
+      "label": "OS Ref",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/type_contract/types/Ref",
+      "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+      "object_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82"
+    },
+    {
+      "source_type": "l5_consumer_algorithm",
+      "label": "OS consumer算法",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/4",
+      "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+      "object_sha256": "3db4b3ba5d2c813dd4fd2de3f833a84bd9f69f9cad4b0edd235acf49256a2288"
+    },
+    {
+      "source_type": "l8_fixture_input_ownership",
+      "label": "OS合成source所有分担",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "pointer": "/normal_fixtures/3/source_sections",
+      "file_sha256": "edabddc3502387f94330a950a5fbfcaccfd6ac3cd21d3d552e781469bc1733a6",
+      "object_sha256": "74fadaf92aa74d0f3df86f0d1c087c39525dbb63bb846c3e4b40989d4cc5c050"
+    },
+    {
+      "source_type": "l8_fixture_original_input",
+      "label": "OS合成proposal source",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "pointer": "/normal_fixtures/3/original_input/proposed_source",
+      "file_sha256": "edabddc3502387f94330a950a5fbfcaccfd6ac3cd21d3d552e781469bc1733a6",
+      "object_sha256": "3e4581838dbe664ace4bff56a07813bf1ad2c17f8b89df161e9064a99b3d6db4"
+    },
+    {
+      "source_type": "l4_consumer_contract",
+      "label": "OS既存BASIC F02",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "pointer": "/contracts/3/required_input_meanings",
+      "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+      "object_sha256": "9de2e8c076b3be372bb086a3bcafe23915cff9153e625bbe0a1494354e084ffa"
+    },
+    {
+      "source_type": "l4_adjacent_contract_boundary",
+      "label": "既存F04の限定範囲",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "pointer": "/contracts/5/source_original_correspondence/scope",
+      "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+      "object_sha256": "bb70893ae4486e3c2bed1c836c2c39d7ccff81e64b4ddb1a0a3ce904b4660ef1"
+    },
+    {
+      "source_type": "l4_existing_adjacent_seam",
+      "label": "既存BRAIN→COREの限定除外",
+      "revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/selected_brain_field_definition_application_contract/not_closed_here",
+      "file_sha256": "c0e59eb75570955be11d8ca7b7c8148f0f191f335a5fc0711e42f43a01ccf204",
+      "object_sha256": "d94151ea759665a9ef8b6699cb3e14236ec91a53ba9f8c0c9d36fba6e57849c5"
+    }
+  ],
+  "observed_contract_gap": {
+    "statement": "OS L4/L5はproposed_refsとproposed_sourceをCORE所有の入力として定め、selected/usedをOS所有としている。一方、確認したCORE F02生成側・builderは、元proposal source、要素集合の形成規則、OS利用側への同一呼出し内の結合を確立していない。",
+    "evidence_labels": [
+      "CORE候補出力型",
+      "CORE公開結果型",
+      "CORE F02 producer算法",
+      "CORE builder算法",
+      "CORE Ref",
+      "OS F02 consumer型",
+      "OS Ref",
+      "OS consumer算法",
+      "OS既存BASIC F02",
+      "OS合成source所有分担",
+      "OS合成proposal source"
+    ],
+    "interpretation_limit": "OS L8はfixture内でCORE所有とされるproposal素材を独立に合成している。これはoracleの入力であり、COREが実際に出力する証拠でも、稼働中の接続がある証拠でもない。"
+  },
+  "paired_l3_l10_supplement_candidates": [
+    {
+      "pair": [
+        "HARNESS-L3-009-F02",
+        "HARNESS-L10-009-F02"
+      ],
+      "owner": "HELIX-HARNESS-CORE",
+      "candidate_addition": "元proposal集合/sourceと、それが当該CORE呼出しに属する関係が明示入力された場合は、集合全体およびsource identity/revision/scope/owner/locator/digestを保持し、明示的に根拠付けられた集合だけをproposal-source素材として提示する。universe、candidate_member、missing、extra、適用性の判定は別々に保つ。要素集合またはその意味を、既に権限付与された規則から導けない場合は、membership/source関係を未解決として返す。candidate_member_refsや件数から推定しない。",
+      "oracle_candidates": [
+        {
+          "positive": "元proposal/sourceと同一呼出しへの対応関係が明示されている。全要素とCORE Refの6項目を保持し、適用性・missing・extraを個別に追跡できる。"
+        },
+        {
+          "negative": "CandidateUniverseMaterialだけが与えられている。universe_refsまたはcandidate_member_refsを完全なproposal集合として受け入れてはならない。"
+        },
+        {
+          "negative": "identityは同じでもrevision/scope/owner/source locator/digestが異なる。値を別々に保持し、identityや件数だけで重複排除せず、不一致またはunknownを報告する。"
+        },
+        {
+          "negative": "proposal sourceがない、staleである、または別呼出し／snapshotに属する。成功したproposed-set出力を生成しない。"
+        }
+      ]
+    },
+    {
+      "pair": [
+        "HELIXOS-L3-002-F02",
+        "HELIXOS-L10-002-F02"
+      ],
+      "owner": "HELIX-OS",
+      "candidate_addition": "proposed_refs/proposed_sourceは、同一呼出し／snapshot・subject・scope・revisionに対するCORE source関係が正確に確認できる場合、または同等のprovenanceを持つ元proposal packetが明示入力された場合に限り取り込む。selected_refs/selected_sourceとused_refs/used_sourceは、それぞれ独立したOS所有の根拠から保持する。いずれもproposalから導出しない。CORE Ref(6)からOS Ref(4)への対応付けは明示的に行い、完全なCORE Refをprovenanceとして保持する。根拠あるfield mappingがなければ、castやfield破棄をせず投影を未解決として報告する。",
+      "oracle_candidates": [
+        {
+          "positive": "proposal・selected・used集合が異なり、それぞれが独立した元sourceに追跡できる。比較後も区別が保たれる。"
+        },
+        {
+          "negative": "candidate素材をproposalと読み替える、または独立sourceなしにproposalをselected/usedへ複写する。未解決またはconflictを返す。"
+        },
+        {
+          "negative": "OS Refに合わせるためCORE Refのfieldを破棄する。元Ref全体をprovenanceとして保持し、根拠のない投影を拒否する。"
+        },
+        {
+          "negative": "別revision/scope/call/templateの結果を代用する。別templateの情報で補わず、staleまたはconflictを報告する。"
+        }
+      ]
+    }
+  ],
+  "unresolved_authority_choices": [
+    {
+      "question": "HARNESS-L2-009/L11の採択済み意味の範囲で、COREがF02の適用性／candidate結果からOS proposalの要素集合を導出できるか。それとも要素集合とその意味を上流sourceから受け取る必要があるか。",
+      "evidence_state": "選択されたHARNESS/OSのL3/L10 objectは、それぞれのCORE009/OS002委任判断記録が固定したexact revisionのpointer objectと一致し、当該object単位の承認根拠を確認した。ただし、その承認objectはcandidate/proposedとOS selected/usedを区別するだけで、この変換方法を定めていない。今回の新しい追補候補は既存の承認範囲に含まれない。元JSONのdraft metadataは承認前bytesの履歴metadataとして保持されており、承認否定の根拠にはしない。",
+      "candidate_handling": "この候補では選択肢を未決として保つ。AIは既存の委任されたL3作成範囲内で、採択済みL2の意味を変えない具体案を起草できる。元proposal入力が明示されている場合は保持案を記述できる。membershipを自動生成する規則は選ばず、universeの複写、適用性によるfilter、candidateからのcastも選ばない。目的・scope・受入意味を実際に変える場合、またはauthorityが人の判断を明示的に要求する場合に限り人へ戻す。アルゴリズムがまだ確定していないこと自体は、人の承認を必須にする理由ではない。"
+    },
+    {
+      "question": "CORE Ref(6)とOS Ref(4)のどのfield間に対応関係を定める根拠があり、省略するCORE fieldをどう追跡可能に保つか。",
+      "evidence_state": "型契約は異なる。確認したsourceには、情報損失を伴うcastの承認もfield対応表の定義もない。",
+      "candidate_handling": "完全なCORE source objectをprovenanceとして保持し、根拠のあるfield対応が示されるまではOS向け投影を未解決として扱う。AIは既存L2意味の範囲内で対応案を起草できる。実際に意味またはauthorityを変更する場合、あるいはauthorityが明示的に要求する場合に限って人の判断へ戻す。"
+    }
+  ],
+  "impact_and_owner_map": [
+    {
+      "owner": "HELIX-HARNESS-CORE",
+      "role": "proposal生成側と適用性の意味",
+      "paths": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/selected_brain_field_definition_application_contract/not_closed_here",
+          "object_sha256": "d94151ea759665a9ef8b6699cb3e14236ec91a53ba9f8c0c9d36fba6e57849c5",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        },
+        {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointers": [
+            "/type_contract/types/CandidateUniverseMaterial",
+            "/type_contract/types/ApplicationAnalysis",
+            "/functions/2/algorithm",
+            "/functions/10/algorithm",
+            "/type_contract/types/Ref"
+          ],
+          "file_sha256": "813dfa5e2e217cf4fa3503cab59b3799837d3ba3ea4e6e5b7aa93c8154262105",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        }
+      ]
+    },
+    {
+      "owner": "HELIX-OS",
+      "role": "proposal利用側。selected/used根拠の所有者",
+      "paths": [
+        {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "pointers": [
+            "/contracts/3/required_input_meanings",
+            "/contracts/5/source_original_correspondence/scope"
+          ],
+          "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "pointers": [
+            "/type_contract/types/F02RecordInput",
+            "/type_contract/types/Ref",
+            "/functions/4"
+          ],
+          "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointers": [
+            "/normal_fixtures/3/source_sections",
+            "/normal_fixtures/3/original_input/proposed_source"
+          ],
+          "file_sha256": "edabddc3502387f94330a950a5fbfcaccfd6ac3cd21d3d552e781469bc1733a6",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        }
+      ]
+    },
+    {
+      "owner": "BRAIN032",
+      "role": "隣接する接続。今回の還流対象外",
+      "paths": [
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/selected_brain_field_definition_application_contract/not_closed_here",
+          "object_sha256": "d94151ea759665a9ef8b6699cb3e14236ec91a53ba9f8c0c9d36fba6e57849c5",
+          "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a"
+        }
+      ],
+      "boundary": "既存のBRAIN F03→CORE F05の一項目接続は、CORE009 F02の要素集合形成規則やOS002 F02への結合を補わない。"
+    }
+  ],
+  "historical_basis": {
+    "parent_ref": "FT-DESIGN-REFACTOR-001、Issue #3139。一般的なarchitecture再設計ではなく、生成側／利用側の契約gapで確認された限定Backflow。",
+    "legacy_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+    "legacy_source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+    "legacy_source_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+    "sections": [
+      "§0",
+      "§1"
+    ],
+    "retained_correspondence": "意味上の入出力、side effect、failure、状態遷移、呼出し関係、利用側、oracleを比較する。名称やshapeだけから等価性を推定しない。source provenanceと否定的根拠を保持する。意味または公開契約の変更は、構造refactorとして扱わず既存の上流authorityへ送る。",
+    "not_imported": [
+      "旧database/schema/runtime",
+      "固定された旧role一覧",
+      "旧gate/process",
+      "旧実行/test/CI"
+    ],
+    "failure_proof_boundary": "Issue #3403に具体的gapが記録されている。OS利用側はCORE所有のproposed_refs/proposed_sourceを期待する一方、確認したCORE生成側の契約はsource、要素集合の意味、同一呼出しへの結合を確立していない。OS L8で合成したfixtureを生成側の証拠とは扱わない。"
+  },
+  "candidate_acceptance_limits": [
+    "この候補は承認済みL2/L11のbytesを編集しない。",
+    "このJSONを作成しても、L3/L10候補文は承認も正本化もされない。",
+    "runtime、製品evaluator、旧世代の実行物、test、CI、schema、codec、adapterを追加または実行しない。",
+    "候補または静的oracleは、稼働中の生成側／利用側接続、設計閉包、L3承認、実装準備、PO受入、release、deploymentを成立させない。",
+    "92親／430義務の範囲や未完の閉包状態は変わらない。",
+    "L3/L10の既存4 objectは、それぞれのexact delegated decisionとpointer単位の一致による承認状態を記録する。この状態は各objectだけに適用し、現在のJSON全体やこの候補の追補案には及ばない。"
+  ],
+  "research_method": {
+    "discovery_record": {
+      "path": "scaffold/review-handoff/local/route-f02-boundary-68ca87bc-a8m3zwp0/evidence.json",
+      "audit_id": "LOCAL-ROUTE-F02-BOUNDARY-68CA87BC",
+      "kind": "internal_advice_not_independent_review",
+      "authority_effect": "none",
+      "use": "source位置と対象一覧の把握に限る。解釈は規範として扱わず、固定したsource file/pointerと照合した。"
+    },
+    "verification": "列挙した17組のfile/object SHA-256をsource_baseline_revisionから個別にgit showで読み直して再計算した。L3/L10の4 objectはCORE009委任判断記録とOS002委任判断記録のreviewed_content_headでも同一pointerのcanonical object hashを計算し、承認時revision・判断記録snapshot・source_baseline_revision間の一致を確認した。判断記録本文とSHA-256、承認対象pointer、承認対象file hash、対象行を各sourceに結び付けた。意味正本のdraft metadataは承認前bytesの履歴metadataとして保持し、該当exact objectの承認状態を否定する根拠にはしない。承認は4 objectに限り、現在のファイル全体や新規追補候補には継承しない。POが固定したL2/L11対象のhashは2026-09-28のfixed revisionと別途照合した。"
+  },
+  "verification_contract": {
+    "source_snapshot_revision": "68ca87bcad3495d232eee37e1dd0c14e29d4443a",
+    "file_sha256": "対象ファイルの元byte列に対するSHA-256。",
+    "object_sha256": "source_snapshot_revisionで取得したJSONをRFC 6901 pointerで参照し、対象JSON値をJSONとしてUTF-8へserializeしたbyte列のSHA-256。object keyをsort_keysで整列し、separators=(\",\", \":\")で空白を除き、ensure_ascii=false、allow_nan=falseとする。array要素の順序は保持し、並べ替えない。",
+    "pointer_resolution": "RFC 6901 pointer tokenを左から適用する。token内の~1は/、~0は~へ復号する。配列indexを正確に指定し、値やIDによる曖昧検索で代用しない。",
+    "scope_limit": "file_sha256とobject_sha256は別の対象を固定する。pointer対象のhash一致は、同じfileの他の領域、意味上の妥当性、authority状態、consumerとの実接続を証明しない。"
+  }
+}
