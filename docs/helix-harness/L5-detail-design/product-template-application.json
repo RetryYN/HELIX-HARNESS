@@ -20469,7 +20469,7 @@
           "capture": "existing CoreProposalDetailedReturn whole",
           "record": "NativeProposalRecordMaterial"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "NativeProposalRecordMaterial": {
         "kind": "closed_record",
@@ -20481,7 +20481,7 @@
           "membership_completion": "NativeRecordMembershipCompletion",
           "original_universe_exactness": "OriginalUniverseExactnessBasis"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "NativeReturnLocation": {
         "kind": "closed_record",
@@ -20489,7 +20489,7 @@
           "root": "literal native_proposal_return",
           "pointer": "existing JSONPointer"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "CandidateEntry": {
         "kind": "closed_record",
@@ -20500,7 +20500,7 @@
           "template_ref_read": "original existing Read<CoreRef> whole",
           "native_result_location": "NativeReturnLocation"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "NAExclusionEntry": {
         "kind": "closed_record",
@@ -20511,7 +20511,7 @@
           "template_ref_read": "original existing Read<CoreRef> whole",
           "native_result_location": "NativeReturnLocation"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "ResidualEntry": {
         "kind": "closed_record",
@@ -20522,7 +20522,7 @@
           "membership": "既存 ProposalMembership.unresolved | ProposalMembership.unformed の全値",
           "native_result_location": "NativeReturnLocation"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "NativeRecordCandidateKind": {
         "kind": "enum",
@@ -20560,7 +20560,7 @@
           "result_indices": "existing Natural[] (all matching original result positions)",
           "correspondence": "NativeRecordMemberCorrespondence"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       },
       "NativeRecordMemberCorrespondence": {
         "kind": "enum",
@@ -20593,7 +20593,7 @@
           "caller_inputs_location": "NativeReturnLocation",
           "claim": "literal no_new_exactness_claim"
         },
-        "extra_members": "forbidden for this new private record only"
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
       }
     },
     "entry_points": {
@@ -20704,7 +20704,7 @@
         "id": "source_member_no_result",
         "condition": "known source index kにmember_index=kを持つresultが0件",
         "coverage": "MemberCoverage(k,[],unreadable)",
-        "membership_completion": "residual_for_captured_members even if residual_entries=[]",
+        "membership_completion": "residual_entries=[]でもresidual_for_captured_membersとする。",
         "oracle": "missing_result_preserves_known_sibling (k=0)"
       },
       {
