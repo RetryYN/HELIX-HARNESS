@@ -684,7 +684,7 @@
       {
         "cause": "B01 current contentを供給済み参照から確認できない",
         "code": "content_unproven",
-        "pointer": "/claimed_evidence/{original-index-found-by-signal}。Contextだけが原因の場合は空JSON Pointer。",
+        "pointer": "空JSON Pointer \"\"。内容未成立を判定したContext Evidenceだけを原因とし、claim配列の位置へ付け替えない。",
         "subject_ref": "一致したContext evidenceのsubject。catalog_refや他signalから推定しない。",
         "requirement_ref": "HARNESS-L3-001-B01",
         "backflow_owner": "HARNESS-L2-001",

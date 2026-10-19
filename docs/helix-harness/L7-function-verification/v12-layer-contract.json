@@ -411,7 +411,7 @@
       "/purity_and_retry_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "cf2c10070fa5f2b6bc27907a62b7d4432f50efe7ff11f1267faeea03d4fa0a5d"
+    "file_sha256": "a834da5af6d94efe515ba491f1473b92adb27299af181a66a79a984a28bedda5"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT"
 }
