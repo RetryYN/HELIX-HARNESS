@@ -267,7 +267,8 @@
             "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
             "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
             "pointer": "/functions/10",
-            "identity": "HARNESS-L5-009-build_application_analysis_from_detail",
+            "identity": "HARNESS-L5-009-build_application_analysis",
+            "symbol": "build_application_analysis_from_detail",
             "canonical_object_sha256": "e32455b55209cc5a86d16a680dbf0d88fcbaace2f6e8b16068468efc0b4f0812"
           },
           {
