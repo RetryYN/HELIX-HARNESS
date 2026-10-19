@@ -425,7 +425,7 @@
       "/return_contract_detail/f02_front_stage_candidate_concretizations_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "647ca415cb9a2b5f2d66f56f0fbb5e175a127c96b522b22c404c5520c9278820"
+    "file_sha256": "f934eb3c0ebefc025a8ef0b0598a14b3b926b3890b8ee5d75533b13e5df55bd9"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
   "primary_call_oracles": {
@@ -8634,7 +8634,10 @@
       "context_reconstruction": "source_pins.L8の固定revisionにある/f02_constructor_oracles/base_arguments/contextを選び、/context_base_patches_rfc6902、参照profileのContext patch、callのContext patchを順に適用する。",
       "profile_inheritance": "以前のsource profileを基礎とするprofileは、元順のRFC 6902 patch配列を宣言profile recipeへ連結する。source profile chainを明示し、独自継承evaluatorを使わない。",
       "expected_result_reconstruction": "参照先の独立著述expected base literalを選び、callのRFC 6902 expected-result patchを適用してwhole Result/hashを比較する。expected baseは手著述source値であり、実装またはevaluatorの出力ではない。",
-      "result_comparison": "outcome、value、全Finding field/memberと順序を比較する。codeやfinding selectorからexpected Resultを推論・再生成・正規化しない。"
+      "result_comparison": "outcome、value、全Finding field/memberと順序を比較する。codeやfinding selectorからexpected Resultを推論・再生成・正規化しない。",
+      "selector_pointer_root": "calls配列の0始まりindex iにあるcallについて、selected_existing_field_pointersは、全callを記載順に復元したJSON object {\"cases\": [{\"input\": <復元済みinput>, \"context\": <復元済みContext>}, ...]}をrootとするRFC 6901 Pointerである。先にinput_reconstructionとcontext_reconstructionの手順で値を復元し、/cases/iから解決する。iはcalls配列のindexであり、case_idの接尾辞から推定しない。本L7内のliteral /casesやlocal資料を指すものではない。",
+      "combined_arguments_hash_target": "各callのcombined_arguments_canonical_sha256は、復元済み値だけを持つJSON object {\"input\": <input>, \"context\": <Context>}を、上記canonical_sha256の規則で直列化したSHA-256である。配列、連結、profile、metadata、個別hashの連結は対象にしない。",
+      "whole_result_aggregate_hash_target": "inventory.expected_results_aggregate_canonical_sha256は、全callのcase_idをkey、当該callの復元済みwhole expected Resultをvalueとして各1回保持するJSON objectのSHA-256である。上記canonical_sha256の規則を使い、input、Context、個別hash、profile、metadataを含めない。calls配列の連結ではない。"
     },
     "input_base": {
       "screen_fact_ref": {
@@ -11853,6 +11856,13 @@
                   "owner": "fixture-harness-meaning-owner",
                   "scope": "fixture/001",
                   "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-TECH",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f744d20dda123410e6e6534e7666e5511a246647424bef28fbfcac35984f642c"
                 }
               ]
             },
@@ -11875,6 +11885,13 @@
                   "owner": "fixture-harness-meaning-owner",
                   "scope": "fixture/001",
                   "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-TECH",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f744d20dda123410e6e6534e7666e5511a246647424bef28fbfcac35984f642c"
                 }
               ]
             },
@@ -11897,12 +11914,19 @@
                   "owner": "fixture-harness-meaning-owner",
                   "scope": "fixture/001",
                   "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                },
+                {
+                  "identity": "FX-001-TECH",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "f744d20dda123410e6e6534e7666e5511a246647424bef28fbfcac35984f642c"
                 }
               ]
             }
           ]
         },
-        "canonical_sha256": "0af0fd7fe0a8dd19abfb0547e4aea623b65d6f9e6c920833bbd8c1e31bba9d60"
+        "canonical_sha256": "57ac2c02d50491cb93e9f320ffbe86344e982e550809010eee5f11646c238764"
       },
       {
         "source_artifact_pointer": "/authored_literal_bases/YU",
@@ -12607,7 +12631,6 @@
               "/cases/4/input/technical_fact_ref",
               "/cases/4/context/facts/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12627,7 +12650,6 @@
               "/cases/4/input/screen_fact_ref",
               "/cases/4/context/facts/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12690,9 +12712,9 @@
             "pointer": "/claimed_agreement_refs",
             "subject_source": "input/l2_requirement_ref",
             "selected_existing_field_pointers": [
-              "/cases/5/context/evidence_records/1/content_check_refs"
+              "/cases/5/context/evidence_records/1/content_check_refs",
+              "/cases/5/input/claimed_agreement_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12701,7 +12723,7 @@
             "candidate_choice_refs": [
               "F02-C4-AGREEMENT-CORRECTED"
             ],
-            "reason_ja": "Contextのl2_agreementはmissing。試作とPoC resultは合意へ転用せず、claimed_agreement_refs空/SYN結果Refの場合ともagreement_missing一原因。signalのcontent_check_refsは空なのでFinding evidence_refsも空。別signal/global checkへfallbackしない。"
+            "reason_ja": "Contextのl2_agreementはmissing。比較で読んだclaimed_agreement_refs全件とsignal content_check_refsを選択するが、この入力では双方空なのでFinding evidence_refsは空のままとする。prototype/PoC resultは合意に転用せず、agreement_missingを維持する。"
           }
         ],
         "source_locator_description": "/fixture_basis/applicability and /cases/1/positive_input",
@@ -12736,7 +12758,7 @@
         "combined_arguments_canonical_sha256": "48178f7b02a0f294ac5d26f5180591715a810488fa5386237fe48d312482fed9",
         "authored_expected_base_ref": "/f02_front_stage_candidate_oracles/authored_expected_bases/6/expected_result",
         "expected_result_patches_rfc6902": [],
-        "expected_result_canonical_sha256": "0af0fd7fe0a8dd19abfb0547e4aea623b65d6f9e6c920833bbd8c1e31bba9d60",
+        "expected_result_canonical_sha256": "57ac2c02d50491cb93e9f320ffbe86344e982e550809010eee5f11646c238764",
         "typed_input_summary": {
           "facts": [
             "no",
@@ -12763,9 +12785,9 @@
             "pointer": "/poc_claim",
             "subject_source": "input/l2_requirement_ref",
             "selected_existing_field_pointers": [
-              "/cases/6/context/facts/1/content_check_refs"
+              "/cases/6/context/facts/1/content_check_refs",
+              "/cases/6/input/technical_fact_ref"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12775,7 +12797,7 @@
               "F02-C1",
               "F02-C4-APPLICABILITY"
             ],
-            "reason_ja": "technical Fact=yesをapplicableとして保持。claimだけnot_applicableは/poc_claimのapplicability_mismatch。N/A検査は解決Fact起点とし、poc_na=nullから余分な不足を生成しない。"
+            "reason_ja": "technical Fact=yesをapplicableとして保持。比較で読んだ公開technical Fact Refと同Fact check Refを診断根拠へ保持する。claimだけnot_applicableは/poc_claimのapplicability_mismatch。N/A検査は解決Fact起点とし、poc_na=nullから余分な不足を生成しない。"
           }
         ],
         "source_locator_description": "/cases/1/negative_mutations/0",
@@ -12835,7 +12857,6 @@
               "/cases/7/input/technical_fact_ref",
               "/cases/7/context/facts/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12907,7 +12928,6 @@
               "/cases/8/input/screen_fact_ref",
               "/cases/8/context/facts/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12963,8 +12983,69 @@
         "context_canonical_sha256": "6ecbdb85507459411809a90316d3a6835dc98597d303e36fffcf3e0b6ca81957",
         "combined_arguments_canonical_sha256": "8578f8f87e21098e1ebfaf386c1d916ee1add672b5e2a36f8f16d83fc4fc2826",
         "authored_expected_base_ref": "/f02_front_stage_candidate_oracles/authored_expected_bases/5/expected_result",
-        "expected_result_patches_rfc6902": [],
-        "expected_result_canonical_sha256": "f3a57765e633cb3209244a269968e992370e8869947f636b2c312f7ab0f962d2",
+        "expected_result_patches_rfc6902": [
+          {
+            "op": "replace",
+            "path": "/findings/0/evidence_refs",
+            "value": [
+              {
+                "identity": "SYN-F02-PROTOTYPE-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-prototype-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "20db88c2fe2393b7bc963738101fcfa158a939f56fe750d16dccfd428c1b0dba"
+              },
+              {
+                "identity": "SYN-F02-POC-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-poc-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "8453e864c92a7b9ef1cea44d3fdd143f11fe6ebfb2d9114731740bdaed482b5a"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/findings/1/evidence_refs",
+            "value": [
+              {
+                "identity": "SYN-F02-PROTOTYPE-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-prototype-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "20db88c2fe2393b7bc963738101fcfa158a939f56fe750d16dccfd428c1b0dba"
+              },
+              {
+                "identity": "SYN-F02-POC-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-poc-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "8453e864c92a7b9ef1cea44d3fdd143f11fe6ebfb2d9114731740bdaed482b5a"
+              }
+            ]
+          },
+          {
+            "op": "replace",
+            "path": "/findings/2/evidence_refs",
+            "value": [
+              {
+                "identity": "SYN-F02-PROTOTYPE-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-prototype-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "20db88c2fe2393b7bc963738101fcfa158a939f56fe750d16dccfd428c1b0dba"
+              },
+              {
+                "identity": "SYN-F02-POC-RESULT",
+                "revision": "r1",
+                "owner": "fixture-f02-poc-result-owner",
+                "scope": "fixture/001",
+                "content_sha256": "8453e864c92a7b9ef1cea44d3fdd143f11fe6ebfb2d9114731740bdaed482b5a"
+              }
+            ]
+          }
+        ],
+        "expected_result_canonical_sha256": "5b0cf2ac3dca41919f4550933468bfb8855f67da1291d1b02f95fd9865761440",
         "typed_input_summary": {
           "facts": [
             "yes",
@@ -12988,9 +13069,9 @@
             "pointer": "/claimed_agreement_refs",
             "subject_source": "input/l2_requirement_ref",
             "selected_existing_field_pointers": [
-              "/cases/9/context/evidence_records/1/content_check_refs"
+              "/cases/9/context/evidence_records/1/content_check_refs",
+              "/cases/9/input/claimed_agreement_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -12999,7 +13080,7 @@
             "candidate_choice_refs": [
               "F02-C4-AGREEMENT-CORRECTED"
             ],
-            "reason_ja": "Contextのl2_agreementはmissing。試作とPoC resultは合意へ転用せず、claimed_agreement_refs空/SYN結果Refの場合ともagreement_missing一原因。signalのcontent_check_refsは空なのでFinding evidence_refsも空。別signal/global checkへfallbackしない。"
+            "reason_ja": "Contextのl2_agreementはmissing。比較で読んだclaimed_agreement_refs全件を診断根拠に保持し、signalのcontent_check_refsも選択する（この入力では空）。prototype/PoC result Refを含めても合意成立・資格・stateは生成せず、agreement_missingは維持する。global checkへfallbackしない。"
           }
         ],
         "source_locator_description": "/cases/1/negative_mutations/3",
@@ -13053,14 +13134,23 @@
             "selected_existing_field_pointers": [
               "/cases/10/context/source_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
               "fixture-harness-meaning-owner"
             ],
             "candidate_choice_refs": [],
-            "reason_ja": "明示nullのL2 Refへreference_missing一原因。subjectはContext.subject_ref、evidenceは明示source_check_refsだけ。独立した両applicable/l25 requiredを保持する。後段既定でagreement_state missing/backflow_refs=[]、target比較を重ねずcurrent targetを返さない。独立agreement_missingを追加しない。"
+            "reason_ja": "明示nullのL2 Refへreference_missing一原因。subjectはContext.subject_ref、evidenceは明示source_check_refsだけ。独立した両applicable/l25 requiredを保持する。後段既定でagreement_state missing/backflow_refs=[]、target比較を重ねずcurrent targetを返さない。独立agreement_missingを追加しない。",
+            "design_source_pointers": [
+              {
+                "source_pin_ref": "/f02_front_stage_candidate_oracles/source_pins/L5",
+                "pointer": "/functions/1/steps/3"
+              },
+              {
+                "source_pin_ref": "/f02_front_stage_candidate_oracles/source_pins/L5",
+                "pointer": "/f02_return_construction/finding_constructor/fields/evidence_refs"
+              }
+            ]
           }
         ],
         "source_locator_description": "/cases/1/negative_mutations/4",
@@ -13142,7 +13232,6 @@
             "selected_existing_field_pointers": [
               "/cases/11/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13235,7 +13324,6 @@
             "selected_existing_field_pointers": [
               "/cases/12/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13328,7 +13416,6 @@
             "selected_existing_field_pointers": [
               "/cases/13/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13421,7 +13508,6 @@
             "selected_existing_field_pointers": [
               "/cases/14/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13514,7 +13600,6 @@
             "selected_existing_field_pointers": [
               "/cases/15/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13607,7 +13692,6 @@
             "selected_existing_field_pointers": [
               "/cases/16/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13700,7 +13784,6 @@
             "selected_existing_field_pointers": [
               "/cases/17/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13793,7 +13876,6 @@
             "selected_existing_field_pointers": [
               "/cases/18/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13886,7 +13968,6 @@
             "selected_existing_field_pointers": [
               "/cases/19/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -13979,7 +14060,6 @@
             "selected_existing_field_pointers": [
               "/cases/20/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14072,7 +14152,6 @@
             "selected_existing_field_pointers": [
               "/cases/21/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14159,7 +14238,6 @@
             "selected_existing_field_pointers": [
               "/cases/22/context/na_records/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14292,7 +14370,6 @@
             "selected_existing_field_pointers": [
               "/cases/24/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14379,7 +14456,6 @@
             "selected_existing_field_pointers": [
               "/cases/25/context/na_records/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14484,7 +14560,6 @@
               "/cases/27/input/screen_fact_ref",
               "/cases/27/context/facts/0/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14550,7 +14625,6 @@
               "/cases/28/input/technical_fact_ref",
               "/cases/28/context/facts/1/content_check_refs"
             ],
-            "field_pointer_artifact": "v12-f02-front-stage-author-materialized-inputs-6ed36b63-r1.json",
             "logical_owner_literals": [
               "HARNESS-L2-003",
               "HARNESS-L2-008",
@@ -14612,7 +14686,8 @@
           "recorded_findings": 72,
           "domain_evaluator_executed": false
         }
-      }
+      },
+      "expected_results_aggregate_canonical_sha256": "0ab726ab82b2321f342d15c25b448c0263bf13989907ed1faf7c70165e68630d"
     },
     "limits_ja": [
       "C1-C6とFinding/evidence selectorは有限のcandidate choiceであり、元sourceから一意に導出されたとは主張しない。",
@@ -14666,6 +14741,22 @@
         "role_ja": "root whole-result static verification"
       }
     ],
-    "provenance_policy_ja": "以下のlocal準備artifactとroot静的receiptは任意のprivate作業来歴であり、規範sourceや意味判断の根拠ではない。記録内にinput base、RFC 6902 recipe、12 authored expected base、expected patch、結果hashを保持するため、再構成はこのL7記録とsource_pinsの固定文書だけで行える。"
+    "provenance_policy_ja": "以下のlocal準備artifactとroot静的receiptは任意のprivate作業来歴であり、規範sourceや意味判断の根拠ではない。記録内にinput base、RFC 6902 recipe、12 authored expected base、expected patch、結果hashを保持するため、再構成はこのL7記録とsource_pinsの固定文書だけで行える。",
+    "review_correction": {
+      "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3399#issuecomment-6273148790",
+      "reviewed_head": "5a82aba1fa51358caa191922c6e4f79ca95f8179",
+      "changed_expected_case_ids": [
+        "F02-L9-MUT-01",
+        "F02-L9-MUT-04"
+      ],
+      "changed_finding_count": 6,
+      "source_basis": [
+        "L5#/functions/1/steps/0",
+        "L5#/functions/1/steps/3",
+        "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
+      ],
+      "preservation_ja": "全29input/Context、他27whole Result、全callのoutcome/valueを保持。MUT04は共有expected base5を変更せずcall専用patchで診断根拠を訂正し、S6の空集合を保持する。任意のlocal準備記録と既存verification_receiptsは訂正前の固定値に対する来歴として保持し、訂正後のselectorやResult検証の代用にはしない。",
+      "remaining_limit_ja": "診断根拠の保持は合意の資格認定ではない。有限な候補の訂正であり、全域selector・実binding・製品実行・受入は未証明。"
+    }
   }
 }

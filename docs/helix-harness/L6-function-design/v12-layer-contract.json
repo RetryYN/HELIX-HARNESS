@@ -730,7 +730,10 @@
             "L5#/functions/1/steps/1",
             "L5#/functions/1/steps/2"
           ],
-          "uniqueness": "上流本文から一意に定まらない候補補足。"
+          "uniqueness": "上流本文から一意に定まらない候補補足。",
+          "l7_selector_ids": [
+            "F02-C1"
+          ]
         },
         {
           "id": "C2",
@@ -744,7 +747,10 @@
             "L8#/cases/1/negative_mutations/9",
             "L8#/extra_cases/3"
           ],
-          "uniqueness": "上流本文では分類の重なりが一意に解消しない候補補足。"
+          "uniqueness": "上流本文では分類の重なりが一意に解消しない候補補足。",
+          "l7_selector_ids": [
+            "F02-C2"
+          ]
         },
         {
           "id": "C3",
@@ -753,26 +759,31 @@
             "L5#/types/NaReason",
             "L8#/extra_cases/3"
           ],
-          "uniqueness": "parent nullをchild所見へ展開するかは一意に定まらない候補補足。"
+          "uniqueness": "parent nullをchild所見へ展開するかは一意に定まらない候補補足。",
+          "l7_selector_ids": [
+            "F02-C3"
+          ]
         },
         {
           "id": "C4",
           "subselectors": [
             {
               "id": "fact",
-              "selected_ja": "当該公開Fact Ref＋特定済み同Fact.content_check_refs。basis/global/他Factを追加しない。",
+              "selected_ja": "比較で読んだ当該公開Fact Refと、特定済み同Fact.content_check_refs全件だけ。basis/global/他Factを追加しない。",
               "source_refs": [
                 "L5#/functions/1/steps/0",
                 "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
-              ]
+              ],
+              "l7_selector_id": "F02-C4-FACT"
             },
             {
               "id": "applicability",
-              "selected_ja": "current Fact/claim不一致は当該Fact.content_check_refsだけ。",
+              "selected_ja": "Factとclaimの適用不一致は、比較で読んだ当該公開Fact Refと同Fact.content_check_refs全件だけ。無関係なsignal・global root/checkは加えない。",
               "source_refs": [
                 "L5#/functions/1/steps/0",
                 "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
-              ]
+              ],
+              "l7_selector_id": "F02-C4-APPLICABILITY"
             },
             {
               "id": "na",
@@ -780,14 +791,16 @@
               "source_refs": [
                 "L5#/functions/1/steps/1",
                 "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
-              ]
+              ],
+              "l7_selector_id": "F02-C4-NA"
             },
             {
               "id": "agreement",
-              "selected_ja": "signal=l2_agreementのContext Evidence.content_check_refsだけ。今回はmissingで空。global source_check_refsやresult Refで補わない。",
+              "selected_ja": "input.claimed_agreement_refs全件と、signal=l2_agreementのContext Evidence.content_check_refs全件だけ。missing stateの診断に読んだRefを保持するが、合意の成立・資格・stateの証明にはしない。claimed_agreement_refsに含まれないprototype_result_refs/poc_result_refs、global source_check_refs、無関係なsignalのRefを追加しない。",
               "source_refs": [
                 "L5#/functions/1/steps/3"
-              ]
+              ],
+              "l7_selector_id": "F02-C4-AGREEMENT-CORRECTED"
             }
           ],
           "uniqueness": "各selectorは候補のmembership選択であり、sourceから一意に定まらない。C4訂正は旧global source_check_refs選択を置換する。"
@@ -801,7 +814,10 @@
             "L8#/cases/1/negative_mutations/2",
             "L8#/extra_cases/3"
           ],
-          "uniqueness": "入力側の局所化は有限な候補選択であり、新要求ではない。"
+          "uniqueness": "入力側の局所化は有限な候補選択であり、新要求ではない。",
+          "l7_selector_ids": [
+            "F02-C5"
+          ]
         },
         {
           "id": "C6",
@@ -811,7 +827,10 @@
             "L8#/cases/1/negative_mutations/1",
             "L8#/cases/1/negative_mutations/2"
           ],
-          "uniqueness": "有限な診断候補であり、一意に導出されたとは主張しない。"
+          "uniqueness": "有限な診断候補であり、一意に導出されたとは主張しない。",
+          "l7_selector_ids": [
+            "F02-C6-UNKNOWN-CAUSE"
+          ]
         }
       ],
       "finding_order_and_deduplication_route": {
@@ -854,7 +873,8 @@
           "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da"
         }
       ],
-      "provenance_policy_ja": "このローカル準備記録とhashは任意の作業来歴で、規範source、意味判断、候補の再構成に依存しない。候補の選択内容はこの追跡済みL6本文と、ここに示したL5/L8の追跡済みsource pointerだけで確認できる。"
+      "provenance_policy_ja": "このローカル準備記録とhashは任意の作業来歴で、規範source、意味判断、候補の再構成に依存しない。候補の選択内容はこの追跡済みL6本文と、ここに示したL5/L8の追跡済みsource pointerだけで確認できる。",
+      "l7_selector_id_binding_ja": "各candidate choiceのl7_selector_idsおよびC4 subselectorのl7_selector_idは、L7 limited_choice_refsとcauses[].candidate_choice_refsが参照する文字列IDそのものを示す。IDは識別子でありJSON Pointerではない。候補IDを持たない唯一のcauseはL5のreference_missing規則に直接基づき、L7にdesign_source_pointersを持つ。"
     }
   }
 }
