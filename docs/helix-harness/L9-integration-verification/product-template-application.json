@@ -1296,9 +1296,9 @@
         "artifact_ref": {
           "identity": "HARNESS-L9-009-F03-BASIS-MATERIAL",
           "path": "docs/helix-harness/L9-integration-verification/product-template-application/basis-read-fixtures.json",
-          "file_sha256": "f44d30a76868f1bb8ad339c299e66bee81e9ca29b36febb2d3bb39c41fc9dbdb",
+          "file_sha256": "6611fc4f0a85ad0ec158a05eaaddd838ec12a3a551f95433b4188bc04e3f4ea5",
           "pointer": "",
-          "canonical_sha256": "0c0da095080cfff6a4f34e86f6fb6c6f24f02dc108ceb47dd965301c1c37fc14"
+          "canonical_sha256": "e0cd5ec39484a268b0e1a11393ab68d05cbd81106f507ecf02bd8b7168665cc4"
         },
         "logical_binding": {
           "document_id": "HARNESS-L9-009-PRODUCT-TEMPLATE-APPLICATION",
