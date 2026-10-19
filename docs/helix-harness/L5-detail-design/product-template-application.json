@@ -21558,7 +21558,7 @@
       "scope_ja": "既存3caseの意味に対応する限定view形成域。ここで拒否されるものもcontrollerのnative_capture_onlyで全実Nを保持する。全F02/F03/bodyformer一般形の完成ではない。",
       "conditions_in_order": [
         "全sourceがreadyで既存ParsedSourceOccurrenceを原source順で形成できる。operation_role.readyである。",
-        "N.capture.proposalはobserved。N.record.coverageはenumerated。candidate_entriesの全原出現はrequired_candidate/conditional_candidateとして保持され、個々の元membership/ReadはN captureにある。",
+        "N.capture.proposalはobserved。N.record.coverageはenumerated。旧3case相当の限定viewではcandidate_entriesが非空、na_exclusion_entries=[]、residual_entries=[]であることを確認する。candidate_entriesの全原出現はrequired_candidate/conditional_candidateとして保持され、個々の元membership/ReadはN captureにある。valid N/A・known-empty・residual一般形はcontrollerのnative_capture_onlyに原Nを保持し、ここでbodyを形成しない。",
         "各candidateの原template_ref_readに対し、同一OperationFrame.relation_occurrencesを原順で読み、typed_core_json_equalによる原CoreRef6 key対応が一意に得られる。複数対応/未観測/型対応不能を先頭選択しない。CoreRef6全属性known条件やdigest null拒否を追加しない。",
         "native_ref4_locatorの指定source/record/subject/payload所在が原ready.body内に実在し、独立native Ref4原値へtypedに対応する。relation自己申告、source wrapper Ref、proposed_sourceからnative Ref4を作らない。",
         "対象sourceの同walk flagsは今回の旧viewで表せる単一qualified又は単一unqualified。複合flags/conflict/unresolvedをSourceQualificationStateの任意勝者へ縮約しない。",
