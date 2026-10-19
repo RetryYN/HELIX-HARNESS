@@ -115,7 +115,7 @@
       "PrototypeとPoCを独立判定",
       "対応/適用結果とauthority不足を別に返す"
     ],
-    "output_port": "scope付き対応・適用結果・source/authority不足・003/008/各ownerへのBackflow候補。実発行や状態writeはしない。",
+    "output_port": "scope付き対応・適用結果・source/authority不足・003/008/各ownerへのBackflow候補。実発行や状態writeはしない。Finding.backflow_ownerはpure照合契約上の論理修正候補を表し、authorityの決定owner又は実recipientの資格を表さない。対象authorityの不足state・identity/revision/scopeを候補と独立に保持する。",
     "dependency_direction": "snapshot→HARNESS純粋照合→CORE/OS consumer。catalog/結果/保存のproducer契約は各ownerからの参照とし、001の照合がその実生成/登録を呼び出さない。",
     "failure": "unknown/conflict/staleは対象の成果/参照/適用scopeへ局所化し、欠落をN/A、成功、無影響へ変換しない。"
   },
@@ -167,7 +167,7 @@
         "OS運転consumerの契約参照"
       ],
       "behavior": "層/pairの意味上の対応と、authority/合意/承認/操作/検証の各根拠を別に返す。HARNESS001は層と成果の意味、040はcatalog契約、056はpair結果の意味、OSはticket/実行/登録/保存を所有する。層の存在で他ownerの成立を生成せず、旧runtimeへfallbackしない。",
-      "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。"
+      "backflow": "層/pair意味は001、catalogは040、結果意味は056、Prototype/PoCと要求形成は003/008、実authority/運転は各ownerへ返す。論理修正候補の提示で実authority/運転の責務を候補先へ移さない。対象ownerが現入力から特定できない場合も、欠落authorityのsignal・対象参照・stateを保持し、subject・catalog・別signalのownerから推測しない。001返却契約の未具体化を001へ戻す場合は、その設計上の戻し先であって、不足authorityの担当ownerを001へ変更したものではない。個別Findingの候補値の選択はL5/L6へ具体化し、実recipientへのbinding・配送は呼出し側と各ownerに残す。"
     }
   ],
   "remaining": [
