@@ -95,6 +95,18 @@ def content_key(payload):
     return p.sha(p.encode({key: payload[key] for key in ("kind", "sender_session", "receiver_session", "request", "response")}))
 
 
+def issued_request(data, worker, request):
+    """作業結果に添付された依頼が、実際に送られた作業依頼と同じ全値か。"""
+    issued = data.get("issued", {}).get(request["payload_sha256"])
+    if issued:
+        return issued["request_sha256"] == p.sha(p.encode(request)) and issued["worker"] == worker
+    # 送信記録を持つ前に送られ、まだ割当中の依頼だけは、割当とpayload hashの一致で受ける。
+    core = {key: value for key, value in request.items() if key != "payload_sha256"}
+    return (request["payload_sha256"] == p.sha(p.encode(core))
+            and any(item["payload_sha256"] == request["payload_sha256"] and item["dispatcher"] == request["dispatcher"]
+                    for item in work_items(data, worker)))
+
+
 def work_items(data, worker):
     """既存singleton `work`を先頭として読み、後続だけを任意のqueue拡張から読む。"""
     current = data.get("work", {}).get(worker)
@@ -190,6 +202,13 @@ def compact(data, now):
     closed = data.get("closed", {})
     for event_id in [key for key, value in closed.items() if value["closed"] <= now - CLOSED_RETENTION_SECONDS]:
         del closed[event_id]
+    # 作業依頼の送信記録は、割当中か、送信・最後の結果から保持期間内だけ残す。
+    active = {item["payload_sha256"] for worker in RUNTIMES for item in work_items(data, worker)}
+    issued = data.get("issued", {})
+    for key in [key for key, value in issued.items() if key not in active and value["at"] <= now - CLOSED_RETENTION_SECONDS]:
+        del issued[key]
+    if not issued:
+        data.pop("issued", None)
     return records
 
 
@@ -243,7 +262,7 @@ def lane(data, runtime, session, now):
     return value
 
 
-def send(data, runtime, session, event_id, kind, request, response, ttl, now):
+def send(data, runtime, session, event_id, kind, request, response, ttl, now, to=None):
     identity(event_id)
     lane(data, runtime, session, now)
     # 宛先は送り手の相手方ではなく、packetが指す作成側・review側・作業側で決める。packetが両者を別runtimeに限る。
@@ -267,9 +286,14 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
         p.require(request.get("schema") == "scaffold-work-request.v1", "作業依頼schema不一致")
         p.require(runtime == request["worker"], "作業側不一致")
         p.validate_work_result(response, request)
-        target_runtime = request["dispatcher"]
+        # 添付の依頼は、実際に送られた作業依頼と同じ全値に限る。依頼側を書き換えた依頼で記録を偽らせない。
+        p.require(issued_request(data, runtime, request), "送信記録の無い作業依頼への結果")
+        # 結果は自分以外の登録済みruntimeの誰へでも送れる。省略時は、停止中でも通知で起きるClaudeへ送る。
+        # Claude自身が作業側のときだけ、省略時は依頼側へ返す。
+        target_runtime = to or ("claude" if runtime != "claude" else request["dispatcher"])
     else:
         raise ValueError("通知kind不正")
+    p.require(to is None or kind == "work_result", "宛先指定は作業結果だけ")
     p.require(target_runtime in RUNTIMES and target_runtime != runtime, "宛先runtime不正")
     target = data["lanes"].get(target_runtime)
     # leaseが切れた登録済みsessionへも積む。同じsessionの次のhook activityがleaseを更新して受け取る。
@@ -320,6 +344,8 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
             item["pending_ttl"] = ttl
         items.append(item)
         set_work_items(data, target_runtime, items, now)
+        data.setdefault("issued", {})[request["payload_sha256"]] = dict(
+            request_sha256=p.sha(p.encode(request)), dispatcher=runtime, worker=target_runtime, at=now)
         message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                        status="queued", claim=None, ack=None)
         if waiting:
@@ -337,6 +363,9 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now):
                 original["status"] = ("cancelled" if original.get("work_waiting") is True
                                        else "expired" if original["expires"] <= now else "cancelled")
             remove_work(data, runtime, matching["event_id"], now)
+        # 同じ結果を別の相手へも送れるよう、送信記録は最後の結果から保持期間だけ残す。
+        if request["payload_sha256"] in data.get("issued", {}):
+            data["issued"][request["payload_sha256"]]["at"] = now
     message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                    status="queued", claim=None, ack=None)
     data["messages"][event_id] = message
@@ -594,6 +623,7 @@ def main():
             cmd.add_argument("--response")
             cmd.add_argument("--base", required=True)
             cmd.add_argument("--head")
+            cmd.add_argument("--to", choices=RUNTIMES)
             cmd.add_argument("--ttl", type=int, default=3600)
         if command in ("receive", "hook"): cmd.add_argument("--wait", type=int, default=45)
         if command == "hook": cmd.add_argument("--event", choices=("SessionStart", "Stop"))
@@ -638,7 +668,7 @@ def main():
                 p.require(value and value["session"] == args.session, "unbind session不一致")
                 del data["lanes"][args.runtime]
             elif args.command == "send":
-                message = send(data, args.runtime, args.session, args.id, args.kind, request, response, args.ttl, now)
+                message = send(data, args.runtime, args.session, args.id, args.kind, request, response, args.ttl, now, args.to)
                 target = data["lanes"][message["payload"]["receiver_runtime"]]
                 print(json.dumps(dict(event_id=message["payload"]["event_id"], digest=message["digest"], status=message["status"],
                                       receiver_lease_active=target["expires"] > now)))
