@@ -229,7 +229,7 @@
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
       "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
       "proposal_material_formation": {
-        "basis": "この追補はHARNESS-L3-009-F02の適用候補exact setを、候補材料として説明可能にするL4基本契約である。既存L4-F02の入力・出力・BackflowおよびF03の四判定を保ち、承認済み要求の意味を拡張しない。",
+        "basis": "この追補はHARNESS-L3-009-F02の適用候補exact setを、候補材料として説明可能にするL4基本契約である。既存L4-F02の入力・出力・BackflowおよびF03の四判定を保ち、承認済み要求の意味を拡張しない。 同じIssue #3403の研究資料 `docs/governance/crosswalks/core-os-proposal-source-backflow.json`（#3409、source snapshot 2d8c6881b742cb9f07652f8d7bde180a3e075f84）のauthority_baseline/not_adopted_by_this_candidateと未決の問い0は、OSが受け取るproposal集合の形成を扱う。本契約は採択COREAPPLYと既決F02/F03から導くCORE側の提案材料に限り、この具体化のための新L3/L10追補は不要である。OS proposal集合への対応と原source受理の問いは別の未完として残し、研究資料の追補候補を採択済み・解決済みへ変えない。",
         "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
         "source_hash_rule": "canonical_object_sha256はJSON objectのkeyをsort_keys=true、separators=(',', ':')、ensure_ascii=false、allow_nan=falseでUTF-8化して算出し、配列順は保持する。",
         "source_refs": [
