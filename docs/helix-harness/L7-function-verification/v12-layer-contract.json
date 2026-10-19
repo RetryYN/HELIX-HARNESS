@@ -152,11 +152,11 @@
         },
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
-          "pointer": "/f02_constructor_oracles/base_arguments/input"
+          "pointer": "/f02_constructor_oracles/base_arguments/context"
         },
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
-          "pointer": "/f02_constructor_oracles/base_arguments/context"
+          "pointer": "/fixture_basis"
         }
       ],
       "l3_l10_refs": [
@@ -192,8 +192,8 @@
         "expected_scope": "各原mutationのfinding code/outcome/pointerと既存output constraintsを保持。全Result literalsのfreeze済み主張ではない。"
       },
       "whole_oracle_obligations_ja": [
-        "/cases/0の基準の正常系入力/Context全体と11mutationの全返却member（特に選択した案Aにより意味Mismatch時のcorrespondences/unresolved内容、Finding 6 fields、evidence packets/order）を独立根拠から具体化し、実装前に固定する。",
-        "正常構成のsource mappingは、L8 /f02_constructor_oracles/base_arguments/input、/base_arguments/context、/source_materials、/additional_source_materialsに限定して参照する。raw payloadは重複配置せず、proposalの列挙順を承認済み出力順とみなさない。",
+        "/cases/0の基準の正常系入力/Context全体と11mutationの全返却member（特にL6 /return_contract_detail/f01/return_rule_ja が定める、意味不一致行をcorrespondencesから除きunresolvedへ保持する内容、Finding 6 fields、evidence packets/order）を独立根拠から具体化し、実装前に固定する。",
+        "正常構成の入力材料はL8 /cases/0と/fixture_basisを基礎とする。共有できるのは/f02_constructor_oracles/base_arguments/contextの既存Context型の値、および/f02_constructor_oracles/source_materials・/f02_constructor_oracles/additional_source_materialsにある参照とMeaning等の原文資料である。F02専用の10-field inputやF02の期待返却をF01/B01の入力・oracleとして使わない。共有値の再利用はF01/B01の全入力・全返却の凍結やsource資格の成立を意味しない。raw payloadを重複配置せず、各群の要求と独立期待を保持する。",
         "同identity多義の影響行・trace mismatch・anchor mismatchごとの完全Finding、RefSet、partial valueは未凍結。RefSet/layer_universe/pairsはunordered、ArtifactClaim tupleの元位置はsemantic locatorとして保つ。Finding全6 fieldと厳密なevidence packet membershipは未凍結。このgroupは返却構造/状態投影の具体化と残るfreeze条件を扱い、全family/whole-oracle freeze完了を主張しない。"
       ]
     },
@@ -273,11 +273,11 @@
         },
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
-          "pointer": "/f02_constructor_oracles/base_arguments/input"
+          "pointer": "/f02_constructor_oracles/base_arguments/context"
         },
         {
           "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
-          "pointer": "/f02_constructor_oracles/base_arguments/context"
+          "pointer": "/fixture_basis"
         }
       ],
       "l3_l10_refs": [
@@ -308,7 +308,7 @@
       },
       "whole_oracle_obligations_ja": [
         "/cases/2のP/M/design-only各Context、6mutationのinput全体・5 signal output全member・全Finding 6 fields/evidence packet・順序を独立に具体化し実装前に固定する。",
-        "正常構成のsource mappingは、L8 /f02_constructor_oracles/base_arguments/input、/base_arguments/context、/source_materials、/additional_source_materialsに限定して参照する。raw payloadは重複配置せず、proposalの列挙順を承認済み出力順とみなさない。",
+        "正常構成の入力材料はL8 /cases/2と/fixture_basisを基礎とする。共有できるのは/f02_constructor_oracles/base_arguments/contextの既存Context型の値、および/f02_constructor_oracles/source_materials・/f02_constructor_oracles/additional_source_materialsにある参照とMeaning等の原文資料である。F02専用の10-field inputやF02の期待返却をF01/B01の入力・oracleとして使わない。共有値の再利用はF01/B01の全入力・全返却の凍結やsource資格の成立を意味しない。raw payloadを重複配置せず、各群の要求と独立期待を保持する。",
         "5×5 state matrixの全セルへsubject/ref/content overlayを適用したwhole expected、非current claimとcurrent Contextの二重Finding、same-key異digestの両側packetは未凍結。RefSet/layer_universe/pairsはunordered、ArtifactClaim tupleの元位置はsemantic locatorとして保つ。Finding全6 fieldと厳密なevidence packet membershipは未凍結。このgroupは返却構造/状態投影の具体化と残るfreeze条件を扱い、全family/whole-oracle freeze完了を主張しない。 evidence_states.evidence_refsのclaim/Context originも未凍結。"
       ]
     },
