@@ -193001,7 +193001,7 @@
               "ordered_sha256": "42a7499d33fcc1ac926506029c2fa443f3030d1a3ab40778ee8b4073b6bd96c1",
               "byte_length": 57403563
             },
-            "preserved_old_native_whole": {
+            "preserved_old_provider_whole": {
               "canonical_sha256": "87c17f1bc692f9046170aba1fd2fd06e45d2f999c0eea3ae54aaaa19620054b2",
               "ordered_sha256": "f194e2ebb795acc5c2d146fa1c0b84999317ed123406f62b170b226025aadc88",
               "byte_length": 55419088
@@ -193014,7 +193014,7 @@
               "ordered_sha256": "c06cc35f89b69cdc8276245363109bfe7ede129af68e7b63b1cbf61a7d74a2d7",
               "byte_length": 57790086
             },
-            "preserved_old_native_whole": {
+            "preserved_old_provider_whole": {
               "canonical_sha256": "9154d910f66354dd4dd078a173ad164258e813cc8260c7d4b961878c0a1ef149",
               "ordered_sha256": "0127b0eab18402ff9f9a3fe5d7a85e8e3e97ec2fcc5f70c0f9f69e9c17c67beb",
               "byte_length": 55841580
@@ -193027,7 +193027,7 @@
               "ordered_sha256": "71c14ec26bd7f913469815e84d2f2ce2043af74aef98fc75f426c3aef4676467",
               "byte_length": 57403301
             },
-            "preserved_old_native_whole": {
+            "preserved_old_provider_whole": {
               "canonical_sha256": "64a75f9f9b4c2fd32e95284ffd40aa51111fcd5c4624f226c0eb1a8db500e48b",
               "ordered_sha256": "f9782e8ff7127497c503551293e17125ab6c9893d2b541d5ac5f45dbbb043b0e",
               "byte_length": 55418826
@@ -193382,7 +193382,6 @@
       }
     ],
     "not_yet_included_ja": [
-      "全source失敗・その他role/qualification組合せ・未収載の入力は対象外。",
       "全source失敗・その他role/qualification組合せ・未収載の入力は対象外。",
       "実装前Red/Green、実source資格・producer・wrapper実行、OS受領/配送、CI、PO受入は成立していない。"
     ],
