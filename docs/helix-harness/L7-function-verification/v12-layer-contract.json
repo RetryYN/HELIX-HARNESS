@@ -312,7 +312,12 @@
         "正常構成の入力材料はL8 /cases/2と/fixture_basisを基礎とする。共有できるのは/f02_constructor_oracles/base_arguments/contextの既存Context型の値、および/f02_constructor_oracles/source_materials・/f02_constructor_oracles/additional_source_materialsにある参照とMeaning等の原文資料である。F02専用の10-field inputやF02の期待返却をF01/B01の入力・oracleとして使わない。共有値の再利用はF01/B01の全入力・全返却の凍結やsource資格の成立を意味しない。raw payloadを重複配置せず、各群の要求と独立期待を保持する。",
         "元familyの全入力・Context・全返却、全原因分類と各Findingの具体値は未凍結。L6 /return_contract_detail のfield selector・衝突key別packet・B01 Context-only返却Ref規則を独立期待へ適用し、元の部分期待・保持保証と照合する。RefSet/layer_universe/pairsの集合性とArtifactClaim tuple元位置を区別する。型不正/global集合差の空証拠、原因field外のRef混入、同key異digestの消失、Cartesian展開、claim Refの出力流用を識別する。規則の具体化だけで全family/whole-oracle freeze完了とはしない。"
       ],
-      "primary_candidate_ref": "/primary_call_oracles"
+      "primary_candidate_ref": "/primary_call_oracles",
+      "x05_candidate_ref": {
+        "path": "docs/helix-harness/L7-function-verification/v12-layer-contract.json",
+        "pointer": "/primary_call_oracles/x05_candidate_oracles",
+        "note_ja": "B01の限定X05候補32件を参照する。既存primary 23 callとF02 constructor 34件は別集合のまま保持し、B01全域や実行oracleのfreezeを意味しない。"
+      }
     },
     {
       "id": "HARNESS-L7-001-PURE-REPEAT",
@@ -410,10 +415,11 @@
       "/return_contract_detail/f01",
       "/return_contract_detail/b01",
       "/failure_and_recovery_boundary",
-      "/purity_and_retry_ja"
+      "/purity_and_retry_ja",
+      "/return_contract_detail/b01/x05_candidate_concretizations_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "b9e0de0569272ce62e1f9ec06dfabc71e11d9a836e895b1a531136f7779815de"
+    "file_sha256": "bc401b17f41e5f0cc750ccad7a3aef5e0633f9ac88e7f25e0daa1d9208fc4e5d"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
   "primary_call_oracles": {
@@ -5515,6 +5521,3040 @@
       },
       "candidate_l6_basis_ref": "/paired_candidate_binding",
       "role_ja": "別担当が先にL3/L10→L5/L8と明示したL6選択から全23値を著述した候補。集約hashはこのPRだけから再計算できる照合値。上流sourceは既存pinを参照し、歴史L6は上記commitのraw file bytes、同候補3技術選択はpaired_candidate_bindingを通じて別役割に束縛する。private準備記録は再構成依存でも上流authorityでもない。"
+    },
+    "x05_candidate_oracles": {
+      "record_kind": "B01 X05 named whole-call input/context/result candidate recipes",
+      "status": "candidate_whole_values_not_formally_frozen",
+      "source_revision": "6ed36b6377fc864cdcf3bc533aaaf1d9058cd514",
+      "prepared_from_files": [
+        {
+          "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+          "sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "sha256": "b9e0de0569272ce62e1f9ec06dfabc71e11d9a836e895b1a531136f7779815de"
+        },
+        {
+          "path": "docs/helix-harness/L7-function-verification/v12-layer-contract.json",
+          "sha256": "258e8f7dc7d4cdc47c929a8da1e264c7bb0676858b7cca7676f493508b697310"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "sha256": "c26879d003cb8f56fca89057b341d783e102ee25f94efb6c560fae6a465c0137",
+          "selected_pointer": "/extra_cases/4"
+        }
+      ],
+      "authority_effect": "none; candidate input/context/expected data only; no source qualification, requirement approval, product execution, runtime evidence, or completion asserted",
+      "purpose_ja": "既存B01-PとL8 /extra_cases/4を基礎にした32件の限定X05候補。各input・Context・whole Resultを既存の値参照と標準patchで復元し、各canonical SHA-256を照合できる形にする。",
+      "l6_basis_refs": [
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/b01/x05_candidate_concretizations_ja"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_cause_map/0"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_cause_map/8"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_cause_map/9"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_cause_map/10"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_order"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/finding_evidence_packet_rules"
+        },
+        {
+          "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+          "pointer": "/return_contract_detail/evidence_selection_policy_ja"
+        }
+      ],
+      "source_refs": [
+        {
+          "source_pin_ref": "/source_pins/0",
+          "selected_pointer": "/extra_cases/4",
+          "note_ja": "L8 source bytes are unchanged at this pin; the candidate calls derive from this existing B01-P case and do not modify L8."
+        },
+        {
+          "source_pin_ref": "/source_pins/1",
+          "selected_pointers": [
+            "/types",
+            "/common_contract",
+            "/finding_classification",
+            "/functions/2"
+          ],
+          "note_ja": "Existing closed input/result and B01 contract."
+        }
+      ],
+      "reconstruction_contract": {
+        "standard": "RFC 6901 JSON Pointer and RFC 6902 JSON Patch; patch operations apply in listed order.",
+        "input_base_ref": "/primary_call_oracles/common_values/B01_P/input",
+        "context_base_source_pin_ref": "/source_pins/0",
+        "context_base_source_pointer": "/f02_constructor_oracles/base_arguments/context",
+        "expected_result_base_ref": "/primary_call_oracles/expected_literals/B01_P",
+        "hash_ja": "Each input, Context, and whole expected Result is serialized as sorted-key compact JSON with ensure_ascii=false and allow_nan=false, encoded as UTF-8, then SHA-256 hashed. The expected-result aggregate below hashes the sorted-key object {call_id: reconstructed whole Result}; it does not concatenate call arrays or include metadata."
+      },
+      "inventory": {
+        "total_calls": 32,
+        "categories": {
+          "baseline": 1,
+          "single_signal_state": 17,
+          "public_claim_cardinality": 10,
+          "ref_revision_mismatch": 1,
+          "actual_content_absent": 1,
+          "actual_noncurrent_plus_content_check_absent": 3
+        },
+        "existing_primary_calls_preserved": 23,
+        "existing_f02_constructor_cases_preserved": 34,
+        "implementation_or_domain_evaluator_executed": false,
+        "product_tests_or_legacy_runtime_ci_executed": false
+      },
+      "calls": [
+        {
+          "call_id": "X05-P-ALL-CURRENT",
+          "category": "baseline",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "P/all-current baseline",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "b34e32956e2634028c99591a68aaabbe13bd7418d7a4d74c797429ab0a09e829"
+        },
+        {
+          "call_id": "X05-OPERATION-CONDITION-MISSING",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "operation_condition only missing",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/3/state",
+              "value": "missing"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/3/state",
+              "value": "missing"
+            },
+            {
+              "op": "add",
+              "path": "/value/missing_signals/0",
+              "value": "operation_condition"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "incomplete"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "2fbf18a408cc0bb9dc69042838bc5dc2aa394a4b5282cc7812220e12ec99ad38",
+          "expected_result_canonical_sha256": "f3354aa723b1df58efe2d4a4a9f00d44b84c0621617f677faf1f17fed4b0c5ef"
+        },
+        {
+          "call_id": "X05-L1_APPROVAL-UNKNOWN",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l1_approval Context state=unknown",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/0/state",
+              "value": "unknown"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/0/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "7cb6ca0d57888694a898b6e95601754fa09fab29d61d589d10aa889f6d5d49db",
+          "expected_result_canonical_sha256": "850b3a3aa548d822309b19a6f8b77726bc9051c76d1a7216133a097eed3530f5"
+        },
+        {
+          "call_id": "X05-L1_APPROVAL-STALE",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l1_approval Context state=stale",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/0/state",
+              "value": "stale"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/0/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "b20d04d0cd85ac9896dec21475ad7e257cc8b787af584a3c2abadcbd56128376",
+          "expected_result_canonical_sha256": "f03274fe36ffc25e889b48675479e95d02e24c481651c39d0be38af49aad81e8"
+        },
+        {
+          "call_id": "X05-L1_APPROVAL-CONFLICT",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l1_approval Context state=conflict",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/0/state",
+              "value": "conflict"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/0/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/0",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "5fc5f379a139146236920e456e42765507fa8172125a75117af725e8d386aef3",
+          "expected_result_canonical_sha256": "df151c081817ad5eae94761ef59b1802f6ee1ecda394fd3394ba8acdedf74374"
+        },
+        {
+          "call_id": "X05-L2_AGREEMENT-UNKNOWN",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l2_agreement Context state=unknown",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/1/state",
+              "value": "unknown"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/1/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "0b0ed567149d1a8285560f2b11a85e4d73f6e33c6ee866f79061964a085e9971",
+          "expected_result_canonical_sha256": "9281b4d48f1f4f4f7ee8586a19aba52ddfb2763841af3c2de3a123bab3e127f3"
+        },
+        {
+          "call_id": "X05-L2_AGREEMENT-STALE",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l2_agreement Context state=stale",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/1/state",
+              "value": "stale"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/1/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "701f3550958ab434ed40a9255cd8e91da260bfa403a64e197530114c2f51e9cb",
+          "expected_result_canonical_sha256": "d83cb0c231cf7f312169af0b06bfebb70ebd192270e9187335b7f24940f62ba7"
+        },
+        {
+          "call_id": "X05-L2_AGREEMENT-CONFLICT",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l2_agreement Context state=conflict",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/1/state",
+              "value": "conflict"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/1/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/1",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "fc473db25160bb6e6259bef11211f1197ca10ed8aacb7a0c9a54e418bd0691b1",
+          "expected_result_canonical_sha256": "846f5b677159ee28c564d68b7e2f4b56bbaa4dc91c6ba704d3dd04cfa3064cc1"
+        },
+        {
+          "call_id": "X05-L3_APPROVAL-UNKNOWN",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l3_approval Context state=unknown",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/2/state",
+              "value": "unknown"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/2/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "8fc027853a81b30c50ba11ac63e0449ccfc59d4356ceeb44837de368d605ec00",
+          "expected_result_canonical_sha256": "a36181a0db8aeed2bd075e4243c02a2d1b4b2765ad4b80f3bd6e0352c009c53b"
+        },
+        {
+          "call_id": "X05-L3_APPROVAL-STALE",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l3_approval Context state=stale",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/2/state",
+              "value": "stale"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/2/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "a1c4b6a1ce25b4450fd38ed099bee48ab07df025428ef72841ee6595bb4286c0",
+          "expected_result_canonical_sha256": "b2e3e74a3221456e33f24573e5149e4b9f266ae37ddfbf3de7f8a95e2e2b5b70"
+        },
+        {
+          "call_id": "X05-L3_APPROVAL-CONFLICT",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "l3_approval Context state=conflict",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/2/state",
+              "value": "conflict"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/2/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/2",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "b5c807db80d3ca6fe3a30f6cba0d5d3644f80c071a11adc9703d34ced028e82f",
+          "expected_result_canonical_sha256": "803ff842c58dd1a6f1fae5e1eeebcd68709f5373bc147662a03b0c2f3312ef22"
+        },
+        {
+          "call_id": "X05-OPERATION_CONDITION-UNKNOWN",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "operation_condition Context state=unknown",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/3/state",
+              "value": "unknown"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/3/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "2869386af571bfc8a2c3da5c3f5742b5fc5f75f22728ccae519dfd29e8709895",
+          "expected_result_canonical_sha256": "7fc0bace37f375bffbaa525d9e1507b77d5dc7e332fd83e74cfda472dc251e49"
+        },
+        {
+          "call_id": "X05-OPERATION_CONDITION-STALE",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "operation_condition Context state=stale",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/3/state",
+              "value": "stale"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/3/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "06e6467fb475e7a92329b4d13149cb2bfce9d753bf7507aebf05b17d767113ea",
+          "expected_result_canonical_sha256": "25e0a0e5b57b293b87a3875ebbf200b5cf3ff59b7466f122ac701d58cad77ea2"
+        },
+        {
+          "call_id": "X05-OPERATION_CONDITION-CONFLICT",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "operation_condition Context state=conflict",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/3/state",
+              "value": "conflict"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/3/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/3",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "1cd791e94c69faaee591cf76f26c2523f7411fe9c5d21fc70a9115dd224b6252",
+          "expected_result_canonical_sha256": "b282b378bf941394aa0572bfc796b22ebb99fb849ba87505af6f951df178fbe6"
+        },
+        {
+          "call_id": "X05-ACTUAL_VERIFICATION-UNKNOWN",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=unknown",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "unknown"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "f2df91c98457d999edb33f6f77e0b1d978504aaa7a78ab1002d2703ffd0e8d22",
+          "expected_result_canonical_sha256": "d6e782b230f9bb4afb008b6647c6bdf285509144c49cf7f872afb7f48020c031"
+        },
+        {
+          "call_id": "X05-ACTUAL_VERIFICATION-STALE",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=stale",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "stale"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "076ad06e8242ce606fe2281ba143146c92eb1dde90273c4dea3cab1980a42801",
+          "expected_result_canonical_sha256": "3883cdb84181376e54a537ba8ff174640d7f909ee7bcdfa111630ba4214925c0"
+        },
+        {
+          "call_id": "X05-ACTUAL_VERIFICATION-CONFLICT",
+          "category": "single_signal_state",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=conflict",
+          "input_patches_rfc6902": [],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "conflict"
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "e0e4e5efb3aa14405705f33bdf09de827d8feddf52f20e45a1862fb9e7a5a266",
+          "context_canonical_sha256": "90967bbb107facbb9f45cb9e60f7770d82484071a153574cb3d74d1de5759546",
+          "expected_result_canonical_sha256": "6a3034b555f0e8861d6c11e0f4141ed2aad4ac25ae42ce7f535c865ec32a07f4"
+        },
+        {
+          "call_id": "X05-CLAIM-MISSING-L1_APPROVAL",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence missing member: l1_approval",
+          "input_patches_rfc6902": [
+            {
+              "op": "remove",
+              "path": "/claimed_evidence/0"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "f275de67edcef27ac884bc29e2252d1744af2117096cf9ba680a34c77ac988db",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "1df9fdc6573df2ea54b00cab9799373e29f95f883e380ac9e777b46bd7041464"
+        },
+        {
+          "call_id": "X05-CLAIM-MISSING-L2_AGREEMENT",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence missing member: l2_agreement",
+          "input_patches_rfc6902": [
+            {
+              "op": "remove",
+              "path": "/claimed_evidence/1"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "867242494888fdde32dffd13dc0c1a97507580561587ceb6d42a0a72c61e93a7",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "1df9fdc6573df2ea54b00cab9799373e29f95f883e380ac9e777b46bd7041464"
+        },
+        {
+          "call_id": "X05-CLAIM-MISSING-L3_APPROVAL",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence missing member: l3_approval",
+          "input_patches_rfc6902": [
+            {
+              "op": "remove",
+              "path": "/claimed_evidence/2"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "584b2aa439c67231bcd87c7ba022f481b1a34743a45ed480b98bd51d8f12c63e",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "1df9fdc6573df2ea54b00cab9799373e29f95f883e380ac9e777b46bd7041464"
+        },
+        {
+          "call_id": "X05-CLAIM-MISSING-OPERATION_CONDITION",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence missing member: operation_condition",
+          "input_patches_rfc6902": [
+            {
+              "op": "remove",
+              "path": "/claimed_evidence/3"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "976fd5be1a0d35669cb934b8e8d63fc12696a882e4d50925443e36d14fe4bb89",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "1df9fdc6573df2ea54b00cab9799373e29f95f883e380ac9e777b46bd7041464"
+        },
+        {
+          "call_id": "X05-CLAIM-MISSING-ACTUAL_VERIFICATION",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence missing member: actual_verification",
+          "input_patches_rfc6902": [
+            {
+              "op": "remove",
+              "path": "/claimed_evidence/4"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "e73b409c852d551155215dd65b85c83c52da02a71417ed8843c2fad58342c131",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "1df9fdc6573df2ea54b00cab9799373e29f95f883e380ac9e777b46bd7041464"
+        },
+        {
+          "call_id": "X05-CLAIM-DUPLICATE-L1_APPROVAL",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence duplicate member: l1_approval",
+          "input_patches_rfc6902": [
+            {
+              "op": "add",
+              "path": "/claimed_evidence/-",
+              "value": {
+                "signal": "l1_approval",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-l1_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l1_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "c2f469d4f6bdb0c3ea710e50792c52ebd1dbe34fda215e9ac1a12f04ae74f149"
+                  }
+                ],
+                "state": "current",
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence/5",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "9e4abc1ddf5848428c2520ad182955f437f3345ba9c25bf18b4b900ba818ee86",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "eaccbb8086f392901a45e96255e524fd810293ad783baa44853b6e6dbbea5a38"
+        },
+        {
+          "call_id": "X05-CLAIM-DUPLICATE-L2_AGREEMENT",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence duplicate member: l2_agreement",
+          "input_patches_rfc6902": [
+            {
+              "op": "add",
+              "path": "/claimed_evidence/-",
+              "value": {
+                "signal": "l2_agreement",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-l2_agreement",
+                    "revision": "r1",
+                    "owner": "fixture-l2_agreement-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "115584659c968f83eccf6a4c9bd7655209d01c7b81daa91734bda94f8498c1c4"
+                  }
+                ],
+                "state": "current",
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence/5",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "0e1ec143fc4e43658a24448b457a7dfca8bed0463ce394017202e5a2f635b4f9",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "eaccbb8086f392901a45e96255e524fd810293ad783baa44853b6e6dbbea5a38"
+        },
+        {
+          "call_id": "X05-CLAIM-DUPLICATE-L3_APPROVAL",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence duplicate member: l3_approval",
+          "input_patches_rfc6902": [
+            {
+              "op": "add",
+              "path": "/claimed_evidence/-",
+              "value": {
+                "signal": "l3_approval",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-l3_approval",
+                    "revision": "r1",
+                    "owner": "fixture-l3_approval-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "0c83de28260a307fb79b3af7182094a9741dd110370764fd09d99ae6890189b6"
+                  }
+                ],
+                "state": "current",
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence/5",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "229ce2b1b6c155a6e6b8dba621837045ed0f90d28ac38690cdb6da9e9efde867",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "eaccbb8086f392901a45e96255e524fd810293ad783baa44853b6e6dbbea5a38"
+        },
+        {
+          "call_id": "X05-CLAIM-DUPLICATE-OPERATION_CONDITION",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence duplicate member: operation_condition",
+          "input_patches_rfc6902": [
+            {
+              "op": "add",
+              "path": "/claimed_evidence/-",
+              "value": {
+                "signal": "operation_condition",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-operation_condition",
+                    "revision": "r1",
+                    "owner": "fixture-operation_condition-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "9b3d41b4ccbf20c5985d42b77a88b8613826362fc45743e0edd8b0df833f5dab"
+                  }
+                ],
+                "state": "current",
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence/5",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "b6756e468bee373ace1897d4ed43f8c299d6163938e07a66aa44111269aa409c",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "eaccbb8086f392901a45e96255e524fd810293ad783baa44853b6e6dbbea5a38"
+        },
+        {
+          "call_id": "X05-CLAIM-DUPLICATE-ACTUAL_VERIFICATION",
+          "category": "public_claim_cardinality",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "claimed_evidence duplicate member: actual_verification",
+          "input_patches_rfc6902": [
+            {
+              "op": "add",
+              "path": "/claimed_evidence/-",
+              "value": {
+                "signal": "actual_verification",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  }
+                ],
+                "state": "current",
+                "content_check_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  }
+                ]
+              }
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value",
+              "value": null
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "input_invalid",
+                "pointer": "/claimed_evidence/5",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": []
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "invalid"
+            }
+          ],
+          "input_canonical_sha256": "5f1a1f3067ccd368d87f3178f3ab9930df671933325b509584ee902266681fad",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "eaccbb8086f392901a45e96255e524fd810293ad783baa44853b6e6dbbea5a38"
+        },
+        {
+          "call_id": "X05-ACTUAL-REF-OLDER-REVISION",
+          "category": "ref_revision_mismatch",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual observation Ref at another revision",
+          "input_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/claimed_evidence/4/evidence_refs/0/revision",
+              "value": "r0"
+            }
+          ],
+          "context_patches_rfc6902": [],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-CHECK",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "cf14039d70685fcc3f7ea86de2b578a17686096b85ab05d73f018717f69efa41"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r0",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "277d73c7958be54c9ceff766dddb32bf1d9cbc9f302a3d195979a5bc3e75cc42",
+          "context_canonical_sha256": "60a8271baf03f9293f828828906af71da2acc238566c2cb091f84ef4c3cb56ba",
+          "expected_result_canonical_sha256": "249295d3b1ae97096425e646a9bf02e0e521aa2ce3c1c38863e6d4af8ec30a81"
+        },
+        {
+          "call_id": "X05-ACTUAL-COUNT-HASH-ONLY-CURRENT",
+          "category": "actual_content_absent",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification current with count/hash-addressed source only",
+          "input_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/claimed_evidence/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "missing"
+            },
+            {
+              "op": "add",
+              "path": "/value/missing_signals/0",
+              "value": "actual_verification"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "content_unproven",
+                "pointer": "",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "verification_unobserved",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "incomplete"
+            }
+          ],
+          "input_canonical_sha256": "65483a9bcfd15bd6ee56cdbdde79a9d4fbf1a643bdf1e568a7a0bfa2967b3912",
+          "context_canonical_sha256": "77a940a231fa655ad4f7b3b8cc3bc084eb9a48b161f664e98cc93ff28ef3f648",
+          "expected_result_canonical_sha256": "9cfbd36abacb97c8ca99270195ef8ab6348dd0f2ff96208ebf74a12024086e71"
+        },
+        {
+          "call_id": "X05-ACTUAL-UNKNOWN-UNOBSERVED",
+          "category": "actual_noncurrent_plus_content_check_absent",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=unknown plus actual content-check refs absent",
+          "input_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/claimed_evidence/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "unknown"
+            },
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "unknown"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_unknown",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/2",
+              "value": {
+                "code": "verification_unobserved",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "unknown"
+            }
+          ],
+          "input_canonical_sha256": "65483a9bcfd15bd6ee56cdbdde79a9d4fbf1a643bdf1e568a7a0bfa2967b3912",
+          "context_canonical_sha256": "7466d2e2993223f46b5d1972dc685ceaa65c7a8742b2e4c54cae4e57e7a1afb7",
+          "expected_result_canonical_sha256": "31e4631394becf2b72a9546d51a162fd947bfea871935a23c03ea5faaf07c503"
+        },
+        {
+          "call_id": "X05-ACTUAL-STALE-UNOBSERVED",
+          "category": "actual_noncurrent_plus_content_check_absent",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=stale plus actual content-check refs absent",
+          "input_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/claimed_evidence/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "stale"
+            },
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "stale"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_stale",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/2",
+              "value": {
+                "code": "verification_unobserved",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "stale"
+            }
+          ],
+          "input_canonical_sha256": "65483a9bcfd15bd6ee56cdbdde79a9d4fbf1a643bdf1e568a7a0bfa2967b3912",
+          "context_canonical_sha256": "c7f7ec853e8f480afd6ba9cd7334f2252d04bad3c40073cedff0187e4974aade",
+          "expected_result_canonical_sha256": "25104bb2b30a7987f3606ae357a3df8dc93e421cf2768714482e9b8a2554c529"
+        },
+        {
+          "call_id": "X05-ACTUAL-CONFLICT-UNOBSERVED",
+          "category": "actual_noncurrent_plus_content_check_absent",
+          "source_case_pointer": "/extra_cases/4",
+          "source_axis": "actual_verification Context state=conflict plus actual content-check refs absent",
+          "input_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/claimed_evidence/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "context_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/state",
+              "value": "conflict"
+            },
+            {
+              "op": "replace",
+              "path": "/evidence_records/4/content_check_refs",
+              "value": []
+            }
+          ],
+          "expected_result_patches_rfc6902": [
+            {
+              "op": "replace",
+              "path": "/value/evidence_states/4/state",
+              "value": "conflict"
+            },
+            {
+              "op": "add",
+              "path": "/findings/0",
+              "value": {
+                "code": "authority_inferred",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/1",
+              "value": {
+                "code": "reference_conflict",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/findings/2",
+              "value": {
+                "code": "verification_unobserved",
+                "pointer": "/claimed_evidence/4",
+                "subject_ref": {
+                  "identity": "FX-001-SUBJECT",
+                  "revision": "r1",
+                  "owner": "fixture-harness-meaning-owner",
+                  "scope": "fixture/001",
+                  "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                },
+                "requirement_ref": "HARNESS-L3-001-B01",
+                "backflow_owner": "HARNESS-L2-001",
+                "evidence_refs": [
+                  {
+                    "identity": "FX-001-E-actual_verification",
+                    "revision": "r1",
+                    "owner": "fixture-actual_verification-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "3934c6b81ec0f52824abcd86d711bcf484e422c887a64f387f832acfb61d1190"
+                  },
+                  {
+                    "identity": "FX-001-SUBJECT",
+                    "revision": "r1",
+                    "owner": "fixture-harness-meaning-owner",
+                    "scope": "fixture/001",
+                    "content_sha256": "dcc527c8f5bcb917e2d54846751023be47ef33202dc0830f50f688930cd1225c"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/outcome",
+              "value": "conflict"
+            }
+          ],
+          "input_canonical_sha256": "65483a9bcfd15bd6ee56cdbdde79a9d4fbf1a643bdf1e568a7a0bfa2967b3912",
+          "context_canonical_sha256": "edf2000b4bcd3217d53fa7678e24495e9362ab6cc3ab18946d7b5328747e8b30",
+          "expected_result_canonical_sha256": "739793a330a951a6e02c049e10dc04e3bbb1c0327986302ca82e9280a685e5a2"
+        }
+      ],
+      "expected_results_aggregate_canonical_sha256": "9d411d07704153d5a09e6df821d91d1fda0d787ebf3fc4602005bc86cf536148",
+      "limits_ja": [
+        "この候補は指定32件だけを具体化し、B01の全入力・Context・全返却oracleを凍結しない。",
+        "この32件では実callerの資格と原sourceに基づく実観測は未証明であり、技術選択T1〜T4は現行sourceから一意に導かれない候補である。",
+        "actual state/checkの組合せ全域、25-cell matrix全体、異なるsubjectの複合原因、その他X群およびF02全域は未確定・未凍結のまま残る。",
+        "静的な入力再構成・whole Result照合・独立意味レビューは、実装前Red、Green、Refactor、実source資格、実運転・受入の証拠ではない。"
+      ]
     }
   }
 }
