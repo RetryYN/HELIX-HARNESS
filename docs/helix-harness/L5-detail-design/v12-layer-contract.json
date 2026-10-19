@@ -287,7 +287,7 @@
       },
       "steps": [
         "画面factと技術不確実性factを別々にkind/current内容へ照合。yes→applicable、no→not_applicable、unknown/missing→unknown。UIのnoから技術factをnoへ補完しない。currentのyes/noとclaimが違う場合はapplicability_mismatch/conflict。独立factがunknown/missingなら、claimを真偽どちらで主張してもfact_unknown/unknownとして該当/prototype_claimまたは/poc_claimに残し、真偽不一致というconflictへ置換しない。",
-        "not_applicableの各側は別NaReasonの理由/判定者/対象HEAD/要求影響/再評価条件を全部検査。null/空の必要内容はna_basis_missing、missing_na_fieldsには該当input locator。HEADを対象scopeの要求revisionへ照合し、影響と判定者をcurrent根拠へ結ぶ。要求影響は内容根拠があれば空集合（無影響）でもよい。 非nullのN/A内容はcontextの同route NaBasisとexact内容比較する。対象HEADが古ければreference_stale、内容食い違いはreference_conflict、根拠内容照合不足はcontent_unproven。",
+        "not_applicableの各側は別NaReasonの理由/判定者/対象HEAD/要求影響/再評価条件を全部検査。null/空の必要内容はna_basis_missing、missing_na_fieldsには該当input locator。HEADを対象scopeの要求revisionへ照合し、影響と判定者をcurrent根拠へ結ぶ。要求影響は内容根拠があれば空集合（無影響）でもよい。 非nullのN/A内容はcontextの同route NaBasisとexact内容比較する。対象HEADが古ければreference_stale、内容食い違いはreference_conflict、根拠内容照合不足はcontent_unproven。 前段collectorが複数のinput locatorをmissing_na_fieldsへ返す場合は、Unicode code point昇順で並べる。この順序規則はmissing_na_fieldsだけに適用し、Finding・RefSet・他配列・原source出現順・owner順を変更しない。",
         "両側not_applicableかつ両N/A根拠が完全の場合だけl25=not_applicable。一方applicableがあればrequired、残る側unknownも保持。それ以外はunknown。N/A不足でもl25をnot_applicableとしない。",
         "L2要求Refとcontextのcurrent要求Meaningを照合。nullならreference_missing。claimed_agreement_refsはcurrent l2_agreement Evidenceと同対象の内容へ照合する。prototype/poc resultは合意の証拠に転用しない。合意missingならagreement_missing。 現行合意がmissingで試作結果だけを合意として渡す場合は/claimed_agreement_refsのagreement_missing/incompleteとし、試作の成功から合意を生成しない。",
         "二つの適用と合意不足/003・008へのBackflow候補を独立に返す。L3凍結可能、承認、操作許可を返さない。"

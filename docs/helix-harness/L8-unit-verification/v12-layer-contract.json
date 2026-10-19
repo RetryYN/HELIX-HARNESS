@@ -3370,7 +3370,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
-      "sha256": "c31c77872be780c1c57be2dedd5efc3a098230dda5b90b7e961e8c59fea127c4",
+      "sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
       "scope": "同一candidate bytes。上流source revision又は承認factではない。"
     },
     "abstract_family_binding": {
@@ -6380,6 +6380,103 @@
         "expected_result_canonical_sha256": "fde036a2653615f1bd94acd613f9a4e1deebd523a4ea9ab53e5ec9875e5800e0"
       }
     ],
+    "multiple_missing_field_order_control": {
+      "id": "LOCAL-PRIOR-MULTIPLE-NA_FIELDS-MISSING-ORDER",
+      "fixed_source": {
+        "revision": "ec00c767af70254a03134c23cef817327e1ebc15",
+        "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+        "file_sha256": "0d38eba0df04870c6b549cc7c80e68c5f91353c17363aacd6764fee2acae920e",
+        "pointer": "/f02_constructor_oracles/additional_constructor_cases/21",
+        "canonical_sha256": "99b51c8c1acf47e5089f33ba8645e3d36575313fe61025a8020d21ae0d7940a1"
+      },
+      "argument_patch": [
+        {
+          "op": "replace",
+          "path": "/input/prototype_na/decider_ref",
+          "value": null
+        },
+        {
+          "op": "replace",
+          "path": "/context/na_records/0/reason/decider_ref",
+          "value": null
+        }
+      ],
+      "arguments_canonical_sha256": "4270cf8f11c8d88d373b17fdad1c23c10da3c2c74c4924c62fce1792c9949691",
+      "prior_stage_patch": [
+        {
+          "op": "replace",
+          "path": "/value/missing_na_fields",
+          "value": [
+            "/prototype_na/decider_ref",
+            "/prototype_na/reason"
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/findings/0",
+          "path": "/findings/0"
+        },
+        {
+          "op": "replace",
+          "path": "/findings/0/pointer",
+          "value": "/prototype_na/decider_ref"
+        }
+      ],
+      "prior_stage_canonical_sha256": "bc70171d93bde9d67a3c78bca280515f68b23be2d178066d0cb4a1172ddd4f97",
+      "expected_result_patch": [
+        {
+          "op": "replace",
+          "path": "/value/missing_na_fields",
+          "value": [
+            "/prototype_na/decider_ref",
+            "/prototype_na/reason"
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/findings/2",
+          "path": "/findings/0"
+        },
+        {
+          "op": "copy",
+          "from": "/findings/2",
+          "path": "/findings/0"
+        },
+        {
+          "op": "copy",
+          "from": "/findings/2",
+          "path": "/findings/0"
+        },
+        {
+          "op": "replace",
+          "path": "/findings/0/pointer",
+          "value": "/prototype_na/decider_ref"
+        },
+        {
+          "op": "replace",
+          "path": "/findings/1/pointer",
+          "value": "/prototype_na/decider_ref"
+        },
+        {
+          "op": "replace",
+          "path": "/findings/2/pointer",
+          "value": "/prototype_na/decider_ref"
+        }
+      ],
+      "expected_result_canonical_sha256": "b7c5f8de6343b9732a4ad8e5b5c090b9a6d769e54b849139df64a19693f645f7",
+      "reversed_locator_tuple_probe": {
+        "missing_na_fields": [
+          "/prototype_na/reason",
+          "/prototype_na/decider_ref"
+        ],
+        "expected_result_canonical_sha256": "c0d10d6fb67c589dc5023735a327e06bd2ae0f03482d60039d78c1ba060a5026"
+      },
+      "reconstruction_ja": "固定sourceのcase21を既存additional_argument_recipeでinput/contextへ解決し、argument_patchを適用する。prior_stage_patchとexpected_result_patchは、case21の各wholeへ標準RFC6902として個別適用する。RFC6902 copyの配列pathはaddの挿入位置として扱う。これは局所構成のhash照合であり、公開call全体の意味再計算ではない。",
+      "limits_ja": [
+        "候補controlであり、独立oracle確認は別担当。",
+        "F02全関数の意味計算・実装Ready・full closureを主張しない。"
+      ]
+    },
     "additional_argument_recipe": "base_case_refの既存caseからinput/contextだけを既存recipeで解決しdeep copy、argument_patchのRFC6902 add/replace/removeを順に適用する。prior_stageは内部比較の明示素材。これらは後段全返却の対照で、前段全関数の計算や実資格の証明ではない。",
     "finding_order_oracles": [
       {
