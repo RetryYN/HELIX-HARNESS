@@ -19974,5 +19974,1015 @@
       "実製品実装、実producer資格、実caller実行、runtime Red/Green、OSRef4、三集合、配送、record、権限昇格、受入、Releaseは成立を主張しない。",
       "proposalはCOREの候補材料であり、L4/F02が定める責務境界を越えない。"
     ]
+  },
+  "proposal_native_record_material_detail": {
+    "id": "HARNESS-L5-009-proposal_native_record_material_detail",
+    "status": "candidate_detail_design_not_implemented",
+    "authority_effect": "none",
+    "requirement_refs": [
+      "HARNESS-L3-009-F02",
+      "HARNESS-L3-009-F03"
+    ],
+    "basic_design_ref": {
+      "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/contracts/3/proposal_native_record_material",
+      "canonical_sha256": "ae571920bf301dc1ab4f99adc4652931c31ff62cb02d84d280e3b4d4251e088d",
+      "ordered_sha256": "2363d13910c111e426861e625ad14002ba647448f7dea23b203e7dccecd3e2d6"
+    },
+    "paired_oracle_ref": {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "pointer": "/proposal_native_record_material_verification",
+      "binding": "同一native record formerのL8単体oracle。M3のL9四ケース全値を固定sourceからRFC6902 copyして収載し、wrapper/runtime実行の根拠とは分離する。"
+    },
+    "authority_and_operation_boundary_ja": "本詳細は、採択済みHARNESS-L3-009-F02/F03の意味を保持し、既存CORE側のnative proposal returnから提案record材料を形成する候補設計である。要求意味、COREの採否権限、OSの案件記録、資格、配送、永続化、実装成立を追加しない。",
+    "source_basis": {
+      "accepted_basic_revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+      "fixed_source_documents": [
+        {
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "raw_sha256": "d91d58f1233433ae67d285b70e021df7e5c88e33766c88600d369ac219a0a18c",
+          "objects": [
+            {
+              "pointer": "/contracts/3/proposal_native_record_material",
+              "canonical_sha256": "ae571920bf301dc1ab4f99adc4652931c31ff62cb02d84d280e3b4d4251e088d",
+              "ordered_sha256": "2363d13910c111e426861e625ad14002ba647448f7dea23b203e7dccecd3e2d6"
+            },
+            {
+              "pointer": "/contracts/3/proposal_native_record_material/closed_record_shapes",
+              "canonical_sha256": "2d769d29513f26bbfba117fdecfc97ed47ba9287f40a2a1f0f996f3dc5fd2a57",
+              "ordered_sha256": "4e96d5d7615ecd0f2387ae52f933b81d4a35b4cd3dd988e741987854f7fb0593"
+            },
+            {
+              "pointer": "/contracts/3/proposal_native_record_material/source_basis",
+              "canonical_sha256": "fb54fda61bbab7622910c921c660c015a2de4e07686976de5f586c6f838333ec",
+              "ordered_sha256": "a07b04f3aa96496b126396b9913159b56e9c666a6591ba9a0c43341cc253d398"
+            },
+            {
+              "pointer": "/contracts/3/proposal_native_record_material/owner_and_boundary",
+              "canonical_sha256": "44571f3383ac66bbf4d3d3719804dc1ce4af19643c14efdb6426aaa427f311fd",
+              "ordered_sha256": "99aaab44047aca3139566563977324c8423d8299dfbcc382e03a491da7a01801"
+            },
+            {
+              "pointer": "/contracts/3/proposal_native_record_material/formation_and_failure",
+              "canonical_sha256": "473e37d78ad70955c96735cfc8a7911f34c89955ffdecb82a9ca4b7a0aa0d474",
+              "ordered_sha256": "237275e9d527d7b9876e70ec0b90e807a904e2f588e7aeb3dee46819b34cad25"
+            }
+          ]
+        },
+        {
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "raw_sha256": "a94a1c2b1e74017f632ab112abc677aab5ef573b1b0b769ddf177775f7c65879",
+          "objects": [
+            {
+              "pointer": "/cases/3/proposal_native_record_material_cases",
+              "canonical_sha256": "f275ba475880dc924b2619f433bf32e5fd0a9095dd0ab769c2ed36152181de9f",
+              "ordered_sha256": "35f3c931abd786500eabc2c06d3c6f86fb107c4019ae498f2c835916bb4d838a"
+            },
+            {
+              "pointer": "/cases/3/proposal_native_record_material_cases/source_basis",
+              "canonical_sha256": "0f7ea7ca485b365d1a2858cd382ab8cfe11db1c8c068c198382f8ca6279916f0",
+              "ordered_sha256": "80d18b167a72c4ea60555fffede0881267de28f15765dd942f2f566f31a15590"
+            },
+            {
+              "pointer": "/cases/3/proposal_native_record_material_cases/source_reconstruction",
+              "canonical_sha256": "5bf7340ba603e6e4230deb789cd40c9c08be22dab353b0917b9d877884743209",
+              "ordered_sha256": "c004b7d2253418c2803422efb63037eac061e5036ab6f73debc718532c7cf86a"
+            },
+            {
+              "pointer": "/cases/3/proposal_native_record_material_cases/cases",
+              "canonical_sha256": "647db12e3a9e7b1c97dadfa44ff362774982df3fb3189ee07a895b001c1a1aee",
+              "ordered_sha256": "4fc40fb27c49fd756e7e3737eec04add6ce3dc9d98a72eccdb74701e9687f54d"
+            }
+          ]
+        },
+        {
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "raw_sha256": "d975953f2fe79924143bd73a6f75f457081991ee356fcbd12719ae57e77bc1db",
+          "objects": [
+            {
+              "pointer": "/f05_detail_contract/types/CallerInputs",
+              "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+              "ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+              "old_H_ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+              "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+              "ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+              "old_H_ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/CoreRef",
+              "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+              "ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+              "old_H_ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/CoreJsonValue",
+              "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+              "ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+              "old_H_ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/Natural",
+              "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+              "ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+              "old_H_ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c"
+            },
+            {
+              "pointer": "/type_contract/types/Natural",
+              "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+              "ordered_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+              "old_H_ordered_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
+            },
+            {
+              "pointer": "/type_contract/types/JSONPointer",
+              "canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+              "ordered_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+              "old_H_ordered_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/Read",
+              "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+              "ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+              "old_H_ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/Location",
+              "canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6",
+              "ordered_sha256": "d5300295abe495cb454a41712bfe45d5f125725c8b2a9425e2e7c930417317f8",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6",
+              "old_H_ordered_sha256": "d5300295abe495cb454a41712bfe45d5f125725c8b2a9425e2e7c930417317f8"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/OriginRoot",
+              "canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+              "ordered_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+              "old_H_ordered_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af"
+            },
+            {
+              "pointer": "/f05_detail_contract/types/Cause",
+              "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0",
+              "ordered_sha256": "fa8398c5e0c4a1810fa093b04c3bb4371c1124be856450c074d81b1cd5dcfcbb",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0",
+              "old_H_ordered_sha256": "fa8398c5e0c4a1810fa093b04c3bb4371c1124be856450c074d81b1cd5dcfcbb"
+            },
+            {
+              "pointer": "/proposal_material_formation_detail/private_types/CoreProposalDetailedReturn",
+              "canonical_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+              "ordered_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+              "old_H_ordered_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31"
+            },
+            {
+              "pointer": "/proposal_material_formation_detail/private_types/ProposalObservation",
+              "canonical_sha256": "9208bd19c44b30408fa11447d9507beced626d110b5bc5a6d562c76321b13477",
+              "ordered_sha256": "9f114a2b01b6f7c92e0f3ae7f156b9655d4c1ea48e771244117d24a97bf5029e",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "9208bd19c44b30408fa11447d9507beced626d110b5bc5a6d562c76321b13477",
+              "old_H_ordered_sha256": "9f114a2b01b6f7c92e0f3ae7f156b9655d4c1ea48e771244117d24a97bf5029e"
+            },
+            {
+              "pointer": "/proposal_material_formation_detail/private_types/ProposalTemplateResult",
+              "canonical_sha256": "2807a09bbbead62aedeee52dbb6f6dd39a8307bdea15541b75cbd17b97accb82",
+              "ordered_sha256": "0d6709e453166aa6d6fe8b0fbbf842edae7f2168736b3251ae6dccaf07f5e9e5",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "2807a09bbbead62aedeee52dbb6f6dd39a8307bdea15541b75cbd17b97accb82",
+              "old_H_ordered_sha256": "0d6709e453166aa6d6fe8b0fbbf842edae7f2168736b3251ae6dccaf07f5e9e5"
+            },
+            {
+              "pointer": "/proposal_material_formation_detail/private_types/ProposalMembership",
+              "canonical_sha256": "28a3d0765d1930fd96f87409596fe6faaec47ead8167affd998616b24c9b98b0",
+              "ordered_sha256": "ccddde6e74424d71733295ba3cb41436d33b44867ce559b56c61aa8222d9220a",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "28a3d0765d1930fd96f87409596fe6faaec47ead8167affd998616b24c9b98b0",
+              "old_H_ordered_sha256": "ccddde6e74424d71733295ba3cb41436d33b44867ce559b56c61aa8222d9220a"
+            },
+            {
+              "pointer": "/proposal_material_formation_detail/entry_points/private_wrapper",
+              "canonical_sha256": "f8469f02e3a3d0736d85cb47251cc28cb7d65fd837fe9508e3a5c641692af447",
+              "ordered_sha256": "7466008aec868ee6c53952916fb6fa090fc78e82b41fed05f15741c8a2013040",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "f8469f02e3a3d0736d85cb47251cc28cb7d65fd837fe9508e3a5c641692af447",
+              "old_H_ordered_sha256": "7466008aec868ee6c53952916fb6fa090fc78e82b41fed05f15741c8a2013040"
+            },
+            {
+              "pointer": "/wire_codec_contract/numeric_encode_profile/signatures",
+              "canonical_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+              "ordered_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+              "old_H_ordered_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b"
+            },
+            {
+              "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+              "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+              "ordered_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+              "old_H_ordered_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5"
+            },
+            {
+              "pointer": "/source_result_reference_projection/producer_row_materialization/ref_equality",
+              "canonical_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+              "ordered_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+              "equal_to_H_value_and_order": true,
+              "old_H_canonical_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+              "old_H_ordered_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa"
+            }
+          ]
+        }
+      ],
+      "requirement_bindings": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/24",
+          "requirement_ref": "HARNESS-L3-009-F02",
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/25",
+          "requirement_ref": "HARNESS-L3-009-F03",
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "requirement_ref": "HARNESS-L10-009-F02",
+          "binding": "既存system oracle ref。意味は変更しない。"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "requirement_ref": "HARNESS-L10-009-F03",
+          "binding": "既存system oracle ref。意味は変更しない。"
+        }
+      ],
+      "prior_f02_f03_detail": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+        "pointer": "/proposal_material_formation_detail",
+        "canonical_sha256": "54b5df00b0d906a6cd96434859b41bce632942262e2e84d0822b3a4b767ad8e7",
+        "role": "既存build_proposal_material_detailとCoreProposalDetailedReturnのsource。今回その出力native returnを入力境界として再利用する。"
+      },
+      "l9_four_case_source": {
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+        "pointer": "/cases/3/proposal_native_record_material_cases",
+        "canonical_sha256": "f275ba475880dc924b2619f433bf32e5fd0a9095dd0ab769c2ed36152181de9f",
+        "ordered_sha256": "35f3c931abd786500eabc2c06d3c6f86fb107c4019ae498f2c835916bb4d838a"
+      },
+      "old_draftfreeze_record": {
+        "path": "local/core-native-l5l8-draftfreeze-83109157/draftfreeze.json",
+        "sha256": "82599fbaf8809a347f49655f09590ce1d32d83329d6c187ae7134ae46958ee77",
+        "role": "起草構造の凍結記録。authority sourceではない。"
+      },
+      "binding_supplement_record": {
+        "path": "local/core-native-l5l8-binding-supplement-45f542e2/source-binding-supplement.json",
+        "sha256": "340b5585b09c08c1d940a2ddc09f976e66878661e750886a7f204ade6f0126fa",
+        "role": "M3 source revisionと型名のbinding根拠。"
+      }
+    },
+    "legacy_and_failure_basis_ja": {
+      "mode": "semantic_rederivation",
+      "legacy_sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "36–60, 81–92",
+          "preserved": "候補集合、unknown、理由付きN/A、Backflow、義務・対oracle・版traceを照合する。",
+          "changed": "旧registry digest gate、式木、planner/runtimeを移さず、COREのnative record材料とOS案件記録を分ける。",
+          "reason": "採択済みCOREAPPLYとHARNESS-L3-009-F02/F03の現行責務へ意味を再導出する。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+          "lines": "§0–1",
+          "preserved": "入力と由来、処理段階、返却、失敗、順序、consumer境界を明示し、identityとopaque locatorを分ける。",
+          "changed": "旧一般domain modelや実行基盤は移さず、既存CORE/F02/F03型・caller・policy occurrenceに限定して詳細化する。",
+          "reason": "現在のCORE009の型・責務境界へ必要な意味だけを再導出する。"
+        }
+      ],
+      "failure_basis": [
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-014: 欠損sourceを空集合へ縮退させabsenceを見落とす。",
+          "design_response": "not_observed/unavailable_shapeと既知emptyを分け、原Readとcaptureを保持する。"
+        },
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-020: 部分failureがaggregateに隠れ診断単位が粗くなる。",
+          "design_response": "occurrenceごとのcandidate/exclusion/residualとcoverage findingを分離して保持する。"
+        },
+        {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65–101",
+          "failure": "UTW-021: completionが自己申告・件数/hashへ戻り得る。",
+          "design_response": "局所coverage、captured membership completion、元universe exactnessの3役を分け、hash/件数から資格や完了を作らない。"
+        }
+      ]
+    },
+    "existing_type_bindings": [
+      {
+        "pointer": "/f05_detail_contract/types/CallerInputs",
+        "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+        "ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+        "old_H_ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+        "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+        "ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+        "old_H_ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/CoreRef",
+        "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+        "ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+        "old_H_ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/CoreJsonValue",
+        "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+        "ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+        "old_H_ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/Natural",
+        "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+        "ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+        "old_H_ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c"
+      },
+      {
+        "pointer": "/type_contract/types/Natural",
+        "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+        "ordered_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+        "old_H_ordered_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53"
+      },
+      {
+        "pointer": "/type_contract/types/JSONPointer",
+        "canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+        "ordered_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+        "old_H_ordered_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/Read",
+        "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+        "ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+        "old_H_ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/Location",
+        "canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6",
+        "ordered_sha256": "d5300295abe495cb454a41712bfe45d5f125725c8b2a9425e2e7c930417317f8",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6",
+        "old_H_ordered_sha256": "d5300295abe495cb454a41712bfe45d5f125725c8b2a9425e2e7c930417317f8"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/OriginRoot",
+        "canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+        "ordered_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+        "old_H_ordered_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af"
+      },
+      {
+        "pointer": "/f05_detail_contract/types/Cause",
+        "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0",
+        "ordered_sha256": "fa8398c5e0c4a1810fa093b04c3bb4371c1124be856450c074d81b1cd5dcfcbb",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0",
+        "old_H_ordered_sha256": "fa8398c5e0c4a1810fa093b04c3bb4371c1124be856450c074d81b1cd5dcfcbb"
+      },
+      {
+        "pointer": "/proposal_material_formation_detail/private_types/CoreProposalDetailedReturn",
+        "canonical_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+        "ordered_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+        "old_H_ordered_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31"
+      },
+      {
+        "pointer": "/proposal_material_formation_detail/private_types/ProposalObservation",
+        "canonical_sha256": "9208bd19c44b30408fa11447d9507beced626d110b5bc5a6d562c76321b13477",
+        "ordered_sha256": "9f114a2b01b6f7c92e0f3ae7f156b9655d4c1ea48e771244117d24a97bf5029e",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "9208bd19c44b30408fa11447d9507beced626d110b5bc5a6d562c76321b13477",
+        "old_H_ordered_sha256": "9f114a2b01b6f7c92e0f3ae7f156b9655d4c1ea48e771244117d24a97bf5029e"
+      },
+      {
+        "pointer": "/proposal_material_formation_detail/private_types/ProposalTemplateResult",
+        "canonical_sha256": "2807a09bbbead62aedeee52dbb6f6dd39a8307bdea15541b75cbd17b97accb82",
+        "ordered_sha256": "0d6709e453166aa6d6fe8b0fbbf842edae7f2168736b3251ae6dccaf07f5e9e5",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "2807a09bbbead62aedeee52dbb6f6dd39a8307bdea15541b75cbd17b97accb82",
+        "old_H_ordered_sha256": "0d6709e453166aa6d6fe8b0fbbf842edae7f2168736b3251ae6dccaf07f5e9e5"
+      },
+      {
+        "pointer": "/proposal_material_formation_detail/private_types/ProposalMembership",
+        "canonical_sha256": "28a3d0765d1930fd96f87409596fe6faaec47ead8167affd998616b24c9b98b0",
+        "ordered_sha256": "ccddde6e74424d71733295ba3cb41436d33b44867ce559b56c61aa8222d9220a",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "28a3d0765d1930fd96f87409596fe6faaec47ead8167affd998616b24c9b98b0",
+        "old_H_ordered_sha256": "ccddde6e74424d71733295ba3cb41436d33b44867ce559b56c61aa8222d9220a"
+      },
+      {
+        "pointer": "/proposal_material_formation_detail/entry_points/private_wrapper",
+        "canonical_sha256": "f8469f02e3a3d0736d85cb47251cc28cb7d65fd837fe9508e3a5c641692af447",
+        "ordered_sha256": "7466008aec868ee6c53952916fb6fa090fc78e82b41fed05f15741c8a2013040",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "f8469f02e3a3d0736d85cb47251cc28cb7d65fd837fe9508e3a5c641692af447",
+        "old_H_ordered_sha256": "7466008aec868ee6c53952916fb6fa090fc78e82b41fed05f15741c8a2013040"
+      },
+      {
+        "pointer": "/wire_codec_contract/numeric_encode_profile/signatures",
+        "canonical_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+        "ordered_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+        "old_H_ordered_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b"
+      },
+      {
+        "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+        "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+        "ordered_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+        "old_H_ordered_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5"
+      },
+      {
+        "pointer": "/source_result_reference_projection/producer_row_materialization/ref_equality",
+        "canonical_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+        "ordered_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+        "equal_to_H_value_and_order": true,
+        "old_H_canonical_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+        "old_H_ordered_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa"
+      }
+    ],
+    "private_types": {
+      "NativeProposalRecordDetailedReturn": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "capture": "existing CoreProposalDetailedReturn whole",
+          "record": "NativeProposalRecordMaterial"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "NativeProposalRecordMaterial": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "candidate_entries": "CandidateEntry[]",
+          "na_exclusion_entries": "NAExclusionEntry[]",
+          "residual_entries": "ResidualEntry[]",
+          "coverage": "EnumerationCoverage",
+          "membership_completion": "NativeRecordMembershipCompletion",
+          "original_universe_exactness": "OriginalUniverseExactnessBasis"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "NativeReturnLocation": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "root": "literal native_proposal_return",
+          "pointer": "existing JSONPointer"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "CandidateEntry": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "result_index": "existing Natural (generated original result array index)",
+          "member_index": "original existing Natural",
+          "kind": "NativeRecordCandidateKind",
+          "template_ref_read": "original existing Read<CoreRef> whole",
+          "native_result_location": "NativeReturnLocation"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "NAExclusionEntry": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "result_index": "existing Natural",
+          "member_index": "original existing Natural",
+          "kind": "literal na_exclusion_candidate",
+          "template_ref_read": "original existing Read<CoreRef> whole",
+          "native_result_location": "NativeReturnLocation"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "ResidualEntry": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "result_index": "existing Natural",
+          "member_index": "original existing Natural",
+          "template_ref_read": "original existing Read<CoreRef> whole",
+          "membership": "既存 ProposalMembership.unresolved | ProposalMembership.unformed の全値",
+          "native_result_location": "NativeReturnLocation"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "NativeRecordCandidateKind": {
+        "kind": "enum",
+        "values": [
+          "required_candidate",
+          "conditional_candidate"
+        ]
+      },
+      "EnumerationCoverage": {
+        "kind": "closed_tagged_union",
+        "tag": "tag",
+        "ordered_variants": {
+          "enumerated": {
+            "tag": "literal enumerated",
+            "member_coverage": "MemberCoverage[]",
+            "unmatched_result_indices": "existing Natural[]",
+            "unreadable_result_indices": "existing Natural[]",
+            "completion": "NativeRecordCoverageCompletion"
+          },
+          "not_observed": {
+            "tag": "literal not_observed",
+            "source_observation_location": "NativeReturnLocation"
+          },
+          "unavailable_shape": {
+            "tag": "literal unavailable_shape",
+            "source_material_location": "NativeReturnLocation",
+            "result_indices": "existing Natural[]"
+          }
+        }
+      },
+      "MemberCoverage": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "member_index": "existing Natural (generated source array index)",
+          "result_indices": "existing Natural[] (all matching original result positions)",
+          "correspondence": "NativeRecordMemberCorrespondence"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      },
+      "NativeRecordMemberCorrespondence": {
+        "kind": "enum",
+        "values": [
+          "corresponding",
+          "different",
+          "unreadable"
+        ]
+      },
+      "NativeRecordCoverageCompletion": {
+        "kind": "enum",
+        "values": [
+          "covered_as_captured",
+          "incomplete_as_captured"
+        ]
+      },
+      "NativeRecordMembershipCompletion": {
+        "kind": "enum",
+        "values": [
+          "resolved_for_captured_members",
+          "residual_for_captured_members",
+          "not_observed"
+        ]
+      },
+      "OriginalUniverseExactnessBasis": {
+        "kind": "closed_record",
+        "ordered_members": {
+          "state": "literal not_recomputed",
+          "producer_observation_location": "NativeReturnLocation",
+          "caller_inputs_location": "NativeReturnLocation",
+          "claim": "literal no_new_exactness_claim"
+        },
+        "extra_members": "この新規private recordに限り追加memberを禁止する。"
+      }
+    },
+    "entry_points": {
+      "private_wrapper": {
+        "symbol": "build_native_proposal_record_detail",
+        "visibility": "private",
+        "signature": "CallerInputs -> NativeProposalRecordDetailedReturn",
+        "runtime_arguments": [
+          "既存CallerInputs全値のみ"
+        ],
+        "ordered_calls": [
+          {
+            "symbol": "build_proposal_material_detail",
+            "count": 1,
+            "argument": "変更しない同一CallerInputs全値",
+            "result_binding": "その実呼出しが返した完全なCoreProposalDetailedReturnを局所束縛する。"
+          },
+          {
+            "symbol": "form_native_proposal_record_detail",
+            "count": 1,
+            "argument": "直前の実CoreProposalDetailedReturn全値のみ",
+            "result_binding": "その実native return全体をNativeProposalRecordDetailedReturnとして束縛する。"
+          },
+          {
+            "return": "formerの完全返却を変更せずwrapper返却として返す。"
+          }
+        ],
+        "not_runtime_arguments": [
+          "expected value",
+          "cached return",
+          "native return replacement",
+          "qualification boolean",
+          "same-call boolean",
+          "new source ID",
+          "OS project scope",
+          "OS Ref4"
+        ],
+        "static_only_note": "これは詳細設計上の呼出順であり、実wrapper実行やproducer資格の観測ではない。"
+      },
+      "private_former": {
+        "symbol": "form_native_proposal_record_detail",
+        "visibility": "private",
+        "signature": "CoreProposalDetailedReturn -> NativeProposalRecordDetailedReturn",
+        "input": "同一callerの既存CoreProposalDetailedReturn全値。外部sourceや期待値を受け取らない。",
+        "effects": "副作用なし。source補修、external I/O、登録、永続化、qualification、authority判断を行わない。",
+        "ordered_algorithm": [
+          "captureに入力CoreProposalDetailedReturn全値を既存member順・配列順・presence/nullを保って保持する。",
+          "NativeReturnLocationのみ新しいprivate root native_proposal_returnを使う。capture内の既存Read.location、OriginRoot、Cause.targetは書き換えない。",
+          "proposal.tag=unavailableならcandidate_entries/na_exclusion_entries/residual_entriesを空配列とし、coverage=not_observed、membership_completion=not_observed。原Cause全値はcaptureに残す。",
+          "proposal.tag=observedならtemplate_resultsを元result index順に1回走査し、元membership tag/kindだけでcandidate/NA exclusion/residualへ一度ずつ安定分割する。coverage結果を理由にentryを削除しない。",
+          "元CallerInputsとcapture.caller_returnのproducer_observations/1からcompare_candidate_universeの同一caller returned CoreComparison.material.candidate_member_refsを読む。別producer、cache、proposal.considered_readの自己申告でsourceを補わない。",
+          "sourceが既知arrayなら各source indexについて同じmember_indexを持つ全result occurrenceを元順に照合し、coverage_branch_tableどおりMemberCoverage、unmatched、unreadableを形成する。",
+          "唯一のmatching resultでmember_readがpresentのときだけtyped_core_json_equal(value, source member)を用いてcorresponding/differentを判定する。値はcaptureとReadで保持し、等値のために書き換えない。",
+          "membership_completionはcoverage=enumerated/covered_as_capturedかつresidual_entries=[]の場合のみresolved_for_captured_members。観測済みでそれ以外はresidual_for_captured_membersとする。",
+          "original_universe_exactnessは常にnot_recomputed/no_new_exactness_claimとし、元producer observationとcapture.caller_inputsのlocatorだけを保持する。"
+        ]
+      }
+    },
+    "coverage_branch_table": [
+      {
+        "id": "proposal_unavailable",
+        "condition": "native.proposal.tag == unavailable",
+        "partition": "all 3 arrays [] (原原因はcapture.proposal.causesへ全保持)",
+        "coverage": "not_observed; source_observation_location=/capture/caller_return/producer_observations/1",
+        "membership_completion": "not_observed",
+        "oracle": "existing_allskip_unavailable"
+      },
+      {
+        "id": "candidate_required_or_conditional",
+        "condition": "observed result.membership.tag=candidate and kind=required_candidate|conditional_candidate",
+        "partition": "candidate_entriesへ1件。kind/member_index/member_readは原値、result_indexは現在の原result位置。",
+        "coverage": "independent; coverage失敗でentryを除去しない",
+        "oracle": "required_raw_condition_absent / unresolved_with_valid_sibling / missing_result_preserves_known_sibling"
+      },
+      {
+        "id": "na_exclusion",
+        "condition": "observed result.membership.tag=candidate and kind=na_exclusion_candidate",
+        "partition": "na_exclusion_entriesへ1件。N/A原判断/4属性を再判定又は補完せず、原result全値はcapture/locatorへ保持。",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "residual",
+        "condition": "observed result.membership.tag=unresolved|unformed",
+        "partition": "residual_entriesへ1件。元membership全値/causesとmember_read保持。",
+        "oracle": "unresolved_with_valid_sibling（unresolvedを行使。unformed variantはこの4ケースで未行使）"
+      },
+      {
+        "id": "observed_source_array_known",
+        "condition": "observed proposal、元F02 returned comparison.materialがobjectでcandidate_member_refs memberがpresent array",
+        "coverage": "source array index 0..n-1順にMemberCoverageを全列挙。元source object/member順はcaptureへ保持。",
+        "oracle": "first, second, fourth"
+      },
+      {
+        "id": "observed_source_shape_unavailable",
+        "condition": "observed proposalだが元F02 comparison材料又はcandidate_member_refsの取得/array shapeが不成立 (Absent/null/非array/unreached)",
+        "coverage": "unavailable_shape; source_material_location=/proposal/considered_read; result_indicesは全原result positions。元Readと実producer観測を補完しない。",
+        "membership_completion": "residual_for_captured_members (candidate兄弟は保持)",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "source_empty_and_result_empty",
+        "condition": "known candidate_member_refs=[] and template_results=[]",
+        "coverage": "enumerated; member_coverage/unmatched/unreadable=[]; covered_as_captured",
+        "membership_completion": "resolved_for_captured_members (source exactness/OS提案set完成は認定しない)",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "source_member_no_result",
+        "condition": "known source index kにmember_index=kを持つresultが0件",
+        "coverage": "MemberCoverage(k,[],unreadable)",
+        "membership_completion": "residual_entries=[]でもresidual_for_captured_membersとする。",
+        "oracle": "missing_result_preserves_known_sibling (k=0)"
+      },
+      {
+        "id": "source_member_duplicate_results",
+        "condition": "same kを主張するresultが2件以上",
+        "coverage": "全result indicesを原順保持、row.correspondence=unreadable。先頭/最後を選ばず、entry分割は全occurrence保持。",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "one_result_read_unavailable",
+        "condition": "resultがちょうど1件でmember_read.tag=absent|unreached",
+        "coverage": "row.correspondence=unreadable; 原Read wholeはcapture/entryに保存",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "one_result_known_equal",
+        "condition": "resultがちょうど1件、member_read.tag=present、既存typed_core_json_equal(member_read.value,source[k])=true",
+        "coverage": "corresponding",
+        "oracle": "first, second, fourth valid sibling"
+      },
+      {
+        "id": "one_result_known_mismatch",
+        "condition": "same one-result present-read branchで既存typed_core_json_equal=false",
+        "coverage": "different; 値差をunreadableへ丸めず、原両値保持。",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "result_out_of_range",
+        "condition": "typed Natural result.member_index >= len(known source array)",
+        "coverage": "当該resultの原result_indexをunmatched_result_indicesへ原順保存。source []にnonempty resultsなら全件unmatched。",
+        "oracle": "unexercised"
+      },
+      {
+        "id": "enumeration_complete",
+        "condition": "known source array、全MemberCoverageがcorresponding、unmatched/unreadable lists empty",
+        "coverage": "covered_as_captured; sourceに同値重複Refがあっても各indexを独立保持",
+        "oracle": "first and second"
+      },
+      {
+        "id": "enumeration_incomplete",
+        "condition": "known source arrayだが前項条件の少なくとも一つが不成立",
+        "coverage": "incomplete_as_captured",
+        "oracle": "fourth missing result only"
+      },
+      {
+        "id": "membership_resolved",
+        "condition": "observed proposal AND coverage enumerated/covered_as_captured AND residual_entries=[]",
+        "membership_completion": "resolved_for_captured_members",
+        "oracle": "first"
+      },
+      {
+        "id": "membership_residual_or_coverage_unavailable",
+        "condition": "observed proposal AND (residual_entries非空 OR coverage incomplete/unavailable_shape)",
+        "membership_completion": "residual_for_captured_members",
+        "oracle": "second and fourth; unavailable_shape unexercised"
+      },
+      {
+        "id": "source_exactness_always_independent",
+        "condition": "all typed former branches",
+        "output": "not_recomputed/no_new_exactness_claim; 旧F02 producer observation/CallerInputs所在を保存。findings=[]やmissing/extra=[]も新資格・exactness判定へ用いない。",
+        "oracle": "all four"
+      }
+    ],
+    "three_role_separation_ja": [
+      "coverageは捕捉source配列の全occurrenceとの構造対応だけ。",
+      "membership completionはresidualとcoverageの状態だけ。",
+      "元母集合exactnessは旧F02 producer比較/元CallerInputsへ独立に辿り、新型は再計算しない。"
+    ],
+    "equality_binding": {
+      "function": "typed_core_json_equal(left,right) -> boolean",
+      "signature_pointer": "/wire_codec_contract/numeric_encode_profile/signatures/2",
+      "normative_rule_pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+      "existing_materialization_binding": "/source_result_reference_projection/producer_row_materialization/ref_equality",
+      "application": "元candidate_member_refs[k]と唯一対応するpresent member_read.valueのcoverage内容比較に限って既存規範を使う。",
+      "preservation": "boolとnumberは別。native int/CoreNumberは既存exact数学値。array順と重複を保持し、objectはdecoded key集合と値で比較する。Absentとpresent nullはRead分岐で分ける。",
+      "no_new_condition": "raw hash、ordered/canonical hash、host class、numeric token表記、source locator/digest、Ref4/scopeから値等値や資格を新たに判定しない。"
+    },
+    "location_binding": {
+      "new_private_root": "NativeReturnLocation.rootはnative_proposal_return。pointerはformer入力CoreProposalDetailedReturn wholeをrootとする。",
+      "existing_root_union_unchanged": [
+        "validation_raw",
+        "validation_input",
+        "validation_source_observations",
+        "f05_request",
+        "f05_return",
+        "caller_inputs",
+        "caller_return"
+      ],
+      "capture_preservation": "既存Read.location/requested/parent/reachedとCause.targetを元OriginRootのまま保持し、新rootへ書き換えない。",
+      "generated_locations": {
+        "candidate_or_NA_or_residual_entry": "/proposal/template_results/{original result_index}",
+        "coverage.not_observed.source_observation_location": "/capture/caller_return/producer_observations/1",
+        "coverage.unavailable_shape.source_material_location": "/proposal/considered_read",
+        "original_universe_exactness.producer_observation_location": "/capture/caller_return/producer_observations/1",
+        "original_universe_exactness.caller_inputs_location": "/capture/caller_inputs"
+      },
+      "no_alias": "NativeReturnLocationは既存Location又はOriginRootのalias/拡張ではない。"
+    },
+    "typed_input_boundary": {
+      "retained_existing_domain": "ProposalTemplateResultはmember_index:Natural必須、member_read:Read<CoreRef>、membership:閉じた既存union。入力がこの型である限りmember_index欠落/型外は発生しない。",
+      "unreadable_result_indices": "閉じた出力shapeのNatural[]を維持する。今回typed domainでは[]。member_index欠落/型外をこの配列に写して新型を作らず、既存入口codec境界の未検証・本signature外として残す。",
+      "typed_total_branches": "duplicate/out-of-range member_index、member_read absent/unreached/present既知差、source array unavailable/knownemptyは型内なので上記総分岐で定義。",
+      "out_of_domain_not_new_gate": "型外値への新raw entry/修復/default index0/new qualification gate/typed成功返却は追加しない。私有型検査・生wire codec等の製品実装は今回成立していない。"
+    },
+    "failure_and_unclosed": {
+      "typed_input_failure": "既存closed ProposalTemplateResultに従う。member_indexはNatural必須であり、欠落/型外は今回のsignature内にない。",
+      "local_failure_behavior": "欠損/未観測/形不成立を[]・knownempty・N/Aへ潰さず、原Read/captureを保持する。valid siblingを他occurrenceのresidualで消さない。",
+      "bounded_unexercised": [
+        "valid N/A exclusion",
+        "known-empty source arrayとempty results",
+        "duplicate/out-of-range result member_index",
+        "member_read absent/unreachedまたはknown mismatch",
+        "source material unavailable_shape",
+        "typed inputの欠落/型外index（既存入口codec境界・signature外）",
+        "producer資格、OS接続、実wrapper実行"
+      ],
+      "nonclaims": [
+        "製品実装、L8実行、CI/Green、実producer/資格、OS Ref4/project scope、OS053 port binding、OS002 receipt、selected/used集合、配送、identity、永続化、受入、Releaseを主張しない。"
+      ]
+    },
+    "source_binding_roles_ja": "existing_type_bindingsとsource_basisはM3固定source snapshotの来歴を示す。current_type_bindingsは候補worktreeに残る既存objectをpointerで解決し、その比較基準をbase_revisionとcandidate_scope_jaで明示する。L8のcandidate current bindingと固定M3 L9 importは別の役割である。",
+    "current_type_bindings": {
+      "bindings": [
+        {
+          "name": "CallerInputs",
+          "pointer": "/f05_detail_contract/types/CallerInputs",
+          "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+          "ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "CoreApplicationDetailReturn",
+          "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+          "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+          "ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "CoreRef",
+          "pointer": "/f05_detail_contract/types/CoreRef",
+          "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+          "ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "CoreJsonValue",
+          "pointer": "/f05_detail_contract/types/CoreJsonValue",
+          "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+          "ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "Natural",
+          "pointer": "/f05_detail_contract/types/Natural",
+          "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+          "ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "Natural",
+          "pointer": "/type_contract/types/Natural",
+          "canonical_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+          "ordered_sha256": "1bf0a85f6bac07a88d2d21cbdc46bd05ff10d14064c2bd9795d6ea9094c1fc53",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "JSONPointer",
+          "pointer": "/type_contract/types/JSONPointer",
+          "canonical_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+          "ordered_sha256": "629a5e0839ea5b8a85c73f3d1735eef99087873dbd7cf7ebbcb1db3fcce5066c",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "Read",
+          "pointer": "/f05_detail_contract/types/Read",
+          "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+          "ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "Location",
+          "pointer": "/f05_detail_contract/types/Location",
+          "canonical_sha256": "98848b1fccd46f3eee52cc2b65ebb3d9b83cd9884b8718e2a5a436b6192106a6",
+          "ordered_sha256": "d5300295abe495cb454a41712bfe45d5f125725c8b2a9425e2e7c930417317f8",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "OriginRoot",
+          "pointer": "/f05_detail_contract/types/OriginRoot",
+          "canonical_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+          "ordered_sha256": "55355c269716f9577ca1bb0bdd6ed117dfa32cbaaa818e0d7a91a8acda1175af",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "Cause",
+          "pointer": "/f05_detail_contract/types/Cause",
+          "canonical_sha256": "3be43e03de6360c1067a7b7bdc0d8c631ab8ef04d847c99d1cb09166fd9451d0",
+          "ordered_sha256": "fa8398c5e0c4a1810fa093b04c3bb4371c1124be856450c074d81b1cd5dcfcbb",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "CoreProposalDetailedReturn",
+          "pointer": "/proposal_material_formation_detail/private_types/CoreProposalDetailedReturn",
+          "canonical_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+          "ordered_sha256": "0a3676408728ae084cf4453840f252c9db4006b55141e690cde8a78523ac6c31",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "ProposalObservation",
+          "pointer": "/proposal_material_formation_detail/private_types/ProposalObservation",
+          "canonical_sha256": "9208bd19c44b30408fa11447d9507beced626d110b5bc5a6d562c76321b13477",
+          "ordered_sha256": "9f114a2b01b6f7c92e0f3ae7f156b9655d4c1ea48e771244117d24a97bf5029e",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "ProposalTemplateResult",
+          "pointer": "/proposal_material_formation_detail/private_types/ProposalTemplateResult",
+          "canonical_sha256": "2807a09bbbead62aedeee52dbb6f6dd39a8307bdea15541b75cbd17b97accb82",
+          "ordered_sha256": "0d6709e453166aa6d6fe8b0fbbf842edae7f2168736b3251ae6dccaf07f5e9e5",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "ProposalMembership",
+          "pointer": "/proposal_material_formation_detail/private_types/ProposalMembership",
+          "canonical_sha256": "28a3d0765d1930fd96f87409596fe6faaec47ead8167affd998616b24c9b98b0",
+          "ordered_sha256": "ccddde6e74424d71733295ba3cb41436d33b44867ce559b56c61aa8222d9220a",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "private_wrapper",
+          "pointer": "/proposal_material_formation_detail/entry_points/private_wrapper",
+          "canonical_sha256": "f8469f02e3a3d0736d85cb47251cc28cb7d65fd837fe9508e3a5c641692af447",
+          "ordered_sha256": "7466008aec868ee6c53952916fb6fa090fc78e82b41fed05f15741c8a2013040",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "signatures",
+          "pointer": "/wire_codec_contract/numeric_encode_profile/signatures",
+          "canonical_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+          "ordered_sha256": "9a447568f6eb4500760481ebefd99ac1aa2e026d32a0977e549698f62a1ebe9b",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "typed_equality",
+          "pointer": "/wire_codec_contract/numeric_encode_profile/numeric_predicates/typed_equality",
+          "canonical_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+          "ordered_sha256": "c4d9b90c117d6c9cc753af8caf601e5c40425b3c72b79bdfc6b23f955c238ca5",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        },
+        {
+          "name": "ref_equality",
+          "pointer": "/source_result_reference_projection/producer_row_materialization/ref_equality",
+          "canonical_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+          "ordered_sha256": "749f4403ec87417e1299e348fc6ccd108b894c14710dff7b5d2a71a36db5cfaa",
+          "source_role_ja": "現行L5に残る既存型・関数・数値比較規範を直接指す。私有の重複定義を作らない。",
+          "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103"
+        }
+      ],
+      "base_revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+      "candidate_scope_ja": "M3 baseから変えていない既存型・関数・数値規範を候補worktreeで同じpointerへ解決する。候補L5 childの追加はこれら旧objectの定義を変更しない。"
+    }
   }
 }
