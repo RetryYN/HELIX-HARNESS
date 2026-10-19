@@ -986,60 +986,6 @@
           }
         },
         "closed_types": {
-          "OSRef": {
-            "fields": {
-              "identity": "Field<string>",
-              "revision": "Field<string>",
-              "scope": "Field<Scope>",
-              "owner": "Field<string>"
-            },
-            "basis": "M4 OS L5 /type_contract/types/Ref"
-          },
-          "OSQualification": {
-            "fields": {
-              "ref": "Ref",
-              "root_ref": "Ref",
-              "source_ref": "Ref",
-              "owner": "string",
-              "subject_refs": "Ref[]",
-              "source_sha256": "string"
-            },
-            "basis": "M4 OS L5 /type_contract/types/Qualification"
-          },
-          "OSQualificationRoot": {
-            "fields": {
-              "ref": "Ref",
-              "owner": "string",
-              "allowed_subject_refs": "Ref[]",
-              "allowed_source_ref": "Ref",
-              "allowed_source_sha256": "string"
-            },
-            "basis": "M4 OS L5 /type_contract/types/QualificationRoot"
-          },
-          "OSOwnerRecord": {
-            "fields": {
-              "subject_ref": "Ref",
-              "section_key": "string",
-              "record_kind": "string",
-              "payload": "map<string,SourceSectionValue>",
-              "owner": "string"
-            },
-            "basis": "M4 OS L5 /type_contract/types/OwnerRecord"
-          },
-          "CoreRef6": {
-            "fields": {
-              "identity": "string|null",
-              "revision": "string|null",
-              "scope": "RawValue",
-              "owner": "string|null",
-              "source_locator": "string|null",
-              "sha256": "string|null"
-            },
-            "basis": "M4 CORE L5 /type_contract/types/Ref"
-          },
-          "CoreCallerInputs": {
-            "basis": "M2 CORE L8 /proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe; whole value is imported from the frozen input recipe"
-          },
           "RawSourceOccurrence": {
             "ordered_members": [
               "source_ref",
@@ -1049,11 +995,11 @@
               "qualification_ref"
             ],
             "fields": {
-              "source_ref": "OS Ref",
+              "source_ref": "OSRef4",
               "owner": "string",
               "source_json_utf8": "string",
               "source_sha256": "Sha256",
-              "qualification_ref": "OS Ref"
+              "qualification_ref": "OSRef4"
             },
             "basis": "M4 OS L5 /type_contract/types/SourceEnvelope",
             "note_ja": "raw request型。decoded_recordsは入力memberではない。qualification_refはQualification.ref lookupに使い、source_refと混同しない。"
@@ -1068,12 +1014,12 @@
               "qualification_ref"
             ],
             "fields": {
-              "source_ref": "OS Ref",
+              "source_ref": "OSRef4",
               "owner": "string",
               "source_json_utf8": "string",
               "source_sha256": "Sha256",
               "decoded_records": "RawRecord[]",
-              "qualification_ref": "OS Ref"
+              "qualification_ref": "OSRef4"
             },
             "note_ja": "返却SourceFrameで保持するstrict parse結果。",
             "basis": "M4 OS L5 /type_contract/types/SourceEnvelope の既存member順へ、strict parseしたdecoded_recordsを追加した局所返却型。元型の全値・順序を保持する。"
@@ -1089,7 +1035,7 @@
             ],
             "fields": {
               "source_occurrence_index": "Natural",
-              "source_ref": "Ref",
+              "source_ref": "OSRef4",
               "qualified_record_indices": "Natural[]",
               "input_issue_indices": "Natural[]",
               "source_issue_indices": "Natural[]",
@@ -1108,33 +1054,11 @@
             ],
             "fields": {
               "source_occurrence_index": "Natural",
-              "source_ref": "Ref",
+              "source_ref": "OSRef4",
               "record_index": "Natural",
               "qualified_record_index": "Natural",
               "record": "RawRecord"
             }
-          },
-          "InputIssue": {
-            "ordered_members": [
-              "path",
-              "state",
-              "detail",
-              "backflow_owner",
-              "axis",
-              "source_ref",
-              "related_source_refs"
-            ],
-            "fields": {
-              "path": "string",
-              "state": "string",
-              "detail": "string",
-              "backflow_owner": "string",
-              "axis": "string",
-              "source_ref": "OS Field<OS Ref>; supplied value serializes as the Ref object",
-              "related_source_refs": "Ref[]"
-            },
-            "basis": "M4 OS L5 /type_contract/types/InputIssue",
-            "note_ja": "既存の7-member logical shapeを使用。state/axisは既存stringであり、新enumを追加しない。source issueは同一source occurrenceのqualification digest不一致を記録する。"
           },
           "RelationOccurrence": {
             "ordered_members": [
@@ -1142,7 +1066,7 @@
               "native_ref4_locator"
             ],
             "fields": {
-              "core_ref6_key": "CoreRef6 (partial carrier; member absence/null remains as supplied)",
+              "core_ref6_key": "CoreRef6 (existing partial carrier; member absence/null remains as supplied)",
               "native_ref4_locator": "NativeRef4Locator"
             },
             "note_ja": "元operation payloadからparseした返却projection。別の外側request aliasを設けない。"
@@ -1157,9 +1081,9 @@
             ],
             "fields": {
               "source_occurrence_index": "Natural",
-              "source_ref": "Ref",
+              "source_ref": "OSRef4",
               "record_index": "Natural",
-              "subject_ref": "Ref",
+              "subject_ref": "OSRef4",
               "payload_pointer": "JsonPointer"
             }
           },
@@ -1223,7 +1147,7 @@
               "member_index": "Natural",
               "native_member_read": "CoreRead<CoreRef6>",
               "relation_occurrence_indices": "Natural[]",
-              "relation_core_ref6_key": "CoreRef6 (partial carrier; member absence/null remains as supplied)",
+              "relation_core_ref6_key": "CoreRef6 (existing partial carrier; member absence/null remains as supplied)",
               "native_ref4_locator": "NativeRef4Locator",
               "target_source_occurrence_index": "Natural",
               "target_record_index": "Natural",
@@ -1245,7 +1169,7 @@
             ],
             "fields": {
               "source_occurrence_index": "Natural",
-              "source_ref": "Ref",
+              "source_ref": "OSRef4",
               "source_sha256": "Sha256",
               "qualified_record_indices": "Natural[]",
               "input_issue_indices": "Natural[]",
@@ -1258,10 +1182,10 @@
               "proposed_source"
             ],
             "fields": {
-              "proposed_refs": "existing OS Ref[] (identity,revision,scope,owner)",
-              "proposed_source": "OSRef4 (independent operation payload value copied whole; no CoreRef6 conversion)"
+              "proposed_refs": "OSRef4[]",
+              "proposed_source": "OSRef4 (independent CORE-owned Ref4 copied whole from operation payload; no CoreRef6 conversion)"
             },
-            "note_ja": "proposed_sourceは元operation payloadの独立CORE Ref値を全値copy。source_refとsubject_refから生成しない。"
+            "note_ja": "proposed_sourceはCOREが所有するoperation payload内の独立Ref4値を全値copyする。qualification/source/subject Refから導出せず、CoreRef6からの変換もしない。"
           },
           "ProviderBodyField": {
             "tag": "tag",
@@ -1335,29 +1259,6 @@
               "relation_occurrences": "RelationOccurrence[]"
             },
             "pointer_root_ja": "この3つの内部pointerはSourceFrame root。"
-          },
-          "CoreCause": {
-            "ordered_members": [
-              "kind",
-              "target",
-              "left",
-              "right",
-              "rule_pointer"
-            ],
-            "fields": {
-              "kind": "CauseKind",
-              "target": "Location",
-              "left": "CheckOperand",
-              "right": "CheckOperand",
-              "rule_pointer": "JSONPointer"
-            },
-            "basis": "M4 CORE L5 /f05_detail_contract/types/Cause"
-          },
-          "Sha256": {
-            "format": "64 lowercase hexadecimal characters"
-          },
-          "JsonPointer": {
-            "format": "RFC 6901 string"
           }
         },
         "new_private_types": {
@@ -1442,36 +1343,8 @@
             "meaning_ja": "新CORE local同walk readerの内部生成観測。型を満たす外部claimを信頼する入力portではない。OperationFrame形成前の段階なのでcaller_inputs/relation projectionは含めない。"
           }
         },
-        "applied_type_overrides": [
-          {
-            "pointer": "/closed_type_contract/ParsedSourceOccurrence/fields/decoded_records",
-            "from": "OwnerRecord[]",
-            "to": "RawRecord[]"
-          },
-          {
-            "pointer": "/closed_type_contract/QualifiedRawOccurrence/fields/record",
-            "from": "OwnerRecord",
-            "to": "RawRecord"
-          },
-          {
-            "pointer": "/closed_type_contract/RelationObservation/fields/native_member_read",
-            "from": "CoreField<CoreRef6>",
-            "to": "CoreRead<CoreRef6>"
-          },
-          {
-            "pointer": "/closed_type_contract/ProviderCause",
-            "action_ja": "後続検討TODOを上記既存CoreCause aliasへ閉じる。期待[]/既存原因を変更せず新生成なし。"
-          },
-          {
-            "pointer": "/closed_type_contract/SourceWalkOrigin/fields/classification_flags",
-            "action_ja": "未定SourceClassificationを上記既存4literal aliasへ閉じる。"
-          },
-          {
-            "pointer": "/closed_type_contract/RelationObservation/fields/target_native_ref4_read",
-            "action_ja": "RawField<Ref4>を上記新private diagnostic unionへ束縛。"
-          }
-        ],
-        "type_scope_ja": "上記23 source bindingはM4時点で既存のCORE/OS型・function/numeric ruleを参照する。新規provider型の過去存在を示さず、wire/schemaの追加要件にもならない。固定型snapshotとこの候補のprivate閉型定義を分離する。"
+        "type_resolution_ja": "既存型の完全定義は23 source bindingとaliasesだけに置く。新しいCORE-local closed typeだけをclosed_typesで定義する。ParsedSourceOccurrence/QualifiedRawOccurrenceは既存OSOwnerRecordではなくRawRecordを使い、CoreRef6は既存partial CoreRef alias、SourceWalkOrigin flagsは既存literal alias、CoreRead/ProviderCauseは既存alias、target raw fieldは新RawField<OSRef4>とする。Sha256/JsonPointerに追加形式gateを設けない。",
+        "type_scope_ja": "23 source bindingはM4時点の既存CORE/OS型・function/numeric ruleを参照し、新規provider型の過去存在を示さない。wire/schemaの追加要件ではない。"
       },
       "relation_boundary": {
         "qualification_ref": "完全Ref値でQualification.refを選択するlocator。source_refとは別の役割。",
