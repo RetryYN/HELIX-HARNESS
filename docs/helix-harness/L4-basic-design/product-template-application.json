@@ -227,8 +227,92 @@
       ],
       "input": "要求/工程/適用/knowledgeのowner-qualified原snapshotと操作選択condition。任意claimは原事実から分離。",
       "output": "候補母集合/適用判定候補/義務/不足返却/局所影響を同revision/scopeへ束縛した材料。OS使用/記録成立なし。",
-      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。"
-    },
+      "backflow": "knowledge定義/版→BRAIN、製品要求値→HARNESS008、適用契約→HARNESS、使用記録→OS、pair不足→該当設計/oracle owner。unknown ownerはunknownを保持。",
+      "proposal_material_formation": {
+        "basis": "この追補はHARNESS-L3-009-F02の適用候補exact setを、候補材料として説明可能にするL4基本契約である。既存L4-F02の入力・出力・BackflowおよびF03の四判定を保ち、承認済み要求の意味を拡張しない。",
+        "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+        "source_hash_rule": "canonical_object_sha256はJSON objectのkeyをsort_keys=true、separators=(',', ':')、ensure_ascii=false、allow_nan=falseでUTF-8化して算出し、配列順は保持する。",
+        "source_refs": [
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/24",
+            "identity": "HARNESS-L3-009-F02",
+            "canonical_object_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/24",
+            "identity": "HARNESS-L10-009-F02",
+            "canonical_object_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/functions/2",
+            "identity": "HARNESS-L5-009-compare_candidate_universe",
+            "symbol": "compare_candidate_universe",
+            "canonical_object_sha256": "61050802abe605f012d7945e86f08c030a3c4dc553aa50a6e21e0cbf725f2f04"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/functions/3",
+            "identity": "HARNESS-L5-009-compare_applicability",
+            "symbol": "compare_applicability",
+            "canonical_object_sha256": "58305fed8f7143ce6f46176d6bdd83513870b7208a525cc3ad7dbf5227b879f1"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/functions/10",
+            "identity": "HARNESS-L5-009-build_application_analysis_from_detail",
+            "canonical_object_sha256": "e32455b55209cc5a86d16a680dbf0d88fcbaace2f6e8b16068468efc0b4f0812"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/25",
+            "identity": "HARNESS-L3-009-F03",
+            "canonical_object_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L10-verification/functional-verification.json",
+            "pointer": "/cases/25",
+            "identity": "HARNESS-L10-009-F03",
+            "canonical_object_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/1",
+            "identity": "compare_candidate_universe",
+            "symbol": "compare_candidate_universe",
+            "canonical_object_sha256": "e7b6acd9bd0b79cbe2e4c9e50503f0ae0307fd48db1ee15b8afff38049a48cc6"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/caller_return_writer_contract/call_rows/2",
+            "identity": "compare_applicability",
+            "symbol": "compare_applicability",
+            "canonical_object_sha256": "e98aabeb50c19be98a84d5c764aaa06b4ee6bf287ce2b808eebd84e8f4122f9d"
+          },
+          {
+            "source_snapshot_revision": "2d8c6881b742cb9f07652f8d7bde180a3e075f84",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/f05_detail_contract/caller_return_writer_contract/return_roots",
+            "identity": "caller_return",
+            "canonical_object_sha256": "d937b29e367ec43261be89dd0d88e58e57897700c8af8c352eb0ed8e48ac05c9"
+          }
+        ],
+        "input_and_provenance": "同一のcaller invocationに属するcompare_candidate_universeとcompare_applicabilityのComparison全体、元の入力snapshot、要求・製品scope・適用契約版、および各source/policy/template/binding occurrenceの原値を結ぶ。返却全体、findings、出現順、source locator/digest/presenceを保持する。callerの実producer観測とanalysisへの同call引渡しは参照したL5関数・caller契約に従う。ここでいう二producer関数はsymbolで特定し、同じ文書にあるleaf_writer_ledgerのC02/C03とは混同しない。別呼出しの返却、関数名、hash、同じbindingだけから同一呼出しやsource資格を推定しない。",
+        "formation": "検討母集合と提案membershipを別に保持し、templateごとのpolicy occurrenceと四判定の根拠を対応させる。既存契約が当該出現に対する一意なpolicy根拠を与える範囲ではrequired/conditionalを提案membership候補へ反映できる。conditionalの条件・未充足状態は保持する。N/Aは既存の出典根拠と理由を伴う除外候補としてのみ扱い、四属性や元判定を補完しない。",
+        "unresolved_and_multiple_occurrences": "membershipの根拠が未解決、または同じtemplate Refに複数policy occurrenceがあり、既存契約から合成規則が一意に定まらない場合はmembershipを形成せず、全occurrence・順序・個別返却・未解決理由を保持する。先勝ち/後勝ち、any/all、黙示dedupe、別出現からの理由転用をしない。有効な別出現はそれぞれ保持する。",
+        "failure_and_boundary": "producer未観測、返却欠落、別呼出し・別scope・別revisionの混入、母集合/Ref/条件/N/A根拠不足は、元証拠と個別findingを保った未形成または未解決材料として返し、空集合・N/A・成功へ丸めない。これは提案材料であり、OSRef4への投影、OSの三集合/selected/used、資格、配送、記録、実装、受入の成立を定めない。"
+      }},
     {
       "id": "HARNESS-L4-009-F03",
       "requirement_ref": "HARNESS-L3-009-F03",
