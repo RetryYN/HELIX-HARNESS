@@ -515,8 +515,14 @@ class GuiChecks(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     g.send(data, "codex", "codex-gui", "event-1", "review_request", other, None, 60, self.now)
                 self.assertIsNone(g.claim(data, "claude", "claude-gui", self.now))
-            result = subprocess.run([sys.executable, "-B", str(g.HERE / "gui_mailbox.py"), "status"], capture_output=True, text=True)
+            command = (
+                "import sys; from pathlib import Path; sys.path.insert(0, {!r}); "
+                "import gui_mailbox as g; _state=g.state; _store=Path({!r}); "
+                "g.state=lambda store=_store: _state(store); sys.argv=['gui_mailbox.py','status']; g.main()"
+            ).format(str(g.HERE), str(store))
+            result = subprocess.run([sys.executable, "-B", "-c", command], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0)
+            self.assertEqual(json.loads(result.stdout)["closed"]["event-1"]["status"], "acked")
 
     def test_lifecycle_expiry_and_retention(self):
         m = self.send()
@@ -781,6 +787,28 @@ class GuiChecks(unittest.TestCase):
         g.ack(self.data, "work-2", "devin", "devin-gui", promoted["digest"], promoted["claim"]["nonce"], self.now)
         self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-2"])
         self.assertIsNotNone(g.work_items(self.data, "devin")[0].get("acked_at"))
+
+    def test_reacked_completed_work_does_not_ack_or_mutate_next_head(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        first, second, third = (self.work(request_id=f"WORK-{number}") for number in (1, 2, 3))
+        for number, request in enumerate((first, second, third), 1):
+            g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, 60, self.now)
+        claimed = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-1", "devin", "devin-gui", claimed["digest"], claimed["claim"]["nonce"], self.now)
+        first_nonce = claimed["claim"]["nonce"]
+        g.send(self.data, "devin", "devin-gui", "result-1", "work_result", first, self.result(first), 60, self.now)
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
+        second_before = copy.deepcopy(self.data["messages"]["work-2"])
+        g.ack(self.data, "work-1", "devin", "devin-gui", claimed["digest"], first_nonce, self.now)
+        self.assertEqual(self.data["messages"]["work-2"], second_before)
+        second_claim = g.claim(self.data, "devin", "devin-gui", self.now)
+        g.ack(self.data, "work-2", "devin", "devin-gui", second_claim["digest"], second_claim["claim"]["nonce"], self.now)
+        g.release_work(self.data, "claude", "claude-gui", "devin", self.now, "work-2")
+        self.assertEqual(self.data["work"]["devin"]["event_id"], "work-3")
+        third_before = copy.deepcopy(self.data["messages"]["work-3"])
+        g.ack(self.data, "work-1", "devin", "devin-gui", claimed["digest"], first_nonce, self.now)
+        self.assertEqual(self.data["messages"]["work-3"], third_before)
+        self.assertNotIn("acked_at", self.data["work"]["devin"])
 
     def test_result_before_ack_cancels_queued_request_without_orphan_delivery(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)

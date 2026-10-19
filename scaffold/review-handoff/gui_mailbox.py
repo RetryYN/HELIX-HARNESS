@@ -397,6 +397,9 @@ def ack(data, event_id, runtime, session, digest, nonce, now):
     p.require(message["status"] in ("claimed", "acked") and message["expires"] > now, "ACK対象状態不正")
     p.require(message["digest"] == p.sha(p.encode(payload)), "ACK時の保存payload破損")
     p.require(message["digest"] == digest and message["claim"]["nonce"] == nonce, "ACK digest/nonce不一致")
+    if message["status"] == "acked":
+        # 割当の結果/release後も、同じACKの再送は冪等に受け、現在のheadへ触れない。
+        return
     if payload["kind"] == "work_request":
         current = data.get("work", {}).get(runtime)
         p.require(current and current["event_id"] == event_id, "FIFOの先頭依頼だけACKできる")
