@@ -717,6 +717,164 @@
         "evidence_source_selection": "当該claimのartifact_ref。既存比較でMeaning recordが特定されている場合だけ、そのMeaning.artifact_ref、basis_refs全件、content_check_refs全件を加える。record不在ならclaim artifact_refだけとし、近いrevisionや別ownerのMeaningを新たに探索して補わない。 矛盾する原因trace fieldのnon-null claim Refと、特定済みMeaningの同fieldのnon-null Refだけを加える。他方のtraceは加えない。"
       }
     ],
-    "evidence_selection_policy_ja": "選択は既存recordのfield包含に固定し、「実際に使った/関係した」という実装裁量、隠れresolver、新しいcause relation型を導入しない。Meaningは既存比較で特定済みのrecordだけ、Evidenceはsignalで特定した供給済みrecordだけを使う。全原因からContext.current_roots/source_check_refs、無関係なMeaning/Evidence、Fact/N/Aを除外する。B01の層対応再照合にはF01の同じselectorを適用し、pointerを/layer_correspondences配下へ移しrequirement_refをB01に保持する。Refがsnapshotにあることはsource資格や意味成立の証明ではない。membership/packet構成/出力Refの出所は本候補で具体化するが、元familyの全入力・Context・全返却oracleと前段の全原因分類は未凍結であり、完全なconstructor凍結は主張しない。"
+    "evidence_selection_policy_ja": "選択は既存recordのfield包含に固定し、「実際に使った/関係した」という実装裁量、隠れresolver、新しいcause relation型を導入しない。Meaningは既存比較で特定済みのrecordだけ、Evidenceはsignalで特定した供給済みrecordだけを使う。全原因からContext.current_roots/source_check_refs、無関係なMeaning/Evidence、Fact/N/Aを除外する。B01の層対応再照合にはF01の同じselectorを適用し、pointerを/layer_correspondences配下へ移しrequirement_refをB01に保持する。Refがsnapshotにあることはsource資格や意味成立の証明ではない。membership/packet構成/出力Refの出所は本候補で具体化するが、元familyの全入力・Context・全返却oracleと前段の全原因分類は未凍結であり、完全なconstructor凍結は主張しない。",
+    "f02_front_stage_candidate_concretizations_ja": {
+      "status": "有限範囲のF02前段候補具体化。source choice・selectorは独立review前のcandidateであり、上流から一意に導出された規範、承認、oracle freezeではない。",
+      "scope_ja": "F02 check_prototype_poc_applicability のL5照合前段について、既存L3/L10/L5/L8の意味を変えず、限定したC1-C6選択を明示する。F01/B01の規則や既存F02後段constructor oracleから前段選択を逆算しない。",
+      "candidate_choices": [
+        {
+          "id": "C1",
+          "selected_ja": "N/A検査は、current内容を照合したFact.value=noから導く当該routeの適用値がnot_applicableとなる側へ適用する。Fact自体のvalue enumへnot_applicableを追加しない。claimだけのnot_applicable主張やFactがunknownというだけでは起動しない。",
+          "source_refs": [
+            "L5#/functions/1/steps/0",
+            "L5#/functions/1/steps/1",
+            "L5#/functions/1/steps/2"
+          ],
+          "uniqueness": "上流本文から一意に定まらない候補補足。",
+          "l7_selector_ids": [
+            "F02-C1"
+          ]
+        },
+        {
+          "id": "C2",
+          "selected_ja": "同fieldのnull不足はna_basis_missing、古いHEADはreference_staleとし一般内容conflictへ二重分類しない。他fieldの独立相反は別原因。",
+          "source_refs": [
+            "L5#/functions/1/steps/1",
+            "L8#/cases/1/negative_mutations/5",
+            "L8#/cases/1/negative_mutations/6",
+            "L8#/cases/1/negative_mutations/7",
+            "L8#/cases/1/negative_mutations/8",
+            "L8#/cases/1/negative_mutations/9",
+            "L8#/extra_cases/3"
+          ],
+          "uniqueness": "上流本文では分類の重なりが一意に解消しない候補補足。",
+          "l7_selector_ids": [
+            "F02-C2"
+          ]
+        },
+        {
+          "id": "C3",
+          "selected_ja": "whole NaReason nullはparent locatorとmissing_na_fields一件。child単独nullと別に維持。",
+          "source_refs": [
+            "L5#/types/NaReason",
+            "L8#/extra_cases/3"
+          ],
+          "uniqueness": "parent nullをchild所見へ展開するかは一意に定まらない候補補足。",
+          "l7_selector_ids": [
+            "F02-C3"
+          ]
+        },
+        {
+          "id": "C4",
+          "subselectors": [
+            {
+              "id": "fact",
+              "selected_ja": "比較で読んだ当該公開Fact Refと、特定済み同Fact.content_check_refs全件だけ。basis/global/他Factを追加しない。",
+              "source_refs": [
+                "L5#/functions/1/steps/0",
+                "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
+              ],
+              "l7_selector_id": "F02-C4-FACT"
+            },
+            {
+              "id": "applicability",
+              "selected_ja": "Factとclaimの適用不一致は、比較で読んだ当該公開Fact Refと同Fact.content_check_refs全件だけ。無関係なsignal・global root/checkは加えない。",
+              "source_refs": [
+                "L5#/functions/1/steps/0",
+                "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
+              ],
+              "l7_selector_id": "F02-C4-APPLICABILITY"
+            },
+            {
+              "id": "na",
+              "selected_ja": "同route/subject/revision/scopeで特定済みNaBasis.content_check_refsだけ。record不在なら空、探索/fallbackしない。",
+              "source_refs": [
+                "L5#/functions/1/steps/1",
+                "L5#/f02_return_construction/finding_constructor/fields/evidence_refs"
+              ],
+              "l7_selector_id": "F02-C4-NA"
+            },
+            {
+              "id": "agreement",
+              "selected_ja": "input.claimed_agreement_refs全件と、signal=l2_agreementのContext Evidence.content_check_refs全件だけ。missing stateの診断に読んだRefを保持するが、合意の成立・資格・stateの証明にはしない。claimed_agreement_refsに含まれないprototype_result_refs/poc_result_refs、global source_check_refs、無関係なsignalのRefを追加しない。",
+              "source_refs": [
+                "L5#/functions/1/steps/3"
+              ],
+              "l7_selector_id": "F02-C4-AGREEMENT-CORRECTED"
+            }
+          ],
+          "uniqueness": "各selectorは候補のmembership選択であり、sourceから一意に定まらない。C4訂正は旧global source_check_refs選択を置換する。"
+        },
+        {
+          "id": "C5",
+          "selected_ja": "both-unknown正例を保持し、原unknown mutation2/3はyes/unknownとunknown/yesで原因を局所化。",
+          "source_refs": [
+            "L8#/cases/1",
+            "L8#/cases/1/negative_mutations/1",
+            "L8#/cases/1/negative_mutations/2",
+            "L8#/extra_cases/3"
+          ],
+          "uniqueness": "入力側の局所化は有限な候補選択であり、新要求ではない。",
+          "l7_selector_ids": [
+            "F02-C5"
+          ]
+        },
+        {
+          "id": "C6",
+          "selected_ja": "同一Factのvalue/validity unknownという一事実は明示fact_unknown一原因。reference_unknown/content_unprovenを同じ事実から追加しない。",
+          "source_refs": [
+            "L5#/functions/1/steps/0",
+            "L8#/cases/1/negative_mutations/1",
+            "L8#/cases/1/negative_mutations/2"
+          ],
+          "uniqueness": "有限な診断候補であり、一意に導出されたとは主張しない。",
+          "l7_selector_ids": [
+            "F02-C6-UNKNOWN-CAUSE"
+          ]
+        }
+      ],
+      "finding_order_and_deduplication_route": {
+        "applies_to": "F02 check_prototype_poc_applicability only.",
+        "rule": "F02のFinding順、RefSet/evidence_refs正規化、同値Findingの重複除去はL5 /f02_return_construction/finding_constructor/sort と /f02_return_construction/finding_constructor/fields/evidence_refs へ明示的にrouteする。RefSet canonical orderはL5 /types/RefSetへ従う。既存F02契約どおり全6 fieldが完全一致するFindingだけをdedupeする。異owner/異根拠など全6 fieldのどれかが異なるFindingは保持する。cause identityを追加・推定しない。",
+        "non_inheritance": "L6 /return_contract_detail/authority_and_scope_ja、/finding_order、/finding_duplicates、/finding_cause_map の一般記述をF02へ暗黙に適用しない。L5 F02固有契約を優先する。この追補はF01/B01の契約を変更しない。",
+        "source_refs": [
+          "L5#/types/RefSet",
+          "L5#/f02_return_construction/finding_constructor/fields/evidence_refs",
+          "L5#/f02_return_construction/finding_constructor/sort"
+        ]
+      },
+      "finite_limits_ja": [
+        "C1-C6の有限な選択のみを扱い、全入力domain、全原因selector、全組合せの閉包を主張しない。",
+        "合成Contextの値とowner識別子はsource qualificationや実caller資格を証明しない。",
+        "003/008への実binding、受信側資格、実配送/実観測は未成立。",
+        "既存の23 primary、B01 X05 32、F02 downstream constructor 34はそれぞれ別集合のまま。",
+        "旧L6資産は純関数と入力/result境界の参照材料に限る。旧screen/transaction/gate/receipt機構は移植しない。"
+      ],
+      "legacy_source_correspondence": {
+        "asset_ids": [
+          "LEGACY-ASSET-A65B5C20721DD2149886",
+          "LEGACY-ASSET-51B78F6A5128E2CD1448"
+        ],
+        "paths": [
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md",
+          "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/screen-applicability-prototype.md"
+        ],
+        "retained_ja": "型付きinputとpure result境界、不正/欠落/unknownを確定扱いへ丸めないこと、function単位で入力・出力・failure・traceを明示する点を参照した。",
+        "changed_ja": "旧UI適用性・prototype lifecycleの大規模screen機構ではなく、現L5で定義済みのPython pure function F02のみへ対象を限定する。",
+        "not_carried_ja": "旧owner authority、DB transaction、receipt、gate write、browser/artifact lifecycle、旧test oracleを現行契約へ移さない。"
+      },
+      "optional_private_preparation_provenance": [
+        {
+          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-front-stage-whole-source-notes-6ed36b63-r1.json",
+          "sha256": "8431ab1cc4a68a7c6e83d79a3297cfa2da2e90fa1934af6cd4856896a01da691"
+        },
+        {
+          "path": "scaffold/review-handoff/local/core-field-application-491e9dcd/v12-f02-c4-selector-source-correction-6ed36b63.json",
+          "sha256": "b57ee3e8289b2ca0a9da08ec30639a1af48506e839c7f8c2a1bf442e525a44da"
+        }
+      ],
+      "provenance_policy_ja": "このローカル準備記録とhashは任意の作業来歴で、規範source、意味判断、候補の再構成に依存しない。候補の選択内容はこの追跡済みL6本文と、ここに示したL5/L8の追跡済みsource pointerだけで確認できる。",
+      "l7_selector_id_binding_ja": "各candidate choiceのl7_selector_idsおよびC4 subselectorのl7_selector_idは、L7 limited_choice_refsとcauses[].candidate_choice_refsが参照する文字列IDそのものを示す。IDは識別子でありJSON Pointerではない。候補IDを持たない唯一のcauseはL5のreference_missing規則に直接基づき、L7にdesign_source_pointersを持つ。"
+    }
   }
 }
