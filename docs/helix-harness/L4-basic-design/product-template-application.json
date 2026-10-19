@@ -470,13 +470,13 @@
               "sha256": "341a12c73079aa57d16a3e8d164d23d29a0d375caf2bfd8a8f53b8b5123ff108"
             }
           ],
-          "l3_l10_ref": "HARNESS-L3-009-F02/F03 and their fixed HARNESS-L10-009-F02/F03 counterpart; this child does not alter their meaning."
+          "l3_l10_ref": "HARNESS-L3-009-F02/F03および対応する固定HARNESS-L10-009-F02/F03を指す。この子文書はそれらの意味を変更しない。"
         },
         "owner_and_boundary": {
-          "semantic_owner": "HELIX-HARNESS-CORE (CORE009) forms product-application proposal material.",
-          "input": "Existing CallerInputs only. A wrapper calls existing build_proposal_material_detail exactly once with unchanged CallerInputs, binds its actual complete CoreProposalDetailedReturn, and passes that value to the private former.",
-          "private_former": "form_native_proposal_record_detail(CoreProposalDetailedReturn) reads only its one supplied native return, preserves it whole under capture, forms a body-only record and performs no source repair, external I/O, registration, persistence, authority decision or qualification.",
-          "output": "NativeProposalRecordDetailedReturn = closed record {capture: original CoreProposalDetailedReturn whole, record: NativeProposalRecordMaterial}. Member order is capture then record.",
+          "semantic_owner": "HELIX-HARNESS-CORE（CORE009）が製品適用の提案材料を形成する。",
+          "input": "既存のCallerInputsのみを入力とする。wrapperはCallerInputsを変更せず、既存のbuild_proposal_material_detailを正確に1回呼び出し、その実際の完全なCoreProposalDetailedReturnを束縛してprivate formerへ渡す。",
+          "private_former": "form_native_proposal_record_detail(CoreProposalDetailedReturn)は、渡された唯一のnative returnだけを読み、captureの下に全体を保持したうえでbodyのみのrecordを形成する。source補修、外部I/O、登録、永続化、authority判断、qualificationは行わない。",
+          "output": "NativeProposalRecordDetailedReturn = closed record {capture: 元のCoreProposalDetailedReturn全体, record: NativeProposalRecordMaterial}。member順はcapture、record。",
           "prohibited_runtime_inputs": [
             "expected value",
             "cached return",
@@ -486,53 +486,53 @@
             "OS project scope",
             "OS Ref4"
           ],
-          "consumer_boundary": "The body is candidate material for later owner-qualified OS proposal handling. The relevant consumer boundary is HELIX-OS OS053 `OwnerInputPort` (`docs/helix-os/L4-basic-design/atomic-canonicalization.json#/ports/0`): its presence does not establish a producer-to-port binding. OS002/OS053 receipt, selected/used sets, dispatch, source qualification, record/container identity and persistence are not established by this contract."
+          "consumer_boundary": "このbodyは、後続のowner-qualifiedなOS提案処理に渡す候補材料である。対応するconsumer境界はHELIX-OS OS053の`OwnerInputPort`（`docs/helix-os/L4-basic-design/atomic-canonicalization.json#/ports/0`）だが、その存在だけではproducerからportへのbindingは成立しない。OS002/OS053のreceipt、selected/used集合、dispatch、source qualification、record/container identity、永続化は本契約の成立範囲外である。"
         },
         "source_pool_roles": {
-          "captured_pool": "The original compare_candidate_universe candidate_member_refs material is the enumerated source pool; preserve original order, duplicates, raw presence/null/type and source Read.",
-          "membership_partition": "For each observed result occurrence, preserve required/conditional candidate entries, valid N/A exclusion candidates, and unresolved/unformed residuals in separate stable arrays. Do not choose a winner, merge policy occurrences, deduplicate, or drop a valid sibling because another occurrence is unresolved.",
-          "coverage": "EnumerationCoverage describes only structural occurrence correspondence from every source-array index to result occurrences and their retained original member_read. It is not membership resolution, owner/source qualification or universe exactness.",
-          "membership_completion": "Describes only whether captured observed results were partitioned without residuals and the enumerated coverage is complete. Incomplete or unavailable coverage prevents resolved_for_captured_members even when residual_entries is empty. It cannot certify source-pool completeness or exactness.",
-          "original_universe_exactness": "Retain the original comparison observation and CallerInputs locations with not_recomputed/no_new_exactness_claim. The original comparison alone owns universe boundary/source/revision/scope and qualified semantic equality."
+          "captured_pool": "元のcompare_candidate_universeのcandidate_member_refs材料を列挙対象のsource poolとする。元の順序、重複、rawのpresence/null/type、source Readを保持する。",
+          "membership_partition": "観測された各result occurrenceについて、required/conditional candidate、妥当なN/A exclusion candidate、unresolved/unformed residualを別々の安定配列に保持する。winnerを選ばず、policy occurrenceを統合せず、重複排除せず、別のoccurrenceにunresolvedがあることを理由に有効な兄弟を捨てない。",
+          "coverage": "EnumerationCoverageは、各source-array indexと対応するresult occurrence、および保持された元のmember_readとの構造上の対応だけを表す。membership resolution、owner/source qualification、universe exactnessを表すものではない。",
+          "membership_completion": "captureされた観測結果がresidualなしでpartitionされ、列挙coverageも完全かどうかだけを表す。coverageが不完全または利用不能なら、residual_entriesが空でもresolved_for_captured_membersにはならない。source poolの完全性やexactnessを証明しない。",
+          "original_universe_exactness": "元のcomparison observationとCallerInputsの位置をnot_recomputed/no_new_exactness_claimとして保持する。universeの境界/source/revision/scopeとqualified semantic equalityを所有するのは元comparisonのみである。"
         },
         "closed_record_shapes": {
           "CandidateEntry": [
             "result_index",
             "member_index",
             "kind: required_candidate|conditional_candidate",
-            "template_ref_read: original full Read<CoreRef>",
+            "template_ref_read: 元の完全なRead<CoreRef>",
             "native_result_location"
           ],
           "NAExclusionEntry": [
             "result_index",
             "member_index",
             "kind: na_exclusion_candidate",
-            "template_ref_read: original full Read<CoreRef>",
+            "template_ref_read: 元の完全なRead<CoreRef>",
             "native_result_location"
           ],
           "ResidualEntry": [
             "result_index",
             "member_index",
-            "template_ref_read: original full Read<CoreRef>",
-            "membership: original unresolved|unformed full value and causes",
+            "template_ref_read: 元の完全なRead<CoreRef>",
+            "membership: 元のunresolved|unformed全値とcauses",
             "native_result_location"
           ],
           "EnumerationCoverage.enumerated": [
-            "member_coverage: source index order",
-            "unmatched_result_indices: original result order",
-            "unreadable_result_indices: original result order",
+            "member_coverage: source index順",
+            "unmatched_result_indices: 元のresult順",
+            "unreadable_result_indices: 元のresult順",
             "completion: covered_as_captured|incomplete_as_captured"
           ],
           "EnumerationCoverage.not_observed": [
-            "source_observation_location: original F02 producer observation"
+            "source_observation_location: 元のF02 producer observation"
           ],
           "EnumerationCoverage.unavailable_shape": [
-            "source_material_location: original considered material and Read",
-            "result_indices: all original template result indices; never coerce to empty"
+            "source_material_location: 元のconsidered materialとRead",
+            "result_indices: 元の全template result index。空へ読み替えない。"
           ],
           "MemberCoverage": [
             "member_index",
-            "result_indices: every matching occurrence in original order",
+            "result_indices: 元の順で保持する全matching occurrence",
             "correspondence: corresponding|different|unreadable"
           ],
           "OriginalUniverseExactnessBasis": [
@@ -543,23 +543,23 @@
           ],
           "NativeReturnLocation": [
             "root: native_proposal_return",
-            "pointer: RFC6901 pointer into former input"
+            "pointer: former入力内を指すRFC6901 pointer"
           ]
         },
         "formation_and_failure": {
-          "stable_partition": "Walk proposal.template_results once in source order. Each occurrence is retained once in the array selected by its original membership kind. Preserve all other result fields, policy occurrences, source row/NA4, conditions, findings, causes and producer material in capture.",
-          "correspondence": "For each source member index, exactly one result whose original member_index matches and whose present member_read is JSON-type-equal to the original source member is corresponding. Known mismatch is different; absent, duplicate, unreadable or invalid correspondence is unreadable. Out-of-range result indices remain unmatched in source order. Preserve duplicate source entries and duplicate result occurrences.",
-          "completion_rules": "Coverage is covered_as_captured only when every original source index is corresponding and unmatched/unreadable lists are empty. Known [] with no results remains enumerated/covered with empty rows. Absent/null/non-array source remains unavailable_shape. Unobserved producer remains not_observed. For observed output, membership_completion is resolved_for_captured_members only when there are no residuals and coverage is complete; otherwise residual_for_captured_members. Unobserved producer yields not_observed.",
+          "stable_partition": "proposal.template_resultsを元の順序で1回走査する。各occurrenceは元のmembership kindに対応する配列へ1回だけ保持する。それ以外のresult field、policy occurrence、source row/NA4、conditions、findings、causes、producer materialはcapture内にすべて保持する。",
+          "correspondence": "各source member indexについて、元のmember_indexが一致し、presentなmember_readが元のsource memberとJSON型を含めて等しいresultがちょうど1件ある場合にcorrespondingとする。既知の不一致はdifferentとする。欠落、重複、読取不能、または不正な対応はunreadableとする。範囲外のresult indexは元の順序のままunmatchedに残す。重複したsource entryとresult occurrenceを保持する。",
+          "completion_rules": "全ての元source indexがcorrespondingで、unmatched/unreadableの一覧が空の場合に限りcoverageをcovered_as_capturedとする。既知の[]でresultもない場合は、空の行を持つenumerated/coveredとする。欠落/null/非arrayのsourceはunavailable_shapeとする。producer未観測はnot_observedとする。観測済み出力ではresidualがなくcoverageも完全な場合に限りmembership_completionをresolved_for_captured_membersとし、それ以外はresidual_for_captured_membersとする。producer未観測時はnot_observedとする。",
           "failures": [
-            "producer not observed",
-            "missing or cross-call return",
-            "scope/revision mismatch",
-            "source/member Read absent or malformed",
-            "unmatched, duplicate or unreadable occurrence",
+            "producer未観測",
+            "返却値の欠落または別呼出しからの返却",
+            "scope/revisionの不一致",
+            "source/member Readの欠落または不正形",
+            "未対応・重複・読取不能のoccurrence",
             "unresolved/unformed membership",
-            "missing N/A basis"
+            "N/A basisの欠落"
           ],
-          "failure_behavior": "Keep original value, Read, occurrence order and finding/residual; do not coerce to empty, N/A, success or globally unavailable. A residual does not erase an unrelated valid candidate. Do not infer exactness from empty residuals/findings or complete local coverage."
+          "failure_behavior": "元の値、Read、occurrence順、finding/residualを保持し、empty、N/A、success、または全体unavailableへ読み替えない。residualを理由に無関係な有効candidateを消さない。空のresidual/findingや局所coverageの完全性からexactnessを推論しない。"
         },
         "legacy_comparison": {
           "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
@@ -567,8 +567,8 @@
           "source_lines": "36–60, 81–92",
           "mode": "semantic_rederivation",
           "keep": "候補集合・unknown・理由付きN/A・Backflow・義務/対oracle/版traceを照合する。",
-          "change": "COREのbody材料形成を独立したnative capture/recordとして切り出し、BRAIN知識・CORE適用・OS案件記録の責務を分離する。",
-          "reason": "採択COREAPPLYと現行F02/F03の既存責務に基づく。旧registry digest gate、式木、planner/runtimeは移植しない。"
+          "change": "COREのbody材料形成を、独立したnative capture/recordとして切り出し、BRAINの知識、COREの適用、OSの案件記録の責務を分離する。",
+          "reason": "採択済みCOREAPPLYと現行F02/F03の責務に基づく。旧registry digest gate、式木、planner/runtimeは移植しない。"
         },
         "failure_basis": [
           {
@@ -580,21 +580,21 @@
           {
             "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
             "lines": "65–101",
-            "failure": "UTW-020: partial failureがaggregateに隠れて診断単位が粗い。",
+            "failure": "UTW-020: 部分failureがaggregateに隠れ、診断単位が粗くなる。",
             "prevention": "occurrenceごとのcandidate/exclusion/residualとcoverage findingを保持する。"
           },
           {
             "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
             "lines": "65–101",
             "failure": "UTW-021: completionが自己申告・件数/hashへ戻り得る。",
-            "prevention": "局所coverage・membership・元universe exactnessの3役を分離し、hashや件数から資格/完了を生成しない。"
+            "prevention": "局所coverage、membership、元universe exactnessの3つの役割を分離し、hashや件数からqualification/完了を生成しない。"
           }
         ],
         "unclosed": [
-          "L5関数・閉型codec・L8の実接続は未作成。このL4/L9候補と凍結有限caseは製品実装/CI/Greenではない。",
-          "valid N/A除外と既知empty/unknownの境界は未行使。4 oracle case中1件は、未解決result 1件を除いたcounterfactualで欠落coverageを行使するが、duplicate、範囲外index、別形のcoverage破損は未行使。",
-          "native record identity/revision/source_ref、登録operation identityと保存はCallerInputsに供給元のbindingがなく未成立。hash/filename/上流要求Refから新identityを生成しない。",
-          "OS Ref4/project scope、OS002/OS053 owner資格、配送・受信、source qualification、selected/used/評価集合への投影は別境界で未完。",
+          "L5関数、closed型codec、L8との実接続は未作成である。このL4/L9候補と凍結された有限caseは、製品実装/CI/Greenを示さない。",
+          "valid N/A除外と既知empty/unknownの境界は未行使である。4つのoracle caseのうち1件は、未解決resultを1件除いたcounterfactualにより欠落coverageを行使するが、duplicate、範囲外index、その他のcoverage破損形は未行使である。",
+          "native record identity/revision/source_ref、登録operation identity、保存は、CallerInputsに供給元bindingがないため未成立である。hash/filename/上流要求Refから新identityを生成しない。",
+          "OS Ref4/project scope、OS002/OS053のowner qualification、配送・受信、source qualification、selected/used/評価集合への投影は、別の境界に属し未完である。",
           "上流COREAPPLY要件の意味変更は含まない。追加の要求不足が見つかった場合は既存Backflowへ候補として戻す。"
         ]
       }},
