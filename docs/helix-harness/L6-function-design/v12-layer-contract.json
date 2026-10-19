@@ -724,7 +724,7 @@
       "candidate_choices": [
         {
           "id": "C1",
-          "selected_ja": "N/A検査は解決したFactがnot_applicableの側へ適用。claim-only NAやunknownの主張だけでは起動しない。",
+          "selected_ja": "N/A検査は、current内容を照合したFact.value=noから導く当該routeの適用値がnot_applicableとなる側へ適用する。Fact自体のvalue enumへnot_applicableを追加しない。claimだけのnot_applicable主張やFactがunknownというだけでは起動しない。",
           "source_refs": [
             "L5#/functions/1/steps/0",
             "L5#/functions/1/steps/1",

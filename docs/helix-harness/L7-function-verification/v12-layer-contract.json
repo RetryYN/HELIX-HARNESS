@@ -425,7 +425,7 @@
       "/return_contract_detail/f02_front_stage_candidate_concretizations_ja"
     ],
     "note_ja": "同時作成L6候補のraw bytesと選択箇所を照合するcurrent binding。独立承認済sourceや歴史的固定revisionではない。L6変更時はhashと選択箇所を追随する。",
-    "file_sha256": "a93591a026b77649c903d794763ebcef4692d0ea374fea279384f54b0055ee76"
+    "file_sha256": "647ca415cb9a2b5f2d66f56f0fbb5e175a127c96b522b22c404c5520c9278820"
   },
   "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT",
   "primary_call_oracles": {
