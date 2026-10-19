@@ -1,0 +1,361 @@
+{
+  "document_id": "HARNESS-L6-001-V12-LAYER-CONTRACT",
+  "layer": "L6",
+  "paired_document": "docs/helix-harness/L7-function-verification/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_design_only",
+  "source_main": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+  "scope_ja": "001 F01/F02/B01の3つの既存pure functionの関数設計を一組として具体化する。実装・実行・受入・releaseの許可を作らない。",
+  "source_pins": [
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+      "selected_pointers": [
+        "/types",
+        "/common_contract",
+        "/finding_classification",
+        "/functions/0",
+        "/functions/1",
+        "/functions/2",
+        "/f02_return_construction"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "file_sha256": "53a8e95c954a1b0b421a60174032eec47ed03e88dbd2b38e57514364b0ae0151",
+      "selected_pointers": [
+        "/contracts/0",
+        "/contracts/1",
+        "/contracts/2",
+        "/remaining"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "file_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+      "selected_pointers": [
+        "/placement/runtime_target",
+        "/placement/declaration_boundary",
+        "/remaining"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "selected_pointers": [
+        "/requirements/40",
+        "/requirements/41",
+        "/requirements/42",
+        "/requirements/59",
+        "/requirements/58"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "selected_pointers": [
+        "/cases/40",
+        "/cases/41",
+        "/cases/42",
+        "/cases/59",
+        "/cases/58"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "file_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "selected_locator": "段階2〜4"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "file_sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198",
+      "selected_locator": "10/9再開撤回の範囲"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+      "file_sha256": "2c700ffcbb89c034d9f0b43a7f69483e785abbef28bb07601857a1d0caa72030",
+      "selected_locator": "配置・source visibility"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "file_sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "selected_locator": "限定採用範囲"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/template-work-allocation.md",
+      "file_sha256": "40f509ff73620c9c8f3a8a79cf91f618b3f9d68f0734fdbf879bd2837c3461a0",
+      "selected_locator": "MSG004原項目・適用制限"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/concept/helix-concept.md",
+      "file_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/concept/helix-principles.md",
+      "file_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/brain-helix-core-po-intent-2026-09-25.md",
+      "file_sha256": "f61155bf27e0563988b7ed2e652f894a3b11ab7eedf6e28fba204d98647e3657"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md",
+      "file_sha256": "2b78249e8da1c0e2cbf5ae2839f79c5b981437966000455f949121bc4d343563"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/learn-from-failures-principle-po-decision-2026-10-09.md",
+      "file_sha256": "00df2cf4a1e3f0256960d911723a4c60668ff26d007c553361ec411fabff9c3d"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/templates/design/L6-function-spec-template.md",
+      "file_sha256": "85559d2cb659bd8c1ebf89eb9da5f1d8a9efa965a8b82ce2db84303a524ef733",
+      "selected_locator": "function identity/input/output/precondition/invariant/failure/trace"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/screen-applicability-prototype.md",
+      "file_sha256": "3f92059a9854d774c0278e51138396536bcbf55f6132478576d2064f836d2b64",
+      "selected_locator": "§0–§2, §5; pure input/resultを保持し、旧owner・transaction・gate・screen artifact機構は移さない"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "archive/legacy-generation-2026-09-14/root/src/design/screen-applicability.ts",
+      "file_sha256": "7788cc9a5f9dd5fc2d446224981f3d0a0034e98bd746ec1be7ed9f5c36110f7c",
+      "selected_locator": "evaluateScreenApplicability付近、旧pure source。実行せず参照のみ"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "file_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "selected_locator": "§2–§4: untrusted strict input/pure result/exact reference/unknown保持"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "file_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "selected_pointers": [
+        "/requirements/12"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "file_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "selected_pointers": [
+        "/cases/12"
+      ]
+    }
+  ],
+  "legacy_comparison": {
+    "retained_ja": [
+      "型付き入力とpure resultの境界",
+      "不正・欠落・unknownを確定扱いへ丸めない",
+      "関数ごとの入力・出力・failure・traceの明示"
+    ],
+    "changed_ja": [
+      "旧TypeScript/transaction/persistent gate主体の大規模screen機能から、現L5で固定済みのPython純関数3つだけへ限定する",
+      "層番号とowner境界は現L3/L4/L5の意味へ再導出する"
+    ],
+    "not_carried_ja": [
+      "旧screen applicabilityのhuman agreement、DB transaction、receipt、write、gate機能",
+      "旧capability_id comma-pack拒否等の旧source固有規則を新規規則として移植しない"
+    ]
+  },
+  "function_design": [
+    {
+      "id": "HARNESS-L6-001-F01",
+      "symbol": "check_artifact_layer_correspondence",
+      "logical_module": "layer_contract.py",
+      "signature_source": {
+        "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+        "pointer": "/functions/0"
+      },
+      "input_context": "既存F01 input + Context",
+      "result": "既存Result[既存F01 output]",
+      "behavior_ja": [
+        "L5のcanonical 12層・6 pair・Meaning/Ref照合を同じ順で行う。層外anchorとimplementation traceはL5定義どおり。",
+        "path label、実装ファイル名、件数から意味・authorityを推測しない。unknown/missing/stale/conflictを共通分類のまま返す。",
+        "同一artifactの二重意味を検出しても、別artifactの正しい対応を消さない。"
+      ],
+      "preconditions_ja": [
+        "inputは未検査であり型不正もL5 Resultで扱う。Contextは別のimmutable owner-qualified snapshotであることを呼出し側が保証する。関数内でsnapshotの取得・認可・保存はしない。"
+      ],
+      "postconditions_ja": [
+        "出力はL5閉型の全memberを満たす。invalidならvalue=null、その他は解決済み結果と未解決を保持できる範囲で返す。"
+      ],
+      "failure_ref": {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/finding_classification"
+      },
+      "effects_ja": "外部副作用なし。",
+      "requirement_and_oracle_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/58",
+          "id": "HARNESS-L3-001-F01"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/58",
+          "id": "HARNESS-L10-001-F01"
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L6-001-F02",
+      "symbol": "check_prototype_poc_applicability",
+      "logical_module": "layer_contract.py",
+      "signature_source": {
+        "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+        "pointer": "/functions/1"
+      },
+      "input_context": "既存F02 10-field input + F02Context。F02ContextはContextと別閉型であり混同・castしない。",
+      "result": "既存Resultと6-field F02 output",
+      "behavior_ja": [
+        "画面有無factと技術的不確実性factを独立に照合し、片方から他方を補わない。",
+        "N/A両側のreason/decider/対象HEAD/要求影響/再評価条件と根拠をL5どおり照合。missing_na_fieldsだけをUnicode code point昇順にする。",
+        "prototype/PoC成功やN/A判定をL2合意、L3凍結、PO受入へ昇格しない。backflow_refsは候補を返すだけ。"
+      ],
+      "preconditions_ja": [
+        "inputは未検査。別閉型F02Contextのimmutable owner-qualified snapshotを呼出し側が供給する。入力のN/A理由は明示値を保持し、無い値を構築しない。関数内でsnapshotの取得・認可・保存はしない。"
+      ],
+      "postconditions_ja": [
+        "valueを返せる場合は既存6-field outputを全て満たし、各側のunknown/missingを独立保持する。",
+        "共通Result契約に従い、invalidではvalue=null。他のfailureは閉じたoutputを満たす範囲で未解決を保持し、不足fieldを推測しない。"
+      ],
+      "failure_ref": {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/finding_classification"
+      },
+      "effects_ja": "外部副作用なし。",
+      "requirement_and_oracle_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/59",
+          "id": "HARNESS-L3-001-F02"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/59",
+          "id": "HARNESS-L10-001-F02"
+        }
+      ]
+    },
+    {
+      "id": "HARNESS-L6-001-B01",
+      "symbol": "project_layer_authority_boundary",
+      "logical_module": "layer_contract.py",
+      "signature_source": {
+        "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+        "pointer": "/functions/2"
+      },
+      "input_context": "既存B01 input（F01 output recordを含む）+ Context",
+      "result": "既存Result[既存B01 output]",
+      "behavior_ja": [
+        "F01由来の対応Refも再度Meaningへ照合し、F01成功という自己申告を権威にしない。",
+        "5 evidence signalを各対象・owner・revision・scope・内容と独立照合。catalogの存在はauthorityにしない。",
+        "actual_verificationが対象oracleと実観測へ結ばれなければunobserved/missingを返す。ticket/write/execute/fallbackを行わない。"
+      ],
+      "preconditions_ja": [
+        "F01 outputは通常の未信頼入力として検査する。Contextは別のimmutable owner-qualified snapshotであることを呼出し側が保証し、関数はその取得・認可・保存を行わない。"
+      ],
+      "postconditions_ja": "既存Result[output]をL5規則どおり返し、対応・5 signal・missing signalsを分離して保持。authority/write stateは生成しない。",
+      "failure_ref": {
+        "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+        "pointer": "/finding_classification"
+      },
+      "effects_ja": "外部副作用なし。",
+      "requirement_and_oracle_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/12",
+          "id": "HARNESS-L3-001-B01"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.json",
+          "pointer": "/cases/12",
+          "id": "HARNESS-L10-001-B01"
+        }
+      ]
+    }
+  ],
+  "call_order_ja": [
+    "個々のsymbolは独立した公開単位である。F01結果をB01へ渡す構成では、F01がvalueを持つ閉型Resultを返した場合、その既知部分をlayer_correspondencesとして渡せる。F01のoutcomeがinvalidならvalue=nullであり、擬似recordを作らずB01を呼ばない。unknown/incomplete/stale等のoutcomeでもvalueがある場合は、そのvalueを通常入力としてB01自身が再検査する。F01/B01を成功outcomeだけで連結する新gateは設けない。",
+    "F02はF01/B01とは独立して呼べる。F02Contextを他のContextへまとめない。",
+    "この設計は3関数を束ねる新public orchestratorを定義しない。"
+  ],
+  "python_implementation_boundary": {
+    "logical_module": "layer_contract.py",
+    "symbols": [
+      "check_artifact_layer_correspondence",
+      "check_prototype_poc_applicability",
+      "project_layer_authority_boundary"
+    ],
+    "language": "Python 3",
+    "physical_placement": "helix/helix-harness/units/<登録されたpack identity>/src",
+    "placement_source": {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "file_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+      "pointer": "/placement/runtime_target"
+    },
+    "unresolved_placement_ja": "pack identityの型番・登録・最終import pathは未確定。具体値を捏造せず、pack登録と配置契約を所有するL4へ戻す。HARNESS inventory中の大文字HARNESS path表記は現pack境界のsourceと一致しないため採用しない。"
+  },
+  "purity_and_retry_ja": [
+    "同じ引数内容なら同じResultを返す決定的な計算とし、入力を変更しない。集合・Finding等の順序規則はL5既存定義だけを使う。",
+    "filesystem、network、process、clock、DB、Git/GitHub、Worker、OS writerへのアクセス0。永続化、承認、dispatch、retry stateを持たない。",
+    "途中例外・呼出し中断があっても外部状態を変更しない。同じ入力での再呼出しは同じpure evaluationであり、外部作業の再開・rollbackは意味しない。"
+  ],
+  "authority_and_limit_ja": [
+    "10/12の限定再開順序はpairの設計・検証と実装準備を範囲化するが、これらの候補文書は実装許可やstage-2条件成立の証拠ではない。10/10 rollbackにより10/9以前の広いL6/implementation/CI unlockは復活しない。",
+    "Concept、七大原則、JSON正本PO方針と失敗から学ぶ原則を適用する。既存契約の意味は変えない。",
+    "MSG004はdecisionの限定原項目だけを関数設計の入力/出力・pre/post・invariant・failure・stop/recovery・oracle traceに照合する。seed VT104–106は未採用であり適用しない。",
+    "4つのpack/layout concernはL4 remainingのまま。3 pure functionの設計に一律gateとして持ち込まない。"
+  ],
+  "not_claimed_ja": [
+    "L6/L7承認・実装・実行・CI構築・L11 Accepted・L3再開・release/deployの成立",
+    "実型番/pack登録/import pathの確定",
+    "F01/F02/B01の全入力・whole expectedの物質化とoracle凍結、想定外失敗の実行側伝達/観測bindingの成立"
+  ],
+  "derived_from_document_id": "HARNESS-L5-001-V12-LAYER-CONTRACT",
+  "failure_and_recovery_boundary": {
+    "scope_ja": "3関数共通。返却型とFindingはL5 common_contract/finding_classificationだけを正とし、新しい例外用Resultや認可処理を作らない。",
+    "expected_invalid_ja": "型・field不正は既存invalid/value=nullとFindingを返す。入力修正なしの自動再試行では解消しない。呼出し側は該当inputを直し、同じ契約で再評価する。",
+    "expected_unresolved_ja": "missing/unknown/stale/conflictは既存優先順・部分値保持規則を使う。呼出し側はFindingの対象ownerへ不足・矛盾を返し、訂正された入力/snapshotを供給する。関数内でsourceを取り直したり自動retryしたりしない。",
+    "unexpected_or_interrupted_ja": "内部例外・中断は定義済みResultを得ていない呼出しであり、空の成功値や新Findingへ変換しない。呼出し側の実行・検証記録は未完/失敗として区別する。例外の生messageを利用者へ転送しない。分類・digest等の観測と安全な伝達は呼出し側の責務で、このpure関数へwriterを足さない。想定外失敗の自動retryは設計しない。具体的な実行側の伝達/観測bindingは未完として保持する。",
+    "na_application": {
+      "sections": [
+        "MSG004 §3 副作用のport/順序/残留状態",
+        "MSG004 §5 外部状態の復旧/rollback"
+      ],
+      "decision": "N/A",
+      "reason_ja": "L5は外部アクセス0・入力不変を定め、3関数は永続状態と途中状態を所有しない。呼出し全体の中断は上記の未完として保持し、外部作業の完了や復旧を主張しない。",
+      "judged_by": "Codex design author; independent review pending",
+      "target_requirement_revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "reevaluation_condition_ja": "L5契約に副作用・外部依存呼出し・永続途中状態が加わる、または関数境界が変更される場合。"
+    },
+    "paired_verification_ref": "HARNESS-L7-001-PURE-REPEAT"
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "document_id": "HARNESS-L7-001-V12-LAYER-CONTRACT",
+  "layer": "L7",
+  "paired_document": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+  "parent": "HARNESS-L2-001",
+  "status": "candidate_verification_design_only",
+  "source_main": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+  "scope_ja": "L6のF01/F02/B01設計とL8既存oracleを結ぶ対検証設計候補。新caseや製品test codeを追加せず、固定済み材料と未凍結範囲を区別する。",
+  "source_pins": [
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+      "file_sha256": "c26879d003cb8f56fca89057b341d783e102ee25f94efb6c560fae6a465c0137",
+      "selected_pointers": [
+        "/fixture_contract",
+        "/fixture_basis",
+        "/cases/0",
+        "/cases/1",
+        "/cases/2",
+        "/extra_cases/0",
+        "/extra_cases/1",
+        "/extra_cases/2",
+        "/extra_cases/3",
+        "/extra_cases/4",
+        "/f02_constructor_oracles",
+        "/f02_constructor_oracles/multiple_missing_field_order_control",
+        "/f02_constructor_oracles/finding_order_oracles"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+      "selected_pointers": [
+        "/types",
+        "/common_contract",
+        "/finding_classification",
+        "/functions/0",
+        "/functions/1",
+        "/functions/2",
+        "/f02_return_construction"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "selected_pointers": [
+        "/requirements/40",
+        "/requirements/41",
+        "/requirements/42",
+        "/requirements/59",
+        "/requirements/58"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "selected_pointers": [
+        "/cases/40",
+        "/cases/41",
+        "/cases/42",
+        "/cases/59",
+        "/cases/58"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "file_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "selected_locator": "段階2〜4"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "file_sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198",
+      "selected_locator": "L6/implementation/CI unlock撤回"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/msgcontent-knowledge-po-decision-2026-10-12.md",
+      "file_sha256": "85fbebc322732a083e6fefb9aa5b7c7f9f24de8d894266240c7f94f472e00b5a",
+      "selected_locator": "限定採用範囲"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/governance/decisions/principles-are-po-directive-po-decision-2026-10-10.md",
+      "file_sha256": "2b78249e8da1c0e2cbf5ae2839f79c5b981437966000455f949121bc4d343563"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/concept/helix-concept.md",
+      "file_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/concept/helix-principles.md",
+      "file_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "file_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+      "selected_pointers": [
+        "/requirements/12"
+      ]
+    },
+    {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "file_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+      "selected_pointers": [
+        "/cases/12"
+      ]
+    }
+  ],
+  "pair_relation_ja": [
+    "各L7 groupは対応するL6 symbolへ結び、入力・期待・failureをL8およびL3/L10へ双方向に追跡する。L7はL8期待値を再生成せず、実装出力からoracleを作らない。",
+    "実装前に対象revision・入力・whole expected・独立根拠を凍結する。L3/015とL10/015の順序はfreeze→意図した欠陥に対するRed実観測→同じ凍結oracleを満たす最小Green→意味を保つ局所Refactor。Redが無関係な構文/環境失敗なら対象欠陥のRedとして扱わない。",
+    "Red/Green/Refactorの実観測は未実施。候補設計・L8のnot_executed値は実行証拠ではない。"
+  ],
+  "test_groups": [
+    {
+      "id": "HARNESS-L7-001-F01",
+      "symbol": "check_artifact_layer_correspondence",
+      "l6_ref": "HARNESS-L6-001-F01",
+      "l8_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/cases/0"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/0"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/1"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/2"
+        }
+      ],
+      "l3_l10_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/58"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/58"
+        }
+      ],
+      "coverage_ja": "十二層/6pair exact set、層外anchor、Meaning/current/reference照合、二重identity、unknown保持、implementation design/test trace、構造異常。L8 case0の11 mutationを現期待のまま対応させる。",
+      "oracle_contract_ja": "L8自然文profileに対応する入力/Contextとwhole expectedを、実装前に独立根拠から具体化して凍結する計画。現時点のL8 case0は全mutationの全返却Resultがliteralで固定済みではない。部分期待・既知の保持制約を全Result完成と取り違えず、L5共通Result/Finding規則を含む全member比較へ渡す。L3/L10→L4/L5と既存sourceをbasisとし、実装出力から期待を作らない。",
+      "execution_state": "not_executed",
+      "freeze_status": "not_frozen_as_full_whole_oracle"
+    },
+    {
+      "id": "HARNESS-L7-001-F02",
+      "symbol": "check_prototype_poc_applicability",
+      "l6_ref": "HARNESS-L6-001-F02",
+      "l8_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/cases/1"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/3"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/cases"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/additional_constructor_cases"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/multiple_missing_field_order_control"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/f02_constructor_oracles/finding_order_oracles"
+        }
+      ],
+      "l3_l10_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/59"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/59"
+        }
+      ],
+      "coverage_ja": "画面factと技術不確実性factの独立性、N/A両側情報、要求/合意との境界、unknown/conflict/stale/incomplete、返却順序。L8 case1は自然文familyの範囲を維持する。",
+      "oracle_contract_ja": "8 constructor oracleと26 additional constructor oracle、multiple_missing_field_order_control、finding_order_oraclesは返却構築に限定した詳細材料であり、F02の全入力・全返却の意味oracleではない。元L8自然文familyの完全固定入力/全期待が揃うまで全F02 oracle frozenとしない。新fixtureを追加せず具体未完を保持する。",
+      "execution_state": "not_executed",
+      "freeze_status": "not_frozen_as_full_whole_oracle"
+    },
+    {
+      "id": "HARNESS-L7-001-B01",
+      "symbol": "project_layer_authority_boundary",
+      "l6_ref": "HARNESS-L6-001-B01",
+      "l8_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/cases/2"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/0"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/1"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/4"
+        }
+      ],
+      "l3_l10_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/12"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.json",
+          "pointer": "/cases/12"
+        }
+      ],
+      "coverage_ja": "F01返却の再照合、5 evidence signal、catalogとauthorityの分離、actual verification未観測、他signalへの過剰依存、外部作用なし。L8 case2の6 mutationを保つ。",
+      "oracle_contract_ja": "L8自然文profileと部分期待を保持し、入力/Contextと全Resultを独立に具体化・凍結した後、signalごとの状態・Ref順・Finding順・missing_signalsを全member比較する計画。現時点では全mutationのwhole expectedは未凍結。設計書/green表示だけで実観測を作らない。",
+      "execution_state": "not_executed",
+      "freeze_status": "not_frozen_as_full_whole_oracle"
+    },
+    {
+      "id": "HARNESS-L7-001-PURE-REPEAT",
+      "symbols": [
+        "check_artifact_layer_correspondence",
+        "check_prototype_poc_applicability",
+        "project_layer_authority_boundary"
+      ],
+      "l6_ref": "HARNESS-L6-001-V12-LAYER-CONTRACT",
+      "l8_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+          "pointer": "/extra_cases/1"
+        }
+      ],
+      "l3_l10_refs": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/58"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/59"
+        },
+        {
+          "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/12"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/58"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/59"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/business-verification.json",
+          "pointer": "/cases/12"
+        }
+      ],
+      "coverage_ja": "同一入力/snapshotの再評価で同一whole result、入力は不変、環境副作用なし。反復順の変化を新しいdomain規則へ拡張しない。",
+      "oracle_contract_ja": "L8 extra X02のobserver範囲とL5 common_contractに限定。新たなケースを作らず、既存の実入力が無いsymbolはfreeze不足として記録する。",
+      "execution_state": "not_executed",
+      "freeze_status": "not_frozen_as_full_whole_oracle",
+      "failure_boundary_ref": {
+        "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+        "pointer": "/failure_and_recovery_boundary"
+      }
+    }
+  ],
+  "oracle_freeze_and_evidence_ja": [
+    "各groupでL8のinput objectとexpected whole Resultを、実装開始前に対象identity/revision/scopeと固定source/hashへ結ぶ。caseのexpectedを実装出力から採らず、L3/L10→L4/L5→独立した期待根拠の順に照合する。",
+    "freeze対象は入力bytes、Context/F02Context snapshot、全返却member・配列順・null/presence、failure classification、source pins、test-to-symbol-to-requirement trace。条件が欠ければ該当groupをnot_frozenとし、そのgroupの実装へ進まない。これは既存TDD前提の記述であり新たな製品gateの追加ではない。",
+    "既存L8 `/cases/0..2` と `/extra_cases/0..4` はnot_executed。F01/B01を含む自然文case familyも、必要な全入力と全返却が完全固定された実行oracleと同じではない。F02前段の全入力/whole expectedも未物質化。後段34 constructor材料とorder controlはF02前段を代替しない。",
+    "独立basisにできるのは承認L3/L10要求、L4/L5原契約、固定されたsource/対検証の期待である。期待導出が実装者だけに依存する範囲は独立未確立として開示する。",
+    "未定義入力、expected外部故障、または実装内部例外を新しいResult/Findingへ勝手に写さない。L5が定める不正・欠落等のResult分類と、実行基盤の中断/環境失敗は観測上区別して記録する。後者を対象関数のRed/Green証拠としない。"
+  ],
+  "red_green_refactor_ja": {
+    "red": "凍結した特定入力で、実装前の未実装/意図的欠陥対象が期待された分類・返却と異なることを観測する。syntax/environment故障はRed不成立。",
+    "green": "同じ入力・同じoracleで、対象欠陥だけを解く最小実装が全whole expectedを満たす証拠。oracle改変でGreenを作らない。",
+    "refactor": "Green後に構造を局所整理し、同じ凍結oracle・source binding・全member順で再検証する。要求や期待意味を変えた場合は別の変更として影響traceを更新する。",
+    "status": "この文書では一連の実行は行わず、CIも新規構築しない。"
+  },
+  "placement_and_unresolved_ja": {
+    "test_path": "helix/helix-harness/units/<登録されたpack identity>/tests",
+    "source_path": "helix/helix-harness/units/<登録されたpack identity>/src",
+    "source": {
+      "revision": "8f32673455264ae6fd57be4fb4c8f9887abbe6b0",
+      "path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+      "file_sha256": "3747f5e43cf6c423c4ecfcf1118cc864f5a84dac8c7feaa6f2a8da4e4c29569b",
+      "pointer": "/placement/runtime_target"
+    },
+    "return_to_l4": "登録pack identity・type number・final import pathは未確定。L4 pack ownerへ返す。10/9の4配置論点はL4 remainingに置き、純粋3関数対のL6/L7作成gateへ転用しない。"
+  },
+  "authority_boundary_ja": [
+    "候補作成は10/12 requirements-entry restartの段階2準備範囲に沿う。実装を始めるには既存委任承認・必要な対象条件・pair対設計と検証条件の成立が別途必要。実物L11受入後にのみ対象範囲を通常L3/L10へ戻す。",
+    "10/10 rollbackにより10/9の広いL6/implementation/CI unlockは撤回済み。VT104–106は未採用。MSG004は限定採用項目のみ照合。",
+    "L6/L7 candidateは新規approval、Ready条件、実装権限、CI運転、L11 Accepted、L3再開、release/deployを発生させない。"
+  ],
+  "not_claimed_ja": [
+    "全既存L8 oracleの凍結",
+    "F02 full semantic input/expectedの完成",
+    "L6/L7実装、Red/Green/Refactor実観測、製品CI",
+    "登録済pack identity/final import path",
+    "L11 Accepted、release/deploy"
+  ],
+  "paired_candidate_binding": {
+    "document_id": "HARNESS-L6-001-V12-LAYER-CONTRACT",
+    "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+    "binding_kind": "same-candidate-pair-current-binding",
+    "selected_pointers": [
+      "/function_design",
+      "/purity_and_retry_ja",
+      "/failure_and_recovery_boundary"
+    ],
+    "note_ja": "同時作成のL6候補bytesを照合するcurrent binding。独立した承認済sourceや歴史的固定revisionとして扱わず、L6候補の変更時はこのhashと選択箇所を追随する。",
+    "file_sha256": "6d98f325916a62761726b97c7692a7f42b47ceb4df26c09795c68fac1d22c05a"
+  },
+  "derived_from_document_id": "HARNESS-L8-001-V12-LAYER-CONTRACT"
+}
