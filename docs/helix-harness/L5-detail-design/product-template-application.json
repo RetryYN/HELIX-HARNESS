@@ -23548,6 +23548,18 @@
         "binding": "same_candidate_revision",
         "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
       }
+    },
+    "finite_residual_handoff_oracle": {
+      "recipe": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+        "pointer": "/cases/10",
+        "binding": "same_candidate_revision",
+        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
+      },
+      "scope_ja": "以下は既存general_body_writer/root/index/issue規範に対する一代表の対検証対応。新public型/alias/判定条件/完成gateを追加せず、旧functions/Comparison/N/全legacy期待を変更しない。",
+      "input_ja": "固定M2 case9のIと条件付き原caller/Nを保持する。operation relation keyは独立I.validation_input.raw.application_policies[1].template_refから読む。元N出力をoperation入力の著述に使わない。右辺は各指定source2の独立native Ref4 locatorでありcast又はscope同一視で生成しない。",
+      "expected_ja": "全N/原7producerを保持しcoverage covered_as_captured、membership residual_for_captured_members、元exactness not_recomputedを別軸で捕捉する。valid兄弟member1の全relation/自身の資格/Ref4を残す。bodyはmembership残余のためunformedで、coverage/資格失敗を捏造しない。F02詳細incompleteは別軸のまま保持する。",
+      "remaining_ja": "root generic16whole採取は本pairの有限JSON検査だけ。独立公開replay/coverage欠落・複合失敗/全F04・実wrapper資格配送受入は未成立。"
     }
   }
 }

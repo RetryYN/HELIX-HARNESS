@@ -20,7 +20,8 @@
     "generalは独立RawProviderRequestを元公開provider input recipeから作り、各raw_source0_variantがある場合は実CallerInputs全値copyと原relation変異だけを先に実施する。expected側へ同N/同call詳細/原source観測をmountしcompletionする。",
     "publicationは当case General全値と独立owner port fixtureへbefore_wire ops、明示UTF8形成、完成digestを独立fixture claim/rootの二箇所へcopy、after_wire opsを適用する。sourceidentityをbytes/hash/pathから採番せず、実資格発行と称さない。",
     "receiverは原OS input/validated/kernel source又は独立owner empty-selection variantを先に作り、caseごとのsource mountsを行う。input ops→完成wire strict parse→expected completion ops→two_source variant全39opsの順。三source中間はoracle対象でなく、最終OS-owner＋publicationだけの二source入力を選ぶ。",
-    "F07は固定binding-domain source recipe（2replace+135copy）とtotal caseの明示source_preparationからI/N/全prefixを得て、新standard_completion_opsを全適用する。F08四portcaseはF01完成publicationをmaterialized /expectedとしてimportし、各seed/opsを適用する。旧positive raw artifactの/expectedという存在しないliteral pointerを読まない。"
+    "F07は固定binding-domain source recipe（2replace+135copy）とtotal caseの明示source_preparationからI/N/全prefixを得て、新standard_completion_opsを全適用する。F08四portcaseはF01完成publicationをmaterialized /expectedとしてimportし、各seed/opsを適用する。旧positive raw artifactの/expectedという存在しないliteral pointerを読まない。",
+    "F04 residual_valid_siblingは当該partのfixed_bindings/mount_envelope_contract/mount_standard_ops/finite_execution_order_jaを順に用いる。artifact selectorと完成workspace selectorを分け、独立I/old_OS_input/old_OS_validatedを標準copyで明示mountする。source0 strictparse→member順compact UTF8/SHA→claim/root更新→sourcepacketのdigest0 remove/copy(insert)も本文の工程どおり。body未形成なのでpositive publication wire/owner portsを呼ばず、元OS-owner sourceだけで到達する観測を保持する。N/expected/資格boolをruntime入力へ注入しない。"
   ],
   "parts": {
     "required_native_source": {
@@ -13657,6 +13658,3450 @@
           }
         }
       ]
+    },
+    "residual_valid_sibling": {
+      "kind": "F04_residual_valid_sibling_finite_public_recipe",
+      "source_design_revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+      "source_design_status": "c06は採択済み詳細の固定historical source。dce07d0ce54821a445919664030bb82fcfd10fb9の公開catalogへF04有限例を加えるcandidate。独立公開recipe replay/全F04/製品実行は未成立。",
+      "fixed_sources": [
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/general_proposal_exchange_detail",
+          "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "8cc352f8b54e2fbaaa8664090a94b33388dc208e481a0f221845a729942946f1",
+          "ordered_sha256": "6641682f3f7dde7cebe6e8c633978ed3886279a6773583734c3725597be4feb6",
+          "canonical_byte_length": 98256,
+          "ordered_byte_length": 98256
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange",
+          "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "2888c09a9632709a87def41af81bc76214f6cafc9c8416baa22be44c9866c640",
+          "ordered_sha256": "07ea62a74bf5ef493f522df9244f6b2daf9c98d40709fca839039daa0c3c3f48",
+          "canonical_byte_length": 75977,
+          "ordered_byte_length": 75977
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles",
+          "file_sha256": "8c16a7050323d274c2b83506e4fe87c76181df669a566bcb384cba0a5203b650",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "bc6b65d7476fdc658965e93e96e909fd599718811052317bf5a5b65fa4ee3cf0",
+          "ordered_sha256": "a083f0a607f579c428bb0128827b536d34a33da22544c188a342701a28f01a88",
+          "canonical_byte_length": 15397,
+          "ordered_byte_length": 15397
+        },
+        {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "",
+          "file_sha256": "214480078e9bf052d19cf180b1113b0fb5ed765fdb7559f33eb721b24fdb7c69",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "a05169555a1d390dde278303185da082b6758253a67821d51375736f853c18a9",
+          "ordered_sha256": "046be13687236da2cf9c9cea4d4004fcef5ac8c4350f1726c135a763157d9895",
+          "canonical_byte_length": 351136,
+          "ordered_byte_length": 351136
+        },
+        {
+          "revision": "45f542e2bb5788aacbed62288f240b8977dfc103",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/proposal_native_record_material_cases",
+          "file_sha256": "a94a1c2b1e74017f632ab112abc677aab5ef573b1b0b769ddf177775f7c65879",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "f275ba475880dc924b2619f433bf32e5fd0a9095dd0ab769c2ed36152181de9f",
+          "ordered_sha256": "35f3c931abd786500eabc2c06d3c6f86fb107c4019ae498f2c835916bb4d838a",
+          "canonical_byte_length": 24408,
+          "ordered_byte_length": 24408
+        },
+        {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+          "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593",
+          "ordered_sha256": "5ec78fddb8d2a9a3d905245e65d24060bb1d66ddf47ed77cae2a3562f37e8e3c",
+          "canonical_byte_length": 703628,
+          "ordered_byte_length": 703628
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/24",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "24bc8c32bd201d805ae635188a247d44b5770c5af0d56c92918f33267dba14c1",
+          "ordered_sha256": "c6982dbe9dbd68df1ac6635375802eb4a22e71acad3be2725a8370ae902fdf5c",
+          "canonical_byte_length": 418,
+          "ordered_byte_length": 418
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/25",
+          "file_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "6c3eebfe5f9a38a9df0859bf17172d98cbac59e1dd8cb4767dabcbd0571e91ff",
+          "ordered_sha256": "0b20a364dbc35a6bd81dfe86c43abc9b45ad3379a3506a97317eeaad90565fbf",
+          "canonical_byte_length": 518,
+          "ordered_byte_length": 518
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/24",
+          "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "32e05dbb65455ce59e80a4e2c3ce9fe782fa6c1db8da6ac259afbf49ca5fb0f4",
+          "ordered_sha256": "a376029fa313f59067073f197fd06978c3b91558a4f746df861272d8b23df282",
+          "canonical_byte_length": 669,
+          "ordered_byte_length": 669
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/25",
+          "file_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "33e74b9d6adfc7365452feb2a1741cc4dc3db8ac51f510a761ecb81f22925308",
+          "ordered_sha256": "07df492cd14241c61b17fbd5f57ee25e441d09281c02459277fe16626638b1ed",
+          "canonical_byte_length": 725,
+          "ordered_byte_length": 725
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/9",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "732060fd48175f697fd95a4c49180a45f82ab5258c3271e4f0cb50b82dadaa3d",
+          "ordered_sha256": "accebe95d8b72f80f194c4b69baf57e3d49710ce662973755fbea9105708082c",
+          "canonical_byte_length": 477,
+          "ordered_byte_length": 477
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+          "pointer": "/common_contract",
+          "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "e5cc3f0c4c8fb5a85b51e7ecef866dc6cb106d8d10eefb24046fcf822d7724ad",
+          "ordered_sha256": "e5cc3f0c4c8fb5a85b51e7ecef866dc6cb106d8d10eefb24046fcf822d7724ad",
+          "canonical_byte_length": 1826,
+          "ordered_byte_length": 1826
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+          "pointer": "/canonical_meaning",
+          "file_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "7acdc49a1e60643bc90c6ee3b3b567e62eed75ece0d7aeff48e16b9c094b2f2c",
+          "ordered_sha256": "89fbf032a1d2b9f4e6671c46dd527ce09ac8872a046e0013dd83b24e732ae3d1",
+          "canonical_byte_length": 283,
+          "ordered_byte_length": 283
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "line_span": [
+            24,
+            92
+          ],
+          "selected_text_sha256": "3d78ec99c1e6dbcd72e8d8c6e1208a5e20ad82a4d3607906a70677997e6e6eff",
+          "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "source_role": "fixed_source_snapshot"
+        },
+        {
+          "revision": "c06a7065a0e1c02e9918ebf0e2db84065318a931",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "line_span": [
+            65,
+            101
+          ],
+          "selected_text_sha256": "5ad5370ce4af1ac36385b4dbe75a30eb3c15bf7ef394e1c764cd400d3998e415",
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "source_role": "fixed_source_snapshot"
+        },
+        {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles",
+          "role": "formal raw source literals/request seed/source expectation",
+          "file_sha256": "5bc7d2626a4efafc2ae8a35ab53575ab6e6cf425b7b661a6ce7ab58d508d50d3",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "776b3e1eada34cc92074aa146c937698de0d44b3064ed735e80db861bc6ef8c0",
+          "ordered_sha256": "213429af2deff756979c2b110c576511a9ad697301930f2c1efe4a70273707d5",
+          "canonical_byte_length": 1919224,
+          "ordered_byte_length": 1919224
+        },
+        {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/normal_fixtures/3/input",
+          "role": "artifact literal input value, not runtime observation",
+          "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "8c855654df8f9c5f8c8163b32374018c6f854bd4b87ea4ab7bd319e2de5168f1",
+          "ordered_sha256": "d96b24f98730cb3fd1818c4e2cdb882514f991349862ff4507b9df304ef05227",
+          "canonical_byte_length": 11625,
+          "ordered_byte_length": 11625
+        },
+        {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/4/invocations/0/input",
+          "role": "artifact literal input value, not runtime observation",
+          "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "a2d40da0c772769c1813620acd27f77aaca5efa27e2aa7fe3f6aeb30dc666915",
+          "ordered_sha256": "b84668a0bc546c067949fae217ecf841431987e5847932339e40a0d043981c5f",
+          "canonical_byte_length": 14410,
+          "ordered_byte_length": 14410
+        },
+        {
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "",
+          "role": "whole fixed Git import l8",
+          "file_sha256": "1e475ea6275b21ffd62166e47bf2a6f5cfdcf9c97ea9434581095f7a5f30c31f",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "2abe15ecd77bfb3ed8a7d14dc90a214a4ca90f8e06b6b9590eec675bc03d3471",
+          "ordered_sha256": "6e7c99c56846bd5f8116917e477f62d911fdf265ff8fd6b2cabb00ee3c9bc697",
+          "canonical_byte_length": 4265943,
+          "ordered_byte_length": 4265943
+        },
+        {
+          "revision": "9fdd43c261722375eb2006c001de6798e8a2b446",
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "",
+          "role": "whole fixed Git import l5",
+          "file_sha256": "54ca1980308fc0672cd8bf484f997f26d8cfe91612ef30e3e33bb283a66ff0ad",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "2739120442ad76ffa7ffa4e9a349de691f572485ab0d91cd076aa499588fc594",
+          "ordered_sha256": "34d4e43ecaecb88579b017729c442614cf7311e78a81f9688cc74091b97f03e0",
+          "canonical_byte_length": 1085741,
+          "ordered_byte_length": 1085741
+        },
+        {
+          "revision": "83ad243ae78bc326292c247eb193c3512f29ed1a",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "",
+          "role": "whole fixed Git import allskip_l9",
+          "file_sha256": "e3619baeecf0ea51116fb53a1588bc5a98afceeba3313d566608d974ce3d0cae",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "ce09beb0572c0dc397698901480ab237d04f38e0600c644c54867bfaae92e339",
+          "ordered_sha256": "037476e770074ff10dd68f23ffe18c06e1525fc6cade109b289f92f303aefa28",
+          "canonical_byte_length": 7482348,
+          "ordered_byte_length": 7482348
+        },
+        {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe/cases/9/input_patch/0/value/template_ref",
+          "role": "independent input literal key",
+          "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "36f0c52b22c4bf6dc27b14766339001b58c9e6e046a5116e82fd9725a0237f47",
+          "ordered_sha256": "72831c1e90e6345cd12f6fdd1d56f70e8e733a086ecead0abd6af4aadc79d6d4",
+          "canonical_byte_length": 218,
+          "ordered_byte_length": 218
+        },
+        {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe/cases/9/input_patch/1/value",
+          "role": "separately authored returned candidate literal",
+          "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "36f0c52b22c4bf6dc27b14766339001b58c9e6e046a5116e82fd9725a0237f47",
+          "ordered_sha256": "72831c1e90e6345cd12f6fdd1d56f70e8e733a086ecead0abd6af4aadc79d6d4",
+          "canonical_byte_length": 218,
+          "ordered_byte_length": 218
+        }
+      ],
+      "native_source": {
+        "normal_recipe_source": {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+          "recipe_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+          "steps_pointer": "/proposal_material_formation_native_oracle/frozen_oracle/normal_case_recipe_steps",
+          "steps": [
+            "normal_seed全値を複写し、各importが指定する固定revision/pathから3つのGit blobを読み込む。",
+            "authored_variant_inputsを複写し、normal_base_patchを順序どおり標準RFC6902で適用する。",
+            "各caseでfreshなnormal baseの複製を使い、expected.proposalをnormal_expected_proposal_seedへ置く。case input_patch、共通normal_input_refresh_patch、case input_refresh_patch（あれば）、expected_proposal_patch、refresh_expected_readsの順で適用する。refresh_expected_reads末尾の既存copyがinput全体をexpected.captureへ写す。",
+            "imports/assets/authored_variant_inputsはoracle著述のworkspace recipeであり、wrapper/runtime引数ではない。"
+          ],
+          "case_indices": [
+            0,
+            9
+          ],
+          "rule": "各import元は、それぞれ固定revision/path/file hashを持つ。新しいnormal_seedとimport済みblobから開始し、normal_base_patchを順に適用する。各caseでは新しいnormal baseの複製を使い、input_patch、normal_input_refresh_patch、（存在する場合は）case input_refresh_patch、expected_proposal_patch、refresh_expected_readsの順で適用する。既存refresh operationとその順序をすべて保持する。"
+        },
+        "source_case_index": 9,
+        "native_case_index": 1,
+        "native_workspace_seed": {
+          "native_reconstructed": null,
+          "input": null,
+          "expected": {
+            "capture": null,
+            "record": {
+              "candidate_entries": [
+                {
+                  "result_index": 1,
+                  "member_index": 1,
+                  "kind": "required_candidate",
+                  "template_ref_read": null,
+                  "native_result_location": {
+                    "root": "native_proposal_return",
+                    "pointer": "/proposal/template_results/1"
+                  }
+                }
+              ],
+              "na_exclusion_entries": [],
+              "residual_entries": [
+                {
+                  "result_index": 0,
+                  "member_index": 0,
+                  "template_ref_read": null,
+                  "membership": null,
+                  "native_result_location": {
+                    "root": "native_proposal_return",
+                    "pointer": "/proposal/template_results/0"
+                  }
+                }
+              ],
+              "coverage": {
+                "tag": "enumerated",
+                "member_coverage": [
+                  {
+                    "member_index": 0,
+                    "result_indices": [
+                      0
+                    ],
+                    "correspondence": "corresponding"
+                  },
+                  {
+                    "member_index": 1,
+                    "result_indices": [
+                      1
+                    ],
+                    "correspondence": "corresponding"
+                  }
+                ],
+                "unmatched_result_indices": [],
+                "unreadable_result_indices": [],
+                "completion": "covered_as_captured"
+              },
+              "membership_completion": "residual_for_captured_members",
+              "original_universe_exactness": {
+                "state": "not_recomputed",
+                "producer_observation_location": {
+                  "root": "native_proposal_return",
+                  "pointer": "/capture/caller_return/producer_observations/1"
+                },
+                "caller_inputs_location": {
+                  "root": "native_proposal_return",
+                  "pointer": "/capture/caller_inputs"
+                },
+                "claim": "no_new_exactness_claim"
+              }
+            }
+          }
+        },
+        "native_completion_ops": [
+          {
+            "op": "copy",
+            "from": "/native_reconstructed/expected",
+            "path": "/input"
+          },
+          {
+            "op": "copy",
+            "from": "/input",
+            "path": "/expected/capture"
+          },
+          {
+            "op": "copy",
+            "from": "/input/proposal/template_results/1/member_read",
+            "path": "/expected/record/candidate_entries/0/template_ref_read"
+          },
+          {
+            "op": "copy",
+            "from": "/input/proposal/template_results/0/member_read",
+            "path": "/expected/record/residual_entries/0/template_ref_read"
+          },
+          {
+            "op": "copy",
+            "from": "/input/proposal/template_results/0/membership",
+            "path": "/expected/record/residual_entries/0/membership"
+          }
+        ],
+        "frozen_N_whole": {
+          "input_canonical": {
+            "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+            "byte_length": 53896845
+          },
+          "input_ordered": {
+            "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+            "byte_length": 53896845
+          },
+          "expected_canonical": {
+            "sha256": "2bf61b507575a28d36dc157c63c3330fdd9bd07a70e9ad0974b5062026535c45",
+            "byte_length": 53898697
+          },
+          "expected_ordered": {
+            "sha256": "3ecddf55352669b449d8ddcab0557ad668683fdec8af9504d5db574f671d1cb6",
+            "byte_length": 53898697
+          },
+          "whole_capture_preserved": true
+        },
+        "protocol_ja": "M2 recipeのnormal_seedへimports各固定Git全値/authored_variant_inputsをmount→normal_base_patch全順→expected.proposal=normal_expected_proposal_seed→case9.input_patch→normal_input_refresh_patch→case9.input_refresh_patchがあれば全順→case9.expected_proposal_patch→case9.refresh_expected_reads。完成全workspaceをM3case1 seed.native_reconstructedへ置きnative_completion_ops全5件をRFC6902適用。/expectedがN、/native_reconstructed/input/caller_inputsがI。M3case/inputはCoreProposalDetailedReturnでありNへ代用しない。"
+      },
+      "three_completion_roles": {
+        "coverage": "covered_as_captured",
+        "membership": "residual_for_captured_members",
+        "original_universe_exactness": "not_recomputed"
+      },
+      "source_limits_ja": [
+        "旧case9は同callerが供給した二policy branchを固定するassociation control。raw universe/templateはT-unit1件のまま、returned F02 candidateはT-unitとvalid siblingの2件。元I/N/Comparison/全7返却を変更せず、実producer/inner domain/資格/wrapper観測とは称さない。",
+        "coverage欠落case3、原未観測case2、NA除外、unknownをこのmember0 unresolvedへ混同しない。元comparison axes/findingsは空投影のまま。",
+        "F01 I/Nそのものを流用しない。F01の有限detail seed/68証拠を同context原端へ接続し、extra candidateの既知identity差を新detailへ別記する。旧expectedを書換えず新variantだけ。"
+      ],
+      "private_export": {
+        "public_part_pointer": "/parts/required_private_export",
+        "workspace_seed": {
+          "independent_I": null,
+          "fixed_N": null,
+          "input": null,
+          "expected": {
+            "value": null,
+            "universe_observation": {
+              "tag": "observed",
+              "value": {
+                "comparison": null,
+                "observation": {
+                  "context": {
+                    "validated": null,
+                    "compare_required_axes": null
+                  },
+                  "validation_source_locations": [
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/0"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/0"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/0"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/1"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/1"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/1"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/2"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/2"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/2"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/3"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/3"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/3"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/4"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/4"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/4"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/sources/5"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualifications/5"
+                    },
+                    {
+                      "root": "context",
+                      "pointer": "/validated/input/qualification_roots/5"
+                    }
+                  ],
+                  "universe_steps": [
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/0",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/requirement_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/compare_required_axes/input_binding/requirement_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/0",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/product_scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/compare_required_axes/input_binding/product_scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/0",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/process_contract_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/compare_required_axes/input_binding/process_contract_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/0",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/application_contract_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/compare_required_axes/input_binding/application_contract_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/1",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/binding/requirement_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/requirement_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/1",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/binding/product_scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/product_scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/1",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/binding/process_contract_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/process_contract_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/1",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/binding/application_contract_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/binding/application_contract_ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/2",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/members"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/body/records/19/payload/members"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/identity"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/subject_ref/identity"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/revision"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/subject_ref/revision"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/subject_ref/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/subject_ref/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/qualification_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/root_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualification_roots/0"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/sha256"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/subject_sha256"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/0/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/0/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/identity"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/subject_ref/identity"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/revision"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/subject_ref/revision"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/subject_ref/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/subject_ref/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/qualification_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/root_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualification_roots/1"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/sha256"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/subject_sha256"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/1/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/1/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/identity"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/subject_ref/identity"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/revision"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/subject_ref/revision"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/subject_ref/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/subject_ref/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/qualification_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/root_ref"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualification_roots/2"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/sha256"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/subject_sha256"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/owner"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/owner"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/sources/2/ref/scope"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/qualifications/2/scope"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    },
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/4",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/boundary_refs/0"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/semantic_records/2/ref"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    }
+                  ],
+                  "member_observations": [
+                    {
+                      "universe_index": 0,
+                      "member_index": 0,
+                      "source_steps": [
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/members/0"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/source_ref/identity"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/2/ref/identity"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/source_ref/revision"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/2/ref/revision"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/source_ref/scope"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/2/ref/scope"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/source_ref/owner"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/2/ref/owner"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/members/0/sha256"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/ref/sha256"
+                            }
+                          ],
+                          "state": "not_applicable",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        }
+                      ],
+                      "boundary_steps": [
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/6",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/binding/requirement_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/binding/requirement_ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/6",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/binding/product_scope"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/binding/product_scope"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/6",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/binding/process_contract_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/binding/process_contract_ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/6",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/binding/application_contract_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/binding/application_contract_ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        }
+                      ],
+                      "template_steps": [
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/2/body/records/0/ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        }
+                      ],
+                      "semantic_steps": [
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/templates/0/meaning_contract_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/semantic_records/13/ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/semantic_comparisons/0/left_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/axis_facts/2/ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/semantic_comparisons/0/right_ref"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/semantic_records/7/ref"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        },
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/semantic_comparisons/0/same_meaning"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/sources/1/body/records/21/payload/same_meaning"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        }
+                      ],
+                      "candidate_indices": [
+                        0
+                      ],
+                      "candidate_steps": [
+                        {
+                          "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/8",
+                          "left_locations": [
+                            {
+                              "root": "context",
+                              "pointer": "/validated/input/universes/0/members/0"
+                            }
+                          ],
+                          "right_locations": [
+                            {
+                              "root": "comparison",
+                              "pointer": "/material/candidate_member_refs/0"
+                            }
+                          ],
+                          "state": "equal",
+                          "finding_indices": [],
+                          "axis_indices": []
+                        }
+                      ]
+                    }
+                  ],
+                  "candidate_steps": [
+                    {
+                      "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/9",
+                      "left_locations": [
+                        {
+                          "root": "context",
+                          "pointer": "/validated/input/universes/0/members/0"
+                        }
+                      ],
+                      "right_locations": [
+                        {
+                          "root": "comparison",
+                          "pointer": "/material/candidate_member_refs/0"
+                        }
+                      ],
+                      "state": "equal",
+                      "finding_indices": [],
+                      "axis_indices": []
+                    }
+                  ],
+                  "original_finding_indices": [],
+                  "original_axis_indices": [],
+                  "conclusion": {
+                    "tag": "exact_for_context",
+                    "basis_steps": [
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/1"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/2"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/3"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/4"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/5"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/6"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/7"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/8"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/9"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/10"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/11"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/12"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/13"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/14"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/15"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/16"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/17"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/18"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/19"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/20"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/21"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/22"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/23"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/24"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/25"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/26"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/27"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/28"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/29"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/30"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/31"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/32"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/33"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/34"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/35"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/universe_steps/36"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/1"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/2"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/3"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/4"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/source_steps/5"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/boundary_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/boundary_steps/1"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/boundary_steps/2"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/boundary_steps/3"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/template_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/semantic_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/semantic_steps/1"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/semantic_steps/2"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/semantic_steps/3"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/member_observations/0/candidate_steps/0"
+                      },
+                      {
+                        "root": "observation",
+                        "pointer": "/candidate_steps/0"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "authored_extra_basis_steps": [
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/body"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/content_bytes"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/content_bytes"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/ref/sha256"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/body"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/content_bytes"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/content_bytes"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/ref/sha256"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/body"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/content_bytes"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/content_bytes"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/ref/sha256"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/3",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/universes/0"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/body/records/19/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/4",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/semantic_records/2"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/body/records/25/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/5",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/templates/0"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/body/records/0/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/semantic_records/13"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/body/records/7/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/semantic_comparisons/0"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/body/records/21/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/1/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/axis_facts/2"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/body/records/2/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/0/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/7",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/semantic_records/7"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/body/records/4/payload"
+                },
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/sources/2/ref"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            },
+            {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/8",
+              "left_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/universes/0/ref"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "comparison",
+                  "pointer": "/material/universe_refs/0"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            }
+          ]
+        },
+        "imports": [
+          {
+            "workspace_pointer": "/independent_I",
+            "workspace": "native",
+            "materialized_pointer": "/native_reconstructed/input/caller_inputs"
+          },
+          {
+            "workspace_pointer": "/fixed_N",
+            "workspace": "native",
+            "materialized_pointer": "/expected"
+          }
+        ],
+        "standard_completion_ops": [
+          {
+            "op": "copy",
+            "from": "/independent_I",
+            "path": "/input"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N",
+            "path": "/expected/value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/capture/capture/caller_return/producer_observations/1/comparison",
+            "path": "/expected/universe_observation/value/comparison"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/capture/capture/caller_return/validation/validated",
+            "path": "/expected/universe_observation/value/observation/context/validated"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/capture/capture/caller_return/producer_observations/0/comparison",
+            "path": "/expected/universe_observation/value/observation/context/compare_required_axes"
+          },
+          {
+            "op": "replace",
+            "path": "/expected/universe_observation/value/observation/candidate_steps/0",
+            "value": {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/9",
+              "left_locations": [
+                {
+                  "root": "comparison",
+                  "pointer": "/material/candidate_member_refs/0"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/universes/0/members/0"
+                }
+              ],
+              "state": "equal",
+              "finding_indices": [],
+              "axis_indices": []
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/0",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/37"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/1",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/38"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/2",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/39"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/3",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/40"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/4",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/41"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/5",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/42"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/6",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/43"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/7",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/44"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/8",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/45"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/9",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/46"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/10",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/47"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/11",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/48"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/12",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/49"
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/authored_extra_basis_steps/13",
+            "path": "/expected/universe_observation/value/observation/universe_steps/-"
+          },
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/conclusion/basis_steps/-",
+            "value": {
+              "root": "observation",
+              "pointer": "/universe_steps/50"
+            }
+          }
+        ],
+        "standard_F04_patch": [
+          {
+            "op": "add",
+            "path": "/expected/universe_observation/value/observation/candidate_steps/-",
+            "value": {
+              "rule_pointer": "/general_proposal_exchange_detail/f02_step_writer/rows/9",
+              "left_locations": [
+                {
+                  "root": "comparison",
+                  "pointer": "/material/candidate_member_refs/1/identity"
+                }
+              ],
+              "right_locations": [
+                {
+                  "root": "context",
+                  "pointer": "/validated/input/universes/0/members/0/identity"
+                }
+              ],
+              "state": "different",
+              "finding_indices": [],
+              "axis_indices": []
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected/universe_observation/value/observation/conclusion",
+            "value": {
+              "tag": "incomplete",
+              "obstructions": [
+                {
+                  "root": "observation",
+                  "pointer": "/candidate_steps/1"
+                }
+              ]
+            }
+          }
+        ],
+        "extra_candidate_basis_ja": "現Iのuniverses[0].membersとtemplatesはT-unit一件。actual returned候補index1.identity=SYNTHETIC-T-valid-siblingはsole member identityと既知差。全raw roster/原比較を保持したreverse-candidate差を観測する。型/件数一致だけの新gateでなく、L3F02/L10F02・旧functions/2/algorithm/2・新row9の有限具体化。原Finding/Axisを補作しない。"
+      },
+      "operation_variant": {
+        "original_request_source": {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "file_sha256": "5bc7d2626a4efafc2ae8a35ab53575ab6e6cf425b7b661a6ce7ab58d508d50d3",
+          "provider_pointer": "/cases/3/original_operation_proposal_provider_oracles",
+          "case_index": 0
+        },
+        "workspace_seed": {
+          "parsed_original_source0": null,
+          "independent_I": null,
+          "raw_source0": null,
+          "request": null,
+          "preparation": null
+        },
+        "standard_ops": [
+          {
+            "op": "copy",
+            "from": "/parsed_original_source0",
+            "path": "/raw_source0"
+          },
+          {
+            "op": "copy",
+            "from": "/independent_I",
+            "path": "/raw_source0/records/0/payload/caller_inputs"
+          },
+          {
+            "op": "copy",
+            "from": "/independent_I/validation_input/raw/application_policies/1/template_ref",
+            "path": "/raw_source0/records/0/payload/relation_occurrences/0/core_ref6_key"
+          }
+        ],
+        "explicit_UTF8_stage_ja": "完成raw_source0を元member/array順のensure_ascii=false, compact comma-colon, allow_nan=false, BOM/末尾改行無しUTF8へ形成。preparation={source_json_utf8,source_sha256}。これはRFC6902 opでも実資格生成でもない。",
+        "standard_completion_ops": [
+          {
+            "op": "copy",
+            "from": "/preparation/source_json_utf8",
+            "path": "/request/source_occurrences/0/source_json_utf8"
+          },
+          {
+            "op": "copy",
+            "from": "/preparation/source_sha256",
+            "path": "/request/source_occurrences/0/source_sha256"
+          },
+          {
+            "op": "copy",
+            "from": "/preparation/source_sha256",
+            "path": "/request/qualification_inputs/0/source_sha256"
+          },
+          {
+            "op": "copy",
+            "from": "/preparation/source_sha256",
+            "path": "/request/qualification_root_inputs/0/allowed_source_sha256"
+          }
+        ],
+        "meaning_ja": "独立operationのsynthetic relation keyは固定M2 case9が入力側に著述したapplication_policies[1].template_ref全値から読む。N/期待値から入力を生成しない。独立右辺は元source2のnative Ref4 locator全値を保持する。左右の関連付け自体は新synthetic owner premiseであり実owner登録/資格/producer観測の証拠ではない。Ref6切縮/同scope推定/資格boolではない。元source0のbytes/SHA/claim/rootだけ明示更新し、source1/2のbytes/非資格twin/source issue0を保持する。",
+        "input_mounts_ja": "parsed_original_source0は固定旧request source0のstrict JSON parse、independent_Iは固定M2 case9 caller_inputs全値、requestは固定旧request全値。fixed_Nをこの入力著述workspaceへmountしない。General期待側に固定Nを保持して別にrelation対応を照合することは入力への逆流でない。"
+      },
+      "general": {
+        "workspace_seed": {
+          "input": null,
+          "parsed_raw_bodies": {
+            "0": null,
+            "1": null,
+            "2": null
+          },
+          "fixed_observations": null,
+          "fixed_N": null,
+          "private_export_expected": null,
+          "expected": {
+            "attempt_capture": {
+              "request_capture": null,
+              "source_attempts": [
+                {
+                  "source_occurrence_index": 0,
+                  "decode": {
+                    "tag": "ready",
+                    "body": null
+                  },
+                  "qualification": {
+                    "tag": "observed",
+                    "walk_index": 0
+                  }
+                },
+                {
+                  "source_occurrence_index": 1,
+                  "decode": {
+                    "tag": "ready",
+                    "body": null
+                  },
+                  "qualification": {
+                    "tag": "observed",
+                    "walk_index": 1
+                  }
+                },
+                {
+                  "source_occurrence_index": 2,
+                  "decode": {
+                    "tag": "ready",
+                    "body": null
+                  },
+                  "qualification": {
+                    "tag": "observed",
+                    "walk_index": 2
+                  }
+                }
+              ],
+              "qualification_snapshot": {
+                "input_issues": null,
+                "source_issues": null,
+                "source_walks": null,
+                "qualified_raw_occurrences": null
+              },
+              "operation_role": {
+                "tag": "ready",
+                "selected_record": {
+                  "source_occurrence_index": 0,
+                  "record_index": 0,
+                  "subject_ref": null,
+                  "payload_pointer": "/source_attempts/0/decode/body/records/0/payload"
+                },
+                "frame": {
+                  "caller_inputs": null,
+                  "proposed_source": null,
+                  "relation_occurrences": null
+                }
+              },
+              "native_dispatch": {
+                "tag": "returned",
+                "native_call_count": 1,
+                "symbol": "build_general_native_proposal_record_detail",
+                "value": null
+              }
+            },
+            "membership_capture": {
+              "tag": "observed",
+              "native_location": {
+                "pointer": "/attempt_capture/native_dispatch/value/value"
+              },
+              "record_location": {
+                "pointer": "/attempt_capture/native_dispatch/value/value/record"
+              }
+            },
+            "universe_observation": {
+              "tag": "observed",
+              "comparison_location": {
+                "pointer": "/attempt_capture/native_dispatch/value/value/capture/capture/caller_return/producer_observations/1/comparison"
+              },
+              "value": null
+            },
+            "relation_observations": [
+              {
+                "candidate_entry_index": 0,
+                "result_index": 0,
+                "member_index": 0,
+                "template_ref_read": null,
+                "relation_occurrences": [
+                  {
+                    "relation_occurrence_index": 0,
+                    "relation": null,
+                    "target_read": {
+                      "tag": "present",
+                      "location": {
+                        "pointer": "/attempt_capture/source_attempts/2/decode/body/records/0/payload/events/0/binding/template_ref"
+                      },
+                      "value": null
+                    },
+                    "qualification_origin": {
+                      "tag": "observed",
+                      "source_occurrence_index": 2,
+                      "walk_index": 2,
+                      "classification_flags": null,
+                      "qualified_record_indices": null,
+                      "target_record_indices": [
+                        1
+                      ],
+                      "input_issue_indices": null,
+                      "source_issue_indices": null
+                    },
+                    "diagnostic_refs": []
+                  }
+                ],
+                "native_ref4": {
+                  "tag": "formed",
+                  "value": null,
+                  "representative_relation_occurrence_index": 0
+                }
+              }
+            ],
+            "proposed_body": {
+              "tag": "formed",
+              "value": {
+                "proposed_refs": [],
+                "proposed_source": null
+              }
+            },
+            "body_issues": []
+          }
+        },
+        "standard_seed_patch": [
+          {
+            "op": "replace",
+            "path": "/expected/proposed_body",
+            "value": {
+              "tag": "unformed",
+              "diagnostic_refs": [
+                {
+                  "pointer": "/attempt_capture/native_dispatch/value/value/record/membership_completion"
+                },
+                {
+                  "pointer": "/body_issues/0"
+                }
+              ]
+            }
+          },
+          {
+            "op": "replace",
+            "path": "/expected/body_issues",
+            "value": [
+              {
+                "path": "/attempt_capture/native_dispatch/value/value/record/membership_completion",
+                "state": "unresolved",
+                "detail": "捕捉された提案membershipが完結していない。",
+                "backflow_owner": "CORE/009",
+                "axis": "proposal_membership",
+                "source_ref": null,
+                "related_source_refs": []
+              }
+            ]
+          }
+        ],
+        "standard_completion_ops": [
+          {
+            "op": "copy",
+            "from": "/input",
+            "path": "/expected/attempt_capture/request_capture"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0",
+            "path": "/expected/attempt_capture/source_attempts/0/decode/body"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/1",
+            "path": "/expected/attempt_capture/source_attempts/1/decode/body"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/2",
+            "path": "/expected/attempt_capture/source_attempts/2/decode/body"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/input_issues",
+            "path": "/expected/attempt_capture/qualification_snapshot/input_issues"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_issues",
+            "path": "/expected/attempt_capture/qualification_snapshot/source_issues"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_walks",
+            "path": "/expected/attempt_capture/qualification_snapshot/source_walks"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/qualified_raw_occurrences",
+            "path": "/expected/attempt_capture/qualification_snapshot/qualified_raw_occurrences"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0/records/0",
+            "path": "/expected/attempt_capture/qualification_snapshot/qualified_raw_occurrences/0/record"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/2/records/0",
+            "path": "/expected/attempt_capture/qualification_snapshot/qualified_raw_occurrences/1/record"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0/records/0/subject_ref",
+            "path": "/expected/attempt_capture/operation_role/selected_record/subject_ref"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0/records/0/payload/caller_inputs",
+            "path": "/expected/attempt_capture/operation_role/frame/caller_inputs"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0/records/0/payload/proposed_source",
+            "path": "/expected/attempt_capture/operation_role/frame/proposed_source"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/0/records/0/payload/relation_occurrences",
+            "path": "/expected/attempt_capture/operation_role/frame/relation_occurrences"
+          },
+          {
+            "op": "copy",
+            "from": "/private_export_expected",
+            "path": "/expected/attempt_capture/native_dispatch/value"
+          },
+          {
+            "op": "copy",
+            "from": "/private_export_expected/universe_observation/value/observation",
+            "path": "/expected/universe_observation/value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/record/candidate_entries/0/template_ref_read",
+            "path": "/expected/relation_observations/0/template_ref_read"
+          },
+          {
+            "op": "copy",
+            "from": "/expected/attempt_capture/operation_role/frame/relation_occurrences/0",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/relation"
+          },
+          {
+            "op": "copy",
+            "from": "/parsed_raw_bodies/2/records/0/payload/events/0/binding/template_ref",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/target_read/value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_walks/2/classification_flags",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/qualification_origin/classification_flags"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_walks/2/qualified_record_indices",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/qualification_origin/qualified_record_indices"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_walks/2/input_issue_indices",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/qualification_origin/input_issue_indices"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_observations/source_walks/2/source_issue_indices",
+            "path": "/expected/relation_observations/0/relation_occurrences/0/qualification_origin/source_issue_indices"
+          },
+          {
+            "op": "copy",
+            "from": "/expected/relation_observations/0/relation_occurrences/0/target_read/value",
+            "path": "/expected/relation_observations/0/native_ref4/value"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/record/candidate_entries/0/result_index",
+            "path": "/expected/relation_observations/0/result_index"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed_N/record/candidate_entries/0/member_index",
+            "path": "/expected/relation_observations/0/member_index"
+          },
+          {
+            "op": "copy",
+            "from": "/input/source_occurrences/0/source_ref",
+            "path": "/expected/body_issues/0/source_ref"
+          }
+        ],
+        "source_observation_ja": "元fixed provider case0.expected_source_observationを独立期待としてcopyしdecoded_record_hashes[0]だけ新raw_source0.recordsのcanonical/ordered/lengthへ更新。他flags/issueは合成資格前提でありruntime inputへ渡さない。",
+        "expected_branch_ja": "N全値/covered coverage/residual member0/required member1を捕捉。valid兄弟candidateだけsource0relation0→source2自身のqualified flat1→原Ref4全値を形成。body.unformedの独立membership issue1件。coverage/locator/資格/旧rawへ追加failureを捏造しない。F02詳細incompleteは別軸で保持する。"
+      },
+      "publication_receiving": {
+        "public_base_part_pointer": "/parts/binding_domain_unavailable",
+        "fixed_OS_sources": [
+          {
+            "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+            "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+            "pointer": "/normal_fixtures/3/input"
+          },
+          {
+            "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+            "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+            "pointer": "/function_cases/4/invocations/0/input"
+          }
+        ],
+        "workspace_seed": {
+          "old_OS_input": null,
+          "old_OS_validated": null,
+          "publication_expected": {
+            "general_view": null,
+            "header_port": {
+              "tag": "not_called",
+              "blocked_by": [
+                {
+                  "pointer": "/general_view/proposed_body"
+                }
+              ]
+            },
+            "header_decode": {
+              "tag": "unreached",
+              "diagnostic_refs": [
+                {
+                  "pointer": "/general_view/proposed_body"
+                }
+              ]
+            },
+            "authority_port": {
+              "tag": "not_called",
+              "blocked_by": [
+                {
+                  "pointer": "/general_view/proposed_body"
+                }
+              ]
+            },
+            "source_candidate": {
+              "tag": "unreached",
+              "diagnostic_refs": [
+                {
+                  "pointer": "/general_view/proposed_body"
+                }
+              ]
+            },
+            "publication_issues": []
+          },
+          "receiver_input": {
+            "publication": null,
+            "record_trace_input": null
+          },
+          "receiver_expected": {
+            "input_capture": null,
+            "validation_capture": {
+              "root_decode": {
+                "tag": "ready",
+                "input": null
+              },
+              "source_inputs": [
+                {
+                  "tag": "base_source",
+                  "base_source_occurrence_index": 0,
+                  "value": null
+                }
+              ],
+              "source_walks": [
+                {
+                  "source_occurrence_index": 0,
+                  "source_ref": null,
+                  "qualified_record_indices": [
+                    0
+                  ],
+                  "input_issue_indices": [],
+                  "source_issue_indices": [],
+                  "classification_flags": [
+                    "qualified"
+                  ]
+                }
+              ],
+              "qualified_occurrences": [
+                {
+                  "source_occurrence_index": 0,
+                  "record_index": 0,
+                  "qualified_record_index": 0,
+                  "record": {
+                    "tag": "base_record",
+                    "value": null
+                  }
+                }
+              ],
+              "input_issues": [],
+              "source_issues": []
+            },
+            "evidence_observations": [],
+            "semantic_proposal": {
+              "tag": "unreached",
+              "diagnostic_refs": [
+                {
+                  "pointer": "/receiving_issues/0"
+                }
+              ]
+            },
+            "trace_analysis": {
+              "sections": null,
+              "input_issues": [],
+              "effects": [],
+              "authority_generated": false
+            },
+            "receiving_issues": [
+              {
+                "path": "/input_capture/publication/source_candidate",
+                "state": "unresolved",
+                "detail": "CORE publicationの原source材料が形成されていない。",
+                "backflow_owner": "CORE",
+                "axis": "proposal publication",
+                "related_source_refs": []
+              }
+            ]
+          },
+          "comparison_context": {
+            "input": null,
+            "validation_capture": null,
+            "base_domain_occurrences": [
+              {
+                "source_occurrence_index": 0,
+                "source_ref": null,
+                "record_index": 0,
+                "qualified_record_index": 0,
+                "record": null
+              }
+            ],
+            "proposal_domain_occurrences": [],
+            "semantic_proposal": null
+          },
+          "kernel_input": {
+            "source_basis": {
+              "tag": "received_context",
+              "value": null
+            },
+            "input": null,
+            "legacy_domains": [],
+            "received_proposals": [],
+            "proposal_basis": {
+              "tag": "received_unreached",
+              "diagnostic_refs": [
+                {
+                  "pointer": "/receiving_issues/0"
+                }
+              ]
+            }
+          },
+          "kernel_expected": [
+            {
+              "contract_ref": "HELIXOS-L5-002-F02",
+              "observation": {
+                "selected_refs": null,
+                "used_refs": null,
+                "provenance_refs": []
+              },
+              "findings": [],
+              "unresolved_source_refs": [],
+              "effect_requests": []
+            }
+          ],
+          "general_expected": null
+        },
+        "standard_completion_ops": [
+          {
+            "op": "copy",
+            "from": "/general_expected",
+            "path": "/publication_expected/general_view"
+          },
+          {
+            "op": "copy",
+            "from": "/publication_expected",
+            "path": "/receiver_input/publication"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_input",
+            "path": "/receiver_input/record_trace_input"
+          },
+          {
+            "op": "remove",
+            "path": "/receiver_input/record_trace_input/sources/0"
+          },
+          {
+            "op": "remove",
+            "path": "/receiver_input/record_trace_input/qualifications/0"
+          },
+          {
+            "op": "remove",
+            "path": "/receiver_input/record_trace_input/qualification_roots/0"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input",
+            "path": "/receiver_expected/input_capture"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input/record_trace_input",
+            "path": "/receiver_expected/validation_capture/root_decode/input"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input/record_trace_input/sources/0",
+            "path": "/receiver_expected/validation_capture/source_inputs/0/value"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input/record_trace_input/sources/0/source_ref",
+            "path": "/receiver_expected/validation_capture/source_walks/0/source_ref"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1",
+            "path": "/receiver_expected/validation_capture/qualified_occurrences/0/record/value"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input/record_trace_input",
+            "path": "/comparison_context/input"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_expected/validation_capture",
+            "path": "/comparison_context/validation_capture"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_input/record_trace_input/sources/0/source_ref",
+            "path": "/comparison_context/base_domain_occurrences/0/source_ref"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1",
+            "path": "/comparison_context/base_domain_occurrences/0/record"
+          },
+          {
+            "op": "copy",
+            "from": "/receiver_expected/semantic_proposal",
+            "path": "/comparison_context/semantic_proposal"
+          },
+          {
+            "op": "copy",
+            "from": "/comparison_context",
+            "path": "/kernel_input/source_basis/value"
+          },
+          {
+            "op": "copy",
+            "from": "/comparison_context/input",
+            "path": "/kernel_input/input"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1",
+            "path": "/kernel_input/legacy_domains/-"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1/payload/selected_refs",
+            "path": "/kernel_expected/0/observation/selected_refs"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1/payload/used_refs",
+            "path": "/kernel_expected/0/observation/used_refs"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1/payload/selected_source",
+            "path": "/kernel_expected/0/observation/provenance_refs/-"
+          },
+          {
+            "op": "copy",
+            "from": "/old_OS_validated/qualified_records/1/payload/used_source",
+            "path": "/kernel_expected/0/observation/provenance_refs/-"
+          },
+          {
+            "op": "copy",
+            "from": "/kernel_expected",
+            "path": "/receiver_expected/trace_analysis/sections"
+          }
+        ],
+        "meaning_ja": "新General全値をgeneral_expectedへmountし、公開F07のP0+OS source_unavailable側の有限seed/標準suffixを明示適用する。元OS candidate.proposed_refs=[T1,T2]はrecord_trace_input/input_capture/comparison_context/kernel source_basisへ全保持し、独立有資格OS ownerのselected/usedを保持する。publication/semantic proposalがunreachedのためTraceSectionResult.observation.proposed_refsのkeyを省略する。raw candidateのkey欠落を主張せず、candidate値又は[]を有資格提案観測へ補完しない。F07 N/coverage理由、dummyN/native0/allskipへ置換しない。実publication source/資格/配送を生成しない。"
+      },
+      "outputs": {
+        "I": {
+          "workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_inputs"
+        },
+        "caller": {
+          "workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_return"
+        },
+        "N": {
+          "workspace": "native",
+          "pointer": "/expected"
+        },
+        "private": {
+          "workspace": "private",
+          "pointer": "/expected"
+        },
+        "General": {
+          "workspace": "general",
+          "pointer": "/expected"
+        },
+        "publication": {
+          "workspace": "ports",
+          "pointer": "/publication_expected"
+        },
+        "receiver_input": {
+          "workspace": "ports",
+          "pointer": "/receiver_input"
+        },
+        "receiver_expected": {
+          "workspace": "ports",
+          "pointer": "/receiver_expected"
+        },
+        "kernel_expected": {
+          "workspace": "ports",
+          "pointer": "/kernel_expected"
+        }
+      },
+      "remaining_ja": [
+        "F04全family・coverage欠落case3・複合relation/locator失敗の全wholeは未完。",
+        "原scope/member rosterを整合させた実producer成功域の独立wholeではない。旧条件付きassociation controlと合成operation提供前提を明示する。",
+        "全92親430対義務、OS使用/実trust/CONNECT/受入の完了認定をしない。"
+      ],
+      "corrective_revision_status_ja": "旧不具合freezeと修正案を保全した上で、独立I由来relationと元candidate T1/T2保持へ訂正した準備recipeをrootがgeneric JSONだけで一回再構成し16wholeを採取した。本文への移植後の独立公開replayは未実施。",
+      "fixed_bindings": {
+        "normal_recipe": {
+          "revision": "495352719f0b9d2d378f2a48a72b0bb92767d4fb",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/proposal_material_formation_native_oracle/frozen_oracle/frozen_json_recipe",
+          "role": "artifact recipe; not materialized I or N",
+          "file_sha256": "b07e56e4edc81c4b26e2510f2aff6e9e092338813a712d90529df78406fa5b99",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "9cff0c90e1ed60d07184ff90dafd744ddc20dd152f612f12276ec92fdddd8593",
+          "ordered_sha256": "5ec78fddb8d2a9a3d905245e65d24060bb1d66ddf47ed77cae2a3562f37e8e3c",
+          "canonical_byte_length": 703628,
+          "ordered_byte_length": 703628
+        },
+        "provider": {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles",
+          "role": "formal raw source literals/request seed/source expectation",
+          "file_sha256": "5bc7d2626a4efafc2ae8a35ab53575ab6e6cf425b7b661a6ce7ab58d508d50d3",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "776b3e1eada34cc92074aa146c937698de0d44b3064ed735e80db861bc6ef8c0",
+          "ordered_sha256": "213429af2deff756979c2b110c576511a9ad697301930f2c1efe4a70273707d5",
+          "canonical_byte_length": 1919224,
+          "ordered_byte_length": 1919224
+        },
+        "old_OS_input": {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/normal_fixtures/3/input",
+          "role": "artifact literal input value, not runtime observation",
+          "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "8c855654df8f9c5f8c8163b32374018c6f854bd4b87ea4ab7bd319e2de5168f1",
+          "ordered_sha256": "d96b24f98730cb3fd1818c4e2cdb882514f991349862ff4507b9df304ef05227",
+          "canonical_byte_length": 11625,
+          "ordered_byte_length": 11625
+        },
+        "old_OS_validated": {
+          "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/4/invocations/0/input",
+          "role": "artifact literal input value, not runtime observation",
+          "file_sha256": "4670687708d3533a9cd15afb54da12bba08ac3009141a588c8e8a9bff5f29e61",
+          "source_role": "fixed_source_snapshot",
+          "canonical_sha256": "a2d40da0c772769c1813620acd27f77aaca5efa27e2aa7fe3f6aeb30dc666915",
+          "ordered_sha256": "b84668a0bc546c067949fae217ecf841431987e5847932339e40a0d043981c5f",
+          "canonical_byte_length": 14410,
+          "ordered_byte_length": 14410
+        }
+      },
+      "source_packet": {
+        "workspace_seed": {
+          "original_observation": null,
+          "parsed_bodies": null,
+          "computed_source0_record_digests": null,
+          "observation": null
+        },
+        "standard_ops": [
+          {
+            "op": "copy",
+            "from": "/original_observation",
+            "path": "/observation"
+          },
+          {
+            "op": "remove",
+            "path": "/observation/decoded_record_hashes/0"
+          },
+          {
+            "op": "copy",
+            "from": "/computed_source0_record_digests",
+            "path": "/observation/decoded_record_hashes/0"
+          }
+        ],
+        "computed_fields_order": [
+          "canonical_sha256",
+          "canonical_byte_length",
+          "ordered_sha256"
+        ],
+        "meaning_ja": "固定provider case0 expected_source_observationを独立のsynthetic期待premiseとして複写し、新source0.recordsのcanonical/ordered hashを明示算出して既存digest slot0だけ更新する。残るsourcewalk/flags/issuesの固定前提を実資格判定又はruntime入力と称さない。General実入力はrequestだけ。computed digestは資格の生成/評価でない。",
+        "array_semantics_ja": "decoded_record_hashes/0は既存array要素の置換。標準copyのinsertをslot置換と偽称せず、元index0をremove→computed digestをindex0へcopyでinsertし、元3要素の長さと順を保持する。"
+      },
+      "mount_envelope_contract": {
+        "ordered_members": [
+          "fixed",
+          "materialized",
+          "prepared",
+          "target"
+        ],
+        "fixed_ja": "fixed_bindingsの各Git artifact selectorを指定順normal_recipe/provider/old_OS_input/old_OS_validatedで全値読む。normal_importsはnormal_recipe.importsに記載された固定Git3blob全値を原key順l8/l5/allskip_l9で並べたobject。",
+        "materialized_ja": "完了済みworkspaceを処理順normal_base,normal_case,native,request,operation,private,source_packet,general,portsで名前付けする。未完成の後段workspaceを供給しない。元値は不変のJSON値として共有できる。",
+        "prepared_ja": "明示strictparse/UTF8/SHA工程の値のみ。新資格判定/branch evaluatorの返却を入れない。",
+        "target_ja": "当該seedの全値/member順を保持して用いる。RFC6902標準copyはobject member既存位置を保ち、無いmemberはop順に追加し、array targetではinsertする。null slotを暗黙に推定/mountしない。",
+        "post_mount_select": "/target",
+        "namespace_ja": "fixed pointerはartifact JSONでありmaterialized input/expected whole pointerではない。Nはmaterialized.native/expected。M3case/inputはCoreProposalDetailedReturnでありNへ代用しない。"
+      },
+      "mount_standard_ops": {
+        "normal_base": [
+          {
+            "op": "copy",
+            "from": "/fixed/normal_imports",
+            "path": "/target/imports"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed/normal_recipe/authored_variant_inputs",
+            "path": "/target/authored_variant_inputs"
+          }
+        ],
+        "normal_case": [
+          {
+            "op": "copy",
+            "from": "/fixed/normal_recipe/normal_expected_proposal_seed",
+            "path": "/target/expected/proposal"
+          }
+        ],
+        "native": [
+          {
+            "op": "copy",
+            "from": "/materialized/normal_case",
+            "path": "/target/native_reconstructed"
+          }
+        ],
+        "private": [
+          {
+            "op": "copy",
+            "from": "/materialized/native/native_reconstructed/input/caller_inputs",
+            "path": "/target/independent_I"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/native/expected",
+            "path": "/target/fixed_N"
+          }
+        ],
+        "operation": [
+          {
+            "op": "copy",
+            "from": "/prepared/parsed_original_source0",
+            "path": "/target/parsed_original_source0"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/native/native_reconstructed/input/caller_inputs",
+            "path": "/target/independent_I"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/request/input",
+            "path": "/target/request"
+          }
+        ],
+        "source_packet": [
+          {
+            "op": "copy",
+            "from": "/fixed/provider/cases/0/expected_source_observation",
+            "path": "/target/original_observation"
+          },
+          {
+            "op": "copy",
+            "from": "/prepared/parsed_raw_bodies",
+            "path": "/target/parsed_bodies"
+          },
+          {
+            "op": "copy",
+            "from": "/prepared/computed_source0_record_digests",
+            "path": "/target/computed_source0_record_digests"
+          }
+        ],
+        "general": [
+          {
+            "op": "copy",
+            "from": "/materialized/operation/request",
+            "path": "/target/input"
+          },
+          {
+            "op": "copy",
+            "from": "/prepared/parsed_raw_bodies",
+            "path": "/target/parsed_raw_bodies"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/source_packet/observation",
+            "path": "/target/fixed_observations"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/native/expected",
+            "path": "/target/fixed_N"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/private/expected",
+            "path": "/target/private_export_expected"
+          }
+        ],
+        "ports": [
+          {
+            "op": "copy",
+            "from": "/fixed/old_OS_input",
+            "path": "/target/old_OS_input"
+          },
+          {
+            "op": "copy",
+            "from": "/fixed/old_OS_validated",
+            "path": "/target/old_OS_validated"
+          },
+          {
+            "op": "copy",
+            "from": "/materialized/general/expected",
+            "path": "/target/general_expected"
+          }
+        ],
+        "operation_wire": [
+          {
+            "op": "copy",
+            "from": "/prepared/source0_wire",
+            "path": "/target/preparation"
+          }
+        ]
+      },
+      "finite_execution_order_ja": [
+        "全fixed_sourcesのraw/selected証拠を固定Gitから検査。各(revision,path)を一度だけread/parse/cache。fixed_bindings artifactとnormal_imports全値を上記順でenvelope.fixedへ置く。",
+        "normal_recipe.normal_seedをtargetにしnormal_base mount_standard_ops→/target選択→normal_base_patch全順。完成値をmaterialized.normal_base。freshな同値baseをnormal_case targetにしてnormal_case mount→case9.input_patch→共通normal_input_refresh_patch→case9.input_refresh_patch（存在すれば全順）→case9.expected_proposal_patch→case9.refresh_expected_reads。materialized.normal_caseへ保持。",
+        "native_workspace_seedへnative mount→native_completion_ops全5件。materialized.native/expectedがN、native_reconstructed/input/caller_inputsがI。旧N/hash/Iを不変のsource premiseとして保持する。",
+        "固定provider case0/raw_source_json_utf8_literals/input=Noneのmember順でrequest workspaceを作り、case0.input_recipe.create_input_from_request_seed→materialize_raw_source_strings全順（元固定sourceの標準ops）でrequest.inputを完成。materialized.requestへ保持。",
+        "request.input.source_occurrences/0/source_json_utf8をstrict UTF8 JSON parseしprepared.parsed_original_source0へ。operation.workspace_seed→operation mount→standard_ops全3件。Nをoperation入力workspaceへmountしない。",
+        "完成operation.raw_source0をmember/array順、ensure_ascii=false、compact comma/colon、allow_nan=false、BOM/末尾改行無しUTF8で形成。数値はこの有限sourceの既存JSON native subsetを保持し新numeric等値を設けない。preparationのmember順はsource_json_utf8→source_sha256。raw bytesのSHA256をsource_sha256へ書く明示非RFC工程。計算済みsource0_wire={source_json_utf8,source_sha256}をpreparedへ置き、operation_wire mountの標準copyでtarget.preparationへ入れる。その後operation.standard_completion_ops全4件でsource0raw/SHA/claim0/root0を更新。source1/2不変。materialized.operationへ。",
+        "private.workspace_seed→private mount→standard_completion_ops→standard_F04_patch。materialized.private。固定旧Comparison投影は変更せず新detailは別の有限期待。",
+        "完成operation.requestのsource_occurrences/0,1,2のraw textをそれぞれstrictparseしprepared.parsed_raw_bodies={\"0\":body0,\"1\":body1,\"2\":body2}をこの順で作る。source0.records全値のcanonical/orderedcompact hashを計算しcomputed_source0_record_digestsを宣言3member順で作る。source_packet.workspace_seed→source_packet mount→source_packet.standard_ops。materialized.source_packet。flags/資格/issueは固定期待premiseとして全保持し製品入力へ注入しない。",
+        "general.workspace_seed→general mount→standard_seed_patch→standard_completion_ops全順。materialized.general。",
+        "publication_receiving.workspace_seed→ports mount（独立I/old_OS_input/old_OS_validatedのnull slotを推定せず明示copy）→standard_completion_ops全24件。materialized.ports。元candidate T1/T2を保持し、source_unavailable側の有資格observation.proposed_refsだけkeymissing。",
+        "whole_items16選択をcanonical/orderedcompact UTF8/no newlineで逐次hashし全lengthを採取。巨大whole文字列/fileは作らない。source0wire bytes/hashとrecords digestを別項目に保存。expectedからruntimeIへの注入、実wrapper観測、OS受理、全F04完了の主張は行わない。"
+      ],
+      "whole_items": [
+        {
+          "id": "I",
+          "materialized_workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_inputs"
+        },
+        {
+          "id": "caller_return",
+          "materialized_workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_return"
+        },
+        {
+          "id": "F01_comparison",
+          "materialized_workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_return/producer_observations/0/comparison"
+        },
+        {
+          "id": "F02_comparison",
+          "materialized_workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_return/producer_observations/1/comparison"
+        },
+        {
+          "id": "F03_comparison",
+          "materialized_workspace": "native",
+          "pointer": "/native_reconstructed/input/caller_return/producer_observations/2/comparison"
+        },
+        {
+          "id": "proposal_return",
+          "materialized_workspace": "native",
+          "pointer": "/input"
+        },
+        {
+          "id": "N",
+          "materialized_workspace": "native",
+          "pointer": "/expected"
+        },
+        {
+          "id": "native_detail",
+          "materialized_workspace": "private",
+          "pointer": "/expected"
+        },
+        {
+          "id": "General_input",
+          "materialized_workspace": "operation",
+          "pointer": "/request"
+        },
+        {
+          "id": "General_expected",
+          "materialized_workspace": "general",
+          "pointer": "/expected"
+        },
+        {
+          "id": "publication_expected",
+          "materialized_workspace": "ports",
+          "pointer": "/publication_expected"
+        },
+        {
+          "id": "receiver_input",
+          "materialized_workspace": "ports",
+          "pointer": "/receiver_input"
+        },
+        {
+          "id": "receiver_expected",
+          "materialized_workspace": "ports",
+          "pointer": "/receiver_expected"
+        },
+        {
+          "id": "comparison_context",
+          "materialized_workspace": "ports",
+          "pointer": "/comparison_context"
+        },
+        {
+          "id": "kernel_input",
+          "materialized_workspace": "ports",
+          "pointer": "/kernel_input"
+        },
+        {
+          "id": "kernel_expected",
+          "materialized_workspace": "ports",
+          "pointer": "/kernel_expected"
+        }
+      ],
+      "unchanged_whole_reference_witnesses": {
+        "I": {
+          "canonical": {
+            "sha256": "aaec35884392420dfe36a63623c5cfef72f60b650242766c1f698c36140b13ef",
+            "byte_length": 447983
+          },
+          "ordered": {
+            "sha256": "4c39883ef001dee6a15e6e4e16027990d1591b8fcadc504615b45faff94e2cbd",
+            "byte_length": 447983
+          }
+        },
+        "caller_return": {
+          "canonical": {
+            "sha256": "1dcea13e6cfdeb25032de6b6de180825dc476729a83a91e725746cdf85ee4ffc",
+            "byte_length": 53428137
+          },
+          "ordered": {
+            "sha256": "369c08cdc6426f3998c316542430def603587b391fd80d98de9725700fa2be22",
+            "byte_length": 53428137
+          }
+        },
+        "F01_comparison": {
+          "canonical": {
+            "sha256": "06d33f8d0aebeb92b3345888b5524d30962d30ae5d72f5dd66c11dc44e68d7d3",
+            "byte_length": 88758
+          },
+          "ordered": {
+            "sha256": "71be8932c3be4f1b7039ba2e986ce846aaa9ae585151be8bcc1258c414bcfd3b",
+            "byte_length": 88758
+          }
+        },
+        "F02_comparison": {
+          "canonical": {
+            "sha256": "5a78145b5a9f2b52a5259395fd1f29009451cfc83b2876b76cb685613f8cd421",
+            "byte_length": 2342
+          },
+          "ordered": {
+            "sha256": "01944af51ede967944d93c2f2a8fc432f58c481cfa43d275e1c1fdc0d5f5cd6d",
+            "byte_length": 2342
+          }
+        },
+        "F03_comparison": {
+          "canonical": {
+            "sha256": "782a9c09be5c42ca41255b86089fe840ae5013ecb1788935d7aebb68685b6fd7",
+            "byte_length": 7969
+          },
+          "ordered": {
+            "sha256": "4acbb298e557ee78fcea4137d9d78e0e55a4c1edd27493546d6e30835835eaac",
+            "byte_length": 7969
+          }
+        },
+        "proposal_return": {
+          "canonical": {
+            "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+            "byte_length": 53896845
+          },
+          "ordered": {
+            "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+            "byte_length": 53896845
+          }
+        },
+        "N": {
+          "canonical": {
+            "sha256": "2bf61b507575a28d36dc157c63c3330fdd9bd07a70e9ad0974b5062026535c45",
+            "byte_length": 53898697
+          },
+          "ordered": {
+            "sha256": "3ecddf55352669b449d8ddcab0557ad668683fdec8af9504d5db574f671d1cb6",
+            "byte_length": 53898697
+          }
+        },
+        "native_detail": {
+          "canonical": {
+            "sha256": "ef6ac01ee9647c5fdd319262781cefec130c203b5e283b301a8fca857cf372c0",
+            "byte_length": 54461873
+          },
+          "ordered": {
+            "sha256": "e78c21b7188346045af75af3b795d60755ffb99dbd949b31dbd659cc987ea6a1",
+            "byte_length": 54461873
+          }
+        },
+        "General_input": {
+          "canonical": {
+            "sha256": "a0d874a329661b325d38c5ba50f06a2d5a522b92f095f475ee0629598980f36a",
+            "byte_length": 582119
+          },
+          "ordered": {
+            "sha256": "da9802e27c312033330619f324e0fbf412f24d406753f1ca549d4268f68e0305",
+            "byte_length": 582119
+          }
+        },
+        "General_expected": {
+          "canonical": {
+            "sha256": "0b124d099ef961ad190f6fe13f4cd65d7d4f2280de400277fc94ec3aa6b3911b",
+            "byte_length": 57022356
+          },
+          "ordered": {
+            "sha256": "9fc2eaa9fddbb6c144872e1b6ab14cedb25b4a8342dfcc8394863ba2f0b14bb0",
+            "byte_length": 57022356
+          }
+        },
+        "publication_expected": {
+          "canonical": {
+            "sha256": "53266467574265b1b816cad396a10b0fdf14d4447921e912f4b3d95e409cc267",
+            "byte_length": 57022783
+          },
+          "ordered": {
+            "sha256": "cb54906548e396e0ec1fb27d6277755e08b20643b46663d3b1e54441619e1431",
+            "byte_length": 57022783
+          }
+        },
+        "kernel_expected": {
+          "canonical": {
+            "sha256": "31fd76d54e36f75838859c5228e0335d1697477673cf14d592cfced9da4c0ff0",
+            "byte_length": 593
+          },
+          "ordered": {
+            "sha256": "5b7d09ea354b561415812153f52a70fea053d3b0c7d21476422aedda5a25cb0d",
+            "byte_length": 593
+          }
+        }
+      },
+      "new_whole_freeze_pending": [],
+      "public_adoption_boundary_ja": "本partの全seed/固定Git/標準ops/明示UTF8・sourcepacket工程とcase10の16witnessで有限wholeを再構成する。rootによる準備recipeのgeneric再構成を根拠とし、独立公開recipe replay、実資格・配送・OS受入又は全F04成立を意味しない。全8familyの残件は保持する。",
+      "prepared_whole_status_ja": "訂正で変わるreceiver_input/receiver_expected/comparison_context/kernel_inputの4wholeを含む全16値をroot generic一回で採取した。旧12wholeの同値assertを保持。新公開artifactの通しreplay/独立意味検収は未実施。"
     }
   },
   "cases": [
@@ -15264,6 +18709,371 @@
           "materialized_pointer": "/expected"
         }
       ]
+    },
+    {
+      "id": "F04-residual-valid-sibling",
+      "family": "F04-residual-and-coverage",
+      "independent_check_status": "corrective_static_semantic_checked_only",
+      "independent_check_scope_ja": "独立Iの原M2 literalと原candidate T1/T2保持/unreached観測の区別に関する訂正案の限定静的監査。新公開recipeの全whole又は意味の独立検収ではない。",
+      "published_recipe_check_status": "not_yet_independently_reconstructed",
+      "recipe_parts": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "artifact_pointer": "/parts/residual_valid_sibling",
+          "binding": "same_candidate_revision"
+        }
+      ],
+      "whole_witnesses": {
+        "I": {
+          "canonical": {
+            "sha256": "aaec35884392420dfe36a63623c5cfef72f60b650242766c1f698c36140b13ef",
+            "byte_length": 447983
+          },
+          "ordered": {
+            "sha256": "4c39883ef001dee6a15e6e4e16027990d1591b8fcadc504615b45faff94e2cbd",
+            "byte_length": 447983
+          }
+        },
+        "caller_return": {
+          "canonical": {
+            "sha256": "1dcea13e6cfdeb25032de6b6de180825dc476729a83a91e725746cdf85ee4ffc",
+            "byte_length": 53428137
+          },
+          "ordered": {
+            "sha256": "369c08cdc6426f3998c316542430def603587b391fd80d98de9725700fa2be22",
+            "byte_length": 53428137
+          }
+        },
+        "F01_comparison": {
+          "canonical": {
+            "sha256": "06d33f8d0aebeb92b3345888b5524d30962d30ae5d72f5dd66c11dc44e68d7d3",
+            "byte_length": 88758
+          },
+          "ordered": {
+            "sha256": "71be8932c3be4f1b7039ba2e986ce846aaa9ae585151be8bcc1258c414bcfd3b",
+            "byte_length": 88758
+          }
+        },
+        "F02_comparison": {
+          "canonical": {
+            "sha256": "5a78145b5a9f2b52a5259395fd1f29009451cfc83b2876b76cb685613f8cd421",
+            "byte_length": 2342
+          },
+          "ordered": {
+            "sha256": "01944af51ede967944d93c2f2a8fc432f58c481cfa43d275e1c1fdc0d5f5cd6d",
+            "byte_length": 2342
+          }
+        },
+        "F03_comparison": {
+          "canonical": {
+            "sha256": "782a9c09be5c42ca41255b86089fe840ae5013ecb1788935d7aebb68685b6fd7",
+            "byte_length": 7969
+          },
+          "ordered": {
+            "sha256": "4acbb298e557ee78fcea4137d9d78e0e55a4c1edd27493546d6e30835835eaac",
+            "byte_length": 7969
+          }
+        },
+        "proposal_return": {
+          "canonical": {
+            "sha256": "c0e140977642c46b6e07032b023c2d62fe45e172c9987badc309bab803fe8096",
+            "byte_length": 53896845
+          },
+          "ordered": {
+            "sha256": "cabafcd5fb10f8d1acabb4c3dda7b68e91efe4e67a71dd1b4a3cbf916c236ba5",
+            "byte_length": 53896845
+          }
+        },
+        "N": {
+          "canonical": {
+            "sha256": "2bf61b507575a28d36dc157c63c3330fdd9bd07a70e9ad0974b5062026535c45",
+            "byte_length": 53898697
+          },
+          "ordered": {
+            "sha256": "3ecddf55352669b449d8ddcab0557ad668683fdec8af9504d5db574f671d1cb6",
+            "byte_length": 53898697
+          }
+        },
+        "native_detail": {
+          "canonical": {
+            "sha256": "ef6ac01ee9647c5fdd319262781cefec130c203b5e283b301a8fca857cf372c0",
+            "byte_length": 54461873
+          },
+          "ordered": {
+            "sha256": "e78c21b7188346045af75af3b795d60755ffb99dbd949b31dbd659cc987ea6a1",
+            "byte_length": 54461873
+          }
+        },
+        "General_input": {
+          "canonical": {
+            "sha256": "a0d874a329661b325d38c5ba50f06a2d5a522b92f095f475ee0629598980f36a",
+            "byte_length": 582119
+          },
+          "ordered": {
+            "sha256": "da9802e27c312033330619f324e0fbf412f24d406753f1ca549d4268f68e0305",
+            "byte_length": 582119
+          }
+        },
+        "General_expected": {
+          "canonical": {
+            "sha256": "0b124d099ef961ad190f6fe13f4cd65d7d4f2280de400277fc94ec3aa6b3911b",
+            "byte_length": 57022356
+          },
+          "ordered": {
+            "sha256": "9fc2eaa9fddbb6c144872e1b6ab14cedb25b4a8342dfcc8394863ba2f0b14bb0",
+            "byte_length": 57022356
+          }
+        },
+        "publication_expected": {
+          "canonical": {
+            "sha256": "53266467574265b1b816cad396a10b0fdf14d4447921e912f4b3d95e409cc267",
+            "byte_length": 57022783
+          },
+          "ordered": {
+            "sha256": "cb54906548e396e0ec1fb27d6277755e08b20643b46663d3b1e54441619e1431",
+            "byte_length": 57022783
+          }
+        },
+        "receiver_input": {
+          "canonical": {
+            "sha256": "37bf99a7b3878df9ca5e5a214deed6d2def3ee5edf344c248461ec9b5ea5fe04",
+            "byte_length": 57031184
+          },
+          "ordered": {
+            "sha256": "e88d04ea25c3ae143a8afe62c72e30f631fa9e5f0cf252820b216da34b5b47df",
+            "byte_length": 57031184
+          }
+        },
+        "receiver_expected": {
+          "canonical": {
+            "sha256": "8bdf8a59bfce84a830e33feee5896eca11d1d2c719ca5b4eed7d057af8cd76f7",
+            "byte_length": 57046855
+          },
+          "ordered": {
+            "sha256": "361bf2629de9ca0cd96649c2bc760081999cd7bb1265eb58a3ba1650fcf9e8ce",
+            "byte_length": 57046855
+          }
+        },
+        "comparison_context": {
+          "canonical": {
+            "sha256": "bbeabad83c47bbbb5c0113141aaaf055fad45025863c060f45b7cac10b0e7ca5",
+            "byte_length": 24980
+          },
+          "ordered": {
+            "sha256": "c215349bc283c2002ecc2bde5a29691f3a9315b49e3ae0c6525a20ee9c0af411",
+            "byte_length": 24980
+          }
+        },
+        "kernel_input": {
+          "canonical": {
+            "sha256": "f20e1110902902e8454324d91683bb480689011fb926cfc2f5e32373c7dcaf47",
+            "byte_length": 35135
+          },
+          "ordered": {
+            "sha256": "1cfd83c53f9999974740956b80913287707fffee3e17b14209d9c3949b1fa2d9",
+            "byte_length": 35135
+          }
+        },
+        "kernel_expected": {
+          "canonical": {
+            "sha256": "31fd76d54e36f75838859c5228e0335d1697477673cf14d592cfced9da4c0ff0",
+            "byte_length": 593
+          },
+          "ordered": {
+            "sha256": "5b7d09ea354b561415812153f52a70fea053d3b0c7d21476422aedda5a25cb0d",
+            "byte_length": 593
+          }
+        }
+      },
+      "output_selectors": {
+        "I": {
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_inputs"
+        },
+        "caller_return": {
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return"
+        },
+        "F01_comparison": {
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/0/comparison"
+        },
+        "F02_comparison": {
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/1/comparison"
+        },
+        "F03_comparison": {
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/2/comparison"
+        },
+        "proposal_return": {
+          "workspace": "native",
+          "materialized_pointer": "/input"
+        },
+        "N": {
+          "workspace": "native",
+          "materialized_pointer": "/expected"
+        },
+        "native_detail": {
+          "workspace": "private",
+          "materialized_pointer": "/expected"
+        },
+        "General_input": {
+          "workspace": "operation",
+          "materialized_pointer": "/request"
+        },
+        "General_expected": {
+          "workspace": "general",
+          "materialized_pointer": "/expected"
+        },
+        "publication_expected": {
+          "workspace": "ports",
+          "materialized_pointer": "/publication_expected"
+        },
+        "receiver_input": {
+          "workspace": "ports",
+          "materialized_pointer": "/receiver_input"
+        },
+        "receiver_expected": {
+          "workspace": "ports",
+          "materialized_pointer": "/receiver_expected"
+        },
+        "comparison_context": {
+          "workspace": "ports",
+          "materialized_pointer": "/comparison_context"
+        },
+        "kernel_input": {
+          "workspace": "ports",
+          "materialized_pointer": "/kernel_input"
+        },
+        "kernel_expected": {
+          "workspace": "ports",
+          "materialized_pointer": "/kernel_expected"
+        }
+      },
+      "premise_ja": "固定M2 case9 I/条件付き返却と固定M3 Nを無変換保持するassociation control。独立raw policy[1].template_refからoperation relation keyを著述する。原raw母集合1件とreturned candidate2件の旧control限界を保持し、実producer/資格/配送/OS記録の観測と称さない。",
+      "execution_workspace_names": {
+        "normal_base": "normal_base",
+        "normal_case": "normal_case",
+        "native": "native",
+        "request": "request",
+        "operation": "operation",
+        "private": "private",
+        "source_packet": "source_packet",
+        "general": "general",
+        "ports": "ports"
+      },
+      "root_generic_reconstruction": {
+        "status": "pre_publication_finite_JSON_reconstruction_only",
+        "source_recipe_raw_sha256": "d5ff9d8c6278aa8f1a6aed5a5c55a7bf54ec7de48e5f9860ddccd30fe690a4da",
+        "source_recipe_part_canonical": {
+          "sha256": "10426cb13ca29564585d67ca7018a58a8da4ef32e502898918a40970def3e4a7",
+          "byte_length": 84420
+        },
+        "source_recipe_part_ordered": {
+          "sha256": "de3e1266efb68b365082d6246d706dad07ebd4f2f2de80e47cc91cae386b90f7",
+          "byte_length": 84420
+        },
+        "source_recipe_role_ja": "公開移植前の準備partのhashであり、現child/現part又はruntime入力のhashではない。復元の入力は本partと固定Gitだけ。",
+        "source_reader_sha256": "9c7573767820e906462f200e704bffaa65e8dcb78d88d50630a8733c4be9585b",
+        "returncode": 0,
+        "elapsed_seconds": 35.02870735101169,
+        "max_RSS_KiB": 201332,
+        "whole_count": 16,
+        "old_whole_preservation_assertions": 12,
+        "huge_whole_dump": false,
+        "product_or_old_runtime_executed": false,
+        "independent_semantic_acceptance": false
+      },
+      "whole_output_bindings": [
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/I",
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_inputs"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/caller_return",
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/F01_comparison",
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/0/comparison"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/F02_comparison",
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/1/comparison"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/F03_comparison",
+          "workspace": "native",
+          "materialized_pointer": "/native_reconstructed/input/caller_return/producer_observations/2/comparison"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/proposal_return",
+          "workspace": "native",
+          "materialized_pointer": "/input"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/N",
+          "workspace": "native",
+          "materialized_pointer": "/expected"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/native_detail",
+          "workspace": "private",
+          "materialized_pointer": "/expected"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/General_input",
+          "workspace": "operation",
+          "materialized_pointer": "/request"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/General_expected",
+          "workspace": "general",
+          "materialized_pointer": "/expected"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/publication_expected",
+          "workspace": "ports",
+          "materialized_pointer": "/publication_expected"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/receiver_input",
+          "workspace": "ports",
+          "materialized_pointer": "/receiver_input"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/receiver_expected",
+          "workspace": "ports",
+          "materialized_pointer": "/receiver_expected"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/comparison_context",
+          "workspace": "ports",
+          "materialized_pointer": "/comparison_context"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/kernel_input",
+          "workspace": "ports",
+          "materialized_pointer": "/kernel_input"
+        },
+        {
+          "witness_artifact_pointer": "/cases/10/whole_witnesses/kernel_expected",
+          "workspace": "ports",
+          "materialized_pointer": "/kernel_expected"
+        }
+      ],
+      "limits_ja": [
+        "coverage=covered_as_captured、membership=residual_for_captured_members、original_universe_exactness=not_recomputedを別役割で保持。",
+        "valid member1の各原relation/自source2資格/Ref4を保持し、member0 residualを消さずbody unformedと実診断参照を保持する。",
+        "raw candidate T1/T2は入力/capture/contextに残り、有資格proposalの観測だけproposed_refs keymissing。OS owner selected T1/used[]を独立維持する。",
+        "sourcepacket資格flagsはsynthetic期待でありruntime資格bool入力又は実trust成立でない。",
+        "coverage欠落/関係不成立との複合/全failure優先・全F04・全8familyは未閉包。"
+      ]
     }
   ],
   "normative_consumers": [
@@ -15282,7 +19092,7 @@
     "F01": "positive一代表のみ。原T1/T2 controlとの既知差は別case、全negativeの実domain Red/Greenではない。",
     "F02": "修正した明示empty一代表。null/missing/unreached母集合の全whole/複合失敗は未完。",
     "F03": "singleton validNA-only一代表。mixed NA+valid兄弟、複数policy fold、NA4欠落と原basis未形成の全wholeは未完。",
-    "F04": "residual+valid兄弟/coverage欠落の旧M3全N sourceはあるが、新詳細/General/publication/OS全wholeは未完。",
+    "F04": "residual+valid兄弟の一代表について固定旧I/Nを保持し、独立入力relationと原candidate T1/T2保持を含む新detail/General/publication/OS全16wholeをroot generic再構成で採取した。独立公開recipe replay、coverage欠落counterfactual、relation/資格不成立との複合、全F04の閉包は未完。",
     "F05": "同targetの同値relation反復一代表。異なる有資格sourceの等Ref4/相反target/複合flags/全原因併存は未完。",
     "F06": "locator missing/present nullのsource-first候補は別途作成中。全publication/receiver再構成・独立検収・typeoutside/複合理由は未完。",
     "F07": "binding[]内domain failure native1を一代表。外側型外/native0/別producer局所unobserved/母集合不成立との併存全wholeは未完。",
