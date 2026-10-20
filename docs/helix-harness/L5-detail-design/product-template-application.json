@@ -23133,11 +23133,11 @@
           },
           {
             "type": "既存closed/native型",
-            "write_ja": "fixed_existing_type_aliasesの元宣言members順/variant順/元codec writerに従い、元valueの全memberを型を保ってencodeする。旧CoreDecodeResult/Read/OriginRootに新root/variantを加えない。"
+            "write_ja": "fixed_existing_type_aliasesの元型/元writerを使い、元wholeの全member/value/presenceと供給member順を保って再帰encodeする。既存wire writerが明示したmember順はその規範に従う。新codec側だけで旧native wholeをschema列順へ並替えない。旧CoreDecodeResult/Read/OriginRootに新root/variantを加えない。"
           },
           {
             "type": "既存partial carrier/OS Field",
-            "write_ja": "供給された原memberだけを元schema宣言順に書く。missing keyは省略、nullはnull。必須member補完/Field presence wrapperは禁止。"
+            "write_ja": "供給された原memberだけを元wholeの供給順で書く（既存wire writerに明示順がある箇所は元規範）。missing keyは省略、nullはnull。必須member補完/Field presence wrapperは禁止。partial objectのmember順を新Ref資格や型条件へしない。"
           },
           {
             "type": "CoreJsonValue",
