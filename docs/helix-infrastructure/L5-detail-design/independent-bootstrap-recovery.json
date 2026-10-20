@@ -2479,7 +2479,10 @@
                   "sync.work_ref",
                   "sync.change_ref",
                   "sync.state",
-                  "sync.owner"
+                  "sync.owner",
+                  "operation.target",
+                  "result.operation_ref",
+                  "result.target"
                 ]
               },
               "result": {
@@ -3198,7 +3201,10 @@
       "sync.work_ref",
       "sync.change_ref",
       "sync.state",
-      "sync.owner"
+      "sync.owner",
+      "operation.target",
+      "result.operation_ref",
+      "result.target"
     ],
     "B01Result.failure_reasons.return_owner": [
       "OS/HELIX-SECURITY/recovery-owner",
@@ -4078,6 +4084,90 @@
               "op": "failure",
               "information_state": "held_with_os_sync_pending",
               "field": "sync.state",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_operation.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "operation.target",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "string_exact_equal",
+              "left": {
+                "op": "get",
+                "path": "original_result.operation_ref"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_operation.ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "result.operation_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_result.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "result.target",
               "result": "not_received_for_same_operation_result",
               "return_owner": "OS-Work-Change-owner"
             },
