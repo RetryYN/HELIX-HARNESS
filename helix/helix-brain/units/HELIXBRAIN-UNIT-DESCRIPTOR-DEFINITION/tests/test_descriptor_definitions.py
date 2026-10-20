@@ -11,14 +11,11 @@ import/setup errorは意味的Redではない。入力不変だけを観測し�
 import copy
 import hashlib
 import json
-from pathlib import Path
 import unittest
 
 from descriptor_definitions import compare_descriptor_definitions, validate_supply_input
+from supply_input_fixtures import base_input, load_document
 
-# tests→unit→units→helix-brain→helix→repository。起動cwdへ依存しない。
-REPOSITORY = Path(__file__).resolve().parents[5]
-L8_PATH = REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
 BASE_INPUT_SHA256 = "7a319d1a313738ace504a0d1dcc112a0fc25d2171e4a5490dcf544369a0bc452"
 NEG02_INPUT_SHA256 = "718ef000f84e4511b5abda5961869b8b0ee943b56427ae1a357bbd7c915a7b3d"
 CROSS_CODE = "cross_pattern_field_substitution"
@@ -33,8 +30,8 @@ def ordered_digest(value):
 
 class TestDescriptorDefinitions(unittest.TestCase):
     def setUp(self):
-        self.document = json.loads(L8_PATH.read_text(encoding="utf-8"))
-        self.base = self.document["fixture_contract"]["normal_control"]["input"]
+        self.document = load_document()
+        self.base = base_input(self.document)
         self.assertEqual(ordered_digest(self.base), BASE_INPUT_SHA256, "setup: base input revision")
         self.original_binding = copy.deepcopy(self.base["descriptors"][6]["binding"])
 
