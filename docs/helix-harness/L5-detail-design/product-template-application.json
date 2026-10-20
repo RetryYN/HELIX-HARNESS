@@ -14345,7 +14345,47 @@
         ],
         "existing_correspondence": "既存SourceResultProjectionResultはrows:ProjectionResultRow[]とinput_findings:ProjectionInputFinding[]のlogical生成返却。CoreSourceResultProjectionResultは同原member/enum/原順を保持し、RawValue数値leafを既存CoreJsonValueへ対応させる既存logical-native対応型である。source_result_reference_projection/pipeline_bindingの同snapshot実projector返却を保持する責務は変えない。",
         "unclosed": "CallerInputsのRead<CoreJsonValue>にある任意nonnull値について、rowsの各SourceResultProjectionRow/InvalidComputedRowObservation、input_findingsの各member/presence、既存numeric node、logical/native名目型と原同call返却由来を全て束縛するtyped formation/判定基準は本callerで未閉包。名前/shapeラベル/任意caller boolだけで既存型成功又は型不正を確定しない。",
-        "consumer_boundary": "absent省略とpresent null保存は既存optional規則のまま。実nonnull projectionの型付き全引数が未形成の枝についてfn10呼出し/全caller閉包を成立したとはしない。context_patterns/5は型対応不能が確定した場合の診断形であり、判定未実装を全入力拒否又は成功castへ変換しない。新provider/全axis gate/新wire/APIは追加しない。"
+        "consumer_boundary": "absent省略とpresent null保存は既存optional規則のまま。実nonnull projectionの型付き全引数が未形成の枝についてfn10呼出し/全caller閉包を成立したとはしない。context_patterns/5は型対応不能が確定した場合の診断形であり、判定未実装を全入力拒否又は成功castへ変換しない。新provider/全axis gate/新wire/APIは追加しない。",
+        "closed_formation": {
+          "scope": "C04 private caller内部の形成手順として定義。新public署名/CallerInputs member/codec entry/provider/APIは追加しない。既存CoreSourceResultProjectionResult aliasとFormation/Causeを再利用。",
+          "input_boundary": "CallerInputsは既存typed 2member。projectionはRead<CoreJsonValue>。float/Decimal/tuple/任意host/不正名目CoreNumberは元型外であり、ここへ新codec診断や通常JSON objectからの名目型castを加えない。",
+          "read_dispatch": [
+            {
+              "when": "Read.absent",
+              "writer": "元native Contextのoptional keyを省略。投影を空結果へ補完しない。"
+            },
+            {
+              "when": "Read.present value=null",
+              "writer": "optional keyをpresent nullにする。"
+            },
+            {
+              "when": "Read.unreached",
+              "writer": "既存context_patterns/4のinput_unobserved。未到達をabsentへ変えない。"
+            },
+            {
+              "when": "Read.present nonnull",
+              "writer": "以下の既存schema/refinementを行う。適合時だけ同一原valueをCoreSourceResultProjectionResultとしてoptional keyへ借用/無変換copy。不適合時は既存context_patterns/5を一件。"
+            }
+          ],
+          "shape_rules": [
+            "SourceResultProjectionResultはrowsとinput_findings必須、object closed。配列順/重複と元member順を保持する。",
+            "rows各要素は既存oneOf（SourceResultProjectionRow又はInvalidComputedRowObservation）へちょうど一枝適合。各required/extra/enum/JSONPointerを既存schemaどおり確認し、新tagを加えない。",
+            "PresenceJsonValueは既存absent={presence:absent}又はpresent={presence:present,value:CoreJsonValue}。present null/false/0/[]/{}を有効なraw値として保持。absentへvalueを補わない。",
+            "ProjectionInputFindingのfield/state/reason/raw_valueを既存閉型へ対応。raw mirror中のRefやcondition等を意味的成功/完全Refへ強化しない。",
+            "RawValue/JSONValue葉は既存CoreJsonValueそのもの。ordinary objectにoriginal_token等があってもCoreNumberへ解釈しない。名目CoreNumberは既存不変条件と数値profileの型域に従う。",
+            "Naturalは既存JSON integer>=0。schema数値判定はnumeric_predicates.integer/schemaへ束縛し、boolを数としない。CoreNumberの1.0/1e0は既存integer意味、0.1は非整数。元nodeをstrict intへ変換/丸めしない。writerが新生成するindexは従来どおりstrict int>=0。この入力refinementと生成index規則を混同しない。",
+            "candidate_countとsource_candidate_envelopes.lengthの整合、computed_rowの業務妥当性、source_relationの正しさ、実資格、同call由来は型判定で再評価しない。既存writerが固定するliteralを、schemaが許すより狭い受理gateへ勝手に追加しない。"
+          ],
+          "algorithm_ja": "有限・非循環という既存CoreJsonValue域上で、既存$defsのlocal refを再帰的に辿り、type/required/additionalProperties/oneOf/enum/const/pattern/items/数値制約を宣言どおり判定する。RawValue葉はopaqueに保持し、未知キーの意味を推測しない。適合ならidentity conversion（元tree/数値node/presence/順序をそのまま引渡す）、不適合なら下記一Cause。wire encode/decode経由のroundtripで型形成を代用しない。",
+          "failure_return": "analysis:Formation<CoreApplicationAnalysis>.unformed.causesに既存pattern5を一件。target/left/right/rule_pointerは現行pattern5のまま。検出した複数schema不正から新Cause配列/新InputIssue/新codec失敗を生成しない。他の既存Context原因があればcontext_cause_orderの既存順に併存。",
+          "preservation": "validation/f05/producer_observations/claims/input_scope_knowledge_gapの全値を変更せず、analysisの既存未形成とouter_cause_aggregationだけへ同Causeを所定順に移送。F05 wholeを短Analysisへ押し込まない。",
+          "origin_boundary": {
+            "decidable_from_input": "既存projection構造への適合/不適合だけ。",
+            "not_decidable_from_value": "同snapshot・同producer call・独立portの実返却由来。値が等しい別callも型適合は同じ。caller bool/schemaラベル/同値JSONから来歴や資格を作れない。",
+            "source_binding": "既存/functions/12/caller_binding と/source_result_reference_projection/pipeline_bindingを原辺として使い、actual application_input/computed_rows/independent_port→実projector全返却→CallerInputs Read→fn10を無変換で渡す。新しいexpected/cache/provenance bool引数は要らない。",
+            "review_rule": "構造判定を源泉結線の証明にしない。既に結線を定義した設計が未実行であることを型形成の不足や新拒否理由へ変換しない。外から同値値だけを渡すcontrolは構造適合し、由来の実証は未観測のまま。"
+          }
+        }
       },
       "input_scope_knowledge_gap_integration": {
         "purpose_ja": "既存private callerが同一fn0 ValidationDetailedReturnを入力scope readerへ一度渡し、既存F05外側Formationへprofile別post-return projectionを結ぶ技術接続。native 36型の再定義、別fn0 graph、F05/owner/domain意味変更を行わない。",

@@ -97218,6 +97218,98 @@
     "reason_ja": "L4F03追加契約とL9 73packet/85rowを含むadmitted main 1b50e0e105f0d51b902b26ba0e48d66381705360の実bytesへ固定。旧pinは履歴として保持し現pinの権威を代替しない。"
   },
   "source_result_reference_projection": {
+    "conditional_native_argument_formation_contrast":     {
+      "kind": "finite_criterion",
+      "authority_effect": "none",
+      "note": "条件付きnative引数形成の有限対照を追補。既存projection/whole/期待/codec例は不変。新candidate実行から期待を作らない。全caller/全8familyへ拡張しない。",
+      "positive_source": {
+        "revision": "c4b662e214863308809183006766d3990f32709a",
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/wire_codec_verification/projection_output_field_cases/cases/2/projection_value",
+        "value": {
+          "rows": [],
+          "input_findings": []
+        },
+        "expected": "同じ全valueがnonnull native optional fieldとなる。これはqualified empty universe/proposed setの成立を表さない。"
+      },
+      "malformed_missing_finding": {
+        "input_projection": {
+          "rows": []
+        },
+        "expected_analysis_component_whole": {
+          "tag": "unformed",
+          "causes": [
+            {
+              "kind": "native_leaf_unformed",
+              "target": {
+                "root": "caller_inputs",
+                "pointer": "/source_result_reference_projection/value"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "caller_inputs",
+                    "pointer": "/source_result_reference_projection/value"
+                  },
+                  "value": {
+                    "rows": []
+                  }
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "CoreSourceResultProjectionResult",
+                "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5/right_literal"
+              },
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5"
+            }
+          ]
+        },
+        "scope": "他のfn10依存/Context条件がすべて形成済みという条件付き局所whole。CoreApplicationDetailReturn全体を観測/凍結済みとはしない。"
+      },
+      "minimal_controls": [
+        {
+          "role": "既存closed row両枝/partial原値",
+          "source": "docs/helix-harness/L8-unit-verification/product-template-application.json#/wire_codec_verification/projection_output_field_cases/cases/3",
+          "expected": "型適合部分はsource_relation=unresolved/原NA/presence/反復ごと無変換保持。既知Refやcontent_correspondingを要求しない。"
+        },
+        {
+          "role": "Natural bool対照",
+          "ops": [
+            {
+              "op": "replace",
+              "path": "/rows/0/candidate_count",
+              "value": true
+            }
+          ],
+          "expected": "既存bool/number分離により非適合、一Cause5。opaque RawValue.value=falseは別で有効。"
+        },
+        {
+          "role": "Natural数値profile対照",
+          "expected": "有効CoreNumber(1e0)はintegerとして元node保持、0.1は非integer、boolは別型。native intへ変換する期待を作らない。"
+        },
+        {
+          "role": "Presence閉形",
+          "ops": [
+            {
+              "op": "add",
+              "path": "/rows/0/computed_na_attributes/value",
+              "value": null
+            }
+          ],
+          "premise": "原computed_na_attributes={presence:absent}の既存row",
+          "expected": "absent枝への余分valueは型不適合。一方present value=nullは型適合。NA意味判定には流用しない。"
+        },
+        {
+          "role": "同値別由来",
+          "expected": "同じ構造判定結果、追加のnative_leaf_unformedや資格successを作らない。由来は既存source callerの実取得辺に別保持。"
+        }
+      ],
+      "analysis_failure_leaf_rule": "全5member Causeを現行pattern5から事前著述。left.read.valueだけ原input projectionから標準RFC6902 object-member copyで入れる。期待からruntime入力への逆流なし。",
+      "unfrozen": "有効全producer/F05とprojection非nullを組み合わせた新full caller whole、CoreNumber私有host全観測、実来歴/実資格は未凍結/未実証。この限定詳細枝以外の完成を主張しない。"
+    },
     "id": "HARNESS-L8-009-SOURCE-RESULT-REFERENCE-PROJECTION",
     "function_ref": "HARNESS-L5-009-project_source_result_references",
     "consumer_function_ref": "HARNESS-L5-009-build_application_analysis",
