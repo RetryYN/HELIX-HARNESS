@@ -1,62 +1,59 @@
 # Design as Code 参照比較（Issue #3168、research候補）
 
-- evidence_kind: research / scaffold。authority_effect: none（要求採否・技術採用・新gate/工程・CI起動の承認ではない）
-- 一次資料の確認日: 2026-10-20。参照は記載URLの本文を同日取得した記述に限る。未確認の製品機能は「未確認」とし、取得できた原記述が示す事実とHELIXへの仮説を分ける。
-- 親: Issue #3139 / `docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md`。base `a0c57fb810e166c9ad7f7cc7b22e7daf52cf8e3e`。
-- 重複する技術調査は #3051（T01〜T10）を参照とし、本書はその結論を二重正本にしない。
-- 旧起点（read-only）: `LEGACY-ASSET-603D0E8D8193914F4AC0` `design-refactoring-domain-model.md` §0〜§1（意味署名・consumer/oracle保全・見た目だけの共通化拒否）、`LEGACY-ASSET-4F5A1F0739EC1111D91D` `design-template-json-authority.md` §1〜§2（意味正本・catalog・生成viewの分離）。保持するのは意味・consumer・oracle・証拠保全の方針、変更するのは外部先行事例の比較を一次資料から比較表へ具体化する点である。旧runtime・固定role・gateは移植しない。
+- evidence_kind: research。authority_effect: none。比較結果から要求採否・技術採用・新gate・工程・CI起動を決めない。
+- 確認日: 2026-10-20。動的な公式文書の確認範囲を記録する。表示上のリリース番号は採用版ではない。
+- 親: #3139 / [FT-DESIGN-REFACTOR-001](feature-tickets/FT-DESIGN-REFACTOR-001.md)。HELIX照合revisionは `a51b2f6c269736138dd240affd889ea75b02c286`。Devinの原案baseは `a0c57fb810e166c9ad7f7cc7b22e7daf52cf8e3e`。
+- 技術候補の原入力・採否は #3051を参照し、本書に二重正本を作らない。以下の事実は一次資料の記述、HELIXへの写像と追試案は仮説である。
 
-## 1. 対象と一次資料
+## 1. 一次資料と確認範囲
 
-| 対象 | 一次資料URL | 確認日 | 確認できた版・状態 |
+| 対象 | 一次資料・確認箇所 | 版・確認した事実 | 留保 |
 |---|---|---|---|
-| LikeC4 | https://likec4.dev/dsl/intro/ | 2026-10-20 | docs上の現行記述。latest release表記 v1.60.0 |
-| Structurizr | https://docs.structurizr.com/as-code | 2026-10-20 | docs上の現行記述。CLI binaries表記 v2026.09.19 |
-| OMG SysML v2 / KerML | https://www.omg.org/spec/SysML/2.0 | 2026-10-20 | Version 2.0、formal、publication 2025-09。規範機械可読文書（SysML.xmi・Systems-Library.kpar等）付記 |
-| Specmatic / OpenAPI | https://docs.specmatic.io/spec_driven_api_development/contract_testing | 2026-10-20 | docs上の現行記述 |
-| TLA+ / AWS事例 | https://docs.tlapl.us/ ・ https://www.amazon.science/publications/how-amazon-web-services-uses-formal-methods | 2026-10-20 | tlapl.us公式文書入口。AWS記事は公開ページを確認したが詳細本文の取得は本セッション未完了（後述の留保参照） |
+| LikeC4 | [Introduction](https://likec4.dev/dsl/intro/)、Top-level statements | `.likec4`/`.c4`のsourceを一modelへまとめ、specification・model・views・globalを分ける。ページ上のlatest表示は1.60.0 | 個々のvalidate規則や独立oracle、増分検証の全機能は未調査 |
+| Structurizr | [Why as code?](https://docs.structurizr.com/as-code)、Version control friendly / Traditional Git collaboration workflows / Developer-friendly | C4 modelのDSLから図を生成し、modelとviewを分離する。Git差分、複数の接続されたmodelへの分割、validate/inspect/exportの入口を説明。binaries表示は2026.09.19 | implied relationshipsやinspectがHELIXの影響集合を正しく導くかは未実証。表示用の関係生成を影響解析能力と同一視しない |
+| OMG SysML v2 / KerML | [SysML 2.0](https://www.omg.org/spec/SysML/2.0)、Normative Documents / Normative Machine Readable Documents / History。[Language PDF](https://www.omg.org/spec/SysML/2.0/Language/PDF)の要求・verification case節 | 2.0のadoptionは2025-09。確認ページのLanguage PDF IDはformal/26-03-02。規範XMI、KerML library `.kpar`、abstract syntaxのJSON Schemaを掲載。要求とverification caseをモデル内で表す | adoption時点と現掲載PDF IDを混同しない。KerML独立仕様・API規格・tool間の実相互運用は今回未検証 |
+| Specmatic / OpenAPI | [Contract Testing](https://docs.specmatic.io/spec_driven_api_development/contract_testing)、How examples are used / Externalising examples | request/response example名で対応を選び、API仕様への適合を検査する。response exampleの値は既定では実応答と直接比較しないが、Matchersを使えば応答値も検証できる。外部JSON exampleを扱える | 「構造検査しかできない」とは評価しない。個別Matcherの網羅・後方互換規則・全製品機能は未調査。OpenAPI全体の仕様比較ではない |
+| TLA+ / AWS | [TLA+文書入口](https://docs.tlapl.us/)、[AWS掲載論文](https://www.amazon.science/publications/how-amazon-web-services-uses-formal-methods)、同ページから辿れる2015年CACM論文 pp.66–68のPrecise Designs / Formal Methods for Real-World Systems | TLA+で性質と設計を記述し、TLCでモデルの実行経路を検査する事例。AWSは2011年からの形式仕様・model checkingによる複雑な設計の問題発見を報告 | 記述したモデルと性質の範囲に依存する。モデルでの成功は製品コード・実接続の正しさの証明ではない。HELIX用モデルは未作成 |
 
-## 2. 一次資料が示す事実（原記述に確認できた範囲）
+## 2. HELIXへ写像する仮説と残る境界
 
-- **LikeC4**: `.likec4`/`.c4` 拡張子のDSLでarchitectureを記述し、全sourceを単一modelへmergeする。top-level statementは `specification`（element kind）・`model`（要素・関係）・`views`（visualization）・`global`（共有predicate）に分かれ、modelとviewsが文法的に分離される。`views` blockは同一block内のlocal styleを許す。validate・CLI・model API等のtooling guideが存在する。
-- **Structurizr**: 「models as code」ツールで、C4 model向けDSLを正本として図をrenderingする。UI駆動の図作成手段を持たず、version control friendly・text diff・Git collaborationを設計理由として明示する。`validate`/`inspect` command、workspace versioning/branches、implied relationships等を持つ。
-- **OMG SysML v2**: 汎用modeling言語で、要求・構造・振る舞い・analysis case・verification caseを表す。Version 2.0はformal specification（2025-09）。規範の機械可読文書（abstract syntaxのMOF XMI、KerML model interchange project `.kpar`、v1→v2 transformation model）が同梱される。KerMLはtextual notation基盤で、standard API/servicesが別規格としてある。
-- **Specmatic / OpenAPI**: API specificationをcontract testとして実行する。request examplesを送出し、応答がspec適合（signature）かを検査する。response exampleの値はデフォルトで応答値と比較せず（contract test≠API test、signature検査とlogic検査の区別を明記）、複数候補応答はexample名の対応で選ぶ。examplesの外部JSON化・backward compatibility rulesを持つ。
-- **TLA+ / AWS**: TLA+は状態機械としての仕様記述と有限状態探索（model checking）による不変条件・性質の反例検出を持つ。AWSの公式発表では、分散系設計（DynamoDB・S3・EBS内部アルゴリズム等）のレビューにTLA+/TLCを用い、微妙なバグを実装前に検出したと報告されている（本セッションではAWS記事の本文詳細を再取得できていないため、記述の対応関係は公開要旨・周知内容として仮説扱いで記す）。
+| 観点 | 比較から使えそうな考え方 | HELIXで別途確かめること |
+|---|---|---|
+| 意味正本と生成view | LikeC4/Structurizrのmodelとviewの分離、SysMLの機械可読表現 | HELIXのJSON正本と閲覧用viewの対応。図やJSON形式が似ていても要求の意味や承認は継承しない |
+| 独立oracleと反例 | Specmaticの契約適合・Matcherによる値検査、TLA+の性質と遷移の分離 | oracleの出典・独立性、原材料と候補の照合、モデルの抽象化で落とした意味。tool導入だけでは独立性は成立しない |
+| 変更影響・片側交換 | modelの分割・版管理、API契約検査、変更後の性質の再検査 | 版付きport/adapter/consumer、固定側不変更、非互換/unknownの返却。参照一覧を影響閉包とみなさない。TLCはGit差分から検査範囲を自動導出する仕組みではない |
+| Red→Green→Refactor | 性質や契約を先に定義し、反例を修正後も再検査する | 変更前に欠陥を識別する凍結oracle、最小修正、意味保存、影響先の再照合。各toolがHELIXの工程を実装済みとは扱わない |
+| owner資格と両端binding | APIや状態モデルへ権限・出典を明示すれば、一部の性質を検査できる可能性 | BRAIN→CORE→OSの誰が何を供給・判定するか、revision/scope/source資格、未供給・古い成功の扱い。外部toolが一律に扱えないとも、HELIX固有の新技術とも断定しない |
 
-## 3. 観点別比較（事実→HELIX仮説）
+## 3. 具体例: 欠落・null・owner資格を分ける
 
-| 観点 | LikeC4 | Structurizr | SysML v2 | Specmatic/OpenAPI | TLA+/AWS | HELIXとの差（仮説） |
-|---|---|---|---|---|---|---|
-| 意味正本とview分離 | model/viewsを文法分離。viewsはmodelのprojection | DSL正本→図は生成view | 標準モデル＋text/graph表現＋XMI/kpar | specが契約正本、test/mockは派生 | 仕様記述が正本、実行結果は検査結果 | HELIXはJSON意味正本＋生成view＋hash/版付き参照。viewの正本化禁止と同型 |
-| 独立oracleと反例 | validateは構造検査まで | validate/inspectionsは構造整合 | verification caseは標準内だが実行はtool依存 | contract testはsignature適合のみ、値oracleは比較しない（原記述に明示） | TLCは不変条件の反例traceを有限model上で検出 | HELIXは独立期待値・原source・hash照合を分離。形式検査はdesignの一部性質に限る |
-| 変更影響と片側交換 | 未確認（model mergeとviews依存はある） | implied relationships/inspectionsが影響表示を支援 | 標準のrefinement/constraint関係はあるが実証例は未確認 | backward compatibility rules・破壊変更検出 | 変更前後の状態遷移をmodel比較できる（実運用で広く使われるかは未確認） | HELIXの片側交換・固定側不変は版付きcontract+逆変換照合で担保 |
-| Red→Green→Refactor相当 | 未確認 | 未確認 | 未確認 | spec-first→実装→contract test回帰は類似 | 仕様で先に反例を潰す点が近いが実行単位が違う | 反例先行の設計TDD思想とは類縁だが、HELIXは候補fixtureと逆変換oracleを持つ |
-| owner/資格・両端binding | 対象外（図モデル） | 対象外 | requirement/verificationの標準概念はある | API契約の境界はprovider/consumerだがowner資格は対象外 | 状態として資格をモデル化は可能だが標準ではない | BRAIN→CORE→OSのowner-qualified両端binding・未供給資格の検出はHELIX固有領域 |
+これは比較のための合成例であり、新要求や正式なwire schemaではない。三つの入力 `{} / {"revision": null} / {"revision": "r1"}` はpresenceと値が異なる。同じ `r1` を受け取っても、供給者が対象scopeとrevisionについて有効な資格を持つかは別の判定になる。
 
-## 4. 具体例: missing/null と owner資格を独立した問題として扱う
+- 構造・値: required/type/null許容を契約へ明示すれば、欠落とnullの違いはAPI/schema検査で扱える。さらにSpecmaticのMatcherで値を検査できる。ただしその期待値・許容条件を正しく設計する責務は残る。JSON Schema/OpenAPIの版による表現差は追試で固定する。
+- 資格・意味: schemaにowner文字列があるだけでは資格は成立しない。どのsource・版・scope・根拠と照合するかをHELIXが定義する。外部toolへ認可の意味や書込authorityを移さない。
+- 反例: 同じ形・同じrevisionでも別scopeの資格、失効資格、偽の資格根拠を与える。形式適合だけでは成功にしない。一方、正当なnullを一律missingへ正規化して拒否する退行も区別する。ここでnullの許容・拒否を要求として新規決定しない。
+- モデル検査: 上記状態と遷移、例えば「資格が成立する前に採用しない」をTLA+へ記述できれば反例探索の候補になる。原契約との写像、状態数、抽象化で省く範囲を別に確認する。モデルも実行結果も今回は作成していない。
+- 変更影響: 表示名変更、null許容の契約変更、資格規則の変更を別変更にする。consumerと対oracleを辿り、関係が未確認なら検査を広げる。各toolにこのHELIXの影響集合を自動算定する能力があるかは未実証である。
 
-例: BRAIN→COREの入力scopeで、要求されたknowledge revisionが未供給（missing）であることと、値が`null`で保持されることは別の問題で、さらにその検出を報告できるownerの資格（誰が供給責任を持つか）も独立している。
+## 4. 現行契約・五観点との対応
 
-- **OpenAPI/Specmaticが支援する部分**: required field欠落・nullable違反・型不一致といった構造的検査は仕様から機械的に検出できる。request example名で応答候補を選ぶ仕組みは、入出力対応の静的表現として近い。
-- **支援しない部分**: spec上の「missing」と「null値の正当な出現」をdomain意味として区別する検査、検出した欠落を誰の資格境界の問題とするかの追跡、原source・独立期待と照合した上での意味合致の判定。API契約conformanceは「signatureが合うか」までで、「同じ意味を持つ原資料と一致するか」は判定しない（原記述でもcontract testはresponse値比較をしないと明記）。
-- **TLA+が支援する部分**: missing/qualifiedの状態を仕様に含めれば、有限model上で「供給なしに完了しない」「nullと欠落を混同しない」性質を反例traceで確認できる（HELIXへ適用した場合の仮説。実モデルは未作成）。
-- **Structurizr/LikeC4・SysML v2の位置**: architecture/要求・検証caseの表現は支援するが、フィールド単位のmissing/nullの意味検査・owner資格の帰属は対象外またはtool依存。
-- **HELIXが別途必要とする部分**: owner-qualifiedな供給責任の追跡、原source/独立期待との照合、未証明状態の記録、影響先だけの再検証とunknown時の拡大、不変量の逆変換oracle。既存アプローチは構造・契約・有限model検査までで、意味・資格・証拠保全の層はHELIX側の設計対象として残る。
+以下は照合revisionの文書内の所在であり、製品runtimeの実装成立を示さない。root keyの参照はその固定revisionへ結ぶ。
 
-## 5. 現行対象との対応（本文書の位置づけ）
+| 現行対象・所在 | 比較の戻し先 |
+|---|---|
+| HARNESS005 [L8 verification-discipline](../helix-harness/L8-unit-verification/verification-discipline.json) `/verification_scope`、`/cases` | 契約検査・モデル検査をどの検証義務へ充て、何を未評価に残すか |
+| HARNESS015 [L8 tdd-development-flow](../helix-harness/L8-unit-verification/tdd-development-flow.json) `/expected_data_boundary`、`/cases` | 凍結oracle、実装前Red、修正後の同じoracleによる再検証と意味保存Refactor |
+| OS020 [L9 ci-profile-execution-recovery](../helix-os/L9-integration-verification/ci-profile-execution-recovery.json) `/scope`、`/remaining` | 検証profileの選択・運転・結果回収と復旧。外部検査toolの成功と製品CI成立を分ける |
+| CONNECT006 [L8 one-side-replacement-recovery](../helix-connect/L8-unit-verification/one-side-replacement-recovery.json) `/consumer_contracts`、`/unclosed` | 片側交換で固定側の契約を維持できる範囲、非互換/unknownの返却 |
 
-- HARNESS005 `docs/helix-harness/L8-unit-verification/verification-discipline.json`: 検証規律（独立期待・原source・照合）の設計。contract/spec検査は構造被覆として補完だが、意味oracleの独立性を代替しない。
-- HARNESS015 `docs/helix-harness/L8-unit-verification/tdd-development-flow.json`: Red→Green→Refactor。TLA+/contract testの「先に反例・契約を固定」は類縁だが、意味保存refactorと逆変換はHELIX固有の確認単位。
-- OS020 `docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json`: profile/実行回復の設計。形式検査は状態・復旧条件の一部には役立つが、影響先だけの再検証と失敗後復旧の管理は別領域。
-- CONNECT006 `docs/helix-connect/L8-unit-verification/one-side-replacement-recovery.json`: 片側交換。Specmaticのbackward compatibilityやport/adapter互換判定は支援範囲の一部。互換不能・unknownの取扱いはHELIX側で明示する。
-- 親ticket 5観点（意味変更と非意味差の区別・片側交換・共通化/外部化・影響先再検証・計測可能性）への写像: 1)意味/非意味差はmodel正本とview分離の考えに対応、2)片側交換はcontract/backward compatibility判定の補完、3)共通化・外部化はmodel merge・implied relationshipのtrade-offに対応、4)影響先再検証はTLA+/contract回帰の類縁だがunknown拡大は未確認、5)計測は各toolのmetrics/CI guideへ仮説として示すに留める。
+親ticketの五観点は、**責務・契約・依存・検証・構造**である。責務はowner/authority、契約はpresence・版と失敗、依存はproducer/consumerと片側交換、検証は独立oracle/反例、構造はmodel/view分離と責務単位の分割へ対応する。共通化・外部化・抽象化は同じ意味と変更理由を持つ範囲で比較し、万能基底や全機構改版を増やさない。
 
-## 6. 限界・留保・未確認点
+変更耐性・容易性・可用性・回復性の評価は、この五観点と別の横断比較である。変更ファイル/契約数、再検証時間、検出漏れ、他作業の停止・復旧時間、検証負荷を同じrevision・条件で測る案を親ticketへ返す。今回の比較から性能・費用・自動化率の優位性は主張しない。
 
-- この比較は一次資料を同日に確認した範囲の記録であり、製品機能の全評価ではない。AWS記事は公開ページを確認したが本文詳細の再取得は本セッション未完了であり、記述は公開要旨・周知内容の仮説とする。
-- toolの導入・ライセンス・実運用・設計承認は本書からは判断しない。候補としての適用可能性と残る境界の記録である。
-- 各toolのvalidate・inspection・model-checking能力がHELIXの要求する「意味oracleの独立性」を代替しないのは一次資料の記述と整合するが、全機能の調査ではない。
-- 件数・性能・コストの推定はない。追試として、実例fixtureへ対応する最小model・spec・contract例を作って反例検出・変更影響を確かめることが挙げられる（これは候補であり今回の作業範囲外）。
-- 設計変更・上流還流・採否の判断は別に行い、現行設計作業には割り込ませない。
+## 5. 旧sourceとの対応・次の追試
 
+起点は [旧design-refactoring-domain-model](../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md) §0–1（LEGACY-ASSET-603D0E8D8193914F4AC0）と [旧design-template-json-authority](../../archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md) §1–2（LEGACY-ASSET-4F5A1F0739EC1111D91D）。意味署名、consumer/oracle保全、意味正本と生成viewの分離を保持する。変えるのは既存の設計改善候補を外部一次資料と比較する点で、理由は #3168とPOのDesign as Code比較指示である。旧runtime・DB・固定role数・gateは移植しない。
+
+Conceptの機構交換とauthority分離、七原則の原子PR・DDD/TDD・最小変更・adapter境界・計測へ照合する。JSONの形式一致を意味・承認・完成に読み替えず、外部toolの導入や実行は今回行わない。
+
+次の候補は、上記合成例を一つの最小API契約と小さい状態モデルへ別々に写し、欠落/null/資格の各反例が識別できるか比較すること。その前に原要求・対oracle、tool/仕様版、期待の導出者、未モデル化範囲を固定する。これは追試案であり実装着手や新gateの許可ではない。各toolの全機能・ライセンス・運用・相互運用・実測は未評価のまま保持し、採否と必要な上流還流は別の既存経路へ戻す。
