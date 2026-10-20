@@ -1890,9 +1890,27 @@
   ],
   "identity_index": {
     "id_definition_spans": {
-      "L2": 0,
-      "L11": 72,
+      "L2": 78,
+      "L11": 65,
       "sample": [
+        {
+          "start": 57961,
+          "end": 59943,
+          "start_line": 343,
+          "line_count": 12,
+          "sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
+          "first_line": "### HARNESS-L2-010 パックの境界",
+          "role": "requirement_or_acceptance_section"
+        },
+        {
+          "start": 59943,
+          "end": 61711,
+          "start_line": 355,
+          "line_count": 11,
+          "sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
+          "first_line": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
+          "role": "requirement_or_acceptance_section"
+        },
         {
           "start": 41838,
           "end": 45768,
@@ -1946,6 +1964,7 @@
     "starting_point": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md §1-3(LEGACY-ASSET-4F5A1F0739EC1111D91D)",
     "hold": "構造的意味と生成view/所在索引の分離、原source/consumer/unknownの保全を保持",
     "unchanged": "旧schema/式木/DB/runtime/CIは移植・実行しない。旧source保持差分は現行spanへの写像せず参照として記録",
-    "unknown": "対応旧sourceが未発見の範囲は検索範囲と未発見を記録"
+    "unknown": "対応旧sourceが未発見の範囲は検索範囲と未発見を記録",
+    "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md"
   }
 }
