@@ -16651,7 +16651,7 @@
             "binding_kind": "candidate_file_bytes",
             "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
             "pointer": "/contracts/5/qualified_source_projection_join",
-            "sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376"
+            "sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2"
           }
         ],
         "base_input": {
