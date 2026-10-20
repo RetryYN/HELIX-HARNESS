@@ -8766,8 +8766,8 @@
   "case_count": {
     "original_l9_cases": 37,
     "local_compound_probes": 2,
-    "r2_branch_probes": 2,
-    "total": 41
+    "r2_branch_probes": 5,
+    "total": 44
   },
   "document_id": "HELIXINFRASTRUCTURE-L8-006",
   "pair": "HELIXINFRASTRUCTURE-L5/L8-006",
@@ -9544,7 +9544,7 @@
       "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
       "baseline_case_id": "I006-B01-RETURN-SYNC-REFERENCED",
       "expected_source_pointer": "/cases/21/expected_output",
-      "expected_source_sha256": "7eee61447d898b6343687b7b88e4a81b32a4a31675da5c81da7f83a979745729",
+      "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
       "expected_derivation": {
         "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
         "baseline_changes": [
@@ -9800,7 +9800,7 @@
       "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
       "baseline_case_id": "I006-B01-RETURN-SYNC-REFERENCED",
       "expected_source_pointer": "/cases/21/expected_output",
-      "expected_source_sha256": "fd0ed3c976c787725bdb6fddf2df0d4c7a83c89e3bf62c9fee915bc000329726",
+      "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
       "expected_derivation": {
         "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
         "baseline_changes": [
@@ -10056,7 +10056,7 @@
       "projection_limit": "none:このcompound probeは出力全rootの期待値を固定する。",
       "baseline_case_id": "I006-B01-RETURN-SYNC-REFERENCED",
       "expected_source_pointer": "/cases/21/expected_output",
-      "expected_source_sha256": "45bcee8b119c7478c0473d247bef221e955a2cbe1aeefd1a030683e98cea91d9",
+      "expected_source_sha256": "a9bfd55498702a257532d445b1a183fdbbd96d9fdeb87dd6b826d7d109a3d11d",
       "expected_derivation": {
         "method": "baseline whole oracleのdeep copyから、raw変更が直接変えるretained memberとL5アルゴリズム順に従うfinding fieldだけを手で更新。計算器/著者の出力は期待生成に使わない。",
         "baseline_changes": [
