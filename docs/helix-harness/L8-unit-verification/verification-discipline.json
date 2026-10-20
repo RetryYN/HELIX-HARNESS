@@ -265179,7 +265179,8 @@
     "negative_original_sources": "元正常/variantのmaterialから84分類で固定した一つの意味差分だけを与え、新root source_refへ固定する。owner packet資格の成功と、悪い観測/欠落/不一致の検出を別phaseへ置く。",
     "negative_candidate_sources": "原資料をcandidateから分離する。F07/N01の個別前提とB01のrunなし保存/表示・未実行/stale結果はfixture_preparation/source_preparationへ明示。B01 runtime交代は明示前提の後、原review欠落を別変異として追跡する。他のcandidate負例は正常owner材料を保持する。実実行/実authority/意味承認を生成しない。 F01 unknown_as_skipの条件null、worker_as_dutyの割当資料も明示前提であり、catalogにある値から元入力不足を補わない。",
     "limits": "埋込参照先全体の実source、資格、正式schema、実oracle観測は未構築。これらをroot bytesの一致から生成しない。",
-    "referent_input_state": "106主呼出しへ独立合成資料状態を供給。unknown/missing/conflict/staleを保全。資格/件数/labelから実成功・因果・closure更新を生成しない。"
+    "referent_input_state": "106主呼出しへ独立合成資料状態を供給。unknown/missing/conflict/staleを保全。資格/件数/labelから実成功・因果・closure更新を生成しない。",
+    "referents_materialization_before_read": "本JSONの/shared_referents_materialization/scope_pointersの14位置を、同nodeの宣言する同case正常anchorと標準RFC6901/6902により原referents全値へ独立に復元してから、既存normal/negative original/negative candidateの資料読取・元hash/型照合を行う。対象外referents、fixture_root、candidate変異、独立expected、歴史pinの読取は変えない。物理recipeはdomain入力でなく、実装reader成立の証拠でもない。"
   },
   "comparison_precedence": [
     {
@@ -265251,8 +265252,9 @@
     },
     "restore_order": "scope_pointers記載順。各siteは同case anchor値へ独立に復元され共有aliasを作らない。",
     "consumer_read_positions": "scope_pointersの各member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
-    "relation_to_existing_contract": "fixture_source_construction（L9 basis pin・normal/negative original/negative candidate分離）を保持し変更しない。本節は同case内の完全一致referentsのみを同一責務として意味の再導出で追加し、既存fixture読取・型/hash検査の前に復元する。独立expected・negative mutation・原正常/variant literalは保持しanchorへ統合しない。",
+    "relation_to_existing_contract": "既存fixture_source_constructionのL9 basis pin・normal/negative original/negative candidate分離の意味は保持する。同contractのreferents_materialization_before_readから本nodeのscopeと復元順へ明示接続し、既存fixture読取・型/hash検査の前に14原値を復元する。同case原referentsのみを意味の再導出で共有し、独立expected・negative mutation・原正常/variant literalを入力anchorへ統合しない。",
     "preservation": "anchor literal・独立期待・hash・履歴・member/array順・presence・source pin・caseIDを保持。契約node+recipeを除けば元文書全値・raw bytesへ逆復元できる。",
-    "authority_effect": "なし。新resolver・DSL・gate・要求意味・製品実装は追加しない。"
+    "authority_effect": "なし。新resolver・DSL・gate・要求意味・製品実装は追加しない。",
+    "validation": "宣言14scopeと7同case anchorを固定sourceへ照合し、base_pointerは対象の同case normal_call/sourcesだけ、patchはcopy /referents→空rootの1操作だけに限定して読む。各anchorのcanonical SHAと元全値/member/array順を照合し、欠落anchor/改変/異case参照/操作又はscope漏れを成功原値へ補完しない。復元した各値は深く独立し、別scopeとanchorのaliasを作らない。これは本局所表現の復元条件であり、製品の新gateではない。"
   }
 }
