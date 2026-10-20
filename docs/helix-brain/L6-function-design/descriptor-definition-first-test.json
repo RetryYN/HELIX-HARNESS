@@ -107,5 +107,44 @@
     ],
     "legacy_basis_ref": "/legacy_rederivation/0",
     "failure_basis": "PR3503の設計のみで実TDD未到達、PR3505初稿のコメント化call/自己一致を繰り返さず、公開実関数と意味assertionを実行する。"
+  },
+  "fn0_source_validation_preparation": {
+    "scope": "既存fn0 NORMALとADD04の合成snapshot内source照合を次の実TDDへ結ぶ。全fn0完成や運用root認証は対象外。",
+    "source_revision": "da2578c9ccb21531cf75e882cd1dd328173a72cc",
+    "contract_refs": [
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/0",
+          "/execution_contract/reference_comparison",
+          "/logical_input_structure",
+          "/wire_codec_contract/source_byte_and_qualification_order",
+          "/wire_codec_contract/numeric_carrier_profile",
+          "/type_contract/types/QualifiedSource",
+          "/type_contract/types/Qualification"
+        ]
+      }
+    ],
+    "fixture_assumption_ref": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/fixture_contract/normal_control/reference_resolution"
+    },
+    "existing_entry": "validate_supply_input(raw) -> ValidatedSupply。新しい資格成功adapter/mockや別の公開validatorを作らない。",
+    "implementation_limits": [
+      "root/bodyはL8が明示した合成対照前提。authority_effect文字列・fixture名・特定digestを成功スイッチにしない。",
+      "正式root供給元/custody/origin authentication/内部資格resolverは未閉包。snapshot対応の一致をその実成立や運用利用許可としない。",
+      "strict parser/numeric carrier/schema adapterの既存設計に従う実装と対testを準備する。今回の参照追補だけで第三者依存の採用/版固定や全codecの実装済みを宣言しない。"
+    ],
+    "refactor_focus": "source bytes/body比較とqualification joinを別の変更理由として扱い、共通Refの比較は既存reference_comparisonへ対応させる。別domainのRefや新trust frameworkへ一般化しない。",
+    "legacy_basis_refs": [
+      "/legacy_rederivation",
+      "docs/governance/audits/tdd/brain032-fn0-add01-legacy-derivation-2026-10-21.json"
+    ],
+    "test_state": "未凍結・未実行。本文は実装許可や検証成功を追加しない。",
+    "calculation_order_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/wire_codec_contract/source_byte_and_qualification_order",
+      "application": "既存logical shape/ref比較/numeric carrierとこの順序を実codeへ結ぶ。手順の意味をL6へ再定義しない。"
+    }
   }
 }
