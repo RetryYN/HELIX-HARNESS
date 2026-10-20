@@ -511,7 +511,8 @@
     "Contextと各embedded Ref/原反応/oracle/実結果の対象revision/scope/kind/ownerを独立に照合。未知を空/falseへ変えない。",
     "全体の早期returnで読めた独立結果を消さず、当該ownerへの不足と無関係Qの有効作業を保持。",
     "関数はticket/state/承認/Release/deployを書かない。条件の意味はHARNESS、原記録/実運転はOS/対象owner。",
-    "正式schema/codec/resolver/資格・実operation bindingは未成立。合成値やroot bytes一致を実事実にしない。"
+    "正式schema/codec/resolver/資格・実operation bindingは未成立。合成値やroot bytes一致を実事実にしない。",
+    "局所mirror_recipeはshared_private_call_arguments_materializationの全scopeを同一snapshotの各entry.argumentsから深い複製で復元してから、既存fixture読取・型/hash検査・意味比較へ渡す。記録形そのものをdomain引数へ渡さない。"
   ],
   "implementation_readiness": "not_ready",
   "full_goal_scope_preserved": {
@@ -269256,8 +269257,9 @@
     "form": "各scope memberは{\"mirror_recipe\":{\"base_pointer\": 同一entry, \"patch\": [{\"op\":\"copy\",\"from\":\"/arguments\",\"path\":\"\"}]}}の記録形を持つ。復元は同一文書snapshot内の同一entry literalだけをRFC6901で解決し、深い複製へRFC6902 copyを適用して原member全値を戻す。同一entry内のarguments・expected_call_record_shape.arguments・private_call_record_shape.argumentsの同値mirrorに限り、異case・異責務・input原値からの独立expected生成は行わない。member位置・型・配列順・反復・欠落/null/presenceは変えない。",
     "restore_order": "scope_pointers記載順。各siteは同一entryの原値へ独立に復元され共有aliasを作らない。",
     "consumer_read_positions": "scope_pointersの各member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
-    "relation_to_existing_contract": "common_contractの意味比較分離・各embedded Ref/原反応/oracle対象revision照合を保持し変更しない。既存の固定source identity(case ID/source pin/hash)を保持し、同値mirrorの記録共有を意味の再導出として追加。復元は既存fixture読取・型/hash検査の前に行い、復元後の論理値を既存契約へ入力する。",
-    "preservation": "anchor literal・独立期待・hash・履歴・member/array順・presence・source pin・case IDを保持。契約node+recipeを除けば元文書全値・raw bytesへ逆復元できる。",
-    "authority_effect": "なし。新resolver・gate・要求意味・製品実装は追加しない。"
+    "relation_to_existing_contract": "common_contractの既存5条件を保持し、fixture読取前の復元順序を追補する。各entryのargumentsは独立した期待callのliteral anchorであり、実call入力や実返却の証拠ではない。L5 private_projection_and_call_recordが求める実argumentsの原SourceCellからの投影、実returned_value、function_ref/operation_ref/source_cell_ref/source_cell_snapshot_sha256/argument_snapshot_sha256の結合は変更しない。",
+    "preservation": "24 entries×2 mirrors=48 sites。anchor literal・独立期待・hash・履歴・member/array順・presence・source pin・case IDを保持。新nodeとcommon_contract末尾の復元順序追補を除けば元文書全値・raw bytesへ逆復元できる。",
+    "authority_effect": "なし。新resolver・gate・要求意味・製品実装は追加しない。",
+    "validation": "各entry.argumentsのcanonical SHA-256を既存argument_snapshot_sha256と照合し、両shapeの同一call結合5項目を照合する。anchor欠落・改変・異entry参照・scope欠落を拒否する。実reader成立や製品実行の証拠ではない。"
   }
 }
