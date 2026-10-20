@@ -268076,7 +268076,7 @@
         "representation": "RFC 6902 patch row; the whole is reconstructed from the explicit L8 base pointer and inline patch, not stored at expected_pointer."
       }
     ],
-    "freeze_scope": "L8の15既存literal wholeと、既存21件＋今回7件のpatch再構成wholeは、各case_plan.frozen_case_ids/frozen_scopeに示した限定対照として扱う。未固定条件は同計画の未完として保持し、計画全条件の凍結・検収を主張しない。",
+    "freeze_scope": "L8の15既存論理whole（同L8のliteral_materialization_contractを先に適用して復元する）と、既存21件＋今回7件のpatch再構成wholeは、各case_plan.frozen_case_ids/frozen_scopeに示した限定対照として扱う。未固定条件は同計画の未完として保持し、計画全条件の凍結・検収を主張しない。",
     "prior_plan_state": {
       "revision": "0027875ac0e1800f2bbdf018651f3e486c196b2c",
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
