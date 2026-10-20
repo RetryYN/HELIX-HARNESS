@@ -1371,7 +1371,73 @@
       ],
       "design_ref": "HARNESS-L4-009-F02",
       "verification_ref": "HARNESS-L9-009-F02",
-      "title": "原sourceから提案record providerへの同一呼出し境界"
+      "title": "原sourceから提案record providerへの同一呼出し境界",
+        "total_attempt_boundary": {
+          "scope_relation_ja": "旧/contracts/3/original_operation_proposal_provider/failure_and_partial_rules/total_failure及び/contracts/3/original_operation_proposal_provider/unclosedは、旧operation読取成功3case限定entryの未定範囲の開示として保持する。今回の新private total-source-controllerで追加定義したtyped source decode/同walk資格/operation選択と外側role/native0又は実1call捕捉/旧view又はcapture-only返却の範囲は、このtotal_attempt_boundaryと対L5を読む。全F02/F03、body/relation一般形、same_decode_success取得、OS受領・実資格・実runtimeは残件である。",
+          "id": "HARNESS-L4-009-F02-OPP-TOTAL",
+          "title": "原operation sourceの段階捕捉とnative未呼出し・実返却の保持",
+          "status": "基本設計。対応するL9の有限whole照合と実装成立は別に確認する。",
+          "requirement_refs": [
+            "HARNESS-L3-009-F02",
+            "HARNESS-L3-009-F03"
+          ],
+          "authority_effect": "none",
+          "owner": "HELIX-HARNESS-CORE。源泉側の同一private呼出し内で実行する。",
+          "input_contract": {
+            "type": "既存RawProviderRequest",
+            "type_pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/RawProviderRequest",
+            "runtime_arguments": [
+              "同一RawProviderRequestの4member全値のみ"
+            ],
+            "preserve": "operation_source_occurrence_index、全source occurrence原順、qualification_inputs、qualification_root_inputsを最初にrequest_captureへwhole保存する。",
+            "outer_boundary": "typed4memberの外側codec型外は既存外側返却の別境界であり、この返却を捏造しない。source_json_utf8はstringなので不正UTF-8 octetsを内部入力へ偽装しない。旧codec六entryを増減しない。"
+          },
+          "return_contract": {
+            "type": "CoreF02ProviderAttempt",
+            "ordered_members": [
+              "request_capture",
+              "source_attempts",
+              "qualification_snapshot",
+              "operation_role",
+              "native_dispatch"
+            ],
+            "success_source": "SourceDecodeOutcome.ready{body:既存RawSourceBody}。原source text/headerはrequest_captureに保持する。",
+            "failed_source": "SourceDecodeOutcome.failed{decode:既存CoreDecodeResult全値}。観測済tree/token/presence/原因を削らず、bodyを作らない。",
+            "native0": "OperationFrameが外側型へ形成されない場合はnot_called、native_call_count=0。N/value/旧returned CallCaptureを持たない。",
+            "native1": "ready.frame.caller_inputsを既存build_native_proposal_record_detailへ一度だけ渡し、実N全値を保持する。旧viewを正直に形成できる域はexisting_view_returned.valueへ旧全返却を無変換保持し、それ以外はnative_capture_only.native_returnと局所view issueを返す。"
+          },
+          "ordered_responsibilities": [
+            "全sourceを原index順で新private固定RawSourceBody readerへ渡す。成功bodyと失敗decode全値を分け、一件失敗で兄弟読取を中止しない。",
+            "decode.readyだけ同source qualification比較を行う。Qualification.ref選択とsource_ref照合、独立Rootのowner/subject/source/hashを別の端として保存する。非排他flags、source issue追加時index、最終flat record indexを同walkで結ぶ。",
+            "指定operation source indexを使う。範囲外は実indexのrole.failed issue、parse/資格/相反の不成立はrole.unreached。資格済の指定source内ではsection_key=F02かつrecord_kind=original_trace_sectionの全原record候補をrole decode前に列挙する。0又は複数はrole.failedで全所在を保持する。",
+            "一意候補payloadを既存OperationFrameの外側型へ形成する。native CallerInputs内のraw domain検証を先回りせず、partial/null/欠落を保持したまま既存calleeへ渡す。same_decode_successの実decode wholeを原JSONから捏造しない。",
+            "role.readyならnativeを実一回、非readyなら0回とする。局所source資格診断はrole失敗でも保持する。無関係source parse失敗でもoperationがreadyならnative1を維持する。",
+            "旧ProviderReturnで表せる既存viewの域だけを形成する。旧SourceFrameへfailed sourceの空decoded_recordsを足さず、未閉包のbody/relation一般形は実N captureと局所issueに残す。"
+          ],
+          "identity_and_index_boundaries": {
+            "source_occurrence_index": "入力source_occurrencesの原index。成功sourceだけへ詰め直さない。",
+            "walk_index": "qualification_snapshot.source_walksの実処理順index。parse失敗sourceにwalkを捏造しない。",
+            "qualified_record_index": "相反source除外後、残存source順・record順で一度だけ付けるglobal flat index。原record_indexとは別。",
+            "classification_flags": "qualified/unqualified/conflicting/unresolvedの既存順・非排他列。件数、同Refの別source、単一scalar勝者から再構成しない。"
+          },
+          "pointer_boundaries": {
+            "DiagnosticRef": "新attempt whole rootの実在nodeを指すprivate JSONPointer。旧OriginRoot/Readへ追加しない。",
+            "old_provider_value": "existing_view_returned.value内の旧SourceFrame/CallerInputsCapture/CallCapture/RelationObservationのpointer rootは旧provider whole又は旧SourceFrame自身のまま。/native_dispatch/value接頭辞を書き込まない。",
+            "local_issue": "既存7member InputIssueのlogical pathを維持し、L5のlogical_to_physical_locationsでrequest/source body/snapshotへの対応を示す。pathだけで架空Readを生成しない。"
+          },
+          "detail_binding": {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "pointer": "/original_operation_proposal_provider_detail",
+            "revision_binding": "今回の同一設計snapshot。M6に新childが存在したという固定pinではない。"
+          },
+          "verification_boundary": "L4/L9とL5/L8の対応wholeは別のsource-first oracle著述で照合する。旧3provider wholeを保持し、候補評価結果から期待を逆生成しない。",
+          "remaining": [
+            "native_capture_onlyの全N保持はOS proposed body形成の完成ではない。元exact universe、N/A/residual、全relation一般形の元意味を失わない。",
+            "source identity登録・永続化、OS Ref4/project scope生成、CONNECT配送、OS受領/selected/used/実資格、製品runtime/CI/受入は別境界。",
+            "same_decode_successの原実decode取得対応はこのRawSourceBody profileでは形成しない。native branchの内側domain不備をrole失敗へ繰り上げない。",
+            "外側型外/host例外/資源故障全般の全製品返却を新typed source controllerの成立と同一視しない。"
+          ]
+        }
     }},
     {
       "id": "HARNESS-L4-009-F03",

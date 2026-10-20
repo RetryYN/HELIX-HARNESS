@@ -85794,7 +85794,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+                "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -102306,7 +102306,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "candidate_file_bytes_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -103378,20 +103378,20 @@
       {
         "role": "L4基本設計のpartial-input規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
         "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary"
       },
       {
         "role": "L4 validation source observation規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
         "pointer": "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
       },
       {
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -103407,7 +103407,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -103496,7 +103496,7 @@
       {
         "role": "L4 partial-input境界とvalidation source observation規則",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
           "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
@@ -103506,7 +103506,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -105352,7 +105352,7 @@
       {
         "role": "L4 partial carrier・source observation boundary",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/validation_detail/partial_input_boundary",
           "/f05_validation_material_call_contract/logical_ports/validation_detail/source_observation_rule"
@@ -105362,7 +105362,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -107146,7 +107146,7 @@
       {
         "role": "L4 F05 caller入力と明示skip境界",
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "file_sha256": "3947d4ed0020a1dbc217c6ae604cb8ad69ac67c801aabc25e71ebb52c19f0724",
+        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
         "pointers": [
           "/f05_validation_material_call_contract/logical_ports/f05_detail",
           "/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
@@ -107157,7 +107157,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -107765,7 +107765,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -107900,7 +107900,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "current_file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -113784,7 +113784,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "current_file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -114038,7 +114038,7 @@
       {
         "role": "current_l5_candidate_content_binding_no_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/F05DetailedReturn",
@@ -117041,7 +117041,7 @@
         "role": "current_L5_detail_contract",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "selected_object_count": 17,
         "selected_objects": [
           {
@@ -121005,7 +121005,7 @@
       },
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "selected_objects": [
           {
@@ -121118,7 +121118,7 @@
       {
         "role": "current_candidate_L5_native_scope_writer_binding",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+        "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
         "binding_kind": "candidate_current_content_no_git_revision",
         "selected_objects": [
           {
@@ -155933,11 +155933,11 @@
     "candidate_l5_binding": {
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
       "selected_objects": [
         {
           "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization",
-          "canonical_sha256": "9b97ccae8ea3bbdcff76287d244e45de24ce8ff06bd3196876e5e9b6d1b1300b"
+          "canonical_sha256": "b89b7e71edaea5f2db63ad807b534b43b120c4596136aa2d3154052f5145fd11"
         },
         {
           "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
@@ -155945,7 +155945,7 @@
         },
         {
           "pointer": "/f05_detail_contract/caller_return_writer_contract",
-          "canonical_sha256": "e084ff546a554b490a037ab62480e03fc3a9b9eee839eb76c4b0f6f057aee6bd"
+          "canonical_sha256": "97933f3fc6b1802f1abe7433765c5a36941214d4a2e2127e787950e72b18ab12"
         },
         {
           "pointer": "/f05_detail_contract/entry_points/private_caller",
@@ -155977,7 +155977,7 @@
     "function_ref": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
     "design_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
       "pointer": "/selected_source_occurrence_array_builder_detail",
       "canonical_sha256": "ddeeef52cc9379346350d2948537f1077cb87f529bee9a065ec7b8d9818aaf1e",
       "binding_kind": "current_candidate_content_binding"
@@ -156210,16 +156210,16 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
-      "canonical_sha256": "6d42b40e5e0267571753e7dcb8775ee54b0b3fe2f534db45c4e33e777fca52ba"
+      "sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
+      "canonical_sha256": "df6128b52cdef6e1a9d371791e33005911c31bb713963ab6848df41c97186f72"
     },
     "integration_oracle_ref": {
       "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
       "pointer": "/selected_source_caller_verification",
       "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "9f4c20e5ef556fba792b9473dcd352cd471df320a0cee668eda94544f8dc5003",
-      "canonical_sha256": "28e24ad3834fd837c5d30230d1d1fbc1e81fa82aeb204e97e4fe1f7d0637eb49"
+      "sha256": "e6ca681a1ffb3ec0b109c6b09387f3b0ca0c181c96b58939ec3583e5b005207a",
+      "canonical_sha256": "9f7c8ffcf32493298bc4ae96eaebab66feba6c51a4ce01a5515830563ed50bef"
     },
     "source_basis": [
       {
@@ -156360,7 +156360,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_detail",
       "id": "HARNESS-L5-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
       "canonical_sha256": "7a9e85d489d29c9985413b2bf0ffe0a7d5e8a8fbda6094e0ba50169d0f4cc585",
       "binding_kind": "current_candidate_content_binding"
     },
@@ -164497,10 +164497,10 @@
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_snapshot_revision": "no_git_revision_claim",
-      "file_sha256": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a",
+      "file_sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
       "selected_object": {
         "pointer": "/proposal_material_formation_detail",
-        "canonical_sha256": "79ba70e9c3d18a205ffd038f65c5b8ad8874ed83c9eda5cff54b261a66a3fef9"
+        "canonical_sha256": "c4f46e123a6efaa525358b8a32b9bad2336a064e213f72179d9873d72bbe1849"
       },
       "rebind_rule_ja": "親側のcurrent-hash追随が終わった最終L5 bytesへ、このbindingを再計算して差し替える。L5からL8 file hashへの逆参照は持たせない。"
     },
@@ -192506,7 +192506,7 @@
           "selected_object_pointer": "/proposal_native_record_material_detail",
           "selected_object_canonical_sha256": "09949ff9a987c6bcbfbfa52ebc4043c8d7458cd91071f47688ec1c972e6c590f",
           "selected_object_ordered_sha256": "8dd818e85c787f5d53eb8c357821ad198e0a291cbb7967d1a3ffca49ea35d503",
-          "raw_file_sha256_after_child_addition": "2c5833d9b83a67534121bc794f37a56805c5d0e7d39ed185b2050a4028b42f3a"
+          "raw_file_sha256_after_child_addition": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280"
         },
         "description_ja": "base_revision上に本L5候補childを追補した作業ツリー上のcurrent binding。独立した正式revisionは割り当てない。"
       }
@@ -192803,5 +192803,595 @@
     "nonclaims_ja": [
       "これは有限候補oracleであり実行証拠ではない。L5/L8候補からL3/L10 authority、実資格、OS記録、implementation/Green/acceptanceを生成しない。"
     ]
+  },
+  "original_operation_proposal_provider_verification": {
+    "id": "HARNESS-L8-009-F02-original_operation_proposal_provider_verification",
+    "status": "candidate_unit_verification_not_executed",
+    "execution_state": "not_executed",
+    "authority_effect": "none",
+    "requirement_refs": [
+      "HARNESS-L3-009-F02",
+      "HARNESS-L3-009-F03"
+    ],
+    "system_oracle_refs": [
+      "HARNESS-L10-009-F02",
+      "HARNESS-L10-009-F03"
+    ],
+    "design_ref": {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/contracts/3/original_operation_proposal_provider/total_attempt_boundary",
+      "revision_binding": "same_candidate_snapshot",
+      "note_ja": "同じ候補snapshotのL4 childを照合する。固定M6 sourceには新childが存在したと扱わない。"
+    },
+    "l9_oracle_binding": {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "pointer": "/cases/3/original_operation_proposal_provider_oracles/total_attempt_oracles",
+      "canonical_sha256": "259cdcf0d2cf10827b92f397567de07b51aaf67bbc2e96490ff5b2f0aba5d1ce",
+      "ordered_sha256": "cfe8fbb6115d148a1c0e35d751872e72ab4b9c197286405fe36b42359ffb8d9a",
+      "canonical_byte_length": 218983,
+      "base_revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
+      "candidate_file_sha256": "e6ca681a1ffb3ec0b109c6b09387f3b0ca0c181c96b58939ec3583e5b005207a",
+      "candidate_scope_ja": "同じ候補変更内のL9 childを結ぶ。base_revisionにchildが存在したとは扱わず、後続case追補でL9 bytesが変わる場合はbindingを更新する。"
+    },
+    "verification_boundary_ja": "固定Git source、厳密な汎用JSON parse、RFC6902 copyとhash照合による期待再構成手順を定義する。実製品の実装前Red/Green、codec/provider/wrapper、資格、OS受領、CI、性能を実行した結果ではない。期待はcandidate実装から生成しない。",
+    "reconstruction_steps_ja": [
+      "M5のL9/L8とM6の固定source selectorをraw SHA、pointer、selected object hashで照合する。ignored local evidenceを正式入力にしない。",
+      "L9内binding_array_domain_native_oracle/frozen_specの4 Git mountとworkspace_seedを再構成する。先にstandard_json_patch_preludeの2 replaceを適用し、次にstandard_json_patch_completion_opsの135 copyを順に適用する。array parentへのcopyはRFC 6902 addとして指定indexへ挿入し、index=lengthはappendする。/input、/caller_expected、/proposal_expected、/native_expectedの全値・順序・hash・byte長を分けて照合する。成功readerはbodyだけを返す枝、失敗readerはdecode全観測を保持する枝として照合する。",
+      "duplicate_prefix_native0_whole_caseはprimitive sourceとinput/expected_seedを別々にmountし、記載した2 RFC6902 copyを適用する。expected whole hashを照合し、native callは0回、native_return/valueは不在、資格とroleは未到達であることを個別に確認する。",
+      "既存3 provider wholeは固定M5 L9 case recipeを変更せず使い、再構成済みold_provider_wholeからnative_dispatch.valueへ標準copyする。total prefixは別のsource-first全体recipeから再構成し、旧wholeから類推しない。",
+      "source_body_materializationのcase別literal pool indexからrequest occurrenceへのmappingで文字列をcopyし、UTF-8 SHA/byte長、strict parse後body全値と順序hashを照合する。索引空間を相互流用しない。",
+      "front_eight_total_attempt_failure_cases.freezeのworkspace_seed/source_preparation/native_preparationに従い、固定Git sourceをworkspaceへmountし、strict JSON parseと標準RFC6902 copy/patchでbasisを作る。technical_specは固定規範sourceでありcase期待生成の入力ではない。",
+      "frontの各caseはfresh basisからinput_seed/expected_seedをcopyし、input_ops、case_body_preparation（存在する場合）、expected_opsの順に適用する。独立再構成summaryにある各input/expected canonical・ordered hashとbyte長、branch/member期待を照合する。",
+      "published_three_total_attempt_whole_casesは固定M5 case seedとliteral_to_request_occurrence mappingでinputを作る。literal pool indexとrequest occurrence indexを混同せず、raw sourceをstrict JSON parseし、same-source recordをsource attempt bodyとqualification occurrenceへcopyする。",
+      "独立M2 IはM2 frozen_json_recipeから再構成し、raw operation source内CallerInputsと全値比較する。Nはfixed_native_case_recipe_pointerが示すM3 recipeのworkspace_seed/completion_opsを適用した後の/expectedを選ぶ。recipe pointer自体をmaterialized Nとしてcopyしない。",
+      "old_provider_wholeはM5 expected_output_seed/completion_ops/whole_return_assembly_opsと再構成済みM3 Nから/expectedを作り、hash照合後/old_provider_wholeへcopyする。その全体を新total expected native_dispatch.valueへ無変換copyし、total whole hashを照合する。",
+      "binding_array_total_attempt_caseは同じ候補child内のbinding_array_domain_native_oracle/frozen_specのsource_mounts/workspace_seed/standard_json_patch_prelude/completion_opsからIとNを再構成する。結果を/binding/inputと/binding/native_expectedへcopyし、inline front case6 input seedからstrict parseしたsource bodyへIをcopy、primitive rawとsource/Qualification/Root digestを整合させてからexpected_completion_opsを順適用する。whole input/expected、N、raw primitiveのhash・ordered bytesを照合する。"
+    ],
+    "expected_component_checks": [
+      {
+        "component": "duplicate_prefix_native0_whole_case",
+        "input_hashes": {
+          "canonical_sha256": "bcf320c1f11c4612150fd348e84bbe146486f260c340f8838d4b83ae3220dcc6",
+          "ordered_sha256": "8af4d865567baaa7f60a2434be4ca3bba6ab1c3aac10b3126ec49e47df6f9b67",
+          "canonical_byte_length": 593
+        },
+        "whole_hashes": {
+          "canonical_sha256": "bef1186d17bf24739f718ed2ccc959c5e715af6216ec9a6706dc1dcc66aa1e6e",
+          "ordered_sha256": "f525d94e597ba12cb90eeb2817584f0bc899e5e5f41cc9f00d80f4cc4f5e955a",
+          "canonical_byte_length": 2121
+        },
+        "acceptance_ja": "重複primitive failureが一件のissueへ到達し、資格・operation roleはunreached、native callは0回。"
+      },
+      {
+        "component": "existing_provider_wholes_retained_without_projection",
+        "case_count": 3,
+        "whole_hashes": [
+          {
+            "whole_return_canonical_sha256": "87c17f1bc692f9046170aba1fd2fd06e45d2f999c0eea3ae54aaaa19620054b2",
+            "whole_return_ordered_sha256": "f194e2ebb795acc5c2d146fa1c0b84999317ed123406f62b170b226025aadc88",
+            "whole_return_byte_length": 55419088,
+            "whole_return_assembly_ops": [
+              {
+                "op": "copy",
+                "from": "/source_frame/source_walks/2/source_issue_indices",
+                "path": "/relation_observations/0/target_qualification_origin/source_issue_indices"
+              }
+            ]
+          },
+          {
+            "whole_return_canonical_sha256": "9154d910f66354dd4dd078a173ad164258e813cc8260c7d4b961878c0a1ef149",
+            "whole_return_ordered_sha256": "0127b0eab18402ff9f9a3fe5d7a85e8e3e97ec2fcc5f70c0f9f69e9c17c67beb",
+            "whole_return_byte_length": 55841580,
+            "whole_return_assembly_ops": [
+              {
+                "op": "copy",
+                "from": "/source_frame/source_walks/1/source_issue_indices",
+                "path": "/relation_observations/0/target_qualification_origin/source_issue_indices"
+              }
+            ]
+          },
+          {
+            "whole_return_canonical_sha256": "64a75f9f9b4c2fd32e95284ffd40aa51111fcd5c4624f226c0eb1a8db500e48b",
+            "whole_return_ordered_sha256": "f9782e8ff7127497c503551293e17125ab6c9893d2b541d5ac5f45dbbb043b0e",
+            "whole_return_byte_length": 55418826,
+            "whole_return_assembly_ops": [
+              {
+                "op": "copy",
+                "from": "/source_frame/source_walks/1/source_issue_indices",
+                "path": "/relation_observations/0/target_qualification_origin/source_issue_indices"
+              }
+            ]
+          }
+        ],
+        "acceptance_ja": "各旧wholeは標準copyでdispatch.valueへ無変換保持される。"
+      },
+      {
+        "component": "source_body_materialization",
+        "literal_count": 5,
+        "request_occurrence_count": 8,
+        "case_literal_pool_indexes": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1,
+            2
+          ]
+        ],
+        "body_hashes": [
+          {
+            "id": "raw-00",
+            "canonical_sha256": "48d3aca3d1584d7ba0c531c8a4686a9afc7b63090f21d848241c18678b5cb5c3",
+            "ordered_sha256": "4878679ebad35741ae7402f7a39ddf724c366881771778a881ece2269acc0b2f",
+            "byte_length": 446221
+          },
+          {
+            "id": "raw-01",
+            "canonical_sha256": "802e5d35fa8a6838d361aad35c8ad7e7f2b2d55aa39c49bf30ad8aa9f7240c70",
+            "ordered_sha256": "802e5d35fa8a6838d361aad35c8ad7e7f2b2d55aa39c49bf30ad8aa9f7240c70",
+            "byte_length": 21420
+          },
+          {
+            "id": "raw-02",
+            "canonical_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866",
+            "ordered_sha256": "bc3faf029a962221688674850abe93fd1b56002582b2de623515d6bd3bce5866",
+            "byte_length": 21401
+          },
+          {
+            "id": "raw-03",
+            "canonical_sha256": "62f77199385142f6684da5dd44849aa8817e5f80047e7bf38a91079b5df4b7ef",
+            "ordered_sha256": "bb67e7110e20d99f09e4f0259aeb854a71539d9c3c1b443bc163c739e7232d77",
+            "byte_length": 449166
+          },
+          {
+            "id": "raw-04",
+            "canonical_sha256": "370bef6c28285fde48800e92244419057a03a8de4182ed2dc99c7593a35db757",
+            "ordered_sha256": "216bcde74ad1a91e3ee293f50f0872a87692a0916eb398459c1ad7dd6bb9b5d1",
+            "byte_length": 446221
+          }
+        ],
+        "acceptance_ja": "5 literalは固定Git poolに一度だけ置き、mapping通り8 request occurrenceへcopyする。"
+      },
+      {
+        "component": "binding_array_domain_native_oracle",
+        "whole_hashes": {
+          "input": {
+            "canonical_sha256": "bc7c4cf35766f0e2d3c0d64f1dd8a7bba8011f202bc175366fb3d70f61efa4a9",
+            "ordered_sha256": "092e3dfbfdd12b5ee167a589af9e073e2fff1c1c7a21c6d1563aa7ae41a44f67",
+            "canonical_bytes": 210,
+            "ordered_bytes": 210
+          },
+          "caller_expected": {
+            "canonical_sha256": "ac88a0d9f5c34ae780a178f1ee8c423b5d97a3c4a8057b5a72849153e3e397aa",
+            "ordered_sha256": "3f4af89c9f88447f07e1f634465832f5a415ff688547127833fe5934e2abd545",
+            "canonical_bytes": 1607634,
+            "ordered_bytes": 1607634
+          },
+          "proposal_expected": {
+            "canonical_sha256": "6b301b04e06d488c1db0f9e7b4fde6c61f298ffa4685f3c6a4f6b2987a6609c6",
+            "ordered_sha256": "6e904afb0148697bc144426592f2a485593f8b2911e3c68e3d9c4fbbc8f621d3",
+            "canonical_bytes": 1625750,
+            "ordered_bytes": 1625750
+          },
+          "native_expected": {
+            "canonical_sha256": "fef815b0dea8974e3bdeea5dcedcd77bc084bb551a544caa24efb0b53aa1a22e",
+            "ordered_sha256": "db8df16750214ae3eba81034ef1a90e3423422006f2f04441a19a36504a0a268",
+            "canonical_bytes": 1626349,
+            "ordered_bytes": 1626349
+          }
+        },
+        "copy_operation_count": 135,
+        "acceptance_ja": "validated.input=null、F05 outer formed/inner raw_only、7 producer explicit_skip、proposal unavailable、三partition空の有限whole。"
+      },
+      {
+        "component": "published_three_total_attempt_whole_cases",
+        "case_count": 3,
+        "case_hashes": [
+          {
+            "case_id": "HARNESS-L9-009-F02-OPP-01",
+            "expected_total_whole_hashes": {
+              "canonical_sha256": "7d708fea4ea7c19a771aab343b5be8d02b54e7aceb981d7a9109e56dc9f5ffc8",
+              "ordered_sha256": "42a7499d33fcc1ac926506029c2fa443f3030d1a3ab40778ee8b4073b6bd96c1",
+              "byte_length": 57403563
+            },
+            "preserved_old_provider_whole": {
+              "canonical_sha256": "87c17f1bc692f9046170aba1fd2fd06e45d2f999c0eea3ae54aaaa19620054b2",
+              "ordered_sha256": "f194e2ebb795acc5c2d146fa1c0b84999317ed123406f62b170b226025aadc88",
+              "byte_length": 55419088
+            }
+          },
+          {
+            "case_id": "HARNESS-L9-009-F02-OPP-02",
+            "expected_total_whole_hashes": {
+              "canonical_sha256": "36b774fa33ac54d2d348fa4d0668a33e244d9980fafa4a1f4ca01e565aa277f4",
+              "ordered_sha256": "c06cc35f89b69cdc8276245363109bfe7ede129af68e7b63b1cbf61a7d74a2d7",
+              "byte_length": 57790086
+            },
+            "preserved_old_provider_whole": {
+              "canonical_sha256": "9154d910f66354dd4dd078a173ad164258e813cc8260c7d4b961878c0a1ef149",
+              "ordered_sha256": "0127b0eab18402ff9f9a3fe5d7a85e8e3e97ec2fcc5f70c0f9f69e9c17c67beb",
+              "byte_length": 55841580
+            }
+          },
+          {
+            "case_id": "HARNESS-L9-009-F02-OPP-03",
+            "expected_total_whole_hashes": {
+              "canonical_sha256": "3735a4faa82e252cd1590e68cf800dcff94af4ca706288e7f10a70d5a0f4695e",
+              "ordered_sha256": "71c14ec26bd7f913469815e84d2f2ce2043af74aef98fc75f426c3aef4676467",
+              "byte_length": 57403301
+            },
+            "preserved_old_provider_whole": {
+              "canonical_sha256": "64a75f9f9b4c2fd32e95284ffd40aa51111fcd5c4624f226c0eb1a8db500e48b",
+              "ordered_sha256": "f9782e8ff7127497c503551293e17125ab6c9893d2b541d5ac5f45dbbb043b0e",
+              "byte_length": 55418826
+            }
+          }
+        ],
+        "acceptance_ja": "各total wholeは固定M5 raw source、独立M2 I、M3 case recipeで再構成したN、source-frame、old-provider completionから標準copyで得る。old wholeはdispatch.valueへ無変換copyし、old whole期待hashも維持する。"
+      },
+      {
+        "component": "front_eight_total_attempt_failure_cases",
+        "case_count": 8,
+        "case_results": [
+          {
+            "case_index": 0,
+            "id": "QUAL-MISMATCH-SELECTED-SOURCE-NATIVE0",
+            "input_canonical": {
+              "sha256": "196bd7f7f54078d15813fbd1fd23d7dc3f02dd1849a08e1b2784431dfac8f429",
+              "byte_length": 578770
+            },
+            "input_ordered": {
+              "sha256": "d15e6b2501728b0005b5376130a78686f13966d21aeda885828678c828441b14",
+              "byte_length": 578770
+            },
+            "expected_canonical": {
+              "sha256": "7fee5d9a4bdcb0fc40c6c1dc378d52a68caea77ba523b217606b4ea5ef782709",
+              "byte_length": 1538332
+            },
+            "expected_ordered": {
+              "sha256": "bebff21b31e6a90b9fda0c39061de77301399c5916e797ca1ca99a8655d6d364",
+              "byte_length": 1538332
+            },
+            "source_decode_tags": [
+              "ready",
+              "ready",
+              "ready"
+            ],
+            "role_tag": "unreached",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 1,
+            "source_walk_original_indices": [
+              0,
+              1,
+              2
+            ],
+            "qualified_raw_record_count": 2
+          },
+          {
+            "case_index": 1,
+            "id": "MISSING-INDEPENDENT-ROOT-SELECTED-CORE-NATIVE0",
+            "input_canonical": {
+              "sha256": "a781688e4970c324915505a98f9642af4ed996780320567e6c16bee96ad257c1",
+              "byte_length": 578178
+            },
+            "input_ordered": {
+              "sha256": "1ad8a29dbadc4aabe9750f1ae306c561970ae121711db024074d0bfb23d0186d",
+              "byte_length": 578178
+            },
+            "expected_canonical": {
+              "sha256": "23bce2b45e9f1475d061b838017366b00a9cd830ee551b35f4bfb5855f9bf8ca",
+              "byte_length": 1091687
+            },
+            "expected_ordered": {
+              "sha256": "dc2ad0e1d3b899751e0f49a10a9a365f6cf848d7619c7ef0cb45b6fbfa42839a",
+              "byte_length": 1091687
+            },
+            "source_decode_tags": [
+              "ready",
+              "ready",
+              "ready"
+            ],
+            "role_tag": "unreached",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 2,
+            "source_walk_original_indices": [
+              0,
+              1,
+              2
+            ],
+            "qualified_raw_record_count": 1
+          },
+          {
+            "case_index": 2,
+            "id": "CONTRADICTORY-SAME-SUBJECT-SOURCE-RECORDS-NATIVE0",
+            "input_canonical": {
+              "sha256": "bc0637c6d2d6296739d2925212fe10c69a308dee829973a7aa2543fed2ac22a6",
+              "byte_length": 581794
+            },
+            "input_ordered": {
+              "sha256": "fc55b960e5d393f147487e5eb457a2900814cb0323c686a8c7ca91a39a56bdca",
+              "byte_length": 581794
+            },
+            "expected_canonical": {
+              "sha256": "3b5c3ed7da247a891d94d5e6bc9c537766415a5423134f2dc7039b40c719af35",
+              "byte_length": 1520247
+            },
+            "expected_ordered": {
+              "sha256": "21529fe391d3e8d5754fdd3bbb1fa2ac77ff9d060d1c06308f624be87f11b956",
+              "byte_length": 1520247
+            },
+            "source_decode_tags": [
+              "ready",
+              "ready",
+              "ready"
+            ],
+            "role_tag": "unreached",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 2,
+            "source_walk_original_indices": [
+              0,
+              1,
+              2
+            ],
+            "qualified_raw_record_count": 1
+          },
+          {
+            "case_index": 3,
+            "id": "OPERATION-INDEX-OUT-OF-RANGE-NATIVE0",
+            "input_canonical": {
+              "sha256": "480fdf60726609fcac0623f95bcaa71bd2b40b0525ccdb4bbff2ec75afdf9b6d",
+              "byte_length": 578770
+            },
+            "input_ordered": {
+              "sha256": "3fddc0fd1012c541082c34bdd72c8971273b293360df7bf883b9b1aac61a6df9",
+              "byte_length": 578770
+            },
+            "expected_canonical": {
+              "sha256": "afade5d6ba1baf231e9a8a292da71014c19c739e6952744e7bdbaf673592297b",
+              "byte_length": 1538523
+            },
+            "expected_ordered": {
+              "sha256": "343902a841bd279cd97ef4eeb4b3b2c98f42f2f1fa62e3b78804f4adeeeac283",
+              "byte_length": 1538523
+            },
+            "source_decode_tags": [
+              "ready",
+              "ready",
+              "ready"
+            ],
+            "role_tag": "failed",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 1,
+            "source_walk_original_indices": [
+              0,
+              1,
+              2
+            ],
+            "qualified_raw_record_count": 2
+          },
+          {
+            "case_index": 4,
+            "id": "ZERO-OPERATION-ROLE-CANDIDATES-NATIVE0",
+            "input_canonical": {
+              "sha256": "8cc98fc1018b7c04416d2c7254d80efc6dde1102666ccff367935721849d18eb",
+              "byte_length": 578770
+            },
+            "input_ordered": {
+              "sha256": "ba8e1e318cb57858059de358683c6cdf84363b775ea632a5bc5e32f5fca27042",
+              "byte_length": 578770
+            },
+            "expected_canonical": {
+              "sha256": "a4a5e6dba9b34b8ed421970aef573bf48b50d3ed774dbbe6cf368d0a100b2acc",
+              "byte_length": 1538715
+            },
+            "expected_ordered": {
+              "sha256": "6c71a24ac4e4351e65e9aa02b5d732f5958101ba6f34257320eba83523636404",
+              "byte_length": 1538715
+            },
+            "source_decode_tags": [
+              "ready",
+              "ready",
+              "ready"
+            ],
+            "role_tag": "failed",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 1,
+            "source_walk_original_indices": [
+              0,
+              1,
+              2
+            ],
+            "qualified_raw_record_count": 2
+          },
+          {
+            "case_index": 5,
+            "id": "MULTIPLE-OPERATION-ROLE-CANDIDATES-NATIVE0",
+            "input_canonical": {
+              "sha256": "9a0db2db6063dd9461f663986288e6f4d367dfc44e802fac7a159b568e7dabe0",
+              "byte_length": 2474
+            },
+            "input_ordered": {
+              "sha256": "768c911f9a80cfc4d2656c1e1265edcaecb43763754331f99f0caf7cead2a014",
+              "byte_length": 2474
+            },
+            "expected_canonical": {
+              "sha256": "d2d6d7751166d1b3804f2027587cb5afde1666f6ec95bf55fbf9bc7619328540",
+              "byte_length": 5728
+            },
+            "expected_ordered": {
+              "sha256": "bc4be92ef23757d2be0f4ef4f027e772d340835a1041c28b153ba649a132e7ef",
+              "byte_length": 5728
+            },
+            "source_decode_tags": [
+              "ready"
+            ],
+            "role_tag": "failed",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 0,
+            "source_walk_original_indices": [
+              0
+            ],
+            "qualified_raw_record_count": 2
+          },
+          {
+            "case_index": 6,
+            "id": "OUTER-CALLER-INPUTS-TYPE-FAILURE-NATIVE0",
+            "input_canonical": {
+              "sha256": "2db9f420066a1c8bf6782297164440fa68eb265441c5f82fc694e0ea1f23b01a",
+              "byte_length": 2413
+            },
+            "input_ordered": {
+              "sha256": "f6ce56db59bf9f8099cc9f09a518dcd6f44c4e27f5d157a9936e838c38e09bdc",
+              "byte_length": 2413
+            },
+            "expected_canonical": {
+              "sha256": "094cd8e795953afd4d5a65d57c6cd78a0aaebf2c47b31d31587a2703920a1abb",
+              "byte_length": 5029
+            },
+            "expected_ordered": {
+              "sha256": "6c134427eabe48a516f3087cbb909ad87d42f2b709d79c6094e04d1dfffe6748",
+              "byte_length": 5029
+            },
+            "source_decode_tags": [
+              "ready"
+            ],
+            "role_tag": "failed",
+            "dispatch_tag": "not_called",
+            "native_call_count": 0,
+            "source_issue_count": 0,
+            "source_walk_original_indices": [
+              0
+            ],
+            "qualified_raw_record_count": 1
+          },
+          {
+            "case_index": 7,
+            "id": "UNRELATED-DUPLICATE-SOURCE-PRESERVE-NATIVE1",
+            "input_canonical": {
+              "sha256": "8db20343fe8f7520fc20264876e5836ff799fcd8d928bb04e766df9da37e87b3",
+              "byte_length": 553739
+            },
+            "input_ordered": {
+              "sha256": "6bc0190fd1d6ffa0ae59dd0a5badbc5c7455599bbd4a2e6e8e92cf06adf9fcad",
+              "byte_length": 553739
+            },
+            "expected_canonical": {
+              "sha256": "889fac764983d66862b5664504adaade3c046fc2c8c980e9ba087a1cac322ded",
+              "byte_length": 55371022
+            },
+            "expected_ordered": {
+              "sha256": "2e743f6f75d3c9bd411a09e5048fc367fa11e520c469133e2c1375f709294b16",
+              "byte_length": 55371022
+            },
+            "source_decode_tags": [
+              "ready",
+              "failed",
+              "ready"
+            ],
+            "role_tag": "ready",
+            "dispatch_tag": "native_capture_only",
+            "native_call_count": 1,
+            "source_issue_count": 0,
+            "source_walk_original_indices": [
+              0,
+              2
+            ],
+            "qualified_raw_record_count": 2
+          }
+        ],
+        "acceptance_ja": "凍結済みfixed sources、workspace basis、case入力とRFC6902順序から各wholeを再構成し、input/expected全値とhashを照合する。製品実行結果とは扱わない。"
+      },
+      {
+        "component": "binding_array_total_attempt_case",
+        "case_id": "TYPED_BINDING_ARRAY_DOMAIN_FAILURE_NATIVE1_PROPOSAL_UNAVAILABLE",
+        "whole_hashes": {
+          "total_input": {
+            "canonical": {
+              "sha256": "bc4d666fa92375f051d17883b1704dc83d212a36e9aae7800412fff2de143f59",
+              "byte_length": 2647
+            },
+            "ordered": {
+              "sha256": "76a48a75dbe044ba5f97174cdd4d34f8b239a55a270113187c0cafa28030a83f",
+              "byte_length": 2647
+            }
+          },
+          "total_expected": {
+            "canonical": {
+              "sha256": "31a71592496ae7724f0acd1606b42bb8ca791cf674055a8edc4a686b963eb4e0",
+              "byte_length": 1632383
+            },
+            "ordered": {
+              "sha256": "c16ae81c67d74a685736d176684e03d4e4b2e79675a27e17a7dacb962f66ec90",
+              "byte_length": 1632383
+            }
+          },
+          "native_N": {
+            "canonical": {
+              "sha256": "fef815b0dea8974e3bdeea5dcedcd77bc084bb551a544caa24efb0b53aa1a22e",
+              "byte_length": 1626349
+            },
+            "ordered": {
+              "sha256": "db8df16750214ae3eba81034ef1a90e3423422006f2f04441a19a36504a0a268",
+              "byte_length": 1626349
+            }
+          },
+          "source_primitive": {
+            "sha256": "8720d43185e12f304ce72ec70fab2dc7570cbf10cb91108ee2133f6d131c108e",
+            "byte_length": 668
+          }
+        },
+        "static_controls": {
+          "source_count": 1,
+          "source_decode_tags": [
+            "ready"
+          ],
+          "source_walk_original_indices": [
+            0
+          ],
+          "source_walk_flags": [
+            [
+              "qualified"
+            ]
+          ],
+          "qualified_flat_record_indices": [
+            0
+          ],
+          "input_issues": [],
+          "source_issues": [],
+          "operation_role": "ready",
+          "native_dispatch": "native_capture_only",
+          "native_call_count": 1,
+          "view_issue_count": 1,
+          "view_issue_name": "native_proposal_unavailable",
+          "OS_body_formed": false
+        },
+        "acceptance_ja": "同一候補child内のbinding input/N recipe、inline source body recipe、qualification digestコピー、expected completion opsから全返却を再構成し、input/expected/N/primitiveのhashとmember順を照合する。条件付きsynthetic証拠で実callや実認可ではない。"
+      }
+    ],
+    "not_yet_included_ja": [
+      "全source失敗・その他role/qualification組合せ・未収載の入力は対象外。",
+      "実装前Red/Green、実source資格・producer・wrapper実行、OS受領/配送、CI、PO受入は成立していない。"
+    ],
+    "current_l5_candidate_ref": {
+      "candidate_id": "HARNESS-L5-009-F02-OPP-TOTAL",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/original_operation_proposal_provider_detail",
+      "revision_binding": "same_candidate_snapshot",
+      "status_ja": "同じ候補snapshot内のL5 child参照。M5/M6 source pin・承認状態は継承しない。"
+    },
+    "requirement_scope_ja": "HARNESS-L3-009-F02（functional-requirements.json#/requirements/24）とHARNESS-L10-009-F02 (functional-verification.json#/cases/24)、及びL3-009-F03 (#/requirements/25)とL10-009-F03 (#/cases/25)の限定されたexact set・四判定の範囲を照合する。候補とOS selected/usedの区別、N/A/unknownの既存条件を保持し、scope外の適用や受入を主張しない。"
   }
 }
