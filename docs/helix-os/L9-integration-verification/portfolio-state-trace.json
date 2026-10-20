@@ -665,7 +665,8 @@
       },
       "empty_nodes": "nodes:{}は既知空選択。空だけからfinding/corresponding/coverage/acceptance/completionを生成しない。actual/context locator unionの未選択memberはR14でunknown。評価nodeなしはunknownで成功しない。",
       "case_identity_policy": "D0026はD0016と入力・全期待が同値の重複だったため除外し、既存IDを再採番しない。欠番は削除漏れではなく履歴上の識別子を保つためのもの。"
-    }
+    },
+    "retained_trace_materialization_before_expected_read": "本JSONの/shared_retained_state_trace_materialization/scope_pointersの203位置を、同nodeの固定expected literal anchorと標準RFC6901/6902により個別deepcopyで元のretained_state_trace全値へ復元してから、baseline expected_proposalの読取・元whole値/型/hash照合を行う。givenのbase_ref/replacements展開・expanded_input_sha256、他expected、異trace、29 domain_extension_casesの読取は変更しない。expected_limitの作者scratch/独立oracle未凍結という限界を保ち、実装reader成立を主張しない。"
   },
   "fixture_inputs": {
     "portfolio": {
@@ -268297,8 +268298,9 @@
     "anchor_canonical_bytes": 16117,
     "restore_order": "scope_pointers記載順。各siteは同じanchor値へ独立に復元され共有aliasを作らない。",
     "consumer_read_positions": "scope_pointersの各member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
-    "relation_to_existing_contract": "fixture_contract（base_ref deepcopy＋replacements記載順適用＋canonical SHA256照合、expected_limit=作者scratch・実実行なし）を保持し変更しない。本節はR11の同一出力保持責務と照合したexpected内literalに限りanchor参照を追加し、既存fixture読取・canonical hash照合の前に復元する。入力・他expected・given/replacementsは保持しanchorへ統合しない。",
+    "relation_to_existing_contract": "fixture_contractのbase_ref deepcopy・replacements原順・入力canonical SHA256と作者scratch expected_limitは保持する。同contractのretained_trace_materialization_before_expected_readから本nodeのscopeへ明示接続し、baseline expectedの読取/元whole値・型/hash照合より前に、同じexpected保持役割の原literalを復元する。入力/expectedを統合せず、given/replacements・他expectedは不変。",
     "preservation": "anchor literal・他expected・原scratch限界・source/hash・case ID・member/array順・presence・141種類trace・domain_extension_cases29・原unknown/未閉包・履歴を保持。契約node+recipeを除けば元文書全値・raw bytesへ逆復元できる。",
-    "authority_effect": "なし。新DSL・resolver・gate・要求意味・製品実装は追加しない。"
+    "authority_effect": "なし。新DSL・resolver・gate・要求意味・製品実装は追加しない。",
+    "validation": "固定203scope・case0のexpected literal anchorとそのcanonical SHA/16117bytesを照合し、各recipeはbase_pointer=/cases/0/expected_proposal、copy /retained_state_trace→空rootの1操作だけとする。欠落/改変anchor、inputや別expectedからの参照、patch改変、scope漏れを成功原値へ補完しない。各復元値とanchorは深く独立し、aliasを共有しない。元R11のraw保持役割と原値/順/欠落/nullを保存し、製品の新gate/全期待の独立証明は生成しない。"
   }
 }
