@@ -1115,6 +1115,27 @@
             "input_ja": "同source walkに独立別record issueによる複合flagsがあり、当該CORE recordは同origin資格/最終flat/意味対応を全て保っている。",
             "expected_semantic_proposal": "当該根拠成立時formed",
             "preserved_ja": "非排他flagsと別record issueを残し、それだけで有効CORE proposalを取消さない。source resolverが当該recordを除外した枝とは別に扱う。"
+          },
+          {
+            "id": "RECEIVE-HEADER-UNREACHED",
+            "input_ja": "CORE publicationのheader port未供給又は返却未観測でsource_candidate未形成。原OS入力と独立した有効source/sectionを同時供給する。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "実input_capture/publicationのheader port/decode診断とreceiving_issuesのpublication_unavailableを指す。未生成sourceの所在や架空evidence行を指さない。",
+            "preserved_ja": "publicationのsource_inputs出現を追加せず、元RecordTraceInput・原OS sourcesと処理済の有効兄弟を保持する。架空walk/claim/rootを生成しない。"
+          },
+          {
+            "id": "RECEIVE-AUTHORITY-UNREACHED",
+            "input_ja": "headerは形成したがauthority port未供給又は返却未観測でpublication.source_candidate未形成。原OSの有効兄弟を同時供給する。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "実input_capture/publicationのauthority port/decode診断とreceiving_issuesのpublication_unavailableを指す。未到達を資格不一致の実観測へ変換しない。",
+            "preserved_ja": "publication source/claim/rootをsource_inputs/resolverへ追加せず、原OS入力/source順・既に処理した兄弟と原CORE port captureを保持する。架空walkを生成しない。"
+          },
+          {
+            "id": "RECEIVE-ROOT-DECODE-UNREACHED",
+            "input_ja": "OS受領profile wrapperのroot decodeが不成立でpublication source処理へ到達しない。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "validation_capture.root_decodeと対応する実root/decode診断を指す。未到達port/record/qualificationの診断出現を捏造しない。",
+            "preserved_ja": "原input_captureを保持し新publication source_inputs出現・架空walk/claim/rootを作らない。既に捕捉した原CORE/OS材料と処理済兄弟があれば保持する。root不成立から未処理兄弟の成功を推測しない。"
           }
         ],
         "negative_controls": [
