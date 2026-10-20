@@ -12645,6 +12645,34 @@
         "received_proposals": "semantic_proposal.tag=formedの時だけ、その.source_locationと全indexが一致し同R5を満たすproposal_domain_occurrencesを原順で全copy。それ以外はliteral []、原全domain/captureはsource_basisに保持。",
         "proposal_basis": "formedならreceived_formed{source_location:元値}、unformedならreceived_unformed{diagnostic_refs:元全列}、unreachedならreceived_unreached{diagnostic_refs:元全列}"
       },
+      "received_candidate_difference_writer": {
+        "name": "received_proposal_set_conflict",
+        "scope_ja": "new received_formed kernel branchだけの私有技術writer。自由string型のcodeを選択した設計値で、外部既定/新要求/新受入gateへ昇格しない。legacy_inputの既存全値/旧code/predicateは無変更。",
+        "guard_ja": [
+          "proposal_basis=received_formed、同source_locationの2field domainと有資格raw/evidence/samecall/F02根拠が受領済みである。",
+          "元candidate.proposed_refsがpresent/non-nullかつ元型で比較可能で、元三集合比較規範に従う内容比較が受領domain.proposed_refsとの既知差を返した場合。",
+          "Refの未知member/partial carrierから既知差を推定しない。配列順/bytehash/件数だけをset差の根拠にしない。同値/重複の原出現はcaptureに保持する。"
+        ],
+        "ordered_members": {
+          "code": "received_proposal_set_conflict",
+          "contract_ref": "HELIXOS-L5-002-F02",
+          "axis": "template_set",
+          "state": "conflict",
+          "target_path": "candidate/proposed_refs",
+          "source_refs": "比較した受領domainの実publication source_ref全値。候補template Refから架空source_refを作らない。",
+          "backflow_owner": "CORE/OS002",
+          "preserved_observation": "同F02 TraceSectionResult.observationの全値。candidateの相反proposal値を原観測へ採用しない。"
+        },
+        "physical_path_mapping": {
+          "logical_target_path": "candidate/proposed_refs",
+          "receiving_whole_pointer": "/input_capture/record_trace_input/candidate/proposed_refs",
+          "kernel_input_pointer": "/input/candidate/proposed_refs",
+          "source_location_ja": "proposal_basis.source_locationに全indexが一致するreceived_proposals原出現と、同source_basis.value.validation_captureのsource_inputs/qualified_occurrencesを辿る。"
+        },
+        "diagnostic_order_ja": "既存同時findingとともにcode→対象Ref→logical target_pathの既存安定順へ配置。同codeの別原対象を消さない。全実比較元はcontext/captureに保持する。",
+        "non_registration_inference_ja": "candidate extra T2が当該提案集合に無いことだけから外部登録の不在又は必要lookup未解決を推論しない。必要な原ref解決を実際に試みたという別入力/原規範が無ければ未登録finding/unresolved_source_refsを作らない。",
+        "issue_responsibility_ja": "publication/source/raw/role/samecall/F02根拠の不成立は既存receiving_issuesとsemantic refsの責務。同一の原source qualification/role失敗をこのcandidate内容差findingへ重複変換しない。このrowは実formed原proposalとcandidateの独立既知差だけを扱う。"
+      },
       "branch_table": [
         {
           "basis": "legacy_input",
@@ -12767,8 +12795,8 @@
     },
     "trace_result_leaf_writer": {
       "contract_ref": "literal HELIXOS-L5-002-F02 for each元F02結果。",
-      "observation": "旧F02RecordObservationのproposed/selected/used/provenance各Fieldを原candidate/各role原sourceから旧比較どおり返す。新basis未形成時でも原candidate観測は保持するが、semantic_proposalは別にunformed/unreachedを保ち、rawcandidate値をqualified提案完成としない。",
-      "findings": "元failure_rules/比較優先規約が同入力に要求する全既知差/不足を元コードと全memberで保持しcode/targetref/pathで安定整列。新receiving_issue template名を新findingcodeへ変換しない。新source/同call/F02詳細不成立の全診断はreceiving_issues及びsemantic_proposal.diagnostic_refsへ保持する。",
+      "observation": "旧reference_resolution_contractとField規範に従い、F02RecordObservationは当該有資格原sourceから再構築できた値だけを返す。new received_formedでは指定した同domainのproposed_refsを原値で返し、received_unformed/unreachedではproposed_refs keyを省略する（明示[]又はcandidate値へ補完しない）。selected_refs/used_refsは独立の有資格OS原sourceで成立する範囲を継続する。provenance_refsは形成したproposalのproposed_source→有資格selected_source→有資格used_sourceの原role順に実供給Refだけを保持し、全role未供給時はkey省略する。元candidateの全8Field/presence/null/相反値はinput_captureとcomparison context/source_basisへ全保存する。raw candidateの保存をqualified提案集合観測へ代用しない。",
+      "findings": "元failure_rules/比較優先規約が同入力に要求する全既知差/不足を元codeと全memberで保持しcode/対象ref/pathで安定整列する。new received_formedにおける原proposalとcandidateの独立既知set差はshared_kernel_realization.received_candidate_difference_writerに従う。元arbitrary_fallbackのclaim predicateと異なる差へ同codeを流用しない。newpublication/source/raw/role/同call/F02根拠の同原因はreceiving_issues及びsemantic_proposal.diagnostic_refsへ保持し、旧findingへ重複変換しない。実必要ref lookup失敗が別に観測された場合は原既存比較規範に従い併存させるが、集合非所属だけから未登録/lookup未解決を推論しない。",
       "unresolved_source_refs": "当該比較が依存し未解決の実source_ref全原出現（newpublicationがあればその原source_refも含む）。未供給sourceへ架空Refを作らず、その理由は実receiving issueで保持する。",
       "effect_requests": "literal []。"
     },
