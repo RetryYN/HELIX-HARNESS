@@ -1305,7 +1305,7 @@
         }
       },
       "additional_properties": "closed_declared_carrier",
-      "meaning": "対象作成側への返却route/target finding memberは未実現。H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED参照。"
+      "meaning": "既存compare_f01のnative返却型を保持し、ここへroute/target finding memberは追加しない。作成側向け論理材料は新private f01_author_return_materialが同call返却と原引数を包む。実owner資格/配送は別の未成立範囲。"
     },
     "F02Arguments": {
       "kind": "record",
@@ -4934,8 +4934,8 @@
             "理由付きfindingと対象identityの結線",
             "作成側consumerへ渡す論理producer/返却recordと正式owner binding"
           ],
-          "current_carrier_limit": "F01Returnに作成側route/target finding recordは存在しない。L10の返却先の役割は対象作成側と確定しているが、その返却を値へ組み立てて出力していない。F04やB01の別返却memberをこの関数が供給したとはしない。",
-          "consequence": "原192全期待を保持した部分比較。作成側への返却義務の実現/実dispatch/全義務完了を表さず、この不足は資格供給だけの問題ではなく論理出力の未具体化を含む。"
+          "current_carrier_limit": "旧compare_f01/F01Return単体には作成側route/target finding memberは存在しない。新private f01_author_return_materialは同callの原引数・比較全値を包み、対象と元理由と対象作成側という役割を結ぶ返却材料を定義する。実owner資格/配送の供給は別であり新拒否gateにしない。",
+          "consequence": "原compare_f01の既存全期待は保持する。新private writerで根拠不足の対象作成側向け論理材料を具体化するが、実dispatch/実owner binding/F01全域・全義務の成立を示さない。旧native単体の返却型と不足記録は保持する。"
         }
       ]
     },
@@ -5848,8 +5848,8 @@
         "理由付きfindingと対象identityの結線",
         "作成側consumerへ渡す論理producer/返却recordと正式owner binding"
       ],
-      "current_carrier_limit": "F01Returnに作成側route/target finding recordは存在しない。L10の返却先の役割は対象作成側と確定しているが、その返却を値へ組み立てて出力していない。F04やB01の別返却memberをこの関数が供給したとはしない。",
-      "consequence": "原192全期待を保持した部分比較。作成側への返却義務の実現/実dispatch/全義務完了を表さず、この不足は資格供給だけの問題ではなく論理出力の未具体化を含む。"
+      "current_carrier_limit": "旧compare_f01/F01Return単体には作成側route/target finding memberは存在しない。新private f01_author_return_materialは同callの原引数・比較全値を包み、対象と元理由と対象作成側という役割を結ぶ返却材料を定義する。実owner資格/配送の供給は別であり新拒否gateにしない。",
+      "consequence": "原compare_f01の既存全期待は保持する。新private writerで根拠不足の対象作成側向け論理材料を具体化するが、実dispatch/実owner binding/F01全域・全義務の成立を示さない。旧native単体の返却型と不足記録は保持する。"
     },
     {
       "id": "H048-F03-AUTHOR-RETURN-NOT-MATERIALIZED",
@@ -5917,5 +5917,81 @@
       "DateControl以外の任意raw/parser/実clock/正式codec",
       "F01 role markerのunknown判定と語彙拒否の単独経路識別（語彙がmarkerを含む入力は未観測）。分類rawを追加したことと全predicate mutation検出を混同しない。"
     ]
+  },
+  "f01_author_return_material": {
+    "kind": "private_samecall_wrapper_material",
+    "authority_effect": "none",
+    "status": "not_authoring_not_adopted",
+    "gap_ja": "F01の対象別比較は既に定義済み。対象作成側への理由付き返却を入力targetと同call比較に結ぶ論理出力が未具体化。実資格/配送未観測だけを欠陥や完成gateにしない。",
+    "meaning_not_changed_ja": "L10 cases/47 failure_observationとL4 contracts/0 output_meaningsの実現方法。13役割や比較順位/曖昧語/例外規範・public compare_f01/F01Returnを変更せず、命名採用/rename/permissionを増やさない。",
+    "existing_aliases": {
+      "arguments": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/F01Arguments"
+      },
+      "comparison": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/F01Return"
+      },
+      "target": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/F01Arguments/fields/packet/type/fields/targets/type/items"
+      },
+      "presence": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/presence_contract"
+      }
+    },
+    "types": {
+      "F01AuthorReturnReason": {
+        "kind": "enum",
+        "values": [
+          "unknown_role",
+          "missing_target_meaning",
+          "missing_basis",
+          "missing_consumer",
+          "unknown_consumer",
+          "missing_scoped_exception"
+        ],
+        "basis_ja": "全6literalは既存compare_f01 stepsとfinite_reference definitions/14の根拠不足返却をそのまま参照。unknownを既知役割へ補完しない。新汎用Causeではない。"
+      },
+      "F01AuthorReturnEntry": {
+        "kind": "closed_record",
+        "ordered_fields": {
+          "target_index": "Natural (0-based original target occurrence)",
+          "target_id": "existing target.id nonempty string",
+          "recipient_role": "literal target_creator",
+          "reason": "F01AuthorReturnReason",
+          "target_pointer": "RFC6901 pointer relative to this new full return root",
+          "comparison_pointer": "RFC6901 pointer relative to this new full return root"
+        },
+        "scope_ja": "target_creatorはL10既決役割の技術表記。実owner ID/address/source_ref/authority/配送portを表さない。targetはargumentsからlocatorで全値を辿り重複埋込しない。"
+      },
+      "F01AuthorReturnMaterial": {
+        "kind": "closed_record",
+        "ordered_fields": {
+          "arguments": "alias existing F01Arguments (whole immutable capture)",
+          "comparison": "alias existing F01Return (whole actual same-call return)",
+          "author_returns": "list<F01AuthorReturnEntry> in original target order",
+          "actual_dispatch": "literal false"
+        },
+        "boundary_ja": "new private material only。既存F01Returnにfieldを追加しない。actual_dispatch=falseは無作用の明示であり資格boolや新成功判定ではない。"
+      }
+    },
+    "wrapper": {
+      "name": "compare_f01_with_author_returns",
+      "visibility": "private",
+      "signature": "(packet:F01Arguments.packet, context:F01Arguments.context) -> F01AuthorReturnMaterial",
+      "entry_ja": "既存typed引数域だけ。compare結果/expected/fixtureID/資格boolを外部引数として受けない。",
+      "steps_ja": [
+        "入力packet/context全値を既存presence/member順のままargumentsへ保持。exception.owner/consumersから対象作成側の実identityを作らない。",
+        "既存compare_f01(packet,context)を実1回呼び、実返却全値をcomparisonへ保持。比較条件やnative理由の再評価/優先変更はしない。",
+        "input targetsを原順で走査し、既存unique nonempty idを同call comparison.target_resultsのexact keyへ対応させる。6理由literalに等しいtargetだけ返却材料1件を作る。candidate_only文字列を根拠不足へ変換しない。",
+        "target_indexは原index、target_idは原id、recipient_role=target_creator、reasonは該当実比較値をcopy。target_pointer=/arguments/packet/targets/{index}、comparison_pointer=/comparison/target_results/{escaped id}。RFC6901 escapeは~→~0、/→~1の順。object member順は型宣言どおり。",
+        "全target材料を原順で返し、有効兄弟の比較結果/原inputも保持。canonical_decided_hereとnative effects/Qは元返却のまま、actual_dispatch=false。"
+      ],
+      "impossible_or_outside_ja": "既存typed target一意IDと既存same-call比較の関係を条件とするwriterで、任意F01Returnを受ける汎用validatorではない。型外・native契約違反・未供給実owner資格を新理由/偽native返却へ変換せず、このsliceが外側codec/実配送を定義したとしない。"
+    },
+    "impossible_or_outside_ja": "既存typed target一意IDと既存same-call比較の関係を条件とするwriterで、任意F01Returnを受ける汎用validatorではない。型外・native契約違反・未供給実owner資格を新理由/偽native返却へ変換せず、このsliceが外側codec/実配送を定義したとしない。"
   }
 }
