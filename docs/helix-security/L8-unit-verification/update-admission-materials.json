@@ -74983,7 +74983,7 @@
         "operation_effect": "none"
       }
     },
-    "reconstruction_contract": "base_refをdeepcopyし、replacementsの順に既存dict-key pathを全値置換。配列はwhole置換。型変換せずcanonical UTF8 JSON bool/number区別とSHA256で全input/outputを照合。"
+    "reconstruction_contract": "先に/shared_input_records_materializationを同じ文書snapshotのinput_packetsへ適用し全records原値を復元する。その後、base_refをdeepcopyし、replacementsの順に既存dict-key pathを全値置換。配列はwhole置換。型変換せずcanonical UTF8 JSON bool/number区別とSHA256で全input/outputを照合。"
   },
   "oracle_contract": {
     "independence": "入力base packet・raw replacement・expected output base packet・output replacementは全て固定原L9 sourceから取得する。L5 pure evaluatorの計算全fieldを展開後oracle wholeと独立に比較する。",
@@ -592315,6 +592315,15 @@
     "consumer_read_positions": "operationsのposition各records member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
     "relation_to_existing_contract": "fixture_packets.reconstruction_contract（base_ref deepcopy＋replacements全値置換＋canonical照合）は保持し変更しない。本節はinput_packets内の同一原記録に限り、anchor literalと標準copyで復元する意味の再導出を追加する。復元はreconstruction_contractの既存照合・型検査の前に行い、復元後の論理値を既存契約へ入力する。expected_output_packets・casesの独立期待・expected_intermediate_valuesは入力anchorへ統合しない。",
     "preservation": "root literal・独立期待・hash・履歴・原順序・反復・欠落/null/空・元bytesを保持。operations+説明を除けば元文書全値・raw bytesへ逆復元できる。",
-    "authority_effect": "なし。global resolver・DSL・新gate・要求意味・製品実装は追加しない。"
+    "authority_effect": "なし。global resolver・DSL・新gate・要求意味・製品実装は追加しない。",
+    "validation_ja": "anchor canonical SHA-256と15原memberを照合し、全31positionが存在するrecords:null placeholderであることを展開前に確認する。各copyはdeepcopyで、型/member順/原配列順を維持する。欠落anchor/対象position・異なるanchor hash・非null placeholderを元入力の成功へ補完せずmaterialization不成立とする。これは格納表現の復元条件であり製品入力の新gateではない。",
+    "source_and_failure_basis_ja": {
+      "legacy_source": [
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md §0–§1: 意味署名・consumer/oracleを保持するexternalize/commonize",
+        "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md §1–§2: JSON意味正本・catalog・生成viewの区別"
+      ],
+      "current_failure": "PR3432の既存value_refとの接続説明漏れと、PR3434の現在参照追随漏れを比較入力とする。既存reconstruction_contractにも先行復元順を明示し、現在参照と固定履歴を区別する。",
+      "change": "同一input原記録の格納表現だけ再導出。独立期待/元case条件/既決意味/authority/実装readinessは保持。"
+    }
   }
 }
