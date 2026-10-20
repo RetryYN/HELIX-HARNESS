@@ -82,7 +82,7 @@ archive rootで `rg -uu` により5代表のpath/basenameを検索し、scanner�
 | DRDM L5/L6 → 対test-design | `docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md:15` / `L6-design-refactoring-domain-model-unit-test-design.md:15` が設計を`pair_artifact`として参照。実行testと区別 |
 | DRDM L5/L6 → catalog/registry | `docs/design/design-catalog.yaml:334–335,433,472`、`docs/governance/infinity-loop-design-slice-registry.md:56`。所在/対応関係で、runtime接続ではない |
 | scanner → doctor | `src/doctor/index.ts:557–561`のimport、`:5568–5573`の`analyzeRefactorCandidates(loadRefactorCandidateInputs(...))`と`candidateRank` call |
-| scanner → feedback projection | `src/state-db/feedback-projections.ts:6–10`のimport、`:67–79`の3symbolのcall。旧runtime側の利用であり現runtime consumerではない |
+| scanner → feedback projection | `src/state-db/feedback-projections.ts:4–10`のimport、`:67–79`の3symbolのcall。旧runtime側の利用であり現runtime consumerではない |
 | disposition JSON → disposition test | `tests/feedback-refactor-disposition.test.ts:21–30`が`docs/governance/feedback-refactor-disposition.json`をreadする。`:55–63`はmanifest内のpath/hash照合 |
 | disposition JSON → 別reader | `tests/l3-downstream-queue.test.ts:27`も同JSONをreadする。この共有データへの依存を、disposition test本体のimportと呼ばない |
 | disposition test → guard設定 | `config/repo-wide-guard-tests.v1.json:14`の対象path列挙。テスト実行済みやpassは示さない |
@@ -105,3 +105,20 @@ PLAN名や監査文書に同じ文字列があるだけではcall edgeを認定�
 現行の比較先は固定revisionの`docs/helix-harness/L2-requirements/product-requirements.md:55–56`、`docs/helix-os/L2-requirements/governance-requirements.md:58,60,294–295`。対応する対設計はHARNESS005のL8 `verification-discipline.json`。OS側の対設計への詳細edgeは実物を個別に照合して結ぶ。Concept/七原則と既存FTへの対応は保持し、表の比較候補から要求・版・担当・authorityを新規採用しない。
 
 残件は全関連asset抽出、旧test-designのcitation実物、推移consumer closure、意味atomと現行対設計の全面対応、PHCAP inventoryの再評価である。旧CLI/hook/runtime/test/CIは実行せず、本追補だけでIssue #1906をcloseしない。
+
+
+## 2026-10-20 追補2：DRDM対test設計のcitation実在照合（#1906続き）
+
+確認日: 2026-10-20。固定base `72a2d223fe8c8b4016532432a87ab6555e11fd07`。対象 `archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md`（86行、IT-DRDM-001〜012）と `L6-design-refactoring-domain-model-unit-test-design.md`（91行、U-DRDM-001〜019）。引用pathの所在だけで実行・pass・旧能力を推論しない。
+
+### citation先の実在照合（全31 scenario・11+19の引用file）
+
+L5の12 scenarioが参照する11のintegration test fileと、L6の19 functionが参照する17のunit test fileは、`tests/` 直下566件の `.test.ts` 内に**全件missing**。`tests/design-refactor*.test.ts`・`tests/domain-*.test.ts` に別名候補もなく、`tests/` 内の `ui-domain-*.test.ts`・`feedback-refactor-disposition.test.ts`・`l3-*.test.ts`等の現存fileはcitation名・対象契約と一致しない。missingの完全path・source行・fixed revisionは各test-design文書のcitation列から一意に逆引きできる（例: IT-DRDM-005→`tests/design-refactor-transaction.integration.test.ts`、U-DRDM-018→`tests/design-refactor-fence-transaction.test.ts`、共にdesign文書内の行参照で確定）。
+
+### DRDM公開functionの実装/test参照
+
+`src/`・`tests/` をrgで検索した結果、`buildDesignSemanticSignature`、`classifyDesignRefactorCandidate`、`planExternalize`、`planCommonize`、`planObjectize`、`planSemanticRename`、`validateBehaviorPreservation`、`validateConsumerCompatibility`、`routeDesignDelta`、`validateRefactorFence`、`parseDomainObjectVersion`、`validateDomainRoleInvariant`、`validateDomainDependencyDirection`、`decideCanonicalDomainName`、`bindDomainSymbolAndOracle`、`commitDesignDomainBundle`、`validateOracleTrustBinding`、`commitRefactorPlanFence`、`commitRefactorTransformVerification` のいずれもsrc/tests内で参照・実装・testを検出しない。DRDM L5/L6設計で公開するfunctionへの実装/test参照は、scanner系 `src/state-db/refactor-candidates.ts`・disposition test `tests/feedback-refactor-disposition.test.ts`（直前PR3438で実体確認済みの代表scanner/dispositiontest）とは別系列であり、DRDM設計の未実装設計契約であることを分ける。
+
+### 対応旧failureの分類
+
+DRDMのunit/integration test設計はconsumer/oracle/forged/stale拒否の**未実装設計**であり、実検査ではない。citation先のtest file不在とfunction実装不在を、旧failureの防止機構が「設計済みだが実物なし」として記録する。実在するscanner系（`refactor-candidates.ts`のimport/callは `src/state-db/feedback-projections.ts`・`src/doctor/index.ts`・`src/state-db/refactor-candidates.ts`自身等）は旧runtime側の実consumerであり、現runtime consumer・DRDM全test存在・全consumer閉包・runtime成立・L7完了・Issue closeを主張しない。
