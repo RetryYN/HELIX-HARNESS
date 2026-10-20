@@ -162713,7 +162713,7 @@
     "authority_effect": "none",
     "note": "additional_cases 1-5,15,16の同一context_packetをcase0 anchorから標準RFC6902 copyで復元する提案。余分なrefを持つcontext_fixtures/6/source_packetは誤用しない。null placeholderをcopyで置換し既存fixture構築の全値pointer/hash照合の前に適用。typed引数渡し・遅延resolver・新authorityではない",
     "restoration_order": "copy適用→既存fixture構築の全値pointer/hash照合",
-    "consumer_connections": "個別input/独立expected/case idは原値・原順のまま",
+    "consumer_connections": "復元後の論理consumerは/unseen_whole_result_oracles/additional_cases/{1,2,3,4,5,15,16}/context_packet。各caseのcontext_packetをcase0の同じ役割のwrapperからcopy展開し、その後に同nodeのcomparisonに従ってinput_packet/candidate_argument/expected_resultの全値・hashを照合する。既存L5 trace-impact-reconfirmation.jsonの/compound_context_contractが分離するcontextと業務入力の責務を保持し、/context_fixtures/6/source_packetの余分なrefを導入しない。所在説明は実装済みreaderの主張ではない。",
     "operations": [
       {
         "op": "copy",
