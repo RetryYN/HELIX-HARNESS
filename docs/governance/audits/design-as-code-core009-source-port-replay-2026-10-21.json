@@ -1,0 +1,146 @@
+{
+  "evidence_kind": "static_design_refactor",
+  "authority_effect": "none",
+  "subject": "HARNESS-L3-009-F03 source-envelope引数結線",
+  "issue_references": [
+    3502,
+    3403,
+    3139
+  ],
+  "base_revision": "5812c5cf9f41c92d69bcb319fd66f92b4dc8839c",
+  "scope_ja": "既知3473修正前後の設計routingを再現し、現在の二重契約を既存正本への参照へ寄せる。新しい現行設計欠陥や製品コードTDDの実行証拠を主張しない。",
+  "upper_pair_and_independent_oracle_refs": [
+    {
+      "revision": "5812c5cf9f41c92d69bcb319fd66f92b4dc8839c",
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/contracts/4/source_result_reference_projection/input_roles/2",
+      "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+      "selected_canonical_sha256": "9ab301fba312e447239114167cbc6204fc3a1fa46d48f59db5c0736a32dd6336"
+    },
+    {
+      "revision": "5812c5cf9f41c92d69bcb319fd66f92b4dc8839c",
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "pointer": "/cases/4/source_result_reference_cases/cases/5",
+      "file_sha256": "959b55f291a0e6a8146bfa768e014a2e1a18876973a93a884baf5cab45bde157",
+      "selected_canonical_sha256": "750c2b3bb07a3ef4ce4cb941276586009dc1be1267870dade159dd0855f128b2"
+    },
+    {
+      "revision": "5812c5cf9f41c92d69bcb319fd66f92b4dc8839c",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/12/caller_binding/source_envelopes",
+      "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
+      "selected_canonical_sha256": "b9f150c5c5b7f71eb0ab1d7316e14bd6baea2910d123446553426ddcb9cb1987"
+    },
+    {
+      "revision": "5812c5cf9f41c92d69bcb319fd66f92b4dc8839c",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "pointer": "/source_result_reference_projection/producer_consumer_chain/source_port_argument_binding_oracles",
+      "file_sha256": "1af973ba998968c93eeb19c03cfba0b93575bcabe54ab560deb2f9ce3e10cb1a",
+      "selected_canonical_sha256": "8526ee0edc47ad4461dec95e64a181935b4a887c1e96a01cc57c544a9c9ea880"
+    }
+  ],
+  "historical_replay": {
+    "red_revision": "279c1771cd93da6eb86ada26855dcc55c5a11494",
+    "green_merge": "c4b662e214863308809183006766d3990f32709a",
+    "old_mapping_pointer": "/source_result_reference_projection/pipeline_binding/projection_input_mapping/2/value",
+    "old_mapping_literal": "同じvalidated.input.sources raw array。",
+    "witness_ja": "ApplicationInput.sourcesが存在しても独立portは別引数である。旧結線はapplication側から補充し、既存3対照のいずれでも原port値/Absent/null保持に一致しない。修正済み結線は原portを別入力として保持する。",
+    "chronology_limit_ja": "既知欠陥の歴史的再現であり、当時未修正だった時点に今回のfreezeや実行を行ったとの主張ではない。現在の設計に新しいRedがあるとの主張でもない。",
+    "materialization_ja": "L8のsource_port_argument_binding_oraclesの固定source import_planをGitから取得。source_overlay_preparationの既存2addを施し、standard_parameter_copy_opsとcasesの既存remove/replaceだけで3引数wholeを再構成。期待hashは既存case literalを使い、候補出力から生成しない。旧結線の静的追跡ではsource_envelopesだけをapplication_input.sourcesから選ぶため、同じ3期待とは不一致。製品/domainの評価器は実行していない。",
+    "cases": [
+      {
+        "case": "PORT-PRESENT-DISTINCT-FROM-APPLICATION-SOURCES",
+        "expected_canonical_sha256": "850ed0460692a9e8c83c146dfdd8c8d6f73bdc18ef0ce314ef240f30d0cc6ff8",
+        "expected_ordered_sha256": "7d316cd0eed36e521f94b91fd799f03f71c81aba5b8311312a244bd6771eb53e",
+        "historical_old_mapping_canonical_sha256": "816618e15b43273d66a8d9503d2940e8a52d95e9353c4c7d9ed137e8f4b7b03f",
+        "historical_old_matches_expected": false,
+        "corrected_mapping_preserves_expected": true,
+        "expected_port_presence": "present"
+      },
+      {
+        "case": "PORT-ABSENT-WITH-APPLICATION-SOURCES-PRESENT",
+        "expected_canonical_sha256": "94b688e3281b8e522a43e4073b8abcf6071489ddfd38902ef76d4abb9efd5fa5",
+        "expected_ordered_sha256": "69b7912aa4fa485a75bdbb0852cfd6fccae7be849a4af12bce9a7f853de118c6",
+        "historical_old_mapping_canonical_sha256": "816618e15b43273d66a8d9503d2940e8a52d95e9353c4c7d9ed137e8f4b7b03f",
+        "historical_old_matches_expected": false,
+        "corrected_mapping_preserves_expected": true,
+        "expected_port_presence": "absent"
+      },
+      {
+        "case": "PORT-EXPLICIT-NULL",
+        "expected_canonical_sha256": "5cd4d7000ecc5aca15c8bdef7d9263cc11aba18a903457d847b7dd17033e3594",
+        "expected_ordered_sha256": "9be969849acd6532541dd276cfe9a9379e73e0c24705279b104ef2d712b08dca",
+        "historical_old_mapping_canonical_sha256": "816618e15b43273d66a8d9503d2940e8a52d95e9353c4c7d9ed137e8f4b7b03f",
+        "historical_old_matches_expected": false,
+        "corrected_mapping_preserves_expected": true,
+        "expected_port_presence": "null"
+      }
+    ]
+  },
+  "current_refactor": {
+    "canonical_pointer": "/functions/12/caller_binding/source_envelopes",
+    "canonical_literal_sha256": "ea22d86b9efbeaafcf8795ae6523b69d8a1d8ad01d8af29d07b89063640a5236",
+    "allowed_scalar_changes": [
+      {
+        "pointer": "/source_result_reference_projection/pipeline_binding/projection_input_mapping/2/value",
+        "before": "独立source-envelope provider portのraw returnを呼出側が明示束縛する。ApplicationInput.sources、computed output、L9 expectedから生成・抽出しない。port未供給時はoptional input memberをAbsentのまま渡す。",
+        "after": "入力契約の正本は/functions/12/caller_binding/source_envelopes。そこに定義された原port値・未供給・禁止補完の規則をそのまま適用する。"
+      },
+      {
+        "pointer": "/source_result_reference_projection/pipeline_binding/invocation_chain_ja",
+        "change_ja": "source_envelopes節だけを既存正本参照へ集約。他の引数・DAG・caller・返却の原文は不変。"
+      }
+    ],
+    "canonical_value_unchanged": true,
+    "two_scalar_inverse_restores_original_l5_raw": true,
+    "source_case_definitions_and_expected_wholes_unchanged": true,
+    "consumer_metadata_inverse_restores_original_l8_l9_raw": true,
+    "refactor_negative_check_ja": "既存正本pointerの解決と原literal一致を確認する。参照欠落/別pointer/正本値改変は同等性成立にしない。これは参照保全の検査であり新しい設計Redではない。",
+    "metadata_update_groups": [
+      {
+        "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "before_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
+        "after_sha256": "752b29fa6760225fc63a88c87f2333bbb8854f6ccf721e467b6bb76e8975fd69",
+        "leaf_count": 1,
+        "scope_ja": "このbaseline文書内でbefore_sha256を値とする現行内容参照leafのみ。履歴固定参照を含まない。Git差分に各位置を保持。"
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "before_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
+        "after_sha256": "752b29fa6760225fc63a88c87f2333bbb8854f6ccf721e467b6bb76e8975fd69",
+        "leaf_count": 20,
+        "scope_ja": "このbaseline文書内でbefore_sha256を値とする現行内容参照leafのみ。履歴固定参照を含まない。Git差分に各位置を保持。"
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "before_sha256": "959b55f291a0e6a8146bfa768e014a2e1a18876973a93a884baf5cab45bde157",
+        "after_sha256": "5c37b9c79390e0ef0d26e356a286649484a613ddfdba714963c6982e2a335d24",
+        "leaf_count": 2,
+        "scope_ja": "このbaseline文書内でbefore_sha256を値とする現行内容参照leafのみ。履歴固定参照を含まない。Git差分に各位置を保持。"
+      },
+      {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "before_sha256": "3a1579eb39caa037bf567e4d3c3079005aec8200e811ca8226ca57639a5f8792",
+        "after_sha256": "07d924b11087a5a33b92544ececdde7608485805d6c8811fdf5c45716c2dc775",
+        "leaf_count": 1,
+        "scope_ja": "このbaseline文書内でbefore_sha256を値とする現行内容参照leafのみ。履歴固定参照を含まない。Git差分に各位置を保持。"
+      }
+    ],
+    "metadata_total_leaf_count": 24
+  },
+  "legacy_comparison": {
+    "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+    "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+    "section": "0-1",
+    "preserved_ja": "責務・consumer/oracleと要求意味を保持する局所commonize。",
+    "changed_ja": "既存の独立port契約を一か所の正本へ寄せ、呼出側の重複定義を参照化する。旧runtime/DB/固定role/gateを移管しない。"
+  },
+  "limits_ja": [
+    "L4/L9を制約とする一つのL5結線の静的再現・Refactorに限る。",
+    "自動的な設計導出エンジン/Design CIや全L5/L8完成の実証ではない。",
+    "全projection結果/全caller/実資格/CONNECT配送/OS保存/製品実行/受入は未証明。",
+    "静的参照追随24leafは意味変更24件ではない。",
+    "現在の新Redが未確認であることは保持する。"
+  ]
+}
