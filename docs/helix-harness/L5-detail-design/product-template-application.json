@@ -21821,7 +21821,7 @@
       "pointer": "/general_proposal_exchange_verification",
       "binding": "same_candidate_revision"
     },
-    "dependency_ja": "929a862cのbasic候補（PR3431独立review待ち）に依存する詳細draft。main採択・詳細pair成立・実行成立を称さない。",
+    "dependency_ja": "作業開始時は929a862cのbasic候補（PR3431独立review待ち）に依存した。現在はbasicがmain de517463f8dc2ca1b0f0605f07e3e7dc6a016bf2へ採択済みであり、型/規範の固定sourceは当時の929a862cを保持する。対象4旧rawが採択mainと同値であることを静的確認した。本詳細pair/製品実行の完成は称さない。",
     "scope_ja": "同一F02比較詳細export、同call旧N保全、一般body、owner publicationまで。OS受領は対OS詳細へ接続し、一つの能力を分割別意味にしない。",
     "fixed_existing_type_aliases": {
       "Natural": {

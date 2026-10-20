@@ -11854,7 +11854,7 @@
       "pointer": "/core_proposal_receiving_verification",
       "binding": "same_candidate_revision"
     },
-    "dependency_ja": "929a862cのbasic候補（PR3431独立review待ち）に依存。OSの既存公開schema/6facet/三集合/selected・used責務を変更しない。",
+    "dependency_ja": "作業開始時は929a862cのbasic候補（PR3431独立review待ち）に依存した。現在はbasicがmain de517463f8dc2ca1b0f0605f07e3e7dc6a016bf2へ採択済みで、固定sourceは当時の929a862cを保持する。OSの既存公開schema/6facet/三集合/selected・used責務は変更せず、本詳細pair/製品実行の完成は称さない。",
     "fixed_existing_type_aliases": {
       "Natural": {
         "kind": "exact_existing_type_alias",
