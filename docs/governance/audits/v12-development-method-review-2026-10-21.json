@@ -1,0 +1,347 @@
+{
+  "document_id": "V12-DEVELOPMENT-METHOD-REVIEW-2026-10-21",
+  "kind": "research_premise",
+  "issue": 3502,
+  "source_main": "c41c755fb718a94b1765020fc9b47492f8373717",
+  "authority_effect": "none",
+  "status": "source_comparison_and_proposed_method_experiment_unexecuted",
+  "question_ja": "上位Vペアを下位設計の独立制約として使い、重複仕様を減らして初回の実装TDDへ進めるか。",
+  "conclusion_ja": "全92親430義務を順に詳細化・小分け修正する進め方から、選択した一機能と必要接続に限定し、上位期待→最小設計→実テスト→変更実験へ進む方法を比較する。既存層や要求の意味はこの監査では変更しない。",
+  "issue_inputs": [
+    {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3502",
+      "role": "調査・改定案の依頼。採用や実装許可ではない。"
+    },
+    {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3502#issuecomment-6293675859",
+      "role": "上位Vペアによる下位設計駆動と最小実験の入力。"
+    },
+    {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3502#issuecomment-6294008932",
+      "role": "方向付き契約合成・経路整合の研究入力。数学的合同や正式用語の採用ではない。"
+    }
+  ],
+  "fixed_repository_sources": [
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/concept/helix-concept.md",
+      "raw_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/concept/helix-principles.md",
+      "raw_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/governance/decisions/harness-v-valley-process-po-decisions-2026-09-26.md",
+      "raw_sha256": "650264f78387d317eb5dec7a58c14197ac2c97ef712f05cd30ce5e11869cd5ea"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/governance/decisions/l4-l6-design-unlock-and-common-kernel-trace-po-decision-2026-10-08.md",
+      "raw_sha256": "2ff59b61c775b9e609832f1e93961a4e50c54a959208b9edbc66524e15f0d8f8"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md",
+      "raw_sha256": "dc796ab662f7341edcc3d3b403ccfd6d205b842bf48755b8e29c8a2310d75198"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/governance/decisions/redfirst-adoption-po-decision-2026-10-11.md",
+      "raw_sha256": "5a4c8d85acc89166b68868824fdffd09e2c50810dae463e1724c5e146cc1cc05"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "raw_sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "raw_sha256": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "raw_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "raw_sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L6-function-design/v12-layer-contract.json",
+      "raw_sha256": "f934eb3c0ebefc025a8ef0b0598a14b3b926b3890b8ee5d75533b13e5df55bd9"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L7-function-verification/v12-layer-contract.json",
+      "raw_sha256": "8b4de723ac73578aae457e63c1bccfcb6c6f1952cae1d6862e4d8b69087b2f3d"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+      "raw_sha256": "c26879d003cb8f56fca89057b341d783e102ee25f94efb6c560fae6a465c0137"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "raw_sha256": "9b3770fa842f24c550bd6a0b96aff26ca63a5ede24368a3cd95e3d7d8b27172a"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "raw_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "raw_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "raw_sha256": "182f9a05bb76644384f9902f136ec7fb437a60eb77762517de30c590da4b5f11"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "raw_sha256": "d55e740bc956bcfa1d88159c3becf48846f4f4c6aed7719cee44433f9bcc6ced"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "raw_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "raw_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "raw_sha256": "e08f896a3581f88fbdf7e6bcbda55f525cac13a53e36d525744f5ec455cdce65"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "observation_ja": "HARNESS001 L5/functionsはF01/F02/B01のI/Oとstepsを定義し、L6/function_designは同じ3symbolの契約を再記述する。",
+      "correction_candidate_ja": "同じ意味は一つの正本へ寄せ、参照する。L6固有のcall-order、purity/retry、failure/recovery、authority境界は失わず移管対応を先に示す。単純にL6全削除とはしない。"
+    },
+    {
+      "id": "F2",
+      "observation_ja": "H001のL6は64,706bytes、L7は628,263bytesの設計/対検証設計文書。L7には3関数に加えrepeat群、19 primary_call_oracles等があり、単なる空の検証計画ではない。一方、これらの存在は実行ログ/Red/Greenではない。",
+      "limit_ja": "692,969bytesは2文書の物理量であり、全量が重複・削減可能という測定ではない。既存oracleの固有情報を監査せず削除しない。"
+    },
+    {
+      "id": "F3",
+      "observation_ja": "現在のConceptは設計L4〜L6、実装、検証L7〜L10と6対を定める。L6をテスト専用、L7を実装専用へ置換する案はこの層責務に影響する。",
+      "correction_candidate_ja": "意味変更案と、意味を保った重複除去/運転改善を分ける。新旧対応と影響を具体化してから該当authorityへ戻す。"
+    },
+    {
+      "id": "F4",
+      "observation_ja": "9/26原案にはL6実装/L7TDD ClosureやImplementation→Redの表記があるが、同日の記録は要求アイディアであり、それだけで全表記を採択しない。10/11 REDFIRST Aは凍結→実装前Red→最小本体実装→Greenを採用している。",
+      "limit_ja": "過去にPOがL6をテスト設計へ変更したexact記録は今回の保存資料検索では未特定。未保存GUI会話まで不存在と断定しない。"
+    },
+    {
+      "id": "F5",
+      "observation_ja": "10/8の広い設計解禁は10/10で撤回され、10/12は対象前提形成から実物受入までの限定順序を採用した。",
+      "consequence_ja": "全親閉包を一律の実装開始条件にせず、対象経路に実際に必要な承認・設計・oracle・実操作条件だけを照合する。文書のdraft語だけでauthorityを判断しない。"
+    }
+  ],
+  "proposed_work_sequence": [
+    {
+      "step": 1,
+      "purpose_ja": "一機能を選ぶ",
+      "action_ja": "初回循環032→009→002から、必要な知識の不足を適用成功/義務完了へ変換しない一経路を選ぶ。対象外の詳細化や容量削減は開始条件にしない。"
+    },
+    {
+      "step": 2,
+      "purpose_ja": "上位の対で期待を先に決める",
+      "action_ja": "L2/L11→L3/L10→L4/L9の要求・受入・責務・不変条件・独立反例を固定する。L5はL4の設計と独立L9条件の双方を満たすよう最小化する。"
+    },
+    {
+      "step": 3,
+      "purpose_ja": "設計を反例で絞る",
+      "action_ja": "同じ期待に対する具体的不成立を設計Redとして示し、最小修正で解消後、意味/独立oracleを保って設計Refactorする。現設計で欠陥を再現できなければ設計Red未証明と記録する。新欠陥を捏造しない。"
+    },
+    {
+      "step": 4,
+      "purpose_ja": "実テストへ接続する",
+      "action_ja": "既存の独立期待をtestへ接続し、条件の成立した範囲で実装前Red→最小実装Green→Refactor→回帰Greenを実行する計画を作る。構文/環境エラー、skip、未実行、自己一致をGreen/対象欠陥のRedとしない。"
+    },
+    {
+      "step": 5,
+      "purpose_ja": "接続と変更を確かめる",
+      "action_ja": "局所、必要な接続、構成体固有の義務を区別して観測する。原子変更と接続片側の変更を一つずつ試し、固定側の意味・失敗・義務が保たれるか、必要な再検証だけで済むかを測る。"
+    }
+  ],
+  "artifact_responsibility_comparison": [
+    {
+      "place": "L3/L10",
+      "keep": "承認対象の意味と総合の独立期待",
+      "reduce": "下位設計出力から期待を再生成しない"
+    },
+    {
+      "place": "L4/L9",
+      "keep": "構成/責務/接続と、その接続固有の独立観測条件",
+      "reduce": "下位で証明したことを重複実行せず、上位固有の義務を残す"
+    },
+    {
+      "place": "L5/L8",
+      "keep": "詳細型/I/O/failureと単体の独立期待",
+      "reduce": "同じ関数仕様や全fixtureを別層へ複製せず参照する"
+    },
+    {
+      "place": "L6/L7現行",
+      "keep": "必要な関数粒度契約と対検証、TDD実行証拠への接続",
+      "reduce": "L5と同じ仕様の独立再記述を減らす。既存19oracle等の固有意味は保全する"
+    },
+    {
+      "place": "L6 Red / L7 Green+Refactor案",
+      "keep": "実装前Red・最小Green・意味保存Refactorの順序",
+      "reduce": "層責務の変更案として既決Concept/L2/trace/consumerへの影響を別に提示する。現行定義へ自動適用しない"
+    },
+    {
+      "place": "実行証拠",
+      "keep": "対象commit/テストID/凍結oracle/環境/exit/ログ/失敗理由/未評価範囲",
+      "reduce": "一回の実行原記録を対象範囲から参照する。同じログを階層ごとに再保存・別正本化しない。正式OS記録の全能力完成を純局所testの新ゲートにしない"
+    }
+  ],
+  "directional_contract_comparison": {
+    "local_ja": "同一対象/版/scopeで、提供側の保証が受領側の前提を満たすかを見る。未供給やunknownを無条件に合格にしない。",
+    "refinement_ja": "L5がL4の責務/不変条件と独立L9の観測条件を失わないかを見る。静的な対応は実L9成功ではない。",
+    "path_ja": "欠落→適用候補→案件義務という経路全体で、同じ欠落理由/対象/未完状態が維持されるかを見る。局所2辺の合格だけで全経路成立を推定しない。",
+    "change_ja": "固定した上流意味と無関係なconsumerを改版せず、影響する契約/oracleだけ更新できるかを見る。影響不明なら検証範囲を拡げる。",
+    "not_introduced": [
+      "全域edge registry",
+      "新しい必須辺schema",
+      "専用DSL/形式検査エンジン",
+      "数学的な合同/可換性/全域正しさの証明という主張"
+    ]
+  },
+  "minimal_experiment": {
+    "scope": "BRAIN032→CORE009→OS002の一つの知識不足が成功へ誤昇格しない経路",
+    "status": "plan_only_local_semantic_item_identified_end_to_end_binding_unproved",
+    "independent_expectation_ja": "選択したrequired field.definition=missingを別Patternのrequired inputで補わず、元の定義欠落を保持する。F03の定義済みfieldに対する製品値unknownは別の対照であり本局所実験の対象外。後続CORE/OSでもこの欠落を成功/完了へ変換しないかを接合後に確認する。",
+    "before_execution": "まず選択するactual fieldと局所の要求/対oracle、実装対象と局所依存を固定する。接続と構成体の観測対象は、その辺の接合を確認した段階で固定する。未接合の後段までを純局所test開始の新ゲートにしない。",
+    "not_claimed": [
+      "設計Red/Green実証",
+      "製品Red/Green/Refactor実観測",
+      "実接続成功",
+      "OS記録/PO受入/0.1完成"
+    ],
+    "selected_semantic_item_ja": "required fieldの定義そのもの。JSON key/type/wireはこの意味項目から生成しない。",
+    "exact_existing_oracles": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/1",
+        "id": "HELIXBRAIN-L3-032-F02"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/1",
+        "id": "HELIXBRAIN-L10-032-F02"
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointer": "/cases/3/negative_cases/1",
+        "id": "HELIXBRAIN-L8-032-F02-NEG-02"
+      },
+      {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/3/negative_cases/1",
+        "id": "HELIXBRAIN-L9-032-F02-NEG-02"
+      }
+    ],
+    "exact_expected_ja": "required field.definition はmissingのまま。別Patternのrequired inputで補えず、元field単位不足を保持し、knowledge_owner返却、side_effect_count=0。実行観測ではなく既存期待。",
+    "seam_limit_ja": "CORE /selected_brain_field_definition_application_detailはBRAIN F03のselected field/supportを受ける契約であり、F02の定義欠落全返却を同一field出現として受ける経路とは同一視できない。F02→CORE F05→OS F04の全経路接合は今回未証明。",
+    "ordered_plan_ja": [
+      "既存BRAIN F02負例と正常・無関係14項目controlから純局所testの入力/期待を固める。設計反例を検出できなければ設計Red未証明のままとする。",
+      "対象実装条件が成立した範囲で局所実装TDDを実行する。正式OS運転記録基盤の完成をその新ゲートにしない。",
+      "CORE F05の既存definition-missing局所期待を照合し、F02原返却とCORE入力の同一出現接合が示されたら接続を検証する。未接合を架空bridgeで埋めない。",
+      "CORE出力参照/未完義務とOS F04記録の接合を示してから第二辺と三ownerの構成体固有期待を検証する。局所Greenを経路全体の完了へ縮約しない。"
+    ]
+  },
+  "measurements": {
+    "observed": [
+      {
+        "metric": "H001 L6/L7物理文書容量",
+        "value": 692969,
+        "unit": "bytes",
+        "scope": "64,706+628,263。削減量ではない"
+      },
+      {
+        "metric": "L5/L6で再記述される関数identity数",
+        "value": 3,
+        "scope": "F01/F02/B01。同じ意味の全項目が完全重複とまでは認定しない"
+      }
+    ],
+    "not_measured_yet": [
+      "削減できる意味重複量",
+      "必要な改版file/source pin数の減少",
+      "実装までの時間",
+      "設計収束時間",
+      "回帰検出力",
+      "実検証時間",
+      "他作業の停止時間/復旧負荷"
+    ],
+    "rule_ja": "既存方式と最小経路案を同じ対象/期待で比較する。未測定を改善実績や一律閾値へ変換しない。"
+  },
+  "working_method_correction_ja": [
+    "新しいDevin投入を一旦増やさず、既存3提案をcommitで保存した。最大3は上限であって常時埋めるノルマではない。",
+    "次の委任は最小経路の収束に必要な独立単位を選び、同一目的の一部をscalarごとに細切れPRへしない。",
+    "Codexはscope/oracle/依存を先に決め、Devin proposalの内容を検収して自分のPRへ採用する。Claudeは独立したexactHEAD reviewと最新base統合確認を担う。",
+    "容量削減/参照hash整合/PR件数は保守と追跡の証拠であり、製品の実TDD/利用者価値の成立を代替しない。"
+  ],
+  "primary_research_comparison": [
+    {
+      "url": "https://growing-object-oriented-software.com/",
+      "finding_ja": "上位の振る舞いとobject間の関係をテストで駆動して段階的に育てる。HELIXでは上位対の期待から最小接続を降ろす比較材料。全設計の先行完成を要求する根拠ではない。"
+    },
+    {
+      "url": "https://gojko.net/2008/11/04/specifying-with-examples/",
+      "finding_ja": "要求・開発・テストごとに例を発明し直す情報落ちを減らし、共通の例を維持する。HELIXでは要求由来の独立期待を再記述しない。"
+    },
+    {
+      "url": "https://github.com/loonwerks/AGREE",
+      "finding_ja": "AADL構成要素の環境前提と保証を用いる構成的モデル検査。HELIXへの示唆は提供保証が受領前提を満たすかを接続ごとに確認すること。AGREE導入や形式証明済みを主張しない。"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/s10270-019-00736-x",
+      "finding_ja": "モデル網では局所更新の干渉や整合復旧の順序依存があり得る。二者の検査成功だけで全経路整合を推定しない。"
+    },
+    {
+      "url": "https://link.springer.com/article/10.1007/s10270-020-00788-4",
+      "finding_ja": "モデル間の整合維持をbuildと結び、固定すべきモデル・変換方向を明示して必要な再計算を絞る。HELIXの人が持つ意味を固定した影響再検証と比較できる。"
+    },
+    {
+      "url": "https://wiki.event-b.org/index.php/Main_Page",
+      "finding_ja": "refinementによる段階的詳細化と形式推論の比較材料。静的レビューと証明強度は異なる。"
+    },
+    {
+      "url": "https://alloytools.org/tutorials/online/sidenote-format-check.html",
+      "finding_ja": "assertionのcheckは指定scope内の反例探索。反例未検出を全域の保証に読み替えない。"
+    },
+    {
+      "url": "https://eceasst.org/index.php/eceasst/article/view/2202",
+      "finding_ja": "triple graph grammarsはモデル対応と双方向変換の研究。三角形の合同そのものとは扱わない。"
+    },
+    {
+      "url": "https://www.thoughtworks.com/insights/articles/fitness-function-driven-development",
+      "finding_ja": "構造特性への継続フィードバックを比較材料にする。掲載例の閾値・承認gateをHELIXへ持ち込まない。"
+    }
+  ],
+  "human_authority_items_ja": [
+    "L6/L7の正式な意味やVペアを変更する場合のConcept/採択L2とその対への差分。具体的な移管案を独立reviewした後に判断対象とする。",
+    "要求/受入の意味を変える必要が見つかった場合の対象revisionの採否。単なる既存scopeの重複除去や実装以下の起草で都度質問を増やさない。"
+  ],
+  "completion_boundary_ja": "本監査の共有・mergeは調査と候補の共有だけ。#3502の最小実験は未実施でIssue完了にしない。層変更、実装/CI許可、Accepted、releaseは生成しない。",
+  "source_search_limits_ja": "9/26 PO原案、旧processの異なるL6表記、10/8→10/10→10/12判断と現在Concept/L2を比較した。未保存GUI原文と全過去Issue/PRの完全探索はしていない。9/26原案のL6実装表記だけから現在Conceptが無効だとは判断しない。"
+}
