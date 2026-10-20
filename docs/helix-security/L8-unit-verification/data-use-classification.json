@@ -103462,7 +103462,7 @@
     "authority_effect": "none",
     "note": "cases 39–42のexpected_argument.fields.expected_packetだけを同じ役割のcase38 anchorから標準RFC6902 copyで復元する。original.raw、raw_utf8、各case固有の独立期待結果とhashは変更しない。PERMISSION(36/37)とREVISION-NORMAL(43)は対象外。null placeholderは構築時に置換し、元の全値/hash/型照合より前に復元する。",
     "restoration_order": "copy適用→既存fixture構築の全値pointer/hash照合",
-    "consumer_connections": "個別input/native/独立expected/case idは原値・原順のまま",
+    "consumer_connections": "復元後の論理位置はcases/39–42/raw_materialization/expected_argument/fields/expected_packet。既存L9 data-use-classification.jsonの/fixture_contract/source_packet_refs/0に対応するraw expected_packetと、各caseのraw_utf8およびexpected_argument.original.rawはliteralのまま保持する。copy対象は構築済みFieldの同じ役割の値だけとし、4copyを先に展開してからraw_materializationの既存全値・pointer・canonical hash・型と独立expected_resultを照合する。この所在説明は実装済みreaderの主張ではない。",
     "operations": [
       {
         "op": "copy",
