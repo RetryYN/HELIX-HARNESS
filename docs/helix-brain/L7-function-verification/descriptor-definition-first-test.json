@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "b7fc773364e4fd9ea995e878fbe089f42368a787fdf5d7e945f026d48e63f255",
+    "sha256": "adec4540e075371ad2f7f10d5a9a63aa01790a4844c666befbf418561a115589",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -117,5 +117,49 @@
     "unchanged_oracle": "Red以後testの同一file bytesとliteral入力/部分期待を保持してGreenを測る。",
     "refactor": "Green後に要否を確認し、変更した時だけ同oracleを再実行。不要なら理由と既存Greenを参照。",
     "execution_before_record": "not_executed"
+  },
+  "fn0_source_validation_verification": {
+    "scope": "NORMAL source controlとADD04 digest不一致の独立部分oracle。fn1/F02や全資格の受入ではない。",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn0_source_validation_preparation"
+    },
+    "source_revision": "da2578c9ccb21531cf75e882cd1dd328173a72cc",
+    "oracle_refs": [
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointers": [
+          "/function_oracles/0",
+          "/additional_unit_cases/3",
+          "/input_structure_verification/semantic_boundary_cases/2",
+          "/fixture_contract/normal_control/input",
+          "/fixture_contract/normal_control/reference_resolution"
+        ]
+      }
+    ],
+    "test_binding": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py",
+      "methods": [
+        "TestSourceIntegrity.test_base_retains_supplied_sources",
+        "TestSourceIntegrity.test_add04_mismatched_digest_makes_source_unusable"
+      ],
+      "file_bytes_sha256": "599ed0d49867086648edd5b0b8e3d2a1ecf5369f2ecd6749ae965433118dca69",
+      "fixture_reader_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/supply_input_fixtures.py",
+      "fixture_reader_sha256": "8692a4bafd6ed5b7570057ed3a9baa462cf64e48033fa8ccf9e998e1e0b3a60a"
+    },
+    "independent_partial_expected": {
+      "control": "入力全値・raw不変。明示合成前提内で全供給sourceのbytes/body/digest/qualification対応が一致するためunusable_source_refs=[]。",
+      "ADD04": "/sources/0/ref/sha256だけsynthetic-mismatching-digestへ。input全値とrawを保持し、その原Refがunusableに含まれ、他4source Refは含まれない。"
+    },
+    "oracle_derivation_limit": "unusable=[]はL8 fn0全返却literalの存在主張ではない。NORMALの原bytes/body/digest/資格対応とfn0の資格不足sourceだけをunusableへ残す意味から導いた限定assertion。別関数へ渡す合成ValidatedSupply literalをfn0実出力の証拠に流用しない。",
+    "not_fixed": [
+      "InputIssue全件とreason全文・全失敗分類順",
+      "資格bodyの新しい解釈/運用root認証",
+      "全schema/非JSONhost値/全数値/Unicode/資源失敗の全域網羅"
+    ],
+    "evidence_order": "まずtest/入力/独立oracleと読込helperを固定してから、意味不足をassertionで検出するRed→実照合の最小実装→同oracle Green→責務/重複点検と必要なRefactor→同oracle回帰。import/NotImplementedError/setup/timeout/skipは狙うsemantic Redにしない。",
+    "regression": "既存ADD01の凍結test/入力/oracleを保全し回帰対象に含める。旧freeze recordを現在bytesへ書き換えず、今回の対象は別の限定freezeとして識別する。",
+    "execution_state": "not_frozen_not_executed",
+    "not_claimed": "fn0全体・実資格・fn1/F02・CORE/OS接続・製品CI・Accepted・release。"
   }
 }
