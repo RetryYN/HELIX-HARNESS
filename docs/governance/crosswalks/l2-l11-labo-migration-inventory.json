@@ -2572,12 +2572,6 @@
         ],
         "HELIXLABO-L2-011": [
           {
-            "line": 39,
-            "byte_start": 3042,
-            "byte_end": 3058,
-            "role": "inline_mention"
-          },
-          {
             "line": 163,
             "byte_start": 19828,
             "byte_end": 19844,
@@ -3286,6 +3280,13 @@
         ]
       },
       "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-011–042",
+          "syntax_role": "numeric_range_literal",
+          "byte_start": 3042,
+          "byte_end": 3064,
+          "line": 39
+        },
         {
           "literal": "HELIXLABO-L2-xxx",
           "syntax_role": "placeholder_literal",
@@ -4367,12 +4368,6 @@
         ],
         "HELIXLABO-L2-011": [
           {
-            "line": 39,
-            "byte_start": 3042,
-            "byte_end": 3058,
-            "role": "inline_mention"
-          },
-          {
             "line": 163,
             "byte_start": 19828,
             "byte_end": 19844,
@@ -4873,6 +4868,13 @@
         ]
       },
       "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-011–042",
+          "syntax_role": "numeric_range_literal",
+          "byte_start": 3042,
+          "byte_end": 3064,
+          "line": 39
+        },
         {
           "literal": "HELIXLABO-L2-xxx",
           "syntax_role": "placeholder_literal",
@@ -5676,10 +5678,10 @@
         },
         "HELIXLABO-L2-011": {
           "l2": {
-            "line": 39,
-            "byte_start": 3042,
-            "byte_end": 3058,
-            "role": "inline_mention"
+            "line": 163,
+            "byte_start": 19828,
+            "byte_end": 19844,
+            "role": "heading"
           },
           "l11": {
             "line": 62,
@@ -6432,7 +6434,7 @@
         }
       }
     },
-    "note": "全出現をline/UTF-8 byte_start/byte_end半開範囲/構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し意味roleは群共通のunknownを保つ。#2089意味境界を変更しない WEB rangeとxxx placeholderはnon_identity_literal_observationsに全literalを保持し、identity件数・採択集合・pairingから除外する。numeric観測集合も要求採択数とは等置しない。"
+    "note": "数値IDの通常単独形式をlocatorsへ記録し、WEB/数値rangeとxxxはnon_identity_literal_observationsへ完全literalを保持する。range先頭の部分一致を単独ID出現として数えず、展開・新規採択はしない。各構文roleは所在のheuristicで意味roleとは別。distinct_idsとpairingは数値単独形式のキー比較で、要求数/承認を生成しない。"
   },
   "direct_consumers": {
     "static_references": [
@@ -6901,6 +6903,10 @@
           {
             "pointer": "/upstream_adoption/approved_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-001,021-033"
           }
         ]
       },
@@ -7125,6 +7131,10 @@
           {
             "pointer": "/upstream_adoption/approved_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md#HELIXLABO-L2-001,021-033"
           }
         ]
       },
@@ -7426,7 +7436,7 @@
       }
     ],
     "count": 46,
-    "note": "固定M30のLABO自身L3/L10/L4/L5/L8/L9 JSONに限定した静的path参照46file/155Pointer。重複を除外。6 MDや他機構は対象外で、実reader成立・全consumer閉包を認定しない。",
+    "note": "固定revision 97525515685664de60c1c4ab8b8a58b0bc977f78（本資料base_sha）のLABO自身L3/L10/L4/L5/L8/L9 JSON46fileに限定し、原L2/L11 pathを含む文字列（fragment付きを含む）157Pointerの静的所在を記録。各fileのrevision/blob/hashは所在の固定対象であり、source_pins内の参照先revisionを現行へ書換えない。6 MD/他機構は対象外。実reader成立・全consumer閉包を認定しない。",
     "outside_scope_search_hits": [
       {
         "path": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json",
