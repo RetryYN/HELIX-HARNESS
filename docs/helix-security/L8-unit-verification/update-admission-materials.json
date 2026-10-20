@@ -592313,7 +592313,7 @@
     "anchor_member_count": 15,
     "restore_order": "operations記載順。各siteは同じanchor値へ独立に復元され共有aliasを作らない。",
     "consumer_read_positions": "operationsのposition各records member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
-    "relation_to_existing_contract": "fixture_packets.reconstruction_contract（base_ref deepcopy＋replacements全値置換＋canonical照合）は保持し変更しない。本節はinput_packets内の同一原記録に限り、anchor literalと標準copyで復元する意味の再導出を追加する。復元はreconstruction_contractの既存照合・型検査の前に行い、復元後の論理値を既存契約へ入力する。expected_output_packets・casesの独立期待・expected_intermediate_valuesは入力anchorへ統合しない。",
+    "relation_to_existing_contract": "fixture_packets.reconstruction_contractの既存手順（base_ref deepcopy＋replacements全値置換＋canonical照合）は保持する。同contract本文には本復元を先行する適用順を追補する。本節はinput_packets内の同一原記録に限り、anchor literalと標準copyで復元する意味の再導出を追加する。復元はreconstruction_contractの既存照合・型検査の前に行い、復元後の論理値を既存契約へ入力する。expected_output_packets・casesの独立期待・expected_intermediate_valuesは入力anchorへ統合しない。",
     "preservation": "root literal・独立期待・hash・履歴・原順序・反復・欠落/null/空・元bytesを保持。operations+説明を除けば元文書全値・raw bytesへ逆復元できる。",
     "authority_effect": "なし。global resolver・DSL・新gate・要求意味・製品実装は追加しない。",
     "validation_ja": "anchor canonical SHA-256と15原memberを照合し、全31positionが存在するrecords:null placeholderであることを展開前に確認する。各copyはdeepcopyで、型/member順/原配列順を維持する。欠落anchor/対象position・異なるanchor hash・非null placeholderを元入力の成功へ補完せずmaterialization不成立とする。これは格納表現の復元条件であり製品入力の新gateではない。",
