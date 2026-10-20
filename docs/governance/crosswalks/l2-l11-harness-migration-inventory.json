@@ -1834,13 +1834,118 @@
     "decision": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
     "decision_fixed_target_sha": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
     "note": "採択対象bytes(f6dad2a3時点)と現在の追補を別snapshotとして区別。後続decisionは実scope照合できた範囲だけ記録し、未解決はauthority unknownを保持。",
-    "diff_summary": "f6dad2a3→dce07d0のL2/L11差分をgit diffで観測（本文追補は別snapshot扱い）。"
+    "diff_summary": "f6dad2a3→dce07d0のL2/L11差分をgit diffで観測（本文追補は別snapshot扱い）。",
+    "adopted_blobs": [
+      {
+        "path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "e09de04601039d8593768eb3f3342d3416d03b8b",
+        "raw_sha256": "aed75cb4bdd644eedd9d3eb408cf522af2c4fbf4272db7b775edc62fc383100a",
+        "bytes": 138792
+      },
+      {
+        "path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "f827c6bd955bbeb91deba5b7dced93e512e5da9e",
+        "raw_sha256": "09b2963187f9aaddbb1ad189d77e517e91914bd5ccdf2499dd9c11855139bcd4",
+        "bytes": 92483
+      }
+    ],
+    "decision_record": {
+      "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+      "record_id": "HDEC-HARNESS-REQUIREMENTS-2026-09-28",
+      "git_blob": "019b328e875808f7b587bef97dcdaa310dae0acd",
+      "raw_sha256": "c7a6d39ceb853fe6c00ccc336ffa7bbbd6c7e87a0aaba172f43f490dd0a7fd23",
+      "bytes": 17865,
+      "source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    },
+    "current_vs_adopted": "current sourceはadopted blobの追補(+957/+923行)を含む。追補の意味・承認は本索引では推定しない"
   },
   "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
-  "direct_consumers": "静的参照: L3/L10・L9・decision文書・feature ticketが各ID/headingを指す。実reader成立・全consumer閉包は未確認として保持。",
+  "direct_consumers": {
+    "static_references": [
+      {
+        "path": "docs/helix-harness/L3-requirements/product-requirements.json",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+        "note": "L3側JSONがL2 IDを参照"
+      },
+      {
+        "path": "docs/helix-harness/L9-integration-verification/",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+        "note": "対L11受入のunit検証対がL11を参照"
+      },
+      {
+        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+        "note": "decisionが採択対象を固定"
+      }
+    ],
+    "note": "実path・固定revisionの所在例。実reader成立・全consumer閉包とは分ける"
+  },
   "limits": [
     "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し、原条件を再著述しない",
     "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
     "ScaffoldBinding/hash追随はroot検収責務"
-  ]
+  ],
+  "identity_index": {
+    "id_definition_spans": {
+      "L2": 0,
+      "L11": 72,
+      "sample": [
+        {
+          "start": 41838,
+          "end": 45768,
+          "start_line": 220,
+          "line_count": 16,
+          "sha256": "48f4c9721e26a45870f86fffab729d97b52298e2811d66cdb88c74512126c488",
+          "first_line": "### HARNESS-L2-023 利用条件別の依存宣言の受入",
+          "role": "requirement_or_acceptance_section"
+        },
+        {
+          "start": 45768,
+          "end": 51802,
+          "start_line": 236,
+          "line_count": 27,
+          "sha256": "9b9bce73eb89ecae75f317f8821844d4dfca5ccccd4a7c06b575a3a808aae9e8",
+          "first_line": "### HARNESS-L2-024 要求形成の質問優先と収束の受入",
+          "role": "requirement_or_acceptance_section"
+        }
+      ]
+    },
+    "id_mentions": {
+      "L2_mention_count": 0,
+      "sample": []
+    },
+    "note": "### HELIXHARNESS-見出しの定義spanと本文中の他ID mentionを区別。同IDだけで意味同等を宣言しない。L11側はL2 IDへの参照対応をrole=group_heading/prose内の記述として観測。"
+  },
+  "owner_version_binding": {
+    "frontmatter_spans": {
+      "L2": {
+        "start": 0,
+        "end": 367,
+        "start_line": 1,
+        "line_count": 15,
+        "sha256": "5dd29645f7228b2c6464f7f749a58e2d1bdb5b4ddec07a5e7515a704b50cb512",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      "L11": {
+        "start": 0,
+        "end": 254,
+        "start_line": 1,
+        "line_count": 12,
+        "sha256": "895ddb9289affbd588a42dae533ae4ae1b1496cbdf3bd48fd9d6a825513f50c8",
+        "first_line": "---",
+        "role": "frontmatter"
+      }
+    },
+    "note": "owner/version/適用条件/N-A/保留はfrontmatter span(L2 start0-end819行1-19,L11 start0-end710行1-18)と各requirement_or_acceptance_section spanのtitle/owner/適用条件本文に原所在を持つ。値を再著述しない"
+  },
+  "legacy_source_hold": {
+    "starting_point": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md §1-3(LEGACY-ASSET-4F5A1F0739EC1111D91D)",
+    "hold": "構造的意味と生成view/所在索引の分離、原source/consumer/unknownの保全を保持",
+    "unchanged": "旧schema/式木/DB/runtime/CIは移植・実行しない。旧source保持差分は現行spanへの写像せず参照として記録",
+    "unknown": "対応旧sourceが未発見の範囲は検索範囲と未発見を記録"
+  }
 }
