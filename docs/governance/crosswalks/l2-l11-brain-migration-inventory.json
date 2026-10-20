@@ -1,0 +1,641 @@
+{
+  "schema": "l2-l11-brain-migration-inventory.v1",
+  "inventory_kind": "scaffold原文被覆索引（要求意味同等性・正式JSON/schema/view/承認継承/cutoverの認定ではない）",
+  "authority_effect": "none",
+  "issue": 3454,
+  "base_sha": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+  "confirmed_at": "2026-10-20",
+  "purpose": "BRAIN L2/L11の一対の固定原文を無損失索引化。原文全byteを原順・非重複の半開byte spanで被覆し、固定git blobから再構成してraw/hash一致させる。IDなし本文・表注・条件・版・N/A・保留・未分類・空白・末尾を落とさない。",
+  "sources": [
+    {
+      "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+      "git_blob": "ef8fee3e142c1cb63a9b4c8f20b72c47b17d093f",
+      "raw_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+      "bytes": 78839,
+      "lines": 610,
+      "role": "L2要求候補本文"
+    },
+    {
+      "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+      "git_blob": "0c768736629be265aca514499efe329e629ae80f",
+      "raw_sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+      "bytes": 27596,
+      "lines": 135,
+      "role": "L11受入候補本文"
+    }
+  ],
+  "span_partitions": {
+    "docs/helix-brain/L2-requirements/brain-requirements.md": [
+      {
+        "start": 0,
+        "end": 683,
+        "start_line": 1,
+        "line_count": 20,
+        "sha256": "d69646144f4662813408aa5ff3c84ef7544330afde20d42a068b4877d4c86c87",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 683,
+        "end": 1700,
+        "start_line": 21,
+        "line_count": 6,
+        "sha256": "7f6822bbfad39fc470339c1b17344d358ee56a950605ebeb1f4934c61eeb22c1",
+        "first_line": "# HELIX-BRAIN要求候補",
+        "role": "document_title"
+      },
+      {
+        "start": 1700,
+        "end": 3579,
+        "start_line": 27,
+        "line_count": 8,
+        "sha256": "44001f19e4bd554fbdacf46ac41c5d43f58153ca613f37721f41fc5f2d2c61b6",
+        "first_line": "## 共通境界とパック契約",
+        "role": "group_heading"
+      },
+      {
+        "start": 3579,
+        "end": 7540,
+        "start_line": 35,
+        "line_count": 47,
+        "sha256": "ffd08417d3c57ee14007149622f81d0931da9d0cfec0fd1c5d2f0de363d5a6b6",
+        "first_line": "## 候補一覧",
+        "role": "group_heading"
+      },
+      {
+        "start": 7540,
+        "end": 7562,
+        "start_line": 82,
+        "line_count": 2,
+        "sha256": "4af2279163fab752a4bb5fd5dd8c63dbff420848c7a7b0843ebcbd72321ef29d",
+        "first_line": "## BRAIN単体要求",
+        "role": "group_heading"
+      },
+      {
+        "start": 7562,
+        "end": 8998,
+        "start_line": 84,
+        "line_count": 11,
+        "sha256": "0cf2064672270ac0848848a6907e42b8abdab3f417fb1f0a9b550cef7cf5f259",
+        "first_line": "### HELIXBRAIN-L2-001 領域の識別と進化",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 8998,
+        "end": 9901,
+        "start_line": 95,
+        "line_count": 11,
+        "sha256": "eaf7e9caf32537bd81df68203b5fd40150a05e419ef1519d03756a09e0d22665",
+        "first_line": "### HELIXBRAIN-L2-002 構造階層",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 9901,
+        "end": 10929,
+        "start_line": 106,
+        "line_count": 11,
+        "sha256": "8d4111686c3a35c5ca8e2980bbc7a613faebe784e539e986769c2383a2010b97",
+        "first_line": "### HELIXBRAIN-L2-003 Patternの成立条件",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 10929,
+        "end": 11884,
+        "start_line": 117,
+        "line_count": 11,
+        "sha256": "193100e6119ce9c87cce9edfbc29813337368b840d159c1cc09aa50aa5fa41fa",
+        "first_line": "### HELIXBRAIN-L2-004 複数Patternの比較",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 11884,
+        "end": 12789,
+        "start_line": 128,
+        "line_count": 11,
+        "sha256": "2c6d2f6c24076429749a2303fe59dffe9c91f1a64fa0f8716bbf4740cbd917fa",
+        "first_line": "### HELIXBRAIN-L2-005 構造間relation",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 12789,
+        "end": 14147,
+        "start_line": 139,
+        "line_count": 11,
+        "sha256": "b0047df45ccdd705ebf1eae090a70184a07fe107ab649b4c5d69ca152ba3be8e",
+        "first_line": "### HELIXBRAIN-L2-006 Visual DesignとUXの再利用知識",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 14147,
+        "end": 15174,
+        "start_line": 150,
+        "line_count": 11,
+        "sha256": "f96983fecc67fdb539d5ff143ed758a9c2ae799ae3f4fb6fa24bad2c381a6774",
+        "first_line": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 15174,
+        "end": 16160,
+        "start_line": 161,
+        "line_count": 11,
+        "sha256": "8982f6583ed81151b3519a26ba2ae858566650fdbc2cca43cfda29632dce7f87",
+        "first_line": "### HELIXBRAIN-L2-008 identity・版・状態",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 16160,
+        "end": 16999,
+        "start_line": 172,
+        "line_count": 11,
+        "sha256": "ee09a8532ea8f1340c016c54098d90dffe7b2f8cd8e41401f7968362a44f7c7f",
+        "first_line": "### HELIXBRAIN-L2-009 構成Pattern候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 16999,
+        "end": 17984,
+        "start_line": 183,
+        "line_count": 11,
+        "sha256": "1abd7a70802d2c58110fb869adf9d78b686c2dd6cb078edb0b38710d0ac1eace",
+        "first_line": "### HELIXBRAIN-L2-010 Anti-Pattern・失敗知識",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 17984,
+        "end": 19127,
+        "start_line": 194,
+        "line_count": 11,
+        "sha256": "c85e5ab4be064db02eef9d05ef174f2754446afba55c99946ac5220c8c6ee198",
+        "first_line": "### HELIXBRAIN-L2-011 製品固有意味との分離",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 19127,
+        "end": 20174,
+        "start_line": 205,
+        "line_count": 11,
+        "sha256": "3a2b615ba985a12eaf601fb470c8974d9b2c51f68d7f10cfcc5913dcd22b32f2",
+        "first_line": "### HELIXBRAIN-L2-012 提供候補と採用authorityの分離",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 20174,
+        "end": 20508,
+        "start_line": 216,
+        "line_count": 4,
+        "sha256": "eac245e6e0b156bfe5155a91f6bdc3c00c938e04be9cfe26c7ff7b7dccaae4e1",
+        "first_line": "## Infrastructure Domain要求（初期版）",
+        "role": "group_heading"
+      },
+      {
+        "start": 20508,
+        "end": 21616,
+        "start_line": 220,
+        "line_count": 10,
+        "sha256": "fcddad5c8f225147186c49fa08da577ae04be86a89f84d112dccf18956e21d6b",
+        "first_line": "### HELIXBRAIN-L2-INFRA-001 Infrastructure DomainとSubdomain",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 21616,
+        "end": 22463,
+        "start_line": 230,
+        "line_count": 10,
+        "sha256": "8aaa447b505de8ad93744994b01e5285fd496a7f11165912b14b83c9fdde7159",
+        "first_line": "### HELIXBRAIN-L2-INFRA-002 Infrastructure Pattern階層",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 22463,
+        "end": 23550,
+        "start_line": 240,
+        "line_count": 10,
+        "sha256": "015454d12eb883ec17e4cd5752633486ebeb289378a7d00b24d2e8e2c6350f0b",
+        "first_line": "### HELIXBRAIN-L2-INFRA-003 Infrastructure Pattern成立条件",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 23550,
+        "end": 24484,
+        "start_line": 250,
+        "line_count": 10,
+        "sha256": "d11834af6cc5a20da98d97ada275cd8bcdc17ec930daa1e8ce03b3b2d904bb84",
+        "first_line": "### HELIXBRAIN-L2-INFRA-004 非機能要求からPatternとinputへの関係",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 24484,
+        "end": 25540,
+        "start_line": 260,
+        "line_count": 10,
+        "sha256": "6421070da28271408c2276ea905ad647f4917e0a42a36d9aec81bc306540ff90",
+        "first_line": "### HELIXBRAIN-L2-INFRA-005 Failure構造",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 25540,
+        "end": 26628,
+        "start_line": 270,
+        "line_count": 12,
+        "sha256": "3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23",
+        "first_line": "### HELIXBRAIN-L2-INFRA-006 Recovery Pattern",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 26628,
+        "end": 27549,
+        "start_line": 282,
+        "line_count": 10,
+        "sha256": "79954786ae654f5969fcc002cfe57803966f0205f59305f90de56a7295ccb188",
+        "first_line": "### HELIXBRAIN-L2-INFRA-007 Deployment Pattern",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 27549,
+        "end": 28435,
+        "start_line": 292,
+        "line_count": 10,
+        "sha256": "fd25f8a5431b39e11266b4cf65f056706d6a27932fb0af9fb5cf4ff703055fe8",
+        "first_line": "### HELIXBRAIN-L2-INFRA-008 Scaling・Capacity Pattern",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 28435,
+        "end": 29375,
+        "start_line": 302,
+        "line_count": 10,
+        "sha256": "2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c",
+        "first_line": "### HELIXBRAIN-L2-INFRA-009 Observability知識",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 29375,
+        "end": 30334,
+        "start_line": 312,
+        "line_count": 10,
+        "sha256": "e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9",
+        "first_line": "### HELIXBRAIN-L2-INFRA-010 Backup・Restore・Recoverability",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 30334,
+        "end": 31197,
+        "start_line": 322,
+        "line_count": 10,
+        "sha256": "ca1ab62c895b7cea2e8f92d29609affb34f3fc0163697ea9d7f814d4a9f60855",
+        "first_line": "### HELIXBRAIN-L2-INFRA-011 Cost characteristic",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 31197,
+        "end": 32085,
+        "start_line": 332,
+        "line_count": 10,
+        "sha256": "6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51",
+        "first_line": "### HELIXBRAIN-L2-INFRA-012 Provider抽象と実装例",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 32085,
+        "end": 33052,
+        "start_line": 342,
+        "line_count": 10,
+        "sha256": "915285630ae5080ac424fe09f181239d97410b0e9c6442a75c15ad3c33e38173",
+        "first_line": "### HELIXBRAIN-L2-INFRA-013 実行基盤の共通resource抽象",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 33052,
+        "end": 33975,
+        "start_line": 352,
+        "line_count": 10,
+        "sha256": "adc8d9d3b668980f2912b120e3d13889419670ed190ac7f78589d8f692d14479",
+        "first_line": "### HELIXBRAIN-L2-INFRA-014 Infrastructure topology graph",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 33975,
+        "end": 34833,
+        "start_line": 362,
+        "line_count": 10,
+        "sha256": "11b9eff2eaac4b17aace22ac405581b9ceb7dab34b260320f246992b28f600af",
+        "first_line": "### HELIXBRAIN-L2-INFRA-015 Domain横断relation",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 34833,
+        "end": 35890,
+        "start_line": 372,
+        "line_count": 10,
+        "sha256": "835303e5f143675783dbef7891d035b443472a05847cdaaecb199eb801c2b7c9",
+        "first_line": "### HELIXBRAIN-L2-INFRA-016 Infrastructure Anti-Pattern",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 35890,
+        "end": 36718,
+        "start_line": 382,
+        "line_count": 10,
+        "sha256": "d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795",
+        "first_line": "### HELIXBRAIN-L2-INFRA-017 Pattern maturity",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 36718,
+        "end": 36756,
+        "start_line": 392,
+        "line_count": 2,
+        "sha256": "d4617ad4411a34faf57450ce3aab5e74818db5afb56f673cc59b378a9ec75287",
+        "first_line": "## 機構間接続・構成体要求",
+        "role": "group_heading"
+      },
+      {
+        "start": 36756,
+        "end": 38251,
+        "start_line": 394,
+        "line_count": 10,
+        "sha256": "9dccc78beb510714efbeb09534aa18619abdfd672df1f9fd44088718a3b3dc4d",
+        "first_line": "### HELIXBRAIN-L2-018 製品Coreからの再利用候補入力（connection）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 38251,
+        "end": 39367,
+        "start_line": 404,
+        "line_count": 10,
+        "sha256": "e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5",
+        "first_line": "### HELIXBRAIN-L2-019 BRAIN知識候補の製品Coreへの提供（connection）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 39367,
+        "end": 40609,
+        "start_line": 414,
+        "line_count": 10,
+        "sha256": "28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6",
+        "first_line": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 40609,
+        "end": 41700,
+        "start_line": 424,
+        "line_count": 10,
+        "sha256": "439be1b0d6f2ab9cdb9c17ed3c3f3dab19c40885cd95d5800b8419b7815dfa1b",
+        "first_line": "### HELIXBRAIN-L2-021 BRAINとINTELLIGENCEの知識・判断材料接続（connectio",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 41700,
+        "end": 43248,
+        "start_line": 434,
+        "line_count": 10,
+        "sha256": "590abf50787f50c3d1fd640e34e75bd337d52829aff9cea9474f2601f7ef4a42",
+        "first_line": "### HELIXBRAIN-L2-022 BRAINのrequired inputからHARNESS設計義務への接続（",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 43248,
+        "end": 44439,
+        "start_line": 444,
+        "line_count": 10,
+        "sha256": "63d27178ddfbf23ab2797099ae56de52515bebb2577e0e05e03e2a3620cb5c12",
+        "first_line": "### HELIXBRAIN-L2-023 BRAINとVisual Design HARNESSの知識接続（conne",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 44439,
+        "end": 46244,
+        "start_line": 454,
+        "line_count": 10,
+        "sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3",
+        "first_line": "### HELIXBRAIN-L2-024 Infrastructure設計知識と実績のCORE/LABO経由分離（co",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 46244,
+        "end": 47888,
+        "start_line": 464,
+        "line_count": 10,
+        "sha256": "a65af00d769a3e2ef3dbe5fedc6034ab67e1c4e44d5e2baa8b8d8ad381df6be5",
+        "first_line": "### HELIXBRAIN-L2-025 内部知識候補の独立検証・採否（composite）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 47888,
+        "end": 49099,
+        "start_line": 474,
+        "line_count": 10,
+        "sha256": "e7eaf8d11d033fb790bbd33cae5c8efa60ccb7f9fb80200bd3328bc257b1d6ee",
+        "first_line": "### HELIXBRAIN-L2-026 外部情報のLABO経由候補入力（connection）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 49099,
+        "end": 50647,
+        "start_line": 484,
+        "line_count": 10,
+        "sha256": "ada39a3171bab3ca57a6c109c215dc27d7fb7f9e37572a174b7c08dafc8eabed",
+        "first_line": "### HELIXBRAIN-L2-027 外部知識候補の分解・評価・取込み（composite）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 50647,
+        "end": 52085,
+        "start_line": 494,
+        "line_count": 10,
+        "sha256": "0120989594637907eed4c8a63a2b17619187739e1dd34d916a1dc15cb80e72c1",
+        "first_line": "### HELIXBRAIN-L2-028 BRAIN知識pack descriptorの版・互換適用（unit）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 52085,
+        "end": 55291,
+        "start_line": 504,
+        "line_count": 19,
+        "sha256": "59a36403895e99906d9b15bfa344f7e7eb0ac42e9e323a2dca4e7c809265b4e8",
+        "first_line": "## 親L1全12件の受け先",
+        "role": "group_heading"
+      },
+      {
+        "start": 55291,
+        "end": 60487,
+        "start_line": 523,
+        "line_count": 15,
+        "sha256": "54563853d1234147056d7c24f2560a8b5d9afb34d2717223e032b5a4281a7056",
+        "first_line": "## 原文・旧資産との対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 60487,
+        "end": 64892,
+        "start_line": 538,
+        "line_count": 13,
+        "sha256": "920f555843f3b6b3cc888e051c4ced551bea38239623f8beb8cab1daa8ce3626",
+        "first_line": "## 旧資産との保持・変更",
+        "role": "group_heading"
+      },
+      {
+        "start": 64892,
+        "end": 65685,
+        "start_line": 551,
+        "line_count": 9,
+        "sha256": "5c8b407ee70cfdbdf8e38985196c01cdc0a8785dffef19b50cabb8820e0bafc0",
+        "first_line": "## 人の判断が必要な点",
+        "role": "group_heading"
+      },
+      {
+        "start": 65685,
+        "end": 66278,
+        "start_line": 560,
+        "line_count": 4,
+        "sha256": "c35b05a6a7c500cd1079e586581f5d506850cbd34c1874444c737c286acefcd6",
+        "first_line": "## G15 HARNESS設計合成向けBRAIN候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 66278,
+        "end": 69020,
+        "start_line": 564,
+        "line_count": 11,
+        "sha256": "79ed972f758fddbe5d6488a67de19bd951562d4eccbc9c45ab86027d87493259",
+        "first_line": "### HELIXBRAIN-L2-029 製品設計で使えるPattern関係候補を構成する（unit candidat",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 69020,
+        "end": 71596,
+        "start_line": 575,
+        "line_count": 12,
+        "sha256": "a69172ac364108dd9d81f93ff86dd7673a47f993e81055a20e18bc3b2cdf12ee",
+        "first_line": "### HELIXBRAIN-L2-030 BRAIN設計知識をHARNESSへ受け渡す（connection cand",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 71596,
+        "end": 74040,
+        "start_line": 587,
+        "line_count": 12,
+        "sha256": "1a9e5e9060ec7db7c4943a48779374ed865bc6fd887a129f39f8bf91fcbb8aab",
+        "first_line": "### HELIXBRAIN-L2-031 役割型の再利用知識候補（unit candidate）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 74040,
+        "end": 78839,
+        "start_line": 599,
+        "line_count": 12,
+        "sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48",
+        "first_line": "### HELIXBRAIN-L2-032 汎用Design Templateの意味契約候補を提供する（unit can",
+        "role": "requirement_or_acceptance_section"
+      }
+    ],
+    "docs/helix-brain/L11-acceptance/brain-acceptance.md": [
+      {
+        "start": 0,
+        "end": 687,
+        "start_line": 1,
+        "line_count": 20,
+        "sha256": "5815791a139c9ab1fec4979c90ca79f9fd9c3945a3843a9b0c51e68fb9b3299a",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 687,
+        "end": 15334,
+        "start_line": 21,
+        "line_count": 49,
+        "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+        "first_line": "# HELIX-BRAIN受入候補",
+        "role": "document_title"
+      },
+      {
+        "start": 15334,
+        "end": 16442,
+        "start_line": 70,
+        "line_count": 8,
+        "sha256": "110b2591b095eaa5f48d79f22bd617d9d3d46959f177e50c5d4f9cf3c4010696",
+        "first_line": "## 端から端までの確認",
+        "role": "group_heading"
+      },
+      {
+        "start": 16442,
+        "end": 16816,
+        "start_line": 78,
+        "line_count": 5,
+        "sha256": "aaaaaa0c7796cbedb9cd490172712180122eb686d77fae7741204253d2d9325a",
+        "first_line": "## 親L1との対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 16816,
+        "end": 17494,
+        "start_line": 83,
+        "line_count": 4,
+        "sha256": "148f1a197dbd56c53671d285d704e87d54b72c3aea5326ea5eba893c734f3b07",
+        "first_line": "## G15 HARNESS設計合成向けBRAIN受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 17494,
+        "end": 19200,
+        "start_line": 87,
+        "line_count": 10,
+        "sha256": "5ede48e59990c5aedf9a1a09a89457a6ba15ff0583328cc056f070a4196a04a9",
+        "first_line": "### HELIXBRAIN-L2-029 unit",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 19200,
+        "end": 23233,
+        "start_line": 97,
+        "line_count": 18,
+        "sha256": "bfb1d656431e49066bca208ecf52ffeff9d0bd88d7d85b939b185d66128115c4",
+        "first_line": "### HELIXBRAIN-L2-030 connection",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 23233,
+        "end": 23701,
+        "start_line": 115,
+        "line_count": 5,
+        "sha256": "567ab6c3a10d141f46e180ab213763f58da5cabe6610e9cc2f4356e96b5bf746",
+        "first_line": "### 限界と戻し先",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 23701,
+        "end": 25083,
+        "start_line": 120,
+        "line_count": 8,
+        "sha256": "515138a0df0002bb0fdb498abcfcdde6156693441dde3572cf30e5e8a0ac3503",
+        "first_line": "### HELIXBRAIN-L2-031のL11受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 25083,
+        "end": 27596,
+        "start_line": 128,
+        "line_count": 8,
+        "sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429",
+        "first_line": "### HELIXBRAIN-L2-032 汎用Design Template意味契約の受入候補",
+        "role": "requirement_or_acceptance_section"
+      }
+    ]
+  },
+  "adoption_snapshot": {
+    "decision": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+    "decision_fixed_target_sha": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "note": "採択対象bytes(f6dad2a3時点)と現在の追補を別snapshotとして区別。後続decisionは実scope照合できた範囲だけ記録し、未解決はauthority unknownを保持。同ID/同形/draft表記から承認・不承認を推定しない。",
+    "diff_summary": "f6dad2a3→dce07d0でL2+26行・L11+18行（git diff --stat観測）。本文の追補は原文へ混ぜず別snapshot扱い。"
+  },
+  "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
+  "direct_consumers": "静的参照: L3/L10・L9・decision文書・feature ticketが各ID/headingを指す。実reader成立・全consumer閉包は未確認として保持。",
+  "limits": [
+    "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し、原条件を再著述しない",
+    "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
+    "対応旧sourceが見つからない範囲は検索範囲と未発見を記録",
+    "ScaffoldBinding/hash追随はroot検収責務"
+  ]
+}
