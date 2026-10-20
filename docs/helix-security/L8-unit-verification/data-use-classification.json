@@ -96504,7 +96504,8 @@
           "ordered_sha256": "dea3bf2b23eacb6a742b3bb497246e52dd45b90947bf9f5f38f00f17e6460af0"
         }
       ],
-      "limits_ja": "固定sourceの構築材料・同役割値の保全証拠。copy展開後に原whole/hash/型/独立期待を従来順で照合する。classification_recordsの型内所在を示すが、L5境界比較のbehavior読取や実装reader・実runtime・実資格の成立は主張しない。"
+      "limits_ja": "固定sourceの構築材料・同役割値の保全証拠。全8copy展開後には、元の論理whole・各case既存argument/result hash・型・独立期待を従来順で照合する。物理sourceのwhole_case_witnessesはその論理case hashへ流用しない。classification_recordsの型内所在を示すが、L5境界比較のbehavior読取や実装reader・実runtime・実資格の成立は主張しない。",
+      "witness_scope_ja": "whole_case_witnessesはsource_binding.revisionの物理表現のcases[case_index]を対象とする。旧4copyのexpected_packetはnull placeholder、新classification_recordsはliteralであり、全8copy展開後の論理case hashではない。固定source raw/anchor/この5witnessを展開前に照合する。"
     }
   }
 }
