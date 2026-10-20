@@ -12953,6 +12953,19 @@
       "remaining_pointer": "/family_remaining_ja",
       "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
     },
-    "finite_writer_scope_ja": "新received branchの有限wholeは公開childへ結ぶ。旧legacy adapter/公開fn4署名/全oldvaluesは保持し、旧source aliasの規範を遡及変更しない。empty/NAではOS-owner独立selected[] variantを明示形成し、COREがselected/usedを導出したことにしない。新catalog通し監査/全8family能力成立は未完。"
+    "finite_writer_scope_ja": "新received branchの有限wholeは公開childへ結ぶ。旧legacy adapter/公開fn4署名/全oldvaluesは保持し、旧source aliasの規範を遡及変更しない。empty/NAではOS-owner独立selected[] variantを明示形成し、COREがselected/usedを導出したことにしない。新catalog通し監査/全8family能力成立は未完。",
+    "finite_residual_handoff_oracle": {
+      "recipe": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+        "pointer": "/cases/10",
+        "binding": "same_candidate_revision",
+        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
+      },
+      "scope_ja": "既存R0〜R8/received_unreached/trace_result_leaf_writer.observationへの一代表の対応。旧OwnerRecord/codec/legacy adapter/public署名/既存全期待と判定規範は変更しない。",
+      "raw_input_namespace_ja": "record_trace_input.candidate.proposed_refsの元T1/T2全値をinput_capture/comparison context/kernel input/source_basisに保持する。raw candidateのkeyを除去したことにしない。",
+      "qualified_observation_namespace_ja": "publication.source_candidateはbody未形成によりunreached、semantic_proposalもunreached。TraceSectionResult.observationのproposed_refsだけkey省略し、[]又はcandidate値を有資格原proposal観測へ補完しない。",
+      "locality_ja": "実source_unavailable診断を保持し、その同原因を旧findingへ重複変換しない。独立有資格OS-ownerのselected T1/used[]/provenanceは継続。COREで原N/typedIとvalid兄弟relationの全値を消さず、別walkのqualified twinで失敗targetを救済しない。",
+      "remaining_ja": "新公開recipeの独立whole replay、全source/同call/OS受理/全F04は未成立。OS016の別規範は適用しない。"
+    }
   }
 }

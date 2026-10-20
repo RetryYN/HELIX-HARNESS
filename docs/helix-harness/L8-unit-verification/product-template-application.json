@@ -85794,7 +85794,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+                "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -102306,7 +102306,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "candidate_file_bytes_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -103391,7 +103391,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -103407,7 +103407,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -103506,7 +103506,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -105362,7 +105362,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -107157,7 +107157,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -107765,7 +107765,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -107900,7 +107900,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "current_file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -113784,7 +113784,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "current_file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -114038,7 +114038,7 @@
       {
         "role": "current_l5_candidate_content_binding_no_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/F05DetailedReturn",
@@ -117041,7 +117041,7 @@
         "role": "current_L5_detail_contract",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "selected_object_count": 17,
         "selected_objects": [
           {
@@ -121005,7 +121005,7 @@
       },
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "selected_objects": [
           {
@@ -121118,7 +121118,7 @@
       {
         "role": "current_candidate_L5_native_scope_writer_binding",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+        "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
         "binding_kind": "candidate_current_content_no_git_revision",
         "selected_objects": [
           {
@@ -155933,7 +155933,7 @@
     "candidate_l5_binding": {
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "selected_objects": [
         {
           "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization",
@@ -155977,7 +155977,7 @@
     "function_ref": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
     "design_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "pointer": "/selected_source_occurrence_array_builder_detail",
       "canonical_sha256": "ddeeef52cc9379346350d2948537f1077cb87f529bee9a065ec7b8d9818aaf1e",
       "binding_kind": "current_candidate_content_binding"
@@ -156210,7 +156210,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "canonical_sha256": "7edc7902e642a798c96d60e815b9dbd2b2cb685b1783c01c62139644bcbd80c8"
     },
     "integration_oracle_ref": {
@@ -156218,8 +156218,8 @@
       "pointer": "/selected_source_caller_verification",
       "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "8c16a7050323d274c2b83506e4fe87c76181df669a566bcb384cba0a5203b650",
-      "canonical_sha256": "bcbf7b0805b6b34bcc8c6722d797bd66a0c754d2f59989f240331f7f35247783"
+      "sha256": "3c2e6f1592b783ecd662adcdde6bd1192d5ab954a39f18d40c7e5fa317cc7b9c",
+      "canonical_sha256": "9158e58df396ed34b90bd14f825ead2c0cb01852aa316aa1eb5a83382a18868c"
     },
     "source_basis": [
       {
@@ -156360,7 +156360,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_detail",
       "id": "HARNESS-L5-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "canonical_sha256": "7a9e85d489d29c9985413b2bf0ffe0a7d5e8a8fbda6094e0ba50169d0f4cc585",
       "binding_kind": "current_candidate_content_binding"
     },
@@ -164497,7 +164497,7 @@
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_snapshot_revision": "no_git_revision_claim",
-      "file_sha256": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e",
+      "file_sha256": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46",
       "selected_object": {
         "pointer": "/proposal_material_formation_detail",
         "canonical_sha256": "b4c6b1b9bf517747fbe48e91cab5a69d567d514c891ee66dd5e9e1583adff964"
@@ -192506,7 +192506,7 @@
           "selected_object_pointer": "/proposal_native_record_material_detail",
           "selected_object_canonical_sha256": "09949ff9a987c6bcbfbfa52ebc4043c8d7458cd91071f47688ec1c972e6c590f",
           "selected_object_ordered_sha256": "8dd818e85c787f5d53eb8c357821ad198e0a291cbb7967d1a3ffca49ea35d503",
-          "raw_file_sha256_after_child_addition": "aa48c3250d0aaff0cabc3df539b0998e4b208cd7ddecaf8da72cc6e55282609e"
+          "raw_file_sha256_after_child_addition": "77ab7385204735bbc5199b066d7841dc7bb341fe7d4174a2503f254856332c46"
         },
         "description_ja": "base_revision上に本L5候補childを追補した作業ツリー上のcurrent binding。独立した正式revisionは割り当てない。"
       }
@@ -192830,7 +192830,7 @@
       "ordered_sha256": "cfe8fbb6115d148a1c0e35d751872e72ab4b9c197286405fe36b42359ffb8d9a",
       "canonical_byte_length": 218983,
       "base_revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
-      "candidate_file_sha256": "8c16a7050323d274c2b83506e4fe87c76181df669a566bcb384cba0a5203b650",
+      "candidate_file_sha256": "3c2e6f1592b783ecd662adcdde6bd1192d5ab954a39f18d40c7e5fa317cc7b9c",
       "candidate_scope_ja": "同じ候補変更内のL9 childを結ぶ。base_revisionにchildが存在したとは扱わず、後続case追補でL9 bytesが変わる場合はbindingを更新する。"
     },
     "verification_boundary_ja": "固定Git source、厳密な汎用JSON parse、RFC6902 copyとhash照合による期待再構成手順を定義する。実製品の実装前Red/Green、codec/provider/wrapper、資格、OS受領、CI、性能を実行した結果ではない。期待はcandidate実装から生成しない。",
@@ -193574,7 +193574,7 @@
           "unformedbodyの全diagnostic_refsとOS未形成/有効独立兄弟保持"
         ],
         "representative_controls_ja": "同caseでvalid兄弟のrelation無し又はlocator不成立を追加し、coverage/membershipとrelationの二理由を同時に保持する。",
-        "freeze_status_ja": "固定旧N wholeはsource-backed conditional oracle。新General/Publication/Receiving全wholeは未凍結。"
+        "freeze_status_ja": "固定旧I/Nを保持するresidual+valid兄弟一代表は公開case10の全16wholeをroot generic再構成で採取済み。独立公開replay、coverage欠落counterfactual/複合理由/全F04の残りは未凍結。"
       },
       {
         "id": "F05-all-relations-own-origin",
@@ -194079,6 +194079,20 @@
         },
         "old_material_check_status": "independent_finite_whole_checked",
         "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F04-residual-valid-sibling",
+        "family": "F04-residual-and-coverage",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/10",
+          "binding": "same_candidate_revision",
+          "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "corrective_static_semantic_checked_only",
+        "root_generic_reconstruction_status": "pre_publication_16_whole_JSON_reconstruction_only",
+        "published_recipe_check_status": "not_yet_independently_reconstructed",
+        "scope_ja": "residual+valid兄弟/旧N全値保持/原candidateT1T2と有資格observation欠落の区別を対にする有限handoff。全F04の閉包又は製品実行を認定しない。"
       }
     ]
   }
