@@ -70,26 +70,27 @@ def _issue(locator, reason, source_ref):
     return [{"locator": locator, "reason": reason, "source_ref": copy.deepcopy(source_ref)}]
 
 
-def validate_source(source, qualifications, roots, source_index):
-    """形検査済みsourceを照合し、失敗の原所在をInputIssueへ残す。"""
-    source_path = "/sources/" + str(source_index)
-    ref = source.get("ref")
-    if type(ref) is not dict:
-        return _issue(source_path + "/ref", "Source reference is not supplied.", None)
+def _check_original_content(source, source_path, ref):
+    """原bytes/bodyの対応を検査し、測定digestと診断を返す。"""
     if "content_bytes" not in source:
-        return _issue(source_path + "/content_bytes", "Original source bytes are not supplied.", ref)
+        return None, _issue(source_path + "/content_bytes", "Original source bytes are not supplied.", ref)
     try:
         measured = hashlib.sha256(source["content_bytes"].encode("utf-8")).hexdigest()
     except UnicodeError:
-        return _issue(source_path + "/content_bytes", "Original source text is not UTF-8 encodable.", ref)
+        return None, _issue(source_path + "/content_bytes", "Original source text is not UTF-8 encodable.", ref)
     if ref.get("sha256") != measured:
-        return _issue(source_path + "/ref/sha256", "Source digest differs from original bytes.", ref)
+        return None, _issue(source_path + "/ref/sha256", "Source digest differs from original bytes.", ref)
     try:
         body = _parse_source(source["content_bytes"])
     except (ValueError, DecimalException, OverflowError, RecursionError):
-        return _issue(source_path + "/content_bytes", "Original source text is not strict JSON.", ref)
+        return None, _issue(source_path + "/content_bytes", "Original source text is not strict JSON.", ref)
     if "content" not in source or not _json_equal(body, source["content"]):
-        return _issue(source_path + "/content", "Original source bytes and supplied body differ.", ref)
+        return None, _issue(source_path + "/content", "Original source bytes and supplied body differ.", ref)
+    return measured, []
+
+
+def _check_qualification(source, qualifications, roots, source_path, ref, measured):
+    """owner資格と独立rootを照合する。bytes検査の成功は資格を代替しない。"""
     if type(qualifications) is not list or type(roots) is not list:
         return _issue(source_path + "/qualification_ref", "Independent qualification input is not supplied.", ref)
     matches = [(i, q) for i, q in enumerate(qualifications)
@@ -114,3 +115,15 @@ def validate_source(source, qualifications, roots, source_index):
         return _issue(qualification_path + "/applicable_scope",
                       "原資格の適用scopeが当該sourceのscopeに対応しない。", ref)
     return []
+
+
+def validate_source(source, qualifications, roots, source_index):
+    """形検査済みsourceを照合し、失敗の原所在をInputIssueへ残す。"""
+    source_path = "/sources/" + str(source_index)
+    ref = source.get("ref")
+    if type(ref) is not dict:
+        return _issue(source_path + "/ref", "Source reference is not supplied.", None)
+    measured, issues = _check_original_content(source, source_path, ref)
+    if issues:
+        return issues
+    return _check_qualification(source, qualifications, roots, source_path, ref, measured)
