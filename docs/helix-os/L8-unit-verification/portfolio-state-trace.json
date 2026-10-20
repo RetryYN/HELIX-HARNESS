@@ -32580,7 +32580,7 @@
     "L9_plan": {
       "path": "docs/helix-os/L9-integration-verification/portfolio-state-trace.json",
       "pointer": "/os015_origin_connection_verification_plan",
-      "file_sha256": "a62f635aa70fe7fb05f21fa12afdc71bda29f2090f9e4b6175e3122e521ff149"
+      "file_sha256": "bd30d16cab3bcbf6ae76b385ea621e5708412518f98e548cd8392547b795f62f"
     },
     "call_contract": "各case.inputは完全InputEnvelope。evaluate_os015_origin_callへ唯一引数として渡し、全PrivateReturn7rootを返してからexpected_wholeと型/presence sensitive canonical whole SHAで比較する。期待は関数operandにしない。",
     "literal_storage": "15input/expected_wholeを一度だけ完全literal JSON値で収載。展開/marker/patch/外部localファイル/追加DSLは不要。raw payload内のmarker似keyも原JSONとして読む。",
