@@ -145,11 +145,11 @@ Design as Codeを、設計の意味正本・版付き参照・差分・対検証
 
 本節の規則案を比較・起草する際の実失敗の分類と証拠所在を記録する。運用モデル[「設計JSONの著述と分割」](../github-upstream-operating-model.md)に統合済みの三観点は重複して書かず参照し、ここには2026-10-20のworker分岐で観測した3失敗だけを比較入力として追加する。
 
-- 論理consumerと実装readerの主張の混同。H040のPR #3427独立review F1で、新materialization記述が既存の `/fixture_contract/value_binding` 共有契約への関係を書かず、consumerの読取り位置だけを述べていた。修正では、新しいbundle共有を意味の再導出として既存resolved_value_bindingsと分離し、論理型検査より前の展開順を契約へ結んだ。LABO001でも「consumer読取位置」の記述が論理復元後の位置か実装reader成立の証拠かを混同し、後者を証拠にしない形へ訂正された（PR #3432）。著述・監査規則案は、論理契約上の読取位置と実装済みreader／実runtime互換の観測を区別して要求する。
+- 論理consumerと実装readerの主張の混同。H040（PR #3427）とLABO001（PR #3432）の提案では、「現行consumer」の読取位置という説明を、復元後の論理位置を示す説明へCodexが訂正した。これらの位置の列挙は、実装済みreaderや実runtime互換の成立証拠にはならない。H040の独立review F1は、これとは別に既存 `/fixture_contract/value_binding` と新materializationの接続説明の不足を指摘した。著述・監査規則案の比較では、binding／静的consumer契約／実装reader／実runtime観測のどれを根拠にした主張かを区別する。
 - 既存fixture_contract／value_ref契約との接続説明の漏れ。LABO001（PR #3432）では、文書内に既存のvalue_reference_contractがあるのに「同じ役割の契約は存在しない」と記述し、新形式と既存形式の関係が不明のままになっていた。修正では既存value_ref解決・canonical hash・再帰／循環禁止を保持したまま、134件のcopy展開を既存value_ref解決と元hash／型検査より前に行う順序を、新ノードと既存契約の両方へ書いた。同じ役割の既存契約を実読し、完全一致再利用・意味の再導出・置換のどれに当たるかを原契約と対応付けることを、著述規則案の入力とする。
 - manifestだけの棚卸しによる既存参照の落とし。CORE general basic（PR #3431）では、review済みmanifestの列挙だけが既存explicit current参照の全量だと仮定し、旧checkerのexplicit_current_entriesがdry planから落ち、結果としてstaleなexplicit current-file bindingを残した（格納shaと現行bytesのshaの不一致として検出）。棚卸しmanifestと既存checker／explicit参照集合が同じ母集団かを照合することが、監査規則案の入力となる。ここでの件数（manifest約1.5k行、追加確認したexplicit参照の規模）は当該文書の観測であり、普遍の閾値や件数規則にはしない。
 
-証拠は、公開のPR本文・修正commitとreview指摘（#3427のF1、#3432のroot補正、#3431のcurrent参照補正）を正本とし、再現限界のあるlocal receiptは `scaffold/review-handoff/local/worker-refactor-slices-20261020/`（Git非収載・公開ではない）を参照とする。旧sourceとの対応は前節の `design-refactoring-domain-model.md` §0〜§1（consumer/oracle保全、見た目だけの共通化拒否）と `design-template-json-authority.md` §1〜§2（意味正本と所在索引の分離）に照合する。これらは規則案の比較入力であり、新しいgate・承認手続き・必須validator・製品要求意味の変更は追加しない。
+公開の確認先はPR本文・修正commitとreview指摘（#3427のF1、#3432のroot補正、#3431のcurrent参照補正）とし、再現限界のあるlocal receiptは `scaffold/review-handoff/local/worker-refactor-slices-20261020/`（Git非収載・公開ではない）を参照とする。旧sourceとの対応は前節の `design-refactoring-domain-model.md` §0〜§1（consumer/oracle保全、見た目だけの共通化拒否）と `design-template-json-authority.md` §1〜§2（意味正本と所在索引の分離）に照合する。これらは規則案の比較入力であり、新しいgate・承認手続き・必須validator・製品要求意味の変更は追加しない。
 
 ## 旧資産との対応と差分
 
