@@ -20,7 +20,7 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 以下は原文を作業へ対応付けるAIの整理であり、引用と区別する。
 
-- 設計書そのものを変更対象とし、上位の設計と対検証から独立した期待・反例を先に定め、不足を識別するRed、最小設計のGreen、同じ期待と影響先を保持するRefactorの循環を採用する。具体例はL4とL9を入力としてL5を導く作業である。製品コードを先に増やすことを、この方式の実証へ読み替えない。
+- 設計書そのものを変更対象とし、上位の設計と対検証を根拠に、設計候補の出力から独立した期待・反例を先に定め、不足を識別するRed、最小設計のGreen、同じ期待と影響先を保持するRefactorの循環を採用する。具体例はL4とL9を入力としてL5を導く作業である。製品コードを先に増やすことを、この方式の実証へ読み替えない。
 - [#3502](https://github.com/RetryYN/HELIX-HARNESS/issues/3502)と[方法比較監査](../audits/v12-development-method-review-2026-10-21.json)は具体化の参照であり、Issue本文の全提案を一括採用したと補完しない。同Issueの「L6 Red／L7 Green＋Refactor」という層の再割当てについて、今回の原文には対応する定義変更がない。[現行Concept](../../concept/helix-concept.md)の層とV-pairを保持し、必要な差分が見つかれば根拠を伴う変更候補として分ける。
 - [設計リファクタリングの調査](../feature-tickets/FT-DESIGN-REFACTOR-001.md)の反例先行・独立期待・意味保存・consumer追随を起点にする。設計JSONの容量削減や復元同等性、製品コードのTDD実行記録は、それぞれの対象の証拠として保持し、設計導出の実証とは分ける。
 - 採用したのは設計改善の方式である。生成器・設計CI・上位pairから下位pairを導く機構が実装済みであること、限定要件や全設計の完了、製品CI・利用者受入・release・内部デプロイの成立を宣言しない。既存のauthority、独立review、還流先を保持し、新しい承認gateは追加しない。
