@@ -121827,6 +121827,18 @@
       "docs/helix-security/L8-unit-verification/credential-value-boundary.json#/literal_materialization_contract",
       "docs/helix-labo/L8-unit-verification/worker-level-evidence.json#/literal_materialization_contract"
     ],
-    "consumer_boundary": "L5 scope_content_correction.oracle_referenceの/cases/46と、L8 scope_content_correctionの4returns/whole hashは全copy展開後に読む。既存fixed_source_refsとcandidate_followup_binding.current_source_pinsは歴史snapshotとして保持する。実装済みreader/製品TDD/資格/配送/実受入の成立は主張しない。"
+    "consumer_boundary": "L5 scope_content_correction.oracle_referenceの/cases/46と、L8 scope_content_correctionの4returns/whole hashは全copy展開後に読む。既存fixed_source_refsとcandidate_followup_binding.current_source_pinsは歴史snapshotとして保持する。実装済みreader/製品TDD/資格/配送/実受入の成立は主張しない。",
+    "legacy_rederivation": {
+      "asset_id": "LEGACY-ASSET-C3DE79BA9451172F3E43",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
+      "lines": [
+        121,
+        126
+      ],
+      "raw_sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04",
+      "keep": "原source/schema/field path/digestと不足原所在を保ち、unknownを黙って落としてgreenにしない。",
+      "change": "同じFN03返却roleの37 literalだけを既存construction-time copyへ意味再導出。旧quarantine/state/CLI/runtime/gateは移植しない。",
+      "reason": "Issue3499と親3139の実重複の削減。原期待と全consumerの展開後意味を保持する。"
+    }
   }
 }
