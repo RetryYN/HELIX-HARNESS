@@ -121803,6 +121803,30 @@
         "from": "/cases/0/function_invocations/2/expected_return",
         "path": "/cases/46/function_invocations/2/expected_return"
       }
-    ]
+    ],
+    "source_binding": {
+      "revision": "da2578c9ccb21531cf75e882cd1dd328173a72cc",
+      "path": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json",
+      "raw_sha256": "ddac24800d5bef74295ac1a37289c1d109aa31a1f8c9c972872163e4ae886036",
+      "anchors": [
+        {
+          "pointer": "/cases/0/function_invocations/2/expected_return",
+          "canonical_sha256": "8b74bd52e3d8b24c52c114434a9d08acfd33692afb805aebc12f420d25911724",
+          "ordered_sha256": "72fb4b81f19520b3792379fe68ec3f0fcb8b5285994db32b2ed67048767f9692"
+        }
+      ],
+      "whole_case_collection": {
+        "pointer": "/cases",
+        "count": 47,
+        "canonical_sha256": "798e91b4f54c668992485b656c99f47d68d5170bdb11341f3d6ee8cd33c9bc0c",
+        "ordered_sha256": "99a248019619780fe53fe580124eb889c658e444ac7041dc6230dbd4c381dded",
+        "verification": "固定sourceの全47caseをそれぞれcanonical/ordered全値で比較し、集合全体の二つのhashも照合する。case1件の欠落や原配列/member順の変更を許容しない。"
+      }
+    },
+    "existing_recipe_basis": [
+      "docs/helix-security/L8-unit-verification/credential-value-boundary.json#/literal_materialization_contract",
+      "docs/helix-labo/L8-unit-verification/worker-level-evidence.json#/literal_materialization_contract"
+    ],
+    "consumer_boundary": "L5 scope_content_correction.oracle_referenceの/cases/46と、L8 scope_content_correctionの4returns/whole hashは全copy展開後に読む。既存fixed_source_refsとcandidate_followup_binding.current_source_pinsは歴史snapshotとして保持する。実装済みreader/製品TDD/資格/配送/実受入の成立は主張しない。"
   }
 }
