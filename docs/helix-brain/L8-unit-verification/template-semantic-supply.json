@@ -8385,7 +8385,999 @@
             "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
           },
           "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
-          "predicate_ref": "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution"
+          "predicate_ref": "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution",
+          "fixture_construction": {
+            "notation": "既存base SupplyInputに標準RFC6902 test/remove/addを順に適用する有限のfixture construction。新しいdomain evaluator/DSLではない。実関数は未実行。",
+            "base_supply_input_pointer": "/fixture_contract/normal_control/input",
+            "base_input_ordered_sha256": "7a319d1a313738ace504a0d1dcc112a0fc25d2171e4a5490dcf544369a0bc452",
+            "operations": [
+              {
+                "op": "test",
+                "path": "/descriptors/6/slot_identity",
+                "value": "synthetic-descriptor-7"
+              },
+              {
+                "op": "test",
+                "path": "/descriptors/6/descriptor_kind",
+                "value": "required field"
+              },
+              {
+                "op": "test",
+                "path": "/descriptors/6/binding",
+                "value": {
+                  "template_ref": {
+                    "identity": "SYNTHETIC-TEMPLATE-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "SYNTHETIC-KNOWLEDGE-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "requirement_ref": {
+                    "identity": "synthetic-obligation-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "oracle_ref": {
+                    "identity": "synthetic-oracle-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-oracle-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_ref": {
+                    "identity": "synthetic-pack-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-pack-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_contract_version": "contract-A",
+                  "pack_artifact_version": "artifact-A",
+                  "pack_dependency_versions": [],
+                  "version_target": "1.0"
+                }
+              },
+              {
+                "op": "test",
+                "path": "/knowledge_records/0/ref",
+                "value": {
+                  "identity": "SYNTHETIC-KNOWLEDGE-A",
+                  "revision": "synthetic-rev-A",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-knowledge-owner",
+                  "source_locator": null,
+                  "sha256": null
+                }
+              },
+              {
+                "op": "remove",
+                "path": "/descriptors/6"
+              },
+              {
+                "op": "add",
+                "path": "/sources/-",
+                "value": {
+                  "ref": {
+                    "identity": "synthetic-field-target-source-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": "07e610fcc7a0582dc00757a0308a37ac03306c7b97074a5252ff8e69ab4027fd"
+                  },
+                  "content": {
+                    "binding": {
+                      "template_ref": {
+                        "identity": "SYNTHETIC-TEMPLATE-A",
+                        "revision": "synthetic-rev-A",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-knowledge-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "knowledge_ref": {
+                        "identity": "SYNTHETIC-KNOWLEDGE-A",
+                        "revision": "synthetic-rev-A",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-knowledge-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "requirement_ref": {
+                        "identity": "synthetic-obligation-A",
+                        "revision": "synthetic-rev-A",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-requirement-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "oracle_ref": {
+                        "identity": "synthetic-oracle-A",
+                        "revision": "synthetic-rev-A",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-oracle-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_ref": {
+                        "identity": "synthetic-pack-A",
+                        "revision": "synthetic-rev-A",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-pack-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_contract_version": "contract-A",
+                      "pack_artifact_version": "artifact-A",
+                      "pack_dependency_versions": [],
+                      "version_target": "1.0"
+                    },
+                    "descriptor_targets": [
+                      {
+                        "target_ref": {
+                          "identity": "SYNTHETIC-OWNER-FIELD-TARGET-A",
+                          "revision": "synthetic-rev-A",
+                          "scope": {
+                            "project": "synthetic-P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-E"
+                          },
+                          "owner": "synthetic-knowledge-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "slot_identity": "synthetic-descriptor-7",
+                        "descriptor_kind": "required field"
+                      }
+                    ]
+                  },
+                  "content_bytes": "{\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"descriptor_targets\":[{\"target_ref\":{\"identity\":\"SYNTHETIC-OWNER-FIELD-TARGET-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"slot_identity\":\"synthetic-descriptor-7\",\"descriptor_kind\":\"required field\"}]}",
+                  "qualification_ref": {
+                    "identity": "synthetic-field-target-qualification-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "role": "semantic_json"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/qualifications/-",
+                "value": {
+                  "ref": {
+                    "identity": "synthetic-field-target-qualification-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "subject_ref": {
+                    "identity": "synthetic-field-target-source-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": "07e610fcc7a0582dc00757a0308a37ac03306c7b97074a5252ff8e69ab4027fd"
+                  },
+                  "subject_sha256": "07e610fcc7a0582dc00757a0308a37ac03306c7b97074a5252ff8e69ab4027fd",
+                  "applicable_scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "qualification_body": {
+                    "owner": "synthetic-knowledge-owner",
+                    "subject": "synthetic-field-target-source-A",
+                    "authority_effect": "fixture assumption only"
+                  },
+                  "root_ref": {
+                    "identity": "synthetic-owner-root",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/knowledge_records/0/provenance_refs/-",
+                "value": {
+                  "identity": "synthetic-field-target-source-A",
+                  "revision": "synthetic-rev-A",
+                  "scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "owner": "synthetic-knowledge-owner",
+                  "source_locator": null,
+                  "sha256": "07e610fcc7a0582dc00757a0308a37ac03306c7b97074a5252ff8e69ab4027fd"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/sources/-",
+                "value": {
+                  "ref": {
+                    "identity": "synthetic-semantic-source-B",
+                    "revision": "synthetic-rev-B",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": "1487f0408d4871096402b5f3ca4c9000d7d3832189bbbb52fd4e9ff0e3e39634"
+                  },
+                  "content": {
+                    "binding": {
+                      "template_ref": {
+                        "identity": "SYNTHETIC-TEMPLATE-B",
+                        "revision": "synthetic-rev-B",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-knowledge-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "knowledge_ref": {
+                        "identity": "SYNTHETIC-KNOWLEDGE-B",
+                        "revision": "synthetic-rev-B",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-knowledge-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "requirement_ref": {
+                        "identity": "synthetic-obligation-B",
+                        "revision": "synthetic-rev-B",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-requirement-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "oracle_ref": {
+                        "identity": "synthetic-oracle-B",
+                        "revision": "synthetic-rev-B",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-oracle-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_ref": {
+                        "identity": "synthetic-pack-B",
+                        "revision": "synthetic-rev-B",
+                        "scope": {
+                          "project": "synthetic-P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-E"
+                        },
+                        "owner": "synthetic-pack-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_contract_version": "contract-B",
+                      "pack_artifact_version": "artifact-B",
+                      "pack_dependency_versions": [],
+                      "version_target": "1.0"
+                    },
+                    "descriptor_facts": [
+                      {
+                        "slot_identity": "synthetic-descriptor-B5",
+                        "descriptor_kind": "required input",
+                        "facts": [
+                          {
+                            "source_ref": {
+                              "identity": "synthetic-semantic-source-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "binding": {
+                              "template_ref": {
+                                "identity": "SYNTHETIC-TEMPLATE-B",
+                                "revision": "synthetic-rev-B",
+                                "scope": {
+                                  "project": "synthetic-P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-E"
+                                },
+                                "owner": "synthetic-knowledge-owner",
+                                "source_locator": null,
+                                "sha256": null
+                              },
+                              "knowledge_ref": {
+                                "identity": "SYNTHETIC-KNOWLEDGE-B",
+                                "revision": "synthetic-rev-B",
+                                "scope": {
+                                  "project": "synthetic-P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-E"
+                                },
+                                "owner": "synthetic-knowledge-owner",
+                                "source_locator": null,
+                                "sha256": null
+                              },
+                              "requirement_ref": {
+                                "identity": "synthetic-obligation-B",
+                                "revision": "synthetic-rev-B",
+                                "scope": {
+                                  "project": "synthetic-P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-E"
+                                },
+                                "owner": "synthetic-requirement-owner",
+                                "source_locator": null,
+                                "sha256": null
+                              },
+                              "oracle_ref": {
+                                "identity": "synthetic-oracle-B",
+                                "revision": "synthetic-rev-B",
+                                "scope": {
+                                  "project": "synthetic-P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-E"
+                                },
+                                "owner": "synthetic-oracle-owner",
+                                "source_locator": null,
+                                "sha256": null
+                              },
+                              "pack_ref": {
+                                "identity": "synthetic-pack-B",
+                                "revision": "synthetic-rev-B",
+                                "scope": {
+                                  "project": "synthetic-P",
+                                  "tenant": "synthetic-T",
+                                  "environment": "synthetic-E"
+                                },
+                                "owner": "synthetic-pack-owner",
+                                "source_locator": null,
+                                "sha256": null
+                              },
+                              "pack_contract_version": "contract-B",
+                              "pack_artifact_version": "artifact-B",
+                              "pack_dependency_versions": [],
+                              "version_target": "1.0"
+                            },
+                            "meaning": {
+                              "descriptor_meaning": "別Patternの必須入力を示す欄",
+                              "fixture_role": "synthetic other-pattern required input"
+                            },
+                            "condition": {
+                              "scope": "synthetic-only"
+                            },
+                            "reason": "cross-pattern代替根拠として供給する合成B fact",
+                            "oracle_ref": {
+                              "identity": "synthetic-oracle-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-oracle-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "ref": {
+                              "identity": "synthetic-descriptor-B5-fact-1",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "descriptor_targets": [
+                      {
+                        "target_ref": {
+                          "identity": "synthetic-descriptor-B5-required-input",
+                          "revision": "synthetic-rev-B",
+                          "scope": {
+                            "project": "synthetic-P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-E"
+                          },
+                          "owner": "synthetic-knowledge-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "slot_identity": "synthetic-descriptor-B5",
+                        "descriptor_kind": "required input"
+                      }
+                    ],
+                    "qualification_assumption": "synthetic owner facts qualified for this fixture only",
+                    "replacement_basis_uses": [
+                      {
+                        "claim": {
+                          "subject_ref": {
+                            "identity": "SYNTHETIC-OWNER-FIELD-TARGET-A",
+                            "revision": "synthetic-rev-A",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "binding": {
+                            "template_ref": {
+                              "identity": "SYNTHETIC-TEMPLATE-A",
+                              "revision": "synthetic-rev-A",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "knowledge_ref": {
+                              "identity": "SYNTHETIC-KNOWLEDGE-A",
+                              "revision": "synthetic-rev-A",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "requirement_ref": {
+                              "identity": "synthetic-obligation-A",
+                              "revision": "synthetic-rev-A",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-requirement-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "oracle_ref": {
+                              "identity": "synthetic-oracle-A",
+                              "revision": "synthetic-rev-A",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-oracle-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "pack_ref": {
+                              "identity": "synthetic-pack-A",
+                              "revision": "synthetic-rev-A",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-pack-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "pack_contract_version": "contract-A",
+                            "pack_artifact_version": "artifact-A",
+                            "pack_dependency_versions": [],
+                            "version_target": "1.0"
+                          },
+                          "actor": null,
+                          "kind": "fill_definition",
+                          "proposed_value": "適用に必要な入力の意味と根拠。定義と案件値を分ける。",
+                          "basis_refs": [
+                            {
+                              "identity": "synthetic-semantic-source-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            }
+                          ]
+                        },
+                        "basis_ref": {
+                          "identity": "synthetic-semantic-source-B",
+                          "revision": "synthetic-rev-B",
+                          "scope": {
+                            "project": "synthetic-P",
+                            "tenant": "synthetic-T",
+                            "environment": "synthetic-E"
+                          },
+                          "owner": "synthetic-knowledge-owner",
+                          "source_locator": null,
+                          "sha256": null
+                        },
+                        "basis_binding": {
+                          "template_ref": {
+                            "identity": "SYNTHETIC-TEMPLATE-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "knowledge_ref": {
+                            "identity": "SYNTHETIC-KNOWLEDGE-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "requirement_ref": {
+                            "identity": "synthetic-obligation-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-requirement-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "oracle_ref": {
+                            "identity": "synthetic-oracle-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-oracle-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "pack_ref": {
+                            "identity": "synthetic-pack-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-pack-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "pack_contract_version": "contract-B",
+                          "pack_artifact_version": "artifact-B",
+                          "pack_dependency_versions": [],
+                          "version_target": "1.0"
+                        },
+                        "slot_identity": "synthetic-descriptor-B5",
+                        "descriptor_kind": "required input",
+                        "fact": {
+                          "source_ref": {
+                            "identity": "synthetic-semantic-source-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "owner": "synthetic-knowledge-owner",
+                          "binding": {
+                            "template_ref": {
+                              "identity": "SYNTHETIC-TEMPLATE-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "knowledge_ref": {
+                              "identity": "SYNTHETIC-KNOWLEDGE-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-knowledge-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "requirement_ref": {
+                              "identity": "synthetic-obligation-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-requirement-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "oracle_ref": {
+                              "identity": "synthetic-oracle-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-oracle-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "pack_ref": {
+                              "identity": "synthetic-pack-B",
+                              "revision": "synthetic-rev-B",
+                              "scope": {
+                                "project": "synthetic-P",
+                                "tenant": "synthetic-T",
+                                "environment": "synthetic-E"
+                              },
+                              "owner": "synthetic-pack-owner",
+                              "source_locator": null,
+                              "sha256": null
+                            },
+                            "pack_contract_version": "contract-B",
+                            "pack_artifact_version": "artifact-B",
+                            "pack_dependency_versions": [],
+                            "version_target": "1.0"
+                          },
+                          "meaning": {
+                            "descriptor_meaning": "別Patternの必須入力を示す欄",
+                            "fixture_role": "synthetic other-pattern required input"
+                          },
+                          "condition": {
+                            "scope": "synthetic-only"
+                          },
+                          "reason": "cross-pattern代替根拠として供給する合成B fact",
+                          "oracle_ref": {
+                            "identity": "synthetic-oracle-B",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-oracle-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          },
+                          "ref": {
+                            "identity": "synthetic-descriptor-B5-fact-1",
+                            "revision": "synthetic-rev-B",
+                            "scope": {
+                              "project": "synthetic-P",
+                              "tenant": "synthetic-T",
+                              "environment": "synthetic-E"
+                            },
+                            "owner": "synthetic-knowledge-owner",
+                            "source_locator": null,
+                            "sha256": null
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "content_bytes": "{\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-B\",\"pack_artifact_version\":\"artifact-B\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"descriptor_facts\":[{\"slot_identity\":\"synthetic-descriptor-B5\",\"descriptor_kind\":\"required input\",\"facts\":[{\"source_ref\":{\"identity\":\"synthetic-semantic-source-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"owner\":\"synthetic-knowledge-owner\",\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-B\",\"pack_artifact_version\":\"artifact-B\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"meaning\":{\"descriptor_meaning\":\"別Patternの必須入力を示す欄\",\"fixture_role\":\"synthetic other-pattern required input\"},\"condition\":{\"scope\":\"synthetic-only\"},\"reason\":\"cross-pattern代替根拠として供給する合成B fact\",\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"ref\":{\"identity\":\"synthetic-descriptor-B5-fact-1\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null}}]}],\"descriptor_targets\":[{\"target_ref\":{\"identity\":\"synthetic-descriptor-B5-required-input\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"slot_identity\":\"synthetic-descriptor-B5\",\"descriptor_kind\":\"required input\"}],\"qualification_assumption\":\"synthetic owner facts qualified for this fixture only\",\"replacement_basis_uses\":[{\"claim\":{\"subject_ref\":{\"identity\":\"SYNTHETIC-OWNER-FIELD-TARGET-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"actor\":null,\"kind\":\"fill_definition\",\"proposed_value\":\"適用に必要な入力の意味と根拠。定義と案件値を分ける。\",\"basis_refs\":[{\"identity\":\"synthetic-semantic-source-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null}]},\"basis_ref\":{\"identity\":\"synthetic-semantic-source-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"basis_binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-B\",\"pack_artifact_version\":\"artifact-B\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"slot_identity\":\"synthetic-descriptor-B5\",\"descriptor_kind\":\"required input\",\"fact\":{\"source_ref\":{\"identity\":\"synthetic-semantic-source-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"owner\":\"synthetic-knowledge-owner\",\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-B\",\"pack_artifact_version\":\"artifact-B\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"meaning\":{\"descriptor_meaning\":\"別Patternの必須入力を示す欄\",\"fixture_role\":\"synthetic other-pattern required input\"},\"condition\":{\"scope\":\"synthetic-only\"},\"reason\":\"cross-pattern代替根拠として供給する合成B fact\",\"oracle_ref\":{\"identity\":\"synthetic-oracle-B\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"ref\":{\"identity\":\"synthetic-descriptor-B5-fact-1\",\"revision\":\"synthetic-rev-B\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null}}}]}",
+                  "qualification_ref": {
+                    "identity": "synthetic-source-qualification-B",
+                    "revision": "synthetic-rev-B",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "role": "semantic_json"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/qualifications/-",
+                "value": {
+                  "ref": {
+                    "identity": "synthetic-source-qualification-B",
+                    "revision": "synthetic-rev-B",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "subject_ref": {
+                    "identity": "synthetic-semantic-source-B",
+                    "revision": "synthetic-rev-B",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": "1487f0408d4871096402b5f3ca4c9000d7d3832189bbbb52fd4e9ff0e3e39634"
+                  },
+                  "subject_sha256": "1487f0408d4871096402b5f3ca4c9000d7d3832189bbbb52fd4e9ff0e3e39634",
+                  "applicable_scope": {
+                    "project": "synthetic-P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-E"
+                  },
+                  "qualification_body": {
+                    "owner": "synthetic-knowledge-owner",
+                    "subject": "synthetic-semantic-source-B",
+                    "authority_effect": "fixture assumption only"
+                  },
+                  "root_ref": {
+                    "identity": "synthetic-owner-root",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/claims/-",
+                "value": {
+                  "subject_ref": {
+                    "identity": "SYNTHETIC-OWNER-FIELD-TARGET-A",
+                    "revision": "synthetic-rev-A",
+                    "scope": {
+                      "project": "synthetic-P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-E"
+                    },
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "binding": {
+                    "template_ref": {
+                      "identity": "SYNTHETIC-TEMPLATE-A",
+                      "revision": "synthetic-rev-A",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-knowledge-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "knowledge_ref": {
+                      "identity": "SYNTHETIC-KNOWLEDGE-A",
+                      "revision": "synthetic-rev-A",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-knowledge-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "requirement_ref": {
+                      "identity": "synthetic-obligation-A",
+                      "revision": "synthetic-rev-A",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-requirement-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "oracle_ref": {
+                      "identity": "synthetic-oracle-A",
+                      "revision": "synthetic-rev-A",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-oracle-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "pack_ref": {
+                      "identity": "synthetic-pack-A",
+                      "revision": "synthetic-rev-A",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-pack-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    },
+                    "pack_contract_version": "contract-A",
+                    "pack_artifact_version": "artifact-A",
+                    "pack_dependency_versions": [],
+                    "version_target": "1.0"
+                  },
+                  "actor": null,
+                  "kind": "fill_definition",
+                  "proposed_value": "適用に必要な入力の意味と根拠。定義と案件値を分ける。",
+                  "basis_refs": [
+                    {
+                      "identity": "synthetic-semantic-source-B",
+                      "revision": "synthetic-rev-B",
+                      "scope": {
+                        "project": "synthetic-P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-E"
+                      },
+                      "owner": "synthetic-knowledge-owner",
+                      "source_locator": null,
+                      "sha256": null
+                    }
+                  ]
+                }
+              }
+            ],
+            "target_origin": "Claim.subject_refは新しい合成owner source Aのdescriptor_targets[0].target_refの明示原値を参照する。slot文字列からRefを実行時生成しない。A sourceは同KnowledgeRecordの原provenanceへ追加する。既存source/qualification/provenanceは変更しない。",
+            "basis_origin": "Claim.basis_refsの原RefはB sourceを指す。B content.replacement_basis_usesは同Claim全6fieldと当該basis_refを、B full Binding/required-input原group/fact全値へ対応させる。追加recordをSupplyInputの新memberにしない。",
+            "digest_boundary": "source.content_bytesのUTF-8 SHA-256を外側source.ref/qualificationへ束縛。Claim内basis Refのsha256=nullは既存Ref比較が許容する原値であり、自身を含むsource digestの循環を作らない。既存ref_sameの一方null許容を変更せず、全Refのdigestを新必須にしない。",
+            "intent_ref": {
+              "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+              "pointer": "/dependency_semantic_ports/claim_intent_protocol/rules/4"
+            },
+            "conversion": "変異後の同一RawValue SupplyInputを既存validate_supply_inputでValidatedSupplyへ、DefinitionContext.validatedへ渡し、同公開compare_descriptor_definitionsを呼ぶ。入力shape/owner資格/意味返却の実行結果は未観測。",
+            "preservation": "required_descriptor_kinds、元14slot、元5source/5qualification、元knowledgeの他member/元provenance、他全入力memberを保持。全体knownへ補完しない。",
+            "boundary_ja": "合成のowner/source/資格を実資格/knowledge採用へ昇格しない。元の独立部分oracleを保持し期待code/stateを入力へ渡さない。test/oracleは未凍結。"
+          }
         },
         {
           "id": "HELIXBRAIN-L8-032-F02-NEG-03",
@@ -15021,7 +16013,7 @@
         ],
         "current_basic_contract_pointer": "/field_value_applicability_contract",
         "current_l4_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "current_l4_file_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "current_l4_file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
         "current_detail_oracle_pointer": "/field_value_applicability_detail_verification",
         "boundary": "公開signature/要求F03の意味は維持する。原入力を修復して旧成功期待へ合わせず、現在の基本契約から支持できない旧未実行期待だけを訂正し、その原文は固定baseと本記録に保持する。全現normal返却の新literalは未収載である。",
         "current_basic_contract_canonical_sha256": "b936641956cb36e2ff7f9c66c09e1eaf7e61f0206c35e6dd8b0e7ed02148f0d4",
@@ -20485,7 +21477,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "candidate_current_file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -56926,7 +57918,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -66756,7 +67748,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -66775,21 +67767,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -83531,7 +84523,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -83539,18 +84531,20 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "d55e740bc956bcfa1d88159c3becf48846f4f4c6aed7719cee44433f9bcc6ced"
+        "sha256": "90cdaa3523def8329c2398257ce959d22e77e413064f7fd78241daf6ae8296b4"
       }
     ],
-    "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。"
+    "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
+    "binding_kind": "current_working_whole_file_utf8_bytes",
+    "revision_semantics": "revisionは結線の初期導出位置でありdocumentsの固定snapshot revisionではない。documentsのsha256は同review対象HEADの現在L4/L9全UTF-8 bytes。独立のrevision付きsource_pinsは各原履歴bytesを保持する。"
   },
   "definition_meaning_walk_verification": {
       "artifact_ref": {
         "identity": "HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK",
         "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
-        "file_sha256": "10f92880f7a94b4714f68505040e02605db39535ea9ae48262bd8db7185ac233",
+        "file_sha256": "627064a69ba4c3a17cdd04888c38e50d7c767c1d5411a96608568e77c68ed9e6",
         "pointer": "",
-        "canonical_sha256": "006e5e2c4eeefb6c2df09fa27e803352b8785ff5fdb3f4fbf85386bb1da7606c"
+        "canonical_sha256": "8d8542706ca28dc44705170e5746619fb6e57d21b51c57729c2b7a4a6a5fbe5f"
       },
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -84958,7 +85952,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -84998,7 +85992,7 @@
           "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
           "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
           "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
-          "current_file_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9"
+          "current_file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02"
         }
       ]
     }
@@ -85051,7 +86045,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+        "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
@@ -110389,7 +111383,7 @@
     "purpose_ja": "既決L4の20有限CanonicalBodyRead全値と、case0同V/F01→fn6全Comparisonを、canonical実readと元unselected出現の詳細writerへ対応付ける。",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "selected_objects": [
         {
           "pointer": "/type_contract/imports",
@@ -111938,12 +112932,41 @@
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/field_value_applicability_detail",
-      "file_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "canonical_sha256": "3f00da4ea78ab03d2550d8517d277095e2d5670a781283a372bf99c06cc18bcf",
       "binding_state": "current_candidate_content_binding"
     },
     "authority_effect": "none",
     "operation_effect": "none",
     "normal_control_rebaseline_ref": "/function_oracles/2/source_rebaseline"
+  },
+  "first_local_tdd_verification": {
+    "function_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/functions/1"
+    },
+    "implementation_binding_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/first_local_implementation_binding"
+    },
+    "partial_oracle_refs": [
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointer": "/cases/3/negative_cases/1"
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointer": "/cases/3/negative_cases/20"
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointer": "/function_oracles/1"
+      }
+    ],
+    "input_state": "標準RFC6902による同一具体入力の候補をF02-NEG-02へ収載。構造/参照/body/digestは静的照合し、実validator/関数実行と独立review/test凍結は未成立。",
+    "assertion_scope": "各既存caseの対象finding/axis/state/ownerと原入力・無関係controlを観測。全Comparison既知成功のoracleを生成しない。元baseのunknownを保持。",
+    "effects_observation": "入力不変性と当該実行で観測する作用の範囲/方法をtestに明示。値一致だけで全外部副作用0を証明したと言わない。",
+    "test_program_state": "not_authored",
+    "execution_state": "not_executed"
   }
 }

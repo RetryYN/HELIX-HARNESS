@@ -11888,5 +11888,45 @@
       "public_shape_closure": "既存logical_input_structure/schema/$defsの全19public定義は同名literalをL4へ意味再導出。whole SupplyInputの非C3memberも変更せず保存する必要性をconsumer_tableへ記録。",
       "private_import_count": 0
     }
+  },
+  "first_local_unit_binding": {
+    "id": "HELIXBRAIN-L4-032-FIRST-LOCAL-UNIT",
+    "scope": "F02のrequired field定義欠落を別Pattern required inputで補えない一挙動。既存compare_descriptor_definitions公開境界を使う局所unit。",
+    "owner": "HELIX-BRAIN",
+    "kind": "unit",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "identity_state": "design_identity_not_registered",
+    "registration_boundary": "この設計identity/物理pathを型番台帳登録の事実にしない。OS登録/実提供/Acceptedは別。全OS登録runtimeの完成を純局所test著述の新条件にしない。",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+    "declaration_home": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "declaration_boundary": "このパックだけの所有/検証対象宣言を同homeへ置く。パックをまたぐ宣言のdeclarations/及び型番台帳の登録事実と二重正本化しない。宣言schema/登録writerの全実装をここで採用しない。",
+    "language": "Python",
+    "local_test_tool": "Python標準ライブラリunittest。外部依存0、root config追加なし。現環境Python3.12.3は観測値であり全HELIXの固定版指定ではない。",
+    "test_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -p test_descriptor_definitions.py",
+    "effects": "immutableな合成入力のpure比較。実source資格取得、DB/OS登録、ネットワーク、promotion、CORE適用、案件義務消込を実行しない。",
+    "scope_boundary": "言語/配置をこの局所unitへ具体化する設計差分。実test/oracleは未凍結、Red/Green/実装/CI未成立。既存L5全体や他8関数の実装済みを主張しない。",
+    "source_basis": [
+      {
+        "revision": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+        "path": "docs/governance/decisions/repository-layout-and-source-visibility-po-decision-2026-10-09.md",
+        "line_spans": [
+          [
+            44,
+            69
+          ]
+        ]
+      },
+      {
+        "revision": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+        "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+        "line_spans": [
+          [
+            28,
+            43
+          ]
+        ]
+      }
+    ]
   }
 }

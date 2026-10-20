@@ -4,7 +4,7 @@
   "candidate_L5_binding": {
     "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
     "base_revision": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
-    "file_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+    "file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
     "binding_kind": "current_working_file_bytes",
     "scope": "base_revisionのgit blobと同bytesという主張ではない。正式候補L5全bytesへ照合。"
   },
@@ -439581,7 +439581,7 @@
       },
       "L4": {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
         "semantic_pointers": [
           "/definition_meaning_resolution_contract/readers/0",
           "/definition_meaning_resolution_contract/readers/1",
@@ -439938,7 +439938,7 @@
         "L4": {
           "existing_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/source_pins/L4",
           "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80"
+          "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
         },
         "L5": {
           "existing_L8_pointer": "/definition_meaning_walk_verification/current_source_basis_reconstruction/source_pins/L5",
@@ -452525,7 +452525,7 @@
     "source_binding": {
       "binding_kind": "current_candidate_file_bytes",
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
       "selected_objects": [
         {
           "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/source_occurrence_retention",

@@ -9637,7 +9637,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+                  "file_bytes_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -10798,7 +10798,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -10806,10 +10806,12 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "d55e740bc956bcfa1d88159c3becf48846f4f4c6aed7719cee44433f9bcc6ced"
+        "sha256": "90cdaa3523def8329c2398257ce959d22e77e413064f7fd78241daf6ae8296b4"
       }
     ],
-    "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。"
+    "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
+    "binding_kind": "current_working_whole_file_utf8_bytes",
+    "revision_semantics": "revisionは結線の初期導出位置でありdocumentsの固定snapshot revisionではない。documentsのsha256は同review対象HEADの現在L4/L9全UTF-8 bytes。独立のrevision付きsource_pinsは各原履歴bytesを保持する。"
   },
   "conditional_dependency_detail": {
     "id": "HELIXBRAIN-L5-032-CONDITIONAL-DEPENDENCY-DETAIL",
@@ -12877,5 +12879,25 @@
       "boundary": "公開fn2の関数signature/Comparison返却型が変わらないことと、旧未実行normal oracleの全期待値がF03基本reader導入後も不変であることは別である。旧normal入力にF03原owner carriersが無い場合、known/supplied/applicableを期待値として継承せず、L4 F03の明示されたsource-unobtained/unknown挙動へ従う。",
       "resolution_owner": "対応L8詳細設計で旧normal fixtureと新L4 F03 source contractを照合し、必要なら同じ基本意味を保つ範囲で oracle の入力/期待を更新する。実行証拠・全入力閉包はこの記述から生成しない。"
     }
+  },
+  "first_local_implementation_binding": {
+    "function_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/functions/1"
+    },
+    "basic_unit_binding_ref": {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "pointer": "/first_local_unit_binding"
+    },
+    "contract_sources": [
+      "/type_contract/types/DefinitionContext",
+      "/type_contract/types/Comparison",
+      "/functions/1",
+      "/failure_rules/8",
+      "/source_return_contract/descriptor_target_dataflow/definition_meaning_core"
+    ],
+    "meaning": "既存公開関数と一回の既存walkの詳細意味を正本に保つ。新しいtoy checkerへ置換せず、L6へ型/手順/全fixtureを複写しない。言語とsrc/tests配置だけを局所具体化する。",
+    "freeze_state": "input_and_test_not_frozen",
+    "implementation_state": "not_started"
   }
 }
