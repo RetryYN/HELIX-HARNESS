@@ -9988,12 +9988,12 @@
         },
         {
           "argument": "source_envelopes",
-          "value": "同じvalidated.input.sources raw array。"
+          "value": "独立source-envelope provider portのraw returnを呼出側が明示束縛する。ApplicationInput.sources、computed output、L9 expectedから生成・抽出しない。port未供給時はoptional input memberをAbsentのまま渡す。"
         }
       ],
       "consumer_ref": "HARNESS-L5-009-build_application_analysis",
       "consumer_argument_path": "/source_result_reference_projection",
-      "invocation_chain_ja": "同一ValidatedApplication snapshotの既存producer DAGを使う。compare_applicability(CompareApplicabilityContextの必須3引数=validated/compare_required_axes/compare_candidate_universeの同一snapshot返却)を呼び、返却Comparison.material.source_projection_rowsがあればそのraw arrayをproject_source_result_references.SourceResultReferenceInput.computed_rowsへ渡す。absentはroot key省略。application_inputは同じValidatedApplication.input（input_refがあれば保持、なければ生成しない）。source_envelopesは同じValidatedApplication.input.sourcesを変換せずraw copyし、key欠落ならabsent。SourceEnvelopeの形をF03の資格/claimとして解釈せず、row_binding等が無ければL4 projectionで未解決を返す。ProjectionResultを受け、既存各comparison producer返却と共にbuild_application_analysis.context.source_result_reference_projectionへ同一値で渡す。",
+      "invocation_chain_ja": "同一ValidatedApplication snapshotの既存producer DAGを使う。compare_applicability(CompareApplicabilityContextの必須3引数=validated/compare_required_axes/compare_candidate_universeの同一snapshot返却)を呼び、返却Comparison.material.source_projection_rowsがあればそのraw arrayをproject_source_result_references.SourceResultReferenceInput.computed_rowsへ渡す。absentはroot key省略。application_inputは同じValidatedApplication.input（input_refがあれば保持、なければ生成しない）。source_envelopesは/functions/12/caller_binding/source_envelopesが定める独立source-envelope provider portのraw returnを無変換で渡す。port未供給時はoptional input memberをAbsentのまま渡し、ApplicationInput.sources、computed output、L9 expectedで生成・抽出・補完しない。SourceEnvelopeの形をF03の資格/claimとして解釈せず、row_binding等が無ければL4 projectionで未解決を返す。ProjectionResultを受け、既存各comparison producer返却と共にbuild_application_analysis.context.source_result_reference_projectionへ同一値で渡す。",
       "authority_limit_ja": "これはL5関数間のpure material bindingであり、既存L5に別のorchestrator関数は定義されていない。実呼出しコード/codecは未実装。OS002 consumerへのwriter/authorityを追加しない。",
       "compare_applicability_context_binding": {
         "validated": "HARNESS-L5-009-validate_application_input同一snapshot返却",
