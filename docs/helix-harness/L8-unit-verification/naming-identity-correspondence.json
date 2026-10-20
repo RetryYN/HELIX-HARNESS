@@ -55093,6 +55093,7 @@
       "この有限期待は新impact writerの独立設計候補。実owner資格/実consumer全集合/配送、F02全義務完了を主張しない。"
     ],
     "native_observed": false,
-    "new_F02_program_not_authored_at_freeze": true
+    "new_F02_program_not_authored_at_freeze": true,
+    "freeze_flag_note_ja": "new_F02_program_not_authored_at_freezeはfreeze時点の過去状態を示す記録であり、現proposalの現在状態として転記したものではない。"
   }
 }
