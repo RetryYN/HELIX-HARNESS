@@ -334,7 +334,7 @@
     "projection_limit": "部分projectionを廃止。全114case+708matrixで完全arguments/whole returnを再帰型検査し、L5本文から別計算した全返却を原期待へ照合。",
     "execution_state": "not_executed",
     "effect": "none",
-    "value_binding": "$value_bindingは本candidate文書内のresolved_value_bindingsへのJSON Pointer。そこにあるbase pointer/hashと明示updatesを適用してから論理型検査する。製品codec型にこの参照wrapperを混ぜない。 updatesのoperation省略/replaceは原before値一致後の置換。operation=removeはbefore一致後に当該keyを削除しabsentを保つ（nullへ置換しない）。 本変更は既存共有契約からの意味の再導出である。既存の全input_packet/expected_returnとbefore付きupdatesを共有するresolved_value_bindingsは無変更で保持し、今回の14-member childだけの全値同値共有はshared_independent_inputs_bundle_materializationの標準RFC6902 copyとして分離した。論理型検査の前に同materializationを展開し、既存$value_bindingの適用と併せて元の全論理値を検査する。bundle_recipeを製品codec型へ混ぜず、既存wrapperの意味とconsumer位置を変更しない。",
+    "value_binding": "$value_bindingは本candidate文書内のresolved_value_bindingsへのJSON Pointer。そこにあるbase pointer/hashと明示updatesを適用してから論理型検査する。製品codec型にこの参照wrapperを混ぜない。 updatesのoperation省略/replaceは原before値一致後の置換。operation=removeはbefore一致後に当該keyを削除しabsentを保つ（nullへ置換しない）。 本変更は既存共有契約からの意味の再導出である。既存の全input_packet/expected_returnとbefore付きupdatesを共有するresolved_value_bindingsは無変更で保持し、今回の14-member childだけの全値同値共有はshared_independent_inputs_bundle_materializationの標準RFC6902 copyとして分離した。論理型検査の前に同materializationを展開し、既存$value_bindingの適用と併せて元の全論理値を検査する。bundle_recipeを製品codec型へ混ぜず、既存wrapperの意味とconsumer位置を変更しない。 shared_input_packet_materializationは同じ局所bundle_recipe形式をcomparison_axesと指定snapshotの原入力に適用する。両materializationをそれぞれのscopeだけで展開してから既存value_binding適用/value_ref解決/論理型検査へ進む。独立expected_returnとresolved_value_bindingsは原値を保持する。",
     "additional_local_case_count": 6,
     "projection_presence_case_count": 17
   },
@@ -681258,8 +681258,14 @@
     },
     "restore_order": "scope_pointers記載順。各siteは同じanchor値へ独立に復元され共有aliasを作らない。",
     "consumer_read_positions": "scope_pointersの各member位置が論理復元後の現行consumer読取位置。実装reader/実runtime互換性の成立証拠ではない。",
-    "relation_to_existing_contract": "fixture_contract/value_bindingとresolved_value_bindingsは保持し変更しない。shared_independent_inputs_bundle_materializationと同じbase_pointer+RFC6902 copy形式を意味の再導出として追加し、論理型検査・既存value_binding適用・value_ref解決の前に本materializationと既存materializationを展開する。independent_inputs以外のpacket memberに限り、expected_return・resolved_value_bindingsの独立期待は入力anchorへ統合しない。",
+    "relation_to_existing_contract": "fixture_contract/value_bindingの既存手順とresolved_value_bindings全値は保持し、前者の本文には本materializationとの先行展開順を追補する。shared_independent_inputs_bundle_materializationと同じbase_pointer+RFC6902 copy形式を意味の再導出として追加し、論理型検査・既存value_binding適用・value_ref解決の前に本materializationと既存materializationを展開する。independent_inputs以外のpacket memberに限り、expected_return・resolved_value_bindingsの独立期待は入力anchorへ統合しない。",
     "preservation": "anchor literal・全packet・expected_return・期待/hash/履歴・原source・member/array順・null/欠落を保持。契約node+recipeを除けば元文書全値・raw bytesへ逆復元できる。",
-    "authority_effect": "なし。global resolver・DSL・新gate・要求意味・製品実装は追加しない。"
+    "authority_effect": "なし。global resolver・DSL・新gate・要求意味・製品実装は追加しない。",
+    "source_and_failure_basis_ja": [
+      "旧archiveのdocs/design/helix/L5-detail/design-refactoring-domain-model.md §0–§1のconsumer/oracle保全、同L4-basic-design/design-template-json-authority.md §1–§2のJSON意味正本/所在/view分離を保持する意味の再導出。旧runtime/DB/CIを移植しない。",
+      "PR3427 F1の既存value_bindingと局所復元との接続説明漏れ、PR3432のvalue_ref解決前展開漏れを比較入力にする。本変更では同fixture_contractにも適用順を追補する。",
+      "実装reader/実runtimeでなく復元後の論理所在を示す。packet間で同値の原入力束だけ共有し、独立期待の自己一致へ置換しない。"
+    ],
+    "validation_ja": "三つのanchorのcanonical SHA-256を同文書snapshotで確認し、scope73位置のbundle_recipeが宣言どおりのbase_pointer/copy from/empty-root pathを持つことを照合する。物理recipe objectは製品inputではなく同位置へ全原値を復元してから使う。anchor欠落/改変、copy先/原member違い、展開漏れは元全値/hashとの不一致又は参照不成立として検出し、別caseの入力や独立期待へfallbackしない。"
   }
 }
