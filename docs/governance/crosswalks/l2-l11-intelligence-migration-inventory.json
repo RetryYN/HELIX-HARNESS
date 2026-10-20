@@ -6292,7 +6292,17 @@
             "role": "inline_mention"
           }
         ]
-      }
+      },
+      "alternate_literal_observations": [
+        {
+          "literal": "HELIXINTELLIGENCE-L2/L11-072-004",
+          "syntax_role": "combined_layer_pair_mention",
+          "line": 401,
+          "byte_start": 113106,
+          "byte_end": 113138,
+          "meaning_role": "unknown; source notation preserved without normalization or adoption inference"
+        }
+      ]
     },
     "adopted_L2": {
       "distinct_literals": 60,
@@ -10593,9 +10603,10 @@
             "role": "heading"
           }
         }
-      }
+      },
+      "observation_scope_note": "通常形式locatorsのキー同士だけの文字列集合比較。L2/L11併記を正規化しないため、l2_onlyは別表記でL11に言及が無いという判定ではない。current L11 line401の併記072-004はalternate_literal_observationsに保持。"
     },
-    "note": "全出現をline/UTF-8 byte_start/byte_end半開範囲/構文roleで列挙。range literal(001–016等)と続く省略形(018–020等prefixなし)は観測literalのまま。構文roleと意味roleを区別し意味roleはunknownを保つ"
+    "note": "locatorsはHELIXINTELLIGENCE-L2-で始まる通常形式（range込み）の観測literalをline/UTF-8半開byte/構文roleで列挙する。L2/L11併記はalternate_literal_observationsへ別形式のまま記録する。prefixなし省略形を補完・展開せず原blob/spanに保持する。構文roleと意味roleを区別し、意味roleはunknown。"
   },
   "direct_consumers": {
     "static_references": [
