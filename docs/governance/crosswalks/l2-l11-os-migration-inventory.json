@@ -1,0 +1,1936 @@
+{
+  "schema": "l2-l11-os-migration-inventory.v1",
+  "inventory_kind": "scaffold原文被覆索引（要求意味同等性・正式JSON/schema/view/承認継承/cutoverの認定ではない）",
+  "authority_effect": "none",
+  "issue": 3456,
+  "base_sha": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+  "confirmed_at": "2026-10-20",
+  "purpose": "OS L2/L11の一対の固定原文を無損失索引化。原文全byteを原順・非重複の半開byte spanで被覆し、固定git blobから再構成してraw/hash一致させる。IDなし本文・表注・条件・版・N/A・保留・未分類・空白・末尾を落とさない。",
+  "sources": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "git_blob": "51a41f8dd77f22ec8319122d3de5b9c3bde1749c",
+      "raw_sha256": "9ea8afbf83248ca6fda73cc78b8f6aa86a33e1003e79eb080986e613d8a04240",
+      "bytes": 457982,
+      "lines": 1707,
+      "role": "L2要求本文"
+    },
+    {
+      "path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "git_blob": "da2860a7fbb911536a0eee36fa75d229376a3a34",
+      "raw_sha256": "976d27c80a8e262f59ff72f8dee90a3333a6ac770627161ceb475ece0efa0275",
+      "bytes": 335168,
+      "lines": 1371,
+      "role": "L11受入本文"
+    }
+  ],
+  "span_partitions": {
+    "docs/helix-os/L2-requirements/governance-requirements.md": [
+      {
+        "start": 0,
+        "end": 360,
+        "start_line": 1,
+        "line_count": 15,
+        "sha256": "727b15d895313dcd53cb3e858b53cdc330ac8e1f54b0397ee29a01d048411aa4",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 360,
+        "end": 15133,
+        "start_line": 16,
+        "line_count": 87,
+        "sha256": "22ffbff77e286c293838071c6e88a916cdf3b1a76049e1c4af35433e341f0bfa",
+        "first_line": "# HELIX-OSのプロジェクト群統制要求",
+        "role": "document_title"
+      },
+      {
+        "start": 15133,
+        "end": 21574,
+        "start_line": 103,
+        "line_count": 20,
+        "sha256": "4f17b4cf1a662f92590837337d247dbd4bfaa69a60606841d9a5638334c50492",
+        "first_line": "## ticket",
+        "role": "group_heading"
+      },
+      {
+        "start": 21574,
+        "end": 30271,
+        "start_line": 123,
+        "line_count": 47,
+        "sha256": "c4347c5caf13007f5e187118433472e372355aef609b9bf38f0571f56bb1f234",
+        "first_line": "### ticketの種類",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 30271,
+        "end": 32048,
+        "start_line": 170,
+        "line_count": 17,
+        "sha256": "692b452a541d3a24a15d8346386e9b0bdc150420c0b27d4ae005c21e23d8b5e6",
+        "first_line": "## 旧資産の退役・archive統制",
+        "role": "group_heading"
+      },
+      {
+        "start": 32048,
+        "end": 34014,
+        "start_line": 187,
+        "line_count": 19,
+        "sha256": "fe3e0eeb8d1cae8a57cc726e8aa935810aa6bb27b6e388cb9cda34256e53fc99",
+        "first_line": "## 管理上の観測と製品変更の入口",
+        "role": "group_heading"
+      },
+      {
+        "start": 34014,
+        "end": 34257,
+        "start_line": 206,
+        "line_count": 4,
+        "sha256": "d81476c06f1296f3e8762f7e8e5ea606c8d008aa83a9f5c0de499f0a5144852e",
+        "first_line": "## 限定修復の統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 34257,
+        "end": 35129,
+        "start_line": 210,
+        "line_count": 9,
+        "sha256": "906d7745a46b0713560a899e052186b0fd406dba8a92bfb1fa6ae13df1718223",
+        "first_line": "## 構造改善候補の統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 35129,
+        "end": 36220,
+        "start_line": 219,
+        "line_count": 12,
+        "sha256": "6551bee35d8d8ffa99fcfc7b98974f4007a9baa991ba4b3d2a73ad45afb77fcf",
+        "first_line": "## Worker capacityの統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 36220,
+        "end": 37349,
+        "start_line": 231,
+        "line_count": 12,
+        "sha256": "6894921f6411fe9623ddc5ead3cb3ae9851abac0c6d95d5a9af9c7756384d6f7",
+        "first_line": "## Security engagementの統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 37349,
+        "end": 38305,
+        "start_line": 243,
+        "line_count": 11,
+        "sha256": "682360091b9ddd13665db1f4522bcbef361fb359316b749c23cc1b9d67bf3079",
+        "first_line": "## 利用許諾・配布の統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 38305,
+        "end": 40237,
+        "start_line": 254,
+        "line_count": 21,
+        "sha256": "ae708e973a4b9872e3a1e5d2b9242b9e2d3c23ad7c88ac365050bb010c9839bf",
+        "first_line": "## AI可読文書の生成・適用統制",
+        "role": "group_heading"
+      },
+      {
+        "start": 40237,
+        "end": 41241,
+        "start_line": 275,
+        "line_count": 11,
+        "sha256": "c925eed3e58aa897e7b383d256e4d7a19860ba94061f73ad0134dc07f1c514f9",
+        "first_line": "## 開発投資候補の取扱い",
+        "role": "group_heading"
+      },
+      {
+        "start": 41241,
+        "end": 44282,
+        "start_line": 286,
+        "line_count": 21,
+        "sha256": "27894e3cee9ce056b5145cb73d4bdbb2b425d325a048d742ecf8f926347957ea",
+        "first_line": "## Worker・学習・ログ・CIの具体条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 44282,
+        "end": 45282,
+        "start_line": 307,
+        "line_count": 11,
+        "sha256": "1f3c76c28d559b48c635fdea905f35528bc249025f28319086e949744f5fe484",
+        "first_line": "## 新世代CIの再構築条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 45282,
+        "end": 46939,
+        "start_line": 318,
+        "line_count": 18,
+        "sha256": "ee7f3774ba684d624403b9efe5039e864df1fb7a5e6fc831ce162cc014f14295",
+        "first_line": "## 運用品質の管理・統制条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 46939,
+        "end": 48570,
+        "start_line": 336,
+        "line_count": 15,
+        "sha256": "a47aaa4bbe9e8184d7232da35b341846cf83b7dde235416af2f4b7d171458ef5",
+        "first_line": "## 管理対象としてのHELIX-WebとHELIX-WEB-OS",
+        "role": "group_heading"
+      },
+      {
+        "start": 48570,
+        "end": 52000,
+        "start_line": 351,
+        "line_count": 27,
+        "sha256": "a2f19e6787e0eaa7a0a39af5f7597f5e81a1e5374e9c601e90c7272bc218a654",
+        "first_line": "## 有期限通知とmemoryの責務",
+        "role": "group_heading"
+      },
+      {
+        "start": 52000,
+        "end": 53637,
+        "start_line": 378,
+        "line_count": 18,
+        "sha256": "912e75c21bcb81057084507fb716ebe3ea4181ceb41d263f4637f4a602874dda",
+        "first_line": "## 成果の出所に関する候補条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 53637,
+        "end": 57122,
+        "start_line": 396,
+        "line_count": 29,
+        "sha256": "e68e82903ba6b82ffc7e35612fe1e07685b32eea2306ed994aa13664e1081387",
+        "first_line": "## 会話継続と外部状態からの再構成",
+        "role": "group_heading"
+      },
+      {
+        "start": 57122,
+        "end": 60733,
+        "start_line": 425,
+        "line_count": 34,
+        "sha256": "b456253117562cfc3e9255011b4902ace6094fcd18a045af5d7cd9089358fc26",
+        "first_line": "## 要求形成・人間反応の具体化",
+        "role": "group_heading"
+      },
+      {
+        "start": 60733,
+        "end": 65169,
+        "start_line": 459,
+        "line_count": 36,
+        "sha256": "66e2ad9effaa677f53c6a0e7248eeb41118e6c1ca38e10c85da0690d8bdfecad",
+        "first_line": "## 提供・再編要求の具体化",
+        "role": "group_heading"
+      },
+      {
+        "start": 65169,
+        "end": 67686,
+        "start_line": 495,
+        "line_count": 20,
+        "sha256": "dad5215fa29d6fd441539118b41dfc0aa8684241687f836f6f3f3475d94a6cca",
+        "first_line": "## L3候補への接続",
+        "role": "group_heading"
+      },
+      {
+        "start": 67686,
+        "end": 70179,
+        "start_line": 515,
+        "line_count": 21,
+        "sha256": "426c148b437f85e0ec3474efbaa6ace03c0d5426d73d4febd6aacca39e1022a3",
+        "first_line": "## 要求正本を更新する管理条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 70179,
+        "end": 76884,
+        "start_line": 536,
+        "line_count": 36,
+        "sha256": "6474f278b74009c1a508b45f5f7fb25fe8048d6ea4a0953257dc1a56278621df",
+        "first_line": "## Execution Ticketと継続観測",
+        "role": "group_heading"
+      },
+      {
+        "start": 76884,
+        "end": 90719,
+        "start_line": 572,
+        "line_count": 41,
+        "sha256": "aa460c70b8c88a56fdbe4890fbd7f374d9ecb18e7fd78651f3b7261f63c42c64",
+        "first_line": "## ticket要求の詳細IDと分担",
+        "role": "group_heading"
+      },
+      {
+        "start": 90719,
+        "end": 91406,
+        "start_line": 613,
+        "line_count": 8,
+        "sha256": "dff896de19ede986058308ee8e2d4a72bb693c118fa9e085fda898063272fe13",
+        "first_line": "## HELIX自身の段階リリース",
+        "role": "group_heading"
+      },
+      {
+        "start": 91406,
+        "end": 96354,
+        "start_line": 621,
+        "line_count": 17,
+        "sha256": "99e6dc6db0f8691d571b439ea142242dfdbd24da82668d55c82498ec4ca8e09d",
+        "first_line": "### HELIXOS-L2-014 HELIX自身の段階リリース",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 96354,
+        "end": 98443,
+        "start_line": 638,
+        "line_count": 6,
+        "sha256": "e54f5272d6242273ded526c1af3cb173678402e69c3a5065ef57509a34689668",
+        "first_line": "## HELIX-OS機能単位の要求候補（G1・未採択）",
+        "role": "group_heading"
+      },
+      {
+        "start": 98443,
+        "end": 99802,
+        "start_line": 644,
+        "line_count": 10,
+        "sha256": "18756826fc4dda35a81059eebcecb81df554937cd60f828eb67a5f1cc3fbda69",
+        "first_line": "### HELIXOS-L2-015 管理・authority記録（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 99802,
+        "end": 101188,
+        "start_line": 654,
+        "line_count": 10,
+        "sha256": "55d5b2e72438019d672d7cfd39c2c3908248bc9783952f678b0288132bdac7e8",
+        "first_line": "### HELIXOS-L2-016 Portfolio trace・状態（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 101188,
+        "end": 102953,
+        "start_line": 664,
+        "line_count": 10,
+        "sha256": "1f74fdb3677c997071c80a618cd48d7c1f5f9cac2650efe61ecc197539f9f2f7",
+        "first_line": "### HELIXOS-L2-017 推進・ticket/workflow（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 102953,
+        "end": 104421,
+        "start_line": 674,
+        "line_count": 10,
+        "sha256": "41d0788d372793e0dd2c61d54d7e59886cfa45987a993cdeabdcb2c3b3b5ea72",
+        "first_line": "### HELIXOS-L2-018 Worker割当・実行統制（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 104421,
+        "end": 105734,
+        "start_line": 684,
+        "line_count": 10,
+        "sha256": "acea5c3a2f1b3a2c8aff97a37ed5476ad360d8707280f0bb0e8957b601a9e79f",
+        "first_line": "### HELIXOS-L2-019 Evidence・continuity（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 105734,
+        "end": 107001,
+        "start_line": 694,
+        "line_count": 10,
+        "sha256": "cae3019c5cd3549faaff920f9afa934f83ec4450c0ee7d7532bfc66ccc976f15",
+        "first_line": "### HELIXOS-L2-020 検収・CI運転（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 107001,
+        "end": 109296,
+        "start_line": 704,
+        "line_count": 10,
+        "sha256": "c218690d2796bb4c91348c12c1d7ca5eab45004447c05f8dcdf3fd30ae735d2a",
+        "first_line": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 109296,
+        "end": 110610,
+        "start_line": 714,
+        "line_count": 10,
+        "sha256": "d78f600f299dfd4b9f35f7b2107d9aa076819cde6668274301c309a9e7e4b190",
+        "first_line": "### HELIXOS-L2-022 改善候補登録・還流（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 110610,
+        "end": 112014,
+        "start_line": 724,
+        "line_count": 10,
+        "sha256": "9e07b91bc6da6705d31bd24c2b6078807ad644d7266ba068a3c8aa5dbf849248",
+        "first_line": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡し（接続候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 112014,
+        "end": 113295,
+        "start_line": 734,
+        "line_count": 10,
+        "sha256": "c95ed2214e72795a30ee2acaa3dd96bc77ccc41b66df4b3d44f83212ebaba780",
+        "first_line": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡し（接続候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 113295,
+        "end": 114928,
+        "start_line": 744,
+        "line_count": 10,
+        "sha256": "b7166f6399db9a0f1d3a9db76977ec4ec0f1e7f708503ccc42beea0ec97121e1",
+        "first_line": "### HELIXOS-L2-025 HELIX-OS統合運転（構成体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 114928,
+        "end": 117042,
+        "start_line": 754,
+        "line_count": 21,
+        "sha256": "f295c9b669d663c99c9ca3024d26797cdbcd1a715d1cf47f2dc580c2947e158c",
+        "first_line": "### 既存ID対応index",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 117042,
+        "end": 123403,
+        "start_line": 775,
+        "line_count": 26,
+        "sha256": "0838ea51be76adf488c1375fdee513349e96918a7c901637e82899f6435da58b",
+        "first_line": "### 旧source basisと現行L2保持箇所の根拠確認",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 123403,
+        "end": 124066,
+        "start_line": 801,
+        "line_count": 6,
+        "sha256": "aed844bf660a10a7a593096b406357055f8a931545cdc0739a1f323aa4e43bd6",
+        "first_line": "### 人の判断が残る点",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 124066,
+        "end": 124130,
+        "start_line": 807,
+        "line_count": 2,
+        "sha256": "65c414022c50d4d3cdd0deae082aa6dc3482c24d9c8bfddc0fd557f7728a0ace",
+        "first_line": "## 段階リリース範囲の要求導出（G8・未採択）",
+        "role": "group_heading"
+      },
+      {
+        "start": 124130,
+        "end": 132705,
+        "start_line": 809,
+        "line_count": 17,
+        "sha256": "5bb2dd228c7560908edb8253a0d3fdab0952d65d2b862332efe2276ccfd931d9",
+        "first_line": "### HELIXOS-L2-026 段階リリース構成の要求導出（単体能力候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 132705,
+        "end": 142038,
+        "start_line": 826,
+        "line_count": 23,
+        "sha256": "49cd7c1512f292a292908d42c6af02024f5b7b0a89d7176e2c691720c27703c6",
+        "first_line": "### HELIXOS-L2-027 — 未評価状態からの限定初回実行（構成体候補、1.0）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 142038,
+        "end": 147409,
+        "start_line": 849,
+        "line_count": 16,
+        "sha256": "1b81d41d7aba1f2801978e81d39b132eac4d2b6818a332d484152bd23330e313",
+        "first_line": "### HELIXOS-L2-028 作業中支援の受渡し・範囲統制（接続候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 147409,
+        "end": 153768,
+        "start_line": 865,
+        "line_count": 16,
+        "sha256": "809d7c02d5cfc84099a7a5c27d6f2bf6a980ceb09827636e73871e598ef007e5",
+        "first_line": "### HELIXOS-L2-029 Worker支援から検証・再作業までの構成体（composite候補、1.0）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 153768,
+        "end": 162330,
+        "start_line": 881,
+        "line_count": 21,
+        "sha256": "22ebc7a08c28dcfe8aedaea7185ff6695335f1ff676a475c50dc044d6e64f6c0",
+        "first_line": "### HELIXOS-L2-030 HARNESS packageの生成・consumer検証・段階配布（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 162330,
+        "end": 167773,
+        "start_line": 902,
+        "line_count": 13,
+        "sha256": "51b88d4589e836781086bf3c6f847b68a2a7225486e361f407f5f5ba68256b6b",
+        "first_line": "### HELIXOS-L2-031 CIの性能計測と正しさを維持する改善回収（単体追補候補、1.0）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 167773,
+        "end": 172226,
+        "start_line": 915,
+        "line_count": 16,
+        "sha256": "349a36e7c736e7532c677ffedde1e2fe6769efe2f4f44041d65070941afcd108",
+        "first_line": "### HELIXOS-L2-032 Known failureの限定quarantine（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 172226,
+        "end": 176935,
+        "start_line": 931,
+        "line_count": 16,
+        "sha256": "b1d3bef2920641726bebe86571a1fa10c65b94a5889863faa073eaf8a1422240",
+        "first_line": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snap",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 176935,
+        "end": 186076,
+        "start_line": 947,
+        "line_count": 42,
+        "sha256": "c363a4e957a2295657004808a8d7ecc29e68724cf057dc71259a7b245d5c6716",
+        "first_line": "### HELIXOS-L2-034 原指示・finding disposition証拠と異議履歴（単体候補、1.0）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 186076,
+        "end": 197523,
+        "start_line": 989,
+        "line_count": 46,
+        "sha256": "621ba614037001827c87454267d46102f104249d93189859fa7486f5139114a7",
+        "first_line": "### HELIXOS-L2-035 PR lifecycle event intakeと監査job要求の冪等生成（単体",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 197523,
+        "end": 206206,
+        "start_line": 1035,
+        "line_count": 32,
+        "sha256": "1db82b6f6f2877d1938fa5082e91f781692c56fc59d726350a9ef6f2296d2921",
+        "first_line": "### HELIXOS-L2-036 Retrofit preflightのticket/plan接続（単体候補、ver",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 206206,
+        "end": 207929,
+        "start_line": 1067,
+        "line_count": 10,
+        "sha256": "d9726fe229bb716a62fad59e1bb04c93e41ef0824542d1f41b7c3a0ad8f32dc5",
+        "first_line": "## HELIXOS-L2-030 生成indexの導出条件（追補）",
+        "role": "group_heading"
+      },
+      {
+        "start": 207929,
+        "end": 213867,
+        "start_line": 1077,
+        "line_count": 21,
+        "sha256": "c26bdea1ab00bb33ee3bea0c9cbb13158c24787cc9e1039563edb6c655559f95",
+        "first_line": "### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ（接続候補、vers",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 213867,
+        "end": 224355,
+        "start_line": 1098,
+        "line_count": 19,
+        "sha256": "1adb7145d4d787e5fdda7e00a79a10ce8fbb4b996f5c73191eeb224ce745cbce",
+        "first_line": "### HELIXOS-L2-038 Layer ledger writer・snapshot・proposal app",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 224355,
+        "end": 229681,
+        "start_line": 1117,
+        "line_count": 10,
+        "sha256": "892a3c7ac6fe9f2bae8a2ec7a8ccc04b118ebec82dff929a0fdff79ee8d4900f",
+        "first_line": "### HELIXOS-L2-039 WBS作業identityと登録前適格性（単体候補、version_target:",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 229681,
+        "end": 233084,
+        "start_line": 1127,
+        "line_count": 10,
+        "sha256": "a5ba2bdca6bfc8adcf3216f523e882b53898d0a0424b886c1a5a6885542c3aee",
+        "first_line": "### HELIXOS-L2-040 retry上限到達時の型付き戻し先（単体候補、version_target: 1.",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 233084,
+        "end": 236450,
+        "start_line": 1137,
+        "line_count": 9,
+        "sha256": "606c5eb4b8166af4c21521ccf65c85d185b65bdb6861aa4fd3e537e749a2d74c",
+        "first_line": "### HELIXOS-L2-041 再読込不能時の正本再取得を伴う継続（単体候補、version_target: 1.",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 236450,
+        "end": 239809,
+        "start_line": 1146,
+        "line_count": 9,
+        "sha256": "af2f9f98196667ecd7583349e64a309c7e0a1bff58f4bac065105d9c55c9acfb",
+        "first_line": "### HELIXOS-L2-042 Worker成果のschema／digest適格性と緩和後再検証（単体追補候補、v",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 239809,
+        "end": 242408,
+        "start_line": 1155,
+        "line_count": 9,
+        "sha256": "909df8f324b181387bb9a5abf875e8b4cc9d935bd092145b0d088f6db4b8f585",
+        "first_line": "### HELIXOS-L2-043 Worker委譲のapproval request／tool call／resul",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 242408,
+        "end": 243888,
+        "start_line": 1164,
+        "line_count": 7,
+        "sha256": "a9708b9e792b5b3dc3ab013da906181d40c0d5f629a373b47f768b947c2d813f",
+        "first_line": "### HELIXOS-L2-044 feedback prose-only handoverをresolutionとし",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 243888,
+        "end": 246602,
+        "start_line": 1171,
+        "line_count": 8,
+        "sha256": "e5bcbe6b5b138f70676604822ea55399263ea40c04550579b5d11e26d4a3908f",
+        "first_line": "### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 246602,
+        "end": 248915,
+        "start_line": 1179,
+        "line_count": 8,
+        "sha256": "65ebd519831b293afacb839c4d632107614352ad0169c38fc2bdfb8e289f85fe",
+        "first_line": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 248915,
+        "end": 252230,
+        "start_line": 1187,
+        "line_count": 10,
+        "sha256": "9afa3ef650768224d85fd336eaaf89baa3d7e5eb96c776bb812a66fd67cada9f",
+        "first_line": "### HELIXOS-L2-047 チケットの理由付き返却と新revision再発行（単体候補、version_tar",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 252230,
+        "end": 255084,
+        "start_line": 1197,
+        "line_count": 10,
+        "sha256": "5a3bfe0f5152ef8550ffd7933d33e0cf030d4a4f6f89bf64470a45e55db3da15",
+        "first_line": "### HELIXOS-L2-048 返却・検証不成立feedbackの評価・還流接続（connection候補、ver",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 255084,
+        "end": 258058,
+        "start_line": 1207,
+        "line_count": 8,
+        "sha256": "d01a2bde869d91d91b803ce8ff772225522869c8b328a22d02ddd9bc18c0fb39",
+        "first_line": "### HELIXOS-L2-049 Worker稼働観測と低干渉task割当（単体候補、version_target:",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 258058,
+        "end": 261481,
+        "start_line": 1215,
+        "line_count": 8,
+        "sha256": "e8a34140ed885ff3ad3c3fee6bbdfe3e5749bed1161cb41db27c02c3e9c65267",
+        "first_line": "### HELIXOS-L2-050 独立review capacityの観測と調整（単体候補、version_targ",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 261481,
+        "end": 265097,
+        "start_line": 1223,
+        "line_count": 10,
+        "sha256": "97024d3b3c996cc834655aad39e6d40c446c1e33095ce61a654aa566a56e771b",
+        "first_line": "### HELIXOS-L2-051 作成／reviewレーンのtask単位選択と配置適性（単体候補、version_t",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 265097,
+        "end": 268933,
+        "start_line": 1233,
+        "line_count": 11,
+        "sha256": "342aee2bec0e5f89f34e969d78f7dbfc70510c98afc62ec340f861a042a66e60",
+        "first_line": "### HELIXOS-L2-052 merge後のlocal cleanupと後続PRの再照合（connection候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 268933,
+        "end": 273752,
+        "start_line": 1244,
+        "line_count": 13,
+        "sha256": "af99b8e40535a3cda1c2e43eee494baf3450d2d1b4f272092875c91f494bebde",
+        "first_line": "### HELIXOS-L2-053 canonicalization artifact群の原子的確定と失敗隔離（単体候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 273752,
+        "end": 277832,
+        "start_line": 1257,
+        "line_count": 12,
+        "sha256": "3f36f0bda9c05e00f19adddcf66908c9ccfeea6ca30fc1db256721e13051f0a9",
+        "first_line": "### HELIXOS-L2-054 Closure Gate証拠照合・close運転のHARNESS handoff候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 277832,
+        "end": 282201,
+        "start_line": 1269,
+        "line_count": 12,
+        "sha256": "71f49ccf5e3cfab63488fbd06e84a8863955fa9ae7c574fb8a588d8364999cb4",
+        "first_line": "### HELIXOS-L2-055 ready Issue claimと実装開始前の工程照合（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 282201,
+        "end": 287796,
+        "start_line": 1281,
+        "line_count": 16,
+        "sha256": "ebbeb25682bd14c8c8ba7774f06369fbee58b632985c788b6db3ed19ac6983ae",
+        "first_line": "### HELIXOS-L2-101 PR finding dispositionの証拠receiptと異議連結候補（単",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 287796,
+        "end": 290738,
+        "start_line": 1297,
+        "line_count": 11,
+        "sha256": "aa4f69374a6063cdb72a7dd0c7b6b5a8ef5a66b02238ca3893344431ac22d067",
+        "first_line": "### HELIXOS-L2-102 HARNESS Issue contractのdurable intake・pro",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 290738,
+        "end": 293386,
+        "start_line": 1308,
+        "line_count": 8,
+        "sha256": "dd994aa539a9fda789a1f39472de67a0b83e41593ec1722fef047d366b810cd1",
+        "first_line": "### HELIXOS-L2-103 工程stage eventと状態projectionの因果記録候補（接続、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 293386,
+        "end": 296517,
+        "start_line": 1316,
+        "line_count": 11,
+        "sha256": "b4cbd23b47570d073cf1ace6d93fda26268686c2f88b7515cb18299758df261c",
+        "first_line": "### HELIXOS-L2-104 操作authority・実行隔離・品質受入の独立記録候補（接続、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 296517,
+        "end": 300064,
+        "start_line": 1327,
+        "line_count": 11,
+        "sha256": "d75f4555e53509eaad6b5c371fc84551cc28a286ad230f28ca36fe3afb8d09cd",
+        "first_line": "### HELIXOS-L2-105 incident episodeの復旧証拠相関（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 300064,
+        "end": 303112,
+        "start_line": 1338,
+        "line_count": 12,
+        "sha256": "c08570b0feda2b3b11dcbffca92259b81f0caa6089afd2086c1a47fdbb1d2df8",
+        "first_line": "### HELIXOS-L2-106 authority binding参照先の再帰検査候補（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 303112,
+        "end": 306723,
+        "start_line": 1350,
+        "line_count": 10,
+        "sha256": "baa1191ad32ce34150fe734f688872857efbf997f91a8033c3f0c37592c13a42",
+        "first_line": "### HELIXOS-L2-107 finding taxonomy/mapping revision-pinned ",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 306723,
+        "end": 310289,
+        "start_line": 1360,
+        "line_count": 11,
+        "sha256": "ac3dd2ba86fb5b1b58ebc26dc7aa33ea9b2ac613b265424610dde5e8f3568a28",
+        "first_line": "### HELIXOS-L2-108 artifactからconsumerへの逆向きgraph候補（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 310289,
+        "end": 313734,
+        "start_line": 1371,
+        "line_count": 13,
+        "sha256": "afa491d637650b31c718c207b1de7342d3cd1cc8cdd08ab3fdbf4fb706832b4c",
+        "first_line": "### HELIXOS-L2-109 source-to-consumer provenance chain候補（単体候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 313734,
+        "end": 318322,
+        "start_line": 1384,
+        "line_count": 14,
+        "sha256": "b0d4dadd9fedb008b737e7906fd0acadc8c964cd021b9b0cdc388c0725be739a",
+        "first_line": "### HELIXOS-L2-110 semantic epoch変更後のactive consumer digest ",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 318322,
+        "end": 321639,
+        "start_line": 1398,
+        "line_count": 13,
+        "sha256": "c72b716782c54c17dac8ffa84b38475d412ebb66486a8022c4cee3a40ebbaade",
+        "first_line": "### HELIXOS-L2-111 三つの独立receiptのAND結合候補（未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 321639,
+        "end": 332180,
+        "start_line": 1411,
+        "line_count": 16,
+        "sha256": "294cd771b4b64d9f3d4ec9a96f8280e55800dbd9504d6abe40a81c930990421f",
+        "first_line": "### HELIXOS-L2-112 Product Dataの版束縛read projection候補（connect",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 332180,
+        "end": 337094,
+        "start_line": 1427,
+        "line_count": 14,
+        "sha256": "614b01a8260377f94de563ecaabddee20817fe3e50d0d095f6d59c1cef49f521",
+        "first_line": "### HELIXOS-L2-113 GitHub監査の決定的規則・semantic finding境界候補（conne",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 337094,
+        "end": 342453,
+        "start_line": 1441,
+        "line_count": 16,
+        "sha256": "2b5e3f367f5ca9057c33610882f33b18cb557547c4f257870489a4b37dd8a860",
+        "first_line": "### HELIXOS-L2-114 worker/verifier loopの継続適格性候補（未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 342453,
+        "end": 346863,
+        "start_line": 1457,
+        "line_count": 11,
+        "sha256": "08b7edfad76b41c583a3d6c922fc1f4c8cb8cb5065ae2a522fe7412013843151",
+        "first_line": "### HELIXOS-L2-117 選択event generation identityの個別検査候補（単体候補、未",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 346863,
+        "end": 351098,
+        "start_line": 1468,
+        "line_count": 10,
+        "sha256": "576e6deab45280dd9d878d2135d4f91d85b187523e307045a2f161c8d6370e94",
+        "first_line": "### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない（単体追補候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 351098,
+        "end": 357503,
+        "start_line": 1478,
+        "line_count": 13,
+        "sha256": "1c412f7fd6c31e70cc8d9ed698962d42e0c69cd6e2d954b7a40a4b7ee296aea5",
+        "first_line": "### HELIXOS-L2-118 検証義務を保つrun置換・終端証拠（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 357503,
+        "end": 362611,
+        "start_line": 1491,
+        "line_count": 14,
+        "sha256": "1385b9abb1b9aadab643cea5d05b3bc37b80866b2bae3d8cd23283029abf7fb3",
+        "first_line": "### HELIXOS-L2-119 Codex・Claude協働episodeの圧縮とcontinuity分離候補（未",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 362611,
+        "end": 369290,
+        "start_line": 1505,
+        "line_count": 15,
+        "sha256": "f70eba39618371521012b91a267770780c38a2be08fb4b94a25cf8696155692a",
+        "first_line": "### HELIXOS-L2-121 HIL-BR-12 intakeとstyle接続の未採択候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 369290,
+        "end": 376464,
+        "start_line": 1520,
+        "line_count": 12,
+        "sha256": "ea79324c8599cdc45c4d3a16ab9867f54f8c56cb010f4052cd724f9d7efc89a2",
+        "first_line": "### HELIXOS-L2-120 Agent instance lifecycle outcome and term",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 376464,
+        "end": 386753,
+        "start_line": 1532,
+        "line_count": 15,
+        "sha256": "58e9e4372e226cb251af01cd566b105acc9ccb142cc6b7eea7d07b08a1cd7f39",
+        "first_line": "### HELIXOS-L2-122 HIL-NFR-01 owner間副作用の冪等な引継ぎ（接続候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 386753,
+        "end": 393470,
+        "start_line": 1547,
+        "line_count": 14,
+        "sha256": "feb32f730ff3ea1ff835026ac68eb444a73e2211a70be71a399d533bc173d0b7",
+        "first_line": "### HELIXOS-L2-123 HIL-BR-14 source authority・atomic disposi",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 393470,
+        "end": 400124,
+        "start_line": 1561,
+        "line_count": 13,
+        "sha256": "322fc45a26a9e5c17c7af95f78275536184d9ab985c148f05470efeed3aaa094",
+        "first_line": "### HELIXOS-L2-124 旧五機能の判定結果・failure code・provenance接続候補（未採択",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 400124,
+        "end": 402767,
+        "start_line": 1574,
+        "line_count": 8,
+        "sha256": "b2ebec0ebbcc9b4d262eb7b2ce614cc6cec61a1c5558dcc86ec9c03b168878c2",
+        "first_line": "### HELIXOS-L2-125 Worker結果境界のfail-close（改訂候補002、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 402767,
+        "end": 410464,
+        "start_line": 1582,
+        "line_count": 13,
+        "sha256": "18e84d77035f548a96cbb31b81c1291da0023aaf87ade0c4e6c425d414f4574c",
+        "first_line": "### HELIXOS-L2-126 失効後fencingとdurable checkpoint再開（単体候補、未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 410464,
+        "end": 420269,
+        "start_line": 1595,
+        "line_count": 18,
+        "sha256": "0574390610bb3f6870187173776d43e1665b4b4f92419955d515af93a9c689ab",
+        "first_line": "### HELIXOS-L2-128 quarantine対象変更時の失効（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 420269,
+        "end": 428137,
+        "start_line": 1613,
+        "line_count": 17,
+        "sha256": "a003c18f569d87270980c6466ef77b907959aa2ee0b622daf578d03b8d354201",
+        "first_line": "### HELIXOS-L2-127 選択されたCI依存段間のreceipt lineage（単体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 428137,
+        "end": 435185,
+        "start_line": 1630,
+        "line_count": 17,
+        "sha256": "adaad20c38425da545c0f62e9d1eee23c9aaa9b6188a527e72f1ea0dce8031b3",
+        "first_line": "### HELIXOS-L2-018 Worker割当・実行統制（HIL-NFR-36残差候補revision -002",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 435185,
+        "end": 441492,
+        "start_line": 1647,
+        "line_count": 18,
+        "sha256": "1678d719aa3757c828cadf1c331699dccc8f2cd7675790cacb24aa95ede7780f",
+        "first_line": "### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避（単体候補、未",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 441492,
+        "end": 445366,
+        "start_line": 1665,
+        "line_count": 11,
+        "sha256": "01378c0a7d9b27b6394e8558aabae01dbe2affbad8e744f8049e0b26958264fb",
+        "first_line": "### HELIXOS-L2-130 docgen source・採否・要求traceの管理projection候補（u",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 445366,
+        "end": 446543,
+        "start_line": 1676,
+        "line_count": 6,
+        "sha256": "d4d3480a898df61d1eb632e1e91c4bf7f52a2124d5f4ee2a2d00e3d95a8432bc",
+        "first_line": "### HELIXOS-L2-130 revision 002 correction supplement — sele",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 446543,
+        "end": 449324,
+        "start_line": 1682,
+        "line_count": 7,
+        "sha256": "7cdf738455072ded109c8325d089134fb55a9b26a12ec976bb1faf8b364f599a",
+        "first_line": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent au",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 449324,
+        "end": 452226,
+        "start_line": 1689,
+        "line_count": 9,
+        "sha256": "7244528b3453b5c1ef73dc66c454ec9fc0fa719229970309294319353b4ba2c8",
+        "first_line": "### HELIXOS-L2-132 HELIXのBun恒久不使用と一回限りの移行完了の再現性（HIL-BR-19候補、",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 452226,
+        "end": 457982,
+        "start_line": 1698,
+        "line_count": 10,
+        "sha256": "98dea2842f7a3a5b26c2ab2af302a6abbd025b7ecef50998b3557ede5d78764e",
+        "first_line": "### HELIXOS-L2-002 project template記録の因果・revision・評価入力追補案（un",
+        "role": "requirement_or_acceptance_section"
+      }
+    ],
+    "docs/helix-os/L11-acceptance/governance-acceptance.md": [
+      {
+        "start": 0,
+        "end": 253,
+        "start_line": 1,
+        "line_count": 12,
+        "sha256": "d550cf6086b91f2b39bf7dbd65a74ae76f60c0ba5cf6689903358640129c42af",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 253,
+        "end": 6256,
+        "start_line": 13,
+        "line_count": 22,
+        "sha256": "08d4bc09568f567188c980293158a5068c2163e614315ab1aa9f5057be57460a",
+        "first_line": "# HELIX-OS統制要求の受入案",
+        "role": "document_title"
+      },
+      {
+        "start": 6256,
+        "end": 13339,
+        "start_line": 35,
+        "line_count": 36,
+        "sha256": "c67830d23a83a4f30f9f7a5a9a35ce9fed4dce5a725548f4a27c2235a5a7ad02",
+        "first_line": "## 実行・記録の反例",
+        "role": "group_heading"
+      },
+      {
+        "start": 13339,
+        "end": 19822,
+        "start_line": 71,
+        "line_count": 64,
+        "sha256": "7e05f309a91f7da542f7d8205cce9a2d2a298cf7c1f6f9937690d22653526775",
+        "first_line": "## 旧HCV4受入条件の移管",
+        "role": "group_heading"
+      },
+      {
+        "start": 19822,
+        "end": 21300,
+        "start_line": 135,
+        "line_count": 15,
+        "sha256": "13dbd25bd10c3b2162456c85ee516ff9a0dec8dae91023f8cdc6a9b80577f8f8",
+        "first_line": "## 運用品質統制の受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 21300,
+        "end": 22862,
+        "start_line": 150,
+        "line_count": 12,
+        "sha256": "c3b99fc428e4ea0383d7ac3aa72e0b917ecd1cb7ff807826f79af5fd49ab4b15",
+        "first_line": "## HARNESS、HELIX-Web、HELIX-WEB-OSを管理するシナリオ",
+        "role": "group_heading"
+      },
+      {
+        "start": 22862,
+        "end": 24804,
+        "start_line": 162,
+        "line_count": 17,
+        "sha256": "d5ffb99af1e32b4b244153ba4e7ebd91eca52bb9911bd53dede87286d2e739e9",
+        "first_line": "## memory責務変更の受入条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 24804,
+        "end": 25841,
+        "start_line": 179,
+        "line_count": 11,
+        "sha256": "6e014770cbaabe1850d7ef50c9b39efb1007e078144ef023a17a1a9e2b880f65",
+        "first_line": "## 成果の出所に関する候補の受入条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 25841,
+        "end": 27533,
+        "start_line": 190,
+        "line_count": 17,
+        "sha256": "a57a00c411b66816b1e8df37d78b4cebebdd499c3c73e824d593dff87fdbc9d2",
+        "first_line": "## 会話継続の受入条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 27533,
+        "end": 28827,
+        "start_line": 207,
+        "line_count": 13,
+        "sha256": "21394492d391e25d6db6822e49a6524cecc47adb9f770769098c221a8751a7f4",
+        "first_line": "## 要求形成・人間反応の受入条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 28827,
+        "end": 31078,
+        "start_line": 220,
+        "line_count": 21,
+        "sha256": "c58487baf440bfd106bf7768c16dfa001baea1082a7f2dda0598315f9b548513",
+        "first_line": "## 提供・再編要求の受入条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 31078,
+        "end": 32352,
+        "start_line": 241,
+        "line_count": 13,
+        "sha256": "6f0fc587580d7264b05ebd07b2521ec12fdf213e0305c8e27d49489b2f88e5d7",
+        "first_line": "## 要求正本更新の受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 32352,
+        "end": 33787,
+        "start_line": 254,
+        "line_count": 18,
+        "sha256": "9d442f833e7e8a1970bd787c175504d90f4a86724568f0a68708ecac79b86ff6",
+        "first_line": "## Execution Ticketの受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 33787,
+        "end": 44742,
+        "start_line": 272,
+        "line_count": 39,
+        "sha256": "167daf3899375ff32407f767e71b53a0a524852d400f089b0a9e20f48a871405",
+        "first_line": "## ticket詳細要求の受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 44742,
+        "end": 46973,
+        "start_line": 311,
+        "line_count": 9,
+        "sha256": "5368c6b8b159de9f9f49c6bf898013286104781371a2741f408fec69fc6db3ee",
+        "first_line": "## HELIX自身の段階リリースの受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 46973,
+        "end": 47794,
+        "start_line": 320,
+        "line_count": 4,
+        "sha256": "7e8ba39fe3310808aef010c8e889e006eb1a699694e9483f3af8c13331651798",
+        "first_line": "## HELIX-OS機能単位パックの受入候補（HELIXOS-L2-015〜025）",
+        "role": "group_heading"
+      },
+      {
+        "start": 47794,
+        "end": 48652,
+        "start_line": 324,
+        "line_count": 7,
+        "sha256": "2548001e513a1ea1714ff15d7574b97a9976412f8ddc73e8cd001a6ae9943b52",
+        "first_line": "### HELIXOS-L2-015 管理・authority記録の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 48652,
+        "end": 49575,
+        "start_line": 331,
+        "line_count": 7,
+        "sha256": "458aeababba3a1cd3d7d38d51cb805166dc3b2deb629226c7479654c0c972d7b",
+        "first_line": "### HELIXOS-L2-016 Portfolio trace・状態の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 49575,
+        "end": 50615,
+        "start_line": 338,
+        "line_count": 7,
+        "sha256": "b5a2d6f02bc5ab05df8d482b171cd4db0b005e23ddf2f54c463aeebff8555cf2",
+        "first_line": "### HELIXOS-L2-017 推進・ticket/workflowの受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 50615,
+        "end": 51621,
+        "start_line": 345,
+        "line_count": 7,
+        "sha256": "257fbc3de623fb45dd26c284137ece6b0bc615577bf0ed937ae058537968b891",
+        "first_line": "### HELIXOS-L2-018 Worker割当・実行統制の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 51621,
+        "end": 52577,
+        "start_line": 352,
+        "line_count": 7,
+        "sha256": "8b9acc85e6049ba55d1ef3c90fe7abc867db1c2d51c53096d0a18d5316c06900",
+        "first_line": "### HELIXOS-L2-019 Evidence・continuityの受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 52577,
+        "end": 53557,
+        "start_line": 359,
+        "line_count": 7,
+        "sha256": "f19f5a194e7951e4de017d87bf82ba8825d5a88e127c3dcce399749c432e1c03",
+        "first_line": "### HELIXOS-L2-020 検収・CI運転の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 53557,
+        "end": 54991,
+        "start_line": 366,
+        "line_count": 7,
+        "sha256": "294a4f5bff898665d4797731fd7c3c3efcb8a0609a7750b3c26d5c2351660968",
+        "first_line": "### HELIXOS-L2-021 HARNESS構成版の対象project配布・更新・復旧の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 54991,
+        "end": 55922,
+        "start_line": 373,
+        "line_count": 7,
+        "sha256": "3b8afa8a26023dfa261d34ab3bd17bb3b64543554a5593e0b61afe2688383359",
+        "first_line": "### HELIXOS-L2-022 改善候補登録・還流の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 55922,
+        "end": 56839,
+        "start_line": 380,
+        "line_count": 7,
+        "sha256": "215240e3045227f84a8f485fd17752e2def2c15c3db538e797ebbd8b58f4536d",
+        "first_line": "### HELIXOS-L2-023 管理→推進→Worker→検収の受渡しの受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 56839,
+        "end": 57804,
+        "start_line": 387,
+        "line_count": 7,
+        "sha256": "d3d1491b8eb02068620b3770880f158e34a004897cb0070ded5562490b76b958",
+        "first_line": "### HELIXOS-L2-024 HARNESS提供・運用→LABO→OSの受渡しの受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 57804,
+        "end": 58965,
+        "start_line": 394,
+        "line_count": 7,
+        "sha256": "d21d7708fe09cbee17d37ad66444d99631f16e2c8198924da9b608a1117eda18",
+        "first_line": "### HELIXOS-L2-025 HELIX-OS統合運転の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 58965,
+        "end": 60137,
+        "start_line": 401,
+        "line_count": 6,
+        "sha256": "6df333f1dbbc7b71f898e261db91c7dc575ac1e55ad323a44003abd959cdaaa3",
+        "first_line": "### パック交換・更新・部分成功の横断受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 60137,
+        "end": 62099,
+        "start_line": 407,
+        "line_count": 21,
+        "sha256": "8d2c02d0466b72a174a7906dee3a5114a3d86236f6116a940342d3e3ecaa683b",
+        "first_line": "### 既存L2 IDの受入対応index",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 62099,
+        "end": 62163,
+        "start_line": 428,
+        "line_count": 2,
+        "sha256": "65c414022c50d4d3cdd0deae082aa6dc3482c24d9c8bfddc0fd557f7728a0ace",
+        "first_line": "## 段階リリース範囲の要求導出（G8・未採択）",
+        "role": "group_heading"
+      },
+      {
+        "start": 62163,
+        "end": 67059,
+        "start_line": 430,
+        "line_count": 12,
+        "sha256": "6f68d49c377871a5991e317b0b43af81b9dd69967cfcb4398662999fc56cb2c0",
+        "first_line": "### HELIXOS-L2-026 段階リリース構成の要求導出の受入",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 67059,
+        "end": 73685,
+        "start_line": 442,
+        "line_count": 15,
+        "sha256": "a2ae828eaa67210d5b6a38de065d989a5addfd5676f0408d6564fa318bb541c2",
+        "first_line": "### HELIXOS-L2-027 未評価状態からの限定初回実行の受入（構成体候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 73685,
+        "end": 76878,
+        "start_line": 457,
+        "line_count": 11,
+        "sha256": "92ef51759878794066463d36cda375b19cf2a7025d13062101f72464ef981485",
+        "first_line": "### HELIXOS-L2-028 作業中支援の受渡し・範囲統制の受入（接続候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 76878,
+        "end": 82709,
+        "start_line": 468,
+        "line_count": 12,
+        "sha256": "46910b086c793a94d9f422c848e746380eb65a1e73ce69bd6b3ad6e02542c93d",
+        "first_line": "### HELIXOS-L2-029 Worker支援から検証・再作業までの受入（composite候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 82709,
+        "end": 91545,
+        "start_line": 480,
+        "line_count": 20,
+        "sha256": "856ec3fb42c9f67797baa09b837bfd542ad1e94e6d5c481c8d1174915ee5e7c0",
+        "first_line": "### HELIXOS-L2-030 HARNESS package生成・consumer検証・段階配布の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 91545,
+        "end": 94397,
+        "start_line": 500,
+        "line_count": 13,
+        "sha256": "945cfccc7638576ff6665ace97e5a2c39c3f67f4ecd95be5959a70c0a0f3462a",
+        "first_line": "### HELIXOS-L2-031 CI性能計測・改善回収の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 94397,
+        "end": 98044,
+        "start_line": 513,
+        "line_count": 11,
+        "sha256": "57fb18f76c8091d94f3e89ada8bd101050eb5df2910ec1f993722b00bb1d941d",
+        "first_line": "### HELIXOS-L2-032 Known failureの限定quarantine",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 98044,
+        "end": 102456,
+        "start_line": 524,
+        "line_count": 15,
+        "sha256": "ebf8ecaff524a20989fc87ef04cb5a0f46b03d5768a6397719b563c08757f0f1",
+        "first_line": "### HELIXOS-L2-033 Versioned engine/detector registryと同一snap",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 102456,
+        "end": 111140,
+        "start_line": 539,
+        "line_count": 42,
+        "sha256": "4dfcbb69be8e10084cac59848ce82c97597d2a2d72cd0f41773f69f0e975fb00",
+        "first_line": "### HELIXOS-L2-034 原指示・finding disposition証拠と異議履歴",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 111140,
+        "end": 116688,
+        "start_line": 581,
+        "line_count": 39,
+        "sha256": "ac7dae3f98ab5e9c30617f4f801c99448750a96976cf10a247e1b3b3b6d76d5d",
+        "first_line": "### HELIXOS-L2-035 対応L11受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 116688,
+        "end": 120234,
+        "start_line": 620,
+        "line_count": 20,
+        "sha256": "1e17fd763dd00e34aadb713c3685fa96a7216ab0b43aac67751f046db8387a10",
+        "first_line": "### HELIXOS-L2-036 Retrofit preflight ticket/plan接続 — L11受入候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 120234,
+        "end": 121839,
+        "start_line": 640,
+        "line_count": 12,
+        "sha256": "75ed6d73e437cd258e0b1b4dedc0e5979831232fc30dfdf17512607d6cfde33b",
+        "first_line": "## HELIXOS-L2-030 生成index追補に対する受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 121839,
+        "end": 125714,
+        "start_line": 652,
+        "line_count": 19,
+        "sha256": "a104b01550b3b4fbaae1b88ef0370a59836dd9dc31d5d68b345622ccfea941dd",
+        "first_line": "### HELIXOS-L2-037 週次drift・技術負債観測から既存ticket候補への引継ぎ",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 125714,
+        "end": 126258,
+        "start_line": 671,
+        "line_count": 4,
+        "sha256": "3b561b5990a3bbab07aec3119d1035cc7958719136eed30b450f5b249e2367d6",
+        "first_line": "### HELIXOS-L2-038 Layer ledger writer・snapshot・proposal app",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 126258,
+        "end": 127361,
+        "start_line": 675,
+        "line_count": 4,
+        "sha256": "4a6bb5f0ba4dac7bf1f9a18abde364b567313e0e92ec6fdf523e0e7efc2988ec",
+        "first_line": "### 正常例：contractを使ったlayer snapshotとproposal append",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 127361,
+        "end": 129398,
+        "start_line": 679,
+        "line_count": 11,
+        "sha256": "b42a1c38f1f8a0a7fe8c0b5c5b15ab7eed167440a268e55bc855c968ffa35414",
+        "first_line": "### 誤り例：意味の上書き、stale base、権限拡張、部分成功",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 129398,
+        "end": 131437,
+        "start_line": 690,
+        "line_count": 8,
+        "sha256": "3633207aad50ec8e07acfdb117773d28c0472e5243642727c4f9e894b2b25112",
+        "first_line": "### HELIXOS-L2-038 revision -002候補の追加negative oracle（未採択）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 131437,
+        "end": 132267,
+        "start_line": 698,
+        "line_count": 4,
+        "sha256": "91836d3e1048e05aab160060e2924dd00eb3ba54d7bebb5a6c8f793cdcc37132",
+        "first_line": "### 未見例：未知layer/template atomまたは新contract revision",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 132267,
+        "end": 132830,
+        "start_line": 702,
+        "line_count": 4,
+        "sha256": "eaebf706578ccfe7653e07ed6f4bcc9f84e0b73e35caf998e4344b929b2e5360",
+        "first_line": "### 境界・受入結果",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 132830,
+        "end": 136771,
+        "start_line": 706,
+        "line_count": 26,
+        "sha256": "a6cb9831f06cdde6060f08853e92252361623061ae9d026baa7d9f334ef60078",
+        "first_line": "### HELIXOS-L2-039 WBS作業identityと登録前適格性 — L11受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 136771,
+        "end": 139067,
+        "start_line": 732,
+        "line_count": 12,
+        "sha256": "2fdcdc32156561d4b9f9931ee20194bf39b297ff96d477e58ff0d48c3abe232b",
+        "first_line": "### HELIXOS-L2-040 retry上限到達時の型付き戻し先 — L11受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 139067,
+        "end": 141849,
+        "start_line": 744,
+        "line_count": 12,
+        "sha256": "aeb6a5f0ea9ceeb9a960da1527256876a55a4f53da6bfe7d0fa701b2e07c1043",
+        "first_line": "### HELIXOS-L2-041 再読込不能時の正本再取得を伴う継続 — L11受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 141849,
+        "end": 144749,
+        "start_line": 756,
+        "line_count": 14,
+        "sha256": "1bb759afc770196f8d3ac09bc8c708398293f56a05351a84645d52210f8c591e",
+        "first_line": "### HELIXOS-L2-042 Worker成果のschema／digest適格性と緩和後再検証 — L11受入候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 144749,
+        "end": 147338,
+        "start_line": 770,
+        "line_count": 9,
+        "sha256": "9b36703719d1de859d2601cebda576763ba006fadaf2159aaf333b48aa26d6a7",
+        "first_line": "### HELIXOS-L2-043 Worker委譲event追跡の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 147338,
+        "end": 148654,
+        "start_line": 779,
+        "line_count": 7,
+        "sha256": "403364124a80f11b82ef006e74b132db9817fc2db51280843283300bb4ad1918",
+        "first_line": "### HELIXOS-L2-044 feedback prose-only handoverをresolutionとし",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 148654,
+        "end": 150412,
+        "start_line": 786,
+        "line_count": 8,
+        "sha256": "83f2fa2dceb02feb7e78537e902640c40df772c2c86bebbda9ad54983a6481b0",
+        "first_line": "### HELIXOS-L2-045 各機構の検証・test・検出基盤readiness一覧の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 150412,
+        "end": 152325,
+        "start_line": 794,
+        "line_count": 8,
+        "sha256": "ed33de642ef395a5372dd7d186a809ec67cb634934df174a1bd03131851285a1",
+        "first_line": "### HELIXOS-L2-046 dispatchからmergeまでのauthority・HEAD・scope連続性",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 152325,
+        "end": 154339,
+        "start_line": 802,
+        "line_count": 10,
+        "sha256": "2f0ca89554fc9d4618c1f763c4e0f567488bd221a6029cd3670c79c806b8a3ef",
+        "first_line": "### HELIXOS-L2-047 理由付きticket返却・再発行の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 154339,
+        "end": 156151,
+        "start_line": 812,
+        "line_count": 9,
+        "sha256": "57684e6125eddc0d0d1a6d9a2e3656005df964862f7d58daa6911b734fb688a2",
+        "first_line": "### HELIXOS-L2-048 feedback受渡し・未解決維持の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 156151,
+        "end": 158706,
+        "start_line": 821,
+        "line_count": 9,
+        "sha256": "9b0f89f227d824787e3715b287a34ce7aecf5b23a014c873dbd6de581e57e3d4",
+        "first_line": "### HELIXOS-L2-049 Worker稼働観測と低干渉task割当の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 158706,
+        "end": 162133,
+        "start_line": 830,
+        "line_count": 9,
+        "sha256": "fa67b048c413b556d740e618be711aacbc5ff440c2cb97c6afce5d951c48386e",
+        "first_line": "### HELIXOS-L2-050 独立review capacity調整の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 162133,
+        "end": 164124,
+        "start_line": 839,
+        "line_count": 8,
+        "sha256": "bf4943961606b3e7b05f70299c3bebd1b7eb930324e133530331016e689d3fe8",
+        "first_line": "### HELIXOS-L2-051 作成／reviewレーンのtask単位選択と配置適性の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 164124,
+        "end": 166348,
+        "start_line": 847,
+        "line_count": 9,
+        "sha256": "b175ba8698e52842d16ae3e4ab718c19c8706e6151294aac54c2d28d71869dce",
+        "first_line": "### HELIXOS-L2-052 merge後local cleanup・base drift再照合の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 166348,
+        "end": 169725,
+        "start_line": 856,
+        "line_count": 11,
+        "sha256": "2ea598b49d54bfa6ffac42f9121f381e543417f401951ac1ab851e66b2700455",
+        "first_line": "### HELIXOS-L11-053 canonicalizationの原子的確定・部分current拒否の受入候補（",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 169725,
+        "end": 172573,
+        "start_line": 867,
+        "line_count": 10,
+        "sha256": "84f78e9a75e9d614df96cb94b9600d69b7d8f5cf41c2f6892821b7c12289f9c1",
+        "first_line": "### HELIXOS-L2-054 Closure Gate証拠照合・close運転handoffの受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 172573,
+        "end": 175028,
+        "start_line": 877,
+        "line_count": 8,
+        "sha256": "4b91e5b5b0beca4548211f9ce7079ac72e31d193e3023a948e2ad825cd3e3a89",
+        "first_line": "### HELIXOS-L11-055 ready Issue claim前の工程・authority照合受入候補（未実",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 175028,
+        "end": 176847,
+        "start_line": 885,
+        "line_count": 12,
+        "sha256": "583ff053a1da78765e490d2537c53f5fbf72dcc8b44794ce196df446c1993d41",
+        "first_line": "### HELIXOS-L2-101 finding disposition receiptと異議連結の受入候補（未実行",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 176847,
+        "end": 178960,
+        "start_line": 897,
+        "line_count": 10,
+        "sha256": "09af0b38cb80828a90df096341e13081c87084074adef57acda17ab073f09ea2",
+        "first_line": "### HELIXOS-L11-102 Issue contract durable handoff受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 178960,
+        "end": 180216,
+        "start_line": 907,
+        "line_count": 7,
+        "sha256": "e0452df8cbaa8a5986601e9490eae879d8bd672e47a4b489baec0f19736c1a7c",
+        "first_line": "### HELIXOS-L11-103 工程event・projection因果記録の受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 180216,
+        "end": 182874,
+        "start_line": 914,
+        "line_count": 12,
+        "sha256": "f75c3afe672919e6ab2a93c1fc7991a07b43852e58051a949075fea80028c0db",
+        "first_line": "### HELIXOS-L11-104 操作authority・実行隔離・品質受入の独立記録候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 182874,
+        "end": 185947,
+        "start_line": 926,
+        "line_count": 11,
+        "sha256": "e4dbe282979d38a7c0b8d8213f3fbc163c67916172004425c76cb4d14cb2d6b0",
+        "first_line": "### HELIXOS-L11-105 incident episodeの復旧証拠相関受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 185947,
+        "end": 188257,
+        "start_line": 937,
+        "line_count": 9,
+        "sha256": "fa03ba0ed21c13167c540d35fbf451c55fddcd86502e61dbbef561e8b2c36574",
+        "first_line": "### HELIXOS-L11-106 authority binding参照先の再帰検査受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 188257,
+        "end": 190672,
+        "start_line": 946,
+        "line_count": 10,
+        "sha256": "51b5effc35ccfafaeae898ec3a78ecf12bf805facfddf960a8f719022233105a",
+        "first_line": "### HELIXOS-L11-107 finding taxonomy/mapping revision-pinned",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 190672,
+        "end": 193453,
+        "start_line": 956,
+        "line_count": 10,
+        "sha256": "4f058a70f2bd8a2174eb19f62cb70a7f716f732a5c9538848a8a0b240fe25b6a",
+        "first_line": "### HELIXOS-L11-108 artifactからconsumerへの逆向きgraph受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 193453,
+        "end": 195763,
+        "start_line": 966,
+        "line_count": 9,
+        "sha256": "d6ae6dd8c9fee5781d291cef114213a2d1cf6ea5e804a2cd3fd3fcf1195f8a7c",
+        "first_line": "### HELIXOS-L11-109 source-to-consumer provenance chain受入候補（",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 195763,
+        "end": 197711,
+        "start_line": 975,
+        "line_count": 8,
+        "sha256": "01c0dc699a33d8a55ad03ef8e9a7ac29afa9f1505ac6fdcafa078d407f226c55",
+        "first_line": "### HELIXOS-L11-110 semantic epoch / active consumer pin差分の受",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 197711,
+        "end": 200094,
+        "start_line": 983,
+        "line_count": 10,
+        "sha256": "4321c560552e1d24124ab0c7f7cb0ebd54e414fd0fc3070579fb1938d203f041",
+        "first_line": "### HELIXOS-L11-111 独立した三receiptのAND結合受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 200094,
+        "end": 209728,
+        "start_line": 993,
+        "line_count": 26,
+        "sha256": "0e53b4429e7117888b26b7967c2ab15f8a129900ef6bef682d0a604f4c54a969",
+        "first_line": "### HELIXOS-L2-112 Product Dataの版束縛read projection（L11受入候補、未",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 209728,
+        "end": 212822,
+        "start_line": 1019,
+        "line_count": 10,
+        "sha256": "9a5d50dc2716ac5682b14000ed19bb31b11c22da1c7ba82f1cc81dbce0ce71ed",
+        "first_line": "### HELIXOS-L11-113 GitHub監査の決定的規則・semantic finding境界の受入候補（未",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 212822,
+        "end": 216903,
+        "start_line": 1029,
+        "line_count": 11,
+        "sha256": "9a32a16ef828b3147c563576dcfc8340e467eb3638c556a5e896e65f804cc0eb",
+        "first_line": "### HELIXOS-L11-114 worker/verifier loop継続適格性の受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 216903,
+        "end": 219803,
+        "start_line": 1040,
+        "line_count": 9,
+        "sha256": "e95d7f66b3e18c05927374e4bdae42fcbc391b677acabb9b3acefe08fff83a10",
+        "first_line": "### HELIXOS-L11-117 選択event generation identityの受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 219803,
+        "end": 221976,
+        "start_line": 1049,
+        "line_count": 9,
+        "sha256": "12e6610e8302c63b9638c7ed27d33ba2582951202b47e893611d3b9235ccc5e3",
+        "first_line": "### HELIXOS-L2-115 終端runへの遅着Worker結果を受理しない — L11受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 221976,
+        "end": 227877,
+        "start_line": 1058,
+        "line_count": 12,
+        "sha256": "ad26acb7b6ed21eec843eff86dd0f9112f497c3f43d7b2dbbb39072ad705ca4e",
+        "first_line": "### HELIXOS-L11-118 検証義務を保つrun置換・終端証拠の受入候補（未採択・未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 227877,
+        "end": 232460,
+        "start_line": 1070,
+        "line_count": 12,
+        "sha256": "5d1b93ee59ef847230f116c6f9e46e887302019b406b7ae4b69975085ba0bee8",
+        "first_line": "### HELIXOS-L11-119 Codex・Claude協働episode圧縮・continuity分離の受入候",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 232460,
+        "end": 238631,
+        "start_line": 1082,
+        "line_count": 12,
+        "sha256": "adc16c73b045a2c7eda5da721cb8ea2b713105c2cbffc4de0ecef93f666e6949",
+        "first_line": "### HELIXOS-L11-121 HIL-BR-12 intake/style接続の受入候補（未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 238631,
+        "end": 243935,
+        "start_line": 1094,
+        "line_count": 13,
+        "sha256": "8bb7726434708cd999bcc70905a55af70d3ef4225c17ffdc6dafbe0602b24399",
+        "first_line": "### HELIXOS-L11-120 Agent instance lifecycle outcome and ter",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 243935,
+        "end": 250943,
+        "start_line": 1107,
+        "line_count": 13,
+        "sha256": "416b2d1b30063bfd7b07754d03b99b18be2e7f5a87c054fb38c98cbc2b50ba05",
+        "first_line": "### HELIXOS-L11-122 HIL-NFR-01 owner間副作用の冪等な引継ぎ候補（未採択・未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 250943,
+        "end": 260161,
+        "start_line": 1120,
+        "line_count": 19,
+        "sha256": "b59e138609cf18998a6d67dad3883f7923dcc41e8e79c34b9764a87492894d74",
+        "first_line": "### HELIXOS-L11-123 HIL-BR-14 source authorityとatomic traceの",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 260161,
+        "end": 272339,
+        "start_line": 1139,
+        "line_count": 28,
+        "sha256": "52e58adbc9311f9e636d0deec1b706b70e9c83a0524f9a164e54a575c09a72e5",
+        "first_line": "### HELIXOS-L11-124 旧五機能の判定結果・failure code・provenance受入候補（未採",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 272339,
+        "end": 273847,
+        "start_line": 1167,
+        "line_count": 6,
+        "sha256": "4c780d11f78b2a54ab7969917c5351ca86db2816772f83435c5e9780a93e7651",
+        "first_line": "### HELIXOS-L11-125 Worker結果境界の受入候補（改訂002、未採択・未実行）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 273847,
+        "end": 283907,
+        "start_line": 1173,
+        "line_count": 16,
+        "sha256": "898672a53c6764737c01b3e8715a18a31bd0b8fcc594e3aced32c0ff9c15d114",
+        "first_line": "### HELIXOS-L11-126 失効後fencingとdurable checkpoint再開の受入候補（未採択",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 283907,
+        "end": 292892,
+        "start_line": 1189,
+        "line_count": 19,
+        "sha256": "fcdbceb010785136f2362bb1ead020aacaf1baa784101a5b5dd81bbae78b7cf9",
+        "first_line": "### HELIXOS-L2-128 quarantine対象変更時の失効の受入（候補）",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 292892,
+        "end": 303578,
+        "start_line": 1208,
+        "line_count": 23,
+        "sha256": "6d98aac08a0ac4d6fa8281054ab176019643b8ae9d01049aedd91b8c92e7819b",
+        "first_line": "### HELIXOS-L11-127 選択されたCI依存段間のreceipt lineage",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 303578,
+        "end": 308177,
+        "start_line": 1231,
+        "line_count": 29,
+        "sha256": "cc3b1ec132cbc9a469669b1eac49af5de9b083aa7c1c223979d9d323f875976c",
+        "first_line": "### 要求正本更新の受入：HIL-NFR-32の六条件候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 308177,
+        "end": 313073,
+        "start_line": 1260,
+        "line_count": 19,
+        "sha256": "88a9c62a82133cb4c7545d050df6d0ac666f5fcd645dc792987b80a6b843a959",
+        "first_line": "### HELIXOS-L2-018 Worker割当・実行統制の受入（HIL-NFR-36残差候補revision -",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 313073,
+        "end": 321553,
+        "start_line": 1279,
+        "line_count": 39,
+        "sha256": "38870869dab4f79863c67cfe45ab6d881811c6dae4830ad6453f336ee321dd3c",
+        "first_line": "### HELIXOS-L2-129 worker runtime quota/rate状態とlane退避の受入候補",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 321553,
+        "end": 325479,
+        "start_line": 1318,
+        "line_count": 19,
+        "sha256": "011fe40ce1416efd1a2d3c4bc31570a4b8f7ca73ff0b61e5f7a26e5cfcc29a31",
+        "first_line": "### HELIXOS-L2-130 docgen source・採否・trace projectionの受入候補（未実",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 325479,
+        "end": 326725,
+        "start_line": 1337,
+        "line_count": 7,
+        "sha256": "72b46a7cd523b30be4f50a78db1eb8d712b81d7777ddb11fe07e9a8d5396bafe",
+        "first_line": "### HELIXOS-L2-130 revision 002 acceptance supplement — sele",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 326725,
+        "end": 329912,
+        "start_line": 1344,
+        "line_count": 9,
+        "sha256": "4bf89d8baec17db24dc62ba6ee678e87d51c851e120de4a5aca002f3567435e5",
+        "first_line": "### HELIXOS-L2-131 Worker operationでのgenerated pack・agent au",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 329912,
+        "end": 332188,
+        "start_line": 1353,
+        "line_count": 11,
+        "sha256": "f8081fdfa4a0600c06fa750ae00064085eb4916e418700391b8700dd2a9ba684",
+        "first_line": "### HELIXOS-L11-132 HELIXのBun恒久不使用と一回限りの移行完了の利用者確認候補（未採択・未実行",
+        "role": "requirement_or_acceptance_section"
+      },
+      {
+        "start": 332188,
+        "end": 335168,
+        "start_line": 1364,
+        "line_count": 8,
+        "sha256": "15fb77b844bf43cc4cf71db8458d7bd087eae7e4df9feaf850106b2f8465f293",
+        "first_line": "### HELIXOS-L2-002 project template記録追補の受入案",
+        "role": "requirement_or_acceptance_section"
+      }
+    ]
+  },
+  "adoption_snapshot": {
+    "decision": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
+    "decision_fixed_target_sha": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+    "note": "採択対象bytes(f6dad2a3時点)と現在の追補を別snapshotとして区別。後続decisionは実scope照合できた範囲だけ記録し、未解決はauthority unknownを保持。",
+    "diff_summary": "f6dad2a3→dce07d0のL2/L11差分をgit diffで観測（本文追補は別snapshot扱い）。"
+  },
+  "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
+  "direct_consumers": "静的参照: L3/L10・L9・decision文書・feature ticketが各ID/headingを指す。実reader成立・全consumer閉包は未確認として保持。",
+  "limits": [
+    "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し、原条件を再著述しない",
+    "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
+    "ScaffoldBinding/hash追随はroot検収責務"
+  ]
+}
