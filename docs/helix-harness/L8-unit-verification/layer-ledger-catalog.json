@@ -1022417,7 +1022417,7 @@
     "ordered_utf8_bytes": 76209,
     "materialized_canonical_sha256": "160744a8128e78fc54fa8b322af5b2e7ed0fbaf01ece6064eeafafb2feb1f1cf",
     "restore_order": "scope_pointers記載順（case45→77）。各siteは同じroot値へ独立に復元され共有aliasを作らない。",
-    "consumer_read_positions": "scope_pointersの33member位置が現行consumerの読取り位置。case44の原値は固定literalとして保持し、typed_arguments pointerは展開後の同じ全値へ解決する。",
+    "consumer_read_positions": "scope_pointersの33member位置は展開後の論理的な読取り位置である。typed consumerへ渡す前に本materializationで各bundle_recipeを原14-member全値へ復元する。case44の原値はliteralとして保持する。実装済みreader又は実runtime互換性の成立証拠を意味しない。",
     "preservation": "root literal・全packet・expected_return・expected hash・原source・L9原期待・他固定域・履歴を保持。逆変換で元文書全値へ戻る。",
     "authority_effect": "なし。独自DSL/resolver・製品評価器・新gateは追加しない。"
   }
