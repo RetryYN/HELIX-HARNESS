@@ -44,18 +44,18 @@ def base_input(document):
     )
 
 
-def add04_input(document):
+def add04_input(document, assertions):
     """ADD-04: replace only /sources/0/ref/sha256 with a mismatched digest."""
     case = document["input_structure_verification"][
         "semantic_boundary_cases"
     ][2]
-    assert case["case_ref"] == "HELIXBRAIN-L8-032-ADD-04"
+    assertions.assertEqual(case["case_ref"], "HELIXBRAIN-L8-032-ADD-04", "setup: ADD04 identity")
     mutation = case["input_mutation"]
-    assert mutation == {
+    assertions.assertEqual(mutation, {
         "operation": "replace_member",
         "pointer": "/sources/0/ref/sha256",
         "value": "synthetic-mismatching-digest",
-    }
+    }, "setup: ADD04 fixed input mutation")
     raw = base_input(document)
     raw["sources"][0]["ref"]["sha256"] = mutation["value"]
     return raw
@@ -66,24 +66,24 @@ class TestSourceIntegrity(unittest.TestCase):
         raw = base_input(load_document())
         snapshot = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"])
-        self.assertEqual(validated["input"], snapshot, "source bytes/body/qualification remain unchanged")
-        self.assertEqual(validated["unusable_source_refs"], [])
-        self.assertEqual(raw, snapshot, "validator must not mutate input")
+        self.assertIsNotNone(validated["input"], "semantic: structurally decodable input is preserved")
+        self.assertEqual(validated["input"], snapshot, "semantic: source bytes/body/qualification remain unchanged")
+        self.assertEqual(validated["unusable_source_refs"], [], "semantic: original synthetic sources are not unusable")
+        self.assertEqual(raw, snapshot, "semantic: validator must not mutate input")
 
     def test_add04_mismatched_digest_makes_source_unusable(self):
         document = load_document()
-        raw = add04_input(document)
+        raw = add04_input(document, self)
         snapshot = copy.deepcopy(raw)
         source0_ref = raw["sources"][0]["ref"]
         unrelated_refs = [s["ref"] for s in raw["sources"][1:]]
         validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"])
-        self.assertEqual(validated["input"], snapshot, "source bytes/body/qualification remain unchanged")
-        self.assertIn(source0_ref, validated["unusable_source_refs"])
+        self.assertIsNotNone(validated["input"], "semantic: structurally decodable input is preserved")
+        self.assertEqual(validated["input"], snapshot, "semantic: source bytes/body/qualification remain unchanged")
+        self.assertIn(source0_ref, validated["unusable_source_refs"], "semantic: mismatched source is unusable")
         for ref in unrelated_refs:
-            self.assertNotIn(ref, validated["unusable_source_refs"])
-        self.assertEqual(raw, snapshot, "validator must not mutate input")
+            self.assertNotIn(ref, validated["unusable_source_refs"], "semantic: unrelated source remains unaffected")
+        self.assertEqual(raw, snapshot, "semantic: validator must not mutate input")
 
 
 if __name__ == "__main__":
