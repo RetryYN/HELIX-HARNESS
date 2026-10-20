@@ -905,18 +905,18 @@
   },
   "frontmatter": {
     "L2": {
-      "end_byte": 430,
-      "end_line": 13,
-      "delimiter_end_byte": 429,
-      "delimiter_end_line": 13,
-      "note": "閉じdelimiter終端と直後blankを実原文から計測。owner/version/適用条件はfrontmatterと各表定義行の列に原所在を持つ。値を再著述しない"
+      "end_byte": 446,
+      "end_line": 16,
+      "delimiter_end_byte": 445,
+      "delimiter_end_line": 15,
+      "note": "delimiter_end_byteは閉じ---行のLF込み半開終端、end_byteは直後blank行のLF込み半開終端。lineは1始まり包含。owner/version/適用条件は原文の該当spanへ戻り、条件を再著述しない。"
     },
     "L11": {
-      "end_byte": 433,
-      "end_line": 13,
-      "delimiter_end_byte": 432,
-      "delimiter_end_line": 13,
-      "note": "同上"
+      "end_byte": 449,
+      "end_line": 16,
+      "delimiter_end_byte": 448,
+      "delimiter_end_line": 15,
+      "note": "delimiter_end_byteは閉じ---行のLF込み半開終端、end_byteは直後blank行のLF込み半開終端。lineは1始まり包含。owner/version/適用条件は原文の該当spanへ戻り、条件を再著述しない。"
     }
   },
   "adoption_snapshot": {
