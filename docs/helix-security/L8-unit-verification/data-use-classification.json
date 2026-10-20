@@ -45241,7 +45241,214 @@
                 },
                 "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
               },
-              "expected_packet": null
+              "expected_packet": {
+                "packet_id": "HELIXSECURITY-L9-016-SYN-RAW-BASE",
+                "synthetic": true,
+                "execution_state": "not_executed",
+                "real_owner_qualification": false,
+                "real_classification_observation": false,
+                "real_sink_enforcement": false,
+                "classification_vocabulary": [
+                  "public",
+                  "customer-owned",
+                  "service-internal",
+                  "HELIX-confidential",
+                  "HELIX-restricted",
+                  "secret"
+                ],
+                "unknown_state": "unknown (state, not a seventh class value)",
+                "classification_origin": {
+                  "owner": "HELIX-SECURITY",
+                  "source_ref": "fixture-source:security-classification-016",
+                  "revision": "synthetic-classification-vocab-r1",
+                  "qualification": "not_established"
+                },
+                "classification_records": [
+                  {
+                    "classification_record_ref": "CLASS-016-01",
+                    "asset_identity_ref": "ASSET-016-CORE",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-016",
+                    "asset_revision": "synthetic-core-r7",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-02",
+                    "asset_identity_ref": "ASSET-016-BRAIN",
+                    "asset_owner": "HELIX-BRAIN",
+                    "asset_source_ref": "fixture-source:brain-016",
+                    "asset_revision": "synthetic-brain-r3",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-03",
+                    "asset_identity_ref": "ASSET-016-INT",
+                    "asset_owner": "HELIX-INTELLIGENCE",
+                    "asset_source_ref": "fixture-source:int-016",
+                    "asset_revision": "synthetic-int-r5",
+                    "classification_value": "HELIX-restricted",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-04",
+                    "asset_identity_ref": "ASSET-016-LABO",
+                    "asset_owner": "HELIX-LABO",
+                    "asset_source_ref": "fixture-source:labo-016",
+                    "asset_revision": "synthetic-labo-r2",
+                    "classification_value": "customer-owned",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-05",
+                    "asset_identity_ref": "ASSET-016-OS",
+                    "asset_owner": "HELIX-OS",
+                    "asset_source_ref": "fixture-source:os-016",
+                    "asset_revision": "synthetic-os-r4",
+                    "classification_value": "secret",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-06",
+                    "asset_identity_ref": "ASSET-016-SEC",
+                    "asset_owner": "HELIX-SECURITY",
+                    "asset_source_ref": "fixture-source:security-016",
+                    "asset_revision": "synthetic-sec-r6",
+                    "classification_value": "public",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-UNKNOWN",
+                    "asset_identity_ref": "ASSET-016-UNKNOWN",
+                    "asset_owner": "HELIX-EXTENSION-OWNER",
+                    "asset_source_ref": "fixture-source:extension-016",
+                    "asset_revision": "synthetic-extension-r1",
+                    "classification_value": null,
+                    "classification_origin_owner": null,
+                    "classification_source_ref": null,
+                    "classification_source_revision": null,
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_state": "unknown"
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-A",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r10",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-A",
+                      "classification_value": "service-internal",
+                      "source_asset_revision": "synthetic-core-r10"
+                    }
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-B",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r11",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-B",
+                      "classification_value": "HELIX-confidential",
+                      "source_asset_revision": "synthetic-core-r11"
+                    }
+                  }
+                ],
+                "sink_context": {
+                  "selected_sinks": [
+                    "Web response",
+                    "API response",
+                    "log",
+                    "error",
+                    "stack trace",
+                    "debug output",
+                    "source map",
+                    "Tool result",
+                    "artifact",
+                    "LLM context"
+                  ],
+                  "sink_enforcer_1x_state": "not_established",
+                  "classification_alone_establishes_sink_safety": false,
+                  "sink_assessment": {
+                    "outcome": "not_assessed",
+                    "basis": null
+                  }
+                },
+                "existing_1_0_conditions": {
+                  "L2-005_secret_nonexposure_state": "retained_in_1_0",
+                  "secret_value_in_fixture_or_output": false,
+                  "L2-006_general_egress_rule": "per-destination/purpose/authority evaluation remains independently applicable",
+                  "L2-006_fixture_egress_decision": "not_evaluated",
+                  "blanket_general_egress_denial": "not_claimed"
+                },
+                "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
+              }
             }
           },
           "fields": {
@@ -52744,7 +52951,214 @@
                 },
                 "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
               },
-              "expected_packet": null
+              "expected_packet": {
+                "packet_id": "HELIXSECURITY-L9-016-SYN-RAW-BASE",
+                "synthetic": true,
+                "execution_state": "not_executed",
+                "real_owner_qualification": false,
+                "real_classification_observation": false,
+                "real_sink_enforcement": false,
+                "classification_vocabulary": [
+                  "public",
+                  "customer-owned",
+                  "service-internal",
+                  "HELIX-confidential",
+                  "HELIX-restricted",
+                  "secret"
+                ],
+                "unknown_state": "unknown (state, not a seventh class value)",
+                "classification_origin": {
+                  "owner": "HELIX-SECURITY",
+                  "source_ref": "fixture-source:security-classification-016",
+                  "revision": "synthetic-classification-vocab-r1",
+                  "qualification": "not_established"
+                },
+                "classification_records": [
+                  {
+                    "classification_record_ref": "CLASS-016-01",
+                    "asset_identity_ref": "ASSET-016-CORE",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-016",
+                    "asset_revision": "synthetic-core-r7",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-02",
+                    "asset_identity_ref": "ASSET-016-BRAIN",
+                    "asset_owner": "HELIX-BRAIN",
+                    "asset_source_ref": "fixture-source:brain-016",
+                    "asset_revision": "synthetic-brain-r3",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-03",
+                    "asset_identity_ref": "ASSET-016-INT",
+                    "asset_owner": "HELIX-INTELLIGENCE",
+                    "asset_source_ref": "fixture-source:int-016",
+                    "asset_revision": "synthetic-int-r5",
+                    "classification_value": "HELIX-restricted",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-04",
+                    "asset_identity_ref": "ASSET-016-LABO",
+                    "asset_owner": "HELIX-LABO",
+                    "asset_source_ref": "fixture-source:labo-016",
+                    "asset_revision": "synthetic-labo-r2",
+                    "classification_value": "customer-owned",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-05",
+                    "asset_identity_ref": "ASSET-016-OS",
+                    "asset_owner": "HELIX-OS",
+                    "asset_source_ref": "fixture-source:os-016",
+                    "asset_revision": "synthetic-os-r4",
+                    "classification_value": "secret",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-06",
+                    "asset_identity_ref": "ASSET-016-SEC",
+                    "asset_owner": "HELIX-SECURITY",
+                    "asset_source_ref": "fixture-source:security-016",
+                    "asset_revision": "synthetic-sec-r6",
+                    "classification_value": "public",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-UNKNOWN",
+                    "asset_identity_ref": "ASSET-016-UNKNOWN",
+                    "asset_owner": "HELIX-EXTENSION-OWNER",
+                    "asset_source_ref": "fixture-source:extension-016",
+                    "asset_revision": "synthetic-extension-r1",
+                    "classification_value": null,
+                    "classification_origin_owner": null,
+                    "classification_source_ref": null,
+                    "classification_source_revision": null,
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_state": "unknown"
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-A",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r10",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-A",
+                      "classification_value": "service-internal",
+                      "source_asset_revision": "synthetic-core-r10"
+                    }
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-B",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r11",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-B",
+                      "classification_value": "HELIX-confidential",
+                      "source_asset_revision": "synthetic-core-r11"
+                    }
+                  }
+                ],
+                "sink_context": {
+                  "selected_sinks": [
+                    "Web response",
+                    "API response",
+                    "log",
+                    "error",
+                    "stack trace",
+                    "debug output",
+                    "source map",
+                    "Tool result",
+                    "artifact",
+                    "LLM context"
+                  ],
+                  "sink_enforcer_1x_state": "not_established",
+                  "classification_alone_establishes_sink_safety": false,
+                  "sink_assessment": {
+                    "outcome": "not_assessed",
+                    "basis": null
+                  }
+                },
+                "existing_1_0_conditions": {
+                  "L2-005_secret_nonexposure_state": "retained_in_1_0",
+                  "secret_value_in_fixture_or_output": false,
+                  "L2-006_general_egress_rule": "per-destination/purpose/authority evaluation remains independently applicable",
+                  "L2-006_fixture_egress_decision": "not_evaluated",
+                  "blanket_general_egress_denial": "not_claimed"
+                },
+                "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
+              }
             }
           },
           "fields": {
@@ -60247,7 +60661,214 @@
                 },
                 "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
               },
-              "expected_packet": null
+              "expected_packet": {
+                "packet_id": "HELIXSECURITY-L9-016-SYN-RAW-BASE",
+                "synthetic": true,
+                "execution_state": "not_executed",
+                "real_owner_qualification": false,
+                "real_classification_observation": false,
+                "real_sink_enforcement": false,
+                "classification_vocabulary": [
+                  "public",
+                  "customer-owned",
+                  "service-internal",
+                  "HELIX-confidential",
+                  "HELIX-restricted",
+                  "secret"
+                ],
+                "unknown_state": "unknown (state, not a seventh class value)",
+                "classification_origin": {
+                  "owner": "HELIX-SECURITY",
+                  "source_ref": "fixture-source:security-classification-016",
+                  "revision": "synthetic-classification-vocab-r1",
+                  "qualification": "not_established"
+                },
+                "classification_records": [
+                  {
+                    "classification_record_ref": "CLASS-016-01",
+                    "asset_identity_ref": "ASSET-016-CORE",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-016",
+                    "asset_revision": "synthetic-core-r7",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-02",
+                    "asset_identity_ref": "ASSET-016-BRAIN",
+                    "asset_owner": "HELIX-BRAIN",
+                    "asset_source_ref": "fixture-source:brain-016",
+                    "asset_revision": "synthetic-brain-r3",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-03",
+                    "asset_identity_ref": "ASSET-016-INT",
+                    "asset_owner": "HELIX-INTELLIGENCE",
+                    "asset_source_ref": "fixture-source:int-016",
+                    "asset_revision": "synthetic-int-r5",
+                    "classification_value": "HELIX-restricted",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-04",
+                    "asset_identity_ref": "ASSET-016-LABO",
+                    "asset_owner": "HELIX-LABO",
+                    "asset_source_ref": "fixture-source:labo-016",
+                    "asset_revision": "synthetic-labo-r2",
+                    "classification_value": "customer-owned",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-05",
+                    "asset_identity_ref": "ASSET-016-OS",
+                    "asset_owner": "HELIX-OS",
+                    "asset_source_ref": "fixture-source:os-016",
+                    "asset_revision": "synthetic-os-r4",
+                    "classification_value": "secret",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-06",
+                    "asset_identity_ref": "ASSET-016-SEC",
+                    "asset_owner": "HELIX-SECURITY",
+                    "asset_source_ref": "fixture-source:security-016",
+                    "asset_revision": "synthetic-sec-r6",
+                    "classification_value": "public",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-UNKNOWN",
+                    "asset_identity_ref": "ASSET-016-UNKNOWN",
+                    "asset_owner": "HELIX-EXTENSION-OWNER",
+                    "asset_source_ref": "fixture-source:extension-016",
+                    "asset_revision": "synthetic-extension-r1",
+                    "classification_value": null,
+                    "classification_origin_owner": null,
+                    "classification_source_ref": null,
+                    "classification_source_revision": null,
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_state": "unknown"
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-A",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r10",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-A",
+                      "classification_value": "service-internal",
+                      "source_asset_revision": "synthetic-core-r10"
+                    }
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-B",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r11",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-B",
+                      "classification_value": "HELIX-confidential",
+                      "source_asset_revision": "synthetic-core-r11"
+                    }
+                  }
+                ],
+                "sink_context": {
+                  "selected_sinks": [
+                    "Web response",
+                    "API response",
+                    "log",
+                    "error",
+                    "stack trace",
+                    "debug output",
+                    "source map",
+                    "Tool result",
+                    "artifact",
+                    "LLM context"
+                  ],
+                  "sink_enforcer_1x_state": "not_established",
+                  "classification_alone_establishes_sink_safety": false,
+                  "sink_assessment": {
+                    "outcome": "not_assessed",
+                    "basis": null
+                  }
+                },
+                "existing_1_0_conditions": {
+                  "L2-005_secret_nonexposure_state": "retained_in_1_0",
+                  "secret_value_in_fixture_or_output": false,
+                  "L2-006_general_egress_rule": "per-destination/purpose/authority evaluation remains independently applicable",
+                  "L2-006_fixture_egress_decision": "not_evaluated",
+                  "blanket_general_egress_denial": "not_claimed"
+                },
+                "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
+              }
             }
           },
           "fields": {
@@ -67750,7 +68371,214 @@
                 },
                 "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
               },
-              "expected_packet": null
+              "expected_packet": {
+                "packet_id": "HELIXSECURITY-L9-016-SYN-RAW-BASE",
+                "synthetic": true,
+                "execution_state": "not_executed",
+                "real_owner_qualification": false,
+                "real_classification_observation": false,
+                "real_sink_enforcement": false,
+                "classification_vocabulary": [
+                  "public",
+                  "customer-owned",
+                  "service-internal",
+                  "HELIX-confidential",
+                  "HELIX-restricted",
+                  "secret"
+                ],
+                "unknown_state": "unknown (state, not a seventh class value)",
+                "classification_origin": {
+                  "owner": "HELIX-SECURITY",
+                  "source_ref": "fixture-source:security-classification-016",
+                  "revision": "synthetic-classification-vocab-r1",
+                  "qualification": "not_established"
+                },
+                "classification_records": [
+                  {
+                    "classification_record_ref": "CLASS-016-01",
+                    "asset_identity_ref": "ASSET-016-CORE",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-016",
+                    "asset_revision": "synthetic-core-r7",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-02",
+                    "asset_identity_ref": "ASSET-016-BRAIN",
+                    "asset_owner": "HELIX-BRAIN",
+                    "asset_source_ref": "fixture-source:brain-016",
+                    "asset_revision": "synthetic-brain-r3",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-03",
+                    "asset_identity_ref": "ASSET-016-INT",
+                    "asset_owner": "HELIX-INTELLIGENCE",
+                    "asset_source_ref": "fixture-source:int-016",
+                    "asset_revision": "synthetic-int-r5",
+                    "classification_value": "HELIX-restricted",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-04",
+                    "asset_identity_ref": "ASSET-016-LABO",
+                    "asset_owner": "HELIX-LABO",
+                    "asset_source_ref": "fixture-source:labo-016",
+                    "asset_revision": "synthetic-labo-r2",
+                    "classification_value": "customer-owned",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-05",
+                    "asset_identity_ref": "ASSET-016-OS",
+                    "asset_owner": "HELIX-OS",
+                    "asset_source_ref": "fixture-source:os-016",
+                    "asset_revision": "synthetic-os-r4",
+                    "classification_value": "secret",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-06",
+                    "asset_identity_ref": "ASSET-016-SEC",
+                    "asset_owner": "HELIX-SECURITY",
+                    "asset_source_ref": "fixture-source:security-016",
+                    "asset_revision": "synthetic-sec-r6",
+                    "classification_value": "public",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-UNKNOWN",
+                    "asset_identity_ref": "ASSET-016-UNKNOWN",
+                    "asset_owner": "HELIX-EXTENSION-OWNER",
+                    "asset_source_ref": "fixture-source:extension-016",
+                    "asset_revision": "synthetic-extension-r1",
+                    "classification_value": null,
+                    "classification_origin_owner": null,
+                    "classification_source_ref": null,
+                    "classification_source_revision": null,
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_state": "unknown"
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-A",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r10",
+                    "classification_value": "service-internal",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-A",
+                      "classification_value": "service-internal",
+                      "source_asset_revision": "synthetic-core-r10"
+                    }
+                  },
+                  {
+                    "classification_record_ref": "CLASS-016-REV-B",
+                    "asset_identity_ref": "ASSET-016-REVISIONAL",
+                    "asset_owner": "HELIX-HARNESS-CORE",
+                    "asset_source_ref": "fixture-source:core-rev-016",
+                    "asset_revision": "synthetic-core-r11",
+                    "classification_value": "HELIX-confidential",
+                    "classification_origin_owner": "HELIX-SECURITY",
+                    "classification_source_ref": "fixture-source:security-classification-016",
+                    "classification_source_revision": "synthetic-classification-vocab-r1",
+                    "classification_source_qualification": "not_established",
+                    "asset_owner_qualification": "not_established",
+                    "data_use_permission": "not_established",
+                    "operation_authority": "not_established",
+                    "fixture_only": true,
+                    "classification_assignment": {
+                      "record_ref": "CLASS-016-REV-B",
+                      "classification_value": "HELIX-confidential",
+                      "source_asset_revision": "synthetic-core-r11"
+                    }
+                  }
+                ],
+                "sink_context": {
+                  "selected_sinks": [
+                    "Web response",
+                    "API response",
+                    "log",
+                    "error",
+                    "stack trace",
+                    "debug output",
+                    "source map",
+                    "Tool result",
+                    "artifact",
+                    "LLM context"
+                  ],
+                  "sink_enforcer_1x_state": "not_established",
+                  "classification_alone_establishes_sink_safety": false,
+                  "sink_assessment": {
+                    "outcome": "not_assessed",
+                    "basis": null
+                  }
+                },
+                "existing_1_0_conditions": {
+                  "L2-005_secret_nonexposure_state": "retained_in_1_0",
+                  "secret_value_in_fixture_or_output": false,
+                  "L2-006_general_egress_rule": "per-destination/purpose/authority evaluation remains independently applicable",
+                  "L2-006_fixture_egress_decision": "not_evaluated",
+                  "blanket_general_egress_denial": "not_claimed"
+                },
+                "fixture_note": "全値は合成比較値。実資産の分類、owner資格、許可、sink enforcement、secret値、egress結果を示さない。"
+              }
             }
           },
           "fields": {
@@ -102632,7 +103460,7 @@
   "materialization_contract": {
     "kind": "local_materialization_recipe",
     "authority_effect": "none",
-    "note": "cases 39-42の同一expected_packet(2member)をcase38 anchorから標準RFC6902 copyで復元する提案。PERMISSION(36/37)とREVISION-NORMAL(43)は別役割で対象外。null placeholderをcopyで置換し既存fixture構築の全値pointer/hash照合の前に適用。typed引数渡し・遅延resolver・新authorityではない",
+    "note": "cases 39–42のexpected_argument.fields.expected_packetだけを同じ役割のcase38 anchorから標準RFC6902 copyで復元する。original.raw、raw_utf8、各case固有の独立期待結果とhashは変更しない。PERMISSION(36/37)とREVISION-NORMAL(43)は対象外。null placeholderは構築時に置換し、元の全値/hash/型照合より前に復元する。",
     "restoration_order": "copy適用→既存fixture構築の全値pointer/hash照合",
     "consumer_connections": "個別input/native/独立expected/case idは原値・原順のまま",
     "operations": [
@@ -102643,18 +103471,8 @@
       },
       {
         "op": "copy",
-        "from": "/cases/38/raw_materialization/expected_argument/original/raw/expected_packet",
-        "path": "/cases/39/raw_materialization/expected_argument/original/raw/expected_packet"
-      },
-      {
-        "op": "copy",
         "from": "/cases/38/raw_materialization/expected_argument/fields/expected_packet",
         "path": "/cases/40/raw_materialization/expected_argument/fields/expected_packet"
-      },
-      {
-        "op": "copy",
-        "from": "/cases/38/raw_materialization/expected_argument/original/raw/expected_packet",
-        "path": "/cases/40/raw_materialization/expected_argument/original/raw/expected_packet"
       },
       {
         "op": "copy",
@@ -102663,18 +103481,8 @@
       },
       {
         "op": "copy",
-        "from": "/cases/38/raw_materialization/expected_argument/original/raw/expected_packet",
-        "path": "/cases/41/raw_materialization/expected_argument/original/raw/expected_packet"
-      },
-      {
-        "op": "copy",
         "from": "/cases/38/raw_materialization/expected_argument/fields/expected_packet",
         "path": "/cases/42/raw_materialization/expected_argument/fields/expected_packet"
-      },
-      {
-        "op": "copy",
-        "from": "/cases/38/raw_materialization/expected_argument/original/raw/expected_packet",
-        "path": "/cases/42/raw_materialization/expected_argument/original/raw/expected_packet"
       }
     ]
   }
