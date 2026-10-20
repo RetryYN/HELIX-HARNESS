@@ -347678,6 +347678,18 @@
       "全expected_return/return_value/最終typed返却",
       "raw_input_packets/raw_patches/source bytes/source hashes",
       "他の非同値MetricClaimとoperation/source_definition/qualification材料"
-    ]
+    ],
+    "source_binding": {
+      "revision": "5b17cb775d2f601da8869d68856f712e51a20bca",
+      "path": "docs/helix-labo/L8-unit-verification/worker-level-evidence.json",
+      "raw_sha256": "f992d39f21762a9bda22c5c291ceb10b24ea747b06d9d990797191ba233ea8f3",
+      "anchors": [
+        {
+          "pointer": "/cases/8/l5_call_contract/typed_execution_trace/calls/0/argument_bindings/claim/literal",
+          "canonical_sha256": "5d92002656923145f7f47528329f584b36d1ad284f8d53a2ce694b3a3174bfef",
+          "ordered_sha256": "203ea80ecd5c8cc8e650cabff204fe9399d71d3fffa5b6af6cc82b3906d41b2a"
+        }
+      ]
+    }
   }
 }
