@@ -193396,7 +193396,7 @@
   },
   "general_proposal_exchange_verification": {
     "id": "HARNESS-L8-009-GENERAL-PROPOSAL-EXCHANGE",
-    "status": "draft_oracle_family_whole_expectations_not_yet_frozen",
+    "status": "candidate_finite_whole_recipe_published_remaining_branches_open",
     "detail_design_ref": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/general_proposal_exchange_detail",
@@ -193689,7 +193689,9 @@
           "/observation/original_axis_indices",
           "/observation/conclusion"
         ],
-        "why_ja": "新観測であり旧normal expectedには無い。原比較規範から新技術literal/実所在/順序を独立著述する。既存source不足による上流採否待ちではない。"
+        "why_ja": "新観測であり旧normal expectedには無い。原比較規範から新技術literal/実所在/順序を独立著述する。既存source不足による上流採否待ちではない。",
+        "finite_coverage_pointer": "/finite_repository_oracle_binding",
+        "remaining_scope_ja": "この表は全branch義務。公開childの有限case全値で覆った部分と未行使枝を区別し、全域未凍結/全域完成のどちらにも置換しない。"
       },
       {
         "scope": "new whole route positive/empty/NA",
@@ -193701,7 +193703,9 @@
           "GeneralProposalView/proposed_body",
           "GeneralProposalView/body_issues"
         ],
-        "why_ja": "元N全値を変えずprojectする新wrapper経路の全leafと新Iに対する旧全returnを著述する作業。既存conditionalNはwrapper実観測ではない。"
+        "why_ja": "元N全値を変えずprojectする新wrapper経路の全leafと新Iに対する旧全returnを著述する作業。既存conditionalNはwrapper実観測ではない。",
+        "finite_coverage_pointer": "/finite_repository_oracle_binding",
+        "remaining_scope_ja": "この表は全branch義務。公開childの有限case全値で覆った部分と未行使枝を区別し、全域未凍結/全域完成のどちらにも置換しない。"
       },
       {
         "scope": "publication+OS",
@@ -193715,7 +193719,9 @@
           "TemplateSetComparisonKernelInput全member",
           "TraceSectionResult[]全leaf"
         ],
-        "why_ja": "新rawprofileと同walkの全stage期待は新作。旧既存type/規範とL4署名を詳細化して閉じる。実owner trust/配送はfixtureでは証明しない。"
+        "why_ja": "新rawprofileと同walkの全stage期待は新作。旧既存type/規範とL4署名を詳細化して閉じる。実owner trust/配送はfixtureでは証明しない。",
+        "finite_coverage_pointer": "/finite_repository_oracle_binding",
+        "remaining_scope_ja": "この表は全branch義務。公開childの有限case全値で覆った部分と未行使枝を区別し、全域未凍結/全域完成のどちらにも置換しない。"
       }
     ],
     "old_value_preservation": {
@@ -193725,7 +193731,7 @@
       "wire": "旧codec6entry/OSField missing/null/旧OriginRoot/既存numeric同値は無変更。",
       "operation": "domain evaluator/旧runtime/test/CIを実行して期待を生成しない。"
     },
-    "freeze_completion_ja": "各familyについて原input/独立expected_seed/全standardcompletionops/input・expected各wholehashが揃うまでnot_frozen。未凍結を{}や架空Read/Nで埋めない。現draftのfamily規範だけでは詳細pair完成としない。",
+    "freeze_completion_ja": "公開childに有限input/whole expectedと標準ops/明示generic準備/全witnessを著述する。旧素材の監査と公開recipe通し監査は区別する。未凍結をdummy/{}で埋めず、全8familyの未完を維持する。全negative閉包をDraft条件へ追加せず、詳細pair/製品runtimeの完成認定は行わない。",
     "family_source_anchor_definitions": {
       "C-NORMAL-RAW": {
         "revision": "75a0f4ed845fa53979a0ef69c3577b065c1c37f7",
@@ -193943,6 +193949,137 @@
         "ordered_sha256": "c6d5eadc5318d32aa9885c331cba4349d4a1e3ea834da353fb32b4c7197e618c",
         "source_role": "fixed_source_snapshot"
       }
-    }
+    },
+    "finite_repository_oracle_binding": {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+      "pointer": "",
+      "binding": "same_candidate_revision",
+      "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
+      "cases_pointer": "/cases",
+      "remaining_pointer": "/family_remaining_ja",
+      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
+    },
+    "finite_cases": [
+      {
+        "id": "F01-required",
+        "family": "F01-positive-required",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/0",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F02-qualified-empty",
+        "family": "F02-explicit-empty",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/1",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F03-valid-NA-only",
+        "family": "F03-valid-NA-and-mixed",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/2",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_replay_pending",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F05-equivalent-relation",
+        "family": "F05-all-relations-own-origin",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/3",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F07-binding-domain-unavailable",
+        "family": "F07-exactness-and-coexisting-reasons",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/4",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "known-candidate-control",
+        "family": "F08-publication-receiving-and-legacy-equivalence",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/5",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F08-header-unavailable",
+        "family": "F08-publication-receiving-and-legacy-equivalence",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/6",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F08-header-return_unobserved",
+        "family": "F08-publication-receiving-and-legacy-equivalence",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/7",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F08-authority-unavailable",
+        "family": "F08-publication-receiving-and-legacy-equivalence",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/8",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      },
+      {
+        "id": "F08-authority-return_unobserved",
+        "family": "F08-publication-receiving-and-legacy-equivalence",
+        "recipe": {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+          "pointer": "/cases/9",
+          "binding": "same_candidate_revision",
+          "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        },
+        "old_material_check_status": "independent_finite_whole_checked",
+        "published_recipe_check_status": "not_yet_independently_reconstructed"
+      }
+    ]
   }
 }

@@ -23150,7 +23150,74 @@
         ],
         "bytes_ja": "objectは{key:value,...}、arrayは[value,...]、区切り余白無し、UTF8・BOM無し・末尾改行無し。stringはJSON標準escape（制御文字/quote/backslash、非ASCIIはUTF8）。numberの字句選択/非有限拒否は既存numeric profileだけを使い新等値規範を追加しない。digestはこの完成bytesのSHA256 lowerhex。",
         "inverse_reader_ja": "OS新profileは同旧CORE numeric/Field表現へ型付き再decodeし、raw body/typed evidence/元valueの全対応を確認する。hash一致をsamecall/意味同値へ置換しない。",
-        "unfrozen_ja": "新typed全union/既存native型がこのprivate wireへ再帰encodeされる具体全leaf/number期待は新L8で独立著述中。現時点でcodec/runtimeの存在・成功は主張しない。"
+        "unfrozen_ja": "公開childの有限caseにsource-first全leaf/UTF8/witnessを著述した。新catalog通し監査/全union・特殊numberの未行使枝・runtime codec成功は別に未成立として保持する。"
+      },
+      "finite_port_issue_writer": {
+        "scope_ja": "新private publish_general_proposal_exchangeのP2/P5局所技術writer。既存LocalIssue型/旧publiccodec/旧wholeを変更せず、この新返却へだけ適用する。portがreturnedの場合のshape/端差等を未供給と同一化しない。",
+        "issue_member_order": [
+          "path",
+          "state",
+          "detail",
+          "backflow_owner",
+          "axis",
+          "source_ref (Field present時だけ)",
+          "related_source_refs"
+        ],
+        "cases": [
+          {
+            "case_id": "F08-header-unavailable",
+            "source_ref_writer_ja": "header未供給/return無しではkey省略。authority側では実header_port.raw_return.source_ref全値をこのmemberへcopyしnull/仮Refを生成しない。",
+            "issue_constant_members": {
+              "path": "header_port",
+              "state": "unavailable",
+              "detail": "原owner header portの供給がない。",
+              "backflow_owner": "CORE",
+              "axis": "publication_header",
+              "related_source_refs": []
+            },
+            "source_ref_write_position_ja": "authority側だけaxisとrelated_source_refsの間へ実header source_refを挿入する。header側はkey省略。constant membersの欠落をnullで補わない。"
+          },
+          {
+            "case_id": "F08-header-return_unobserved",
+            "source_ref_writer_ja": "header未供給/return無しではkey省略。authority側では実header_port.raw_return.source_ref全値をこのmemberへcopyしnull/仮Refを生成しない。",
+            "issue_constant_members": {
+              "path": "header_port",
+              "state": "return_unobserved",
+              "detail": "原owner header portは呼出済みだが返却を観測していない。",
+              "backflow_owner": "CORE",
+              "axis": "publication_header",
+              "related_source_refs": []
+            },
+            "source_ref_write_position_ja": "authority側だけaxisとrelated_source_refsの間へ実header source_refを挿入する。header側はkey省略。constant membersの欠落をnullで補わない。"
+          },
+          {
+            "case_id": "F08-authority-unavailable",
+            "source_ref_writer_ja": "header未供給/return無しではkey省略。authority側では実header_port.raw_return.source_ref全値をこのmemberへcopyしnull/仮Refを生成しない。",
+            "issue_constant_members": {
+              "path": "authority_port",
+              "state": "unavailable",
+              "detail": "原owner authority portの供給がない。",
+              "backflow_owner": "CORE",
+              "axis": "publication_authority",
+              "related_source_refs": []
+            },
+            "source_ref_write_position_ja": "authority側だけaxisとrelated_source_refsの間へ実header source_refを挿入する。header側はkey省略。constant membersの欠落をnullで補わない。"
+          },
+          {
+            "case_id": "F08-authority-return_unobserved",
+            "source_ref_writer_ja": "header未供給/return無しではkey省略。authority側では実header_port.raw_return.source_ref全値をこのmemberへcopyしnull/仮Refを生成しない。",
+            "issue_constant_members": {
+              "path": "authority_port",
+              "state": "return_unobserved",
+              "detail": "原owner authority portは呼出済みだが返却を観測していない。",
+              "backflow_owner": "CORE",
+              "axis": "publication_authority",
+              "related_source_refs": []
+            },
+            "source_ref_write_position_ja": "authority側だけaxisとrelated_source_refsの間へ実header source_refを挿入する。header側はkey省略。constant membersの欠落をnullで補わない。"
+          }
+        ],
+        "propagation_ja": "header unavailable/return_unobserved: header_decode.unreached、authority_port.not_called、source_candidate.unformed、診断はpublication root /header_port。authority unavailable/return_unobserved: 実header_port/header_decode/完成AuthorityRequest全値維持、source_candidate.unformed、診断は同root /authority_port。未観測raw_returnをnull/dummyで埋めない。"
       }
     },
     "root_and_index_contract": {
@@ -23457,10 +23524,30 @@
       "old_values_ja": "旧publictype/functions/codec6entry/Comparison/caller全7producer/proposal/N/旧provider3whole/旧totalwholeを変更しない。新.valueの元全値投影とmember順を新L8で検証する。",
       "legacy_source_ja": "L4 source_basisのLEGACY/FAILURE固定原文を起点に、候補受領を使用済みと混同しない、同件数補償・別source救済・unknown empty化を防ぐ既決要求を詳細化する。旧runtimeを移植/実行しない。",
       "remaining_ja": [
-        "新F02positive/empty/完全NAと全general/publication/receiver全wholeは独立著述中。",
+        "公開childへF01/F02/F03singleton/F05/F07/knowncandidate control/F08四portの有限wholeを著述。各caseの独立素材監査状態を区別し、全8familyのmixed/residual/negative/全wire枝は同child.family_remaining_jaの通り未完。",
         "実owner登録/qualification trust/CONNECT実配送/OS保存・受入は本pure設計だけで成立しない。",
         "新詳細pair未検収、HARNESS F02/F03/全92/430完成は称さない。"
       ]
+    },
+    "finite_repository_oracle_binding": {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+      "pointer": "",
+      "binding": "same_candidate_revision",
+      "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
+      "cases_pointer": "/cases",
+      "remaining_pointer": "/family_remaining_ja",
+      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
+    },
+    "finite_writer_realizations": {
+      "scope_ja": "以下は新source-first有限例へ適用する技術具体化。固定aliasの旧functions/Comparison規範を遡及変更せず、旧normal/NA/全legacywholeを保持する。全関数/複数policy/未到達全枝の唯一既決集約規則と称さない。",
+      "empty_ja": "明示present[]のpolicy rosterはpolicy_decisions/source_projection_rowsをpresent[]、aggregate dispositionをunresolvedとする有限writer。元F02の空candidate[]と独立有資格空template roster/原boundaryを詳細stepsに別記し、件数だけでpositiveを生成しない。新native coverageは全occurrence0のcovered_as_capturedと元not_recomputedを併記する。",
+      "NA_singleton_ja": "単一policyのper-policy naをaggregate naへ保持する有限writer。原NA4/basis/unfinished obligation全値を保持、candidate[]/na_exclusion一件へ安定分割。元raw condition_value欠落とaggregate falseを別保存しrowを書換えない。mixed/複数policy foldは残件。",
+      "recipe": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+        "pointer": "/parts",
+        "binding": "same_candidate_revision",
+        "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+      }
     }
   }
 }
