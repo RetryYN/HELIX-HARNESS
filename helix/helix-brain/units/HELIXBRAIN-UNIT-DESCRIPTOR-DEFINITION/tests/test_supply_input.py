@@ -27,7 +27,8 @@ REPOSITORY = Path(__file__).resolve().parents[5]
 L8_PATH = REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
 
 # 独立test basis: L5 /functions/0, /type_contract/types/{ValidatedSupply,InputIssue};
-# L8 /function_oracles/0, /additional_unit_cases/{0,1}。未凍結・未実行。
+# L8 /function_oracles/0, /additional_unit_cases/{0,1},
+# /input_structure_verification/semantic_boundary_cases/1。未凍結・未実行。
 # fn0局所decodeだけの部分oracle。資格検証の完成/F02のRed/全IO0は認定しない。
 
 
@@ -75,15 +76,17 @@ class TestSupplyInput(unittest.TestCase):
     def test_add02_meaning_null_is_preserved(self):
         document = load_document()
         raw = base_input(document)
-        self.assertEqual(raw["descriptors"][6]["descriptor_kind"], "required field", "setup: target slot")
-        raw["descriptors"][6]["facts"][0]["meaning"] = None
+        # ADD-02の具体変異は既存semantic_boundary_cases/1に固定済み。
+        self.assertEqual(raw["descriptors"][0]["descriptor_kind"], "template identity", "setup: target slot")
+        raw["descriptors"][0]["facts"][0]["meaning"] = None
         snapshot = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
         self.assertIsNotNone(validated["input"])
-        slot = validated["input"]["descriptors"][6]
-        self.assertEqual(slot["slot_identity"], "synthetic-descriptor-7")
+        slot = validated["input"]["descriptors"][0]
+        self.assertEqual(slot["slot_identity"], "synthetic-descriptor-1")
         self.assertIsNone(slot["facts"][0]["meaning"])
         self.assertEqual(validated["input"], snapshot, "semantic null remains in decoded input")
+        self.assertEqual(validated["input_issues"], [], "semantic null is not a shape error")
         self.assertEqual(raw, snapshot, "validator must not mutate input")
 
 
