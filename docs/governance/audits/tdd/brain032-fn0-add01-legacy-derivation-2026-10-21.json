@@ -1,0 +1,57 @@
+{
+  "record_id": "BRAIN032-FN0-ADD01-LEGACY-DERIVATION-20261021",
+  "kind": "source_correspondence_review_correction",
+  "authority_effect": "none",
+  "review_finding": "PR3507 R1 F1: old source2件がPR本文だけにありrepository内の記録が不足",
+  "assets": [
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "revision": "a09f5683ec48c5d6210405671500b725966cc306",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "raw_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af",
+      "line_span": [
+        22,
+        24
+      ],
+      "keep": "契約先行、意図欠陥を検出するRed、最小実装Green、同oracleのRefactor。",
+      "change": "旧のrule全体/数値gate/旧roleを採用せず、既決REDFIRSTと今回ADD01の証拠へ意味再導出する。",
+      "reason": "既決Concept/REDFIRSTと限定10/12 scopeの下で、静的設計だけ/自己一致testという直近失敗を実公開関数と凍結oracleのRed/Greenで解消する。旧番号やgateの自動継承を避ける。",
+      "disposition": "read_only_semantic_rederivation_not_full_asset_adoption"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-CC1E70903B36BFE1564D",
+      "revision": "a09f5683ec48c5d6210405671500b725966cc306",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L07-implementation.md",
+      "raw_sha256": "e7664192914b4a78d9c90051c533221336eebbc534e3d160808f2307a3de8129",
+      "line_span": [
+        22,
+        27
+      ],
+      "keep": "先行test codeの未実装FAILは許すが収集/import errorをRedにしない。",
+      "change": "旧L6/L7の層番号・aim/se/tl role・3点レビュー手続・全test/coverage80%/G7 gateを移植しない。現行L6設計/L7対検証と独立runtime reviewを保持。",
+      "reason": "既決Concept/REDFIRSTと限定10/12 scopeの下で、静的設計だけ/自己一致testという直近失敗を実公開関数と凍結oracleのRed/Greenで解消する。旧番号やgateの自動継承を避ける。",
+      "disposition": "read_only_semantic_rederivation_not_full_asset_adoption"
+    }
+  ],
+  "applies_to": {
+    "design_revision": "5c3bed937acf472a20c88ede5f33a6e7a00023d7",
+    "design_path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+    "design_pointer": "/fn0_add01_preparation",
+    "verification_path": "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json",
+    "verification_pointer": "/fn0_add01_verification",
+    "freeze_record": "docs/governance/audits/tdd/brain032-fn0-add01-freeze-2026-10-21.json",
+    "freeze_readback": "docs/governance/audits/tdd/brain032-fn0-add01-freeze-readback-2026-10-21.json"
+  },
+  "relationship_to_freeze": "既存freezeのsource/test/input/partial oracle/commandを変更せず、起点source2件と保持/変更/理由の記録漏れだけを別記録で補う。実装前freeze順序や実Red/Greenの過去証拠を新規に作り直した記録ではない。",
+  "evidence_unchanged": [
+    "test bytes/input/oracle",
+    "L6/L7 frozen bytes",
+    "initial carrier and minimal implementation",
+    "red/green observed logs/receipts"
+  ],
+  "not_performed": [
+    "old runtime/test/CI execution",
+    "new requirement/gate/authority",
+    "repeat test for unchanged evidence"
+  ]
+}
