@@ -53953,8 +53953,10 @@
     "authority_effect": "none",
     "role": "root technical bounded oracle adoption before worker program authoring, not requirement approval or real execution",
     "source_oracle_proposal": {
+      "kind": "non_normative_local_audit_provenance",
       "source_oracle_proposal_path": "scaffold/review-handoff/local/harness048-f01-author-return-source-proposal-m43-20261020/independent-three-whole-oracle-proposal.json",
-      "source_oracle_proposal_sha256": "2f6f20a380749e8bbb936af23cbe7293475444691fa8d9ecd5f9ce0baa650273"
+      "source_oracle_proposal_sha256": "2f6f20a380749e8bbb936af23cbe7293475444691fa8d9ecd5f9ce0baa650273",
+      "normative_reproduction_ja": "規範的な再構成根拠は、source_revisionに固定した追跡対象GitのL8 source_case各pointer/raw hashと、この文書に埋め込んだinput/expected_wholeである。上記local artifactは追跡対象外の監査来歴であり、再構成や解釈の必須入力ではない。"
     },
     "source_revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
     "conditions_ja": "新private wrapperが同じtyped packet/contextで既存compare_f01を一度呼んだとき、その実返却が固定旧期待と同値である条件付き全返却期待。native実観測/実owner資格/配送済みとは称さない。旧expected_returnは期待側だけの固定sourceで製品runtime引数にしない。",
@@ -54431,7 +54433,10 @@
       "target IDの/および~のpointer escape、空target配列、TBD markerの新wrapper wholeはこの有限3caseでは未凍結。型と旧compare規範からのwriter設計事項であり追加gateではない。",
       "入力型外/重複ID/空IDは現行F01Argumentsの外側。新wrapperが新Cause/架空native返却で総称しない。"
     ],
-    "counterpart_program_not_yet_authored_by_worker": true,
+    "counterpart_program_status_at_oracle_freeze": {
+      "status": "not_yet_authored",
+      "scope_ja": "これはrootが固定oracleを凍結した時点の記録であり、現在の作成状態を示す値ではない。"
+    },
     "unclosed_id_note_ja": "verification_obligations[0].unclosed_obligationsの旧native ID(H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED)は旧compare_f01単体の状態として不変に保持し、新private f01_author_return_materialは限定論理返却役割の具体化範囲に限る。実owner資格・配送は別の未成立範囲。"
   }
 }
