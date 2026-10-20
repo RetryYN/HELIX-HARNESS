@@ -14266,7 +14266,7 @@
           "multiplicity": "一件。未到達をoptional absentに変換しない。"
         },
         {
-          "guard": "fn10へ供給されたprojection Read.present.valueがnonnullで、既存CoreSourceResultProjectionResultのnative型対応不能が原型対応から確定した場合。このpatternはその場合のCause全leaf表現だけを選定する。任意CoreJsonValueをそのnative型へ認定/拒否する完全な判定基準とtyped形成はprojection_native_correspondence_frontierの未閉包であり、本guardを実装済みpredicate又は全nonnull入力へ常時適用する規則としない。",
+          "guard": "fn10へ供給されたprojection Read.present.valueがnonnullで、projection_native_correspondence_frontier/closed_formationが束縛する既存CoreSourceResultProjectionResultの構造型に適合しない場合。適否の判定は同closed_formationに定義する。原同call由来/実source・owner資格の未観測や、別のdomain missing/unknown/conflictをこの型不適合guardへ含めない。Read.absent/present null/unreachedはそれぞれ既存optional規則/context_patterns/4で扱い、全nonnullへの常時拒否又は成功castはしない。",
           "kind": "native_leaf_unformed",
           "target": {
             "root": "caller_inputs",
@@ -14330,7 +14330,7 @@
         "actual_return": "実DetailedReturn Dを受領したらouter.f05=formed{value:D全値}。D.comparisonがunformedでもformedのまま。同Dをproducer_observationsへ入れず、Dの欠けたComparisonを偽造/skip/未観測へcastしない。",
         "own_call_or_return_unobserved": "二依存準備は成立したがF05自身のcall又はreturnが未観測ならcall_rowsのF05固有observation_rulesで前記同一全leaf規則のCauseを一件作り、outer.f05=unformed{causes:[そのCause]}。Dが返ったという事実が有る場合はこの枝を選ばない。"
       },
-      "projection_boundary": "fn10 source_result_reference_projectionは既存/source_result_reference_projection/pipeline_bindingの同snapshot実projector返却だけを元optional memberへ渡す責務を保持。CallerInputsのRead.absentなら元Context memberを省略、present nullなら実null、present nonnullで既存CoreSourceResultProjectionResult型対応がある実wholeなら無変換copy。Read.unreached又は当該型対応不能はcontext_patterns/4又は5。原数値/型を変換又はlogical期待をnative返却へcastせず、fn11/12の新caller/API/意味writerは今回作らない。 任意nonnull CoreJsonValueからのnative型対応を本稿で判定済みとはしない。具体未閉包はprojection_native_correspondence_frontierを正本とし、その枝のfn10全caller形成は残務とする。",
+      "projection_boundary": "fn10 source_result_reference_projectionは既存/source_result_reference_projection/pipeline_bindingの同snapshot実projector返却だけを元optional memberへ渡す責務を保持。CallerInputsのRead.absentなら元Context memberを省略、present nullなら実null、present nonnullならprojection_native_correspondence_frontier/closed_formationの構造refinementが適合する同一原wholeを無変換copyする。Read.unreachedはcontext_patterns/4、nonnull構造型対応不能はcontext_patterns/5。原数値/型を変換せずlogical期待をnative実返却へcastしない。型判定は同call由来/実資格を証明せず、未観測の来歴又は資格を型不適合として拒否しない。fn11/12の新caller/API/意味writerは作らず、既存取得辺と別残件は保持する。本記述とclosed_formationはoptional投影枝だけを定義し、fn10全caller/全回路の完成を生成しない。",
       "outer_cause_aggregation": "CoreApplicationDetailReturn.causesはproducer_observationsの固定7entry順に、explicit_skip.skip.causes又はunobserved.causesを各列内順のまま連結し、その後outer.f05がunformedならそのcauses、claimsがunformedならそのcauses、analysisがunformedならそのcausesをこの順に連結する。returned/formed群は追加無し。全重複を保持し新要約Causeを作らない。validation診断/source Causeはvalidation whole、実D内のcomparison/owner Causeはf05.formed.value wholeに保持し、このouter列へ別flattenしない。outer.causesはdomain全体成功/失敗の集約ではない。",
       "owner_connection_frontier": "本caller型はL4step5までの返却とstep6接続callerが取得するF05 wholeを具体化する。L4 outer_return_boundaryの選択B019/030 call全入力/全返却又は未接続原材料のtyped格納先はまだ具体化していない。step6/7は別typed port pairで追補し、今回CoreRaw/placeholder memberを足して全返却完成とはしない。",
       "technical_selection_ja": "同一原全値でもC01の観測目録/順序及びcaller Cause左右/規範pointer/移送順が未定で全返却を手導出できなかったreadonly監査7b2d54を起点に、未定義だった技術返却表現だけを本表で選定する。既存F01/validation Cause規範、公開Finding code/domain state、既存numeric codec診断/旧logical literalは保持。採用L4を新gate/新owner/任意資格boolへ置換しない。",
@@ -14344,7 +14344,7 @@
           "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue"
         ],
         "existing_correspondence": "既存SourceResultProjectionResultはrows:ProjectionResultRow[]とinput_findings:ProjectionInputFinding[]のlogical生成返却。CoreSourceResultProjectionResultは同原member/enum/原順を保持し、RawValue数値leafを既存CoreJsonValueへ対応させる既存logical-native対応型である。source_result_reference_projection/pipeline_bindingの同snapshot実projector返却を保持する責務は変えない。",
-        "unclosed": "CallerInputsのRead<CoreJsonValue>にある任意nonnull値について、rowsの各SourceResultProjectionRow/InvalidComputedRowObservation、input_findingsの各member/presence、既存numeric node、logical/native名目型と原同call返却由来を全て束縛するtyped formation/判定基準は本callerで未閉包。名前/shapeラベル/任意caller boolだけで既存型成功又は型不正を確定しない。",
+        "unclosed": "任意nonnull Read<CoreJsonValue>の既存CoreSourceResultProjectionResultへの構造refinementと、その適否によるContext形成/既存Cause選定はclosed_formationで定義する。原同snapshot・同projector call・独立port返却の来歴と実source/owner資格は値の型適合とは別の観測であり、本稿から生成しない。これらの実観測未成立を構造型対応の未定義又は新拒否理由へ変換しない。既存全callerの他依存/全返却の未閉包まで本局所形成の成立としない。",
         "consumer_boundary": "absent省略とpresent null保存は既存optional規則のまま。実nonnull projectionの型付き全引数が未形成の枝についてfn10呼出し/全caller閉包を成立したとはしない。context_patterns/5は型対応不能が確定した場合の診断形であり、判定未実装を全入力拒否又は成功castへ変換しない。新provider/全axis gate/新wire/APIは追加しない。",
         "closed_formation": {
           "scope": "C04 private caller内部の形成手順として定義。新public署名/CallerInputs member/codec entry/provider/APIは追加しない。既存CoreSourceResultProjectionResult aliasとFormation/Causeを再利用。",
@@ -14376,7 +14376,7 @@
             "Naturalは既存JSON integer>=0。schema数値判定はnumeric_predicates.integer/schemaへ束縛し、boolを数としない。CoreNumberの1.0/1e0は既存integer意味、0.1は非整数。元nodeをstrict intへ変換/丸めしない。writerが新生成するindexは従来どおりstrict int>=0。この入力refinementと生成index規則を混同しない。",
             "candidate_countとsource_candidate_envelopes.lengthの整合、computed_rowの業務妥当性、source_relationの正しさ、実資格、同call由来は型判定で再評価しない。既存writerが固定するliteralを、schemaが許すより狭い受理gateへ勝手に追加しない。"
           ],
-          "algorithm_ja": "有限・非循環という既存CoreJsonValue域上で、既存$defsのlocal refを再帰的に辿り、type/required/additionalProperties/oneOf/enum/const/pattern/items/数値制約を宣言どおり判定する。RawValue葉はopaqueに保持し、未知キーの意味を推測しない。適合ならidentity conversion（元tree/数値node/presence/順序をそのまま引渡す）、不適合なら下記一Cause。wire encode/decode経由のroundtripで型形成を代用しない。",
+          "algorithm_ja": "source_binding.pointerをrootとし、source_binding.schema_definitionsに列挙した固定16型だけをfixed_constructor_bindingへ結ぶC04内部の局所形成手順とする。既存CoreJsonValueの有限・非循環域上でobject required/closed key、array items、固定oneOf、string/pattern、既存enum/const、Natural数値制約を既存型どおり辿る。JSONValueはtyped CoreJsonValueの終端でありwire anyOfを解釈する汎用validatorを新設しない。適合なら元tree/member順/配列反復/数値node/presenceを同じvalueのまま引渡し、不適合なら既存context_patterns/5を一件。RawValueのdomain意味・count整合・来歴・資格は再判定せず、wire encode/decode roundtripやlogical期待のcastで形成を代用しない。",
           "failure_return": "analysis:Formation<CoreApplicationAnalysis>.unformed.causesに既存pattern5を一件。target/left/right/rule_pointerは現行pattern5のまま。検出した複数schema不正から新Cause配列/新InputIssue/新codec失敗を生成しない。他の既存Context原因があればcontext_cause_orderの既存順に併存。",
           "preservation": "validation/f05/producer_observations/claims/input_scope_knowledge_gapの全値を変更せず、analysisの既存未形成とouter_cause_aggregationだけへ同Causeを所定順に移送。F05 wholeを短Analysisへ押し込まない。",
           "origin_boundary": {
@@ -14384,7 +14384,151 @@
             "not_decidable_from_value": "同snapshot・同producer call・独立portの実返却由来。値が等しい別callも型適合は同じ。caller bool/schemaラベル/同値JSONから来歴や資格を作れない。",
             "source_binding": "既存/functions/12/caller_binding と/source_result_reference_projection/pipeline_bindingを原辺として使い、actual application_input/computed_rows/independent_port→実projector全返却→CallerInputs Read→fn10を無変換で渡す。新しいexpected/cache/provenance bool引数は要らない。",
             "review_rule": "構造判定を源泉結線の証明にしない。既に結線を定義した設計が未実行であることを型形成の不足や新拒否理由へ変換しない。外から同値値だけを渡すcontrolは構造適合し、由来の実証は未観測のまま。"
-          }
+          },
+          "source_binding": {
+            "revision": "aed93e206179a6b5ca1e7c5712fe846d06216886",
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+            "pointer": "/wire_codec_contract/schema/$defs/SourceResultProjectionResult",
+            "canonical_sha256": "2fce94bfdd9d3f9069dfb6c35ee89c893baca6ac5c7baa2b530e3ab827b18a45",
+            "schema_definitions": [
+              {
+                "name": "DecisionImpact",
+                "pointer": "/wire_codec_contract/schema/$defs/DecisionImpact",
+                "canonical_sha256": "369a2747150db6c543bdacb298ae0eb3d92ed58ee8c6379771a188daba496424"
+              },
+              {
+                "name": "InvalidComputedRowObservation",
+                "pointer": "/wire_codec_contract/schema/$defs/InvalidComputedRowObservation",
+                "canonical_sha256": "d115d837f2a1a0336f8fe997938e21f003f53380e2c8596901d774f3c016d4d3"
+              },
+              {
+                "name": "JSONPointer",
+                "pointer": "/wire_codec_contract/schema/$defs/JSONPointer",
+                "canonical_sha256": "1e228b81b3426dedb1a89a70139dde8cb66e96967b7a4504774799f8bbc30915"
+              },
+              {
+                "name": "JSONValue",
+                "pointer": "/wire_codec_contract/schema/$defs/JSONValue",
+                "canonical_sha256": "0065f5a83f12f9dde7faca02a13afcfa75672dbf58d17cf42154e480f41ac76b"
+              },
+              {
+                "name": "LogicalOwnerReturn",
+                "pointer": "/wire_codec_contract/schema/$defs/LogicalOwnerReturn",
+                "canonical_sha256": "45b1814204d417dc8950cdcb12ba1e172c87e4e5ae9fe6d2ed3128c3739b7520"
+              },
+              {
+                "name": "Natural",
+                "pointer": "/wire_codec_contract/schema/$defs/Natural",
+                "canonical_sha256": "0d3ac1e9e006c0119b57d0512759bd7e261ea0d8cb38951a5183d17cdb4391f0"
+              },
+              {
+                "name": "None",
+                "pointer": "/wire_codec_contract/schema/$defs/None",
+                "canonical_sha256": "369a2747150db6c543bdacb298ae0eb3d92ed58ee8c6379771a188daba496424"
+              },
+              {
+                "name": "NotEstablished",
+                "pointer": "/wire_codec_contract/schema/$defs/NotEstablished",
+                "canonical_sha256": "2622ea78aae6c98b6639dbfac11feeea2aa9e832606b5c7cb3a069ede6c4e59e"
+              },
+              {
+                "name": "PresenceJsonValue",
+                "pointer": "/wire_codec_contract/schema/$defs/PresenceJsonValue",
+                "canonical_sha256": "9e18cab5acd789b1efc00986abf16fe4b34566b8101ae4ef9b55dd24d13183f5"
+              },
+              {
+                "name": "ProjectionInputFinding",
+                "pointer": "/wire_codec_contract/schema/$defs/ProjectionInputFinding",
+                "canonical_sha256": "0dba48c97255be9cf99d7014e8ea02d15532d246ea25fbe969948066b76fe365"
+              },
+              {
+                "name": "ProjectionInputState",
+                "pointer": "/wire_codec_contract/schema/$defs/ProjectionInputState",
+                "canonical_sha256": "7d7f81f0a43b0363e856f110129f7d463148b9df964c2d146570f02778e823b6"
+              },
+              {
+                "name": "ProjectionResultRow",
+                "pointer": "/wire_codec_contract/schema/$defs/ProjectionResultRow",
+                "canonical_sha256": "f584f83ed97686102e8a7a4b0645917eaac0ef89513b83780903f3dea7ff7dd6"
+              },
+              {
+                "name": "SourceRelation",
+                "pointer": "/wire_codec_contract/schema/$defs/SourceRelation",
+                "canonical_sha256": "bf621e8ad08e2531fd41ebdbbf164cda6e4fd78a6f1a9921d1859d93a67af4a8"
+              },
+              {
+                "name": "SourceRelationReason",
+                "pointer": "/wire_codec_contract/schema/$defs/SourceRelationReason",
+                "canonical_sha256": "8e3ec534ad7dbd3465e198e1f02a5d618d4d877ee64ca88b1e0e01ed7def630c"
+              },
+              {
+                "name": "SourceResultProjectionResult",
+                "pointer": "/wire_codec_contract/schema/$defs/SourceResultProjectionResult",
+                "canonical_sha256": "2fce94bfdd9d3f9069dfb6c35ee89c893baca6ac5c7baa2b530e3ab827b18a45"
+              },
+              {
+                "name": "SourceResultProjectionRow",
+                "pointer": "/wire_codec_contract/schema/$defs/SourceResultProjectionRow",
+                "canonical_sha256": "2701b1803c8d048a06b0368146edb41f4368c9a5dc761a57cb1a60595bc37263"
+              }
+            ],
+            "native_rule_pointers": [
+              "/f05_detail_contract/type_language",
+              "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreJsonValue",
+              "/wire_codec_contract/numeric_encode_profile/private_host_types/CoreNumber",
+              "/wire_codec_contract/numeric_encode_profile/numeric_predicates"
+            ],
+            "scope_ja": "M38の既存型だけを参照する。今回追加childを過去revisionの型と称さず、新global schema validator/registry/DSL/APIを導入しない。"
+          },
+          "fixed_constructor_binding": [
+            {
+              "types": [
+                "SourceResultProjectionResult",
+                "SourceResultProjectionRow",
+                "InvalidComputedRowObservation",
+                "ProjectionInputFinding"
+              ],
+              "rule": "source_binding内の同名object schemaのrequiredとclosed keysをそのまま確認。元のordinary object member順を保存し、core数値名目nodeをordinary objectとして走査しない。"
+            },
+            {
+              "types": [
+                "ProjectionResultRow",
+                "PresenceJsonValue"
+              ],
+              "rule": "固定oneOfだけ。各枝の全required/closed shapeが適合する枝数がちょうど1のとき適合。first-match、修復、tag追加、他枝への補完をしない。"
+            },
+            {
+              "types": [
+                "JSONValue"
+              ],
+              "rule": "wire schemaのanyOfを新generic engineへ展開せず、既存typed CoreJsonValue unionへの終端bindingとして扱う。null/strict bool/strict string/strict native int/CoreNumber/array/ordinary string-key objectの原nodeを無変換で保持する。RawValue内のmap key/Ref/意味/資格は再検査しない。"
+            },
+            {
+              "types": [
+                "Natural"
+              ],
+              "rule": "固定integer/minimum=0。既存numeric_predicates.integer/schemaによる数学値を用いboolを除外する。CoreNumberをhost intへ変換しない。"
+            },
+            {
+              "types": [
+                "JSONPointer"
+              ],
+              "rule": "固定string/patternを用いる。原string全体を比較し型名や任意pathをRFC6901 pointerと推測しない。"
+            },
+            {
+              "types": [
+                "DecisionImpact",
+                "LogicalOwnerReturn",
+                "None",
+                "NotEstablished",
+                "ProjectionInputState",
+                "SourceRelation",
+                "SourceRelationReason"
+              ],
+              "rule": "固定enum/constの既存JSON型付き値比較のみ。新literal、資格状態、成功fallbackを追加しない。"
+            }
+          ]
         }
       },
       "input_scope_knowledge_gap_integration": {
@@ -19774,7 +19918,7 @@
         {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
           "pointer": "/f05_detail_contract/caller_return_writer_contract",
-          "canonical_sha256": "956223f80f096c17f2a54360d0f12060245a2aa87556491421a8baef06d9ce5f"
+          "canonical_sha256": "67d02f08e9f4bec9d85c5f0b1d86b816dedcee30e130865149924d54b6ecd7dd"
         },
         {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",

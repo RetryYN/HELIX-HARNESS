@@ -85794,7 +85794,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+                "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -97223,14 +97223,32 @@
       "authority_effect": "none",
       "note": "条件付きnative引数形成の有限対照を追補。既存projection/whole/期待/codec例は不変。新candidate実行から期待を作らない。全caller/全8familyへ拡張しない。",
       "positive_source": {
-        "revision": "c4b662e214863308809183006766d3990f32709a",
-        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-        "pointer": "/wire_codec_verification/projection_output_field_cases/cases/2/projection_value",
         "value": {
           "rows": [],
           "input_findings": []
         },
-        "expected": "同じ全valueがnonnull native optional fieldとなる。これはqualified empty universe/proposed setの成立を表さない。"
+        "expected": "同じ全valueがnonnull native optional fieldとなる。これはqualified empty universe/proposed setの成立を表さない。",
+        "fixed_source_id": "empty_projection",
+        "materialized_input_pointer": "/input_projection",
+        "standard_ops": [
+          {
+            "op": "copy",
+            "from": "/source_imports/empty_projection",
+            "path": "/input_projection"
+          },
+          {
+            "op": "add",
+            "path": "/expected_optional_argument",
+            "value": {
+              "source_result_reference_projection": null
+            }
+          },
+          {
+            "op": "copy",
+            "from": "/input_projection",
+            "path": "/expected_optional_argument/source_result_reference_projection"
+          }
+        ]
       },
       "malformed_missing_finding": {
         "input_projection": {
@@ -97271,44 +97289,284 @@
       },
       "minimal_controls": [
         {
-          "role": "既存closed row両枝/partial原値",
-          "source": "docs/helix-harness/L8-unit-verification/product-template-application.json#/wire_codec_verification/projection_output_field_cases/cases/3",
-          "expected": "型適合部分はsource_relation=unresolved/原NA/presence/反復ごと無変換保持。既知Refやcontent_correspondingを要求しない。"
-        },
-        {
-          "role": "Natural bool対照",
-          "ops": [
+          "id": "NORMAL-FOUR-SOURCE-RESULT-ROWS",
+          "role": "通常SourceResultProjectionRow4件/partial原値",
+          "fixed_source_id": "normal_four_projection",
+          "input_pointer": "/input_projection",
+          "expected_pointer": "/expected_optional_argument",
+          "standard_ops": [
             {
-              "op": "replace",
-              "path": "/rows/0/candidate_count",
-              "value": true
-            }
-          ],
-          "expected": "既存bool/number分離により非適合、一Cause5。opaque RawValue.value=falseは別で有効。"
-        },
-        {
-          "role": "Natural数値profile対照",
-          "expected": "有効CoreNumber(1e0)はintegerとして元node保持、0.1は非integer、boolは別型。native intへ変換する期待を作らない。"
-        },
-        {
-          "role": "Presence閉形",
-          "ops": [
+              "op": "copy",
+              "from": "/source_imports/normal_four_projection",
+              "path": "/input_projection"
+            },
             {
               "op": "add",
-              "path": "/rows/0/computed_na_attributes/value",
-              "value": null
+              "path": "/expected_optional_argument",
+              "value": {
+                "source_result_reference_projection": null
+              }
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_optional_argument/source_result_reference_projection"
             }
           ],
-          "premise": "原computed_na_attributes={presence:absent}の既存row",
-          "expected": "absent枝への余分valueは型不適合。一方present value=nullは型適合。NA意味判定には流用しない。"
+          "expected_ja": "通常row4件だけの対照。原NA4/presence/配列反復/未資格の全値を同じoptional引数へ保持。これをInvalidComputedRowObservationの行使と称さない。"
         },
         {
+          "id": "INVALID-COMPUTED-ROW-OBSERVATION",
+          "role": "InvalidComputedRowObservation枝の型適合",
+          "fixed_source_id": "invalid_row_projection",
+          "input_pointer": "/input_projection",
+          "expected_pointer": "/expected_optional_argument",
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/source_imports/invalid_row_projection",
+              "path": "/input_projection"
+            },
+            {
+              "op": "add",
+              "path": "/expected_optional_argument",
+              "value": {
+                "source_result_reference_projection": null
+              }
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_optional_argument/source_result_reference_projection"
+            }
+          ],
+          "expected_ja": "元expected_projection全体は一つの型適合ProjectionResult。computed_row=nullのraw観測とunresolved理由をそのまま保持し、業務入力不備をnative型不正へ変えない。"
+        },
+        {
+          "id": "NATURAL-BOOL-NOT-NUMBER",
+          "role": "Natural bool対照",
+          "fixed_source_id": "normal_four_projection",
+          "input_pointer": "/input_projection",
+          "expected_pointer": "/expected_analysis_failure",
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/source_imports/normal_four_projection",
+              "path": "/input_projection"
+            },
+            {
+              "op": "replace",
+              "path": "/input_projection/rows/0/candidate_count",
+              "value": true
+            },
+            {
+              "op": "copy",
+              "from": "/failure_seed",
+              "path": "/expected_analysis_failure"
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_analysis_failure/causes/0/left/read/value"
+            }
+          ],
+          "expected_ja": "boolはNaturalでなく既存Cause5一件。opaque RawValue.value=falseは別で有効。"
+        },
+        {
+          "id": "ABSENT-PRESENCE-EXTRA-VALUE",
+          "role": "Presence閉形不適合",
+          "fixed_source_id": "normal_four_projection",
+          "input_pointer": "/input_projection",
+          "expected_pointer": "/expected_analysis_failure",
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/source_imports/normal_four_projection",
+              "path": "/input_projection"
+            },
+            {
+              "op": "add",
+              "path": "/input_projection/rows/0/computed_na_attributes/value",
+              "value": null
+            },
+            {
+              "op": "copy",
+              "from": "/failure_seed",
+              "path": "/expected_analysis_failure"
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_analysis_failure/causes/0/left/read/value"
+            }
+          ],
+          "expected_ja": "元presence=absent枝への余分valueは不適合。元rowの他memberは不変。"
+        },
+        {
+          "id": "PRESENT-PRESENCE-NULL-VALUE",
+          "role": "present nullの原値保持",
+          "fixed_source_id": "normal_four_projection",
+          "input_pointer": "/input_projection",
+          "expected_pointer": "/expected_optional_argument",
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/source_imports/normal_four_projection",
+              "path": "/input_projection"
+            },
+            {
+              "op": "replace",
+              "path": "/input_projection/rows/0/computed_na_attributes",
+              "value": {
+                "presence": "present",
+                "value": null
+              }
+            },
+            {
+              "op": "add",
+              "path": "/expected_optional_argument",
+              "value": {
+                "source_result_reference_projection": null
+              }
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_optional_argument/source_result_reference_projection"
+            }
+          ],
+          "expected_ja": "present RawValue nullは型適合。元rowのN/A意味や資格は判定せず原presence全値を保持。"
+        },
+        {
+          "id": "CORENUMBER-INTEGER-CRITERION",
+          "role": "Natural数値profile対照",
+          "coverage_status": "normative criterion only; actual private CoreNumber host whole not frozen",
+          "basis_ref": "L5 closed_formation.source_binding.native_rule_pointers / numeric_predicates",
+          "expected": "有効CoreNumber(1e0)はintegerとして元node保持、0.1は非integer、boolは別型。native intへ変換する期待を作らない。plain JSON objectを名目CoreNumberへcastせず、ここへ擬似host/wire DSLは追加しない。"
+        },
+        {
+          "id": "EQUAL-VALUE-OTHER-ORIGIN",
           "role": "同値別由来",
-          "expected": "同じ構造判定結果、追加のnative_leaf_unformedや資格successを作らない。由来は既存source callerの実取得辺に別保持。"
+          "coverage_status": "source-binding criterion; independent actual provenance observation not frozen",
+          "fixed_source_id": "normal_four_projection",
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/source_imports/normal_four_projection",
+              "path": "/input_projection"
+            },
+            {
+              "op": "add",
+              "path": "/expected_optional_argument",
+              "value": {
+                "source_result_reference_projection": null
+              }
+            },
+            {
+              "op": "copy",
+              "from": "/input_projection",
+              "path": "/expected_optional_argument/source_result_reference_projection"
+            }
+          ],
+          "expected_ja": "同じvalueは同じ型適合。これらのcopyから同call来歴/資格success又は新native_leaf_unformedを生成しない。元source caller取得辺は別に保持。"
         }
       ],
       "analysis_failure_leaf_rule": "全5member Causeを現行pattern5から事前著述。left.read.valueだけ原input projectionから標準RFC6902 object-member copyで入れる。期待からruntime入力への逆流なし。",
-      "unfrozen": "有効全producer/F05とprojection非nullを組み合わせた新full caller whole、CoreNumber私有host全観測、実来歴/実資格は未凍結/未実証。この限定詳細枝以外の完成を主張しない。"
+      "unfrozen": "有効全producer/F05とprojection非nullを組み合わせた新full caller whole、CoreNumber私有host全観測、実来歴/実資格は未凍結/未実証。この限定詳細枝以外の完成を主張しない。",
+      "fixed_sources": [
+        {
+          "id": "empty_projection",
+          "revision": "aed93e206179a6b5ca1e7c5712fe846d06216886",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "file_sha256": "7ef39fc39df438c9cf7e2b152e5a072417908e1fa8308aa4c85364d78b666300",
+          "pointer": "/wire_codec_verification/projection_output_field_cases/cases/2/projection_value",
+          "canonical_sha256": "9dac005b9c5c2fd6482ddf00c8f146a03c6f042fef1bb7a38c0070aad68b15d2",
+          "ordered_sha256": "faeecbe0ef8a4bb64698fa606cd6a3da3533872c24443180579eb70139a0c2ed",
+          "ordered_compact_utf8_bytes": 31
+        },
+        {
+          "id": "normal_four_projection",
+          "revision": "aed93e206179a6b5ca1e7c5712fe846d06216886",
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "file_sha256": "7ef39fc39df438c9cf7e2b152e5a072417908e1fa8308aa4c85364d78b666300",
+          "pointer": "/wire_codec_verification/projection_output_field_cases/cases/3/projection_value",
+          "canonical_sha256": "0fe089cfa3ad1db596a5c2850e5669715b5d0fb3069e2d1910081067bf7168fb",
+          "ordered_sha256": "710acac7098fe1369303ede72db975f63d3fbfa449f4b776eb9056f0259aa8b5",
+          "ordered_compact_utf8_bytes": 65701
+        },
+        {
+          "id": "invalid_row_projection",
+          "revision": "aed93e206179a6b5ca1e7c5712fe846d06216886",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "file_sha256": "2c43a056b7c43984cbe44da3841e4cfa1caf57c8ffef12e88a3d447e01313ede",
+          "pointer": "/cases/4/source_result_reference_cases/r1_independent_probes/cases/10/expected_projection",
+          "canonical_sha256": "cdd61408b1b076a0e52662406155fde41a3c0589f1b30af4c99746ece83ff06d",
+          "ordered_sha256": "0f56fd7c3c4d8a2d8e6db86aa25af138b9d3efbef1c0579eea5a3828133916f8",
+          "ordered_compact_utf8_bytes": 3063
+        }
+      ],
+      "workspace_seed": {
+        "source_imports": {
+          "empty_projection": null,
+          "normal_four_projection": null,
+          "invalid_row_projection": null
+        },
+        "input_projection": null,
+        "expected_optional_argument": null,
+        "expected_analysis_failure": null,
+        "failure_seed": {
+          "tag": "unformed",
+          "causes": [
+            {
+              "kind": "native_leaf_unformed",
+              "target": {
+                "root": "caller_inputs",
+                "pointer": "/source_result_reference_projection/value"
+              },
+              "left": {
+                "tag": "original",
+                "read": {
+                  "tag": "present",
+                  "location": {
+                    "root": "caller_inputs",
+                    "pointer": "/source_result_reference_projection/value"
+                  },
+                  "value": {
+                    "rows": []
+                  }
+                }
+              },
+              "right": {
+                "tag": "normative_literal",
+                "value": "CoreSourceResultProjectionResult",
+                "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5/right_literal"
+              },
+              "rule_pointer": "/f05_detail_contract/caller_return_writer_contract/context_patterns/5"
+            }
+          ]
+        }
+      },
+      "source_materialization": {
+        "source_namespace": "fixed_sourcesのpointerはartifactの選択node。以下でmaterializeしたworkspace/input_projectionとは別namespace。",
+        "import_plan": [
+          {
+            "source_id": "empty_projection",
+            "mount": "/source_imports/empty_projection"
+          },
+          {
+            "source_id": "normal_four_projection",
+            "mount": "/source_imports/normal_four_projection"
+          },
+          {
+            "source_id": "invalid_row_projection",
+            "mount": "/source_imports/invalid_row_projection"
+          }
+        ],
+        "steps_ja": "各caseごとにworkspace_seedを新しくdeep copyし、前caseの変異を引き継がない。固定Git revision/pathをrawで読みfile_sha256を照合し、strict UTF8 JSONとしてparse。pointerの全値をselected canonical/orderedで照合し、指定mountの既存null placeholderへdeep copyでreplaceする。各member/配列順・原値を保持。これはcross-document source importの明示工程でありRFC6902 copyを偽称しない。その後各caseのstandard_opsだけを同workspaceへ標準RFC6902として適用する。",
+        "premise_ja": "旧schema/projection fixtureにある既返却ProjectionResultの論理全値を、条件付きnative refinement入力の独立材料として使う。fn12にexpectedをruntime注入せず、実producer/native host観測/実資格を主張しない。JSONのplain数値表示は既存logical oracleであり、新たなCoreNumber class構築済みを表さない。",
+        "failure_seed_ja": "failure_seedは既存malformed_missing_finding.expected_analysis_component_wholeと全値同一。各不適合対照はこの固定Cause5全5memberをcopyし、left.read.valueだけ実input_projectionからcopyする。原最小Cause5wholeは変更しない。"
+      },
+      "reconstruction_scope_ja": "各input_projection/expected_optional_argument/expected_analysis_failureはこの有限workspaceの全値であり、typed Context全体やCoreApplicationDetailReturn全体ではない。他のfn10 Context条件がすべて形成済みという既存条件付き局所対照。数値private host/実由来の未凍結criterionをwhole完成へ数えない。"
     },
     "id": "HARNESS-L8-009-SOURCE-RESULT-REFERENCE-PROJECTION",
     "function_ref": "HARNESS-L5-009-project_source_result_references",
@@ -102659,7 +102917,7 @@
     "candidate_l5_content_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_main": "1b50e0e105f0d51b902b26ba0e48d66381705360",
-      "candidate_file_bytes_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "candidate_file_bytes_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "revision_semantics": "candidate_file_bytes_sha256はこのL8と同じ保存状態のL5 file bytesを固定する。Git revision/承認を示さない。"
     },
     "producer_condition_presence_probes": [
@@ -103744,7 +104002,7 @@
         "role": "L5詳細設計候補の型・writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -103760,7 +104018,7 @@
         "role": "既存入力carrierのwire member",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/sources",
           "/wire_codec_contract/schema/$defs/ApplicationInput/properties/qualifications",
@@ -103859,7 +104117,7 @@
         "role": "L5 native ValidationDetailedReturn型・全leaf writer",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/f05_detail_contract/types/ValidationInput",
           "/f05_detail_contract/types/OriginalRawInput",
@@ -105715,7 +105973,7 @@
         "role": "L5のsource照合・原因診断・利用可能性の集約",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/check_storage_plan",
           "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
@@ -107510,7 +107768,7 @@
         "role": "L5 F05 types・Context/header・Cause propagation writers",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/f05_detail_contract/types/F05DetailedRequest",
           "/f05_detail_contract/types/ActualPredecessor",
@@ -108118,7 +108376,7 @@
     "source_basis": [
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "pointers": [
           "/f05_detail_contract/source_observation_contract/checks/2",
           "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
@@ -108253,7 +108511,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "current_file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -114137,7 +114395,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "current_file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -114391,7 +114649,7 @@
       {
         "role": "current_l5_candidate_content_binding_no_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/F05DetailedReturn",
@@ -117394,7 +117652,7 @@
         "role": "current_L5_detail_contract",
         "kind": "current_candidate_content_binding_without_git_revision",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "selected_object_count": 17,
         "selected_objects": [
           {
@@ -121358,7 +121616,7 @@
       },
       {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "selected_objects": [
           {
@@ -121471,7 +121729,7 @@
       {
         "role": "current_candidate_L5_native_scope_writer_binding",
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+        "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
         "binding_kind": "candidate_current_content_no_git_revision",
         "selected_objects": [
           {
@@ -156286,7 +156544,7 @@
     "candidate_l5_binding": {
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "selected_objects": [
         {
           "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization",
@@ -156298,7 +156556,7 @@
         },
         {
           "pointer": "/f05_detail_contract/caller_return_writer_contract",
-          "canonical_sha256": "956223f80f096c17f2a54360d0f12060245a2aa87556491421a8baef06d9ce5f"
+          "canonical_sha256": "67d02f08e9f4bec9d85c5f0b1d86b816dedcee30e130865149924d54b6ecd7dd"
         },
         {
           "pointer": "/f05_detail_contract/entry_points/private_caller",
@@ -156330,7 +156588,7 @@
     "function_ref": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
     "design_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-      "sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "pointer": "/selected_source_occurrence_array_builder_detail",
       "canonical_sha256": "ddeeef52cc9379346350d2948537f1077cb87f529bee9a065ec7b8d9818aaf1e",
       "binding_kind": "current_candidate_content_binding"
@@ -156563,7 +156821,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "canonical_sha256": "7edc7902e642a798c96d60e815b9dbd2b2cb685b1783c01c62139644bcbd80c8"
     },
     "integration_oracle_ref": {
@@ -156571,8 +156829,8 @@
       "pointer": "/selected_source_caller_verification",
       "id": "HARNESS-L9-009-SELECTED-SOURCE-CALLER",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "2c43a056b7c43984cbe44da3841e4cfa1caf57c8ffef12e88a3d447e01313ede",
-      "canonical_sha256": "a48b1eb99086cd62be5e6ad7f695e2510e82306205d09eb91932a5d99d47c212"
+      "sha256": "959b55f291a0e6a8146bfa768e014a2e1a18876973a93a884baf5cab45bde157",
+      "canonical_sha256": "3a1579eb39caa037bf567e4d3c3079005aec8200e811ca8226ca57639a5f8792"
     },
     "source_basis": [
       {
@@ -156713,7 +156971,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_detail",
       "id": "HARNESS-L5-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "canonical_sha256": "7a9e85d489d29c9985413b2bf0ffe0a7d5e8a8fbda6094e0ba50169d0f4cc585",
       "binding_kind": "current_candidate_content_binding"
     },
@@ -164850,10 +165108,10 @@
       "binding_kind": "current_candidate_bytes_no_git_revision_claim",
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "source_snapshot_revision": "no_git_revision_claim",
-      "file_sha256": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15",
+      "file_sha256": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38",
       "selected_object": {
         "pointer": "/proposal_material_formation_detail",
-        "canonical_sha256": "b4c6b1b9bf517747fbe48e91cab5a69d567d514c891ee66dd5e9e1583adff964"
+        "canonical_sha256": "0dca8484a89a14788ddb62d814e3be9153343ada4d20fabefa3bbf8de63f59e0"
       },
       "rebind_rule_ja": "親側のcurrent-hash追随が終わった最終L5 bytesへ、このbindingを再計算して差し替える。L5からL8 file hashへの逆参照は持たせない。"
     },
@@ -192859,7 +193117,7 @@
           "selected_object_pointer": "/proposal_native_record_material_detail",
           "selected_object_canonical_sha256": "09949ff9a987c6bcbfbfa52ebc4043c8d7458cd91071f47688ec1c972e6c590f",
           "selected_object_ordered_sha256": "8dd818e85c787f5d53eb8c357821ad198e0a291cbb7967d1a3ffca49ea35d503",
-          "raw_file_sha256_after_child_addition": "dba422e35ee1619fa837c027e7e09de773b6607c7c1025315878b2e70ec02f15"
+          "raw_file_sha256_after_child_addition": "5a59b5e212763266564a6b89fd369aec5e32e607a15e6f4a04905d45142f0b38"
         },
         "description_ja": "base_revision上に本L5候補childを追補した作業ツリー上のcurrent binding。独立した正式revisionは割り当てない。"
       }
@@ -193183,7 +193441,7 @@
       "ordered_sha256": "cfe8fbb6115d148a1c0e35d751872e72ab4b9c197286405fe36b42359ffb8d9a",
       "canonical_byte_length": 218983,
       "base_revision": "1f9135301d8d1908d55c2496e182721fe8af6f7b",
-      "candidate_file_sha256": "2c43a056b7c43984cbe44da3841e4cfa1caf57c8ffef12e88a3d447e01313ede",
+      "candidate_file_sha256": "959b55f291a0e6a8146bfa768e014a2e1a18876973a93a884baf5cab45bde157",
       "candidate_scope_ja": "同じ候補変更内のL9 childを結ぶ。base_revisionにchildが存在したとは扱わず、後続case追補でL9 bytesが変わる場合はbindingを更新する。"
     },
     "verification_boundary_ja": "固定Git source、厳密な汎用JSON parse、RFC6902 copyとhash照合による期待再構成手順を定義する。実製品の実装前Red/Green、codec/provider/wrapper、資格、OS受領、CI、性能を実行した結果ではない。期待はcandidate実装から生成しない。",
