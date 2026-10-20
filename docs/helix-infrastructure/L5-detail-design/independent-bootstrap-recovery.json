@@ -2800,7 +2800,8 @@
         "OS復帰未成立: held_with_os_sync_pending。failure resultはnot_restored。",
         "sync欠落: held_with_os_sync_pending。failure resultはmissing。",
         "sync内容不一致: held_with_os_sync_pending。failure resultはnot_received_for_same_operation_result。",
-        "sync参照一致の有限fixture: sync_content_referenced_requires_actual_qualification。"
+        "原operation.targetとoriginal_target、原result.operation_refとoriginal_operation.ref、原result.targetとoriginal_targetの既知相反: held_with_os_sync_pending。failure resultはnot_received_for_same_operation_result。",
+        "sync参照と原operation/result/target対応がすべて一致した有限fixture: sync_content_referenced_requires_actual_qualification。"
       ],
       "formal_program_ref": {
         "kind": "candidate_document",
