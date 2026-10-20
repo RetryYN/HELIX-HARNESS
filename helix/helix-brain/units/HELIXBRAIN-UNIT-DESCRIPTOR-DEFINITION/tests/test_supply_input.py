@@ -11,7 +11,7 @@ Cases from L8 template-semantic-supply.json:
     * ADD-02 semantic-null-through (a decodable slot carrying
       meaning=null stays present; null is not hidden as a shape error)
 
-Static proposal only: not executed in this lane. No stub, mock or
+Authored tests: execution state is recorded separately per scoped test. No stub, mock or
 new helper; stdlib + dict only. Input documents must not be mutated
 by the validator.
 """
@@ -28,7 +28,7 @@ L8_PATH = REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-
 
 # 独立test basis: L5 /functions/0, /type_contract/types/{ValidatedSupply,InputIssue};
 # L8 /function_oracles/0, /additional_unit_cases/{0,1},
-# /input_structure_verification/semantic_boundary_cases/1。未凍結・未実行。
+# /input_structure_verification/semantic_boundary_cases/1。凍結/実行は対象test別に証拠を参照。
 # fn0局所decodeだけの部分oracle。資格検証の完成/F02のRed/全IO0は認定しない。
 
 
@@ -67,7 +67,8 @@ class TestSupplyInput(unittest.TestCase):
         self.assertIsNone(validated["input"])
         self.assertNotEqual(validated["input_issues"], [])
         issue = validated["input_issues"][0]
-        self.assertIsInstance(issue["locator"], str)
+        self.assertEqual(issue["locator"], "", "root JSON Pointer identifies the rejected raw value")
+        self.assertIsNone(issue["source_ref"], "root string has no supplied source Ref")
         self.assertIsInstance(issue["reason"], str)
         self.assertNotEqual(issue["reason"], "")
         self.assertEqual(set(issue.keys()),

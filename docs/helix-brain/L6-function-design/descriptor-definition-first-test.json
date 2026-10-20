@@ -79,5 +79,33 @@
       "raw_sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
     }
   ],
-  "completion_boundary": "具体入力/独立oracle/test codeは未凍結。実装前Red/Green/Refactor・実提供・受入・全関数成立は未証明。"
+  "completion_boundary": "具体入力/独立oracle/test codeは未凍結。実装前Red/Green/Refactor・実提供・受入・全関数成立は未証明。",
+  "fn0_add01_preparation": {
+    "scope": "F02 raw経路の前準備。validate_supply_inputのADD01: 供給rootがobjectでない文字列を拒否し原所在InputIssueを返す一挙動。fn0全体や資格resolverを完成としない。",
+    "source_revision": "a09f5683ec48c5d6210405671500b725966cc306",
+    "source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "source_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+    "contract_pointers": [
+      "/functions/0",
+      "/functions/0/algorithm/0",
+      "/logical_input_structure/schema",
+      "/logical_input_structure/schema/$defs/SupplyInput",
+      "/type_contract/types/ValidatedSupply",
+      "/type_contract/types/InputIssue",
+      "/wire_codec_contract/codec_operations/0/steps/2"
+    ],
+    "public_symbol": "validate_supply_input",
+    "source_path_in_unit": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_supply_input.py",
+    "test_method": "TestSupplyInput.test_add01_string_input_is_rejected",
+    "algorithm_binding": "既存fn0のlogical shape拒否枝だけを実装する。元RawValueを変更せず、同じ公開ValidatedSupply carrierでinput=null、root所在のInputIssueを返す。source資格照合はこの不正rootでは呼ばず、その空unusable_source_refsを資格成功へ読み替えない。",
+    "initial_red_carrier": "同じ正式関数の未完成TDD版。input=null/input_issues=[]/unusable_source_refs=[]の既存型carrierで診断未実装を露出する。別fake validator・資格成功stub・fallbackは作らない。",
+    "limits": [
+      "shape object以外の全種類の網羅はしない",
+      "normal/null保持・nested shape/bytes/資格/resolver・fn1は後続の実TDD",
+      "同一moduleを育て、未完成版を製品完成/登録/利用可能へ昇格しない"
+    ],
+    "legacy_basis_ref": "/legacy_rederivation/0",
+    "failure_basis": "PR3503の設計のみで実TDD未到達、PR3505初稿のコメント化call/自己一致を繰り返さず、公開実関数と意味assertionを実行する。"
+  }
 }
