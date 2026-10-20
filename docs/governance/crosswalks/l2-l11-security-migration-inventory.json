@@ -1,0 +1,3214 @@
+{
+  "schema": "l2-l11-security-migration-inventory.v1",
+  "inventory_kind": "scaffold原文被覆索引（要求意味同等性・正式JSON/schema/view/承認継承/cutoverの認定ではない）",
+  "authority_effect": "none",
+  "issue": 3457,
+  "base_sha": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+  "confirmed_at": "2026-10-20",
+  "purpose": "SECURITY L2/L11一対の固定原文を無損失索引化。全byteを原順非重複半開spanで被覆し固定git blobからraw一致で再構成。初期採択ID集合とcurrent観測ID集合を分離。IDなし本文・表注・条件・版・N/A・保留・空白・末尾を落とさない。",
+  "sources": [
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "git_blob": "78bff5679b529b330073fc4ec654c070468a2c8e",
+      "raw_sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "bytes": 94568,
+      "lines": 499,
+      "role": "L2要求候補本文"
+    },
+    {
+      "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+      "git_blob": "c50a819c2582d69ad5aad20321e88543b4a9721b",
+      "raw_sha256": "e4d92364e3a8c88332ee48358ac6b08c2d8cdd51cd5e00b111fff4c3f43b68d0",
+      "bytes": 58006,
+      "lines": 222,
+      "role": "L11受入候補本文"
+    }
+  ],
+  "span_partitions": {
+    "docs/helix-security/L2-requirements/security-requirements.md": [
+      {
+        "start": 0,
+        "end": 540,
+        "start_line": 1,
+        "line_count": 16,
+        "sha256": "236a132580288ab5ad788ee847f7830bd80e360a4a8b0b273ac803300fd6d007",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 540,
+        "end": 1372,
+        "start_line": 17,
+        "line_count": 6,
+        "sha256": "d50d6e55ef31c81feca4e26c6d3f3182d05fd6d63ab62f1a26ada8e349d1c51f",
+        "first_line": "# HELIX-SECURITY要求候補",
+        "role": "document_title"
+      },
+      {
+        "start": 1372,
+        "end": 4017,
+        "start_line": 23,
+        "line_count": 12,
+        "sha256": "15c52f9b61ecc7dc3cf268f5744e0d2590966f1c150f038ee03f0685a92fb136",
+        "first_line": "## 境界と共通条件",
+        "role": "group_heading"
+      },
+      {
+        "start": 4017,
+        "end": 4114,
+        "start_line": 35,
+        "line_count": 4,
+        "sha256": "5ee2bdcf64a17ad06e74ee4e125002a9afd4ece73980a09dbbe0d1ca0060c475",
+        "first_line": "## 候補一覧",
+        "role": "group_heading"
+      },
+      {
+        "start": 4114,
+        "end": 4203,
+        "start_line": 39,
+        "line_count": 1,
+        "sha256": "045d03a1368d4c853b71f118d0757095c6ea526a63a4bd8b0ac28a2847053425",
+        "first_line": "| HELIXSECURITY-L2-001 | unit | L1-001 | 外部入力の信頼・authority境界",
+        "role": "table_rows"
+      },
+      {
+        "start": 4203,
+        "end": 4291,
+        "start_line": 40,
+        "line_count": 1,
+        "sha256": "9cfb9df10f7b527f0601db2e35a011ec234cf7b8d8da32e5c3234d81f7bf39d0",
+        "first_line": "| HELIXSECURITY-L2-002 | unit | L1-002 | 命令様dataとPrompt Inje",
+        "role": "table_rows"
+      },
+      {
+        "start": 4291,
+        "end": 4385,
+        "start_line": 41,
+        "line_count": 1,
+        "sha256": "541f706a9259fcfbcd13db441e558a15bfd7f2bf928ecc645fa6cf7f740abb9d",
+        "first_line": "| HELIXSECURITY-L2-003 | unit | L1-003 | project・tenant・環境・a",
+        "role": "table_rows"
+      },
+      {
+        "start": 4385,
+        "end": 4468,
+        "start_line": 42,
+        "line_count": 1,
+        "sha256": "390ad0deadc6d0d82a62c60e2af13aeb208017fc1f1b07a0366bcd51faeb9f24",
+        "first_line": "| HELIXSECURITY-L2-004 | unit | L1-004 | Agent・Hook・設定のinteg",
+        "role": "table_rows"
+      },
+      {
+        "start": 4468,
+        "end": 4543,
+        "start_line": 43,
+        "line_count": 1,
+        "sha256": "6ac31218944b1f0bc3289c728900cb81677422c30a73ff70993b752244c18dd8",
+        "first_line": "| HELIXSECURITY-L2-005 | unit | L1-005 | Credential / Secret",
+        "role": "table_rows"
+      },
+      {
+        "start": 4543,
+        "end": 4615,
+        "start_line": 44,
+        "line_count": 1,
+        "sha256": "1c258751529b82c437448a54d72445bdd4188c1044db5bd3b55a3d9bc9df5f1b",
+        "first_line": "| HELIXSECURITY-L2-006 | unit | L1-006 | Network / Egress境界 ",
+        "role": "table_rows"
+      },
+      {
+        "start": 4615,
+        "end": 4707,
+        "start_line": 45,
+        "line_count": 1,
+        "sha256": "6e5b2a4a7fde099e3f360c302ffa275cbcfbfb58c8a1f49a942bd5e21998c1b1",
+        "first_line": "| HELIXSECURITY-L2-007 | connection | L1-007 | Worker実行環境への制",
+        "role": "table_rows"
+      },
+      {
+        "start": 4707,
+        "end": 4781,
+        "start_line": 46,
+        "line_count": 1,
+        "sha256": "56b36a5485f91fda800be0191bef583a5b53ecbe745ea073ee8e1445a065a06a",
+        "first_line": "| HELIXSECURITY-L2-008 | unit | L1-008 | 操作ごとのauthority | 1.",
+        "role": "table_rows"
+      },
+      {
+        "start": 4781,
+        "end": 4861,
+        "start_line": 47,
+        "line_count": 1,
+        "sha256": "465d2ed15a68e270291885f53d11454c7007ea2d6287a7a76bb9b5c8010763e8",
+        "first_line": "| HELIXSECURITY-L2-009 | composite | L1-009 | revoke / quara",
+        "role": "table_rows"
+      },
+      {
+        "start": 4861,
+        "end": 4923,
+        "start_line": 48,
+        "line_count": 1,
+        "sha256": "191f73ccd2ff3290e5a4088b2718a1871bff193a329ae996d4159abf7603ac53",
+        "first_line": "| HELIXSECURITY-L2-010 | unit | L1-010 | 更新受入 | 1.0 |",
+        "role": "table_rows"
+      },
+      {
+        "start": 4923,
+        "end": 4989,
+        "start_line": 49,
+        "line_count": 1,
+        "sha256": "d5d3dad6964a1b6829df4cc2b14a3d13da9812a7279522dc921ab9eaf4230f1b",
+        "first_line": "| HELIXSECURITY-L2-011 | unit | L1-011 | Capability Drift | ",
+        "role": "table_rows"
+      },
+      {
+        "start": 4989,
+        "end": 5062,
+        "start_line": 50,
+        "line_count": 1,
+        "sha256": "5ea1a7e897429a1201c5a0e050c9b82ff1c52d92c67f293b98efc45e9a01f324",
+        "first_line": "| HELIXSECURITY-L2-012 | unit | L1-012 | Supply Chain proven",
+        "role": "table_rows"
+      },
+      {
+        "start": 5062,
+        "end": 5130,
+        "start_line": 51,
+        "line_count": 1,
+        "sha256": "1d3e0c36ab1992f41b789b444739def5e0c1e29a556ed4476c6f160e1359771f",
+        "first_line": "| HELIXSECURITY-L2-013 | unit | L1-013 | Artifact integrity ",
+        "role": "table_rows"
+      },
+      {
+        "start": 5130,
+        "end": 5224,
+        "start_line": 52,
+        "line_count": 1,
+        "sha256": "b5f935ce22fb20dac761ec68a740f5483b183be79928343e9c5d529eec72b92b",
+        "first_line": "| HELIXSECURITY-L2-014 | unit | L1-014 | SECURITYの永続化promoti",
+        "role": "table_rows"
+      },
+      {
+        "start": 5224,
+        "end": 5342,
+        "start_line": 53,
+        "line_count": 1,
+        "sha256": "24b18db519f0d0ecad88fb9bbfe515426c0a9246736add9d9abe2585bec3a1eb",
+        "first_line": "| HELIXSECURITY-L2-015 | unit | L1-015 | HELIX Asset identit",
+        "role": "table_rows"
+      },
+      {
+        "start": 5342,
+        "end": 5460,
+        "start_line": 54,
+        "line_count": 1,
+        "sha256": "194a5fc7fdfeba2a57b2d3583459c5946bba600111751350aac5bded325aa3f9",
+        "first_line": "| HELIXSECURITY-L2-016 | unit | L1-016 | Asset exposure clas",
+        "role": "table_rows"
+      },
+      {
+        "start": 5460,
+        "end": 5537,
+        "start_line": 55,
+        "line_count": 1,
+        "sha256": "866335964bd3b744b604bc78c565d8fc5f471c5cf2d816a90454984ee10a63ca",
+        "first_line": "| HELIXSECURITY-L2-017 | unit | L1-017 | Semantic exfiltrati",
+        "role": "table_rows"
+      },
+      {
+        "start": 5537,
+        "end": 5611,
+        "start_line": 56,
+        "line_count": 1,
+        "sha256": "5feeb1da25274c5080cae9bcd5f825b723485f46f0b65686c30e79f6dc412e45",
+        "first_line": "| HELIXSECURITY-L2-018 | unit | L1-018 | Capability probing観",
+        "role": "table_rows"
+      },
+      {
+        "start": 5611,
+        "end": 5684,
+        "start_line": 57,
+        "line_count": 1,
+        "sha256": "723fe1082d303df3f424d893ffd8ef72af96fdfdbc4aaf32b106c8f408babcab",
+        "first_line": "| HELIXSECURITY-L2-019 | unit | L1-019 | Core Asset Egress判定",
+        "role": "table_rows"
+      },
+      {
+        "start": 5684,
+        "end": 5784,
+        "start_line": 58,
+        "line_count": 1,
+        "sha256": "83e56c813b8056de60f83cbc82565bb21ad6159896f59784489e770369b7b84d",
+        "first_line": "| HELIXSECURITY-L2-020 | unit | L1-020 | GuardとBotの責務境界 | Gu",
+        "role": "table_rows"
+      },
+      {
+        "start": 5784,
+        "end": 5939,
+        "start_line": 59,
+        "line_count": 1,
+        "sha256": "4e6c311dc21bfdd34cadef1c673870ebeb6661433eafbdd6c7dc5d4cf3065f08",
+        "first_line": "| HELIXSECURITY-L2-021 | connection | L1-001/002 | CONNECT・S",
+        "role": "table_rows"
+      },
+      {
+        "start": 5939,
+        "end": 6068,
+        "start_line": 60,
+        "line_count": 1,
+        "sha256": "3875a04d133e86f9bd160d72f64ba9ee1b933ba6c7b37c6ee9d508a229dd3d5a",
+        "first_line": "| HELIXSECURITY-L2-022 | composite | L1-008 | INTELLIGENCE要求",
+        "role": "table_rows"
+      },
+      {
+        "start": 6068,
+        "end": 6183,
+        "start_line": 61,
+        "line_count": 1,
+        "sha256": "43618b3bcf5f4dcdbd1a8670c080d41619dede0c3ca5ca4a1a648ef3ef0707f8",
+        "first_line": "| HELIXSECURITY-L2-023 | composite | L1-010/011/012/013 | 更新",
+        "role": "table_rows"
+      },
+      {
+        "start": 6183,
+        "end": 6300,
+        "start_line": 62,
+        "line_count": 1,
+        "sha256": "973baff9bcb427de4ab510119a42ee717766ad8d8566daa41f726e58121c30bf",
+        "first_line": "| HELIXSECURITY-L2-024 | connection | L1-005/006/007/009 | S",
+        "role": "table_rows"
+      },
+      {
+        "start": 6300,
+        "end": 6425,
+        "start_line": 63,
+        "line_count": 1,
+        "sha256": "0c453bcead8e3165a21e6aac74308637bf082f9c919090da4e0d40ac837990e4",
+        "first_line": "| HELIXSECURITY-L2-025 | composite | L1-015/016/019 | HELIX-",
+        "role": "table_rows"
+      },
+      {
+        "start": 6425,
+        "end": 6573,
+        "start_line": 64,
+        "line_count": 1,
+        "sha256": "b2b9a557801dbc9600c7c1097e5e3dfe04e3bff39920fa4e8638b3050f6a0ba4",
+        "first_line": "| HELIXSECURITY-L2-026 | connection | L1-017/018/020 | INTEL",
+        "role": "table_rows"
+      },
+      {
+        "start": 6573,
+        "end": 6677,
+        "start_line": 65,
+        "line_count": 1,
+        "sha256": "19910656c984cc9c1acf922281a2d5b31609ae2d783b609935bf78daaa4a3a5e",
+        "first_line": "| HELIXSECURITY-L2-027 | composite | L1-014 | L1-014が定める3経路の",
+        "role": "table_rows"
+      },
+      {
+        "start": 6677,
+        "end": 6806,
+        "start_line": 66,
+        "line_count": 2,
+        "sha256": "ec208d2ad19abf4286640e395f961d281a70f79db28d3de5f2553d30a5998636",
+        "first_line": "| HELIXSECURITY-L2-028 | unit | L1-010/013 | SECURITY更新受入・ar",
+        "role": "table_rows"
+      },
+      {
+        "start": 6806,
+        "end": 6823,
+        "start_line": 68,
+        "line_count": 2,
+        "sha256": "f2ce3b25f68ec94550fce7bc8186087a55a464d1583824131e0a67a54f9c5fcc",
+        "first_line": "## 単体候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 6823,
+        "end": 8074,
+        "start_line": 70,
+        "line_count": 10,
+        "sha256": "0c2fd43eba36ca1461dc40e9e91b390df36fbee51226643a52cab6ec042928e9",
+        "first_line": "### HELIXSECURITY-L2-001 外部入力の信頼・authority境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 8074,
+        "end": 9221,
+        "start_line": 80,
+        "line_count": 10,
+        "sha256": "07ce9de25ab4b47be2b99a0550342230e34520548fe4444b6e0166d9454c61cd",
+        "first_line": "### HELIXSECURITY-L2-002 命令様dataとPrompt Injection境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 9221,
+        "end": 10501,
+        "start_line": 90,
+        "line_count": 10,
+        "sha256": "2d800eaf8c98669fc8f890559d4405efcd1b3d8855de573b59b70e7961541475",
+        "first_line": "### HELIXSECURITY-L2-003 project・tenant・環境・assignment隔離",
+        "role": "section_heading"
+      },
+      {
+        "start": 10501,
+        "end": 11569,
+        "start_line": 100,
+        "line_count": 10,
+        "sha256": "1373d55273872771775be0d6f770431d2675d52f23af0606989503eedeb0bc44",
+        "first_line": "### HELIXSECURITY-L2-004 Agent・Hook・設定のintegrity",
+        "role": "section_heading"
+      },
+      {
+        "start": 11569,
+        "end": 12785,
+        "start_line": 110,
+        "line_count": 10,
+        "sha256": "5eccc4d1683c144c57800071294756713aff52f78db467382665002c8ed39cad",
+        "first_line": "### HELIXSECURITY-L2-005 Credential / Secret境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 12785,
+        "end": 14147,
+        "start_line": 120,
+        "line_count": 10,
+        "sha256": "09459643b100dbe79ef0cf47100a4b56834d975ef309322bc3f8d7f4055d888a",
+        "first_line": "### HELIXSECURITY-L2-006 Network / Egress境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 14147,
+        "end": 15519,
+        "start_line": 130,
+        "line_count": 10,
+        "sha256": "052c634e25dff6bd1cba742d240f87d07c6d395852e994414522e4fcd243f210",
+        "first_line": "### HELIXSECURITY-L2-007 Worker実行環境への制約適用（接続）",
+        "role": "section_heading"
+      },
+      {
+        "start": 15519,
+        "end": 16611,
+        "start_line": 140,
+        "line_count": 10,
+        "sha256": "e00f26365cfbe64a4ee8369a9f6001ca4f1fb6f7f933b8055dd6ea47f0019d59",
+        "first_line": "### HELIXSECURITY-L2-008 操作ごとのauthority",
+        "role": "section_heading"
+      },
+      {
+        "start": 16611,
+        "end": 18061,
+        "start_line": 150,
+        "line_count": 10,
+        "sha256": "1e0f47fdc6cdce52f324d178b6c927b4519ab9412f51f7bfb1def0a33df9abca",
+        "first_line": "### HELIXSECURITY-L2-009 revoke / quarantine伝播（構成体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 18061,
+        "end": 19625,
+        "start_line": 160,
+        "line_count": 10,
+        "sha256": "9f4db5957220915c4df1843aa0c02b647e35c54adbeb83fefe79da5c0870bdb5",
+        "first_line": "### HELIXSECURITY-L2-010 更新受入",
+        "role": "section_heading"
+      },
+      {
+        "start": 19625,
+        "end": 20432,
+        "start_line": 170,
+        "line_count": 10,
+        "sha256": "c75ce0a2c3ee1c84fc8b9b5c4a3221126fb74a2f967a4e377a4f4cff4809fd6f",
+        "first_line": "### HELIXSECURITY-L2-011 Capability Drift",
+        "role": "section_heading"
+      },
+      {
+        "start": 20432,
+        "end": 21421,
+        "start_line": 180,
+        "line_count": 10,
+        "sha256": "6d2afeee0c6f60a332265c1196c447f47b578e6e72700b8216d03d4e00f49a27",
+        "first_line": "### HELIXSECURITY-L2-012 Supply Chain provenance",
+        "role": "section_heading"
+      },
+      {
+        "start": 21421,
+        "end": 22335,
+        "start_line": 190,
+        "line_count": 10,
+        "sha256": "b5c2034525a6fd4314a2e5d3596fa812466e648c92080ca78883870945deda56",
+        "first_line": "### HELIXSECURITY-L2-013 Artifact integrity",
+        "role": "section_heading"
+      },
+      {
+        "start": 22335,
+        "end": 24097,
+        "start_line": 200,
+        "line_count": 10,
+        "sha256": "bed52b952b89788736c7d8615f561b0eda6b08c5c7979f6fa7a834d86491887c",
+        "first_line": "### HELIXSECURITY-L2-014 SECURITY永続化promotion方針・判定（単体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 24097,
+        "end": 25683,
+        "start_line": 210,
+        "line_count": 10,
+        "sha256": "40e3bd42faa4b4b89c41a80b291f61c27bcff197a6ac924bedfd370cfe92c147",
+        "first_line": "### HELIXSECURITY-L2-015 HELIX Asset identity基盤",
+        "role": "section_heading"
+      },
+      {
+        "start": 25683,
+        "end": 26857,
+        "start_line": 220,
+        "line_count": 10,
+        "sha256": "b5ce60587c348e5c055053a1b79187d36ef76a6a816733648a3fc73492ab951c",
+        "first_line": "### HELIXSECURITY-L2-016 Asset exposure classification基盤",
+        "role": "section_heading"
+      },
+      {
+        "start": 26857,
+        "end": 28025,
+        "start_line": 230,
+        "line_count": 10,
+        "sha256": "7f72718594366fb9b52cb84dcb2c5591cb91f400c2184b5e2cb24ccf044e3f10",
+        "first_line": "### HELIXSECURITY-L2-017 Semantic exfiltration境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 28025,
+        "end": 29165,
+        "start_line": 240,
+        "line_count": 10,
+        "sha256": "790ec1469e77d84be8e684c3c317231226202bb5b50b39ea445617a2616164d7",
+        "first_line": "### HELIXSECURITY-L2-018 Capability probing観測",
+        "role": "section_heading"
+      },
+      {
+        "start": 29165,
+        "end": 30199,
+        "start_line": 250,
+        "line_count": 10,
+        "sha256": "627fcdba45d4bda05621613df3d4538d1d36c9d66f705a673ef452a054474a78",
+        "first_line": "### HELIXSECURITY-L2-019 Core Asset Egress判定",
+        "role": "section_heading"
+      },
+      {
+        "start": 30199,
+        "end": 31684,
+        "start_line": 260,
+        "line_count": 10,
+        "sha256": "196ce1051902b8e8ca91d8a78998ade4caf3b3fa5cb837fb81b09e72aecb34da",
+        "first_line": "### HELIXSECURITY-L2-020 GuardとBotの責務境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 31684,
+        "end": 31713,
+        "start_line": 270,
+        "line_count": 2,
+        "sha256": "d884b02b93c009e6b764d9d7f284d11c3ee08a57cf3c3e0a36205e198d821294",
+        "first_line": "## 接続・構成体候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 31713,
+        "end": 32848,
+        "start_line": 272,
+        "line_count": 10,
+        "sha256": "cf27dfc9615353be1922f95922470126b14957e2d6cdb8ad25f8264ac4693b82",
+        "first_line": "### HELIXSECURITY-L2-021 外部dataの受渡し（接続）",
+        "role": "section_heading"
+      },
+      {
+        "start": 32848,
+        "end": 34134,
+        "start_line": 282,
+        "line_count": 10,
+        "sha256": "0e646922e4279d2a1f86400c4bdbf563146a21dddcb845fd90303096d44d37fd",
+        "first_line": "### HELIXSECURITY-L2-022 操作authorityの受渡し（構成体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 34134,
+        "end": 35311,
+        "start_line": 292,
+        "line_count": 10,
+        "sha256": "1915e008f9d96f3f4b9e45cbbf406f328563d4d88c4f07f89e6b6ed255c2c9ab",
+        "first_line": "### HELIXSECURITY-L2-023 更新審査から昇格まで（構成体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 35311,
+        "end": 36542,
+        "start_line": 302,
+        "line_count": 10,
+        "sha256": "873045e83bea3519766839557e281eb6d345be698f422ddf492ace8f095fc71b",
+        "first_line": "### HELIXSECURITY-L2-024 SECURITY方針とINFRASTRUCTURE実資源（接続）",
+        "role": "section_heading"
+      },
+      {
+        "start": 36542,
+        "end": 37708,
+        "start_line": 312,
+        "line_count": 10,
+        "sha256": "efa75719cb3db68e1b806763b62ad638a2ea1b2d67a302095eb41b4f7b8c1fbd",
+        "first_line": "### HELIXSECURITY-L2-025 Web公開経路のAsset Boundary（構成体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 37708,
+        "end": 38862,
+        "start_line": 322,
+        "line_count": 10,
+        "sha256": "6187c8fa6abec3a3ed307f923661c23d06db832007d7703a56a7b7c8692cc1df",
+        "first_line": "### HELIXSECURITY-L2-026 INTELLIGENCEの意味判断・検出（接続）",
+        "role": "section_heading"
+      },
+      {
+        "start": 38862,
+        "end": 40622,
+        "start_line": 332,
+        "line_count": 10,
+        "sha256": "9c8d1c515b1a390d2a5a21f9c271ae29c14b76bad612a8d669bd94335042888e",
+        "first_line": "### HELIXSECURITY-L2-027 永続化promotion（構成体）",
+        "role": "section_heading"
+      },
+      {
+        "start": 40622,
+        "end": 42389,
+        "start_line": 342,
+        "line_count": 10,
+        "sha256": "af3954bd55e6b230bb615ff295c7926ef29c95e3c2cd5954250df0cf022d16b1",
+        "first_line": "### HELIXSECURITY-L2-028 SECURITY pack更新受入・artifact integrit",
+        "role": "section_heading"
+      },
+      {
+        "start": 42389,
+        "end": 49152,
+        "start_line": 352,
+        "line_count": 29,
+        "sha256": "6aae964264147989d90379f5d734549a26c42a20a2050f4e3768e646f22b5031",
+        "first_line": "## PO原文の全条件と例外の対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 49152,
+        "end": 53921,
+        "start_line": 381,
+        "line_count": 15,
+        "sha256": "96a5f2f383ac6de634e0d40200fb5a764dfc1208544b6ca6c292e842b2963b54",
+        "first_line": "## 旧HELIX資産との対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 53921,
+        "end": 55178,
+        "start_line": 396,
+        "line_count": 5,
+        "sha256": "d43446115e7bfe2dd31fd8f010505dbfe515d67efe0111d639286ce32a2750ea",
+        "first_line": "## 人の判断が残る点",
+        "role": "group_heading"
+      },
+      {
+        "start": 55178,
+        "end": 55545,
+        "start_line": 401,
+        "line_count": 4,
+        "sha256": "0f0228b08ec4565cade484e34bd66f80c6a86e61322f9e9d9de46c025540ef64",
+        "first_line": "## authorityと状態",
+        "role": "group_heading"
+      },
+      {
+        "start": 55545,
+        "end": 59564,
+        "start_line": 405,
+        "line_count": 12,
+        "sha256": "de390bb30ef5f7ed4f3644109c7b9051a2e7d2a05e6f5f5c162dddf442d243c4",
+        "first_line": "### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件（単体追補候補、1.0",
+        "role": "section_heading"
+      },
+      {
+        "start": 59564,
+        "end": 62650,
+        "start_line": 417,
+        "line_count": 10,
+        "sha256": "7a40e102f372d7db1827d64b266a84b2b15c5d04b473ba7f74f827af2d831d70",
+        "first_line": "### HELIXSECURITY-L2-030 agentic機能の自動適用範囲を広げるときの確認（単体追補候補、1.",
+        "role": "section_heading"
+      },
+      {
+        "start": 62650,
+        "end": 72919,
+        "start_line": 427,
+        "line_count": 20,
+        "sha256": "3ff72f9130d888213e2f3e5226a22bfedb965b9e80beebea810b8fec04cd964a",
+        "first_line": "### HELIXSECURITY-L2-031 追加worker runtimeのproposal-only・隔離境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 72919,
+        "end": 75046,
+        "start_line": 447,
+        "line_count": 8,
+        "sha256": "307527330a9bba10d409b2a11040b727075b91cdd139317ea264f401d0de4432",
+        "first_line": "### HELIXSECURITY-L2-032 Worker runtimeにおけるpermanent bypass ",
+        "role": "section_heading"
+      },
+      {
+        "start": 75046,
+        "end": 79986,
+        "start_line": 455,
+        "line_count": 13,
+        "sha256": "ccb516e4eb6e0943e7d634e359a45370eabc31c597daa3fc5afb790895461004",
+        "first_line": "### HELIXSECURITY-L2-033 外部AI Workerの実行文脈束縛と出力の非権威性（単体追補候補、v",
+        "role": "section_heading"
+      },
+      {
+        "start": 79986,
+        "end": 84168,
+        "start_line": 468,
+        "line_count": 11,
+        "sha256": "8e4694d757f0624fbaf1de38d6063bfa036ca038de1e5a8084a728d434961f00",
+        "first_line": "### HELIXSECURITY-L2-034 MCP tool profileごとの能力・probe・安全条件の閉鎖",
+        "role": "section_heading"
+      },
+      {
+        "start": 84168,
+        "end": 85900,
+        "start_line": 479,
+        "line_count": 8,
+        "sha256": "3cddbea512194176fce077b3f9eb1e0b054627963f94ba2974d484bf39a404af",
+        "first_line": "## P0訂正追補（対象: HELIXSECURITY-L2-033）",
+        "role": "group_heading"
+      },
+      {
+        "start": 85900,
+        "end": 94568,
+        "start_line": 487,
+        "line_count": 13,
+        "sha256": "788594f7b2d11ccd87c984b0751584aa91dbdeb7cb83ae17ba211be67ae0828c",
+        "first_line": "### HELIXSECURITY-L2-035 bypass系設定のrun限定と恒久deny能力（単体追補候補、ver",
+        "role": "section_heading"
+      }
+    ],
+    "docs/helix-security/L11-acceptance/security-acceptance.md": [
+      {
+        "start": 0,
+        "end": 478,
+        "start_line": 1,
+        "line_count": 16,
+        "sha256": "9ff6c764fadef327b9b9a65b7fe47d880353d11f097cfd82d271d680107c14c5",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 478,
+        "end": 1488,
+        "start_line": 17,
+        "line_count": 8,
+        "sha256": "d5b5d7f6ff96f0d929991d628dc961eb550d9d929bfdff817ae655244a2d979d",
+        "first_line": "# HELIX-SECURITY受入候補",
+        "role": "document_title"
+      },
+      {
+        "start": 1488,
+        "end": 1795,
+        "start_line": 25,
+        "line_count": 1,
+        "sha256": "8e22198c3258b212cf56135925e1e6b000c1b937da6e2bf1add8a0133c51a446",
+        "first_line": "| HELIXSECURITY-L2-001 | 1.0 | 外部文書、Issue/PR、Web/MCP/Tool出力を",
+        "role": "table_rows"
+      },
+      {
+        "start": 1795,
+        "end": 2198,
+        "start_line": 26,
+        "line_count": 1,
+        "sha256": "e3be2a9d718395db4d018280b458e3c85e508bb68c59ae9828f1e486c99c3890",
+        "first_line": "| HELIXSECURITY-L2-002 | 1.0 | 「前の指示を無視」「AGENTS.mdへ書け」「repos",
+        "role": "table_rows"
+      },
+      {
+        "start": 2198,
+        "end": 2815,
+        "start_line": 27,
+        "line_count": 1,
+        "sha256": "e68fcbc6750f2ce1d0508fccde5f97dfb9175e7e622cb22fc3b0d80817589eb0",
+        "first_line": "| HELIXSECURITY-L2-003 | 1.0 | A/Bのproject、tenant、environmen",
+        "role": "table_rows"
+      },
+      {
+        "start": 2815,
+        "end": 3078,
+        "start_line": 28,
+        "line_count": 1,
+        "sha256": "bd5cd1a6e0d604302743a36686d93c13fc57e95e62c48bbb64a17edc742911c5",
+        "first_line": "| HELIXSECURITY-L2-004 | 1.0 | 正しいproject/root/HEAD/revision",
+        "role": "table_rows"
+      },
+      {
+        "start": 3078,
+        "end": 3392,
+        "start_line": 29,
+        "line_count": 1,
+        "sha256": "19f3e8c523ec522f35982ed3837c21fb6c22623c587d17fd7ae6bad1f6a3f107",
+        "first_line": "| HELIXSECURITY-L2-005 | 1.0 | raw credentialはcontext/log/ar",
+        "role": "table_rows"
+      },
+      {
+        "start": 3392,
+        "end": 3889,
+        "start_line": 30,
+        "line_count": 1,
+        "sha256": "a910c8b1352414d2e6e3ad39f093a936f19b8a3c353411eeefa7a877fba3f7e7",
+        "first_line": "| HELIXSECURITY-L2-006 | 1.0 | 送信先/protocol/endpoint/data cl",
+        "role": "table_rows"
+      },
+      {
+        "start": 3889,
+        "end": 4542,
+        "start_line": 31,
+        "line_count": 1,
+        "sha256": "bb6dc9697c4bc21ad94cce4f2ad97c796706327d33686858eed1831378b4c155",
+        "first_line": "| HELIXSECURITY-L2-007 | 1.0 | 各制約（write path、network、creden",
+        "role": "table_rows"
+      },
+      {
+        "start": 4542,
+        "end": 4963,
+        "start_line": 32,
+        "line_count": 1,
+        "sha256": "05d6af862333dd496de98c2f469b6e50a9d2817442b7b1c83c93ac9348821a25",
+        "first_line": "| HELIXSECURITY-L2-008 | 1.0 | 異なるread/write/execute/network",
+        "role": "table_rows"
+      },
+      {
+        "start": 4963,
+        "end": 5693,
+        "start_line": 33,
+        "line_count": 1,
+        "sha256": "749fcd644ce86f164a511fcef1381bbfd9aba301fccd6c6ce4d8f01e7fd7324e",
+        "first_line": "| HELIXSECURITY-L2-009 | 1.0 | revoke、scope drift、credential",
+        "role": "table_rows"
+      },
+      {
+        "start": 5693,
+        "end": 6233,
+        "start_line": 34,
+        "line_count": 1,
+        "sha256": "8c5d010b69e32c1ba25e091f8b2eb07af70988ff06190786f394fc32005a2f89",
+        "first_line": "| HELIXSECURITY-L2-010 | 1.0 | source code、dependency、packag",
+        "role": "table_rows"
+      },
+      {
+        "start": 6233,
+        "end": 6477,
+        "start_line": 35,
+        "line_count": 1,
+        "sha256": "ca300d27bd9d76885f8c7ceeb139db7d96bbca82e0b6211ac3005250dcfbdfbd",
+        "first_line": "| HELIXSECURITY-L2-011 | 1.0 | 同じfile変更でもread-only→write+she",
+        "role": "table_rows"
+      },
+      {
+        "start": 6477,
+        "end": 6776,
+        "start_line": 36,
+        "line_count": 1,
+        "sha256": "1663d911bb3c1800f17b00172f4e1ec8234cdc7605cb6d0dae2760bc3ed3c114",
+        "first_line": "| HELIXSECURITY-L2-012 | 1.0 | package/container/GitHub repo",
+        "role": "table_rows"
+      },
+      {
+        "start": 6776,
+        "end": 7107,
+        "start_line": 37,
+        "line_count": 1,
+        "sha256": "e775685b309e83121aca7eef7ac3116926920b447650fca4f1fe2a099ed03c97",
+        "first_line": "| HELIXSECURITY-L2-013 | 1.0 | build/validation済artifactのide",
+        "role": "table_rows"
+      },
+      {
+        "start": 7107,
+        "end": 7619,
+        "start_line": 38,
+        "line_count": 1,
+        "sha256": "2e34f6860f09a6b70cc6e1d36e2cbdf122e4c26168d3f7528983abde1e10957f",
+        "first_line": "| HELIXSECURITY-L2-014 | 1.0 | SECURITY単体のdecision tableへmem",
+        "role": "table_rows"
+      },
+      {
+        "start": 7619,
+        "end": 8418,
+        "start_line": 39,
+        "line_count": 1,
+        "sha256": "1f940c5d714564fca0b15359607e1094efbcfda9e0a47cc97dfd9f63767a42b4",
+        "first_line": "| HELIXSECURITY-L2-015 | 1.0基盤、保護運用1.x | §16列挙の HELIX-HARNES",
+        "role": "table_rows"
+      },
+      {
+        "start": 8418,
+        "end": 8911,
+        "start_line": 40,
+        "line_count": 1,
+        "sha256": "3e3b6e6d56a643ee76b377cbfff5917628782bbee2bf69bf97afd9efe84baea6",
+        "first_line": "| HELIXSECURITY-L2-016 | 1.0分類基盤、適用1.x | 1.0ではpublic/custome",
+        "role": "table_rows"
+      },
+      {
+        "start": 8911,
+        "end": 9250,
+        "start_line": 41,
+        "line_count": 1,
+        "sha256": "775a7559fe9fc9c61ab68574201ca507c776208eef1f2e39b9a3c144dcd42dcb",
+        "first_line": "| HELIXSECURITY-L2-017 | 1.x | system prompt、内部architecture、",
+        "role": "table_rows"
+      },
+      {
+        "start": 9250,
+        "end": 9591,
+        "start_line": 42,
+        "line_count": 1,
+        "sha256": "6fd90e2849215b2278b2c782fdd421745cf92aec0ad0921b63d03914fe4e9048",
+        "first_line": "| HELIXSECURITY-L2-018 | 1.x | endpoint/Tool/filesystem/mode",
+        "role": "table_rows"
+      },
+      {
+        "start": 9591,
+        "end": 9919,
+        "start_line": 43,
+        "line_count": 1,
+        "sha256": "93e3ca4677ca6e51a66c90b7f6358671699f2834e5abc3fdd76fe0504da5d987",
+        "first_line": "| HELIXSECURITY-L2-019 | 1.x | HELIX-JSON/BRAIN raw dump/int",
+        "role": "table_rows"
+      },
+      {
+        "start": 9919,
+        "end": 10855,
+        "start_line": 44,
+        "line_count": 1,
+        "sha256": "e1f35dbf0b682c5116651b9ae56775164928126e546ae8a3b8c7a57448b41fe5",
+        "first_line": "| HELIXSECURITY-L2-020 | Guard 1.0、Bot必要時 | Injection Guard、",
+        "role": "table_rows"
+      },
+      {
+        "start": 10855,
+        "end": 11152,
+        "start_line": 45,
+        "line_count": 1,
+        "sha256": "500f771536a55e1370038c36dd1bd6d8f007e1bc43e9fae93b24e457a32e4b3f",
+        "first_line": "| HELIXSECURITY-L2-021 | 1.0境界 | External Data→CONNECT→SECUR",
+        "role": "table_rows"
+      },
+      {
+        "start": 11152,
+        "end": 11455,
+        "start_line": 46,
+        "line_count": 1,
+        "sha256": "c6e21bc9a77b828f3d5dccc6976468828b517af83d9c103c693c115e81003363",
+        "first_line": "| HELIXSECURITY-L2-022 | 1.0 | INTELLIGENCEのoperation reques",
+        "role": "table_rows"
+      },
+      {
+        "start": 11455,
+        "end": 11743,
+        "start_line": 47,
+        "line_count": 1,
+        "sha256": "ac72a6ebd9c56464050d76be9fc0f9d0765efcff17a0adb4a91597abd41760f7",
+        "first_line": "| HELIXSECURITY-L2-023 | 1.0 | 更新candidate→SECURITY admissio",
+        "role": "table_rows"
+      },
+      {
+        "start": 11743,
+        "end": 12056,
+        "start_line": 48,
+        "line_count": 1,
+        "sha256": "efce6df4ce18371035b1b4772da986eaf88f065ed6224546b82afd15dd49aedd",
+        "first_line": "| HELIXSECURITY-L2-024 | 1.0 | SECURITYのpolicy/authorityとINF",
+        "role": "table_rows"
+      },
+      {
+        "start": 12056,
+        "end": 12380,
+        "start_line": 49,
+        "line_count": 1,
+        "sha256": "0adb4b7c7b66af1c08d155e23aa05e40a62b160d7aee958843ee47d074ebccc1",
+        "first_line": "| HELIXSECURITY-L2-025 | 1.0基盤、Web適用1.x | Web利用者→HELIX-Web→W",
+        "role": "table_rows"
+      },
+      {
+        "start": 12380,
+        "end": 12668,
+        "start_line": 50,
+        "line_count": 1,
+        "sha256": "29279c52cffa7deeca6a3d4353b495e006998d9f41587332d29df6d7635d2772",
+        "first_line": "| HELIXSECURITY-L2-026 | Guard 1.0、意味判断/観測の1.x | SECURITY Gu",
+        "role": "table_rows"
+      },
+      {
+        "start": 12668,
+        "end": 13360,
+        "start_line": 51,
+        "line_count": 1,
+        "sha256": "8ba92962fcdf759c86afcbfdba02508ef36ad1f356517d6283fe439067b5b7a1",
+        "first_line": "| HELIXSECURITY-L2-027 | 1.0 | L1-014の構成体要求をこのcompositeだけで受け",
+        "role": "table_rows"
+      },
+      {
+        "start": 13360,
+        "end": 13951,
+        "start_line": 52,
+        "line_count": 2,
+        "sha256": "321639354267b0d8c197c6fa17e6d93fd3baa57ec8842e6fdf5234f90e384f5b",
+        "first_line": "| HELIXSECURITY-L2-028 | 1.0 | HARNESS-L2-010/011の共通pack des",
+        "role": "table_rows"
+      },
+      {
+        "start": 13951,
+        "end": 15196,
+        "start_line": 54,
+        "line_count": 8,
+        "sha256": "c5ba0b5a9b9b3883cd411915f54a6880031a98e7d4da72b86fa4b6809d9f573c",
+        "first_line": "## 端から端までの確認",
+        "role": "group_heading"
+      },
+      {
+        "start": 15196,
+        "end": 15641,
+        "start_line": 62,
+        "line_count": 7,
+        "sha256": "e76b1b98c4e916ad502d92e74c24e2119495f2e1c2049ec3b55ae3c67f851f83",
+        "first_line": "## 判定から除外するもの",
+        "role": "group_heading"
+      },
+      {
+        "start": 15641,
+        "end": 19774,
+        "start_line": 69,
+        "line_count": 16,
+        "sha256": "0e0608ce42b2be24410437130d32e56902e5cfd3edb6edd825667dc17eca34f2",
+        "first_line": "## HELIXSECURITY-L2-007：9制御の受入fixture",
+        "role": "group_heading"
+      },
+      {
+        "start": 19774,
+        "end": 20429,
+        "start_line": 85,
+        "line_count": 4,
+        "sha256": "307666876e3e4c46bd4325ccb7858bc721fa833f7873beceafb0aed72e85efc7",
+        "first_line": "### Fixture全体の判定",
+        "role": "section_heading"
+      },
+      {
+        "start": 20429,
+        "end": 22179,
+        "start_line": 89,
+        "line_count": 8,
+        "sha256": "0db53cdb7651cbdb3adc489ebac4ee0c00a7cb575ee6c016c1b0c84d718face0",
+        "first_line": "### HELIXSECURITY-L2-029 第三者runtimeへの委譲データと訓練利用条件",
+        "role": "section_heading"
+      },
+      {
+        "start": 22179,
+        "end": 23680,
+        "start_line": 97,
+        "line_count": 7,
+        "sha256": "908b321efad903489d8d83dd1e1dc7d46bce0993e4b1f2787450591b8cca3567",
+        "first_line": "### HELIXSECURITY-L2-030 agentic機能の自動適用範囲を広げるときの確認",
+        "role": "section_heading"
+      },
+      {
+        "start": 23680,
+        "end": 30216,
+        "start_line": 104,
+        "line_count": 12,
+        "sha256": "3b2700d511ea0feb8bbeb3dcedd7dd3eb9d1a26a2aeb9c79f57f835c045c0cd7",
+        "first_line": "### HELIXSECURITY-L2-031 追加worker runtimeのproposal-only・隔離境界",
+        "role": "section_heading"
+      },
+      {
+        "start": 30216,
+        "end": 32013,
+        "start_line": 116,
+        "line_count": 8,
+        "sha256": "277d24b23c7407eeb6e34574a26b16794f47c07caddf15d4fc456ce39b6e740f",
+        "first_line": "### HELIXSECURITY-L2-032 既存permanent bypass denyの優先順位の受入候補",
+        "role": "section_heading"
+      },
+      {
+        "start": 32013,
+        "end": 36061,
+        "start_line": 124,
+        "line_count": 11,
+        "sha256": "f9c6b8373b41a5ffdd264c715fbb2eb74e7f7e7e5194d7051056c5f9c1d601f9",
+        "first_line": "### HELIXSECURITY-L2-033 外部AI Workerの実行文脈束縛と出力の受入候補",
+        "role": "section_heading"
+      },
+      {
+        "start": 36061,
+        "end": 39398,
+        "start_line": 135,
+        "line_count": 10,
+        "sha256": "2f697a2bf2ec986f1f21ced2d7bfe4b285b367960de874f75c21d0de5bbe314f",
+        "first_line": "### HELIXSECURITY-L2-034 MCP tool profile条件の受入候補",
+        "role": "section_heading"
+      },
+      {
+        "start": 39398,
+        "end": 41235,
+        "start_line": 145,
+        "line_count": 8,
+        "sha256": "3d83e53cd95041db0483a22645200d826f9746c1bff110ab48ad674dd739ee5d",
+        "first_line": "## P0訂正追補（対象: HELIXSECURITY-L2-033 L11）",
+        "role": "group_heading"
+      },
+      {
+        "start": 41235,
+        "end": 46795,
+        "start_line": 153,
+        "line_count": 16,
+        "sha256": "9559fe06667f3a77d1a9c37238c2c8834add365ee7e49c7e3b5692963a8fa60d",
+        "first_line": "### HELIXSECURITY-L2-035 対応L11受入候補",
+        "role": "section_heading"
+      },
+      {
+        "start": 46795,
+        "end": 58006,
+        "start_line": 169,
+        "line_count": 54,
+        "sha256": "9454998c4b19552f845ad5c6f3ba0f16ac64030e82b95409b970dada40814288",
+        "first_line": "### HELIXSECURITY-L2-029 ローカル強制証拠の型別受入候補",
+        "role": "section_heading"
+      }
+    ]
+  },
+  "frontmatter": {
+    "L2": {
+      "end_byte": 539,
+      "end_line": 15,
+      "note": "owner/version/適用条件はfrontmatterと各表定義行の列に原所在を持つ。first_lineは原行のprefixで条件全文の所在は原span/hashへ結ぶ。値を再著述しない"
+    },
+    "L11": {
+      "end_byte": 477,
+      "end_line": 15,
+      "note": "同上"
+    }
+  },
+  "adoption_snapshot": {
+    "decision_record": {
+      "path": "docs/governance/decisions/helix-security-requirements-po-decision-2026-09-28.md",
+      "git_blob": "e4fa80e1490366f7d3784be10eccb5dd3b134827",
+      "raw_sha256": "7ad58a3f7d7dd68806e6eeb2c4b6ec97f9b8f2145ae9aae7969f1eedf4a7baff",
+      "bytes": 11584,
+      "source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "location_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    },
+    "adopted_blobs": [
+      {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "e1ccfdf6b0c5ff358b9e4a79a7f088038f3d8be3",
+        "raw_sha256": "027e6d25c8665e8aca006f23660c4ecfcc0ec0a92946be871e935ec5aa7a774c",
+        "bytes": 55544
+      },
+      {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "d373ec1bf994650c74b5d7af66652c9bf8abdbf5",
+        "raw_sha256": "25635649f87c0e805a5d1cf35b5c1201144c851533808770cd4f9ac6ba067c01",
+        "bytes": 20428
+      }
+    ],
+    "adopted_id_set": {
+      "count": 28,
+      "note": "採択28候補の表はdecision固定対象へ結ぶ。currentのID集合・全出現locator・構文役割とは別に記録"
+    },
+    "current_vs_adopted": "current sourceはadopted blobの追補を含む。採択時とcurrentの差を自動承認しない"
+  },
+  "identity_index": {
+    "source_pins": {
+      "L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      "L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      "adopted_L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      },
+      "adopted_L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    },
+    "current_L2": {
+      "distinct_ids": 35,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 39,
+            "byte": 4116,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 70,
+            "byte": 6827,
+            "role": "heading"
+          },
+          {
+            "line": 398,
+            "byte": 54468,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 40,
+            "byte": 4205,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 80,
+            "byte": 8078,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 41,
+            "byte": 4293,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 90,
+            "byte": 9225,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 42,
+            "byte": 4387,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 100,
+            "byte": 10505,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 43,
+            "byte": 4470,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 110,
+            "byte": 11573,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67609,
+            "role": "inline_mention"
+          },
+          {
+            "line": 483,
+            "byte": 84759,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 44,
+            "byte": 4545,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 120,
+            "byte": 12789,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68135,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 45,
+            "byte": 4617,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 130,
+            "byte": 14151,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67671,
+            "role": "inline_mention"
+          },
+          {
+            "line": 460,
+            "byte": 76695,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 46,
+            "byte": 4709,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 140,
+            "byte": 15523,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67732,
+            "role": "inline_mention"
+          },
+          {
+            "line": 460,
+            "byte": 76620,
+            "role": "inline_mention"
+          },
+          {
+            "line": 483,
+            "byte": 84930,
+            "role": "inline_mention"
+          },
+          {
+            "line": 489,
+            "byte": 86505,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 47,
+            "byte": 4783,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 150,
+            "byte": 16615,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68244,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 48,
+            "byte": 4863,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 160,
+            "byte": 18065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 49,
+            "byte": 4925,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 170,
+            "byte": 19629,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 50,
+            "byte": 4991,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 180,
+            "byte": 20436,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 51,
+            "byte": 5064,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 190,
+            "byte": 21425,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 52,
+            "byte": 5132,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 200,
+            "byte": 22339,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 53,
+            "byte": 5226,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 210,
+            "byte": 24101,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 54,
+            "byte": 5344,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 220,
+            "byte": 25687,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 55,
+            "byte": 5462,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 230,
+            "byte": 26861,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 56,
+            "byte": 5539,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 240,
+            "byte": 28029,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 57,
+            "byte": 5613,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 250,
+            "byte": 29169,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 58,
+            "byte": 5686,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 260,
+            "byte": 30203,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 59,
+            "byte": 5786,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 272,
+            "byte": 31717,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 60,
+            "byte": 5941,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 282,
+            "byte": 32852,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68346,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 61,
+            "byte": 6070,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 292,
+            "byte": 34138,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 62,
+            "byte": 6185,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 302,
+            "byte": 35315,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 63,
+            "byte": 6302,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 312,
+            "byte": 36546,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 64,
+            "byte": 6427,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 322,
+            "byte": 37712,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 65,
+            "byte": 6575,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 332,
+            "byte": 38866,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 66,
+            "byte": 6679,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 342,
+            "byte": 40626,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-029": [
+          {
+            "line": 405,
+            "byte": 55549,
+            "role": "heading"
+          },
+          {
+            "line": 429,
+            "byte": 62827,
+            "role": "inline_mention"
+          },
+          {
+            "line": 438,
+            "byte": 67519,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-030": [
+          {
+            "line": 417,
+            "byte": 59568,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-031": [
+          {
+            "line": 427,
+            "byte": 62654,
+            "role": "heading"
+          },
+          {
+            "line": 464,
+            "byte": 78543,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-032": [
+          {
+            "line": 447,
+            "byte": 72923,
+            "role": "heading"
+          },
+          {
+            "line": 490,
+            "byte": 87866,
+            "role": "inline_mention"
+          },
+          {
+            "line": 492,
+            "byte": 88874,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-033": [
+          {
+            "line": 455,
+            "byte": 75050,
+            "role": "heading"
+          },
+          {
+            "line": 479,
+            "byte": 84196,
+            "role": "heading"
+          },
+          {
+            "line": 481,
+            "byte": 84239,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-034": [
+          {
+            "line": 468,
+            "byte": 79990,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-035": [
+          {
+            "line": 487,
+            "byte": 85904,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "current_L11": {
+      "distinct_ids": 36,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 25,
+            "byte": 1490,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 26,
+            "byte": 1797,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 27,
+            "byte": 2200,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 28,
+            "byte": 2817,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 29,
+            "byte": 3080,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 30,
+            "byte": 3394,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 184,
+            "byte": 49972,
+            "role": "inline_mention"
+          },
+          {
+            "line": 185,
+            "byte": 50506,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 31,
+            "byte": 3891,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 69,
+            "byte": 15644,
+            "role": "heading"
+          },
+          {
+            "line": 183,
+            "byte": 49247,
+            "role": "inline_mention"
+          },
+          {
+            "line": 186,
+            "byte": 51166,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 32,
+            "byte": 4544,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 127,
+            "byte": 32580,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 33,
+            "byte": 4965,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 34,
+            "byte": 5695,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 35,
+            "byte": 6235,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 36,
+            "byte": 6479,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 37,
+            "byte": 6778,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 38,
+            "byte": 7109,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 39,
+            "byte": 7621,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 40,
+            "byte": 8420,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 41,
+            "byte": 8913,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 42,
+            "byte": 9252,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 43,
+            "byte": 9593,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 44,
+            "byte": 9921,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 45,
+            "byte": 10857,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 46,
+            "byte": 11154,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 47,
+            "byte": 11457,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 48,
+            "byte": 11745,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 49,
+            "byte": 12058,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 50,
+            "byte": 12382,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 51,
+            "byte": 12670,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 52,
+            "byte": 13362,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-029": [
+          {
+            "line": 89,
+            "byte": 20433,
+            "role": "heading"
+          },
+          {
+            "line": 169,
+            "byte": 46799,
+            "role": "heading"
+          },
+          {
+            "line": 171,
+            "byte": 46891,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-030": [
+          {
+            "line": 97,
+            "byte": 22183,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-031": [
+          {
+            "line": 104,
+            "byte": 23684,
+            "role": "heading"
+          },
+          {
+            "line": 106,
+            "byte": 23794,
+            "role": "inline_mention"
+          },
+          {
+            "line": 122,
+            "byte": 31868,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-032": [
+          {
+            "line": 116,
+            "byte": 30220,
+            "role": "heading"
+          },
+          {
+            "line": 118,
+            "byte": 30324,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-033": [
+          {
+            "line": 124,
+            "byte": 32017,
+            "role": "heading"
+          },
+          {
+            "line": 145,
+            "byte": 39426,
+            "role": "heading"
+          },
+          {
+            "line": 147,
+            "byte": 39473,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-034": [
+          {
+            "line": 135,
+            "byte": 36065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-035": [
+          {
+            "line": 153,
+            "byte": 41239,
+            "role": "heading"
+          },
+          {
+            "line": 155,
+            "byte": 41311,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-029-002": [
+          {
+            "line": 171,
+            "byte": 47096,
+            "role": "inline_mention"
+          }
+        ]
+      }
+    },
+    "adopted_L2": {
+      "distinct_ids": 28,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 39,
+            "byte": 4116,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 70,
+            "byte": 6827,
+            "role": "heading"
+          },
+          {
+            "line": 398,
+            "byte": 54468,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 40,
+            "byte": 4205,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 80,
+            "byte": 8078,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 41,
+            "byte": 4293,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 90,
+            "byte": 9225,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 42,
+            "byte": 4387,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 100,
+            "byte": 10505,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 43,
+            "byte": 4470,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 110,
+            "byte": 11573,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 44,
+            "byte": 4545,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 120,
+            "byte": 12789,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 45,
+            "byte": 4617,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 130,
+            "byte": 14151,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 46,
+            "byte": 4709,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 140,
+            "byte": 15523,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 47,
+            "byte": 4783,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 150,
+            "byte": 16615,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 48,
+            "byte": 4863,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 160,
+            "byte": 18065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 49,
+            "byte": 4925,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 170,
+            "byte": 19629,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 50,
+            "byte": 4991,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 180,
+            "byte": 20436,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 51,
+            "byte": 5064,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 190,
+            "byte": 21425,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 52,
+            "byte": 5132,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 200,
+            "byte": 22339,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 53,
+            "byte": 5226,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 210,
+            "byte": 24101,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 54,
+            "byte": 5344,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 220,
+            "byte": 25687,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 55,
+            "byte": 5462,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 230,
+            "byte": 26861,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 56,
+            "byte": 5539,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 240,
+            "byte": 28029,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 57,
+            "byte": 5613,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 250,
+            "byte": 29169,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 58,
+            "byte": 5686,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 260,
+            "byte": 30203,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 59,
+            "byte": 5786,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 272,
+            "byte": 31717,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 60,
+            "byte": 5941,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 282,
+            "byte": 32852,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 61,
+            "byte": 6070,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 292,
+            "byte": 34138,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 62,
+            "byte": 6185,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 302,
+            "byte": 35315,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 63,
+            "byte": 6302,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 312,
+            "byte": 36546,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 64,
+            "byte": 6427,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 322,
+            "byte": 37712,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 65,
+            "byte": 6575,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 332,
+            "byte": 38866,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 66,
+            "byte": 6679,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 342,
+            "byte": 40626,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "adopted_L11": {
+      "distinct_ids": 28,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 25,
+            "byte": 1490,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 26,
+            "byte": 1797,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 27,
+            "byte": 2200,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 28,
+            "byte": 2817,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 29,
+            "byte": 3080,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 30,
+            "byte": 3394,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 31,
+            "byte": 3891,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 69,
+            "byte": 15644,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 32,
+            "byte": 4544,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 33,
+            "byte": 4965,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 34,
+            "byte": 5695,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 35,
+            "byte": 6235,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 36,
+            "byte": 6479,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 37,
+            "byte": 6778,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 38,
+            "byte": 7109,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 39,
+            "byte": 7621,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 40,
+            "byte": 8420,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 41,
+            "byte": 8913,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 42,
+            "byte": 9252,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 43,
+            "byte": 9593,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 44,
+            "byte": 9921,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 45,
+            "byte": 10857,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 46,
+            "byte": 11154,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 47,
+            "byte": 11457,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 48,
+            "byte": 11745,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 49,
+            "byte": 12058,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 50,
+            "byte": 12382,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 51,
+            "byte": 12670,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 52,
+            "byte": 13362,
+            "role": "table_first_cell"
+          }
+        ]
+      }
+    },
+    "l2_l11_pairing": {
+      "shared_ids": 35,
+      "l2_only": [],
+      "l11_only": [
+        "HELIXSECURITY-L2-029-002"
+      ],
+      "positions": {
+        "HELIXSECURITY-L2-001": {
+          "l2": {
+            "line": 39,
+            "byte": 4116
+          },
+          "l11": {
+            "line": 25,
+            "byte": 1490
+          }
+        },
+        "HELIXSECURITY-L2-002": {
+          "l2": {
+            "line": 40,
+            "byte": 4205
+          },
+          "l11": {
+            "line": 26,
+            "byte": 1797
+          }
+        },
+        "HELIXSECURITY-L2-003": {
+          "l2": {
+            "line": 41,
+            "byte": 4293
+          },
+          "l11": {
+            "line": 27,
+            "byte": 2200
+          }
+        },
+        "HELIXSECURITY-L2-004": {
+          "l2": {
+            "line": 42,
+            "byte": 4387
+          },
+          "l11": {
+            "line": 28,
+            "byte": 2817
+          }
+        },
+        "HELIXSECURITY-L2-005": {
+          "l2": {
+            "line": 43,
+            "byte": 4470
+          },
+          "l11": {
+            "line": 29,
+            "byte": 3080
+          }
+        },
+        "HELIXSECURITY-L2-006": {
+          "l2": {
+            "line": 44,
+            "byte": 4545
+          },
+          "l11": {
+            "line": 30,
+            "byte": 3394
+          }
+        },
+        "HELIXSECURITY-L2-007": {
+          "l2": {
+            "line": 45,
+            "byte": 4617
+          },
+          "l11": {
+            "line": 31,
+            "byte": 3891
+          }
+        },
+        "HELIXSECURITY-L2-008": {
+          "l2": {
+            "line": 46,
+            "byte": 4709
+          },
+          "l11": {
+            "line": 32,
+            "byte": 4544
+          }
+        },
+        "HELIXSECURITY-L2-009": {
+          "l2": {
+            "line": 47,
+            "byte": 4783
+          },
+          "l11": {
+            "line": 33,
+            "byte": 4965
+          }
+        },
+        "HELIXSECURITY-L2-010": {
+          "l2": {
+            "line": 48,
+            "byte": 4863
+          },
+          "l11": {
+            "line": 34,
+            "byte": 5695
+          }
+        },
+        "HELIXSECURITY-L2-011": {
+          "l2": {
+            "line": 49,
+            "byte": 4925
+          },
+          "l11": {
+            "line": 35,
+            "byte": 6235
+          }
+        },
+        "HELIXSECURITY-L2-012": {
+          "l2": {
+            "line": 50,
+            "byte": 4991
+          },
+          "l11": {
+            "line": 36,
+            "byte": 6479
+          }
+        },
+        "HELIXSECURITY-L2-013": {
+          "l2": {
+            "line": 51,
+            "byte": 5064
+          },
+          "l11": {
+            "line": 37,
+            "byte": 6778
+          }
+        },
+        "HELIXSECURITY-L2-014": {
+          "l2": {
+            "line": 52,
+            "byte": 5132
+          },
+          "l11": {
+            "line": 38,
+            "byte": 7109
+          }
+        },
+        "HELIXSECURITY-L2-015": {
+          "l2": {
+            "line": 53,
+            "byte": 5226
+          },
+          "l11": {
+            "line": 39,
+            "byte": 7621
+          }
+        },
+        "HELIXSECURITY-L2-016": {
+          "l2": {
+            "line": 54,
+            "byte": 5344
+          },
+          "l11": {
+            "line": 40,
+            "byte": 8420
+          }
+        },
+        "HELIXSECURITY-L2-017": {
+          "l2": {
+            "line": 55,
+            "byte": 5462
+          },
+          "l11": {
+            "line": 41,
+            "byte": 8913
+          }
+        },
+        "HELIXSECURITY-L2-018": {
+          "l2": {
+            "line": 56,
+            "byte": 5539
+          },
+          "l11": {
+            "line": 42,
+            "byte": 9252
+          }
+        },
+        "HELIXSECURITY-L2-019": {
+          "l2": {
+            "line": 57,
+            "byte": 5613
+          },
+          "l11": {
+            "line": 43,
+            "byte": 9593
+          }
+        },
+        "HELIXSECURITY-L2-020": {
+          "l2": {
+            "line": 58,
+            "byte": 5686
+          },
+          "l11": {
+            "line": 44,
+            "byte": 9921
+          }
+        },
+        "HELIXSECURITY-L2-021": {
+          "l2": {
+            "line": 59,
+            "byte": 5786
+          },
+          "l11": {
+            "line": 45,
+            "byte": 10857
+          }
+        },
+        "HELIXSECURITY-L2-022": {
+          "l2": {
+            "line": 60,
+            "byte": 5941
+          },
+          "l11": {
+            "line": 46,
+            "byte": 11154
+          }
+        },
+        "HELIXSECURITY-L2-023": {
+          "l2": {
+            "line": 61,
+            "byte": 6070
+          },
+          "l11": {
+            "line": 47,
+            "byte": 11457
+          }
+        },
+        "HELIXSECURITY-L2-024": {
+          "l2": {
+            "line": 62,
+            "byte": 6185
+          },
+          "l11": {
+            "line": 48,
+            "byte": 11745
+          }
+        },
+        "HELIXSECURITY-L2-025": {
+          "l2": {
+            "line": 63,
+            "byte": 6302
+          },
+          "l11": {
+            "line": 49,
+            "byte": 12058
+          }
+        },
+        "HELIXSECURITY-L2-026": {
+          "l2": {
+            "line": 64,
+            "byte": 6427
+          },
+          "l11": {
+            "line": 50,
+            "byte": 12382
+          }
+        },
+        "HELIXSECURITY-L2-027": {
+          "l2": {
+            "line": 65,
+            "byte": 6575
+          },
+          "l11": {
+            "line": 51,
+            "byte": 12670
+          }
+        },
+        "HELIXSECURITY-L2-028": {
+          "l2": {
+            "line": 66,
+            "byte": 6679
+          },
+          "l11": {
+            "line": 52,
+            "byte": 13362
+          }
+        },
+        "HELIXSECURITY-L2-029": {
+          "l2": {
+            "line": 405,
+            "byte": 55549
+          },
+          "l11": {
+            "line": 89,
+            "byte": 20433
+          }
+        },
+        "HELIXSECURITY-L2-030": {
+          "l2": {
+            "line": 417,
+            "byte": 59568
+          },
+          "l11": {
+            "line": 97,
+            "byte": 22183
+          }
+        },
+        "HELIXSECURITY-L2-031": {
+          "l2": {
+            "line": 427,
+            "byte": 62654
+          },
+          "l11": {
+            "line": 104,
+            "byte": 23684
+          }
+        },
+        "HELIXSECURITY-L2-032": {
+          "l2": {
+            "line": 447,
+            "byte": 72923
+          },
+          "l11": {
+            "line": 116,
+            "byte": 30220
+          }
+        },
+        "HELIXSECURITY-L2-033": {
+          "l2": {
+            "line": 455,
+            "byte": 75050
+          },
+          "l11": {
+            "line": 124,
+            "byte": 32017
+          }
+        },
+        "HELIXSECURITY-L2-034": {
+          "l2": {
+            "line": 468,
+            "byte": 79990
+          },
+          "l11": {
+            "line": 135,
+            "byte": 36065
+          }
+        },
+        "HELIXSECURITY-L2-035": {
+          "l2": {
+            "line": 487,
+            "byte": 85904
+          },
+          "l11": {
+            "line": 153,
+            "byte": 41239
+          }
+        }
+      }
+    },
+    "note": "各IDの全出現をline/半開byte位置/観測構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し、意味roleは群共通の未裁定として保持。同IDだけで意味同等・承認を宣言しない。原文・同じunknown/hashを反復しない。 locator.byteは固定UTF-8原文上のliteral先頭で、各範囲は[byte, byte + locator map keyのUTF-8 byte長)。同じ行内での文字数とbyte数を混同しない。mapは登録suffixを含む観測literalを保持するため、distinct_idsは要求数・初期採択28件とは別の集合の件数である。"
+  },
+  "direct_consumers": {
+    "static_references": [
+      {
+        "path": "docs/helix-security/L9-integration-verification/asset-identity-foundation.json",
+        "raw_sha256": "b814df911338a00f903348d2c4f1b5fe70fbc1b431a25431329b016ffbe6aeb4",
+        "git_blob": "9ed4e3d66abd145fd1dd57de0e70784f153d0ab6",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/capability-drift-comparison.json",
+        "raw_sha256": "f73cc1f5582b82096c9be724a5e85913994045b0d4f1423e1c44639ef8cbd468",
+        "git_blob": "eeb5c3c203724e1749a791ca02371c79c02f71cd",
+        "references": [
+          {
+            "pointer": "/source_pins/8/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/configuration-revision-integrity.json",
+        "raw_sha256": "74ba793af15c18e1163145d2e5ef235d0d0a430204080d56995b76968b73900d",
+        "git_blob": "a39b256d070ff05c6357e1a8f237896710e08f9d",
+        "references": [
+          {
+            "pointer": "/source_pins/8/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
+        "raw_sha256": "27480221a82052671d350317128451c8cb01b1b8c167c7d4ab6efabf657405a7",
+        "git_blob": "f3efd9e900f5d164eb9a8c4383dbce7bd05dac04",
+        "references": [
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/10/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/data-use-classification.json",
+        "raw_sha256": "cf8e9df983e5cc99f9f717f4954edc2e8d7373b8156bb0ad54e1491d3bdb5c1d",
+        "git_blob": "62d2462ebc03a699156185774ab6e24b6cbbe1e6",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/8/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/external-asset-provenance.json",
+        "raw_sha256": "1050ab5d6862090f56fc192c014dcd1fd4dad7f4c1e5991565664e545ec107dd",
+        "git_blob": "61d8d5be47318bf4a772adfd3ccabe03d0d1fefd",
+        "references": [
+          {
+            "pointer": "/source_pins/8/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/external-input-trust-boundary.json",
+        "raw_sha256": "e8ce817ab5b89e7c2a535463cd81fbdcf70f9e282fb34bd31b0a5fe42dacfa63",
+        "git_blob": "dba409d6b960c83082fc320ce7ee955fe36bd08f",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
+        "raw_sha256": "bf6e7f86a0695f0d965c0e58782f393dc61ba4e068cbcf61638e0428e86f7e1f",
+        "git_blob": "948e5d4bf65f1ad7e5f9e499f653bb2626c6d1ca",
+        "references": [
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/10/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/operation-authority-reuse.json",
+        "raw_sha256": "c3b03d72ad675053a5dde271563c99f75e1a25106234941ea7ec00e84761b688",
+        "git_blob": "19a2d674317081e24b83accb02e42d491c490392",
+        "references": [
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/10/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
+        "raw_sha256": "f240b104d67826e5a58c92849becf76cd17d89079f1b263d6fdd53c69b1c9f9b",
+        "git_blob": "1648edcc065e118fc1535b7aca297eb416c22c8e",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
+        "raw_sha256": "ed74cdc558bd8ba9cad5d8b075eee137bafba9c65e9a4a18bb862c728b646b4f",
+        "git_blob": "4c12977a45e6acdf056ec156db5c73ea5b0cb80d",
+        "references": [
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/10/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/untrusted-command-isolation.json",
+        "raw_sha256": "2c6f2676af71b7cd28d1a5d103c9e38cc18eee309d967ff3add5b72152cd16eb",
+        "git_blob": "ca0a13164463c9ae3f53d018ced6c154a70e7a34",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/update-admission-materials.json",
+        "raw_sha256": "080f3934dd9f47a75ad05e979641da2c85fc4f4d70a025c1ff5bc9ffc2fb269f",
+        "git_blob": "69d5f79de7373f57b3d87e0ff6639639a0ab2658",
+        "references": [
+          {
+            "pointer": "/source_pins/8/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L9-integration-verification/worker-control-enforcement.json",
+        "raw_sha256": "f661985740ca5c1402f67ca228188c544d398b6103fec6ea5af5fce7eb73cedc",
+        "git_blob": "8e80feab62ed94b80bc7366213bb28f9dbc5700b",
+        "references": [
+          {
+            "pointer": "/source_pins/9/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/10/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/business-requirements.json",
+        "raw_sha256": "f1668180a3daccb38da15f471ade0806c64f094a77b0d7a5cef25edc9b6ce901",
+        "git_blob": "8146f973e809bd1f6850615de83d82ec6637be3e",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/functional-requirements.json",
+        "raw_sha256": "e4eeb70cc303e44199c7d898281e91c22dba89b47666353b9c80a4c634e898b5",
+        "git_blob": "cd4b8dfd079dc90ac86c0180f65453dbba4b05f9",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L3-requirements/nfr-grade.json",
+        "raw_sha256": "24411a228b92175c524b46105f212ae35576a72dcb6224ca94acecf6ab0cab66",
+        "git_blob": "1ab4649a6628051d28e07ef068babce9667b26a1",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/business-verification.json",
+        "raw_sha256": "c34b8f9a99f8f240558458dd63033acd0d756dfe61ad9cd3aac0e8e1c8193f42",
+        "git_blob": "a3b404df65809f47bf097e83ab02087aef912784",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/functional-verification.json",
+        "raw_sha256": "e6da7eaff29a623b5d069801280c295d9dd7cc43b51d9cde25b12a8110e5072a",
+        "git_blob": "51deee64dcfd42a90c20c680ca0e7a39790ec5d4",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      {
+        "path": "docs/helix-security/L10-verification/nfr-verification.json",
+        "raw_sha256": "3ccb53856d3140003b2be6efed77489cde66469ed2e5446147679854a9193f00",
+        "git_blob": "239a71313c1b60fa63a743bb49d0d98ec76f4fba",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-security/L2-requirements/security-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
+          }
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      }
+    ],
+    "note": "実file・raw sha・git blob・具体JSON pointer/valueの所在例。実reader成立・全consumer閉包とは分ける。directory参照や架空pathは代替しない"
+  },
+  "legacy_source_hold": {
+    "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "starting_point": "同上 §1-3(LEGACY-ASSET-4F5A1F0739EC1111D91D)",
+    "hold": "構造的意味と生成view/所在索引の分離、原source/consumer/unknownの保全を保持",
+    "unchanged": "旧schema/式木/DB/runtime/CIは移植・実行しない",
+    "unknown": "対応旧sourceが未発見の範囲は検索範囲と未発見を記録"
+  },
+  "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
+  "limits": [
+    "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し原条件を再著述しない",
+    "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
+    "後続decision網羅・全consumer閉包は未確認として保持",
+    "ScaffoldBinding/hash追随はroot検収責務"
+  ],
+  "frontmatter_range_semantics": "start_byte/end_byteはUTF-8半開範囲で、endはclosing ---行のLFを含む。start_line/end_lineは1始まり包含範囲。直後のblankはfrontmatterに含めず、全量span partitionの先頭範囲では保持する。"
+}
