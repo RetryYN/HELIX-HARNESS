@@ -2,5 +2,15 @@
 
 
 def validate_supply_input(raw: object) -> dict[str, object]:
-    """公開返却carrierのみ。診断/decoder/資格処理はまだ未実装。"""
-    return {"input": None, "input_issues": [], "unusable_source_refs": []}
+    """root形不正だけを診断する。objectのdecode/資格処理は未実装。"""
+    if isinstance(raw, dict):
+        raise NotImplementedError("SupplyInput object decoding and source qualification are not implemented")
+    return {
+        "input": None,
+        "input_issues": [{
+            "locator": "",
+            "reason": "SupplyInput root must be an object.",
+            "source_ref": None,
+        }],
+        "unusable_source_refs": [],
+    }
