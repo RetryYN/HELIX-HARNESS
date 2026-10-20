@@ -2479,7 +2479,10 @@
                   "sync.work_ref",
                   "sync.change_ref",
                   "sync.state",
-                  "sync.owner"
+                  "sync.owner",
+                  "operation.target",
+                  "result.operation_ref",
+                  "result.target"
                 ]
               },
               "result": {
@@ -2797,7 +2800,8 @@
         "OS復帰未成立: held_with_os_sync_pending。failure resultはnot_restored。",
         "sync欠落: held_with_os_sync_pending。failure resultはmissing。",
         "sync内容不一致: held_with_os_sync_pending。failure resultはnot_received_for_same_operation_result。",
-        "sync参照一致の有限fixture: sync_content_referenced_requires_actual_qualification。"
+        "原operation.targetとoriginal_target、原result.operation_refとoriginal_operation.ref、原result.targetとoriginal_targetの既知相反: held_with_os_sync_pending。failure resultはnot_received_for_same_operation_result。",
+        "sync参照と原operation/result/target対応がすべて一致した有限fixture: sync_content_referenced_requires_actual_qualification。"
       ],
       "formal_program_ref": {
         "kind": "candidate_document",
@@ -3198,7 +3202,10 @@
       "sync.work_ref",
       "sync.change_ref",
       "sync.state",
-      "sync.owner"
+      "sync.owner",
+      "operation.target",
+      "result.operation_ref",
+      "result.target"
     ],
     "B01Result.failure_reasons.return_owner": [
       "OS/HELIX-SECURITY/recovery-owner",
@@ -4078,6 +4085,90 @@
               "op": "failure",
               "information_state": "held_with_os_sync_pending",
               "field": "sync.state",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_operation.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "operation.target",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "string_exact_equal",
+              "left": {
+                "op": "get",
+                "path": "original_result.operation_ref"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_operation.ref"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "result.operation_ref",
+              "result": "not_received_for_same_operation_result",
+              "return_owner": "OS-Work-Change-owner"
+            },
+            {
+              "op": "return"
+            }
+          ]
+        },
+        {
+          "when": {
+            "op": "not",
+            "value": {
+              "op": "json_deep_equal",
+              "left": {
+                "op": "get",
+                "path": "original_result.target"
+              },
+              "right": {
+                "op": "get",
+                "path": "original_target"
+              }
+            }
+          },
+          "actions": [
+            {
+              "op": "failure",
+              "information_state": "held_with_os_sync_pending",
+              "field": "result.target",
               "result": "not_received_for_same_operation_result",
               "return_owner": "OS-Work-Change-owner"
             },
