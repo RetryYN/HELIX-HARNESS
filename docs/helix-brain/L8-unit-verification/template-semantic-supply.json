@@ -83548,9 +83548,9 @@
       "artifact_ref": {
         "identity": "HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK",
         "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
-        "file_sha256": "1222a9016a9e376f59350b1e16a0273a19a8d691802004fdb270b8a8491d14bb",
+        "file_sha256": "2bd0f636486e26be91dc9cecca4aa91ddac537eb6b7e3d541955b8e0c7f94267",
         "pointer": "",
-        "canonical_sha256": "93bac0de9e3e6d590abff87e373e39886ef5eda78192224ffcea0ba8b2b44c6a"
+        "canonical_sha256": "c654c2cf0da67769469bdfcf21753b3c6fbbf3aed8733b203716fdc15ead0dfc"
       },
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",

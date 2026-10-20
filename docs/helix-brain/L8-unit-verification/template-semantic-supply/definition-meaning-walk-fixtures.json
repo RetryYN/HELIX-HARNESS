@@ -13,7 +13,7 @@
     "base": "fixture_base_pointerは同file materials内のliteral objectだけを指す。深く複製しfixture_patchを順次適用する。case間参照/再帰/循環は認めない。",
     "patch": "RFC6902 add/remove/replace、及び下記case31_occurrence_copy_scope・case0_content_bytes_copy_scope・cases1_to_6_content_bytes_copy_scopeに限定したcopyを使う。RFC6901の~0/~1 escaping、array添字/末尾add、replace/remove対象実在、重複pathは記載順。copyは同じ展開中fixture内の実在from値の深い複製をpathへaddするRFC6902の意味であり、今回のcopy先は既存object memberなので値置換となる。array添字へのcopyを置換と読み替えない。無効なpointer/patchは展開失敗として拒否する。",
     "value": "原JSON型、nullとmember不在、array長/順序/反復、source/content_bytes等の原文字列bytesを保存する。object key順を無視する意味等値と物理原file bytesは別。",
-    "hash": "field_canonical_sha256/fixture_canonical_sha256は展開JSONのUTF-8 canonical（object key sort、ensure_ascii=false、compact、末尾LFなし）。frozen_original_file_sha256は元凍結fileの物理bytesであり再構成serialize bytesと同一とは称さない。",
+    "hash": "field_canonical_sha256/fixture_canonical_sha256は展開JSONのUTF-8 canonical（object key sort、ensure_ascii=false、compact、末尾LFなし）。frozen_original_file_sha256は元凍結fileの物理bytesであり再構成serialize bytesと同一とは称さない。 shared_literal_ordered_sha256は、各copy scopeの共有literalだけをdocument記述順のまま直列化したJSON表現（object key sortなし＝ordered、ensure_ascii=false、compact、末尾LFなし）のSHA-256。対象形は2種で、case0とcases1〜6の7値はcontent_bytesのJSON単一文字列値（引用符・escapeを含むJSON string literalをそのままhash）であり、同名keyのcase31の1値はoccurrences配列値（原member/array順を保持したcompact JSON配列をhash）である。内部JSONをparseした値、raw string UTF-8 bytes（shared_literal_utf8_bytes/shared_literal_utf8_sha256が表す生文字列bytesとは別物）、一要素配列とは混同しない。orderedは複数出現の列を意味しない。",
     "case31_occurrence_copy_scope": {
       "case_id": "OLD-NORMAL-INDEPENDENT-OWNER-OPERATIONS-SUPPLIED",
       "case_index": 31,
