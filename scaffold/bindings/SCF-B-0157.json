@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/feature-tickets/FT-DESIGN-REFACTOR-001.md",
-      "sha256": "52b9c81f22f0f0e70a3a227dd23fcb8d1261ec8279123b91c64738706297ec81",
-      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。"
+      "sha256": "50e84c4a10bc9fc8369097f013ef0edfb6f7797203da083bc65a8789d0b2e9d5",
+      "note": "形式移行比較の固定入力。承認は対象revisionの個別decisionから読む。 2026-10-20の追補は著述規則案の実失敗分類と証拠所在だけで、BRAIN L2/L11形式移行比較の対象・入力意味・採択状態・原sourceを変更しない。旧FT本文はcommit c43d5e66b5e5836ea225e92929b7ef130425dbd7の履歴へ保持する。"
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
@@ -117,5 +117,5 @@
     "confirmation_digest": null
   },
   "created": "2026-10-19",
-  "updated": "2026-10-19"
+  "updated": "2026-10-20"
 }
