@@ -75,7 +75,7 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
-      "sha256": "d2c88de11b6f203caa9b168b1f97336d9a02de8d22ad1cdc6950dfd61787c868",
+      "sha256": "f03759627698feda5f324458de39d1bafd21ee658c24769b511361f6c47660f8",
       "note": "current counterpart receipt only; no trigger or implementation admission [2026-10-20: 代表5asset/直接参照の限定追補へcurrent bytes追随。元48行/選択span/旧snapshotと候補・未完・authority・binding責務は保持。過去の固定revision研究は再生成しない。]"
     },
     {
