@@ -906,7 +906,7 @@
     {
       "ref_id": "CUR-XW-18",
       "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
-      "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+      "sha256": "d2c88de11b6f203caa9b168b1f97336d9a02de8d22ad1cdc6950dfd61787c868",
       "start_line": 1,
       "end_line": 12,
       "line_sha256": "8ab42b6ffd18ccd731c452ead315ff29e383e42775ac5c633c5a4fd78b3a9523",
@@ -919,7 +919,7 @@
     {
       "ref_id": "CUR-XW-18-BOUNDARY",
       "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
-      "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
+      "sha256": "d2c88de11b6f203caa9b168b1f97336d9a02de8d22ad1cdc6950dfd61787c868",
       "start_line": 36,
       "end_line": 48,
       "line_sha256": "5b85eb32c77072ccb61efb5aead359151a250d45dfc4441bcbd9f051e33d3ee4",

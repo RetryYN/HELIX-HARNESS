@@ -46,3 +46,62 @@ current 9 scope、既存CIを前提に承認されたcandidateであり、新世
 Concept v4.1と対象別L1で構造改善の利用者価値を定め、HARNESS／HELIX-OS L2／L11へ個別採否する。
 新しいscope、trigger、状態、効果指標はその後にL3／L10／L12へ降ろす。要求整理が閉じるまで旧UIL、RF0、
 既存scanner、Issue／PLAN自動生成、既存CIを実行しない。
+
+## 2026-10-20 追補：代表assetと直接参照の再照合（#1906、PHCAP-18）
+
+確認revisionは `f6cb2f4f575a3be6c2de027155ee1f9f831320f9`。上の本文・表・次工程は2026-09-14時点の整理として保持する。現在の採択・版・責務は現行Conceptと対象別判断記録から読む。本追補は5代表の静的調査で、台帳の状態や承認を書き換えない。全asset/consumer閉包、本Issueの完了、現runtime成立を認定しない。
+
+### 固定sourceと台帳の対応
+
+下表のpathは全て `archive/legacy-generation-2026-09-14/root/` 内の相対path、行は固定revisionの行番号。SHA-256は同revisionのGit blobのraw bytesを計算し、`docs/governance/legacy-asset-disposition.jsonl` の `source_sha256` と5件全て一致した。台帳5件はいずれも `Historical` / `authority_status: historical` / `disposition: unresolved` / `implementation_status: unknown` / `consumer_refs: []` である。空のconsumer_refsはconsumer不在の証明ではない。
+
+| asset ID | source path | raw SHA-256 |
+|---|---|---|
+| `LEGACY-ASSET-12E2CD9B07EFAC343ED0` | `docs/governance/candidates/refactoring-trigger-admission-requirements.md` | `4776830ec12a6a464732db56e6ff8d93f89e8e89a6dcb8c175728a82482cc754` |
+| `LEGACY-ASSET-603D0E8D8193914F4AC0` | `docs/design/helix/L5-detail/design-refactoring-domain-model.md` | `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b` |
+| `LEGACY-ASSET-3B8F5F0230F7469B5D11` | `docs/design/helix/L6-function-design/design-refactoring-domain-model.md` | `626e177f61cbb8170b0d557241f75fcf2958a5f64d41fc1078f4ef5607c3086e` |
+| `LEGACY-ASSET-7EBF2130DE1840722A6B` | `src/state-db/refactor-candidates.ts` | `1f878c2ae0e96e7a44346579baf7bcb7dede758414a7e947a2dcd4805a9633f3` |
+| `LEGACY-ASSET-E56701056732E5CF9A1C` | `tests/feedback-refactor-disposition.test.ts` | `002c7aaf6c9f572809c61805847d6c2fc2fe3db7e5ba11eb4f5a62e790e96bfc` |
+
+| 対象 | 実物の確認範囲と到達層の限界 |
+|---|---|
+| RTG候補 | `refactoring-trigger-admission-requirements.md:29–81`。旧L3候補RTG-R-01〜06と旧candidate固有承認/非current境界を記載。現行への採用ではない |
+| DRDM L5/L6 | L5 §0–1・§4–5、L6 §0–1の型/API/対検証の設計。`infinity-loop-design-slice-registry.md:56`のHDS-HIL-16は「未凍結・未実装」。対応L5 test-design:24–25は「全caseは未実装」と明記。設計内のstrict GREENや予定のtest pathを実装・テストpassへ読み替えない |
+| 候補scanner実装 | `src/state-db/refactor-candidates.ts:1–16,44–57,266–400`。policy/scan rootを入力に候補を列挙するTS実装が存在する。DRDMの意味保存/authority transaction全APIの実装と同一視しない。台帳のreuse_exclusion_classは`legacy_runtime_cli_or_adapter` |
+| dispositionテスト | `tests/feedback-refactor-disposition.test.ts:21–30,38–93`。20信号のfamily分割、元source digest、successor分離、下流未完の記載を検査するコードが存在する。台帳は`legacy_test_fixture_or_oracle`。存在の確認であり実行/passではない |
+
+PHCAP-18の旧「implemented_with_tests」は代表scanner/testの存在を含む粗い分類で、DRDM全体の実装成立を証明しない。元分類を黙って変更せず、上述の対象別到達層の違いをinventory再評価へ返す。固定revisionの`src/`と`tests/`では `buildDesignSemanticSignature` の文字列検索は0件だったが、別名実装・動的接続を網羅する不在証明ではない。
+
+### 直接consumer・参照の区別
+
+archive rootで `rg -uu` により5代表のpath/basenameを検索し、scannerの3公開symbolも`src/`と`tests/`で照合した。以下は実読した代表edgeであり、検索hit全量や推移的consumer closureではない。文書参照、設定の実行対象、同じデータを読む別readerをimport/callと混ぜない。
+
+| source → 参照先/読取側（同archive root内） | 種別・確認位置 |
+|---|---|
+| RTG要求 → `docs/governance/candidates/refactoring-trigger-admission-acceptance.md` | 要求のfrontmatter `pair_artifact`。対受入への文書参照で、module callではない |
+| DRDM L5/L6 → 対test-design | `docs/test-design/helix/L5-design-refactoring-domain-model-integration-test-design.md:15` / `L6-design-refactoring-domain-model-unit-test-design.md:15` が設計を`pair_artifact`として参照。実行testと区別 |
+| DRDM L5/L6 → catalog/registry | `docs/design/design-catalog.yaml:334–335,433,472`、`docs/governance/infinity-loop-design-slice-registry.md:56`。所在/対応関係で、runtime接続ではない |
+| scanner → doctor | `src/doctor/index.ts:557–561`のimport、`:5568–5573`の`analyzeRefactorCandidates(loadRefactorCandidateInputs(...))`と`candidateRank` call |
+| scanner → feedback projection | `src/state-db/feedback-projections.ts:6–10`のimport、`:67–79`の3symbolのcall。旧runtime側の利用であり現runtime consumerではない |
+| disposition JSON → disposition test | `tests/feedback-refactor-disposition.test.ts:21–30`が`docs/governance/feedback-refactor-disposition.json`をreadする。`:55–63`はmanifest内のpath/hash照合 |
+| disposition JSON → 別reader | `tests/l3-downstream-queue.test.ts:27`も同JSONをreadする。この共有データへの依存を、disposition test本体のimportと呼ばない |
+| disposition test → guard設定 | `config/repo-wide-guard-tests.v1.json:14`の対象path列挙。テスト実行済みやpassは示さない |
+
+PLAN名や監査文書に同じ文字列があるだけではcall edgeを認定しない。旧test-designに引用された実行testの所在・全export consumer・scanner policyから先のclosureは未完として残す。
+
+### failure条件と採用・再導出の境界
+
+- DRDM L5 §0・§4のconsumer欠落、provenance/revision/freshness不一致、forged/stale oracle拒否と、対L5 test-designのIT-DRDM-005/012を照合した。これは旧設計のfailure条件と未実装の反例設計であり、実発生のincident・拒否成功の実測ではない。
+- disposition testはsource digestとsuccessor分離を検査する。producer allowlist・execution receipt・trust/freshnessの網羅検査とは記述されていないため、これだけを「偽oracle/全consumer漏れを防止した実装証拠」としない。
+- 現行で実際に起きた参照追随漏れ・consumer主張の混同はPR #3431/#3432/#3434と親FTの比較入力を参照する。今回の提案にも同じJSONを読む別testとtest本体consumerの混同があり、上記のedge分類へ訂正した。新たな予防gateは足さない。
+
+| 分類 | 保持する意味・現行の比較先 | 保留するもの |
+|---|---|---|
+| 意味再導出候補 | RTG-R-01〜06の観測/根拠/採否分離と、DRDMのconsumer/oracle保全。現行HARNESS-L2-004/005のtrace/検証義務、HELIXOS-L2-005/007の登録/原証拠へ照合 | 旧candidateの承認・9scope・UIL/RF0・固定enum/roles・旧gate・旧CIは継承しない |
+| read-only保持 | DRDMの意味署名・外部化/共通化、dispositionのsource/successor分離を、#3139の比較入力にする | scanner TS・旧testを現pathへ移植せず、既存の実装除外を保持 |
+| 置換の比較候補 | scanner policy/scan入力/候補出力の境界をOS005の観測→登録→採否へ照合する調査 | 置換先の実装/API・全意味同等性は未評価。完全一致再利用や置換の決定ではない |
+| 未特定 | BRAIN知識への還元、CONNECTの片側交換との直接source対応、推移的consumerと残assetの全量 | 同じ名称やJSON形から写像を補完しない。CONNECT006は現接続の比較先であり旧sourceの採用証拠ではない |
+
+現行の比較先は固定revisionの`docs/helix-harness/L2-requirements/product-requirements.md:55–56`、`docs/helix-os/L2-requirements/governance-requirements.md:58,60,294–295`。対応する対設計はHARNESS005のL8 `verification-discipline.json`。OS側の対設計への詳細edgeは実物を個別に照合して結ぶ。Concept/七原則と既存FTへの対応は保持し、表の比較候補から要求・版・担当・authorityを新規採用しない。
+
+残件は全関連asset抽出、旧test-designのcitation実物、推移consumer closure、意味atomと現行対設計の全面対応、PHCAP inventoryの再評価である。旧CLI/hook/runtime/test/CIは実行せず、本追補だけでIssue #1906をcloseしない。
