@@ -986,7 +986,216 @@
           }
         ]
       },
-      "content_comparison": "原ref identity/revision/scope/owner、各内容と個別状態を照合。record_count等は補助観測であり意味合格を代替しない。"
+      "content_comparison": "原ref identity/revision/scope/owner、各内容と個別状態を照合。record_count等は補助観測であり意味合格を代替しない。",
+      "core_proposal_receiving_oracles": {
+        "id": "HELIXOS-L9-002-CORE-PROPOSAL-RECEIVING",
+        "design_ref": {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "pointer": "/contracts/3/core_proposal_receiving",
+          "revision_binding": "same_design_snapshot"
+        },
+        "core_oracle_ref": {
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles",
+          "revision_binding": "same_design_snapshot"
+        },
+        "status": "independent_basic_oracle_design_not_runtime_observation",
+        "source_ledger_ref": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/source_basis",
+          "revision_binding": "same_design_snapshot"
+        },
+        "fixed_original": {
+          "id": "OS-THREE-SETS",
+          "revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "file_sha256": "cbc33a5d2f179e52c804f6944d8c906345a92aaa5392bda4094d9a41fc8d56f0",
+          "pointer": "/cases/3/normal_fixture",
+          "canonical_sha256": "5b2739473a11dd2960e31507470fb9fc05723faf0aee9e3e7b64f53908410c73",
+          "ordered_sha256": "2edb581118d3c968290170cf5c3664fcf0f8dba15d7c0c3ee2d4d7be125bd037",
+          "role": "fixed_source_snapshot"
+        },
+        "whole_source_recipe": {
+          "scope_ja": "基本oracleに使う原role材料のimport手順。新receiver whole runtime入力の完成recipeと称さず、旧L9のF02 domain fixtureと旧L8のfull RecordTraceInputを区別する。",
+          "workspace_seed": {
+            "fixed_original": {},
+            "fixed_trace_input": {},
+            "role_material": {},
+            "expected_projection": {}
+          },
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/fixed_original/input",
+              "path": "/role_material/os_f02_candidate"
+            },
+            {
+              "op": "copy",
+              "from": "/fixed_trace_input",
+              "path": "/role_material/os_record_trace_input"
+            }
+          ],
+          "assembly_ja": "fixed_originalはfixed_original pinのGit /cases/3/normal_fixture、fixed_trace_inputはqualified_trace_fixture pinのGit /normal_fixtures/3/inputへ配置する。新CORE publicationはCORE側の独立source-first材料から別importする。候補入力/selected/used全値をCORE bodyへ置換しない。新profile wholeのseed/closed decode/全returnは対L8詳細oracleで独立凍結する。"
+        },
+        "independent_branch_expectations": [
+          {
+            "id": "RECEIVE-POSITIVE",
+            "input_ja": "CORE body formed、同call F02詳細exact、原owner publication有資格、同walk roledecode/全端対応成立",
+            "expected_semantic_proposal": "formed",
+            "preserved_ja": "提案2/選択1/使用0と6facet/全source provenance。OS登録/使用成立なし。"
+          },
+          {
+            "id": "RECEIVE-LEGACY-NO-DETAIL",
+            "input_ja": "旧3wholeの構造body/原F02空axes/findingsのみ",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "旧3whole全値・carrier・有効OS selected/used。F02 positiveを捏造しない。"
+          },
+          {
+            "id": "RECEIVE-EMPTY-EXACT",
+            "input_ja": "独立に凍結したknownempty Nと同F02 positive/有資格publication",
+            "expected_semantic_proposal": "formed with []",
+            "preserved_ja": "not_recomputedは元Nに残り、正根拠は別実F02詳細。missingへ変換しない。"
+          },
+          {
+            "id": "RECEIVE-NA-ONLY",
+            "input_ja": "原NA4/除外/coverage成立、candidate0、同F02 positive",
+            "expected_semantic_proposal": "formed with []",
+            "preserved_ja": "NA全属性/locator/全原partitionとOS選択/使用の別source。"
+          },
+          {
+            "id": "RECEIVE-RESIDUAL-VALID",
+            "input_ja": "固定M3残余+有効兄弟N",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "全残余/有効兄弟relation/両側原因。candidateだけをcompleteにしない。"
+          },
+          {
+            "id": "RECEIVE-UNIVERSE-DEFECT",
+            "input_ja": "構造body形成済み、同F02詳細duplicate/foreign scope/unknown universe",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "原F02 finding/axis/step所在。source資格成功で完全setへ昇格しない。"
+          },
+          {
+            "id": "RECEIVE-TWO-REASONS",
+            "input_ja": "F02元母集合不成立と独立target資格不成立が併存",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "2原因列と有効兄弟の全到達観測。早期return/原因上書きなし。"
+          },
+          {
+            "id": "RECEIVE-EQUAL-REF-TWIN",
+            "input_ja": "同Refのqualified occurrenceとunqualified occurrence。指定原source indexは後者",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "別walk qualification/indices。qualified他walk救済なし。"
+          },
+          {
+            "id": "RECEIVE-COMPOUND-FLAGS",
+            "input_ja": "qualified+conflicting/unresolved、当該recordはconflict除去",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "全非排他flags/原payload/flat除去と実issue index。"
+          },
+          {
+            "id": "RECEIVE-RAW-NOT-DOMAIN",
+            "input_ja": "raw新kindは資格成立、evidence又はdomain roledecodeは型外",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "資格観測を取消さずrole局所失敗とrawを保持、旧OwnerRecordへcastしない。"
+          },
+          {
+            "id": "RECEIVE-OTHER-CALL",
+            "input_ja": "bodyとevidence.context/caller/Nの原binding/値が異なる",
+            "expected_semantic_proposal": "unformed",
+            "preserved_ja": "全左右原値/既知差。samecall boolなし。"
+          },
+          {
+            "id": "RECEIVE-SELECTED-USED-INDEPENDENT",
+            "input_ja": "CORE正常でOS selected/used側に独立原不足",
+            "expected_semantic_proposal": "CORE proposal axis only formed",
+            "preserved_ja": "原selected/used未形成と有効他scope。COREでOS集合を補完しない。"
+          },
+          {
+            "id": "RECEIVE-COMPOUND-VALID-SIBLING",
+            "input_ja": "同source walkに独立別record issueによる複合flagsがあり、当該CORE recordは同origin資格/最終flat/意味対応を全て保っている。",
+            "expected_semantic_proposal": "当該根拠成立時formed",
+            "preserved_ja": "非排他flagsと別record issueを残し、それだけで有効CORE proposalを取消さない。source resolverが当該recordを除外した枝とは別に扱う。"
+          },
+          {
+            "id": "RECEIVE-HEADER-UNREACHED",
+            "input_ja": "CORE publicationのheader port未供給又は返却未観測でsource_candidate未形成。原OS入力と独立した有効source/sectionを同時供給する。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "実input_capture/publicationのheader port/decode診断とreceiving_issuesのpublication_unavailableを指す。未生成sourceの所在や架空evidence行を指さない。",
+            "preserved_ja": "publicationのsource_inputs出現を追加せず、元RecordTraceInput・原OS sourcesと処理済の有効兄弟を保持する。架空walk/claim/rootを生成しない。"
+          },
+          {
+            "id": "RECEIVE-AUTHORITY-UNREACHED",
+            "input_ja": "headerは形成したがauthority port未供給又は返却未観測でpublication.source_candidate未形成。原OSの有効兄弟を同時供給する。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "実input_capture/publicationのauthority port/decode診断とreceiving_issuesのpublication_unavailableを指す。未到達を資格不一致の実観測へ変換しない。",
+            "preserved_ja": "publication source/claim/rootをsource_inputs/resolverへ追加せず、原OS入力/source順・既に処理した兄弟と原CORE port captureを保持する。架空walkを生成しない。"
+          },
+          {
+            "id": "RECEIVE-ROOT-DECODE-UNREACHED",
+            "input_ja": "OS受領profile wrapperのroot decodeが不成立でpublication source処理へ到達しない。",
+            "expected_semantic_proposal": "unreached",
+            "diagnostic_refs_ja": "validation_capture.root_decodeと対応する実root/decode診断を指す。未到達port/record/qualificationの診断出現を捏造しない。",
+            "preserved_ja": "原input_captureを保持し新publication source_inputs出現・架空walk/claim/rootを作らない。既に捕捉した原CORE/OS材料と処理済兄弟があれば保持する。root不成立から未処理兄弟の成功を推測しない。"
+          }
+        ],
+        "negative_controls": [
+          "old SourceSectionValueへevidence任意memberを許可する",
+          "raw payloadをF02 typed domainへ無条件castする",
+          "source有資格だけで母集合exactを認定",
+          "not_recomputedだから全件拒否",
+          "findings空なら全件承認",
+          "candidate入力をCOREbodyで上書きして既知差を隠す",
+          "既存source indexをappend前後で詰め直す",
+          "CORE source失敗でOS全兄弟を無効化する"
+        ],
+        "verification_boundary_ja": "本L9は基本統合oracle設計。旧OS normal全値を保持し、条件付き新branch期待と既存凍結whole/実観測を区別する。新全返却のcanonical/ordered/lengthは対L8詳細freezeで測定する。runtime/trust/配送/保存/全430義務完了の証明ではない。",
+        "qualified_trace_fixture": {
+          "id": "OS-F02-RAW-TRACE",
+          "revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "file_sha256": "edabddc3502387f94330a950a5fbfcaccfd6ac3cd21d3d552e781469bc1733a6",
+          "pointer": "/normal_fixtures/3/input",
+          "canonical_sha256": "8c855654df8f9c5f8c8163b32374018c6f854bd4b87ea4ab7bd319e2de5168f1",
+          "ordered_sha256": "d96b24f98730cb3fd1818c4e2cdb882514f991349862ff4507b9df304ef05227",
+          "role": "fixed_source_snapshot"
+        },
+        "domain_and_kernel_oracles": {
+          "domain_projection": {
+            "input_source_ja": "同有資格raw PublicationRecord.payload.original_trace_sectionの二field原全値と同walk原source_location。",
+            "expected_closed_members": {
+              "ResolvedProposalDomainOccurrence": [
+                "source_location",
+                "domain"
+              ],
+              "ReceivedProposalDomain": [
+                "proposed_refs",
+                "proposed_source"
+              ]
+            },
+            "expected_copy_ja": "domain.proposed_refs/proposed_sourceは元二fieldを全copy、source_locationは同rawの元四index。binding/selected_refs/used_refs/各source/empty basisは元candidate側のField全値、domainに欠落wrapper/defaultを追加しない。"
+          },
+          "legacy_adapter": {
+            "input_type": "ValidatedRecordTrace",
+            "expected_projection": {
+              "source_basis": "legacy_validated(全引数)",
+              "input": "元input",
+              "legacy_domains": "元qualified_records全順",
+              "received_proposals": [],
+              "proposal_basis": {
+                "tag": "legacy_input"
+              }
+            },
+            "expected_output_ja": "旧compare_template_setsの全TraceSectionResult[]と同値。新F02-detail-required gateを旧経路に追加しない。"
+          },
+          "receiver_adapter": {
+            "input_type": "ProposalReceiverComparisonContext",
+            "expected_formed_ja": "元context全値/原input/全base recordを保持し、成立したsource_location一致の2field proposal domainだけを原順で受ける。",
+            "expected_unformed_ja": "received_proposals=[]かつreceived_unformedの全診断を保持。原proposed_refs値を[]へ書換えず有効selected/usedを保存。"
+          },
+          "diagnostic_reference_member": "ProposalReceivingSemanticState.unreached.diagnostic_refs",
+          "limits_ja": "基本oracleの閉型/adapter投影期待。runtime全whole生成やL5/L8詳細同値検証ではなく、既存fixed wholeは変更しない。"
+        }
+      }
     },
     {
       "id": "HELIXOS-L9-002-F03",
@@ -16463,7 +16672,7 @@
             "binding_kind": "candidate_file_bytes",
             "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
             "pointer": "/contracts/5/qualified_source_projection_join",
-            "sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376"
+            "sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2"
           }
         ],
         "base_input": {
@@ -44112,7 +44321,7 @@
             "binding_kind": "paired_current_file_bytes",
             "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
             "pointer": "/contracts/5/qualified_source_projection_join",
-            "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+            "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
             "object_canonical_sha256": "00156a6413c32376a8fe02f9c910699cddfee5107d4e5e525317e608eb91e7b6",
             "meaning": "同一候補pairの現L4 file/object bytesに結ぶ。fixture_base_refの過去L8 bytes、既存source_basisの固定revisionと区別する。"
           },
@@ -50491,7 +50700,7 @@
         "paired_candidate_l4_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/selected_source_member_correspondence",
-          "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+          "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
           "object_canonical_sha256": "2e1ba54d9e5bb2c1287b8464f0babdf9a38e19443026a17315f18ad13db74586",
           "revision_binding": "同一HEADの先行追補L4 bytesと対象objectへ結ぶ。旧f3ea以前のsource_basisと採用撤回した初回HEADは歴史参照として別保持。"
         },
@@ -50571,7 +50780,7 @@
           "normative_basis": {
             "L4": {
               "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
-              "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+              "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
               "binding_kind": "paired_current_file_bytes",
               "json_pointers": [
                 "/contracts/5/selected_source_member_correspondence/return_contract",
@@ -55237,7 +55446,7 @@
         "current_normative_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/source_original_correspondence",
-          "working_bytes_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+          "working_bytes_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
         }

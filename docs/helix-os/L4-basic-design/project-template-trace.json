@@ -475,7 +475,527 @@
         "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
         "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
       ],
-      "output_observation_ref": "HELIXOS-L9-002-F02.expected_observation"
+      "output_observation_ref": "HELIXOS-L9-002-F02.expected_observation",
+      "core_proposal_receiving": {
+        "id": "HELIXOS-L4-002-CORE-PROPOSAL-RECEIVING",
+        "title": "CORE一般提案の同source原比較根拠を保つ受領",
+        "status": "basic_design_candidate_not_runtime_qualification",
+        "requirement_refs": [
+          "HELIXOS-L3-002-F02",
+          "HARNESS-L3-009-F02",
+          "HARNESS-L3-009-F03"
+        ],
+        "paired_oracle_ref": {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "pointer": "/cases/3/core_proposal_receiving_oracles",
+          "revision_binding": "same_design_snapshot"
+        },
+        "core_producer_ref": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange",
+          "revision_binding": "same_design_snapshot"
+        },
+        "source_ledger_ref": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/source_basis",
+          "revision_binding": "same_design_snapshot"
+        },
+        "authority_boundary_ja": "CORE原ownerが提案原sectionと詳細証拠を形成しCONNECTから渡す。OSはCORE private関数を呼ばず、自身のprivate reader/validatorで受領する。selected/used/案件scope/6facetは独立原owner入力へ結び、CORE製品scope/Ref6を変換生成しない。",
+        "private_types": {
+          "ProposalReceiverDiagnosticRef": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "pointer": "JSONPointer"
+            },
+            "meaning_ja": "新ProposalReceivingResult root。CORE GeneralDiagnosticRef/旧OS OriginRootと別namespace。"
+          },
+          "ProposalReceiverSourceLocation": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_occurrence_index": "Natural",
+              "record_index": "Natural",
+              "walk_index": "Natural",
+              "qualified_record_index": "Natural"
+            },
+            "meaning_ja": "同じOS受領walkの原source/原record/実walk/残存flat所在を保持。CORE側snapshot indexとは別。"
+          },
+          "ProposalReceivingEnvelope": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "publication": "CORE CoreProposalPublication",
+              "record_trace_input": "CoreJsonValue"
+            },
+            "meaning_ja": "CONNECT経由の型付きpublication全値と、既存OS入力raw全値。public RecordTraceInput/型/codecを緩めない新private外側carrier。publication未形成でも実captureを失わない。"
+          },
+          "ReceivedProposalEvidence": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_location": "ProposalReceiverSourceLocation",
+              "general_view": "CORE GeneralProposalView",
+              "domain": "ReceivedProposalDomain"
+            },
+            "meaning_ja": "新raw kindの同有資格recordから二段roledecodeした別carrier。CORE Comparisonを旧SourceSectionValueへcastしない。"
+          },
+          "ProposalReceivingSemanticState": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "unreached": {
+                "diagnostic_refs": "ProposalReceiverDiagnosticRef[]"
+              },
+              "unformed": {
+                "diagnostic_refs": "ProposalReceiverDiagnosticRef[]"
+              },
+              "formed": {
+                "source_location": "ProposalReceiverSourceLocation",
+                "proposed_refs": "OSRef4[]",
+                "proposed_source": "OSRef4",
+                "f02_basis_location": "ProposalReceiverDiagnosticRef"
+              }
+            },
+            "meaning_ja": "当該CORE提案集合の原比較成立を受領した局所観測。OS selected/used/Accepted/永続化/実認可の成立でない。"
+          },
+          "ProposalReceivingResult": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "input_capture": "ProposalReceivingEnvelope",
+              "validation_capture": "ProposalExchangeValidationCapture",
+              "evidence_observations": "ReceivedProposalEvidence[]",
+              "semantic_proposal": "ProposalReceivingSemanticState",
+              "trace_analysis": "既存RecordTraceAnalysis全値",
+              "receiving_issues": "既存LocalIssue[]"
+            },
+            "meaning_ja": "構造domain/元比較exactness/同source資格/三集合比較の別軸を全保持する。CORE source失敗で無関係OS sourceを消去しない。"
+          },
+          "ProposalExchangeValidationCapture": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "root_decode": "ProposalReceivingRootDecode",
+              "source_inputs": "ProposalReceivingSourceInput[]",
+              "source_walks": "既存OS SourceWalkOrigin[]",
+              "qualified_occurrences": "ProposalExchangeQualifiedOccurrence[]",
+              "input_issues": "既存LocalIssue[]",
+              "source_issues": "既存LocalIssue[]"
+            },
+            "meaning_ja": "same-walk原資格観測。source occurrence indexはsource_inputsをrootとしbase/source別indexをその目録で対応付ける。型外root時は実処理した観測だけを返し空walkを成功証拠にしない。"
+          },
+          "ProposalExchangeQualifiedOccurrence": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_occurrence_index": "Natural",
+              "record_index": "Natural",
+              "qualified_record_index": "Natural",
+              "record": "ProposalQualifiedRawRecord"
+            },
+            "meaning_ja": "同profile walk conflict除去後の全残存原record出現。base/publicationを識別unionで保持する。"
+          },
+          "ProposalReceivingRootDecode": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "ready": {
+                "input": "既存RecordTraceInput"
+              },
+              "failed": {
+                "input_issues": "既存LocalIssue[]"
+              }
+            },
+            "meaning_ja": "原OS raw root/candidateを旧閉型規範でdecodeした全観測。型外をsource資格失敗へ分類せず、未実施source walkを作らない。"
+          },
+          "ProposalReceivingSourceInput": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "base_source": {
+                "base_source_occurrence_index": "Natural",
+                "value": "既存SourceEnvelope"
+              },
+              "publication_source": {
+                "value": "CORE PublicationSourceCarrier"
+              }
+            },
+            "meaning_ja": "same-walk profile入力目録。base source原順の後にpublication一出現。異なるsource domainを識別unionで保持し旧source型を緩めない。"
+          },
+          "ProposalQualifiedRawRecord": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "base_record": {
+                "value": "既存OwnerRecord"
+              },
+              "publication_record": {
+                "value": "CORE PublicationRecord"
+              }
+            },
+            "meaning_ja": "旧OwnerRecordのpayloadを新evidenceへ開放しない。識別はprofile source入力と同raw kindから得る。"
+          },
+          "ResolvedProposalDomainOccurrence": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_location": "ProposalReceiverSourceLocation",
+              "domain": "ReceivedProposalDomain"
+            },
+            "meaning_ja": "同一raw publication recordから得た2field proposal-domainと、その原source/walk/record/flat所在。OwnerRecordではなく、新domainにraw資格の付替えやsource bytes再生成をしない。"
+          },
+          "ProposalReceiverComparisonContext": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "input": "既存Field<RecordTraceInput>",
+              "validation_capture": "ProposalExchangeValidationCapture",
+              "base_domain_occurrences": "既存QualifiedRecordOriginOccurrence[]",
+              "proposal_domain_occurrences": "ResolvedProposalDomainOccurrence[]",
+              "semantic_proposal": "ProposalReceivingSemanticState"
+            },
+            "meaning_ja": "新private比較context。原candidate/selected/usedをそのまま保持する。新rawを旧ValidatedRecordTraceへcastせず、同walkから解決したdomainと原資格所在を明示的に供給する。"
+          },
+          "ReceivedProposalDomain": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "proposed_refs": "OSRef4[]",
+              "proposed_source": "OSRef4"
+            },
+            "meaning_ja": "資格済新raw record.payload.original_trace_sectionを役割別closed decodeした2fieldだけ。旧OwnerRecord又はF02RecordInput全体へcastせず、binding/selected/used/各source/empty basisを補完しない。"
+          },
+          "TemplateSetKernelSourceBasis": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "legacy_validated": {
+                "value": "既存ValidatedRecordTrace"
+              },
+              "received_context": {
+                "value": "ProposalReceiverComparisonContext"
+              }
+            },
+            "meaning_ja": "adapterが実際に受けた全入力を無変換で保持する別枝。legacy入力に存在しないorigin index/新sourceを捏造せず、received入力をValidatedRecordTraceへcastしない。"
+          },
+          "TemplateSetKernelProposalBasis": {
+            "kind": "closed_tagged_union",
+            "tag": "tag",
+            "ordered_variants": {
+              "legacy_input": {},
+              "received_formed": {
+                "source_location": "ProposalReceiverSourceLocation"
+              },
+              "received_unformed": {
+                "diagnostic_refs": "ProposalReceiverDiagnosticRef[]"
+              },
+              "received_unreached": {
+                "diagnostic_refs": "ProposalReceiverDiagnosticRef[]"
+              }
+            },
+            "meaning_ja": "旧入口は従来原source比較、新入口は指定したCORE publication原所在の意味状態を保持。received_proposals=[]をknown-empty proposed_refs=[]と混同せず、未形成を旧別sourceで救済しない。"
+          },
+          "TemplateSetComparisonKernelInput": {
+            "kind": "closed_record",
+            "ordered_members": {
+              "source_basis": "TemplateSetKernelSourceBasis",
+              "input": "既存Field<RecordTraceInput>",
+              "legacy_domains": "既存OwnerRecord[]",
+              "received_proposals": "ResolvedProposalDomainOccurrence[]",
+              "proposal_basis": "TemplateSetKernelProposalBasis"
+            },
+            "meaning_ja": "共有する三集合・原意味比較kernelの完全入力。元input全体のcandidate/selected/used/Field、旧有資格domain全順序、新2field domainと同walk根拠を独立保持する。資格/roledecodeを実行する関数ではない。"
+          },
+          "TemplateSetComparisonKernelOutput": {
+            "kind": "exact_existing_type_alias",
+            "source_ledger_id": "OS-F02-FN",
+            "pointer": "/type_contract/types/TraceSectionResult",
+            "target": "既存TraceSectionResult[]",
+            "meaning_ja": "既存functions/4の返却と同じ配列。各要素contract_ref/observation/findings/unresolved_source_refs/effect_requestsを全値保持する。observationのF02枝は既存F02RecordObservation、他section結果へ昇格しない。"
+          }
+        },
+        "entry_point": {
+          "symbol": "receive_core_proposal_exchange",
+          "visibility": "OS private",
+          "signature": "ProposalReceivingEnvelope -> ProposalReceivingResult",
+          "effects": "none",
+          "public_boundary_ja": "既存公開RecordTraceInput/OwnerRecord/SourceSectionValue/codecを緩めない。新profileを明示しない経路は旧閉型decodeのまま。"
+        },
+        "raw_to_domain_binding": {
+          "profile": "HELIXOS-F02-core-proposal-exchange",
+          "raw_kind": "core_proposal_exchange",
+          "raw_record_fields": [
+            "subject_ref",
+            "section_key",
+            "record_kind",
+            "payload",
+            "owner"
+          ],
+          "payload_fields": [
+            "original_trace_section",
+            "evidence"
+          ],
+          "raw_type_ja": "CORE-owned PublicationRecordを新private raw carrierとしてdecode。payloadはCoreJsonValue域から役割別decodeし、旧OwnerRecordへのcast/許可member追加をしない。",
+          "domain_ja": "original_trace_sectionだけをReceivedProposalDomainのproposed_refs/proposed_sourceへclosed decodeする。両値は元2field全値をcopyし、source_locationは同raw recordの同walk原所在から引継ぐ。evidenceは別GeneralProposalViewへclosed decodeする。F02RecordInputのbinding/selected_refs/used_refs/selected_source/used_source/used_empty_basisと各Fieldのmissing/null/valueは原OS candidate側に全保持し、新2field domainへfieldを足さない。role失敗でもraw/資格観測を保持する。",
+          "origin_ja": "同一source_inputs目録のraw/header/bytes/root資格→衝突双方除外→残存raw出現→domain/evidence別roledecodeを保持する。source_occurrence_index/record_index/walk_index/flat indexを原出現から引継ぎ、同Ref別walkから再構成しない。旧SourceEnvelope/OwnerRecord/ValidatedRecordTraceへ新rawをcastしない。"
+        },
+        "processing_order": [
+          {
+            "stage": "R0",
+            "rule_ja": "原RecordTraceInputを無変更captureし新profile wrapperだけを外側decode。raw source carrier/claims/roots返却不正は実issueを保持し、新CORE sourceを成功として追加しない。既存OS原sourceは保持する。"
+          },
+          {
+            "stage": "R1",
+            "rule_ja": "publication.source_candidate.formedの場合だけ、そのtyped carrierをsource_inputsのbase source原順末尾へ一出現appendする。原OS sources配列そのものは変更しない。claim/rootは双方の原供給配列を原順で読む同resolver目録に束縛し同Refをdedupeしない。publication typed材料不成立は実port/decode診断を保持し架空source/claim/rootを生成しない。"
+          },
+          {
+            "stage": "R2",
+            "rule_ja": "新profile readerはbase+publicationの同source目録を一回walkし、既存bytes/parse/body/header/Qualification/Root/owner/subject/source/ref/digest照合を使う。新raw kindは新carrierに捕捉し従来F02原recordは従来selectorのまま。型外/未資格/相反は当該出現へ局所化し有効兄弟を残す。"
+          },
+          {
+            "stage": "R3",
+            "rule_ja": "CORE recordのqualification flagsは非排他配列のまま。qualifiedだけで当該targetのconflict除去/未解決を無視せず、逆に複合flagsだけで有効targetを一括拒否しない。指定raw recordと最終残存flat所在の同source/record全対応を確認する。他recordの独立issueは当該有効recordを消さず、unqualified twinをequalRef別walkで救済しない。"
+          },
+          {
+            "stage": "R4",
+            "rule_ja": "有資格新recordのdomain/evidenceを別closed decodeし、raw2fieldとgeneral_view.proposed_body.formed.valueのtyped等値、同I/N/F02 context/slot1 projection、原operation header端、全Ref4 relation原所在を照合する。hash一致を意味/同callの代用にしない。absence/null/型外/未到達の原値を保持する。"
+          },
+          {
+            "stage": "R5",
+            "rule_ja": "同call universe_observationがobservedかつconclusion exact_for_contextで、その原source/boundary/member/candidate照合に必要な全step根拠があり、構造bodyもformedの場合だけsemantic_proposal=formed。F02 incomplete又はnot_observedはcarrier/原issues/valid兄弟を保持してunformed又はunreached。not_recomputedのみの全面拒否、findings=[]全面承認、無関係finding全面拒否をしない。"
+          },
+          {
+            "stage": "R6",
+            "rule_ja": "R5意味成立したReceivedProposalDomainと原source_locationだけを新kernelのreceived_proposalsへ投影する。その他F02RecordInputの全Fieldは原candidate側でそのまま保持。body構造だけの枝ではreceived_proposals=[]とreceived_unformed/unreachedを別に渡し、完全集合emptyを生成しない。新domainをOwnerRecordへcastしない。"
+          },
+          {
+            "stage": "R7",
+            "rule_ja": "adapt_received_template_sets→compare_template_sets_kernelを各一回実施し全TraceSectionResult[]を同analysis形成へ渡す。新proposalと原candidateの差、独立selected/used/provenance/used_empty_basisを比較する。旧ValidatedRecordTraceやsource bytesを偽装せず、原candidateをbodyで上書きしない。"
+          },
+          {
+            "stage": "R8",
+            "rule_ja": "全結果を返す。無関係有効section/原event/未完を保持。新CORE側capture/元F02不成立/OS受領局所issueが併存すれば全原因列を残し、OS053 storage/登録成功/実認可は発生しない。"
+          }
+        ],
+        "namespace_crosswalk": [
+          {
+            "namespace": "CORE attempt source",
+            "index": "source_occurrence_index",
+            "root": "evidence.attempt_capture.request_capture.source_occurrences"
+          },
+          {
+            "namespace": "CORE qualification snapshot",
+            "index": "walk_index/qualified_record_indices",
+            "root": "evidence.attempt_capture.qualification_snapshot"
+          },
+          {
+            "namespace": "OS delivery source",
+            "index": "source_occurrence_index/record_index",
+            "root": "validation_capture.source_inputs（base sourceはinput_capture.record_trace_input原sourcesへの別index対応を保持）"
+          },
+          {
+            "namespace": "OS same walk",
+            "index": "walk_index/qualified_record_index",
+            "root": "validation_capture.source_walks/qualified_occurrences"
+          }
+        ],
+        "six_facet_and_three_set_preservation": {
+          "facets_ja": [
+            "原project/製品scope",
+            "要求identity/revision",
+            "HARNESS契約版",
+            "CORE選択/判定/義務/不足/意味影響と根拠",
+            "BRAIN template identity/version/意味契約revision",
+            "利用状態と原provenance"
+          ],
+          "rules_ja": [
+            "各facetは既存binding/各原sourceと新CORE全captureへ遡る。欠落をheader Refのscopeから補完しない。",
+            "CORE提案とOS選択/実使用の原owner/sourceを相互代用しない。used=[]は原used_empty_basisの有資格観測がある場合だけ空と扱い、未観測/missingと別。",
+            "新profile返却のsemantic_proposal形成はこの接続で受領した提案集合の局所状態であり、OS trace全facetの一括完成boolではない。"
+          ]
+        },
+        "failure_and_partial_rules_ja": [
+          "raw/root decode failure、source局所shape、資格known差/unknown/conflict、roledecode失敗、同call不一致、F02 exactness不足、membership不足、relation不成立を別の原所在で保持する。既存InputIssue/TraceFindingと新profile局所診断のrootを混同しない。",
+          "CORE原F02のincomplete原因はexport evidenceから追跡できる。OS側でsource有資格だから意味もexactだと昇格させない。",
+          "required trace/選択/使用の独立不成立はCORE正常でも残し、CORE未成立で非対象OS/Q兄弟を抑止しない。",
+          "port/header不足を新人間開始gate又はglobal denyにしない。元ownerへの既存不足返却先を保持する。"
+        ],
+        "remaining_ja": [
+          "新private閉型のnative表現、same-walk raw capture/roledecode/共有domain comparatorと全leaf oracleは対L5/L8で具体化する。本L4のsignature/宣言閉型/全branch基本規範をそのまま受け、旧F04profile実行や旧資格fixtureを実接続証拠へ転用しない。",
+          "実原owner authority/CONNECT配送/OS053永続化は本基本静的契約から成立しない。",
+          "CORE詳細positive未観測の旧3wholeは無変更保存し受領側positiveに偽装しない。"
+        ],
+        "functions": [
+          {
+            "symbol": "validate_proposal_exchange_with_origins",
+            "visibility": "OS private",
+            "signature": "ProposalReceivingEnvelope -> ProposalExchangeValidationCapture",
+            "rule_ja": "原OS rootを旧閉型規範へdecodeし、base+publicationを識別した同一source目録の一walkで資格/衝突/原indicesを観測する。旧private validatorを別に二回実行して片方の資格を移さない。"
+          },
+          {
+            "symbol": "compare_received_proposal_sets",
+            "visibility": "OS private",
+            "signature": "ProposalReceiverComparisonContext -> TraceSectionResult[]",
+            "rule_ja": "adapt_received_template_sets(context)を一回形成しcompare_template_sets_kernelを一回呼ぶ。旧fn4が使う同じ三集合/原意味比較kernelへ別typed adapterで接続する。両adapterの全field対応はshared_template_set_comparisonを正本とし、旧fn4署名/返却全値は維持する。"
+          },
+          {
+            "symbol": "build_received_proposal_analysis",
+            "visibility": "OS private",
+            "signature": "ProposalReceiverComparisonContext + actual TraceSectionResult[] -> RecordTraceAnalysis",
+            "rule_ja": "同一比較全返却から旧analysis意味の局所集約を一回形成する。CORE全体/OS使用/保存authorityを生成しない。"
+          }
+        ],
+        "existing_type_binding_ja": "既存RecordTraceInput/SourceEnvelope/OwnerRecord/Field/Ref/LocalIssue/Qualification/QualificationRoot/SourceWalkOrigin/QualifiedRecordOriginOccurrence/TraceSectionResult/RecordTraceAnalysisの完全定義はCORE共通source ledgerの各OS fixed sourceへ束縛する。新typeを既存型aliasと偽称しない。",
+        "semantic_state_branch_table": [
+          {
+            "condition_ja": "OS root decode失敗、又はpublication source_candidateが未形成/未到達で当該source入力を作らない。",
+            "tag": "unreached",
+            "rule_ja": "実root/decode/port診断をdiagnostic_refsで指す。原CORE/OS入力と処理済兄弟を保持し架空walkを作らない。"
+          },
+          {
+            "condition_ja": "publication raw出現を実walkしたがparse/資格/衝突/role/同call/元F02証拠/membership/relationの当該必要端が不成立。",
+            "tag": "unformed",
+            "rule_ja": "到達観測と全独立診断を保持する。role未到達とsemantic未形成を別段階で表す。"
+          },
+          {
+            "condition_ja": "同source同raw body+evidenceの全必要原対応、同F02実詳細exact、membership/全relation成立。",
+            "tag": "formed",
+            "rule_ja": "当該原Ref4提案集合だけを保持する。OS selected/used/全facet/保存成立は別軸。"
+          }
+        ],
+        "receiving_issue_writer": {
+          "ordered_members": [
+            "path",
+            "state",
+            "detail",
+            "backflow_owner",
+            "axis",
+            "source_ref",
+            "related_source_refs"
+          ],
+          "pointer_root": "ProposalReceivingResult",
+          "technical_templates": [
+            {
+              "name": "publication_unavailable",
+              "path": "/input_capture/publication/source_candidate",
+              "state": "unresolved",
+              "detail": "CORE publicationの原source材料が形成されていない。",
+              "axis": "proposal publication"
+            },
+            {
+              "name": "raw_or_role_unformed",
+              "path": "/validation_capture",
+              "state": "invalid_shape",
+              "detail": "原publicationのraw又は役割別domain/evidence型を形成できない。",
+              "axis": "proposal source"
+            },
+            {
+              "name": "same_call_mismatch",
+              "path": "/evidence_observations/{i}",
+              "state": "conflict",
+              "detail": "publicationの提案bodyと同一CORE呼出しの原比較根拠が対応しない。",
+              "axis": "proposal call correspondence"
+            },
+            {
+              "name": "universe_incomplete",
+              "path": "/evidence_observations/{i}/general_view/universe_observation",
+              "state": "unresolved",
+              "detail": "CORE原母集合比較に未解決又は不一致が残り、完全な提案集合を形成できない。",
+              "axis": "proposal universe"
+            },
+            {
+              "name": "universe_not_observed",
+              "path": "/evidence_observations/{i}/general_view/universe_observation",
+              "state": "unresolved",
+              "detail": "同一CORE呼出しの原母集合比較の詳細観測が供給されていない。",
+              "axis": "proposal universe"
+            }
+          ],
+          "rules_ja": [
+            "nameは表識別子で返却codeではない。backflow_ownerはCORE比較/同call問題ではCORE、原source問題ではその原ownerを保持し、owner不明を推定しない。",
+            "source_refは当該実OS sourceがある時だけ元Refを供給し、それ以外はkey省略。related_source_refsは実相反相手全出現、なければ[]。",
+            "source資格/parseの既存issueはvalidation_captureへ同walkの元indexで残す。ここへ重複変換せずsemanticのDiagnosticRefから元実issueを指す。",
+            "iはevidence_observationsの実元index。roledecode失敗で行が存在しない時はその架空iを作らずvalidation_captureの実decode/issueを指す。",
+            "root/publication未到達→source原順→role→同call→F02原根拠の順で独立診断を保持し、有効兄弟を早期returnで消さない。"
+          ]
+        },
+        "shared_template_set_comparison": {
+          "id": "HELIXOS-L4-002-SHARED-TEMPLATE-SET-COMPARISON",
+          "source_bindings": [
+            {
+              "source_ledger_id": "OS-F02-FN",
+              "pointer": "/functions/4/algorithm/0",
+              "role_ja": "三集合を各原sourceへ照合、empty usedの独立有資格basis。"
+            },
+            {
+              "source_ledger_id": "OS-F02-FN",
+              "pointer": "/functions/4/algorithm/1",
+              "role_ja": "identity/revision/意味契約/利用state/HARNESS/CORE根拠、任意fallback/他template補償拒否。"
+            },
+            {
+              "source_ledger_id": "OS-QUAL",
+              "pointer": "/reference_resolution_contract/section_resolution",
+              "role_ja": "原selector/Ref/版/scope/ownerの内容照合と外部意味未解決。"
+            },
+            {
+              "source_ledger_id": "OS-PRECEDENCE",
+              "pointer": "/comparison_precedence",
+              "role_ja": "known差/未解決の併存、原Field保存、局所finding安定順。"
+            },
+            {
+              "source_ledger_id": "OS-F02-FN",
+              "pointer": "/type_contract/types/ValidatedRecordTrace",
+              "role_ja": "旧adapterの全入力正本。"
+            },
+            {
+              "source_ledger_id": "OS-INPUT",
+              "pointer": "/type_contract/types/F02RecordInput",
+              "role_ja": "原candidate側8Fieldのmissing/null/valueを全保持。"
+            },
+            {
+              "source_ledger_id": "OS-OBS",
+              "pointer": "/type_contract/types/F02RecordObservation",
+              "role_ja": "原三集合/provenanceの返却型。"
+            },
+            {
+              "source_ledger_id": "OS-F02-FN",
+              "pointer": "/type_contract/types/TraceSectionResult",
+              "role_ja": "既存配列全返却型。"
+            }
+          ],
+          "kernel": {
+            "symbol": "compare_template_sets_kernel",
+            "visibility": "OS private",
+            "signature": "TemplateSetComparisonKernelInput -> TemplateSetComparisonKernelOutput",
+            "effect": "none",
+            "algorithm_ja": [
+              "source_basisのtagとadapter投影の全値対応を読む。legacy_inputは旧ValidatedRecordTraceのinput/qualified_records/全issue/分類Ref/未解決sectionを元のまま扱う。旧branchへ新F02証拠gateを適用しない。",
+              "inputの原candidate F02RecordInputを既存selectorで読み、bindingと各集合/各source/empty basisのmissing/null/原値をそのまま保持する。received domainをcandidateへ上書きせず、原OS selected/usedとその出所を生成しない。",
+              "legacy_domainsは旧有資格OwnerRecordとして既存F02 selector/原Refへ照合する。received_proposalsは別ReceivedProposalDomainの二fieldだけを指定原source_locationへ照合する。raw shapeや資格を再実行せず、raw資格のbytes/subject/owner根拠はsource_basisの同walkへ辿る。",
+              "legacy_inputでは既存fn4 algorithmの三集合/empty-used/意味facet比較を同じ順/条件で行う。received_formedでは当該新proposal domainのproposed_refs/proposed_sourceを提案側原根拠として比較し、selected/usedは原OS有資格sourceへ既存比較を行う。二つのdomain型を共通OwnerRecordへcastしない。",
+              "received_unformed/unreachedでは新proposal完全集合を返さず、原candidate/既存legacy sourceの観測を保持し、同CORE sourceの実診断から当該提案basisの未形成を保持する。他sourceの正常提案や件数一致でこの受領sourceを補償しない。received_proposals配列が空なことをproposed_refs=[]へ変換しない。",
+              "同sourceのraw反復/同selectorの相反/Ref版scope意味差は全原根拠を保持し、既存source_conflict/比較優先規則に従う。同Refをdedupe/先勝ちで採択せず、既知差と未登録/未知を併記する。",
+              "既存TraceSectionResult[]を元順/安定finding順で返す。F02 observation内の三集合/provenanceと全不足/原因/解消先を保ち、effects/authority/OS使用/保存を新発生させない。"
+            ]
+          },
+          "legacy_adapter": {
+            "symbol": "adapt_validated_template_sets",
+            "signature": "ValidatedRecordTrace -> TemplateSetComparisonKernelInput",
+            "writer": {
+              "source_basis": "legacy_validated{value:引数全値}",
+              "input": "引数.input全値",
+              "legacy_domains": "引数.qualified_records全値/原順",
+              "received_proposals": "literal []（新proposal sourceが存在しないというadapter材料。提案集合emptyという意味ではない）",
+              "proposal_basis": "legacy_input{}"
+            },
+            "call_binding_ja": "既存compare_template_sets(v:ValidatedRecordTrace)->TraceSectionResult[]のpublic署名/旧全値oracleは保持する。内部はadapt_validated_template_sets(v)を一回作りcompare_template_sets_kernelを一回呼ぶ。旧比較を別に再実行せず、kernel返却を無変換で返す。これはL4の実装予定接続であり現L5が既に改修済みとはしない。"
+          },
+          "receiver_adapter": {
+            "symbol": "adapt_received_template_sets",
+            "signature": "ProposalReceiverComparisonContext -> TemplateSetComparisonKernelInput",
+            "writer": {
+              "source_basis": "received_context{value:引数全値}",
+              "input": "引数.input全値（root_decodeの同実入力との全値対応を保持）",
+              "legacy_domains": "引数.base_domain_occurrences各.recordを原順で全copy。元origin列もsource_basis内の原context全値へ保持。",
+              "received_proposals": "semantic_proposal.tag=formedの時だけ、その.source_locationと全indexが一致し同R5を満たすproposal_domain_occurrencesを原順で全copy。それ以外はliteral []、原全domain/captureはsource_basisに保持。",
+              "proposal_basis": "formedならreceived_formed{source_location:元値}、unformedならreceived_unformed{diagnostic_refs:元全列}、unreachedならreceived_unreached{diagnostic_refs:元全列}"
+            },
+            "call_binding_ja": "compare_received_proposal_sets(context)はこのadapter一回→同kernel一回→返却全値。旧compare_template_sets又は旧validatorへ新rawを渡さず、新contextをValidatedRecordTraceへ偽装しない。"
+          },
+          "projection_preservation_ja": "legacy adapter経路の全比較入力は元ValidatedRecordTraceの投影で、全source/診断をsource_basisに残す。新fieldは旧Comparison/public F02RecordInputへ足さない。旧L5/L8との詳細的な全leaf/全whole同値proofは後続pairで実施し、この基本署名の成立を詳細pair完成とはしない。"
+        }
+      }
     },
     {
       "id": "HELIXOS-L4-002-F03",

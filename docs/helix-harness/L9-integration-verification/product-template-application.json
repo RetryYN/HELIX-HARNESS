@@ -11953,6 +11953,302 @@
             "binding[]というnative内domain不備native1のtotal prefix/role/N/診断だけを全値凍結。一般body、他domain failure、実call/実資格、OS受領の完成は認定しない。"
           ]
         }
+      },
+      "general_proposal_exchange_oracles": {
+        "id": "HARNESS-L9-009-GENERAL-PROPOSAL-EXCHANGE",
+        "design_ref": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange",
+          "revision_binding": "same_design_snapshot"
+        },
+        "status": "independent_basic_oracle_design_not_runtime_observation",
+        "source_ledger_ref": {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/source_basis",
+          "revision_binding": "same_design_snapshot"
+        },
+        "old_whole_preservation": {
+          "fixed_revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles/total_attempt_oracles",
+          "file_sha256": "e6ca681a1ffb3ec0b109c6b09387f3b0ca0c181c96b58939ec3583e5b005207a",
+          "rule_ja": "旧front8/旧3success/binding[]のrecipe/全whole/hashを無変更保持。新一般観測へ再分類/逆生成しない。"
+        },
+        "finite_source_imports": [
+          {
+            "id": "FIXED-N",
+            "revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+            "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+            "file_sha256": "e6ca681a1ffb3ec0b109c6b09387f3b0ca0c181c96b58939ec3583e5b005207a",
+            "pointer": "/cases/3/proposal_native_record_material_cases",
+            "canonical_sha256": "f275ba475880dc924b2619f433bf32e5fd0a9095dd0ab769c2ed36152181de9f",
+            "ordered_sha256": "35f3c931abd786500eabc2c06d3c6f86fb107c4019ae498f2c835916bb4d838a",
+            "role": "fixed_source_snapshot"
+          },
+          {
+            "id": "FIXED-OLD-PROVIDER",
+            "revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+            "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+            "file_sha256": "e6ca681a1ffb3ec0b109c6b09387f3b0ca0c181c96b58939ec3583e5b005207a",
+            "pointer": "/cases/3/original_operation_proposal_provider_oracles",
+            "canonical_sha256": "50feb0a464f44062315998b95e17afd12795b08f358b9de5f0b6347d081e26d9",
+            "ordered_sha256": "3afba345a93fcf3323819cdf15871d8569f9bdcd68c5e41731e821c77301c62d",
+            "role": "fixed_source_snapshot"
+          },
+          {
+            "id": "OS-ORIGINAL-F02",
+            "revision": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "file_sha256": "cbc33a5d2f179e52c804f6944d8c906345a92aaa5392bda4094d9a41fc8d56f0",
+            "pointer": "/cases/3/normal_fixture",
+            "canonical_sha256": "5b2739473a11dd2960e31507470fb9fc05723faf0aee9e3e7b64f53908410c73",
+            "ordered_sha256": "2edb581118d3c968290170cf5c3664fcf0f8dba15d7c0c3ee2d4d7be125bd037",
+            "role": "fixed_source_snapshot"
+          }
+        ],
+        "source_first_reconstruction": {
+          "workspace_order": [
+            "fixed_sources",
+            "native_reconstructed",
+            "input",
+            "expected"
+          ],
+          "steps_ja": [
+            "fixed_sourcesは各Git revision/path/raw digestとpointer選択を先に検証して格納。巨大wholeを本文literalへ複製しない。",
+            "固定native recipeのworkspace_seed/completion_opsをその宣言rootでRFC6902実行し/native_reconstructedへ格納。case recipeそのものと再構成expected Nは別物でありhashを相互代用しない。",
+            "Nケース1 unresolved_with_valid_siblingとケース3 missing-result counterfactualは固定recipeをそのまま使い新inputへcopyする。旧Nを実wrapper観測と称さずformerの条件付きactual-return premiseにする。",
+            "新raw relation反復/locator変異は原operation JSONへ標準patchを適用し、明記したUTF8 compact serializationとSHAを合成fixtureとして更新する。資格claim/rootの該当digest依存も同じ独立fixtureとして明示更新する。変更後を旧source不変と称さない。",
+            "新expectedは以下branch規範から独立に著述する。new detail observer/候補runtimeを実行して期待を生成しない。標準copy先parentはseedで先に存在させ、copyはRFC6902 add semantics。value_from等独自opを使わない。"
+          ]
+        },
+        "branch_oracles": [
+          {
+            "id": "GENERAL-native_unreached",
+            "input_role": "role未到達/失敗、native_count=0",
+            "source_rule": "native_unreached",
+            "expected_preservation_ja": "新GeneralOwnerAttemptのsource/role全観測を保持、membership/F02/relationsは未到達。dummyNや旧symbol captureを作らない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unreached"
+          },
+          {
+            "id": "GENERAL-native_unavailable",
+            "input_role": "実Nはあるがproposal unavailable又はcoverage not_observed",
+            "source_rule": "native_unavailable",
+            "expected_preservation_ja": "全N/原unavailable原因を保持。F02の観測が独立にあればそれも保持し、relationは実candidateがある範囲だけ観測。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-known_empty",
+            "input_role": "実観測candidate_member_refs=[]かつtemplate_results=[]、coverage enumerated/covered_as_captured、membership resolved",
+            "source_rule": "known_empty",
+            "expected_preservation_ja": "proposed_refs=[]、proposed_sourceは原operation値。lookup0。not_recomputedは変えず、OS exactnessは別の同F02実詳細で判定。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed"
+          },
+          {
+            "id": "GENERAL-valid_na_only",
+            "input_role": "既存formerが原NA4を根拠にNA除外として形成済み、coverage/membership成立、candidate0",
+            "source_rule": "valid_na_only",
+            "expected_preservation_ja": "refs=[]、全NA4/元Read/NA partitionをNへ残す。raw null/typeoutsideを新NAへ解釈しない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed"
+          },
+          {
+            "id": "GENERAL-mixed_na_candidate",
+            "input_role": "NA除外と有効candidateが共存、coverage/membership成立",
+            "source_rule": "mixed_na_candidate",
+            "expected_preservation_ja": "候補のみRef4へ投影、NA原値はNへ保持。順序/重複candidateを維持。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed_if_all_relations"
+          },
+          {
+            "id": "GENERAL-residual_and_valid",
+            "input_role": "membership residual/unresolved/unformed、又はcoverage incomplete",
+            "source_rule": "residual_and_valid",
+            "expected_preservation_ja": "有効兄弟の全relation観測は継続。candidateだけでset完了や空集合を生成しない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-no_relation",
+            "input_role": "実candidateのkeyに対応するrelationが0",
+            "source_rule": "no_relation",
+            "expected_preservation_ja": "そのcandidateの所在へ局所issue。Ref6からRef4を切り出さない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-repeated_equal_relations",
+            "input_role": "対応relation1件以上、各targetが自身の指定原source occurrenceで個別に有資格、全Ref4値がtyped等値。異なる指定source occurrence間の等値targetも含む。",
+            "source_rule": "repeated_equal_relations",
+            "expected_preservation_ja": "各targetは自分の原source/record/walkで資格を確かめる。全relationを保持し候補1出現へ最小原relation indexのRef4を1件投影。別sourceで有資格でも同値なら可、他walkで未資格twinを救済しない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed_if_other_basis"
+          },
+          {
+            "id": "GENERAL-repeated_different_relations",
+            "input_role": "有資格targetのRef4既知差",
+            "source_rule": "repeated_different_relations",
+            "expected_preservation_ja": "全target/既知差/各資格を保持、first/last/majority勝者なし。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-locator_unformed",
+            "input_role": "locator欠落/null/型外/不正pointer/範囲外/未到達",
+            "source_rule": "locator_unformed",
+            "expected_preservation_ja": "欠落/null/型外と未到達を区別し、各実段階だけを記録。未parseの資格やtarget読取を捏造しない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-compound_source_flags",
+            "input_role": "同target walkにqualified+conflicting/unresolved等の複合flags。target原recordが残存する枝と除外される枝を区別。",
+            "source_rule": "compound_source_flags",
+            "expected_preservation_ja": "全flags保持。当該recordの同source原index→最終flat所在と独立資格対応を確認し、除外/当該未解決なら採用不可。他recordの独立issueだけで有効targetを取消さず、equalRef他walkから救済しない。qualified空sourceは資格観測として保持するがtarget存在とは別。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed_if_target_survives_all_required_checks"
+          },
+          {
+            "id": "GENERAL-multiple_obstructions",
+            "input_role": "membership不足とrelation不成立等が同時に存在",
+            "source_rule": "multiple_obstructions",
+            "expected_preservation_ja": "独立に到達可能な全観測/局所issueを規範順で残す。早期returnで第二理由又は有効兄弟を消去しない。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "unformed"
+          },
+          {
+            "id": "GENERAL-exactness_defect",
+            "input_role": "同F02詳細のuniverse/source/boundary/member/semantic比較にdifferent/unresolvedが残る",
+            "source_rule": "exactness_defect",
+            "expected_preservation_ja": "body構造を保持してもOSのcomplete proposedはunformed。原F02 steps/axes/findingsを同source evidenceへ渡す。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "structural_formed_allowed"
+          },
+          {
+            "id": "GENERAL-exactness_unobserved",
+            "input_role": "旧N/旧Comparisonのみで実F02詳細が未取得",
+            "source_rule": "exactness_unobserved",
+            "expected_preservation_ja": "universe_observation=not_observed。空axes/findingsからpositiveを捏造せず、OS complete proposedは未形成。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "structural_formed_allowed"
+          },
+          {
+            "id": "GENERAL-exactness_positive",
+            "input_role": "同call F02実詳細全必要照合が成立しmembership/全relationも成立",
+            "source_rule": "exactness_positive",
+            "expected_preservation_ja": "同source publication/OS同walk確認後に当該提案集合の形成を観測可能。F03 conditional/NA原値とOS selected/usedは独立。",
+            "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
+            "execution_state": "not_executed",
+            "body_branch_constraint": "formed"
+          }
+        ],
+        "f02_detail_oracles": [
+          {
+            "id": "F02-POSITIVE",
+            "premise_ja": "同scopeの有資格母集合/境界/各member/TemplateSnapshot/同意味比較根拠が原入力として供給され同一F02実比較が成立する。",
+            "expected_projection": "旧comparison全値",
+            "expected_detail": "observed/exact_for_context",
+            "required_ja": "全source/boundary/member/逆candidate照合stepに実左右所在。件数/空findingsだけを根拠にしない。"
+          },
+          {
+            "id": "F02-UNKNOWN",
+            "premise_ja": "原universe=null又は必要boundary/source/同意味根拠が未解決。",
+            "expected_detail": "observed/incomplete",
+            "forbidden": "exact_for_context/[]default"
+          },
+          {
+            "id": "F02-DUPLICATE",
+            "premise_ja": "原candidate/memberにduplicate identity又はforeign revision/product。",
+            "expected_detail": "observed/incomplete",
+            "required_ja": "元失敗finding/axisと相反全出現/有効兄弟を保持。"
+          },
+          {
+            "id": "F02-LEGACY-NO-DETAIL",
+            "premise_ja": "固定旧normal Comparison原axes=[]/findings=[]だけがある。",
+            "expected_detail": "not_observed",
+            "forbidden": "旧N/empty findingsからpositiveを新生成。"
+          },
+          {
+            "id": "F02-UNRELATED-FINDING",
+            "premise_ja": "同F02必要比較は成立し、別axisの独立findingが存在。",
+            "expected_detail": "exact_for_contextは当該照合次第",
+            "forbidden": "findings=[]一律gate/他scope失敗で一括取消し。"
+          },
+          {
+            "id": "F02-EXPLICIT-EMPTY-VS-UNOBSERVED",
+            "premise_ja": "同bindingの有資格原CandidateUniverse.members=[]と、原universe/source未観測の対照。",
+            "expected_detail": "前者は必要境界比較成立時exact_for_context、後者はincomplete又はnot_observed",
+            "forbidden": "空candidate配列だけをpositiveの代用にする。"
+          }
+        ],
+        "publication_oracles": [
+          {
+            "id": "PUB-BOUND",
+            "expected_ja": "供給headerの独立source/subject/qual Refと原operation端を保持し、同source payloadに内部body+全evidenceを置く。"
+          },
+          {
+            "id": "PUB-MISSING-HEADER",
+            "expected_ja": "port全raw+実局所issue、source_candidate unformed、OS兄弟有効。仮identity生成なし。"
+          },
+          {
+            "id": "PUB-MISMATCH-OWNER-REV-SCOPE",
+            "expected_ja": "供給header/claim/rootのknown差とunknownを分離し全理由保持。別版/別scopeを補完しない。"
+          },
+          {
+            "id": "PUB-BODY-TWIN",
+            "expected_ja": "raw publicationのbody又はevidenceだけ変異しdigest/資格を据置くtwinは同walkで不成立。別source同Ref資格救済なし。"
+          }
+        ],
+        "negative_controls": [
+          "body formed+F02 incompleteをOS completeとして扱う実装",
+          "unresolved siblingを捨てvalid siblingだけでcomplete setを形成",
+          "NAだけをmissing/emptyと同一視",
+          "反復relationの最初だけを読む",
+          "相反/未解決をexclusive flagへ縮約",
+          "異なるoperation/caller F02詳細を同callとみなす",
+          "新source identityをraw hash又はRef6 stripから作る",
+          "新CORE privateをOSから直呼びする"
+        ],
+        "unfrozen_ja": [
+          "knownempty/NA-only/複合relationの全native wholeは既存固定coverageで未行使。本基本branchの独立期待と既存wholeの存在を区別する。",
+          "新F02詳細positiveとpublication/receiver全返却はL5/L8詳細authoringで独立seed/標準ops/全leaf hashを凍結する。現段階で全whole凍結又は実qualify完了を宣言しない。"
+        ],
+        "base_adoption": {
+          "authoring_base": "e06b356ce214bf84234f5575bc9b313d0b24ce26",
+          "base_initial_role": "candidate_at_task_start",
+          "adopted_main_revision": "a4d974badec401dffffc9020eac189fd5283396a",
+          "binding_ja": "当初candidate e06はPR3420で採択された。新4childは今回候補でありadopted mainで過去存在したと称さない。"
+        },
+        "relation_origin_oracles": [
+          {
+            "id": "RELATION-DISTINCT-QUALIFIED-SOURCES-EQUAL",
+            "premise_ja": "一candidateに対し異なる原source occurrenceを指定する二relationがあり、各targetが自身のwalkで有資格/残存し全Ref4が等値。",
+            "expected_ja": "両relation/両原source所在を保持し、candidate Ref4は最小原relation indexの値一件。他の必要body根拠が成立すればformed。",
+            "execution_state": "not_executed"
+          },
+          {
+            "id": "RELATION-DISTINCT-SOURCE-UNQUALIFIED-TWIN",
+            "premise_ja": "前者の一targetだけ自身の指定原sourceで未資格。もう一targetは等値Ref4かつ有資格。",
+            "expected_ja": "全到達観測を保持し当candidate native_ref4 unformed。等値他sourceで未資格targetを救済せずbody完全集合を形成しない。",
+            "execution_state": "not_executed"
+          }
+        ]
       }
     }},
     {
@@ -92065,7 +92361,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+            "candidate_l4_bytes_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -142567,7 +142863,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -157335,7 +157631,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -175215,7 +175511,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -193048,7 +193344,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510"
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -221038,7 +221334,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -308538,7 +308834,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -312181,7 +312477,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/selected_brain_source_occurrence_contract",
       "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -312765,15 +313061,15 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_source_caller_contract",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d"
     },
     "detail_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
-      "canonical_sha256": "df6128b52cdef6e1a9d371791e33005911c31bb713963ab6848df41c97186f72"
+      "sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+      "canonical_sha256": "7edc7902e642a798c96d60e815b9dbd2b2cb685b1783c01c62139644bcbd80c8"
     },
     "expectation_basis": {
       "independent_oracle": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis.json",
@@ -313125,7 +313421,7 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_contract",
       "id": "HARNESS-L4-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "canonical_sha256": "fb8477a51a0819953e8674b8330e7d0cfafd5f08c7e116662c63e23b478a0b04",
       "binding_kind": "current_candidate_content_binding"
     },
