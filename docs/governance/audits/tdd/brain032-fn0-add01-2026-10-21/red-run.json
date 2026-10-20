@@ -1,0 +1,46 @@
+{
+  "phase": "Red",
+  "revision": "f70f5e5838f1e4cacc5ff9db14f484a1765fa21d",
+  "started_at_utc": "2026-10-20T17:12:29.076107+00:00",
+  "finished_at_utc": "2026-10-20T17:12:29.130195+00:00",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_supply_input.py",
+    "-k",
+    "test_add01_string_input_is_rejected",
+    "-v"
+  ],
+  "exit_code": 1,
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/red.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/red.stderr.log",
+    "sha256": "4a14d83b10d2f1c196a6d3c327b819d3c612516fcb96e2b04e77ae3144bcdc28"
+  },
+  "test_file_bytes_sha256": "199003a8d0f48241e0bfa0caa1f7b407731ea4cd46d3f437f7076637408693d4",
+  "source_file_bytes_sha256": "38869ee7b4750230ee23ba8ec7357563278e3d23d99c8a091a1676c04d992946",
+  "selected_test": "TestSupplyInput.test_add01_string_input_is_rejected",
+  "expected_semantic_red_observed": true,
+  "failure_cause": "InputIssue診断未実装のため空input_issuesが少なくとも1件の独立期待へ失敗。collection/import/setupは正常。",
+  "unobserved": [
+    "normal/null input",
+    "source bytes/qualification",
+    "fn1/F02",
+    "whole suite",
+    "CI",
+    "all external side effects"
+  ]
+}

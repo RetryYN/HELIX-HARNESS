@@ -1,0 +1,14 @@
+test_add01_string_input_is_rejected (test_supply_input.TestSupplyInput.test_add01_string_input_is_rejected) ... FAIL
+
+======================================================================
+FAIL: test_add01_string_input_is_rejected (test_supply_input.TestSupplyInput.test_add01_string_input_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_supply_input.py", line 68, in test_add01_string_input_is_rejected
+    self.assertNotEqual(validated["input_issues"], [])
+AssertionError: [] == []
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)
