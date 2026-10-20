@@ -9,7 +9,8 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "6647d7f621bdb9459cac61509e8ca90540d0fb75c54b71a297e076d4be397418"
+    "sha256": "b7f1c2d1c2f63c4019d9cbe31e9ab4f4be262d6a1fef22034a4b33a7826b3dfd",
+    "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
     "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",

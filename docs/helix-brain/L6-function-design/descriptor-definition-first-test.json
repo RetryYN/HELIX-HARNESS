@@ -23,7 +23,8 @@
   "working_unit_binding": {
     "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
     "pointer": "/first_local_unit_binding",
-    "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+    "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+    "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "function_contract_ref": {
     "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
