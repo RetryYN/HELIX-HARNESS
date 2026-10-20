@@ -21003,6 +21003,6 @@
       }
     ],
     "restoration_order": "copy適用→value_reference_contractの全値pointer/hash照合",
-    "consumer_connections": "shared_values内部の204参照はkey値のみでobservation member位置を指さない"
+    "consumer_connections": "本fileのcases/function_io配下の204 local value_refはshared_values親の完全値pointer/hashへ結ぶ。observation memberを外から直接読む参照ではなく、41 copyで全親値を復元してから既存value_ref/hash照合へ渡す。実reader/全consumer閉包の成立は主張しない。"
   }
 }
