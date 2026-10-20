@@ -153012,7 +153012,7 @@
     "form": "各scope memberは{\"envelope_recipe\":{\"base_pointer\": \"/normal_fixtures/4/input\", \"patch\": [{\"op\":\"copy\",\"from\":\"/sources/0\",\"path\":\"\"}]}}の記録形を持つ。復元は同一文書snapshot内のbase_pointer literalだけをRFC6901で解決し、深い複製へRFC6902 copyを適用してrootの全object値を戻す。member位置・型・他memberは変えない。",
     "materialized_canonical_sha256": "6183ce29289d1a9a0e7c5643bd63f899590434f0e730b3f1190502d636c147f8",
     "restore_order": "scope_pointers記載順。各siteは同じroot値へ独立に復元され共有aliasを作らない。",
-    "consumer_read_positions": "scope_pointersの4member位置が現行consumerの読取り位置。文書内外で当該memberへの文字列pointer参照は見つからず、位置構造として読む既存consumerのみ。",
+    "consumer_read_positions": "scope_pointersは復元後の論理読取位置である。呼出引数・expected outputをSourceEnvelopeとして読む前に、この同一snapshotのmaterializationを適用する。記述した位置は実装済みreader又は実consumer互換性の証明ではない。物理descriptorをSourceEnvelopeとして直接decodeしない。",
     "hash_and_bytes": "rootのsource_json_utf8原bytesとsource_sha256、全5envelopeのcanonical SHA-256は復元後も不変。他input/Context/expected output・順序・反復・欠落/nullも不変。",
     "preservation": "root literal・独立期待・資格根拠・履歴pin・全hashを保持。逆変換で元文書全値へ戻る。",
     "authority_effect": "なし。新domain resolver・DSL・実行コード・gateは追加しない。"
