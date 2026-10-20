@@ -7375,5 +7375,21 @@
       "l9_source_case_pointer": "/verification_obligations/0/concrete_cases/6",
       "scope": "記号的な対応表。入力とnative全返却は固定Gitのsource参照から得る。"
     }
-  ]
+  ],
+  "candidate_l9_materialization_binding": {
+    "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+    "recipe_pointer": "/materialization_contract",
+    "raw_file_binding_pointer": "/candidate_l9_owner_return_binding/file_sha256",
+    "logical_binding_pointers": [
+      "/candidate_l9_owner_return_binding/object_canonical_sha256",
+      "/owner_return_symbolic_cases/*/l9_symbolic_condition_canonical_sha256"
+    ],
+    "order_ja": [
+      "先にraw_file_binding_pointerの現行L9 raw SHA-256を照合する。fixed source_pins/過去凍結snapshotは書き換えない。",
+      "同じraw candidateのrecipe_pointerにある14個の標準RFC6902 copyをfixture構築時に原順で適用し、conditions1〜7のmapping2項目をcondition0から復元する。condition8・native_call・個別入力source・独立expectedは変更しない。",
+      "上記logical_binding_pointersの既存canonical hashは展開後の同じowner_return subtree/各conditionに対する凍結値である。全9conditionの元hashを維持し、物理placeholderのhashで代用しない。",
+      "展開後の全値と原順を元のL8 frozen_symbolic_expected/既存typed入力・照合へ渡す。recipe自体を製品引数にせず、新しい実行時resolverやauthorityを作らない。"
+    ],
+    "boundary_ja": "L8の現行L9 metadata/論理fixture構築の接続説明。F01の別bindingと歴史pinを保持し、実reader・製品実行・全consumer閉包の成立は含まない。"
+  }
 }
