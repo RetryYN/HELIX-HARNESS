@@ -1,0 +1,74 @@
+{
+  "phase": "Refactor regression",
+  "revision": "06928e7208c5d001c17740ced1257565d8830191",
+  "base_revision": "dd65cc6a84a1a2b5b589b006ef7c6d66d4998268",
+  "issue": 3139,
+  "started_at_utc": "2026-10-20T17:27:33.983724+00:00",
+  "finished_at_utc": "2026-10-20T17:27:34.025259+00:00",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_supply_input.py",
+    "-k",
+    "test_add01_string_input_is_rejected",
+    "-v"
+  ],
+  "exit_code": 0,
+  "selected_test": "TestSupplyInput.test_add01_string_input_is_rejected",
+  "frozen_oracle_unchanged": true,
+  "regression_only": "ADD01を再実行。source/fn1の5製品testは未凍結・未実行。既存Green時の製品実装は変えていない。",
+  "transformation": "未凍結2moduleのL8読込と正常対照のコピーをsupply_input_fixturesへ抽出。変異・期待値・assertionは各consumerに保持。",
+  "observed_maintenance_change": {
+    "fixture_path_definitions_before": 3,
+    "fixture_path_definitions_after": 2,
+    "changed_consumer_modules": 2,
+    "new_fixture_reader_modules": 1,
+    "net_python_lines": 3,
+    "meaning": "行数削減ではなく未凍結2consumerの入力準備の変更点を一箇所へ集約。凍結test側の重複は残る。速度や将来変更工数の改善は未計測。"
+  },
+  "static_and_setup_checks": {
+    "test_source_integrity.py": {
+      "unchanged_non_setup_methods": 2,
+      "input_and_setup_equivalence": true
+    },
+    "test_descriptor_definitions.py": {
+      "unchanged_non_setup_methods": 7,
+      "input_and_setup_equivalence": true
+    },
+    "copy_isolation": true,
+    "production_code_unchanged": true,
+    "frozen_add01_file_sha256": "199003a8d0f48241e0bfa0caa1f7b407731ea4cd46d3f437f7076637408693d4",
+    "product_methods_executed": false,
+    "scope": "fixture helpers, setUp and existing input construction only; product import excluded by AST, not a product-test pass"
+  },
+  "check_limits": "入力準備の同値性は製品importを除いたASTで旧/新の読込・setUp・入力構成だけを実行し照合した。5製品testの合格ではない。照合driverはrepositoryに収載していないため、本recordだけでその手続き全体の再実行はできない。",
+  "legacy_basis": {
+    "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+    "sections": [
+      "§0",
+      "§1"
+    ],
+    "kept": "consumer/oracle/入出力の意味保存、実在する重複のcommonize",
+    "changed": "現在のBRAIN032 test入力準備だけへ意味を再導出。旧DB/runtime/固定role/gateは移植しない。"
+  },
+  "deferred": "巨大JSONの分割・意味owner/参照の整理はFT-DESIGN-REFACTOR-001の継続範囲。本差分で製品Refactor・全体整理を完了としない。",
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/refactor.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/refactor.stderr.log",
+    "sha256": "1fa43b02d8bf84c8257444d1b0ccf44ac850f0d3345842b24a0fdb87c8e40599"
+  }
+}

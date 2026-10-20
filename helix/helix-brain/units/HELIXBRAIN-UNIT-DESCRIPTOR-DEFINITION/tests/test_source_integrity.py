@@ -12,36 +12,21 @@ Cases:
       unrelated supplied sources are preserved. Concrete mutation at
       /input_structure_verification/semantic_boundary_cases/2.
 
-Static proposal only: not executed in this lane. No stub, mock or
-new helper; stdlib + dict only. Input documents must not be mutated
-by the validator.
+Static proposal only: product cases have not been executed. Input
+preparation is shared; mutations and independent assertions stay here.
+Input documents must not be mutated by the validator.
 """
 
 import copy
-import json
-from pathlib import Path
 import unittest
 
 from descriptor_definitions import validate_supply_input
-
-REPOSITORY = Path(__file__).resolve().parents[5]
-L8_PATH = REPOSITORY / "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
+from supply_input_fixtures import base_input, load_document
 
 # 既存L5 /functions/0、L8 /additional_unit_cases/3、
 # /input_structure_verification/semantic_boundary_cases/2、
 # 分割fixture /materials/2/expected_validated が独立basis。
 # test未凍結・未実行。実owner資格/全fn0/意味unknown/F02/全IO0は未証明。
-
-
-def load_document():
-    with open(L8_PATH, "rb") as fh:
-        return json.loads(fh.read().decode("utf-8"))
-
-
-def base_input(document):
-    return copy.deepcopy(
-        document["fixture_contract"]["normal_control"]["input"]
-    )
 
 
 def add04_input(document, assertions):
