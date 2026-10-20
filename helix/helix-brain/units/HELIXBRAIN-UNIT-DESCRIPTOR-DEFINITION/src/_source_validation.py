@@ -70,6 +70,19 @@ def _issue(locator, reason, source_ref):
     return [{"locator": locator, "reason": reason, "source_ref": copy.deepcopy(source_ref)}]
 
 
+def _qualification_same(left, right):
+    """同じ資格recordの対応。Refの所在表記をidentityへ混ぜない。"""
+    for key in ("ref", "subject_ref", "root_ref", "subject_sha256", "applicable_scope", "qualification_body"):
+        if (key in left) != (key in right):
+            return False
+        if key not in left:
+            continue
+        compare = _ref_same if key in ("ref", "subject_ref", "root_ref") else _json_equal
+        if not compare(left[key], right[key]):
+            return False
+    return True
+
+
 def _check_original_content(source, source_path, ref):
     """原bytes/bodyの対応を検査し、測定digestと診断を返す。"""
     if "content_bytes" not in source:
@@ -98,7 +111,7 @@ def _check_qualification(source, qualifications, roots, source_path, ref, measur
     if not matches:
         return _issue(source_path + "/qualification_ref", "Qualification reference is unresolved.", ref)
     qualification_index, qualification = matches[0]
-    if any(not _json_equal(qualification, other) for _, other in matches[1:]):
+    if any(not _qualification_same(qualification, other) for _, other in matches[1:]):
         return _issue(source_path + "/qualification_ref", "Qualification reference has conflicting records.", ref)
     qualification_path = "/qualifications/" + str(qualification_index)
     if not _ref_same(qualification.get("subject_ref"), ref):
