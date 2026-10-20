@@ -2869,7 +2869,7 @@
         }
       }
     },
-    "note": "各IDの全出現をline/半開byte位置/観測構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し、意味roleは群共通の未裁定として保持。同IDだけで意味同等・承認を宣言しない。原文・同じunknown/hashを反復しない。"
+    "note": "各IDの全出現をline/半開byte位置/観測構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し、意味roleは群共通の未裁定として保持。同IDだけで意味同等・承認を宣言しない。原文・同じunknown/hashを反復しない。 locator.byteは固定UTF-8原文上のliteral先頭で、各範囲は[byte, byte + locator map keyのUTF-8 byte長)。同じ行内での文字数とbyte数を混同しない。mapは登録suffixを含む観測literalを保持するため、distinct_idsは要求数・初期採択28件とは別の集合の件数である。"
   },
   "direct_consumers": {
     "static_references": [
@@ -3209,5 +3209,6 @@
     "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
     "後続decision網羅・全consumer閉包は未確認として保持",
     "ScaffoldBinding/hash追随はroot検収責務"
-  ]
+  ],
+  "frontmatter_range_semantics": "start_byte/end_byteはUTF-8半開範囲で、endはclosing ---行のLFを含む。start_line/end_lineは1始まり包含範囲。直後のblankはfrontmatterに含めず、全量span partitionの先頭範囲では保持する。"
 }
