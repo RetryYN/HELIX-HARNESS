@@ -6414,11 +6414,35 @@
       "visibility": "private",
       "signature": "(packet:F03Arguments.packet, context:F03Arguments.context, basis:F03SourceBoundInput.basis) -> F03SourceBoundReturn",
       "reference_notation": "既存finite_referenceと同じPython風pure有限参照記法。free定数role/field mapは同nodeの表へ束縛。製品実装・実行済み評価器ではない。",
-      "reference_definition": "def compare_f03_source_bound_candidate(packet,context,basis):\n input_capture={'packet':copy.deepcopy(packet),'context':copy.deepcopy(context),'basis':copy.deepcopy(basis)}\n native_return=compare_f03(packet,context)\n source_attribute_results={}\n for role in declared11_role_order:\n  src=basis['condition_sources'][role]\n  source_attribute_results[role]=compare_source_attributes(src['attributes'],source_attributes_arguments_default)\n binding_results={}\n for role in declared11_role_order:\n  src=basis['condition_sources'][role]\n  binding_results[role]={'subject':compare_value(src['subject'],basis['selected_target']),'payload':compare_value(src['value'],packet['canonical_decision'] if role=='canonical' else packet[role_to_packet_field[role]])}\n presentation='source_bound_candidate_only'\n author_returns=[]\n actual_dispatch=False\n target_scope_result=compare_value(context['scope'],basis['selected_target']['scope'])\n return {'input_capture':input_capture,'native_return':native_return,'source_attribute_results':source_attribute_results,'binding_results':binding_results,'presentation':presentation,'author_returns':author_returns,'actual_dispatch':actual_dispatch,'target_scope_result':target_scope_result}"
+      "reference_definition": "def compare_f03_source_bound_candidate(packet,context,basis):\n input_capture={'arguments':{'packet':copy.deepcopy(packet),'context':copy.deepcopy(context)},'basis':copy.deepcopy(basis)}\n native_return=compare_f03(packet,context)\n source_attribute_results={}\n for role in declared11_role_order:\n  source_attribute_results[role]=compare_source_attributes(basis['sources'][role]['attributes'],basis['source_requirements'][role])\n binding_results={}\n for role in declared11_role_order:\n  src=basis['sources'][role]\n  field=role_to_packet_field[role]\n  value_result=compare_value(src['value'],packet[field],'same_value')\n  subject_results={'identity':compare_value(src['subject']['identity'],basis['selected_target']['identity'],'known'),\n                   'revision':compare_value(src['subject']['revision'],basis['selected_target']['revision'],'known'),\n                   'scope':compare_value(src['subject']['scope'],basis['selected_target']['scope'],'known')}\n  if subject_results['revision']=='conflict':\n   subject_results['revision']='stale'\n  binding_results[role]={'argument_pointer':'/input_capture/arguments/packet/'+field,'source_pointer':'/input_capture/basis/sources/'+role,'value_result':value_result,'subject_results':subject_results}\n diagnostic_refs=[]\n for role in declared11_role_order:\n  sr=source_attribute_results[role]\n  for fname in ('identity','revision','scope','condition'):\n   if isinstance(sr,dict) and fname in sr and sr[fname]!='known' and sr[fname]!='supported_synthetic_condition':\n    diagnostic_refs.append('/source_attribute_results/'+role+'/'+fname)\n  br=binding_results[role]\n  if br['value_result']!='same_value':\n   diagnostic_refs.append('/binding_results/'+role+'/value_result')\n  for f in ('identity','revision','scope'):\n   if br['subject_results'][f] not in ('known','stale'):\n    diagnostic_refs.append('/binding_results/'+role+'/subject_results/'+f)\n   elif f=='revision' and br['subject_results'][f]=='stale':\n    diagnostic_refs.append('/binding_results/'+role+'/subject_results/revision')\n target_scope_result=compare_value(basis['selected_target']['scope'],context['scope'],'known')\n if target_scope_result!='known':\n  diagnostic_refs.append('/target_scope_result')\n if not native_return['candidate_presentable']:\n  for ckey in native_return['condition_results']:\n   if native_return['condition_results'][ckey]!='supported_synthetic_condition':\n    diagnostic_refs.append('/native_return/condition_results/'+ckey)\n if len(diagnostic_refs)>0:\n  presentation={'state':'not_presentable','diagnostic_refs':diagnostic_refs}\n else:\n  presentation={'state':'source_bound_candidate_only','diagnostic_refs':diagnostic_refs}\n author_returns=[]\n for role in declared11_role_order:\n  br=binding_results[role]\n  refs=[]\n  if br['value_result']!='same_value':\n   refs.append('/binding_results/'+role+'/value_result')\n  for f in ('identity','revision','scope'):\n   if br['subject_results'][f]!='known':\n    refs.append('/binding_results/'+role+'/subject_results/'+f)\n  for ref in refs:\n   author_returns.append({'recipient_role':'target_creator','target_pointer':'/input_capture/basis/selected_target','condition_role':role,'reason_pointer':ref})\n actual_dispatch=False\n return {'input_capture':input_capture,'native_return':native_return,'source_attribute_results':source_attribute_results,'binding_results':binding_results,'presentation':presentation,'author_returns':author_returns,'actual_dispatch':actual_dispatch,'target_scope_result':target_scope_result}"
     },
     "bound_tables": {
-      "declared11_role_order": "同node source_bindingの既存11 role宣言順を束縛する定数表。外部providerへ解決しない。",
-      "role_to_packet_field": "role→既存packet fieldの局所対応表。canonicalのときのみpacket['canonical_decision']を対応させる。旧入力に暗黙追加しない。"
+      "declared11_role_order": [
+        "canonical",
+        "internal",
+        "required_consumers",
+        "observed_consumers",
+        "signature_before",
+        "signature_after",
+        "behavior_invariant",
+        "minimum_transform",
+        "rollback",
+        "semantic_basis",
+        "operation_boundary"
+      ],
+      "role_to_packet_field": {
+        "canonical": "canonical_decision",
+        "internal": "visibility",
+        "required_consumers": "required_consumers",
+        "observed_consumers": "observed_consumers",
+        "signature_before": "signature_before",
+        "signature_after": "signature_after",
+        "behavior_invariant": "behavior_invariant",
+        "minimum_transform": "minimum_transform",
+        "rollback": "rollback",
+        "semantic_basis": "evidence_basis",
+        "operation_boundary": "requested_effect"
+      }
     }
   }
 }
