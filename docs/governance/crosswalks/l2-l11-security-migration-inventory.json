@@ -1128,846 +1128,1386 @@
     "current_vs_adopted": "current sourceはadopted blobの追補を含む。採択時とcurrentの差を自動承認しない"
   },
   "identity_index": {
-    "own_id_full_map": {
+    "source_pins": {
       "L2": {
-        "distinct_ids": 35,
-        "prefix": "HELIXSECURITY-L2-",
-        "observations": {
-          "HELIXSECURITY-L2-001": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 39,
-              "byte": 4116,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-002": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 40,
-              "byte": 4205,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-003": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 41,
-              "byte": 4293,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-004": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 42,
-              "byte": 4387,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-005": {
-            "occurrences": 4,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 43,
-              "byte": 4470,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-006": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 44,
-              "byte": 4545,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-007": {
-            "occurrences": 4,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 45,
-              "byte": 4617,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-008": {
-            "occurrences": 6,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 46,
-              "byte": 4709,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-009": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 47,
-              "byte": 4783,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-010": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 48,
-              "byte": 4863,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-011": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 49,
-              "byte": 4925,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-012": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 50,
-              "byte": 4991,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-013": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 51,
-              "byte": 5064,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-014": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 52,
-              "byte": 5132,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-015": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 53,
-              "byte": 5226,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-016": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 54,
-              "byte": 5344,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-017": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 55,
-              "byte": 5462,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-018": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 56,
-              "byte": 5539,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-019": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 57,
-              "byte": 5613,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-020": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 58,
-              "byte": 5686,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-021": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 59,
-              "byte": 5786,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-022": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 60,
-              "byte": 5941,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-023": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 61,
-              "byte": 6070,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-024": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 62,
-              "byte": 6185,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-025": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 63,
-              "byte": 6302,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-026": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 64,
-              "byte": 6427,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-027": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 65,
-              "byte": 6575,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-028": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 66,
-              "byte": 6679,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-029": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 405,
-              "byte": 55549,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-030": {
-            "occurrences": 1,
-            "roles": [
-              "heading"
-            ],
-            "first": {
-              "line": 417,
-              "byte": 59568,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-031": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 427,
-              "byte": 62654,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-032": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 447,
-              "byte": 72923,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-033": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 455,
-              "byte": 75050,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-034": {
-            "occurrences": 1,
-            "roles": [
-              "heading"
-            ],
-            "first": {
-              "line": 468,
-              "byte": 79990,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-035": {
-            "occurrences": 1,
-            "roles": [
-              "heading"
-            ],
-            "first": {
-              "line": 487,
-              "byte": 85904,
-              "role": "heading"
-            }
-          }
-        }
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       "L11": {
-        "distinct_ids": 36,
-        "observations": {
-          "HELIXSECURITY-L2-001": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 25,
-              "byte": 1490,
-              "role": "table_first_cell"
-            }
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
+      },
+      "adopted_L2": {
+        "path": "docs/helix-security/L2-requirements/security-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      },
+      "adopted_L11": {
+        "path": "docs/helix-security/L11-acceptance/security-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    },
+    "current_L2": {
+      "distinct_ids": 35,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 39,
+            "byte": 4116,
+            "role": "table_first_cell"
           },
-          "HELIXSECURITY-L2-002": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 26,
-              "byte": 1797,
-              "role": "table_first_cell"
-            }
+          {
+            "line": 70,
+            "byte": 6827,
+            "role": "heading"
           },
-          "HELIXSECURITY-L2-003": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 27,
-              "byte": 2200,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-004": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 28,
-              "byte": 2817,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-005": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 29,
-              "byte": 3080,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-006": {
-            "occurrences": 3,
-            "roles": [
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 30,
-              "byte": 3394,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-007": {
-            "occurrences": 4,
-            "roles": [
-              "heading",
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 31,
-              "byte": 3891,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-008": {
-            "occurrences": 2,
-            "roles": [
-              "inline_mention",
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 32,
-              "byte": 4544,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-009": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 33,
-              "byte": 4965,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-010": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 34,
-              "byte": 5695,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-011": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 35,
-              "byte": 6235,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-012": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 36,
-              "byte": 6479,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-013": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 37,
-              "byte": 6778,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-014": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 38,
-              "byte": 7109,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-015": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 39,
-              "byte": 7621,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-016": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 40,
-              "byte": 8420,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-017": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 41,
-              "byte": 8913,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-018": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 42,
-              "byte": 9252,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-019": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 43,
-              "byte": 9593,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-020": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 44,
-              "byte": 9921,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-021": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 45,
-              "byte": 10857,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-022": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 46,
-              "byte": 11154,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-023": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 47,
-              "byte": 11457,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-024": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 48,
-              "byte": 11745,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-025": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 49,
-              "byte": 12058,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-026": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 50,
-              "byte": 12382,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-027": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 51,
-              "byte": 12670,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-028": {
-            "occurrences": 1,
-            "roles": [
-              "table_first_cell"
-            ],
-            "first": {
-              "line": 52,
-              "byte": 13362,
-              "role": "table_first_cell"
-            }
-          },
-          "HELIXSECURITY-L2-029": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 89,
-              "byte": 20433,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-029-002": {
-            "occurrences": 1,
-            "roles": [
-              "inline_mention"
-            ],
-            "first": {
-              "line": 171,
-              "byte": 47000,
-              "role": "inline_mention"
-            }
-          },
-          "HELIXSECURITY-L2-030": {
-            "occurrences": 1,
-            "roles": [
-              "heading"
-            ],
-            "first": {
-              "line": 97,
-              "byte": 22183,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-031": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 104,
-              "byte": 23684,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-032": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 116,
-              "byte": 30220,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-033": {
-            "occurrences": 3,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 124,
-              "byte": 32017,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-034": {
-            "occurrences": 1,
-            "roles": [
-              "heading"
-            ],
-            "first": {
-              "line": 135,
-              "byte": 36065,
-              "role": "heading"
-            }
-          },
-          "HELIXSECURITY-L2-035": {
-            "occurrences": 2,
-            "roles": [
-              "heading",
-              "inline_mention"
-            ],
-            "first": {
-              "line": 153,
-              "byte": 41239,
-              "role": "heading"
-            }
+          {
+            "line": 398,
+            "byte": 54270,
+            "role": "inline_mention"
           }
-        }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 40,
+            "byte": 4205,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 80,
+            "byte": 8078,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 41,
+            "byte": 4293,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 90,
+            "byte": 9225,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 42,
+            "byte": 4387,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 100,
+            "byte": 10505,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 43,
+            "byte": 4470,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 110,
+            "byte": 11573,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67569,
+            "role": "inline_mention"
+          },
+          {
+            "line": 483,
+            "byte": 84597,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 44,
+            "byte": 4545,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 120,
+            "byte": 12789,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68093,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 45,
+            "byte": 4617,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 130,
+            "byte": 14151,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67625,
+            "role": "inline_mention"
+          },
+          {
+            "line": 460,
+            "byte": 76601,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 46,
+            "byte": 4709,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 140,
+            "byte": 15523,
+            "role": "heading"
+          },
+          {
+            "line": 438,
+            "byte": 67680,
+            "role": "inline_mention"
+          },
+          {
+            "line": 460,
+            "byte": 76544,
+            "role": "inline_mention"
+          },
+          {
+            "line": 483,
+            "byte": 84696,
+            "role": "inline_mention"
+          },
+          {
+            "line": 489,
+            "byte": 86285,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 47,
+            "byte": 4783,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 150,
+            "byte": 16615,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68160,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 48,
+            "byte": 4863,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 160,
+            "byte": 18065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 49,
+            "byte": 4925,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 170,
+            "byte": 19629,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 50,
+            "byte": 4991,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 180,
+            "byte": 20436,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 51,
+            "byte": 5064,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 190,
+            "byte": 21425,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 52,
+            "byte": 5132,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 200,
+            "byte": 22339,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 53,
+            "byte": 5226,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 210,
+            "byte": 24101,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 54,
+            "byte": 5344,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 220,
+            "byte": 25687,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 55,
+            "byte": 5462,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 230,
+            "byte": 26861,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 56,
+            "byte": 5539,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 240,
+            "byte": 28029,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 57,
+            "byte": 5613,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 250,
+            "byte": 29169,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 58,
+            "byte": 5686,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 260,
+            "byte": 30203,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 59,
+            "byte": 5786,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 272,
+            "byte": 31717,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 60,
+            "byte": 5941,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 282,
+            "byte": 32852,
+            "role": "heading"
+          },
+          {
+            "line": 439,
+            "byte": 68224,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 61,
+            "byte": 6070,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 292,
+            "byte": 34138,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 62,
+            "byte": 6185,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 302,
+            "byte": 35315,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 63,
+            "byte": 6302,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 312,
+            "byte": 36546,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 64,
+            "byte": 6427,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 322,
+            "byte": 37712,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 65,
+            "byte": 6575,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 332,
+            "byte": 38866,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 66,
+            "byte": 6679,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 342,
+            "byte": 40626,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-029": [
+          {
+            "line": 405,
+            "byte": 55549,
+            "role": "heading"
+          },
+          {
+            "line": 429,
+            "byte": 62799,
+            "role": "inline_mention"
+          },
+          {
+            "line": 438,
+            "byte": 67485,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-030": [
+          {
+            "line": 417,
+            "byte": 59568,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-031": [
+          {
+            "line": 427,
+            "byte": 62654,
+            "role": "heading"
+          },
+          {
+            "line": 464,
+            "byte": 78543,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-032": [
+          {
+            "line": 447,
+            "byte": 72923,
+            "role": "heading"
+          },
+          {
+            "line": 490,
+            "byte": 87260,
+            "role": "inline_mention"
+          },
+          {
+            "line": 492,
+            "byte": 88754,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-033": [
+          {
+            "line": 455,
+            "byte": 75050,
+            "role": "heading"
+          },
+          {
+            "line": 479,
+            "byte": 84182,
+            "role": "heading"
+          },
+          {
+            "line": 481,
+            "byte": 84227,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-034": [
+          {
+            "line": 468,
+            "byte": 79990,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-035": [
+          {
+            "line": 487,
+            "byte": 85904,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "current_L11": {
+      "distinct_ids": 36,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 25,
+            "byte": 1490,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 26,
+            "byte": 1797,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 27,
+            "byte": 2200,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 28,
+            "byte": 2817,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 29,
+            "byte": 3080,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 30,
+            "byte": 3394,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 184,
+            "byte": 49970,
+            "role": "inline_mention"
+          },
+          {
+            "line": 185,
+            "byte": 50504,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 31,
+            "byte": 3891,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 69,
+            "byte": 15644,
+            "role": "heading"
+          },
+          {
+            "line": 183,
+            "byte": 49245,
+            "role": "inline_mention"
+          },
+          {
+            "line": 186,
+            "byte": 51164,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 32,
+            "byte": 4544,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 127,
+            "byte": 32474,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 33,
+            "byte": 4965,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 34,
+            "byte": 5695,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 35,
+            "byte": 6235,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 36,
+            "byte": 6479,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 37,
+            "byte": 6778,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 38,
+            "byte": 7109,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 39,
+            "byte": 7621,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 40,
+            "byte": 8420,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 41,
+            "byte": 8913,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 42,
+            "byte": 9252,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 43,
+            "byte": 9593,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 44,
+            "byte": 9921,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 45,
+            "byte": 10857,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 46,
+            "byte": 11154,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 47,
+            "byte": 11457,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 48,
+            "byte": 11745,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 49,
+            "byte": 12058,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 50,
+            "byte": 12382,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 51,
+            "byte": 12670,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 52,
+            "byte": 13362,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-029": [
+          {
+            "line": 89,
+            "byte": 20433,
+            "role": "heading"
+          },
+          {
+            "line": 169,
+            "byte": 46799,
+            "role": "heading"
+          },
+          {
+            "line": 171,
+            "byte": 46875,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-030": [
+          {
+            "line": 97,
+            "byte": 22183,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-031": [
+          {
+            "line": 104,
+            "byte": 23684,
+            "role": "heading"
+          },
+          {
+            "line": 106,
+            "byte": 23784,
+            "role": "inline_mention"
+          },
+          {
+            "line": 122,
+            "byte": 31832,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-032": [
+          {
+            "line": 116,
+            "byte": 30220,
+            "role": "heading"
+          },
+          {
+            "line": 118,
+            "byte": 30312,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-033": [
+          {
+            "line": 124,
+            "byte": 32017,
+            "role": "heading"
+          },
+          {
+            "line": 145,
+            "byte": 39412,
+            "role": "heading"
+          },
+          {
+            "line": 147,
+            "byte": 39461,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-034": [
+          {
+            "line": 135,
+            "byte": 36065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-035": [
+          {
+            "line": 153,
+            "byte": 41239,
+            "role": "heading"
+          },
+          {
+            "line": 155,
+            "byte": 41295,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-029-002": [
+          {
+            "line": 171,
+            "byte": 47000,
+            "role": "inline_mention"
+          }
+        ]
+      }
+    },
+    "adopted_L2": {
+      "distinct_ids": 28,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 39,
+            "byte": 4116,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 70,
+            "byte": 6827,
+            "role": "heading"
+          },
+          {
+            "line": 398,
+            "byte": 54270,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 40,
+            "byte": 4205,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 80,
+            "byte": 8078,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 41,
+            "byte": 4293,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 90,
+            "byte": 9225,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 42,
+            "byte": 4387,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 100,
+            "byte": 10505,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 43,
+            "byte": 4470,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 110,
+            "byte": 11573,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 44,
+            "byte": 4545,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 120,
+            "byte": 12789,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 45,
+            "byte": 4617,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 130,
+            "byte": 14151,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 46,
+            "byte": 4709,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 140,
+            "byte": 15523,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 47,
+            "byte": 4783,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 150,
+            "byte": 16615,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 48,
+            "byte": 4863,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 160,
+            "byte": 18065,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 49,
+            "byte": 4925,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 170,
+            "byte": 19629,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 50,
+            "byte": 4991,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 180,
+            "byte": 20436,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 51,
+            "byte": 5064,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 190,
+            "byte": 21425,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 52,
+            "byte": 5132,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 200,
+            "byte": 22339,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 53,
+            "byte": 5226,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 210,
+            "byte": 24101,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 54,
+            "byte": 5344,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 220,
+            "byte": 25687,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 55,
+            "byte": 5462,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 230,
+            "byte": 26861,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 56,
+            "byte": 5539,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 240,
+            "byte": 28029,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 57,
+            "byte": 5613,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 250,
+            "byte": 29169,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 58,
+            "byte": 5686,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 260,
+            "byte": 30203,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 59,
+            "byte": 5786,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 272,
+            "byte": 31717,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 60,
+            "byte": 5941,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 282,
+            "byte": 32852,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 61,
+            "byte": 6070,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 292,
+            "byte": 34138,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 62,
+            "byte": 6185,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 302,
+            "byte": 35315,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 63,
+            "byte": 6302,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 312,
+            "byte": 36546,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 64,
+            "byte": 6427,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 322,
+            "byte": 37712,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 65,
+            "byte": 6575,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 332,
+            "byte": 38866,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 66,
+            "byte": 6679,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 342,
+            "byte": 40626,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "adopted_L11": {
+      "distinct_ids": 28,
+      "locators": {
+        "HELIXSECURITY-L2-001": [
+          {
+            "line": 25,
+            "byte": 1490,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-002": [
+          {
+            "line": 26,
+            "byte": 1797,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-003": [
+          {
+            "line": 27,
+            "byte": 2200,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-004": [
+          {
+            "line": 28,
+            "byte": 2817,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-005": [
+          {
+            "line": 29,
+            "byte": 3080,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-006": [
+          {
+            "line": 30,
+            "byte": 3394,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-007": [
+          {
+            "line": 31,
+            "byte": 3891,
+            "role": "table_first_cell"
+          },
+          {
+            "line": 69,
+            "byte": 15644,
+            "role": "heading"
+          }
+        ],
+        "HELIXSECURITY-L2-008": [
+          {
+            "line": 32,
+            "byte": 4544,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-009": [
+          {
+            "line": 33,
+            "byte": 4965,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-010": [
+          {
+            "line": 34,
+            "byte": 5695,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-011": [
+          {
+            "line": 35,
+            "byte": 6235,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-012": [
+          {
+            "line": 36,
+            "byte": 6479,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-013": [
+          {
+            "line": 37,
+            "byte": 6778,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-014": [
+          {
+            "line": 38,
+            "byte": 7109,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-015": [
+          {
+            "line": 39,
+            "byte": 7621,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-016": [
+          {
+            "line": 40,
+            "byte": 8420,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-017": [
+          {
+            "line": 41,
+            "byte": 8913,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-018": [
+          {
+            "line": 42,
+            "byte": 9252,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-019": [
+          {
+            "line": 43,
+            "byte": 9593,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-020": [
+          {
+            "line": 44,
+            "byte": 9921,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-021": [
+          {
+            "line": 45,
+            "byte": 10857,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-022": [
+          {
+            "line": 46,
+            "byte": 11154,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-023": [
+          {
+            "line": 47,
+            "byte": 11457,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-024": [
+          {
+            "line": 48,
+            "byte": 11745,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-025": [
+          {
+            "line": 49,
+            "byte": 12058,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-026": [
+          {
+            "line": 50,
+            "byte": 12382,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-027": [
+          {
+            "line": 51,
+            "byte": 12670,
+            "role": "table_first_cell"
+          }
+        ],
+        "HELIXSECURITY-L2-028": [
+          {
+            "line": 52,
+            "byte": 13362,
+            "role": "table_first_cell"
+          }
+        ]
       }
     },
     "l2_l11_pairing": {
@@ -2329,7 +2869,7 @@
         }
       }
     },
-    "note": "table_first_cellの定義行・heading・inline_mentionを区別。親関係表を要求定義と断定しない。同IDだけで意味同等・承認を宣言しない。先頭位置だけで全所在を代表させずoccurrences全件を持つ"
+    "note": "各IDの全出現をline/半開byte位置/観測構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し、意味roleは群共通の未裁定として保持。同IDだけで意味同等・承認を宣言しない。原文・同じunknown/hashを反復しない。"
   },
   "direct_consumers": {
     "static_references": [
@@ -2346,7 +2886,8 @@
             "pointer": "/source_pins/9/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/capability-drift-comparison.json",
@@ -2361,7 +2902,8 @@
             "pointer": "/source_pins/9/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/configuration-revision-integrity.json",
@@ -2376,7 +2918,8 @@
             "pointer": "/source_pins/9/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/credential-value-boundary.json",
@@ -2391,7 +2934,8 @@
             "pointer": "/source_pins/10/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/data-use-classification.json",
@@ -2406,7 +2950,8 @@
             "pointer": "/source_pins/8/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/external-asset-provenance.json",
@@ -2421,7 +2966,8 @@
             "pointer": "/source_pins/9/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/external-input-trust-boundary.json",
@@ -2436,7 +2982,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/network-egress-boundary.json",
@@ -2451,7 +2998,8 @@
             "pointer": "/source_pins/10/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/operation-authority-reuse.json",
@@ -2466,7 +3014,8 @@
             "pointer": "/source_pins/10/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/project-scope-isolation.json",
@@ -2481,7 +3030,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/revoke-quarantine-propagation.json",
@@ -2496,7 +3046,8 @@
             "pointer": "/source_pins/10/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/untrusted-command-isolation.json",
@@ -2511,7 +3062,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/update-admission-materials.json",
@@ -2526,7 +3078,8 @@
             "pointer": "/source_pins/9/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L9-integration-verification/worker-control-enforcement.json",
@@ -2541,7 +3094,8 @@
             "pointer": "/source_pins/10/path",
             "value": "docs/helix-security/L2-requirements/security-requirements.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L3-requirements/business-requirements.json",
@@ -2556,7 +3110,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L3-requirements/functional-requirements.json",
@@ -2571,7 +3126,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L3-requirements/nfr-grade.json",
@@ -2586,7 +3142,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L10-verification/business-verification.json",
@@ -2601,7 +3158,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L10-verification/functional-verification.json",
@@ -2616,7 +3174,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       },
       {
         "path": "docs/helix-security/L10-verification/nfr-verification.json",
@@ -2631,7 +3190,8 @@
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-security/L11-acceptance/security-acceptance.md"
           }
-        ]
+        ],
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
       }
     ],
     "note": "実file・raw sha・git blob・具体JSON pointer/valueの所在例。実reader成立・全consumer閉包とは分ける。directory参照や架空pathは代替しない"
