@@ -13572,7 +13572,7 @@
       "expected_observation": "凍結したF09局所結果projectionと一致する。handoffは一致する原recordのliteral state not_receivedを保持する。無関係comparison、handoff、元bindingは保持する。",
       "expected_side_effect_count": 0,
       "execution_state": "not_executed",
-      "fixture_refinement": "事前固定した入力・期待値を、fixture_contract.normal_control.inputとtyped_mutation_plan.operationsから独立に再構成できる。実評価は未実施。expected_local_result_projectionはtest-side projectionでありComparison直下のpublic fieldではない。conditional_dependency_axesはComparison.axesからaxis=dependency_selectionと、明示選択条件に属するaxis=dependency_referenceだけを抽出する。unselected_sourceは対象bindingのaxis=unselected_source stateを投影する。handoff_stateはaxis=handoffのうちsubject_ref/bindingがinput.handoff_recordsの原recordへ完全一致するstateであり、本入力はnot_received。\"same as input\"は旧版の説明表現で、原記録のstateへ訂正した。side_effect_countはComparisonに含まれないtest-side外部作用観測で期待0。L2-025のselector対応は未決で、025を両selectorへ一律必須としない。"
+      "fixture_refinement": "事前固定した入力・期待値を、fixture_contract.normal_control.inputとtyped_mutation_plan.operationsから独立に再構成できる。実評価は未実施。expected_local_result_projectionはtest-side projectionでありComparison直下のpublic fieldではない。conditional_dependency_axesはComparison.axesからaxis=dependency_selectionと、明示選択条件に属するaxis=dependency_referenceだけを抽出する。unselected_sourceは対象bindingのaxis=unselected_source stateを投影する。handoff_stateはaxis=handoffのうちsubject_ref/bindingがinput.handoff_recordsの原recordへ完全一致するstateであり、本入力はnot_received。\"same as input\"は旧版の説明表現で、原記録のstateへ訂正した。side_effect_countはComparisonに含まれないtest-side外部作用観測で期待0。L2-025の限定対応はconditional_dependency_verificationで原operation_kind/knowledge_fields単位に具体化済みで、025を両selectorへ一律必須としない。本局所caseの入力・期待はその原operation単位の全分岐や実資格を行使した証拠ではない。"
     },
     {
       "id": "HELIXBRAIN-L8-032-ADD-26",
