@@ -98803,7 +98803,19 @@
     "source_binding": {
       "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
       "path": "docs/helix-os/L8-unit-verification/portfolio-state-trace.json",
-      "raw_sha256": "6d508e268f652165150cd533368d5c666e1582ab5ccc39c21cb8f87e92a0ca2c"
+      "raw_sha256": "6d508e268f652165150cd533368d5c666e1582ab5ccc39c21cb8f87e92a0ca2c",
+      "anchors": [
+        {
+          "pointer": "/os015_origin_caller_verification/cases/0/input/ordinary_call/input/projects",
+          "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f",
+          "ordered_sha256": "fdd1b3ed27adb29b7bb4e2142b1f4932ac16cb2377fe35f436da641f6f134a6a"
+        },
+        {
+          "pointer": "/os015_origin_caller_verification/cases/0/expected_whole/original_materials/os016_input/projects",
+          "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f",
+          "ordered_sha256": "fdd1b3ed27adb29b7bb4e2142b1f4932ac16cb2377fe35f436da641f6f134a6a"
+        }
+      ]
     },
     "role_local_anchors": [
       {
@@ -98812,7 +98824,8 @@
         "common_occurrences": 29,
         "anchor_count": 1,
         "copy_count": 28,
-        "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f"
+        "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f",
+        "ordered_sha256": "fdd1b3ed27adb29b7bb4e2142b1f4932ac16cb2377fe35f436da641f6f134a6a"
       },
       {
         "role": "independent_expected",
@@ -98820,12 +98833,284 @@
         "common_occurrences": 29,
         "anchor_count": 1,
         "copy_count": 28,
-        "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f"
+        "canonical_sha256": "0cc9976ac18baa6ceb8b36cebe0ce39e2225e6392f020ebaa3ecb7b565a0420f",
+        "ordered_sha256": "fdd1b3ed27adb29b7bb4e2142b1f4932ac16cb2377fe35f436da641f6f134a6a"
       }
     ],
     "note": "56箇所の同値projects memberを役割別anchor(入力/独立期待別)から標準RFC6902 object-member copyで復元する提案。保存用nullを製品入力のnullへ解釈しない。raw payload内markerは解釈しない。全input/expected読取・whole hash/type照合・L9 selector・既存patch/base再構成より前に全体へ一度展開。expectedをinputから構築しない",
     "restoration_order": "copy適用→各input/expectedの読取・元whole hash/type照合・L9 direct selector・既存patch/base再構成を従来順に行う",
-    "whole_ledger": "15input+15expectedの論理全値は独立固定済み。case11異値2個・marker似key・その他原値は展開・読み替えない",
+    "whole_ledger": [
+      {
+        "case_index": 0,
+        "case_id": "ORIGIN-SEVEN-AXES-MATCH",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/0/input",
+        "canonical_sha256": "51f3e4a04eeede0ecc46c2ca4219d14a63d0533ce9afb6fb7ad87765b42351ba",
+        "ordered_sha256": "3ff398e3d7f187d9208ce8029304a25672eabfa6bac563ec6d6824f5ccf4c62b",
+        "compact_bytes": 67553
+      },
+      {
+        "case_index": 0,
+        "case_id": "ORIGIN-SEVEN-AXES-MATCH",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/0/expected_whole",
+        "canonical_sha256": "3336877b6cef57435db1be004841b8ce8c6421d2a3f1ba397b243f4ce20dc5d4",
+        "ordered_sha256": "4d4ee8906ad451abaedd85b9094928e067d6cdf7a2475da3a20f87392b11cc87",
+        "compact_bytes": 61166
+      },
+      {
+        "case_index": 1,
+        "case_id": "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/1/input",
+        "canonical_sha256": "3b9ec51f2927519aae8f2da422f87f0710b7119c6c7267786eb1326ba18e04a5",
+        "ordered_sha256": "0ced16aa1c4fdb120932291dc6d1a5d445692cbac6f045a884a1a220f8fe651d",
+        "compact_bytes": 67581
+      },
+      {
+        "case_index": 1,
+        "case_id": "ORIGIN-TWO-AXIS-LOCAL-CONFLICT",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/1/expected_whole",
+        "canonical_sha256": "6d2bcba7d4f081d27eb17ced479104b27d1c74c2e5be6c73e14f5c278febdca3",
+        "ordered_sha256": "3837779e8e31e11d9810f53d5608792561d7c583967a6525560575e98b67e42e",
+        "compact_bytes": 73075
+      },
+      {
+        "case_index": 2,
+        "case_id": "ORIGIN-NOT-SELECTED",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/2/input",
+        "canonical_sha256": "9983f059408872a274fcd0444962bba8bb78bed5b97c397d1314fd9f087cd361",
+        "ordered_sha256": "670f056d650ec10dd9eacc2a99433f6f51047d6456682cf2d50d0b0baf245b22",
+        "compact_bytes": 67445
+      },
+      {
+        "case_index": 2,
+        "case_id": "ORIGIN-NOT-SELECTED",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/2/expected_whole",
+        "canonical_sha256": "478a26ae162653afe0b5eba2ff0f9dd267ef495d412a7e0b298a453bd20fa99c",
+        "ordered_sha256": "e39901e7b4b8e8df15afaf4f4f5145ad6ee01241f2b4109a14c652cfebcb565c",
+        "compact_bytes": 59696
+      },
+      {
+        "case_index": 3,
+        "case_id": "ORIGIN-FIVE-AXIS-PROJECTION-DIFF",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/3/input",
+        "canonical_sha256": "5c7e0d1896b1ddd2f3737e4f929906f721a5bf2a61e6ede8a2f9e20c2f3674db",
+        "ordered_sha256": "78facbc8ad8f2886f3b4934fb9cbe2f788f7e7c0f08dbaa5752090eb47d66f7a",
+        "compact_bytes": 67561
+      },
+      {
+        "case_index": 3,
+        "case_id": "ORIGIN-FIVE-AXIS-PROJECTION-DIFF",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/3/expected_whole",
+        "canonical_sha256": "574591999070b4a713930bc5422485dcc80ac53ceac0374b3627da615af067bd",
+        "ordered_sha256": "be1dc7ef51ad919f7d6ce3995cd9b79649cd959d0ec17f66dd2e68d849ce82fc",
+        "compact_bytes": 83889
+      },
+      {
+        "case_index": 4,
+        "case_id": "ORIGIN-PRODUCED-NULL",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/4/input",
+        "canonical_sha256": "c658d525f25b69a3fcacb2897f596e8669d784f6d54cc051f6f7676c5ee7c6b6",
+        "ordered_sha256": "b8b284bb1030b5211cc7bc30c3503b0483b9dbb8ef9aaaedc9493f7c53fc7dd0",
+        "compact_bytes": 67519
+      },
+      {
+        "case_index": 4,
+        "case_id": "ORIGIN-PRODUCED-NULL",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/4/expected_whole",
+        "canonical_sha256": "2b3d697ffc1e6f6d9c2b537d1e4c96476e38a36d3a21f3c834b211d050947000",
+        "ordered_sha256": "bf74563b3fbc1b542827e71e2c697c5300982be46b792b6b304a4dcaeb983af1",
+        "compact_bytes": 72426
+      },
+      {
+        "case_index": 5,
+        "case_id": "ORIGIN-LOCAL-AXIS-UNKNOWN",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/5/input",
+        "canonical_sha256": "326f014e0984226eba2672fadac90f451d311ef2bd442f426a7a94936c07ac15",
+        "ordered_sha256": "fe02a301d349153a845bcb9d9ad2a67498d71c427c733ce32445ce383ca4e6b8",
+        "compact_bytes": 67509
+      },
+      {
+        "case_index": 5,
+        "case_id": "ORIGIN-LOCAL-AXIS-UNKNOWN",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/5/expected_whole",
+        "canonical_sha256": "f552b4cba7e23abd3beb12e0d199549946bd9512246b4115621f0d92c8167ffe",
+        "ordered_sha256": "9d128be3d99069f218b59b2018982ed19dae7060068be7a94da721e2ec8804fd",
+        "compact_bytes": 72690
+      },
+      {
+        "case_index": 6,
+        "case_id": "ORIGIN-TYPED-ABSENT",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/6/input",
+        "canonical_sha256": "39ee41b56cdbf569a625a649931621dc84fa31fc042e0c85affbc40e70bf06ec",
+        "ordered_sha256": "d388e163b5d0ef84822ae217cd1bcd920f57ff79f26534a09f1b10f3d8f63fc0",
+        "compact_bytes": 59879
+      },
+      {
+        "case_index": 6,
+        "case_id": "ORIGIN-TYPED-ABSENT",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/6/expected_whole",
+        "canonical_sha256": "ecf58ff7548ebf15aad6997246e9cb5518b6286e5b027c465a5a8934132c0deb",
+        "ordered_sha256": "7a3d2e5932037aade1a013516f4b820759442d39902e9984c6f720b681b616f0",
+        "compact_bytes": 120494
+      },
+      {
+        "case_index": 7,
+        "case_id": "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/7/input",
+        "canonical_sha256": "82433f1b86702547062082b68394a8bb739eb1e856998af328280a20079a7178",
+        "ordered_sha256": "bc1447cedc40ecee5b15b1fc86a39fc3f8ffc867ff015e0a2192f312954ae93a",
+        "compact_bytes": 67734
+      },
+      {
+        "case_index": 7,
+        "case_id": "ORIGIN-DECLARED-NOT-PRODUCED-BOUND",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/7/expected_whole",
+        "canonical_sha256": "c3466d8a951631b0ad581842f2059b15cd8a86e74d83f1f9f5ec2dedf92227b8",
+        "ordered_sha256": "9caf35cfd795d8a32dce81f842355963a6e24355d0636047f528ea7601a5385f",
+        "compact_bytes": 128530
+      },
+      {
+        "case_index": 8,
+        "case_id": "ORIGIN-RAW-TYPED-BOOLNUM-DIFF",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/8/input",
+        "canonical_sha256": "ea5f3e32ce064b670ac69535dfaa091428b3de46ac6a74c1c76d6f9a7a5e5e5b",
+        "ordered_sha256": "81ebefc2a2a55c37f168b9ef812c9ab867d0610f02e732ec4f4f493ac9223bd7",
+        "compact_bytes": 67549
+      },
+      {
+        "case_index": 8,
+        "case_id": "ORIGIN-RAW-TYPED-BOOLNUM-DIFF",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/8/expected_whole",
+        "canonical_sha256": "74fc0dffe013273b7f2297a3377acc64515f7862bf85efc33d216dd157c77fff",
+        "ordered_sha256": "e3e4150f245d8b97409b60e8ba12304af2b84b198ad38a93e054f50e370bf439",
+        "compact_bytes": 128164
+      },
+      {
+        "case_index": 9,
+        "case_id": "ORIGIN-SELECTED-UNBOUND",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/9/input",
+        "canonical_sha256": "9517d01884bcf62d5aec9dad6d1e8e27c30465cdbc55a50f2a0d4583533df636",
+        "ordered_sha256": "fb70fa271fe5eaca8e19710dadfd226985d679a283e79bfa05a38f24ba2d9793",
+        "compact_bytes": 67552
+      },
+      {
+        "case_index": 9,
+        "case_id": "ORIGIN-SELECTED-UNBOUND",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/9/expected_whole",
+        "canonical_sha256": "1cfc39819e6393ba49de327a93a82c8245edd81ac49785ca676c771776bb6c6a",
+        "ordered_sha256": "6056994e8c13d4343a57267fe0e2bbf492b1eb2a77a6d02e801f90ef38061b24",
+        "compact_bytes": 60000
+      },
+      {
+        "case_index": 10,
+        "case_id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/10/input",
+        "canonical_sha256": "723e9de9a8a861ab5f654ee227b815336f9a47c4d3c514ea44dfa30cffda5cf3",
+        "ordered_sha256": "d38031e4ddc8188a72077130e73498cc690a794cc65360c7cae61c5da9e36481",
+        "compact_bytes": 67714
+      },
+      {
+        "case_index": 10,
+        "case_id": "ORIGIN-DECLARED-NOT-PRODUCED-UNBOUND",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/10/expected_whole",
+        "canonical_sha256": "00d07965cf9800acd9b1ac50ec214e9a35fa5368f7c6a33c7a926c0471acdcf0",
+        "ordered_sha256": "8da4b01fa16b4c86dc35cf758b556f2cb85afe05610260729dbf5b74c843f3f7",
+        "compact_bytes": 60093
+      },
+      {
+        "case_index": 11,
+        "case_id": "ORIGIN-MISSING-ACTUAL-WITH-ORIGIN-CONFLICT",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/11/input",
+        "canonical_sha256": "33c28418b06d68989f7a909ce216d517eb1e1e89dff6676f7b2112ddfe95702e",
+        "ordered_sha256": "71af2bdb420ebab11357f74b4f278d5b5ba96142e4766e144be07c5bfa91f054",
+        "compact_bytes": 65265
+      },
+      {
+        "case_index": 11,
+        "case_id": "ORIGIN-MISSING-ACTUAL-WITH-ORIGIN-CONFLICT",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/11/expected_whole",
+        "canonical_sha256": "504323fa84affa95c13abe7488155d9f18fbcfa95701c7bb02cb5316e6099d5f",
+        "ordered_sha256": "0f62c17ae38742338b0e4f6747162f028a1c734ebc5322287d2f0b9ac00574ff",
+        "compact_bytes": 73521
+      },
+      {
+        "case_index": 12,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-ABSENT",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/12/input",
+        "canonical_sha256": "4401078ffd472c09f2b92060faf8a9beda9e49423fd67e2db80450f6ada0a0cf",
+        "ordered_sha256": "2a8c481c44b95a5c28f2cbe4edf1946f567ddd2403b813a139205051449a8b34",
+        "compact_bytes": 67690
+      },
+      {
+        "case_index": 12,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-ABSENT",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/12/expected_whole",
+        "canonical_sha256": "66d9916a07fbf5ab4bb120f25db5c2655ad0059a94e2a94c56a963303362f043",
+        "ordered_sha256": "28216aaa068d76ebf856658f50518f64f7037b054f609837e1edf81112f72dc5",
+        "compact_bytes": 128261
+      },
+      {
+        "case_index": 13,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-NULL",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/13/input",
+        "canonical_sha256": "a2fb86006055c7e8e7d13d6e1990392177f7ece5d35e97ae0c5f6bf9b0d85888",
+        "ordered_sha256": "55bdace77ba66678167c7ce99a5ac845c1cdd6aa69f7b8593735744b30fccf74",
+        "compact_bytes": 67722
+      },
+      {
+        "case_index": 13,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-NULL",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/13/expected_whole",
+        "canonical_sha256": "3b95e2feb89f1216a2943ad6e11b5d34574538c3bae6fb451871faa98134d850",
+        "ordered_sha256": "a84e54be2346549f2209fb19ad25c592937bdd1f58f594d85d536fea57965d0e",
+        "compact_bytes": 128353
+      },
+      {
+        "case_index": 14,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-ARRAY",
+        "role": "input",
+        "pointer": "/os015_origin_caller_verification/cases/14/input",
+        "canonical_sha256": "8cce7df3b367782b86aab02861b44572e27fbfd8e9561382e3069ae4c6b2f14c",
+        "ordered_sha256": "b6894b513cfc2559269d449e25aa0f1e3abd27e9a98dbd39eb6f9dc27a7d5b74",
+        "compact_bytes": 67738
+      },
+      {
+        "case_index": 14,
+        "case_id": "ORIGIN-BOUND-TARGET-KEY-ARRAY",
+        "role": "expected",
+        "pointer": "/os015_origin_caller_verification/cases/14/expected_whole",
+        "canonical_sha256": "f870c044373a16a1658d69b76b3ceeb0774e689604b9dbb113663a1b47651292",
+        "ordered_sha256": "c1ceb327e12d72c9336076153250e28038682ec69692a2316123706e83230f43",
+        "compact_bytes": 128401
+      }
+    ],
     "operations": [
       {
         "op": "copy",
