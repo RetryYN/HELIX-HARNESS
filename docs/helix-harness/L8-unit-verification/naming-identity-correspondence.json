@@ -58426,5 +58426,560 @@
     "native_observed": false,
     "freeze_flag_note_ja": "new_F03_program_not_authored_at_freezeはfreeze時点の過去状態の記録であり、現proposalの現在状態ではない。",
     "unclosed_id_note_ja": "旧unclosed_obligationsのnative IDは旧compare_f03単体の不足として不変に保持し、新private材料は限定論理材料の具体化範囲に限る。"
+  },
+  "f04_finding_diagnostic_material_verification": {
+    "kind": "private_finding_diagnostic_verification",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "role": null,
+    "source_revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+    "freeze_main": "dfdd4d0aba523519da16c9c3bf920da8a406ae56",
+    "type_proposal_sha256": "5085a545f2b2efe6fe64c2084cb013a4d3f265e879cd91116ae727760562078f",
+    "cases": [
+      {
+        "kind": "fully_expanded_independent_F04_reason_impact_expected_proposal",
+        "id": "normal_valid_exception",
+        "native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/37",
+          "selected_witness": {
+            "canonical_sha256": "c3d0594cdb3753f9cd44c60bb66df3a38bd6249cf87ae1160679cf0832a11ceb",
+            "ordered_compact_sha256": "24aea83f03a993b04a7e9258d3ab504c32c53729bcd021f5678588fa9e26876e",
+            "ordered_compact_utf8_bytes": 2815
+          }
+        },
+        "assembler_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/return_material_cases/0",
+          "selected_witness": {
+            "canonical_sha256": "1b2991a11864745852b99f1ed72021081b0c003a2f267fe2555a40af7227b4ca",
+            "ordered_compact_sha256": "382ccc3677cf9e1da1654c349aa8a7723d191971f0ddc0f220f4055afac6d0ef",
+            "ordered_compact_utf8_bytes": 2805
+          }
+        },
+        "conditional_expected_premise_ja": "native_return=read_declared_expected。旧compare_f04の実観測ではない。同typed引数で実1回呼んだとき原expected_returnと同値である条件付き期待。新synthetic変異はnativeが読まないfinding.reason/impactだけなので、既存readset/返却定義から旧native期待を保持する。assemblerも実実行せず既存deepcopy全返却規範から手導出する。expected/hash/fixture IDはruntime入力にしない。",
+        "input": {
+          "packet": {
+            "boundary": "internal",
+            "evaluation_date": "2030-01-01",
+            "exception": {
+              "expiry": "2030-02-01",
+              "owner": "PRODUCT-P-owner",
+              "reason": "役割確定まで既存利用を継続",
+              "scope": "PRODUCT-P"
+            },
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P"
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": "role_unknown"
+            },
+            "scope": "PRODUCT-P",
+            "warning_requests_global_stop": false
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected": {
+          "arguments": {
+            "packet": {
+              "boundary": "internal",
+              "evaluation_date": "2030-01-01",
+              "exception": {
+                "expiry": "2030-02-01",
+                "owner": "PRODUCT-P-owner",
+                "reason": "役割確定まで既存利用を継続",
+                "scope": "PRODUCT-P"
+              },
+              "finding": {
+                "id": "FIND-P",
+                "impact": [
+                  "OBJ-P"
+                ],
+                "owner": "PRODUCT-P-owner",
+                "reason": "role_unknown"
+              },
+              "scope": "PRODUCT-P",
+              "warning_requests_global_stop": false
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "native_return": {
+            "auto_rename": "rejected",
+            "return_candidate": "product_author",
+            "finding_retained": "FIND-P",
+            "exception_result": "valid_for_fixture_scope",
+            "local_continuation": true,
+            "global_stop": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "assembly_state": "returned",
+          "return_material": {
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P"
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": "role_unknown"
+            },
+            "assessment": {
+              "auto_rename": "rejected",
+              "return_candidate": "product_author",
+              "finding_retained": "FIND-P",
+              "exception_result": "valid_for_fixture_scope",
+              "local_continuation": true,
+              "global_stop": false,
+              "unaffected_Q": "original_Q",
+              "effects": {
+                "actual_rename": false,
+                "actual_DesignRefactor": false,
+                "actual_CI": false,
+                "actual_merge": false,
+                "actual_authority": false,
+                "actual_design_complete": false,
+                "actual_acceptance": false
+              }
+            },
+            "actual_dispatch": false
+          },
+          "finding_diagnostics": {
+            "kind": "finding_record",
+            "reason_result": "known",
+            "impact_result": {
+              "kind": "impact_list",
+              "items": [
+                {
+                  "impact_index": 0,
+                  "result": "known"
+                }
+              ]
+            }
+          },
+          "diagnostic_refs": [],
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "52238ce3f8ec98d459e21679d374b6868d6d5855a31063932cdf8981194b36bd",
+            "ordered_compact_sha256": "33192fde11b4fdcf27eb0d90341bd19495db243ba6b21ae31c35bf20ed1c7abe",
+            "ordered_compact_utf8_bytes": 410
+          },
+          "expected": {
+            "canonical_sha256": "bb1930dc479364be38e6d24c0fe37f50dad63d4a340280d29604e081dd050bf8",
+            "ordered_compact_sha256": "57171b1eee0005cf822149c5c3c68129956a52ed0d22d9faae1f1f33fec33a45",
+            "ordered_compact_utf8_bytes": 1612
+          },
+          "old_native": {
+            "canonical_sha256": "c5cfc98be93d71aea542a0bf35c9253f670199354b9194cd25342703e39178de",
+            "ordered_compact_sha256": "40e21687bce583101afa473a06552f4c099658de6ef6f11c0152bb6a285efa04",
+            "ordered_compact_utf8_bytes": 394
+          },
+          "retained_material": {
+            "canonical_sha256": "597918f68374b39536925a1d69449a1a9b3ff6f1d6fc1fdc218dd5d4718aa782",
+            "ordered_compact_sha256": "8a264db4b2b5e472346c16c234b79405dbfd789cacf1b3bfecbeeddbbfc545db",
+            "ordered_compact_utf8_bytes": 528
+          }
+        },
+        "manual_basis_ja": "原reason role_unknown、impact OBJ-Pは宣言文字列として既知。原例外は有効。追加不足診断なし。",
+        "authority_boundary_ja": "新typedcarrier/技術literalと合成期待の案。実approval/source資格/返却先登録/配送/全F04・H048完了を生成しない。"
+      },
+      {
+        "kind": "fully_expanded_independent_F04_reason_impact_expected_proposal",
+        "id": "finding_reason_null_with_valid_exception",
+        "native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/37",
+          "selected_witness": {
+            "canonical_sha256": "c3d0594cdb3753f9cd44c60bb66df3a38bd6249cf87ae1160679cf0832a11ceb",
+            "ordered_compact_sha256": "24aea83f03a993b04a7e9258d3ab504c32c53729bcd021f5678588fa9e26876e",
+            "ordered_compact_utf8_bytes": 2815
+          }
+        },
+        "assembler_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/return_material_cases/0",
+          "selected_witness": {
+            "canonical_sha256": "1b2991a11864745852b99f1ed72021081b0c003a2f267fe2555a40af7227b4ca",
+            "ordered_compact_sha256": "382ccc3677cf9e1da1654c349aa8a7723d191971f0ddc0f220f4055afac6d0ef",
+            "ordered_compact_utf8_bytes": 2805
+          }
+        },
+        "conditional_expected_premise_ja": "native_return=read_declared_expected。旧compare_f04の実観測ではない。同typed引数で実1回呼んだとき原expected_returnと同値である条件付き期待。新synthetic変異はnativeが読まないfinding.reason/impactだけなので、既存readset/返却定義から旧native期待を保持する。assemblerも実実行せず既存deepcopy全返却規範から手導出する。expected/hash/fixture IDはruntime入力にしない。",
+        "input": {
+          "packet": {
+            "boundary": "internal",
+            "evaluation_date": "2030-01-01",
+            "exception": {
+              "expiry": "2030-02-01",
+              "owner": "PRODUCT-P-owner",
+              "reason": "役割確定まで既存利用を継続",
+              "scope": "PRODUCT-P"
+            },
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P"
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": null
+            },
+            "scope": "PRODUCT-P",
+            "warning_requests_global_stop": false
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected": {
+          "arguments": {
+            "packet": {
+              "boundary": "internal",
+              "evaluation_date": "2030-01-01",
+              "exception": {
+                "expiry": "2030-02-01",
+                "owner": "PRODUCT-P-owner",
+                "reason": "役割確定まで既存利用を継続",
+                "scope": "PRODUCT-P"
+              },
+              "finding": {
+                "id": "FIND-P",
+                "impact": [
+                  "OBJ-P"
+                ],
+                "owner": "PRODUCT-P-owner",
+                "reason": null
+              },
+              "scope": "PRODUCT-P",
+              "warning_requests_global_stop": false
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "native_return": {
+            "auto_rename": "rejected",
+            "return_candidate": "product_author",
+            "finding_retained": "FIND-P",
+            "exception_result": "valid_for_fixture_scope",
+            "local_continuation": true,
+            "global_stop": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "assembly_state": "returned",
+          "return_material": {
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P"
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": null
+            },
+            "assessment": {
+              "auto_rename": "rejected",
+              "return_candidate": "product_author",
+              "finding_retained": "FIND-P",
+              "exception_result": "valid_for_fixture_scope",
+              "local_continuation": true,
+              "global_stop": false,
+              "unaffected_Q": "original_Q",
+              "effects": {
+                "actual_rename": false,
+                "actual_DesignRefactor": false,
+                "actual_CI": false,
+                "actual_merge": false,
+                "actual_authority": false,
+                "actual_design_complete": false,
+                "actual_acceptance": false
+              }
+            },
+            "actual_dispatch": false
+          },
+          "finding_diagnostics": {
+            "kind": "finding_record",
+            "reason_result": "missing",
+            "impact_result": {
+              "kind": "impact_list",
+              "items": [
+                {
+                  "impact_index": 0,
+                  "result": "known"
+                }
+              ]
+            }
+          },
+          "diagnostic_refs": [
+            "/finding_diagnostics/reason_result"
+          ],
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "33cf8c57bd0d697e243083ce412c2999bf7800c9d467c962889f57b856828f53",
+            "ordered_compact_sha256": "d7b9f322faa9a7ad70b36522ad0a7fbb7569c11b2112bd8b373bfbf992b6f824",
+            "ordered_compact_utf8_bytes": 400
+          },
+          "expected": {
+            "canonical_sha256": "e9bc02d64b7ee6955d50d446490334207f3f26aff895e146456cac404133a257",
+            "ordered_compact_sha256": "b7a093c11c414f3b7d8434e63f635445858250ee0834d66c216712bca954259a",
+            "ordered_compact_utf8_bytes": 1630
+          },
+          "old_native": {
+            "canonical_sha256": "c5cfc98be93d71aea542a0bf35c9253f670199354b9194cd25342703e39178de",
+            "ordered_compact_sha256": "40e21687bce583101afa473a06552f4c099658de6ef6f11c0152bb6a285efa04",
+            "ordered_compact_utf8_bytes": 394
+          },
+          "retained_material": {
+            "canonical_sha256": "22d6118ab8c3f64ec98bca8d76d7693ad18aaf9819f3130990a35650cdbea68f",
+            "ordered_compact_sha256": "917101322af0ee4ea33e2c17be4c25f4c62edfe67e81e0725a418eab29fa47b9",
+            "ordered_compact_utf8_bytes": 518
+          }
+        },
+        "manual_basis_ja": "finding.reasonだけ明示nullへ変える新synthetic入力。旧nativeはfinding.idのみを読むためassessment不変。exception.reasonは元の有効文字列で、局所継続trueを維持。",
+        "authority_boundary_ja": "新typedcarrier/技術literalと合成期待の案。実approval/source資格/返却先登録/配送/全F04・H048完了を生成しない。"
+      },
+      {
+        "kind": "fully_expanded_independent_F04_reason_impact_expected_proposal",
+        "id": "unknown_reason_and_mixed_impact_with_valid_exception",
+        "native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/37",
+          "selected_witness": {
+            "canonical_sha256": "c3d0594cdb3753f9cd44c60bb66df3a38bd6249cf87ae1160679cf0832a11ceb",
+            "ordered_compact_sha256": "24aea83f03a993b04a7e9258d3ab504c32c53729bcd021f5678588fa9e26876e",
+            "ordered_compact_utf8_bytes": 2815
+          }
+        },
+        "assembler_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/return_material_cases/0",
+          "selected_witness": {
+            "canonical_sha256": "1b2991a11864745852b99f1ed72021081b0c003a2f267fe2555a40af7227b4ca",
+            "ordered_compact_sha256": "382ccc3677cf9e1da1654c349aa8a7723d191971f0ddc0f220f4055afac6d0ef",
+            "ordered_compact_utf8_bytes": 2805
+          }
+        },
+        "conditional_expected_premise_ja": "native_return=read_declared_expected。旧compare_f04の実観測ではない。同typed引数で実1回呼んだとき原expected_returnと同値である条件付き期待。新synthetic変異はnativeが読まないfinding.reason/impactだけなので、既存readset/返却定義から旧native期待を保持する。assemblerも実実行せず既存deepcopy全返却規範から手導出する。expected/hash/fixture IDはruntime入力にしない。",
+        "input": {
+          "packet": {
+            "boundary": "internal",
+            "evaluation_date": "2030-01-01",
+            "exception": {
+              "expiry": "2030-02-01",
+              "owner": "PRODUCT-P-owner",
+              "reason": "役割確定まで既存利用を継続",
+              "scope": "PRODUCT-P"
+            },
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P",
+                "TBD",
+                ""
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": "TBD"
+            },
+            "scope": "PRODUCT-P",
+            "warning_requests_global_stop": false
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected": {
+          "arguments": {
+            "packet": {
+              "boundary": "internal",
+              "evaluation_date": "2030-01-01",
+              "exception": {
+                "expiry": "2030-02-01",
+                "owner": "PRODUCT-P-owner",
+                "reason": "役割確定まで既存利用を継続",
+                "scope": "PRODUCT-P"
+              },
+              "finding": {
+                "id": "FIND-P",
+                "impact": [
+                  "OBJ-P",
+                  "TBD",
+                  ""
+                ],
+                "owner": "PRODUCT-P-owner",
+                "reason": "TBD"
+              },
+              "scope": "PRODUCT-P",
+              "warning_requests_global_stop": false
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "native_return": {
+            "auto_rename": "rejected",
+            "return_candidate": "product_author",
+            "finding_retained": "FIND-P",
+            "exception_result": "valid_for_fixture_scope",
+            "local_continuation": true,
+            "global_stop": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "assembly_state": "returned",
+          "return_material": {
+            "finding": {
+              "id": "FIND-P",
+              "impact": [
+                "OBJ-P",
+                "TBD",
+                ""
+              ],
+              "owner": "PRODUCT-P-owner",
+              "reason": "TBD"
+            },
+            "assessment": {
+              "auto_rename": "rejected",
+              "return_candidate": "product_author",
+              "finding_retained": "FIND-P",
+              "exception_result": "valid_for_fixture_scope",
+              "local_continuation": true,
+              "global_stop": false,
+              "unaffected_Q": "original_Q",
+              "effects": {
+                "actual_rename": false,
+                "actual_DesignRefactor": false,
+                "actual_CI": false,
+                "actual_merge": false,
+                "actual_authority": false,
+                "actual_design_complete": false,
+                "actual_acceptance": false
+              }
+            },
+            "actual_dispatch": false
+          },
+          "finding_diagnostics": {
+            "kind": "finding_record",
+            "reason_result": "unknown",
+            "impact_result": {
+              "kind": "impact_list",
+              "items": [
+                {
+                  "impact_index": 0,
+                  "result": "known"
+                },
+                {
+                  "impact_index": 1,
+                  "result": "unknown"
+                },
+                {
+                  "impact_index": 2,
+                  "result": "missing"
+                }
+              ]
+            }
+          },
+          "diagnostic_refs": [
+            "/finding_diagnostics/reason_result",
+            "/finding_diagnostics/impact_result/items/1/result",
+            "/finding_diagnostics/impact_result/items/2/result"
+          ],
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "d59302ce31714c20366667fa4bd8f35d9dbdfa1422da427c64d4d6a88c74057c",
+            "ordered_compact_sha256": "4b146beb584c10e75c3b0fd16f1affdf738d71bc01852c9ff4da740ca46436eb",
+            "ordered_compact_utf8_bytes": 410
+          },
+          "expected": {
+            "canonical_sha256": "a0880eb27741238f4a5da026e7220c3cd198676fa53bc8bc40c884b1df4b6573",
+            "ordered_compact_sha256": "ff5f48c7174e447ed901836d252e04dfd5939bc8c8b23da57c125628053c2778",
+            "ordered_compact_utf8_bytes": 1830
+          },
+          "old_native": {
+            "canonical_sha256": "c5cfc98be93d71aea542a0bf35c9253f670199354b9194cd25342703e39178de",
+            "ordered_compact_sha256": "40e21687bce583101afa473a06552f4c099658de6ef6f11c0152bb6a285efa04",
+            "ordered_compact_utf8_bytes": 394
+          },
+          "retained_material": {
+            "canonical_sha256": "c8e34ada741f6bb27fefaa07596008ae05ab0183c7b79cc1dd62cac3abaa6d1a",
+            "ordered_compact_sha256": "96d743aa4eb8746d6b27a81edded2da68cadd4438780d0acb68b6eaa57bcc499",
+            "ordered_compact_utf8_bytes": 528
+          }
+        },
+        "manual_basis_ja": "reason exact markerとimpact内marker/空stringは既存unknown/missing規範から各局所値を手導出。既知OBJ-Pを消さず元array順を保つ。例外と旧assessmentに影響させない。",
+        "authority_boundary_ja": "新typedcarrier/技術literalと合成期待の案。実approval/source資格/返却先登録/配送/全F04・H048完了を生成しない。"
+      }
+    ],
+    "unexercised_ja": [
+      "finding key absent/null、record内reason key absent/空/unknown、impact key absent/null/[]、その他partial/複合のfullwholeは今回未凍結。型/構造上の枝は明示し、未知をsuccessへ補完しない。",
+      "finding absentでは原capture key欠落のままnative1/assembler0、assembly_state=not_called_finding_absent、return_material key省略、finding_diagnostics={kind:finding_absent}、診断はそのkindへ。架空nullを渡さない。",
+      "finding present nullではnative1/assembler1、旧assemblerが許すnull原値を保存しfinding_diagnostics={kind:finding_null}とする。",
+      "impact[]はkind=impact_list/items=[]という原empty値。完全impact集合や不足を推測する新gateにしない。",
+      "finding.id/ownerの新必須化、実impact source資格/実owner配送をこの局所readerに追加しない。"
+    ],
+    "conditional_member_presence": {
+      "return_material": "present iff assembly_state=returned; absent iff not_called_finding_absent"
+    },
+    "no_new_presentation_gate_ja": "診断は未解決reason/impactを示す材料。旧auto_rename拒否/return_candidate/例外の局所継続/global_stop/Q/effectsを上書きせず、diagnostic数で全工程停止・許可・採用を決めない。",
+    "native_observed": false,
+    "freeze_flag_note_ja": "new_program_not_authored_at_freezeはfreeze時点の過去状態の記録であり、現proposalの現在状態ではない。",
+    "unclosed_id_note_ja": "旧unclosed_obligationsのnative IDは旧compare_f04/assemble_f04_return単体の不足として不変に保持し、新private材料は限定論理診断の具体化範囲に限る。"
   }
 }
