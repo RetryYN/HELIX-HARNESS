@@ -1,0 +1,53 @@
+{
+  "phase": "Green",
+  "revision": "700816f7f771987fb0f485533acaa13a60e28d49",
+  "started_at_utc": "2026-10-20T17:13:11.513166+00:00",
+  "finished_at_utc": "2026-10-20T17:13:11.549302+00:00",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_supply_input.py",
+    "-k",
+    "test_add01_string_input_is_rejected",
+    "-v"
+  ],
+  "exit_code": 0,
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/green.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-add01-2026-10-21/green.stderr.log",
+    "sha256": "1fa43b02d8bf84c8257444d1b0ccf44ac850f0d3345842b24a0fdb87c8e40599"
+  },
+  "test_file_bytes_sha256": "199003a8d0f48241e0bfa0caa1f7b407731ea4cd46d3f437f7076637408693d4",
+  "source_file_bytes_sha256": "42f620a1aa52241835d1c210547155b9f684e1af1e867b57487aa0f3de0f9874",
+  "selected_test": "TestSupplyInput.test_add01_string_input_is_rejected",
+  "same_test_input_oracle_as_red": true,
+  "selected_test_passed": true,
+  "observed": "不正root文字列のinput=null、root所在InputIssue、reason非空、source_ref=null。資格根拠は生成していない。",
+  "refactor_assessment": {
+    "needed": false,
+    "reason": "実装はroot形の単一guardと既存返却carrierだけで、抽象化/共通化を導入する重複や別責務はない。不要な変更・無変更の再実行は要求しない。",
+    "evidence": "this Green and unchanged frozen oracle"
+  },
+  "unobserved": [
+    "object input path remains NotImplementedError",
+    "normal/null2tests",
+    "fn0 bytes/qualification",
+    "fn1/F02",
+    "whole suite",
+    "CI",
+    "all external side effects"
+  ]
+}
