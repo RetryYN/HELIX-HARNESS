@@ -1254,53 +1254,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "VPS",
       "request": {
         "identity": "JOB-P",
@@ -1388,53 +1342,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "dedicated_server",
       "request": {
         "identity": "JOB-P",
@@ -1522,53 +1430,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "cloud_VM",
       "request": {
         "identity": "JOB-P",
@@ -1656,53 +1518,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "container",
       "request": {
         "identity": "JOB-P",
@@ -1790,53 +1606,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "GPU_node",
       "request": {
         "identity": "JOB-P",
@@ -1924,53 +1694,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "Worker_node",
       "request": {
         "identity": "JOB-P",
@@ -7690,53 +7414,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "provider_specific_capacity": {
         "provider": "VPS",
@@ -7965,53 +7643,7 @@
       "model_attributes_ref": "I001-MODEL-P@r2",
       "model_scope_selected": true,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -8099,53 +7731,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": null,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -8247,53 +7833,7 @@
       },
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -8381,53 +7921,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -8649,53 +8143,7 @@
       "model_attributes_ref": "I001-MODEL-P@r2",
       "model_scope_selected": true,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -8917,53 +8365,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -9707,53 +9109,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -9961,53 +9317,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -10229,53 +9539,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -10494,53 +9758,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -10759,53 +9977,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -11027,53 +10199,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -11295,53 +10421,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -11563,53 +10643,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -12087,53 +11121,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -12349,53 +11337,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -12605,53 +11547,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -12863,53 +11759,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -13136,53 +11986,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "proposed_product_limit": {
         "origin": "synthetic_fixture",
         "value": 8
@@ -13410,53 +12214,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "queue",
       "provider_kind": "local",
       "request": {
@@ -13679,53 +12437,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "delay",
       "provider_kind": "local",
       "request": {
@@ -13814,53 +12526,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "low_cost_environment",
       "provider_kind": "local",
       "request": {
@@ -13949,53 +12615,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "other_node",
       "provider_kind": "local",
       "request": {
@@ -14084,53 +12704,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "reject",
       "provider_kind": "local",
       "request": {
@@ -14219,53 +12793,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "offered_route": "human_escalation",
       "provider_kind": "local",
       "request": {
@@ -14356,53 +12884,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -14614,53 +13096,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -14872,53 +13308,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -15144,53 +13534,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -15416,53 +13760,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -15686,53 +13984,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -15954,53 +14206,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -16222,53 +14428,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -16490,53 +14650,7 @@
       "model_attributes_ref": null,
       "model_scope_selected": false,
       "network_attributes_ref": "I001-NETWORK-P@r2",
-      "observation": {
-        "attributes": {
-          "CPU": {
-            "unit": "fixture-core",
-            "value": 4
-          },
-          "GPU": {
-            "unit": "fixture-device",
-            "value": 1
-          },
-          "RAM": {
-            "unit": "fixture-memory",
-            "value": 8
-          },
-          "VRAM": {
-            "unit": "fixture-memory",
-            "value": 4
-          },
-          "availability": "available_in_fixture_only",
-          "backpressure": "BACKPRESSURE-P@r2",
-          "capacity": {
-            "unit": "fixture-capacity",
-            "value": 8
-          },
-          "concurrency": "CONCURRENCY-P@r2",
-          "health": "healthy_in_fixture_only",
-          "network": "NETWORK-P@r2",
-          "queue": "QUEUE-P@r2",
-          "rejection": "REJECTION-P@r2",
-          "runtime": "RUNTIME-P@r2",
-          "saturation": "SATURATION-P@r2",
-          "storage": {
-            "unit": "fixture-storage",
-            "value": 16
-          },
-          "utilization": "UTIL-P@r2"
-        },
-        "freshness": "current_in_fixture_only",
-        "source_ref": "RESOURCE-OBS-P@r2",
-        "target": {
-          "environment": "ENV-STAGING",
-          "resource": "RESOURCE-P",
-          "resource_revision": "RESOURCE-P-r2",
-          "scope": "PRODUCT-P"
-        },
-        "unobserved_fields": []
-      },
+      "observation": null,
       "provider_kind": "local",
       "request": {
         "identity": "JOB-P",
@@ -22631,5 +20745,264 @@
     "complete_io_calls": 136,
     "original_raw_and_whole_expected": "原68packet/全whole期待不変、批准oracleを先に固定した設計素材。実TDD/CIではない。"
   },
-  "execution_state": "not_executed"
+  "execution_state": "not_executed",
+  "materialization_contract": {
+    "kind": "local_materialization_recipe",
+    "authority_effect": "none",
+    "note": "41箇所の同一observation subtree(compact796B)をanchor literalから標準RFC6902 copyで復元する提案。null placeholderをcopyで置換し、value_reference_contractの全値pointer/hash照合の前に適用する。型付き引数渡し・遅延resolver・新authorityではない",
+    "base_anchor": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+    "target_sha256": "9cca90aa6acdcc54c15730ca135b43264ced8573eb03f3fa74935a049a4d4727",
+    "placeholder_scope": [
+      "39835245a00ad51bee6a7acf3725c3c997339091350c44df318718c8578ee2fa",
+      "a84ea3902dd4beed264026a31032ad02016298f139bee345cf7e5e0417362e9f",
+      "ec4d4963141be6833a9456ec304e9ead8c9f1ba95c787d3e1fb4b7c4066c9bec",
+      "1b8bbfed2f95e79bc332f87828bcbf30dec31361d1caad1c81c844849b3a86cb",
+      "af3aa874f282885a4de8e551214be53be9ff4af2b94d991cde00faea42fe637f",
+      "88c1329a1f3f445f3fcc19fd5137c0005e96d21400ee006a9f5eafbbbf2eb2db",
+      "a87dfaf85808283ba3643ad86e8f7a1057e1f4566304bec1b1e3551f8254651f",
+      "e06eee7797a5d8c1f90aafd002da0c1e6abd32f45cb39caa81f6bf557a0e28d0",
+      "de2a58a2e7f41c7cb379ff675a5ddb9fe09a8841c208a5c6f62224225885a89a",
+      "c303d96c22709c11c20cbf10cabb829d662c3d75ccadb82a0a1017e8f36f156c",
+      "d6ca2287f4d09125b76c154e23ecaf79c4d7860593c3a70e659c09f3a2b5208e",
+      "488be03d32bae71c34d53b24037a932c82ea917a09b1d6088ac942db8287efca",
+      "3b2a7e7654d26b28d87a93b522259b08a19e406585820399255e926b0b0e4972",
+      "400f327c676765ddcc9600379c0d25025a22c2a2cd4992495af840960cba9f9e",
+      "37256337092ff83ac1392f0ca38725b77b5a2e86976be773b6d95cdf86129657",
+      "a0b1def01c44055471aeee722361be819ce3e246733a9e6e86f8aac8af643246",
+      "9dc77dd0322f67bb03f493c3d3884e103172fc0b6e626c3de5cdbeac84b9032f",
+      "dbf53e8ad24b2184998bd8a75751dd409268b1641135d8ac9a402b138b3d78ed",
+      "cfca851a2c3e97ea6001341f3eac2ad057bbe5b3ed42f86ce240a7659d71dd9f",
+      "13f787e15d52e60bf7b9a60708306304b5a91418a6118b6576a43940cc1d1453",
+      "c502bdd9736ba30cbcc4db054d3f3e9df716a12f786275f78b0512e3f70d2b23",
+      "5c0d81d06611bb67718088e7a50575738ea1b7684c982205e6d32f1a845da8b2",
+      "c6c465e7590e8663b44ad41059c1ab97012af2d686b132749b68a596f2d9733a",
+      "2879bf1b6e0e971a5caa308d909bd4993fc6843cd3126c2ea0867619c9d6edb0",
+      "e398bc63938714dd62a689f7da83f3064e0cdab8bcff9929e93eddf8404d802e",
+      "e623884045699ee41af60702673889c49b55129b0ad1cd2b66f15c27ec36baa8",
+      "e30e1539cf03263931c4d0114d4724b66fbedeb63f1e9d4b5c592ce04b5ab307",
+      "84d038fe80fe4da9f8aedd10f9d434f4185dece23b2f67961551f580c000735a",
+      "d08867060d53fd1828f9ce9c7c154622d659e16f070e74d0df695d2fe5884d4b",
+      "050374549a360b5b3dca3bba0ab0946ffb68d60ae36c26d2cf1dd1eef4840891",
+      "e8aff2e02ae3204c47cc9191ddce8a6ebaacc3fe31cd8c17d1d87b70e5847f86",
+      "24b943ce416a8425e0ef627412f5cbb9d82f2dd53d7d5d8e5ad6a92e071fc3f7",
+      "27dfd22b66bff44facac0f90395ea92346e62d50c93aba1d7c90ff3e422a4248",
+      "8b766ebd057716528bbac36831f09aac3ea733fce945ead8c0d950252754b4de",
+      "a835ccebc07abfe509014c871ca2796a085732498e7cab381ea7e9b0a9a35ed7",
+      "5a7e60e7120b13a0561f7e087522db242f30ddfc386b13fedab75b7690710461",
+      "3aa3a94e79e2c650307a6e02a10c11e4e9eb9c660e3e1d4a8d49616202dfd4f6",
+      "32a69433917138e21c65b301c4512d6532ec8307079a285cd63d954a6e49c839",
+      "99c314f437b5418cccbf9a91863b7b5a4c45ad8cca1e31b40e6c32c9ca826944",
+      "c264dd422b8abb8a334441946fb58c0bc4b0fac05b4e4f0287e3b1fb14fadfdc",
+      "8acd017c1e1ede7db3b0e4c05df476b7161eb0aeb68f297398bfe70ede34d2dd"
+    ],
+    "operations": [
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/39835245a00ad51bee6a7acf3725c3c997339091350c44df318718c8578ee2fa/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/a84ea3902dd4beed264026a31032ad02016298f139bee345cf7e5e0417362e9f/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/ec4d4963141be6833a9456ec304e9ead8c9f1ba95c787d3e1fb4b7c4066c9bec/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/1b8bbfed2f95e79bc332f87828bcbf30dec31361d1caad1c81c844849b3a86cb/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/af3aa874f282885a4de8e551214be53be9ff4af2b94d991cde00faea42fe637f/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/88c1329a1f3f445f3fcc19fd5137c0005e96d21400ee006a9f5eafbbbf2eb2db/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/a87dfaf85808283ba3643ad86e8f7a1057e1f4566304bec1b1e3551f8254651f/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/e06eee7797a5d8c1f90aafd002da0c1e6abd32f45cb39caa81f6bf557a0e28d0/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/de2a58a2e7f41c7cb379ff675a5ddb9fe09a8841c208a5c6f62224225885a89a/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/c303d96c22709c11c20cbf10cabb829d662c3d75ccadb82a0a1017e8f36f156c/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/d6ca2287f4d09125b76c154e23ecaf79c4d7860593c3a70e659c09f3a2b5208e/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/488be03d32bae71c34d53b24037a932c82ea917a09b1d6088ac942db8287efca/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/3b2a7e7654d26b28d87a93b522259b08a19e406585820399255e926b0b0e4972/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/400f327c676765ddcc9600379c0d25025a22c2a2cd4992495af840960cba9f9e/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/37256337092ff83ac1392f0ca38725b77b5a2e86976be773b6d95cdf86129657/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/a0b1def01c44055471aeee722361be819ce3e246733a9e6e86f8aac8af643246/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/9dc77dd0322f67bb03f493c3d3884e103172fc0b6e626c3de5cdbeac84b9032f/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/dbf53e8ad24b2184998bd8a75751dd409268b1641135d8ac9a402b138b3d78ed/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/cfca851a2c3e97ea6001341f3eac2ad057bbe5b3ed42f86ce240a7659d71dd9f/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/13f787e15d52e60bf7b9a60708306304b5a91418a6118b6576a43940cc1d1453/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/c502bdd9736ba30cbcc4db054d3f3e9df716a12f786275f78b0512e3f70d2b23/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/5c0d81d06611bb67718088e7a50575738ea1b7684c982205e6d32f1a845da8b2/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/c6c465e7590e8663b44ad41059c1ab97012af2d686b132749b68a596f2d9733a/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/2879bf1b6e0e971a5caa308d909bd4993fc6843cd3126c2ea0867619c9d6edb0/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/e398bc63938714dd62a689f7da83f3064e0cdab8bcff9929e93eddf8404d802e/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/e623884045699ee41af60702673889c49b55129b0ad1cd2b66f15c27ec36baa8/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/e30e1539cf03263931c4d0114d4724b66fbedeb63f1e9d4b5c592ce04b5ab307/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/84d038fe80fe4da9f8aedd10f9d434f4185dece23b2f67961551f580c000735a/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/d08867060d53fd1828f9ce9c7c154622d659e16f070e74d0df695d2fe5884d4b/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/050374549a360b5b3dca3bba0ab0946ffb68d60ae36c26d2cf1dd1eef4840891/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/e8aff2e02ae3204c47cc9191ddce8a6ebaacc3fe31cd8c17d1d87b70e5847f86/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/24b943ce416a8425e0ef627412f5cbb9d82f2dd53d7d5d8e5ad6a92e071fc3f7/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/27dfd22b66bff44facac0f90395ea92346e62d50c93aba1d7c90ff3e422a4248/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/8b766ebd057716528bbac36831f09aac3ea733fce945ead8c0d950252754b4de/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/a835ccebc07abfe509014c871ca2796a085732498e7cab381ea7e9b0a9a35ed7/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/5a7e60e7120b13a0561f7e087522db242f30ddfc386b13fedab75b7690710461/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/3aa3a94e79e2c650307a6e02a10c11e4e9eb9c660e3e1d4a8d49616202dfd4f6/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/32a69433917138e21c65b301c4512d6532ec8307079a285cd63d954a6e49c839/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/99c314f437b5418cccbf9a91863b7b5a4c45ad8cca1e31b40e6c32c9ca826944/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/c264dd422b8abb8a334441946fb58c0bc4b0fac05b4e4f0287e3b1fb14fadfdc/observation"
+      },
+      {
+        "op": "copy",
+        "from": "/shared_values/8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091/observation",
+        "path": "/shared_values/8acd017c1e1ede7db3b0e4c05df476b7161eb0aeb68f297398bfe70ede34d2dd/observation"
+      }
+    ],
+    "restoration_order": "copy適用→value_reference_contractの全値pointer/hash照合",
+    "consumer_connections": "shared_values内部の204参照はkey値のみでobservation member位置を指さない"
+  }
 }
