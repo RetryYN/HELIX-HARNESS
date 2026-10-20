@@ -425,6 +425,20 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 
 旧sourceはarchive root内の `docs/design/helix/L5-detail/design-refactoring-domain-model.md` §0〜§1（LEGACY-ASSET-603D0E8D8193914F4AC0、見出し34・45行、SHA-256 `6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b`）、`docs/design/helix/L4-basic-design/design-template-json-authority.md` §1〜§2（LEGACY-ASSET-4F5A1F0739EC1111D91D、見出し16・32行、SHA-256 `e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb`）、`docs/governance/coding-rules.md:19–31`（LEGACY-ASSET-4B835ADBEFBCCC13C1C0、SHA-256 `4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e`）を起点とする。意味署名・consumer・oracleの保全、意味正本と所在索引の区別、既存責務の再利用と局所変更を保持し、今回の分割事例を開発repoの著述作業へ意味として再導出する。旧DB・runtime・固定role・gate・dual-green工程は移植せず、製品要求や承認手続きを追加しない。
 
+### 設計成果物の反例照合と製品TDDの区別
+
+[POの方式採用](decisions/design-as-code-tdd-po-decision-2026-10-21.md)に従い、設計成果物を対象に上位の設計・対検証から最小設計をRed→Green→Refactorで導く。[設計リファクタリングの調査](feature-tickets/FT-DESIGN-REFACTOR-001.md#設計tdd設計ci設計refactorの検討案)で整理した各段階は、何を変更し何を照合したかと併せて読む。設計JSONを変更対象として扱うことと、製品コードを実装したことを同一の証拠にしない。
+
+| 変更対象 | 証拠が示す範囲 |
+|---|---|
+| 設計契約の欠陥修正 | 元要求・対検証に基づき、設計候補の出力から独立に導いた反例と期待を固定し、変更前の設計が意図した欠陥を持つことを照合する（設計Red）。最小の設計修正後に同じ期待と影響先を照合する（設計Green）。続く構造改善でも要求意味・公開契約・失敗意味・consumerを保持して再照合する（設計Refactor）。対象revision・実際の照合方法・結果・未評価範囲を示す。製品の動作成功は示さない |
+| 設計JSONの格納表現だけの整理 | 元の全論理値・独立期待・参照側を保持する復元前後の照合を示す。復元欠落等を識別する負例は、その復元契約の検証であり、元の設計契約に欠陥があったという設計Redへ読み替えない。容量削減だけで設計の意味的欠陥解消を示さない |
+| 製品コードのTDD | [REDFIRST判断](decisions/redfirst-adoption-po-decision-2026-10-11.md)に従う実装前の凍結・Red実観測、最小実装のGreen、意味保存Refactorと回帰を、実行した製品コードとtestのrevisionへ結ぶ。設計の静的照合結果で代用しない |
+
+これは既存の証拠の対象を明確にする整理であり、別の層・route・承認gateを設けない。[Concept](../concept/helix-concept.md)のL4〜L6＝設計、実装、L7〜L10＝検証と各V-pairを保持する。[方法比較監査](audits/v12-development-method-review-2026-10-21.json)のL6 Red／L7 Green＋Refactor案は比較候補であり、本節から層の再割当てやDesign CIの成立を生成しない。設計から要求・要件への意味差が見つかれば、既存の還流先とauthorityに戻す。
+
+起点は#3139の設計反例循環と格納表現の整理、および#3503の方法比較・#3514の製品実装TDDを同じ進捗と混同しかねない事例である。旧sourceは上節の `design-refactoring-domain-model.md` §0〜§1の意味署名・consumer／oracle保全と、archive root内の `docs/governance/ddd-tdd-rules.md:23–24,117–125` の実欠陥を検出するRed・同じoracleでの意味保存を読む。保持するのは対象と証拠の対応、変更するのは設計契約・格納表現・製品コードの三対象を開発repoの報告で区別する点であり、旧runtime・旧層番号・旧gateを移管しない。
+
 ### 現在の照合と、設計後の開発規律
 
 開発repoの運用と製品が提供する規律を混ぜない。以下の製品側の採用状態は[43件の1.0判断](decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)等の対象revisionから読む。ここには具体的な言語ルールやtool設定を新設しない。
