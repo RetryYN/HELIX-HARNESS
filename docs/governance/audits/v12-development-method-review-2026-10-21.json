@@ -126,6 +126,89 @@
       "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
       "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
       "raw_sha256": "e08f896a3581f88fbdf7e6bcbda55f525cac13a53e36d525744f5ec455cdce65"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "raw_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1",
+      "line_spans": [
+        [
+          128,
+          154
+        ],
+        [
+          158,
+          173
+        ]
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "authority_status": "historical_reference_only",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+      "raw_sha256": "1335b57bfc6dbdb0232f1d3fb2ec3fb1f374617ba644eb1e1ad10ba6d1f15117",
+      "line_spans": [
+        [
+          131,
+          142
+        ],
+        [
+          157,
+          193
+        ],
+        [
+          231,
+          239
+        ]
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-A6F899B80CE9AEA61B82",
+      "authority_status": "historical_reference_only",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/README.md",
+      "raw_sha256": "21a875ca5b46a8396485690a8405923ea197552fe4aa2302b1eaad6f7e650985",
+      "line_spans": [
+        [
+          40,
+          55
+        ]
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-80FD1264A2C50E2E4AA4",
+      "authority_status": "historical_reference_only",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+      "raw_sha256": "9f8fc48a087fa9ba6e629518fb376630d7863491d2f85be96a8b3fd0c6d2efc3",
+      "line_spans": [
+        [
+          224,
+          253
+        ]
+      ],
+      "legacy_asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+      "authority_status": "historical_reference_only",
+      "asset_ledger_path": "docs/governance/legacy-asset-disposition.jsonl"
+    },
+    {
+      "revision": "c41c755fb718a94b1765020fc9b47492f8373717",
+      "path": "docs/helix-harness/sources/v-model-forward-reverse-po-original-2026-09-26.md",
+      "raw_sha256": "d4c5da285799b5b0e2ffb2eb11cada928935e57c6a31d700a22b24a234e9f447",
+      "line_spans": [
+        [
+          36,
+          50
+        ],
+        [
+          165,
+          192
+        ]
+      ]
     }
   ],
   "findings": [
@@ -136,7 +219,7 @@
     },
     {
       "id": "F2",
-      "observation_ja": "H001のL6は64,706bytes、L7は628,263bytesの設計/対検証設計文書。L7には3関数に加えrepeat群、19 primary_call_oracles等があり、単なる空の検証計画ではない。一方、これらの存在は実行ログ/Red/Greenではない。",
+      "observation_ja": "H001のL6は64,706bytes、L7は628,263bytesの設計/対検証設計文書。L7には3関数に加えrepeat群、/primary_call_oracles/calls の23件等があり、単なる空の検証計画ではない。一方、これらの存在は実行ログ/Red/Greenではない。",
       "limit_ja": "692,969bytesは2文書の物理量であり、全量が重複・削減可能という測定ではない。既存oracleの固有情報を監査せず削除しない。"
     },
     {
@@ -146,8 +229,8 @@
     },
     {
       "id": "F4",
-      "observation_ja": "9/26原案にはL6実装/L7TDD ClosureやImplementation→Redの表記があるが、同日の記録は要求アイディアであり、それだけで全表記を採択しない。10/11 REDFIRST Aは凍結→実装前Red→最小本体実装→Greenを採用している。",
-      "limit_ja": "過去にPOがL6をテスト設計へ変更したexact記録は今回の保存資料検索では未特定。未保存GUI会話まで不存在と断定しない。"
+      "observation_ja": "旧L12 coverage §1とvmodel-docgen-fit §§3–4は、L5に先行test designと独立機能設計の必要契約を吸収し、L6を実装binding、L7をTDD closureとする。他方、旧forwardのL6機能設計は別表記として残る。9/26原案の47/170/172行にもL6実装/L7 TDD Closureがあり、182–188行にはImplementation→Red→Green→Local Refactorとある。同日の判断記録だけで全表記を採択したと推定しない。10/11 REDFIRST記録11–15行の提示質問と採用回答では「test/oracle凍結→実装前Red実観測→最小本体実装→Green」というAの順序が示されている。",
+      "limit_ja": "旧HELIXには機能設計をL5へ吸収する明文の移行判断が存在した。「旧記録がない」ことを変更理由にしない。旧のtest design所在はL5であり、L6をテスト専用へ変えたexact PO原文は今回の範囲では未特定。未保存GUI会話の不存在は断定しない。旧sourceから現在Conceptを自動で上書きしない。"
     },
     {
       "id": "F5",
@@ -201,7 +284,7 @@
     {
       "place": "L6/L7現行",
       "keep": "必要な関数粒度契約と対検証、TDD実行証拠への接続",
-      "reduce": "L5と同じ仕様の独立再記述を減らす。既存19oracle等の固有意味は保全する"
+      "reduce": "L5と同じ仕様の独立再記述を減らす。/primary_call_oracles/calls の既存23件等の固有意味は保全する"
     },
     {
       "place": "L6 Red / L7 Green+Refactor案",
@@ -343,5 +426,139 @@
     "要求/受入の意味を変える必要が見つかった場合の対象revisionの採否。単なる既存scopeの重複除去や実装以下の起草で都度質問を増やさない。"
   ],
   "completion_boundary_ja": "本監査の共有・mergeは調査と候補の共有だけ。#3502の最小実験は未実施でIssue完了にしない。層変更、実装/CI許可、Accepted、releaseは生成しない。",
-  "source_search_limits_ja": "9/26 PO原案、旧processの異なるL6表記、10/8→10/10→10/12判断と現在Concept/L2を比較した。未保存GUI原文と全過去Issue/PRの完全探索はしていない。9/26原案のL6実装表記だけから現在Conceptが無効だとは判断しない。"
+  "source_search_limits_ja": "固定sourceの旧L12 coverage §1–3、旧vmodel-docgen-fit §§1/3/4/7、旧process README §2、旧forward L6記述と資産明細台帳を比較した。旧L12には独立機能設計を吸収する明文がある。現行Concept/L2、9/26原案と判断、10/8→10/10→10/12判断の範囲では、旧L12から現行L6関数設計/L7関数検証設計へ意味を変えた個別PO判断と、L6をテスト専用へ変更したexact原文は未特定。未保存GUI/全過去Issue/PRの完全探索はしていない。新規な有向経路合成の実験はIssue3502からの比較提案であり、旧要求や既決用語として採用しない。",
+  "legacy_rederivation": {
+    "reuse_mode": "意味の再導出（historical sourceを参照し、旧runtime/gate/DB/schemaは実行・コピーしない）",
+    "origins": [
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "line_spans": [
+          [
+            138,
+            154
+          ],
+          [
+            168,
+            173
+          ]
+        ],
+        "meaning_ja": "L5先行test design、L6実装binding、L7実TDD closure。L8–L10のtest design oracleと実行結果を区別。独立機能設計の復活を退行の症状に挙げる。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A6F899B80CE9AEA61B82",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/vmodel-docgen-fit.md",
+        "line_spans": [
+          [
+            157,
+            193
+          ],
+          [
+            233,
+            239
+          ]
+        ],
+        "meaning_ja": "独立した重い機能設計をL5詳細設計/typed declaration/L7 TDD closureへ吸収する移行を明示。破壊的renameをせず意味で移す。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-80FD1264A2C50E2E4AA4",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/README.md",
+        "line_spans": [
+          [
+            40,
+            55
+          ]
+        ],
+        "meaning_ja": "同じL5先行test design、L6実装/L7 TDD closureをprocessの正規pairとして列挙。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-F542125805B777D8A56A",
+        "source_path": "archive/legacy-generation-2026-09-14/root/docs/process/forward/L00-L06-design-phase.md",
+        "line_spans": [
+          [
+            224,
+            253
+          ]
+        ],
+        "meaning_ja": "L6機能設計/単体test設計pair/L7実装sprintという異なる旧表記。これだけを旧HELIX全体の唯一の意味と扱わない。"
+      }
+    ],
+    "keep_ja": [
+      "詳細契約と先行test/oracleを実装より先に定める。実観測Red/Green/Refactor、実装/testのtrace、unit/integration/system固有oracleを保持する。",
+      "重複した独立機能設計を減らす場合も、型・edge case・failure等の固有契約と既存oracleを失わない。"
+    ],
+    "change_candidate_ja": [
+      "旧のL0–L14からL12へのmigration、harness.db、gate名/CLI/既存runtimeは現行へ移さない。現行Conceptと採択L2/PO判断に照合し、意味が衝突する層責務の変更は人の判断対象へ具体差分として戻す。",
+      "L6 Red/L7 Green+Refactorという今回案は旧のL6実装binding/L7 TDD closureの完全一致再利用ではない。先行testは旧ではL5であり、この再配分を無言で旧決定と扱わない。"
+    ],
+    "reason_ja": "同じ独立機能設計の重さを減らす旧判断があり、今回H001の再記述と実TDD未観測を比較する出発点になる。現行L6/L7と旧L12 sourceの差について、層責務を変えた個別PO判断は今回の固定資料から未特定であり、現行の不在推測や旧番号の機械移植で埋めない。"
+  },
+  "working_method_failure_basis": {
+    "cases": [
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3490",
+        "observed_ja": "同じH048 L5/L8二文書へのF02私有impact材料追加。元native/入力/返却と固定3 wholeを保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "base": "66fefeabc363e2586fb684719fa18b015796a5e9",
+        "head": "8b6d99814d85d1c3536eeef2ff343e9655e0b478",
+        "merge": "6ed6ada728859fe585a5812da11f2f50361e7c2d",
+        "subject": "H048 F02"
+      },
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3492",
+        "observed_ja": "同じH048 L5/L8二文書へのF03 source根拠・author返却材料追加。public/native/fixtureを保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "base": "6ed6ada728859fe585a5812da11f2f50361e7c2d",
+        "head": "05542b024edca3df6d35fb700200ec5de376a2d7",
+        "merge": "dfdd4d0aba523519da16c9c3bf920da8a406ae56",
+        "subject": "H048 F03"
+      },
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3498",
+        "observed_ja": "同じH048 L5/L8二文書へのF04 reason/impact診断材料追加。native返却、局所継続、改名拒否を保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "base": "e45e0ef4a6515e5e83d0a71604728f8257d1c8bd",
+        "head": "9bbfe3c7ea2297b404822487d2ccf675bdece91d",
+        "merge": "c41c755fb718a94b1765020fc9b47492f8373717",
+        "subject": "H048 F04"
+      },
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3499",
+        "observed_ja": "L8一文書の同値FN03返却37箇所をcopy格納する提案。47ケースの値/順序/元bytesを保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "fixed_base": "c41c755fb718a94b1765020fc9b47492f8373717",
+        "subject": "LABO011"
+      },
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3500",
+        "observed_ja": "L5/L8二文書のB01責務返却材料と固定3 wholeの提案。元native/type/64ケースを保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "fixed_base": "c41c755fb718a94b1765020fc9b47492f8373717",
+        "subject": "BRAIN007 B01"
+      },
+      {
+        "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3501",
+        "observed_ja": "L8一文書の同値返却3組を既存copy契約へ追加する提案。52 probeと順序/元bytesを保持。",
+        "keep_ja": "既存の意味と独立期待を維持し、実資格・配送・上位成立を推定しない。",
+        "change_ja": "詳細材料または格納表現の限定変更。製品コード追加ではない。",
+        "execution_limit_ja": "対象PR/Issueは静的復元/hash等の確認を範囲とし、製品/domain program・旧runtime/test/CIの不実行を明記。製品実TDD未到達。",
+        "fixed_base": "c41c755fb718a94b1765020fc9b47492f8373717",
+        "subject": "LABO055"
+      }
+    ],
+    "bounded_finding_ja": "3490/3492/3498は同じL5/L8二文書へ隣接F02/F03/F04を順に追加した。3499/3500/3501は互いに異なるファイルの静的設計/格納表現の作業で、いずれも製品実TDDを実施していない。これは対象別契約を保持する事実であり、不要なPR/細分化が遅延原因だったという因果は未測定。実装許可が存在したことも示さない。",
+    "keep_ja": "各対象の独立oracle、原子PR、非依存の並列化、既存成果と未供給範囲の保全を保持する。",
+    "change_ja": "追加の分割・委任は、初回循環の一挙動を実テストへつなぐために必要な範囲に絞る比較案とする。最大3の上限を常時満杯にする目標へ変えず、容量/静的整合を実行の代替としない。",
+    "reason_ja": "Issue3502本文と追加commentの要求する最小実験/変更コストの測定へ、静的設計の積み上げから収束するため。既存スライスが無価値という判断や、新しい開始gateは生成しない。"
+  }
 }
