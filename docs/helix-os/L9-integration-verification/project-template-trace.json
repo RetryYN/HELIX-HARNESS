@@ -44300,7 +44300,7 @@
             "binding_kind": "paired_current_file_bytes",
             "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
             "pointer": "/contracts/5/qualified_source_projection_join",
-            "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+            "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
             "object_canonical_sha256": "00156a6413c32376a8fe02f9c910699cddfee5107d4e5e525317e608eb91e7b6",
             "meaning": "同一候補pairの現L4 file/object bytesに結ぶ。fixture_base_refの過去L8 bytes、既存source_basisの固定revisionと区別する。"
           },
@@ -50679,7 +50679,7 @@
         "paired_candidate_l4_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/selected_source_member_correspondence",
-          "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+          "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
           "object_canonical_sha256": "2e1ba54d9e5bb2c1287b8464f0babdf9a38e19443026a17315f18ad13db74586",
           "revision_binding": "同一HEADの先行追補L4 bytesと対象objectへ結ぶ。旧f3ea以前のsource_basisと採用撤回した初回HEADは歴史参照として別保持。"
         },
@@ -50759,7 +50759,7 @@
           "normative_basis": {
             "L4": {
               "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
-              "file_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+              "file_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
               "binding_kind": "paired_current_file_bytes",
               "json_pointers": [
                 "/contracts/5/selected_source_member_correspondence/return_contract",
@@ -55425,7 +55425,7 @@
         "current_normative_binding": {
           "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
           "pointer": "/contracts/5/source_original_correspondence",
-          "working_bytes_sha256": "57596d226d9a26282e94b134b9f69b1d96fd612747c3febe9b324bde0a4be376",
+          "working_bytes_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
           "binding_kind": "paired_current_file_bytes",
           "meaning": "同一候補pairの規範節を現L4 bytesへ結ぶ。元source_basisは固定git bytesの歴史参照として別保持し、現候補を当該git revisionの本文だと偽らない。"
         }

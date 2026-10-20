@@ -92361,7 +92361,7 @@
             "document_id": "HELIX-HARNESS-L4-009",
             "candidate_local_pointer": "/contracts/4/source_result_reference_projection",
             "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
-            "candidate_l4_bytes_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+            "candidate_l4_bytes_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
             "candidate_l4_path": "docs/helix-harness/L4-basic-design/product-template-application.json"
           },
           "expectation_basis": "L3/L10 F03にある根拠・適用範囲・不足の返却義務と、L4の必須軸、順序付きcondition pair、Presence<JsonValue>診断規則を用いる。各probeのrawと全返却期待はcase内に保持し、local先固定履歴はGit上の時系列証明とは区別する。",
@@ -142863,7 +142863,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "pointer": "/field_source_materialization_contract",
         "canonical_sha256": "9affbb54ace3e5c6f22c92d004999e474be0a36d84b439aaf3d7b60aecd433bf",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -157631,7 +157631,7 @@
       },
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "pointer": "/field_semantic_evidence_contract",
         "canonical_sha256": "739d8838896cbb169eafecfae38673e338fc8d82bc2c340195e96b89707dbc6e",
         "role": "現行L4基本候補のreturn/body契約。commit済み歴史revisionとは区別し、同PRの対象bytesと選択節を固定する。",
@@ -175511,7 +175511,7 @@
       {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
         "pointer": "/f05_validation_material_call_contract",
-        "file_sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+        "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
         "canonical_sha256": "0bae5fc583b45d6c4631a7dd2a6574361cd299e22623e5f93e90431ef0be368d",
         "binding_kind": "current_candidate_content_binding_no_git_revision_claim",
         "status": "作業時のcurrent L4 candidate bytes。commit revisionとは主張しない。"
@@ -193344,7 +193344,7 @@
         "pointer": "/field_obligation_scope_contract",
         "canonical_sha256": "d0aada2de42168fef7e383c7ba423002dec423105fbeff3a07944b2a7ddffe31",
         "role": "本packet内候補objectへの固定binding。base5671 whole hashを新candidate currentとしない。",
-        "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510"
+        "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d"
       },
       {
         "revision": "c9fcb23c010ede88c528c4959929b8bdfedb730e",
@@ -221334,7 +221334,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/input_scope_knowledge_gap_contract"
     },
     "comparison_contract": {
@@ -308834,7 +308834,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/input_scope_knowledge_gap_contract/post_return_projection",
       "canonical_sha256": "7a5d00f5c69b7ec0edbdc013e475d14cfed5ec362f5fa07cbc44e7a89c3c9618"
     },
@@ -312477,7 +312477,7 @@
     ],
     "design_binding": {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "pointer": "/selected_brain_source_occurrence_contract",
       "canonical_sha256": "d0784dfe42a7b76cbb9372499eda9958a7fbeb72664dd70e398ac31287df3d5e",
       "binding_kind": "current_candidate_content_binding_no_git_revision_claim"
@@ -313061,15 +313061,15 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_source_caller_contract",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "canonical_sha256": "f75a907ecb152a4cd46d075ef23b1886279c9cea7959fe1c4da1852ad0cab60d"
     },
     "detail_binding": {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "99130ef470ecc6616b0e741154dfc1d5d11e02228398cacdb8f26865501b3280",
-      "canonical_sha256": "df6128b52cdef6e1a9d371791e33005911c31bb713963ab6848df41c97186f72"
+      "sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+      "canonical_sha256": "7edc7902e642a798c96d60e815b9dbd2b2cb685b1783c01c62139644bcbd80c8"
     },
     "expectation_basis": {
       "independent_oracle": "scaffold/review-handoff/local/core-source-selection-30dad57c/independent-oracle-basis.json",
@@ -313421,7 +313421,7 @@
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/selected_brain_field_definition_application_contract",
       "id": "HARNESS-L4-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
-      "sha256": "e3bd54d997b5432a45e35dfda4dd4b21ae2f70c4f5be8f396ab165c7efa6e510",
+      "sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
       "canonical_sha256": "fb8477a51a0819953e8674b8330e7d0cfafd5f08c7e116662c63e23b478a0b04",
       "binding_kind": "current_candidate_content_binding"
     },
