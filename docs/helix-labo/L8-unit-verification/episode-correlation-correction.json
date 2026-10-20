@@ -37567,7 +37567,7 @@
     "ordered_utf8_bytes": 6547,
     "materialized_canonical_sha256": "a55db6a1683507953a24ae7753d59dca0fd50dd37816bccf3c4cca4fe8669280",
     "restore_order": "scope_pointers記載順。各siteは同じroot値へ独立に復元され共有aliasを作らない。",
-    "consumer_read_positions": "scope_pointersの54member位置が現行consumerの読取り位置。case0の原値は固定literalとして保持し、typed_arguments pointerは展開後の同じ全値へ解決する。",
+    "consumer_read_positions": "scope_pointersの54member位置は、型/hash検査の前に本materializationでevents_recipeを原ordered wholeへ復元した後の論理読取位置である。case0の原値はliteralとして保持する。実装済みreader又は実runtime互換性の成立証拠を意味しない。",
     "relation_to_existing_contract": "本文書のunit_contractsにはfixture/materialization/value_refの役割を持つ契約が存在しないため、完全一致再利用・置換の対象はない。兄弟文書（H040等）のbundle_recipe/materialization契約と同じbase_pointer+RFC6902 copy形式を意味の再導出として採用し、展開→型/hash検査の順を本契約へ結ぶ。",
     "preservation": "root literal・input/expected.retained_inputsの役割・case順・event配列順・null/欠落差・全独立期待・原source・履歴pinを保持。逆変換で元文書全値へ戻る。",
     "authority_effect": "なし。独自DSL/resolver・evaluator・新gate/要求は追加しない。製品reader未実装であり実consumer成立は主張しない。"
