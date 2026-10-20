@@ -1990,7 +1990,7 @@
         }
       },
       "additional_properties": "closed_declared_carrier",
-      "meaning": "edge状態/候補定数の部分返却。影響対象memberは未具体化（functions.compare_f02.unclosed_obligations）。"
+      "meaning": "既存compare_f02のedge別状態/候補定数のnative返却型を保持する。新private f02_impact_materialがこの型の同call全返却と原入力を包んで論理影響材料を返す。F02Return自体へmemberを追加しない。"
     },
     "F03Arguments": {
       "kind": "record",
@@ -5005,8 +5005,8 @@
             "影響するobject/operation/oracleの具体ID集合と各破断edgeとの対応",
             "影響consumer/返却先への値接続とそのsource資格"
           ],
-          "current_carrier_limit": "F02Returnに影響対象memberは存在しない。packet内のstable/before/after/edge/pairに一部IDがあっても影響targetへ組み立てて返さず、consumer母集合/正式bindingも未供給。",
-          "consequence": "F02はedge状態の部分返却。L3/L4/L10の影響対象義務は未実現で、全義務完了/Readyではない。原159wholeを維持し未提供のimpact producer/consumerを作らない。"
+          "current_carrier_limit": "既存compare_f02のF02Returnには影響対象memberを追加しない。新private f02_impact_materialが、同callのarguments/comparison全値を保持し、失敗軸ごとに宣言object/operation/oracle等の原出現と所在を結ぶ。原値の欠落/null/空/unknownを補完せず、consumer母集合/正式bindingは既存入力に未供給のまま保持する。",
+          "consequence": "旧compare_f02単体の部分比較と、新private impact材料の論理producerを分けて読む。今回定義するのは供給された原出現と破断軸の結線までで、具体consumer/返却先の値接続やsource資格を生成しない。旧native/全期待/固定sourceとF01統合差分を保持し、この限定材料を全F02義務完了/実dispatchとしない。実資格や配送が未観測なことだけを本論理設計の新gateにはしない。"
         }
       ]
     },
@@ -5324,7 +5324,7 @@
       "全92/430意味/正式schema/codec/実資格/TDD/CI/L11/実装Readyは未成立。test/oracle凍結→実装前Red→Green→Refactorは将来の実作業でありこの文書の作成では実行していない。",
       "SourceAttributes helperはidentity/revision/scope/ownerの4属性だけの部分比較。L4 qualification_ruleの必要集合・source意味の独立比較/各packetへの正式bindingは未具体化。4属性全knownやcandidate_presentable=trueでも全L4義務の完了/実資格を表さない。",
       "declared packetのread対象memberはabsent/nullを保持し局所missing/unknownへ写像する。targetsのみ一意の非空string IDを持つobject配列として有限domainを明示する。非object/id欠落/null/数値/重複を空成功へ補完せずdomain外として値と診断を保持する。",
-      "F02影響対象の具体ID/operation/oracle/consumerと破断edgeの対応を返すmember/producer接続は未実現。F03全条件の同対象revision/scope比較とcanonical name対照比較も未実現。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
+      "既存compare_f02単体はedge別状態の部分返却のまま保持する。新private f02_impact_materialは、同callの入力とnative全返却から、破断軸に参加する宣言object/operation/oracle等の原出現と所在を結ぶ論理材料を定義する。consumer/返却先の具体集合とそのsource資格はF02Argumentsに未供給で、この材料が生成したとはしない。F03全条件の同対象revision/scope比較とcanonical name対照比較も未実現。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
       "F01の例外詳細状態は原L9 projectionに従いmissing_scoped_exceptionへ集約し、F04の詳細分類と同一schemaへ統合しない。symbol_change=candidate_onlyは原定数で変化量検出ではない。",
       "旧native F01/F03の関数返却自体には対象作成側への理由付きroute/memberがなく、既存target_results/condition_resultsは局所診断のまま。新private F01 f01_author_return_materialはF01の限定論理材料のみ具体化し、F03の返却、実owner資格/配送、F01/F03全域の成立を示さない。F04/B01の別返却memberを代用しない。",
       "F04 reason/impactは保存のみで、不足やmarkerを診断しない。H048-F04-REASON-IMPACT-NOT-DIAGNOSEDの正本と上流sourceを参照する。"
@@ -5785,8 +5785,8 @@
         "影響するobject/operation/oracleの具体ID集合と各破断edgeとの対応",
         "影響consumer/返却先への値接続とそのsource資格"
       ],
-      "current_carrier_limit": "F02Returnに影響対象memberは存在しない。packet内のstable/before/after/edge/pairに一部IDがあっても影響targetへ組み立てて返さず、consumer母集合/正式bindingも未供給。",
-      "consequence": "F02はedge状態の部分返却。L3/L4/L10の影響対象義務は未実現で、全義務完了/Readyではない。原159wholeを維持し未提供のimpact producer/consumerを作らない。"
+      "current_carrier_limit": "既存compare_f02のF02Returnには影響対象memberを追加しない。新private f02_impact_materialが、同callのarguments/comparison全値を保持し、失敗軸ごとに宣言object/operation/oracle等の原出現と所在を結ぶ。原値の欠落/null/空/unknownを補完せず、consumer母集合/正式bindingは既存入力に未供給のまま保持する。",
+      "consequence": "旧compare_f02単体の部分比較と、新private impact材料の論理producerを分けて読む。今回定義するのは供給された原出現と破断軸の結線までで、具体consumer/返却先の値接続やsource資格を生成しない。旧native/全期待/固定sourceとF01統合差分を保持し、この限定材料を全F02義務完了/実dispatchとしない。実資格や配送が未観測なことだけを本論理設計の新gateにはしない。"
     },
     {
       "id": "H048-F03-SAME-TARGET-REVISION-SCOPE-NOT-BOUND",
@@ -5995,5 +5995,230 @@
       "reference_notation": "既存finite_referenceと同じPython風pure有限参照記法。target_indexは0以上の整数で、str(target_index)は先頭ゼロなしの十進表記を返すpointer構築用の表記。文字列の~と/を原文字単位でRFC6901へescapeする。製品実装・実行済み評価器ではない。"
     },
     "impossible_or_outside_ja": "既存typed target一意IDと既存same-call比較の関係を条件とするwriterで、任意F01Returnを受ける汎用validatorではない。型外・native契約違反・未供給実owner資格を新理由/偽native返却へ変換せず、このsliceが外側codec/実配送を定義したとしない。"
+  },
+  "f02_impact_material": {
+    "kind": "private_samecall_impact_material",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "conclusion_ja": "対象/operation/oracle等の原出現と各破断比較軸を結ぶ局所logical impact producerは、既存入力だけで設計可能。具体consumer/実owner/配送は原型に無く、ここでは供給されたと扱わない。F02全閉包ではない。",
+    "existing_aliases": {
+      "arguments": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/F02Arguments"
+      },
+      "comparison": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/F02Return"
+      },
+      "context": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/RetainedContext"
+      },
+      "presence": {
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "pointer": "/types/presence_contract"
+      }
+    },
+    "types": {
+      "F02DeclaredReferenceOccurrence": {
+        "closed_ordered_members": {
+          "kind": "enum object|operation|oracle|symbol",
+          "input_pointer": "RFC6901 pointer relative to new return root",
+          "value": "string|null; required only for this actually supplied leaf occurrence"
+        },
+        "meaning_ja": "supplied/null/empty/unknown-marker原値の出現。resolved qualified IDや完全impact集合ではない。root/parent/keyが欠落またはparent nullならそのleaf出現を捏造しない。親rootの欠落/nullはarguments全値とsource_slot_pointersで辿る。"
+      },
+      "F02ImpactRecord": {
+        "closed_ordered_members": {
+          "comparison_axis": "enum object_identity|oracle_identity|symbol_edge|oracle_edge|pair",
+          "comparison_state": "existing per-axis failure state (missing|unknown|conflict; oracle_edge additionally private_only_rejected)",
+          "comparison_pointer": "/comparison/edge_results/{axis}",
+          "source_slot_pointers": "ordered list of declared root input slot RFC6901 pointers, may refer to absent slots",
+          "declared_reference_occurrences": "ordered list<F02DeclaredReferenceOccurrence>, no dedupe"
+        },
+        "meaning_ja": "異なる軸/原出現を勝者選択や最初の失敗だけへ縮約しない。stateは実native同call値のcopyで新priorityを生成しない。"
+      },
+      "F02ImpactMaterial": {
+        "closed_ordered_members": {
+          "arguments": "whole existing F02Arguments",
+          "comparison": "whole existing F02Return",
+          "impact_records": "list<F02ImpactRecord> in fixed 5-axis order",
+          "naming_conformance": "enum not_established|not_decided_here",
+          "consumer_impact": "literal not_supplied_by_F02Arguments",
+          "actual_dispatch": "literal false"
+        },
+        "meaning_ja": "いずれか既存軸が不成立なら命名適合not_established。全軸成功はこの部分比較だけで命名採用/許可を決めずnot_decided_here。新native返却型/外部codec/authorityではない。"
+      }
+    },
+    "wrapper": {
+      "name": "compare_f02_with_impact_material",
+      "signature": "(packet:F02Arguments.packet, context:F02Arguments.context) -> F02ImpactMaterial",
+      "visibility": "private",
+      "steps_ja": [
+        "既存typed引数をargumentsへ全値/member順保持する。F01資料/target/exception ownerからconsumerや作成者を補完しない。",
+        "同じpacket/contextで既存compare_f02を実1回呼び、その全返却をcomparisonへ保存。任意native比較/expected/cache/qualificationboolは外部入力にしない。",
+        "axis_tableの既存5軸順に実stateを読み、各軸の既存success以外ならimpact recordを各1件作る。原比較priority/旧symbol_change定数/native effects/Qは不変。",
+        "source_slot_pointersはaxis_tableの宣言rootを/arguments/packet下へ写す。leaf parentが実recordでkeyが存在する参照だけ、kind/input_pointer/原valueを表順にcopy。root scalarはkey存在時のみcopy。null/empty/TBD/unknownを解決済IDへ昇格しない。",
+        "原出現の同値反復も消さず、異なる参照を既知stableへ正規化しない。private_symbolはoracle_edgeに実存在する時だけ原symbol出現として残し、object/oracleへ読み替えない。",
+        "impact recordが1件以上ならnaming_conformance=not_established、0ならnot_decided_here。consumer_impactは型域の未供給開示、actual_dispatch=false。実consumer未供給を新拒否理由へ足さない。"
+      ],
+      "axis_table": [
+        {
+          "axis": "object_identity",
+          "success": "held",
+          "source_roots": [
+            "stable_object",
+            "before",
+            "after"
+          ],
+          "reference_paths": [
+            [
+              "object",
+              "stable_object"
+            ],
+            [
+              "object",
+              "before/object"
+            ],
+            [
+              "object",
+              "after/object"
+            ]
+          ]
+        },
+        {
+          "axis": "oracle_identity",
+          "success": "held",
+          "source_roots": [
+            "stable_object",
+            "operation",
+            "stable_oracle",
+            "before",
+            "after"
+          ],
+          "reference_paths": [
+            [
+              "object",
+              "stable_object"
+            ],
+            [
+              "operation",
+              "operation"
+            ],
+            [
+              "oracle",
+              "stable_oracle"
+            ],
+            [
+              "oracle",
+              "before/oracle"
+            ],
+            [
+              "oracle",
+              "after/oracle"
+            ]
+          ]
+        },
+        {
+          "axis": "symbol_edge",
+          "success": "bound",
+          "source_roots": [
+            "stable_object",
+            "operation",
+            "after",
+            "symbol_edge"
+          ],
+          "reference_paths": [
+            [
+              "object",
+              "stable_object"
+            ],
+            [
+              "operation",
+              "operation"
+            ],
+            [
+              "symbol",
+              "after/symbol"
+            ],
+            [
+              "object",
+              "symbol_edge/object"
+            ],
+            [
+              "operation",
+              "symbol_edge/operation"
+            ],
+            [
+              "symbol",
+              "symbol_edge/symbol"
+            ]
+          ]
+        },
+        {
+          "axis": "oracle_edge",
+          "success": "bound",
+          "source_roots": [
+            "stable_object",
+            "operation",
+            "stable_oracle",
+            "oracle_edge"
+          ],
+          "reference_paths": [
+            [
+              "object",
+              "stable_object"
+            ],
+            [
+              "operation",
+              "operation"
+            ],
+            [
+              "oracle",
+              "stable_oracle"
+            ],
+            [
+              "object",
+              "oracle_edge/object"
+            ],
+            [
+              "operation",
+              "oracle_edge/operation"
+            ],
+            [
+              "oracle",
+              "oracle_edge/oracle"
+            ],
+            [
+              "symbol",
+              "oracle_edge/private_symbol"
+            ]
+          ]
+        },
+        {
+          "axis": "pair",
+          "success": "same_object",
+          "source_roots": [
+            "stable_object",
+            "pair"
+          ],
+          "reference_paths": [
+            [
+              "object",
+              "stable_object"
+            ],
+            [
+              "object",
+              "pair/requirement_object"
+            ],
+            [
+              "object",
+              "pair/verification_object"
+            ]
+          ]
+        }
+      ],
+      "typed_relation_limit_ja": "入力にある宣言identity出現を対象へ結ぶ材料であり、元sourceの資格/同版scope/consumer集合を追加生成しない。compare同callの由来と構造型を分離。型外/旧compare契約違反を新Causeや架空比較値へ変換するtotalvalidatorは追加しない。"
+    }
   }
 }

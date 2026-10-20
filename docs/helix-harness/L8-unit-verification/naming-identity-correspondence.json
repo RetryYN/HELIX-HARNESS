@@ -54438,5 +54438,661 @@
       "scope_ja": "これはrootが固定oracleを凍結した時点の記録であり、現在の作成状態を示す値ではない。"
     },
     "unclosed_id_note_ja": "verification_obligations[0].unclosed_obligationsの旧native ID(H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED)は旧compare_f01単体の状態として不変に保持し、新private f01_author_return_materialは限定論理返却役割の具体化範囲に限る。実owner資格・配送は別の未成立範囲。"
+  },
+  "f02_impact_material_verification": {
+    "kind": "private_impact_material_verification",
+    "authority_effect": "none",
+    "role": "root technical finite oracle selection before newF02 reference program, not user approval or runtime observation",
+    "source_revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+    "freeze_snapshot_main": "501645f60e9babf8aff27ba06591f2c84b4ddcd1",
+    "source_oracle_proposal_sha256": "b08d908bef20c1c7b5e0c8c7ea06974f8f40d114f33489f298e595456c2fc6ca",
+    "cases": [
+      {
+        "id": "normal_observed_links_no_impacts",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_bytes": 1656098,
+          "json_pointer": "/cases/6",
+          "selected_witness": {
+            "canonical_sha256": "ad805165fd6c8005a6007f186cbc2984170238f0ee254922ffd504b207e70058",
+            "ordered_compact_sha256": "5b8e0aac01e800288b1168df7d6e131a16ba5a5e0dc8c10cc6ff2c1431e3fbb0",
+            "ordered_compact_utf8_bytes": 3398
+          }
+        },
+        "input": {
+          "packet": {
+            "after": {
+              "object": "OBJ-P",
+              "oracle": "ORACLE-P",
+              "symbol": "readValue"
+            },
+            "before": {
+              "object": "OBJ-P",
+              "oracle": "ORACLE-P",
+              "symbol": "oldLookup"
+            },
+            "operation": "read",
+            "oracle_edge": {
+              "object": "OBJ-P",
+              "operation": "read",
+              "oracle": "ORACLE-P"
+            },
+            "pair": {
+              "requirement_object": "OBJ-P",
+              "verification_object": "OBJ-P"
+            },
+            "stable_object": "OBJ-P",
+            "stable_oracle": "ORACLE-P",
+            "symbol_edge": {
+              "object": "OBJ-P",
+              "operation": "read",
+              "symbol": "readValue"
+            }
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "after": {
+                "object": "OBJ-P",
+                "oracle": "ORACLE-P",
+                "symbol": "readValue"
+              },
+              "before": {
+                "object": "OBJ-P",
+                "oracle": "ORACLE-P",
+                "symbol": "oldLookup"
+              },
+              "operation": "read",
+              "oracle_edge": {
+                "object": "OBJ-P",
+                "operation": "read",
+                "oracle": "ORACLE-P"
+              },
+              "pair": {
+                "requirement_object": "OBJ-P",
+                "verification_object": "OBJ-P"
+              },
+              "stable_object": "OBJ-P",
+              "stable_oracle": "ORACLE-P",
+              "symbol_edge": {
+                "object": "OBJ-P",
+                "operation": "read",
+                "symbol": "readValue"
+              }
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "edge_results": {
+              "object_identity": "held",
+              "oracle_identity": "held",
+              "symbol_edge": "bound",
+              "oracle_edge": "bound",
+              "pair": "same_object"
+            },
+            "symbol_change": "candidate_only",
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "impact_records": [],
+          "naming_conformance": "not_decided_here",
+          "consumer_impact": "not_supplied_by_F02Arguments",
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "258cd0ccb4d3c7afaf5a46429c87272c5a7f35ef30280126506623f8c9325f90",
+            "ordered_compact_sha256": "cfbe4e4524441b88ba79783d492f2a869d82376d0768fe51a4ff866a4b55714f",
+            "ordered_compact_utf8_bytes": 492
+          },
+          "expected": {
+            "canonical_sha256": "d1a86403fa94e5b5fe83dfc7ce226ac8fab1f852c04a7b45a219109e2c755010",
+            "ordered_compact_sha256": "e33e78db47137d526c9b0af4b72888d9875ae877af2a7bea2bc0e3b0786456a2",
+            "ordered_compact_utf8_bytes": 1032
+          },
+          "old_native_return": {
+            "canonical_sha256": "f2a38ac24637cc56e22cec81f3911e7363a0486b88501d67f6bfe6b6e963bd3d",
+            "ordered_compact_sha256": "76fa56fdc07f0a9c5444e1d96253ae96bf6009c441b38b5ef00a5be615d255dd",
+            "ordered_compact_utf8_bytes": 379
+          }
+        }
+      },
+      {
+        "id": "composite_conflicts_keep_each_original_occurrence",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_bytes": 1656098,
+          "json_pointer": "/cases/63",
+          "selected_witness": {
+            "canonical_sha256": "0ffdc6c297fd639616db21ef17af8b31f624db41deca432896ae061da9b61aed",
+            "ordered_compact_sha256": "974faf34a63e9d0738566848e6aa2ffea85e798d083f2de42488683b1020f02c",
+            "ordered_compact_utf8_bytes": 3957
+          }
+        },
+        "input": {
+          "packet": {
+            "after": {
+              "object": "OBJ-P",
+              "oracle": "ORACLE-P",
+              "symbol": "readValue"
+            },
+            "before": {
+              "object": "OBJ-X",
+              "oracle": "ORACLE-P",
+              "symbol": "oldLookup"
+            },
+            "operation": "read",
+            "oracle_edge": {
+              "object": "OBJ-P",
+              "operation": "read",
+              "oracle": "ORACLE-X"
+            },
+            "pair": {
+              "requirement_object": "OBJ-X",
+              "verification_object": "OBJ-P"
+            },
+            "stable_object": "OBJ-P",
+            "stable_oracle": "ORACLE-P",
+            "symbol_edge": {
+              "object": "OBJ-P",
+              "operation": "write",
+              "symbol": "readValue"
+            }
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "after": {
+                "object": "OBJ-P",
+                "oracle": "ORACLE-P",
+                "symbol": "readValue"
+              },
+              "before": {
+                "object": "OBJ-X",
+                "oracle": "ORACLE-P",
+                "symbol": "oldLookup"
+              },
+              "operation": "read",
+              "oracle_edge": {
+                "object": "OBJ-P",
+                "operation": "read",
+                "oracle": "ORACLE-X"
+              },
+              "pair": {
+                "requirement_object": "OBJ-X",
+                "verification_object": "OBJ-P"
+              },
+              "stable_object": "OBJ-P",
+              "stable_oracle": "ORACLE-P",
+              "symbol_edge": {
+                "object": "OBJ-P",
+                "operation": "write",
+                "symbol": "readValue"
+              }
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "edge_results": {
+              "object_identity": "conflict",
+              "oracle_identity": "held",
+              "symbol_edge": "conflict",
+              "oracle_edge": "conflict",
+              "pair": "conflict"
+            },
+            "symbol_change": "candidate_only",
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "impact_records": [
+            {
+              "comparison_axis": "object_identity",
+              "comparison_state": "conflict",
+              "comparison_pointer": "/comparison/edge_results/object_identity",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/before",
+                "/arguments/packet/after"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/before/object",
+                  "value": "OBJ-X"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/after/object",
+                  "value": "OBJ-P"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "symbol_edge",
+              "comparison_state": "conflict",
+              "comparison_pointer": "/comparison/edge_results/symbol_edge",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/operation",
+                "/arguments/packet/after",
+                "/arguments/packet/symbol_edge"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "symbol",
+                  "input_pointer": "/arguments/packet/after/symbol",
+                  "value": "readValue"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/symbol_edge/object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/symbol_edge/operation",
+                  "value": "write"
+                },
+                {
+                  "kind": "symbol",
+                  "input_pointer": "/arguments/packet/symbol_edge/symbol",
+                  "value": "readValue"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "oracle_edge",
+              "comparison_state": "conflict",
+              "comparison_pointer": "/comparison/edge_results/oracle_edge",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/operation",
+                "/arguments/packet/stable_oracle",
+                "/arguments/packet/oracle_edge"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "oracle",
+                  "input_pointer": "/arguments/packet/stable_oracle",
+                  "value": "ORACLE-P"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/oracle_edge/object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/oracle_edge/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "oracle",
+                  "input_pointer": "/arguments/packet/oracle_edge/oracle",
+                  "value": "ORACLE-X"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "pair",
+              "comparison_state": "conflict",
+              "comparison_pointer": "/comparison/edge_results/pair",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/pair"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/pair/requirement_object",
+                  "value": "OBJ-X"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/pair/verification_object",
+                  "value": "OBJ-P"
+                }
+              ]
+            }
+          ],
+          "naming_conformance": "not_established",
+          "consumer_impact": "not_supplied_by_F02Arguments",
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "7136b5c22cbf36826b3eff42a4fcba3b23937623373ccf9bf360e8114d3cb7e9",
+            "ordered_compact_sha256": "6c44a2b7836947153e7b6b94b4c510cc350d5008db0285fc119c1f03c2e59672",
+            "ordered_compact_utf8_bytes": 493
+          },
+          "expected": {
+            "canonical_sha256": "580fb02e616a5249711c7b636deba5f999495ee8555b8e129f9e64f77fe0df95",
+            "ordered_compact_sha256": "5eab7fd343ea8e4191f23245e48a999c7c7fd62a94249cd6cf47e3f9be22f9e1",
+            "ordered_compact_utf8_bytes": 3748
+          },
+          "old_native_return": {
+            "canonical_sha256": "da35ae1b636413b687dcd6397a1a286a47193e62ab707ed3ed995e3d4c2f22b2",
+            "ordered_compact_sha256": "6592fb89ec67474229eb1eab05824911692622166735c3db244ee66abf3b9271",
+            "ordered_compact_utf8_bytes": 386
+          }
+        }
+      },
+      {
+        "id": "null_identity_absent_edge_unknown_relations",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_bytes": 1656098,
+          "json_pointer": "/cases/64",
+          "selected_witness": {
+            "canonical_sha256": "267983ebed146eafb81f942f2ae67ca96ba8f9207e94e4c46817c158d836c349",
+            "ordered_compact_sha256": "2a1095245cf233ff0a530633cc7a5b9395dc2d3aca2ae85b53d1030795f5f6c4",
+            "ordered_compact_utf8_bytes": 3374
+          }
+        },
+        "input": {
+          "packet": {
+            "after": {
+              "object": "OBJ-P",
+              "oracle": "ORACLE-P",
+              "symbol": "readValue"
+            },
+            "before": {
+              "object": "OBJ-P",
+              "oracle": "ORACLE-P",
+              "symbol": "oldLookup"
+            },
+            "operation": "read",
+            "pair": {
+              "requirement_object": "OBJ-P",
+              "verification_object": "OBJ-P"
+            },
+            "stable_object": null,
+            "stable_oracle": "ORACLE-P",
+            "symbol_edge": {
+              "object": "OBJ-P",
+              "operation": "read",
+              "symbol": "readValue"
+            }
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "after": {
+                "object": "OBJ-P",
+                "oracle": "ORACLE-P",
+                "symbol": "readValue"
+              },
+              "before": {
+                "object": "OBJ-P",
+                "oracle": "ORACLE-P",
+                "symbol": "oldLookup"
+              },
+              "operation": "read",
+              "pair": {
+                "requirement_object": "OBJ-P",
+                "verification_object": "OBJ-P"
+              },
+              "stable_object": null,
+              "stable_oracle": "ORACLE-P",
+              "symbol_edge": {
+                "object": "OBJ-P",
+                "operation": "read",
+                "symbol": "readValue"
+              }
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "edge_results": {
+              "object_identity": "missing",
+              "oracle_identity": "held",
+              "symbol_edge": "unknown",
+              "oracle_edge": "missing",
+              "pair": "unknown"
+            },
+            "symbol_change": "candidate_only",
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "impact_records": [
+            {
+              "comparison_axis": "object_identity",
+              "comparison_state": "missing",
+              "comparison_pointer": "/comparison/edge_results/object_identity",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/before",
+                "/arguments/packet/after"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": null
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/before/object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/after/object",
+                  "value": "OBJ-P"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "symbol_edge",
+              "comparison_state": "unknown",
+              "comparison_pointer": "/comparison/edge_results/symbol_edge",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/operation",
+                "/arguments/packet/after",
+                "/arguments/packet/symbol_edge"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": null
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "symbol",
+                  "input_pointer": "/arguments/packet/after/symbol",
+                  "value": "readValue"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/symbol_edge/object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/symbol_edge/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "symbol",
+                  "input_pointer": "/arguments/packet/symbol_edge/symbol",
+                  "value": "readValue"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "oracle_edge",
+              "comparison_state": "missing",
+              "comparison_pointer": "/comparison/edge_results/oracle_edge",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/operation",
+                "/arguments/packet/stable_oracle",
+                "/arguments/packet/oracle_edge"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": null
+                },
+                {
+                  "kind": "operation",
+                  "input_pointer": "/arguments/packet/operation",
+                  "value": "read"
+                },
+                {
+                  "kind": "oracle",
+                  "input_pointer": "/arguments/packet/stable_oracle",
+                  "value": "ORACLE-P"
+                }
+              ]
+            },
+            {
+              "comparison_axis": "pair",
+              "comparison_state": "unknown",
+              "comparison_pointer": "/comparison/edge_results/pair",
+              "source_slot_pointers": [
+                "/arguments/packet/stable_object",
+                "/arguments/packet/pair"
+              ],
+              "declared_reference_occurrences": [
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/stable_object",
+                  "value": null
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/pair/requirement_object",
+                  "value": "OBJ-P"
+                },
+                {
+                  "kind": "object",
+                  "input_pointer": "/arguments/packet/pair/verification_object",
+                  "value": "OBJ-P"
+                }
+              ]
+            }
+          ],
+          "naming_conformance": "not_established",
+          "consumer_impact": "not_supplied_by_F02Arguments",
+          "actual_dispatch": false
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "d60c910f29f49053b7374cf3cc2c52acd976d3c438f0bc58b830ac963092a8f9",
+            "ordered_compact_sha256": "4e0b49c53f8436fcbc04eb94e0456a25f7b57c36b06ec4f18fe41d3609131e13",
+            "ordered_compact_utf8_bytes": 417
+          },
+          "expected": {
+            "canonical_sha256": "f0be69e567e511c50e020b00aaac0ee2200e0bfb9f6fec7aa08430d5e1c0b472",
+            "ordered_compact_sha256": "59ee9a11aca5414ca9bce4f8f218425514e5a7f6b37c59db744f94bb638cf746",
+            "ordered_compact_utf8_bytes": 3376
+          },
+          "old_native_return": {
+            "canonical_sha256": "521d74bc59425deb21c2ea1af90aceb80c241d9abfae39026fa47e686602ae28",
+            "ordered_compact_sha256": "705ff8ed84d3e1abbce429d1a401eb06a6be1a0e9358f7c0bb9a27e532f73f23",
+            "ordered_compact_utf8_bytes": 382
+          }
+        }
+      }
+    ],
+    "limits_ja": [
+      "この3wholeにはprivate_only_rejected単独branch、oracle_identity単独不成立、全root欠落、explicit null edge/inner key absence/unknown marker全種類の新impact wholeを含まない。既存16 F02 wholeは全て保持する。",
+      "source_slot_pointersは宣言slotの所在で、keyが存在すると断定するReadではない。実観測できるprovided/null leafのみdeclared_reference_occurrencesに含める。",
+      "この有限期待は新impact writerの独立設計候補。実owner資格/実consumer全集合/配送、F02全義務完了を主張しない。"
+    ],
+    "native_observed": false,
+    "new_F02_program_not_authored_at_freeze": true
   }
 }
