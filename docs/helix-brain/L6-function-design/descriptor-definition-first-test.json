@@ -116,7 +116,7 @@
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointers": [
           "/functions/0",
-          "/execution_contract/reference_comparison",
+          "/type_contract/reference_comparison",
           "/logical_input_structure",
           "/wire_codec_contract/source_byte_and_qualification_order",
           "/wire_codec_contract/numeric_carrier_profile",
