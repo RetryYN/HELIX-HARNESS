@@ -2228,18 +2228,18 @@
   },
   "frontmatter": {
     "L2": {
-      "delimiter_end_byte": 409,
-      "delimiter_end_line": 13,
-      "end_byte": 410,
-      "end_line": 13,
-      "note": "閉じdelimiter終端と直後blankを実原文から計測"
+      "delimiter_end_byte": 427,
+      "delimiter_end_line": 15,
+      "end_byte": 428,
+      "end_line": 16,
+      "note": "UTF-8半開[0,end_byte)。delimiter_end_byteは閉じ---行のLFを含み、end_byteは直後blank行のLFも含む。原blobを実測。"
     },
     "L11": {
-      "delimiter_end_byte": 414,
-      "delimiter_end_line": 13,
-      "end_byte": 415,
-      "end_line": 13,
-      "note": "同上"
+      "delimiter_end_byte": 436,
+      "delimiter_end_line": 15,
+      "end_byte": 437,
+      "end_line": 16,
+      "note": "UTF-8半開[0,end_byte)。delimiter_end_byteは閉じ---行のLFを含み、end_byteは直後blank行のLFも含む。原blobを実測。"
     }
   },
   "adoption_snapshot": {
@@ -2268,8 +2268,334 @@
       }
     ],
     "adopted_id_set": {
-      "count": 60,
-      "note": "初期採択54候補とcurrent観測を別snapshot。range literalは個別ID展開せず観測literalとして保持"
+      "count": 54,
+      "note": "初期decision明示候補54行の所在。条件・版は固定decisionとf6本文で読む。adopted L2のrange込み60literalやcurrent観測69/61literalとは別。rangeを個別IDへ展開せず、新規採択を生成しない。",
+      "decision_table_rows": [
+        {
+          "id": "HELIXINTELLIGENCE-L2-001",
+          "line": 48,
+          "byte_start": 4572,
+          "byte_end": 4655
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-002",
+          "line": 49,
+          "byte_start": 4656,
+          "byte_end": 4739
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-003",
+          "line": 50,
+          "byte_start": 4740,
+          "byte_end": 4823
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-004",
+          "line": 51,
+          "byte_start": 4824,
+          "byte_end": 4907
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-005",
+          "line": 52,
+          "byte_start": 4908,
+          "byte_end": 4991
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-006",
+          "line": 53,
+          "byte_start": 4992,
+          "byte_end": 5075
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-007",
+          "line": 54,
+          "byte_start": 5076,
+          "byte_end": 5159
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-008",
+          "line": 55,
+          "byte_start": 5160,
+          "byte_end": 5243
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-009",
+          "line": 56,
+          "byte_start": 5244,
+          "byte_end": 5327
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-010",
+          "line": 57,
+          "byte_start": 5328,
+          "byte_end": 5411
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-011",
+          "line": 58,
+          "byte_start": 5412,
+          "byte_end": 5495
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-012",
+          "line": 59,
+          "byte_start": 5496,
+          "byte_end": 5579
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-013",
+          "line": 60,
+          "byte_start": 5580,
+          "byte_end": 5663
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-014",
+          "line": 61,
+          "byte_start": 5664,
+          "byte_end": 5747
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-015",
+          "line": 62,
+          "byte_start": 5748,
+          "byte_end": 5831
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-016",
+          "line": 63,
+          "byte_start": 5832,
+          "byte_end": 5915
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-018",
+          "line": 64,
+          "byte_start": 5916,
+          "byte_end": 5999
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-019",
+          "line": 65,
+          "byte_start": 6000,
+          "byte_end": 6083
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-020",
+          "line": 66,
+          "byte_start": 6084,
+          "byte_end": 6167
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-021",
+          "line": 67,
+          "byte_start": 6168,
+          "byte_end": 6251
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-022",
+          "line": 68,
+          "byte_start": 6252,
+          "byte_end": 6335
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-023",
+          "line": 69,
+          "byte_start": 6336,
+          "byte_end": 6419
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-024",
+          "line": 70,
+          "byte_start": 6420,
+          "byte_end": 6503
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-025",
+          "line": 71,
+          "byte_start": 6504,
+          "byte_end": 6587
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-026",
+          "line": 72,
+          "byte_start": 6588,
+          "byte_end": 6671
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-017",
+          "line": 73,
+          "byte_start": 6672,
+          "byte_end": 6761
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-030",
+          "line": 74,
+          "byte_start": 6762,
+          "byte_end": 6851
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-031",
+          "line": 75,
+          "byte_start": 6852,
+          "byte_end": 6941
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-032",
+          "line": 76,
+          "byte_start": 6942,
+          "byte_end": 7031
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-033",
+          "line": 77,
+          "byte_start": 7032,
+          "byte_end": 7121
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-034",
+          "line": 78,
+          "byte_start": 7122,
+          "byte_end": 7211
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-035",
+          "line": 79,
+          "byte_start": 7212,
+          "byte_end": 7301
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-036",
+          "line": 80,
+          "byte_start": 7302,
+          "byte_end": 7391
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-037",
+          "line": 81,
+          "byte_start": 7392,
+          "byte_end": 7481
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-038",
+          "line": 82,
+          "byte_start": 7482,
+          "byte_end": 7571
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-039",
+          "line": 83,
+          "byte_start": 7572,
+          "byte_end": 7661
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-040",
+          "line": 84,
+          "byte_start": 7662,
+          "byte_end": 7751
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-041",
+          "line": 85,
+          "byte_start": 7752,
+          "byte_end": 7841
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-042",
+          "line": 86,
+          "byte_start": 7842,
+          "byte_end": 7931
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-043",
+          "line": 87,
+          "byte_start": 7932,
+          "byte_end": 8021
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-044",
+          "line": 88,
+          "byte_start": 8022,
+          "byte_end": 8111
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-045",
+          "line": 89,
+          "byte_start": 8112,
+          "byte_end": 8201
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-060",
+          "line": 90,
+          "byte_start": 8202,
+          "byte_end": 8290
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-061",
+          "line": 91,
+          "byte_start": 8291,
+          "byte_end": 8379
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-062",
+          "line": 92,
+          "byte_start": 8380,
+          "byte_end": 8468
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-063",
+          "line": 93,
+          "byte_start": 8469,
+          "byte_end": 8557
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-064",
+          "line": 94,
+          "byte_start": 8558,
+          "byte_end": 8646
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-065",
+          "line": 95,
+          "byte_start": 8647,
+          "byte_end": 8735
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-066",
+          "line": 96,
+          "byte_start": 8736,
+          "byte_end": 8825
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-067",
+          "line": 97,
+          "byte_start": 8826,
+          "byte_end": 8909
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-068",
+          "line": 98,
+          "byte_start": 8910,
+          "byte_end": 8993
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-069",
+          "line": 99,
+          "byte_start": 8994,
+          "byte_end": 9077
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-070",
+          "line": 100,
+          "byte_start": 9078,
+          "byte_end": 9167
+        },
+        {
+          "id": "HELIXINTELLIGENCE-L2-071",
+          "line": 101,
+          "byte_start": 9168,
+          "byte_end": 9256
+        }
+      ]
     },
     "current_vs_adopted": {
       "L2_bytes_identical": false,
@@ -10496,231 +10822,11 @@
             "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
           }
         ]
-      },
-      {
-        "path": "docs/helix-intelligence/L10-verification/business-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "a3123757f7f057f787ce8d1e08437512278f892f974652d5e5dace245e777231",
-        "git_blob": "a8e44968337ea0aa8332da0ea0a1e36ab38c2fb0",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L10-verification/functional-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "d7ce3514fd0dd3ba3bd5545fb97075425d2a8abb3156a107bfaf6e7d56db2dbf",
-        "git_blob": "7ff8404bf685ac402944a44492089923c75da4cb",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L10-verification/nfr-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "9d27bf4b9ebb6783e3da2fb5c20667d957d26a49f1861b5d1ae3af578e811dba",
-        "git_blob": "b53bde14eac6819d388adde09d5e77fe978fe430",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L3-requirements/business-requirements.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "07468dcc9d059396fdf7ca060910bda77cc8e67cb1a44861f5483274f20c13ff",
-        "git_blob": "b0714276de93d42b422fcc07115fb18f1c0dd291",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L3-requirements/functional-requirements.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "622072ec5eae8b73395091638034e7d76b35c916f4b0799c2ff37a4ec57e649e",
-        "git_blob": "8ec2108f04582cd322f5adb74bced77432fb7cc3",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L3-requirements/nfr-grade.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "161426bd23eba08f84a17072b046fe567e8acdd4145db4d795998718201f4132",
-        "git_blob": "5b9bcf5335c79c47d27e7ae47d7b76a0e53ceb97",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L4-basic-design/human-placement-receipt.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "69966ec04c57b2c9441126043f30ee83c93b4f63590ed98c621f868b161a2cc7",
-        "git_blob": "37345280888fc5113a405e413621eba6afcad0c8",
-        "references": [
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L4-basic-design/placement-proposal.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "c8a0c32384ba1867a3cf2a1a151b4c6e287e3ad87a6ebcfb624acca70ed255d6",
-        "git_blob": "274b548490503c411cd75dae16ebba645d605778",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L5-detail-design/human-placement-receipt.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "a1a95e54dc0aa2228ddcfc79eaed94f4f1814e9244f1a5982f6c1a6bf08f0468",
-        "git_blob": "e8bec004f4908468bbbdd84060217bf5e87f5df8",
-        "references": [
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L5-detail-design/placement-proposal.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "789f7ff2a8421b7a38671d80dd1232928dd85d43cccb036b7fa0bd57b2dbbcf3",
-        "git_blob": "43bbf33457df4f15ee36386d213a83ad22fc02ce",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L8-unit-verification/human-placement-receipt.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "d7a37fdc0910b899f8e909c27860a34d57cf215796429fa9957e5cba3f80b6ad",
-        "git_blob": "1c83d68bc737dcfde130dd330bf595eada23fa49",
-        "references": [
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L8-unit-verification/placement-proposal.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "dbd3dcbc3216a55446ab14459ea49233fa3bc6149647bb3f24a5d0d5b413a640",
-        "git_blob": "1b3a90a21845f081d3620fb74e89e4ea9302e1b0",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L9-integration-verification/human-placement-receipt.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "4db18d2dacf63416c7aed3a0f7cfcf56e360d0cac0a74a7170e414cd9b10856e",
-        "git_blob": "7e8aa8d8c28d8452bbb8c49db6778c72db0e143c",
-        "references": [
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-intelligence/L9-integration-verification/placement-proposal.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "9ce53d73f97c288a6a0971e8ed379ccbe258f2bc7f4764715407b259054818e3",
-        "git_blob": "0b925c31e12057eb3c548f36f001e7089506a65a",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-intelligence/L11-acceptance/intelligence-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-intelligence/L2-requirements/intelligence-requirements.md"
-          }
-        ]
-      },
+      }
+    ],
+    "count": 14,
+    "note": "固定M30のINTELLIGENCE自身L3/L10/L4/L5/L8/L9 JSONに限定した静的path参照14file/28Pointer。重複を除外。他機構は対象外で、実reader成立・全consumer閉包を認定しない。",
+    "outside_scope_search_hits": [
       {
         "path": "docs/helix-labo/L4-basic-design/bench-level-intelligence-handoff.json",
         "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
@@ -10786,8 +10892,7 @@
         ]
       }
     ],
-    "count": 32,
-    "note": "実file・revision・raw sha・git blob・具体JSON pointer/valueの所在例。実reader成立・全consumer閉包とは分ける"
+    "outside_scope_search_hits_note": "提案内LABO4fileの所在を保全するがbounded consumer件数に含めない。"
   },
   "legacy_source_hold": {
     "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
