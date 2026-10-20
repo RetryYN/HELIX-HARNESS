@@ -53947,5 +53947,496 @@
       ],
       "limit": "有限反例。全一般値/全複合欠陥の意味検証ではない。"
     }
-  ]
+  ],
+  "f01_author_return_material_verification": {
+    "kind": "private_wrapper_verification",
+    "authority_effect": "none",
+    "role": "root technical bounded oracle adoption before worker program authoring, not requirement approval or real execution",
+    "source_oracle_proposal": {
+      "kind": "non_normative_local_audit_provenance",
+      "source_oracle_proposal_path": "scaffold/review-handoff/local/harness048-f01-author-return-source-proposal-m43-20261020/independent-three-whole-oracle-proposal.json",
+      "source_oracle_proposal_sha256": "2f6f20a380749e8bbb936af23cbe7293475444691fa8d9ecd5f9ce0baa650273",
+      "normative_reproduction_ja": "規範的な再構成根拠は、source_revisionに固定した追跡対象GitのL8 source_case各pointer/raw hashと、この文書に埋め込んだinput/expected_wholeである。上記local artifactは追跡対象外の監査来歴であり、再構成や解釈の必須入力ではない。"
+    },
+    "source_revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+    "conditions_ja": "新private wrapperが同じtyped packet/contextで既存compare_f01を一度呼んだとき、その実返却が固定旧期待と同値である条件付き全返却期待。native実観測/実owner資格/配送済みとは称さない。旧expected_returnは期待側だけの固定sourceで製品runtime引数にしない。",
+    "cases": [
+      {
+        "id": "unchanged_normal_no_author_return",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_utf8_bytes": 1656098,
+          "json_pointer": "/cases/0",
+          "selected_witness": {
+            "canonical_sha256": "30d0b85865a76d323d1bae11eed6c5fe22328d7fce92e4d3ae0ae20011ae9fdf",
+            "ordered_compact_sha256": "98e92945aea6b1407bcad40fd10af44f75ecf2a819dd9f8fbbe639613d73e0c8",
+            "ordered_compact_utf8_bytes": 3181
+          }
+        },
+        "input": {
+          "packet": {
+            "evaluation_date": "2030-01-01",
+            "role_vocabulary": [
+              "Entity",
+              "ValueObject",
+              "Aggregate",
+              "DomainService",
+              "Policy",
+              "Specification",
+              "Command",
+              "Query",
+              "DomainEvent",
+              "Receipt",
+              "Port",
+              "Adapter",
+              "Repository"
+            ],
+            "targets": [
+              {
+                "consumers": [
+                  "C1"
+                ],
+                "declared_role": "Query",
+                "exception": null,
+                "id": "OBJ-P",
+                "meaning": "値の照会",
+                "name": "lookup",
+                "role_basis": "読み取り操作"
+              },
+              {
+                "consumers": [
+                  "C2"
+                ],
+                "declared_role": "Repository",
+                "exception": null,
+                "id": "OBJ-R",
+                "meaning": "永続objectの取得",
+                "name": "lookup",
+                "role_basis": "永続化境界"
+              }
+            ]
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "evaluation_date": "2030-01-01",
+              "role_vocabulary": [
+                "Entity",
+                "ValueObject",
+                "Aggregate",
+                "DomainService",
+                "Policy",
+                "Specification",
+                "Command",
+                "Query",
+                "DomainEvent",
+                "Receipt",
+                "Port",
+                "Adapter",
+                "Repository"
+              ],
+              "targets": [
+                {
+                  "consumers": [
+                    "C1"
+                  ],
+                  "declared_role": "Query",
+                  "exception": null,
+                  "id": "OBJ-P",
+                  "meaning": "値の照会",
+                  "name": "lookup",
+                  "role_basis": "読み取り操作"
+                },
+                {
+                  "consumers": [
+                    "C2"
+                  ],
+                  "declared_role": "Repository",
+                  "exception": null,
+                  "id": "OBJ-R",
+                  "meaning": "永続objectの取得",
+                  "name": "lookup",
+                  "role_basis": "永続化境界"
+                }
+              ]
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "target_results": {
+              "OBJ-P": "candidate_only:Query",
+              "OBJ-R": "candidate_only:Repository"
+            },
+            "canonical_decided_here": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "author_returns": [],
+          "actual_dispatch": false
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "b859e84c27d07d582fd63ada319c20d0206897ceaf1e5a250efe6a6bd9654dd9",
+            "ordered_compact_sha256": "6d165e1219a3e0ae8f37181506537bac39e82b80b0359c2ad0fe998868090fa2",
+            "ordered_compact_utf8_bytes": 594
+          },
+          "expected": {
+            "canonical_sha256": "b26942e1ce47affe773cec5e2e6dbff2218eb5c41432bab2a06d4a489142ddf6",
+            "ordered_compact_sha256": "d8216d8686cb6b203978271dcd927877b5c39357ba4efdfb14b2fd84906781f7",
+            "ordered_compact_utf8_bytes": 997
+          },
+          "old_native_return_preserved": {
+            "canonical_sha256": "2af5a5e08a8f2d6400049950569a3a258a5a351e3523215caa260cde2ff30947",
+            "ordered_compact_sha256": "2b1d67b0c9c851cb89a28a9dcb1ce4600527f69a95d749fbe4b2bd76f5a50bb8",
+            "ordered_compact_utf8_bytes": 331
+          }
+        },
+        "basis_ja": "原2targetともcandidate_onlyなので作成側根拠不足返却は0件。候補2件/native false/Q全値は残る。"
+      },
+      {
+        "id": "two_local_defects_preserve_both_targets",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_utf8_bytes": 1656098,
+          "json_pointer": "/cases/59",
+          "selected_witness": {
+            "canonical_sha256": "d307dedaf8c44d8abeee1f0461fa0ee3f7fc5051b77c75a5a5145da2dc200587",
+            "ordered_compact_sha256": "8216c620e447414fc15026d739747c7944f94816866b16974c10373bf631af1d",
+            "ordered_compact_utf8_bytes": 4066
+          }
+        },
+        "input": {
+          "packet": {
+            "evaluation_date": "2030-01-01",
+            "role_vocabulary": [
+              "Entity",
+              "ValueObject",
+              "Aggregate",
+              "DomainService",
+              "Policy",
+              "Specification",
+              "Command",
+              "Query",
+              "DomainEvent",
+              "Receipt",
+              "Port",
+              "Adapter",
+              "Repository"
+            ],
+            "targets": [
+              {
+                "id": "A",
+                "name": "Manager",
+                "meaning": "照会",
+                "declared_role": null,
+                "role_basis": null,
+                "consumers": [],
+                "exception": null
+              },
+              {
+                "id": "B",
+                "name": "Data",
+                "meaning": "保存境界",
+                "declared_role": "Repository",
+                "role_basis": "永続境界",
+                "consumers": [],
+                "exception": null
+              }
+            ]
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "evaluation_date": "2030-01-01",
+              "role_vocabulary": [
+                "Entity",
+                "ValueObject",
+                "Aggregate",
+                "DomainService",
+                "Policy",
+                "Specification",
+                "Command",
+                "Query",
+                "DomainEvent",
+                "Receipt",
+                "Port",
+                "Adapter",
+                "Repository"
+              ],
+              "targets": [
+                {
+                  "id": "A",
+                  "name": "Manager",
+                  "meaning": "照会",
+                  "declared_role": null,
+                  "role_basis": null,
+                  "consumers": [],
+                  "exception": null
+                },
+                {
+                  "id": "B",
+                  "name": "Data",
+                  "meaning": "保存境界",
+                  "declared_role": "Repository",
+                  "role_basis": "永続境界",
+                  "consumers": [],
+                  "exception": null
+                }
+              ]
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "target_results": {
+              "A": "unknown_role",
+              "B": "missing_consumer"
+            },
+            "canonical_decided_here": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "author_returns": [
+            {
+              "target_index": 0,
+              "target_id": "A",
+              "recipient_role": "target_creator",
+              "reason": "unknown_role",
+              "target_pointer": "/arguments/packet/targets/0",
+              "comparison_pointer": "/comparison/target_results/A"
+            },
+            {
+              "target_index": 1,
+              "target_id": "B",
+              "recipient_role": "target_creator",
+              "reason": "missing_consumer",
+              "target_pointer": "/arguments/packet/targets/1",
+              "comparison_pointer": "/comparison/target_results/B"
+            }
+          ],
+          "actual_dispatch": false
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "267ba76691dd3dbbcb30c90011814467f8d9691790f59b97aa9d7c37f8341d91",
+            "ordered_compact_sha256": "bc0823e6c72afc114a6ff471aa1c770b4b48977d3a6702465aeb8ddc205c2aff",
+            "ordered_compact_utf8_bytes": 540
+          },
+          "expected": {
+            "canonical_sha256": "a0caa0c6cfde593132ccc8062831e1e47de6e51812c99f664e84c969b29d2416",
+            "ordered_compact_sha256": "0247153c791d2d4d3194be1581bb96ff0a0bb8785e28cce68b577d6dd65b9cfa",
+            "ordered_compact_utf8_bytes": 1305
+          },
+          "old_native_return_preserved": {
+            "canonical_sha256": "721835fe89f48e4ea825baa3e694081ad6818162aded20b56f78a69a01150bc8",
+            "ordered_compact_sha256": "0c82dc819f2b164195b3f0b5de57b74132a8a961c1844233abc2d486d22d37e8",
+            "ordered_compact_utf8_bytes": 306
+          }
+        },
+        "basis_ja": "原Aはrole nullをunknown_role、原Bはconsumer空配列をmissing_consumerと返す。A/B原順で別々の対象作成側材料2件。Aのbasis null/consumer[]等もargumentsに残す。"
+      },
+      {
+        "id": "absent_role_with_valid_sibling",
+        "source_case": {
+          "revision": "7092bc0ec5c8f222e07735d0d168dc2fc16e1d5b",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "45ab85295b2f9cf7be6ae01918e3a132d7c58c91f6d15967c75d5c2606bcb43a",
+          "raw_utf8_bytes": 1656098,
+          "json_pointer": "/cases/61",
+          "selected_witness": {
+            "canonical_sha256": "f0392eb5d8586cccf8bea0f6419e5958dcc772bbfa1c568ba26adc692eaf8cee",
+            "ordered_compact_sha256": "7f4e8757f7ca7552ee8a25f99f3342bbb5f8a50b493d819fa3ff74cc83d40ef7",
+            "ordered_compact_utf8_bytes": 3243
+          }
+        },
+        "input": {
+          "packet": {
+            "evaluation_date": "2030-01-01",
+            "role_vocabulary": [
+              "Entity",
+              "ValueObject",
+              "Aggregate",
+              "DomainService",
+              "Policy",
+              "Specification",
+              "Command",
+              "Query",
+              "DomainEvent",
+              "Receipt",
+              "Port",
+              "Adapter",
+              "Repository"
+            ],
+            "targets": [
+              {
+                "consumers": [
+                  "C1"
+                ],
+                "exception": null,
+                "id": "OBJ-P",
+                "meaning": "値の照会",
+                "name": "lookup",
+                "role_basis": "読み取り操作"
+              },
+              {
+                "consumers": [
+                  "C2"
+                ],
+                "declared_role": "Repository",
+                "exception": null,
+                "id": "OBJ-R",
+                "meaning": "永続objectの取得",
+                "name": "lookup",
+                "role_basis": "永続化境界"
+              }
+            ]
+          },
+          "context": {
+            "unaffected_Q": "original_Q",
+            "scope": "PRODUCT-P"
+          }
+        },
+        "expected_whole": {
+          "arguments": {
+            "packet": {
+              "evaluation_date": "2030-01-01",
+              "role_vocabulary": [
+                "Entity",
+                "ValueObject",
+                "Aggregate",
+                "DomainService",
+                "Policy",
+                "Specification",
+                "Command",
+                "Query",
+                "DomainEvent",
+                "Receipt",
+                "Port",
+                "Adapter",
+                "Repository"
+              ],
+              "targets": [
+                {
+                  "consumers": [
+                    "C1"
+                  ],
+                  "exception": null,
+                  "id": "OBJ-P",
+                  "meaning": "値の照会",
+                  "name": "lookup",
+                  "role_basis": "読み取り操作"
+                },
+                {
+                  "consumers": [
+                    "C2"
+                  ],
+                  "declared_role": "Repository",
+                  "exception": null,
+                  "id": "OBJ-R",
+                  "meaning": "永続objectの取得",
+                  "name": "lookup",
+                  "role_basis": "永続化境界"
+                }
+              ]
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P"
+            }
+          },
+          "comparison": {
+            "target_results": {
+              "OBJ-P": "unknown_role",
+              "OBJ-R": "candidate_only:Repository"
+            },
+            "canonical_decided_here": false,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "author_returns": [
+            {
+              "target_index": 0,
+              "target_id": "OBJ-P",
+              "recipient_role": "target_creator",
+              "reason": "unknown_role",
+              "target_pointer": "/arguments/packet/targets/0",
+              "comparison_pointer": "/comparison/target_results/OBJ-P"
+            }
+          ],
+          "actual_dispatch": false
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "2f6d8d440da426e3796260088735d1a10e739c238693d82bfe1813ed18df33a9",
+            "ordered_compact_sha256": "76082e787041fcab714cf88895177ddf764d0e77aa1b4c43eaf2797b8241f0ab",
+            "ordered_compact_utf8_bytes": 570
+          },
+          "expected": {
+            "canonical_sha256": "eb389970ef8bb3d6dddb397353ac024ef529a81d5f38fb3a1eb516909de96f3d",
+            "ordered_compact_sha256": "67e1d05dba44e5d3f6411af319dd013b6e28f6834291a74bca20043b3a60a1f1",
+            "ordered_compact_utf8_bytes": 1164
+          },
+          "old_native_return_preserved": {
+            "canonical_sha256": "f21bd027ef1205741a55942411e48633e6e7a36a49a3f914a495cfad20efeaf2",
+            "ordered_compact_sha256": "b32dc31edce9b27dd6850cee27be5607f1b0308c1675a09c9bad3aafeaa66961",
+            "ordered_compact_utf8_bytes": 323
+          }
+        },
+        "basis_ja": "OBJ-Pのdeclared_role key欠落はそのまま、元unknown_roleだけを理由にする。OBJ-Rの有効candidateは消さず、作成側根拠不足材料へ誤変換しない。"
+      }
+    ],
+    "unexercised_ja": [
+      "新6理由のうちmissing_target_meaning/missing_basis/unknown_consumer/missing_scoped_exceptionはこの3wholeでは未行使。既存F01 28caseは削除/置換しない。",
+      "target IDの/および~のpointer escape、空target配列、TBD markerの新wrapper wholeはこの有限3caseでは未凍結。型と旧compare規範からのwriter設計事項であり追加gateではない。",
+      "入力型外/重複ID/空IDは現行F01Argumentsの外側。新wrapperが新Cause/架空native返却で総称しない。"
+    ],
+    "counterpart_program_status_at_oracle_freeze": {
+      "status": "not_yet_authored",
+      "scope_ja": "これはrootが固定oracleを凍結した時点の記録であり、現在の作成状態を示す値ではない。"
+    },
+    "unclosed_id_note_ja": "verification_obligations[0].unclosed_obligationsの旧native ID(H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED)は旧compare_f01単体の状態として不変に保持し、新private f01_author_return_materialは限定論理返却役割の具体化範囲に限る。実owner資格・配送は別の未成立範囲。"
+  }
 }
