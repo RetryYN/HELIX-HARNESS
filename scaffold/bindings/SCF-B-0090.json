@@ -75,8 +75,8 @@
     },
     {
       "path": "docs/governance/audits/source-rebaseline/new-generation-refactoring-trigger-source-crosswalk.md",
-      "sha256": "db64502c27e258312f1be82c51eb96fed621653be252c9a4412749f8abc72783",
-      "note": "current counterpart receipt only; no trigger or implementation admission"
+      "sha256": "d2c88de11b6f203caa9b168b1f97336d9a02de8d22ad1cdc6950dfd61787c868",
+      "note": "current counterpart receipt only; no trigger or implementation admission [2026-10-20: 代表5asset/直接参照の限定追補へcurrent bytes追随。元48行/選択span/旧snapshotと候補・未完・authority・binding責務は保持。過去の固定revision研究は再生成しない。]"
     },
     {
       "path": "docs/governance/audits/requirements-stage/history-snapshots/management-provisional-requirement-register-capture-72b9f368.jsonl",
@@ -199,5 +199,5 @@
     "confirmation_digest": null
   },
   "created": "2026-09-22",
-  "updated": "2026-10-10"
+  "updated": "2026-10-20"
 }
