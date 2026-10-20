@@ -1860,28 +1860,82 @@
       "source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
       "authority_effect": "effective_when_this_record_is_admitted_to_main"
     },
-    "current_vs_adopted": "current sourceはadopted blobの追補(+957/+923行)を含む。追補の意味・承認は本索引では推定しない"
+    "current_vs_adopted": "current sourceはadopted blobの追補(+957/+923行)を含む。追補の意味・承認は本索引では推定しない",
+    "decision_record_location_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
   },
   "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
   "direct_consumers": {
     "static_references": [
       {
-        "path": "docs/helix-harness/L3-requirements/product-requirements.json",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "L3側JSONがL2 IDを参照"
+        "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+        "raw_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+        "git_blob": "a98af9394c018c3d77fa03273ebc05a7ffc4e336",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          },
+          {
+            "pointer": "/parent_basis/6/current_l2",
+            "value": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          {
+            "pointer": "/parent_basis/6/current_l11",
+            "value": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
+        ]
       },
       {
-        "path": "docs/helix-harness/L9-integration-verification/",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "対L11受入のunit検証対がL11を参照"
+        "path": "docs/helix-harness/L9-integration-verification/atomic-pair-result-feedback.json",
+        "raw_sha256": "2cdb06c10bed555bdc17c78dd5826d30b22767a10e222a986a030bdf1a362779",
+        "git_blob": "c6eda126913ac566943c2befe4077d52dbb2f684",
+        "references": [
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
+        ]
       },
       {
-        "path": "docs/governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "decisionが採択対象を固定"
+        "path": "docs/helix-harness/L9-integration-verification/conditional-dependency-closure.json",
+        "raw_sha256": "737ed026c7640c3bd1233f48335b0a82934eba2b2371ebf15c0a7c778c192ff3",
+        "git_blob": "caf135e163da618381204ffa84c8738c0213f5ed",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-harness/L10-verification/business-verification.json",
+        "raw_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+        "git_blob": "7e360bea68f45113fd4249c460692b028fc887d8",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-harness/L2-requirements/product-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-harness/L11-acceptance/product-acceptance.md"
+          }
+        ]
       }
     ],
-    "note": "実path・固定revisionの所在例。実reader成立・全consumer閉包とは分ける"
+    "note": "存在しないproduct-requirements.json・directory-only参照を実file+JSON pointer+rawsha/blobへ訂正。実reader成立・全consumer閉包とは分ける。decision record所在revision(dce07d0)と採択対象revision(f6dad2a3)を区別する。"
   },
   "limits": [
     "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し、原条件を再著述しない",
@@ -1889,53 +1943,2704 @@
     "ScaffoldBinding/hash追随はroot検収責務"
   ],
   "identity_index": {
-    "id_definition_spans": {
-      "L2": 78,
-      "L11": 65,
-      "sample": [
-        {
-          "start": 57961,
-          "end": 59943,
-          "start_line": 343,
-          "line_count": 12,
-          "sha256": "5fae33b5001fb2b59c3a8a62cfb06d428480574d22c8872ef3f9d8fe440bb5b0",
-          "first_line": "### HARNESS-L2-010 パックの境界",
-          "role": "requirement_or_acceptance_section"
-        },
-        {
-          "start": 59943,
-          "end": 61711,
-          "start_line": 355,
-          "line_count": 11,
-          "sha256": "65483ea9a44d880a894fe6e9b052594741e3fab29320c158fa95f0075af60090",
-          "first_line": "### HARNESS-L2-011 画面・作業環境から切り離して呼べる条件",
-          "role": "requirement_or_acceptance_section"
-        },
-        {
-          "start": 41838,
-          "end": 45768,
-          "start_line": 220,
-          "line_count": 16,
-          "sha256": "48f4c9721e26a45870f86fffab729d97b52298e2811d66cdb88c74512126c488",
-          "first_line": "### HARNESS-L2-023 利用条件別の依存宣言の受入",
-          "role": "requirement_or_acceptance_section"
-        },
-        {
-          "start": 45768,
-          "end": 51802,
-          "start_line": 236,
-          "line_count": 27,
-          "sha256": "9b9bce73eb89ecae75f317f8821844d4dfca5ccccd4a7c06b575a3a808aae9e8",
-          "first_line": "### HARNESS-L2-024 要求形成の質問優先と収束の受入",
-          "role": "requirement_or_acceptance_section"
+    "own_id_full_map": {
+      "L2": {
+        "distinct_ids": 82,
+        "heading_prefix": "HARNESS-L2-",
+        "observations": {
+          "HARNESS-L2-001": {
+            "definition": null,
+            "mention_count": 14,
+            "first_position": {
+              "line": 40,
+              "byte": 2588,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-002": {
+            "definition": null,
+            "mention_count": 22,
+            "first_position": {
+              "line": 41,
+              "byte": 2624,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-003": {
+            "definition": null,
+            "mention_count": 55,
+            "first_position": {
+              "line": 42,
+              "byte": 2660,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-004": {
+            "definition": null,
+            "mention_count": 20,
+            "first_position": {
+              "line": 43,
+              "byte": 2730,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-005": {
+            "definition": null,
+            "mention_count": 31,
+            "first_position": {
+              "line": 44,
+              "byte": 2800,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-006": {
+            "definition": null,
+            "mention_count": 10,
+            "first_position": {
+              "line": 45,
+              "byte": 2836,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-007": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 46,
+              "byte": 2872,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-008": {
+            "definition": null,
+            "mention_count": 29,
+            "first_position": {
+              "line": 47,
+              "byte": 2908,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-009": {
+            "definition": null,
+            "mention_count": 26,
+            "first_position": {
+              "line": 48,
+              "byte": 2944,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-010": {
+            "definition": null,
+            "mention_count": 44,
+            "first_position": {
+              "line": 323,
+              "byte": 55429,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-011": {
+            "definition": null,
+            "mention_count": 15,
+            "first_position": {
+              "line": 323,
+              "byte": 55466,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-012": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 329,
+              "byte": 56367,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-013": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 330,
+              "byte": 56477,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-014": {
+            "definition": null,
+            "mention_count": 17,
+            "first_position": {
+              "line": 331,
+              "byte": 56595,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-015": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 332,
+              "byte": 56707,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-016": {
+            "definition": null,
+            "mention_count": 8,
+            "first_position": {
+              "line": 333,
+              "byte": 56819,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-017": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 334,
+              "byte": 56932,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-018": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 335,
+              "byte": 57033,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-019": {
+            "definition": null,
+            "mention_count": 23,
+            "first_position": {
+              "line": 336,
+              "byte": 57134,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-020": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 337,
+              "byte": 57229,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-021": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 338,
+              "byte": 57327,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-022": {
+            "definition": null,
+            "mention_count": 40,
+            "first_position": {
+              "line": 323,
+              "byte": 55529,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-023": {
+            "definition": {
+              "line": 467,
+              "byte": 78947,
+              "role": "heading_definition"
+            },
+            "mention_count": 17,
+            "first_position": {
+              "line": 467,
+              "byte": 78947,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-024": {
+            "definition": {
+              "line": 503,
+              "byte": 85770,
+              "role": "heading_definition"
+            },
+            "mention_count": 7,
+            "first_position": {
+              "line": 503,
+              "byte": 85770,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-025": {
+            "definition": {
+              "line": 548,
+              "byte": 100110,
+              "role": "heading_definition"
+            },
+            "mention_count": 7,
+            "first_position": {
+              "line": 548,
+              "byte": 100110,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-026": {
+            "definition": {
+              "line": 534,
+              "byte": 94933,
+              "role": "heading_definition"
+            },
+            "mention_count": 10,
+            "first_position": {
+              "line": 534,
+              "byte": 94933,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-027": {
+            "definition": {
+              "line": 563,
+              "byte": 104403,
+              "role": "heading_definition"
+            },
+            "mention_count": 6,
+            "first_position": {
+              "line": 563,
+              "byte": 104403,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-028": {
+            "definition": {
+              "line": 577,
+              "byte": 110081,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 577,
+              "byte": 110081,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-029": {
+            "definition": {
+              "line": 591,
+              "byte": 115320,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 591,
+              "byte": 115320,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-030": {
+            "definition": {
+              "line": 611,
+              "byte": 123661,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 611,
+              "byte": 123661,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-031": {
+            "definition": {
+              "line": 631,
+              "byte": 127969,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 631,
+              "byte": 127969,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-032": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 645,
+              "byte": 131215,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-033": {
+            "definition": {
+              "line": 671,
+              "byte": 136239,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 671,
+              "byte": 136239,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-034": {
+            "definition": {
+              "line": 697,
+              "byte": 142419,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 697,
+              "byte": 142419,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-035": {
+            "definition": {
+              "line": 723,
+              "byte": 150033,
+              "role": "heading_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 723,
+              "byte": 150033,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-036": {
+            "definition": {
+              "line": 734,
+              "byte": 153734,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 734,
+              "byte": 153734,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-037": {
+            "definition": {
+              "line": 781,
+              "byte": 165140,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 781,
+              "byte": 165140,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-038": {
+            "definition": {
+              "line": 838,
+              "byte": 182204,
+              "role": "heading_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 838,
+              "byte": 182204,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-039": {
+            "definition": {
+              "line": 895,
+              "byte": 195072,
+              "role": "heading_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 895,
+              "byte": 195072,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-040": {
+            "definition": {
+              "line": 950,
+              "byte": 209963,
+              "role": "heading_definition"
+            },
+            "mention_count": 8,
+            "first_position": {
+              "line": 950,
+              "byte": 209963,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-041": {
+            "definition": {
+              "line": 961,
+              "byte": 213280,
+              "role": "heading_definition"
+            },
+            "mention_count": 7,
+            "first_position": {
+              "line": 961,
+              "byte": 213280,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-042": {
+            "definition": {
+              "line": 976,
+              "byte": 217248,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 976,
+              "byte": 217248,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-043": {
+            "definition": {
+              "line": 990,
+              "byte": 220890,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 990,
+              "byte": 220890,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-044": {
+            "definition": {
+              "line": 1006,
+              "byte": 226340,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1006,
+              "byte": 226340,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-045": {
+            "definition": {
+              "line": 1017,
+              "byte": 230648,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1017,
+              "byte": 230648,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-046": {
+            "definition": {
+              "line": 1029,
+              "byte": 235498,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1029,
+              "byte": 235498,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-047": {
+            "definition": {
+              "line": 1043,
+              "byte": 240343,
+              "role": "heading_definition"
+            },
+            "mention_count": 6,
+            "first_position": {
+              "line": 1043,
+              "byte": 240343,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-048": {
+            "definition": {
+              "line": 1059,
+              "byte": 246407,
+              "role": "heading_definition"
+            },
+            "mention_count": 8,
+            "first_position": {
+              "line": 1059,
+              "byte": 246407,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-049": {
+            "definition": {
+              "line": 1076,
+              "byte": 250066,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1076,
+              "byte": 250066,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-050": {
+            "definition": {
+              "line": 1101,
+              "byte": 258891,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1101,
+              "byte": 258891,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-051": {
+            "definition": {
+              "line": 1120,
+              "byte": 263289,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1120,
+              "byte": 263289,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-052": {
+            "definition": {
+              "line": 1139,
+              "byte": 267822,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1139,
+              "byte": 267822,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-053": {
+            "definition": {
+              "line": 1151,
+              "byte": 270882,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1151,
+              "byte": 270882,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-054": {
+            "definition": {
+              "line": 1168,
+              "byte": 274219,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1168,
+              "byte": 274219,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-055": {
+            "definition": {
+              "line": 1178,
+              "byte": 278872,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1178,
+              "byte": 278872,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-056": {
+            "definition": {
+              "line": 1188,
+              "byte": 281518,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1188,
+              "byte": 281518,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-057": {
+            "definition": {
+              "line": 1198,
+              "byte": 284080,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1198,
+              "byte": 284080,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-058": {
+            "definition": {
+              "line": 1210,
+              "byte": 288491,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1210,
+              "byte": 288491,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-059": {
+            "definition": {
+              "line": 1226,
+              "byte": 293091,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1226,
+              "byte": 293091,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-060": {
+            "definition": {
+              "line": 1237,
+              "byte": 296233,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1237,
+              "byte": 296233,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-061": {
+            "definition": {
+              "line": 1247,
+              "byte": 299530,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1247,
+              "byte": 299530,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-062": {
+            "definition": {
+              "line": 1256,
+              "byte": 303454,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1256,
+              "byte": 303454,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-063": {
+            "definition": {
+              "line": 1266,
+              "byte": 306034,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1266,
+              "byte": 306034,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-064": {
+            "definition": {
+              "line": 1280,
+              "byte": 312774,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1280,
+              "byte": 312774,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-065": {
+            "definition": {
+              "line": 1291,
+              "byte": 319569,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1291,
+              "byte": 319569,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-067": {
+            "definition": {
+              "line": 1304,
+              "byte": 326098,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1304,
+              "byte": 326098,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-068": {
+            "definition": {
+              "line": 1322,
+              "byte": 331301,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1322,
+              "byte": 331301,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-072": {
+            "definition": {
+              "line": 1386,
+              "byte": 356411,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1386,
+              "byte": 356411,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-077": {
+            "definition": {
+              "line": 1350,
+              "byte": 341711,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1350,
+              "byte": 341711,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-078": {
+            "definition": {
+              "line": 1372,
+              "byte": 348551,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1372,
+              "byte": 348551,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-079": {
+            "definition": {
+              "line": 1400,
+              "byte": 361431,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1400,
+              "byte": 361431,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-080": {
+            "definition": {
+              "line": 1411,
+              "byte": 370560,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1411,
+              "byte": 370560,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-081": {
+            "definition": {
+              "line": 1426,
+              "byte": 381364,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1426,
+              "byte": 381364,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-082": {
+            "definition": {
+              "line": 1440,
+              "byte": 388348,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1440,
+              "byte": 388348,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-083": {
+            "definition": {
+              "line": 1454,
+              "byte": 396842,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1454,
+              "byte": 396842,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-084": {
+            "definition": {
+              "line": 1467,
+              "byte": 403902,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1467,
+              "byte": 403902,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-085": {
+            "definition": {
+              "line": 1480,
+              "byte": 413202,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1480,
+              "byte": 413202,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-086": {
+            "definition": {
+              "line": 1507,
+              "byte": 422584,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1507,
+              "byte": 422584,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-087": {
+            "definition": {
+              "line": 1576,
+              "byte": 447318,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1576,
+              "byte": 447318,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-088": {
+            "definition": {
+              "line": 1552,
+              "byte": 436223,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 1552,
+              "byte": 436223,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-089": {
+            "definition": {
+              "line": 1608,
+              "byte": 460935,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1608,
+              "byte": 460935,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-090": {
+            "definition": {
+              "line": 1619,
+              "byte": 465642,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1619,
+              "byte": 465642,
+              "role": "heading_definition"
+            }
+          }
         }
-      ]
+      },
+      "L11": {
+        "distinct_ids": 80,
+        "observations": {
+          "HARNESS-L2-001": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 21,
+              "byte": 761,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-002": {
+            "definition": null,
+            "mention_count": 16,
+            "first_position": {
+              "line": 22,
+              "byte": 1025,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-003": {
+            "definition": null,
+            "mention_count": 29,
+            "first_position": {
+              "line": 23,
+              "byte": 1445,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-004": {
+            "definition": null,
+            "mention_count": 16,
+            "first_position": {
+              "line": 24,
+              "byte": 2016,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-005": {
+            "definition": null,
+            "mention_count": 22,
+            "first_position": {
+              "line": 25,
+              "byte": 2176,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-006": {
+            "definition": null,
+            "mention_count": 9,
+            "first_position": {
+              "line": 26,
+              "byte": 2750,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-007": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 27,
+              "byte": 3005,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-008": {
+            "definition": null,
+            "mention_count": 17,
+            "first_position": {
+              "line": 28,
+              "byte": 3747,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-009": {
+            "definition": null,
+            "mention_count": 16,
+            "first_position": {
+              "line": 29,
+              "byte": 4190,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-010": {
+            "definition": null,
+            "mention_count": 21,
+            "first_position": {
+              "line": 206,
+              "byte": 33166,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-011": {
+            "definition": null,
+            "mention_count": 10,
+            "first_position": {
+              "line": 207,
+              "byte": 33944,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-012": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 208,
+              "byte": 34601,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-013": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 209,
+              "byte": 34987,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-014": {
+            "definition": null,
+            "mention_count": 8,
+            "first_position": {
+              "line": 210,
+              "byte": 35406,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-015": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 211,
+              "byte": 35813,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-016": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 212,
+              "byte": 36914,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-017": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 213,
+              "byte": 37341,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-018": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 214,
+              "byte": 38014,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-019": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 215,
+              "byte": 38412,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-020": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 216,
+              "byte": 39291,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-021": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 217,
+              "byte": 39900,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-022": {
+            "definition": null,
+            "mention_count": 18,
+            "first_position": {
+              "line": 213,
+              "byte": 37370,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-023": {
+            "definition": {
+              "line": 220,
+              "byte": 41838,
+              "role": "heading_definition"
+            },
+            "mention_count": 14,
+            "first_position": {
+              "line": 220,
+              "byte": 41838,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-024": {
+            "definition": {
+              "line": 236,
+              "byte": 45768,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 236,
+              "byte": 45768,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-025": {
+            "definition": {
+              "line": 343,
+              "byte": 65798,
+              "role": "heading_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 343,
+              "byte": 65798,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-026": {
+            "definition": {
+              "line": 333,
+              "byte": 63438,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 333,
+              "byte": 63438,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-027": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 364,
+              "byte": 69895,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-028": {
+            "definition": {
+              "line": 376,
+              "byte": 72896,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 376,
+              "byte": 72896,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-029": {
+            "definition": {
+              "line": 384,
+              "byte": 74697,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 384,
+              "byte": 74697,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-030": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 407,
+              "byte": 79747,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-031": {
+            "definition": {
+              "line": 417,
+              "byte": 82644,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 417,
+              "byte": 82644,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-032": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 419,
+              "byte": 83269,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-033": {
+            "definition": {
+              "line": 433,
+              "byte": 86786,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 433,
+              "byte": 86786,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-034": {
+            "definition": {
+              "line": 466,
+              "byte": 94521,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 466,
+              "byte": 94521,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-035": {
+            "definition": {
+              "line": 486,
+              "byte": 99563,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 486,
+              "byte": 99563,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-036": {
+            "definition": {
+              "line": 494,
+              "byte": 101067,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 494,
+              "byte": 101067,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-037": {
+            "definition": {
+              "line": 528,
+              "byte": 109848,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 528,
+              "byte": 109848,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-038": {
+            "definition": {
+              "line": 575,
+              "byte": 122975,
+              "role": "heading_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 575,
+              "byte": 122975,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-039": {
+            "definition": {
+              "line": 639,
+              "byte": 133415,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 639,
+              "byte": 133415,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-040": {
+            "definition": {
+              "line": 690,
+              "byte": 145408,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 690,
+              "byte": 145408,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-041": {
+            "definition": {
+              "line": 700,
+              "byte": 147488,
+              "role": "heading_definition"
+            },
+            "mention_count": 6,
+            "first_position": {
+              "line": 700,
+              "byte": 147488,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-042": {
+            "definition": {
+              "line": 717,
+              "byte": 151142,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 717,
+              "byte": 151142,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-043": {
+            "definition": {
+              "line": 729,
+              "byte": 153475,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 729,
+              "byte": 153475,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-044": {
+            "definition": {
+              "line": 741,
+              "byte": 156852,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 741,
+              "byte": 156852,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-045": {
+            "definition": {
+              "line": 753,
+              "byte": 160077,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 753,
+              "byte": 160077,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-046": {
+            "definition": {
+              "line": 765,
+              "byte": 163180,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 765,
+              "byte": 163180,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-047": {
+            "definition": {
+              "line": 779,
+              "byte": 166652,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 779,
+              "byte": 166652,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-048": {
+            "definition": {
+              "line": 794,
+              "byte": 170972,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 794,
+              "byte": 170972,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-049": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 805,
+              "byte": 172756,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-050": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 820,
+              "byte": 176988,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-051": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 832,
+              "byte": 179433,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-052": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 843,
+              "byte": 182070,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-053": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 854,
+              "byte": 184768,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-054": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 869,
+              "byte": 187519,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-055": {
+            "definition": {
+              "line": 879,
+              "byte": 190655,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 879,
+              "byte": 190655,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-056": {
+            "definition": {
+              "line": 888,
+              "byte": 192208,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 888,
+              "byte": 192208,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-057": {
+            "definition": {
+              "line": 897,
+              "byte": 193812,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 897,
+              "byte": 193812,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-058": {
+            "definition": {
+              "line": 907,
+              "byte": 196634,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 907,
+              "byte": 196634,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-059": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 919,
+              "byte": 198789,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-060": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 929,
+              "byte": 201039,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-061": {
+            "definition": {
+              "line": 935,
+              "byte": 202361,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 935,
+              "byte": 202361,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-062": {
+            "definition": {
+              "line": 946,
+              "byte": 204885,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 946,
+              "byte": 204885,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-063": {
+            "definition": {
+              "line": 953,
+              "byte": 206400,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 953,
+              "byte": 206400,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-064": {
+            "definition": {
+              "line": 966,
+              "byte": 209883,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 966,
+              "byte": 209883,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-065": {
+            "definition": {
+              "line": 983,
+              "byte": 214946,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 983,
+              "byte": 214946,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-067": {
+            "definition": {
+              "line": 994,
+              "byte": 219218,
+              "role": "heading_definition"
+            },
+            "mention_count": 6,
+            "first_position": {
+              "line": 994,
+              "byte": 219218,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-068": {
+            "definition": {
+              "line": 1005,
+              "byte": 222039,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1005,
+              "byte": 222039,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-072": {
+            "definition": {
+              "line": 1068,
+              "byte": 240238,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1068,
+              "byte": 240238,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-077": {
+            "definition": {
+              "line": 1025,
+              "byte": 227409,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1025,
+              "byte": 227409,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-078": {
+            "definition": {
+              "line": 1041,
+              "byte": 231689,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1041,
+              "byte": 231689,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-079": {
+            "definition": {
+              "line": 1083,
+              "byte": 245328,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1083,
+              "byte": 245328,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-081": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1119,
+              "byte": 263014,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-083": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1161,
+              "byte": 283245,
+              "role": "mention"
+            }
+          },
+          "HARNESS-L2-084": {
+            "definition": {
+              "line": 1173,
+              "byte": 292718,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1173,
+              "byte": 292718,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-085": {
+            "definition": {
+              "line": 1203,
+              "byte": 306066,
+              "role": "heading_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 1203,
+              "byte": 306066,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-086": {
+            "definition": {
+              "line": 1228,
+              "byte": 313586,
+              "role": "heading_definition"
+            },
+            "mention_count": 11,
+            "first_position": {
+              "line": 1228,
+              "byte": 313586,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-087": {
+            "definition": {
+              "line": 1316,
+              "byte": 339496,
+              "role": "heading_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 1316,
+              "byte": 339496,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-088": {
+            "definition": {
+              "line": 1281,
+              "byte": 328053,
+              "role": "heading_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 1281,
+              "byte": 328053,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-089": {
+            "definition": {
+              "line": 1352,
+              "byte": 348656,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1352,
+              "byte": 348656,
+              "role": "heading_definition"
+            }
+          },
+          "HARNESS-L2-090": {
+            "definition": {
+              "line": 1362,
+              "byte": 350804,
+              "role": "heading_definition"
+            },
+            "mention_count": 1,
+            "first_position": {
+              "line": 1362,
+              "byte": 350804,
+              "role": "heading_definition"
+            }
+          }
+        }
+      }
     },
-    "id_mentions": {
-      "L2_mention_count": 0,
-      "sample": []
+    "l2_l11_pairing": {
+      "shared_ids": 80,
+      "l2_only": [
+        "HARNESS-L2-080",
+        "HARNESS-L2-082"
+      ],
+      "l11_only": [],
+      "positions": {
+        "HARNESS-L2-001": {
+          "l2": {
+            "line": 40,
+            "byte": 2588
+          },
+          "l11": {
+            "line": 21,
+            "byte": 761
+          }
+        },
+        "HARNESS-L2-002": {
+          "l2": {
+            "line": 41,
+            "byte": 2624
+          },
+          "l11": {
+            "line": 22,
+            "byte": 1025
+          }
+        },
+        "HARNESS-L2-003": {
+          "l2": {
+            "line": 42,
+            "byte": 2660
+          },
+          "l11": {
+            "line": 23,
+            "byte": 1445
+          }
+        },
+        "HARNESS-L2-004": {
+          "l2": {
+            "line": 43,
+            "byte": 2730
+          },
+          "l11": {
+            "line": 24,
+            "byte": 2016
+          }
+        },
+        "HARNESS-L2-005": {
+          "l2": {
+            "line": 44,
+            "byte": 2800
+          },
+          "l11": {
+            "line": 25,
+            "byte": 2176
+          }
+        },
+        "HARNESS-L2-006": {
+          "l2": {
+            "line": 45,
+            "byte": 2836
+          },
+          "l11": {
+            "line": 26,
+            "byte": 2750
+          }
+        },
+        "HARNESS-L2-007": {
+          "l2": {
+            "line": 46,
+            "byte": 2872
+          },
+          "l11": {
+            "line": 27,
+            "byte": 3005
+          }
+        },
+        "HARNESS-L2-008": {
+          "l2": {
+            "line": 47,
+            "byte": 2908
+          },
+          "l11": {
+            "line": 28,
+            "byte": 3747
+          }
+        },
+        "HARNESS-L2-009": {
+          "l2": {
+            "line": 48,
+            "byte": 2944
+          },
+          "l11": {
+            "line": 29,
+            "byte": 4190
+          }
+        },
+        "HARNESS-L2-010": {
+          "l2": {
+            "line": 323,
+            "byte": 55429
+          },
+          "l11": {
+            "line": 206,
+            "byte": 33166
+          }
+        },
+        "HARNESS-L2-011": {
+          "l2": {
+            "line": 323,
+            "byte": 55466
+          },
+          "l11": {
+            "line": 207,
+            "byte": 33944
+          }
+        },
+        "HARNESS-L2-012": {
+          "l2": {
+            "line": 329,
+            "byte": 56367
+          },
+          "l11": {
+            "line": 208,
+            "byte": 34601
+          }
+        },
+        "HARNESS-L2-013": {
+          "l2": {
+            "line": 330,
+            "byte": 56477
+          },
+          "l11": {
+            "line": 209,
+            "byte": 34987
+          }
+        },
+        "HARNESS-L2-014": {
+          "l2": {
+            "line": 331,
+            "byte": 56595
+          },
+          "l11": {
+            "line": 210,
+            "byte": 35406
+          }
+        },
+        "HARNESS-L2-015": {
+          "l2": {
+            "line": 332,
+            "byte": 56707
+          },
+          "l11": {
+            "line": 211,
+            "byte": 35813
+          }
+        },
+        "HARNESS-L2-016": {
+          "l2": {
+            "line": 333,
+            "byte": 56819
+          },
+          "l11": {
+            "line": 212,
+            "byte": 36914
+          }
+        },
+        "HARNESS-L2-017": {
+          "l2": {
+            "line": 334,
+            "byte": 56932
+          },
+          "l11": {
+            "line": 213,
+            "byte": 37341
+          }
+        },
+        "HARNESS-L2-018": {
+          "l2": {
+            "line": 335,
+            "byte": 57033
+          },
+          "l11": {
+            "line": 214,
+            "byte": 38014
+          }
+        },
+        "HARNESS-L2-019": {
+          "l2": {
+            "line": 336,
+            "byte": 57134
+          },
+          "l11": {
+            "line": 215,
+            "byte": 38412
+          }
+        },
+        "HARNESS-L2-020": {
+          "l2": {
+            "line": 337,
+            "byte": 57229
+          },
+          "l11": {
+            "line": 216,
+            "byte": 39291
+          }
+        },
+        "HARNESS-L2-021": {
+          "l2": {
+            "line": 338,
+            "byte": 57327
+          },
+          "l11": {
+            "line": 217,
+            "byte": 39900
+          }
+        },
+        "HARNESS-L2-022": {
+          "l2": {
+            "line": 323,
+            "byte": 55529
+          },
+          "l11": {
+            "line": 213,
+            "byte": 37370
+          }
+        },
+        "HARNESS-L2-023": {
+          "l2": {
+            "line": 467,
+            "byte": 78947
+          },
+          "l11": {
+            "line": 220,
+            "byte": 41838
+          }
+        },
+        "HARNESS-L2-024": {
+          "l2": {
+            "line": 503,
+            "byte": 85770
+          },
+          "l11": {
+            "line": 236,
+            "byte": 45768
+          }
+        },
+        "HARNESS-L2-025": {
+          "l2": {
+            "line": 548,
+            "byte": 100110
+          },
+          "l11": {
+            "line": 343,
+            "byte": 65798
+          }
+        },
+        "HARNESS-L2-026": {
+          "l2": {
+            "line": 534,
+            "byte": 94933
+          },
+          "l11": {
+            "line": 333,
+            "byte": 63438
+          }
+        },
+        "HARNESS-L2-027": {
+          "l2": {
+            "line": 563,
+            "byte": 104403
+          },
+          "l11": {
+            "line": 364,
+            "byte": 69895
+          }
+        },
+        "HARNESS-L2-028": {
+          "l2": {
+            "line": 577,
+            "byte": 110081
+          },
+          "l11": {
+            "line": 376,
+            "byte": 72896
+          }
+        },
+        "HARNESS-L2-029": {
+          "l2": {
+            "line": 591,
+            "byte": 115320
+          },
+          "l11": {
+            "line": 384,
+            "byte": 74697
+          }
+        },
+        "HARNESS-L2-030": {
+          "l2": {
+            "line": 611,
+            "byte": 123661
+          },
+          "l11": {
+            "line": 407,
+            "byte": 79747
+          }
+        },
+        "HARNESS-L2-031": {
+          "l2": {
+            "line": 631,
+            "byte": 127969
+          },
+          "l11": {
+            "line": 417,
+            "byte": 82644
+          }
+        },
+        "HARNESS-L2-032": {
+          "l2": {
+            "line": 645,
+            "byte": 131215
+          },
+          "l11": {
+            "line": 419,
+            "byte": 83269
+          }
+        },
+        "HARNESS-L2-033": {
+          "l2": {
+            "line": 671,
+            "byte": 136239
+          },
+          "l11": {
+            "line": 433,
+            "byte": 86786
+          }
+        },
+        "HARNESS-L2-034": {
+          "l2": {
+            "line": 697,
+            "byte": 142419
+          },
+          "l11": {
+            "line": 466,
+            "byte": 94521
+          }
+        },
+        "HARNESS-L2-035": {
+          "l2": {
+            "line": 723,
+            "byte": 150033
+          },
+          "l11": {
+            "line": 486,
+            "byte": 99563
+          }
+        },
+        "HARNESS-L2-036": {
+          "l2": {
+            "line": 734,
+            "byte": 153734
+          },
+          "l11": {
+            "line": 494,
+            "byte": 101067
+          }
+        },
+        "HARNESS-L2-037": {
+          "l2": {
+            "line": 781,
+            "byte": 165140
+          },
+          "l11": {
+            "line": 528,
+            "byte": 109848
+          }
+        },
+        "HARNESS-L2-038": {
+          "l2": {
+            "line": 838,
+            "byte": 182204
+          },
+          "l11": {
+            "line": 575,
+            "byte": 122975
+          }
+        },
+        "HARNESS-L2-039": {
+          "l2": {
+            "line": 895,
+            "byte": 195072
+          },
+          "l11": {
+            "line": 639,
+            "byte": 133415
+          }
+        },
+        "HARNESS-L2-040": {
+          "l2": {
+            "line": 950,
+            "byte": 209963
+          },
+          "l11": {
+            "line": 690,
+            "byte": 145408
+          }
+        },
+        "HARNESS-L2-041": {
+          "l2": {
+            "line": 961,
+            "byte": 213280
+          },
+          "l11": {
+            "line": 700,
+            "byte": 147488
+          }
+        },
+        "HARNESS-L2-042": {
+          "l2": {
+            "line": 976,
+            "byte": 217248
+          },
+          "l11": {
+            "line": 717,
+            "byte": 151142
+          }
+        },
+        "HARNESS-L2-043": {
+          "l2": {
+            "line": 990,
+            "byte": 220890
+          },
+          "l11": {
+            "line": 729,
+            "byte": 153475
+          }
+        },
+        "HARNESS-L2-044": {
+          "l2": {
+            "line": 1006,
+            "byte": 226340
+          },
+          "l11": {
+            "line": 741,
+            "byte": 156852
+          }
+        },
+        "HARNESS-L2-045": {
+          "l2": {
+            "line": 1017,
+            "byte": 230648
+          },
+          "l11": {
+            "line": 753,
+            "byte": 160077
+          }
+        },
+        "HARNESS-L2-046": {
+          "l2": {
+            "line": 1029,
+            "byte": 235498
+          },
+          "l11": {
+            "line": 765,
+            "byte": 163180
+          }
+        },
+        "HARNESS-L2-047": {
+          "l2": {
+            "line": 1043,
+            "byte": 240343
+          },
+          "l11": {
+            "line": 779,
+            "byte": 166652
+          }
+        },
+        "HARNESS-L2-048": {
+          "l2": {
+            "line": 1059,
+            "byte": 246407
+          },
+          "l11": {
+            "line": 794,
+            "byte": 170972
+          }
+        },
+        "HARNESS-L2-049": {
+          "l2": {
+            "line": 1076,
+            "byte": 250066
+          },
+          "l11": {
+            "line": 805,
+            "byte": 172756
+          }
+        },
+        "HARNESS-L2-050": {
+          "l2": {
+            "line": 1101,
+            "byte": 258891
+          },
+          "l11": {
+            "line": 820,
+            "byte": 176988
+          }
+        },
+        "HARNESS-L2-051": {
+          "l2": {
+            "line": 1120,
+            "byte": 263289
+          },
+          "l11": {
+            "line": 832,
+            "byte": 179433
+          }
+        },
+        "HARNESS-L2-052": {
+          "l2": {
+            "line": 1139,
+            "byte": 267822
+          },
+          "l11": {
+            "line": 843,
+            "byte": 182070
+          }
+        },
+        "HARNESS-L2-053": {
+          "l2": {
+            "line": 1151,
+            "byte": 270882
+          },
+          "l11": {
+            "line": 854,
+            "byte": 184768
+          }
+        },
+        "HARNESS-L2-054": {
+          "l2": {
+            "line": 1168,
+            "byte": 274219
+          },
+          "l11": {
+            "line": 869,
+            "byte": 187519
+          }
+        },
+        "HARNESS-L2-055": {
+          "l2": {
+            "line": 1178,
+            "byte": 278872
+          },
+          "l11": {
+            "line": 879,
+            "byte": 190655
+          }
+        },
+        "HARNESS-L2-056": {
+          "l2": {
+            "line": 1188,
+            "byte": 281518
+          },
+          "l11": {
+            "line": 888,
+            "byte": 192208
+          }
+        },
+        "HARNESS-L2-057": {
+          "l2": {
+            "line": 1198,
+            "byte": 284080
+          },
+          "l11": {
+            "line": 897,
+            "byte": 193812
+          }
+        },
+        "HARNESS-L2-058": {
+          "l2": {
+            "line": 1210,
+            "byte": 288491
+          },
+          "l11": {
+            "line": 907,
+            "byte": 196634
+          }
+        },
+        "HARNESS-L2-059": {
+          "l2": {
+            "line": 1226,
+            "byte": 293091
+          },
+          "l11": {
+            "line": 919,
+            "byte": 198789
+          }
+        },
+        "HARNESS-L2-060": {
+          "l2": {
+            "line": 1237,
+            "byte": 296233
+          },
+          "l11": {
+            "line": 929,
+            "byte": 201039
+          }
+        },
+        "HARNESS-L2-061": {
+          "l2": {
+            "line": 1247,
+            "byte": 299530
+          },
+          "l11": {
+            "line": 935,
+            "byte": 202361
+          }
+        },
+        "HARNESS-L2-062": {
+          "l2": {
+            "line": 1256,
+            "byte": 303454
+          },
+          "l11": {
+            "line": 946,
+            "byte": 204885
+          }
+        },
+        "HARNESS-L2-063": {
+          "l2": {
+            "line": 1266,
+            "byte": 306034
+          },
+          "l11": {
+            "line": 953,
+            "byte": 206400
+          }
+        },
+        "HARNESS-L2-064": {
+          "l2": {
+            "line": 1280,
+            "byte": 312774
+          },
+          "l11": {
+            "line": 966,
+            "byte": 209883
+          }
+        },
+        "HARNESS-L2-065": {
+          "l2": {
+            "line": 1291,
+            "byte": 319569
+          },
+          "l11": {
+            "line": 983,
+            "byte": 214946
+          }
+        },
+        "HARNESS-L2-067": {
+          "l2": {
+            "line": 1304,
+            "byte": 326098
+          },
+          "l11": {
+            "line": 994,
+            "byte": 219218
+          }
+        },
+        "HARNESS-L2-068": {
+          "l2": {
+            "line": 1322,
+            "byte": 331301
+          },
+          "l11": {
+            "line": 1005,
+            "byte": 222039
+          }
+        },
+        "HARNESS-L2-072": {
+          "l2": {
+            "line": 1386,
+            "byte": 356411
+          },
+          "l11": {
+            "line": 1068,
+            "byte": 240238
+          }
+        },
+        "HARNESS-L2-077": {
+          "l2": {
+            "line": 1350,
+            "byte": 341711
+          },
+          "l11": {
+            "line": 1025,
+            "byte": 227409
+          }
+        },
+        "HARNESS-L2-078": {
+          "l2": {
+            "line": 1372,
+            "byte": 348551
+          },
+          "l11": {
+            "line": 1041,
+            "byte": 231689
+          }
+        },
+        "HARNESS-L2-079": {
+          "l2": {
+            "line": 1400,
+            "byte": 361431
+          },
+          "l11": {
+            "line": 1083,
+            "byte": 245328
+          }
+        },
+        "HARNESS-L2-081": {
+          "l2": {
+            "line": 1426,
+            "byte": 381364
+          },
+          "l11": {
+            "line": 1119,
+            "byte": 263014
+          }
+        },
+        "HARNESS-L2-083": {
+          "l2": {
+            "line": 1454,
+            "byte": 396842
+          },
+          "l11": {
+            "line": 1161,
+            "byte": 283245
+          }
+        },
+        "HARNESS-L2-084": {
+          "l2": {
+            "line": 1467,
+            "byte": 403902
+          },
+          "l11": {
+            "line": 1173,
+            "byte": 292718
+          }
+        },
+        "HARNESS-L2-085": {
+          "l2": {
+            "line": 1480,
+            "byte": 413202
+          },
+          "l11": {
+            "line": 1203,
+            "byte": 306066
+          }
+        },
+        "HARNESS-L2-086": {
+          "l2": {
+            "line": 1507,
+            "byte": 422584
+          },
+          "l11": {
+            "line": 1228,
+            "byte": 313586
+          }
+        },
+        "HARNESS-L2-087": {
+          "l2": {
+            "line": 1576,
+            "byte": 447318
+          },
+          "l11": {
+            "line": 1316,
+            "byte": 339496
+          }
+        },
+        "HARNESS-L2-088": {
+          "l2": {
+            "line": 1552,
+            "byte": 436223
+          },
+          "l11": {
+            "line": 1281,
+            "byte": 328053
+          }
+        },
+        "HARNESS-L2-089": {
+          "l2": {
+            "line": 1608,
+            "byte": 460935
+          },
+          "l11": {
+            "line": 1352,
+            "byte": 348656
+          }
+        },
+        "HARNESS-L2-090": {
+          "l2": {
+            "line": 1619,
+            "byte": 465642
+          },
+          "l11": {
+            "line": 1362,
+            "byte": 350804
+          }
+        }
+      }
     },
-    "note": "### HELIXHARNESS-見出しの定義spanと本文中の他ID mentionを区別。同IDだけで意味同等を宣言しない。L11側はL2 IDへの参照対応をrole=group_heading/prose内の記述として観測。"
+    "note": "HELIXHARNESS literalは0件。prefixはHARNESS-L2-（L2 577 occurrence・L11 362）。heading_definitionの定義spanと他ID mentionを区別。同IDだけで意味同等を宣言しない。"
   },
   "owner_version_binding": {
     "frontmatter_spans": {
@@ -1958,7 +4663,13 @@
         "role": "frontmatter"
       }
     },
-    "note": "owner/version/適用条件/N-A/保留はfrontmatter span(L2 start0-end819行1-19,L11 start0-end710行1-18)と各requirement_or_acceptance_section spanのtitle/owner/適用条件本文に原所在を持つ。値を再著述しない"
+    "measured": {
+      "L2_frontmatter_bytes": "0..367",
+      "L2_frontmatter_lines": "1..15",
+      "L11_frontmatter_bytes": "0..254",
+      "L11_frontmatter_lines": "1..12"
+    },
+    "note": "owner/version/適用条件はfrontmatterと各requirement_or_acceptance_section span・表定義行の列に原所在を持つ。first_lineは原行のprefixであり条件全文の所在は各原span/hashへ結ぶ。値を再著述しない。"
   },
   "legacy_source_hold": {
     "starting_point": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md §1-3(LEGACY-ASSET-4F5A1F0739EC1111D91D)",

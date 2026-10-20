@@ -1950,28 +1950,74 @@
       "raw_sha256": "5f54e68009fe291853d2d55df241e8220cfdd93eadd1b2a203bb126596b321da",
       "bytes": 5689
     },
-    "current_vs_adopted": "current sourceはadopted blobの追補(+834/+893行)を含む。追補の意味・承認は本索引では推定しない"
+    "current_vs_adopted": "current sourceはadopted blobの追補(+834/+893行)を含む。追補の意味・承認は本索引では推定しない",
+    "decision_record_location_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9"
   },
   "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
   "direct_consumers": {
     "static_references": [
       {
-        "path": "docs/helix-os/L3-requirements/",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "L3側がL2 IDを参照"
+        "path": "docs/helix-os/L3-requirements/business-requirements.json",
+        "raw_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+        "git_blob": "02b12a1432e1ccd9f985f2c92c4471ea7c5efe64",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
+        ]
       },
       {
-        "path": "docs/helix-os/L9-integration-verification/",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "対L11受入のunit検証対がL11を参照"
+        "path": "docs/helix-os/L9-integration-verification/ci-profile-execution-recovery.json",
+        "raw_sha256": "68de9202fc56e9b8ed5f8a503d10810eb8ebc585d0c64f578d780594b7b39268",
+        "git_blob": "123e3d75c9861f2235f0ed175899402233d8877e",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
+        ]
       },
       {
-        "path": "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md",
-        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
-        "note": "decisionが採択対象を固定"
+        "path": "docs/helix-os/L9-integration-verification/event-episode-continuity.json",
+        "raw_sha256": "cfa747f3b284886c6b99c0f345d3457478a3dab876f700640f7ce06513d6ddc4",
+        "git_blob": "d7f8a89d4689eb89cc1f5c3d14a925a5524c2a78",
+        "references": [
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-os/L10-verification/business-verification.json",
+        "raw_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+        "git_blob": "c19a92109b0da0d6157b4f54a0d85312f275b6ad",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-os/L2-requirements/governance-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-os/L11-acceptance/governance-acceptance.md"
+          }
+        ]
       }
     ],
-    "note": "実path・固定revisionの所在例。実reader成立・全consumer閉包とは分ける"
+    "note": "directory-only参照を実file+JSON pointer+rawsha/blobへ訂正。実reader成立・全consumer閉包とは分ける。decision所在revision(dce07d0)と採択対象revision(f6dad2a3)を区別。"
   },
   "limits": [
     "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し、原条件を再著述しない",
@@ -1979,53 +2025,2536 @@
     "ScaffoldBinding/hash追随はroot検収責務"
   ],
   "identity_index": {
-    "id_definition_rows": {
-      "L2": 46,
-      "L11": 28,
-      "note": "要求IDの定義は見出しではなく表の定義行(| HELIXOS-L2-NNN | ...)。spanを含む表定義行と他ID mentionを区別",
-      "sample_spans": [
-        {
-          "start": 360,
-          "end": 15133,
-          "start_line": 16,
-          "line_count": 87,
-          "sha256": "22ffbff77e286c293838071c6e88a916cdf3b1a76049e1c4af35433e341f0bfa",
-          "first_line": "# HELIX-OSのプロジェクト群統制要求",
-          "role": "document_title"
-        },
-        {
-          "start": 41241,
-          "end": 44282,
-          "start_line": 286,
-          "line_count": 21,
-          "sha256": "27894e3cee9ce056b5145cb73d4bdbb2b425d325a048d742ecf8f926347957ea",
-          "first_line": "## Worker・学習・ログ・CIの具体条件",
-          "role": "group_heading"
-        },
-        {
-          "start": 253,
-          "end": 6256,
-          "start_line": 13,
-          "line_count": 22,
-          "sha256": "08d4bc09568f567188c980293158a5068c2163e614315ab1aa9f5057be57460a",
-          "first_line": "# HELIX-OS統制要求の受入案",
-          "role": "document_title"
-        },
-        {
-          "start": 44742,
-          "end": 46973,
-          "start_line": 311,
-          "line_count": 9,
-          "sha256": "5368c6b8b159de9f9f49c6bf898013286104781371a2741f408fec69fc6db3ee",
-          "first_line": "## HELIX自身の段階リリースの受入",
-          "role": "group_heading"
+    "own_id_full_map": {
+      "L2": {
+        "distinct_ids": 87,
+        "table_first_col_prefix": "HELIXOS-L2-",
+        "observations": {
+          "HELIXOS-L2-001": {
+            "definition": {
+              "line": 38,
+              "byte": 3002,
+              "role": "table_definition"
+            },
+            "mention_count": 32,
+            "first_position": {
+              "line": 38,
+              "byte": 3002,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-002": {
+            "definition": {
+              "line": 39,
+              "byte": 3055,
+              "role": "table_definition"
+            },
+            "mention_count": 17,
+            "first_position": {
+              "line": 39,
+              "byte": 3055,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-003": {
+            "definition": {
+              "line": 40,
+              "byte": 3125,
+              "role": "table_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 40,
+              "byte": 3125,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-004": {
+            "definition": {
+              "line": 41,
+              "byte": 3161,
+              "role": "table_definition"
+            },
+            "mention_count": 33,
+            "first_position": {
+              "line": 41,
+              "byte": 3161,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-005": {
+            "definition": null,
+            "mention_count": 17,
+            "first_position": {
+              "line": 30,
+              "byte": 2510,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-006": {
+            "definition": {
+              "line": 43,
+              "byte": 3233,
+              "role": "table_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 43,
+              "byte": 3233,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-007": {
+            "definition": {
+              "line": 44,
+              "byte": 3286,
+              "role": "table_definition"
+            },
+            "mention_count": 22,
+            "first_position": {
+              "line": 44,
+              "byte": 3286,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-008": {
+            "definition": {
+              "line": 45,
+              "byte": 3373,
+              "role": "table_definition"
+            },
+            "mention_count": 13,
+            "first_position": {
+              "line": 45,
+              "byte": 3373,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-009": {
+            "definition": {
+              "line": 46,
+              "byte": 3409,
+              "role": "table_definition"
+            },
+            "mention_count": 20,
+            "first_position": {
+              "line": 46,
+              "byte": 3409,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-010": {
+            "definition": {
+              "line": 47,
+              "byte": 3462,
+              "role": "table_definition"
+            },
+            "mention_count": 48,
+            "first_position": {
+              "line": 47,
+              "byte": 3462,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-011": {
+            "definition": {
+              "line": 48,
+              "byte": 3498,
+              "role": "table_definition"
+            },
+            "mention_count": 6,
+            "first_position": {
+              "line": 48,
+              "byte": 3498,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-012": {
+            "definition": {
+              "line": 49,
+              "byte": 3534,
+              "role": "table_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 49,
+              "byte": 3534,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-013": {
+            "definition": {
+              "line": 50,
+              "byte": 3570,
+              "role": "table_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 50,
+              "byte": 3570,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-014": {
+            "definition": {
+              "line": 619,
+              "byte": 91285,
+              "role": "table_definition"
+            },
+            "mention_count": 15,
+            "first_position": {
+              "line": 619,
+              "byte": 91285,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-015": {
+            "definition": null,
+            "mention_count": 11,
+            "first_position": {
+              "line": 644,
+              "byte": 98447,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-016": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 654,
+              "byte": 99806,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-017": {
+            "definition": null,
+            "mention_count": 9,
+            "first_position": {
+              "line": 664,
+              "byte": 101192,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-018": {
+            "definition": null,
+            "mention_count": 15,
+            "first_position": {
+              "line": 674,
+              "byte": 102957,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-019": {
+            "definition": null,
+            "mention_count": 12,
+            "first_position": {
+              "line": 684,
+              "byte": 104425,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-020": {
+            "definition": null,
+            "mention_count": 8,
+            "first_position": {
+              "line": 694,
+              "byte": 105738,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-021": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 704,
+              "byte": 107005,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-022": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 714,
+              "byte": 109300,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-023": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 724,
+              "byte": 110614,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-024": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 734,
+              "byte": 112018,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-025": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 744,
+              "byte": 113299,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-026": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 809,
+              "byte": 124134,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-027": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 826,
+              "byte": 132709,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-028": {
+            "definition": null,
+            "mention_count": 7,
+            "first_position": {
+              "line": 849,
+              "byte": 142042,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-029": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 853,
+              "byte": 142791,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-030": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 881,
+              "byte": 153772,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-031": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 902,
+              "byte": 162334,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-032": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 915,
+              "byte": 167777,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-033": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 931,
+              "byte": 172230,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-034": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 947,
+              "byte": 176939,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-035": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 989,
+              "byte": 186080,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-036": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1035,
+              "byte": 197527,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-037": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1077,
+              "byte": 207933,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-038": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 1098,
+              "byte": 213871,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-039": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1117,
+              "byte": 224359,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-040": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 1127,
+              "byte": 229685,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-041": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1137,
+              "byte": 233088,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-042": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1146,
+              "byte": 236454,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-043": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1155,
+              "byte": 239813,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-044": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1164,
+              "byte": 242412,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-045": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1171,
+              "byte": 243892,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-046": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1179,
+              "byte": 246606,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-047": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1187,
+              "byte": 248919,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-048": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1197,
+              "byte": 252234,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-049": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1207,
+              "byte": 255088,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-050": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1215,
+              "byte": 258062,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-051": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1223,
+              "byte": 261485,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-052": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1233,
+              "byte": 265101,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-053": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1244,
+              "byte": 268937,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-054": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1257,
+              "byte": 273756,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-055": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1269,
+              "byte": 277836,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-056": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1286,
+              "byte": 283188,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-101": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 987,
+              "byte": 185708,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-102": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 1297,
+              "byte": 287800,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-103": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1308,
+              "byte": 290742,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-104": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1316,
+              "byte": 293390,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-105": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1327,
+              "byte": 296521,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-106": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 1338,
+              "byte": 300068,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-107": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1350,
+              "byte": 303116,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-108": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1360,
+              "byte": 306727,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-109": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1371,
+              "byte": 310293,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-110": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1384,
+              "byte": 313738,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-111": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1398,
+              "byte": 318326,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-112": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1411,
+              "byte": 321643,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-113": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1427,
+              "byte": 332184,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-114": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1441,
+              "byte": 337098,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-115": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1468,
+              "byte": 346867,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-117": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1457,
+              "byte": 342457,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-118": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1478,
+              "byte": 351102,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-119": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1491,
+              "byte": 357507,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-120": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1520,
+              "byte": 369294,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-121": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1505,
+              "byte": 362615,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-122": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1532,
+              "byte": 376468,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-123": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1547,
+              "byte": 386757,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-124": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1561,
+              "byte": 393474,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-125": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1574,
+              "byte": 400128,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-126": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1582,
+              "byte": 402771,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-127": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1613,
+              "byte": 420273,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-128": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1595,
+              "byte": 410468,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-129": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1647,
+              "byte": 435189,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-130": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 1665,
+              "byte": 441496,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-131": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1682,
+              "byte": 446547,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-132": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1689,
+              "byte": 449328,
+              "role": "mention"
+            }
+          }
         }
-      ]
+      },
+      "L11": {
+        "distinct_ids": 85,
+        "observations": {
+          "HELIXOS-L2-001": {
+            "definition": {
+              "line": 21,
+              "byte": 751,
+              "role": "table_definition"
+            },
+            "mention_count": 18,
+            "first_position": {
+              "line": 21,
+              "byte": 751,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-002": {
+            "definition": {
+              "line": 22,
+              "byte": 906,
+              "role": "table_definition"
+            },
+            "mention_count": 15,
+            "first_position": {
+              "line": 22,
+              "byte": 906,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-003": {
+            "definition": {
+              "line": 23,
+              "byte": 1202,
+              "role": "table_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 23,
+              "byte": 1202,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-004": {
+            "definition": {
+              "line": 24,
+              "byte": 1332,
+              "role": "table_definition"
+            },
+            "mention_count": 14,
+            "first_position": {
+              "line": 24,
+              "byte": 1332,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-005": {
+            "definition": {
+              "line": 25,
+              "byte": 2688,
+              "role": "table_definition"
+            },
+            "mention_count": 12,
+            "first_position": {
+              "line": 25,
+              "byte": 2688,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-006": {
+            "definition": {
+              "line": 26,
+              "byte": 3366,
+              "role": "table_definition"
+            },
+            "mention_count": 3,
+            "first_position": {
+              "line": 26,
+              "byte": 3366,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-007": {
+            "definition": {
+              "line": 27,
+              "byte": 3642,
+              "role": "table_definition"
+            },
+            "mention_count": 11,
+            "first_position": {
+              "line": 27,
+              "byte": 3642,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-008": {
+            "definition": {
+              "line": 28,
+              "byte": 3972,
+              "role": "table_definition"
+            },
+            "mention_count": 11,
+            "first_position": {
+              "line": 28,
+              "byte": 3972,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-009": {
+            "definition": {
+              "line": 29,
+              "byte": 4398,
+              "role": "table_definition"
+            },
+            "mention_count": 8,
+            "first_position": {
+              "line": 29,
+              "byte": 4398,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-010": {
+            "definition": {
+              "line": 30,
+              "byte": 4552,
+              "role": "table_definition"
+            },
+            "mention_count": 37,
+            "first_position": {
+              "line": 30,
+              "byte": 4552,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-011": {
+            "definition": {
+              "line": 31,
+              "byte": 5293,
+              "role": "table_definition"
+            },
+            "mention_count": 4,
+            "first_position": {
+              "line": 31,
+              "byte": 5293,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-012": {
+            "definition": {
+              "line": 32,
+              "byte": 5838,
+              "role": "table_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 32,
+              "byte": 5838,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-013": {
+            "definition": {
+              "line": 33,
+              "byte": 6039,
+              "role": "table_definition"
+            },
+            "mention_count": 2,
+            "first_position": {
+              "line": 33,
+              "byte": 6039,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-014": {
+            "definition": {
+              "line": 317,
+              "byte": 45002,
+              "role": "table_definition"
+            },
+            "mention_count": 5,
+            "first_position": {
+              "line": 317,
+              "byte": 45002,
+              "role": "table_definition"
+            }
+          },
+          "HELIXOS-L2-015": {
+            "definition": null,
+            "mention_count": 5,
+            "first_position": {
+              "line": 320,
+              "byte": 46997,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-016": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 331,
+              "byte": 48656,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-017": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 338,
+              "byte": 49579,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-018": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 345,
+              "byte": 50619,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-019": {
+            "definition": null,
+            "mention_count": 6,
+            "first_position": {
+              "line": 352,
+              "byte": 51625,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-020": {
+            "definition": null,
+            "mention_count": 7,
+            "first_position": {
+              "line": 359,
+              "byte": 52581,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-021": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 366,
+              "byte": 53561,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-022": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 373,
+              "byte": 54995,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-023": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 380,
+              "byte": 55926,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-024": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 387,
+              "byte": 56843,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-025": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 394,
+              "byte": 57808,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-026": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 430,
+              "byte": 62167,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-027": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 442,
+              "byte": 67063,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-028": {
+            "definition": null,
+            "mention_count": 9,
+            "first_position": {
+              "line": 457,
+              "byte": 73689,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-029": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 463,
+              "byte": 75419,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-030": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 480,
+              "byte": 82713,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-031": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 500,
+              "byte": 91549,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-032": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 513,
+              "byte": 94401,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-033": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 524,
+              "byte": 98048,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-034": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 539,
+              "byte": 102460,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-035": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 581,
+              "byte": 111144,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-036": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 620,
+              "byte": 116692,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-037": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 652,
+              "byte": 121843,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-038": {
+            "definition": null,
+            "mention_count": 4,
+            "first_position": {
+              "line": 671,
+              "byte": 125718,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-039": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 706,
+              "byte": 132834,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-040": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 732,
+              "byte": 136775,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-041": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 744,
+              "byte": 139071,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-042": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 756,
+              "byte": 141853,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-043": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 770,
+              "byte": 144753,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-044": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 779,
+              "byte": 147342,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-045": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 786,
+              "byte": 148658,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-046": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 794,
+              "byte": 150416,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-047": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 802,
+              "byte": 152329,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-048": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 812,
+              "byte": 154343,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-049": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 821,
+              "byte": 156155,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-050": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 830,
+              "byte": 158710,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-051": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 839,
+              "byte": 162137,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-052": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 847,
+              "byte": 164128,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-053": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 858,
+              "byte": 166471,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-054": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 867,
+              "byte": 169729,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-055": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 879,
+              "byte": 172681,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-101": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 885,
+              "byte": 175032,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-102": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 899,
+              "byte": 176940,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-103": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 909,
+              "byte": 179062,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-104": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 916,
+              "byte": 180333,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-105": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 928,
+              "byte": 182985,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-106": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 939,
+              "byte": 186051,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-107": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 948,
+              "byte": 188368,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-108": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 958,
+              "byte": 190781,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-109": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 968,
+              "byte": 193555,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-110": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 977,
+              "byte": 195871,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-111": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 985,
+              "byte": 197812,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-112": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 993,
+              "byte": 200098,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-113": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1021,
+              "byte": 209861,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-114": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1031,
+              "byte": 212927,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-115": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1049,
+              "byte": 219807,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-117": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1042,
+              "byte": 217011,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-118": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1060,
+              "byte": 222111,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-119": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1072,
+              "byte": 228006,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-120": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1096,
+              "byte": 238767,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-121": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1084,
+              "byte": 232565,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-122": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1109,
+              "byte": 244064,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-123": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1122,
+              "byte": 251067,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-124": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1141,
+              "byte": 260292,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-126": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1175,
+              "byte": 273969,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-127": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1210,
+              "byte": 292973,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-128": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1189,
+              "byte": 283911,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-129": {
+            "definition": null,
+            "mention_count": 2,
+            "first_position": {
+              "line": 1279,
+              "byte": 313077,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-130": {
+            "definition": null,
+            "mention_count": 3,
+            "first_position": {
+              "line": 1318,
+              "byte": 321557,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-131": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1344,
+              "byte": 326729,
+              "role": "mention"
+            }
+          },
+          "HELIXOS-L2-132": {
+            "definition": null,
+            "mention_count": 1,
+            "first_position": {
+              "line": 1355,
+              "byte": 330044,
+              "role": "mention"
+            }
+          }
+        }
+      }
     },
-    "id_mentions": {
-      "L2_mention_count": 433
+    "l2_l11_pairing": {
+      "shared_ids": 85,
+      "l2_only": [
+        "HELIXOS-L2-056",
+        "HELIXOS-L2-125"
+      ],
+      "l11_only": [],
+      "positions": {
+        "HELIXOS-L2-001": {
+          "l2": {
+            "line": 38,
+            "byte": 3002
+          },
+          "l11": {
+            "line": 21,
+            "byte": 751
+          }
+        },
+        "HELIXOS-L2-002": {
+          "l2": {
+            "line": 39,
+            "byte": 3055
+          },
+          "l11": {
+            "line": 22,
+            "byte": 906
+          }
+        },
+        "HELIXOS-L2-003": {
+          "l2": {
+            "line": 40,
+            "byte": 3125
+          },
+          "l11": {
+            "line": 23,
+            "byte": 1202
+          }
+        },
+        "HELIXOS-L2-004": {
+          "l2": {
+            "line": 41,
+            "byte": 3161
+          },
+          "l11": {
+            "line": 24,
+            "byte": 1332
+          }
+        },
+        "HELIXOS-L2-005": {
+          "l2": {
+            "line": 30,
+            "byte": 2510
+          },
+          "l11": {
+            "line": 25,
+            "byte": 2688
+          }
+        },
+        "HELIXOS-L2-006": {
+          "l2": {
+            "line": 43,
+            "byte": 3233
+          },
+          "l11": {
+            "line": 26,
+            "byte": 3366
+          }
+        },
+        "HELIXOS-L2-007": {
+          "l2": {
+            "line": 44,
+            "byte": 3286
+          },
+          "l11": {
+            "line": 27,
+            "byte": 3642
+          }
+        },
+        "HELIXOS-L2-008": {
+          "l2": {
+            "line": 45,
+            "byte": 3373
+          },
+          "l11": {
+            "line": 28,
+            "byte": 3972
+          }
+        },
+        "HELIXOS-L2-009": {
+          "l2": {
+            "line": 46,
+            "byte": 3409
+          },
+          "l11": {
+            "line": 29,
+            "byte": 4398
+          }
+        },
+        "HELIXOS-L2-010": {
+          "l2": {
+            "line": 47,
+            "byte": 3462
+          },
+          "l11": {
+            "line": 30,
+            "byte": 4552
+          }
+        },
+        "HELIXOS-L2-011": {
+          "l2": {
+            "line": 48,
+            "byte": 3498
+          },
+          "l11": {
+            "line": 31,
+            "byte": 5293
+          }
+        },
+        "HELIXOS-L2-012": {
+          "l2": {
+            "line": 49,
+            "byte": 3534
+          },
+          "l11": {
+            "line": 32,
+            "byte": 5838
+          }
+        },
+        "HELIXOS-L2-013": {
+          "l2": {
+            "line": 50,
+            "byte": 3570
+          },
+          "l11": {
+            "line": 33,
+            "byte": 6039
+          }
+        },
+        "HELIXOS-L2-014": {
+          "l2": {
+            "line": 619,
+            "byte": 91285
+          },
+          "l11": {
+            "line": 317,
+            "byte": 45002
+          }
+        },
+        "HELIXOS-L2-015": {
+          "l2": {
+            "line": 644,
+            "byte": 98447
+          },
+          "l11": {
+            "line": 320,
+            "byte": 46997
+          }
+        },
+        "HELIXOS-L2-016": {
+          "l2": {
+            "line": 654,
+            "byte": 99806
+          },
+          "l11": {
+            "line": 331,
+            "byte": 48656
+          }
+        },
+        "HELIXOS-L2-017": {
+          "l2": {
+            "line": 664,
+            "byte": 101192
+          },
+          "l11": {
+            "line": 338,
+            "byte": 49579
+          }
+        },
+        "HELIXOS-L2-018": {
+          "l2": {
+            "line": 674,
+            "byte": 102957
+          },
+          "l11": {
+            "line": 345,
+            "byte": 50619
+          }
+        },
+        "HELIXOS-L2-019": {
+          "l2": {
+            "line": 684,
+            "byte": 104425
+          },
+          "l11": {
+            "line": 352,
+            "byte": 51625
+          }
+        },
+        "HELIXOS-L2-020": {
+          "l2": {
+            "line": 694,
+            "byte": 105738
+          },
+          "l11": {
+            "line": 359,
+            "byte": 52581
+          }
+        },
+        "HELIXOS-L2-021": {
+          "l2": {
+            "line": 704,
+            "byte": 107005
+          },
+          "l11": {
+            "line": 366,
+            "byte": 53561
+          }
+        },
+        "HELIXOS-L2-022": {
+          "l2": {
+            "line": 714,
+            "byte": 109300
+          },
+          "l11": {
+            "line": 373,
+            "byte": 54995
+          }
+        },
+        "HELIXOS-L2-023": {
+          "l2": {
+            "line": 724,
+            "byte": 110614
+          },
+          "l11": {
+            "line": 380,
+            "byte": 55926
+          }
+        },
+        "HELIXOS-L2-024": {
+          "l2": {
+            "line": 734,
+            "byte": 112018
+          },
+          "l11": {
+            "line": 387,
+            "byte": 56843
+          }
+        },
+        "HELIXOS-L2-025": {
+          "l2": {
+            "line": 744,
+            "byte": 113299
+          },
+          "l11": {
+            "line": 394,
+            "byte": 57808
+          }
+        },
+        "HELIXOS-L2-026": {
+          "l2": {
+            "line": 809,
+            "byte": 124134
+          },
+          "l11": {
+            "line": 430,
+            "byte": 62167
+          }
+        },
+        "HELIXOS-L2-027": {
+          "l2": {
+            "line": 826,
+            "byte": 132709
+          },
+          "l11": {
+            "line": 442,
+            "byte": 67063
+          }
+        },
+        "HELIXOS-L2-028": {
+          "l2": {
+            "line": 849,
+            "byte": 142042
+          },
+          "l11": {
+            "line": 457,
+            "byte": 73689
+          }
+        },
+        "HELIXOS-L2-029": {
+          "l2": {
+            "line": 853,
+            "byte": 142791
+          },
+          "l11": {
+            "line": 463,
+            "byte": 75419
+          }
+        },
+        "HELIXOS-L2-030": {
+          "l2": {
+            "line": 881,
+            "byte": 153772
+          },
+          "l11": {
+            "line": 480,
+            "byte": 82713
+          }
+        },
+        "HELIXOS-L2-031": {
+          "l2": {
+            "line": 902,
+            "byte": 162334
+          },
+          "l11": {
+            "line": 500,
+            "byte": 91549
+          }
+        },
+        "HELIXOS-L2-032": {
+          "l2": {
+            "line": 915,
+            "byte": 167777
+          },
+          "l11": {
+            "line": 513,
+            "byte": 94401
+          }
+        },
+        "HELIXOS-L2-033": {
+          "l2": {
+            "line": 931,
+            "byte": 172230
+          },
+          "l11": {
+            "line": 524,
+            "byte": 98048
+          }
+        },
+        "HELIXOS-L2-034": {
+          "l2": {
+            "line": 947,
+            "byte": 176939
+          },
+          "l11": {
+            "line": 539,
+            "byte": 102460
+          }
+        },
+        "HELIXOS-L2-035": {
+          "l2": {
+            "line": 989,
+            "byte": 186080
+          },
+          "l11": {
+            "line": 581,
+            "byte": 111144
+          }
+        },
+        "HELIXOS-L2-036": {
+          "l2": {
+            "line": 1035,
+            "byte": 197527
+          },
+          "l11": {
+            "line": 620,
+            "byte": 116692
+          }
+        },
+        "HELIXOS-L2-037": {
+          "l2": {
+            "line": 1077,
+            "byte": 207933
+          },
+          "l11": {
+            "line": 652,
+            "byte": 121843
+          }
+        },
+        "HELIXOS-L2-038": {
+          "l2": {
+            "line": 1098,
+            "byte": 213871
+          },
+          "l11": {
+            "line": 671,
+            "byte": 125718
+          }
+        },
+        "HELIXOS-L2-039": {
+          "l2": {
+            "line": 1117,
+            "byte": 224359
+          },
+          "l11": {
+            "line": 706,
+            "byte": 132834
+          }
+        },
+        "HELIXOS-L2-040": {
+          "l2": {
+            "line": 1127,
+            "byte": 229685
+          },
+          "l11": {
+            "line": 732,
+            "byte": 136775
+          }
+        },
+        "HELIXOS-L2-041": {
+          "l2": {
+            "line": 1137,
+            "byte": 233088
+          },
+          "l11": {
+            "line": 744,
+            "byte": 139071
+          }
+        },
+        "HELIXOS-L2-042": {
+          "l2": {
+            "line": 1146,
+            "byte": 236454
+          },
+          "l11": {
+            "line": 756,
+            "byte": 141853
+          }
+        },
+        "HELIXOS-L2-043": {
+          "l2": {
+            "line": 1155,
+            "byte": 239813
+          },
+          "l11": {
+            "line": 770,
+            "byte": 144753
+          }
+        },
+        "HELIXOS-L2-044": {
+          "l2": {
+            "line": 1164,
+            "byte": 242412
+          },
+          "l11": {
+            "line": 779,
+            "byte": 147342
+          }
+        },
+        "HELIXOS-L2-045": {
+          "l2": {
+            "line": 1171,
+            "byte": 243892
+          },
+          "l11": {
+            "line": 786,
+            "byte": 148658
+          }
+        },
+        "HELIXOS-L2-046": {
+          "l2": {
+            "line": 1179,
+            "byte": 246606
+          },
+          "l11": {
+            "line": 794,
+            "byte": 150416
+          }
+        },
+        "HELIXOS-L2-047": {
+          "l2": {
+            "line": 1187,
+            "byte": 248919
+          },
+          "l11": {
+            "line": 802,
+            "byte": 152329
+          }
+        },
+        "HELIXOS-L2-048": {
+          "l2": {
+            "line": 1197,
+            "byte": 252234
+          },
+          "l11": {
+            "line": 812,
+            "byte": 154343
+          }
+        },
+        "HELIXOS-L2-049": {
+          "l2": {
+            "line": 1207,
+            "byte": 255088
+          },
+          "l11": {
+            "line": 821,
+            "byte": 156155
+          }
+        },
+        "HELIXOS-L2-050": {
+          "l2": {
+            "line": 1215,
+            "byte": 258062
+          },
+          "l11": {
+            "line": 830,
+            "byte": 158710
+          }
+        },
+        "HELIXOS-L2-051": {
+          "l2": {
+            "line": 1223,
+            "byte": 261485
+          },
+          "l11": {
+            "line": 839,
+            "byte": 162137
+          }
+        },
+        "HELIXOS-L2-052": {
+          "l2": {
+            "line": 1233,
+            "byte": 265101
+          },
+          "l11": {
+            "line": 847,
+            "byte": 164128
+          }
+        },
+        "HELIXOS-L2-053": {
+          "l2": {
+            "line": 1244,
+            "byte": 268937
+          },
+          "l11": {
+            "line": 858,
+            "byte": 166471
+          }
+        },
+        "HELIXOS-L2-054": {
+          "l2": {
+            "line": 1257,
+            "byte": 273756
+          },
+          "l11": {
+            "line": 867,
+            "byte": 169729
+          }
+        },
+        "HELIXOS-L2-055": {
+          "l2": {
+            "line": 1269,
+            "byte": 277836
+          },
+          "l11": {
+            "line": 879,
+            "byte": 172681
+          }
+        },
+        "HELIXOS-L2-101": {
+          "l2": {
+            "line": 987,
+            "byte": 185708
+          },
+          "l11": {
+            "line": 885,
+            "byte": 175032
+          }
+        },
+        "HELIXOS-L2-102": {
+          "l2": {
+            "line": 1297,
+            "byte": 287800
+          },
+          "l11": {
+            "line": 899,
+            "byte": 176940
+          }
+        },
+        "HELIXOS-L2-103": {
+          "l2": {
+            "line": 1308,
+            "byte": 290742
+          },
+          "l11": {
+            "line": 909,
+            "byte": 179062
+          }
+        },
+        "HELIXOS-L2-104": {
+          "l2": {
+            "line": 1316,
+            "byte": 293390
+          },
+          "l11": {
+            "line": 916,
+            "byte": 180333
+          }
+        },
+        "HELIXOS-L2-105": {
+          "l2": {
+            "line": 1327,
+            "byte": 296521
+          },
+          "l11": {
+            "line": 928,
+            "byte": 182985
+          }
+        },
+        "HELIXOS-L2-106": {
+          "l2": {
+            "line": 1338,
+            "byte": 300068
+          },
+          "l11": {
+            "line": 939,
+            "byte": 186051
+          }
+        },
+        "HELIXOS-L2-107": {
+          "l2": {
+            "line": 1350,
+            "byte": 303116
+          },
+          "l11": {
+            "line": 948,
+            "byte": 188368
+          }
+        },
+        "HELIXOS-L2-108": {
+          "l2": {
+            "line": 1360,
+            "byte": 306727
+          },
+          "l11": {
+            "line": 958,
+            "byte": 190781
+          }
+        },
+        "HELIXOS-L2-109": {
+          "l2": {
+            "line": 1371,
+            "byte": 310293
+          },
+          "l11": {
+            "line": 968,
+            "byte": 193555
+          }
+        },
+        "HELIXOS-L2-110": {
+          "l2": {
+            "line": 1384,
+            "byte": 313738
+          },
+          "l11": {
+            "line": 977,
+            "byte": 195871
+          }
+        },
+        "HELIXOS-L2-111": {
+          "l2": {
+            "line": 1398,
+            "byte": 318326
+          },
+          "l11": {
+            "line": 985,
+            "byte": 197812
+          }
+        },
+        "HELIXOS-L2-112": {
+          "l2": {
+            "line": 1411,
+            "byte": 321643
+          },
+          "l11": {
+            "line": 993,
+            "byte": 200098
+          }
+        },
+        "HELIXOS-L2-113": {
+          "l2": {
+            "line": 1427,
+            "byte": 332184
+          },
+          "l11": {
+            "line": 1021,
+            "byte": 209861
+          }
+        },
+        "HELIXOS-L2-114": {
+          "l2": {
+            "line": 1441,
+            "byte": 337098
+          },
+          "l11": {
+            "line": 1031,
+            "byte": 212927
+          }
+        },
+        "HELIXOS-L2-115": {
+          "l2": {
+            "line": 1468,
+            "byte": 346867
+          },
+          "l11": {
+            "line": 1049,
+            "byte": 219807
+          }
+        },
+        "HELIXOS-L2-117": {
+          "l2": {
+            "line": 1457,
+            "byte": 342457
+          },
+          "l11": {
+            "line": 1042,
+            "byte": 217011
+          }
+        },
+        "HELIXOS-L2-118": {
+          "l2": {
+            "line": 1478,
+            "byte": 351102
+          },
+          "l11": {
+            "line": 1060,
+            "byte": 222111
+          }
+        },
+        "HELIXOS-L2-119": {
+          "l2": {
+            "line": 1491,
+            "byte": 357507
+          },
+          "l11": {
+            "line": 1072,
+            "byte": 228006
+          }
+        },
+        "HELIXOS-L2-120": {
+          "l2": {
+            "line": 1520,
+            "byte": 369294
+          },
+          "l11": {
+            "line": 1096,
+            "byte": 238767
+          }
+        },
+        "HELIXOS-L2-121": {
+          "l2": {
+            "line": 1505,
+            "byte": 362615
+          },
+          "l11": {
+            "line": 1084,
+            "byte": 232565
+          }
+        },
+        "HELIXOS-L2-122": {
+          "l2": {
+            "line": 1532,
+            "byte": 376468
+          },
+          "l11": {
+            "line": 1109,
+            "byte": 244064
+          }
+        },
+        "HELIXOS-L2-123": {
+          "l2": {
+            "line": 1547,
+            "byte": 386757
+          },
+          "l11": {
+            "line": 1122,
+            "byte": 251067
+          }
+        },
+        "HELIXOS-L2-124": {
+          "l2": {
+            "line": 1561,
+            "byte": 393474
+          },
+          "l11": {
+            "line": 1141,
+            "byte": 260292
+          }
+        },
+        "HELIXOS-L2-126": {
+          "l2": {
+            "line": 1582,
+            "byte": 402771
+          },
+          "l11": {
+            "line": 1175,
+            "byte": 273969
+          }
+        },
+        "HELIXOS-L2-127": {
+          "l2": {
+            "line": 1613,
+            "byte": 420273
+          },
+          "l11": {
+            "line": 1210,
+            "byte": 292973
+          }
+        },
+        "HELIXOS-L2-128": {
+          "l2": {
+            "line": 1595,
+            "byte": 410468
+          },
+          "l11": {
+            "line": 1189,
+            "byte": 283911
+          }
+        },
+        "HELIXOS-L2-129": {
+          "l2": {
+            "line": 1647,
+            "byte": 435189
+          },
+          "l11": {
+            "line": 1279,
+            "byte": 313077
+          }
+        },
+        "HELIXOS-L2-130": {
+          "l2": {
+            "line": 1665,
+            "byte": 441496
+          },
+          "l11": {
+            "line": 1318,
+            "byte": 321557
+          }
+        },
+        "HELIXOS-L2-131": {
+          "l2": {
+            "line": 1682,
+            "byte": 446547
+          },
+          "l11": {
+            "line": 1344,
+            "byte": 326729
+          }
+        },
+        "HELIXOS-L2-132": {
+          "l2": {
+            "line": 1689,
+            "byte": 449328
+          },
+          "l11": {
+            "line": 1355,
+            "byte": 330044
+          }
+        }
+      }
     },
-    "note": "同IDだけで意味同等を宣言しない。L11側はL2 IDへの参照対応を表内記述として観測"
+    "note": "表先頭列の定義行と他ID mentionを区別。複数出現/定義不明は原spanとunknownを保持。"
   },
   "owner_version_binding": {
     "frontmatter_spans": {
@@ -2048,7 +4577,7 @@
         "role": "frontmatter"
       }
     },
-    "note": "owner/version/適用条件/N-A/保留はfrontmatter spanと各表定義行の列に原所在を持つ。値を再著述しない"
+    "note": "owner/version/適用条件はfrontmatter spanと各表定義行の列に原所在を持つ。first_lineは原行のprefix。値を再著述しない。"
   },
   "legacy_source_hold": {
     "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
