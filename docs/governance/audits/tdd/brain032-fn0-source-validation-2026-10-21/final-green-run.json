@@ -1,0 +1,143 @@
+{
+  "phase": "locator correction Green and full selected regression",
+  "revision": "540f1181b0f2d218233b1f507abedee5022d46b6",
+  "freeze_records": [
+    "docs/governance/audits/tdd/brain032-fn0-source-validation-freeze-2026-10-21.json",
+    "docs/governance/audits/tdd/brain032-source-body-scope-freeze-2026-10-21.json",
+    "docs/governance/audits/tdd/brain032-qualification-locator-freeze-2026-10-21.json"
+  ],
+  "all_frozen_pins_unchanged": true,
+  "selected_tests": 6,
+  "runs": [
+    {
+      "name": "final-source",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_integrity.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:04:10.648593+00:00",
+      "finished_at_utc": "2026-10-20T18:04:10.777025+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-source.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-source.stderr.log",
+        "sha256": "873e8688817336a6b9569fd49b64810ea6333108f96e1a008c6aabd7fc22feff"
+      }
+    },
+    {
+      "name": "final-body-scope",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_content_and_scope.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:04:10.777315+00:00",
+      "finished_at_utc": "2026-10-20T18:04:10.897671+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-body-scope.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-body-scope.stderr.log",
+        "sha256": "4bec07c25a79d33d604cde8c8097ad90a44762b07cf7e104d246c024f7285a9a"
+      }
+    },
+    {
+      "name": "final-add01",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_supply_input.py",
+        "-k",
+        "test_add01_string_input_is_rejected",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:04:10.898123+00:00",
+      "finished_at_utc": "2026-10-20T18:04:10.940729+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-add01.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-add01.stderr.log",
+        "sha256": "1fa43b02d8bf84c8257444d1b0ccf44ac850f0d3345842b24a0fdb87c8e40599"
+      }
+    },
+    {
+      "name": "final-locator",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_reference_join.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:04:10.941153+00:00",
+      "finished_at_utc": "2026-10-20T18:04:11.034930+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-locator.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/final-locator.stderr.log",
+        "sha256": "e4566a8cdd6113e5a84019b1179c4e9ecb9d489b5a48483f1bc75a87b621a64d"
+      }
+    }
+  ],
+  "observed": "source2/ADD05+ADD07の2/旧ADD01の1/locator複写の1が全てOK。原入力の保持とscope診断、locatorをidentityへ混ぜない保証を維持。",
+  "refactor": "Green後の実関数分離はrefactor-run.jsonのrevisionで観測済み。今回の修正はその責務分離を保持し、資格同値比較を単一private関数へ局所化した。新たな一般化/互換層を追加する必要は認めず、同じ既存5testと追加1testで回帰。",
+  "limits": [
+    "全fn0/全schema/全資格variantの実網羅ではない",
+    "全numeric/Unicode/資源挙動は未実証",
+    "運用root認証/custody/正式resolverは未成立",
+    "fn1/F02/CORE/OS/CI/Accepted/release未成立"
+  ]
+}
