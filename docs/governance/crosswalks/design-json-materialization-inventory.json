@@ -1,0 +1,150 @@
+{
+  "schema": "design-json-materialization-inventory.v1",
+  "inventory_kind": "scaffold research / source-first census（採否・新規則・gate・resolver・製品要求の生成ではない）",
+  "authority_effect": "none",
+  "issue": 3139,
+  "comment_ref": "Issue3139 comment6282799788固定scope",
+  "base_sha": "f4143d22f1e75e38e58b29e2a4f5819e0290457f",
+  "confirmed_at": "2026-10-20",
+  "purpose": "H003/H040/H022/LABO001/LABO002/SECURITY010/CONNECT006/BRAIN032の既存main設計JSON materialization形式を固定sourceで棚卸しし、形式・anchor・pointer・復元順・consumer接続・静的vs実reader・独立期待・反例・限界を比較する。同責務はnode名の一致ではなく形式の責務対応で判断し、未判定は保持する。",
+  "scope_boundary": "CORE/OS新5fileと未統合3444/3445は比較対象外。SEC004 shared_oracle_basis_materialization・OS002 shared_source_envelope_materialization・HARN L4 field_source_materialization_contract・L5 readonly_materializer_contract等は同一隣接形式として存在するが今回の固定対象外として列挙に留める。",
+  "entries": [
+    {
+      "topic": "H003",
+      "file": "docs/helix-harness/L8-unit-verification/process-state-port.json",
+      "document_id": "HARNESS-L8-003",
+      "raw_sha256": "d70ad37334c8af610d712a65f8e3c99020810f55a5f329b98b5158608ccbeda6",
+      "form": "member_recipe（48 mirror_recipe）",
+      "anchor": "同一entryの arguments literal（entry内部）",
+      "pointer": "scope_pointers 48件（unit_oracles 3/4 cases内 expected_private_call_records/*/shape/arguments）",
+      "restore_order": "scope_pointers記載順・独立復元・aliasなし",
+      "consumer_connection": "relation_to_existing_contractでcommon_contractの意味比較分離へ接続",
+      "independent_expectations": "同一entry内mirrorのみ。異case/異責務/input原値から独立expected生成を行わないを明示",
+      "negatives": "missing・patch改変でhash不一致を静的確認（作業記録）",
+      "limits": "実reader成立・runtime互換性の証拠ではないを契約内で明示"
+    },
+    {
+      "topic": "H040",
+      "file": "docs/helix-harness/L8-unit-verification/layer-ledger-catalog.json",
+      "document_id": "HARNESS-L8-040",
+      "raw_sha256": "9861e60c33caf6b9ae6d177560d7799f471ec0991eaee8b8002703117fcec28c",
+      "form": "member_recipe（bundle_recipe 106件＝independent_inputs 33＋comparison_axes 33＋snapshots/TARGET-B 33＋snapshots/TARGET-A 7）",
+      "anchor": "/cases/44/typed_arguments/input/packet の各literal",
+      "pointer": "各contract nodeのscope_pointers（33+73）",
+      "restore_order": "scope_pointers記載順。新nodeが元contract（fixture_contract/value_binding）への展開順接続を記載",
+      "consumer_connection": "fixture_contract/value_binding・resolved_value_bindingsを保持し展開前置を明記",
+      "independent_expectations": "expected_return・resolved_value_bindingsの独立期待は入力anchorへ統合しないを明示",
+      "negatives": "missing・modified anchorでhash不一致を静的確認",
+      "limits": "容量削減の記録であり性能改善・実reader成立の証拠ではない"
+    },
+    {
+      "topic": "H022",
+      "file": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+      "document_id": "HARNESS-L8-022-STAGE-ACCEPTANCE",
+      "raw_sha256": "a0e49fd16437515cf72945ed821e9d44f170f018d50b4bfdb7ac459b4983b4fe",
+      "form": "null placeholder＋ops list（shared_l9_source_case_materialization operations 503）",
+      "anchor": "/target（固定L9 source case値のファイルpin参照）",
+      "pointer": "scope_pointers相当のoperations 503件（cases/*/source_case）",
+      "restore_order": "operations記載順にplaceholder復元",
+      "consumer_connection": "既存fixture読取・型/hash検査の前に復元する接続を契約内で記載",
+      "independent_expectations": "L8固有candidate_argument/expected_result_projectionは保持しL9参照へ統合しない",
+      "negatives": "wrong revision/hash/source case・missing copy・modified sourceで拒否を静的確認",
+      "limits": "製品reader・外部resolverの存在を主張しないを契約内で明示"
+    },
+    {
+      "topic": "LABO001",
+      "file": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+      "document_id": null,
+      "raw_sha256": "052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab",
+      "form": "member_recipe（observations_recipe 134）",
+      "anchor": "/resolved_values/<sha256キーのshared literal>",
+      "pointer": "scope_pointers 134件",
+      "restore_order": "scope_pointers記載順",
+      "consumer_connection": "既存契約への復元前置接続を契約内で記載",
+      "independent_expectations": "expected側をanchorへ統合しない",
+      "negatives": "missing・wrong from・modified sourceで拒否を静的確認",
+      "limits": "実reader成立を主張しない"
+    },
+    {
+      "topic": "LABO002",
+      "file": "docs/helix-labo/L8-unit-verification/episode-correlation-correction.json",
+      "document_id": "HELIXLABO-L8-002",
+      "raw_sha256": "76d0c30782b85071f349ee642c056821953d740227ee51af9de3382b6863cde0",
+      "form": "member_recipe（events_recipe 54）",
+      "anchor": "/cases/0/.../original_episode_events literal",
+      "pointer": "scope_pointers 54件",
+      "restore_order": "scope_pointers記載順",
+      "consumer_connection": "既存契約への復元前置接続",
+      "independent_expectations": "独立期待は保持",
+      "negatives": "missing・wrong from・modified sourceで拒否",
+      "limits": "実reader成立を主張しない"
+    },
+    {
+      "topic": "SECURITY010",
+      "file": "docs/helix-security/L8-unit-verification/update-admission-materials.json",
+      "document_id": "HELIXSECURITY-L8-010",
+      "raw_sha256": "97d5e614afba9c55ecb622405c5f288f33a982dba530323865fb42052a7e31de",
+      "form": "null placeholder＋ops list（shared_input_records_materialization operations 63＝31 positionに2opずつ含む）",
+      "anchor": "/fixture_packets/input_packets/candidate-all/records literal",
+      "pointer": "operationsのposition 31件（review-all全体＋candidate-X/review-X各15の単一kind object）",
+      "restore_order": "operations記載順。単一kind objectはreplace{}→copy memberの2op",
+      "consumer_connection": "reconstruction_contract（base_ref deepcopy＋replacements全値置換＋canonical照合）への復元前置接続をrelation_to_existing_contractで記載",
+      "independent_expectations": "expected_output_packets・cases独立期待・expected_intermediate_valuesは入力anchorへ統合しないを明示",
+      "negatives": "missing・wrong member・modified anchorでhash不一致を静的確認",
+      "limits": "実reader成立を主張しない"
+    },
+    {
+      "topic": "CONNECT006",
+      "file": "docs/helix-connect/L8-unit-verification/one-side-replacement-recovery.json",
+      "document_id": "HELIXCONNECT-L8-006",
+      "raw_sha256": "61c68d40cfe8bd00a5848bdc2c080087b66150351964ea34d314cd2863d1ac8d",
+      "form": "標準RFC6902 copy op（case内patch配列の重複をcopy 1opへ置換。member recipe wrapperや契約nodeなし）",
+      "anchor": "同一patch配列内の先行fix値",
+      "pointer": "patch配列内のfrom/path",
+      "restore_order": "patch適用順そのもの",
+      "consumer_connection": "別materialization契約を持たない単一case内copy",
+      "independent_expectations": "既存の型/hash検査の範囲内",
+      "negatives": "copy先の値改変でcanonical hash不一致",
+      "limits": "別nodeの契約接続・独立reader証拠なし"
+    },
+    {
+      "topic": "BRAIN032",
+      "file": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+      "raw_sha256": "89df79f5aebe3c8906261f77023a2a947c6cb8dbe4d49f9037ebde25508b2665",
+      "form": "input_recipe_ref（40件。case側はrefポインタ）＋fixtures sidecarにmaterialization記述（fixture_materialization、copy scope記述、copy_patch_operation_indices）＋shared_input_recipes_before/after/historical_recipe_pointer_scopeの遷移記録",
+      "anchor": "sidecar内raw_recipe各case",
+      "pointer": "case側input_recipe_ref→sidecar recipe",
+      "restore_order": "refで接続、sidecar側scope記述順",
+      "consumer_connection": "親docのcase hash・sidecar file hash・historical pinを保持する二段構成",
+      "independent_expectations": "hash比較用の独立期待値は維持",
+      "negatives": "改変でcanonical hash不一致を静的確認",
+      "limits": "実reader成立を主張しない"
+    }
+  ],
+  "comparison": {
+    "shared_axes": [
+      "全ての形式がliteral anchor＋標準RFC6901 pointer/RFC6902 copyの意味再導出を明示する",
+      "consumer読取位置をscope_pointers/operationsで列挙する（実行しない記録）",
+      "復元は既存fixture読取・型/hash検査の前置順を契約内で記述し、実reader成立を主張しない",
+      "independent expectationsを入力anchorへ統合しないを明示する形式が多い"
+    ],
+    "differing_axes": [
+      "member_recipe（値をwrapper dictで置換）とnull placeholder+ops list（memberをnullにして操作列をcontractへ記録）の2形式が混在",
+      "anchorの粒度がcase内entry/同一packet member/固定L9文書pin/resolved_values sha256キーで異なる",
+      "CONNECT006は契約nodeを持たない単一patch内copyの最小形式",
+      "BRAIN032はcase ref→sidecar recipeの二段構成で、他は単一文書内"
+    ],
+    "unjudged": "member_recipe vs null placeholderの意味優位・採用すべき形式の決定は行わない。node名の差だけで同責務とはしない。"
+  },
+  "adjacent_out_of_scope_nodes": [
+    "docs/helix-security/L8-unit-verification/configuration-revision-integrity.json shared_oracle_basis_materialization（SEC004、固定対象外）",
+    "docs/helix-os/L8-unit-verification/project-template-trace.json shared_source_envelope_materialization（OS002、CORE/OS新5file除外に相当）",
+    "docs/helix-harness/L4-basic-design/product-template-application.json field_source_materialization_contract・L9対のfield_source_materialization_verification・L5-detail-design/trace-impact-reconfirmation.json readonly_materializer_contract・L8-unit-verification/trace-impact-reconfirmation.json readonly_materializer_whole_oracles（別責務・固定対象外）"
+  ],
+  "limits": [
+    "このinventoryはmainの固定base時点の記録であり、全pointer/hashの再解決全網羅・実reader成立・意味比較実証の証拠ではない",
+    "node名差だけで同責務とはしない。意味比較の根拠が不足する点はunjudgedとして保持",
+    "CORE/OS新5fileと未統合3444/3445は対象外"
+  ]
+}
