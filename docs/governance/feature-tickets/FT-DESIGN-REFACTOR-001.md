@@ -141,6 +141,16 @@ Design as Codeを、設計の意味正本・版付き参照・差分・対検証
 
 起点は既記の `LEGACY-ASSET-603D0E8D8193914F4AC0` の `design-refactoring-domain-model.md` §0〜§1（意味署名、consumer、oracleを保つexternalize/commonize）と、`LEGACY-ASSET-4F5A1F0739EC1111D91D` の `design-template-json-authority.md` §1〜§2（JSON意味正本、catalog、生成viewの分離）である。保持するのは意味・証拠・consumerの保全、変更するのはPOの指示と現容量を起点に分割・著述規則の比較を具体化する点である。旧DB、固定role、旧runtime、旧CIや一律の容量gateは移植しない。
 
+### 実失敗に基づく著述・監査規則案の比較入力
+
+本節の規則案を比較・起草する際の実失敗の分類と証拠所在を記録する。運用モデル[「設計JSONの著述と分割」](../github-upstream-operating-model.md)に統合済みの三観点は重複して書かず参照し、ここには2026-10-20のworker分岐で観測した3失敗だけを比較入力として追加する。
+
+- 論理consumerと実装readerの主張の混同。H040（PR #3427）とLABO001（PR #3432）の提案では、「現行consumer」の読取位置という説明を、復元後の論理位置を示す説明へCodexが訂正した。これらの位置の列挙は、実装済みreaderや実runtime互換の成立証拠にはならない。H040の独立review F1は、これとは別に既存 `/fixture_contract/value_binding` と新materializationの接続説明の不足を指摘した。著述・監査規則案の比較では、binding／静的consumer契約／実装reader／実runtime観測のどれを根拠にした主張かを区別する。
+- 既存fixture_contract／value_ref契約との接続説明の漏れ。LABO001（PR #3432）では、文書内に既存のvalue_reference_contractがあるのに「同じ役割の契約は存在しない」と記述し、新形式と既存形式の関係が不明のままになっていた。修正では既存value_ref解決・canonical hash・再帰／循環禁止を保持したまま、134件のcopy展開を既存value_ref解決と元hash／型検査より前に行う順序を、新ノードと既存契約の両方へ書いた。同じ役割の既存契約を実読し、完全一致再利用・意味の再導出・置換のどれに当たるかを原契約と対応付けることを、著述規則案の入力とする。
+- manifestだけの棚卸しによる既存参照の落とし。CORE general basic（PR #3431）では、review済みmanifestの列挙だけが既存explicit current参照の全量だと仮定し、旧checkerのexplicit_current_entriesがdry planから落ち、結果としてstaleなexplicit current-file bindingを残した（格納shaと現行bytesのshaの不一致として検出）。棚卸しmanifestと既存checker／explicit参照集合が同じ母集団かを照合することが、監査規則案の入力となる。ここでの件数（manifest約1.5k行、追加確認したexplicit参照の規模）は当該文書の観測であり、普遍の閾値や件数規則にはしない。
+
+公開の確認先はPR本文・修正commitとreview指摘（#3427のF1、#3432のroot補正、#3431のcurrent参照補正）とし、再現限界のあるlocal receiptは `scaffold/review-handoff/local/worker-refactor-slices-20261020/`（Git非収載・公開ではない）を参照とする。旧sourceとの対応は前節の `design-refactoring-domain-model.md` §0〜§1（consumer/oracle保全、見た目だけの共通化拒否）と `design-template-json-authority.md` §1〜§2（意味正本と所在索引の分離）に照合する。これらは規則案の比較入力であり、新しいgate・承認手続き・必須validator・製品要求意味の変更は追加しない。
+
 ## 旧資産との対応と差分
 
 - `LEGACY-ASSET-603D0E8D8193914F4AC0`: `archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md` §0〜§1。意味署名、consumer/oracle、意味保存、見た目だけの共通化拒否を起点とする。
