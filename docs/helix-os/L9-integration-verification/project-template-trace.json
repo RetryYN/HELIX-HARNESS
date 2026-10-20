@@ -1137,6 +1137,42 @@
           "canonical_sha256": "8c855654df8f9c5f8c8163b32374018c6f854bd4b87ea4ab7bd319e2de5168f1",
           "ordered_sha256": "d96b24f98730cb3fd1818c4e2cdb882514f991349862ff4507b9df304ef05227",
           "role": "fixed_source_snapshot"
+        },
+        "domain_and_kernel_oracles": {
+          "domain_projection": {
+            "input_source_ja": "同有資格raw PublicationRecord.payload.original_trace_sectionの二field原全値と同walk原source_location。",
+            "expected_closed_members": {
+              "ResolvedProposalDomainOccurrence": [
+                "source_location",
+                "domain"
+              ],
+              "ReceivedProposalDomain": [
+                "proposed_refs",
+                "proposed_source"
+              ]
+            },
+            "expected_copy_ja": "domain.proposed_refs/proposed_sourceは元二fieldを全copy、source_locationは同rawの元四index。binding/selected_refs/used_refs/各source/empty basisは元candidate側のField全値、domainに欠落wrapper/defaultを追加しない。"
+          },
+          "legacy_adapter": {
+            "input_type": "ValidatedRecordTrace",
+            "expected_projection": {
+              "source_basis": "legacy_validated(全引数)",
+              "input": "元input",
+              "legacy_domains": "元qualified_records全順",
+              "received_proposals": [],
+              "proposal_basis": {
+                "tag": "legacy_input"
+              }
+            },
+            "expected_output_ja": "旧compare_template_setsの全TraceSectionResult[]と同値。新F02-detail-required gateを旧経路に追加しない。"
+          },
+          "receiver_adapter": {
+            "input_type": "ProposalReceiverComparisonContext",
+            "expected_formed_ja": "元context全値/原input/全base recordを保持し、成立したsource_location一致の2field proposal domainだけを原順で受ける。",
+            "expected_unformed_ja": "received_proposals=[]かつreceived_unformedの全診断を保持。原proposed_refs値を[]へ書換えず有効selected/usedを保存。"
+          },
+          "diagnostic_reference_member": "ProposalReceivingSemanticState.unreached.diagnostic_refs",
+          "limits_ja": "基本oracleの閉型/adapter投影期待。runtime全whole生成やL5/L8詳細同値検証ではなく、既存fixed wholeは変更しない。"
         }
       }
     },

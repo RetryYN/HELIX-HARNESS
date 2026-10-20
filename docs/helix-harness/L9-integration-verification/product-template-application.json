@@ -12087,9 +12087,9 @@
           },
           {
             "id": "GENERAL-repeated_equal_relations",
-            "input_role": "対応relation1件以上、全targetが同一実source occurrenceで個別有資格、全Ref4値がtyped等値",
+            "input_role": "対応relation1件以上、各targetが自身の指定原source occurrenceで個別に有資格、全Ref4値がtyped等値。異なる指定source occurrence間の等値targetも含む。",
             "source_rule": "repeated_equal_relations",
-            "expected_preservation_ja": "全relation出現保持。候補1出現につき最小原relation indexのRef4を1件copy。別候補同値をdedupeしない。",
+            "expected_preservation_ja": "各targetは自分の原source/record/walkで資格を確かめる。全relationを保持し候補1出現へ最小原relation indexのRef4を1件投影。別sourceで有資格でも同値なら可、他walkで未資格twinを救済しない。",
             "oracle_status": "basic_branch_expectation_detail_whole_not_frozen",
             "execution_state": "not_executed",
             "body_branch_constraint": "formed_if_other_basis"
@@ -12234,7 +12234,21 @@
           "base_initial_role": "candidate_at_task_start",
           "adopted_main_revision": "a4d974badec401dffffc9020eac189fd5283396a",
           "binding_ja": "当初candidate e06はPR3420で採択された。新4childは今回候補でありadopted mainで過去存在したと称さない。"
-        }
+        },
+        "relation_origin_oracles": [
+          {
+            "id": "RELATION-DISTINCT-QUALIFIED-SOURCES-EQUAL",
+            "premise_ja": "一candidateに対し異なる原source occurrenceを指定する二relationがあり、各targetが自身のwalkで有資格/残存し全Ref4が等値。",
+            "expected_ja": "両relation/両原source所在を保持し、candidate Ref4は最小原relation indexの値一件。他の必要body根拠が成立すればformed。",
+            "execution_state": "not_executed"
+          },
+          {
+            "id": "RELATION-DISTINCT-SOURCE-UNQUALIFIED-TWIN",
+            "premise_ja": "前者の一targetだけ自身の指定原sourceで未資格。もう一targetは等値Ref4かつ有資格。",
+            "expected_ja": "全到達観測を保持し当candidate native_ref4 unformed。等値他sourceで未資格targetを救済せずbody完全集合を形成しない。",
+            "execution_state": "not_executed"
+          }
+        ]
       }
     }},
     {

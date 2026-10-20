@@ -2728,7 +2728,7 @@
           },
           {
             "id": "repeated_equal_relations",
-            "condition_ja": "対応relation1件以上、全targetが同一実source occurrenceで個別有資格、全Ref4値がtyped等値",
+            "condition_ja": "対応relation1件以上、各targetが自身の指定原source occurrenceで個別に有資格、全Ref4値がtyped等値。異なる指定source occurrence間の等値targetも含む。",
             "body": "formed_if_other_basis",
             "rule_ja": "全relation出現保持。候補1出現につき最小原relation indexのRef4を1件copy。別候補同値をdedupeしない。"
           },
