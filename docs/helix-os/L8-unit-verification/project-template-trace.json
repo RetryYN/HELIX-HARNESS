@@ -156070,7 +156070,7 @@
   },
   "candidate_l5_binding": {
     "paired_document": "docs/helix-os/L5-detail-design/project-template-trace.json",
-    "working_bytes_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+    "working_bytes_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
     "binding_scope": "D02・D03・D05のsetter refinementを含む候補L5の厳密なbytesを束縛する。元L4とlegacyのpin/historyは保持する。このbindingはruntimeまたは実装の証拠ではない。",
     "revision_note": "候補L5の厳密なbytes pinである。source revisionの承認、製品実装、runtime実行を意味しない。",
     "binding_kind": "candidate_file_bytes"
@@ -156147,12 +156147,12 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/16/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -156180,7 +156180,7 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/13/algorithm/2"
           }
         ],
@@ -156230,17 +156230,17 @@
         "expected_basis_refs": [
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/14/algorithm/2"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/14/algorithm/3"
           },
           {
             "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
-            "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+            "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
             "pointer": "/functions/20/algorithm/1"
           }
         ],
@@ -283271,7 +283271,7 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/14/algorithm/9",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
@@ -283282,19 +283282,19 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/wire_codec_contract/field_encoding",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ProjectionSelectorDecodeState/meaning",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/type_contract/types/F04ResolvedSelectedSource/meaning",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のL5/L8候補pairに含まれる候補L5 bytesへ束縛される。承認済みsource revisionや実行結果を示さない。"
       },
       {
@@ -283317,43 +283317,43 @@
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/14/algorithm/4",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/14/algorithm/9",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/19/algorithm/1",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/19/algorithm/5",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/19/algorithm/6",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/19/algorithm/7",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       },
       {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/20/algorithm/9",
-        "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+        "file_sha256": "75da244b276bc61c4cb7b915e50e8a21b03e90986577b37f4452d1e1c2422343",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。"
       }
     ]
