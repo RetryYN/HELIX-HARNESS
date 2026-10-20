@@ -637,5 +637,5219 @@
     "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
     "対応旧sourceが見つからない範囲は検索範囲と未発見を記録",
     "ScaffoldBinding/hash追随はroot検収責務"
-  ]
+  ],
+  "source_bound_supplement": {
+    "schema": "brain-l2l11-source-bound-supplement.v1",
+    "purpose": "固定採択原文・採択集合・現行追補・静的consumerを混同せず結ぶ補足。原文span索引は維持する。",
+    "fixed_adoption_snapshot": {
+      "decision_record": {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
+          "git_blob": "7037703ca2a2618a496cd41663d47098832ca514",
+          "raw_sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a",
+          "bytes": 11307,
+          "lines": 125,
+          "role": "採択集合と候補条件の根拠"
+        },
+        "authority_status": "decision_status recorded; authority_effect effective_when_this_record_is_admitted_to_main",
+        "source_body_sha256": "a2867863695d34a1db48b3eda86e387c853d46440a94b05427946b5b3a0df8c6"
+      },
+      "adopted_target_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "fixed_requirement_sources": [
+        {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "git_blob": "c8723dff3f3e1d702bf8734f80e37199099f6589",
+          "raw_sha256": "01ff0931918dbf878698084e31ffaccb10e459fa1fca20992f22c4c4e2230e03",
+          "bytes": 71594,
+          "lines": 584,
+          "role": "adopted_fixed_source"
+        },
+        {
+          "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "git_blob": "67e187349c0d0c61da7213f646a07bbcee82143d",
+          "raw_sha256": "7aa66ee36a31974fcd33473c768ddcd771d1bd7e61f26201ff53a3e241b7977b",
+          "bytes": 23699,
+          "lines": 117,
+          "role": "adopted_fixed_source"
+        }
+      ],
+      "adopted_candidate_count": 42,
+      "adopted_candidates": [
+        {
+          "identity": "HELIXBRAIN-L2-001",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-001-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4474,
+            "end": 4544,
+            "start_line": 48,
+            "line_count": 1,
+            "sha256": "3e1e83c42d4c3f93b9b3606e17ae1e3ef2568eb72dbb29612cad5b5cbfdd506f"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-002",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-002-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4544,
+            "end": 4614,
+            "start_line": 49,
+            "line_count": 1,
+            "sha256": "377c091e7b93dcc21fa92709c010ae2a7cee123d58df0e01f7b06a64c626966a"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-003",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-003-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4614,
+            "end": 4684,
+            "start_line": 50,
+            "line_count": 1,
+            "sha256": "96636010d43c24b28cc555d260abce7c9da4c1f8e142fc98a587145a540e7422"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-004",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-004-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4684,
+            "end": 4754,
+            "start_line": 51,
+            "line_count": 1,
+            "sha256": "71a47c1b14ddd4ef08916de0c567972b56bc93abc1379dc267fe027529f136bc"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-005",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-005-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4754,
+            "end": 4824,
+            "start_line": 52,
+            "line_count": 1,
+            "sha256": "e86a96a0f3ce01102ff0c111579bccbbbe3730354daa3e7b9c5f06a48e0a3579"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-006",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-006-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4824,
+            "end": 4894,
+            "start_line": 53,
+            "line_count": 1,
+            "sha256": "8dcedc8e1fd0eee1b4d7de8359e151f74dc9515b06b701377019ff8b415f6682"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-007",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-007-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4894,
+            "end": 4964,
+            "start_line": 54,
+            "line_count": 1,
+            "sha256": "48ad4606ded0ca84d13b7e4d4cf4039c5ea1711cd229e2c4bdd957c119b76d71"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-008",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-008-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 4964,
+            "end": 5034,
+            "start_line": 55,
+            "line_count": 1,
+            "sha256": "d3fa16d2480e24abc3956054e9fb56c0005f705ca01876cd2bf7064fa8224354"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-009",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-009-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5034,
+            "end": 5104,
+            "start_line": 56,
+            "line_count": 1,
+            "sha256": "9bc9148680236894f986fcc5852593ed0a63caf97aa06401fa6e0a5f239ea287"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-010",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-010-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5104,
+            "end": 5174,
+            "start_line": 57,
+            "line_count": 1,
+            "sha256": "0c6aa846904e356ddf0e573f9bfbad92d9371f14a959c447231e49f923a42e04"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-011",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-011-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5174,
+            "end": 5244,
+            "start_line": 58,
+            "line_count": 1,
+            "sha256": "f82710ece0388d35a38d78dd430cd53ca209bfac94e3814867dabd0e4fc5f57c"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-012",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-012-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5244,
+            "end": 5314,
+            "start_line": 59,
+            "line_count": 1,
+            "sha256": "d18d0d5afcb741c99c050053143999a69feb62acdd961dc1f3d56defaff7b0c2"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-001",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-001-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5314,
+            "end": 5396,
+            "start_line": 60,
+            "line_count": 1,
+            "sha256": "5d2fd1a0289aae4d099db77a79e0c5ad7408f1a69cb1b6ee9afbd195981e8ccc"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-002",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-002-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5396,
+            "end": 5478,
+            "start_line": 61,
+            "line_count": 1,
+            "sha256": "2ce0e125bf7485d162248504942a62790fc20d4ccb5c2e5465d2b1b4cd7706fd"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-003",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-003-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5478,
+            "end": 5560,
+            "start_line": 62,
+            "line_count": 1,
+            "sha256": "18b0220a10a50ab4cb6610a6d092a3443e51cd393eb71120a8a97fb6775ca942"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-004",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-004-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5560,
+            "end": 5642,
+            "start_line": 63,
+            "line_count": 1,
+            "sha256": "d3d676bd6f229367d44619e98f9448551de8f6d2129c5af04afb98fc87030da3"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-005",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-005-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5642,
+            "end": 5724,
+            "start_line": 64,
+            "line_count": 1,
+            "sha256": "992507fac69c5893bdd67ec4b23000dc1debc02387e05381b7ab0f160812bebb"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-006",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-006-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5724,
+            "end": 5806,
+            "start_line": 65,
+            "line_count": 1,
+            "sha256": "1824588ab2f8af5891ec345dbce8d219e12525006dbf0d5b526ffbf27b626953"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-007",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-007-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5806,
+            "end": 5888,
+            "start_line": 66,
+            "line_count": 1,
+            "sha256": "02c48fd5234b7b10f36127ad9282fedeaec55c3a294a112eab7b88e5351994df"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-008",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-008-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5888,
+            "end": 5970,
+            "start_line": 67,
+            "line_count": 1,
+            "sha256": "8c01ddcb62435022d39524e976051fd2c162248f91878ce61c71a0c63e24170e"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-009",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-009-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 5970,
+            "end": 6052,
+            "start_line": 68,
+            "line_count": 1,
+            "sha256": "091ccbf4a13b2eb79468311edb6552fd5026bb3691a759996d2ac3146a6212d4"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-010",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-010-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6052,
+            "end": 6134,
+            "start_line": 69,
+            "line_count": 1,
+            "sha256": "6ce200293c33c964fcea200c9343346de1e67d6fa6b2a3c33b9f0d29ddd7b665"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-011",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-011-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6134,
+            "end": 6216,
+            "start_line": 70,
+            "line_count": 1,
+            "sha256": "8ac61c4679b5b7bfeacf88aab45820d40e1e5bc13a8e4541c965858f84017b2e"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-012",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-012-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6216,
+            "end": 6298,
+            "start_line": 71,
+            "line_count": 1,
+            "sha256": "4c6d33d3f8197ec3fec808662f0353377eb065f0097e3c4c4dee849630a8b756"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-013",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-013-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6298,
+            "end": 6380,
+            "start_line": 72,
+            "line_count": 1,
+            "sha256": "72dd009f04f542952a2b4c0a232e6f3f1286ae5a39cf1844d838a9f97ce1b5b5"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-014",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-014-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6380,
+            "end": 6462,
+            "start_line": 73,
+            "line_count": 1,
+            "sha256": "efd8bba069662dd4e6f4c6954248f1898700b43641aeace29fffdb0de40a0ac3"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-015",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-015-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6462,
+            "end": 6544,
+            "start_line": 74,
+            "line_count": 1,
+            "sha256": "620648592ef9ea403d5a38aef7cff56be7878f024799abb821ce57650dd1db0e"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-016",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-016-003",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6544,
+            "end": 6626,
+            "start_line": 75,
+            "line_count": 1,
+            "sha256": "640ee3695cc6e89a897b90af1a0e826cd03823b24ef947c8c488d69eacc63f60"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-017",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-INFRA-017-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 6626,
+            "end": 6708,
+            "start_line": 76,
+            "line_count": 1,
+            "sha256": "700e603f315d828e53bf605d56de4188f1bd387f2590546302e743ce2503ce7e"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-018",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-018-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 6708,
+            "end": 6784,
+            "start_line": 77,
+            "line_count": 1,
+            "sha256": "417bbc44529a1259dbf6f6e2ca339c24d93fe1580a53abadf100c4c4fca55670"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-019",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-019-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 6784,
+            "end": 6860,
+            "start_line": 78,
+            "line_count": 1,
+            "sha256": "0082f1f4e33d49edfefd8b95e11090ff2ebf25dded66a62da5ff9ca0cf92e833"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-020",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-020-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 6860,
+            "end": 6936,
+            "start_line": 79,
+            "line_count": 1,
+            "sha256": "b2061cbad4060f0ce98e59151ee9522f315bdf5e1797502957a3b745da3d46e1"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-021",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-021-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 6936,
+            "end": 7012,
+            "start_line": 80,
+            "line_count": 1,
+            "sha256": "db5bd5e5d70d562d67356c95933ac1f824ce79d8b9b538842ef5bfbe9db9a4be"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-022",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-022-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 7012,
+            "end": 7088,
+            "start_line": 81,
+            "line_count": 1,
+            "sha256": "d3b6f0f1e8d9c339bb27c67338dc99986fa246b8539a7625576b40cf91b99403"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-023",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-023-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 7088,
+            "end": 7164,
+            "start_line": 82,
+            "line_count": 1,
+            "sha256": "5c9f5d17bb38c9623cf35781d43ae44db31a6d23e0b6c7a1f056a9fb4ab18532"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-024",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-024-002",
+          "kind_version_condition_literal": "composite / 1.0",
+          "decision_table_row": {
+            "start": 7164,
+            "end": 7239,
+            "start_line": 83,
+            "line_count": 1,
+            "sha256": "a0da2a461bc34b5a4d16cb7eaba9326216c2d74b71ef4de2503300b5ad3aac7b"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-025",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-025-002",
+          "kind_version_condition_literal": "composite / 1.0",
+          "decision_table_row": {
+            "start": 7239,
+            "end": 7314,
+            "start_line": 84,
+            "line_count": 1,
+            "sha256": "7e91baf4513b934ede48ed8e861661b2ce20fb87785ca8cfab291e404bb20208"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-026",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-026-002",
+          "kind_version_condition_literal": "connection / 2.0",
+          "decision_table_row": {
+            "start": 7314,
+            "end": 7390,
+            "start_line": 85,
+            "line_count": 1,
+            "sha256": "978f79a35c083b7e7b4c7b35373c2d33bae2e1bf09bcadf1ee8bb613fb304486"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-027",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-027-002",
+          "kind_version_condition_literal": "composite / 2.0",
+          "decision_table_row": {
+            "start": 7390,
+            "end": 7465,
+            "start_line": 86,
+            "line_count": 1,
+            "sha256": "788f200577b8a067e3b5c1164eabfeeaa3c72ab974b07e44148a2cf3bc1a5cb5"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-028",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-028-002",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 7465,
+            "end": 7535,
+            "start_line": 87,
+            "line_count": 1,
+            "sha256": "8fd58e4caff8c1f4d2c1862988a5c1ab386b5b7b478d31b80be61929b71d8b51"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-029",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-029-001",
+          "kind_version_condition_literal": "unit / 1.0",
+          "decision_table_row": {
+            "start": 7535,
+            "end": 7605,
+            "start_line": 88,
+            "line_count": 1,
+            "sha256": "fde3f6915acbe80723b5005df7ba64280a5f13bb2a1021e9ad84a14a1fca9b38"
+          }
+        },
+        {
+          "identity": "HELIXBRAIN-L2-030",
+          "registration_id": "MPR-RC-HELIXBRAIN-L2-030-002",
+          "kind_version_condition_literal": "connection / 1.0",
+          "decision_table_row": {
+            "start": 7605,
+            "end": 7681,
+            "start_line": 89,
+            "line_count": 1,
+            "sha256": "4e804fb18b05ca9d5c8185776b58c490fe4fc1d1a8677da39484c3bb43a5f34d"
+          }
+        }
+      ],
+      "paired_span_evidence": [
+        {
+          "identity": "HELIXBRAIN-L2-001",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 7562,
+              "end": 7609,
+              "start_line": 84,
+              "line_count": 1,
+              "sha256": "fc789107f96f1b47d370ab9f1c9eb470466b46646324fbd60a872c277e435eec"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 1613,
+              "end": 2120,
+              "start_line": 29,
+              "line_count": 1,
+              "sha256": "ec39e3a80fddc529db9431b6124817f0eef9d5b0cdf291ff4bcfa8926add1834"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-001",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 7562,
+              "end": 7609,
+              "start_line": 84,
+              "line_count": 1,
+              "sha256": "fc789107f96f1b47d370ab9f1c9eb470466b46646324fbd60a872c277e435eec"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 1613,
+              "end": 2120,
+              "start_line": 29,
+              "line_count": 1,
+              "sha256": "ec39e3a80fddc529db9431b6124817f0eef9d5b0cdf291ff4bcfa8926add1834"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-002",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 8998,
+              "end": 9033,
+              "start_line": 95,
+              "line_count": 1,
+              "sha256": "8977f8e5ea3e32c365316d68861bcfb24e042505cd70e1fded7db74a2e84202d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2120,
+              "end": 2404,
+              "start_line": 30,
+              "line_count": 1,
+              "sha256": "7d42d53aa64d43765a52521af16a924cfaf74a8e232f102161869c767cb82756"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-002",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 8998,
+              "end": 9033,
+              "start_line": 95,
+              "line_count": 1,
+              "sha256": "8977f8e5ea3e32c365316d68861bcfb24e042505cd70e1fded7db74a2e84202d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2120,
+              "end": 2404,
+              "start_line": 30,
+              "line_count": 1,
+              "sha256": "7d42d53aa64d43765a52521af16a924cfaf74a8e232f102161869c767cb82756"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-003",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 9901,
+              "end": 9946,
+              "start_line": 106,
+              "line_count": 1,
+              "sha256": "0beacf7c3a8bb61c22243bbd349046f2a0add18e67d0476bcfc7acc35203a01d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2404,
+              "end": 2767,
+              "start_line": 31,
+              "line_count": 1,
+              "sha256": "6d275b94b4e42f48730dd934f7ee025f357ff64fb4aaa479ca06919a0c543156"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-003",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 9901,
+              "end": 9946,
+              "start_line": 106,
+              "line_count": 1,
+              "sha256": "0beacf7c3a8bb61c22243bbd349046f2a0add18e67d0476bcfc7acc35203a01d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2404,
+              "end": 2767,
+              "start_line": 31,
+              "line_count": 1,
+              "sha256": "6d275b94b4e42f48730dd934f7ee025f357ff64fb4aaa479ca06919a0c543156"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-004",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 10929,
+              "end": 10974,
+              "start_line": 117,
+              "line_count": 1,
+              "sha256": "5863bebcd9769973532766792c0999951b75a04fe7bc658227c2866cb4128dea"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2767,
+              "end": 3102,
+              "start_line": 32,
+              "line_count": 1,
+              "sha256": "7d5f1bc00d42a6a0d0582a43f6db0d86f037c4c875fcaf0d805e3e57f35c14ac"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-004",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 10929,
+              "end": 10974,
+              "start_line": 117,
+              "line_count": 1,
+              "sha256": "5863bebcd9769973532766792c0999951b75a04fe7bc658227c2866cb4128dea"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 2767,
+              "end": 3102,
+              "start_line": 32,
+              "line_count": 1,
+              "sha256": "7d5f1bc00d42a6a0d0582a43f6db0d86f037c4c875fcaf0d805e3e57f35c14ac"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-005",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 11884,
+              "end": 11924,
+              "start_line": 128,
+              "line_count": 1,
+              "sha256": "9080e6bf723fe25d48b063e0d85dfdd8c27db9c384a6d7393ebf7991c7c5c204"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3102,
+              "end": 3386,
+              "start_line": 33,
+              "line_count": 1,
+              "sha256": "e147986e41c25adbfa95ad2c395658058922f921fd9214b5a08cb802ca1c1917"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-005",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 11884,
+              "end": 11924,
+              "start_line": 128,
+              "line_count": 1,
+              "sha256": "9080e6bf723fe25d48b063e0d85dfdd8c27db9c384a6d7393ebf7991c7c5c204"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3102,
+              "end": 3386,
+              "start_line": 33,
+              "line_count": 1,
+              "sha256": "e147986e41c25adbfa95ad2c395658058922f921fd9214b5a08cb802ca1c1917"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-006",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 12789,
+              "end": 12848,
+              "start_line": 139,
+              "line_count": 1,
+              "sha256": "e4635e9ae38636ad2ca4cbcc65a0ba38c82f4af809cc4dc08589d0a33e35458e"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3386,
+              "end": 3820,
+              "start_line": 34,
+              "line_count": 1,
+              "sha256": "afd2970a8b0cf6ba6c990baea59f6768ffec47d2388ebd4a741d11dc2bf136a9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-006",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 12789,
+              "end": 12848,
+              "start_line": 139,
+              "line_count": 1,
+              "sha256": "e4635e9ae38636ad2ca4cbcc65a0ba38c82f4af809cc4dc08589d0a33e35458e"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3386,
+              "end": 3820,
+              "start_line": 34,
+              "line_count": 1,
+              "sha256": "afd2970a8b0cf6ba6c990baea59f6768ffec47d2388ebd4a741d11dc2bf136a9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-007",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 14147,
+              "end": 14203,
+              "start_line": 150,
+              "line_count": 1,
+              "sha256": "9dadd0d7c32376ea0593d2d2aa46407d12d192ff118020d62b7a8f73c6b55f8b"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3820,
+              "end": 4069,
+              "start_line": 35,
+              "line_count": 1,
+              "sha256": "10d2eca8689ebae8e517fe59ec8ae5586b9410dc3acec5d70fa39e1b9a551a3f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-007",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 14147,
+              "end": 14203,
+              "start_line": 150,
+              "line_count": 1,
+              "sha256": "9dadd0d7c32376ea0593d2d2aa46407d12d192ff118020d62b7a8f73c6b55f8b"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 3820,
+              "end": 4069,
+              "start_line": 35,
+              "line_count": 1,
+              "sha256": "10d2eca8689ebae8e517fe59ec8ae5586b9410dc3acec5d70fa39e1b9a551a3f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-008",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 15174,
+              "end": 15220,
+              "start_line": 161,
+              "line_count": 1,
+              "sha256": "ac76f928a9e245fd4b4937dd543fad2a3b394e858c18a3aa31f817561b86687c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4069,
+              "end": 4373,
+              "start_line": 36,
+              "line_count": 1,
+              "sha256": "28e9f53fbd07098f7ffbf66216d59c7a58eb5e773083894b0451152ffb69ee3e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-008",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 15174,
+              "end": 15220,
+              "start_line": 161,
+              "line_count": 1,
+              "sha256": "ac76f928a9e245fd4b4937dd543fad2a3b394e858c18a3aa31f817561b86687c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4069,
+              "end": 4373,
+              "start_line": 36,
+              "line_count": 1,
+              "sha256": "28e9f53fbd07098f7ffbf66216d59c7a58eb5e773083894b0451152ffb69ee3e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-009",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 16160,
+              "end": 16202,
+              "start_line": 172,
+              "line_count": 1,
+              "sha256": "bd44c9e61f0b728902344e9031e0e15b031a44a3815ee8dba426ad634a3b15c1"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4373,
+              "end": 4633,
+              "start_line": 37,
+              "line_count": 1,
+              "sha256": "e547ea632dbfa78b7cbc732642ad6c860ee072dfa4e6a73c8a3053533d627817"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-009",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 16160,
+              "end": 16202,
+              "start_line": 172,
+              "line_count": 1,
+              "sha256": "bd44c9e61f0b728902344e9031e0e15b031a44a3815ee8dba426ad634a3b15c1"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4373,
+              "end": 4633,
+              "start_line": 37,
+              "line_count": 1,
+              "sha256": "e547ea632dbfa78b7cbc732642ad6c860ee072dfa4e6a73c8a3053533d627817"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-010",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 16999,
+              "end": 17049,
+              "start_line": 183,
+              "line_count": 1,
+              "sha256": "5ceec54936384534f32bba86bf63ec9c9a9ac5d6fe38cd1d1b944d11e2494125"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4633,
+              "end": 5078,
+              "start_line": 38,
+              "line_count": 1,
+              "sha256": "885d2a34d5c05c01e6c192f12c1add9b7e35f505d4722c3c0e59af6d9cc4a650"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-010",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 16999,
+              "end": 17049,
+              "start_line": 183,
+              "line_count": 1,
+              "sha256": "5ceec54936384534f32bba86bf63ec9c9a9ac5d6fe38cd1d1b944d11e2494125"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 4633,
+              "end": 5078,
+              "start_line": 38,
+              "line_count": 1,
+              "sha256": "885d2a34d5c05c01e6c192f12c1add9b7e35f505d4722c3c0e59af6d9cc4a650"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-011",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 17984,
+              "end": 18037,
+              "start_line": 194,
+              "line_count": 1,
+              "sha256": "41f847443b5f8132070fc861b81169fab66877fdaa4e8470feab349155417e88"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5078,
+              "end": 5381,
+              "start_line": 39,
+              "line_count": 1,
+              "sha256": "0f6702b067bacfd28d5ceca6cd3c046edae2deb10cd4ed701647aac37a1e93c8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-011",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 17984,
+              "end": 18037,
+              "start_line": 194,
+              "line_count": 1,
+              "sha256": "41f847443b5f8132070fc861b81169fab66877fdaa4e8470feab349155417e88"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5078,
+              "end": 5381,
+              "start_line": 39,
+              "line_count": 1,
+              "sha256": "0f6702b067bacfd28d5ceca6cd3c046edae2deb10cd4ed701647aac37a1e93c8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-012",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 19127,
+              "end": 19189,
+              "start_line": 205,
+              "line_count": 1,
+              "sha256": "e517fc5cfb19c5402a89adeb5eb3cbde4ac2ed7ad2e82bfaf57c924f6323c257"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5381,
+              "end": 5684,
+              "start_line": 40,
+              "line_count": 1,
+              "sha256": "f332f7974002d1d73fe5bc5b12c24d988913fd66717e4d6915dacc6eea238a27"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-012",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 19127,
+              "end": 19189,
+              "start_line": 205,
+              "line_count": 1,
+              "sha256": "e517fc5cfb19c5402a89adeb5eb3cbde4ac2ed7ad2e82bfaf57c924f6323c257"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5381,
+              "end": 5684,
+              "start_line": 40,
+              "line_count": 1,
+              "sha256": "f332f7974002d1d73fe5bc5b12c24d988913fd66717e4d6915dacc6eea238a27"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-001",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 20508,
+              "end": 20570,
+              "start_line": 220,
+              "line_count": 1,
+              "sha256": "8965e3ce266d55046807fb846ac4ad7bb8d6b0fd1d2ba5264b0579b6d185cfe9"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5684,
+              "end": 6194,
+              "start_line": 41,
+              "line_count": 1,
+              "sha256": "b632016e7b0fb5e3c0ac0e3080f86283eac8e4bb39bee246d9e8373086f5e5a1"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-001",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 20508,
+              "end": 20570,
+              "start_line": 220,
+              "line_count": 1,
+              "sha256": "8965e3ce266d55046807fb846ac4ad7bb8d6b0fd1d2ba5264b0579b6d185cfe9"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 5684,
+              "end": 6194,
+              "start_line": 41,
+              "line_count": 1,
+              "sha256": "b632016e7b0fb5e3c0ac0e3080f86283eac8e4bb39bee246d9e8373086f5e5a1"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-002",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 21616,
+              "end": 21673,
+              "start_line": 230,
+              "line_count": 1,
+              "sha256": "cc8a194d5fae3d31dd94993722fbc0f1fd5ac94d6887265cbc8a6ce4a0e230a6"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6194,
+              "end": 6463,
+              "start_line": 42,
+              "line_count": 1,
+              "sha256": "3e262257957673c43a631480d175578b3cf9feb50f31230299ce1d5cd9c880a8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-002",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 21616,
+              "end": 21673,
+              "start_line": 230,
+              "line_count": 1,
+              "sha256": "cc8a194d5fae3d31dd94993722fbc0f1fd5ac94d6887265cbc8a6ce4a0e230a6"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6194,
+              "end": 6463,
+              "start_line": 42,
+              "line_count": 1,
+              "sha256": "3e262257957673c43a631480d175578b3cf9feb50f31230299ce1d5cd9c880a8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-003",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 22463,
+              "end": 22526,
+              "start_line": 240,
+              "line_count": 1,
+              "sha256": "f08c3fd6d40671e6d65d457fb56a68411f2ab6293eda58ae075525512625c66c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6463,
+              "end": 6900,
+              "start_line": 43,
+              "line_count": 1,
+              "sha256": "339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-003",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 22463,
+              "end": 22526,
+              "start_line": 240,
+              "line_count": 1,
+              "sha256": "f08c3fd6d40671e6d65d457fb56a68411f2ab6293eda58ae075525512625c66c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6463,
+              "end": 6900,
+              "start_line": 43,
+              "line_count": 1,
+              "sha256": "339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-004",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 23550,
+              "end": 23627,
+              "start_line": 250,
+              "line_count": 1,
+              "sha256": "29fa086c65e37472764ae2bb7d8aac2a385ec104f71fa96413bf2e817ad92bb2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6900,
+              "end": 7198,
+              "start_line": 44,
+              "line_count": 1,
+              "sha256": "e78120ffe0c33badd64289c6b45c9d0b9010c23fc7b4f597be63deef04ccdbb0"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-004",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 23550,
+              "end": 23627,
+              "start_line": 250,
+              "line_count": 1,
+              "sha256": "29fa086c65e37472764ae2bb7d8aac2a385ec104f71fa96413bf2e817ad92bb2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 6900,
+              "end": 7198,
+              "start_line": 44,
+              "line_count": 1,
+              "sha256": "e78120ffe0c33badd64289c6b45c9d0b9010c23fc7b4f597be63deef04ccdbb0"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-005",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 24484,
+              "end": 24526,
+              "start_line": 260,
+              "line_count": 1,
+              "sha256": "8d42ce26ae7fccd5b96c577ebf023298eaa67ff5adc832a5445e457e08bc9032"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7198,
+              "end": 7647,
+              "start_line": 45,
+              "line_count": 1,
+              "sha256": "027ec51b1800b025e0d7b8e4077316c8cadeea469e59638701e03548571833a8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-005",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 24484,
+              "end": 24526,
+              "start_line": 260,
+              "line_count": 1,
+              "sha256": "8d42ce26ae7fccd5b96c577ebf023298eaa67ff5adc832a5445e457e08bc9032"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7198,
+              "end": 7647,
+              "start_line": 45,
+              "line_count": 1,
+              "sha256": "027ec51b1800b025e0d7b8e4077316c8cadeea469e59638701e03548571833a8"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-006",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 25540,
+              "end": 25585,
+              "start_line": 270,
+              "line_count": 1,
+              "sha256": "0fec4d33cc9224a28d798410413efbefa541259f448216aad3691a48dfa1501c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7647,
+              "end": 7960,
+              "start_line": 46,
+              "line_count": 1,
+              "sha256": "4d27eac75001098de566731352d2edf45c0f08c635044a26d1eaf83fab494d82"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-006",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 25540,
+              "end": 25585,
+              "start_line": 270,
+              "line_count": 1,
+              "sha256": "0fec4d33cc9224a28d798410413efbefa541259f448216aad3691a48dfa1501c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7647,
+              "end": 7960,
+              "start_line": 46,
+              "line_count": 1,
+              "sha256": "4d27eac75001098de566731352d2edf45c0f08c635044a26d1eaf83fab494d82"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-007",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 26628,
+              "end": 26675,
+              "start_line": 282,
+              "line_count": 1,
+              "sha256": "eeea026a0366964079dcc5eccd269730261b8893749a96cced313e58d5712f6e"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7960,
+              "end": 8272,
+              "start_line": 47,
+              "line_count": 1,
+              "sha256": "8bcf9023a543c1772d888fabce7b4df40fb23c46e419475a52284be9aef0d2b2"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-007",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 26628,
+              "end": 26675,
+              "start_line": 282,
+              "line_count": 1,
+              "sha256": "eeea026a0366964079dcc5eccd269730261b8893749a96cced313e58d5712f6e"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 7960,
+              "end": 8272,
+              "start_line": 47,
+              "line_count": 1,
+              "sha256": "8bcf9023a543c1772d888fabce7b4df40fb23c46e419475a52284be9aef0d2b2"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-008",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 27549,
+              "end": 27604,
+              "start_line": 292,
+              "line_count": 1,
+              "sha256": "f2785074adeeb1ce792465cadf6055892addb6c09259c99e96c08ab811e92a70"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8272,
+              "end": 8611,
+              "start_line": 48,
+              "line_count": 1,
+              "sha256": "9c51887b271b926e70c837a48a05aa66e55f53ffb3f6337f53d613f4ae4de1f3"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-008",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 27549,
+              "end": 27604,
+              "start_line": 292,
+              "line_count": 1,
+              "sha256": "f2785074adeeb1ce792465cadf6055892addb6c09259c99e96c08ab811e92a70"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8272,
+              "end": 8611,
+              "start_line": 48,
+              "line_count": 1,
+              "sha256": "9c51887b271b926e70c837a48a05aa66e55f53ffb3f6337f53d613f4ae4de1f3"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-009",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 28435,
+              "end": 28483,
+              "start_line": 302,
+              "line_count": 1,
+              "sha256": "a494aea3b5b46ebc3f2e4816e880cb7e8ebfea5535f31f3ad98821bf5d28eccf"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8611,
+              "end": 8923,
+              "start_line": 49,
+              "line_count": 1,
+              "sha256": "841445aa41dff273200edc6259212d00314c2058b2f9d6166a69a8fc64dc8693"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-009",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 28435,
+              "end": 28483,
+              "start_line": 302,
+              "line_count": 1,
+              "sha256": "a494aea3b5b46ebc3f2e4816e880cb7e8ebfea5535f31f3ad98821bf5d28eccf"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8611,
+              "end": 8923,
+              "start_line": 49,
+              "line_count": 1,
+              "sha256": "841445aa41dff273200edc6259212d00314c2058b2f9d6166a69a8fc64dc8693"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-010",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 29375,
+              "end": 29437,
+              "start_line": 312,
+              "line_count": 1,
+              "sha256": "a5a984e823b834a8b334ce3079c1f84d3bcdd25501c9dfaae9579cd722cc9617"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8923,
+              "end": 9193,
+              "start_line": 50,
+              "line_count": 1,
+              "sha256": "0d82dcad9c63929ef29003277754ad41eb50d85bb54d93193f0de5dfbf839687"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-010",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 29375,
+              "end": 29437,
+              "start_line": 312,
+              "line_count": 1,
+              "sha256": "a5a984e823b834a8b334ce3079c1f84d3bcdd25501c9dfaae9579cd722cc9617"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 8923,
+              "end": 9193,
+              "start_line": 50,
+              "line_count": 1,
+              "sha256": "0d82dcad9c63929ef29003277754ad41eb50d85bb54d93193f0de5dfbf839687"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-011",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 30334,
+              "end": 30382,
+              "start_line": 322,
+              "line_count": 1,
+              "sha256": "f2cb295b7936c076fc177d670297098d61e0a0cc6dee553ffa39043ef983d8e7"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9193,
+              "end": 9505,
+              "start_line": 51,
+              "line_count": 1,
+              "sha256": "865b51ab2c0cc7d3914201937ed583bfe61a13e1f5330038615fc71835fe048b"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-011",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 30334,
+              "end": 30382,
+              "start_line": 322,
+              "line_count": 1,
+              "sha256": "f2cb295b7936c076fc177d670297098d61e0a0cc6dee553ffa39043ef983d8e7"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9193,
+              "end": 9505,
+              "start_line": 51,
+              "line_count": 1,
+              "sha256": "865b51ab2c0cc7d3914201937ed583bfe61a13e1f5330038615fc71835fe048b"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-012",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 31197,
+              "end": 31252,
+              "start_line": 332,
+              "line_count": 1,
+              "sha256": "f282eba9c98cf74f51b5235f1a130726b31b0f48d0d6fa4d6c80e1a5312f70ce"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9505,
+              "end": 9785,
+              "start_line": 52,
+              "line_count": 1,
+              "sha256": "4b9c41a61d3d6b032bacec1a588fe17e14026957888fdbba196cb14d38a55b07"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-012",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 31197,
+              "end": 31252,
+              "start_line": 332,
+              "line_count": 1,
+              "sha256": "f282eba9c98cf74f51b5235f1a130726b31b0f48d0d6fa4d6c80e1a5312f70ce"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9505,
+              "end": 9785,
+              "start_line": 52,
+              "line_count": 1,
+              "sha256": "4b9c41a61d3d6b032bacec1a588fe17e14026957888fdbba196cb14d38a55b07"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-013",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 32085,
+              "end": 32149,
+              "start_line": 342,
+              "line_count": 1,
+              "sha256": "4f1a9df00742f4b535ae9dc59bdc78b54de2609adfcb1ffeb478f98955698038"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9785,
+              "end": 10049,
+              "start_line": 53,
+              "line_count": 1,
+              "sha256": "87dab47321ea76f2ddd63ac283d420d153a7923e2d9960a80a2843424b009fb9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-013",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 32085,
+              "end": 32149,
+              "start_line": 342,
+              "line_count": 1,
+              "sha256": "4f1a9df00742f4b535ae9dc59bdc78b54de2609adfcb1ffeb478f98955698038"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 9785,
+              "end": 10049,
+              "start_line": 53,
+              "line_count": 1,
+              "sha256": "87dab47321ea76f2ddd63ac283d420d153a7923e2d9960a80a2843424b009fb9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-014",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 33052,
+              "end": 33110,
+              "start_line": 352,
+              "line_count": 1,
+              "sha256": "a5913641ea61a752d1f53fcd6c6f8f679ab017a712db03a61632e58e61a59020"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10049,
+              "end": 10329,
+              "start_line": 54,
+              "line_count": 1,
+              "sha256": "6d45f4349873d7a7365ad23af8a0a7e24a99755f7ed8d9feb33c96248663d28e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-014",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 33052,
+              "end": 33110,
+              "start_line": 352,
+              "line_count": 1,
+              "sha256": "a5913641ea61a752d1f53fcd6c6f8f679ab017a712db03a61632e58e61a59020"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10049,
+              "end": 10329,
+              "start_line": 54,
+              "line_count": 1,
+              "sha256": "6d45f4349873d7a7365ad23af8a0a7e24a99755f7ed8d9feb33c96248663d28e"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-015",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 33975,
+              "end": 34024,
+              "start_line": 362,
+              "line_count": 1,
+              "sha256": "bf47613887dc9cbc576eddfbbf66a2f43ca595230d7cc6787d071f5704b6268c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10329,
+              "end": 10610,
+              "start_line": 55,
+              "line_count": 1,
+              "sha256": "58e16ddb2d0ad5943173c42620ce1efba738620f464f2131dd2df242f7b5232f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-015",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 33975,
+              "end": 34024,
+              "start_line": 362,
+              "line_count": 1,
+              "sha256": "bf47613887dc9cbc576eddfbbf66a2f43ca595230d7cc6787d071f5704b6268c"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10329,
+              "end": 10610,
+              "start_line": 55,
+              "line_count": 1,
+              "sha256": "58e16ddb2d0ad5943173c42620ce1efba738620f464f2131dd2df242f7b5232f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-016",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 34833,
+              "end": 34889,
+              "start_line": 372,
+              "line_count": 1,
+              "sha256": "724525dc138706af8d8da4d99230ae2e0bf1ffaefb0ec3a7e19165dc09822895"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10610,
+              "end": 10999,
+              "start_line": 56,
+              "line_count": 1,
+              "sha256": "54fc593f9197339f43229875d327cf4e78ca084c7b146f44c4c16157fd8a026f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-016",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 34833,
+              "end": 34889,
+              "start_line": 372,
+              "line_count": 1,
+              "sha256": "724525dc138706af8d8da4d99230ae2e0bf1ffaefb0ec3a7e19165dc09822895"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10610,
+              "end": 10999,
+              "start_line": 56,
+              "line_count": 1,
+              "sha256": "54fc593f9197339f43229875d327cf4e78ca084c7b146f44c4c16157fd8a026f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-017",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 35890,
+              "end": 35935,
+              "start_line": 382,
+              "line_count": 1,
+              "sha256": "192b2b547b802a2fbd63f1cf747e5ae0c887f13ed03c79162cc20c7324b6cad2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10999,
+              "end": 11280,
+              "start_line": 57,
+              "line_count": 1,
+              "sha256": "9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-INFRA-017",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 35890,
+              "end": 35935,
+              "start_line": 382,
+              "line_count": 1,
+              "sha256": "192b2b547b802a2fbd63f1cf747e5ae0c887f13ed03c79162cc20c7324b6cad2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 10999,
+              "end": 11280,
+              "start_line": 57,
+              "line_count": 1,
+              "sha256": "9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-018",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 36756,
+              "end": 36835,
+              "start_line": 394,
+              "line_count": 1,
+              "sha256": "e1c9b38d48c49c3afe68d81d2053c844c3ae66b336565c0ade570e5b0491c711"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11280,
+              "end": 11657,
+              "start_line": 58,
+              "line_count": 1,
+              "sha256": "028fea2baa9ee9a199c8207ec22e0fd9344a525460ed1db29b5214cb730152b9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-018",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 36756,
+              "end": 36835,
+              "start_line": 394,
+              "line_count": 1,
+              "sha256": "e1c9b38d48c49c3afe68d81d2053c844c3ae66b336565c0ade570e5b0491c711"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11280,
+              "end": 11657,
+              "start_line": 58,
+              "line_count": 1,
+              "sha256": "028fea2baa9ee9a199c8207ec22e0fd9344a525460ed1db29b5214cb730152b9"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-019",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 38251,
+              "end": 38332,
+              "start_line": 404,
+              "line_count": 1,
+              "sha256": "7b2393abfa6473db0644c789ba426024ef5bf8e025a9a69392d886a903a89617"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11657,
+              "end": 11922,
+              "start_line": 59,
+              "line_count": 1,
+              "sha256": "bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-019",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 38251,
+              "end": 38332,
+              "start_line": 404,
+              "line_count": 1,
+              "sha256": "7b2393abfa6473db0644c789ba426024ef5bf8e025a9a69392d886a903a89617"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11657,
+              "end": 11922,
+              "start_line": 59,
+              "line_count": 1,
+              "sha256": "bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-020",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 39367,
+              "end": 39449,
+              "start_line": 414,
+              "line_count": 1,
+              "sha256": "b148501bb731c5f35acbf3e1a1af30f6db482d15df7a7f40b14d50efa0ea09ee"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11922,
+              "end": 12330,
+              "start_line": 60,
+              "line_count": 1,
+              "sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-020",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 39367,
+              "end": 39449,
+              "start_line": 414,
+              "line_count": 1,
+              "sha256": "b148501bb731c5f35acbf3e1a1af30f6db482d15df7a7f40b14d50efa0ea09ee"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 11922,
+              "end": 12330,
+              "start_line": 60,
+              "line_count": 1,
+              "sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-021",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 40609,
+              "end": 40698,
+              "start_line": 424,
+              "line_count": 1,
+              "sha256": "73fdd6a9c90e2cde31e748bf9b78c4fdd9a1054b8b8ab6486b0f9f4748ed97a2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12330,
+              "end": 12594,
+              "start_line": 61,
+              "line_count": 1,
+              "sha256": "b2049bccaa192a54e930af64845a43a504e53b7a71a4a55650002bcdac60444f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-021",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 40609,
+              "end": 40698,
+              "start_line": 424,
+              "line_count": 1,
+              "sha256": "73fdd6a9c90e2cde31e748bf9b78c4fdd9a1054b8b8ab6486b0f9f4748ed97a2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12330,
+              "end": 12594,
+              "start_line": 61,
+              "line_count": 1,
+              "sha256": "b2049bccaa192a54e930af64845a43a504e53b7a71a4a55650002bcdac60444f"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-022",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 41700,
+              "end": 41798,
+              "start_line": 434,
+              "line_count": 1,
+              "sha256": "7cb3fac2a9d89b9e16f9abb337cf173096149d05a4068e4f09e90e5775e5e8a2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12594,
+              "end": 12963,
+              "start_line": 62,
+              "line_count": 1,
+              "sha256": "0ce688f2e9115c2ae76f188a209862ed2a64088cdda85c930f4c828236f70258"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-022",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 41700,
+              "end": 41798,
+              "start_line": 434,
+              "line_count": 1,
+              "sha256": "7cb3fac2a9d89b9e16f9abb337cf173096149d05a4068e4f09e90e5775e5e8a2"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12594,
+              "end": 12963,
+              "start_line": 62,
+              "line_count": 1,
+              "sha256": "0ce688f2e9115c2ae76f188a209862ed2a64088cdda85c930f4c828236f70258"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-023",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 43248,
+              "end": 43331,
+              "start_line": 444,
+              "line_count": 1,
+              "sha256": "a0e55c6bc1a5399be64c3c496198d029eb352a06307cae95c2305c6f78dcfeee"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12963,
+              "end": 13233,
+              "start_line": 63,
+              "line_count": 1,
+              "sha256": "c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-023",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 43248,
+              "end": 43331,
+              "start_line": 444,
+              "line_count": 1,
+              "sha256": "a0e55c6bc1a5399be64c3c496198d029eb352a06307cae95c2305c6f78dcfeee"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 12963,
+              "end": 13233,
+              "start_line": 63,
+              "line_count": 1,
+              "sha256": "c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-024",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 44439,
+              "end": 44536,
+              "start_line": 454,
+              "line_count": 1,
+              "sha256": "7639e6e410fe4c372188ccb21a38b7ea4e24491b4a484541e640c0e43a24883d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 13233,
+              "end": 13637,
+              "start_line": 64,
+              "line_count": 1,
+              "sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-024",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 44439,
+              "end": 44536,
+              "start_line": 454,
+              "line_count": 1,
+              "sha256": "7639e6e410fe4c372188ccb21a38b7ea4e24491b4a484541e640c0e43a24883d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 13233,
+              "end": 13637,
+              "start_line": 64,
+              "line_count": 1,
+              "sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-025",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 46244,
+              "end": 46324,
+              "start_line": 464,
+              "line_count": 1,
+              "sha256": "fde7c7bc16fe8eaec3044d697935d000182355464552535304fb22876b600232"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 13637,
+              "end": 14121,
+              "start_line": 65,
+              "line_count": 1,
+              "sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-025",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 46244,
+              "end": 46324,
+              "start_line": 464,
+              "line_count": 1,
+              "sha256": "fde7c7bc16fe8eaec3044d697935d000182355464552535304fb22876b600232"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 13637,
+              "end": 14121,
+              "start_line": 65,
+              "line_count": 1,
+              "sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-026",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 47888,
+              "end": 47964,
+              "start_line": 474,
+              "line_count": 1,
+              "sha256": "d911c625ecd764b5839e927f6d675d225e90d0367ebab3c95c2cbd9625fd5b87"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14121,
+              "end": 14486,
+              "start_line": 66,
+              "line_count": 1,
+              "sha256": "8a5835ffcfd2d9d9000d498f2c7af4a1a102bb3bc6ef8981a062683da30ea1a7"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-026",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 47888,
+              "end": 47964,
+              "start_line": 474,
+              "line_count": 1,
+              "sha256": "d911c625ecd764b5839e927f6d675d225e90d0367ebab3c95c2cbd9625fd5b87"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14121,
+              "end": 14486,
+              "start_line": 66,
+              "line_count": 1,
+              "sha256": "8a5835ffcfd2d9d9000d498f2c7af4a1a102bb3bc6ef8981a062683da30ea1a7"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-027",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 49099,
+              "end": 49185,
+              "start_line": 484,
+              "line_count": 1,
+              "sha256": "1d862f19ffbd69f28382614757a9e407dd731feab3690e59ea37cd7f58a6e628"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14486,
+              "end": 14961,
+              "start_line": 67,
+              "line_count": 1,
+              "sha256": "862382411a8689c88205e3b6cf4326ab141c39d66b2911c77707eaee312c2309"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-027",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 49099,
+              "end": 49185,
+              "start_line": 484,
+              "line_count": 1,
+              "sha256": "1d862f19ffbd69f28382614757a9e407dd731feab3690e59ea37cd7f58a6e628"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14486,
+              "end": 14961,
+              "start_line": 67,
+              "line_count": 1,
+              "sha256": "862382411a8689c88205e3b6cf4326ab141c39d66b2911c77707eaee312c2309"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-028",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 50647,
+              "end": 50727,
+              "start_line": 494,
+              "line_count": 1,
+              "sha256": "2aac5a4aabfad1ad98acbb22a261e11ac0134e36e5720a32238f342fc2da723d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14961,
+              "end": 15333,
+              "start_line": 68,
+              "line_count": 1,
+              "sha256": "fdf71fc826cce6edd4c669afefd546d3bf27e2093236cecdbe6cd6a972a23929"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-028",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 50647,
+              "end": 50727,
+              "start_line": 494,
+              "line_count": 1,
+              "sha256": "2aac5a4aabfad1ad98acbb22a261e11ac0134e36e5720a32238f342fc2da723d"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 14961,
+              "end": 15333,
+              "start_line": 68,
+              "line_count": 1,
+              "sha256": "fdf71fc826cce6edd4c669afefd546d3bf27e2093236cecdbe6cd6a972a23929"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-029",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 66278,
+              "end": 66379,
+              "start_line": 564,
+              "line_count": 1,
+              "sha256": "d0648318c0e817ed51613b2f4358e335d15657bcfbdbfcd1cc1d2450bce3c999"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 17494,
+              "end": 17521,
+              "start_line": 87,
+              "line_count": 1,
+              "sha256": "7edb320cb33baee35e730c8672ca0a49fa956b8bb00b53fe1cb9a3af025cdc9a"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-029",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 66278,
+              "end": 66379,
+              "start_line": 564,
+              "line_count": 1,
+              "sha256": "d0648318c0e817ed51613b2f4358e335d15657bcfbdbfcd1cc1d2450bce3c999"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 17494,
+              "end": 17521,
+              "start_line": 87,
+              "line_count": 1,
+              "sha256": "7edb320cb33baee35e730c8672ca0a49fa956b8bb00b53fe1cb9a3af025cdc9a"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-030",
+          "snapshot": "adopted_fixed",
+          "l2_source_lines": [
+            {
+              "start": 69020,
+              "end": 69111,
+              "start_line": 575,
+              "line_count": 1,
+              "sha256": "5579688b5850c1bc02a5c71f5a8291a6b3342710df80cd118404a26fafc36619"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 19200,
+              "end": 19233,
+              "start_line": 97,
+              "line_count": 1,
+              "sha256": "d221bb9d7e529361d99a68ab0f32d8c4cd52b7eeadae4df463a8575f617dec6d"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-030",
+          "snapshot": "current_snapshot",
+          "l2_source_lines": [
+            {
+              "start": 69020,
+              "end": 69111,
+              "start_line": 575,
+              "line_count": 1,
+              "sha256": "5579688b5850c1bc02a5c71f5a8291a6b3342710df80cd118404a26fafc36619"
+            }
+          ],
+          "l11_source_lines": [
+            {
+              "start": 19200,
+              "end": 19233,
+              "start_line": 97,
+              "line_count": 1,
+              "sha256": "d221bb9d7e529361d99a68ab0f32d8c4cd52b7eeadae4df463a8575f617dec6d"
+            }
+          ],
+          "note": "該当IDの要求節またはL11表行への静的対応。受入意味の同等性は自動認定しない。"
+        }
+      ],
+      "interpretation": "固定decisionの42明示候補と候補表のregistration ID/kind/version条件を記録。031/032を固定42件へ遡及追加しない。"
+    },
+    "current_snapshot": {
+      "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+      "current_requirement_sources": [
+        {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "git_blob": "ef8fee3e142c1cb63a9b4c8f20b72c47b17d093f",
+          "raw_sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c",
+          "bytes": 78839,
+          "lines": 610,
+          "role": "current_source"
+        },
+        {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "git_blob": "0c768736629be265aca514499efe329e629ae80f",
+          "raw_sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87",
+          "bytes": 27596,
+          "lines": 135,
+          "role": "current_source"
+        }
+      ],
+      "inventory_source": {
+        "revision": "66f083dc675093d22c449c250ddb10bf04079c0f",
+        "path": "docs/governance/crosswalks/l2-l11-brain-migration-inventory.json",
+        "git_blob": "5516a35a43688f24dc80b509739cbbe28153dca1",
+        "raw_sha256": "e03fd1dca27467b29e65454877936cc0eec39b41fb0b654f8f558a6834e9f7bd",
+        "bytes": 24354
+      },
+      "current_span_partition_counts": {
+        "docs/helix-brain/L2-requirements/brain-requirements.md": 56,
+        "docs/helix-brain/L11-acceptance/brain-acceptance.md": 10
+      },
+      "reconstruction_check": "現行66 spanからL2 78,839B/L11 27,596Bの全raw bytesを再構成し一致。",
+      "post_adoption_additions": [
+        {
+          "identity": "HELIXBRAIN-L2-031",
+          "l2_section_sha256": "1a9e5e9060ec7db7c4943a48779374ed865bc6fd887a129f39f8bf91fcbb8aab",
+          "decision": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+          "scope": "版判断の記録。固定42件への遡及追加ではない。L11対応は個別に明示されない限りunknownを維持。"
+        },
+        {
+          "identity": "HELIXBRAIN-L2-032",
+          "l2_section_sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48",
+          "l11_section_sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429",
+          "decision": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+          "scope": "032と対L11のTEMPLATECONTRACT、1.0。全seed採用・実装・製品受入を意味しない。"
+        },
+        {
+          "identity": "032 downstream prerequisite",
+          "decision": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+          "scope": "032由来14組の限定L3/L10判断。新たなL2 adoptionではない。"
+        }
+      ]
+    },
+    "later_brain_decisions": [
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/helix-brain-stage2b-l3-l10-po-decision-2026-10-05.md",
+          "git_blob": "9f9a22b85dee870494fa4f6394e2ccf3ca010b13",
+          "raw_sha256": "00a8a677c28868ec3b1aeccdc741a51c638d915bc420581b5db97182316074fa",
+          "bytes": 4988,
+          "lines": 58,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-001",
+          "HELIXBRAIN-L2-002",
+          "HELIXBRAIN-L2-003",
+          "HELIXBRAIN-L2-004",
+          "HELIXBRAIN-L2-005",
+          "HELIXBRAIN-L2-006",
+          "HELIXBRAIN-L2-009",
+          "HELIXBRAIN-L2-010",
+          "HELIXBRAIN-L2-011",
+          "HELIXBRAIN-L2-012",
+          "HELIXBRAIN-L2-029"
+        ],
+        "source_lines": [
+          {
+            "line": 31,
+            "start": 2309,
+            "end": 2371,
+            "sha256": "eae99271593b65106f9baf78064098a58b99f197944ead479a677a77df6fcf4c",
+            "identities": [
+              "HELIXBRAIN-L2-001"
+            ]
+          },
+          {
+            "line": 32,
+            "start": 2371,
+            "end": 2433,
+            "sha256": "f09ca1200e23cf8a94587894ede4d82118e26cd24cdc8b7113e19cf3b3cb7758",
+            "identities": [
+              "HELIXBRAIN-L2-002"
+            ]
+          },
+          {
+            "line": 33,
+            "start": 2433,
+            "end": 2495,
+            "sha256": "5155eaebef2f13c57cfe35cc678442871f8f194f511ffc09de59a54f95bb4a5e",
+            "identities": [
+              "HELIXBRAIN-L2-003"
+            ]
+          },
+          {
+            "line": 34,
+            "start": 2495,
+            "end": 2557,
+            "sha256": "173e4003e285e9bb80a24dddb3fe82eae6f106404148d146759dbb3228218cff",
+            "identities": [
+              "HELIXBRAIN-L2-004"
+            ]
+          },
+          {
+            "line": 35,
+            "start": 2557,
+            "end": 2619,
+            "sha256": "8f8c720facc8efc3af0972486cbe85fd5a7776ea9eb5fe9c12343a602f2cd7fc",
+            "identities": [
+              "HELIXBRAIN-L2-005"
+            ]
+          },
+          {
+            "line": 36,
+            "start": 2619,
+            "end": 2681,
+            "sha256": "be48b24818fec45c94c4df0d09dd4f3ea07eea4f4a6c3a1005c7a577be31550e",
+            "identities": [
+              "HELIXBRAIN-L2-006"
+            ]
+          },
+          {
+            "line": 37,
+            "start": 2681,
+            "end": 2743,
+            "sha256": "3199ac15a529cb1a16fe6ee11746d8e48e5d6b9d1582b1735c3b9c6d83065371",
+            "identities": [
+              "HELIXBRAIN-L2-009"
+            ]
+          },
+          {
+            "line": 38,
+            "start": 2743,
+            "end": 2805,
+            "sha256": "798b0017d1c7a5e42e97f31400e23fd4ced2be3f12ab85b7f61f8fea1e4ed706",
+            "identities": [
+              "HELIXBRAIN-L2-010"
+            ]
+          },
+          {
+            "line": 39,
+            "start": 2805,
+            "end": 2867,
+            "sha256": "15791ea07eccafcc5b192a590bdc70492436e8d3824cf7daf472a89224c66903",
+            "identities": [
+              "HELIXBRAIN-L2-011"
+            ]
+          },
+          {
+            "line": 40,
+            "start": 2867,
+            "end": 2929,
+            "sha256": "276b39c01ef6ad803beda2d1858cb35fed23a234fc1d2351d6b38e203e6e4feb",
+            "identities": [
+              "HELIXBRAIN-L2-012"
+            ]
+          },
+          {
+            "line": 41,
+            "start": 2929,
+            "end": 2991,
+            "sha256": "1e8b8a826a0764ed67e1f06b2d892a3a2ec93d6d0c96aa10a03b821f3680fd0e",
+            "identities": [
+              "HELIXBRAIN-L2-029"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/helix-brain-stage4-l3-l10-po-decision-2026-10-06.md",
+          "git_blob": "1b115cc083cbffcf1e528b84dd06d732316e5028",
+          "raw_sha256": "72a93f74686bf88533e672217291278f798e0bddde32e3bbae4c48bfc33709d1",
+          "bytes": 6556,
+          "lines": 68,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-018",
+          "HELIXBRAIN-L2-019",
+          "HELIXBRAIN-L2-020",
+          "HELIXBRAIN-L2-021",
+          "HELIXBRAIN-L2-022",
+          "HELIXBRAIN-L2-023",
+          "HELIXBRAIN-L2-030"
+        ],
+        "source_lines": [
+          {
+            "line": 37,
+            "start": 2652,
+            "end": 2747,
+            "sha256": "721641981400141719cc28f7ecf7cfced6a1f7de7625b9fd4b4c72d9bc1ad06d",
+            "identities": [
+              "HELIXBRAIN-L2-018"
+            ]
+          },
+          {
+            "line": 38,
+            "start": 2747,
+            "end": 2842,
+            "sha256": "3b05cca9590b0909f24ea36ef4dd0ee944771c3a5e259a2983ede159496f13b8",
+            "identities": [
+              "HELIXBRAIN-L2-019"
+            ]
+          },
+          {
+            "line": 39,
+            "start": 2842,
+            "end": 2937,
+            "sha256": "104b048a89ffff64cde6ae190e8468626d3674d90b188333207b02f3cf268990",
+            "identities": [
+              "HELIXBRAIN-L2-020"
+            ]
+          },
+          {
+            "line": 40,
+            "start": 2937,
+            "end": 3032,
+            "sha256": "1be259fc84d7a1b9ba94caa352b39c008f2269907d0cffd550a973d5f9a9fcff",
+            "identities": [
+              "HELIXBRAIN-L2-021"
+            ]
+          },
+          {
+            "line": 41,
+            "start": 3032,
+            "end": 3127,
+            "sha256": "e1677c77264c5f791e434bc7fd2506d934439e1653ab089554ad65a543e65d74",
+            "identities": [
+              "HELIXBRAIN-L2-022"
+            ]
+          },
+          {
+            "line": 42,
+            "start": 3127,
+            "end": 3222,
+            "sha256": "4bb32d22241edfcc27cfdcb66c39df5cdbfe395bcd725fe7a74780e440303383",
+            "identities": [
+              "HELIXBRAIN-L2-023"
+            ]
+          },
+          {
+            "line": 43,
+            "start": 3222,
+            "end": 3317,
+            "sha256": "6418dba89d2349baa78086ad4fd04fcf3e53f63d8c72d1975f41673c8310cf5e",
+            "identities": [
+              "HELIXBRAIN-L2-030"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/helix-brain-stage5-parent024-l3-l10-delegated-decision-2026-10-08.md",
+          "git_blob": "8c05d9d31b192cd1e1b311c4c91af7ea7c2fa7f9",
+          "raw_sha256": "201dc99826cf5a45118c8fd047f3526590f509aa230c991e9b798eb254a5e3be",
+          "bytes": 5616,
+          "lines": 54,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-024",
+          "HELIXBRAIN-L2-INFRA-017"
+        ],
+        "source_lines": [
+          {
+            "line": 10,
+            "start": 461,
+            "end": 498,
+            "sha256": "53a1f10329030c7da9a9513b1db08be8f9ca9e90736d3c7e42a4e77344522268",
+            "identities": [
+              "HELIXBRAIN-L2-024"
+            ]
+          },
+          {
+            "line": 19,
+            "start": 653,
+            "end": 1138,
+            "sha256": "4fcf150054f29db9c42c54d45b3c52ad8c0455298d7a7b556f56896abdeb49eb",
+            "identities": [
+              "HELIXBRAIN-L2-024"
+            ]
+          },
+          {
+            "line": 29,
+            "start": 2379,
+            "end": 2756,
+            "sha256": "5a273cf53b5df10561019af8c00936d7277ff73a02862884095dd812387ba9c1",
+            "identities": [
+              "HELIXBRAIN-L2-INFRA-017"
+            ]
+          },
+          {
+            "line": 35,
+            "start": 3236,
+            "end": 3706,
+            "sha256": "501fe0656291f260ae1e4d470743fdba145c8d922ca35773228698436b798ac0",
+            "identities": [
+              "HELIXBRAIN-L2-024"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md",
+          "git_blob": "ecd88d753bbadd541e5dd94c5602dfdad1d83525",
+          "raw_sha256": "ff1a4872408f9ee0b55f69bf089bd6cebe2199a3afd46d5afd376be0a4ea5a23",
+          "bytes": 5984,
+          "lines": 89,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-031"
+        ],
+        "source_lines": [
+          {
+            "line": 64,
+            "start": 3904,
+            "end": 3958,
+            "sha256": "459c99a8c79810ddfd581278417804de9fece6347c556fb57a6e4de2bc74d782",
+            "identities": [
+              "HELIXBRAIN-L2-031"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md",
+          "git_blob": "4e9f9b23b2f32958d34f6866cf2bf184798f9828",
+          "raw_sha256": "6f0b54a464f5031fc1b501340a9fea88544bde2bd68faabc8001c72628f82964",
+          "bytes": 4372,
+          "lines": 45,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-032"
+        ],
+        "source_lines": [
+          {
+            "line": 16,
+            "start": 440,
+            "end": 852,
+            "sha256": "c07cb496594d762d81716d918e1c095291e34a41de75e022598722ec6d7c9dcd",
+            "identities": [
+              "HELIXBRAIN-L2-032"
+            ]
+          },
+          {
+            "line": 20,
+            "start": 1001,
+            "end": 1106,
+            "sha256": "25eaecf0c8bbc794111add1472bf3976869b7f1ad401c5cbc8fee43b493493f9",
+            "identities": [
+              "HELIXBRAIN-L2-032"
+            ]
+          },
+          {
+            "line": 25,
+            "start": 1632,
+            "end": 1933,
+            "sha256": "e2a508340fe625353cc688892eb69996bc2ea7233d58dd65151e8a12d88b2f5e",
+            "identities": [
+              "HELIXBRAIN-L2-032"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+          "git_blob": "b75252df7163f114a4e6d001716ac2a38ca184a4",
+          "raw_sha256": "53f0c2d44b17133b8ad3b6eefab7fbf621203c3cc997131e81d341acb37a7467",
+          "bytes": 6156,
+          "lines": 58,
+          "role": "明示的にBRAINに関係する後続判断"
+        },
+        "identity_mentions": [
+          "HELIXBRAIN-L2-032"
+        ],
+        "source_lines": [
+          {
+            "line": 13,
+            "start": 484,
+            "end": 722,
+            "sha256": "8a0a7faf18a66d24210ff2b2e6b83247ed37faea693b64cb6537dd21907c8e15",
+            "identities": [
+              "HELIXBRAIN-L2-032"
+            ]
+          }
+        ],
+        "scope_note": "sourceが明示する範囲のみ。authority状態は各decision本文を優先し、全後続判断閉包とはしない。"
+      }
+    ],
+    "static_consumer_examples": [
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+          "git_blob": "2380f508fd03bf0978d9ce6cd567bcf4227d6f19",
+          "raw_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+          "bytes": 28431,
+          "lines": 469,
+          "role": "静的consumer例"
+        },
+        "selected_references": [
+          {
+            "pointer": "/primary_parent",
+            "value": "HELIXBRAIN-L2-032"
+          },
+          {
+            "pointer": "/requirements/0/parent",
+            "value": "HELIXBRAIN-L2-032"
+          },
+          {
+            "pointer": "/requirements/5/parent",
+            "value": "HELIXBRAIN-L2-030"
+          }
+        ],
+        "limitation": "静的参照例。実reader・完全閉包を証明しない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L9-integration-verification/knowledge-hierarchy.json",
+          "git_blob": "65c2c7896aec7962630aae12184eb13d02db0f80",
+          "raw_sha256": "7a46dfbee369eaa23433eaed21eab63d6f2ff59cbf7fe6ca7acf818b5f1b79fd",
+          "bytes": 270227,
+          "lines": 2201,
+          "role": "静的consumer例"
+        },
+        "selected_references": [
+          {
+            "pointer": "/hierarchy_basis/adopted_l2_section",
+            "value": "HELIXBRAIN-L2-002 構造階層"
+          },
+          {
+            "pointer": "/hierarchy_basis/adopted_l11_row",
+            "value": "HELIXBRAIN-L2-002"
+          },
+          {
+            "pointer": "/hierarchy_basis/po_20260926_lines",
+            "value": [
+              65,
+              92
+            ]
+          }
+        ],
+        "limitation": "静的参照例。実reader・完全閉包を証明しない。"
+      },
+      {
+        "source": {
+          "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/governance/audits/first-cycle-brain-dependency-expansion-2026-10-12.json",
+          "git_blob": "b1b5b56f37e6d654a5e8bb31aa06ff036ee67791",
+          "raw_sha256": "7d09f2ff9d0b7e923d6ca89b50a76a904acaa286300f92ffad72bb78e16337dc",
+          "bytes": 36233,
+          "lines": 869,
+          "role": "静的consumer例"
+        },
+        "selected_references": [
+          {
+            "pointer": "/dependency_expansion/0/identity",
+            "value": "HELIXBRAIN-L2-032"
+          },
+          {
+            "pointer": "/authority_records/1",
+            "value": "docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md"
+          }
+        ],
+        "limitation": "静的参照例。実reader・完全閉包を証明しない。"
+      }
+    ],
+    "legacy_json_authority": {
+      "source": {
+        "revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "git_blob": "7addf9be81eb270b9e1aae0d2beaa89990baf915",
+        "raw_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "bytes": 6317,
+        "lines": 120,
+        "role": "旧JSON authority §§1–3 source"
+      },
+      "sections": [
+        "§1",
+        "§2",
+        "§3"
+      ],
+      "line_refs": [
+        {
+          "line": 16,
+          "start": 449,
+          "end": 481,
+          "sha256": "410620c8d287a6ec9be5ab99da23ae1b677b6dc0d59639b602516a50197314e6"
+        },
+        {
+          "line": 17,
+          "start": 481,
+          "end": 482,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 18,
+          "start": 482,
+          "end": 602,
+          "sha256": "69d47bfeb486a106674b43d41a2e30b1d1318740405314f266323c53f1d1be60"
+        },
+        {
+          "line": 19,
+          "start": 602,
+          "end": 725,
+          "sha256": "1e7c0e56250268c9e739bd6c1197b925019ce9aa9c1dd6c8f9718bd06072896c"
+        },
+        {
+          "line": 20,
+          "start": 725,
+          "end": 726,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 21,
+          "start": 726,
+          "end": 759,
+          "sha256": "2eb6f4fc9a7a1da487da5d04bdd90c7731b45831102fcea94ba47c3886cacac3"
+        },
+        {
+          "line": 22,
+          "start": 759,
+          "end": 773,
+          "sha256": "5cb0682bc5eec6af7d1330c8d2b9fd3a4a50a5891bc5acdc31f8da06e2308dea"
+        },
+        {
+          "line": 23,
+          "start": 773,
+          "end": 1006,
+          "sha256": "f969698ba8889395a798a7904cee7c1abb3310fd447c704a04070b8c844a7a81"
+        },
+        {
+          "line": 24,
+          "start": 1006,
+          "end": 1122,
+          "sha256": "a514554220932adf88b244316748eb17f839ef80cb014f1b353e179fe10e8d0b"
+        },
+        {
+          "line": 25,
+          "start": 1122,
+          "end": 1229,
+          "sha256": "b30ab9f16a81f7367253e37af6627f01de006053a34efd9f43b817c90a60c10c"
+        },
+        {
+          "line": 26,
+          "start": 1229,
+          "end": 1327,
+          "sha256": "ea9a5d09b8284553f241a7c65a00da5ca48345bf2bfb516e4dafb8a1883acd09"
+        },
+        {
+          "line": 27,
+          "start": 1327,
+          "end": 1471,
+          "sha256": "ef7239a4e548566d9183151aac1adb134bd5ab564142e514b77bc15b793eafa9"
+        },
+        {
+          "line": 28,
+          "start": 1471,
+          "end": 1587,
+          "sha256": "ec1006e4e2ae59fcf5af62d52a8767a4f3702fa6a6ddde6d71834790dc52be4d"
+        },
+        {
+          "line": 29,
+          "start": 1587,
+          "end": 1588,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 30,
+          "start": 1588,
+          "end": 1701,
+          "sha256": "1f5e987f50fe42107b8765881847b19ae90b0b82c6a6768d6fb8b263ffbe2af2"
+        },
+        {
+          "line": 31,
+          "start": 1701,
+          "end": 1702,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 32,
+          "start": 1702,
+          "end": 1725,
+          "sha256": "01ab794d3103afd101e61185b6b816ec78a07e08ae88313200fbe933f59f6dc3"
+        },
+        {
+          "line": 33,
+          "start": 1725,
+          "end": 1726,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 34,
+          "start": 1726,
+          "end": 1777,
+          "sha256": "a6ba4d759238793993acdf389a3ab653ebb5edcabc40abc43e4c48145c4fdb3e"
+        },
+        {
+          "line": 35,
+          "start": 1777,
+          "end": 1799,
+          "sha256": "1de25071dfbcd236934eb9f3678ebfec9dd4c3536111762658ac30cb74aca430"
+        },
+        {
+          "line": 36,
+          "start": 1799,
+          "end": 1979,
+          "sha256": "3914ca5c393fccc245587b40ea7fdedc9d8a5fdedc85815e875a6f65e539970d"
+        },
+        {
+          "line": 37,
+          "start": 1979,
+          "end": 2203,
+          "sha256": "0c7a5620368e2efa3ec186374a61f9af81e7518ba64ffddee25a32af31d6b714"
+        },
+        {
+          "line": 38,
+          "start": 2203,
+          "end": 2413,
+          "sha256": "5d1d913e5c88d1fb08d8e071df2baada213a801919eb7b203c0ef058a9037724"
+        },
+        {
+          "line": 39,
+          "start": 2413,
+          "end": 2581,
+          "sha256": "8e3b6e5daaecddaa8cbe5fc1175d4f6c980868ec5473f3f0250519e83e61ca2b"
+        },
+        {
+          "line": 40,
+          "start": 2581,
+          "end": 2761,
+          "sha256": "ebc44c21e4d815705c8184ed850bb2676f0399c12e73da542b6f6f069fab4b5f"
+        },
+        {
+          "line": 41,
+          "start": 2761,
+          "end": 2937,
+          "sha256": "4c09f31c456786a1ee6fcf45c3ff350f01934244eebfd42b31691d928be79713"
+        },
+        {
+          "line": 42,
+          "start": 2937,
+          "end": 2938,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 43,
+          "start": 2938,
+          "end": 3053,
+          "sha256": "92a8c8bfa462ebe6054b0f6cfd879930c0f7c77f1fa8f36458dffd3e301afd3d"
+        },
+        {
+          "line": 44,
+          "start": 3053,
+          "end": 3100,
+          "sha256": "332333e2e0de3f0f554917862af4f6853325c9697e73648e59484c73a1839eec"
+        },
+        {
+          "line": 45,
+          "start": 3100,
+          "end": 3101,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 46,
+          "start": 3101,
+          "end": 3124,
+          "sha256": "d3317150998fcc8c6e9eac4f9c6095e1d8b86f9197065c5c0eec2b7b60556a22"
+        },
+        {
+          "line": 47,
+          "start": 3124,
+          "end": 3125,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 48,
+          "start": 3125,
+          "end": 3133,
+          "sha256": "d6f1fa7b57337afbb66754f2ed1e7eb7c1afb830e9efef50b338105bf948bac6"
+        },
+        {
+          "line": 49,
+          "start": 3133,
+          "end": 3150,
+          "sha256": "7dbc3e7093a94636fa5b496d93106e1334c4f4727c9e63ebd4799d564dbf515a"
+        },
+        {
+          "line": 50,
+          "start": 3150,
+          "end": 3179,
+          "sha256": "6dfe41dbb27fb2dc74d0b1e4831878bfeca38aa3e580e18f140e056fb746c8f8"
+        },
+        {
+          "line": 51,
+          "start": 3179,
+          "end": 3207,
+          "sha256": "f187c3e02adddebe47d54f3b9e0673b7fa8e1559ca6e566d773b75488bdd67d0"
+        },
+        {
+          "line": 52,
+          "start": 3207,
+          "end": 3252,
+          "sha256": "c9d07b53cb4275f8864bfb2baf9161753454469b0d245159b7189c82b381603f"
+        },
+        {
+          "line": 53,
+          "start": 3252,
+          "end": 3278,
+          "sha256": "6af1613246150220a0336ff3ac062b6cb8229e7afc08fe610a745a85abb2bac1"
+        },
+        {
+          "line": 54,
+          "start": 3278,
+          "end": 3313,
+          "sha256": "10895abe046d386410fbff0b2293cd2a5b18c77030990b641af88e0a47f20463"
+        },
+        {
+          "line": 55,
+          "start": 3313,
+          "end": 3354,
+          "sha256": "66c8b0b2e6552df5d9ccae898e5ca900ae3ae9c4cda91399ca06305a4d9e94b1"
+        },
+        {
+          "line": 56,
+          "start": 3354,
+          "end": 3358,
+          "sha256": "47c06c561d5c327343685268a46b3391f3998eee890d2be51f0d21cc4a53ae6d"
+        },
+        {
+          "line": 57,
+          "start": 3358,
+          "end": 3359,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        },
+        {
+          "line": 58,
+          "start": 3359,
+          "end": 3468,
+          "sha256": "f6998143e2b043f39c5c307f3b8cf31ec2c78abbad21f0f6a6b6610c5efe8d37"
+        },
+        {
+          "line": 59,
+          "start": 3468,
+          "end": 3567,
+          "sha256": "4f013b08d4f0e7ef53647d37ae36d70e6dd57ed675271fd68a202c2478977651"
+        },
+        {
+          "line": 60,
+          "start": 3567,
+          "end": 3568,
+          "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        }
+      ],
+      "preserve": "JSON構造authority候補、derived Markdown等、registry/evaluator/projector/binder責務、Requirement→graph→planner/template/design/pair/view方向を意味再導出の比較元として保持。",
+      "change_or_not_claimed": "本提案はspan索引補足のみ。正式JSON/schema/runtime/view/cutover成立やgenerated viewからの逆更新を主張しない。"
+    },
+    "excluded_or_unknown": [
+      {
+        "item": "HARNESS/CORE L2-009 supplement",
+        "classification": "BRAIN採択の根拠外。identityはHARNESS-L2-009でありBRAIN候補を増やさない。"
+      },
+      {
+        "item": "未列挙の後続decisionとconsumer",
+        "classification": "未調査または範囲外。unknownを維持し、網羅的閉集合としない。"
+      },
+      {
+        "item": "実reader・全受入・実装状態",
+        "classification": "静的参照から成立を推定しない。"
+      }
+    ],
+    "authority_effect": "none",
+    "formal_json_authority": "not_established",
+    "approval_inheritance": "not_claimed",
+    "source_method": "全byte-bound referenceはrevision/path/start/end/SHA-256でsource bytesから再取得する。既存inventoryのfirst_lineはpartition識別用の短いprefix。原文行・節の全文は補足へ転載せず、L2/L11 fixed/current Git blobと既存span partitionから読む。identity位置のrole分類は実在するheading/table/inlineの位置記述であり、新しい全mention検査gateではない。",
+    "current_identity_contexts": [
+      {
+        "identity": "HELIXBRAIN-L2-001",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 7562,
+            "end": 8998,
+            "start_line": 84,
+            "line_count": 11,
+            "sha256": "0cf2064672270ac0848848a6907e42b8abdab3f417fb1f0a9b550cef7cf5f259",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-001 領域の識別と進化"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 1613,
+                "end": 2120,
+                "start_line": 29,
+                "line_count": 1,
+                "sha256": "ec39e3a80fddc529db9431b6124817f0eef9d5b0cdf291ff4bcfa8926add1834"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-002",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 8998,
+            "end": 9901,
+            "start_line": 95,
+            "line_count": 11,
+            "sha256": "eaf7e9caf32537bd81df68203b5fd40150a05e419ef1519d03756a09e0d22665",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-002 構造階層"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 2120,
+                "end": 2404,
+                "start_line": 30,
+                "line_count": 1,
+                "sha256": "7d42d53aa64d43765a52521af16a924cfaf74a8e232f102161869c767cb82756"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-003",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 9901,
+            "end": 10929,
+            "start_line": 106,
+            "line_count": 11,
+            "sha256": "8d4111686c3a35c5ca8e2980bbc7a613faebe784e539e986769c2383a2010b97",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-003 Patternの成立条件"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 2404,
+                "end": 2767,
+                "start_line": 31,
+                "line_count": 1,
+                "sha256": "6d275b94b4e42f48730dd934f7ee025f357ff64fb4aaa479ca06919a0c543156"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            },
+            {
+              "role": "inline_mention",
+              "line_span": {
+                "start": 18645,
+                "end": 19199,
+                "start_line": 95,
+                "line_count": 1,
+                "sha256": "83be28c39a94860ae69166fd29bd68e628183a70829232bb51040b998d6ae5ee"
+              },
+              "containing_partition": {
+                "start": 17494,
+                "end": 19200,
+                "start_line": 87,
+                "line_count": 10,
+                "sha256": "5ede48e59990c5aedf9a1a09a89457a6ba15ff0583328cc056f070a4196a04a9",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-029 unit"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-004",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 10929,
+            "end": 11884,
+            "start_line": 117,
+            "line_count": 11,
+            "sha256": "193100e6119ce9c87cce9edfbc29813337368b840d159c1cc09aa50aa5fa41fa",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-004 複数Patternの比較"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 2767,
+                "end": 3102,
+                "start_line": 32,
+                "line_count": 1,
+                "sha256": "7d5f1bc00d42a6a0d0582a43f6db0d86f037c4c875fcaf0d805e3e57f35c14ac"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-005",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 11884,
+            "end": 12789,
+            "start_line": 128,
+            "line_count": 11,
+            "sha256": "2c6d2f6c24076429749a2303fe59dffe9c91f1a64fa0f8716bbf4740cbd917fa",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-005 構造間relation"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 3102,
+                "end": 3386,
+                "start_line": 33,
+                "line_count": 1,
+                "sha256": "e147986e41c25adbfa95ad2c395658058922f921fd9214b5a08cb802ca1c1917"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-006",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 12789,
+            "end": 14147,
+            "start_line": 139,
+            "line_count": 11,
+            "sha256": "b0047df45ccdd705ebf1eae090a70184a07fe107ab649b4c5d69ca152ba3be8e",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-006 Visual DesignとUXの再利用知識"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 3386,
+                "end": 3820,
+                "start_line": 34,
+                "line_count": 1,
+                "sha256": "afd2970a8b0cf6ba6c990baea59f6768ffec47d2388ebd4a741d11dc2bf136a9"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-007",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 14147,
+            "end": 15174,
+            "start_line": 150,
+            "line_count": 11,
+            "sha256": "f96983fecc67fdb539d5ff143ed758a9c2ae799ae3f4fb6fa24bad2c381a6774",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-007 出所・根拠・知識promotion"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 3820,
+                "end": 4069,
+                "start_line": 35,
+                "line_count": 1,
+                "sha256": "10d2eca8689ebae8e517fe59ec8ae5586b9410dc3acec5d70fa39e1b9a551a3f"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-008",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 15174,
+            "end": 16160,
+            "start_line": 161,
+            "line_count": 11,
+            "sha256": "8982f6583ed81151b3519a26ba2ae858566650fdbc2cca43cfda29632dce7f87",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-008 identity・版・状態"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 4069,
+                "end": 4373,
+                "start_line": 36,
+                "line_count": 1,
+                "sha256": "28e9f53fbd07098f7ffbf66216d59c7a58eb5e773083894b0451152ffb69ee3e"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            },
+            {
+              "role": "inline_mention",
+              "line_span": {
+                "start": 18645,
+                "end": 19199,
+                "start_line": 95,
+                "line_count": 1,
+                "sha256": "83be28c39a94860ae69166fd29bd68e628183a70829232bb51040b998d6ae5ee"
+              },
+              "containing_partition": {
+                "start": 17494,
+                "end": 19200,
+                "start_line": 87,
+                "line_count": 10,
+                "sha256": "5ede48e59990c5aedf9a1a09a89457a6ba15ff0583328cc056f070a4196a04a9",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-029 unit"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-009",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 16160,
+            "end": 16999,
+            "start_line": 172,
+            "line_count": 11,
+            "sha256": "ee09a8532ea8f1340c016c54098d90dffe7b2f8cd8e41401f7968362a44f7c7f",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-009 構成Pattern候補"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 4373,
+                "end": 4633,
+                "start_line": 37,
+                "line_count": 1,
+                "sha256": "e547ea632dbfa78b7cbc732642ad6c860ee072dfa4e6a73c8a3053533d627817"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-010",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 16999,
+            "end": 17984,
+            "start_line": 183,
+            "line_count": 11,
+            "sha256": "1abd7a70802d2c58110fb869adf9d78b686c2dd6cb078edb0b38710d0ac1eace",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-010 Anti-Pattern・失敗知識"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 4633,
+                "end": 5078,
+                "start_line": 38,
+                "line_count": 1,
+                "sha256": "885d2a34d5c05c01e6c192f12c1add9b7e35f505d4722c3c0e59af6d9cc4a650"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-011",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 17984,
+            "end": 19127,
+            "start_line": 194,
+            "line_count": 11,
+            "sha256": "c85e5ab4be064db02eef9d05ef174f2754446afba55c99946ac5220c8c6ee198",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-011 製品固有意味との分離"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 5078,
+                "end": 5381,
+                "start_line": 39,
+                "line_count": 1,
+                "sha256": "0f6702b067bacfd28d5ceca6cd3c046edae2deb10cd4ed701647aac37a1e93c8"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-012",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 19127,
+            "end": 20174,
+            "start_line": 205,
+            "line_count": 11,
+            "sha256": "3a2b615ba985a12eaf601fb470c8974d9b2c51f68d7f10cfcc5913dcd22b32f2",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-012 提供候補と採用authorityの分離"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 5381,
+                "end": 5684,
+                "start_line": 40,
+                "line_count": 1,
+                "sha256": "f332f7974002d1d73fe5bc5b12c24d988913fd66717e4d6915dacc6eea238a27"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-001",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 20508,
+            "end": 21616,
+            "start_line": 220,
+            "line_count": 10,
+            "sha256": "fcddad5c8f225147186c49fa08da577ae04be86a89f84d112dccf18956e21d6b",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-001 Infrastructure DomainとSubdomain"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 5684,
+                "end": 6194,
+                "start_line": 41,
+                "line_count": 1,
+                "sha256": "b632016e7b0fb5e3c0ac0e3080f86283eac8e4bb39bee246d9e8373086f5e5a1"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-002",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 21616,
+            "end": 22463,
+            "start_line": 230,
+            "line_count": 10,
+            "sha256": "8aaa447b505de8ad93744994b01e5285fd496a7f11165912b14b83c9fdde7159",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-002 Infrastructure Pattern階層"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 6194,
+                "end": 6463,
+                "start_line": 42,
+                "line_count": 1,
+                "sha256": "3e262257957673c43a631480d175578b3cf9feb50f31230299ce1d5cd9c880a8"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-003",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 22463,
+            "end": 23550,
+            "start_line": 240,
+            "line_count": 10,
+            "sha256": "015454d12eb883ec17e4cd5752633486ebeb289378a7d00b24d2e8e2c6350f0b",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-003 Infrastructure Pattern成立条件"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 6463,
+                "end": 6900,
+                "start_line": 43,
+                "line_count": 1,
+                "sha256": "339434e6d8c6b7438f3c67efe7aa50788314c4fd6f1778fd557d7ff9e4759f6e"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-004",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 23550,
+            "end": 24484,
+            "start_line": 250,
+            "line_count": 10,
+            "sha256": "d11834af6cc5a20da98d97ada275cd8bcdc17ec930daa1e8ce03b3b2d904bb84",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-004 非機能要求からPatternとinputへの関係"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 6900,
+                "end": 7198,
+                "start_line": 44,
+                "line_count": 1,
+                "sha256": "e78120ffe0c33badd64289c6b45c9d0b9010c23fc7b4f597be63deef04ccdbb0"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-005",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 24484,
+            "end": 25540,
+            "start_line": 260,
+            "line_count": 10,
+            "sha256": "6421070da28271408c2276ea905ad647f4917e0a42a36d9aec81bc306540ff90",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-005 Failure構造"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 7198,
+                "end": 7647,
+                "start_line": 45,
+                "line_count": 1,
+                "sha256": "027ec51b1800b025e0d7b8e4077316c8cadeea469e59638701e03548571833a8"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-006",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 25540,
+            "end": 26628,
+            "start_line": 270,
+            "line_count": 12,
+            "sha256": "3815313a4d7eb5d3ddbf42d7131f9a285cc865fb26105ba5b6cf64c27f221f23",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-006 Recovery Pattern"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 7647,
+                "end": 7960,
+                "start_line": 46,
+                "line_count": 1,
+                "sha256": "4d27eac75001098de566731352d2edf45c0f08c635044a26d1eaf83fab494d82"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-007",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 26628,
+            "end": 27549,
+            "start_line": 282,
+            "line_count": 10,
+            "sha256": "79954786ae654f5969fcc002cfe57803966f0205f59305f90de56a7295ccb188",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-007 Deployment Pattern"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 7960,
+                "end": 8272,
+                "start_line": 47,
+                "line_count": 1,
+                "sha256": "8bcf9023a543c1772d888fabce7b4df40fb23c46e419475a52284be9aef0d2b2"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-008",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 27549,
+            "end": 28435,
+            "start_line": 292,
+            "line_count": 10,
+            "sha256": "fd25f8a5431b39e11266b4cf65f056706d6a27932fb0af9fb5cf4ff703055fe8",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-008 Scaling・Capacity Pattern"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 8272,
+                "end": 8611,
+                "start_line": 48,
+                "line_count": 1,
+                "sha256": "9c51887b271b926e70c837a48a05aa66e55f53ffb3f6337f53d613f4ae4de1f3"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-009",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 28435,
+            "end": 29375,
+            "start_line": 302,
+            "line_count": 10,
+            "sha256": "2286996c4a51098e495d602c94d5e641420d8f7110ba00a8ceed59e075f13f9c",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-009 Observability知識"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 8611,
+                "end": 8923,
+                "start_line": 49,
+                "line_count": 1,
+                "sha256": "841445aa41dff273200edc6259212d00314c2058b2f9d6166a69a8fc64dc8693"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-010",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 29375,
+            "end": 30334,
+            "start_line": 312,
+            "line_count": 10,
+            "sha256": "e3d673a5ec89eb201512750f9cdef510099a2a1c69ccf3e706effe63696de6a9",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-010 Backup・Restore・Recoverability"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 8923,
+                "end": 9193,
+                "start_line": 50,
+                "line_count": 1,
+                "sha256": "0d82dcad9c63929ef29003277754ad41eb50d85bb54d93193f0de5dfbf839687"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-011",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 30334,
+            "end": 31197,
+            "start_line": 322,
+            "line_count": 10,
+            "sha256": "ca1ab62c895b7cea2e8f92d29609affb34f3fc0163697ea9d7f814d4a9f60855",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-011 Cost characteristic"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 9193,
+                "end": 9505,
+                "start_line": 51,
+                "line_count": 1,
+                "sha256": "865b51ab2c0cc7d3914201937ed583bfe61a13e1f5330038615fc71835fe048b"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-012",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 31197,
+            "end": 32085,
+            "start_line": 332,
+            "line_count": 10,
+            "sha256": "6321d9a2fa5685f623d8256c8aa156f6061b284694bfbbe1047b0f7b074e9c51",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-012 Provider抽象と実装例"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 9505,
+                "end": 9785,
+                "start_line": 52,
+                "line_count": 1,
+                "sha256": "4b9c41a61d3d6b032bacec1a588fe17e14026957888fdbba196cb14d38a55b07"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-013",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 32085,
+            "end": 33052,
+            "start_line": 342,
+            "line_count": 10,
+            "sha256": "915285630ae5080ac424fe09f181239d97410b0e9c6442a75c15ad3c33e38173",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-013 実行基盤の共通resource抽象"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 9785,
+                "end": 10049,
+                "start_line": 53,
+                "line_count": 1,
+                "sha256": "87dab47321ea76f2ddd63ac283d420d153a7923e2d9960a80a2843424b009fb9"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-014",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 33052,
+            "end": 33975,
+            "start_line": 352,
+            "line_count": 10,
+            "sha256": "adc8d9d3b668980f2912b120e3d13889419670ed190ac7f78589d8f692d14479",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-014 Infrastructure topology graph"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 10049,
+                "end": 10329,
+                "start_line": 54,
+                "line_count": 1,
+                "sha256": "6d45f4349873d7a7365ad23af8a0a7e24a99755f7ed8d9feb33c96248663d28e"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-015",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 33975,
+            "end": 34833,
+            "start_line": 362,
+            "line_count": 10,
+            "sha256": "11b9eff2eaac4b17aace22ac405581b9ceb7dab34b260320f246992b28f600af",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-015 Domain横断relation"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 10329,
+                "end": 10610,
+                "start_line": 55,
+                "line_count": 1,
+                "sha256": "58e16ddb2d0ad5943173c42620ce1efba738620f464f2131dd2df242f7b5232f"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-016",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 34833,
+            "end": 35890,
+            "start_line": 372,
+            "line_count": 10,
+            "sha256": "835303e5f143675783dbef7891d035b443472a05847cdaaecb199eb801c2b7c9",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-016 Infrastructure Anti-Pattern"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 10610,
+                "end": 10999,
+                "start_line": 56,
+                "line_count": 1,
+                "sha256": "54fc593f9197339f43229875d327cf4e78ca084c7b146f44c4c16157fd8a026f"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-INFRA-017",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 35890,
+            "end": 36718,
+            "start_line": 382,
+            "line_count": 10,
+            "sha256": "d7e5a7a4d029db3bd92db437043b07c7dc4d6923c481a338815382e23c6f4795",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-INFRA-017 Pattern maturity"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 10999,
+                "end": 11280,
+                "start_line": 57,
+                "line_count": 1,
+                "sha256": "9209db4b4e0810bad881e9a714120abaae22beb29bc0490e259d281423133420"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-018",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 36756,
+            "end": 38251,
+            "start_line": 394,
+            "line_count": 10,
+            "sha256": "9dccc78beb510714efbeb09534aa18619abdfd672df1f9fd44088718a3b3dc4d",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-018 製品Coreからの再利用候補入力（connection）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 11280,
+                "end": 11657,
+                "start_line": 58,
+                "line_count": 1,
+                "sha256": "028fea2baa9ee9a199c8207ec22e0fd9344a525460ed1db29b5214cb730152b9"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-019",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 38251,
+            "end": 39367,
+            "start_line": 404,
+            "line_count": 10,
+            "sha256": "e410ff28aaf5e2f5368441b407ab7044829a94e57cbd747d029a21e2fac916b5",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-019 BRAIN知識候補の製品Coreへの提供（connection）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 11657,
+                "end": 11922,
+                "start_line": 59,
+                "line_count": 1,
+                "sha256": "bd35e9df0c69f1cbf061193c67cbb44ac991a484cf6b143155f61eabe6319152"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-020",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 39367,
+            "end": 40609,
+            "start_line": 414,
+            "line_count": 10,
+            "sha256": "28d2b53bfdd0db2353942c4e880a4cc9d48069d302ecffc0cded0f94cc08fbc6",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-020 LABO評価結果の知識候補への接続（connection）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 11922,
+                "end": 12330,
+                "start_line": 60,
+                "line_count": 1,
+                "sha256": "a2e14b5a11026650f650dcc5d622fae8b5526342c7a198f7a80bb258ed45f3a4"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-021",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 40609,
+            "end": 41700,
+            "start_line": 424,
+            "line_count": 10,
+            "sha256": "439be1b0d6f2ab9cdb9c17ed3c3f3dab19c40885cd95d5800b8419b7815dfa1b",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-021 BRAINとINTELLIGENCEの知識・判断材料接続（connectio"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 12330,
+                "end": 12594,
+                "start_line": 61,
+                "line_count": 1,
+                "sha256": "b2049bccaa192a54e930af64845a43a504e53b7a71a4a55650002bcdac60444f"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-022",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 41700,
+            "end": 43248,
+            "start_line": 434,
+            "line_count": 10,
+            "sha256": "590abf50787f50c3d1fd640e34e75bd337d52829aff9cea9474f2601f7ef4a42",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-022 BRAINのrequired inputからHARNESS設計義務への接続（"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 12594,
+                "end": 12963,
+                "start_line": 62,
+                "line_count": 1,
+                "sha256": "0ce688f2e9115c2ae76f188a209862ed2a64088cdda85c930f4c828236f70258"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-023",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 43248,
+            "end": 44439,
+            "start_line": 444,
+            "line_count": 10,
+            "sha256": "63d27178ddfbf23ab2797099ae56de52515bebb2577e0e05e03e2a3620cb5c12",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-023 BRAINとVisual Design HARNESSの知識接続（conne"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 12963,
+                "end": 13233,
+                "start_line": 63,
+                "line_count": 1,
+                "sha256": "c4624e7d223c1af7bab59c6203ad21dbcb00adf26a70ac8c84191befad6dcf55"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-024",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 44439,
+            "end": 46244,
+            "start_line": 454,
+            "line_count": 10,
+            "sha256": "c91976bfc0f128dd8628b8d3448ddac57af0e4531f8d54f996ed094cd3b018c3",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-024 Infrastructure設計知識と実績のCORE/LABO経由分離（co"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 13233,
+                "end": 13637,
+                "start_line": 64,
+                "line_count": 1,
+                "sha256": "aff2c5df94b1b823fa92d879ae7625c791d623f28eed0851ed7d4d585fa6f440"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-025",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 46244,
+            "end": 47888,
+            "start_line": 464,
+            "line_count": 10,
+            "sha256": "a65af00d769a3e2ef3dbe5fedc6034ab67e1c4e44d5e2baa8b8d8ad381df6be5",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-025 内部知識候補の独立検証・採否（composite）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 13637,
+                "end": 14121,
+                "start_line": 65,
+                "line_count": 1,
+                "sha256": "820a9905a103a6993004f6db6bfad8222091898c704a56eb51e865c75a81b895"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-026",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 47888,
+            "end": 49099,
+            "start_line": 474,
+            "line_count": 10,
+            "sha256": "e7eaf8d11d033fb790bbd33cae5c8efa60ccb7f9fb80200bd3328bc257b1d6ee",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-026 外部情報のLABO経由候補入力（connection）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 14121,
+                "end": 14486,
+                "start_line": 66,
+                "line_count": 1,
+                "sha256": "8a5835ffcfd2d9d9000d498f2c7af4a1a102bb3bc6ef8981a062683da30ea1a7"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-027",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 49099,
+            "end": 50647,
+            "start_line": 484,
+            "line_count": 10,
+            "sha256": "ada39a3171bab3ca57a6c109c215dc27d7fb7f9e37572a174b7c08dafc8eabed",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-027 外部知識候補の分解・評価・取込み（composite）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 14486,
+                "end": 14961,
+                "start_line": 67,
+                "line_count": 1,
+                "sha256": "862382411a8689c88205e3b6cf4326ab141c39d66b2911c77707eaee312c2309"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-028",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 50647,
+            "end": 52085,
+            "start_line": 494,
+            "line_count": 10,
+            "sha256": "0120989594637907eed4c8a63a2b17619187739e1dd34d916a1dc15cb80e72c1",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-028 BRAIN知識pack descriptorの版・互換適用（unit）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_table_row",
+              "line_span": {
+                "start": 14961,
+                "end": 15333,
+                "start_line": 68,
+                "line_count": 1,
+                "sha256": "fdf71fc826cce6edd4c669afefd546d3bf27e2093236cecdbe6cd6a972a23929"
+              },
+              "containing_partition": {
+                "start": 687,
+                "end": 15334,
+                "start_line": 21,
+                "line_count": 49,
+                "sha256": "e60aa400edf3d8841bb42bfc8cb995651705089fb4e7145c3748d1f50e1ed2b7",
+                "role": "document_title",
+                "first_line": "# HELIX-BRAIN受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-029",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 66278,
+            "end": 69020,
+            "start_line": 564,
+            "line_count": 11,
+            "sha256": "79ed972f758fddbe5d6488a67de19bd951562d4eccbc9c45ab86027d87493259",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-029 製品設計で使えるPattern関係候補を構成する（unit candidat"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "inline_mention",
+              "line_span": {
+                "start": 16861,
+                "end": 17493,
+                "start_line": 85,
+                "line_count": 1,
+                "sha256": "0440f6b07bcd28289ba3f4a72897337abf0b398c413c33c642193f7c72f69136"
+              },
+              "containing_partition": {
+                "start": 16816,
+                "end": 17494,
+                "start_line": 83,
+                "line_count": 4,
+                "sha256": "148f1a197dbd56c53671d285d704e87d54b72c3aea5326ea5eba893c734f3b07",
+                "role": "group_heading",
+                "first_line": "## G15 HARNESS設計合成向けBRAIN受入"
+              }
+            },
+            {
+              "role": "acceptance_section_heading",
+              "line_span": {
+                "start": 17494,
+                "end": 17521,
+                "start_line": 87,
+                "line_count": 1,
+                "sha256": "7edb320cb33baee35e730c8672ca0a49fa956b8bb00b53fe1cb9a3af025cdc9a"
+              },
+              "containing_partition": {
+                "start": 17494,
+                "end": 19200,
+                "start_line": 87,
+                "line_count": 10,
+                "sha256": "5ede48e59990c5aedf9a1a09a89457a6ba15ff0583328cc056f070a4196a04a9",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-029 unit"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-030",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 69020,
+            "end": 71596,
+            "start_line": 575,
+            "line_count": 12,
+            "sha256": "a69172ac364108dd9d81f93ff86dd7673a47f993e81055a20e18bc3b2cdf12ee",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-030 BRAIN設計知識をHARNESSへ受け渡す（connection cand"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "inline_mention",
+              "line_span": {
+                "start": 16861,
+                "end": 17493,
+                "start_line": 85,
+                "line_count": 1,
+                "sha256": "0440f6b07bcd28289ba3f4a72897337abf0b398c413c33c642193f7c72f69136"
+              },
+              "containing_partition": {
+                "start": 16816,
+                "end": 17494,
+                "start_line": 83,
+                "line_count": 4,
+                "sha256": "148f1a197dbd56c53671d285d704e87d54b72c3aea5326ea5eba893c734f3b07",
+                "role": "group_heading",
+                "first_line": "## G15 HARNESS設計合成向けBRAIN受入"
+              }
+            },
+            {
+              "role": "acceptance_section_heading",
+              "line_span": {
+                "start": 19200,
+                "end": 19233,
+                "start_line": 97,
+                "line_count": 1,
+                "sha256": "d221bb9d7e529361d99a68ab0f32d8c4cd52b7eeadae4df463a8575f617dec6d"
+              },
+              "containing_partition": {
+                "start": 19200,
+                "end": 23233,
+                "start_line": 97,
+                "line_count": 18,
+                "sha256": "bfb1d656431e49066bca208ecf52ffeff9d0bd88d7d85b939b185d66128115c4",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-030 connection"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-031",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 71596,
+            "end": 74040,
+            "start_line": 587,
+            "line_count": 12,
+            "sha256": "1a9e5e9060ec7db7c4943a48779374ed865bc6fd887a129f39f8bf91fcbb8aab",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-031 役割型の再利用知識候補（unit candidate）"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_section_heading",
+              "line_span": {
+                "start": 23701,
+                "end": 23756,
+                "start_line": 120,
+                "line_count": 1,
+                "sha256": "0cf9d9c321cd01abc6ef214bb930894fe649b2c36067957a918859372993ec3d"
+              },
+              "containing_partition": {
+                "start": 23701,
+                "end": 25083,
+                "start_line": 120,
+                "line_count": 8,
+                "sha256": "515138a0df0002bb0fdb498abcfcdde6156693441dde3572cf30e5e8a0ac3503",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-031のL11受入候補（未実行）"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      },
+      {
+        "identity": "HELIXBRAIN-L2-032",
+        "l2_definition_context": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
+          "partition": {
+            "start": 74040,
+            "end": 78839,
+            "start_line": 599,
+            "line_count": 12,
+            "sha256": "f096552717f3b648477433e01df5533788e2ca2ead6bfdb5e24d32d364ac3e48",
+            "role": "requirement_or_acceptance_section",
+            "first_line": "### HELIXBRAIN-L2-032 汎用Design Templateの意味契約候補を提供する（unit can"
+          }
+        },
+        "l11_pair_contexts": {
+          "source_revision": "dce07d0ce54821a445919664030bb82fcfd10fb9",
+          "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
+          "locations": [
+            {
+              "role": "acceptance_section_heading",
+              "line_span": {
+                "start": 25083,
+                "end": 25154,
+                "start_line": 128,
+                "line_count": 1,
+                "sha256": "f1bdc4c6d62b164483df13665254efbdf10e3ff7740d67bdc5c738a5e1f2e375"
+              },
+              "containing_partition": {
+                "start": 25083,
+                "end": 27596,
+                "start_line": 128,
+                "line_count": 8,
+                "sha256": "bc0a4ea0e6f282fbb0aac884d1e6ff9d86b279d32c5fbd9cc3180260d4c29429",
+                "role": "requirement_or_acceptance_section",
+                "first_line": "### HELIXBRAIN-L2-032 汎用Design Template意味契約の受入候補"
+              }
+            }
+          ]
+        },
+        "interpretation": "出現箇所・role分類のみ。全mentionの網羅性、L2/L11意味同等性、authority状態を判定しない。owner/version/適用条件等はL2 partition全体で原文参照可能。"
+      }
+    ]
+  }
 }
