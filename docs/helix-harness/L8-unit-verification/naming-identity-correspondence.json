@@ -55095,5 +55095,3336 @@
     "native_observed": false,
     "new_F02_program_not_authored_at_freeze": true,
     "freeze_flag_note_ja": "new_F02_program_not_authored_at_freezeはfreeze時点の過去状態を示す記録であり、現proposalの現在状態として転記したものではない。"
+  },
+  "f03_source_bound_candidate_verification": {
+    "kind": "private_source_bound_candidate_verification",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "role": "root technical finite synthetic oracle freeze before new F03 normative program; not requirement approval/runtime qualification",
+    "source_revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+    "freeze_snapshot_main": "6ed6ada728859fe585a5812da11f2f50361e7c2d",
+    "proposal_sha256": "ff246936861e1493d0305a3777cc34532dc8f59bc36f30917d04580b0c495aef",
+    "cases": [
+      {
+        "id": "normal_source_bound_declared_candidate",
+        "fixed_native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/13",
+          "selected_witness": {
+            "canonical_sha256": "f3b9537d319131f66743bc5ed8907fa49b13d1476cc024629638e6fad4347179",
+            "ordered_compact_sha256": "3a9857a4c8ae69f7657e6e946c185b3ca8fcf6a80e76c5400910f69fe47d4926",
+            "ordered_compact_utf8_bytes": 7888
+          }
+        },
+        "input": {
+          "arguments": {
+            "packet": {
+              "behavior_invariant": {
+                "expected": "same value/failure/effects",
+                "oracle": "ORACLE-P"
+              },
+              "canonical_decision": {
+                "name": "readValue",
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "evidence_basis": "content",
+              "minimum_transform": {
+                "changes": [
+                  "symbol edge only"
+                ]
+              },
+              "observed_consumers": [
+                "C1",
+                "C2"
+              ],
+              "requested_effect": "candidate_only",
+              "required_consumers": [
+                "C1",
+                "C2"
+              ],
+              "rollback": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              },
+              "signature_after": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "signature_before": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "visibility": "internal"
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P",
+              "canonical_reference": {
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "stable_oracle": "ORACLE-P",
+              "rollback_reference": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              }
+            }
+          },
+          "basis": {
+            "selected_target": {
+              "identity": "SYNTHETIC-F03-TARGET-P",
+              "revision": "target-P@r7",
+              "scope": "PRODUCT-P"
+            },
+            "source_requirements": {
+              "canonical": {
+                "identity": "SYN-F03-CANONICAL-SOURCE",
+                "revision": "source-canonical@r31",
+                "scope": "PRODUCT-P",
+                "owner": "PRODUCT-P-owner"
+              },
+              "internal": {
+                "identity": "SYN-F03-INTERNAL-SOURCE",
+                "revision": "source-internal@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-symbol-description-owner"
+              },
+              "required_consumers": {
+                "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                "revision": "source-required-consumers@r6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-required-consumer-source-owner"
+              },
+              "observed_consumers": {
+                "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                "revision": "source-observed-consumers@r19",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-observed-consumer-source-owner"
+              },
+              "signature_before": {
+                "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                "revision": "source-before-signature@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-before-content-source-owner"
+              },
+              "signature_after": {
+                "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                "revision": "source-after-signature@r2",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-content-source-owner"
+              },
+              "behavior_invariant": {
+                "identity": "SYN-F03-INVARIANT-SOURCE",
+                "revision": "source-invariant@r12",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-invariant-source-owner"
+              },
+              "minimum_transform": {
+                "identity": "SYN-F03-TRANSFORM-SOURCE",
+                "revision": "source-transform@r3",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-transform-source-owner"
+              },
+              "rollback": {
+                "identity": "SYN-F03-ROLLBACK-SOURCE",
+                "revision": "source-rollback@r11",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-rollback-source-owner"
+              },
+              "semantic_basis": {
+                "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                "revision": "source-content-basis@r4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              },
+              "operation_boundary": {
+                "identity": "SYN-F03-EFFECT-SOURCE",
+                "revision": "source-effect@r5",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              }
+            },
+            "sources": {
+              "canonical": {
+                "attributes": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "name": "readValue",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                }
+              },
+              "internal": {
+                "attributes": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "internal"
+              },
+              "required_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "observed_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "signature_before": {
+                "attributes": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "signature_after": {
+                "attributes": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "behavior_invariant": {
+                "attributes": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                }
+              },
+              "minimum_transform": {
+                "attributes": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                }
+              },
+              "rollback": {
+                "attributes": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              },
+              "semantic_basis": {
+                "attributes": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "content"
+              },
+              "operation_boundary": {
+                "attributes": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "candidate_only"
+              }
+            }
+          }
+        },
+        "expected_whole": {
+          "input_capture": {
+            "arguments": {
+              "packet": {
+                "behavior_invariant": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                },
+                "canonical_decision": {
+                  "name": "readValue",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "evidence_basis": "content",
+                "minimum_transform": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                },
+                "observed_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "requested_effect": "candidate_only",
+                "required_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "rollback": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                },
+                "signature_after": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "signature_before": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "visibility": "internal"
+              },
+              "context": {
+                "unaffected_Q": "original_Q",
+                "scope": "PRODUCT-P",
+                "canonical_reference": {
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "stable_oracle": "ORACLE-P",
+                "rollback_reference": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              }
+            },
+            "basis": {
+              "selected_target": {
+                "identity": "SYNTHETIC-F03-TARGET-P",
+                "revision": "target-P@r7",
+                "scope": "PRODUCT-P"
+              },
+              "source_requirements": {
+                "canonical": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "internal": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "required_consumers": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "observed_consumers": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "signature_before": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "signature_after": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "behavior_invariant": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "minimum_transform": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "rollback": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "semantic_basis": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "operation_boundary": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                }
+              },
+              "sources": {
+                "canonical": {
+                  "attributes": {
+                    "identity": "SYN-F03-CANONICAL-SOURCE",
+                    "revision": "source-canonical@r31",
+                    "scope": "PRODUCT-P",
+                    "owner": "PRODUCT-P-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "name": "readValue",
+                    "owner": "PRODUCT-P-owner",
+                    "revision": "decision-P@r1"
+                  }
+                },
+                "internal": {
+                  "attributes": {
+                    "identity": "SYN-F03-INTERNAL-SOURCE",
+                    "revision": "source-internal@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-symbol-description-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "internal"
+                },
+                "required_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                    "revision": "source-required-consumers@r6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-required-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "observed_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                    "revision": "source-observed-consumers@r19",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-observed-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "signature_before": {
+                  "attributes": {
+                    "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                    "revision": "source-before-signature@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-before-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "signature_after": {
+                  "attributes": {
+                    "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                    "revision": "source-after-signature@r2",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "behavior_invariant": {
+                  "attributes": {
+                    "identity": "SYN-F03-INVARIANT-SOURCE",
+                    "revision": "source-invariant@r12",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-invariant-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "expected": "same value/failure/effects",
+                    "oracle": "ORACLE-P"
+                  }
+                },
+                "minimum_transform": {
+                  "attributes": {
+                    "identity": "SYN-F03-TRANSFORM-SOURCE",
+                    "revision": "source-transform@r3",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-transform-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "changes": [
+                      "symbol edge only"
+                    ]
+                  }
+                },
+                "rollback": {
+                  "attributes": {
+                    "identity": "SYN-F03-ROLLBACK-SOURCE",
+                    "revision": "source-rollback@r11",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-rollback-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "preserve_object": "OBJ-P",
+                    "preserve_oracle": "ORACLE-P",
+                    "restore_symbol": "oldLookup"
+                  }
+                },
+                "semantic_basis": {
+                  "attributes": {
+                    "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                    "revision": "source-content-basis@r4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "content"
+                },
+                "operation_boundary": {
+                  "attributes": {
+                    "identity": "SYN-F03-EFFECT-SOURCE",
+                    "revision": "source-effect@r5",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "candidate_only"
+                }
+              }
+            }
+          },
+          "native_return": {
+            "condition_results": {
+              "canonical": "supported_synthetic_condition",
+              "internal": "supported_synthetic_condition",
+              "consumers": "supported_synthetic_condition",
+              "signature:inputs": "supported_synthetic_condition",
+              "signature:outputs": "supported_synthetic_condition",
+              "signature:effects": "supported_synthetic_condition",
+              "signature:failure": "supported_synthetic_condition",
+              "signature:state_transition": "supported_synthetic_condition",
+              "signature:call_graph": "supported_synthetic_condition",
+              "signature:consumer_contract": "supported_synthetic_condition",
+              "behavior_invariant": "supported_synthetic_condition",
+              "minimum_transform": "supported_synthetic_condition",
+              "rollback": "supported_synthetic_condition",
+              "semantic_basis": "supported_synthetic_condition",
+              "operation_boundary": "supported_synthetic_condition"
+            },
+            "candidate_presentable": true,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "source_attribute_results": {
+            "canonical": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "internal": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "required_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "observed_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_before": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_after": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "behavior_invariant": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "minimum_transform": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "rollback": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "semantic_basis": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "operation_boundary": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            }
+          },
+          "binding_results": {
+            "canonical": {
+              "argument_pointer": "/input_capture/arguments/packet/canonical_decision",
+              "source_pointer": "/input_capture/basis/sources/canonical",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "internal": {
+              "argument_pointer": "/input_capture/arguments/packet/visibility",
+              "source_pointer": "/input_capture/basis/sources/internal",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "required_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/required_consumers",
+              "source_pointer": "/input_capture/basis/sources/required_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "observed_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/observed_consumers",
+              "source_pointer": "/input_capture/basis/sources/observed_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_before": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_before",
+              "source_pointer": "/input_capture/basis/sources/signature_before",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_after": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_after",
+              "source_pointer": "/input_capture/basis/sources/signature_after",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "behavior_invariant": {
+              "argument_pointer": "/input_capture/arguments/packet/behavior_invariant",
+              "source_pointer": "/input_capture/basis/sources/behavior_invariant",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "minimum_transform": {
+              "argument_pointer": "/input_capture/arguments/packet/minimum_transform",
+              "source_pointer": "/input_capture/basis/sources/minimum_transform",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "rollback": {
+              "argument_pointer": "/input_capture/arguments/packet/rollback",
+              "source_pointer": "/input_capture/basis/sources/rollback",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "semantic_basis": {
+              "argument_pointer": "/input_capture/arguments/packet/evidence_basis",
+              "source_pointer": "/input_capture/basis/sources/semantic_basis",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "operation_boundary": {
+              "argument_pointer": "/input_capture/arguments/packet/requested_effect",
+              "source_pointer": "/input_capture/basis/sources/operation_boundary",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            }
+          },
+          "presentation": {
+            "state": "source_bound_candidate_only",
+            "diagnostic_refs": []
+          },
+          "author_returns": [],
+          "actual_dispatch": false,
+          "target_scope_result": "known"
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "4982f6ad2020a8c11f276f49d9f7573aedc8ae6b6c84eb8296f2707061a7c4e4",
+            "ordered_compact_sha256": "685fd9b7a11fb930b1c33658f9f9a8be3e30806cf172fc882bd26ed0f5e3374f",
+            "ordered_compact_utf8_bytes": 6873
+          },
+          "expected": {
+            "canonical_sha256": "f44feeec7ce22ff8d4e9765844dfd7c9c1b5b2bc471fffe6397a8f0211043269",
+            "ordered_compact_sha256": "390aa3df1c63e23235e90a7ed20388a5b6a280a1c9d864600dcc7e54e3c290b2",
+            "ordered_compact_utf8_bytes": 13249
+          },
+          "native_return": {
+            "canonical_sha256": "6979749368653b0a49224d819ea0a3b618af230d03ad5413edfba49b1d2289f8",
+            "ordered_compact_sha256": "1eaf5a218c18092598a61d918cff74c32d7a6ffa3b9baac2a2ab7ca7ffa6df22",
+            "ordered_compact_utf8_bytes": 1031
+          },
+          "basis": {
+            "canonical_sha256": "8baf56d43094d00cb398bab8153514ff5e918ccb4c038691ff50937e34aea69f",
+            "ordered_compact_sha256": "3406e3ea0d2dacece15d3b4da1a781e0a07d51116540973d6844b519ad52c38b",
+            "ordered_compact_utf8_bytes": 5643
+          }
+        },
+        "authority_boundary_ja": "新synthetic宣言sourceを手著述した設計候補。実owner資格/実source観測/既存B01の実流用/実behavior/実最小性/配送や全F03閉包ではない。"
+      },
+      {
+        "id": "canonical_name_diff_same_subject",
+        "fixed_native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/133",
+          "selected_witness": {
+            "canonical_sha256": "395262db0c6bd474a0c28d0714787121b068196af315bbc0d40a6f9a552f0385",
+            "ordered_compact_sha256": "aadfaeb435d1986bcf356e4b2e585e944b1a1bb418ce5181cd29524c80eb5355",
+            "ordered_compact_utf8_bytes": 8377
+          }
+        },
+        "input": {
+          "arguments": {
+            "packet": {
+              "behavior_invariant": {
+                "expected": "same value/failure/effects",
+                "oracle": "ORACLE-P"
+              },
+              "canonical_decision": {
+                "name": "foreign-uncompared-name",
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "evidence_basis": "content",
+              "minimum_transform": {
+                "changes": [
+                  "symbol edge only"
+                ]
+              },
+              "observed_consumers": [
+                "C1",
+                "C2"
+              ],
+              "requested_effect": "candidate_only",
+              "required_consumers": [
+                "C1",
+                "C2"
+              ],
+              "rollback": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              },
+              "signature_after": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "signature_before": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "visibility": "internal"
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P",
+              "canonical_reference": {
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "stable_oracle": "ORACLE-P",
+              "rollback_reference": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              }
+            }
+          },
+          "basis": {
+            "selected_target": {
+              "identity": "SYNTHETIC-F03-TARGET-P",
+              "revision": "target-P@r7",
+              "scope": "PRODUCT-P"
+            },
+            "source_requirements": {
+              "canonical": {
+                "identity": "SYN-F03-CANONICAL-SOURCE",
+                "revision": "source-canonical@r31",
+                "scope": "PRODUCT-P",
+                "owner": "PRODUCT-P-owner"
+              },
+              "internal": {
+                "identity": "SYN-F03-INTERNAL-SOURCE",
+                "revision": "source-internal@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-symbol-description-owner"
+              },
+              "required_consumers": {
+                "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                "revision": "source-required-consumers@r6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-required-consumer-source-owner"
+              },
+              "observed_consumers": {
+                "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                "revision": "source-observed-consumers@r19",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-observed-consumer-source-owner"
+              },
+              "signature_before": {
+                "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                "revision": "source-before-signature@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-before-content-source-owner"
+              },
+              "signature_after": {
+                "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                "revision": "source-after-signature@r2",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-content-source-owner"
+              },
+              "behavior_invariant": {
+                "identity": "SYN-F03-INVARIANT-SOURCE",
+                "revision": "source-invariant@r12",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-invariant-source-owner"
+              },
+              "minimum_transform": {
+                "identity": "SYN-F03-TRANSFORM-SOURCE",
+                "revision": "source-transform@r3",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-transform-source-owner"
+              },
+              "rollback": {
+                "identity": "SYN-F03-ROLLBACK-SOURCE",
+                "revision": "source-rollback@r11",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-rollback-source-owner"
+              },
+              "semantic_basis": {
+                "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                "revision": "source-content-basis@r4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              },
+              "operation_boundary": {
+                "identity": "SYN-F03-EFFECT-SOURCE",
+                "revision": "source-effect@r5",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              }
+            },
+            "sources": {
+              "canonical": {
+                "attributes": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "name": "readValue",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                }
+              },
+              "internal": {
+                "attributes": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "internal"
+              },
+              "required_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "observed_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "signature_before": {
+                "attributes": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "signature_after": {
+                "attributes": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "behavior_invariant": {
+                "attributes": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                }
+              },
+              "minimum_transform": {
+                "attributes": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                }
+              },
+              "rollback": {
+                "attributes": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              },
+              "semantic_basis": {
+                "attributes": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "content"
+              },
+              "operation_boundary": {
+                "attributes": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "candidate_only"
+              }
+            }
+          }
+        },
+        "expected_whole": {
+          "input_capture": {
+            "arguments": {
+              "packet": {
+                "behavior_invariant": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                },
+                "canonical_decision": {
+                  "name": "foreign-uncompared-name",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "evidence_basis": "content",
+                "minimum_transform": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                },
+                "observed_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "requested_effect": "candidate_only",
+                "required_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "rollback": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                },
+                "signature_after": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "signature_before": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "visibility": "internal"
+              },
+              "context": {
+                "unaffected_Q": "original_Q",
+                "scope": "PRODUCT-P",
+                "canonical_reference": {
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "stable_oracle": "ORACLE-P",
+                "rollback_reference": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              }
+            },
+            "basis": {
+              "selected_target": {
+                "identity": "SYNTHETIC-F03-TARGET-P",
+                "revision": "target-P@r7",
+                "scope": "PRODUCT-P"
+              },
+              "source_requirements": {
+                "canonical": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "internal": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "required_consumers": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "observed_consumers": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "signature_before": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "signature_after": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "behavior_invariant": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "minimum_transform": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "rollback": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "semantic_basis": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "operation_boundary": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                }
+              },
+              "sources": {
+                "canonical": {
+                  "attributes": {
+                    "identity": "SYN-F03-CANONICAL-SOURCE",
+                    "revision": "source-canonical@r31",
+                    "scope": "PRODUCT-P",
+                    "owner": "PRODUCT-P-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "name": "readValue",
+                    "owner": "PRODUCT-P-owner",
+                    "revision": "decision-P@r1"
+                  }
+                },
+                "internal": {
+                  "attributes": {
+                    "identity": "SYN-F03-INTERNAL-SOURCE",
+                    "revision": "source-internal@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-symbol-description-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "internal"
+                },
+                "required_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                    "revision": "source-required-consumers@r6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-required-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "observed_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                    "revision": "source-observed-consumers@r19",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-observed-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "signature_before": {
+                  "attributes": {
+                    "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                    "revision": "source-before-signature@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-before-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "signature_after": {
+                  "attributes": {
+                    "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                    "revision": "source-after-signature@r2",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "behavior_invariant": {
+                  "attributes": {
+                    "identity": "SYN-F03-INVARIANT-SOURCE",
+                    "revision": "source-invariant@r12",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-invariant-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "expected": "same value/failure/effects",
+                    "oracle": "ORACLE-P"
+                  }
+                },
+                "minimum_transform": {
+                  "attributes": {
+                    "identity": "SYN-F03-TRANSFORM-SOURCE",
+                    "revision": "source-transform@r3",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-transform-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "changes": [
+                      "symbol edge only"
+                    ]
+                  }
+                },
+                "rollback": {
+                  "attributes": {
+                    "identity": "SYN-F03-ROLLBACK-SOURCE",
+                    "revision": "source-rollback@r11",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-rollback-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "preserve_object": "OBJ-P",
+                    "preserve_oracle": "ORACLE-P",
+                    "restore_symbol": "oldLookup"
+                  }
+                },
+                "semantic_basis": {
+                  "attributes": {
+                    "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                    "revision": "source-content-basis@r4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "content"
+                },
+                "operation_boundary": {
+                  "attributes": {
+                    "identity": "SYN-F03-EFFECT-SOURCE",
+                    "revision": "source-effect@r5",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "candidate_only"
+                }
+              }
+            }
+          },
+          "native_return": {
+            "condition_results": {
+              "canonical": "supported_synthetic_condition",
+              "internal": "supported_synthetic_condition",
+              "consumers": "supported_synthetic_condition",
+              "signature:inputs": "supported_synthetic_condition",
+              "signature:outputs": "supported_synthetic_condition",
+              "signature:effects": "supported_synthetic_condition",
+              "signature:failure": "supported_synthetic_condition",
+              "signature:state_transition": "supported_synthetic_condition",
+              "signature:call_graph": "supported_synthetic_condition",
+              "signature:consumer_contract": "supported_synthetic_condition",
+              "behavior_invariant": "supported_synthetic_condition",
+              "minimum_transform": "supported_synthetic_condition",
+              "rollback": "supported_synthetic_condition",
+              "semantic_basis": "supported_synthetic_condition",
+              "operation_boundary": "supported_synthetic_condition"
+            },
+            "candidate_presentable": true,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "source_attribute_results": {
+            "canonical": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "internal": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "required_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "observed_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_before": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_after": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "behavior_invariant": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "minimum_transform": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "rollback": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "semantic_basis": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "operation_boundary": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            }
+          },
+          "binding_results": {
+            "canonical": {
+              "argument_pointer": "/input_capture/arguments/packet/canonical_decision",
+              "source_pointer": "/input_capture/basis/sources/canonical",
+              "value_result": "conflict",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "internal": {
+              "argument_pointer": "/input_capture/arguments/packet/visibility",
+              "source_pointer": "/input_capture/basis/sources/internal",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "required_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/required_consumers",
+              "source_pointer": "/input_capture/basis/sources/required_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "observed_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/observed_consumers",
+              "source_pointer": "/input_capture/basis/sources/observed_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_before": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_before",
+              "source_pointer": "/input_capture/basis/sources/signature_before",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_after": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_after",
+              "source_pointer": "/input_capture/basis/sources/signature_after",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "behavior_invariant": {
+              "argument_pointer": "/input_capture/arguments/packet/behavior_invariant",
+              "source_pointer": "/input_capture/basis/sources/behavior_invariant",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "minimum_transform": {
+              "argument_pointer": "/input_capture/arguments/packet/minimum_transform",
+              "source_pointer": "/input_capture/basis/sources/minimum_transform",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "rollback": {
+              "argument_pointer": "/input_capture/arguments/packet/rollback",
+              "source_pointer": "/input_capture/basis/sources/rollback",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "semantic_basis": {
+              "argument_pointer": "/input_capture/arguments/packet/evidence_basis",
+              "source_pointer": "/input_capture/basis/sources/semantic_basis",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "operation_boundary": {
+              "argument_pointer": "/input_capture/arguments/packet/requested_effect",
+              "source_pointer": "/input_capture/basis/sources/operation_boundary",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            }
+          },
+          "presentation": {
+            "state": "not_presentable",
+            "diagnostic_refs": [
+              "/binding_results/canonical/value_result"
+            ]
+          },
+          "author_returns": [
+            {
+              "recipient_role": "target_creator",
+              "target_pointer": "/input_capture/basis/selected_target",
+              "condition_role": "canonical",
+              "reason_pointer": "/binding_results/canonical/value_result"
+            }
+          ],
+          "actual_dispatch": false,
+          "target_scope_result": "known"
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "9e171efb4122e78c0953e9ae3f1ed64bb8a74ca419811de351154ee10cc9d2b6",
+            "ordered_compact_sha256": "c441784cbeffb6772656a7e58690ea56b35f418c5c7eccdf9965ca837e3aded0",
+            "ordered_compact_utf8_bytes": 6887
+          },
+          "expected": {
+            "canonical_sha256": "126e902924579cdbfbaee64554c4a6a51df845f4d724d9271b8b515dca77a278",
+            "ordered_compact_sha256": "577a0ef58f58e521df5ea478f2ddd1857b81fa8b78bf164d1d7a91b6fdcbc575",
+            "ordered_compact_utf8_bytes": 13469
+          },
+          "native_return": {
+            "canonical_sha256": "6979749368653b0a49224d819ea0a3b618af230d03ad5413edfba49b1d2289f8",
+            "ordered_compact_sha256": "1eaf5a218c18092598a61d918cff74c32d7a6ffa3b9baac2a2ab7ca7ffa6df22",
+            "ordered_compact_utf8_bytes": 1031
+          },
+          "basis": {
+            "canonical_sha256": "8baf56d43094d00cb398bab8153514ff5e918ccb4c038691ff50937e34aea69f",
+            "ordered_compact_sha256": "3406e3ea0d2dacece15d3b4da1a781e0a07d51116540973d6844b519ad52c38b",
+            "ordered_compact_utf8_bytes": 5643
+          }
+        },
+        "authority_boundary_ja": "新synthetic宣言sourceを手著述した設計候補。実owner資格/実source観測/既存B01の実流用/実behavior/実最小性/配送や全F03閉包ではない。"
+      },
+      {
+        "id": "after_signature_subject_scope_diff_same_content",
+        "fixed_native_source": {
+          "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+          "path": "docs/helix-harness/L8-unit-verification/naming-identity-correspondence.json",
+          "raw_sha256": "ef3d069277b4988e109caf0ddb576ef2012ca8b166c26a1349f8da2cf591dd03",
+          "raw_utf8_bytes": 1675202,
+          "json_pointer": "/cases/13",
+          "selected_witness": {
+            "canonical_sha256": "f3b9537d319131f66743bc5ed8907fa49b13d1476cc024629638e6fad4347179",
+            "ordered_compact_sha256": "3a9857a4c8ae69f7657e6e946c185b3ca8fcf6a80e76c5400910f69fe47d4926",
+            "ordered_compact_utf8_bytes": 7888
+          }
+        },
+        "input": {
+          "arguments": {
+            "packet": {
+              "behavior_invariant": {
+                "expected": "same value/failure/effects",
+                "oracle": "ORACLE-P"
+              },
+              "canonical_decision": {
+                "name": "readValue",
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "evidence_basis": "content",
+              "minimum_transform": {
+                "changes": [
+                  "symbol edge only"
+                ]
+              },
+              "observed_consumers": [
+                "C1",
+                "C2"
+              ],
+              "requested_effect": "candidate_only",
+              "required_consumers": [
+                "C1",
+                "C2"
+              ],
+              "rollback": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              },
+              "signature_after": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "signature_before": {
+                "call_graph": [
+                  "port.read"
+                ],
+                "consumer_contract": {
+                  "C1": "value-read@r1",
+                  "C2": "value-read@r1"
+                },
+                "effects": [],
+                "failure": [
+                  "not_found"
+                ],
+                "inputs": [
+                  "value_id"
+                ],
+                "outputs": [
+                  "value"
+                ],
+                "state_transition": "unchanged"
+              },
+              "visibility": "internal"
+            },
+            "context": {
+              "unaffected_Q": "original_Q",
+              "scope": "PRODUCT-P",
+              "canonical_reference": {
+                "owner": "PRODUCT-P-owner",
+                "revision": "decision-P@r1"
+              },
+              "stable_oracle": "ORACLE-P",
+              "rollback_reference": {
+                "preserve_object": "OBJ-P",
+                "preserve_oracle": "ORACLE-P",
+                "restore_symbol": "oldLookup"
+              }
+            }
+          },
+          "basis": {
+            "selected_target": {
+              "identity": "SYNTHETIC-F03-TARGET-P",
+              "revision": "target-P@r7",
+              "scope": "PRODUCT-P"
+            },
+            "source_requirements": {
+              "canonical": {
+                "identity": "SYN-F03-CANONICAL-SOURCE",
+                "revision": "source-canonical@r31",
+                "scope": "PRODUCT-P",
+                "owner": "PRODUCT-P-owner"
+              },
+              "internal": {
+                "identity": "SYN-F03-INTERNAL-SOURCE",
+                "revision": "source-internal@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-symbol-description-owner"
+              },
+              "required_consumers": {
+                "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                "revision": "source-required-consumers@r6",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-required-consumer-source-owner"
+              },
+              "observed_consumers": {
+                "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                "revision": "source-observed-consumers@r19",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-observed-consumer-source-owner"
+              },
+              "signature_before": {
+                "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                "revision": "source-before-signature@r8",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-before-content-source-owner"
+              },
+              "signature_after": {
+                "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                "revision": "source-after-signature@r2",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-content-source-owner"
+              },
+              "behavior_invariant": {
+                "identity": "SYN-F03-INVARIANT-SOURCE",
+                "revision": "source-invariant@r12",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-invariant-source-owner"
+              },
+              "minimum_transform": {
+                "identity": "SYN-F03-TRANSFORM-SOURCE",
+                "revision": "source-transform@r3",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-transform-source-owner"
+              },
+              "rollback": {
+                "identity": "SYN-F03-ROLLBACK-SOURCE",
+                "revision": "source-rollback@r11",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-rollback-source-owner"
+              },
+              "semantic_basis": {
+                "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                "revision": "source-content-basis@r4",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              },
+              "operation_boundary": {
+                "identity": "SYN-F03-EFFECT-SOURCE",
+                "revision": "source-effect@r5",
+                "scope": "PRODUCT-P",
+                "owner": "synthetic-candidate-author"
+              }
+            },
+            "sources": {
+              "canonical": {
+                "attributes": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "name": "readValue",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                }
+              },
+              "internal": {
+                "attributes": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "internal"
+              },
+              "required_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "observed_consumers": {
+                "attributes": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": [
+                  "C1",
+                  "C2"
+                ]
+              },
+              "signature_before": {
+                "attributes": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "signature_after": {
+                "attributes": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-Q"
+                },
+                "value": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                }
+              },
+              "behavior_invariant": {
+                "attributes": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                }
+              },
+              "minimum_transform": {
+                "attributes": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                }
+              },
+              "rollback": {
+                "attributes": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              },
+              "semantic_basis": {
+                "attributes": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "content"
+              },
+              "operation_boundary": {
+                "attributes": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "subject": {
+                  "identity": "SYNTHETIC-F03-TARGET-P",
+                  "revision": "target-P@r7",
+                  "scope": "PRODUCT-P"
+                },
+                "value": "candidate_only"
+              }
+            }
+          }
+        },
+        "expected_whole": {
+          "input_capture": {
+            "arguments": {
+              "packet": {
+                "behavior_invariant": {
+                  "expected": "same value/failure/effects",
+                  "oracle": "ORACLE-P"
+                },
+                "canonical_decision": {
+                  "name": "readValue",
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "evidence_basis": "content",
+                "minimum_transform": {
+                  "changes": [
+                    "symbol edge only"
+                  ]
+                },
+                "observed_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "requested_effect": "candidate_only",
+                "required_consumers": [
+                  "C1",
+                  "C2"
+                ],
+                "rollback": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                },
+                "signature_after": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "signature_before": {
+                  "call_graph": [
+                    "port.read"
+                  ],
+                  "consumer_contract": {
+                    "C1": "value-read@r1",
+                    "C2": "value-read@r1"
+                  },
+                  "effects": [],
+                  "failure": [
+                    "not_found"
+                  ],
+                  "inputs": [
+                    "value_id"
+                  ],
+                  "outputs": [
+                    "value"
+                  ],
+                  "state_transition": "unchanged"
+                },
+                "visibility": "internal"
+              },
+              "context": {
+                "unaffected_Q": "original_Q",
+                "scope": "PRODUCT-P",
+                "canonical_reference": {
+                  "owner": "PRODUCT-P-owner",
+                  "revision": "decision-P@r1"
+                },
+                "stable_oracle": "ORACLE-P",
+                "rollback_reference": {
+                  "preserve_object": "OBJ-P",
+                  "preserve_oracle": "ORACLE-P",
+                  "restore_symbol": "oldLookup"
+                }
+              }
+            },
+            "basis": {
+              "selected_target": {
+                "identity": "SYNTHETIC-F03-TARGET-P",
+                "revision": "target-P@r7",
+                "scope": "PRODUCT-P"
+              },
+              "source_requirements": {
+                "canonical": {
+                  "identity": "SYN-F03-CANONICAL-SOURCE",
+                  "revision": "source-canonical@r31",
+                  "scope": "PRODUCT-P",
+                  "owner": "PRODUCT-P-owner"
+                },
+                "internal": {
+                  "identity": "SYN-F03-INTERNAL-SOURCE",
+                  "revision": "source-internal@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-symbol-description-owner"
+                },
+                "required_consumers": {
+                  "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                  "revision": "source-required-consumers@r6",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-required-consumer-source-owner"
+                },
+                "observed_consumers": {
+                  "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                  "revision": "source-observed-consumers@r19",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-observed-consumer-source-owner"
+                },
+                "signature_before": {
+                  "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                  "revision": "source-before-signature@r8",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-before-content-source-owner"
+                },
+                "signature_after": {
+                  "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                  "revision": "source-after-signature@r2",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-content-source-owner"
+                },
+                "behavior_invariant": {
+                  "identity": "SYN-F03-INVARIANT-SOURCE",
+                  "revision": "source-invariant@r12",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-invariant-source-owner"
+                },
+                "minimum_transform": {
+                  "identity": "SYN-F03-TRANSFORM-SOURCE",
+                  "revision": "source-transform@r3",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-transform-source-owner"
+                },
+                "rollback": {
+                  "identity": "SYN-F03-ROLLBACK-SOURCE",
+                  "revision": "source-rollback@r11",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-rollback-source-owner"
+                },
+                "semantic_basis": {
+                  "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                  "revision": "source-content-basis@r4",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                },
+                "operation_boundary": {
+                  "identity": "SYN-F03-EFFECT-SOURCE",
+                  "revision": "source-effect@r5",
+                  "scope": "PRODUCT-P",
+                  "owner": "synthetic-candidate-author"
+                }
+              },
+              "sources": {
+                "canonical": {
+                  "attributes": {
+                    "identity": "SYN-F03-CANONICAL-SOURCE",
+                    "revision": "source-canonical@r31",
+                    "scope": "PRODUCT-P",
+                    "owner": "PRODUCT-P-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "name": "readValue",
+                    "owner": "PRODUCT-P-owner",
+                    "revision": "decision-P@r1"
+                  }
+                },
+                "internal": {
+                  "attributes": {
+                    "identity": "SYN-F03-INTERNAL-SOURCE",
+                    "revision": "source-internal@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-symbol-description-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "internal"
+                },
+                "required_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-REQUIRED-CONSUMERS-SOURCE",
+                    "revision": "source-required-consumers@r6",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-required-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "observed_consumers": {
+                  "attributes": {
+                    "identity": "SYN-F03-OBSERVED-CONSUMERS-SOURCE",
+                    "revision": "source-observed-consumers@r19",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-observed-consumer-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": [
+                    "C1",
+                    "C2"
+                  ]
+                },
+                "signature_before": {
+                  "attributes": {
+                    "identity": "SYN-F03-BEFORE-SIGNATURE-SOURCE",
+                    "revision": "source-before-signature@r8",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-before-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "signature_after": {
+                  "attributes": {
+                    "identity": "SYN-F03-AFTER-SIGNATURE-SOURCE",
+                    "revision": "source-after-signature@r2",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-content-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-Q"
+                  },
+                  "value": {
+                    "call_graph": [
+                      "port.read"
+                    ],
+                    "consumer_contract": {
+                      "C1": "value-read@r1",
+                      "C2": "value-read@r1"
+                    },
+                    "effects": [],
+                    "failure": [
+                      "not_found"
+                    ],
+                    "inputs": [
+                      "value_id"
+                    ],
+                    "outputs": [
+                      "value"
+                    ],
+                    "state_transition": "unchanged"
+                  }
+                },
+                "behavior_invariant": {
+                  "attributes": {
+                    "identity": "SYN-F03-INVARIANT-SOURCE",
+                    "revision": "source-invariant@r12",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-invariant-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "expected": "same value/failure/effects",
+                    "oracle": "ORACLE-P"
+                  }
+                },
+                "minimum_transform": {
+                  "attributes": {
+                    "identity": "SYN-F03-TRANSFORM-SOURCE",
+                    "revision": "source-transform@r3",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-transform-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "changes": [
+                      "symbol edge only"
+                    ]
+                  }
+                },
+                "rollback": {
+                  "attributes": {
+                    "identity": "SYN-F03-ROLLBACK-SOURCE",
+                    "revision": "source-rollback@r11",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-rollback-source-owner"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": {
+                    "preserve_object": "OBJ-P",
+                    "preserve_oracle": "ORACLE-P",
+                    "restore_symbol": "oldLookup"
+                  }
+                },
+                "semantic_basis": {
+                  "attributes": {
+                    "identity": "SYN-F03-CONTENT-BASIS-SOURCE",
+                    "revision": "source-content-basis@r4",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "content"
+                },
+                "operation_boundary": {
+                  "attributes": {
+                    "identity": "SYN-F03-EFFECT-SOURCE",
+                    "revision": "source-effect@r5",
+                    "scope": "PRODUCT-P",
+                    "owner": "synthetic-candidate-author"
+                  },
+                  "subject": {
+                    "identity": "SYNTHETIC-F03-TARGET-P",
+                    "revision": "target-P@r7",
+                    "scope": "PRODUCT-P"
+                  },
+                  "value": "candidate_only"
+                }
+              }
+            }
+          },
+          "native_return": {
+            "condition_results": {
+              "canonical": "supported_synthetic_condition",
+              "internal": "supported_synthetic_condition",
+              "consumers": "supported_synthetic_condition",
+              "signature:inputs": "supported_synthetic_condition",
+              "signature:outputs": "supported_synthetic_condition",
+              "signature:effects": "supported_synthetic_condition",
+              "signature:failure": "supported_synthetic_condition",
+              "signature:state_transition": "supported_synthetic_condition",
+              "signature:call_graph": "supported_synthetic_condition",
+              "signature:consumer_contract": "supported_synthetic_condition",
+              "behavior_invariant": "supported_synthetic_condition",
+              "minimum_transform": "supported_synthetic_condition",
+              "rollback": "supported_synthetic_condition",
+              "semantic_basis": "supported_synthetic_condition",
+              "operation_boundary": "supported_synthetic_condition"
+            },
+            "candidate_presentable": true,
+            "unaffected_Q": "original_Q",
+            "effects": {
+              "actual_rename": false,
+              "actual_DesignRefactor": false,
+              "actual_CI": false,
+              "actual_merge": false,
+              "actual_authority": false,
+              "actual_design_complete": false,
+              "actual_acceptance": false
+            }
+          },
+          "source_attribute_results": {
+            "canonical": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "internal": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "required_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "observed_consumers": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_before": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "signature_after": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "behavior_invariant": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "minimum_transform": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "rollback": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "semantic_basis": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            },
+            "operation_boundary": {
+              "attribute_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known",
+                "owner": "known"
+              },
+              "actual_qualification_established": false,
+              "qualification_provider": {
+                "state": "unknown",
+                "value": null
+              }
+            }
+          },
+          "binding_results": {
+            "canonical": {
+              "argument_pointer": "/input_capture/arguments/packet/canonical_decision",
+              "source_pointer": "/input_capture/basis/sources/canonical",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "internal": {
+              "argument_pointer": "/input_capture/arguments/packet/visibility",
+              "source_pointer": "/input_capture/basis/sources/internal",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "required_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/required_consumers",
+              "source_pointer": "/input_capture/basis/sources/required_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "observed_consumers": {
+              "argument_pointer": "/input_capture/arguments/packet/observed_consumers",
+              "source_pointer": "/input_capture/basis/sources/observed_consumers",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_before": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_before",
+              "source_pointer": "/input_capture/basis/sources/signature_before",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "signature_after": {
+              "argument_pointer": "/input_capture/arguments/packet/signature_after",
+              "source_pointer": "/input_capture/basis/sources/signature_after",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "conflict"
+              }
+            },
+            "behavior_invariant": {
+              "argument_pointer": "/input_capture/arguments/packet/behavior_invariant",
+              "source_pointer": "/input_capture/basis/sources/behavior_invariant",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "minimum_transform": {
+              "argument_pointer": "/input_capture/arguments/packet/minimum_transform",
+              "source_pointer": "/input_capture/basis/sources/minimum_transform",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "rollback": {
+              "argument_pointer": "/input_capture/arguments/packet/rollback",
+              "source_pointer": "/input_capture/basis/sources/rollback",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "semantic_basis": {
+              "argument_pointer": "/input_capture/arguments/packet/evidence_basis",
+              "source_pointer": "/input_capture/basis/sources/semantic_basis",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            },
+            "operation_boundary": {
+              "argument_pointer": "/input_capture/arguments/packet/requested_effect",
+              "source_pointer": "/input_capture/basis/sources/operation_boundary",
+              "value_result": "same_value",
+              "subject_results": {
+                "identity": "known",
+                "revision": "known",
+                "scope": "known"
+              }
+            }
+          },
+          "presentation": {
+            "state": "not_presentable",
+            "diagnostic_refs": [
+              "/binding_results/signature_after/subject_results/scope"
+            ]
+          },
+          "author_returns": [
+            {
+              "recipient_role": "target_creator",
+              "target_pointer": "/input_capture/basis/selected_target",
+              "condition_role": "signature_after",
+              "reason_pointer": "/binding_results/signature_after/subject_results/scope"
+            }
+          ],
+          "actual_dispatch": false,
+          "target_scope_result": "known"
+        },
+        "whole_witnesses": {
+          "input": {
+            "canonical_sha256": "645f1c213ecd496fb2cb24b6463668e710c5e5786927f0984066866956d7886b",
+            "ordered_compact_sha256": "ae9af947dbfbeb008cb0ab1eff48f0973cc782dc582cc59cf2a048e41503a496",
+            "ordered_compact_utf8_bytes": 6873
+          },
+          "expected": {
+            "canonical_sha256": "59ed1aaec78276b2475fa35865e2ef009777e6dcfcc2f89ecde063925196654a",
+            "ordered_compact_sha256": "dcdabc28d1105ef83709e1449e54332d20346ab8721bdc4acd155d978d50c7ce",
+            "ordered_compact_utf8_bytes": 13496
+          },
+          "native_return": {
+            "canonical_sha256": "6979749368653b0a49224d819ea0a3b618af230d03ad5413edfba49b1d2289f8",
+            "ordered_compact_sha256": "1eaf5a218c18092598a61d918cff74c32d7a6ffa3b9baac2a2ab7ca7ffa6df22",
+            "ordered_compact_utf8_bytes": 1031
+          },
+          "basis": {
+            "canonical_sha256": "a37247cd68f7751b2319f30bc4ea15fb2445aff62de200c9af466c58d41c497d",
+            "ordered_compact_sha256": "10aa734603b29117fc2e5b566e5561b51cdc85f1469cacc12c4d2bdf56b7dbea",
+            "ordered_compact_utf8_bytes": 5643
+          }
+        },
+        "authority_boundary_ja": "新synthetic宣言sourceを手著述した設計候補。実owner資格/実source観測/既存B01の実流用/実behavior/実最小性/配送や全F03閉包ではない。"
+      }
+    ],
+    "unexercised_ja": [
+      "全source/subject/valueのmissing/null/unknown/複合欠陥、source revision stale、source owner差、target revision差、consumer各出現版の更なる詳細oracleは未凍結。新input profileはこれらpartial値を保持できる型とし、未知をsuccessへ補完しない。",
+      "ここでの2consumer string配列と所属subjectの対応は明示原source集合の宣言比較。個々consumerの実登録/必要全集合資格は観測していない。",
+      "minimum_transform changesが非空という旧native条件の意味を遡及強化しない。同対象source対応を加えたことだけで変換最小性の新証明とはしない。",
+      "F03作成側材料は新source-bound対象tupleと原因pointerの論理返却のみ。実owner/address/dispatchは未成立で、新開始gateではない。"
+    ],
+    "output_member_order": [
+      "input_capture",
+      "native_return",
+      "source_attribute_results",
+      "binding_results",
+      "presentation",
+      "author_returns",
+      "actual_dispatch",
+      "target_scope_result"
+    ],
+    "independence_ja": "profileのpayload/属性/targetは先に新literalとして著述。期待はL4同対象/原内容規範と明示primitive差から手固定した。新normative program/author evaluatorを走らせて期待を生成していない。",
+    "native_observed": false,
+    "freeze_flag_note_ja": "new_F03_program_not_authored_at_freezeはfreeze時点の過去状態の記録であり、現proposalの現在状態ではない。",
+    "unclosed_id_note_ja": "旧unclosed_obligationsのnative IDは旧compare_f03単体の不足として不変に保持し、新private材料は限定論理材料の具体化範囲に限る。"
   }
 }
