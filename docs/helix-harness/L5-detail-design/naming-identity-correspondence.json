@@ -2947,7 +2947,7 @@
         }
       },
       "additional_properties": "closed_declared_carrier",
-      "meaning": "現在のsynthetic値比較の部分返却。同対象revision/scope/対照canonical name/実oracle bindingは未検査。 対象作成側への返却route/target finding memberは未実現。H048-F03-AUTHOR-RETURN-NOT-MATERIALIZED参照。"
+      "meaning": "旧compare_f03 nativeの部分返却型を保持し、ここへtarget/route/source binding memberを追加しない。新private f03_source_bound_candidateは明示独立basisによる対象・source/value対応と対象作成側向け論理材料を別返却に定義する。実資格/配送・全F03成立は未認定。"
     },
     "F04Arguments": {
       "kind": "record",
@@ -5067,7 +5067,7 @@
             "json_pointer": "/contracts/2/content_comparison/0",
             "value_canonical_sha256": "7b6556a2c6a90ca152757c25547dd7a2dbab70e0ab8ce839de880f8f1311d1e9"
           },
-          "current_reads": "canonical_referenceはowner/revisionのみ、stable_oracle/rollback_referenceは独立control値。F03Context.scopeは宣言保持素材だが現関数では未読。",
+          "current_reads": "旧compare_f03単体のcanonical_referenceはowner/revisionのみ、context.scopeは未読のまま保持する。新private f03_source_bound_candidateは、明示的に追加する独立basisの選択target、11条件sourceのattributes/subject/value、独立source属性controlと旧packet/contextを対応付ける。これらが旧入力に既に供給されていたとは扱わない。",
           "missing_by_condition": [
             {
               "condition": "canonical",
@@ -5091,8 +5091,8 @@
               ]
             }
           ],
-          "consequence": "全条件が同対象revision/scopeで成立したことは未検査。candidate_presentable=trueは供給値の部分比較表示であり、未供給bindingを生成せず全L3/L4義務の成立/許可/実採用を表さない。",
-          "canonical_name_detail": "nameはmissing/unknownを確認するだけでcanonical_reference.nameと内容比較しない。対照nameは現在のcontextに存在せず、name変更で返却不変となる局所例を未実現範囲の証拠として保存する。"
+          "consequence": "旧native candidate_presentable=trueは元の部分比較表示のまま。新private材料で同対象identity/revision/scope・context.scope・canonical原内容の宣言比較を具体化するが、source_bound_candidate_onlyは合成/宣言値の限定表示で、実source資格・behavior/最小性の真偽・全consumer資格・全F03成立や実採用ではない。",
+          "canonical_name_detail": "旧compare_f03はnameのmissing/unknownだけを確認し対照内容を比較しない。新private材料は独立canonical原record.valueと旧canonical_decision全内容を型を保って照合する。対照nameを旧contextへ暗黙追加せず、新basisの明示入力とし、旧name変更controlはそのまま保持する。"
         },
         {
           "id": "H048-F03-AUTHOR-RETURN-NOT-MATERIALIZED",
@@ -5119,8 +5119,8 @@
             "理由付きfindingと対象identityの結線",
             "作成側consumerへ渡す論理producer/返却recordと正式owner binding"
           ],
-          "current_carrier_limit": "F03Returnに作成側route/target finding recordは存在しない。L10の返却先の役割は対象作成側と確定しているが、その返却を値へ組み立てて出力していない。F04やB01の別返却memberをこの関数が供給したとはしない。",
-          "consequence": "原192全期待を保持した部分比較。作成側への返却義務の実現/実dispatch/全義務完了を表さず、この不足は資格供給だけの問題ではなく論理出力の未具体化を含む。"
+          "current_carrier_limit": "旧compare_f03/F03Return単体には作成側route/target finding memberがない。新private f03_source_bound_candidateは独立選択target tupleと同call native/条件対応の実理由pointerを対象作成側役割へ結ぶ限定論理材料を定義する。実owner/address/配送を生成せず、F04/B01を代用しない。",
+          "consequence": "原native/全旧期待を保持した部分比較である。新private材料の対象作成側向け理由付き論理返却は限定3wholeと型・規範の範囲のみであり、実dispatch/実source資格/全F03義務の完了ではない。"
         }
       ]
     },
@@ -5324,9 +5324,9 @@
       "全92/430意味/正式schema/codec/実資格/TDD/CI/L11/実装Readyは未成立。test/oracle凍結→実装前Red→Green→Refactorは将来の実作業でありこの文書の作成では実行していない。",
       "SourceAttributes helperはidentity/revision/scope/ownerの4属性だけの部分比較。L4 qualification_ruleの必要集合・source意味の独立比較/各packetへの正式bindingは未具体化。4属性全knownやcandidate_presentable=trueでも全L4義務の完了/実資格を表さない。",
       "declared packetのread対象memberはabsent/nullを保持し局所missing/unknownへ写像する。targetsのみ一意の非空string IDを持つobject配列として有限domainを明示する。非object/id欠落/null/数値/重複を空成功へ補完せずdomain外として値と診断を保持する。",
-      "既存compare_f02単体はedge別状態の部分返却のまま保持する。新private f02_impact_materialは、同callの入力とnative全返却から、破断軸に参加する宣言object/operation/oracle等の原出現と所在を結ぶ論理材料を定義する。consumer/返却先の具体集合とそのsource資格はF02Argumentsに未供給で、この材料が生成したとはしない。F03全条件の同対象revision/scope比較とcanonical name対照比較も未実現。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
+      "既存compare_f02単体はedge別状態の部分返却のまま保持する。新private f02_impact_materialは、同callの入力とnative全返却から、破断軸に参加する宣言object/operation/oracle等の原出現と所在を結ぶ論理材料を定義する。consumer/返却先の具体集合とそのsource資格はF02Argumentsに未供給で、この材料が生成したとはしない。旧compare_f03単体の同対象revision/scope/canonical原内容比較の不足は保持し、新private f03_source_bound_candidateで独立basisを明示した限定宣言比較を具体化する。実source資格・実behavior/最小性・全F03閉包は未成立。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
       "F01の例外詳細状態は原L9 projectionに従いmissing_scoped_exceptionへ集約し、F04の詳細分類と同一schemaへ統合しない。symbol_change=candidate_onlyは原定数で変化量検出ではない。",
-      "旧native F01/F03の関数返却自体には対象作成側への理由付きroute/memberがなく、既存target_results/condition_resultsは局所診断のまま。新private F01 f01_author_return_materialはF01の限定論理材料のみ具体化し、F03の返却、実owner資格/配送、F01/F03全域の成立を示さない。F04/B01の別返却memberを代用しない。",
+      "旧native F01/F03の関数返却自体には対象作成側への理由付きroute/memberがなく、既存target_results/condition_resultsは局所診断のまま。新private F01 f01_author_return_materialとF03 f03_source_bound_candidateはそれぞれの限定論理材料を具体化するが、実owner資格/配送、F01/F03全域の成立を示さない。F04/B01の別返却memberを代用しない。",
       "F04 reason/impactは保存のみで、不足やmarkerを診断しない。H048-F04-REASON-IMPACT-NOT-DIAGNOSEDの正本と上流sourceを参照する。"
     ]
   },
@@ -5796,7 +5796,7 @@
         "json_pointer": "/contracts/2/content_comparison/0",
         "value_canonical_sha256": "7b6556a2c6a90ca152757c25547dd7a2dbab70e0ab8ce839de880f8f1311d1e9"
       },
-      "current_reads": "canonical_referenceはowner/revisionのみ、stable_oracle/rollback_referenceは独立control値。F03Context.scopeは宣言保持素材だが現関数では未読。",
+      "current_reads": "旧compare_f03単体のcanonical_referenceはowner/revisionのみ、context.scopeは未読のまま保持する。新private f03_source_bound_candidateは、明示的に追加する独立basisの選択target、11条件sourceのattributes/subject/value、独立source属性controlと旧packet/contextを対応付ける。これらが旧入力に既に供給されていたとは扱わない。",
       "missing_by_condition": [
         {
           "condition": "canonical",
@@ -5820,8 +5820,8 @@
           ]
         }
       ],
-      "consequence": "全条件が同対象revision/scopeで成立したことは未検査。candidate_presentable=trueは供給値の部分比較表示であり、未供給bindingを生成せず全L3/L4義務の成立/許可/実採用を表さない。",
-      "canonical_name_detail": "nameはmissing/unknownを確認するだけでcanonical_reference.nameと内容比較しない。対照nameは現在のcontextに存在せず、name変更で返却不変となる局所例を未実現範囲の証拠として保存する。"
+      "consequence": "旧native candidate_presentable=trueは元の部分比較表示のまま。新private材料で同対象identity/revision/scope・context.scope・canonical原内容の宣言比較を具体化するが、source_bound_candidate_onlyは合成/宣言値の限定表示で、実source資格・behavior/最小性の真偽・全consumer資格・全F03成立や実採用ではない。",
+      "canonical_name_detail": "旧compare_f03はnameのmissing/unknownだけを確認し対照内容を比較しない。新private材料は独立canonical原record.valueと旧canonical_decision全内容を型を保って照合する。対照nameを旧contextへ暗黙追加せず、新basisの明示入力とし、旧name変更controlはそのまま保持する。"
     },
     {
       "id": "H048-F01-AUTHOR-RETURN-NOT-MATERIALIZED",
@@ -5876,8 +5876,8 @@
         "理由付きfindingと対象identityの結線",
         "作成側consumerへ渡す論理producer/返却recordと正式owner binding"
       ],
-      "current_carrier_limit": "F03Returnに作成側route/target finding recordは存在しない。L10の返却先の役割は対象作成側と確定しているが、その返却を値へ組み立てて出力していない。F04やB01の別返却memberをこの関数が供給したとはしない。",
-      "consequence": "原192全期待を保持した部分比較。作成側への返却義務の実現/実dispatch/全義務完了を表さず、この不足は資格供給だけの問題ではなく論理出力の未具体化を含む。"
+      "current_carrier_limit": "旧compare_f03/F03Return単体には作成側route/target finding memberがない。新private f03_source_bound_candidateは独立選択target tupleと同call native/条件対応の実理由pointerを対象作成側役割へ結ぶ限定論理材料を定義する。実owner/address/配送を生成せず、F04/B01を代用しない。",
+      "consequence": "原native/全旧期待を保持した部分比較である。新private材料の対象作成側向け理由付き論理返却は限定3wholeと型・規範の範囲のみであり、実dispatch/実source資格/全F03義務の完了ではない。"
     },
     {
       "id": "H048-F04-REASON-IMPACT-NOT-DIAGNOSED",
@@ -6221,6 +6221,204 @@
       "typed_relation_limit_ja": "入力にある宣言identity出現を対象へ結ぶ材料であり、元sourceの資格/同版scope/consumer集合を追加生成しない。compare同callの由来と構造型を分離。型外/旧compare契約違反を新Causeや架空比較値へ変換するtotalvalidatorは追加しない。",
       "reference_definition": "def compare_f02_with_impact_material(packet,context):\n arguments={'packet':copy.deepcopy(packet),'context':copy.deepcopy(context)}\n comparison=compare_f02(packet,context)\n impact_records=[]\n for axis_entry in axis_table:\n  axis=axis_entry['axis']\n  state=comparison['edge_results'][axis]\n  if state!=axis_entry['success']:\n   source_slot_pointers=[]\n   for root_name in axis_entry['source_roots']:\n    source_slot_pointers.append('/arguments/packet/'+root_name)\n   declared_reference_occurrences=[]\n   for pair in axis_entry['reference_paths']:\n    kind=pair[0]\n    rel_path=pair[1]\n    segments=rel_path.split('/')\n    parent=packet\n    found=True\n    for segment in segments[:-1]:\n     if isinstance(parent,dict) and segment in parent:\n      parent=parent[segment]\n     else:\n      found=False\n    if found and isinstance(parent,dict) and segments[-1] in parent:\n     declared_reference_occurrences.append({'kind':kind,'input_pointer':'/arguments/packet/'+rel_path,'value':copy.deepcopy(parent[segments[-1]])})\n   impact_records.append({'comparison_axis':axis,'comparison_state':state,'comparison_pointer':'/comparison/edge_results/'+axis,'source_slot_pointers':source_slot_pointers,'declared_reference_occurrences':declared_reference_occurrences})\n if len(impact_records)>0:\n  naming_conformance='not_established'\n else:\n  naming_conformance='not_decided_here'\n return {'arguments':arguments,'comparison':comparison,'impact_records':impact_records,'naming_conformance':naming_conformance,'consumer_impact':'not_supplied_by_F02Arguments','actual_dispatch':False}",
       "reference_notation": "既存finite_referenceと同じPython風pure有限参照記法。axis_tableは同nodeの既存定数との静的照合対象。source_slot_pointersは宣言rootの存在を保証せず、実在key・親recordのときだけleaf出現をcopyしnull/欠落を区別する。製品実装・実行済み評価器ではない。 この参照定義の自由変数axis_tableは、同wrapperの/axis_tableに収載した順序付き定数へ不変に束縛する。外部入力・lookup/evaluatorから供給しない。"
+    }
+  },
+  "f03_source_bound_candidate": {
+    "kind": "private_source_bound_candidate_material",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "existing_aliases": {},
+    "types": {
+      "TargetTuple": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "identity",
+          "revision",
+          "scope"
+        ],
+        "field_types": "string|null, provided/empty/null/absent as existing source-attribute partial carriers",
+        "meaning_ja": "選択対象tupleと各source.subjectで同じshapeを使う。source自身の属性identity/revisionやcanonical decision版とは別の欄。"
+      },
+      "F03OriginalConditionSource<Role>": {
+        "kind": "finite_closed_role_union",
+        "ordered_fields": [
+          "attributes",
+          "subject",
+          "value"
+        ],
+        "attributes_alias": {
+          "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+          "pointer": "/types/SourceAttributesArguments/fields/actual/type"
+        },
+        "subject": "TargetTuple",
+        "value_aliases": {
+          "canonical": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/canonical_decision",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "internal": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/visibility",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "required_consumers": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/required_consumers",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "observed_consumers": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/observed_consumers",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "signature_before": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/signature_before",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "signature_after": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/signature_after",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "behavior_invariant": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/behavior_invariant",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "minimum_transform": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/minimum_transform",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "rollback": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/rollback",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "semantic_basis": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/evidence_basis",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          },
+          "operation_boundary": {
+            "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+            "pointer": "/types/F03Arguments/fields/packet/type/fields/requested_effect",
+            "meaning": "value field uses the existing type AND presence_states without widening old type"
+          }
+        },
+        "value_presence": "exact per-role old packet field presence_states; absence/null retained",
+        "meaning_ja": "source roleは11固定で、新generic JSON qualification providerではない。原body/valueを読むpure logical port。実root/custodyを型の存在から生成しない。"
+      },
+      "F03IndependentSourceBasis": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "selected_target",
+          "source_requirements",
+          "sources"
+        ],
+        "selected_target": "TargetTuple from independent declared selection",
+        "source_requirements": "closed record of same 11 roles, values alias SourceAttributesArguments.required",
+        "sources": "closed record of same 11 roles, values F03OriginalConditionSource<Role>",
+        "role_order": [
+          "canonical",
+          "internal",
+          "required_consumers",
+          "observed_consumers",
+          "signature_before",
+          "signature_after",
+          "behavior_invariant",
+          "minimum_transform",
+          "rollback",
+          "semantic_basis",
+          "operation_boundary"
+        ]
+      },
+      "F03SourceBoundInput": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "arguments",
+          "basis"
+        ],
+        "arguments_alias": {
+          "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+          "pointer": "/types/F03Arguments"
+        },
+        "basis": "F03IndependentSourceBasis"
+      },
+      "F03BindingResult": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "argument_pointer",
+          "source_pointer",
+          "value_result",
+          "subject_results"
+        ],
+        "value_result": "same_value|missing|unknown|conflict; same_value means type-preserving payload correspondence only, not semantic qualification",
+        "subject_results": "identity known/missing/unknown/conflict; revision known/missing/unknown/stale; scope known/missing/unknown/conflict",
+        "pointer_root": "new full return root"
+      },
+      "F03SourceBoundReturn": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "input_capture",
+          "native_return",
+          "source_attribute_results",
+          "binding_results",
+          "presentation",
+          "author_returns",
+          "actual_dispatch",
+          "target_scope_result"
+        ],
+        "input_capture": "whole F03SourceBoundInput",
+        "native_return": "whole unchanged existing F03Return, actual same-call result",
+        "source_attribute_results": "closed 11 roles of existing SourceAttributesReturn; false/unknown actual qualification preserved",
+        "binding_results": "closed 11 roles of F03BindingResult",
+        "presentation": {
+          "kind": "closed_record",
+          "ordered_fields": [
+            "state",
+            "diagnostic_refs"
+          ],
+          "state": "source_bound_candidate_only|not_presentable",
+          "diagnostic_refs": "ordered full-return RFC6901 references to original failed local result values; no global Cause DSL"
+        },
+        "author_returns": {
+          "kind": "list of closed record",
+          "ordered_fields": [
+            "recipient_role",
+            "target_pointer",
+            "condition_role",
+            "reason_pointer"
+          ],
+          "recipient_role": "literal target_creator from approved F03 L10",
+          "target_pointer": "/input_capture/basis/selected_target, preserve partial values",
+          "condition_role": "finite role or original native condition key",
+          "reason_pointer": "RFC6901 pointer to real retained failure result, no invented diagnostic value"
+        },
+        "actual_dispatch": "literal false",
+        "target_scope_result": "known|missing|unknown|conflict; actual selected_target.scope vs required arguments.context.scope; source scope separate"
+      }
+    },
+    "source_binding": {
+      "source_attributes": "existing /source_attribute_helper and finite_reference/definitions/23, no execution in this task",
+      "subject_tuple": "existing attribute meaning: actual missing first, required/unknown unresolved, revision difference stale, identity/scope difference conflict. Reuse per-field state meaning rather than comparing source document and target revisions.",
+      "payload_correspondence": "existing JSON typed equality definition; no bool-number coalescence, no absent-null normalization. Independent source body vs this argument value, not self-copy comparator.",
+      "canonical_name": "the independent canonical value body contains name readValue; full canonical record content comparison catches foreign name while old native result remains unchanged",
+      "capture_and_diagnostics": "new root for new pointers; pointers inside old native whole, if any, keep old root meaning; no fake Read/dummy native on unobserved stages",
+      "target_context_scope": "既存宣言context.scopeと独立選択target.scopeを比較し結果を保持。新basisだけを実targetとする迂回をせず、各source.subjectとの対応とは別の局所結果。"
+    },
+    "wrapper": {
+      "name": "compare_f03_source_bound_candidate",
+      "visibility": "private",
+      "signature": "(packet:F03Arguments.packet, context:F03Arguments.context, basis:F03SourceBoundInput.basis) -> F03SourceBoundReturn",
+      "reference_notation": "既存finite_referenceと同じPython風pure有限参照記法。free定数role/field mapは同nodeの表へ束縛。製品実装・実行済み評価器ではない。",
+      "reference_definition": "def compare_f03_source_bound_candidate(packet,context,basis):\n input_capture={'packet':copy.deepcopy(packet),'context':copy.deepcopy(context),'basis':copy.deepcopy(basis)}\n native_return=compare_f03(packet,context)\n source_attribute_results={}\n for role in declared11_role_order:\n  src=basis['condition_sources'][role]\n  source_attribute_results[role]=compare_source_attributes(src['attributes'],source_attributes_arguments_default)\n binding_results={}\n for role in declared11_role_order:\n  src=basis['condition_sources'][role]\n  binding_results[role]={'subject':compare_value(src['subject'],basis['selected_target']),'payload':compare_value(src['value'],packet['canonical_decision'] if role=='canonical' else packet[role_to_packet_field[role]])}\n presentation='source_bound_candidate_only'\n author_returns=[]\n actual_dispatch=False\n target_scope_result=compare_value(context['scope'],basis['selected_target']['scope'])\n return {'input_capture':input_capture,'native_return':native_return,'source_attribute_results':source_attribute_results,'binding_results':binding_results,'presentation':presentation,'author_returns':author_returns,'actual_dispatch':actual_dispatch,'target_scope_result':target_scope_result}"
+    },
+    "bound_tables": {
+      "declared11_role_order": "同node source_bindingの既存11 role宣言順を束縛する定数表。外部providerへ解決しない。",
+      "role_to_packet_field": "role→既存packet fieldの局所対応表。canonicalのときのみpacket['canonical_decision']を対応させる。旧入力に暗黙追加しない。"
     }
   }
 }
