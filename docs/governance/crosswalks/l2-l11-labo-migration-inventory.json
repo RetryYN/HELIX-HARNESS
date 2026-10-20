@@ -1859,18 +1859,18 @@
   },
   "frontmatter": {
     "L2": {
-      "delimiter_end_byte": 369,
-      "delimiter_end_line": 13,
-      "end_byte": 370,
-      "end_line": 13,
-      "note": "閉じdelimiter終端と直後blankを実原文から計測。owner/version/適用条件はfrontmatterと各表定義行の列に原所在を持つ"
+      "delimiter_end_byte": 387,
+      "delimiter_end_line": 15,
+      "end_byte": 388,
+      "end_line": 16,
+      "note": "UTF-8半開[0,end_byte)。delimiter_end_byteは閉じ---行のLFを含み、end_byteは直後blank行のLFも含む。原blobを実測。"
     },
     "L11": {
-      "delimiter_end_byte": 374,
-      "delimiter_end_line": 13,
-      "end_byte": 375,
-      "end_line": 13,
-      "note": "同上"
+      "delimiter_end_byte": 396,
+      "delimiter_end_line": 15,
+      "end_byte": 397,
+      "end_line": 16,
+      "note": "UTF-8半開[0,end_byte)。delimiter_end_byteは閉じ---行のLFを含み、end_byteは直後blank行のLFも含む。原blobを実測。"
     }
   },
   "adoption_snapshot": {
@@ -1899,8 +1899,328 @@
       }
     ],
     "adopted_id_set": {
-      "count": 54,
-      "note": "初期採択53候補とcurrent観測を別snapshot。採択とcurrentの差を自動承認しない"
+      "count": 53,
+      "note": "初期decisionの明示候補53行の所在。条件・版は固定decision行とf6本文で読む。current数値ID64件やWEB range/xxxの観測literalとは別集合。新規採択を生成しない。",
+      "decision_table_rows": [
+        {
+          "id": "HELIXLABO-L2-001",
+          "line": 48,
+          "byte_start": 4460,
+          "byte_end": 4527
+        },
+        {
+          "id": "HELIXLABO-L2-002",
+          "line": 49,
+          "byte_start": 4528,
+          "byte_end": 4595
+        },
+        {
+          "id": "HELIXLABO-L2-003",
+          "line": 50,
+          "byte_start": 4596,
+          "byte_end": 4663
+        },
+        {
+          "id": "HELIXLABO-L2-004",
+          "line": 51,
+          "byte_start": 4664,
+          "byte_end": 4731
+        },
+        {
+          "id": "HELIXLABO-L2-005",
+          "line": 52,
+          "byte_start": 4732,
+          "byte_end": 4799
+        },
+        {
+          "id": "HELIXLABO-L2-006",
+          "line": 53,
+          "byte_start": 4800,
+          "byte_end": 4867
+        },
+        {
+          "id": "HELIXLABO-L2-007",
+          "line": 54,
+          "byte_start": 4868,
+          "byte_end": 4935
+        },
+        {
+          "id": "HELIXLABO-L2-008",
+          "line": 55,
+          "byte_start": 4936,
+          "byte_end": 5003
+        },
+        {
+          "id": "HELIXLABO-L2-009",
+          "line": 56,
+          "byte_start": 5004,
+          "byte_end": 5071
+        },
+        {
+          "id": "HELIXLABO-L2-010",
+          "line": 57,
+          "byte_start": 5072,
+          "byte_end": 5139
+        },
+        {
+          "id": "HELIXLABO-L2-055",
+          "line": 58,
+          "byte_start": 5140,
+          "byte_end": 5207
+        },
+        {
+          "id": "HELIXLABO-L2-011",
+          "line": 59,
+          "byte_start": 5208,
+          "byte_end": 5281
+        },
+        {
+          "id": "HELIXLABO-L2-012",
+          "line": 60,
+          "byte_start": 5282,
+          "byte_end": 5355
+        },
+        {
+          "id": "HELIXLABO-L2-013",
+          "line": 61,
+          "byte_start": 5356,
+          "byte_end": 5429
+        },
+        {
+          "id": "HELIXLABO-L2-014",
+          "line": 62,
+          "byte_start": 5430,
+          "byte_end": 5503
+        },
+        {
+          "id": "HELIXLABO-L2-015",
+          "line": 63,
+          "byte_start": 5504,
+          "byte_end": 5577
+        },
+        {
+          "id": "HELIXLABO-L2-016",
+          "line": 64,
+          "byte_start": 5578,
+          "byte_end": 5651
+        },
+        {
+          "id": "HELIXLABO-L2-017",
+          "line": 65,
+          "byte_start": 5652,
+          "byte_end": 5725
+        },
+        {
+          "id": "HELIXLABO-L2-018",
+          "line": 66,
+          "byte_start": 5726,
+          "byte_end": 5799
+        },
+        {
+          "id": "HELIXLABO-L2-019",
+          "line": 67,
+          "byte_start": 5800,
+          "byte_end": 5873
+        },
+        {
+          "id": "HELIXLABO-L2-020",
+          "line": 68,
+          "byte_start": 5874,
+          "byte_end": 5947
+        },
+        {
+          "id": "HELIXLABO-L2-021",
+          "line": 69,
+          "byte_start": 5948,
+          "byte_end": 6021
+        },
+        {
+          "id": "HELIXLABO-L2-022",
+          "line": 70,
+          "byte_start": 6022,
+          "byte_end": 6095
+        },
+        {
+          "id": "HELIXLABO-L2-023",
+          "line": 71,
+          "byte_start": 6096,
+          "byte_end": 6169
+        },
+        {
+          "id": "HELIXLABO-L2-024",
+          "line": 72,
+          "byte_start": 6170,
+          "byte_end": 6243
+        },
+        {
+          "id": "HELIXLABO-L2-025",
+          "line": 73,
+          "byte_start": 6244,
+          "byte_end": 6317
+        },
+        {
+          "id": "HELIXLABO-L2-026",
+          "line": 74,
+          "byte_start": 6318,
+          "byte_end": 6391
+        },
+        {
+          "id": "HELIXLABO-L2-027",
+          "line": 75,
+          "byte_start": 6392,
+          "byte_end": 6465
+        },
+        {
+          "id": "HELIXLABO-L2-028",
+          "line": 76,
+          "byte_start": 6466,
+          "byte_end": 6539
+        },
+        {
+          "id": "HELIXLABO-L2-029",
+          "line": 77,
+          "byte_start": 6540,
+          "byte_end": 6613
+        },
+        {
+          "id": "HELIXLABO-L2-030",
+          "line": 78,
+          "byte_start": 6614,
+          "byte_end": 6687
+        },
+        {
+          "id": "HELIXLABO-L2-031",
+          "line": 79,
+          "byte_start": 6688,
+          "byte_end": 6852
+        },
+        {
+          "id": "HELIXLABO-L2-032",
+          "line": 80,
+          "byte_start": 6853,
+          "byte_end": 7017
+        },
+        {
+          "id": "HELIXLABO-L2-033",
+          "line": 81,
+          "byte_start": 7018,
+          "byte_end": 7091
+        },
+        {
+          "id": "HELIXLABO-L2-034",
+          "line": 82,
+          "byte_start": 7092,
+          "byte_end": 7165
+        },
+        {
+          "id": "HELIXLABO-L2-035",
+          "line": 83,
+          "byte_start": 7166,
+          "byte_end": 7239
+        },
+        {
+          "id": "HELIXLABO-L2-036",
+          "line": 84,
+          "byte_start": 7240,
+          "byte_end": 7313
+        },
+        {
+          "id": "HELIXLABO-L2-037",
+          "line": 85,
+          "byte_start": 7314,
+          "byte_end": 7387
+        },
+        {
+          "id": "HELIXLABO-L2-038",
+          "line": 86,
+          "byte_start": 7388,
+          "byte_end": 7461
+        },
+        {
+          "id": "HELIXLABO-L2-039",
+          "line": 87,
+          "byte_start": 7462,
+          "byte_end": 7535
+        },
+        {
+          "id": "HELIXLABO-L2-040",
+          "line": 88,
+          "byte_start": 7536,
+          "byte_end": 7666
+        },
+        {
+          "id": "HELIXLABO-L2-041",
+          "line": 89,
+          "byte_start": 7667,
+          "byte_end": 7797
+        },
+        {
+          "id": "HELIXLABO-L2-042",
+          "line": 90,
+          "byte_start": 7798,
+          "byte_end": 7990
+        },
+        {
+          "id": "HELIXLABO-L2-054",
+          "line": 91,
+          "byte_start": 7991,
+          "byte_end": 8064
+        },
+        {
+          "id": "HELIXLABO-L2-050",
+          "line": 92,
+          "byte_start": 8065,
+          "byte_end": 8137
+        },
+        {
+          "id": "HELIXLABO-L2-051",
+          "line": 93,
+          "byte_start": 8138,
+          "byte_end": 8210
+        },
+        {
+          "id": "HELIXLABO-L2-052",
+          "line": 94,
+          "byte_start": 8211,
+          "byte_end": 8283
+        },
+        {
+          "id": "HELIXLABO-L2-053",
+          "line": 95,
+          "byte_start": 8284,
+          "byte_end": 8357
+        },
+        {
+          "id": "HELIXLABO-L2-056",
+          "line": 96,
+          "byte_start": 8358,
+          "byte_end": 8425
+        },
+        {
+          "id": "HELIXLABO-L2-057",
+          "line": 97,
+          "byte_start": 8426,
+          "byte_end": 8499
+        },
+        {
+          "id": "HELIXLABO-L2-058",
+          "line": 98,
+          "byte_start": 8500,
+          "byte_end": 8567
+        },
+        {
+          "id": "HELIXLABO-L2-059",
+          "line": 99,
+          "byte_start": 8568,
+          "byte_end": 8635
+        },
+        {
+          "id": "HELIXLABO-L2-060",
+          "line": 100,
+          "byte_start": 8636,
+          "byte_end": 8703
+        }
+      ]
     },
     "current_vs_adopted": {
       "L2_bytes_identical": false,
@@ -1928,7 +2248,7 @@
       }
     },
     "current_L2": {
-      "distinct_ids": 65,
+      "distinct_ids": 64,
       "locators": {
         "HELIXLABO-L2-001": [
           {
@@ -2710,20 +3030,6 @@
             "role": "heading"
           }
         ],
-        "HELIXLABO-L2-WEB-001": [
-          {
-            "line": 352,
-            "byte_start": 42090,
-            "byte_end": 42110,
-            "role": "inline_mention"
-          },
-          {
-            "line": 374,
-            "byte_start": 46673,
-            "byte_end": 46693,
-            "role": "inline_mention"
-          }
-        ],
         "HELIXLABO-L2-056": [
           {
             "line": 379,
@@ -2978,10 +3284,40 @@
             "role": "heading"
           }
         ]
-      }
+      },
+      "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 4708,
+          "byte_end": 4724,
+          "line": 51
+        },
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 4744,
+          "byte_end": 4760,
+          "line": 51
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 42090,
+          "byte_end": 42115,
+          "line": 352
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 46673,
+          "byte_end": 46698,
+          "line": 374
+        }
+      ]
     },
     "current_L11": {
-      "distinct_ids": 65,
+      "distinct_ids": 64,
       "locators": {
         "HELIXLABO-L2-001": [
           {
@@ -3529,14 +3865,6 @@
             "role": "table_first_cell"
           }
         ],
-        "HELIXLABO-L2-WEB-001": [
-          {
-            "line": 134,
-            "byte_start": 22924,
-            "byte_end": 22944,
-            "role": "inline_mention"
-          }
-        ],
         "HELIXLABO-L2-056": [
           {
             "line": 138,
@@ -3707,10 +4035,33 @@
             "role": "heading"
           }
         ]
-      }
+      },
+      "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 1454,
+          "byte_end": 1470,
+          "line": 27
+        },
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 1490,
+          "byte_end": 1506,
+          "line": 27
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 22924,
+          "byte_end": 22949,
+          "line": 134
+        }
+      ]
     },
     "adopted_L2": {
-      "distinct_ids": 54,
+      "distinct_ids": 53,
       "locators": {
         "HELIXLABO-L2-001": [
           {
@@ -4462,20 +4813,6 @@
             "role": "heading"
           }
         ],
-        "HELIXLABO-L2-WEB-001": [
-          {
-            "line": 352,
-            "byte_start": 42090,
-            "byte_end": 42110,
-            "role": "inline_mention"
-          },
-          {
-            "line": 374,
-            "byte_start": 46673,
-            "byte_end": 46693,
-            "role": "inline_mention"
-          }
-        ],
         "HELIXLABO-L2-056": [
           {
             "line": 379,
@@ -4534,10 +4871,40 @@
             "role": "heading"
           }
         ]
-      }
+      },
+      "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 4708,
+          "byte_end": 4724,
+          "line": 51
+        },
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 4744,
+          "byte_end": 4760,
+          "line": 51
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 42090,
+          "byte_end": 42115,
+          "line": 352
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 46673,
+          "byte_end": 46698,
+          "line": 374
+        }
+      ]
     },
     "adopted_L11": {
-      "distinct_ids": 54,
+      "distinct_ids": 53,
       "locators": {
         "HELIXLABO-L2-001": [
           {
@@ -5085,14 +5452,6 @@
             "role": "table_first_cell"
           }
         ],
-        "HELIXLABO-L2-WEB-001": [
-          {
-            "line": 134,
-            "byte_start": 22924,
-            "byte_end": 22944,
-            "role": "inline_mention"
-          }
-        ],
         "HELIXLABO-L2-056": [
           {
             "line": 138,
@@ -5145,10 +5504,33 @@
             "role": "heading"
           }
         ]
-      }
+      },
+      "non_identity_literal_observations": [
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 1454,
+          "byte_end": 1470,
+          "line": 27
+        },
+        {
+          "literal": "HELIXLABO-L2-xxx",
+          "syntax_role": "placeholder_literal",
+          "byte_start": 1490,
+          "byte_end": 1506,
+          "line": 27
+        },
+        {
+          "literal": "HELIXLABO-L2-WEB-001..014",
+          "syntax_role": "range_literal",
+          "byte_start": 22924,
+          "byte_end": 22949,
+          "line": 134
+        }
+      ]
     },
     "l2_l11_pairing": {
-      "shared_ids": 65,
+      "shared_ids": 64,
       "l2_only": [],
       "l11_only": [],
       "positions": {
@@ -6047,24 +6429,10 @@
             "byte_end": 71287,
             "role": "heading"
           }
-        },
-        "HELIXLABO-L2-WEB-001": {
-          "l2": {
-            "line": 352,
-            "byte_start": 42090,
-            "byte_end": 42110,
-            "role": "inline_mention"
-          },
-          "l11": {
-            "line": 134,
-            "byte_start": 22924,
-            "byte_end": 22944,
-            "role": "inline_mention"
-          }
         }
       }
     },
-    "note": "全出現をline/UTF-8 byte_start/byte_end半開範囲/構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し意味roleは群共通のunknownを保つ。#2089意味境界を変更しない"
+    "note": "全出現をline/UTF-8 byte_start/byte_end半開範囲/構文role(table_first_cell/heading/inline_mention)で列挙。構文roleと意味roleを区別し意味roleは群共通のunknownを保つ。#2089意味境界を変更しない WEB rangeとxxx placeholderはnon_identity_literal_observationsに全literalを保持し、identity件数・採択集合・pairingから除外する。numeric観測集合も要求採択数とは等置しない。"
   },
   "direct_consumers": {
     "static_references": [
@@ -6209,6 +6577,18 @@
           {
             "pointer": "/source_pins/12/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6257,6 +6637,14 @@
           {
             "pointer": "/source_pins/17/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6272,6 +6660,14 @@
           },
           {
             "pointer": "/source_pins/4/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_section/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6289,6 +6685,18 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6304,6 +6712,18 @@
           },
           {
             "pointer": "/source_pins/5/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6321,6 +6741,14 @@
           {
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/section_pins/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/section_pins/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6336,6 +6764,10 @@
           },
           {
             "pointer": "/source_pins/5/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/candidate_followup_binding/current_source_pins/0/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
           }
         ]
@@ -6353,6 +6785,14 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/consumer_rederivation/current_consumers/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/consumer_rederivation/current_consumers/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6368,6 +6808,18 @@
           },
           {
             "pointer": "/source_pins/12/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6417,6 +6869,14 @@
           {
             "pointer": "/source_pins/17/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6432,6 +6892,14 @@
           },
           {
             "pointer": "/source_pins/4/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/approved_l2_section/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/approved_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6449,6 +6917,18 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6464,6 +6944,18 @@
           },
           {
             "pointer": "/source_pins/5/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6497,6 +6989,10 @@
           {
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/candidate_followup_binding/current_source_pins/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
           }
         ]
       },
@@ -6513,6 +7009,14 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/consumer_rederivation/current_consumers/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/consumer_rederivation/current_consumers/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6528,6 +7032,18 @@
           },
           {
             "pointer": "/source_pins/12/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6577,6 +7093,14 @@
           {
             "pointer": "/source_pins/17/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6592,6 +7116,14 @@
           },
           {
             "pointer": "/source_pins/4/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/approved_l2_section/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/approved_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6609,6 +7141,18 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6624,6 +7168,18 @@
           },
           {
             "pointer": "/source_pins/5/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6657,6 +7213,10 @@
           {
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/candidate_followup_binding/current_source_pins/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
           }
         ]
       },
@@ -6688,6 +7248,18 @@
           },
           {
             "pointer": "/source_pins/12/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6737,6 +7309,14 @@
           {
             "pointer": "/source_pins/17/path",
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_l11_section_quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6752,6 +7332,14 @@
           },
           {
             "pointer": "/source_pins/4/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l2_section/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adopted_l11_section/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6769,6 +7357,18 @@
           {
             "pointer": "/source_pins/4/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
       },
@@ -6784,6 +7384,18 @@
           },
           {
             "pointer": "/source_pins/5/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/adoption/section_hash_reproducibility/quotes/2/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
@@ -6801,9 +7413,21 @@
           {
             "pointer": "/source_pins/5/path",
             "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
+          },
+          {
+            "pointer": "/upstream_adoption/section_pins/0/path",
+            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
+          },
+          {
+            "pointer": "/upstream_adoption/section_pins/1/path",
+            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
           }
         ]
-      },
+      }
+    ],
+    "count": 46,
+    "note": "固定M30のLABO自身L3/L10/L4/L5/L8/L9 JSONに限定した静的path参照46file/155Pointer。重複を除外。6 MDや他機構は対象外で、実reader成立・全consumer閉包を認定しない。",
+    "outside_scope_search_hits": [
       {
         "path": "docs/helix-brain/L4-basic-design/knowledge-independent-adoption.json",
         "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
@@ -6851,746 +7475,9 @@
             "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
           }
         ]
-      },
-      {
-        "path": "docs/helix-labo/L10-verification/business-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "811f50a6489b4bd66b1d7df9ea9bfb2658afbc3f1c0b00ce7f6363a009bbbe9d",
-        "git_blob": "4c53c745b160900658f14e8eaa8000d8adf71528",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L10-verification/functional-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
-        "git_blob": "a25ae9aa02b0ec3471ed743a377dee2d39d44fa6",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L10-verification/nfr-verification.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "b60a2b119196458d22ebb35d8164aec709294852b463be2dfc953905524b9919",
-        "git_blob": "1088e84899e129c70d7cd8f83afbe6ac5d26266f",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L3-requirements/business-requirements.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "a741eaf03eb6502b01711d2e19a3d880eae687be406fe9ee2341fae2f490beb6",
-        "git_blob": "950c73617634dc22356be27c8e84465aed467c46",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L3-requirements/functional-requirements.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
-        "git_blob": "372ea57980c68e9eb4f4ee7da732f13933b716b0",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L3-requirements/nfr-grade.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "8e36a671309079888eb411061aa7885e76d0b9537ebc5a6e2972df4cc6e651e5",
-        "git_blob": "6966cfdafd4628935d52804bec4daabc72f784c7",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "7ad7548fd27e4e894bb3d2da9e9df721d841905a299fa12e609f982259db2177",
-        "git_blob": "0ee2f1570c3fba9df916da6ea634926a779b2ae7",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "17bad6011755dccbc1ecf0882a0e2128369f0b9558914c01e8707a2680fdcc4c",
-        "git_blob": "d9e6d01b68b3358d1c2c1077ba30e1d1566c42ba",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/bench-level-intelligence-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "21730f82846f11fd03b9b8da5412409f395b281feff5b4db9f534846a7e91559",
-        "git_blob": "3b3e8f64383933fbb9133d4950e04866ac484f69",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/episode-correlation-correction.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "ef7e2ef2b08bc2c2ea3585fa63ff41aa5934d7d24e1758ed4557e0e4dfc1c676",
-        "git_blob": "830ff041aabef84e0ab3b3b296ad9d48e2b14887",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/infrastructure-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "d1f5c01cc11344fc7a0717c879a4e5738ce6168586bbc60aebf2829fc4890b46",
-        "git_blob": "c66f35b4d2aed3a5ecdefe53e1b28d72296ec59e",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/os-to-bench-result-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "beb57287146aa6be9de627611327c82084dc42795f617f9de346836c9ae5eb3e",
-        "git_blob": "b39b1324e189b18b728e1d702f64f9e3880ce70f",
-        "references": [
-          {
-            "pointer": "/source_pins/16/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/17/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/selected-source-dependency-closure.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "4742202bacc2875879692f16e430fea3e4025a8a7730f837aa5d930f5bfadd71",
-        "git_blob": "dedd7c75ab1235a3190b2ec4a9daf067cdaab204",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/worker-initial-result-observation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "460c436f56504a7b9df9f673d058c8cc803476e15f4d680de33c403ffa28c612",
-        "git_blob": "9db2bb58fad383e34fae6dee74f77b18a8c90d76",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/worker-level-evidence.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "55a53e9f769cc50e64cd974b01965e69b4959da177dd303eff23da250514a6c6",
-        "git_blob": "822526d00d8042d2ef2da2f1536ca9ca4eaee53a",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L4-basic-design/worker-result-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "94efe93dda254fff0227e4bfddd2825869c134b5181cd6fffa7e1fee898c48c8",
-        "git_blob": "37587976707c112dd19fd15b4157fd3a0d564306",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "1fa63174b0cf9fa22b555be761ed249df1280d70f9b4c0881e5c63109ebb9805",
-        "git_blob": "07d6c7566c8c1800e67301c990cff86b60844dd4",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "0f4c27ccd93b657f0ef59a990b8186013bbc7789f91f1a1d64a767166bd9f2fb",
-        "git_blob": "550d9682027f84db9bd532f8d14a989b217572bf",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/bench-level-intelligence-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "cdea26e038ad2e9cf6c44126ea2093fe8af3ba9c95dae48cf2cc166e47fa085f",
-        "git_blob": "b269a615d9a18f006d2d012a82be0474ff3135ca",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/episode-correlation-correction.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "fa1e5d27c61b217e53056badb211333f398ac6950a55b44e9bf85ac104f48ae5",
-        "git_blob": "7cdcb577d9a0c988b320cb7970f43b243cb17956",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/14/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/infrastructure-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "5f521d17074bee028b5841ca56de0442417a9d3e7cb04ade1adb78076b262427",
-        "git_blob": "664fba1fe8574f5a3da1edefa86e863bc5754eb4",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/os-to-bench-result-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "925ba598e0053e3d6a00c6886cd695cbab951cc967caf87dd228259a2a8128d7",
-        "git_blob": "de45fbcd42a8461858539a512f55a560574d7812",
-        "references": [
-          {
-            "pointer": "/source_pins/16/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/17/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/selected-source-dependency-closure.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "28373609248fe2b6b967b3100dd03bb05c6dd4b2ae281453941b76f3723cc784",
-        "git_blob": "ed9227874d432cf29b7d850801fa33f874a8734a",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/worker-initial-result-observation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "6ff32c57ee71cc953c279094c49cae6717590d30e4ba06f52feace84add1ae56",
-        "git_blob": "84cc989c278eef642f707cd0a9edbe80b9d73959",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/worker-level-evidence.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "d2e2b020e15746c1d306f74e467af45ecdcc78c429f1b2da4415731e93366d93",
-        "git_blob": "ce713210e0ef659dad1a142508c9051901287e07",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L5-detail-design/worker-result-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "9b6c6bbf300f54d8523b73150bfed4b44ad8ab2ec4aa36ccc33d982ad3a27b3c",
-        "git_blob": "f251133b7c910ef68017bd98ea05d0bc97ca06f4",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "ddac24800d5bef74295ac1a37289c1d109aa31a1f8c9c972872163e4ae886036",
-        "git_blob": "96cec36603ea0ed92e26243a7e6b42e6d4992b31",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab",
-        "git_blob": "8f9f7f26b2403b6d3b226d89ef1a0af11f4e68be",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/bench-level-intelligence-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "0fc6ec1014c051512089932515dc2f3b30bf16cd291df7e9362322fadd316d99",
-        "git_blob": "be53bc6f0e86f46e74f1c8d7b5df5460fedbe221",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/episode-correlation-correction.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "76d0c30782b85071f349ee642c056821953d740227ee51af9de3382b6863cde0",
-        "git_blob": "624cd7d213ca8508964c4670e7849d1a19eeee70",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/14/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/infrastructure-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "42ff4627af72c0dd25e8e6bc270314d3f2fc989afbb2b071c5701f69991d6189",
-        "git_blob": "3fa21d164bf5b295a8f998f193ae30bcf7cad98a",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/os-to-bench-result-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "e002c17935c69307fe08915d9db1c213fade83e650666c4c6db116dfe5afc959",
-        "git_blob": "ff8090c13adb981faaf7fd9e5dcfd2191fd1b704",
-        "references": [
-          {
-            "pointer": "/source_pins/16/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/17/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/selected-source-dependency-closure.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "5fb3b6bc3c43b8628c392ea05703143c4a947d71d4d4d83e62c6ee6507a4cef3",
-        "git_blob": "63b95c0bb77240ad142740d05c1217a10878c6ea",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/worker-initial-result-observation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "c27c311dc3734b9f90c5752a100a8f62027430447fb87f4c2e5c3dd107dc8472",
-        "git_blob": "a89b8edf76bc3aec83fe9450aa3cadeb6f548db5",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/worker-level-evidence.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "f992d39f21762a9bda22c5c291ceb10b24ea747b06d9d990797191ba233ea8f3",
-        "git_blob": "552c4e629b3c6f188d69ef178cf5cc09670e9db0",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L8-unit-verification/worker-result-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "283b763cd7527cac6a3229ecaa9145612791a6e3c18800d0baeeeffa200fea22",
-        "git_blob": "ba8e2969cc2b5b04fbe6a274d5d506b8a5feb674",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "099fcf090933555d3ccf2ef29f077765517b3ab0336e8b81a3817d8023325cb0",
-        "git_blob": "eff753884ed1ab905b9d82d45636472a94cecba2",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/authorized-observation-aggregation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "e415a7a14543ab4179992adb55afcf5281b4da4043bd60e29d353132d68cf365",
-        "git_blob": "c9902dfc9478b07676dc21277735397c2465ddd6",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/bench-level-intelligence-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "96103f6ac0d71123b0e4352b36b8938293cd6381693dfd3049f43ab764a1973b",
-        "git_blob": "6fc66f24884cfa23460b1c7786c9935c162194e2",
-        "references": [
-          {
-            "pointer": "/source_pins/11/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/12/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/episode-correlation-correction.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "24ef1f76090557c11b0933be06412a50992c2e8fab13032803129b11e71adf51",
-        "git_blob": "111aa2b417976fa4627bf0d1c086f9956ab0cf67",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/infrastructure-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "61ec9dc267f013036272a8561e6de3f53088a882104dc7782a4ca6207370e8ee",
-        "git_blob": "51bb1da662b9c9cbf0a874b70239a27d42c2526d",
-        "references": [
-          {
-            "pointer": "/source_pins/6/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/7/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/os-to-bench-result-handoff.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "b9f9d659a377947d4b61b7751cc1e156a2c13c521a1835c897e4817258acc195",
-        "git_blob": "01cf07ade3a28aa94611d9bd31b650c4381713eb",
-        "references": [
-          {
-            "pointer": "/source_pins/16/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          },
-          {
-            "pointer": "/source_pins/17/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/selected-source-dependency-closure.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "cf4246fd50e2955cf5dd705f8e982d074e45f782825026bfbe0d6dcdcab6ce1c",
-        "git_blob": "6cff00ecc9a1d52c270ff3786b746a7cc8245c1a",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/worker-initial-result-observation.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "29714c85aa277798e48915463fc0c63ab075b0a78871ad7222112032a5f81811",
-        "git_blob": "09f0b41720d3112f3ec86e1c3ced51a2a840c465",
-        "references": [
-          {
-            "pointer": "/source_pins/3/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/worker-level-evidence.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "6dad6cbdf01472474a4bf2d1fc5c6b9fe6b5d1e50dcf059beecc894bfe7dbf15",
-        "git_blob": "0e9ff7ff2466f4df1c75a6f315063258361846f7",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
-      },
-      {
-        "path": "docs/helix-labo/L9-integration-verification/worker-result-observation-connection.json",
-        "revision": "97525515685664de60c1c4ab8b8a58b0bc977f78",
-        "raw_sha256": "e74354b7b7e5f92e58ca17a65a60cfa4506882e73f93775f9d262a0d3df8dbb3",
-        "git_blob": "fc3504bd272e713959d6072ebb49a2ebd277435b",
-        "references": [
-          {
-            "pointer": "/source_pins/4/path",
-            "value": "docs/helix-labo/L2-requirements/labo-requirements.md"
-          },
-          {
-            "pointer": "/source_pins/5/path",
-            "value": "docs/helix-labo/L11-acceptance/labo-acceptance.md"
-          }
-        ]
       }
     ],
-    "count": 96,
-    "note": "実file・revision・raw sha・git blob・具体JSON pointer/valueの所在例。実reader成立・全consumer閉包とは分ける。localonly pin禁止・public履歴到達可能"
+    "outside_scope_search_hits_note": "提案内にあったBRAIN4fileは所在観測として保全するがbounded consumer件数に含めない。"
   },
   "legacy_source_hold": {
     "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
