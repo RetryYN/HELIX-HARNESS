@@ -225,7 +225,7 @@
     "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
     "meaning": "UTW014の欠損→空集合、UTW020のaggregateで部分不足不可視、UTW021の自己申告/件数/hash完了を項目/義務/接続各軸で防ぐ。実再発防止は未証明。"
   },
-  "verification_scope": "14義務、原L9負例105件、failure_rules 107件、additional_unit_cases 35件、正常関数oracle 9件の論理設計候補。F09のNEG-01〜06のみL9統合caseに対応し、NEG-07〜13とADD-25〜28はL8局所の反例/対照でL9対応なし。025のselector対応未決、018/020/025の条件割当未閉包を保持する。これはfixture凍結/実行/意味完了証拠ではない。",
+  "verification_scope": "14義務、原L9負例105件、failure_rules 107件、additional_unit_cases 35件、正常関数oracle 9件の論理設計候補。F09のNEG-01〜06のみL9統合caseに対応し、NEG-07〜13とADD-25〜28はL8局所の反例/対照でL9対応なし。F09の018→core_source、020→labo_evaluation、025→選択channelの原operation_kind/knowledge_fieldsという限定対応は、L4 conditional_source_dependency_contractとL5 conditional_dependency_detail及び本fileのconditional_dependency_verificationに従う。対応自体は未決とせず、025を両selectorへ一律必須にしない。実producer/body供給・資格、未観測分岐と全意味閉包は別残件として保持する。これはfixture凍結/実行/意味完了証拠ではない。",
   "fixture_contract": {
     "id": "TEMPLATE-SUPPLY-BASE-01",
     "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
@@ -10933,7 +10933,7 @@
     "semantic_review": "not_requested",
     "meaning_coverage": "not_proven",
     "remaining_typed_case_refs": [],
-    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6関数設計/L7対検証の成立条件は未成立。F09の追加unit局所ケースはNEG-07〜13とADD-25〜28。NEG-01〜06のみL9へ接続する。L2-018/020/025のselector条件mappingは未決で、025を両selectorへ一律必須としない。19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
+    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6関数設計/L7対検証の成立条件は未成立。F09の追加unit局所ケースはNEG-07〜13とADD-25〜28。NEG-01〜06のみL9へ接続する。L2-018/020/025の限定条件mappingはL4/L5及び本fileのF09対検証で具体化済みで、025を両selectorへ一律必須としない。原operation/body供給・実資格と未観測分岐・全意味閉包の未成立は別に保持する。19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
     "additional_unit_case_count": 35,
     "normal_function_oracle_count": 9,
     "f09_local_negative_case_count": 13,
