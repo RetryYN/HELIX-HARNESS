@@ -1,0 +1,82 @@
+{
+  "document_id": "HELIXBRAIN-L6-032-FIRST-DESCRIPTOR-TEST",
+  "layer": "L6",
+  "parent": "HELIXBRAIN-L2-032",
+  "paired_document": "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json",
+  "status": "candidate_design_only",
+  "source_main": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+  "authority_effect": "none",
+  "scope": "既存公開compare_descriptor_definitionsのF02一挙動を実testへ結ぶ参照設計。L6=RedやL7=実装への意味変更ではない。",
+  "source_pins": [
+    {
+      "revision": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "sha256": "d031cf9f4c04e47cbbc0b5d3bde47a48020a75a8539035f10d2f3f657c03a4d9",
+      "selected_pointers": [
+        "/functions/1",
+        "/type_contract/types/DefinitionContext",
+        "/type_contract/types/Comparison",
+        "/failure_rules/8"
+      ]
+    }
+  ],
+  "working_unit_binding": {
+    "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+    "pointer": "/first_local_unit_binding",
+    "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+  },
+  "function_contract_ref": {
+    "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "pointer": "/functions/1"
+  },
+  "input_and_return_types_ref": {
+    "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "pointer": "/type_contract/types"
+  },
+  "local_invariants": [
+    "同一immutable DefinitionContextで既存walkを一度だけ計算し、公開Comparisonを返す。仕様/型/失敗規則をこの文書で再定義しない。",
+    "別Patternのrequired inputは元required field定義欠落を埋めない。原target/Binding/元不足と無関係14項目/既存unknownを保持。",
+    "公開effect=noneを維持。schema/wire/登録/provider/promotion/CORE/OSの実作用を本unitへ追加しない。"
+  ],
+  "legacy_rederivation": [
+    {
+      "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+      "revision": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+      "line_spans": [
+        [
+          138,
+          154
+        ],
+        [
+          168,
+          173
+        ]
+      ],
+      "keep": "先行test設計と実装/testのtrace、実TDDと右腕のoracleの区別。",
+      "change": "旧L6実装bindingの番号や旧gate/runtimeを現行へ移植しない。現行L6は参照による関数設計、L7は対検証設計を保持。",
+      "reason": "旧の独立機能設計吸収の意図を保ち、#3503の静的設計から実TDD未到達という事例に対し、再記述を増やさず一挙動の実testへ結ぶ。",
+      "raw_sha256": "19c7198b87364d19283876f8f16b26d6789b57221369cfeab8eb62521fbeb7d1"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+      "revision": "bcdf626149ac7bdc71a73437420cc6f368cec217",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+      "line_spans": [
+        [
+          102,
+          120
+        ],
+        [
+          152,
+          159
+        ]
+      ],
+      "keep": "機能homeと対応test、空directoryを実装許可としない境界。",
+      "change": "10/9配置判断の同pack src/testsへ再導出。旧runtime/state/configはコピーしない。",
+      "reason": "pathと意味/所有/依存のずれを避ける既決配置の局所具体化。",
+      "raw_sha256": "6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262"
+    }
+  ],
+  "completion_boundary": "具体入力/独立oracle/test codeは未凍結。実装前Red/Green/Refactor・実提供・受入・全関数成立は未証明。"
+}

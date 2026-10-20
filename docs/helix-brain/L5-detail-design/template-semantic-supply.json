@@ -12877,5 +12877,25 @@
       "boundary": "公開fn2の関数signature/Comparison返却型が変わらないことと、旧未実行normal oracleの全期待値がF03基本reader導入後も不変であることは別である。旧normal入力にF03原owner carriersが無い場合、known/supplied/applicableを期待値として継承せず、L4 F03の明示されたsource-unobtained/unknown挙動へ従う。",
       "resolution_owner": "対応L8詳細設計で旧normal fixtureと新L4 F03 source contractを照合し、必要なら同じ基本意味を保つ範囲で oracle の入力/期待を更新する。実行証拠・全入力閉包はこの記述から生成しない。"
     }
+  },
+  "first_local_implementation_binding": {
+    "function_ref": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/functions/1"
+    },
+    "basic_unit_binding_ref": {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "pointer": "/first_local_unit_binding"
+    },
+    "contract_sources": [
+      "/type_contract/types/DefinitionContext",
+      "/type_contract/types/Comparison",
+      "/functions/1",
+      "/failure_rules/8",
+      "/source_return_contract/descriptor_target_dataflow/definition_meaning_core"
+    ],
+    "meaning": "既存公開関数と一回の既存walkの詳細意味を正本に保つ。新しいtoy checkerへ置換せず、L6へ型/手順/全fixtureを複写しない。言語とsrc/tests配置だけを局所具体化する。",
+    "freeze_state": "input_and_test_not_frozen",
+    "implementation_state": "not_started"
   }
 }
