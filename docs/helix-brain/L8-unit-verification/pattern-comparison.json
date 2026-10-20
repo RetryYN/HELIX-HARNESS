@@ -6230,7 +6230,7 @@
   },
   "candidate_l9_owner_return_binding": {
     "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
-    "file_sha256": "ef5117ab772f484239e68cef437bc0fb5ecada27403927fd1831982a12d2b1d2",
+    "file_sha256": "b4fd3516e4bcb5dcff50ba1de7a334ce94d2c32378edc43d7608fb5b038ae97f",
     "pointer": "/verification_obligations/1/owner_return_symbolic_oracles",
     "object_canonical_sha256": "fce5904563d3bf6792ceeb9f7f192b5ae5c8eecc9077e6ec87a27d9e641c4fb0"
   },
@@ -7270,7 +7270,7 @@
   },
   "candidate_f01_l9_owner_return_binding": {
     "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
-    "file_sha256": "ef5117ab772f484239e68cef437bc0fb5ecada27403927fd1831982a12d2b1d2",
+    "file_sha256": "b4fd3516e4bcb5dcff50ba1de7a334ce94d2c32378edc43d7608fb5b038ae97f",
     "pointer": "/verification_obligations/0/owner_return_symbolic_conditions",
     "object_canonical_sha256": "7e08e67a0732f3a86459c2e5952272a563739de6eefbb0417beb7c0a97f53882"
   },
