@@ -931,7 +931,7 @@
       "return_type": "Assessment"
     }
   ],
-  "value_reference_contract": "localは同candidate shared_valuesの完全値pointer/hash、fixed_gitは固定原文書の全期待pointer/hash。中間retentionも全8rootの実値を共有辞書に保持し、projection説明recipeを型付き引数へ渡さない。新candidate pathに存在しないbase revisionを付けない。",
+  "value_reference_contract": "localは同candidate shared_valuesの完全値pointer/hash、fixed_gitは固定原文書の全期待pointer/hash。中間retentionも全8rootの実値を共有辞書に保持し、projection説明recipeを型付き引数へ渡さない。新candidate pathに存在しないbase revisionを付けない。 本candidateのlocal value_ref解決と親の完全値hash照合の前に、/materialization_contractの41個の標準RFC6902 copyをfixture構築として適用し、全118 shared_valuesと対象42親の元の完全値を復元する。復元後に既存のlocal/fixed_git参照・型・hashを照合し、recipeや物理null placeholderをtyped引数へ渡さない。",
   "shared_values": {
     "8e76dbc69f10ac0e87674be7b138c4c05e4fd2d0752a5325666a3fe6ee290091": {
       "autoscaling": "unselected_future",
