@@ -1,0 +1,4283 @@
+{
+  "schema": "l2-l11-infrastructure-migration-inventory.v1",
+  "inventory_kind": "scaffold原文被覆索引（要求意味同等性・正式JSON/schema/view/承認継承/cutoverの認定ではない）",
+  "authority_effect": "none",
+  "issue": 3461,
+  "base_sha": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+  "confirmed_at": "2026-10-20",
+  "purpose": "INFRASTRUCTURE L2/L11一対の固定原文を無損失索引化。全byteを原順非重複半開spanで被覆し固定git blobからraw一致で再構成。adoptedとcurrentの原文raw bytesが同一であることを直接照合し、同一原文は二重収載せずcurrent/adoptedの役割だけ分ける。",
+  "sources": [
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "git_blob": "8ec8fa92bc1adf03376f60e031dd880095bc02f4",
+      "raw_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "bytes": 60825,
+      "lines": 430,
+      "role": "L2要求候補本文"
+    },
+    {
+      "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+      "git_blob": "eaa32f53a77a96ffbe2230757c290047708accb4",
+      "raw_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+      "bytes": 40777,
+      "lines": 318,
+      "role": "L11受入候補本文"
+    }
+  ],
+  "span_partitions": {
+    "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md": [
+      {
+        "start": 0,
+        "end": 446,
+        "start_line": 1,
+        "line_count": 16,
+        "sha256": "e3d90919ac0653652ebc0938a8c4ed1c760eb60d19f0c730b6873c2978be47b7",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 446,
+        "end": 1769,
+        "start_line": 17,
+        "line_count": 6,
+        "sha256": "6d455138742ca2fa4d387a249bde23f3edb380adbc2fb5c0a492c52f3a3bb787",
+        "first_line": "# HELIX-INFRASTRUCTURE 機能単位要求候補",
+        "role": "document_title"
+      },
+      {
+        "start": 1769,
+        "end": 3520,
+        "start_line": 23,
+        "line_count": 7,
+        "sha256": "202b7b929880ba84154a4553ddf19ed1bbc889e9941135db34a2f24dacfa0a9a",
+        "first_line": "## 境界と版",
+        "role": "group_heading"
+      },
+      {
+        "start": 3520,
+        "end": 3552,
+        "start_line": 30,
+        "line_count": 2,
+        "sha256": "e47b52e023a486d679f77aeca39ed4c155f3e765d1e1e83c1a881b204344b99b",
+        "first_line": "## 1.0機能単位（単体）",
+        "role": "group_heading"
+      },
+      {
+        "start": 3552,
+        "end": 5912,
+        "start_line": 32,
+        "line_count": 10,
+        "sha256": "3291942a92945d75c2e95d3c2be284d2349e9b89527ff9b7c56b70f785720b77",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+        "role": "section_heading"
+      },
+      {
+        "start": 5912,
+        "end": 7133,
+        "start_line": 42,
+        "line_count": 10,
+        "sha256": "ec40a66b707315814420ac5a7fe17dd4da4b4b3a958cf74a6f799d65ef1d41bc",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・D",
+        "role": "section_heading"
+      },
+      {
+        "start": 7133,
+        "end": 9446,
+        "start_line": 52,
+        "line_count": 10,
+        "sha256": "44e32ca4dd7884e3bace925f48b9d76893035f6fcc46dfe958dd249b3b6eea99",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model",
+        "role": "section_heading"
+      },
+      {
+        "start": 9446,
+        "end": 10836,
+        "start_line": 62,
+        "line_count": 10,
+        "sha256": "eec7bc7e7e6f7bb710fd2a191195c6fd656b81d78a8c8aff2bb76b26bca7a2a8",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとInciden",
+        "role": "section_heading"
+      },
+      {
+        "start": 10836,
+        "end": 12223,
+        "start_line": 72,
+        "line_count": 10,
+        "sha256": "4d2e826d42920d60b234a0cd1f23be671829fb052e9235a46fc1a36426acff5f",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback",
+        "role": "section_heading"
+      },
+      {
+        "start": 12223,
+        "end": 13422,
+        "start_line": 82,
+        "line_count": 10,
+        "sha256": "35b634d00f4139bc7fbf91f0c3674f6420fec4f84cc1504f2b489845b31965ef",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-006 HELIX独立Bootstrap・Recovery Pat",
+        "role": "section_heading"
+      },
+      {
+        "start": 13422,
+        "end": 14448,
+        "start_line": 92,
+        "line_count": 10,
+        "sha256": "29820e63b84ed4119c171e12b127b5f1eb3ff0bada5b693cfd0bf860b2934959",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability",
+        "role": "section_heading"
+      },
+      {
+        "start": 14448,
+        "end": 14468,
+        "start_line": 102,
+        "line_count": 2,
+        "sha256": "d2033b3b97029b38ca873149c2e7e3077f03eebc890b6c0a398feae5756a5950",
+        "first_line": "## 1.0接続要求",
+        "role": "group_heading"
+      },
+      {
+        "start": 14468,
+        "end": 15489,
+        "start_line": 104,
+        "line_count": 10,
+        "sha256": "841dc7e17255170394ce240dc10f263108e9e56b3c724de138eed92855812172",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-008 HARNESS-CORE設計からDeployment Ta",
+        "role": "section_heading"
+      },
+      {
+        "start": 15489,
+        "end": 17693,
+        "start_line": 114,
+        "line_count": 10,
+        "sha256": "b27aee4ffe80a11d8259e5af0ee0e716907c66ba0d65faa0fe9c0216487a7c16",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWor",
+        "role": "section_heading"
+      },
+      {
+        "start": 17693,
+        "end": 17716,
+        "start_line": 124,
+        "line_count": 2,
+        "sha256": "807728986b84dce9ab681cb8b73effa77126f249dba92867dfa3d58bfef6bcaf",
+        "first_line": "## 1.0操作構成体",
+        "role": "group_heading"
+      },
+      {
+        "start": 17716,
+        "end": 20584,
+        "start_line": 126,
+        "line_count": 10,
+        "sha256": "550d8ffed768dd86e5604fe82ba94efba3bd1cb51a7ede68654ba524e3dec798",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構",
+        "role": "section_heading"
+      },
+      {
+        "start": 20584,
+        "end": 20601,
+        "start_line": 136,
+        "line_count": 2,
+        "sha256": "a784a6808946e5e42261abd5622405930a147885a9b5f06eb3d0e39187d6e9cb",
+        "first_line": "## 1.0構成体",
+        "role": "group_heading"
+      },
+      {
+        "start": 20601,
+        "end": 23166,
+        "start_line": 138,
+        "line_count": 10,
+        "sha256": "ddedb41002d72be9322e99d6f82233d231795f3e9cc167d2bc048c2bbe765791",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+        "role": "section_heading"
+      },
+      {
+        "start": 23166,
+        "end": 23741,
+        "start_line": 148,
+        "line_count": 4,
+        "sha256": "a2b668f38077c0f97d75f70360515459c58f5d0cfc630cda7df2d6542dfb2a79",
+        "first_line": "## 後続版機能単位候補（すべてversion_target: 1.0より後、版は未定）",
+        "role": "group_heading"
+      },
+      {
+        "start": 23741,
+        "end": 25008,
+        "start_line": 152,
+        "line_count": 10,
+        "sha256": "64a80df6f277acaa1de8b77d317e3ab808f702e91ab2aae47ced7360732b0dc4",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-012 Control ResourceとExecution Re",
+        "role": "section_heading"
+      },
+      {
+        "start": 25008,
+        "end": 26130,
+        "start_line": 162,
+        "line_count": 10,
+        "sha256": "41de5f175a47e226931cc4342aa1e0c69a2202721dd40c1bb5277accfc59c0f8",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-013 Failure DomainとSPOF影響",
+        "role": "section_heading"
+      },
+      {
+        "start": 26130,
+        "end": 27495,
+        "start_line": 172,
+        "line_count": 10,
+        "sha256": "7b0d96b3af12ec1f60bdd03ea9d36ed3e865d4e7f06af97a2eaf1a846ed87808",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-014 OS・LABO Episode Correlation",
+        "role": "section_heading"
+      },
+      {
+        "start": 27495,
+        "end": 28988,
+        "start_line": 182,
+        "line_count": 10,
+        "sha256": "efed02d36e001b0fcd3a8b4a228d0a769ea79996b002cc2cc81341913adba38b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-015 Infrastructure Change Impactと",
+        "role": "section_heading"
+      },
+      {
+        "start": 28988,
+        "end": 30270,
+        "start_line": 192,
+        "line_count": 10,
+        "sha256": "42c5ef19e26e7422d07c91c8f145f31a9295addd9557641b44c5777d168d8a34",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-016 Provider PortabilityとHybrid P",
+        "role": "section_heading"
+      },
+      {
+        "start": 30270,
+        "end": 31592,
+        "start_line": 202,
+        "line_count": 10,
+        "sha256": "df6cd7af2965bac4d2a7008e8962075fa6dbae739f02a057b2f615601cfba8e3",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-017 Resource Location ProofとTool-",
+        "role": "section_heading"
+      },
+      {
+        "start": 31592,
+        "end": 33001,
+        "start_line": 212,
+        "line_count": 10,
+        "sha256": "b01ff2b8b2bc42b6e9fe9d37d169b4c2c2b03226107c0a2a6b19a5d6511e25da",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-018 Cost AttributionとResource Lif",
+        "role": "section_heading"
+      },
+      {
+        "start": 33001,
+        "end": 34210,
+        "start_line": 222,
+        "line_count": 10,
+        "sha256": "029e626af11259de697a6818948c6e0b7a84f4b0d84c4cd72d0d1c77cb72c5f2",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-019 Observation Freshness・Collect",
+        "role": "section_heading"
+      },
+      {
+        "start": 34210,
+        "end": 35545,
+        "start_line": 232,
+        "line_count": 10,
+        "sha256": "7332edbad35e589bec628e1958cef9000be057034dc41b7e45ebd1b656fa6919",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-020 Web Runtime SeparationとAsset ",
+        "role": "section_heading"
+      },
+      {
+        "start": 35545,
+        "end": 36768,
+        "start_line": 242,
+        "line_count": 10,
+        "sha256": "165352d7607c66680598b31a97a436ff3b8d04841b5cd5fc626925931c89f18b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-021 Running/Candidate Generation ",
+        "role": "section_heading"
+      },
+      {
+        "start": 36768,
+        "end": 38156,
+        "start_line": 252,
+        "line_count": 12,
+        "sha256": "a99d600ec3ed7c5139edca96c8659b76dda5023e83aadd074093e1b98daf138d",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-022 Capacity-Driven Autoscaling",
+        "role": "section_heading"
+      },
+      {
+        "start": 38156,
+        "end": 39396,
+        "start_line": 264,
+        "line_count": 10,
+        "sha256": "6c6816d5d3e8cd8176d4325b1e66f0e9c936ccc7457c7587d94ad6d44e2183a1",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-023 Multi-cloud Runtime Compositi",
+        "role": "section_heading"
+      },
+      {
+        "start": 39396,
+        "end": 40980,
+        "start_line": 274,
+        "line_count": 11,
+        "sha256": "0e0e6b293f5f2db12c5b1f8d643a68218dc8749ab875c6b0ca17b700af6f600d",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-024 Fully Automatic Failover",
+        "role": "section_heading"
+      },
+      {
+        "start": 40980,
+        "end": 41031,
+        "start_line": 285,
+        "line_count": 2,
+        "sha256": "96f6ebdc81a88d104087c2bf9ae92ee0a7b14eed83803280a9361ac7a55ee7ed",
+        "first_line": "## Worker資源の接続（version_target: 1.0）",
+        "role": "group_heading"
+      },
+      {
+        "start": 41031,
+        "end": 42585,
+        "start_line": 287,
+        "line_count": 10,
+        "sha256": "57341fdb5ed91f80eba13c50345e47483818d40c4135d28c301e1d44369e3c59",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続",
+        "role": "section_heading"
+      },
+      {
+        "start": 42585,
+        "end": 42660,
+        "start_line": 297,
+        "line_count": 2,
+        "sha256": "58c95b4f3c0d06b91da76b2227bad1055ef3a7a3ccda9e7a29216b30e7ea20ce",
+        "first_line": "## 判断候補の接続（version_target: 1.0より後、版は未定）",
+        "role": "group_heading"
+      },
+      {
+        "start": 42660,
+        "end": 44102,
+        "start_line": 299,
+        "line_count": 10,
+        "sha256": "d925de7fda5de9b1bf4d7209ca474ffb0bc77908c5aef6f10a7ba1b15069d146",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-026 INTELLIGENCEの資源判断候補との接続",
+        "role": "section_heading"
+      },
+      {
+        "start": 44102,
+        "end": 44601,
+        "start_line": 309,
+        "line_count": 6,
+        "sha256": "7cdb97cc080afb951534bd6fa66f78c1bbb78ca3c11e87c76261dd2c1dcb7d32",
+        "first_line": "## 後続版へ保全する機能候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 44601,
+        "end": 44798,
+        "start_line": 315,
+        "line_count": 1,
+        "sha256": "62f27f27f4aef0474a9c4c1ac71f3035a430ca8b39e38c159151d7e9c3fac848",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-008 | control/execution resource is",
+        "role": "table_rows"
+      },
+      {
+        "start": 44798,
+        "end": 44961,
+        "start_line": 316,
+        "line_count": 1,
+        "sha256": "cd6c09ef8fc91e4c18d4a310b06788389833389b1d1d9c70c7070ff48ae986c4",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-012／013 | failure-domain impact、SPO",
+        "role": "table_rows"
+      },
+      {
+        "start": 44961,
+        "end": 45145,
+        "start_line": 317,
+        "line_count": 1,
+        "sha256": "341598657d0cca34bb8a56c3c3e23b45c73d80b90853a63999501ae1fcb7de17",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-015 | HELIX-wide episode correlatio",
+        "role": "table_rows"
+      },
+      {
+        "start": 45145,
+        "end": 45320,
+        "start_line": 318,
+        "line_count": 1,
+        "sha256": "2077b439288c6641fc515bf566c48fa0614af1d91a80e33a6e981e92e5ff1349",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-023／024 | staged Infrastructure cha",
+        "role": "table_rows"
+      },
+      {
+        "start": 45320,
+        "end": 45493,
+        "start_line": 319,
+        "line_count": 1,
+        "sha256": "4efaa536031ffe1681057920c3d5eb80216cc0d2ddadb3047a0deeea75332d39",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-025／026 | provider portabilityとloca",
+        "role": "table_rows"
+      },
+      {
+        "start": 45493,
+        "end": 45748,
+        "start_line": 320,
+        "line_count": 1,
+        "sha256": "0996d8648586145fe895f5ca0683f2c543be18aee1f46f46e923de3b8bd4775a",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-027／040 | resource/artifact locatio",
+        "role": "table_rows"
+      },
+      {
+        "start": 45748,
+        "end": 46021,
+        "start_line": 321,
+        "line_count": 1,
+        "sha256": "64862ad9e24dc5773e1ba99e5618a3d4bfb188df1656956a4f44212e1aab12d9",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-030／031／032 | cost attribution、plan",
+        "role": "table_rows"
+      },
+      {
+        "start": 46021,
+        "end": 46283,
+        "start_line": 322,
+        "line_count": 1,
+        "sha256": "2ea12a255b90f4665ab20af19a19dfb70442d30dbf358b76edae0ff83681d753",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-033／034 | observed_at/source/freshn",
+        "role": "table_rows"
+      },
+      {
+        "start": 46283,
+        "end": 46479,
+        "start_line": 323,
+        "line_count": 1,
+        "sha256": "551e138989ffe0566a4479013e2fbcf129be9f636c10ececf8b62774a8055351",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-035／036 | Web service Infrastructur",
+        "role": "table_rows"
+      },
+      {
+        "start": 46479,
+        "end": 46852,
+        "start_line": 324,
+        "line_count": 2,
+        "sha256": "5cba94d333ccafcfe8787169e24532a91a10c678317f4f54fd9810870f3964bb",
+        "first_line": "| HELIXINFRASTRUCTURE-L1-037 | running/candidate generation ",
+        "role": "table_rows"
+      },
+      {
+        "start": 46852,
+        "end": 47133,
+        "start_line": 326,
+        "line_count": 3,
+        "sha256": "2eb9ff41cbbe4b8603026c203a26f3415a85fd8b9d0dbb09652657635cb6f590",
+        "first_line": "| Multi-cloud | simultaneous cloud mix | L2-023。provider互換や同",
+        "role": "table_rows"
+      },
+      {
+        "start": 47133,
+        "end": 51766,
+        "start_line": 329,
+        "line_count": 47,
+        "sha256": "8714077e2703746980f7887008c85799800aa1dc7d467961db6243516ceaca6d",
+        "first_line": "## L1全40件からL2・L11への個別対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 51766,
+        "end": 53808,
+        "start_line": 376,
+        "line_count": 25,
+        "sha256": "f347a608b4723e536ee45bbacf8487efcd3db97c06823d493c14323b679ece60",
+        "first_line": "## 1.0最低18項目と要求IDの対応",
+        "role": "group_heading"
+      },
+      {
+        "start": 53808,
+        "end": 53850,
+        "start_line": 401,
+        "line_count": 2,
+        "sha256": "d11e10bb49b713b053f2a8e06239737753eca09f57a197b04729b080992f6e4b",
+        "first_line": "### 既存要求・sourceからの対応",
+        "role": "section_heading"
+      },
+      {
+        "start": 53850,
+        "end": 53906,
+        "start_line": 403,
+        "line_count": 2,
+        "sha256": "c8be938cf250de3e0458662f7cccd37503f9c5b67558531250c94abfe3620722",
+        "first_line": "| Source/condition | 行き先 | 対応 |",
+        "role": "table_rows"
+      },
+      {
+        "start": 53906,
+        "end": 54091,
+        "start_line": 405,
+        "line_count": 1,
+        "sha256": "bf54a885ca33832570d0d0b9997a96839e3381953c191f2a6db62efca137cf12",
+        "first_line": "| HRI-L1-001〜007/009〜011/014/016〜022/028/029/038/039 | L2-00",
+        "role": "table_rows"
+      },
+      {
+        "start": 54091,
+        "end": 54736,
+        "start_line": 406,
+        "line_count": 2,
+        "sha256": "f3dd1b2f932c19248508d9162a3960174bf926a177eea157e55c1bab7ceed670",
+        "first_line": "| HRI-L1-008/012/013/015/023〜027/030〜037/040、および高度なAutoscali",
+        "role": "table_rows"
+      },
+      {
+        "start": 54736,
+        "end": 55110,
+        "start_line": 408,
+        "line_count": 2,
+        "sha256": "c27e3843b18be28d3d18e9b39151cab7f69ab3071d67da4b538e576aefd70965",
+        "first_line": "| HELIXOS-L2-014 | L2-009／011 | OS owns stage release compos",
+        "role": "table_rows"
+      },
+      {
+        "start": 55110,
+        "end": 60124,
+        "start_line": 410,
+        "line_count": 16,
+        "sha256": "ee59260f4dc9be03fbbde03778dceacc22f9c647e8212c3d1a68c6d8fe26b429",
+        "first_line": "### 旧HELIX source basisと再導出",
+        "role": "section_heading"
+      },
+      {
+        "start": 60124,
+        "end": 60825,
+        "start_line": 426,
+        "line_count": 5,
+        "sha256": "fa9e1491f3647ee1f2b368d60b2e63030881823131da6350117dc38e463752bc",
+        "first_line": "### 人の判断が残る点",
+        "role": "section_heading"
+      }
+    ],
+    "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md": [
+      {
+        "start": 0,
+        "end": 449,
+        "start_line": 1,
+        "line_count": 16,
+        "sha256": "fd534680d621a7701d64484f4855b5be97fc6a3503f77a70a85582204d5c533f",
+        "first_line": "---",
+        "role": "frontmatter"
+      },
+      {
+        "start": 449,
+        "end": 1219,
+        "start_line": 17,
+        "line_count": 6,
+        "sha256": "294db1105656669466622f5136380a6ea574bfdb673cf9964e258249e319bc9f",
+        "first_line": "# HELIX-INFRASTRUCTURE 機能単位受入候補",
+        "role": "document_title"
+      },
+      {
+        "start": 1219,
+        "end": 2817,
+        "start_line": 23,
+        "line_count": 9,
+        "sha256": "3478e0652b81603ddb67fa7c04545f7fbfd44681d49d5542f907ab8992e7a198",
+        "first_line": "## 実行前提と共通判定",
+        "role": "group_heading"
+      },
+      {
+        "start": 2817,
+        "end": 2843,
+        "start_line": 32,
+        "line_count": 2,
+        "sha256": "e240c4a46a0d372bb14bc7375890b3a755e97e8b6b390337399d08c9e3e32e28",
+        "first_line": "## 1.0単体受入候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 2843,
+        "end": 5002,
+        "start_line": 34,
+        "line_count": 10,
+        "sha256": "9fa4e35c53eb14f1d938f3299ac034f30c7b26c5848a8779c73359e32ac170fe",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-001 Runtime Resource Topologyと環境",
+        "role": "section_heading"
+      },
+      {
+        "start": 5002,
+        "end": 6139,
+        "start_line": 44,
+        "line_count": 10,
+        "sha256": "710b5ef8b55bbef350573769de70e255962fde93e9421fbf4a9c2f43ac4dacfb",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-002 Desired Target・Actual State・D",
+        "role": "section_heading"
+      },
+      {
+        "start": 6139,
+        "end": 8157,
+        "start_line": 54,
+        "line_count": 10,
+        "sha256": "064f0a0391c19e8726b2252b4dcefa786800983a769a556955ed55108aa4e5db",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-003 Compute・Network・Storage・Model",
+        "role": "section_heading"
+      },
+      {
+        "start": 8157,
+        "end": 9299,
+        "start_line": 64,
+        "line_count": 10,
+        "sha256": "c2a55878949b2659e2000c847df3aa263bbc69ad407b3097e694a1c138631013",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-004 Runtime ObservabilityとInciden",
+        "role": "section_heading"
+      },
+      {
+        "start": 9299,
+        "end": 10406,
+        "start_line": 74,
+        "line_count": 10,
+        "sha256": "7a26bfaffee4f4b526deb40fb24536531672dceefc243f340c78a44c11d5d408",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-005 Backup・Restore・Rollback",
+        "role": "section_heading"
+      },
+      {
+        "start": 10406,
+        "end": 11529,
+        "start_line": 84,
+        "line_count": 10,
+        "sha256": "620c929bf51d1a7e31749f3dc0cd439cf8d8dfcd88f2852c48e19d3845f15528",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-006 HELIX独立Bootstrap・Recovery Pat",
+        "role": "section_heading"
+      },
+      {
+        "start": 11529,
+        "end": 12462,
+        "start_line": 94,
+        "line_count": 10,
+        "sha256": "671533fadb07000ed569641feaee10a4d186d105b58a23a34a763a4e58e7aa1b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-007 Runtime Rebuildability",
+        "role": "section_heading"
+      },
+      {
+        "start": 12462,
+        "end": 12488,
+        "start_line": 104,
+        "line_count": 2,
+        "sha256": "461e8c8b07007674a0306cc985a316211a3d858800b918ebaee42a696f11dfc4",
+        "first_line": "## 1.0接続受入候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 12488,
+        "end": 13429,
+        "start_line": 106,
+        "line_count": 10,
+        "sha256": "fac0236f782f4f888f8e5a923e20993edbda01d2912654021e2fa8e1af818bed",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-008 HARNESS-CORE設計からDeployment Ta",
+        "role": "section_heading"
+      },
+      {
+        "start": 13429,
+        "end": 15528,
+        "start_line": 116,
+        "line_count": 10,
+        "sha256": "db7eccb04c92d0cc674f4c2b0452b20ede329bd83bc09d46aaed99af2c61c9ea",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-009 OS Runtime Resource StateとWor",
+        "role": "section_heading"
+      },
+      {
+        "start": 15528,
+        "end": 15560,
+        "start_line": 126,
+        "line_count": 2,
+        "sha256": "3f4232c00612bdc20fa1a12415339d0bcc40675626c7b8fd1b7abef2bbbacd9c",
+        "first_line": "## 1.0操作構成体の受入",
+        "role": "group_heading"
+      },
+      {
+        "start": 15560,
+        "end": 18401,
+        "start_line": 128,
+        "line_count": 10,
+        "sha256": "15225795b3c03a72922512501bcf696cf13b66d3861a94d0806fa39dfd292cc7",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-010 SECURITY authority・Worker操作の構",
+        "role": "section_heading"
+      },
+      {
+        "start": 18401,
+        "end": 18430,
+        "start_line": 138,
+        "line_count": 2,
+        "sha256": "ed3e15861c31327bba2808ef984cb64f5306a826e594ca0a281513fa4da957bc",
+        "first_line": "## 1.0構成体受入候補",
+        "role": "group_heading"
+      },
+      {
+        "start": 18430,
+        "end": 22097,
+        "start_line": 140,
+        "line_count": 12,
+        "sha256": "6b9835a47096ab07f9007e47429bf2415bf29bf23cdf70420f1b0c2b3ac52a6e",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-011 HELIX自身のInfrastructure 1.0構成体",
+        "role": "section_heading"
+      },
+      {
+        "start": 22097,
+        "end": 22427,
+        "start_line": 152,
+        "line_count": 4,
+        "sha256": "d5c20fce14d31eef14d98bbcfa1b487ebc762332ee3e7ff9c55d4ff38f2a5f31",
+        "first_line": "## 後続版境界の受入確認",
+        "role": "group_heading"
+      },
+      {
+        "start": 22427,
+        "end": 24441,
+        "start_line": 156,
+        "line_count": 11,
+        "sha256": "5e9b9b2b74b1d36c4bb6891b15eae7b65e34fdc09f8fc52dbddd2e1ca45ecab6",
+        "first_line": "| L1候補範囲 | 1.0で確認する境界 | 不合格となる反例 |",
+        "role": "table_rows"
+      },
+      {
+        "start": 24441,
+        "end": 24852,
+        "start_line": 167,
+        "line_count": 4,
+        "sha256": "d3792807d7f52241f4db85fb0fc84862aad63eded2f67cf1aaba40ffa31ec32c",
+        "first_line": "## 後続版要求候補の対受入（すべてversion_target: 1.0より後、版は未定）",
+        "role": "group_heading"
+      },
+      {
+        "start": 24852,
+        "end": 25711,
+        "start_line": 171,
+        "line_count": 9,
+        "sha256": "a7b593d2e9ad6916d50bd0ace3f69f66b19015d572c5425fec3830f9edbab1ed",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-012 Control ResourceとExecution Re",
+        "role": "section_heading"
+      },
+      {
+        "start": 25711,
+        "end": 26542,
+        "start_line": 180,
+        "line_count": 9,
+        "sha256": "17eaefa6813bcd9a8e5213fb313f2ed71f63ba6d472be80a3d6a0b55d79886c0",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-013 Failure DomainとSPOF影響",
+        "role": "section_heading"
+      },
+      {
+        "start": 26542,
+        "end": 27606,
+        "start_line": 189,
+        "line_count": 9,
+        "sha256": "e87fbe454ab3d30922f6c9255024f605576eb2741cb23553dbf78e6a077d7b69",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-014 OS・LABO Episode Correlation",
+        "role": "section_heading"
+      },
+      {
+        "start": 27606,
+        "end": 28709,
+        "start_line": 198,
+        "line_count": 9,
+        "sha256": "d55a6e8ecfb7bbdf60cfc27637212ea6cebc2c6b14efd7a68ff1b71003086175",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-015 Infrastructure Change Impactと",
+        "role": "section_heading"
+      },
+      {
+        "start": 28709,
+        "end": 29638,
+        "start_line": 207,
+        "line_count": 9,
+        "sha256": "c029334db56b250e13ff65b74f62ba570f5d8dfc8461353a9d2e6e2beaa0b493",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-016 Provider PortabilityとHybrid P",
+        "role": "section_heading"
+      },
+      {
+        "start": 29638,
+        "end": 30629,
+        "start_line": 216,
+        "line_count": 9,
+        "sha256": "3e7e1586f62342ab60898348a5cd44cd49ca1404fcb00644332fd419348ea4ba",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-017 Resource Location ProofとTool-",
+        "role": "section_heading"
+      },
+      {
+        "start": 30629,
+        "end": 31765,
+        "start_line": 225,
+        "line_count": 9,
+        "sha256": "c10f0650ebd920a0ad846c70db89878f2f5b1c02218df2ecab81f24f442b77f0",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-018 Cost AttributionとResource Lif",
+        "role": "section_heading"
+      },
+      {
+        "start": 31765,
+        "end": 32625,
+        "start_line": 234,
+        "line_count": 9,
+        "sha256": "bdf9de03797bc34a92911fb259b3f74c48d2eddae983bb9c12aa39ac171fad0b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-019 Observation Freshness・Collect",
+        "role": "section_heading"
+      },
+      {
+        "start": 32625,
+        "end": 33631,
+        "start_line": 243,
+        "line_count": 9,
+        "sha256": "0b695bd3352b349d03dc1652127dadf0c0612f97f72b558109c84605af6f849b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-020 Web Runtime SeparationとAsset ",
+        "role": "section_heading"
+      },
+      {
+        "start": 33631,
+        "end": 34521,
+        "start_line": 252,
+        "line_count": 9,
+        "sha256": "435ccc56375fac2f64d806936f91ac0319db255dcf566a769b16e64a3dc3c704",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-021 Running/Candidate Generation ",
+        "role": "section_heading"
+      },
+      {
+        "start": 34521,
+        "end": 35523,
+        "start_line": 261,
+        "line_count": 9,
+        "sha256": "70edb3a6369606f3e311e12a703311f193ef2d5cde9b56024f0b1f3fa8030b3e",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-022 Capacity-Driven Autoscaling",
+        "role": "section_heading"
+      },
+      {
+        "start": 35523,
+        "end": 36494,
+        "start_line": 270,
+        "line_count": 9,
+        "sha256": "74356e19140a64e296dcd31311a89313bd7bed2a98966f8c7150383fa858df8a",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-023 Multi-cloud Runtime Compositi",
+        "role": "section_heading"
+      },
+      {
+        "start": 36494,
+        "end": 37671,
+        "start_line": 279,
+        "line_count": 9,
+        "sha256": "8aa41f29831dc9fca886793befa587ccca1cb655849d77d7a747374402a024b8",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-024 Fully Automatic Failover",
+        "role": "section_heading"
+      },
+      {
+        "start": 37671,
+        "end": 37728,
+        "start_line": 288,
+        "line_count": 2,
+        "sha256": "9959084d4f0d081f0b352c9179d2df30ee864811d227fbf0bf9d512b7516fd4f",
+        "first_line": "## Worker資源の接続受入（version_target: 1.0）",
+        "role": "group_heading"
+      },
+      {
+        "start": 37728,
+        "end": 38670,
+        "start_line": 290,
+        "line_count": 9,
+        "sha256": "199e879c05ce07661cabaabd7df55efa29697cc20b51bf55339d738558d52a88",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-025 Workerと実行資源の接続",
+        "role": "section_heading"
+      },
+      {
+        "start": 38670,
+        "end": 38751,
+        "start_line": 299,
+        "line_count": 2,
+        "sha256": "fd760f9488c2a61865b52c4bcc5e2f5185aa4e0917a5ed64da6bea6a7ca1dc30",
+        "first_line": "## 判断候補の接続受入（version_target: 1.0より後、版は未定）",
+        "role": "group_heading"
+      },
+      {
+        "start": 38751,
+        "end": 39691,
+        "start_line": 301,
+        "line_count": 9,
+        "sha256": "bcc5fbf7fedcb07f329445875a91241da543268fcac494b501681c2b2dace44b",
+        "first_line": "### HELIXINFRASTRUCTURE-L2-026 INTELLIGENCEの資源判断候補との接続",
+        "role": "section_heading"
+      },
+      {
+        "start": 39691,
+        "end": 40413,
+        "start_line": 310,
+        "line_count": 6,
+        "sha256": "895c87cf67396581f9dd89a56c4abd01c35a1e56a496e9f76f30ddeeaecebfdc",
+        "first_line": "## 追跡根拠と未決事項",
+        "role": "group_heading"
+      },
+      {
+        "start": 40413,
+        "end": 40777,
+        "start_line": 316,
+        "line_count": 3,
+        "sha256": "4fcea229e2f3b25a6cc5e925f6f5594fc8a2a457824119bc099135f998b1060c",
+        "first_line": "## 親L1からの受入参照",
+        "role": "group_heading"
+      }
+    ]
+  },
+  "frontmatter": {
+    "L2": {
+      "end_byte": 430,
+      "end_line": 13,
+      "delimiter_end_byte": 429,
+      "delimiter_end_line": 13,
+      "note": "閉じdelimiter終端と直後blankを実原文から計測。owner/version/適用条件はfrontmatterと各表定義行の列に原所在を持つ。値を再著述しない"
+    },
+    "L11": {
+      "end_byte": 433,
+      "end_line": 13,
+      "delimiter_end_byte": 432,
+      "delimiter_end_line": 13,
+      "note": "同上"
+    }
+  },
+  "adoption_snapshot": {
+    "decision_record": {
+      "path": "docs/governance/decisions/helix-infrastructure-requirements-po-decision-2026-09-28.md",
+      "git_blob": "e38fda39a335eadd6eca966cacecb99b1503601d",
+      "raw_sha256": "0e52c250c6f1501c3ed9ae7d13ee1997632ba46ef168df50775488f268993c7f",
+      "bytes": 6241,
+      "source_repository_revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+      "location_revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+      "authority_effect": "effective_when_this_record_is_admitted_to_main"
+    },
+    "adopted_blobs": [
+      {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "8ec8fa92bc1adf03376f60e031dd880095bc02f4",
+        "raw_sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+        "bytes": 60825
+      },
+      {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc",
+        "git_blob": "eaa32f53a77a96ffbe2230757c290047708accb4",
+        "raw_sha256": "7c3d22adef53a8b9c613408a8b8697b2aa40d1e5316776b5305f5a34eb22dada",
+        "bytes": 40777
+      }
+    ],
+    "raw_identity_verified": {
+      "L2_bytes_identical": true,
+      "L11_bytes_identical": true,
+      "note": "採択f6dad2a3とcurrentの対象2本文raw bytesは同一。同一原文を二重収載せずcurrent/adoptedの役割だけ分け、decision出所は別に記録"
+    },
+    "adopted_id_set": {
+      "count": 26,
+      "note": "採択26候補とversion scope 1.0の18項目は同じ件数ではない。version列の表記は構文観測として保持し適用範囲は未裁定"
+    },
+    "current_vs_adopted": "raw bytes同一を直接照合済み。採択decisionの出所省略をしない"
+  },
+  "identity_index": {
+    "source_pins": {
+      "current_L2": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c"
+      },
+      "current_L11": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c"
+      },
+      "adopted_L2": {
+        "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      },
+      "adopted_L11": {
+        "path": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md",
+        "revision": "f6dad2a33e24f000b87d7f09b8d40288257e74cc"
+      }
+    },
+    "current_L2": {
+      "distinct_ids": 26,
+      "locators": {
+        "HELIXINFRASTRUCTURE-L2-001": [
+          {
+            "line": 32,
+            "byte_start": 3556,
+            "byte_end": 3582,
+            "role": "heading"
+          },
+          {
+            "line": 335,
+            "byte_start": 47658,
+            "byte_end": 47684,
+            "role": "inline_mention"
+          },
+          {
+            "line": 338,
+            "byte_start": 48010,
+            "byte_end": 48036,
+            "role": "inline_mention"
+          },
+          {
+            "line": 339,
+            "byte_start": 48086,
+            "byte_end": 48112,
+            "role": "inline_mention"
+          },
+          {
+            "line": 340,
+            "byte_start": 48193,
+            "byte_end": 48219,
+            "role": "inline_mention"
+          },
+          {
+            "line": 341,
+            "byte_start": 48300,
+            "byte_end": 48326,
+            "role": "inline_mention"
+          },
+          {
+            "line": 343,
+            "byte_start": 48510,
+            "byte_end": 48536,
+            "role": "inline_mention"
+          },
+          {
+            "line": 356,
+            "byte_start": 49828,
+            "byte_end": 49854,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-002": [
+          {
+            "line": 42,
+            "byte_start": 5916,
+            "byte_end": 5942,
+            "role": "heading"
+          },
+          {
+            "line": 336,
+            "byte_start": 47765,
+            "byte_end": 47791,
+            "role": "inline_mention"
+          },
+          {
+            "line": 337,
+            "byte_start": 47903,
+            "byte_end": 47929,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-003": [
+          {
+            "line": 52,
+            "byte_start": 7137,
+            "byte_end": 7163,
+            "role": "heading"
+          },
+          {
+            "line": 339,
+            "byte_start": 48117,
+            "byte_end": 48143,
+            "role": "inline_mention"
+          },
+          {
+            "line": 340,
+            "byte_start": 48224,
+            "byte_end": 48250,
+            "role": "inline_mention"
+          },
+          {
+            "line": 341,
+            "byte_start": 48331,
+            "byte_end": 48357,
+            "role": "inline_mention"
+          },
+          {
+            "line": 343,
+            "byte_start": 48541,
+            "byte_end": 48567,
+            "role": "inline_mention"
+          },
+          {
+            "line": 344,
+            "byte_start": 48648,
+            "byte_end": 48674,
+            "role": "inline_mention"
+          },
+          {
+            "line": 345,
+            "byte_start": 48749,
+            "byte_end": 48775,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-004": [
+          {
+            "line": 62,
+            "byte_start": 9450,
+            "byte_end": 9476,
+            "role": "heading"
+          },
+          {
+            "line": 348,
+            "byte_start": 49056,
+            "byte_end": 49082,
+            "role": "inline_mention"
+          },
+          {
+            "line": 350,
+            "byte_start": 49266,
+            "byte_end": 49292,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-019": [
+          {
+            "line": 68,
+            "byte_start": 10355,
+            "byte_end": 10381,
+            "role": "inline_mention"
+          },
+          {
+            "line": 222,
+            "byte_start": 33005,
+            "byte_end": 33031,
+            "role": "heading"
+          },
+          {
+            "line": 367,
+            "byte_start": 51037,
+            "byte_end": 51063,
+            "role": "inline_mention"
+          },
+          {
+            "line": 368,
+            "byte_start": 51140,
+            "byte_end": 51166,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-005": [
+          {
+            "line": 72,
+            "byte_start": 10840,
+            "byte_end": 10866,
+            "role": "heading"
+          },
+          {
+            "line": 351,
+            "byte_start": 49342,
+            "byte_end": 49368,
+            "role": "inline_mention"
+          },
+          {
+            "line": 352,
+            "byte_start": 49418,
+            "byte_end": 49444,
+            "role": "inline_mention"
+          },
+          {
+            "line": 353,
+            "byte_start": 49494,
+            "byte_end": 49520,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-006": [
+          {
+            "line": 82,
+            "byte_start": 12227,
+            "byte_end": 12253,
+            "role": "heading"
+          },
+          {
+            "line": 354,
+            "byte_start": 49595,
+            "byte_end": 49621,
+            "role": "inline_mention"
+          },
+          {
+            "line": 355,
+            "byte_start": 49696,
+            "byte_end": 49722,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-007": [
+          {
+            "line": 92,
+            "byte_start": 13426,
+            "byte_end": 13452,
+            "role": "heading"
+          },
+          {
+            "line": 372,
+            "byte_start": 51519,
+            "byte_end": 51545,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-008": [
+          {
+            "line": 104,
+            "byte_start": 14472,
+            "byte_end": 14498,
+            "role": "heading"
+          },
+          {
+            "line": 336,
+            "byte_start": 47796,
+            "byte_end": 47822,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-009": [
+          {
+            "line": 114,
+            "byte_start": 15493,
+            "byte_end": 15519,
+            "role": "heading"
+          },
+          {
+            "line": 335,
+            "byte_start": 47689,
+            "byte_end": 47715,
+            "role": "inline_mention"
+          },
+          {
+            "line": 336,
+            "byte_start": 47827,
+            "byte_end": 47853,
+            "role": "inline_mention"
+          },
+          {
+            "line": 337,
+            "byte_start": 47934,
+            "byte_end": 47960,
+            "role": "inline_mention"
+          },
+          {
+            "line": 348,
+            "byte_start": 49087,
+            "byte_end": 49113,
+            "role": "inline_mention"
+          },
+          {
+            "line": 356,
+            "byte_start": 49859,
+            "byte_end": 49885,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-010": [
+          {
+            "line": 126,
+            "byte_start": 17720,
+            "byte_end": 17746,
+            "role": "heading"
+          },
+          {
+            "line": 355,
+            "byte_start": 49727,
+            "byte_end": 49753,
+            "role": "inline_mention"
+          },
+          {
+            "line": 362,
+            "byte_start": 50543,
+            "byte_end": 50569,
+            "role": "inline_mention"
+          },
+          {
+            "line": 363,
+            "byte_start": 50619,
+            "byte_end": 50645,
+            "role": "inline_mention"
+          },
+          {
+            "line": 373,
+            "byte_start": 51595,
+            "byte_end": 51621,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-011": [
+          {
+            "line": 138,
+            "byte_start": 20605,
+            "byte_end": 20631,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-012": [
+          {
+            "line": 152,
+            "byte_start": 23745,
+            "byte_end": 23771,
+            "role": "heading"
+          },
+          {
+            "line": 342,
+            "byte_start": 48440,
+            "byte_end": 48466,
+            "role": "inline_mention"
+          },
+          {
+            "line": 406,
+            "byte_start": 54207,
+            "byte_end": 54233,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-013": [
+          {
+            "line": 162,
+            "byte_start": 25012,
+            "byte_end": 25038,
+            "role": "heading"
+          },
+          {
+            "line": 346,
+            "byte_start": 48883,
+            "byte_end": 48909,
+            "role": "inline_mention"
+          },
+          {
+            "line": 347,
+            "byte_start": 48986,
+            "byte_end": 49012,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-014": [
+          {
+            "line": 172,
+            "byte_start": 26134,
+            "byte_end": 26160,
+            "role": "heading"
+          },
+          {
+            "line": 349,
+            "byte_start": 49196,
+            "byte_end": 49222,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-015": [
+          {
+            "line": 182,
+            "byte_start": 27499,
+            "byte_end": 27525,
+            "role": "heading"
+          },
+          {
+            "line": 357,
+            "byte_start": 49968,
+            "byte_end": 49994,
+            "role": "inline_mention"
+          },
+          {
+            "line": 358,
+            "byte_start": 50071,
+            "byte_end": 50097,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-016": [
+          {
+            "line": 192,
+            "byte_start": 28992,
+            "byte_end": 29018,
+            "role": "heading"
+          },
+          {
+            "line": 359,
+            "byte_start": 50174,
+            "byte_end": 50200,
+            "role": "inline_mention"
+          },
+          {
+            "line": 360,
+            "byte_start": 50308,
+            "byte_end": 50334,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-017": [
+          {
+            "line": 202,
+            "byte_start": 30274,
+            "byte_end": 30300,
+            "role": "heading"
+          },
+          {
+            "line": 361,
+            "byte_start": 50473,
+            "byte_end": 50499,
+            "role": "inline_mention"
+          },
+          {
+            "line": 374,
+            "byte_start": 51735,
+            "byte_end": 51761,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-018": [
+          {
+            "line": 212,
+            "byte_start": 31596,
+            "byte_end": 31622,
+            "role": "heading"
+          },
+          {
+            "line": 364,
+            "byte_start": 50728,
+            "byte_end": 50754,
+            "role": "inline_mention"
+          },
+          {
+            "line": 365,
+            "byte_start": 50831,
+            "byte_end": 50857,
+            "role": "inline_mention"
+          },
+          {
+            "line": 366,
+            "byte_start": 50934,
+            "byte_end": 50960,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-020": [
+          {
+            "line": 232,
+            "byte_start": 34214,
+            "byte_end": 34240,
+            "role": "heading"
+          },
+          {
+            "line": 369,
+            "byte_start": 51243,
+            "byte_end": 51269,
+            "role": "inline_mention"
+          },
+          {
+            "line": 370,
+            "byte_start": 51346,
+            "byte_end": 51372,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-021": [
+          {
+            "line": 242,
+            "byte_start": 35549,
+            "byte_end": 35575,
+            "role": "heading"
+          },
+          {
+            "line": 371,
+            "byte_start": 51449,
+            "byte_end": 51475,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-022": [
+          {
+            "line": 252,
+            "byte_start": 36772,
+            "byte_end": 36798,
+            "role": "heading"
+          },
+          {
+            "line": 344,
+            "byte_start": 48679,
+            "byte_end": 48705,
+            "role": "inline_mention"
+          },
+          {
+            "line": 345,
+            "byte_start": 48780,
+            "byte_end": 48806,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-023": [
+          {
+            "line": 264,
+            "byte_start": 38160,
+            "byte_end": 38186,
+            "role": "heading"
+          },
+          {
+            "line": 359,
+            "byte_start": 50205,
+            "byte_end": 50231,
+            "role": "inline_mention"
+          },
+          {
+            "line": 360,
+            "byte_start": 50339,
+            "byte_end": 50365,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-024": [
+          {
+            "line": 274,
+            "byte_start": 39400,
+            "byte_end": 39426,
+            "role": "heading"
+          },
+          {
+            "line": 353,
+            "byte_start": 49525,
+            "byte_end": 49551,
+            "role": "inline_mention"
+          },
+          {
+            "line": 354,
+            "byte_start": 49626,
+            "byte_end": 49652,
+            "role": "inline_mention"
+          },
+          {
+            "line": 355,
+            "byte_start": 49758,
+            "byte_end": 49784,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-025": [
+          {
+            "line": 287,
+            "byte_start": 41035,
+            "byte_end": 41061,
+            "role": "heading"
+          },
+          {
+            "line": 343,
+            "byte_start": 48572,
+            "byte_end": 48598,
+            "role": "inline_mention"
+          },
+          {
+            "line": 373,
+            "byte_start": 51626,
+            "byte_end": 51652,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-026": [
+          {
+            "line": 299,
+            "byte_start": 42664,
+            "byte_end": 42690,
+            "role": "heading"
+          },
+          {
+            "line": 360,
+            "byte_start": 50370,
+            "byte_end": 50396,
+            "role": "inline_mention"
+          }
+        ]
+      }
+    },
+    "current_L11": {
+      "distinct_ids": 26,
+      "locators": {
+        "HELIXINFRASTRUCTURE-L2-001": [
+          {
+            "line": 34,
+            "byte_start": 2847,
+            "byte_end": 2873,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-002": [
+          {
+            "line": 44,
+            "byte_start": 5006,
+            "byte_end": 5032,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-003": [
+          {
+            "line": 54,
+            "byte_start": 6143,
+            "byte_end": 6169,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-004": [
+          {
+            "line": 64,
+            "byte_start": 8161,
+            "byte_end": 8187,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-005": [
+          {
+            "line": 74,
+            "byte_start": 9303,
+            "byte_end": 9329,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-006": [
+          {
+            "line": 84,
+            "byte_start": 10410,
+            "byte_end": 10436,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-007": [
+          {
+            "line": 94,
+            "byte_start": 11533,
+            "byte_end": 11559,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-008": [
+          {
+            "line": 106,
+            "byte_start": 12492,
+            "byte_end": 12518,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-009": [
+          {
+            "line": 116,
+            "byte_start": 13433,
+            "byte_end": 13459,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-010": [
+          {
+            "line": 128,
+            "byte_start": 15564,
+            "byte_end": 15590,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-011": [
+          {
+            "line": 140,
+            "byte_start": 18434,
+            "byte_end": 18460,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-012": [
+          {
+            "line": 171,
+            "byte_start": 24856,
+            "byte_end": 24882,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-013": [
+          {
+            "line": 180,
+            "byte_start": 25715,
+            "byte_end": 25741,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-014": [
+          {
+            "line": 189,
+            "byte_start": 26546,
+            "byte_end": 26572,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-015": [
+          {
+            "line": 198,
+            "byte_start": 27610,
+            "byte_end": 27636,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-016": [
+          {
+            "line": 207,
+            "byte_start": 28713,
+            "byte_end": 28739,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-017": [
+          {
+            "line": 216,
+            "byte_start": 29642,
+            "byte_end": 29668,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-018": [
+          {
+            "line": 225,
+            "byte_start": 30633,
+            "byte_end": 30659,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-019": [
+          {
+            "line": 234,
+            "byte_start": 31769,
+            "byte_end": 31795,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-020": [
+          {
+            "line": 243,
+            "byte_start": 32629,
+            "byte_end": 32655,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-021": [
+          {
+            "line": 252,
+            "byte_start": 33635,
+            "byte_end": 33661,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-022": [
+          {
+            "line": 261,
+            "byte_start": 34525,
+            "byte_end": 34551,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-023": [
+          {
+            "line": 270,
+            "byte_start": 35527,
+            "byte_end": 35553,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-024": [
+          {
+            "line": 279,
+            "byte_start": 36498,
+            "byte_end": 36524,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-025": [
+          {
+            "line": 290,
+            "byte_start": 37732,
+            "byte_end": 37758,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-026": [
+          {
+            "line": 301,
+            "byte_start": 38755,
+            "byte_end": 38781,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "adopted_L2": {
+      "distinct_ids": 26,
+      "locators": {
+        "HELIXINFRASTRUCTURE-L2-001": [
+          {
+            "line": 32,
+            "byte_start": 3556,
+            "byte_end": 3582,
+            "role": "heading"
+          },
+          {
+            "line": 335,
+            "byte_start": 47658,
+            "byte_end": 47684,
+            "role": "inline_mention"
+          },
+          {
+            "line": 338,
+            "byte_start": 48010,
+            "byte_end": 48036,
+            "role": "inline_mention"
+          },
+          {
+            "line": 339,
+            "byte_start": 48086,
+            "byte_end": 48112,
+            "role": "inline_mention"
+          },
+          {
+            "line": 340,
+            "byte_start": 48193,
+            "byte_end": 48219,
+            "role": "inline_mention"
+          },
+          {
+            "line": 341,
+            "byte_start": 48300,
+            "byte_end": 48326,
+            "role": "inline_mention"
+          },
+          {
+            "line": 343,
+            "byte_start": 48510,
+            "byte_end": 48536,
+            "role": "inline_mention"
+          },
+          {
+            "line": 356,
+            "byte_start": 49828,
+            "byte_end": 49854,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-002": [
+          {
+            "line": 42,
+            "byte_start": 5916,
+            "byte_end": 5942,
+            "role": "heading"
+          },
+          {
+            "line": 336,
+            "byte_start": 47765,
+            "byte_end": 47791,
+            "role": "inline_mention"
+          },
+          {
+            "line": 337,
+            "byte_start": 47903,
+            "byte_end": 47929,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-003": [
+          {
+            "line": 52,
+            "byte_start": 7137,
+            "byte_end": 7163,
+            "role": "heading"
+          },
+          {
+            "line": 339,
+            "byte_start": 48117,
+            "byte_end": 48143,
+            "role": "inline_mention"
+          },
+          {
+            "line": 340,
+            "byte_start": 48224,
+            "byte_end": 48250,
+            "role": "inline_mention"
+          },
+          {
+            "line": 341,
+            "byte_start": 48331,
+            "byte_end": 48357,
+            "role": "inline_mention"
+          },
+          {
+            "line": 343,
+            "byte_start": 48541,
+            "byte_end": 48567,
+            "role": "inline_mention"
+          },
+          {
+            "line": 344,
+            "byte_start": 48648,
+            "byte_end": 48674,
+            "role": "inline_mention"
+          },
+          {
+            "line": 345,
+            "byte_start": 48749,
+            "byte_end": 48775,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-004": [
+          {
+            "line": 62,
+            "byte_start": 9450,
+            "byte_end": 9476,
+            "role": "heading"
+          },
+          {
+            "line": 348,
+            "byte_start": 49056,
+            "byte_end": 49082,
+            "role": "inline_mention"
+          },
+          {
+            "line": 350,
+            "byte_start": 49266,
+            "byte_end": 49292,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-019": [
+          {
+            "line": 68,
+            "byte_start": 10355,
+            "byte_end": 10381,
+            "role": "inline_mention"
+          },
+          {
+            "line": 222,
+            "byte_start": 33005,
+            "byte_end": 33031,
+            "role": "heading"
+          },
+          {
+            "line": 367,
+            "byte_start": 51037,
+            "byte_end": 51063,
+            "role": "inline_mention"
+          },
+          {
+            "line": 368,
+            "byte_start": 51140,
+            "byte_end": 51166,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-005": [
+          {
+            "line": 72,
+            "byte_start": 10840,
+            "byte_end": 10866,
+            "role": "heading"
+          },
+          {
+            "line": 351,
+            "byte_start": 49342,
+            "byte_end": 49368,
+            "role": "inline_mention"
+          },
+          {
+            "line": 352,
+            "byte_start": 49418,
+            "byte_end": 49444,
+            "role": "inline_mention"
+          },
+          {
+            "line": 353,
+            "byte_start": 49494,
+            "byte_end": 49520,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-006": [
+          {
+            "line": 82,
+            "byte_start": 12227,
+            "byte_end": 12253,
+            "role": "heading"
+          },
+          {
+            "line": 354,
+            "byte_start": 49595,
+            "byte_end": 49621,
+            "role": "inline_mention"
+          },
+          {
+            "line": 355,
+            "byte_start": 49696,
+            "byte_end": 49722,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-007": [
+          {
+            "line": 92,
+            "byte_start": 13426,
+            "byte_end": 13452,
+            "role": "heading"
+          },
+          {
+            "line": 372,
+            "byte_start": 51519,
+            "byte_end": 51545,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-008": [
+          {
+            "line": 104,
+            "byte_start": 14472,
+            "byte_end": 14498,
+            "role": "heading"
+          },
+          {
+            "line": 336,
+            "byte_start": 47796,
+            "byte_end": 47822,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-009": [
+          {
+            "line": 114,
+            "byte_start": 15493,
+            "byte_end": 15519,
+            "role": "heading"
+          },
+          {
+            "line": 335,
+            "byte_start": 47689,
+            "byte_end": 47715,
+            "role": "inline_mention"
+          },
+          {
+            "line": 336,
+            "byte_start": 47827,
+            "byte_end": 47853,
+            "role": "inline_mention"
+          },
+          {
+            "line": 337,
+            "byte_start": 47934,
+            "byte_end": 47960,
+            "role": "inline_mention"
+          },
+          {
+            "line": 348,
+            "byte_start": 49087,
+            "byte_end": 49113,
+            "role": "inline_mention"
+          },
+          {
+            "line": 356,
+            "byte_start": 49859,
+            "byte_end": 49885,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-010": [
+          {
+            "line": 126,
+            "byte_start": 17720,
+            "byte_end": 17746,
+            "role": "heading"
+          },
+          {
+            "line": 355,
+            "byte_start": 49727,
+            "byte_end": 49753,
+            "role": "inline_mention"
+          },
+          {
+            "line": 362,
+            "byte_start": 50543,
+            "byte_end": 50569,
+            "role": "inline_mention"
+          },
+          {
+            "line": 363,
+            "byte_start": 50619,
+            "byte_end": 50645,
+            "role": "inline_mention"
+          },
+          {
+            "line": 373,
+            "byte_start": 51595,
+            "byte_end": 51621,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-011": [
+          {
+            "line": 138,
+            "byte_start": 20605,
+            "byte_end": 20631,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-012": [
+          {
+            "line": 152,
+            "byte_start": 23745,
+            "byte_end": 23771,
+            "role": "heading"
+          },
+          {
+            "line": 342,
+            "byte_start": 48440,
+            "byte_end": 48466,
+            "role": "inline_mention"
+          },
+          {
+            "line": 406,
+            "byte_start": 54207,
+            "byte_end": 54233,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-013": [
+          {
+            "line": 162,
+            "byte_start": 25012,
+            "byte_end": 25038,
+            "role": "heading"
+          },
+          {
+            "line": 346,
+            "byte_start": 48883,
+            "byte_end": 48909,
+            "role": "inline_mention"
+          },
+          {
+            "line": 347,
+            "byte_start": 48986,
+            "byte_end": 49012,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-014": [
+          {
+            "line": 172,
+            "byte_start": 26134,
+            "byte_end": 26160,
+            "role": "heading"
+          },
+          {
+            "line": 349,
+            "byte_start": 49196,
+            "byte_end": 49222,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-015": [
+          {
+            "line": 182,
+            "byte_start": 27499,
+            "byte_end": 27525,
+            "role": "heading"
+          },
+          {
+            "line": 357,
+            "byte_start": 49968,
+            "byte_end": 49994,
+            "role": "inline_mention"
+          },
+          {
+            "line": 358,
+            "byte_start": 50071,
+            "byte_end": 50097,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-016": [
+          {
+            "line": 192,
+            "byte_start": 28992,
+            "byte_end": 29018,
+            "role": "heading"
+          },
+          {
+            "line": 359,
+            "byte_start": 50174,
+            "byte_end": 50200,
+            "role": "inline_mention"
+          },
+          {
+            "line": 360,
+            "byte_start": 50308,
+            "byte_end": 50334,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-017": [
+          {
+            "line": 202,
+            "byte_start": 30274,
+            "byte_end": 30300,
+            "role": "heading"
+          },
+          {
+            "line": 361,
+            "byte_start": 50473,
+            "byte_end": 50499,
+            "role": "inline_mention"
+          },
+          {
+            "line": 374,
+            "byte_start": 51735,
+            "byte_end": 51761,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-018": [
+          {
+            "line": 212,
+            "byte_start": 31596,
+            "byte_end": 31622,
+            "role": "heading"
+          },
+          {
+            "line": 364,
+            "byte_start": 50728,
+            "byte_end": 50754,
+            "role": "inline_mention"
+          },
+          {
+            "line": 365,
+            "byte_start": 50831,
+            "byte_end": 50857,
+            "role": "inline_mention"
+          },
+          {
+            "line": 366,
+            "byte_start": 50934,
+            "byte_end": 50960,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-020": [
+          {
+            "line": 232,
+            "byte_start": 34214,
+            "byte_end": 34240,
+            "role": "heading"
+          },
+          {
+            "line": 369,
+            "byte_start": 51243,
+            "byte_end": 51269,
+            "role": "inline_mention"
+          },
+          {
+            "line": 370,
+            "byte_start": 51346,
+            "byte_end": 51372,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-021": [
+          {
+            "line": 242,
+            "byte_start": 35549,
+            "byte_end": 35575,
+            "role": "heading"
+          },
+          {
+            "line": 371,
+            "byte_start": 51449,
+            "byte_end": 51475,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-022": [
+          {
+            "line": 252,
+            "byte_start": 36772,
+            "byte_end": 36798,
+            "role": "heading"
+          },
+          {
+            "line": 344,
+            "byte_start": 48679,
+            "byte_end": 48705,
+            "role": "inline_mention"
+          },
+          {
+            "line": 345,
+            "byte_start": 48780,
+            "byte_end": 48806,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-023": [
+          {
+            "line": 264,
+            "byte_start": 38160,
+            "byte_end": 38186,
+            "role": "heading"
+          },
+          {
+            "line": 359,
+            "byte_start": 50205,
+            "byte_end": 50231,
+            "role": "inline_mention"
+          },
+          {
+            "line": 360,
+            "byte_start": 50339,
+            "byte_end": 50365,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-024": [
+          {
+            "line": 274,
+            "byte_start": 39400,
+            "byte_end": 39426,
+            "role": "heading"
+          },
+          {
+            "line": 353,
+            "byte_start": 49525,
+            "byte_end": 49551,
+            "role": "inline_mention"
+          },
+          {
+            "line": 354,
+            "byte_start": 49626,
+            "byte_end": 49652,
+            "role": "inline_mention"
+          },
+          {
+            "line": 355,
+            "byte_start": 49758,
+            "byte_end": 49784,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-025": [
+          {
+            "line": 287,
+            "byte_start": 41035,
+            "byte_end": 41061,
+            "role": "heading"
+          },
+          {
+            "line": 343,
+            "byte_start": 48572,
+            "byte_end": 48598,
+            "role": "inline_mention"
+          },
+          {
+            "line": 373,
+            "byte_start": 51626,
+            "byte_end": 51652,
+            "role": "inline_mention"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-026": [
+          {
+            "line": 299,
+            "byte_start": 42664,
+            "byte_end": 42690,
+            "role": "heading"
+          },
+          {
+            "line": 360,
+            "byte_start": 50370,
+            "byte_end": 50396,
+            "role": "inline_mention"
+          }
+        ]
+      }
+    },
+    "adopted_L11": {
+      "distinct_ids": 26,
+      "locators": {
+        "HELIXINFRASTRUCTURE-L2-001": [
+          {
+            "line": 34,
+            "byte_start": 2847,
+            "byte_end": 2873,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-002": [
+          {
+            "line": 44,
+            "byte_start": 5006,
+            "byte_end": 5032,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-003": [
+          {
+            "line": 54,
+            "byte_start": 6143,
+            "byte_end": 6169,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-004": [
+          {
+            "line": 64,
+            "byte_start": 8161,
+            "byte_end": 8187,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-005": [
+          {
+            "line": 74,
+            "byte_start": 9303,
+            "byte_end": 9329,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-006": [
+          {
+            "line": 84,
+            "byte_start": 10410,
+            "byte_end": 10436,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-007": [
+          {
+            "line": 94,
+            "byte_start": 11533,
+            "byte_end": 11559,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-008": [
+          {
+            "line": 106,
+            "byte_start": 12492,
+            "byte_end": 12518,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-009": [
+          {
+            "line": 116,
+            "byte_start": 13433,
+            "byte_end": 13459,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-010": [
+          {
+            "line": 128,
+            "byte_start": 15564,
+            "byte_end": 15590,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-011": [
+          {
+            "line": 140,
+            "byte_start": 18434,
+            "byte_end": 18460,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-012": [
+          {
+            "line": 171,
+            "byte_start": 24856,
+            "byte_end": 24882,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-013": [
+          {
+            "line": 180,
+            "byte_start": 25715,
+            "byte_end": 25741,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-014": [
+          {
+            "line": 189,
+            "byte_start": 26546,
+            "byte_end": 26572,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-015": [
+          {
+            "line": 198,
+            "byte_start": 27610,
+            "byte_end": 27636,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-016": [
+          {
+            "line": 207,
+            "byte_start": 28713,
+            "byte_end": 28739,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-017": [
+          {
+            "line": 216,
+            "byte_start": 29642,
+            "byte_end": 29668,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-018": [
+          {
+            "line": 225,
+            "byte_start": 30633,
+            "byte_end": 30659,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-019": [
+          {
+            "line": 234,
+            "byte_start": 31769,
+            "byte_end": 31795,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-020": [
+          {
+            "line": 243,
+            "byte_start": 32629,
+            "byte_end": 32655,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-021": [
+          {
+            "line": 252,
+            "byte_start": 33635,
+            "byte_end": 33661,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-022": [
+          {
+            "line": 261,
+            "byte_start": 34525,
+            "byte_end": 34551,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-023": [
+          {
+            "line": 270,
+            "byte_start": 35527,
+            "byte_end": 35553,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-024": [
+          {
+            "line": 279,
+            "byte_start": 36498,
+            "byte_end": 36524,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-025": [
+          {
+            "line": 290,
+            "byte_start": 37732,
+            "byte_end": 37758,
+            "role": "heading"
+          }
+        ],
+        "HELIXINFRASTRUCTURE-L2-026": [
+          {
+            "line": 301,
+            "byte_start": 38755,
+            "byte_end": 38781,
+            "role": "heading"
+          }
+        ]
+      }
+    },
+    "l2_l11_pairing": {
+      "shared_ids": 26,
+      "l2_only": [],
+      "l11_only": [],
+      "positions": {
+        "HELIXINFRASTRUCTURE-L2-001": {
+          "l2": {
+            "line": 32,
+            "byte_start": 3556,
+            "byte_end": 3582,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 34,
+            "byte_start": 2847,
+            "byte_end": 2873,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-002": {
+          "l2": {
+            "line": 42,
+            "byte_start": 5916,
+            "byte_end": 5942,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 44,
+            "byte_start": 5006,
+            "byte_end": 5032,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-003": {
+          "l2": {
+            "line": 52,
+            "byte_start": 7137,
+            "byte_end": 7163,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 54,
+            "byte_start": 6143,
+            "byte_end": 6169,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-004": {
+          "l2": {
+            "line": 62,
+            "byte_start": 9450,
+            "byte_end": 9476,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 64,
+            "byte_start": 8161,
+            "byte_end": 8187,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-005": {
+          "l2": {
+            "line": 72,
+            "byte_start": 10840,
+            "byte_end": 10866,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 74,
+            "byte_start": 9303,
+            "byte_end": 9329,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-006": {
+          "l2": {
+            "line": 82,
+            "byte_start": 12227,
+            "byte_end": 12253,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 84,
+            "byte_start": 10410,
+            "byte_end": 10436,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-007": {
+          "l2": {
+            "line": 92,
+            "byte_start": 13426,
+            "byte_end": 13452,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 94,
+            "byte_start": 11533,
+            "byte_end": 11559,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-008": {
+          "l2": {
+            "line": 104,
+            "byte_start": 14472,
+            "byte_end": 14498,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 106,
+            "byte_start": 12492,
+            "byte_end": 12518,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-009": {
+          "l2": {
+            "line": 114,
+            "byte_start": 15493,
+            "byte_end": 15519,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 116,
+            "byte_start": 13433,
+            "byte_end": 13459,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-010": {
+          "l2": {
+            "line": 126,
+            "byte_start": 17720,
+            "byte_end": 17746,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 128,
+            "byte_start": 15564,
+            "byte_end": 15590,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-011": {
+          "l2": {
+            "line": 138,
+            "byte_start": 20605,
+            "byte_end": 20631,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 140,
+            "byte_start": 18434,
+            "byte_end": 18460,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-012": {
+          "l2": {
+            "line": 152,
+            "byte_start": 23745,
+            "byte_end": 23771,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 171,
+            "byte_start": 24856,
+            "byte_end": 24882,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-013": {
+          "l2": {
+            "line": 162,
+            "byte_start": 25012,
+            "byte_end": 25038,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 180,
+            "byte_start": 25715,
+            "byte_end": 25741,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-014": {
+          "l2": {
+            "line": 172,
+            "byte_start": 26134,
+            "byte_end": 26160,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 189,
+            "byte_start": 26546,
+            "byte_end": 26572,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-015": {
+          "l2": {
+            "line": 182,
+            "byte_start": 27499,
+            "byte_end": 27525,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 198,
+            "byte_start": 27610,
+            "byte_end": 27636,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-016": {
+          "l2": {
+            "line": 192,
+            "byte_start": 28992,
+            "byte_end": 29018,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 207,
+            "byte_start": 28713,
+            "byte_end": 28739,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-017": {
+          "l2": {
+            "line": 202,
+            "byte_start": 30274,
+            "byte_end": 30300,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 216,
+            "byte_start": 29642,
+            "byte_end": 29668,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-018": {
+          "l2": {
+            "line": 212,
+            "byte_start": 31596,
+            "byte_end": 31622,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 225,
+            "byte_start": 30633,
+            "byte_end": 30659,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-019": {
+          "l2": {
+            "line": 68,
+            "byte_start": 10355,
+            "byte_end": 10381,
+            "role": "inline_mention"
+          },
+          "l11": {
+            "line": 234,
+            "byte_start": 31769,
+            "byte_end": 31795,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-020": {
+          "l2": {
+            "line": 232,
+            "byte_start": 34214,
+            "byte_end": 34240,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 243,
+            "byte_start": 32629,
+            "byte_end": 32655,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-021": {
+          "l2": {
+            "line": 242,
+            "byte_start": 35549,
+            "byte_end": 35575,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 252,
+            "byte_start": 33635,
+            "byte_end": 33661,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-022": {
+          "l2": {
+            "line": 252,
+            "byte_start": 36772,
+            "byte_end": 36798,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 261,
+            "byte_start": 34525,
+            "byte_end": 34551,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-023": {
+          "l2": {
+            "line": 264,
+            "byte_start": 38160,
+            "byte_end": 38186,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 270,
+            "byte_start": 35527,
+            "byte_end": 35553,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-024": {
+          "l2": {
+            "line": 274,
+            "byte_start": 39400,
+            "byte_end": 39426,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 279,
+            "byte_start": 36498,
+            "byte_end": 36524,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-025": {
+          "l2": {
+            "line": 287,
+            "byte_start": 41035,
+            "byte_end": 41061,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 290,
+            "byte_start": 37732,
+            "byte_end": 37758,
+            "role": "heading"
+          }
+        },
+        "HELIXINFRASTRUCTURE-L2-026": {
+          "l2": {
+            "line": 299,
+            "byte_start": 42664,
+            "byte_end": 42690,
+            "role": "heading"
+          },
+          "l11": {
+            "line": 301,
+            "byte_start": 38755,
+            "byte_end": 38781,
+            "role": "heading"
+          }
+        }
+      }
+    },
+    "note": "各IDの全出現をline/UTF-8 byte_start/byte_end半開範囲/観測構文role(table_first_cell/heading/inline_mention)で列挙。文字indexをbyteへ加算しない。構文roleと意味roleを区別し意味roleは群共通のunknownを保つ。同IDだけで意味同等・承認を宣言しない"
+  },
+  "direct_consumers": {
+    "static_references": [
+      {
+        "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6",
+        "git_blob": "53b63172ecbb813e510a00f34f6718cf381161b3",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+        "git_blob": "a9345c5143e618540ace3756498d12b98613dc5b",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1",
+        "git_blob": "ba3dbd85251c2512037afd34be5b750b9c3f2670",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1",
+        "git_blob": "6d368a1d182290946dbec4d2008abdbdc50f14e1",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+        "git_blob": "6d3ab8f946fba4c742f45f105dc565ce2ad49032",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3",
+        "git_blob": "f49c261204aa19cbda2ca4161098845716eaae08",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "94a936b753b2dc0e491076ea98340e4830ea5a8c94bfbf9c984136bc3c3c6f68",
+        "git_blob": "f1f291add987a96b1c64d0891da7f63230cf3b7c",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "5e7560309f0cc9c8fecc4e3495d14123bb5c91c45232baefde70e7ec315f6856",
+        "git_blob": "11c3e99821b91ab58f2b29ac8ee5fd4d0e151b71",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/independent-bootstrap-recovery.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "6cee91d2a59a0217f8401676e857aaefa2aefdd105e7ef550a22845821866ddc",
+        "git_blob": "48348f9ee5d001898e6b6ef119e8b497c1944fdb",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+        "git_blob": "a9ce227a8564e17a3aa5e0a76436fa6154b83290",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "469d0f3da841aed94709e562e6bb3a7263d74a6c1326c1c1113e08cc5be42cb8",
+        "git_blob": "7786e30a2efa3961676eb9b189c35e53a0f18a1f",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025",
+        "git_blob": "d71dca1f9b7a7bef84ea13872616cb4342cd6e77",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e",
+        "git_blob": "5c3f1e88bc3aa8adbc093a3a37d56af1f1a92837",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "git_blob": "81dd4c647abf9c59ef62077f8a9d9425e15eaaea",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1",
+        "git_blob": "0ca87439b004431bd133f607d2a5523b4bf90a32",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0c3f5e3e723364c0f35fce77eef951e4a19bd1b83adf14508ad70f9541d853d6",
+        "git_blob": "fab52cee2e12ed273b289171f9925a92b579353d",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "ca29a88ef6350061f58480b2e9b7686cb54debeb046589d26483f7071f870c40",
+        "git_blob": "a5a59500d4648aaf3539549b7aaaac6ece6e0fa9",
+        "references": [
+          {
+            "pointer": "/source_pins/15/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "b5eae0721806469f45aafa113b61a4383b46a1795c11b4a0aba14b5d38436bce",
+        "git_blob": "1de724c2117a37170fdde185f67daca8908d19d8",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "112fce10734a0262d1d7e727da49051937d92f1ac600f297886cea4c63d893e8",
+        "git_blob": "0f7d454453d8b5b4f7a8e7cd3d5d1f5e47ca6c86",
+        "references": [
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "git_blob": "52f855084daae70901b9bbc2cd80ffc27a74783c",
+        "references": [
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/19/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "84811b6c2cc0125e0d4ea378cb497784c658795e0372f57f19488fa830963c07",
+        "git_blob": "850919d14e7d2792ecc6f2ab6ca3e486788634a3",
+        "references": [
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0ebca8ba1b0c55e228bbab525dea77ef54fe252aedd0f695afd0372244493330",
+        "git_blob": "9c5f5a34d0377afcd35c432f0b68ac6c46accebf",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+        "git_blob": "7ff7b754b4b0df788a4ad7fe681c1c0c0bd382f0",
+        "references": [
+          {
+            "pointer": "/source_pins/2/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f7fb4f3e785782d057f5691bc5b53b4f442a9746a01ab6cf73ebb9e334091a18",
+        "git_blob": "d72af1181c2ffba435910a865476dfc14f98f201",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "5236b44c0d9908e032e2e5369f245ec77d6900ff92e293d2935f981eb81566ee",
+        "git_blob": "1ad9d1fd1b954fa449154f73f84a0af9ba6b54be",
+        "references": [
+          {
+            "pointer": "/source_pins/15/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "150e3c5dfcce99ab34bf5145d44ea18e6df0260c2a05c80c7d1a47e4fafc87b3",
+        "git_blob": "35fbeb4ffdb19b71ee045267882e3f0a3098ad10",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "22070deac1bface245a7c56be57feb2ef706520e868765c25e1a234340cc3090",
+        "git_blob": "00a75d8ff26b174fc7707d1ab3d663fb114fb13e",
+        "references": [
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f58f3c339377a0ae2735877c10ec2450b385adb854854e06131f416dfc72b334",
+        "git_blob": "4574f98da4f0d424961bf2f564e2ab9f8e424e91",
+        "references": [
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/19/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2314905d232e51b9ddbd8ff64ae85bd6c96918e600bc44badf81b50c34dc7ada",
+        "git_blob": "9e71e1e6bce76223660f81605320748a0eb4bb75",
+        "references": [
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "28395ad79a19326f7ca811fa0679b1bef1623dca5ed1e1ee85becbc2470bd900",
+        "git_blob": "d61fa78d14dc4607fe79ecea4d7bc0bd0ababe85",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "cf71957eaac7612d031e025bf27d7fa527a6c3c6c89e293eac348ccd7a00c652",
+        "git_blob": "48352a11df9e39fcd808b85609271fef8da2f2cd",
+        "references": [
+          {
+            "pointer": "/source_pins/2/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "d6bdc81c087add21b6d750120c4997a45aff5f62b8b7f2d10e226ab9d4b82ae1",
+        "git_blob": "48fa34b8ea63ba931fb33bed4e5194985eaa814e",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "26e4fd8980c6b192461779887f97cf73a3e4612a5afe022a02852e27a6f47f5d",
+        "git_blob": "ad8face3eb148b2e985b2f69c94e16598fddd39d",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/independent-bootstrap-recovery.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "cfb7e5fdd76c88434fb94da6357b2416ef2e1ca58943eb622ddf98dc4ed5f751",
+        "git_blob": "aaf917ba32e9a4f05a8525e72086c82ddc573bec",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "8bd68b2ea97ba86913099444fcda88941d6f24a59504d08e28f2b333e833196c",
+        "git_blob": "8a57f227dbc2b920e02be42f76ce39395b003421",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "96008c6ea9f18ace578e850f7386c78a55cc2e5d5bc56d250af52300b59ba6cc",
+        "git_blob": "0ef5c2016680310cf9275e3f543eb97eb9eff909",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2d3240a945570ec4a3b26e85f5924d0548caeb3049fd15366266401203dee0ae",
+        "git_blob": "d26fd4c74c4dd07be4991b0ab93e075fb3c81933",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "84aa960e5b389a309038c7637602b8403cddd42acb51741e853b0d2950a2bbaa",
+        "git_blob": "a83727d3fbd1b1dde673463132efd8382fa036b6",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d",
+        "git_blob": "baf9e6ed41117e8452477b443b8c0045ff633e82",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463",
+        "git_blob": "8746d3ba1c0b98c87fa5433c9b7f65c9e97eb505",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/business-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "b584d13f218e4383a15e85af53c240b113a34e95144a5cf0184a1e7cb51bf2b6",
+        "git_blob": "53b63172ecbb813e510a00f34f6718cf381161b3",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/functional-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "61d4ee6c6e8448e091157331e446c7e1e63d3e21d8d1351c0a41937c6cc8c14a",
+        "git_blob": "a9345c5143e618540ace3756498d12b98613dc5b",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L10-verification/nfr-verification.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "3ae500a24891b5fd4bacf14b947e6f6e5f7724dde18e72f4aa7e5f8ad28068a1",
+        "git_blob": "ba3dbd85251c2512037afd34be5b750b9c3f2670",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/business-requirements.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4c0a02302ef7add820e5abc8c472222f56e2b097e938549941ff11553a5692f1",
+        "git_blob": "6d368a1d182290946dbec4d2008abdbdc50f14e1",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/functional-requirements.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "6153070616fa1d3db7e0d54bf4b22fc6a36e8567aa814e08464222c2ec7934e8",
+        "git_blob": "6d3ab8f946fba4c742f45f105dc565ce2ad49032",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L3-requirements/nfr-grade.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4539682f2404be14c617d6b3d82787031cdd55bb4a0a3abcc37eacc23ee37ee3",
+        "git_blob": "f49c261204aa19cbda2ca4161098845716eaae08",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "94a936b753b2dc0e491076ea98340e4830ea5a8c94bfbf9c984136bc3c3c6f68",
+        "git_blob": "f1f291add987a96b1c64d0891da7f63230cf3b7c",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "5e7560309f0cc9c8fecc4e3495d14123bb5c91c45232baefde70e7ec315f6856",
+        "git_blob": "11c3e99821b91ab58f2b29ac8ee5fd4d0e151b71",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/independent-bootstrap-recovery.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "6cee91d2a59a0217f8401676e857aaefa2aefdd105e7ef550a22845821866ddc",
+        "git_blob": "48348f9ee5d001898e6b6ef119e8b497c1944fdb",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "3389121385261a4b5efb0cf42d6bbf8155f4f19d4866933813357301527ff168",
+        "git_blob": "a9ce227a8564e17a3aa5e0a76436fa6154b83290",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "469d0f3da841aed94709e562e6bb3a7263d74a6c1326c1c1113e08cc5be42cb8",
+        "git_blob": "7786e30a2efa3961676eb9b189c35e53a0f18a1f",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "c219e0c4b841da38d61d7f33f01199bdd667efdbfd62e5967365f6dfcf636025",
+        "git_blob": "d71dca1f9b7a7bef84ea13872616cb4342cd6e77",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0d68fac31c4430319ad2f446771bd2269aa15201e5eabd9cbf1caf2865868f6e",
+        "git_blob": "5c3f1e88bc3aa8adbc093a3a37d56af1f1a92837",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0d0c89e0899d7700b84e12436c3eb33b64209d9d40f766294f27ca715b06245d",
+        "git_blob": "81dd4c647abf9c59ef62077f8a9d9425e15eaaea",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L4-basic-design/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "82211bfef86a6564c8e500ef6a85d67a77e07b8d2eaafb0947093670b2df32d1",
+        "git_blob": "0ca87439b004431bd133f607d2a5523b4bf90a32",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0c3f5e3e723364c0f35fce77eef951e4a19bd1b83adf14508ad70f9541d853d6",
+        "git_blob": "fab52cee2e12ed273b289171f9925a92b579353d",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "ca29a88ef6350061f58480b2e9b7686cb54debeb046589d26483f7071f870c40",
+        "git_blob": "a5a59500d4648aaf3539549b7aaaac6ece6e0fa9",
+        "references": [
+          {
+            "pointer": "/source_pins/15/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "b5eae0721806469f45aafa113b61a4383b46a1795c11b4a0aba14b5d38436bce",
+        "git_blob": "1de724c2117a37170fdde185f67daca8908d19d8",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "112fce10734a0262d1d7e727da49051937d92f1ac600f297886cea4c63d893e8",
+        "git_blob": "0f7d454453d8b5b4f7a8e7cd3d5d1f5e47ca6c86",
+        "references": [
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f14b05edf676d626255575dcad4ffdc14a5679bbc19e6751f92014f46257f88d",
+        "git_blob": "52f855084daae70901b9bbc2cd80ffc27a74783c",
+        "references": [
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/19/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "84811b6c2cc0125e0d4ea378cb497784c658795e0372f57f19488fa830963c07",
+        "git_blob": "850919d14e7d2792ecc6f2ab6ca3e486788634a3",
+        "references": [
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "0ebca8ba1b0c55e228bbab525dea77ef54fe252aedd0f695afd0372244493330",
+        "git_blob": "9c5f5a34d0377afcd35c432f0b68ac6c46accebf",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L5-detail-design/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2c800ef78c3d950c93d7351b806f67c314d9a212254228af040cede0c2ef9294",
+        "git_blob": "7ff7b754b4b0df788a4ad7fe681c1c0c0bd382f0",
+        "references": [
+          {
+            "pointer": "/source_pins/2/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f7fb4f3e785782d057f5691bc5b53b4f442a9746a01ab6cf73ebb9e334091a18",
+        "git_blob": "d72af1181c2ffba435910a865476dfc14f98f201",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "5236b44c0d9908e032e2e5369f245ec77d6900ff92e293d2935f981eb81566ee",
+        "git_blob": "1ad9d1fd1b954fa449154f73f84a0af9ba6b54be",
+        "references": [
+          {
+            "pointer": "/source_pins/15/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "150e3c5dfcce99ab34bf5145d44ea18e6df0260c2a05c80c7d1a47e4fafc87b3",
+        "git_blob": "35fbeb4ffdb19b71ee045267882e3f0a3098ad10",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "22070deac1bface245a7c56be57feb2ef706520e868765c25e1a234340cc3090",
+        "git_blob": "00a75d8ff26b174fc7707d1ab3d663fb114fb13e",
+        "references": [
+          {
+            "pointer": "/source_pins/16/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "f58f3c339377a0ae2735877c10ec2450b385adb854854e06131f416dfc72b334",
+        "git_blob": "4574f98da4f0d424961bf2f564e2ab9f8e424e91",
+        "references": [
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/19/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2314905d232e51b9ddbd8ff64ae85bd6c96918e600bc44badf81b50c34dc7ada",
+        "git_blob": "9e71e1e6bce76223660f81605320748a0eb4bb75",
+        "references": [
+          {
+            "pointer": "/source_pins/17/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/18/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "28395ad79a19326f7ca811fa0679b1bef1623dca5ed1e1ee85becbc2470bd900",
+        "git_blob": "d61fa78d14dc4607fe79ecea4d7bc0bd0ababe85",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L8-unit-verification/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "cf71957eaac7612d031e025bf27d7fa527a6c3c6c89e293eac348ccd7a00c652",
+        "git_blob": "48352a11df9e39fcd808b85609271fef8da2f2cd",
+        "references": [
+          {
+            "pointer": "/source_pins/2/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/7/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/backup-restore-rollback.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "d6bdc81c087add21b6d750120c4997a45aff5f62b8b7f2d10e226ab9d4b82ae1",
+        "git_blob": "48fa34b8ea63ba931fb33bed4e5194985eaa814e",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/design-target-actual-drift.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "26e4fd8980c6b192461779887f97cf73a3e4612a5afe022a02852e27a6f47f5d",
+        "git_blob": "ad8face3eb148b2e985b2f69c94e16598fddd39d",
+        "references": [
+          {
+            "pointer": "/source_pins/3/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/independent-bootstrap-recovery.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "cfb7e5fdd76c88434fb94da6357b2416ef2e1ca58943eb622ddf98dc4ed5f751",
+        "git_blob": "aaf917ba32e9a4f05a8525e72086c82ddc573bec",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/os-work-resource-relations.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "8bd68b2ea97ba86913099444fcda88941d6f24a59504d08e28f2b333e833196c",
+        "git_blob": "8a57f227dbc2b920e02be42f76ce39395b003421",
+        "references": [
+          {
+            "pointer": "/source_pins/4/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/resource-capacity-startup.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "96008c6ea9f18ace578e850f7386c78a55cc2e5d5bc56d250af52300b59ba6cc",
+        "git_blob": "0ef5c2016680310cf9275e3f543eb97eb9eff909",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/resource-topology-environment.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "2d3240a945570ec4a3b26e85f5924d0548caeb3049fd15366266401203dee0ae",
+        "git_blob": "d26fd4c74c4dd07be4991b0ab93e075fb3c81933",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/runtime-observation-incident.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "84aa960e5b389a309038c7637602b8403cddd42acb51741e853b0d2950a2bbaa",
+        "git_blob": "a83727d3fbd1b1dde673463132efd8382fa036b6",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/security-worker-operation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "8567cdd77ca7c7ea26673eb6230419bef8e0711938861a930e727625c30ac56d",
+        "git_blob": "baf9e6ed41117e8452477b443b8c0045ff633e82",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-infrastructure/L9-integration-verification/worker-resource-movement-isolation.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "4bdf6ed7e28391a891931231c4cb7e399a5934a4bbc07b68a10bbf3f8f243463",
+        "git_blob": "8746d3ba1c0b98c87fa5433c9b7f65c9e97eb505",
+        "references": [
+          {
+            "pointer": "/source_pins/5/path",
+            "value": "docs/helix-infrastructure/L11-acceptance/infrastructure-acceptance.md"
+          },
+          {
+            "pointer": "/source_pins/6/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-security/L5-detail-design/candidate-promotion-state-chain.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "93a8877e4d595d807cc4ef4ddc5a3e89a57fa79e082ab561c62cdd8aa1cb8658",
+        "git_blob": "2a7363f4e6bd87498117e62da0d1ebcd96428cde",
+        "references": [
+          {
+            "pointer": "/source_pins/20/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      },
+      {
+        "path": "docs/helix-security/L8-unit-verification/candidate-promotion-state-chain.json",
+        "revision": "98741ee4e592c55a3112135cbc9f7ebe5315bd9c",
+        "raw_sha256": "c784525941c1dd2b03357b4e64f07159d632e2cae210617f89eaa03d246655e9",
+        "git_blob": "2873189e3e0038560f6fa7e56d8e087b03db3be0",
+        "references": [
+          {
+            "pointer": "/source_pins/20/path",
+            "value": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md"
+          }
+        ]
+      }
+    ],
+    "count": 82,
+    "note": "実file・revision・raw sha・git blob・具体JSON pointer/valueの所在例。実reader成立・全consumer閉包とは分ける"
+  },
+  "legacy_source_hold": {
+    "starting_point_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "starting_point": "同上 §1-3(LEGACY-ASSET-4F5A1F0739EC1111D91D)",
+    "hold": "構造的意味と生成view/所在索引の分離、原source/consumer/unknownの保全を保持",
+    "unchanged": "旧schema/式木/DB/runtime/CIは移植・実行しない",
+    "unknown": "対応旧sourceが未発見の範囲は検索範囲と未発見を記録"
+  },
+  "preservation": "固定blob+spanで全byteを再構成できる索引。全値・原順・member順・欠落/null/空白・履歴を保持。原文はJSONへ二重収載せず参照で結ぶ。",
+  "limits": [
+    "identity定義・他ID mention・対L11対応・version/owner/適用制限・未完は区別し原条件を再著述しない",
+    "意味同等性の最終認定・正式JSON/schema/view・承認継承・cutover・全16文書完了・実reader成立を主張しない",
+    "後続decision網羅・全consumer閉包は未確認として保持",
+    "一律gateや追加承認規則は作らない"
+  ]
+}
