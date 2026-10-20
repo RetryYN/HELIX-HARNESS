@@ -130605,7 +130605,7 @@
     "form": "各scope memberは{\"oracle_basis_recipe\":{\"base_pointer\": \"/cases/0\", \"patch\": [{\"op\":\"copy\",\"from\":\"/oracle_basis\",\"path\":\"\"}]}}の記録形を持つ。復元は同一文書snapshot内のbase_pointer literalだけをRFC6901で解決し、深い複製へRFC6902 copyを適用してrootの全object値を戻す。member位置・型・他memberは変えない。",
     "materialized_canonical_sha256": "f1e8ac3ec4ea71af413afc8262e34f2ee0d210ebb4dfb9c01c0901a4bccc6c28",
     "restore_order": "scope_pointers記載順（cases1→365）。各siteは同じroot値へ独立に復元され共有aliasを作らない。",
-    "consumer_read_positions": "scope_pointersの365member位置が現行consumerの読取り位置。case0の原値は固定literalとして保持する。",
+    "consumer_read_positions": "scope_pointersの365member位置は、本materializationでoracle_basis_recipeを原object全値へ復元した後の論理的な読取位置である。case0の原値をliteralとして保持する。実装済みreader又は実runtime互換性の成立証拠を意味しない。",
     "preservation": "root literal・承認済み要求/対L10 refs・原L9期待の独立投影方法・全入力・期待・hash・history・member/array順・欠落/null・型を保持。逆変換で元文書全値へ戻る。",
     "authority_effect": "なし。独自DSL/resolver・domain evaluator・新要求/authority/gateは追加しない。"
   }
