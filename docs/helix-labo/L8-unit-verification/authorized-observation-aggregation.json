@@ -42113,7 +42113,7 @@
     "wrapper": "value_ref の全体を共通解決する。document/json_pointer/canonical_sha256が必須。参照先がvalue_refなら再帰解決して完全値を得る。循環禁止。",
     "fixed_git": "path/revisionが必須。git show exactrevision:pathをJSON parseしてpointer値を得る。他sourceの固定revisionを省略しない。",
     "candidate_L5": "同じcandidate pairのL5 path/json_pointerへ結ぶ。baseに存在するとの主張はせずrevisionは付けない。canonical_sha256はpointer値だけを束縛する。",
-    "candidate_L8": "同じcandidate L8内pointer。resolved_valuesは完全な値辞書、producer expected_return_projection参照はその出力値へ解決する。",
+    "candidate_L8": "同じcandidate L8内pointer。resolved_valuesは完全な値辞書、producer expected_return_projection参照はその出力値へ解決する。 resolved_valuesの完全値はshared_observation_materialization適用後の論理値である。今回のcopy展開を先に行い、その後に既存value_refの解決・元canonical hash照合・型検査を適用する。物理observations_recipeはdomain値又はvalue_ref本体ではない。",
     "effect": "文書fixture参照の表現。正式codec/runtime/source資格を作らない。"
   },
   "parent_io_fix_record": {
@@ -42278,8 +42278,8 @@
     "ordered_utf8_bytes": 3600,
     "materialized_canonical_sha256": "8e37acddc3561c739b4e87d26cc52f0b2d5e1196bee5b90222cebcc141b91a0b",
     "restore_order": "scope_pointers記載順。各siteは同じroot値へ独立に復元され共有aliasを作らない。",
-    "consumer_read_positions": "scope_pointersの134member位置が現行consumerの読取り位置。rootの原値は固定literalとして保持する。",
-    "relation_to_existing_contract": "本文書のunit_contractsにはfixture/materialization/value_refの役割を持つ契約が存在しないため、完全一致再利用・置換の対象はない。兄弟文書のevents_recipe/materialization契約と同じbase_pointer+RFC6902 copy形式を意味の再導出として採用し、展開→型/hash検査の順を本契約へ結ぶ。",
+    "consumer_read_positions": "scope_pointersの134member位置は、shared_observation_materializationで原array全値を復元した後の論理読取位置である。rootの原値はliteralとして保持する。実装済みreader又は実runtime互換性の成立証拠を意味しない。",
+    "relation_to_existing_contract": "本文書のvalue_reference_contractが既存のvalue_ref解決・canonical hash・再帰/循環禁止を定める。この既存契約を保持し、同一resolved_values内の134個のarray childだけを標準RFC6902 copyで先に完全復元する表現を意味の再導出として加える。展開後の完全辞書へ既存value_ref解決と元hash/型検査を適用する。新childを既存value_refと偽称せず、原source/独立期待/全wrapperの意味を変更しない。",
     "preservation": "root literal・original/submittedの役割・source packet・finding/result・全独立期待・hash・履歴pin・member/array順・null/欠落を保持。逆変換で元文書全値へ戻る。",
     "authority_effect": "なし。独自DSL/resolver・evaluator・新gate/要求は追加しない。製品reader未実装であり実consumer成立は主張しない。"
   }
