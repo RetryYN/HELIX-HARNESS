@@ -5149,7 +5149,7 @@
         "observable5境界はRedesign_or_Retrofit_with_compatibility_migration、internalはproduct_author、不明境界unknown。reason/impact/ownerはrawのままassemble_f04_returnへ渡す。",
         "例外全体missing→reason→owner→expiry各不足/unknown→scope不足/不一致→評価時点/期限比較の順。expiry同日は元oracle未固定のためunknown。",
         "例外は局所継続だけ。auto_rename rejected、global_stop falseを消さず他scope.Q保持。finding IDnullはnull保持。warningのglobal停止要求は効果を持たず実readしない。",
-        "finding.reason/impactはassembleで原値保存するが、欠落/null/TBD/unknownの不足診断は行わない。unclosed_obligationsの該当IDに原義務と未実現を保持する。"
+        "旧compare_f04/assemble_f04_returnはfinding.reason/impactの原値保存だけを保持する。新private f04_finding_diagnostic_materialは同call nativeと旧assembler全返却を保持し、finding.reasonとimpact各原出現の型内missing/unknownを別診断へ具体化する。例外の理由とは混同せず、局所継続/拒否/Q/global_stopを変えない。"
       ],
       "returns": [
         "auto_rename",
@@ -5327,7 +5327,7 @@
       "既存compare_f02単体はedge別状態の部分返却のまま保持する。新private f02_impact_materialは、同callの入力とnative全返却から、破断軸に参加する宣言object/operation/oracle等の原出現と所在を結ぶ論理材料を定義する。consumer/返却先の具体集合とそのsource資格はF02Argumentsに未供給で、この材料が生成したとはしない。旧compare_f03単体の同対象revision/scope/canonical原内容比較の不足は保持し、新private f03_source_bound_candidateで独立basisを明示した限定宣言比較を具体化する。実source資格・実behavior/最小性・全F03閉包は未成立。各function.unclosed_obligationsの具体不足を参照し、synthetic正例でこの義務を閉じたとしない。",
       "F01の例外詳細状態は原L9 projectionに従いmissing_scoped_exceptionへ集約し、F04の詳細分類と同一schemaへ統合しない。symbol_change=candidate_onlyは原定数で変化量検出ではない。",
       "旧native F01/F03の関数返却自体には対象作成側への理由付きroute/memberがなく、既存target_results/condition_resultsは局所診断のまま。新private F01 f01_author_return_materialとF03 f03_source_bound_candidateはそれぞれの限定論理材料を具体化するが、実owner資格/配送、F01/F03全域の成立を示さない。F04/B01の別返却memberを代用しない。",
-      "F04 reason/impactは保存のみで、不足やmarkerを診断しない。H048-F04-REASON-IMPACT-NOT-DIAGNOSEDの正本と上流sourceを参照する。"
+      "旧F04 native/assemblerはreason/impactの保存だけを行い不足診断はしない。新private f04_finding_diagnostic_materialは同call全返却と原findingを保持した別局所診断を定義する。H048-F04-REASON-IMPACT-NOT-DIAGNOSEDは旧単体の不足と上流sourceを保持し、新材料の実資格/配送/全域成立は認定しない。"
     ]
   },
   "consumer_connections": [
@@ -5903,8 +5903,8 @@
         "finding.reasonの欠落/null/未確定markerの診断",
         "finding.impactの欠落/未確定要素の診断と返却理由不足への接続"
       ],
-      "current_carrier_limit": "compare_f04はfinding IDを読むがreason/impactをassessment判定へ読まない。assemble_f04_returnはそれらをそのまま転送し、不足所見を追加しない。H048-F04-VALID-EXCEPTIONでreason=null又はimpact=[TBD]でもassessmentは不変。例外条件が有効なら局所継続表示は保持されるが、自動rename拒否は不変。",
-      "consequence": "理由/影響の原値保存と不足診断は別義務。前者は実現済み、後者の論理診断は未実現であり、source資格だけの不足ではない。全L3/L10成立を示さない。"
+      "current_carrier_limit": "旧compare_f04はfinding IDだけを読み、旧assemble_f04_returnはfinding全値を保存する単体のまま。新private f04_finding_diagnostic_materialはreason/impactの局所不足と原所在を別材料に保持し、finding key欠落時のassembler未呼出を明示する。例外条件が有効なときの局所継続と自動rename拒否は保持する。",
+      "consequence": "旧native単体の原値保存と新privateの不足診断を区別する。新材料は先固定3wholeと型内partial規範の範囲で具体化し、実owner/配送/全F04・全L3/L10成立は認定しない。"
     }
   ],
   "mutation_coverage_limit": {
@@ -6449,6 +6449,177 @@
         "semantic_basis": "evidence_basis",
         "operation_boundary": "requested_effect"
       }
+    }
+  },
+  "f04_finding_diagnostic_material": {
+    "kind": "private_finding_diagnostic_material",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "role_ja": "既決F04返却理由/影響不足を読むprivate論理型の技術案。実approval/source資格/配送/全H048完了を生成しない。",
+    "aliases": {
+      "arguments": {
+        "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "raw_sha256": "b068a59e212010aedb8ffde535ac319d3216546c06eec49072a593c07284b95a",
+        "raw_utf8_bytes": 270424,
+        "json_pointer": "/types/F04Arguments",
+        "selected_witness": {
+          "canonical_sha256": "5f9a828a3f155d84483dfb280c6810e7e1092fef603457d2940f113c3d23fc4f",
+          "ordered_compact_sha256": "362177ef4a1e018dbebac0af02d0dfdce8fce44f7978dda89de64c4f9ebf86a2",
+          "ordered_compact_utf8_bytes": 2442
+        }
+      },
+      "native_return": {
+        "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "raw_sha256": "b068a59e212010aedb8ffde535ac319d3216546c06eec49072a593c07284b95a",
+        "raw_utf8_bytes": 270424,
+        "json_pointer": "/types/F04Return",
+        "selected_witness": {
+          "canonical_sha256": "d43cc341f63bc5b2dd1eb220e075e7c329ce1a112d48f7b5d933a1968a1ed37e",
+          "ordered_compact_sha256": "265239bc33ac69823dec17babaf3e5b73ca5977093b9899617f0d872b7ef65a5",
+          "ordered_compact_utf8_bytes": 1811
+        }
+      },
+      "return_material": {
+        "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "raw_sha256": "b068a59e212010aedb8ffde535ac319d3216546c06eec49072a593c07284b95a",
+        "raw_utf8_bytes": 270424,
+        "json_pointer": "/types/F04ReturnMaterialReturn",
+        "selected_witness": {
+          "canonical_sha256": "fe3ec08d012c62539439e5bce8fe458ca30277372a07fcc5648b5b3d808d0c62",
+          "ordered_compact_sha256": "9173be2d51e0faa8ec1e8acbda8b6319d71824559f79137323700bbb8af1232b",
+          "ordered_compact_utf8_bytes": 416
+        }
+      },
+      "finding": {
+        "revision": "66fefeabc363e2586fb684719fa18b015796a5e9",
+        "path": "docs/helix-harness/L5-detail-design/naming-identity-correspondence.json",
+        "raw_sha256": "b068a59e212010aedb8ffde535ac319d3216546c06eec49072a593c07284b95a",
+        "raw_utf8_bytes": 270424,
+        "json_pointer": "/types/FindingRecord",
+        "selected_witness": {
+          "canonical_sha256": "3d30a1f4c94a8ad9e347c4c994c5139e39ca26193fcc8875b670f24857815370",
+          "ordered_compact_sha256": "63fef4bba7b28dce73ecd9698c853f99d4066ed9af005804af0b247e2439c681",
+          "ordered_compact_utf8_bytes": 645
+        }
+      }
+    },
+    "types": {
+      "F04ImpactItemDiagnostic": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "impact_index",
+          "result"
+        ],
+        "impact_index": "integer >= 0 excluding boolean, original array occurrence index",
+        "result": "known|missing|unknown",
+        "meaning_ja": "原item stringが空ならmissing、既存exact marker TBD/unknownならunknown、それ以外は宣言値としてknown。knownは実ID資格や完全impact集合を意味しない。"
+      },
+      "F04ImpactDiagnostic": {
+        "kind": "closed_union",
+        "variants": [
+          {
+            "kind_literal": "impact_absent",
+            "ordered_fields": [
+              "kind"
+            ]
+          },
+          {
+            "kind_literal": "impact_null",
+            "ordered_fields": [
+              "kind"
+            ]
+          },
+          {
+            "kind_literal": "impact_list",
+            "ordered_fields": [
+              "kind",
+              "items"
+            ],
+            "items": "list<F04ImpactItemDiagnostic>, original index order including every supplied item"
+          }
+        ],
+        "meaning_ja": "absentはfinding recordにimpact key無し、nullは明示null、list=[]は正当な原empty listとしてitems=[]を保存し、新不足/既知全集合を推測しない。"
+      },
+      "F04FindingDiagnostic": {
+        "kind": "closed_union",
+        "variants": [
+          {
+            "kind_literal": "finding_absent",
+            "ordered_fields": [
+              "kind"
+            ]
+          },
+          {
+            "kind_literal": "finding_null",
+            "ordered_fields": [
+              "kind"
+            ]
+          },
+          {
+            "kind_literal": "finding_record",
+            "ordered_fields": [
+              "kind",
+              "reason_result",
+              "impact_result"
+            ],
+            "reason_result": "known|missing|unknown",
+            "impact_result": "F04ImpactDiagnostic"
+          }
+        ],
+        "meaning_ja": "finding親がabsent/nullのとき架空child Readを作らない。recordならreasonのabsent/null/空はmissing、既存TBD/unknown markerはunknown、他stringは宣言値known。finding.id/ownerへ新必須条件を足さない。"
+      },
+      "F04ReasonImpactReturn": {
+        "kind": "closed_record",
+        "ordered_fields": [
+          "arguments",
+          "native_return",
+          "assembly_state",
+          "return_material",
+          "finding_diagnostics",
+          "diagnostic_refs",
+          "actual_dispatch"
+        ],
+        "arguments": "whole unchanged existing F04Arguments",
+        "native_return": "whole actual same-call compare_f04 result",
+        "assembly_state": "returned|not_called_finding_absent",
+        "return_material": {
+          "type": "existing F04ReturnMaterialReturn",
+          "presence_rule": "required when assembly_state=returned; key omitted when assembly_state=not_called_finding_absent"
+        },
+        "finding_diagnostics": "F04FindingDiagnostic",
+        "diagnostic_refs": "ordered list of RFC6901 pointers to this new full return root; refers to retained finding-diagnostic values only",
+        "actual_dispatch": "literal false",
+        "meaning_ja": "旧nativeは常にtyped packet/contextで1回。packetにfinding keyが存在するrecord/null時だけ旧assemble_f04_returnへその原値と同call nativeを渡す。key無しはassembler引数型がabsentを許さないため未呼出とし、偽null materialを作らずnativeとcaptureを保持。新Read wrapperやexpected入力を追加しない。"
+      }
+    },
+    "source_bindings": {
+      "reason_input": "/arguments/packet/finding/reason (only when finding is a record)",
+      "impact_input": "/arguments/packet/finding/impact (only when finding is a record)",
+      "impact_index_mapping": "/finding_diagnostics/impact_result/items/{j}/impact_index=i maps to original /arguments/packet/finding/impact/{i}; retain every occurrence",
+      "native_and_material": "/native_return is the actual compare_f04 call; /return_material/assessment is that identical whole when assembled; /return_material/finding is the exact present packet finding value, including null",
+      "reason_vs_exception": "finding.reason is separate from packet.exception.reason. New diagnostics do not overwrite exception_result/local_continuation/auto_rename/global_stop/Q/effects."
+    },
+    "diagnostic_order": {
+      "finding_absent_or_null": [
+        "/finding_diagnostics/kind"
+      ],
+      "record": [
+        "reason_result when not known",
+        "impact_result/kind when impact absent/null; otherwise each items/{index}/result when not known in original array order"
+      ],
+      "no_extra_gate_ja": "diagnostic存在をnative拒否/例外継続/global停止の新条件にしない。返却先は旧native.return_candidateに保持し、実owner/addressを作らない。"
+    },
+    "wrapper": {
+      "name": "compare_f04_with_finding_diagnostics",
+      "visibility": "private",
+      "signature": "(packet:F04Arguments.packet, context:F04Arguments.context) -> F04ReasonImpactReturn",
+      "reference_notation": "既存finite_referenceと同じPython風pure有限参照記法。missing/unknownは既存primitiveの意味だけ。製品実装・実行済み評価器ではない。",
+      "reference_definition": "def compare_f04_with_finding_diagnostics(packet,context):\n arguments={'packet':copy.deepcopy(packet),'context':copy.deepcopy(context)}\n native_return=compare_f04(packet,context)\n result={'arguments':arguments,'native_return':native_return}\n if 'finding' in packet:\n  result['assembly_state']='returned'\n  result['return_material']=assemble_f04_return(packet['finding'],native_return)\n else:\n  result['assembly_state']='not_called_finding_absent'\n diagnostic_refs=[]\n if 'finding' not in packet:\n  finding_diagnostics={'kind':'finding_absent'}\n  diagnostic_refs.append('/finding_diagnostics/kind')\n elif packet['finding'] is None:\n  finding_diagnostics={'kind':'finding_null'}\n  diagnostic_refs.append('/finding_diagnostics/kind')\n else:\n  finding=packet['finding']\n  reason=finding.get('reason')\n  reason_result='missing' if missing(reason) else 'unknown' if unknown(reason) else 'known'\n  if reason_result!='known':diagnostic_refs.append('/finding_diagnostics/reason_result')\n  if 'impact' not in finding:\n   impact_result={'kind':'impact_absent'}\n   diagnostic_refs.append('/finding_diagnostics/impact_result/kind')\n  elif finding['impact'] is None:\n   impact_result={'kind':'impact_null'}\n   diagnostic_refs.append('/finding_diagnostics/impact_result/kind')\n  else:\n   items=[]\n   for index,item in enumerate(finding['impact']):\n    state='missing' if missing(item) else 'unknown' if unknown(item) else 'known'\n    items.append({'impact_index':index,'result':state})\n    if state!='known':diagnostic_refs.append('/finding_diagnostics/impact_result/items/'+str(index)+'/result')\n   impact_result={'kind':'impact_list','items':items}\n  finding_diagnostics={'kind':'finding_record','reason_result':reason_result,'impact_result':impact_result}\n result['finding_diagnostics']=finding_diagnostics\n result['diagnostic_refs']=diagnostic_refs\n result['actual_dispatch']=False\n return result",
+      "entry_and_partial_ja": "元F04Argumentsの型域。finding親はkey欠落/null/recordを区別し、record内reason/impactの原presenceと全値はargumentsへ保存する。型外list/数値等を成功へ補完しない。missing/unknownは既存finite_reference definitionsの2primitiveを呼び、独自marker集合や未宣言演算を増やさない。impact listは全原itemのindexを保持し、[]ならitems=[]。findingの診断とexception理由/期限/ownerの判定は別である。",
+      "conditional_return_order_ja": "resultの原順はarguments/native_return、assembly_state、key存在時だけreturn_material、finding_diagnostics/diagnostic_refs/actual_dispatch。finding欠落時はreturn_materialキー自体を省略し、null sentinelや架空assemblerを作らない。nativeは常に1call、assemblerはfinding record/null時だけ原findingとそのnativeで1call。全diagnosticは上書き・新gate・実配送を発生させない。"
     }
   }
 }
