@@ -258,5 +258,48 @@
       "issue": "https://github.com/RetryYN/HELIX-HARNESS/issues/3444",
       "scope": "圧縮入力内の既存参照が物理走査では見えなくなる観測を比較入力にする。固定base f414時点に未統合の五入力変更そのものは本8対象の内容比較から除く。"
     }
+  },
+  "next_slice_source_review": {
+    "schema": "next-slice-source-review.v1",
+    "observation_revision": "5e592174dbfba00a21834770b17b0b708c7c8f55",
+    "confirmed_at": "2026-10-20",
+    "note": "旧8entry(f4143d22観測)は保持し本節を別revision観測として追補。変換・形式採用の提案ではなく、次sliceの意味owner照合の記録。対象設計fileは不編集。",
+    "candidates": [
+      {
+        "topic": "HARNESS L8 tdd-development-flow",
+        "file": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+        "raw_sha256": "1c0c96dd720dc1348192d799b1fbbbc42dd58f5f0f61007bb293428abac6e1ae",
+        "existing_contract": "8,192 bytes超の全値同一subtree群は今回の静的探索では未検出。既存expected_data_boundaryは原source payloadと独立expectedの役割を区別する",
+        "observation": ">8KBの全値同一subtreeを本revisionで検出せず。原入力・独立expected・同責務anchor・重複pointerの対象が確定できなかった",
+        "decision": "hold",
+        "hold_reason": "意味照合に足る完全一致重複が未検出。容量/同形のみでの変換はscope方針に反する"
+      },
+      {
+        "topic": "SECURITY L8 revoke-quarantine-propagation",
+        "file": "docs/helix-security/L8-unit-verification/revoke-quarantine-propagation.json",
+        "raw_sha256": "b9d803fe039eb8ed23623b91724cf54092eb83f4f6af86de8ebe64e36676ca6b",
+        "existing_contract": "scope_audit_bindingは固定監査snapshot、source_authority_bindingは既決authority根拠、oracle_contractは原input/expected wholeの独立比較。base_ref/replacements形式はこの文書内に確認できない",
+        "observation": "/failure_basis/failure_cases（320 case ID list、14767B）と/pair_cases/0..2/negative_case_refsが全値一致。/pair_cases/0..2/case_refs（356 ID list、16123B）も3件全値一致。いずれもcase IDのliteral埋込でmember数は多いが値はID文字列",
+        "anchor_candidate": "/failure_basis/failure_casesを責務ownerとしてpair_cases/*/negative_case_refsを参照化できる可能性。case_refsは3 pair caseで同形だが個別責務の参照集合か共通literalかは照合未確定",
+        "decision": "candidate（責務照合待ち）",
+        "hold_reason": "failure_casesとnegative_case_refsの値一致は確認したが、同一の意味ownerとconsumerの読取順は未照合。case_refsも各pairの参照責務の独立性は未確認"
+      },
+      {
+        "topic": "OS L8 event-episode-continuity",
+        "file": "docs/helix-os/L8-unit-verification/event-episode-continuity.json",
+        "raw_sha256": "98bf5f6ab07daec3bb1f7cd824c2d1df4437e5c6a5fec26e8bd8205a7d9aec6b",
+        "existing_contract": "shared_values_contract（/objects/<sha256>ポインタDAG・循環禁止）+parameter_bindings（別形式の既存materialization）",
+        "observation": "/trace/0..5/source_casesが全値一致（323 case ID list、13158B）。source_casesはliteral listで/shared_values_contractのobjects参照下にない",
+        "anchor_candidate": "trace/0/source_casesをliteral anchorとする参照化候補。ただし既存shared_values_contractのobjects DAG形式に合わせるか、局所recipeとするかは既存形式との責務一致を要確認",
+        "decision": "candidate（形式照合待ち）",
+        "hold_reason": "同一責務と見込めるが、既存shared_values_contract（/objects参照形式）への統合と局所recipeのどちらが責務等価か未判定。無理に新形式を足さない"
+      }
+    ],
+    "limits": [
+      "本節は観測revision5e592174の記録。対象fileの編集・変換・形式採用を含まない",
+      "compact ordered UTF-8の同値list全出現の合計: SECURITY negative_case_refs群は4×14,767=59,068 bytes、case_refs群は3×16,123=48,369 bytes、OS source_cases群は6×13,158=78,948 bytes。参照化後のraw削減量や性能の推定ではない",
+      "3文書外への探索・推測補完は行っていない",
+      "対象sourceの旧legacy/failureとの個別対応・consumerの実動作は今回再照合していない。旧8entryの根拠を本3候補の意味owner判定や形式採用へ流用しない"
+    ]
   }
 }
