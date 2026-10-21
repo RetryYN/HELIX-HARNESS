@@ -192,7 +192,116 @@
         "recovery_candidate_ref"
       ],
       "behavior": "入力bytes/revision、依存版、tool/環境条件と意味成果の比較条件を束縛する。置換提案は対象packだけを変更し非対象packの版と証拠を保持する。失敗時の直前適格版または明示置換先が不明なら不足を返す。切替・起動・rollbackの実操作は出力しない。",
-      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。"
+      "backflow": "意味/境界差はHARNESS L3/L4、製品適用不足はCORE、登録/保存/観測欠落はOS/当該producerへ返す。",
+      "initial_python_development_application": {
+        "scope": "H052 command-meaning-identity意味コアを最初の局所Python開発対象とする基本設計選択。他pack/HELIX全体/OS外部作用のruntimeを固定しない。",
+        "runtime_basis": {
+          "path": "docs/helix-harness/L5-detail-design/command-meaning-identity.json",
+          "revision": "e43d0cf3d1d9879c9e4015ba257e783c0afe5e1a",
+          "pointer": "/toolchain/python_target",
+          "target": "CPython 3.12.15"
+        },
+        "platform": {
+          "os": "Linux",
+          "cpu": "x86_64",
+          "wheel_abi": "manylinux2014 / glibc >= 2.17",
+          "shell": "使用しない。OSの実行側へshell文字列でなくargvを渡す。",
+          "actual_environment": "OS/ABI条件だけで同一環境としない。INFRAが供給する各実環境Refにdistribution/build/interpreter/tool実体を結び、共有する宣言条件と比較条件へそれぞれ照合する。local/CIの物理identity同一を要求せず、F04のtool_environment_refsには実際に比較する環境を区別して束縛する。WSL/現在hostのPATHやインストール版を採用根拠にしない。"
+        },
+        "tools": [
+          {
+            "name": "uv",
+            "version": "0.13.4",
+            "role": "lock producerと隔離環境の同期。検査時の依存更新は行わない。",
+            "source": "https://pypi.org/pypi/uv/0.13.4/json",
+            "metadata_sha256": "e34eed2649aaa26193d9b8f720c8ad1c8d8487661a39ae1796c7afc4db6e2c7a",
+            "requires_python": ">=3.8",
+            "distribution_candidate": {
+              "filename": "uv-0.13.4-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+              "sha256": "05e4332791b4d55b6dde8695b7fa6079b26991519f44760887c5dfbd5ca4fe53",
+              "yanked": false
+            }
+          },
+          {
+            "name": "ruff",
+            "version": "0.17.1",
+            "role": "Pythonの非書込lintとformat check。",
+            "source": "https://pypi.org/pypi/ruff/0.17.1/json",
+            "metadata_sha256": "ab19d131524b999f40cb213baa08dfc01998b0e631a71e0661bab06bce5f1474",
+            "requires_python": ">=3.7",
+            "distribution_candidate": {
+              "filename": "ruff-0.17.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl",
+              "sha256": "a6ef98e51de8ef38082f90653ceeb84944bd7673783eea13e1647c5b9b064189",
+              "yanked": false
+            }
+          },
+          {
+            "name": "pytest",
+            "version": "9.1.1",
+            "role": "凍結済みの対象testを収集・実行し結果を報告する。",
+            "source": "https://pypi.org/pypi/pytest/9.1.1/json",
+            "metadata_sha256": "8ed48304ba7fd0ae974a041f117487b499d553b40e5ce55a9ece677e946f68dd",
+            "requires_python": ">=3.10",
+            "distribution_candidate": {
+              "filename": "pytest-9.1.1-py3-none-any.whl",
+              "sha256": "37a86b45efb9a47a61a36449063e8e18d0cab3161329fc099eb21783169c4f0c",
+              "yanked": false
+            }
+          },
+          {
+            "name": "mypy",
+            "version": "2.4.0",
+            "role": "Python型検査。対象とimport先を区別しstub自動導入は行わない。",
+            "source": "https://pypi.org/pypi/mypy/2.4.0/json",
+            "metadata_sha256": "08b5d152ed0e09cfc7787b5d111bf9cf5a13961984636fee9fdbae6bf7a26087",
+            "requires_python": ">=3.10",
+            "distribution_candidate": {
+              "filename": "mypy-2.4.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
+              "sha256": "29eb0b9427a6b11b992e452f6cceb8af724f4dceb47e779d0b35e405e996ea5e",
+              "yanked": false
+            }
+          }
+        ],
+        "selection_reason": "一つのpyproject.tomlとuv.lockにPython検証依存を束縛し、Ruffでlint/整形を兼ね、pytestで凍結oracle、mypyで型を検査する。初回はPythonのみなのでNodeを要するPyrightの追加runtimeを避ける。既存Node対象でPyrightを再比較でき、同じtoolを全packの義務へ広げない。",
+        "artifact_roles": {
+          "pack_root": "選択packの宣言済みroot。repository直下や架空の実pack identityをここで作らない。",
+          "pyproject.toml": "requires-python ==3.12.15、dev groupのruff==0.17.1/pytest==9.1.1/mypy==2.4.0とtool設定を同じ選択revisionへ保持する。uvは環境側のlock producerとして別に固定する。",
+          "uv.lock": "uv 0.13.4がmanifestから解決する直接/推移依存・marker・group・artifactを保持。4つの候補wheel hashだけを完全lockや実利用観測にしない。",
+          "configuration": "Ruff target-version=py312、required-version=0.17.1、初回lint E4/E7/E9/F、formatのline-length=88。mypy python_version=3.12/strict=true、ignore_missing_imports=false。設定fileを明示し上位directory/user configの暗黙探索を避ける。",
+          "target_sets": "F02が宣言する当該packのPython source/test file集合とHARNESS005の検査義務から選ぶ。archive/固定証拠/生成viewの一括formatをしない。mypyのimport先とpytest pluginも依存観測へ残し、明示file集合だけで依存が閉じたとはしない。"
+        },
+        "operation_separation": [
+          "準備：INFRA/既存SECの範囲で選択interpreter/tool/依存artifactを供給し、pack専用の隔離venvを作る。配布wheelのmetadata確認を実受領/資格/導入成功にしない。uv自身の取得はlock生成と分離する。",
+          "再現：同じmanifest/config/対象集合とuv producerを固定し、uv lock --checkで鮮度を検査。uv --frozenだけではmanifestとの整合を証明しない。同期はuv sync --locked --offline --no-python-downloadsを選び、隔離venv以外を更新しない。明示interpreter実体を指定し、cache不足/異版は不足として返しnetwork/Python取得へfallbackしない。",
+          "検査：同期済みvenv内の明示toolからRuff check（--fixなし）、Ruff format --check、mypy、pytestを呼ぶ。検査経路でuv runの自動lock/syncやmypy --install-typesを実施しない。format修正と依存更新は別の変更として対象入力/証拠を更新する。",
+          "更新/復旧：manifest/tool/configの変更を新pack候補へ結び、新しいlockと同じ意味比較oracleを再照合する。失敗時はF04既存の直前適格版または明示置換先を候補提示し、非対象pack/証拠を保持する。venvのcopy/再利用から復旧成功を推定せず、再構築と実切替はOS/INFRAの責務へ残す。"
+        ],
+        "check_result_meaning": "lock鮮度・format・lint・型・behaviorは別の検査役割であり相互代替しない。Ruff exit0/1/2は合格/違反または差/異常として区別。pytest exit0だけで必要義務完了とせず、収集/実行/pass/skip/xfail/非実行を凍結対象集合へ照合する。対象0、skip、timeout、未回収、設定/環境errorは検証成功や意図したRedにしない。",
+        "local_ci_and_owners": "HARNESS005が同じ変更の必要義務を導き、OS020が同じpack revision/入力/manifest/lock/config/対象集合・宣言環境条件と各実環境Refからlocal/CIの検査を構成・実行・回収する。文書監査等の追加義務が選ばれた場合は本Python tool群で代替せず原ownerへ結ぶ。省略・未回収の義務はOS020の再開へ渡す。HARNESS010は技術選択と再現/置換候補だけを所有する。",
+        "existing_type_binding": "依存/義務/版はF02 DeclarationBasis、入力/環境/意味成果/比較条件/復旧はF04 ReproductionBasisと既存Referenceへ結ぶ。profile型、公開引数、資格owner、schema、実receiptを新設しない。",
+        "source_specs": [
+          "https://docs.astral.sh/uv/concepts/projects/sync/",
+          "https://docs.astral.sh/uv/reference/cli/",
+          "https://docs.astral.sh/ruff/configuration/",
+          "https://docs.astral.sh/ruff/linter/",
+          "https://docs.astral.sh/ruff/formatter/",
+          "https://mypy.readthedocs.io/en/stable/config_file.html",
+          "https://mypy.readthedocs.io/en/stable/command_line.html",
+          "https://github.com/microsoft/pyright/blob/main/docs/installation.md",
+          "https://docs.pytest.org/en/stable/reference/exit-codes.html"
+        ],
+        "legacy_rederivation": {
+          "paths": [
+            "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-runtime-toolchain-freeze.md:19–39",
+            "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/python-worker-runtime.md:254–285",
+            "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L8-python-runtime-toolchain-freeze-integration-test-design.md:19–49",
+            "archive/legacy-generation-2026-09-14/root/docs/plans/PLAN-L7-709-setup-guide-node-runtime-guidance.md:35–44"
+          ],
+          "preserved": "manifest/lock/producer/runtimeの同revision束縛、暗黙fallback拒否、案内とtool正本の一致、依存の全体と実体の区別。",
+          "changed": "旧製品workerの3.14.7/uv0.12.0・署名/SBOM・全OS parity/receipt gateを移植せず、H052局所開発の技術選択へ再導出する。旧runtime/test/CIは実行しない。"
+        },
+        "remaining": "L5/L8のexact argv/config/対象file-setと入力型への束縛、実CPython build/環境Ref、推移依存lock生成、実tool/venv構築、実local/CI結果・受入は未成立。H052 rfc8785 provider候補を採用済み依存へ混ぜない。この基本設計選択から実装Ready/環境成立/新しい操作許可を生成しない。"
+      }
     },
     {
       "id": "HARNESS-L4-010-B01",
