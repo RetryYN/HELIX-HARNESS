@@ -370,21 +370,20 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 
 ### 作業branchとworktreeの片付け
 
-作業branchとworktreeは、内容を失わない範囲で片付ける。作業管理Issue #2093の運用を、ここで決まりとして定める。
+作業branchとworktreeは、内容を失わない範囲で片付ける。作業管理Issue #2093の記録を続け、SCF-B-0158の初版が扱うのはlocal worktreeの回収だけとする。
 
 - **remoteのbranch**：mergeされたPRのbranchは、repositoryの`delete_branch_on_merge`で自動削除する。この設定は維持する。mergeされずにcloseされたPRのbranchは、`refs/pull/<番号>/head`で中身を辿れるため、削除してよい。`main`、`archive`、open PRのbranchは消さない。
-- **worktreeとローカルbranch**：次をすべて満たすものだけを、`git worktree remove`と`git branch -d`で片付ける。
-  - 未commitの変更がない。
-  - 先端のcommitが`origin/main`の祖先である。
-  - そのworktreeで動いているprocessがない。
+- **local worktree（SCF-B-0158 v1）**：`worktree_reclaim.py`は既定でdry-runとし、明示した`--apply`でのみ回収する。scriptのlast-touch判定で7日が経過し、変更がなく、先端commitが`origin/main`（無ければ`main`）の祖先であり、open PR情報を取得でき、対象process・進行中git操作・directory link等の保護条件に該当しないworktreeだけを、`git worktree remove`（`--force`なし）で取り除く。7日はPOが選んだv1の条件であり、timerはない。この判定はscriptが確認するmain ancestryであって、他の全refを網羅的に照合した証明とは扱わない。
+- **変更または未merge commitがあるworktree**：7日を経過しても削除しない。`--apply`時はtracked差分、untracked内容、未merge commitのbundle等を退避する。scriptはbundleをverifyし、untracked archiveを読み戻し、reportに退避先・収録項目・省略項目を記録する。退避に失敗した場合も対象worktreeを残し、errorをreportする。dry-runは分類のみで、退避しない。
+- **local branch**：v1のscriptはbranchを削除せず、全branch refを保持する。手動でのlocal branch削除規則は従来どおり、未commit変更がなく、先端commitが`origin/main`の祖先で、そのworktreeにprocessがない場合に限って`git branch -d`を使う。独自内容のbranchは作成側判断と事前bundle条件を保つ。
 - **独自の内容を持つbranch**：`origin/main`にないcommitやファイル内容を持つbranchは、作ったレーンの判断なしに消さない。消すときは、事前に`git bundle`でバックアップを取る。ファイル内容がすべて`origin/main`にあることを確かめた場合に限り、`git branch -D`を使う。
 - **他レーンの作業**：他のレーンが作業中のworktreeや未commitの変更には触れない。
 - **記録**：片付けた件数、残した件数とその理由を#2093に記録する。片付けは作業領域の管理であり、要求・PR・Issueの完了やcloseを生成しない。
 
-旧sourceは上記`CLAUDE.md`の「GitHub 自走運用」（`repoのdelete-branch-on-merge設定は維持する`）と、同じファイルの「Hybrid 多ランタイム commit 協調」（191〜236行目。相手のruntimeのcommitを破棄・デグレさせない）である。
-- **保持する点**：merge後のbranch自動削除と、相手のruntimeの作業を失わないこと。
-- **変更する点**：旧`git-command-guard`とoverride markerを、ここに書いた条件（未commitの変更なし、mainの祖先、process不在、事前のbundle）に置き換えること。
-- **変更の理由**：旧runtimeを起動しない現行の境界の下で、同じ保護を手順として保つためである。新しい承認手続きは加えていない。
+旧sourceは[archiveの`CLAUDE.md`](../../archive/legacy-generation-2026-09-14/root/CLAUDE.md)「GitHub 自走運用」（191–214行目、特に201行目の`delete-branch-on-merge`維持）と「Hybrid 多ランタイム commit 協調」（216–236行目、相手のcommitを破棄・デグレさせない）である。派生repoの失敗として、[UT-TDD #384](https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/384)はowner・TTL・終了記録・安全回収の大きなlifecycle案を後続sliceへ分割し、[#794](https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/794)は同じ寿命管理の重複Issueとして#384へ統合された。[#661](https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/661)では、junctionを外す手順が失敗したまま`git worktree remove`し、primaryの`node_modules`を消す事故が繰り返された。旧HELIXの[GC #631](https://github.com/RetryYN/HELIX-HARNESS/issues/631)はinventory、owner／lease、open PR、foreign ownership等を結ぶ損失ゼロproof bundleを要求していたが、SCF-B-0158 v1はそれら全体を実装したものではない。
+- **保持する点**：branch refはremote自動削除設定を既存規則どおり維持し、local branchはv1で削除しない。dirty／未mergeの内容と他runtimeの作業を失わず、unknownや安全確認失敗でworktreeを削除しない。
+- **変更する点**：当初の手作業規則に加え、POの2026-10-22選択（[#3510 comment 6323613001](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6323613001)）をv1へ反映する。last-touchから7日経過した変更なし・main祖先worktreeだけを自動回収し、dirty／unmergedは検証できた退避とreportまでに留める。scriptは`origin/main`（無ければ`main`）への祖先性を判定するため、他の全refが未到達であることを網羅的に証明したとは主張しない。旧`git-command-guard`やoverride markerは実行せず参照に限る。
+- **変更の理由**：UT-TDD #384/#794のowner／TTLを含む包括lifecycleや旧GC #631のproof bundle全体をこの初版に持ち込まず、POが選んだ小さい回収範囲を、#661のjunction事故を繰り返さないlink検査とfail-closeで支える。先の「退避してから削除」案からは、変更／未mergeを削除対象にせず次版（`version_target`）へ送る点が変わった。HELIXOS-L2-052の2026-09-29採択要件は参照先であり、このscriptや記述を正式機構への移管・完了とは扱わない。remote branch規則を変更せず、新たな削除authorityも加えない。
 
 ## 運用規則の置き場と、機構への移管
 
@@ -481,7 +480,7 @@ Codex側にも同じ待受と指示の同期を置くことである。変更の
 | 作成とreviewの分離、明示merge、read-after（「作成側とレビュー対応側の責務」） | 両レーンの運用と、PR commentの記録 | HELIXOS-L2-046、HELIXOS-L2-035（2026-09-29採択、Stage 3の旧L3承認は10/10巻き戻しで失効） | なし |
 | merge直前の`scfctl stale`の確認と、後続PRの再照合 | review側の手作業 | HELIXOS-L2-052（2026-09-29採択、Stage 4の旧L3承認は10/10巻き戻しで失効）の「base driftの再照合」 | なし |
 | 通知と待受（「GUIレーンの運転と通知」） | scaffold（`SCF-B-0003`）と両レーンの運用 | `SCF-B-0003`のreplacementに記録された移管先（HELIX-OSのreview配送・応答照合。対象の要求は未特定） | 移管先の要求を特定していない |
-| 作業branchとworktreeの片付け（「作業branchとworktreeの片付け」） | 手作業と#2093への記録 | HELIXOS-L2-052の「merge後のlocal cleanup」「remote ref境界」 | HELIXOS-L2-052は、remote refの削除にrepository・ref・delete作用を明示した許可を要し、`delete_branch_on_merge`の設定を削除の許可として継承しない。本書は同設定を維持している。移管時に、同設定を許可として明示するか、削除を別の許可で行うかを決める |
+| 作業branchとworktreeの片付け（「作業branchとworktreeの片付け」） | 手作業・#2093の記録とSCF-B-0158 v1（7日経過したclean+main-merged local worktreeだけ回収。dirty／unmergedは退避・reportのみ。scriptはbranch refを削除しない） | HELIXOS-L2-052（2026-09-29採択）の「merge後のlocal cleanup」「remote ref境界」 | L2は採択済みだがformal mechanismへの移管・完了ではない。v1の判定は`origin/main`（無ければ`main`）祖先性であり、全refの網羅確認やtimerを含まない。remote ref削除にはrepository・ref・delete作用を明示したauthorityを要し、`delete_branch_on_merge`から削除許可を継承しない。本書のremote branch規則は維持する |
 | IssueとFeature Ticketの投影、Issueのclose（「IssueとFeature Ticket」） | 作成側とreview側の手作業 | HARNESS-L2-059、HELIXOS-L2-102、HELIXOS-L2-054（いずれも2026-09-30採択。059と102、および054はHARNESS-L2-057とのセット採択。L3の承認記録は見つかっていない） | 移管先のL3が未承認 |
 | L3／L10承認の委任（「L3／L10承認の委任」） | 別系統の独立reviewと判断記録 | 移管先の設計（共通カーネルL4のPhase 1とK9）は2026-10-10のPO判断（[巻き戻しの判断記録](decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md)）でカットした | 移管先は要求ではなく設計であり、L3再開後に改めて起草する。Phase 1の成立条件は、v0.1の条件の照合（`docs/governance/audits/stage1-preflight-criteria-comparison-2026-10-09.md`）でPO判断待ち |
 

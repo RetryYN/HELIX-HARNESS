@@ -15,8 +15,8 @@
   },
   {
    "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "cfb64bf3c211393a5563772d8c5f4c24f3dd1a464481947b11e1808bc83e2de5",
-   "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。"
+   "sha256": "34bf82dc3318f3b022a37be0e0221c9910f5f31958a9c387c3f03f74333f077d",
+   "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。"
   },
   {
    "path": "AGENTS.md",
