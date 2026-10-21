@@ -332,7 +332,7 @@
     "実owner登録・実認可・資格発行/trust・CONNECT配送・OS保存・受入は未証明。",
     "他10case、全familyのnegative/複合条件、限定要件/基本詳細全体、92親430義務の完成は未証明。"
   ],
-  "metadata_update_ja": "この一caseの公開recipe確認metadataだけを更新。旧素材監査status・全原期待とsemantic scopeは保持する。",
+  "metadata_update_ja": "この一caseの公開recipe確認status・証拠参照と、それに相反する旧「独立reader未検収」説明だけを更新。旧素材監査status・全原期待とsemantic scopeは保持する。",
   "metadata_inverse_preservation": [
     {
       "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",

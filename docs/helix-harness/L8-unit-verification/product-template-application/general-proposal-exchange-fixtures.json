@@ -17706,7 +17706,7 @@
           "materialized_pointer": "/kernel_expected"
         }
       ],
-      "author_public_recipe_check_ja": "公開childだけを読むgeneric readerによりinput/native/detail/General/publication/receiver/kernelのcanonical/ordered/bytesを照合。独立reader検収は別欄の通り未完。"
+      "author_public_recipe_check_ja": "公開childだけを読むgeneric readerによりinput/native/detail/General/publication/receiver/kernelのcanonical/ordered/bytesを照合。独立した公開recipeの静的再構成結果は同caseのpublished_recipe_check_status/evidenceに記録する。製品の比較器・実資格・配送・保存の成立は未確認。"
     },
     {
       "id": "F03-valid-NA-only",
