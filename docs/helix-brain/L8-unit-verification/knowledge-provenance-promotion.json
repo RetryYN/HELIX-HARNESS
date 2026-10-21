@@ -19270,6 +19270,22 @@
       "raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
       "parse": "strict JSON UTF-8; imports.l8へ文書rootをmount"
     },
+    "materialization_contract": {
+      "imports": {
+        "l8": {
+          "revision": "5384fb504e55c3a7953a1da02505706359582976",
+          "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
+          "raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
+          "parse": "strict JSON UTF-8",
+          "mount_pointer": "/imports/l8"
+        }
+      },
+      "output_pointers": {
+        "input": "/input",
+        "expected": "/expected"
+      },
+      "semantics_ja": "各caseのworkspace_seedへimports.l8をmountしstandard_opsを原順適用するとinput/expected全値が復元される。復元wholeは各case.witnessesのcanonical/ordered/byte長と一致する。値評価・domain呼出し・新opはない。"
+    },
     "proposal_raw_sha256": "9e71343d0d8c998f6aa28d3edd17aceed47ec5c475356673b0e16752c1378c6d",
     "types_proposal_raw_sha256": "584ea908f7f29bce31177412e9077de95f6441877b5470edba7734fbe7e75a4e",
     "cases": [
@@ -19277,126 +19293,39 @@
         "case_id": "normal",
         "source_case": "/cases/46",
         "synthetic_changes_ja": "既存入力とnative期待を全値copy。",
-        "input": {
-          "claims": {
-            "evaluation_changes_authority": false,
-            "experience_changes_authority": false,
-            "product_rule_direct_copy": false,
-            "seed_means_operational_promotion": false
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [],
+              "unresolved_contract_returns": [],
+              "authority_returns": [],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
+            }
           },
-          "operational_knowledge_state": "not_promoted",
-          "original_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "original_required_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN011": "product-separation@contract-r1",
-            "BRAIN020": "LABO-candidate-receive@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "product_specific_content": false,
-          "provided_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN011": "product-separation@contract-r1",
-            "BRAIN020": "LABO-candidate-receive@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "provided_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-        },
-        "expected": {
-          "native_input": {
-            "claims": {
-              "evaluation_changes_authority": false,
-              "experience_changes_authority": false,
-              "product_rule_direct_copy": false,
-              "seed_means_operational_promotion": false
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/46/given/typed_value",
+              "path": "/input"
             },
-            "operational_knowledge_state": "not_promoted",
-            "original_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
             },
-            "original_required_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN011": "product-separation@contract-r1",
-              "BRAIN020": "LABO-candidate-receive@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "product_specific_content": false,
-            "provided_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN011": "product-separation@contract-r1",
-              "BRAIN020": "LABO-candidate-receive@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "provided_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-          },
-          "native_result": {
-            "owner_results": {
-              "generic_knowledge": "content_corresponding_in_fixture",
-              "product_requirement_decision": "content_corresponding_in_fixture",
-              "project_state": "content_corresponding_in_fixture",
-              "evaluation": "content_corresponding_in_fixture",
-              "registration_routing": "content_corresponding_in_fixture"
-            },
-            "required_contract_results": {
-              "BRAIN007": "content_corresponding_in_fixture",
-              "BRAIN011": "content_corresponding_in_fixture",
-              "BRAIN025": "content_corresponding_in_fixture",
-              "BRAIN020": "content_corresponding_in_fixture"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only",
-            "operational_knowledge_state": "not_promoted",
-            "product_content_result": "generic_candidate_in_fixture_only",
-            "claim_results": {
-              "seed_means_operational_promotion": "none",
-              "product_rule_direct_copy": "none",
-              "experience_changes_authority": "none",
-              "evaluation_changes_authority": "none"
-            },
-            "authority_state": "not_changed",
-            "effects": {
-              "actual_knowledge_accepted": false,
-              "actual_knowledge_mature": false,
-              "actual_promotion": false,
-              "actual_LABO_evaluation": false,
-              "actual_OS_registration": false,
-              "actual_product_selected": false,
-              "actual_authority_changed": false,
-              "actual_implementation_ready": false,
-              "actual_acceptance": false
-            },
-            "unaffected_Q": "original_Q"
-          },
-          "responsibility_returns": [],
-          "unresolved_contract_returns": [],
-          "authority_returns": [],
-          "invocation": {
-            "native_calls": 1,
-            "actual_dispatch": false,
-            "owner_qualification": "not_evaluated"
-          }
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/46/expected_whole",
+              "path": "/expected/native_result"
+            }
+          ]
         },
         "witnesses": {
           "input": {
@@ -19415,136 +19344,51 @@
         "case_id": "evaluation_contract_missing",
         "source_case": "/cases/58",
         "synthetic_changes_ja": "既存入力とnative期待を全値copy。",
-        "input": {
-          "claims": {
-            "evaluation_changes_authority": false,
-            "experience_changes_authority": false,
-            "product_rule_direct_copy": false,
-            "seed_means_operational_promotion": false
-          },
-          "operational_knowledge_state": "not_promoted",
-          "original_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "original_required_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN011": "product-separation@contract-r1",
-            "BRAIN020": "LABO-candidate-receive@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "product_specific_content": false,
-          "provided_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN011": "product-separation@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "provided_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-        },
-        "expected": {
-          "native_input": {
-            "claims": {
-              "evaluation_changes_authority": false,
-              "experience_changes_authority": false,
-              "product_rule_direct_copy": false,
-              "seed_means_operational_promotion": false
-            },
-            "operational_knowledge_state": "not_promoted",
-            "original_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
-            },
-            "original_required_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN011": "product-separation@contract-r1",
-              "BRAIN020": "LABO-candidate-receive@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "product_specific_content": false,
-            "provided_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN011": "product-separation@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "provided_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-          },
-          "native_result": {
-            "owner_results": {
-              "generic_knowledge": "content_corresponding_in_fixture",
-              "product_requirement_decision": "content_corresponding_in_fixture",
-              "project_state": "content_corresponding_in_fixture",
-              "evaluation": "content_corresponding_in_fixture",
-              "registration_routing": "content_corresponding_in_fixture"
-            },
-            "required_contract_results": {
-              "BRAIN007": "content_corresponding_in_fixture",
-              "BRAIN011": "content_corresponding_in_fixture",
-              "BRAIN025": "content_corresponding_in_fixture",
-              "BRAIN020": "missing"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only",
-            "operational_knowledge_state": "not_promoted",
-            "product_content_result": "generic_candidate_in_fixture_only",
-            "claim_results": {
-              "seed_means_operational_promotion": "none",
-              "product_rule_direct_copy": "none",
-              "experience_changes_authority": "none",
-              "evaluation_changes_authority": "none"
-            },
-            "authority_state": "not_changed",
-            "effects": {
-              "actual_knowledge_accepted": false,
-              "actual_knowledge_mature": false,
-              "actual_promotion": false,
-              "actual_LABO_evaluation": false,
-              "actual_OS_registration": false,
-              "actual_product_selected": false,
-              "actual_authority_changed": false,
-              "actual_implementation_ready": false,
-              "actual_acceptance": false
-            },
-            "unaffected_Q": "original_Q"
-          },
-          "responsibility_returns": [
-            {
-              "result_pointer": "/required_contract_results/BRAIN020",
-              "input_read_pointers": [
-                "/original_required_contracts/BRAIN020",
-                "/provided_contracts/BRAIN020"
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [
+                {
+                  "result_pointer": "/required_contract_results/BRAIN020",
+                  "input_read_pointers": [
+                    "/original_required_contracts/BRAIN020",
+                    "/provided_contracts/BRAIN020"
+                  ],
+                  "result": "missing",
+                  "reason": "required_contract_missing",
+                  "responsibility": "evaluation",
+                  "owner_role_token": "LABO"
+                }
               ],
-              "result": "missing",
-              "reason": "required_contract_missing",
-              "responsibility": "evaluation",
-              "owner_role_token": "LABO"
+              "unresolved_contract_returns": [],
+              "authority_returns": [],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
             }
-          ],
-          "unresolved_contract_returns": [],
-          "authority_returns": [],
-          "invocation": {
-            "native_calls": 1,
-            "actual_dispatch": false,
-            "owner_qualification": "not_evaluated"
-          }
+          },
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/58/given/typed_value",
+              "path": "/input"
+            },
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/58/expected_whole",
+              "path": "/expected/native_result"
+            }
+          ]
         },
         "witnesses": {
           "input": {
@@ -19563,144 +19407,68 @@
         "case_id": "authority_rejection_with_unresolved_contract",
         "source_case": "/cases/63",
         "synthetic_changes_ja": "既存case63へBRAIN011契約欠落を合成。nativeの独立contract比較leafだけを既存case54期待からcopy。",
-        "input": {
-          "claims": {
-            "evaluation_changes_authority": true,
-            "experience_changes_authority": false,
-            "product_rule_direct_copy": false,
-            "seed_means_operational_promotion": false
-          },
-          "operational_knowledge_state": "not_promoted",
-          "original_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "original_required_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN011": "product-separation@contract-r1",
-            "BRAIN020": "LABO-candidate-receive@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "product_specific_content": false,
-          "provided_contracts": {
-            "BRAIN007": "source-provenance@contract-r1",
-            "BRAIN020": "LABO-candidate-receive@contract-r1",
-            "BRAIN025": "knowledge-change@contract-r1"
-          },
-          "provided_owners": {
-            "evaluation": "LABO",
-            "generic_knowledge": "BRAIN",
-            "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-            "project_state": "HELIX-OS",
-            "registration_routing": "HELIX-OS"
-          },
-          "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-        },
-        "expected": {
-          "native_input": {
-            "claims": {
-              "evaluation_changes_authority": true,
-              "experience_changes_authority": false,
-              "product_rule_direct_copy": false,
-              "seed_means_operational_promotion": false
-            },
-            "operational_knowledge_state": "not_promoted",
-            "original_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
-            },
-            "original_required_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN011": "product-separation@contract-r1",
-              "BRAIN020": "LABO-candidate-receive@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "product_specific_content": false,
-            "provided_contracts": {
-              "BRAIN007": "source-provenance@contract-r1",
-              "BRAIN020": "LABO-candidate-receive@contract-r1",
-              "BRAIN025": "knowledge-change@contract-r1"
-            },
-            "provided_owners": {
-              "evaluation": "LABO",
-              "generic_knowledge": "BRAIN",
-              "product_requirement_decision": "HARNESS-CORE/upstream-meaning-owner",
-              "project_state": "HELIX-OS",
-              "registration_routing": "HELIX-OS"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only"
-          },
-          "native_result": {
-            "owner_results": {
-              "generic_knowledge": "content_corresponding_in_fixture",
-              "product_requirement_decision": "content_corresponding_in_fixture",
-              "project_state": "content_corresponding_in_fixture",
-              "evaluation": "content_corresponding_in_fixture",
-              "registration_routing": "content_corresponding_in_fixture"
-            },
-            "required_contract_results": {
-              "BRAIN007": "content_corresponding_in_fixture",
-              "BRAIN011": "missing",
-              "BRAIN025": "content_corresponding_in_fixture",
-              "BRAIN020": "content_corresponding_in_fixture"
-            },
-            "seed_meaning_state": "limited_content_adopted_in_fixture_only",
-            "operational_knowledge_state": "not_promoted",
-            "product_content_result": "generic_candidate_in_fixture_only",
-            "claim_results": {
-              "seed_means_operational_promotion": "none",
-              "product_rule_direct_copy": "none",
-              "experience_changes_authority": "none",
-              "evaluation_changes_authority": "rejected"
-            },
-            "authority_state": "not_changed",
-            "effects": {
-              "actual_knowledge_accepted": false,
-              "actual_knowledge_mature": false,
-              "actual_promotion": false,
-              "actual_LABO_evaluation": false,
-              "actual_OS_registration": false,
-              "actual_product_selected": false,
-              "actual_authority_changed": false,
-              "actual_implementation_ready": false,
-              "actual_acceptance": false
-            },
-            "unaffected_Q": "original_Q"
-          },
-          "responsibility_returns": [],
-          "unresolved_contract_returns": [
-            {
-              "result_pointer": "/required_contract_results/BRAIN011",
-              "input_read_pointers": [
-                "/original_required_contracts/BRAIN011",
-                "/provided_contracts/BRAIN011"
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [],
+              "unresolved_contract_returns": [
+                {
+                  "result_pointer": "/required_contract_results/BRAIN011",
+                  "input_read_pointers": [
+                    "/original_required_contracts/BRAIN011",
+                    "/provided_contracts/BRAIN011"
+                  ],
+                  "result": "missing",
+                  "contract_key": "BRAIN011",
+                  "mapping_state": "not_defined_in_this_b01_source"
+                }
               ],
-              "result": "missing",
-              "contract_key": "BRAIN011",
-              "mapping_state": "not_defined_in_this_b01_source"
+              "authority_returns": [
+                {
+                  "result_pointer": "/claim_results/evaluation_changes_authority",
+                  "input_read_pointer": "/claims/evaluation_changes_authority",
+                  "result": "rejected",
+                  "responsibility": "product_requirement_decision",
+                  "owner_role_token": "HARNESS-CORE/upstream-meaning-owner",
+                  "authority_state_pointer": "/authority_state"
+                }
+              ],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
             }
-          ],
-          "authority_returns": [
+          },
+          "standard_ops": [
             {
-              "result_pointer": "/claim_results/evaluation_changes_authority",
-              "input_read_pointer": "/claims/evaluation_changes_authority",
-              "result": "rejected",
-              "responsibility": "product_requirement_decision",
-              "owner_role_token": "HARNESS-CORE/upstream-meaning-owner",
-              "authority_state_pointer": "/authority_state"
+              "op": "copy",
+              "from": "/imports/l8/cases/63/given/typed_value",
+              "path": "/input"
+            },
+            {
+              "op": "remove",
+              "path": "/input/provided_contracts/BRAIN011"
+            },
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/63/expected_whole",
+              "path": "/expected/native_result"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/54/expected_whole/required_contract_results/BRAIN011",
+              "path": "/expected/native_result/required_contract_results/BRAIN011"
             }
-          ],
-          "invocation": {
-            "native_calls": 1,
-            "actual_dispatch": false,
-            "owner_qualification": "not_evaluated"
-          }
+          ]
         },
         "witnesses": {
           "input": {
