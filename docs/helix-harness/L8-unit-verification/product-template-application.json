@@ -194593,7 +194593,8 @@
           "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
         },
         "old_material_check_status": "independent_finite_whole_checked",
-        "published_recipe_check_status": "not_yet_independently_reconstructed"
+        "published_recipe_check_status": "independently_reconstructed_static_recipe",
+        "published_recipe_check_evidence": {"path": "docs/governance/audits/core009-empty-published-recipe-reconstruction-2026-10-21.json", "pointer": "/checks"}
       },
       {
         "id": "F03-valid-NA-only",

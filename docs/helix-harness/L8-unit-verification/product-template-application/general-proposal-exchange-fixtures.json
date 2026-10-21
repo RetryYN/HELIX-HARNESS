@@ -17366,7 +17366,8 @@
       "family": "F02-explicit-empty",
       "independent_check_status": "independent_finite_whole_checked",
       "independent_check_scope_ja": "旧修正source-first素材のinput/native/detail/General/publication/receiver/kernel及び14固定sourceの独立replay PASS。新公開catalog recipe通し監査は別欄。",
-      "published_recipe_check_status": "not_yet_independently_reconstructed",
+      "published_recipe_check_status": "independently_reconstructed_static_recipe",
+      "published_recipe_check_evidence": {"path": "docs/governance/audits/core009-empty-published-recipe-reconstruction-2026-10-21.json", "pointer": "/checks"},
       "recipe_parts": [
         {
           "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
