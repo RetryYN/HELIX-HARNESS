@@ -25,6 +25,8 @@ def fixture():
         (root / "AGENTS.md").write_text("rules\n", encoding="utf-8")
         (root / "docs/source.txt").write_text("pinned\n", encoding="utf-8")
         (root / "docs/target.json").write_text(json.dumps({"value": 42}), encoding="utf-8")
+        (root / "archive/legacy-generation-2026-09-14/root/docs").mkdir(parents=True)
+        (root / "archive/legacy-generation-2026-09-14/root/docs/legacy.md").write_text("legacy\n", encoding="utf-8")
         git(root, "init", "-q")
         git(root, "config", "user.email", "selftest@example.invalid")
         git(root, "config", "user.name", "selftest")
@@ -44,6 +46,14 @@ def fixture():
             "label_pointer": {"document": "L5", "pointer": "/functions/0"},
             "historical_pin": {"path": "docs/source.txt", "revision": old, "sha256": "0" * 64, "historical_approval": True},
             "test_path": "AGENTS.md",
+            "template_path": "helix/units/<pack-id>/src",
+            "fragment_pin": {"path": "docs/target.json#/value", "revision": old, "sha256": "0" * 64},
+            "inclusive_pin": {"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned"), "line_range_inclusive": [1, 1], "exact_quote": "pinned"},
+            "cross_pair": {"path": "docs/source.txt", "source_revision": old, "approval_record_sha256": "0" * 64},
+            "derived_pin": {"custom_path": "docs/source.txt", "custom_revision": old, "custom_sha256": sha(b"pinned\n")},
+            "legacy_path": "docs/legacy.md",
+            "source_path": "/items/0",
+            "line_range_pin": {"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned"), "start_line": 1, "end_line_exclusive": 2, "quote": "pinned"},
         }
         (root / DOC).write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
         return root
@@ -84,7 +94,8 @@ def main():
         ("wrong source sha256", lambda d: d["source_pins"][0].update(sha256="0" * 64), ("E_SOURCE_SHA", "/source_pins/0/sha256")),
         ("unsafe pin path", lambda d: d["source_pins"][0].update(path="../source.txt"), ("E_PATH", "/source_pins/0/path")),
         ("unsafe path reference", lambda d: d.update(test_path="../source.txt"), ("E_PATH", "/test_path")),
-        ("absolute path reference", lambda d: d.update(test_path="/etc/passwd"), ("E_PATH", "/test_path")),
+        ("absolute path reference", lambda d: d.update(test_path="/etc/passwd.txt"), ("E_PATH", "/test_path")),
+        ("local-only reference", lambda d: d.update(receipt_path="scaffold/review-handoff/local/missing.json"), ("E_LOCAL_REF", "/receipt_path")),
         ("unknown pinned revision", lambda d: d["source_pins"][0].update(revision="0" * 40), ("E_SOURCE", "/source_pins/0/sha256")),
         ("missing cross-file pointer", lambda d: d["cross_ref"].update(json_pointer="/absent"), ("E_POINTER", "/cross_ref/json_pointer/0")),
     ]
