@@ -313173,7 +313173,7 @@
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
       "pointer": "/selected_source_caller_detail",
       "binding_kind": "current_candidate_content_binding",
-      "sha256": "511daed144722f3e7a29c59f513b55ffbaf71f2cc30aa43121e2cb48439627a3",
+      "sha256": "97b907b560b9e41f5f43fda03cf7bd71996da2ae28605a8c5917628bf60f8b3c",
       "canonical_sha256": "9f055ddce5c19a2bf348a009ea54410a0a3fa9bf29830a695b6396aa7095a8e8"
     },
     "expectation_basis": {

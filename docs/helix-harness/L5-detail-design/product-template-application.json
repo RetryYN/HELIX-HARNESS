@@ -1858,6 +1858,55 @@
           "change": "同snapshotの既存Contextに取得経路を束縛し、新private入口/Context/wrapperを増やさない。旧runtime/DB/観測型は移植しない。",
           "failure_reference": "#3522で確認したBRAIN汎用descriptorとCORE製品fieldの粒度差、#3502 comment6306696930の既存型見落とし。既存入力にある原operandのために新型を増やさない。"
         }
+      },
+      "brain_definition_source_return_writer": {
+        "scope": "L4/L9の条件付き接続を既存F06 Comparisonへ返す下位技術具体化。公開5member、KnowledgeUseMaterial4member、旧normal全値は保持する。原call capture形式とref自体が無い未形成recordの診断返却は未閉包。",
+        "upstream": "L4 /selected_brain_definition_source_contract と対L9 /selected_brain_definition_source_verification。取得は同functions/6/brain_definition_source_read_binding。資格・原call対応を値形から成立させない。",
+        "dispatch": "既存F06の選択knowledge原順に通常照合を進め、同snapshotのcorrespondence全出現を原record順に評価する。条件が成立していない原材料を成立枝のgivenへ偽装しない。新接続だけで旧F06の未成立を成功へ変更しない。",
+        "no_record_or_unselected": "追加kind recordが無い、又は対象が正しく非選択knowledgeだけと確認できた場合は既存F06全返却をそのまま返す。非選択の原record/sourceはimmutable入力と既存caller.validationに保持し、選択Kの根拠へ混ぜない。対象未形成を非選択確定へ分類しない。",
+        "formed_missing": "同call・両sourceの既存資格条件・選択template/knowledge/target Bindingの対応が成立し、対象BRAIN原axis required field.definition=missingが実在する時だけ、当該実KnowledgeUseRecord.refの有効候補membershipを支持しない。別Pattern/candidate/recordのknownでこの原missingを相殺しない。 このtyped枝では実K.ref/K.binding、record.ref、両SourceEnvelope.ref object及び原public AxisResultの全必要memberを取得できることも確かめ、欠けた値を生成しない。",
+        "formed_without_missing": "同call/両source/target対応が成立しても、この対象missingを観測しなかったことだけでBRAIN完全性・K利用成立の新成功値を作らない。旧F06の独立した全必要照合を保持し、未成立をknown又は新usableへ昇格させない。",
+        "producer_symbol": "literal compare_selected_knowledge。旧producerを変更せず、原BRAIN producer_symbolで上書きしない。",
+        "input_binding": "context.validated.input.bindingの同原object全値。record固有bindingやBRAIN Bindingへ置換しない。既存Context/header不能経路はそのまま保持し、bindingを生成しない。",
+        "material": {
+          "selected_knowledge_refs": "通常F06が原選択から導く全原Ref列を全値/順/反復のまま返す。不足Kを選択されなかったことにしない。",
+          "checked_field_refs": "通常F06で実照合したCore製品fieldの原Ref列だけを全値/順/反復のまま返す。BRAIN descriptor又はその原Refを追加しない。",
+          "usable_candidate_refs": "通常の全必要照合を満たす候補だけについて、formed_missing条件に該当した実選択Kへのmembershipを出力しない。その他の候補の原全値/順/反復を保持する。追加recordから新たなcandidateを生成せず、先の不足支持を後のknownで再挿入しない。原target対応が曖昧なrecordを全候補へ適用しない。",
+          "unselected_unobserved_refs": "通常F06の非選択参照列を原全値/順/反復のまま返す。診断recordやBRAIN descriptorを非選択knowledge Refへcastして挿入しない。"
+        },
+        "formed_missing_axis": {
+          "multiplicity": "対象となる各correspondenceの各原missing axis出現ごとに一件、record原順→原Comparison.axes順。元F06 axesを変更せずその後ろへこの順で追加する。",
+          "subject_ref": "その対応が成立した実KnowledgeUseRecord.refの原whole。",
+          "binding": "その実KnowledgeUseRecord.bindingの原whole。原BRAIN Bindingのcopyではない。",
+          "axis": "literal knowledge.usability。原BRAIN required field.definitionとは別のCORE利用支持判定。",
+          "state": "literal unknown。当該追加接続の原不足を解消していないKは、この接続から有効利用を支持できない。原BRAIN missingの改名転記や既存CORE axis上書きではない。",
+          "original_refs": "実correspondence record.ref → その対応根拠SourceEnvelope.ref → BRAIN capture SourceEnvelope.ref の3原wholeをこの順で返す。同Ref反復も保持し、元BRAIN RefをCoreRefへcastしない。",
+          "reason": "原recordのvalidation_input内RFC6901所在、原Comparison内の対象axis所在、原reasonと未充足の利用支持を示す非空説明。原pointer所在と既知事実を落とさず、入力に期待値を供給しない。",
+          "backflow_owner": "対象原BRAIN axis.backflow_ownerの原string又はnullを保持する。nullをbrain_owner等の固定値へ補完せず、この文字列から認可・実owner資格を生成しない。"
+        },
+        "unformed_record_axis": {
+          "guard": "当該追加対応が未形成で、同原record.ref objectと原input.binding objectが実在する範囲。Ref leafのnull/absenceは元wholeのまま、ref member自体のabsenceはこの枝の成立へ補完しない。",
+          "subject_ref": "同原SemanticRecord.ref object whole。架空の選択K又は隣接recordのRefを使わない。",
+          "binding": "原input.binding object wholeを診断の評価scopeとして使う。record.bindingとの対応成立を主張せず、原record.bindingは入力に別保存する。",
+          "axis": "literal knowledge.definition_correspondence。既存AxisResult.axis:string欄に対する局所診断名で、公開enum/保存state/権限gateを追加しない。",
+          "state": "literal unknown。このrecordの追加接続から利用支持を確立できないという判定。既知のRef/版/Binding相違を未知の原事実へ書き換えない。",
+          "original_refs": "同原record.refを先頭に、実際に取得した対応根拠source.ref、capture source.refだけを役割順で返す。未取得Refを生成せず、反復も落とさない。",
+          "reason": "原record index/RFC6901所在と、target/版/資格/原call等の実未形成理由・既知相違を具体的に保持。source名又はsymbol一致だけでは成功にしない。",
+          "backflow_owner": "原根拠から戻し先が未解決ならnull。固定ownerを補完しない。",
+          "effect": "元axesの後ろへrecord原順に追加。新usableを生成せず、この未形成recordだけで別の有資格候補を失効させない。record不在との出力上の区別はこの診断で行う。"
+        },
+        "findings": "通常F06の旧Finding全列を原順/全memberのまま返す。本接続から新Finding codeを生成せず、knowledge_gap_fallback等の別predicateへ流用しない。",
+        "order_and_conflict": "追加axesはsemantic_records原順、同record内では元axes順。成立missingと別未形成が併存しても原材料/診断を全保持し、first/latest/多数決で消さない。通常F06の既存診断を相殺しない。同一Refの複数原target間の意味対応が未形成なら勝者を作らない。",
+        "raw_preservation": "元source whole/BRAIN全Comparison/余剰member/presenceと各入力は同ValidatedApplication.input及び既存CoreApplicationDetailReturn.validationへ残す。publicF06単体返却に原input全値を新memberとして複製したとは称さない。",
+        "unclosed_ref_absence": "SemanticRecord.ref member自体が未供給で、既存AxisResult.subject_refへ使う実原Refを取得できない枝は、上記診断writerの定義域外。{}・隣接Ref・root requirement等を代替生成しない。原入力保持だけではNO-RECORDとの差をF06返却へ閉じられないため、全未形成返却の未閉包として残す。",
+        "nonclaims": [
+          "原call対応の提供形式又は実capture取得",
+          "ref member自体が無い全未形成診断の閉包",
+          "native全入力/全返却fixtureの実行",
+          "全F06/consumer/実資格/配送/受入の成立",
+          "元F02の実誤返却又は設計Red→Green→Refactor完結"
+        ],
+        "paired_oracle": "docs/helix-harness/L8-unit-verification/product-template-application.json#/normal_function_oracles/6/brain_definition_source_return_oracle"
       }
     },
     {
