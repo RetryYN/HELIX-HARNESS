@@ -1,0 +1,99 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0160",
+  "kind": "scaffold",
+  "title": "HELIX-HARNESS limited downstream-reference extraction helper",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS limited prerequisite evidence audit",
+  "state": "registered",
+  "reason": "Issue #3545 A1の読取専用補助。固定base ba4ac1cdd76fdd0d907e684c035b059e8029b9daのgit treeからHELIX-HARNESSの下流72文書をinventoryし、10/12監査snapshotの18親・126組について実containerにあるL3参照をstdoutへ抽出する。凍結分類と直接L5→L8 edge判定は行わず、stdoutはA2で個別監査するための参照素材に限る。",
+  "upstream": [
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
+      "note": "固定監査snapshot。HARNESS限定18親・126組を抽出する。legacy_basis.sourcesに旧CLAUDE.md:49-63,82-85、functional-release-slice-requests.md:23-67、design-template-json-authority.md:16-60、predecessor-harness-full-weakness-audit-2026-07-20.md:65-101を記録する。旧sourceは参照のみ。"
+    },
+    {
+      "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-conclusion-2026-10-12.md",
+      "sha256": "4d51fb94c1e5107ff79d6e5cff2e360e3ffeb069d53823e025ce13eac933651c",
+      "note": "段階1文書要件定義の監査結論と、HARNESS 18親・126組の対象範囲を照合する。後段設計・実装・受入成立を推定しない。"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "note": "限定前提の再開順序と段階2の対設計/test-oracle凍結条件を参照する。snapshotの分類結果を承認や実装許可へ読み替えない。"
+    }
+  ],
+  "role": "helix-harness-limited-downstream-reference-extractor",
+  "obligations": [
+    "git showで固定base revisionのJSON treeをread-onlyで参照し、限定scopeの下流72文書inventoryとHARNESS 18親・126組を抽出する。",
+    "対象は9 CONTAINERS内の文字列型参照だけとし、container外（trace/reverse_trace/matrix等）、配列値（requirement_refs等）、参照候補としてのid自体、subdirectory JSONは探索対象外（bridgeのID出典の表示は別）。探索対象外・未確認はartifact不存在を意味しない。",
+    "各参照をJSON Pointerとsource path:lineで示し、代表参照と追加候補数を表示する。index付き結果は数値順に出す。",
+    "L8の対応が実L9 rootまたはL5 function IDを介する場合、L8側参照と、そのIDの出典となるL9/L5側JSON Pointerを併記する。",
+    "L9の同一entryにあるsystem_oracle_ref/l10_ref/oracle_refと対象L10 IDの文字列一致を照合し、一致・不一致・直接参照未記載を各pointerとともに表示する。",
+    "paired_documentはcontainer外のため参照探索対象外とし、source inventoryへ別に表示する。",
+    "stdoutを分類前の監査素材として出力する。凍結分類、直接L5→L8 edge有無、設計適合、承認・authorityは判定せず、5分類はA2監査consumer側の分類境界としてのみ参照する。"
+  ],
+  "connections": {
+    "consumers": [
+      "Issue #3545 A1 HARNESS限定source coverage audit",
+      "Issue #3545 A2の個別coverage/freeze evidence監査"
+    ],
+    "dependencies": [
+      "固定10/12 prerequisite L3/L10 audit JSON",
+      "git show ba4ac1cdd76fdd0d907e684c035b059e8029b9daの固定JSON tree"
+    ],
+    "boundary": "scaffoldの機構限定read-only参照抽出補助。固定base時点のsource JSONを読みstdoutへ出力する。正式resolver/parser、凍結判定、直接edge判定、製品検証、要求owner、gate、L3/L10 authorityを生成しない。A2のcoverage/freeze分類、他機構、全405組を完成扱いしない。"
+  },
+  "operations": {
+    "allowed": [
+      "固定base treeから指定JSONのread-only読取、限定scope抽出、stdout出力",
+      "scfctl validate/staleによるBindingとupstream pinの静的確認"
+    ],
+    "forbidden": [
+      "入力JSON、監査snapshot、L4/L5/L8/L9設計文書の変更",
+      "ファイル生成・更新、外部API/GitHub操作、runtime・旧CLI・hook・旧CIの起動",
+      "凍結分類または直接L5→L8 edge有無を自動判定すること",
+      "artifact存在やstatusから承認・設計適合・実行成功を生成すること",
+      "正式resolver/parser/template/framework、要求owner、新gate、承認手続きの追加",
+      "HARNESS限定範囲を他機構または全405組へ拡張し完了と表明すること"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/harness-downstream-coverage-3545/generate.py",
+    "scaffold/bindings/SCF-B-0160.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "deterministic_behavior",
+      "negative_case",
+      "forbidden_write_scope",
+      "source_revision_stale"
+    ],
+    "oracles": [
+      "python3 -B scaffold/research/harness-downstream-coverage-3545/generate.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "container外の同一ID出現、配列値、id自体、subdirectory JSONを対象container参照として数えない。paired_documentはsource inventoryへ別表示する",
+      "L8のroot/function bridgeを片側pointerだけで示さず、L9/L5側ID出典pointerも併記する",
+      "凍結状態・直接edge・設計適合を抽出結果から推論または自動分類しない",
+      "stdout以外へファイルを書かず、A2分類・全405組完了・製品受入を主張しない"
+    ]
+  },
+  "replacement": {
+    "role_target": "Issue #3545／#1866の既存正式化・撤去判断時に、監査用証拠抽出の役割と境界を再照合する（新しい要求ownerやgateを作らない）",
+    "formal_artifacts": [],
+    "issue": 3545,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-22",
+  "updated": "2026-10-22"
+}
