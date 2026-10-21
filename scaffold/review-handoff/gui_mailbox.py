@@ -383,7 +383,10 @@ def active_work(data, worker, now):
 def release_work(data, runtime, session, worker, now, event_id=None):
     """依頼した側か作業側が、作業結果を送らずに作業依頼を終える（中止・取り下げ）。"""
     lane(data, runtime, session, now)
-    prune_expired_work(data, worker, now)
+    # Select an explicit event before expiry pruning removes it. Otherwise
+    # rejection rolls back the state write, including FIFO promotion (#3086).
+    if event_id is None:
+        prune_expired_work(data, worker, now)
     items = work_items(data, worker)
     p.require(items, "未完了の作業依頼がない")
     if event_id is None:
@@ -393,6 +396,8 @@ def release_work(data, runtime, session, worker, now, event_id=None):
         selected = next((item for item in items if item["event_id"] == event_id), None)
         p.require(selected is not None, "release対象依頼がない")
     p.require(runtime in (selected["dispatcher"], worker), "release権限がない")
+    if event_id is not None:
+        prune_expired_work(data, worker, now)
     message = data["messages"].get(selected["event_id"])
     if message is not None and message["status"] in ("queued", "claimed"):
         # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。

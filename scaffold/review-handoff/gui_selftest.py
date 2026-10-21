@@ -983,6 +983,48 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work(request_id="WORK-3"), None, 60, later)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
 
+    def test_release_expired_event_persists_fifo_promotion(self):
+        # #3086: expiry pruning must not erase the explicitly selected release
+        # before selection, abort persistence, or cancel its FIFO successor.
+        for queued in (False, True):
+            with self.subTest(queued=queued), tempfile.TemporaryDirectory() as tmp:
+                data = copy.deepcopy(self.data)
+                g.bind(data, "devin", "devin-gui", "worker", 600, self.now)
+                g.send(data, "claude", "claude-gui", "work-1", "work_request",
+                       self.work(), None, 1, self.now)
+                if queued:
+                    g.send(data, "claude", "claude-gui", "work-2", "work_request",
+                           self.work(request_id="WORK-2"), None, 60, self.now)
+                store = Path(tmp)
+                with patch.object(g.time, "time", return_value=self.now):
+                    with g.state(store) as saved:
+                        saved.update(data)
+                later = self.now + 2
+                with patch.object(g.time, "time", return_value=later):
+                    with g.state(store) as saved:
+                        g.release_work(saved, "claude", "claude-gui", "devin", later, "work-1")
+                    with g.state(store) as saved:
+                        self.assertEqual(saved["closed"]["work-1"]["status"], "expired")
+                        self.assertEqual([w["event_id"] for w in g.work_items(saved, "devin")],
+                                         ["work-2"] if queued else [])
+                        if queued:
+                            successor = saved["messages"]["work-2"]
+                            self.assertEqual(successor["status"], "queued")
+                            self.assertEqual(successor["expires"], later + 60)
+                            self.assertNotIn("work_waiting", successor)
+                            claimed = g.claim(saved, "devin", "devin-gui", later + 1)
+                            self.assertEqual(claimed["payload"]["event_id"], "work-2")
+                            self.assertEqual(claimed["expires"], later + 60)
+
+    def test_expired_event_release_keeps_dispatcher_boundary(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
+        g.send(self.data, "claude", "claude-gui", "work-1", "work_request",
+               self.work(), None, 1, self.now)
+        before = copy.deepcopy(self.data)
+        with self.assertRaisesRegex(ValueError, "release権限"):
+            g.release_work(self.data, "codex", "codex-gui", "devin", self.now + 2, "work-1")
+        self.assertEqual(self.data, before)
+
     def test_unclaimed_expired_work_frees_worker_without_waiting_retention(self):
         # R1 F3: 受け手が受け取らないまま期限を過ぎた依頼は、終了記録の保持期間を待たずに次の依頼を通す。
         g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
