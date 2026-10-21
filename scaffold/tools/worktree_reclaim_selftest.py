@@ -36,6 +36,9 @@ class Cases(unittest.TestCase):
             outside = self.root / "outside"; outside.mkdir(); (outside / "sentinel").write_text("keep\n")
             (wt / "linked-dir").symlink_to(outside, target_is_directory=True)
         for p in [wt, *wt.rglob("*")]: os.utime(p, (self.old, self.old), follow_symlinks=False)
+        gd = WR.git_dir(wt)
+        for p in [gd / "HEAD", gd / "index", gd / "logs" / "HEAD"]:
+            if p.exists(): os.utime(p, (self.old, self.old), follow_symlinks=False)
         return wt
 
     def invoke(self, *args, prs=None):
@@ -47,16 +50,19 @@ class Cases(unittest.TestCase):
 
     def got(self, report, wt): return next(x for x in report["worktrees"] if x["worktree"] == str(wt))
 
-    def test_dry_run_and_apply_backup_remove(self):
-        dry_wt = self.old_wt("dry", "dry-branch", dirty=True)
+    def test_dry_run_backup_only_and_clean_remove(self):
+        dirty = self.old_wt("dirty", "dirty-branch", dirty=True, ignored=True)
         code, rep = self.invoke()
-        self.assertEqual((code, self.got(rep, dry_wt)["reason"]), (0, "eligible")); self.assertTrue(dry_wt.exists())
-        wt = self.old_wt("old", "old-branch", dirty=True, ignored=True)
-        code, rep = self.invoke("--apply"); self.assertEqual(code, 0); r = self.got(rep, wt)
-        self.assertEqual(r["reason"], "removed"); self.assertFalse(wt.exists()); self.assertIn("old-branch", git(self.repo, "branch").stdout.decode())
-        self.assertIn("dry-branch", git(self.repo, "branch").stdout.decode())
-        self.assertIn("dirty", Path(r["backup"]["patch"]).read_text())
-        with tarfile.open(r["backup"]["untracked_tar"], "r:gz") as tar: self.assertIn("ignored.log", set(tar.getnames()))
+        self.assertEqual((code, self.got(rep, dirty)["reason"]), (0, "backup_only_dirty")); self.assertTrue(dirty.exists())
+        clean = self.old_wt("clean", "clean-branch")
+        code, rep = self.invoke("--apply"); self.assertEqual(code, 0)
+        d, c = self.got(rep, dirty), self.got(rep, clean)
+        self.assertEqual((d["reason"], c["reason"]), ("backup_only_dirty_backed_up", "removed"))
+        self.assertTrue(dirty.exists()); self.assertFalse(clean.exists())
+        self.assertIn("clean-branch", git(self.repo, "branch").stdout.decode())
+        self.assertIn("dirty", Path(d["backup"]["patch"]).read_text())
+        self.assertIn("ignored.log", d["backup"]["ignored"])
+        with tarfile.open(d["backup"]["untracked_tar"], "r:gz") as tar: self.assertIn("untracked.txt", set(tar.getnames()))
 
     def test_fresh_open_pr_and_process_skip(self):
         fresh = self.root / "fresh"; git(self.repo, "worktree", "add", str(fresh), "-b", "fresh-branch")

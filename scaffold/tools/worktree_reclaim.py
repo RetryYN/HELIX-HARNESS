@@ -1,24 +1,31 @@
 #!/usr/bin/env python3
-"""Last-touch worktree reclaim helper. Dry-run by default; --apply backs up then removes."""
-import argparse, datetime as dt, hashlib, json, os, shutil, stat, subprocess, sys, tarfile, tempfile, time
+"""Dry-run first last-touch worktree reclaim helper.
+
+Only clean, merged, stale worktrees are removed by ``git worktree remove`` (never
+``--force``). Dirty or unmerged worktrees are preserved in a verified backup and
+reported instead of being destructively cleaned.
+"""
+import argparse, datetime as dt, hashlib, json, os, shutil, stat, subprocess, sys, tarfile, time
 from pathlib import Path
 
 DAY = 86400.0
-SECONDS_PER_DAY = DAY
+
 
 def sh(cmd, cwd=None, check=True, out=None):
-    p = subprocess.run([str(x) for x in cmd], cwd=cwd, input=None, stdout=out or subprocess.PIPE, stderr=subprocess.PIPE)
+    p = subprocess.run([str(x) for x in cmd], cwd=cwd, stdout=out or subprocess.PIPE, stderr=subprocess.PIPE)
     if check and p.returncode:
         raise RuntimeError("failed %s: %s" % (" ".join(map(str, cmd)), p.stderr.decode("utf-8", "replace").strip()))
     return p
 
+
 def git(repo, *args, check=True):
     return sh(["git", "-C", repo, *args], check=check)
 
+
 def main_root(repo):
     p = Path(git(repo, "rev-parse", "--git-common-dir").stdout.decode().strip())
-    if not p.is_absolute(): p = Path(repo) / p
-    return p.resolve().parent
+    return (p if p.is_absolute() else Path(repo) / p).resolve().parent
+
 
 def entries(repo):
     items, cur = [], None
@@ -35,6 +42,7 @@ def entries(repo):
     if cur: items.append(cur)
     return items
 
+
 def realdir(path):
     try:
         a, r = os.path.abspath(path), os.path.realpath(path)
@@ -42,7 +50,8 @@ def realdir(path):
         return None
     return r if a == r and os.path.isdir(r) and not os.path.islink(path) else None
 
-def last_touch(path):
+
+def latest_mtime(path):
     latest = os.lstat(path).st_mtime
     for base, dirs, files in os.walk(path, followlinks=False):
         for name in dirs + files:
@@ -50,10 +59,26 @@ def last_touch(path):
             except OSError: pass
     return latest
 
+
+def git_dir(wt):
+    p = Path(git(wt, "rev-parse", "--git-dir").stdout.decode().strip())
+    return (p if p.is_absolute() else wt / p).resolve()
+
+
+def last_touch(wt):
+    latest = latest_mtime(wt)
+    gd = git_dir(wt)
+    for name in ("HEAD", os.path.join("logs", "HEAD")):
+        try: latest = max(latest, os.lstat(gd / name).st_mtime)
+        except OSError: pass
+    return latest
+
+
 def isjunction(path):
     f = getattr(os.path, "isjunction", None)
     try: return bool(f and f(path))
     except OSError: return True
+
 
 def risky_links(root):
     found = []
@@ -66,6 +91,7 @@ def risky_links(root):
             except OSError:
                 found.append({"path": os.path.relpath(p, root), "target": None})
     return found
+
 
 def process_using(path):
     if not os.path.isdir("/proc"): return "unavailable"
@@ -81,75 +107,112 @@ def process_using(path):
                 return {"pid": int(pid), "path": resolved}
     return None
 
+
 def open_prs(repo, file):
     if file:
         data = json.loads(Path(file).read_text(encoding="utf-8"))
         if isinstance(data, dict): data = data.get("branches", data.get("open_prs", []))
-        return {x.get("headRefName", x.get("branch")) if isinstance(x, dict) else x for x in data}
+        return {x.get("headRefName", x.get("branch")) if isinstance(x, dict) else x: (x.get("headRefOid") if isinstance(x, dict) else None) for x in data}
     if not shutil.which("gh"): return None
-    p = sh(["gh", "pr", "list", "--state", "open", "--limit", "200", "--json", "headRefName"], cwd=repo, check=False)
+    p = sh(["gh", "pr", "list", "--state", "open", "--limit", "200", "--json", "headRefName,headRefOid"], cwd=repo, check=False)
     if p.returncode: return None
-    try: return {x["headRefName"] for x in json.loads(p.stdout.decode()) if x.get("headRefName")}
+    try:
+        rows = json.loads(p.stdout.decode())
+        if len(rows) >= 200: return None
+        return {x["headRefName"]: x.get("headRefOid") for x in rows if x.get("headRefName")}
     except (KeyError, TypeError, json.JSONDecodeError): return None
 
-def status_paths(wt):
+
+def status_rows(wt):
     out = git(wt, "status", "--porcelain=v1", "-uall", "--ignored=matching", "-z").stdout.decode("utf-8", "surrogateescape")
-    return [r[3:] for r in out.split("\0") if r[:2] in ("??", "!!")]
+    return [r for r in out.split("\0") if r]
 
-def backup(wt, dest, result):
-    dest.mkdir(parents=True, exist_ok=True)
-    with open(dest / "head.bundle", "wb") as f: sh(["git", "-C", str(wt), "bundle", "create", "-", "HEAD"], out=f)
-    (dest / "worktree.patch").write_bytes(git(wt, "diff", "--binary", "HEAD").stdout)
-    paths = status_paths(wt)
-    with tarfile.open(dest / "untracked.tar.gz", "w:gz") as tar:
-        for rel in paths:
-            p = wt / rel
-            if os.path.lexists(p): tar.add(p, arcname=rel, recursive=True)
-    meta = {"worktree": str(wt), "head": git(wt, "rev-parse", "--verify", "HEAD").stdout.decode().strip(), "untracked": paths}
-    (dest / "metadata.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    result["backup"] = {**meta, "dir": str(dest), "bundle": str(dest / "head.bundle"), "patch": str(dest / "worktree.patch"), "untracked_tar": str(dest / "untracked.tar.gz")}
 
-def remove_untracked(wt):
-    for rel in sorted(status_paths(wt), key=lambda x: x.count("/"), reverse=True):
-        p = wt / rel
-        if not os.path.lexists(p): continue
-        if os.path.islink(p) or not stat.S_ISDIR(os.lstat(p).st_mode): os.unlink(p)
-        else: shutil.rmtree(p)
+def status_paths(wt, codes):
+    return [r[3:] for r in status_rows(wt) if r[:2] in codes]
+
+
+def git_busy(wt):
+    gd = git_dir(wt)
+    names = ["MERGE_HEAD", "CHERRY_PICK_HEAD", "REBASE_HEAD", "index.lock"]
+    dirs = ["rebase-merge", "rebase-apply"]
+    return any((gd / x).exists() for x in names + dirs)
+
 
 def branch(ref):
     return ref[11:] if ref and ref.startswith("refs/heads/") else ref
 
-def evaluate(main, entry, now, days, prs):
-    path = entry["path"]
-    r = {"worktree": path, "branch": branch(entry.get("branch")), "detached": bool(entry.get("detached")), "removed": False}
+
+def merged(repo, head):
+    base = "origin/main" if git(repo, "rev-parse", "--verify", "origin/main", check=False).returncode == 0 else "main"
+    return git(repo, "merge-base", "--is-ancestor", head, base, check=False).returncode == 0
+
+
+def inside(child, parent):
+    try: return os.path.commonpath((os.path.realpath(child), os.path.realpath(parent))) == os.path.realpath(parent)
+    except (OSError, ValueError): return True
+
+
+def backup(main, wt, dest, result):
+    dest.mkdir(parents=True)
+    patch = dest / "worktree.patch"
+    patch.write_bytes(git(wt, "diff", "--binary", "HEAD").stdout)
+    untracked = status_paths(wt, ("??",))
+    copied, omitted, total = [], [], 0
+    with tarfile.open(dest / "untracked.tar.gz", "w:gz") as tar:
+        for rel in untracked:
+            p = wt / rel
+            if not os.path.lexists(p): continue
+            size = os.lstat(p).st_size
+            if total + size > 64 * 1024 * 1024:
+                omitted.append(rel); continue
+            tar.add(p, arcname=rel, recursive=True); copied.append(rel); total += size
+    if not merged(main, git(wt, "rev-parse", "--verify", "HEAD").stdout.decode().strip()):
+        git(wt, "bundle", "create", str(dest / "unique-commits.bundle"), "HEAD", "--not", "origin/main" if git(main, "rev-parse", "--verify", "origin/main", check=False).returncode == 0 else "main")
+        git(wt, "bundle", "verify", str(dest / "unique-commits.bundle"))
+    with tarfile.open(dest / "untracked.tar.gz", "r:gz") as tar: tar.getnames()
+    meta = {"worktree": str(wt), "head": git(wt, "rev-parse", "--verify", "HEAD").stdout.decode().strip(), "untracked": copied, "untracked_omitted": omitted, "ignored": status_paths(wt, ("!!",))}
+    (dest / "metadata.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    result["backup"] = {**meta, "dir": str(dest), "patch": str(patch), "untracked_tar": str(dest / "untracked.tar.gz")}
+
+
+def evaluate(repo, main, entry, now, days, prs, backup_root, report_path):
+    path, r = entry["path"], {"worktree": entry["path"], "branch": branch(entry.get("branch")), "detached": bool(entry.get("detached")), "removed": False}
     resolved = realdir(path)
-    if resolved is None: return {**r, "reason": "unsafe_or_missing_path"}
+    if resolved is None or os.path.ismount(resolved): return {**r, "reason": "unsafe_or_missing_path"}
     r["realpath"] = resolved
     if resolved == str(main): return {**r, "reason": "main_checkout"}
     if entry.get("bare") or entry.get("locked") or entry.get("prunable"): return {**r, "reason": "bare_locked_or_prunable"}
+    if inside(backup_root, resolved) or inside(report_path, resolved): return {**r, "reason": "output_inside_worktree"}
     links = risky_links(resolved)
     if links: return {**r, "reason": "junction_or_directory_link", "links": links}
     used = process_using(resolved)
     if used == "unavailable": return {**r, "reason": "process_check_unavailable"}
     if used: return {**r, "reason": "process_in_use", "process": used}
-    if r["branch"]:
-        if prs is None: return {**r, "reason": "open_pr_check_unavailable"}
-        if r["branch"] in prs: return {**r, "reason": "open_pr_branch"}
-    touched = last_touch(resolved)
+    if prs is None: return {**r, "reason": "open_pr_check_unavailable"}
+    try:
+        if git_busy(resolved): return {**r, "reason": "git_operation_in_progress"}
+    except RuntimeError: return {**r, "reason": "git_dir_unavailable"}
+    if r["branch"] and r["branch"] in prs: return {**r, "reason": "open_pr_branch"}
+    if r["detached"] and entry.get("head") in set(prs.values()): return {**r, "reason": "open_pr_head"}
+    try: touched = last_touch(resolved)
+    except RuntimeError: return {**r, "reason": "git_dir_unavailable"}
     r["last_touch"] = {"epoch": touched, "at": dt.datetime.fromtimestamp(touched, dt.timezone.utc).isoformat().replace("+00:00", "Z")}
     r["age_days"] = round((now - touched) / DAY, 3)
     if r["age_days"] < days: return {**r, "reason": "fresh"}
+    rows = status_rows(resolved)
+    if rows: return {**r, "reason": "backup_only_dirty", "status_count": len(rows), "preserve": True}
+    if not merged(main, entry.get("head") or "HEAD"): return {**r, "reason": "backup_only_unmerged", "preserve": True}
     return {**r, "eligible": True, "reason": "eligible"}
 
-def apply_one(main, wt, root, r):
-    dest = root / hashlib.sha256(str(wt).encode()).hexdigest()[:16]
-    backup(wt, dest, r)
-    git(wt, "reset", "--hard", "HEAD")
-    remove_untracked(wt)
-    if git(wt, "status", "--porcelain=v1", "-uall", "--ignored=matching").stdout.decode().strip():
-        raise RuntimeError("worktree still dirty after backup")
+
+def apply_one(main, wt, r):
+    # Re-check immediately before removal; git itself still supplies the final no-force guard.
+    if process_using(wt): raise RuntimeError("process appeared before removal")
+    if status_rows(wt): raise RuntimeError("worktree became dirty before removal")
     git(main, "worktree", "remove", str(wt))
     r["removed"] = True
+
 
 def write_json(path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -157,43 +220,40 @@ def write_json(path, obj):
     tmp.write_text(json.dumps(obj, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     os.replace(tmp, path)
 
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Dry-run or apply last-touch git worktree reclaim.")
-    ap.add_argument("--repo", default=".")
-    ap.add_argument("--min-age-days", type=float, default=7.0)
-    ap.add_argument("--backup-dir", type=Path)
-    ap.add_argument("--report", type=Path)
-    ap.add_argument("--open-prs-file", type=Path)
-    ap.add_argument("--apply", action="store_true")
-    ap.add_argument("--now", type=float)
+    ap.add_argument("--repo", default="."); ap.add_argument("--min-age-days", type=float, default=7.0)
+    ap.add_argument("--backup-dir", type=Path); ap.add_argument("--report", type=Path); ap.add_argument("--open-prs-file", type=Path)
+    ap.add_argument("--apply", action="store_true"); ap.add_argument("--now", type=float)
     a = ap.parse_args(argv)
-    now = a.now or time.time()
-    main = main_root(Path(a.repo).resolve())
+    now, repo = a.now or time.time(), Path(a.repo).resolve()
+    main = main_root(repo)
     prs = open_prs(main, a.open_prs_file)
     stamp = dt.datetime.fromtimestamp(now, dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     backup_root = a.backup_dir or Path.home() / ".helix-worktree-reclaim" / hashlib.sha256(str(main).encode()).hexdigest()[:12] / stamp
     report = a.report or backup_root / "report.json"
     results = []
     for entry in entries(main):
-        r = evaluate(main, entry, now, a.min_age_days, prs)
-        if r.get("eligible") and a.apply:
+        r = evaluate(repo, main, entry, now, a.min_age_days, prs, backup_root, report)
+        if a.apply:
             try:
-                apply_one(main, Path(r["realpath"]), backup_root, r)
-                r["reason"] = "removed"
-            except Exception as e:
-                r.update(removed=False, reason="error", error=str(e))
+                if r.get("preserve"):
+                    dest = backup_root / ("%s-%s-%s" % (stamp, os.getpid(), hashlib.sha256(str(r["realpath"]).encode()).hexdigest()[:8]))
+                    backup(main, Path(r["realpath"]), dest, r); r["reason"] += "_backed_up"
+                elif r.get("eligible"):
+                    apply_one(main, Path(r["realpath"]), r); r["reason"] = "removed"
+            except Exception as e: r.update(removed=False, reason="error", error=str(e))
         results.append(r)
-    payload = {"schema": "helix-worktree-reclaim-report.v1", "evidence_kind": "scaffold", "authority_effect": "none", "repo": str(main), "apply": a.apply,
-               "min_age_days": a.min_age_days, "generated_at": dt.datetime.fromtimestamp(now, dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+    payload = {"schema": "helix-worktree-reclaim-report.v1", "evidence_kind": "scaffold", "authority_effect": "none", "repo": str(main),
+               "apply": a.apply, "min_age_days": a.min_age_days, "generated_at": dt.datetime.fromtimestamp(now, dt.timezone.utc).isoformat().replace("+00:00", "Z"),
                "backup_dir": str(backup_root), "open_pr_check": "unavailable" if prs is None else "ok", "worktrees": results,
-               "summary": {"entries": len(results), "eligible": sum(bool(x.get("eligible")) for x in results),
-                           "removed": sum(bool(x.get("removed")) for x in results),
-                           "skipped": sum(not x.get("eligible") for x in results),
+               "summary": {"entries": len(results), "eligible": sum(bool(x.get("eligible")) for x in results), "preserved": sum(bool(x.get("preserve")) for x in results),
+                           "removed": sum(bool(x.get("removed")) for x in results), "skipped": sum(not x.get("eligible") and not x.get("preserve") for x in results),
                            "errors": sum(x.get("reason") == "error" for x in results)}}
-    write_json(report, payload)
-    json.dump(payload, sys.stdout, ensure_ascii=False, sort_keys=True, indent=2)
-    sys.stdout.write("\n")
-    return 1 if payload["summary"]["errors"] else 0
+    if a.apply or a.report: write_json(report, payload)
+    json.dump(payload, sys.stdout, ensure_ascii=False, sort_keys=True, indent=2); sys.stdout.write("\n")
+    return 1 if payload["summary"]["errors"] or prs is None else 0
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+
+if __name__ == "__main__": raise SystemExit(main())
