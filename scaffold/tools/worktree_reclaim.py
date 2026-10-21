@@ -5,7 +5,7 @@ Only clean, merged, stale worktrees are removed by ``git worktree remove`` (neve
 ``--force``). Dirty or unmerged worktrees are preserved in a verified backup and
 reported instead of being destructively cleaned.
 """
-import argparse, datetime as dt, hashlib, json, os, shutil, stat, subprocess, sys, tarfile, time
+import argparse, datetime as dt, fcntl, hashlib, json, os, shutil, stat, subprocess, sys, tarfile, tempfile, time
 from pathlib import Path
 
 DAY = 86400.0
@@ -95,17 +95,24 @@ def risky_links(root):
 
 def process_using(path):
     if not os.path.isdir("/proc"): return "unavailable"
-    target = os.path.realpath(path)
+    target, uid, unreadable = os.path.realpath(path), os.getuid(), False
     for pid in filter(str.isdigit, os.listdir("/proc")):
-        links = [os.path.join("/proc", pid, x) for x in ("cwd", "root")]
-        try: links += [os.path.join("/proc", pid, "fd", x) for x in os.listdir(os.path.join("/proc", pid, "fd"))]
-        except OSError: pass
+        proc_dir = os.path.join("/proc", pid)
+        try:
+            if os.stat(proc_dir).st_uid != uid: continue
+        except OSError: continue
+        links = [os.path.join(proc_dir, x) for x in ("cwd", "root")]
+        try: links += [os.path.join(proc_dir, "fd", x) for x in os.listdir(os.path.join(proc_dir, "fd"))]
+        except FileNotFoundError: pass
+        except OSError: unreadable = True
         for link in links:
             try: resolved = os.path.realpath(os.readlink(link))
-            except OSError: continue
+            except FileNotFoundError: continue
+            except OSError:
+                unreadable = True; continue
             if resolved == target or resolved.startswith(target + os.sep):
                 return {"pid": int(pid), "path": resolved}
-    return None
+    return "unavailable" if unreadable else None
 
 
 def open_prs(repo, file):
@@ -154,7 +161,6 @@ def inside(child, parent):
 
 
 def backup(main, wt, dest, result):
-    dest.mkdir(parents=True)
     patch = dest / "worktree.patch"
     patch.write_bytes(git(wt, "diff", "--binary", "HEAD").stdout)
     untracked = status_paths(wt, ("??",))
@@ -206,10 +212,12 @@ def evaluate(repo, main, entry, now, days, prs, backup_root, report_path):
     return {**r, "eligible": True, "reason": "eligible"}
 
 
-def apply_one(main, wt, r):
+def apply_one(main, wt, r, journal):
     # Re-check immediately before removal; git itself still supplies the final no-force guard.
     if process_using(wt): raise RuntimeError("process appeared before removal")
     if status_rows(wt): raise RuntimeError("worktree became dirty before removal")
+    journal.write(json.dumps({"action": "worktree_remove", "worktree": str(wt), "head": git(wt, "rev-parse", "--verify", "HEAD").stdout.decode().strip(), "at": dt.datetime.now(dt.timezone.utc).isoformat().replace("+00:00", "Z")}, ensure_ascii=False) + "\n")
+    journal.flush()
     git(main, "worktree", "remove", str(wt))
     r["removed"] = True
 
@@ -234,15 +242,31 @@ def main(argv=None):
     backup_root = a.backup_dir or Path.home() / ".helix-worktree-reclaim" / hashlib.sha256(str(main).encode()).hexdigest()[:12] / stamp
     report = a.report or backup_root / "report.json"
     results = []
-    for entry in entries(main):
+    lock = None
+    if a.apply:
+        backup_root.mkdir(parents=True, exist_ok=True)
+        lock = open(backup_root / "reclaim.lock", "a+", encoding="utf-8")
+        try: fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError: raise SystemExit("another worktree_reclaim --apply is running")
+        journal = open(backup_root / "events.jsonl", "a", encoding="utf-8")
+    else:
+        journal = None
+    for index, entry in enumerate(entries(main)):
         r = evaluate(repo, main, entry, now, a.min_age_days, prs, backup_root, report)
+        if index == 0: r = {**r, "reason": "main_checkout", "eligible": False, "preserve": False, "removed": False}
         if a.apply:
             try:
                 if r.get("preserve"):
                     dest = backup_root / ("%s-%s-%s" % (stamp, os.getpid(), hashlib.sha256(str(r["realpath"]).encode()).hexdigest()[:8]))
-                    backup(main, Path(r["realpath"]), dest, r); r["reason"] += "_backed_up"
+                    tmp = Path(tempfile.mkdtemp(prefix=dest.name + ".tmp-", dir=backup_root))
+                    backup(main, Path(r["realpath"]), tmp, r)
+                    os.rename(tmp, dest)
+                    for key, value in list(r["backup"].items()):
+                        if isinstance(value, str) and value.startswith(str(tmp)):
+                            r["backup"][key] = value.replace(str(tmp), str(dest), 1)
+                    r["reason"] += "_backed_up"
                 elif r.get("eligible"):
-                    apply_one(main, Path(r["realpath"]), r); r["reason"] = "removed"
+                    apply_one(main, Path(r["realpath"]), r, journal); r["reason"] = "removed"
             except Exception as e: r.update(removed=False, reason="error", error=str(e))
         results.append(r)
     payload = {"schema": "helix-worktree-reclaim-report.v1", "evidence_kind": "scaffold", "authority_effect": "none", "repo": str(main),
@@ -251,6 +275,8 @@ def main(argv=None):
                "summary": {"entries": len(results), "eligible": sum(bool(x.get("eligible")) for x in results), "preserved": sum(bool(x.get("preserve")) for x in results),
                            "removed": sum(bool(x.get("removed")) for x in results), "skipped": sum(not x.get("eligible") and not x.get("preserve") for x in results),
                            "errors": sum(x.get("reason") == "error" for x in results)}}
+    if lock:
+        journal.close(); fcntl.flock(lock.fileno(), fcntl.LOCK_UN); lock.close()
     if a.apply or a.report: write_json(report, payload)
     json.dump(payload, sys.stdout, ensure_ascii=False, sort_keys=True, indent=2); sys.stdout.write("\n")
     return 1 if payload["summary"]["errors"] or prs is None else 0

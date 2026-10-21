@@ -45,7 +45,11 @@ class Cases(unittest.TestCase):
         out = io.StringIO()
         argv = ["--repo", str(self.repo), "--backup-dir", str(self.root / "backup"), "--report", str(self.root / "report.json"),
                 "--open-prs-file", str(prs or self.prs), "--now", str(self.now), *args]
-        with contextlib.redirect_stdout(out): code = WR.main(argv)
+        real = WR.process_using
+        WR.process_using = lambda path: {"pid": os.getpid(), "path": path} if Path(path).name == "busy" else None
+        try:
+            with contextlib.redirect_stdout(out): code = WR.main(argv)
+        finally: WR.process_using = real
         return code, json.loads(out.getvalue())
 
     def got(self, report, wt): return next(x for x in report["worktrees"] if x["worktree"] == str(wt))
