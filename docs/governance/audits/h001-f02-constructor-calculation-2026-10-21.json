@@ -37,6 +37,7 @@
     "status": "PASS_FIXED_CONSTRUCTOR_CALCULATION",
     "case_count": 8,
     "ordered_result_digest": "29d572de8ece18bcb547b6769894fc42a0cfd9b3bb8667ee1e3bda047266a165",
+    "ordered_result_digest_definition": "計算器出力のcases配列を、sort_keys=true・compact separators=(comma,colon)・ensure_ascii=false・allow_nan=falseのJSONでUTF-8化したbytesのSHA-256。casesの順序を保持し、出力全体やindent付き表示はhashしない。",
     "all_full_returns_equal": true,
     "arguments_and_prior_unchanged": true
   },
