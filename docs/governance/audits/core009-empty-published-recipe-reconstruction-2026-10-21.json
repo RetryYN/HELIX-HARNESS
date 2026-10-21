@@ -1,0 +1,348 @@
+{
+  "record_type": "one_case_static_recipe_reconstruction",
+  "authority_effect": "none",
+  "issue": 3403,
+  "method_issue": 3502,
+  "source_snapshot": {
+    "revision": "4c11674fec992e3473a6177ebc2eadbc4388a00e",
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+    "raw_sha256": "56bac4826d5290251369eaacd41b5f3e8a68fc15d80c42e086bbd101af8e7301",
+    "case_pointer": "/cases/1",
+    "case_id": "F02-qualified-empty"
+  },
+  "result_ja": "公開recipeの原固定source・標準JSON操作・明示UTF8/hash/strict parseから、17出力とwire/parse recordのcanonical/ordered/byte長を再構成し原期待へ一致した。",
+  "method_ja": [
+    "Devinの独立再構成をCodexが別実装で再構成して検収。原seed・source・期待・順序・型・失敗意味は変更しない。",
+    "親input/旧比較素材をfixed Git bytesから読み、入力の142操作・6packet・31completionから始める。後段は公開された同caseのnamed workspaceだけを結ぶ。",
+    "確認用sourceは各段階の値を明示引数で受け渡す形へ整理し、同じ17原期待を再照合する。大きな返却wholeはrepositoryへ複写しない。"
+  ],
+  "reproduction": {
+    "source_path": "docs/governance/audits/source-rebaseline/source-snapshots/core009-empty-published-recipe-check.py",
+    "source_sha256": "75083bc26f3c22867395ac44992bd2fc312e32d3e9f55f96d014cafc2b20a18a",
+    "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/core009-empty-published-recipe-check.py",
+    "output": "JSON verification summary to stdout; nonzero on failed assertion",
+    "requirements_ja": "repository root、Python標準library、固定source revisionを保持したGit object。製品/旧runtimeのimport・実行、外部serviceは使わない。"
+  },
+  "checks": {
+    "declared_output_bindings": [
+      {
+        "witness": "/cases/1/whole_witnesses/native/input",
+        "workspace": "empty_caller",
+        "pointer": "/input/caller_inputs",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/native/validation",
+        "workspace": "empty_caller",
+        "pointer": "/input/caller_return/validation",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/native/caller_return",
+        "workspace": "empty_caller",
+        "pointer": "/input/caller_return",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/native/proposal_return",
+        "workspace": "empty_caller",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/native/native_return",
+        "workspace": "empty_native",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/native/comparisons",
+        "workspace": "empty_comparisons",
+        "pointer": "/comparisons",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/detail/input",
+        "workspace": "empty_private_export",
+        "pointer": "/input",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/detail/native_detail_expected",
+        "workspace": "empty_private_export",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/detail/f02_detail",
+        "workspace": "empty_private_export",
+        "pointer": "/expected/universe_observation/value",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/general/input",
+        "workspace": "empty_general",
+        "pointer": "/input",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/general/expected",
+        "workspace": "empty_general",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/provider_input",
+        "workspace": "empty_general",
+        "pointer": "/input",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/publication_expected",
+        "workspace": "F02-empty-publication",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/receiver_input",
+        "workspace": "empty_receiver",
+        "pointer": "/input",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/receiving_expected",
+        "workspace": "empty_receiver",
+        "pointer": "/expected",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/kernel_input",
+        "workspace": "empty_receiver",
+        "pointer": "/kernel_input",
+        "matched": true
+      },
+      {
+        "witness": "/cases/1/whole_witnesses/connection/kernel_expected",
+        "workspace": "empty_receiver",
+        "pointer": "/kernel_expected",
+        "matched": true
+      }
+    ],
+    "native_witnesses": {
+      "input": {
+        "canonical": {
+          "sha256": "ee122aaa00e17cb5b50e2dcbc3b1bd624f3b178c4a2340fe4b80b1a5927703f5",
+          "byte_length": 228373
+        },
+        "ordered": {
+          "sha256": "0d9f355be170dd7fff9fa304b81f7320f8d50536faf0ef5fd97898eae034b2d4",
+          "byte_length": 228373
+        }
+      },
+      "comparisons": {
+        "canonical": {
+          "sha256": "6b626c33c62f04a39603fd6bf072e7a2d8bc131b849fab863d99562405ac0780",
+          "byte_length": 47141
+        },
+        "ordered": {
+          "sha256": "ecb31a1ea3f34180771c9cda0b6630cb6fa1913acec5159a46e776798a3a6a8e",
+          "byte_length": 47141
+        }
+      },
+      "validation": {
+        "canonical": {
+          "sha256": "c27f2f8777f8ba7f87df0f36298e45eba26abdb1730f98458efe92d4c61942b2",
+          "byte_length": 1227171
+        },
+        "ordered": {
+          "sha256": "3529784bae4cdbe74fb5fe0c365beac2372d721d86fea31cb4e91ad4b11df190",
+          "byte_length": 1227171
+        }
+      },
+      "caller_return": {
+        "canonical": {
+          "sha256": "25783b778225b832f737ac51d4ad75c5a4a6aaa19b3aac1015c340c98899f2f7",
+          "byte_length": 27176874
+        },
+        "ordered": {
+          "sha256": "f3a568a1ce8fafc36a4ce1c9410c6170844a2ae67e4d5eab3723ea23de02d06e",
+          "byte_length": 27176874
+        }
+      },
+      "proposal_return": {
+        "canonical": {
+          "sha256": "2994a8842ed686b169b0aea9ec44117903c1805af505f36193ed84677ec6b3ff",
+          "byte_length": 27406118
+        },
+        "ordered": {
+          "sha256": "7f7151a10be5721d149abe651058ce6756305b09709a2a5ec63c2e6adca516e5",
+          "byte_length": 27406118
+        }
+      },
+      "native_return": {
+        "canonical": {
+          "sha256": "6975deb0132febc3bc5d5ab9b7d832e33d0d7b6511e9a7b52d289a9bc142dcd7",
+          "byte_length": 27406726
+        },
+        "ordered": {
+          "sha256": "1922fb5af8482e91e5623ef93bf61f1b6b3c8927152b86ae8710b979e9b194c0",
+          "byte_length": 27406726
+        }
+      }
+    },
+    "detail_witnesses": {
+      "input": {
+        "canonical": {
+          "sha256": "ee122aaa00e17cb5b50e2dcbc3b1bd624f3b178c4a2340fe4b80b1a5927703f5",
+          "byte_length": 228373
+        },
+        "ordered": {
+          "sha256": "0d9f355be170dd7fff9fa304b81f7320f8d50536faf0ef5fd97898eae034b2d4",
+          "byte_length": 228373
+        }
+      },
+      "native_detail_expected": {
+        "canonical": {
+          "sha256": "f3f85a5600e205ef58ac553ec16b0599345ae231b426d2c394aefb9c01213bed",
+          "byte_length": 27700418
+        },
+        "ordered": {
+          "sha256": "ff50101e6c1d8d05368565ece4e2c3fa2f2119741ff9b158cbc54838f152e081",
+          "byte_length": 27700418
+        }
+      },
+      "f02_detail": {
+        "canonical": {
+          "sha256": "ee022fa116f8fa815d719b04fddbff263a832779fcff49e5a934794867b3ab70",
+          "byte_length": 293631
+        },
+        "ordered": {
+          "sha256": "ec02a9a7f6e6c5df820ad9effbe97bf5a823a43386af916ddaeb026f559a4b67",
+          "byte_length": 293631
+        }
+      }
+    },
+    "general_witnesses": {
+      "input": {
+        "canonical": {
+          "sha256": "601f76ff7eceddbb0969f2a0d259cbb172dd2a2d21e492f0c85c7ce011f189c9",
+          "byte_length": 322269
+        },
+        "ordered": {
+          "sha256": "d592e5b6ad3de13cf58384f5b3fbc4aaaebf03454f75abceb951fdd87d21314d",
+          "byte_length": 322269
+        }
+      },
+      "expected": {
+        "canonical": {
+          "sha256": "462d8295942fd313d3bd2972eab13a8b1f0c034aad63405f152800ffb23d5519",
+          "byte_length": 29069243
+        },
+        "ordered": {
+          "sha256": "16e1c154fe1a2ca6e7fa9be859e668c5d9f8ebaac378416cef6d4637231da0e3",
+          "byte_length": 29069243
+        }
+      }
+    },
+    "publication_witness": {
+      "canonical": {
+        "sha256": "f9235cee81bc376aa616cd3f92ca30cf4b4e29024a15b9a766d034351116930a",
+        "byte_length": 155293464
+      },
+      "ordered": {
+        "sha256": "a4d8e6b269ab19cbb02ddd2609aefd01df716945e87ba9b1253ae00857d06125",
+        "byte_length": 155293464
+      }
+    },
+    "wire": {
+      "wire_sha256": "5e55b56aa86e6093d1d12e4f8682036ebf73321fa0ad5dc997efcc30a2218afb",
+      "wire_UTF8_length_bytes": 29069739,
+      "parsed_record_ordered": {
+        "sha256": "61150d76a8e543adaedb068633f218ffdb851cf7941c6c8cbe1f3fde0adc1f22",
+        "byte_length": 29069725
+      }
+    },
+    "receiver_witnesses": {
+      "receiver_input": {
+        "canonical": {
+          "sha256": "e514e199d4486effbb4f1ede588da1a2cb1573861f3475b3b384dcb37518e9f0",
+          "byte_length": 155301203
+        },
+        "ordered": {
+          "sha256": "92f8ec35c21a7079c2770e34193475a2a1013edd041a3868dd67b4d798d54990",
+          "byte_length": 155301203
+        }
+      },
+      "receiving_expected": {
+        "canonical": {
+          "sha256": "89c60cce0593c48ba2f20288fc33897655b87e092029cb793ceaa68b0e48415a",
+          "byte_length": 276565720
+        },
+        "ordered": {
+          "sha256": "b70479a04ca066e5260a6c4d768c193e1bee2aeb40895a754b9ce4fe5443ba6f",
+          "byte_length": 276565720
+        }
+      },
+      "kernel_input": {
+        "canonical": {
+          "sha256": "9767b35a970cde807dbd2df434691188f564cd6a4480eb084cf8c247576121a8",
+          "byte_length": 92213688
+        },
+        "ordered": {
+          "sha256": "7f4b491484acf11c1191474213973089045c35bab927c1038a4321d4520fed3a",
+          "byte_length": 92213688
+        }
+      },
+      "kernel_expected": {
+        "canonical": {
+          "sha256": "7363d1c500c1dd4cf046b07b2c2e5a98e89fc2b1ff2b4f659d2ad75d1425ea30",
+          "byte_length": 620
+        },
+        "ordered": {
+          "sha256": "0bb0a5461a95ebc39f1d2c82d11e22bb20f645bfe197063bfa5b41fc662124d0",
+          "byte_length": 620
+        }
+      }
+    },
+    "owner_source": {
+      "sha256": "7f62b4c1d84b0a7fee65aa5d88705a5e9fd8e7caebbe1ccb10d29170f3e7769b",
+      "byte_length": 1474
+    }
+  },
+  "worker_result_events": [
+    "WR-DEVIN-CORE009-EMPTY-INPUT-3403-20261021-01-result",
+    "WR-DEVIN-CORE009-EMPTY-COMPARISONS-3403-20261021-01-result",
+    "WR-DEVIN-CORE009-EMPTY-NATIVE-3403-20261021-01-result",
+    "WR-DEVIN-CORE009-EMPTY-REMAINING-3403-20261021-01-result"
+  ],
+  "related_independent_source_checks": [
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3403#issuecomment-6304435509",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3403#issuecomment-6304593745"
+  ],
+  "legacy_comparison": {
+    "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+    "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+    "sections": "0–1",
+    "preserved_ja": "原入力・意味署名・consumer/oracleを保って格納/確認経路を整理する。",
+    "changed_ja": "旧runtime/CIを使わず、現行の公開JSON recipe一caseだけを静的再構成する。"
+  },
+  "limits_ja": [
+    "seedに明示されたequal/formed等は条件付きfixture期待であり、全stepの意味を独立に導出した証明ではない。",
+    "新しい設計欠陥・実装前Red・新Green・Design CIや自動設計導出engineの完成ではない。",
+    "実owner登録・実認可・資格発行/trust・CONNECT配送・OS保存・受入は未証明。",
+    "他10case、全familyのnegative/複合条件、限定要件/基本詳細全体、92親430義務の完成は未証明。"
+  ],
+  "metadata_update_ja": "この一caseの公開recipe確認status・証拠参照と、それに相反する旧「独立reader未検収」説明だけを更新。旧素材監査status・全原期待とsemantic scopeは保持する。",
+  "metadata_inverse_preservation": [
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "original_raw_sha256": "fd1200a95c45666b84649d10112cfba2403d6ed0566ac6d58f6e46b3ffc15b86",
+      "metadata_inverse_raw_exact": true
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+      "original_raw_sha256": "56bac4826d5290251369eaacd41b5f3e8a68fc15d80c42e086bbd101af8e7301",
+      "metadata_inverse_raw_exact": true
+    }
+  ]
+}
