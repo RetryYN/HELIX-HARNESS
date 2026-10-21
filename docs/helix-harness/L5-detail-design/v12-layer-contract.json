@@ -329,7 +329,39 @@
         "5signalのclaimed_evidenceをcontext evidence_recordsと対象Ref/owner/revision/scope/内容で独立照合する。current根拠がmissingなのにcurrentを主張したらauthority_inferred。当該stateをmissingとして保持。未知/古い/矛盾は共通findingも保持する。 catalog/他signalのRefだけを根拠にした成立主張はその/claimed_evidence/indexにauthority_inferred。別scope/revisionの証拠混入はreference_conflict/staleとして別に扱う。",
         "actual_verificationは対象oracleと実観測の内容根拠へ照合し、検証設計だけしかない場合はverification_unobservedとmissing。証拠のfield/hash/数/green表示で実行済みにしない。 locatorは/claimed_evidence/index。",
         "正しい対応と各signalの状態/不足を別々に返す。OS ticket/write/execute/fallbackなど宣言外fieldを入力へ追加すればinput_invalid。outputは状態writeや実行intentを持たず、旧runtimeを呼ばない。"
-      ]
+      ],
+      "logical_backflow_binding": {
+        "scope_ja": "B01の既存authority_inferred/verification_unobservedを形成する枝だけの6member Finding構成。既存predicate・code併存・outcome優先と他findingの規範を変更しない。新公開引数/型/結果memberを追加しない。",
+        "upper_basis": [
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+            "pointer": "/contracts/2/backflow",
+            "file_bytes_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257",
+            "node_canonical_sha256": "e72c7d7c952141c824f2c9d28ec710790d5f9f50ce3f67d3ac2414418930f98a"
+          },
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+            "pointer": "/cases/2/failure_observation",
+            "file_bytes_sha256": "9b3770fa842f24c550bd6a0b96aff26ca63a5ede24368a3cd95e3d7d8b27172a",
+            "node_canonical_sha256": "f7d109a862d024350642550ea8da2a9f1a2b02ee9f9e82f994e2c17641b21b10"
+          }
+        ],
+        "prerequisite_ja": "既存の型検査と同subject/revision/scopeの原Evidence照合が成立する範囲。型不正/対象差等は既存input_invalid/reference_*へ残し、この構成で原Refを補修しない。",
+        "fields": {
+          "code": "既存B01比較が形成したauthority_inferred又はverification_unobserved。どちらかを新優先にせず、併存所見を消さない。",
+          "pointer": "問題となった原inputの/claimed_evidence/{i}。iは元配列indexで、filter/sort後に採番し直さない。",
+          "subject_ref": "当該/claimed_evidence/{i}/subject_refの全原値。同対象照合済みのclaim subjectであり、catalog/proof Ref又はContext.subject_refへ代替しない。",
+          "requirement_ref": "HARNESS-L3-001-B01",
+          "backflow_owner": "HARNESS-L2-001",
+          "evidence_refs": "context.source_check_refsの原Ref全値だけを、既存RefSetの集合意味で保持する。表示順はsort_keys=true/ensure_ascii=false/compactの各Ref JSON文字列をUnicode code point昇順にする既存canonical sort語義を使う。claim/evidence/他signalのRefをunionせず、新Refや空Refを生成しない。"
+        },
+        "candidate_role_ja": "HARNESS-L2-001は、B01の誤昇格又は返却契約を修正する論理候補という下位の技術選択。authority issuer、欠落authorityの担当owner、実recipient資格を表さない。L4がこのliteralを要求したとはしない。owner供給が無い時にsubject/catalog/別signalのownerで補完しない。",
+        "preservation_ja": "当該signalと実判定state及び元evidence_refsは既存output.evidence_statesとmissing_signalsへ元規範どおり保持する。claim及び同signalの原Evidenceのsubject/state/根拠列はimmutable input/contextに残り、Finding.pointerから辿る。Finding非収載の根拠を削除・正資格認定・別signalへ付替えしたと扱わない。独立したlayer_correspondencesは原値を保持する。source_check_refs掲載や論理候補の選択でmissing/unknown等をcurrentへ変えない。",
+        "ordering_ja": "所見全体は既存common_contractのcode/pointer/subject identity/revision順のまま。この追補を理由に元Finding・signal・他arrayの新sort又はdedupeを導入しない。",
+        "difference_and_limits_ja": "#3385がL5/L6へ委任した候補値と原根拠の選択を具体化する。F02専用constructorの値やowner展開をB01へcastしない。F01/B01全findingの生成器・全native返却・実recipient binding/配送の完成ではなく、実誤返却Redも未証明。"
+      }
     }
   ],
   "finding_classification": {
