@@ -975,6 +975,240 @@
         "internal_stages_ref": "#/f04_recovery_construction/internal_stages",
         "return_constructor_ref": "#/f04_recovery_construction/expression_language/definitions/finish",
         "scope": "既存steps0〜2と適格性比較の内部結果から、回復選択の役割を独立に照合し全Resultを構成する。新公開引数/symbolは作らない。"
+      },
+      "initial_python_development_binding": {
+        "scope": "#3532のH052局所Python開発の詳細束縛。既存check_local_replacement/input/context/返却を変更せず、H010はprocessを起動しない。",
+        "parent_basis": {
+          "revision": "31c3c74e4b951d1814b487458e47e9b39f92122f",
+          "l4_path": "docs/helix-harness/L4-basic-design/pack-boundary.json",
+          "l4_pointer": "/contracts/3/initial_python_development_application",
+          "l9_path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+          "l9_pointer": "/cases/3/initial_python_development_verification"
+        },
+        "reference_binding": [
+          {
+            "material": "manifest/uv.lock/pyproject設定/source file集合/凍結test nodeid集合/必要check集合/argv条件",
+            "fields": [
+              "input.input_snapshot_refs",
+              "ReproductionBasis.input_snapshot_refs"
+            ],
+            "meaning": "各実資料のrevision/bytesと内容照合根拠を固定。Referenceの非空/hashだけでfile一覧や実pathを確定しない。"
+          },
+          {
+            "material": "CPython build、uv/tool実体、local/CI各実環境、venvと実行path",
+            "fields": [
+              "input.environment_refs",
+              "ReproductionBasis.environment_refs"
+            ],
+            "meaning": "各物理環境を別Refで保持し共有宣言条件へ照合。実pathはOS/INFRAの供給材料へ結び、Reference.identityからpathを合成しない。"
+          },
+          {
+            "material": "pack製品依存と開発tool依存、必要局所pair",
+            "fields": [
+              "DeclarationBasis.required_dependency_refs",
+              "DeclarationBasis.local_pairs",
+              "DeclarationBasis.contract_revision",
+              "check_pack_declaration observed_dependencies"
+            ],
+            "meaning": "開発toolを製品runtime依存と同一視しない。import/plugin/build backendを含む実利用観測と宣言を比較する。"
+          },
+          {
+            "material": "原意味期待/実観測/比較方法と内容根拠/復旧候補",
+            "fields": [
+              "ReproductionBasis.expected_semantic_result_ref",
+              "ReproductionBasis.observed_semantic_result_refs",
+              "ReproductionBasis.comparison_contract_ref",
+              "ReproductionBasis.comparison_content_check_refs",
+              "ReproductionBasis.recovery_basis_refs",
+              "input.recovery_fact"
+            ],
+            "meaning": "OSのtool結果は原観測として保持し、exit0やhashだけでsame/qualifiedを生成しない。既存RecoverySelectionBasis/QualificationFactへ結ぶ。"
+          }
+        ],
+        "argument_notation": "以下の大文字は設計表の役割名であり、literalの実pathでも新payload/式言語でもない。OS/INFRAが当該Refと内容から供給した実path・リストを一argv要素ずつ束縛する。H010のContext/BoundFact.valueへ任意のargv/config objectや新kindを挿入しない。未供給なら未接続のまま保持する。",
+        "argument_roles": {
+          "PACK_ROOT": "選択packの供給済み実root。全呼出しのcwd。",
+          "PYPROJECT": "そのrootのpyproject.tomlの実path。",
+          "UV_EXECUTABLE": "固定uv0.13.4実体。",
+          "BASE_PYTHON": "H052対象CPython3.12.15の実体。",
+          "VENV_PYTHON": "同期先隔離venvの実Python。同じ対象buildであることを別に照合。",
+          "RUFF_EXECUTABLE": "隔離venv内Ruff0.17.1実体。",
+          "SOURCE_FILES": "宣言済みの非空Python source/test file列。各実fileは別argv要素、shell glob/文字列結合なし。",
+          "TEST_NODEIDS": "凍結oracleに対応する非空pytest nodeid列。収集結果と完全対応を照合。",
+          "REPORT_XML": "OS/INFRAが供給した当該run出力領域のreport.xml実path。source/config/lockと別。"
+        },
+        "command_plan": [
+          {
+            "role": "lock_freshness",
+            "argv": [
+              "UV_EXECUTABLE",
+              "lock",
+              "--check",
+              "--offline",
+              "--no-python-downloads",
+              "--no-config",
+              "--project",
+              "PACK_ROOT",
+              "--python",
+              "BASE_PYTHON"
+            ],
+            "meaning": "manifestとの鮮度確認。--pythonは解決に用いるinterpreter指定であり、universal uv.lock全体がLinux/CPython専用になる保証ではない。"
+          },
+          {
+            "role": "isolated_sync",
+            "argv": [
+              "UV_EXECUTABLE",
+              "sync",
+              "--locked",
+              "--offline",
+              "--no-python-downloads",
+              "--no-config",
+              "--project",
+              "PACK_ROOT",
+              "--python",
+              "BASE_PYTHON",
+              "--no-default-groups",
+              "--group",
+              "dev"
+            ],
+            "meaning": "選択project/runtime依存を含みdevだけを明示追加。他default groupを暗黙追加しない。--only-group devは本体/runtime依存を外すため使わない。lock外削除を伴うexact同期は供給済み隔離venv内だけ。"
+          },
+          {
+            "role": "lint",
+            "argv": [
+              "RUFF_EXECUTABLE",
+              "check",
+              "--config",
+              "PYPROJECT",
+              "--no-cache",
+              "--no-fix",
+              "--",
+              "SOURCE_FILES"
+            ],
+            "meaning": "SOURCE_FILES列を展開して明示対象を検査。--force-exclude/--fix/--exit-zeroは使用しない。"
+          },
+          {
+            "role": "format_check",
+            "argv": [
+              "RUFF_EXECUTABLE",
+              "format",
+              "--check",
+              "--config",
+              "PYPROJECT",
+              "--no-cache",
+              "--",
+              "SOURCE_FILES"
+            ],
+            "meaning": "同じSOURCE_FILESを非書込で比較。差は修正済みとせず別のformat変更へ返す。"
+          },
+          {
+            "role": "type_check",
+            "argv": [
+              "VENV_PYTHON",
+              "-I",
+              "-B",
+              "-m",
+              "mypy",
+              "--config-file",
+              "PYPROJECT",
+              "--python-version",
+              "3.12",
+              "--python-executable",
+              "VENV_PYTHON",
+              "--platform",
+              "linux",
+              "--no-incremental",
+              "--cache-dir=/dev/null",
+              "--",
+              "SOURCE_FILES"
+            ],
+            "meaning": "言語版とPEP561参照環境を別指定し、import追跡normalを保つ。--no-incrementalだけではcache書込を止めないためLinux選択で/dev/nullを指定。--install-typesは使わない。"
+          },
+          {
+            "role": "test_collection",
+            "argv": [
+              "VENV_PYTHON",
+              "-I",
+              "-B",
+              "-m",
+              "pytest",
+              "-c",
+              "PYPROJECT",
+              "--strict-config",
+              "--strict-markers",
+              "--disable-plugin-autoload",
+              "-p",
+              "no:cacheprovider",
+              "--import-mode=prepend",
+              "--collect-only",
+              "-q",
+              "--",
+              "TEST_NODEIDS"
+            ],
+            "meaning": "凍結nodeidに対応する収集集合を比較し、0/追加/欠落を保持する。収集成功はtest実行成功ではない。"
+          },
+          {
+            "role": "test_run",
+            "argv": [
+              "VENV_PYTHON",
+              "-I",
+              "-B",
+              "-m",
+              "pytest",
+              "-c",
+              "PYPROJECT",
+              "--strict-config",
+              "--strict-markers",
+              "--disable-plugin-autoload",
+              "-p",
+              "no:cacheprovider",
+              "--import-mode=prepend",
+              "--junitxml",
+              "REPORT_XML",
+              "--",
+              "TEST_NODEIDS"
+            ],
+            "meaning": "同じnodeidとconfigで実行。初回はpytest既定と同じprependを明示し、未成立のpackage配置を仮定してimportlibへ変更しない。収集module/originとdeclared sourceの照合が未供給なら対象実行の成立は未証明。"
+          }
+        ],
+        "config_sections": {
+          "tool.ruff": {
+            "target-version": "py312",
+            "required-version": "==0.17.1",
+            "line-length": 88
+          },
+          "tool.ruff.lint": {
+            "select": [
+              "E4",
+              "E7",
+              "E9",
+              "F"
+            ]
+          },
+          "tool.mypy": {
+            "python_version": "3.12",
+            "strict": true,
+            "ignore_missing_imports": false,
+            "follow_imports": "normal"
+          },
+          "tool.pytest.ini_options": {
+            "addopts": "",
+            "markers": [],
+            "junit_family": "xunit2"
+          }
+        },
+        "configuration_boundary": "上のTOML section値を選択pyproject bytesへ保持する設計で、実fileの存在を宣言しない。uv --no-configはuser/親dir等の永続uv設定探索を避け、project metadataは明示rootから読む。実child環境で未宣言のUV_*/RUFF_*/MYPY_*/PYTEST_*設定を引き継がず、PYTEST_ADDOPTS/PYTEST_PLUGINSによる変更も取り込まない。これは当該child呼出しの条件で、host設定を書き換える指示ではない。",
+        "result_binding": "OS020の元run/HEAD/base/環境・argv/config/実対象・exit/stdout/stderr/reportを対応する観測として保存する。CheckItemにargv/exit欄があると補完せず、実adapter/結果供給契約が未接続なら未完を保持。収集・実行・pass/fail/skip/xfail/非実行を原義務へ照合し、raw exit0やreport生成からcomparison_outcome=sameを生成しない。比較内容根拠は既存fact_check_refs/comparison_content_check_refsへ結ぶ。",
+        "failure_and_effect": "実file-set/環境/比較根拠が未供給なら既存reference_missing/reference_unknown/fact_content_unprovenを保持し、無関係局所stateを消さない。型/適格性を満たすfactが供給された場合だけ既存F04を照合する。process、依存取得、同期、report書込、切替/rollbackはこの関数のeffectに追加しない。Ruff以外のtest codeの副作用をCLI flagだけで隔離済みとせず既存SEC/INFRAと対象oracleへ残す。",
+        "source_specs": [
+          "https://docs.astral.sh/uv/reference/cli/",
+          "https://docs.astral.sh/uv/concepts/configuration-files/",
+          "https://docs.astral.sh/ruff/configuration/",
+          "https://mypy.readthedocs.io/en/stable/command_line.html",
+          "https://docs.pytest.org/en/stable/reference/reference.html"
+        ],
+        "legacy_rederivation": "L4固定の旧freeze L5/親Pythonworker/対L8とNodeBun案内driftを保持。runtime/tool/manifest/lock/configと検査対象の一致を具体化し、旧固定版・runtime・署名/SBOM・parity/receipt gateや旧testを移植しない。",
+        "remaining": "実pack root/module/file/nodeid・artifact/lock/config/環境の供給、OS020への実argv/結果adapterとparser、実同期/検査・意味比較・実受入は未成立。上記役割名を埋めた実コマンドが実在/成功した証拠ではない。既存F04全返却式/歴史source/他入力域の閉包や設計RGR全循環は変更・成立させない。"
       }
     },
     {

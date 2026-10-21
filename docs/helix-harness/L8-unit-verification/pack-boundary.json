@@ -13,7 +13,7 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "ed818b234e754e299fe96a788afa00a563767c230853b2a16bd7e89461c7702c"
+      "sha256": "da2169612b323b73fe3244ca328e7b83c61040df8c54cbbafec603a743c89eac"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
@@ -12436,7 +12436,45 @@
           "context_rule": "期待契約/母集合/owner/oracleは基準fixtureから保持。入力宣言だけの変異はcontext不変。異常な実観測を使う変異は独立した異常観測の原文/Refを追加し、観測内容を嘘の正常値で補わない。"
         }
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "initial_python_development_binding_verification": {
+        "design_binding_pointer": "/functions/3/initial_python_development_binding",
+        "upper_basis": {
+          "revision": "31c3c74e4b951d1814b487458e47e9b39f92122f",
+          "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
+          "pointer": "/cases/3/initial_python_development_verification"
+        },
+        "expectation_basis": "上位L9の各負例と既存L8 F04/X04の独立期待から導く。argvの著述・tool名/flagの一致を製品実行や意味比較成功へ読み替えない。",
+        "binding_conditions": [
+          {
+            "upper_contrast": "同じ宣言条件と各実環境を保持",
+            "existing_oracle_pointer": "/cases/3",
+            "expect": "manifest/lock/config/file-set/nodeid/check-setは固定input snapshot、各実環境はenvironment_refsへ区別して束縛。内容/資格と比較factが揃った場合の既存F04正常期待を保持。local/CIの物理identity同一は要求しない。"
+          },
+          {
+            "upper_contrast": "古いlock/暗黙fallback/別設定/対象変更",
+            "existing_oracle_pointer": "/cases/3/negative_mutations/4",
+            "expect": "manifest/config/環境/対象の差は先に既存F04 step0/shared_pre_postで照合し、その差から意味成果differentを生成しない。参照先negative_mutations/4が拘束するのは、同じ入力について独立したReproductionBasis.comparison_outcome=differentのfactが成立した場合のreproduction_mismatch/conflictに限る。未供給資料/環境はsameを補わずreference_missing/unknownへ。--frozenだけ、--only-group dev、--force-excludeの追加を同じargv選択としない。"
+          },
+          {
+            "upper_contrast": "exit0だが対象0/全skip/未回収、原資料/比較根拠不足",
+            "existing_oracle_pointer": "/extra_cases/3",
+            "expect": "原義務と観測の内容照合根拠が無ければ既存fact_content_unproven/incomplete。架空のvalid比較factや空集合で補わない。OS020での実状態分類と回収は別ownerの残件。"
+          },
+          {
+            "upper_contrast": "復旧不明/非対象変更",
+            "existing_oracle_pointers": [
+              "/cases/3/negative_mutations/2",
+              "/cases/3/negative_mutations/3",
+              "/extra_cases/3"
+            ],
+            "expect": "既存unchanged_pack_changed/recovery_unknownの区別と原proof保持。venv同期/report生成を切替・復旧成功へしない。"
+          }
+        ],
+        "static_command_contrasts": "dev groupだけのonly-groupは本体/runtime依存を落とすので不採用。明示fileのforce-excludeは不採用。mypyの言語版/PEP561環境とcache参照/書込を分離。pytest entry-point autoload/環境plugin/収集と実行/skipを分離し、結果のparserやadapter実在を捏造しない。",
+        "execution_state": "not_executed",
+        "scope_limit": "詳細束縛の規範と既存oracleへの対応だけ。実argv値/実pack/file-set/環境・tool/lock/実観測・全F04・製品CI・受入・設計Red/Greenは未成立。"
+      }
     },
     {
       "id": "HARNESS-L8-010-B01",
@@ -15820,7 +15858,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "ed818b234e754e299fe96a788afa00a563767c230853b2a16bd7e89461c7702c",
+      "sha256": "da2169612b323b73fe3244ca328e7b83c61040df8c54cbbafec603a743c89eac",
       "scope": "同一candidate bytes。承認/source revisionではない。"
     },
     "comparison": "全Result/全Finding memberを比較し、ReferenceSetの順は意味にしない。input/context/source原値を変更しない。",
