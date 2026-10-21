@@ -811,7 +811,7 @@
       "source_basis": [
         {
           "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-          "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+          "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
           "pointer": "/contracts/0/ci_material_same_call_contract",
           "object_canonical_sha256": "a75eb338f132f1966146a343975e0fe11f13c21309169ed6142304c353381d2d",
           "binding_role_ja": "L5型の意味を起草した時点で選択した現L4 source。whole-fileとobjectのhashでバイトを特定する。L8ではこのsourceを固定baselineとして別途記録する。"
@@ -832,7 +832,7 @@
         },
         {
           "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-          "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+          "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
           "pointer": "/diagnostic_contract/comparison_table/revalidation",
           "canonical_sha256": "afeb67d36a7e2c9e5bb4b33a4f15abd0de589155bd6635c3803a2c5338224e9a",
           "binding_role_ja": "L5型の意味を起草した時点で選択した現L4 source。whole-fileとobjectのhashでバイトを特定する。L8ではこのsourceを固定baselineとして別途記録する。"
@@ -840,7 +840,7 @@
       ],
       "closed_type_source_binding": {
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "pointer": "/contracts/0/ci_material_same_call_contract",
         "object_canonical_sha256": "a75eb338f132f1966146a343975e0fe11f13c21309169ed6142304c353381d2d",
         "closed_private_types_pointer": "/contracts/0/ci_material_same_call_contract/closed_private_types",
@@ -2321,7 +2321,7 @@
       "source_binding": {
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/source_bound_binding_parent_contract/logical_return_type",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "48eccbc3da7ae43752c779c5ea83a588ba6ad43416eb1bb2c00ede34d3129a7b",
         "semantic_pointers": [
           "/contracts/0/source_bound_binding_parent_contract/f02009_return_mapping",
@@ -4071,7 +4071,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/selection_producer_contract/private_call_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "76f088e46f87894b41f0bf1af5b59cab07c22a53d01b65ba001cf7792186fea7",
         "meaning_ja": "この同一pairの現在L4 contractを指す。L4 source_pinsの歴史revisionは変更しない。"
       },
@@ -4123,7 +4123,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/3/owner_return_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "92d83cfb6cdf9c4bd271b85eddca6cf398412481dac52aed87bf02d46f1fa9dc"
       },
       "type_and_algorithm_imports": {
@@ -4148,8 +4148,8 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/1/operation_call_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
-        "object_canonical_sha256": "b8c8141227b2e81be5e2a858d7f552bf0bf0fc534b34b63fe9669eb7ff5ca517"
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
+        "object_canonical_sha256": "1cb48831ecb4c4226a2284fe555feb992f97acb02e2d5072760bcbe0cc8b3bd3"
       },
       "native_imports": [
         {
@@ -4761,7 +4761,69 @@
       "authority_effect": "none",
       "operation_effect": "none",
       "limits_ja": "F02のprivate producer bindingに限る。実operation、OS053 adapter、資格、保存、CIを実行したとは扱わない。F03、再開、全case実行、設計全体の完了は含めない。",
-      "applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。"
+      "applicability_ja": "このprivate保存callerとOS053への委譲は、当該保存に既存OS053 portを選択した場合だけに適用する。方式選択は呼出し側から独立供給される既存の選択根拠に従い、本契約からOS053必須という要求や認可を生成しない。非選択または選択未確定なら、このprivate保存caller・builder・join・S04を呼ばず、元capture/比較結果と未完・選択状態を呼出し側へ保持して返す。他方式の保存成功やfallbackをこのsliceから生成せず、当該方式の既存owner契約へ委ねる。",
+      "initial_python_application": {
+        "h010_source": {
+          "revision": "83e3740a7cb910730131f5cfc59a02ce3490fb06",
+          "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+          "pointer": "/functions/3/initial_python_development_binding"
+        },
+        "basic_pointer": "/contracts/1/operation_call_contract/initial_python_application",
+        "placement_ja": "下記は既存dispatch_request_nativeの局所Python適用の内容契約。新しい公開type/kind/関数引数や汎用実行言語を追加しない。実operation ownerが材料を解釈し、既存capabilityへ渡す。H010 argv/configは参照先を正とし再定義しない。",
+        "request_material_members": {
+          "command_role": "H010 command_planのrole一つ。OS計画とHARNESS義務が選択した役割だけ。",
+          "cwd": "選択packの供給済み実PACK_ROOT。",
+          "argv": "H010当該roleのargvから実供給値を一要素ずつ束縛したstring列。shell/glob/文字列結合なし。SOURCE_FILES/TEST_NODEIDSは列を展開し順序を保つ。",
+          "environment": "同H010が宣言するchild環境。isolated_syncのUV_PROJECT_ENVIRONMENTは実供給ISOLATED_VENV_ROOT。他の未宣言tool設定を継承しない。",
+          "target_material": "元source file/nodeid/check義務と適用条件の実資料。未供給と明示非適用を別に保持し、空集合で補わない。",
+          "input_material": "manifest/lock/config等の既存H010 input_snapshot_refsと対応する原内容。Ref形式/hashだけで実値を生成しない。",
+          "environment_material": "H010 environment_refs、実interpreter/tool/venvの原資料。VENV_PYTHONと同期先の同一venv対応を保持。",
+          "binding_correspondence": "既存CIInput.bindingの全原FieldとH010の元Refを保持したowner対応statement/原根拠。同じ文字列へ縮約しない。"
+        },
+        "existing_call_path": [
+          "同じCIInput/phaseをcheck_f02_operationへ渡す。request.operation_checkにはその全返却、binding/profileは同CIInput原値を保持。",
+          "dispatch_request_nativeには上記owner素材をField状態ごと供給。供給がない場合、その不足をcapabilityや別requestから埋めない。source_occurrencesは原順/重複/元資料を保持。",
+          "dispatch_operation→monitor_operation→collect_operationへ同じcapability/requestと直前の全返却を渡す。not_calledとcalledの各Field状態を保持。新しい呼出し経路を作らない。",
+          "capture_operation_returnとbind_collection_assessmentを再利用。ResultRecordはowner collection返却の原Fieldを渡し、元CIInputのresult以外や独立contextを書き換えない。"
+        ],
+        "owner_result_members_ja": "元request/role、実argv/cwd/child環境/対象、HEAD/base/run/環境、process起動観測/exit/終了理由、stdout/stderrとreportの原資料、pytest個別nodeidの収集/実行結果、未充足義務をowner原返却の内容として保持する。OS020 CheckItem/ResultRecordへ未定義のargv/exit fieldを挿入しない。parserが未供給なら内容既知へ補完しない。",
+        "role_success_conditions": [
+          {
+            "roles": [
+              "lock_freshness"
+            ],
+            "condition_ja": "固定manifestとlockに対する同producer鮮度検査が完了し整合。検査中の更新やfrozenだけでは代替しない。"
+          },
+          {
+            "roles": [
+              "isolated_sync"
+            ],
+            "condition_ja": "選択lockの必要project/runtime/dev依存が宣言済み隔離venvへ同期した原観測。同じbuildの別venvで代替しない。"
+          },
+          {
+            "roles": [
+              "lint",
+              "format_check",
+              "type_check"
+            ],
+            "condition_ja": "供給対象/固定config/実toolが対応し、当該役割の違反/差/型errorなしと原結果を照合。非書込を維持。"
+          },
+          {
+            "roles": [
+              "test_collection"
+            ],
+            "condition_ja": "固定nodeid集合と実収集が対応。対象0/欠落/追加を保持し、この成功はtest_run成功ではない。"
+          },
+          {
+            "roles": [
+              "test_run"
+            ],
+            "condition_ja": "同一nodeidと原oracleに必要な実行・成功を個別に照合。skip/xfail/非実行をpassへcastしない。期待されたxfail等の義務は元oracleの条件へ戻し、無条件に全xfail拒否する新gateも作らない。"
+          }
+        ],
+        "result_record_binding_ja": "binding/source_ref/outcome/started/collected/success_claimは独立供給されたowner原ResultRecordを保持。successには同一runのstarted=true/collected=trueと上記選択role成功の原内容対応が必要。非0exitとtool固有診断を保存し、環境/設定errorを意図したRedにしない。process中断の原観測がある場合と単なる非0を区別する。pytest内skipをoutcome=skipped/started=trueへcastせず既存F02004の矛盾検出を保つ。分類根拠不足を成功/既定fail/0件へ補完せず、原Fieldと未完を保持する。",
+        "limits_ja": "この局所内容契約の実provider/decoder/parser・実環境・資格・実processは未成立。opaque材料の受理やmetadata比較の対応からactual_ci_started/actual_result_collected/whole_ci_verifiedをtrueへ変更しない。既存F02004/F02008、全返却、保存・再開・source供給の未完は保持。"
+      }
     },
     {
       "name": "F03 prior-projection private producer",
@@ -4770,7 +4832,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/prior_projection_call_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "18859b9a615acb625455f56689569bdb681c0f289f11ef3f29fcdeec9ec173e2"
       },
       "paired_l9_oracle_ref": {
@@ -5226,7 +5288,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/2/resume_call_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "2dc4d694753023e1cadef20307b664b7d0dcf1cf02146a97d32c565b0987abfd"
       },
       "paired_l9_oracle_ref": {
@@ -6094,7 +6156,7 @@
         "binding_kind": "paired_current_file_bytes",
         "path": "docs/helix-os/L4-basic-design/ci-profile-execution-recovery.json",
         "pointer": "/contracts/0/f01_owner_return_contract",
-        "file_sha256": "829b2df903155b8da4a62d9939a2718ed2f7ef5f66cb70b62b47c41102788cf6",
+        "file_sha256": "7217d2b573f867d655b7d8822686b0c3706d03d5ab33062ebc49ef858220696c",
         "object_canonical_sha256": "faf239b286e40775abfbd8171fb1e1027c00ffe901729feab1535a8b294f04d4",
         "meaning_ja": "同一pairの現在L4 F01 owner-return契約。L4のsource_pins歴史は変えない。"
       },

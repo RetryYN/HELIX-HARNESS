@@ -3936,7 +3936,23 @@
           "dispatchは同じrequestのoperation_check.selected_phase=prepareかつ既存制約に拒否/未解決がない場合だけ呼ぶ。check_f02_operationをcollectその他のphaseで評価しても、このdispatchを呼ばずnot_calledとして原phaseと理由を残す。",
           "monitorは同じrequestのdispatch.called返却を受ける場合だけ一度呼ぶ。dispatch.not_calledならmonitorもnot_calledとし原dispatch/request/理由を保持する。collectは同じdispatch.calledとmonitor.calledを受ける場合だけ一度呼び、それ以外はnot_calledとして原monitor/request/理由を残す。呼出し後のField欠落はこのnot_called条件と別に保持する。",
           "F02004はcaptureが生成された場合だけ、元CIInputのresultだけを当該capture.result_recordへ置換しcollect phaseで一度呼ぶ。collection.not_calledでもcaptureがある場合はField.absentの原結果を比較して全返却を保持する。capture自体が未生成の経路ではF02004を呼ばず、比較・回収成功を生成しない。"
-        ]
+        ],
+        "initial_python_application": {
+          "scope_ja": "H010の初回Python開発だけをOS020 F02 operation ownerへ適用する。既存port/capture/公開型/CIInput/ResultRecordは変更せず、実operationを起動しない。",
+          "h010_source": {
+            "revision": "83e3740a7cb910730131f5cfc59a02ce3490fb06",
+            "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
+            "pointer": "/functions/3/initial_python_development_binding"
+          },
+          "selection_ja": "HARNESS005の当該変更の義務とOS計画が選択した役割を扱う。H010のcommand_plan全7役割を毎回必須へしない。準備/lock確認/検査/収集を区別し、未選択を実行済みへしない。対象0や必要check脱落は選択義務へ戻す。",
+          "input_route_ja": "operation ownerがH010の役割名に対応する実cwd/argv/child環境/実source・nodeid集合と元input/config/environment資料を供給する。同じCIInputとそのbinding/profileを既存F02OperationPortRequestに保ち、当該実行素材はdispatch_request_nativeへ置く。大文字役割名をliteral pathとして実行しない。",
+          "binding_route_ja": "H010 ReferenceとOS020 Bindingは異型のまま保持する。operation ownerが両者の対応statementと原資料をsource_occurrencesへ渡す。同じ文字列/hash、HEADだけの一致、OS scope tokenからH010 scopeを生成せず、対応不明は既存source未解決のままにする。",
+          "environment_route_ja": "H010で選択した実interpreter/tool/環境Refとchild cwd/設定/対象を同じ依頼へ束縛。uv同期先と検査Pythonは同一隔離venvのRef・内容根拠へ結ぶ。OS020の既存F02003拒否/未解決・host fallback条件ではdispatchしない。別venvやhostで成功しても当該runの不足を解消しない。",
+          "result_route_ja": "同じrequestと直前のdispatch/monitor/collect全返却を既存captureへ保持する。exit/stdout/stderr/終了理由、個別対象の収集/実行/pass/fail/skip/xfailとreportは原owner返却とsource_occurrencesに結び、既存ResultRecordはそのownerが供給した対応結果として保持する。原結果の存在と結果区分への解釈を分ける。",
+          "success_condition_ja": "選択checkの同run/実環境/入力と原結果が対応し、process起動・結果回収・必要な役割固有の成功条件が原観測で満たされた場合だけsuccessの対応を形成する。exit0/report生成/素材比較成功だけでは足りない。収集成功はtest_runを解消しない。形式検査成功はbehavior・文書監査義務を代替しない。",
+          "result_state_boundary_ja": "OS020の8結果区分とstarted/collectedを維持。起動前denied/skippedと、起動したpytest内のtest skipを区別する。後者をResultRecord.outcome=skippedへ直接castしない。tool errorや必要対象未実行を意図したtest Redと呼ばず、原状態と未充足義務を保持する。ownerの分類根拠が未供給なら欠落Fieldや未解決を保持し、success/fail等を要求から合成しない。",
+          "remaining_ja": "実pack/実環境/lock/個別対象、operation provider、原結果decoder/parser、実起動/回収/保存/CI/受入は未成立。局所適用の設計と原義務との対応のみ。全F02/全92親430義務・設計RGR全循環の閉包ではない。"
+        }
       }
     },
     {
