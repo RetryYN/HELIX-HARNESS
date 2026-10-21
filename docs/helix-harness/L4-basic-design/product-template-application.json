@@ -8007,7 +8007,7 @@
         "partial_input_boundary": "元type_contractはlogical_design_not_formal_wire_schemaであり、そのfields記載から入力carrierのrequired集合を新設しない。既存wire_codec_contract.presence及びdecode_core009_wireの供給形検査に従い、未供給carrier keyはAbsentのまま保持する。供給された宣言memberが適合形であるpartial objectは、binding keyが無いことだけでdecode不能にせずinput非nullの原object/key集合として保持する。binding={}も供給された原objectとして保持する。bindingの供給型がarray等であるshape不適合は原raw/実InputIssueとinput=nullへ分ける。いずれも元axis義務/意味/資格の充足ではない。logical型の必須axisとpartial carrierの原presenceをL5/L8の閉native型・decoder呼出し・writerに対応させることは残務で、既存runtime挙動を確認したとは主張しない。"
       },
       "f05_detail": {
-        "signature": "compare_requirement_gaps_detail({validation, compare_applicability, compare_kind_obligation_trace}) -> F05DetailedReturn",
+        "signature": "compare_requirement_gaps_detail({validation, compare_applicability, compare_kind_obligation_trace}, input_scope_scan: InputProfileScan) -> F05DetailedReturn",
         "input": {
           "validation": "validation_detailが実際に返した{original_raw_input,validated,source_observations} whole。その同call子返却を実callerが渡す。",
           "compare_applicability": "returned{comparison:指定producerの実Comparison whole}又はnot_called{実Context/header未形成の原引数/所在/原因}。",
@@ -8021,7 +8021,20 @@
           "comparison": "formed{実Comparison whole}又はunformed{実header/native leaf形成不成立の原原因}。局所domain unknownというだけでComparison全体を未形成にしない。",
           "owner_material": "同requestから保持した原raw/実validated/実前段/同fn0観測、成立した原field/source/body/宣言/値/理由/presenceとその局所未成立、原gap/各支持/義務/返却先候補及び実Comparison出力indexへの対応を全返却する。Context不成立枝は原whole/理由のみで、semantic評価済み材料を生成しない。"
         },
-        "compatibility": "旧compare_requirement_gaps(Context)->Comparisonをその署名のまま新detailへ委譲できるとは主張しない。旧Contextから正source観測を復元せず、必要なinput/outputの技術差分をL5/L8で明示する。"
+        "compatibility": "旧compare_requirement_gaps(Context)->Comparisonをその署名のまま新detailへ委譲できるとは主張しない。旧Contextから正source観測を復元せず、必要なinput/outputの技術差分をL5/L8で明示する。",
+        "knowledge_revision_recipient_input": {
+          "source": "/input_scope_knowledge_gap_contract/input_only_contract と既存F05 knowledge版不足→BRAINの責務を接続する。新reader/候補状態/返却collectionは作らない。",
+          "caller_order": "同fn0のD取得後、F05を呼ぶ前に既存input-only readerを一回だけ呼ぶ。同scanをC01に保持し、F05へread-onlyで渡す。F05内でreader/fn0を再実行しない。",
+          "raw_evidence": "scanの元profile_body_readに保持した明示owner_statement、必要Ref、supply_scope、原reason/basisと、当該入力内の版観測を別々に読む。source/body/意味owner対応は既存wrapper/source/role-owner規則で確認し、located・declared_owner・owner名だけから資格や返却先を生成しない。",
+          "recipient_boundary": "必要版の明示未供給原命題と当該scope内不在が対応する範囲は既存F13のBRAIN候補へ、同原命題に対して版が存在する場合は不一致の両原材料を保持してunresolvedへ結ぶ。原未形成をabsence又はBRAINへ補完しない。下位pairで各既存RecipientMaterial memberと全返却を具体化する。",
+          "storage": "F05同一walkの既存field recipient材料へ結び、既存consumerが同wholeを読む。元request三member、公開Comparison/Analysis、元recipient行を保持する。scan wholeは既存caller側にだけ保持し、F05返却へ複製しない。",
+          "basis": "既存ReturnLink root=f05_returnの実/original_request/validation/validated/input以下の原命題/source/knowledge collectionを指す。新rootを追加しない。scan判定そのものは同rootから指せないため、原semantic_record_indexと同caller既存scanとの対応・型付き接合の限界を下位pairで開示する。",
+          "outer_failure": "F05 outerが未形成又は呼べない場合も既存callerの原scanを保持する。post-returnは従来どおりouter確定後に行い、元Cause全値/原順を維持する。",
+          "pending": "本追補はprivate入力流のbasic契約。L5の署名/F13入力枝/全member writerと対L8全返却、実consumer接続は未成立。S12/S13はDとreader期待だけであり、二前段やwhole F05返却を供給した証拠ではない。"
+        },
+        "additional_private_arguments": {
+          "input_scope_scan": "追加のprivate引数。同callerが同validation_detail全返却Dへ既存input-only readerを一回だけ適用したprofile_scan。同Dの原profile/source/版/scope観測であり、任意claim/qualified bool/別call/cacheから供給しない。三memberの原requestには挿入しない。"
+        }
       }
     },
     "formation_rules": [
@@ -8037,7 +8050,7 @@
         "step": 1,
         "producer": "同fn0 validation_detail",
         "consumer": "CORE application private caller",
-        "mapping": "rawを一回渡し、original_raw_input/validated/source_observations wholeを受け取って同call材料として保持する。新private callerは本基本で定義する論理接続であり、現L5に実orchestrator/runtimeが既存とは主張しない。"
+        "mapping": "rawを一回渡し、original_raw_input/validated/source_observations wholeを受け取って同call材料として保持する。新private callerは本基本で定義する論理接続であり、現L5に実orchestrator/runtimeが既存とは主張しない。 同Dから既存input-only readerをF05前に一回だけ呼び、profile_scanを既存caller保持先へ置く。"
       },
       {
         "step": 2,
@@ -8049,7 +8062,7 @@
         "step": 3,
         "producer": "CORE private caller",
         "consumer": "F05 detail",
-        "mapping": "step1の全validation返却と二指定producerの実call材料をF05 detailの実引数へ渡す。別caller/cache/logの値を取得路にしない。"
+        "mapping": "step1の全validation返却と二指定producerの実call材料をF05 detailの実引数へ渡す。別caller/cache/logの値を取得路にしない。 加えてstep1の同D由来profile_scanを別private引数input_scope_scanとして渡す。元requestはvalidationと二前段の三memberのまま保持する。"
       },
       {
         "step": 4,
