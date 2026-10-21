@@ -69,6 +69,76 @@ class GuiChecks(unittest.TestCase):
         with self.assertRaises(ValueError): g.send(self.data, "codex", "codex-gui", "x", "review_request", request, None, 60, self.now)
         with self.assertRaises(ValueError): g.send(self.data, "claude", "claude-gui", "y", "review_response", request, r, 60, self.now)
 
+    def test_devin_author_claude_review_roundtrip_on_worker_lane(self):
+        # Devinはworker bindingを保ったまま、packet authorとしてClaudeへ依頼し同じsessionへ応答を受ける。
+        data = copy.deepcopy(self.data)
+        g.bind(data, "devin", "devin-gui", "worker", 60, self.now)
+        request = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build", "--base", self.head,
+            "--head", self.head, "--pr", "1", "--request-id", "GUI-DEVIN-REVIEW",
+            "--author", "devin", "--purpose", "Devin authorの一方向review経路",
+            "--scope", "合成入力のみ"
+        ]))
+        p.validate(request, self.head, self.head)
+        self.assertEqual((request["author"], request["reviewer"]), ("devin", "claude"))
+        self.assertEqual(data["lanes"]["devin"]["lane"], "worker")
+        self.assertEqual(data["lanes"]["codex"]["lane"], "execution")
+
+        sent = g.send(data, "devin", "devin-gui", "devin-review-request", "review_request",
+                      request, None, 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        review = g.claim(data, "claude", "claude-gui", self.now)
+        g.ack(data, "devin-review-request", "claude", "claude-gui",
+              review["digest"], review["claim"]["nonce"], self.now)
+        response = {k: request[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+        response.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                        request_payload_sha256=request["payload_sha256"], result="no_findings",
+                        findings=[], unreviewed=[])
+        reply = g.send(data, "claude", "claude-gui", "devin-review-response", "review_response",
+                       request, response, 60, self.now)
+        self.assertEqual(reply["payload"]["receiver_runtime"], "devin")
+        received = g.claim(data, "devin", "devin-gui", self.now)
+        g.ack(data, "devin-review-response", "devin", "devin-gui",
+              received["digest"], received["claim"]["nonce"], self.now)
+
+        with self.assertRaisesRegex(ValueError, "review依頼のruntime/応答不正"):
+            g.send(data, "codex", "codex-gui", "wrong-author", "review_request", request, None, 60, self.now)
+        with self.assertRaisesRegex(ValueError, "未登録・別session・期限切れレーン"):
+            g.send(data, "devin", "other-devin-session", "wrong-session", "review_request",
+                   request, None, 60, self.now)
+        with self.assertRaisesRegex(ValueError, "reviewer不一致"):
+            g.send(data, "codex", "codex-gui", "wrong-reviewer", "review_response",
+                   request, response, 60, self.now)
+        self.assertEqual(data["lanes"]["codex"]["lane"], "execution")
+
+    def test_devin_pr_route_rejects_other_pairs(self):
+        # Devin reviewer、Claude/CodexからDevin、DevinからCodex/Antigravityを拒否する。
+        data = copy.deepcopy(self.data)
+        g.bind(data, "devin", "devin-gui", "worker", 60, self.now)
+        g.bind(data, "antigravity", "agy-gui", "worker", 60, self.now)
+        sessions = {"claude": "claude-gui", "codex": "codex-gui",
+                    "devin": "devin-gui", "antigravity": "agy-gui"}
+        pairs = (("claude", "devin"), ("codex", "devin"), ("claude", "claude"),
+                 ("codex", "codex"), ("devin", "codex"), ("devin", "devin"), ("devin", "antigravity"),
+                 ("antigravity", "devin"), ("antigravity", "claude"))
+        for i, (author, reviewer) in enumerate(pairs):
+            request = dict(self.request, author=author, reviewer=reviewer)
+            core = {k: v for k, v in request.items() if k != "payload_sha256"}
+            request["payload_sha256"] = p.sha(p.encode(core))
+            with self.subTest(pair=(author, reviewer)):
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+                    p.validate(request, self.head, self.head)
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+                    g.send(data, author, sessions[author], "invalid-pair-%d" % i,
+                           "review_request", request, None, 60, self.now)
+                response = {k: request[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+                response.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                                request_payload_sha256=request["payload_sha256"], result="no_findings",
+                                findings=[], unreviewed=[])
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+                    g.send(data, reviewer, sessions[reviewer], "invalid-response-pair-%d" % i,
+                           "review_response", request, response, 60, self.now)
+
     def test_send_queues_for_lapsed_registered_session(self):
         # 宛先leaseが切れても登録済みsessionへ積み、そのsessionのhook activityでleaseが戻れば受け取れる。
         self.data["lanes"]["claude"]["expires"] = self.now - 1
@@ -680,11 +750,14 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "agy-work-1", "work_request", self.work("antigravity", "WORK-AGY-1"), None, 60, self.now)
         with self.assertRaises(ValueError):
             g.send(self.data, "claude", "claude-gui", "agy-work-2", "work_request", self.work("antigravity", "WORK-4"), None, 60, self.now)
-        # 作業側は依頼を送れず、PRのreview依頼・応答も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
+        # 作業側は依頼を送れず、Devin→CodexのPR review依頼も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
         with self.assertRaises(ValueError):
             g.send(self.data, "devin", "devin-gui", "work-4", "work_request", dict(work, dispatcher="devin"), None, 60, self.now)
-        with self.assertRaises(ValueError):
-            g.send(self.data, "devin", "devin-gui", "devin-review", "review_request", dict(self.request, author="devin"), None, 60, self.now)
+        with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+            denied_pair = dict(self.request, author="devin", reviewer="codex")
+            core = {k: v for k, v in denied_pair.items() if k != "payload_sha256"}
+            denied_pair["payload_sha256"] = p.sha(p.encode(core))
+            g.send(self.data, "devin", "devin-gui", "devin-review", "review_request", denied_pair, None, 60, self.now)
         result = self.result(work)
         with self.assertRaises(ValueError):
             g.send(self.data, "antigravity", "agy-gui", "result-x", "work_result", work, result, 60, self.now)
