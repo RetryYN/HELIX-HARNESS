@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS / HELIX-OS / HELIX-BRAIN limited prerequisite evidence audit",
   "state": "registered",
-  "reason": "Issue #3545の読取専用補助。固定base ba4ac1cdd76fdd0d907e684c035b059e8029b9daのJSON treeから、既存HARNESS 18親・126組・72文書に加えてOS 12親・79組・48文書、BRAIN 16親・70組・64文書をowner別profileで抽出する。未確認を明示し、凍結分類、設計適合、直接L5→L8 edge、全405組の完了やauthorityを生成しない。",
+  "reason": "Issue #3545の読取専用補助。固定base ba4ac1cdd76fdd0d907e684c035b059e8029b9daのJSON treeから、既存HARNESS 18親・126組・72文書に加えてOS 12親・79組・48文書、BRAIN 16親・70組・64文書をowner別profileで抽出する。未確認を明示し、凍結分類、設計適合、直接L5→L8 edge、全405組の完了やauthorityを生成しない。 C着手前の推奨として、HARNESSのprofile=None分岐をrecursive profileに統合し、共通経路で既存出力を維持する。根拠はPR #3551 R1 comment 6326696026／R2 comment 6326847366。旧source/failure起点は固定監査JSONの/legacy_basisを維持する。",
   "upstream": [
     {
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
@@ -28,11 +28,11 @@
   "obligations": [
     "固定base revisionのgit treeをread-onlyで参照し、HARNESS 18親・126組・72文書、OS 12親・79組・48文書、BRAIN 16親・70組・64文書の限定範囲をstdoutへ抽出する。",
     "owner/layer別に指定したcontainerと文字列fieldだけを参照抽出し、実parentを優先してdocument ID内NNNと照合する。OSは確認済みのHELIXOS-/OS- document prefixのみ許容し、不一致は停止する。",
-    "HARNESSは既存9 container/REF_KEYSを保持する。OS/BRAINは実例を確認したprofileの文字列参照を使う。OS L9 cases/{i}/primary_trace/requirement_refだけをnested参照抽出の例外とし、oracle_refは同objectのL10照合で別に読む。OS L8 primary_traceは所在内訳に表示し、allowlistを増やさない。",
-    "HARNESSは従来の9 container内再帰探索を保持し、container外・配列値・id自体・subdirectory JSONを除外する。OS/BRAINは加えて、許可していないnested field、approved snapshot、trace root、fixture/negative枝を子参照に使わない。未確認はartifact不存在を意味しない。",
+    "HARNESSはrecursive profileとして既存9 container/REF_KEYSを保持する。OS/BRAINは実例を確認したprofileの文字列参照を使う。OS L9 cases/{i}/primary_trace/requirement_refだけをnested参照抽出の例外とし、oracle_refは同objectのL10照合で別に読む。OS L8 primary_traceは所在内訳に表示し、allowlistを増やさない。",
+    "HARNESSのrecursive探索は既存の9 container内に限り、container外・配列値・id自体・subdirectory JSONを除外する。OS/BRAINは加えて、許可していないnested field、approved snapshot、trace root、fixture/negative枝を子参照に使わない。未確認はartifact不存在を意味しない。",
     "各参照をsource path・JSON Pointer・値位置の行で示し、代表候補と同一IDの追加一致数(+N)を出す。index付き結果は数値順に並べる。",
-    "L8 bridgeはBRAINの実L9/L5 IDへの明示refだけを使い、L8側とID出典の両pointerを併記する。OSは固定79組にfallback採用行がなく、bridge profileを置かない。",
-    "L9のL10照合はHARNESSで従来3 key、OSでsystem_oracle_ref/oracle_ref、BRAINでsystem_oracle_refを確認する。選択した実参照と同じentry、OS L9 primary_trace内の参照なら同objectだけを比較する。指定key未確認を直接参照不存在へ読み替えない。",
+    "L8 fallback lookupはprofileで対象indexを明示する。HARNESSはrecursive refs indexでL9 root/L5 functionの実IDを探す。BRAINは明示bridge_refsを使う。HARNESS/BRAINともL8側とID出典の両pointerを併記する。OSもbridge_refsを選び、固定79組でbridge allowlistは空のためrefsへfallbackしない。",
+    "L9のL10照合はHARNESSで指定順に最初に存在するkey（system_oracle_ref/l10_ref/oracle_ref）、OSでsystem_oracle_ref/oracle_ref、BRAINでsystem_oracle_refを確認する。選択した実参照と同じentryを比較し、OS/BRAINの比較経路でpointerがprimary_trace配下なら同objectに限定する。固定profileで新しいnested参照keyは追加しない。指定key未確認を直接参照不存在へ読み替えない。",
     "paired_documentはcontainer外のため参照探索には使わず、source inventoryに別表示する。stdoutは分類前の監査素材に限る。",
     "凍結分類、直接L5→L8 edge、設計適合、承認・authority、製品検証、他機構や全405組の完了を判定しない。",
     "OS/BRAINの未確認の層/組は、文書内の同じL3文字列値を全階層・配列から機構非依存で集約し、top-level container別件数・代表Pointerを表示する。snapshot/fixture内も出現として数えるが子対応とは判断しない。allowlist外出現あり／文書内出現なしを別計上する。"
@@ -84,13 +84,16 @@
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
       "git diff --check",
-      "HARNESS既定/明示owner stdout SHA-256: 0f9cb73c862281638682e182ba3539e53d2a9a5fc6517650b5a853fbb2977f1f（54456 bytes、PR3549 R2・A2固定抽出）"
+      "HARNESS既定/明示owner stdout SHA-256: 0f9cb73c862281638682e182ba3539e53d2a9a5fc6517650b5a853fbb2977f1f（54456 bytes、PR3549 R2・A2固定抽出）",
+      "OS stdout SHA-256: 170960af5e2e920fff5e5fafbde77ffe68acb6a5dde74ba12aac5ee94a86de39（45636 bytes、PR3551 R2固定抽出）",
+      "BRAIN stdout SHA-256: 8997176769260dc1ff55473b066b9f2cdeeac50008e583220b36f9298557b9d7（37714 bytes、PR3551 R2固定抽出）"
     ],
     "negative_cases": [
       "HARNESS既定と--owner HELIX-HARNESSのstdout SHA-256を既存値へ一致させる。OS/BRAINは固定parent・pair・document countsを照合し、未確認組を欠落判定にしない",
       "allowlist外のowner拒否、parent/document-ID mismatch停止、container外・配列値・id自体・subdirectory JSON・未許可nested valueの除外を確認する",
       "L8 root/function bridgeを片側pointerだけで示さず、source ID出典pointerも併記する。L10比較は選択参照と同じentry/objectだけに限定する",
-      "凍結状態・直接edge・設計適合を抽出結果から推論または自動分類せず、stdout以外へ書込まない。全405組・製品受入を主張しない"
+      "凍結状態・直接edge・設計適合を抽出結果から推論または自動分類せず、stdout以外へ書込まない。全405組・製品受入を主張しない",
+      "OSのbridge lookupはprofile明示でbridge_refsを選ぶ。synthetic targetで同じL5 IDをrefsだけに置きbridge_refsを空にした場合、lookupはNoneとなり、refsへのfallbackをしない（固定79組にOS bridge採用行なし）。"
     ]
   },
   "replacement": {

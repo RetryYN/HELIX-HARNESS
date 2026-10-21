@@ -20,9 +20,23 @@ REF_KEYS = {'requirement_ref', 'l3_ref', 'system_oracle_ref', 'l10_ref',
 # 子参照の抽出範囲。OS L9 primary_traceだけ明示nested例外を保つ。
 # 範囲外の文字列出現は別内訳で示し、子対応へ自動昇格しない。
 PROFILES = {
+    'HELIX-HARNESS': {
+        'root': 'docs/helix-harness', 'parent_prefix': 'HARNESS',
+        'document_prefixes': ('HARNESS',),
+        'recursive': {'containers': CONTAINERS, 'ref_keys': REF_KEYS},
+        'fields': {}, 'nested_fields': {}, 'bridge': {},
+        'oracle_keys': ('system_oracle_ref', 'l10_ref', 'oracle_ref'),
+        'oracle_mode': 'first_present',
+        'bridge_lookup': False,
+        'occurrence_breakdown': False, 'report_mode': 'harness',
+        'counts': (126, 18, 72),
+    },
     'HELIX-OS': {
         'root': 'docs/helix-os', 'parent_prefix': 'HELIXOS',
         'document_prefixes': ('HELIXOS', 'OS'),
+        'recursive': None, 'occurrence_breakdown': True, 'report_mode': 'scoped',
+        'counts': (79, 12, 48), 'oracle_mode': 'allowed_keys',
+        'bridge_lookup': True,
         'fields': {
             4: {'contracts': {'requirement_ref'}},
             9: {'cases': {'requirement_ref'}},
@@ -39,6 +53,9 @@ PROFILES = {
     'HELIX-BRAIN': {
         'root': 'docs/helix-brain', 'parent_prefix': 'HELIXBRAIN',
         'document_prefixes': ('HELIXBRAIN',),
+        'recursive': None, 'occurrence_breakdown': True, 'report_mode': 'scoped',
+        'counts': (70, 16, 64), 'oracle_mode': 'allowed_keys',
+        'bridge_lookup': True,
         'fields': {
             4: {'contracts': {'requirement_ref'}},
             9: {'verification_obligations': {'requirement_ref'}, 'cases': {'requirement_ref'}},
@@ -118,19 +135,20 @@ def positions(text, wanted):
 
 
 class Source:
-    def __init__(self, path, layer=None, profile=None):
+    def __init__(self, path, layer=None, profile=PROFILES['HELIX-HARNESS']):
         self.path = path
         self.text = git('show', BASE + ':' + path).decode()
         self.data = json.loads(self.text)
         self.wanted = set()
         self.lines = None
         self.refs, self.bridge_refs = {}, {}
-        if profile is None:  # 既存HARNESS抽出の出力を保持
-            for container in CONTAINERS & self.data.keys():
+        recursive = profile['recursive']
+        if recursive:
+            for container in recursive['containers'] & self.data.keys():
                 for pointer, node in walk(self.data[container], '/' + container):
                     if not isinstance(node, dict):
                         continue
-                    for key in REF_KEYS & node.keys():
+                    for key in recursive['ref_keys'] & node.keys():
                         if isinstance(node[key], str):
                             self.refs.setdefault(node[key], []).append(pointer + '/' + key)
         else:
@@ -180,9 +198,8 @@ class Source:
 
 
 def inventory(owner='HELIX-HARNESS'):
-    profile = PROFILES.get(owner)
-    root = profile['root'] if profile else 'docs/helix-harness'
-    paths = git('ls-tree', '-r', '--name-only', BASE, root).decode().splitlines()
+    profile = PROFILES[owner]
+    paths = git('ls-tree', '-r', '--name-only', BASE, profile['root']).decode().splitlines()
     result = {layer: {} for layer in LAYERS}
     for path in paths:
         match = re.search(r'/L([4589])-[^/]+/[^/]+\.json$', path)
@@ -191,18 +208,10 @@ def inventory(owner='HELIX-HARNESS'):
         layer = int(match[1])
         source = Source(path, layer, profile)
         parent = source.data.get('parent')
-        if profile is None:
-            identity = re.match(r'HARNESS-L' + str(layer) + r'-(\d{3})(?:-|$)', source.data.get('document_id', ''))
-            by_id = 'HARNESS-L2-' + identity[1] if identity else None
-            assert not parent or not by_id or parent == by_id, ('親不一致', path)
-            parent = parent or by_id
-            assert parent and parent not in result[layer], ('親不明/重複', path)
-            result[layer][parent] = source
-            continue
         pattern = r'^(?:' + '|'.join(profile['document_prefixes']) + r')-L' + str(layer) + r'-(\d{3})(?:-|$)'
         identity = re.match(pattern, source.data.get('document_id') or '')
         by_id = profile['parent_prefix'] + '-L2-' + identity[1] if identity else None
-        assert not parent or not by_id or parent == by_id, ('parent/document_id mismatch', path)
+        assert not parent or not by_id or parent == by_id, ('parent/document-ID mismatch', path)
         parent = parent or by_id
         assert parent and parent not in result[layer], ('parent missing/duplicate', path)
         result[layer][parent] = source
@@ -233,15 +242,15 @@ def occurrence_breakdown(data, identities):
     return result
 
 
-def oracle_link(source, pointer, oracle, profile=None):
+def oracle_link(source, pointer, oracle, profile=PROFILES['HELIX-HARNESS']):
     entry = '/'.join(pointer.split('/')[:3])
     value = pointer_value(source.data, entry)
-    if profile is None:  # preserve the existing HARNESS comparison rule verbatim
-        for key in ('system_oracle_ref', 'l10_ref', 'oracle_ref'):
+    keys = profile['oracle_keys']
+    if profile['oracle_mode'] == 'first_present':
+        for key in keys:
             if key in value:
                 return key + ':' + ('一致' if value[key] == oracle else '不一致'), source.request(entry + '/' + key)
         return 'L10直接参照未記載', None
-    keys = profile['oracle_keys']
     if pointer.startswith(entry + '/primary_trace/'):
         entry += '/primary_trace'  # 選択した実traceと同じobjectに限定する。
     locations = [(key, entry + '/' + escape(key)) for key in keys]
@@ -258,16 +267,16 @@ def oracle_link(source, pointer, oracle, profile=None):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--owner', choices=('HELIX-HARNESS', *PROFILES), default='HELIX-HARNESS')
+    parser.add_argument('--owner', choices=tuple(PROFILES), default='HELIX-HARNESS')
     owner = parser.parse_args().owner
-    profile = PROFILES.get(owner)
+    profile = PROFILES[owner]
     label = owner.removeprefix('HELIX-')
     audit_text = git('show', BASE + ':' + AUDIT).decode()
     audit = json.loads(audit_text)
     pairs = [(i, pair) for i, pair in enumerate(audit['pairs'])
              if pair['requirement']['owner'] == owner]
     parents = {pair['requirement']['parent'] for _, pair in pairs}
-    assert (len(pairs), len(parents)) == {'HELIX-HARNESS': (126, 18), 'HELIX-OS': (79, 12), 'HELIX-BRAIN': (70, 16)}[owner]
+    assert (len(pairs), len(parents)) == profile['counts'][:2]
     audit_lines = positions(audit_text, {f'/pairs/{i}/{side}/entry/id'
                                         for i, _ in pairs for side in ('requirement', 'oracle')})
     docs, rows = inventory(owner), []
@@ -287,7 +296,7 @@ def main():
                 source, pointer = refs[previous][0]
                 identity_pointer = entry_identity(source, pointer)
                 identity = pointer_value(source.data, identity_pointer) if identity_pointer else None
-                linked = target.reference(identity, bridge=bool(profile)) if identity else None
+                linked = target.reference(identity, bridge=profile['bridge_lookup']) if identity else None
                 if linked:
                     refs[3] = [target.request(linked), source.request(identity_pointer)]
                     break
@@ -298,7 +307,7 @@ def main():
                 refs[1].append(link)
         rows.append((index, parent, req, oracle, refs, oracle_status))
     occurrences = {}
-    if profile:
+    if profile['occurrence_breakdown']:
         unresolved = {}
         for _, parent, req, _, refs, _ in rows:
             for offset, layer in enumerate(LAYERS):
@@ -311,7 +320,7 @@ def main():
                 for _, pointer in containers.values():
                     source.request(pointer)
     sources = [docs[layer][p] for p in sorted(parents) for layer in LAYERS if p in docs[layer]]
-    assert len(sources) == {'HELIX-HARNESS': 72, 'HELIX-OS': 48, 'HELIX-BRAIN': 64}[owner]
+    assert len(sources) == profile['counts'][2]
     for source in sources:
         if 'status' in source.data:
             source.request('/status')
@@ -319,7 +328,7 @@ def main():
             if field in source.data:
                 source.request('/' + field)
         source.lines = positions(source.text, source.wanted)
-    if profile is None:
+    if profile['report_mode'] == 'harness':
         print('# HARNESS下流設計の参照抽出（#3545 A、分類前の監査素材）\n')
         print(f'source revision: `{BASE}`。18親126組。全405組の完了、意味適合、凍結成立を生成しない。\n')
         print(f'input: `{AUDIT}`。末列は `/pairs/{{index}}/requirement/entry/id` と `/oracle/entry/id` の行番号。')
@@ -359,7 +368,7 @@ def main():
                              for side in ('requirement', 'oracle'))
         print('| ' + ' | '.join([str(index), parent, req, oracle, *evidence, audit_ref]) + ' |')
 
-    if profile:
+    if profile['occurrence_breakdown']:
         print('\n## 未確認参照の機械的な出現内訳（文字列値の所在。子対応の証拠ではない）')
         print('snapshot/fixture/配列/nestedも含む同一文字列値を数える。意味はB1/B2で照合する。')
         print('OS L8 primary_traceも所在内訳へ含め、機構別allowlistは追加しない。')
