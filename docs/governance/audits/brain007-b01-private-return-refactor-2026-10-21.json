@@ -1,0 +1,120 @@
+{
+  "kind": "bounded_design_derivation_and_storage_refactor_audit",
+  "issue": 3500,
+  "authority_effect": "none",
+  "design_revision": "b61265d2de2d2dc94ef9bab83485511d23211db6",
+  "upper_sources": [
+    {
+      "revision": "911e9989d85387f99801b909264caffe91ff6e89",
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "pointer": "/requirements/2",
+      "object_ordered_sha256": "6ee8b4766470f7b1d6f3fc032f9064d2242ffd1a8802053311c0951ac33b58ed"
+    },
+    {
+      "revision": "911e9989d85387f99801b909264caffe91ff6e89",
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "pointer": "/cases/2",
+      "object_ordered_sha256": "d73f4221001e3c0eb67c634b30be9d0b6d2dc0ab432fde3590ac6b9f263370c9"
+    },
+    {
+      "revision": "911e9989d85387f99801b909264caffe91ff6e89",
+      "path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json",
+      "pointer": "/contracts/2",
+      "object_ordered_sha256": "803c31c11e8c7e6fc1dee1f10db683e31f62b594e1955fd77c7e4e39d2ec78e1"
+    },
+    {
+      "revision": "911e9989d85387f99801b909264caffe91ff6e89",
+      "path": "docs/helix-brain/L9-integration-verification/knowledge-provenance-promotion.json",
+      "pointer": "/verification_obligations/2",
+      "object_ordered_sha256": "aef850e0356a5abe92a129b598c6d0d0e4f88a1207e89c6956cae90094dc81bb"
+    }
+  ],
+  "approval_record": "docs/governance/decisions/helix-brain-provenance-version-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+  "approved_l3_l10_revision": "a627a6ded7ede2f6d189307168e5b91b24531b39",
+  "legacy": {
+    "asset_id": "F2C2755C8809C2C0DEAD",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+    "lines": "37–47",
+    "preserved_ja": "知識・評価の材料が上流authorityを奪わない責務分離。旧runtime/gateは移植しない。"
+  },
+  "design_gap_ja": "既存B01 native9memberは不足・相反・拒否を返すが、L4の責務別/authority返却候補のprivate型・writerは未具体化。",
+  "design_fulfillment_ja": "元nativeを変更せず同call原input/nativeを保持し、責務材料・契約役割未解決・authority候補を分離。BRAIN020だけ既存literalとL10評価責務へ結び、他3契約の役割は未解決のまま。",
+  "refactor_ja": "固定3例のinput/native期待の重複literalを固定sourceとRFC6902 copy/removeへ寄せる。source指定はfixed_source一箇所を参照。",
+  "reproduction": {
+    "source": "docs/governance/audits/source-rebaseline/source-snapshots/brain007-b01-private-recipe-check.py",
+    "source_raw_sha256": "b018222ca56bdd547e1cf6571fe88e3a323cf71b2a286c1af4d7dd0141ee6d75",
+    "command": "python3 -I -B docs/governance/audits/source-rebaseline/source-snapshots/brain007-b01-private-recipe-check.py --design-revision b61265d2de2d2dc94ef9bab83485511d23211db6",
+    "result": {
+      "base": "911e9989d85387f99801b909264caffe91ff6e89",
+      "literal_revision": "504f2ea8a069395caa4a379886f6c8f6bd9529aa",
+      "design_revision": "b61265d2de2d2dc94ef9bab83485511d23211db6",
+      "fixed_source_raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
+      "old_files": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
+          "inverse_raw_sha256": "132e2ec2926f25293e07a034baecd9f1568a03cba950de8ff4e3c7f1eebd3293"
+        },
+        {
+          "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
+          "inverse_raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17"
+        }
+      ],
+      "cases": [
+        {
+          "case_id": "normal",
+          "witnesses": {
+            "input": {
+              "canonical_sha256": "24d47d3a31a52958f0da18142aa91652b41c09e93f36d733f0ac49186088a9d9",
+              "ordered_sha256": "24d47d3a31a52958f0da18142aa91652b41c09e93f36d733f0ac49186088a9d9",
+              "ordered_compact_utf8_bytes": 1106
+            },
+            "expected": {
+              "canonical_sha256": "886ed6fd3cf002193a2e187c1ead2a54b0488240ac1f02655be90a4e83087db9",
+              "ordered_sha256": "98154b21a3a244b72daf73513c1613f91e59ff8dd74f98602512b0fa09cd70a3",
+              "ordered_compact_utf8_bytes": 2520
+            }
+          }
+        },
+        {
+          "case_id": "evaluation_contract_missing",
+          "witnesses": {
+            "input": {
+              "canonical_sha256": "b3915d2814080aa37c25c9fdb7d22374fea6609dfdfa67cb39196f0c74efc8bf",
+              "ordered_sha256": "b3915d2814080aa37c25c9fdb7d22374fea6609dfdfa67cb39196f0c74efc8bf",
+              "ordered_compact_utf8_bytes": 1058
+            },
+            "expected": {
+              "canonical_sha256": "c0f3fb8fd4a5bbcfd0bdf9c694896afa84a65b2440fef1196da8c53b70d7a93a",
+              "ordered_sha256": "cf061afa003dd48928575da0688758f889810337a6c06c4d0471f0381793aa98",
+              "ordered_compact_utf8_bytes": 2710
+            }
+          }
+        },
+        {
+          "case_id": "authority_rejection_with_unresolved_contract",
+          "witnesses": {
+            "input": {
+              "canonical_sha256": "ff51e70d32bf842735c6e51ad38ab9438dcd244d8fa68d66f8e08922186b3581",
+              "ordered_sha256": "ff51e70d32bf842735c6e51ad38ab9438dcd244d8fa68d66f8e08922186b3581",
+              "ordered_compact_utf8_bytes": 1061
+            },
+            "expected": {
+              "canonical_sha256": "327a42fd03bbd3cc7829baaa4907ca5a05abdf4a4c1c830cf75e88ab1b13bb25",
+              "ordered_sha256": "2900ac9aa81b889591e1dbf5f679f51fbe66a1c7aecffa49300f19ade755b752",
+              "ordered_compact_utf8_bytes": 2993
+            }
+          }
+        }
+      ],
+      "all64old_cases_preserved": true,
+      "scope": "static recipe reconstruction and bounded preservation only"
+    }
+  },
+  "history_limit_ja": "保全済み提案の検収と現行Refactor。初回の先行TDD時刻や新たな製品Red/Green実観測は主張しない。旧literal3例の意味根拠は上位pairと照合するが、全入力域を検証したものではない。",
+  "not_proven": [
+    "全B01入力/組合せの意味閉包",
+    "BRAIN007/011/025契約ごとの役割対応",
+    "実owner資格・実配送・promotion・受入",
+    "製品/domain実行・正式Design CI・全限定設計完了"
+  ]
+}

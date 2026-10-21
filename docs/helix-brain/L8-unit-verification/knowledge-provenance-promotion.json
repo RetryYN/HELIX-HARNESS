@@ -17222,7 +17222,7 @@
     "固定rawで表れない型不正、重複記録、複数異常同時発生、任意のAbsent/null組合せは未評価。",
     "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。",
     "従来F02Input/F02ReturnFixtureShapeは上流route tokenのみを保持する。その既存型・計算は変更せず、private_upstream_returnが一件の原sourceと知識対象の対応・原target/owner候補を別返却する。source選択・複数target集合・実owner資格・配送は未成立。",
-    "B01のL4/L10責務別返却候補は返却fieldがなく未具体化。owner_resultsの内容比較とproduct_content_resultの製品分離表示を、責務別返却候補の代用にしない。"
+    "B01は同call原native全値を保持してprivate責務別材料を返す。既存native全18wholeは変更しない。契約3項目の役割対応、実owner/対象資格・配送と全体閉包は未成立。"
   ],
   "unclosed_owner_returns": [
     {
@@ -17242,9 +17242,9 @@
       "design_contract_ref": "HELIXBRAIN-L4-007-B01",
       "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/2/output_meanings/1",
       "meaning": "責務別不足とauthority返却候補",
-      "boundary": "原L9 B01 wholeには責務別authority返却候補fieldがない。product_content_resultは製品固有意味の切離しに限り、責務別候補やauthority変更を表さない。",
-      "status": "unclosed_in_this_L9_output_contract",
-      "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
+      "boundary": "原L9 B01 wholeは不変。新private_b01_responsibility_returnは同call native全返却から責務別役割材料/契約対応未解決/authority候補を別返却する。実owner/対象の資格・配送は成立させない。",
+      "status": "private_b01_role_material_defined_contract_mapping_and_actual_owner_delivery_unclosed",
+      "not_claimed": "役割候補は合成入力のoriginal_owners原tokenのみ。BRAIN007/011/025契約役割対応、実対象/owner本人性・資格・配送、B01全体閉包は未成立。"
     }
   ],
   "private_upstream_return_verification": {
@@ -19258,5 +19258,231 @@
       "knowledge_subject member自体がAbsent又は実nullでcomparison=missingとなる条件は、この17件に含まない。root全体のAbsent/nullとは別の未固定分岐として残す。",
       "subject whole比較での数値とboolean等の型差の独立対照はこの17件に含まない。既存F02Inputの原subjectは文字列4項目の閉recordであり、比較の一般的な型識別力を17件から証明しない。"
     ]
+  },
+  "private_b01_responsibility_return_cases": {
+    "kind": "private_b01_responsibility_return_verification",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "source_main": "c41c755fb718a94b1765020fc9b47492f8373717",
+    "fixed_source": {
+      "revision": "5384fb504e55c3a7953a1da02505706359582976",
+      "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
+      "raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
+      "parse": "strict JSON UTF-8; imports.l8へ文書rootをmount"
+    },
+    "materialization_contract": {
+      "imports": {
+        "l8": {
+          "fixed_source_pointer": "/private_b01_responsibility_return_cases/fixed_source",
+          "mount_pointer": "/imports/l8"
+        }
+      },
+      "output_pointers": {
+        "input": "/input",
+        "expected": "/expected"
+      },
+      "semantics_ja": "各caseのworkspace_seedへimports.l8をmountしstandard_opsを原順適用するとinput/expected全値が復元される。復元wholeは各case.witnessesのcanonical/ordered/byte長と一致する。値評価・domain呼出し・新opはない。"
+    },
+    "proposal_raw_sha256": "9e71343d0d8c998f6aa28d3edd17aceed47ec5c475356673b0e16752c1378c6d",
+    "types_proposal_raw_sha256": "584ea908f7f29bce31177412e9077de95f6441877b5470edba7734fbe7e75a4e",
+    "cases": [
+      {
+        "case_id": "normal",
+        "source_case": "/cases/46",
+        "synthetic_changes_ja": "既存入力とnative期待を全値copy。",
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [],
+              "unresolved_contract_returns": [],
+              "authority_returns": [],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
+            }
+          },
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/46/given/typed_value",
+              "path": "/input"
+            },
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/46/expected_whole",
+              "path": "/expected/native_result"
+            }
+          ]
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "24d47d3a31a52958f0da18142aa91652b41c09e93f36d733f0ac49186088a9d9",
+            "ordered_sha256": "24d47d3a31a52958f0da18142aa91652b41c09e93f36d733f0ac49186088a9d9",
+            "ordered_compact_utf8_bytes": 1106
+          },
+          "expected": {
+            "canonical_sha256": "886ed6fd3cf002193a2e187c1ead2a54b0488240ac1f02655be90a4e83087db9",
+            "ordered_sha256": "98154b21a3a244b72daf73513c1613f91e59ff8dd74f98602512b0fa09cd70a3",
+            "ordered_compact_utf8_bytes": 2520
+          }
+        }
+      },
+      {
+        "case_id": "evaluation_contract_missing",
+        "source_case": "/cases/58",
+        "synthetic_changes_ja": "既存入力とnative期待を全値copy。",
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [
+                {
+                  "result_pointer": "/required_contract_results/BRAIN020",
+                  "input_read_pointers": [
+                    "/original_required_contracts/BRAIN020",
+                    "/provided_contracts/BRAIN020"
+                  ],
+                  "result": "missing",
+                  "reason": "required_contract_missing",
+                  "responsibility": "evaluation",
+                  "owner_role_token": "LABO"
+                }
+              ],
+              "unresolved_contract_returns": [],
+              "authority_returns": [],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
+            }
+          },
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/58/given/typed_value",
+              "path": "/input"
+            },
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/58/expected_whole",
+              "path": "/expected/native_result"
+            }
+          ]
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "b3915d2814080aa37c25c9fdb7d22374fea6609dfdfa67cb39196f0c74efc8bf",
+            "ordered_sha256": "b3915d2814080aa37c25c9fdb7d22374fea6609dfdfa67cb39196f0c74efc8bf",
+            "ordered_compact_utf8_bytes": 1058
+          },
+          "expected": {
+            "canonical_sha256": "c0f3fb8fd4a5bbcfd0bdf9c694896afa84a65b2440fef1196da8c53b70d7a93a",
+            "ordered_sha256": "cf061afa003dd48928575da0688758f889810337a6c06c4d0471f0381793aa98",
+            "ordered_compact_utf8_bytes": 2710
+          }
+        }
+      },
+      {
+        "case_id": "authority_rejection_with_unresolved_contract",
+        "source_case": "/cases/63",
+        "synthetic_changes_ja": "既存case63へBRAIN011契約欠落を合成。nativeの独立contract比較leafだけを既存case54期待からcopy。",
+        "materialization": {
+          "workspace_seed": {
+            "input": null,
+            "expected": {
+              "native_input": null,
+              "native_result": null,
+              "responsibility_returns": [],
+              "unresolved_contract_returns": [
+                {
+                  "result_pointer": "/required_contract_results/BRAIN011",
+                  "input_read_pointers": [
+                    "/original_required_contracts/BRAIN011",
+                    "/provided_contracts/BRAIN011"
+                  ],
+                  "result": "missing",
+                  "contract_key": "BRAIN011",
+                  "mapping_state": "not_defined_in_this_b01_source"
+                }
+              ],
+              "authority_returns": [
+                {
+                  "result_pointer": "/claim_results/evaluation_changes_authority",
+                  "input_read_pointer": "/claims/evaluation_changes_authority",
+                  "result": "rejected",
+                  "responsibility": "product_requirement_decision",
+                  "owner_role_token": "HARNESS-CORE/upstream-meaning-owner",
+                  "authority_state_pointer": "/authority_state"
+                }
+              ],
+              "invocation": {
+                "native_calls": 1,
+                "actual_dispatch": false,
+                "owner_qualification": "not_evaluated"
+              }
+            }
+          },
+          "standard_ops": [
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/63/given/typed_value",
+              "path": "/input"
+            },
+            {
+              "op": "remove",
+              "path": "/input/provided_contracts/BRAIN011"
+            },
+            {
+              "op": "copy",
+              "from": "/input",
+              "path": "/expected/native_input"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/63/expected_whole",
+              "path": "/expected/native_result"
+            },
+            {
+              "op": "copy",
+              "from": "/imports/l8/cases/54/expected_whole/required_contract_results/BRAIN011",
+              "path": "/expected/native_result/required_contract_results/BRAIN011"
+            }
+          ]
+        },
+        "witnesses": {
+          "input": {
+            "canonical_sha256": "ff51e70d32bf842735c6e51ad38ab9438dcd244d8fa68d66f8e08922186b3581",
+            "ordered_sha256": "ff51e70d32bf842735c6e51ad38ab9438dcd244d8fa68d66f8e08922186b3581",
+            "ordered_compact_utf8_bytes": 1061
+          },
+          "expected": {
+            "canonical_sha256": "327a42fd03bbd3cc7829baaa4907ca5a05abdf4a4c1c830cf75e88ab1b13bb25",
+            "ordered_sha256": "2900ac9aa81b889591e1dbf5f679f51fbe66a1c7aecffa49300f19ade755b752",
+            "ordered_compact_utf8_bytes": 2993
+          }
+        }
+      }
+    ],
+    "program_executed": false,
+    "freeze_flag_note_ja": "freeze時点の記録であり現proposalの現在状態ではない。",
+    "unclosed_id_note_ja": "旧unclosed_owner_returnsのnative IDは旧native単体の不足として保持し、新private材料は限定論理材料の具体化範囲に限る。BRAIN007/011/025契約role対応は未解決保存。"
   }
 }

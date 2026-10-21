@@ -4739,7 +4739,7 @@
     "固定rawで表れない型不正、重複記録、複数異常同時発生、任意のAbsent/null組合せは未評価。",
     "L5/L8の静的比較はL6関数設計/L7関数検証、TDD、runtime、CI、L11実受入を成立させない。",
     "従来F02Input/F02ReturnFixtureShapeは上流route tokenのみを保持する。その既存型・計算は変更せず、private_upstream_returnが一件の原sourceと知識対象の対応・原target/owner候補を別返却する。source選択・複数target集合・実owner資格・配送は未成立。",
-    "B01のL4/L10責務別返却候補は返却fieldがなく未具体化。owner_resultsの内容比較とproduct_content_resultの製品分離表示を、責務別返却候補の代用にしない。"
+    "B01は同call原native全値を保持してprivate責務別材料を返す。既存native全18wholeは変更しない。契約3項目の役割対応、実owner/対象資格・配送と全体閉包は未成立。"
   ],
   "readiness": {
     "implementation": "not_ready",
@@ -4770,9 +4770,9 @@
       "design_contract_ref": "HELIXBRAIN-L4-007-B01",
       "source_path": "docs/helix-brain/L4-basic-design/knowledge-provenance-promotion.json#/contracts/2/output_meanings/1",
       "meaning": "責務別不足とauthority返却候補",
-      "boundary": "原L9 B01 wholeには責務別authority返却候補fieldがない。product_content_resultは製品固有意味の切離しに限り、責務別候補やauthority変更を表さない。",
-      "status": "unclosed_in_this_L9_output_contract",
-      "not_claimed": "owner別の返却候補はこのL5/L8 pairから生成も資格認定もされない。"
+      "boundary": "原L9 B01 wholeは不変。新private_b01_responsibility_returnは同call native全返却から責務別役割材料/契約対応未解決/authority候補を別返却する。実owner/対象の資格・配送は成立させない。",
+      "status": "private_b01_role_material_defined_contract_mapping_and_actual_owner_delivery_unclosed",
+      "not_claimed": "役割候補は合成入力のoriginal_owners原tokenのみ。BRAIN007/011/025契約役割対応、実対象/owner本人性・資格・配送、B01全体閉包は未成立。"
     }
   ],
   "private_upstream_return": {
@@ -4944,5 +4944,100 @@
     ],
     "formal_schema_codec": "未成立。ここは論理型と値writerの記述。",
     "execution_state": "not_executed"
+  },
+  "private_b01_responsibility_return": {
+    "kind": "private_b01_responsibility_return_material",
+    "authority_effect": "none",
+    "status": "bounded_private_design",
+    "gap": {
+      "l4_pointer": "/contracts/2/output_meanings/1",
+      "l5_pointer": "/unclosed_owner_returns/1",
+      "old_native_field_count": 9,
+      "old_b01_case_count": 18,
+      "meaning_ja": "不足・相反・authority拒否結果はあるが、責務別返却候補を運ぶ型とwriterがない。"
+    },
+    "signature": "compose_b01_responsibility_return(packet: B01Input) -> B01ResponsibilityReturn",
+    "input_policy_ja": "既存typed B01Inputのみ。原packetと同じ一回のBRAIN007-B01全返却を保持。expected/native cache/qualified bool/実owner portを製品引数へ追加しない。型外codec域は拡張しない。",
+    "closed_types": {
+      "Responsibility": {
+        "enum": [
+          "generic_knowledge",
+          "product_requirement_decision",
+          "project_state",
+          "evaluation",
+          "registration_routing"
+        ]
+      },
+      "ReturnReason": {
+        "enum": [
+          "owner_content_conflict",
+          "required_contract_missing",
+          "required_contract_conflict",
+          "product_content_separation",
+          "rejected_promotion_claim",
+          "rejected_product_copy_claim"
+        ]
+      },
+      "ResponsibilityReturnCandidate": {
+        "ordered_fields": {
+          "result_pointer": "RFC6901, native_resultをrootとする既存leaf",
+          "input_read_pointers": "list<RFC6901>, native_input root; 不在read位置も表す",
+          "result": "既存native leafの原enum値",
+          "reason": "ReturnReason",
+          "responsibility": "Responsibility",
+          "owner_role_token": "native_input.original_owners[responsibility]の原string"
+        }
+      },
+      "UnresolvedContractReturn": {
+        "ordered_fields": {
+          "result_pointer": "RFC6901 native_result root",
+          "input_read_pointers": "list<RFC6901> native_input root",
+          "result": "missing | content_conflict",
+          "contract_key": "BRAIN007 | BRAIN011 | BRAIN025",
+          "mapping_state": "not_defined_in_this_b01_source"
+        }
+      },
+      "AuthorityReturnCandidate": {
+        "ordered_fields": {
+          "result_pointer": "RFC6901 native_result root",
+          "input_read_pointer": "RFC6901 native_input root",
+          "result": "rejected",
+          "responsibility": "product_requirement_decision",
+          "owner_role_token": "native_input.original_owners.product_requirement_decisionの原string",
+          "authority_state_pointer": "/authority_state (native_result root)"
+        }
+      },
+      "B01ResponsibilityReturn": {
+        "ordered_fields": {
+          "native_input": "既存B01Input全値/順序/欠落を保持",
+          "native_result": "既存B01ReturnFixtureShape全値/順序を保持",
+          "responsibility_returns": "list<ResponsibilityReturnCandidate>",
+          "unresolved_contract_returns": "list<UnresolvedContractReturn>",
+          "authority_returns": "list<AuthorityReturnCandidate>",
+          "invocation": "{native_calls:1, actual_dispatch:false, owner_qualification:not_evaluated}"
+        }
+      }
+    },
+    "mapping_basis_ja": [
+      "owner_resultsの5軸は既存original_ownersの同じ軸へ帰属させる。provided_ownersの相反値OTHER-OWNERを宛先へ使わない。候補のowner_role_tokenは合成原入力の役割宣言値であり、実owner identityではない。",
+      "BRAIN020の既存期待契約は厳密なLABO-candidate-receive@contract-r1。L10の評価→LABOと原original_owners.evaluationを結び、評価責務への不足候補を作る技術対応。任意のBRAIN番号/接頭辞から一般化しない。LABOへの実配送・BRAIN020の実ownerを認定しない。",
+      "BRAIN007/011/025の契約不足/相反は、このB01内で契約ごとの返却役割対応が宣言されていないため未解決列へ全件残す。BRAIN011/025の本文や名前から補完しない。これは実owner資格未観測とは別の論理対応未定義。",
+      "product_content_resultの製品分離返却はoriginal_owners.product_requirement_decisionの役割候補。実製品/上流targetは供給されていない。",
+      "experience/evaluation changes_authorityのrejectedはL10上流意味→該当ownerの候補。原product_requirement_decision役割tokenをそのまま運び、実L1対象・版・ownerを捏造しない。"
+    ],
+    "branch_and_order_ja": [
+      "nativeを一回呼び、元input/nativeを最初の2fieldへ無変更で保持する。以後は同callのnative leafだけを読む。原packetを変更しない。",
+      "owner_comparisonsの既存順 generic_knowledge/product_requirement_decision/project_state/evaluation/registration_routingでcontent_conflictだけresponsibility_returnsへ一件ずつ追加する。正常leafは候補を作らない。",
+      "required_contract_comparisonsの既存順 BRAIN007/BRAIN011/BRAIN025/BRAIN020でmissing/content_conflictを保持。BRAIN020だけevaluation候補、他3はunresolved_contract_returns。同一leafのmissingとconflictを統合しない。",
+      "product_content_result=return_to_product_separation_ownerなら製品分離候補を追加。次にclaim_projectionの既存順でrejectedを見る。seed_means_operational_promotionはgeneric_knowledge、product_rule_direct_copyはproduct_requirement_decisionの責務候補、experience/evaluation authorityはauthority_returnsへ保持。product分離とcopy拒否が共存しても原leaf別に保持しdedupeしない。",
+      "全候補は局所的。別の正常leaf/別不足/未解決/authority拒否を消さず、authority_state/effects/Qを変更しない。全配列空は返却材料の該当なしでありpromotion/採否/資格の成功ではない。"
+    ],
+    "scope_ja": "返却役割材料を具体化する限定slice。実target/owner資格/配送は対象外。契約3項目の役割対応は未解決として明示され、B01全閉包は主張しない。実runtime未実装は新設計gateにしない。",
+    "preservation_criteria_ja": [
+      "新private root除去＋限定説明scalar逆変換で旧両文書whole/member順/rawを復元する。",
+      "旧B01Input/Return/native/全18既存wholeとF01/F02全値は不変。",
+      "候補pointerはnative_input/native_resultの別rootを宣言し、missing入力位置へ架空null/Refを補完しない。",
+      "実target不足/契約対応未解決を正常候補にせず、責務材料と実配送を区別する。"
+    ]
   }
 }
