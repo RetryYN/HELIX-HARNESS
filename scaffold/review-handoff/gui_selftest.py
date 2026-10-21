@@ -118,18 +118,26 @@ class GuiChecks(unittest.TestCase):
         g.bind(data, "antigravity", "agy-gui", "worker", 60, self.now)
         sessions = {"claude": "claude-gui", "codex": "codex-gui",
                     "devin": "devin-gui", "antigravity": "agy-gui"}
-        pairs = (("claude", "devin"), ("codex", "devin"), ("devin", "codex"),
-                 ("devin", "devin"), ("devin", "antigravity"),
+        pairs = (("claude", "devin"), ("codex", "devin"), ("claude", "claude"),
+                 ("codex", "codex"), ("devin", "codex"), ("devin", "devin"), ("devin", "antigravity"),
                  ("antigravity", "devin"), ("antigravity", "claude"))
         for i, (author, reviewer) in enumerate(pairs):
             request = dict(self.request, author=author, reviewer=reviewer)
             core = {k: v for k, v in request.items() if k != "payload_sha256"}
             request["payload_sha256"] = p.sha(p.encode(core))
             with self.subTest(pair=(author, reviewer)):
-                with self.assertRaises(ValueError): p.validate(request, self.head, self.head)
-                with self.assertRaises(ValueError):
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+                    p.validate(request, self.head, self.head)
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
                     g.send(data, author, sessions[author], "invalid-pair-%d" % i,
                            "review_request", request, None, 60, self.now)
+                response = {k: request[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+                response.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                                request_payload_sha256=request["payload_sha256"], result="no_findings",
+                                findings=[], unreviewed=[])
+                with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
+                    g.send(data, reviewer, sessions[reviewer], "invalid-response-pair-%d" % i,
+                           "review_response", request, response, 60, self.now)
 
     def test_send_queues_for_lapsed_registered_session(self):
         # 宛先leaseが切れても登録済みsessionへ積み、そのsessionのhook activityでleaseが戻れば受け取れる。
@@ -745,7 +753,7 @@ class GuiChecks(unittest.TestCase):
         # 作業側は依頼を送れず、Devin→CodexのPR review依頼も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
         with self.assertRaises(ValueError):
             g.send(self.data, "devin", "devin-gui", "work-4", "work_request", dict(work, dispatcher="devin"), None, 60, self.now)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
             denied_pair = dict(self.request, author="devin", reviewer="codex")
             core = {k: v for k, v in denied_pair.items() if k != "payload_sha256"}
             denied_pair["payload_sha256"] = p.sha(p.encode(core))

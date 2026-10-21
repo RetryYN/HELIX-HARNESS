@@ -5,7 +5,7 @@ authority_effect: none
 binding: SCF-B-0003
 replacement_issue: 1866
 
-同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
+同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。Devinの条件付き作成側通知はClaude reviewerへ一方向で届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
 あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)と[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)による。Devinの条件付きPR作成側経路は[2026-10-22のDevin判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)と[Issue #3510 WI-1c](https://github.com/RetryYN/HELIX-HARNESS/issues/3510)に基づく。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
