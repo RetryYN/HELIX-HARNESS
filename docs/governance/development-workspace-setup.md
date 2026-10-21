@@ -70,7 +70,7 @@ python3 -B scaffold/tools/scfctl.py stale
 
 | 境界・検証経路 | 現在整理する入力と確認観点 | 設計後の出力と失敗時の戻し先 |
 |---|---|---|
-| Python意味処理 | 旧CLAUDE:61–63と[Pythonコア候補](../helix-harness/candidates/requirement-engine-python-core-requirements.md)を照合。要求・知識・revision／scopeから義務・不足質問・差分を導く意味と、外部作用を分ける。候補全件を採択済みにしない | 対象input／output・版・unknown／failure・互換・資源境界を設計へ。意味不足はHARNESS／BRAIN、候補の採否は#1799／#1801。schemaや通信方式をここで固定しない |
+| Python意味処理 | 旧CLAUDE:61–63と[Pythonコア候補](../helix-harness/candidates/requirement-engine-python-core-requirements.md)を照合。要求・知識・revision／scopeから義務・不足質問・差分を導く意味と、外部作用を分ける。候補全件を採択済みにしない。最初の局所対象については基本設計がpack単位のPython開発toolchainを選択済み（[L4](../helix-harness/L4-basic-design/pack-boundary.json)`/contracts/3/initial_python_development_application`、[L5](../helix-harness/L5-detail-design/pack-boundary.json)`/functions/3/initial_python_development_binding`）であるが、これは当該packの設計選択であり、全機構への採用・実manifest／lock・実tool／venv構築・実local／CI結果の成立を意味しない | 対象input／output・版・unknown／failure・互換・資源境界を設計へ。意味不足はHARNESS／BRAIN、候補の採否は#1799／#1801。schemaや通信方式をここで固定しない |
 | 外部作用の境界 | DB／Git／GitHub write、認可、lease、割当・実行・状態更新はPython意味処理へ移さない。接続材料と実行結果を分ける | consumer側で対象revision・scope・版・権限を再照合する境界と対oracleを対象設計へ。実際の操作を持つOS／SECURITY／CONNECT等へ戻し、Python出力を承認や実行許可にしない |
 | 型検査・lint・format | 対象言語、型契約、命名、依存方向、生成物の扱い、失敗の表現と既存規律を先に照合する | 選んだtool・設定・command・対象集合と終了状態を設計へ。formatterの自動更新と検査を区別する。契約違反は該当設計、環境不一致は環境構成、旧ruleの未移管は#1813／#1814へ |
 | test・独立review | 対象要求／設計と対oracle、適用scope、正常・負例・unknown、既決REDFIRST Aを入力にする | ローカルを起点に凍結oracleと実装前Red／Greenの観測を同じrevision・環境・結果へ結ぶ。単体成功を接続／構成体成功にしない。oracle不足は対検証owner、意味変更は上流、実装欠陥は対象作成側へ。独立reviewは既存運用に従う |
@@ -96,8 +96,8 @@ python3 -B scaffold/tools/scfctl.py stale
 
 | 項目 | 選択対象から具体化できる条件 | 対象設計以降に残るもの |
 |---|---|---|
-| 実行環境・依存 | BRAINの意味JSONを読む環境、COREの意味処理、OSの記録操作、Workerの検証環境と、それぞれの接続・利用版を識別する。意味処理の候補はPythonだが、OSの外部作用の言語や全機構共通runtimeを推定しない | 対象OS/CPU/shell、interpreter/依存binaryの対応、言語版、依存manifest/lock形式と取得元、必要/任意/検証依存。候補の技術的不確実性を確認して対象要件・設計へ |
-| 配置・型・lint・format | BRAINのknowledge契約、COREの適用単体、OSの案件追跡単体、各connection/compositeを責務に沿って分け、型契約・正常/負例/unknownと対検証を各ownerへ結ぶ。意味JSONと生成表示、原記録とprojection、検証設計と実行testを区別する | 既決配置基本案から各パックのpath・schema・型・tool commandと対象集合を導出。formatterは意味採用や記録訂正を代行しない。具体toolと設定は未選定 |
+| 実行環境・依存 | BRAINの意味JSONを読む環境、COREの意味処理、OSの記録操作、Workerの検証環境と、それぞれの接続・利用版を識別する。意味処理の最初の局所対象については基本設計でtoolchain選択済み（前表のL4／L5参照）であるが、OSの外部作用の言語や全機構共通runtimeを推定しない | 対象OS/CPU/shell、interpreter/依存binaryの対応、言語版、依存manifest/lock形式と取得元、必要/任意/検証依存。候補の技術的不確実性を確認して対象要件・設計へ |
+| 配置・型・lint・format | BRAINのknowledge契約、COREの適用単体、OSの案件追跡単体、各connection/compositeを責務に沿って分け、型契約・正常/負例/unknownと対検証を各ownerへ結ぶ。意味JSONと生成表示、原記録とprojection、検証設計と実行testを区別する | 既決配置基本案から各パックのpath・schema・型・tool commandと対象集合を導出。formatterは意味採用や記録訂正を代行しない。初回Python局所のtool・設定は前表のL4／L5を参照し、その他の対象で未選定の範囲は保持する |
 | 環境変数・安全 | 各consumerの入力探索、版/scope選択、記録先、接続、実行制約を識別し、未設定時のunknown/拒否とownerを示す。Pythonの探索名等は前表の調査候補のまま。通常意味処理へcredentialを渡す前提を置かない | 必須/任意の変数名、scope、consumer、欠落時の扱いを設計で列挙。secret値は記録しない。SECURITYの認可・隔離・egressをINFRA/Workerで実適用できることを別に検証 |
 | ローカル検証・再現 | BRAIN032の15項目・不足/値未決、CORE009の適用集合/N/A/影響、OS002の原記録からの再構築を、それぞれのL11へ戻す。接続の版不一致・未受領・別scope、構成体の部分成功も別に扱う | 要件と対検証、凍結test/oracle、クリーン環境の固定依存復元、実装前Red/Green、独立review。具体fixtureとtoolは未構築。scfctlをこの製品検証へ代用しない |
 | 初回割当・資源・計測 | OS018のLABO水準/INTELLIGENCE配置案を保持し、Worker/資源/attemptの対応、操作のauthority、時間・費用・負荷・失敗・未観測の原記録を選択scopeへ結ぶ | 初回の供給経路と未評価の限定条件は[配置入力の照合](requirements-first-roadmap.md#初回配置に供給する入力と未評価状態)を使う。実task/source/根拠・担当、資源容量/制限値、測定方式と評価scopeは未供給。性能未評価をqualifiedへ変えず、authority・安全・oracle不足も補完しない |
