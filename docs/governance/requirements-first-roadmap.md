@@ -41,7 +41,7 @@ HARNESSの工程定義、COREの意味導出、BRAINの汎用知識、OSの案�
 | 設計に基づく設定確定（後続） | 承認対象要件と対検証、配置の基本案、環境調査 | 言語版・依存manifest／lock・変数名・コードとtest配置・tool経路・setup／更新／復旧手順とoracle | 版や依存の矛盾は環境／接続設計へ、意味不足は上流へ。形式を現行hostや旧toolで代用しない |
 | 開発・検証環境の構築（後続） | freeze済み対象設計・oracle、実装可能scope・必要authority、固定した構成 | クリーン領域からのsetup・局所検証、実装前Red／Green・独立reviewとrevision／環境／結果の結合 | lock／版不一致は環境構成、setup失敗は資源・依存・設定、検証失敗は実装／設計／oracleの原因へ。失敗をpass・N/Aにせず現用構成を保持。内部デプロイは別事象と許可 |
 
-前の行の全資産完了を次の行の一律条件にせず、対象が実際に参照する入力の成立を確かめる。初回対象は下記のPO判断で選択済みだが、具体版・tool・設定・実行oracleは未定である。現時点の環境条件整理は、それらの選定と後続の再現確認に渡す材料である。
+前の行の全資産完了を次の行の一律条件にせず、対象が実際に参照する入力の成立を確かめる。初回対象は下記のPO判断で選択済みだが、実行oracleは未定である。最初の局所対象（H052 command-meaning-identity意味コア）の開発toolchainは基本設計で選択済み（[L4](../helix-harness/L4-basic-design/pack-boundary.json)`/contracts/3/initial_python_development_application`、[L5](../helix-harness/L5-detail-design/pack-boundary.json)`/functions/3/initial_python_development_binding`）であるが、これは当該packの設計選択であり、実manifest／lock・実環境・CIは未成立で、全機構への採用を意味しない。現時点の環境条件整理は、それらの選定と後続の再現確認に渡す材料である。
 
 ## 再開前提の現在地と残る確認
 
