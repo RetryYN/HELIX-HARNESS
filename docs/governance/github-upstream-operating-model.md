@@ -320,7 +320,7 @@ merge admissionの必須条件にしない。
 作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。作業側として、DevinとAntigravityの既存セッションも同じ通知箱につなぐ。通知の仕組みは
 [SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。runtimeごとの役割は[2026-10-19のPO判断](decisions/four-runtime-mailbox-po-decision-2026-10-19.md)による。
 runtimeを固定せず適性で選ぶ原則と、当面のClaude統制・Codex作成の分担は[2026-10-22のPO判断記録](decisions/control-lane-coordination-po-decision-2026-10-22.md)に記録する。現行`bind`にcontrol roleは実装されていない。
-Devinの条件付き作成側割当と現行経路の未対応は[2026-10-22のDevin判断記録](decisions/devin-content-producer-po-decision-2026-10-22.md)に記録し、具体的な運転規則は本節を正とする。現行packet／send／bindはDevinのPR作成・review経路を受けず、別WIの実装・検証が済むまで運転案は実行できない。
+Devinの条件付き作成側割当は[2026-10-22のDevin判断記録](decisions/devin-content-producer-po-decision-2026-10-22.md)に記録し、具体的な運転規則は本節を正とする。packet／sendはDevin author→Claude reviewerを既存worker binding上で扱い、LANES／排他規則は変更しない。実GUIでの受信・ACKは別途確認する。
 
 - **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。ClaudeとCodexは同じ権限を持ち、どちらもこの二つのレーンに就ける。同じruntimeが両レーンを兼ねず、同じレーンを二つのruntimeが同時に持たない。作業依頼の`worker`にはDevinとAntigravityも割り当てられる。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。このレーン登録と当面の作業統制の担当は別であり、control roleの登録機能は追加しない。
 - **runtimeの適性**：runtimeは固定せず、割当時に能力、停止後に通知で起きられるか、必要なGitHub操作能力、コストを見て選ぶ。Cursor等を閉じた一覧で排除しない。これは既存の登録・接続やDevin／Antigravity等の権限を追加する意味ではない。
@@ -329,7 +329,7 @@ Devinの条件付き作成側割当と現行経路の未対応は[2026-10-22のD
 - **作業依頼と作業結果**：ClaudeまたはCodexは、Issueに作業の範囲と完了条件を書いたうえで、作業側へ`work_request`を送れる。作業側はDevin、Antigravity、またはもう一方のClaude／Codexである。記録の正本はIssueで、通知は配送である。2026-10-22時点の当面運転では、Claudeが対象file・完了条件を記した依頼をCodexまたはDevinへ割り当てる。一依頼は一論点とし、300変更行（追加・削除合計）は統制側の初期提案値であってPO確定値ではない。超過前に作成側が分割案を返す。巨大な単一JSON nodeは追記前に分割設計を示す。割当だけで統制側がcontent producerになるわけではないため、自身が作成・編集していないPRは独立reviewできる。作成または編集した場合は当該PRを独立reviewしない。
   - POの2026-10-20指示により、Devinは処理中と待機中を合わせて未完了依頼を最大3件保持できる。順にFIFOで1件ずつ受け取り、先頭の作業結果か取り下げまで後続をclaimしない。待機依頼は待機中にTTLが進まず、先頭への昇格時に元のTTLを一度だけ開始する。昇格後の未ACK依頼はTTLで枠を解放し、ACK済み依頼は通知TTL後も作業結果か明示releaseまで割当を保持する。Antigravityと他の作業側は従来どおり未完了1件とする。複数依頼のreleaseはevent IDで対象を特定する。
   - Antigravityは試験中の作業側として、自分用の作業worktreeでcommitを作り、そのcommitとbranch名を`work_result`で送る。push、PRの作成・Ready化・review・merge、作業依頼の送信、Issueの操作はしない。
-  - Devinは、必要なGitHub操作能力を確認できた場合にPR作成側へ割り当てられる。自branchへpushしてDraft PRを作り、exact HEADの`review_request`を送り、指摘を修正する。独立reviewの`no_findings`後にReady化し、作成者以外がmergeする。当面Claudeが独立reviewとmergeを担う。Devinが作成できない場合、または別WIで経路が実装・検証されるまでの代替として、Codexがproposalを検収・取込してPRを作る。
+  - Devinは、必要なGitHub操作能力を確認できた場合にPR作成側へ割り当てられる。自branchへpushしてDraft PRを作り、exact HEADの`review_request`を送り、指摘を修正する。独立reviewの`no_findings`後にReady化し、作成者以外がmergeする。当面Claudeが独立reviewとmergeを担う。Devinが作成できない場合、または実GUIでの受信・ACKを確認するまでの代替として、Codexがproposalを検収・取込してPRを作る。
   - **Devin作成のL3／L10 `design_verification`**：割当時にDevinとreview側のmodel family、モデル名・版を確認する。同じfamily、またはいずれかがunknownの場合、Claudeのreviewだけで委任承認が成立したとは扱わず、既存の[「承認の成立」条件](#承認の成立)へ戻す。別family reviewer経路が必要なら後続WIへ送る。このmodel family条件は委任によるL3／L10承認に限り、一般PR reviewや`operation_change`には広げない。一般reviewは既存の異context・作成者以外の条件に従う。
   - `work_result`の宛先は、作業側が自分以外の登録済みruntimeから選ぶ。指定がなければ、停止中でも通知で起きるClaudeへ届く（Claude自身が作業側のときは依頼側）。「作業だけ」は作業側に向く役割を示すもので、結果の送り先を依頼側に限る意味ではない（[2026-10-20のPO判断](decisions/work-result-any-recipient-po-decision-2026-10-20.md)）。添付する作業依頼は実際に送られた依頼と同じ全値に限り、書き換えた依頼は拒否される。
   - 結果を受け取ったClaude／Codexは提案を読んで確かめ、取り込む場合は自分が作成側としてPRを作り、作業側のcommitを取り込んだことをPR本文に記す。そのPRはClaudeとCodexのうち作成側でない方が独立reviewし、mergeする。これは作業結果の受取者に適用する一般規則である。
