@@ -51,6 +51,8 @@ python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --s
 
 ClaudeとCodexは`execution`か`review_merge`に就き、同じ役割を同時に二つのruntimeへ割り当てない。DevinとAntigravityは`worker`だけに就き、並んで持てる。
 
+このREADMEのworker限定とPR作成側・review側の制約は現行実装の説明である。Devinの条件付き作成側運転は[判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)を参照し、経路の実装は別WIで扱う。
+
 既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
 確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
 別process・PID再利用ではbindしない。Codex app-serverには複数threadがあるため、Codexは`enroll`を使わず正しいthread IDでbindする。
