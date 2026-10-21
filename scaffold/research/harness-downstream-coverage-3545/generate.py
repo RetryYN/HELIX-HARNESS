@@ -94,7 +94,8 @@ class Source:
                     if isinstance(node[key], str):
                         self.refs.setdefault(node[key], []).append(pointer + '/' + key)
         for paths in self.refs.values():
-            paths.sort(key=lambda p: (p.count('/'), p))
+            paths.sort(key=lambda p: (p.count('/'), tuple((0, int(s)) if s.isdecimal()
+                                                        else (1, s) for s in p.split('/')), p))
 
     def reference(self, identity):
         paths = self.refs.get(identity, [])
@@ -131,6 +132,15 @@ def entry_identity(source, pointer):
     return entry + '/id' if isinstance(value, dict) and isinstance(value.get('id'), str) else None
 
 
+def oracle_link(source, pointer, oracle):
+    entry = '/'.join(pointer.split('/')[:3])
+    value = pointer_value(source.data, entry)
+    for key in ('system_oracle_ref', 'l10_ref', 'oracle_ref'):
+        if key in value:
+            return key + ':' + ('一致' if value[key] == oracle else '不一致'), source.request(entry + '/' + key)
+    return 'L10直接参照未記載', None
+
+
 def main():
     audit_text = git('show', BASE + ':' + AUDIT).decode()
     audit = json.loads(audit_text)
@@ -161,7 +171,12 @@ def main():
                 if linked:
                     refs[3] = [target.request(linked), source.request(identity_pointer)]
                     break
-        rows.append((index, parent, req, oracle, refs))
+        oracle_status = 'L9子対応未確認'
+        if refs[1]:
+            oracle_status, link = oracle_link(*refs[1][0], oracle)
+            if link:
+                refs[1].append(link)
+        rows.append((index, parent, req, oracle, refs, oracle_status))
     sources = [docs[layer][p] for p in sorted(parents) for layer in LAYERS if p in docs[layer]]
     assert len(sources) == 72
     for source in sources:
@@ -174,6 +189,7 @@ def main():
     print(f'source revision: `{BASE}`。18親126組。全405組の完了、意味適合、凍結成立を生成しない。\n')
     print(f'input: `{AUDIT}`。末列は `/pairs/{{index}}/requirement/entry/id` と `/oracle/entry/id` の行番号。')
     print('sourceは固定revisionの全HARNESS L4/L9/L5/L8 JSON。approved snapshotだけの一致はchild対応に使わない。')
+    print('抽出は9 container内の指定keyの文字列値のみ。container外・配列値・id自体・subdir JSONは探索外。代表の(+N)は同IDの追加候補数。')
     print('L8の間接参照はL9 root／L5 functionの実IDへの参照と、そのID出典を併記する。契約適合や全edgeの証明ではない。')
     print('未確認はartifact不存在ではない。これは参照抽出であり、5分類と凍結根拠はA2で個別照合する。\n')
     aliases = {id(s): f'S{i + 1}' for i, s in enumerate(sources)}
@@ -183,13 +199,20 @@ def main():
                          for k in ('pair', 'paired_document') if k in source.data)
         print(f'| {aliases[id(source)]} | `{source.path}` | /status:{source.lines["/status"]} | {pair or "記録未確認"} |')
     print('\n| audit /pairs index | parent | L3 | L10 | L4 | L9 | L5 | L8 | audit L3/L10行 |\n|---|---|---|---|---|---|---|---|---|')
-    for index, parent, req, oracle, refs in rows:
+    for index, parent, req, oracle, refs, oracle_status in rows:
         evidence = []
         for links in refs:
             if not links:
                 evidence.append('子対応未確認')
             else:
-                evidence.append(' ← '.join(f'{aliases[id(s)]}:{s.lines[p]} `{p}`' for s, p in links))
+                citations = []
+                for source, pointer in links:
+                    value = pointer_value(source.data, pointer)
+                    hits = source.refs.get(value, [])
+                    count = f'(+{len(hits) - 1})' if pointer in hits and len(hits) > 1 else ''
+                    citations.append(f'{aliases[id(source)]}:{source.lines[pointer]} `{pointer}`{count}')
+                evidence.append(' ← '.join(citations))
+        evidence[1] += f' [{oracle_status}]'
         audit_ref = '/'.join(str(audit_lines[f'/pairs/{index}/{side}/entry/id'])
                              for side in ('requirement', 'oracle'))
         print('| ' + ' | '.join([str(index), parent, req, oracle, *evidence, audit_ref]) + ' |')

@@ -27,8 +27,11 @@
   "role": "helix-harness-limited-downstream-reference-extractor",
   "obligations": [
     "git showで固定base revisionのJSON treeをread-onlyで参照し、限定scopeの下流72文書inventoryとHARNESS 18親・126組を抽出する。",
-    "実container内のL3参照をJSON Pointerとsource path:lineで示し、container外の同ID出現を実参照として扱わない。",
+    "対象は9 CONTAINERS内の文字列型参照だけとし、container外（trace/reverse_trace/matrix等）、配列値（requirement_refs等）、参照候補としてのid自体、subdirectory JSONは探索対象外（bridgeのID出典の表示は別）。探索対象外・未確認はartifact不存在を意味しない。",
+    "各参照をJSON Pointerとsource path:lineで示し、代表参照と追加候補数を表示する。index付き結果は数値順に出す。",
     "L8の対応が実L9 rootまたはL5 function IDを介する場合、L8側参照と、そのIDの出典となるL9/L5側JSON Pointerを併記する。",
+    "L9の同一entryにあるsystem_oracle_ref/l10_ref/oracle_refと対象L10 IDの文字列一致を照合し、一致・不一致・直接参照未記載を各pointerとともに表示する。",
+    "paired_documentはcontainer外のため参照探索対象外とし、source inventoryへ別に表示する。",
     "stdoutを分類前の監査素材として出力する。凍結分類、直接L5→L8 edge有無、設計適合、承認・authorityは判定せず、5分類はA2監査consumer側の分類境界としてのみ参照する。"
   ],
   "connections": {
@@ -75,7 +78,7 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "実container外の同一ID出現やdocument-level paired_documentだけをchild L3参照として数えない",
+      "container外の同一ID出現、配列値、id自体、subdirectory JSONを対象container参照として数えない。paired_documentはsource inventoryへ別表示する",
       "L8のroot/function bridgeを片側pointerだけで示さず、L9/L5側ID出典pointerも併記する",
       "凍結状態・直接edge・設計適合を抽出結果から推論または自動分類しない",
       "stdout以外へファイルを書かず、A2分類・全405組完了・製品受入を主張しない"
