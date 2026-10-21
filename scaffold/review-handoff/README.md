@@ -6,7 +6,7 @@ binding: SCF-B-0003
 replacement_issue: 1866
 
 同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
-あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)と[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)による。
+あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)と[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)による。Devinの条件付きPR作成側経路は[2026-10-22のDevin判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)と[Issue #3510 WI-1c](https://github.com/RetryYN/HELIX-HARNESS/issues/3510)に基づく。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
 
@@ -51,7 +51,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --s
 
 ClaudeとCodexは`execution`か`review_merge`に就き、同じ役割を同時に二つのruntimeへ割り当てない。DevinとAntigravityは`worker`だけに就き、並んで持てる。
 
-このREADMEのworker限定とPR作成側・review側の制約は現行実装の説明である。Devinの条件付き作成側運転は[判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)を参照し、経路の実装は別WIで扱う。
+`worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使える。Devinはreviewer・自己review・mergeを担わず、AntigravityのPR経路もない。`work_request`のdispatcherは引き続きClaude／Codexに限る。
 
 既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
 確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
@@ -84,7 +84,7 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
 
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
 2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Devinは未完了の依頼（処理中の1件と待機中を合わせて）を最大3件まで保持し、Antigravityと他の作業側は従来どおり1件まで保持する。DevinはFIFOで1件ずつ受け取り、先頭の作業結果か取り下げが届くまで後続をclaimしない。
-3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行い、push・PR作成はしない。
+3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行う。proposalとして割り当てた作業ではpush・PR作成をしない。DevinをPR作成側として明示割当した場合は、[GUIレーンの運転と通知](../../docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知)に従う。
 4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で送る。
    - 宛先は`--to RUNTIME`で、自分以外の登録済みruntimeの誰でも選べる。同じ結果を複数の相手へ送ってもよい。`--to`を省くと、停止中でも通知で起きるClaudeへ送る。Claude自身が作業側のときだけ、省略時は依頼側へ送る。
    - 添付する作業依頼は、実際に送られた`work_request`と全値が同じでなければならない。依頼側などを書き換えた依頼は、payload hashを計算し直しても拒否する。照合に使う送信記録は、割当中か、送信・最後の結果から24時間だけ残る。送信記録を持つ前に送られた依頼は、割当中に限り、割当とpayload hashの一致で受ける。
@@ -108,7 +108,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session
 python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
-PRの`review_request`／`review_response`は、`author`と`reviewer`がClaudeとCodexの組である場合だけ送れる。DevinとAntigravityはPRの作成側にもreview側にもならない。
+PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、またはDevin→Claudeの順序付き組だけ送れる。応答は元依頼のreviewerからauthorへ返す。Devin→Claudeの応答一周は許すが、Claude→Devinを新しいPR pairとしては許さない。Devinはreviewer・自己review・mergeを担わず、AntigravityはPRの作成側にもreview側にもならない。
 
 ## 配送状態・再開
 

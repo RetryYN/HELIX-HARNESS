@@ -320,7 +320,7 @@ merge admissionの必須条件にしない。
 作成側とレビュー対応側は、同じVS CodeのClaude Code拡張とCodex拡張の既存セッションで動く。作業側として、DevinとAntigravityの既存セッションも同じ通知箱につなぐ。通知の仕組みは
 [SCF-B-0003の仮組み](../../scaffold/review-handoff/README.md)であり、ここではその運転の決まりを定める。runtimeごとの役割は[2026-10-19のPO判断](decisions/four-runtime-mailbox-po-decision-2026-10-19.md)による。
 runtimeを固定せず適性で選ぶ原則と、当面のClaude統制・Codex作成の分担は[2026-10-22のPO判断記録](decisions/control-lane-coordination-po-decision-2026-10-22.md)に記録する。現行`bind`にcontrol roleは実装されていない。
-Devinの条件付き作成側割当と現行経路の未対応は[2026-10-22のDevin判断記録](decisions/devin-content-producer-po-decision-2026-10-22.md)に記録し、具体的な運転規則は本節を正とする。現行packet／send／bindはDevinのPR作成・review経路を受けず、別WIの実装・検証が済むまで運転案は実行できない。
+Devinの条件付き作成側割当は[2026-10-22のDevin判断記録](decisions/devin-content-producer-po-decision-2026-10-22.md)に記録し、具体的な運転規則は本節を正とする。packet／sendはDevin author→Claude reviewerを既存worker binding上で扱い、LANES／排他規則は変更しない。実GUIでの受信・ACKは別途確認する。
 
 - **レーンの割当**：作成（`execution`）とレビュー対応（`review_merge`）は、利用者の作業指示に従い、`gui_mailbox.py bind`で既存セッションを登録して決める。ClaudeとCodexは同じ権限を持ち、どちらもこの二つのレーンに就ける。同じruntimeが両レーンを兼ねず、同じレーンを二つのruntimeが同時に持たない。作業依頼の`worker`にはDevinとAntigravityも割り当てられる。現在の割当は`gui_mailbox.py status`で確かめ、本文書には固定しない。このレーン登録と当面の作業統制の担当は別であり、control roleの登録機能は追加しない。
 - **runtimeの適性**：runtimeは固定せず、割当時に能力、停止後に通知で起きられるか、必要なGitHub操作能力、コストを見て選ぶ。Cursor等を閉じた一覧で排除しない。これは既存の登録・接続やDevin／Antigravity等の権限を追加する意味ではない。

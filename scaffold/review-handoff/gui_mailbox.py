@@ -17,7 +17,8 @@ HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
 BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = p.RUNTIMES
-# ClaudeとCodexは作成（execution）とレビュー対応（review_merge）のどちらにも就く。DevinとAntigravityは作業（worker）だけ。
+# Devinはlane上はworkerのまま、packet上の作成者としてClaude reviewerへ通知できる。
+# lane登録とPR当事者pairの許可は別の制約である。
 LANES = {"claude": ("execution", "review_merge"), "codex": ("execution", "review_merge"),
          "devin": ("worker",), "antigravity": ("worker",)}
 # 同じ役割を同時に二つのruntimeへ割り当てない役割。workerは複数のruntimeが並んで持てる。
@@ -267,8 +268,9 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
     lane(data, runtime, session, now)
     # 宛先は送り手の相手方ではなく、packetが指す作成側・review側・作業側で決める。packetが両者を別runtimeに限る。
     if kind in ("review_request", "review_response"):
-        # PRの作成とreviewはClaudeとCodexだけ。作業側runtimeのPR経路をCLI検証に頼らずここでも閉じる。
-        p.require({request.get("author"), request.get("reviewer")} == set(p.PR_RUNTIMES), "PRの作成側・review側はClaudeとCodex")
+        # CLI検証に頼らず、許可された向きのPR当事者pairだけを通す。
+        p.require(p.pr_review_pair_allowed(request.get("author"), request.get("reviewer")),
+                  "PR作成側・review側の組合せ対象外")
     if kind == "review_request":
         p.require(request.get("schema") == "scaffold-review-request.v1", "review依頼schema不一致")
         p.require(runtime == request["author"] and response is None, "review依頼のruntime/応答不正")

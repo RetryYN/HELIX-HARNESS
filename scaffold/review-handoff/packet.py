@@ -20,10 +20,13 @@ REFERENCES = {
     "scaffold/governance/index.md": "scaffold_reference_only",
 }
 # 2026-10-19のPO判断（docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md）。
-# ClaudeとCodexは同じ権限（作成・独立review・作業依頼）。DevinとAntigravity（試験中）は作業だけのWorkerで、
-# 提案（隔離worktreeのcommit）を依頼側へ返す。push・PR作成・review・mergeはしない（旧HIL-BR-32のproposal-only）。
+# ClaudeとCodexは作成・独立review・作業依頼を担う。DevinはClaude reviewerに限る条件付き作成側経路を持つ。
+# DevinとAntigravityは作業側にも就く。PR当事者pairは別途限定し、作業dispatcherは従来どおりClaude/Codexとする。
+# Devinの条件付き作成側pairは2026-10-22のDevin判断記録とIssue #3510 WI-1cに基づく。
 RUNTIMES = ("claude", "codex", "devin", "antigravity")
 PR_RUNTIMES = ("claude", "codex")
+PR_AUTHORS = ("claude", "codex", "devin")
+PR_REVIEW_PAIRS = (("claude", "codex"), ("codex", "claude"), ("devin", "claude"))
 
 
 def require(ok, message):
@@ -58,6 +61,10 @@ def text(value):
     return isinstance(value, str) and bool(value.strip())
 
 
+def pr_review_pair_allowed(author, reviewer):
+    return (author, reviewer) in PR_REVIEW_PAIRS
+
+
 def validate(packet, base, head):
     fields = {"schema", "evidence_kind", "authority_effect", "request_id", "repository", "pr",
               "base_sha", "content_sha", "author", "reviewer", "purpose", "scope",
@@ -69,7 +76,7 @@ def validate(packet, base, head):
     require(type(packet["pr"]) is int and packet["pr"] > 0, "PR番号が必要")
     require(text(packet["request_id"]) and text(packet["purpose"]), "依頼identity・目的が必要")
     require(isinstance(packet["scope"], list) and packet["scope"] and all(text(s) for s in packet["scope"]), "scopeが必要")
-    require({packet["author"], packet["reviewer"]} == set(PR_RUNTIMES), "異なるruntimeを指定")
+    require(pr_review_pair_allowed(packet["author"], packet["reviewer"]), "PR作成側・review側の組合せ対象外")
     require(packet["route"] in ("manual_handoff_no_launch", "vscode_gui_mailbox"), "未対応の配送経路")
     require(packet["base_sha"] == commit(base) and packet["content_sha"] == commit(head), "staleなbase/content")
     require(packet["references"] == references(head), "参照集合・種別・bytesが不一致")
@@ -153,7 +160,7 @@ def main():
     for name in ("base", "head", "request-id", "purpose"):
         build.add_argument("--" + name, required=True)
     build.add_argument("--pr", type=int, required=True)
-    build.add_argument("--author", choices=PR_RUNTIMES, required=True)
+    build.add_argument("--author", choices=PR_AUTHORS, required=True)
     build.add_argument("--scope", action="append", required=True)
     build.add_argument("--route", choices=("manual_handoff_no_launch", "vscode_gui_mailbox"), default="vscode_gui_mailbox")
     work = sub.add_parser("build-work")
@@ -174,7 +181,8 @@ def main():
             packet = dict(schema="scaffold-review-request.v1", evidence_kind="scaffold", authority_effect="none",
                           request_id=args.request_id, repository="RetryYN/HELIX-HARNESS", pr=args.pr,
                           base_sha=commit(args.base), content_sha=commit(args.head), author=args.author,
-                          reviewer="claude" if args.author == "codex" else "codex", purpose=args.purpose,
+                          reviewer=next(reviewer for author, reviewer in PR_REVIEW_PAIRS if author == args.author),
+                          purpose=args.purpose,
                           scope=args.scope, route=args.route, references=references(args.head))
             packet["payload_sha256"] = sha(encode(packet))
             validate(packet, args.base, args.head)
