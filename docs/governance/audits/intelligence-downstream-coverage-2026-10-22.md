@@ -67,7 +67,8 @@ L4は `contracts/{i}/requirement_ref`、L9は `verification_obligations/{i}/requ
 - **basic側の下流参照**: S1:235 `/remaining/1` とS2:235 `/remaining/1` は正式schema/codec等と合わせ「L5L8/oracle凍結は未完」とする。S5:113 `/remaining/1` とS6:113 `/remaining/1` も同種の下流記述で、いずれもL4/L9 basic層自身のfreeze状態ではない。またこれはL4/L9 documentのremaining記述であり、L5/L8自身のfreeze receipt/未成立recordとは別に扱う。
 - **detail側の資格・実装・観測残件**: S3:8797 `/remaining/3` は実装前Red/TDD/CI等、S7:13484 `/unclosed/0` は正式schema/source bindingの未供給を記すが、oracle freeze自体の未成立とは明記しない。S4:6219 `/qualification_limit` は実source/authority/配置/TDD/CI/L11の有限比較限界、S8:23251 `/scope_limitations/0` は56 caseがL9初期fixtureで実source資格等を意味しない境界である。S8:55261 `/supplemental_cases/68/independent_basis/reason` の「非空要件は上流未固定」は上流要件の記述であり、pair oracle freezeの状態ではない。
 - **部分・有限fixture**: S4の`independent_whole_probes` 7件、`repair_whole_probes` 23件、`binding_boundary_probes` 6件、`same_fact_boundary_probes` 4件、106 casesは有限期待材料。S4:3218 `/independent_whole_probes/0/expectation_scope` は全件の一括事前凍結証明を主張しない。S8:546 `/cases/0/execution_state` は `not_executed`、56初期caseおよび追加supplemental fixtureも実施済み・pair-wide oracle receiptではない。これを①にも「freeze未成立」②にも流用しない。
-- L5-010 F02/F04に局所diagnostic追補や未観測組合せ、L4/L9 remainingのL5/L8差分履歴があっても、sourceの語句が対象層のfreezeそのものを指すかを区別し、表の②へ自動加算しない。
+- **F02の反映履歴と未観測**: S3:8800 `/remaining/6` はtask_anchor/worker_checksの接続、既存6軸proposal_scope_alignmentのL5 checks保持と、L4/L9の未反映という履歴説明の再評価を記す。未観測の組合せを引き続き未観測とする境界であり、freeze自体の未成立を述べる記録ではない。
+- **L9のcase単位の凍結**: S2:16865 `/verification_obligations/1/cases/37/independent_basis/comparison_basis` は「期待全体はreader結果から生成せず別途凍結した。」と記す。F02の当該caseの独立期待に限定され、pair全体のfreeze receipt①や凍結未完②へ一般化しない。
 
 ## 未確認範囲
 
