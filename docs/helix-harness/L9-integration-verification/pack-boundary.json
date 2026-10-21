@@ -110,7 +110,36 @@
         "比較環境不明"
       ],
       "negative_oracle": "各変異を一つずつ入れ、対象identity/不足項目/owner/戻し先を含むfindingまたは未成立が返ることを実接続で照合する。正常と同じ適格結果ならoracle不成立。",
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "initial_python_development_verification": {
+        "design_selection_pointer": "/contracts/3/initial_python_development_application",
+        "basis": "L3/L10の固定入力/環境/依存/非対象/復旧義務と公式tool仕様から導く。候補の実行結果から期待を書き戻さない。一般F04の旧負例/期待は保持し、この局所適用の条件だけを追加する。",
+        "positive": "同じH052対象revision・CPython3.12.15・Linux/x86_64の宣言環境条件、uv0.13.4 producer、同じmanifest/lock/config/宣言source/test/必要検査集合をlocal/CIへ渡し、各実環境Refは別々に宣言条件へ照合する。物理環境identityの同一は要求しない。鮮度検査と隔離同期、非書込検査を分け、実結果と省略/未回収を原義務へ結ぶ。意味成果の比較と非対象pack/証拠保持・回復候補が原F04条件を満たす範囲だけを再現候補として扱う。",
+        "negative_contrasts": [
+          {
+            "change": "manifestを変更し古いlockを--frozenだけで使用",
+            "expect": "lock鮮度は未確認。再現成功にせずmanifest/lock不一致を依存/入力側へ返す。検査中にlockを書き換えて隠さない。"
+          },
+          {
+            "change": "別interpreter/OS/arch/tool版・user configを暗黙利用、cache不足からPython/Nodeを自動取得",
+            "expect": "宣言したtool_environment_refsと同一としない。必要環境/依存の不足または不一致を保持し、実観測なしに現用hostや別runtimeへfallbackしない。"
+          },
+          {
+            "change": "ruff --fixで入力を変更、mypy --install-typesで依存を追加、local/CIでfile/plugin/config集合を変更",
+            "expect": "非書込checkと同一検査集合の条件を満たさない。元入力/依存/省略義務の差を保持し、形式成功を意味成果の一致にしない。"
+          },
+          {
+            "change": "pytest対象0/全skip/timeout/未回収なのにexitやwrapper成功だけで完了",
+            "expect": "対象/収集/実行と必要義務を照合し、未実行・skip・異常を成功や意図したRedへ昇格しない。必要文書監査の脱落もPython検査の成功で補わない。"
+          },
+          {
+            "change": "適格復旧先不明のままvenvをcopy、または非対象packの版/証拠を更新",
+            "expect": "既存F04の復旧不明/非対象変更を保持する。候補の提示を実切替/復旧成功にしない。"
+          }
+        ],
+        "scope_limit": "基本設計の技術選択と対照条件のみ。正式なtool実行、実装前Red/Green、製品CI、実資格/受入、設計RGR全循環ではない。exact command/結果型/実file集合は既存L5/L8へ降ろす。",
+        "execution_state": "not_executed"
+      }
     },
     {
       "id": "HARNESS-L9-010-B01",
