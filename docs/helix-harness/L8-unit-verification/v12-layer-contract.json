@@ -3415,7 +3415,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
-      "sha256": "2d83082d36ed98e037582ffd9adc2e62b717e87ffb56493f62a9d6392540b478",
+      "sha256": "cd6cf912891f6a2d897d46d83c8fa3320a47c1260c10eef1ebb80c839d6903b6",
       "scope": "同一candidate bytes。上流source revision又は承認factではない。"
     },
     "abstract_family_binding": {
