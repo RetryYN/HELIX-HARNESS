@@ -329,7 +329,72 @@
         "5signalのclaimed_evidenceをcontext evidence_recordsと対象Ref/owner/revision/scope/内容で独立照合する。current根拠がmissingなのにcurrentを主張したらauthority_inferred。当該stateをmissingとして保持。未知/古い/矛盾は共通findingも保持する。 catalog/他signalのRefだけを根拠にした成立主張はその/claimed_evidence/indexにauthority_inferred。別scope/revisionの証拠混入はreference_conflict/staleとして別に扱う。",
         "actual_verificationは対象oracleと実観測の内容根拠へ照合し、検証設計だけしかない場合はverification_unobservedとmissing。証拠のfield/hash/数/green表示で実行済みにしない。 locatorは/claimed_evidence/index。",
         "正しい対応と各signalの状態/不足を別々に返す。OS ticket/write/execute/fallbackなど宣言外fieldを入力へ追加すればinput_invalid。outputは状態writeや実行intentを持たず、旧runtimeを呼ばない。"
-      ]
+      ],
+      "logical_backflow_binding": {
+        "scope_ja": "B01の既存authority_inferred/verification_unobservedを形成する枝だけの6member Finding構成。既存predicate・code併存・outcome優先と他findingの規範を変更しない。新公開引数/型/結果memberを追加しない。",
+        "upper_basis": [
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+            "pointer": "/contracts/2/backflow",
+            "file_bytes_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257",
+            "node_canonical_sha256": "e72c7d7c952141c824f2c9d28ec710790d5f9f50ce3f67d3ac2414418930f98a"
+          },
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+            "pointer": "/cases/2/failure_observation",
+            "file_bytes_sha256": "9b3770fa842f24c550bd6a0b96aff26ca63a5ede24368a3cd95e3d7d8b27172a",
+            "node_canonical_sha256": "f7d109a862d024350642550ea8da2a9f1a2b02ee9f9e82f994e2c17641b21b10"
+          }
+        ],
+        "prerequisite_ja": "既存の型検査と同subject/revision/scopeの原Evidence照合が成立する範囲。型不正/対象差等は既存input_invalid/reference_*へ残し、この構成で原Refを補修しない。",
+        "fields": {
+          "code": "既存B01比較が形成したauthority_inferred又はverification_unobserved。どちらかを新優先にせず、併存所見を消さない。",
+          "pointer": "問題となった原inputの/claimed_evidence/{i}。iは元配列indexで、filter/sort後に採番し直さない。",
+          "subject_ref": "当該/claimed_evidence/{i}/subject_refの全原値。同対象照合済みのclaim subjectであり、catalog/proof Ref又はContext.subject_refへ代替しない。",
+          "requirement_ref": "HARNESS-L3-001-B01",
+          "backflow_owner": "HARNESS-L2-001",
+          "evidence_refs": "context.source_check_refsの原Ref全値だけを、既存RefSetの集合意味で保持する。表示順はsort_keys=true/ensure_ascii=false/compactの各Ref JSON文字列をUnicode code point昇順にする既存canonical sort語義を使う。claim/evidence/他signalのRefをunionせず、新Refや空Refを生成しない。"
+        },
+        "candidate_role_ja": "HARNESS-L2-001は、B01の誤昇格又は返却契約を修正する論理候補という下位の技術選択。authority issuer、欠落authorityの担当owner、実recipient資格を表さない。L4がこのliteralを要求したとはしない。owner供給が無い時にsubject/catalog/別signalのownerで補完しない。",
+        "preservation_ja": "当該signalと実判定state及び元evidence_refsは既存output.evidence_statesとmissing_signalsへ元規範どおり保持する。claim及び同signalの原Evidenceのsubject/state/根拠列はimmutable input/contextに残り、Finding.pointerから辿る。Finding非収載の根拠を削除・正資格認定・別signalへ付替えしたと扱わない。独立したlayer_correspondencesは原値を保持する。source_check_refs掲載や論理候補の選択でmissing/unknown等をcurrentへ変えない。",
+        "ordering_ja": "所見全体は既存common_contractのcode/pointer/subject identity/revision順のまま。この追補を理由に元Finding・signal・他arrayの新sort又はdedupeを導入しない。",
+        "difference_and_limits_ja": "#3385がL5/L6へ委任した候補値と原根拠の選択を具体化する。F02専用constructorの値やowner展開をB01へcastしない。F01/B01全findingの生成器・全native返却・実recipient binding/配送の完成ではなく、実誤返却Redも未証明。",
+        "legacy_basis": [
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+            "start_line": 16,
+            "end_line": 34,
+            "file_bytes_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+            "role_ja": "pure結果/構造化Findingとstable sort。旧Findingはcode/pointer/messageであり、今回のbackflow_owner literal又はauthority owner認定規範ではない。"
+          },
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/adr/ADR-010-python-semantic-core-node-commit-boundary.md",
+            "start_line": 30,
+            "end_line": 49,
+            "file_bytes_sha256": "0a91276521551f976d1b692a243b86653d02ff4cf51a4d6a0344a36fb499bbd6",
+            "role_ja": "意味判断とtransactional外部作用を分離する境界だけを再導出。旧Node専用runtime/DB/権限条件を移植しない。"
+          },
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+            "start_line": 138,
+            "end_line": 146,
+            "file_bytes_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+            "role_ja": "owner/failure/oracle/pair意味の保持、fabricated ID/authority昇格を拒否し、説明した差を自動greenにしない。"
+          }
+        ],
+        "reuse": {
+          "disposition": "semantic_rederivation",
+          "keep_ja": "pure照合の構造化Finding、元owner/failure/oracle/pairと安定表現を保持し、意味値・論理候補と外部作用/実権限を分ける。旧schema/runtime/DB/TS moduleや旧3member Findingを現行へcopyしない。",
+          "change_ja": "既存6member FindingでB01の2codeのbackflow_ownerをHARNESS-L2-001という論理修正候補へ、evidence_refsを既存context.source_check_refsへ固定する。これは現行L4/L9の委任に基づく下位の新規技術選択で、旧sourceが同じliteral/根拠選択を指定したと主張しない。",
+          "reason_ja": "#3385が委任した個別候補選択を具体化し、source/subject/catalog/別signalのownerを欠落authorityの担当へ誤用しないため。scope/state/元根拠と独立した層対応は維持する。",
+          "source_search_limits_ja": "上記旧L6本文、ADR-010決定節、旧L5 parity節と旧governance/helix-harness-requirements_v1.3.mdのbackflow/差戻/意味owner検索を確認。旧L6にbackflow_owner fieldやこの候補literalはなく、旧v1.3のbackflow記述（405行）は人判断/凍結の工程で、このFinding選択の旧規範にはしない。全旧資産の不在証明ではない。"
+        }
+      }
     }
   ],
   "finding_classification": {

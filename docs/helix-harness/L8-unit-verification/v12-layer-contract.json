@@ -405,7 +405,52 @@
           }
         }
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "logical_backflow_oracle": {
+        "scope_ja": "既存B01 negative_mutationsの0〜3（Mの偽authority 3枝、design-only実検証偽昇格）への条件付き内容期待。新fixture/expected whole又は実行済み結果を生成しない。",
+        "upper_expectation_basis": [
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+            "pointer": "/contracts/2/backflow",
+            "file_bytes_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257",
+            "node_canonical_sha256": "e72c7d7c952141c824f2c9d28ec710790d5f9f50ce3f67d3ac2414418930f98a"
+          },
+          {
+            "revision": "7ffe5acdf5c4da89e58d5c2a3784c30d502b8c54",
+            "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+            "pointer": "/cases/2/failure_observation",
+            "file_bytes_sha256": "9b3770fa842f24c550bd6a0b96aff26ca63a5ede24368a3cd95e3d7d8b27172a",
+            "node_canonical_sha256": "f7d109a862d024350642550ea8da2a9f1a2b02ee9f9e82f994e2c17641b21b10"
+          }
+        ],
+        "candidate_detail_pointer": "/functions/2/logical_backflow_binding",
+        "detail_whole_bytes_binding_pointer": "/f02_constructor_oracles/candidate_L5_bytes_binding",
+        "given_ja": "元caseのinput/contextと既存B01比較を用いる。新しいauthority root/owner/Refをfixtureへ挿入しない。実比較を実行した履歴ではない。",
+        "applies_to_mutation_indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "expected_finding": {
+          "code": "各原mutationのexpected.finding_codeを維持する。",
+          "pointer": "各原mutationのexpected.finding_pointerを維持する。",
+          "subject_ref": "そのpointerが指す原claimed_evidenceのsubject_ref全値。",
+          "requirement_ref": "HARNESS-L3-001-B01",
+          "backflow_owner": "HARNESS-L2-001（001返却の論理修正候補だけ。authority owner/実recipientという解釈を不成立とする）",
+          "evidence_refs": "元context.source_check_refsと同じRef全値集合。各Refのcompact sorted-key JSON文字列をUnicode code point昇順で表示。原claim/catalog/別signalの根拠を追加しない。"
+        },
+        "preserved_observations_ja": "元outcome/incompleteと当該signalのmissing、原evidence_states根拠とmissing_signals、独立した層対応を維持する。複数既存codeが形成される場合に片方をこの期待で削除しない。元input/contextは不変。",
+        "negative_interpretations_ja": [
+          "HARNESS-L2-001又はsubject/catalog/別signalのownerを不足authorityの担当ownerとして採用する。",
+          "候補を返しただけでauthority stateをcurrent又は実配送済みにする。",
+          "原claimのsubjectをcatalog/proof Refへ置換、元indexを再採番、根拠不足を消す。",
+          "source_check_refsへ新しいRefを足す、他の原根拠をinput/contextから消す、独立した層対応を失う。"
+        ],
+        "verification_boundary_ja": "上位の独立期待に対する下位技術選択の静的照合。literalの確定は今回の具体化であり、元設計Red/Greenや意味保存Refactorの実証ではない。設計review/型/hashだけで実B01/L8成功にしない。",
+        "detail_binding_role_ja": "既存の現行L5 whole bytes参照だけを再利用。F02 constructor/結果規範をB01へ流用しない。"
+      }
     }
   ],
   "extra_cases": [
@@ -3370,7 +3415,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
-      "sha256": "599ededd99c53dbf6be4b259d2254e292791c8a98356b882b96181d9a501c2b4",
+      "sha256": "cd6cf912891f6a2d897d46d83c8fa3320a47c1260c10eef1ebb80c839d6903b6",
       "scope": "同一candidate bytes。上流source revision又は承認factではない。"
     },
     "abstract_family_binding": {
