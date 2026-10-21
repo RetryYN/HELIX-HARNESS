@@ -1,0 +1,38 @@
+{
+ "schema_revision": 1,
+ "id": "SCF-B-0159",
+ "kind": "scaffold",
+ "title": "design JSON pointer and source-pin static check",
+ "product": "HELIX-HARNESS",
+ "owner_candidate": "HELIX-HARNESS design verification scaffold",
+ "state": "registered",
+ "reason": "Issue #3546の仮組み。現行mainの設計JSONに対し、明示されたJSON Pointer/path参照の解決と、commit revisionを持つsource pinの本文SHA-256一致だけをread-onlyに検査する。正式な新世代CI・schema validator・要求/承認/完了の生成ではない。",
+ "upstream": [
+  {"path":"docs/governance/new-generation-start-here.md","sha256":"09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc","note":"新世代作業入口。scaffold仮組み・authority非生成の入口確認。"},
+  {"path":"docs/governance/github-upstream-operating-model.md","sha256":"468b110de56b32e3f91e6b6300699aa4f16e9b23756f1fe6c9dd84e4f397fd13","note":"GUI mailbox、worker/reviewer分離、create/review/merge責務の現行運用参照。"},
+  {"path":"docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md","sha256":"994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b","note":"限定L3/L10の対設計・実装・検証・対象CIの段階境界。"},
+  {"path":"docs/governance/crosswalks/design-json-materialization-inventory.json","sha256":"018c866fcc898285edc510128901bb6de1cdaba899aeeaf97165fcb3ea9167b5","note":"既存設計JSONのpointer、materialization、source pin形式の棚卸し参照。"},
+  {"path":"AGENTS.md","sha256":"e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7","note":"scaffold配置、旧runtime/test/CI非実行、fail-closeと日本語報告の作業規則。"}
+ ],
+ "role": "design-json-static-reference-check-scaffold",
+ "obligations": [
+  "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
+  "明示されたpath/source_path/document参照、source_pins、json_pointer、scope/base/patch/document pointer、文書内$refを対象に解決する。",
+  "40hex revision/commitを持つpinはgit show <revision>:<path>のraw bytesをSHA-256照合し、pinがrevisionを持たなければ文書の40hex source_main、それも無ければ現行作業木bytesを照合する。",
+  "絶対path、.. traversal、backslash pathはfail-closeに違反として報告し、path正規化は行わない。",
+  "違反件数とfile/at/code/detail一覧をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
+  "selftestは一時repositoryだけを作り、壊した入力が拒否されることを確認する。",
+  "結果はevidence_kind scaffold、authority_effect noneであり、正式CI・製品受入・設計採否を生成しない。"
+ ],
+ "connections": {"consumers":["#3546 design JSON static check proposal review","#3502 ②設計検証用CIの後続設計"],"dependencies":["stdlib json/hashlib/argparse/subprocess/pathlib","git show <revision>:<path> read access","RFC6901 absolute JSON Pointer"],"boundary":"scaffold/配下の読み取り専用checkerと一時repository selftestのみ。GitHub Actions workflow、旧archive実行、要求生成、設計修正、正式resolverを作らない。"},
+ "operations": {"allowed":["python3 scaffold/tools/design_json_check.py --root <repo>","python3 scaffold/tools/design_json_check_selftest.py","temporary git repository creation inside tempfile.mkdtemp for selftest"],"forbidden":["scaffold外への恒常書込み","network access or external resolver execution","old archive runtime/test/CI execution","requirement/approval/acceptance semantics generation","automatic design JSON rewrite"]},
+ "artifacts": [
+  "scaffold/tools/design_json_check.py",
+  "scaffold/tools/design_json_check_selftest.py",
+  "scaffold/bindings/SCF-B-0159.json"
+ ],
+ "verification": {"evidence_kind":"scaffold","scope":["deterministic_behavior","negative_case","source_revision_stale","forbidden_write_scope"],"oracles":["python3 scaffold/tools/design_json_check_selftest.py","python3 -m py_compile scaffold/tools/design_json_check.py scaffold/tools/design_json_check_selftest.py","python3 scaffold/tools/design_json_check.py --root .","python3 -B scaffold/tools/scfctl.py validate","python3 -B scaffold/tools/scfctl.py stale","python3 -B scaffold/tools/scfctl.py residuals","git diff --check"],"negative_cases":["missing local JSON Pointer","missing pinned path","source sha mismatch","unsafe pin path","unsafe path reference","unknown pinned revision","missing cross-file json_pointer"]},
+ "replacement": {"role_target":"新世代設計検証CIの正式resolver/static check","formal_artifacts":[],"issue":3546,"status":"pending","transfer":null,"target_revisions":{},"confirmation_ref":null,"confirmation_digest":null},
+ "created": "2026-10-22",
+ "updated": "2026-10-22"
+}
