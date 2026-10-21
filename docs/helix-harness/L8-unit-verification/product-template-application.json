@@ -85794,7 +85794,7 @@
             "profile_candidate_binding": {
                 "revision": "current-unpinned-worktree-candidate",
                 "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-                "file_sha256": "752b29fa6760225fc63a88c87f2333bbb8854f6ccf721e467b6bb76e8975fd69",
+                "file_sha256": "e44196d242ec14caff795cacb02872085ad31e36c9ae42e079e15209d4a0d8cb",
                 "pointer": "/wire_codec_contract/numeric_encode_profile"
             },
             "upstream_decision": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
@@ -108511,7 +108511,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "752b29fa6760225fc63a88c87f2333bbb8854f6ccf721e467b6bb76e8975fd69",
+        "current_file_sha256": "e44196d242ec14caff795cacb02872085ad31e36c9ae42e079e15209d4a0d8cb",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
@@ -114395,7 +114395,7 @@
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
         "base_revision": "df518b171c5169edf2ee5d5f95cf88600253c4ef",
         "base_file_sha256": "70d7be5500c17d77dc8ec7331b931c8543b2b92d59f425e4c5be016e4368e8bf",
-        "current_file_sha256": "752b29fa6760225fc63a88c87f2333bbb8854f6ccf721e467b6bb76e8975fd69",
+        "current_file_sha256": "e44196d242ec14caff795cacb02872085ad31e36c9ae42e079e15209d4a0d8cb",
         "selected_objects": [
           {
             "pointer": "/f05_detail_contract/collection_and_obligation_origin_writer_contract/collection_reads/canonical_locations",
@@ -156548,7 +156548,7 @@
       "selected_objects": [
         {
           "pointer": "/f05_detail_contract/input_scope_knowledge_gap_realization",
-          "canonical_sha256": "fe4dbc471d809b5367dc46542ee2cb9e13d8ad26b1c32822137088d978b5dba7"
+          "canonical_sha256": "2800eb9f7caebdf95776c176b131849a1cea7b28a5f1869fa099d0af4bc74d9f"
         },
         {
           "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
@@ -156556,7 +156556,7 @@
         },
         {
           "pointer": "/f05_detail_contract/caller_return_writer_contract",
-          "canonical_sha256": "67d02f08e9f4bec9d85c5f0b1d86b816dedcee30e130865149924d54b6ecd7dd"
+          "canonical_sha256": "51acc0be24abdcc8d1f177b134a7fd9c41ebd3501f43037a4d9f53ac463f70b1"
         },
         {
           "pointer": "/f05_detail_contract/entry_points/private_caller",
