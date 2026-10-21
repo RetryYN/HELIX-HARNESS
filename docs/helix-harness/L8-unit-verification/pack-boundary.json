@@ -13,7 +13,7 @@
     },
     {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "da2169612b323b73fe3244ca328e7b83c61040df8c54cbbafec603a743c89eac"
+      "sha256": "bd9cd40907472b06ee0aca8bc93b54e1330818d6accefcb0483f9a4d8ec531d4"
     },
     {
       "path": "docs/helix-harness/L9-integration-verification/pack-boundary.json",
@@ -12449,7 +12449,7 @@
           {
             "upper_contrast": "同じ宣言条件と各実環境を保持",
             "existing_oracle_pointer": "/cases/3",
-            "expect": "manifest/lock/config/file-set/nodeid/check-setは固定input snapshot、各実環境はenvironment_refsへ区別して束縛。内容/資格と比較factが揃った場合の既存F04正常期待を保持。local/CIの物理identity同一は要求しない。"
+            "expect": "manifest/lock/config/file-set/nodeid/check-setは固定input snapshot、各実環境はenvironment_refsへ区別して束縛。内容/資格と比較factが揃った場合の既存F04正常期待を保持。local/CIの物理identity同一は要求しない。uv同期先の宣言済みUV_PROJECT_ENVIRONMENTとVENV_PYTHONを同一venvのRef・内容根拠へ結び、別venvや未供給rootを既定.venvで補わない。"
           },
           {
             "upper_contrast": "古いlock/暗黙fallback/別設定/対象変更",
@@ -15858,7 +15858,7 @@
     ],
     "candidate_L5_bytes_binding": {
       "path": "docs/helix-harness/L5-detail-design/pack-boundary.json",
-      "sha256": "da2169612b323b73fe3244ca328e7b83c61040df8c54cbbafec603a743c89eac",
+      "sha256": "bd9cd40907472b06ee0aca8bc93b54e1330818d6accefcb0483f9a4d8ec531d4",
       "scope": "同一candidate bytes。承認/source revisionではない。"
     },
     "comparison": "全Result/全Finding memberを比較し、ReferenceSetの順は意味にしない。input/context/source原値を変更しない。",
