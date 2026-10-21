@@ -122,6 +122,9 @@ S3（L5-001）の両L5 child linkは実function定義内のL3 field-rule参照�
 
 | source / pointer | 固定BASEの値・対象 | 分類上の扱い |
 |---|---|---|
+| S29:217 `/remaining/2`; S30:177 `/remaining/2` | 正式schema/codec/transport/clock/resolverとL5/L8、test/oracle凍結から実装前Red・Green・再検証まで未成立。 | L4/L9が下流L5/L8と実装前作業を記す。OSと同じく現在の基本対へ移さずbasic③ |
+| S19:6498 `/responsibility_boundaries/business_meaning_return_unclosed`; S19:7149 `/branch_tables/F02/business_meaning_return_unclosed_ref` | 005-F02の業務意味判断の分類・元owner責務binding・recipient等が未具体化。F02 branchは同じ記録を参照する。 | 責務binding・意味判断素材の未具体化であり、凍結状態の明示ではないためdetail③ |
+| S11:1596 `/state_observation_result_type_contract/remaining/0` | 任意raw状態/型外/欠落/nullの全分岐と全型writerの独立意味検収は未完。 | 独立意味検収の残件であり、test/oracle凍結自体の未成立とは記さないためdetail③ |
 | S12:2622 `/fixture_coverage_limits/0` | FN-C003-01; S11:1199 `/obligation_trace/0/function`＝FN-C003-01→L3-003-F01。固定48 rawの範囲でAbsent枝は独立oracle検証されていない。 | coverage限界のみ。凍結未完根拠ではなくdetail③ |
 | S12:2623 `/fixture_coverage_limits/1` | FN-C003-02; S11:1206 `/obligation_trace/1/function`＝FN-C003-02→L3-003-B01。固定14 rawの範囲でAbsent枝は独立oracle検証されていない。 | coverage限界のみ。凍結未完根拠ではなくdetail③ |
 | S31:29504 `/unclosed/9` | L6は関数設計、L7は対の関数検証。実装成果は層外。test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。 | 自文書の実装前test/oracle凍結未成立。009全10組のdetail② |
