@@ -24,6 +24,17 @@ scope: HELIX-INFRASTRUCTURE 9 parents / 29 pairs / 36 source documents
 - **詳細L5/L8の001–004**: 計12組の各L5/L8 `/remaining/2` は「test/oracle凍結→実装前Red→Green→Refactorの素材であり」と工程素材を説明し、「実TDD/CI/L11/全92親430意味閉包/Ready」を未成立とする。凍結そのものを未成立と明記するC1 R2やCONNECT009とは目的語が異なる。B2の前提素材説明と同様に③とする。単に同じ文に未成立という語があることから②を作らない。
 - **詳細L5/L8③**: parent 005 (3), 006 (2), 009 (2), 010 (7), 025 (3) の17組はsource資格、schema、実操作、有限ケース外、TDD/CI/実L10/L11等の残件はあるが、今回読んだ範囲では対象L5/L8 scope自身のfreeze未成立を明示する記録として確認できず③。例: 005は有限probe外・資格・実operationとL6/L7/TDD/CIを残すがoracle freeze不成立を言わない。006は有限L9 fixture外、資格/closure boundaryを残すがfreezeの未成立を明示しない。009は実source資格、実停止再開、codec/TDD等の未成立で、test/oracle freeze自体は記していない。010/025も実権限・実資格・coverage・全scope等の不足であり凍結状態とは分ける。
 
+比較した固定BASEの文面は次のとおり。SECURITY/CONNECTの参照は本表のS aliasとは別文書を直接示す。
+
+| 記録・位置 | 原文の該当句 | 「未成立」の対象と扱い |
+|---|---|---|
+| INFRA001 S3:827 `/remaining/2`（002–004も同型） | 「test/oracle凍結→実装前Red→Green→Refactorの素材であり、実TDD/CI/L11/全92親430意味閉包/Ready未成立。」 | 凍結の工程は「素材」を修飾し、その後の実TDD等が未成立。③ |
+| `docs/helix-security/L5-detail-design/project-scope-isolation.json`:1963 `/completion_limit/3` | 「その前のtest/oracle凍結→実装前Red→Green→Refactorと独立再検証/実L9L10/PO実物L11は未成立。」 | 凍結自体が未成立の列挙に含まれる。C1の詳細② |
+| `docs/helix-connect/L5-detail-design/direction-order-feedback-relations.json`:29504 `/unclosed/9` | 「test/oracle凍結・実装前Red・Green・Refactor・新CI・L11は未成立。」 | 凍結自体が未成立の列挙に含まれる。C2の詳細② |
+| `docs/helix-os/L5-detail-design/ticket-workflow-derivation.json`:497 `/remaining/2`; `docs/helix-os/L5-detail-design/event-episode-continuity.json`:791 `/remaining/2` | 前者「…の前提素材を作る作業であり、実TDD/CIの合格証拠ではない。」、後者「…の前提素材であり本作業は実TDDではない。」 | B2で③とした工程素材の型 |
+
+INFRAにはOSの「実TDDではない」という明示否定文はない。「実TDD等未成立」を凍結未着手まで含むと読む余地は残るが、本照合は実際に明記された状態を対象とする。「…の素材であり」で文節が分かれ、凍結自体に未成立を係らせる記述を確認できないため③とする。否定文の有無で①へ変えることもせず、記録未確認と、凍結済み・未凍結の断定を分ける。
+
 工程素材として③に保つ固定BASE根拠（凍結自体の未成立ではない）:
 
 | 親 | L5 evidence | L8 evidence | 記録の要点 |
