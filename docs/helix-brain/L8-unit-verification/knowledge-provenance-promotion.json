@@ -19273,10 +19273,7 @@
     "materialization_contract": {
       "imports": {
         "l8": {
-          "revision": "5384fb504e55c3a7953a1da02505706359582976",
-          "path": "docs/helix-brain/L8-unit-verification/knowledge-provenance-promotion.json",
-          "raw_sha256": "acf56c95d80cf324c7928ec3dd4954c97fac0b72830e6fdbf3188de5313b0c17",
-          "parse": "strict JSON UTF-8",
+          "fixed_source_pointer": "/private_b01_responsibility_return_cases/fixed_source",
           "mount_pointer": "/imports/l8"
         }
       },
