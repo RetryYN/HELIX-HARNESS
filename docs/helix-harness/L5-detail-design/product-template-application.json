@@ -11897,7 +11897,7 @@
       },
       "f05_detail": {
         "symbol": "compare_requirement_gaps_detail",
-        "input": "F05DetailedRequest",
+        "input": "(request: F05DetailedRequest, input_scope_scan: InputScopeProfileScan)",
         "output": "F05DetailedReturn",
         "writer_ref": "F01..F16"
       },
@@ -13409,7 +13409,7 @@
         "current_private_symbol": "compare_requirement_gaps_detail",
         "logical_producer_symbol": "compare_requirement_gaps",
         "former_context_pointer": "/type_contract/types/CompareRequirementGapsContext",
-        "current_signature": "F05DetailedRequest -> F05DetailedReturn"
+        "current_signature": "compare_requirement_gaps_detail(request: F05DetailedRequest, input_scope_scan: InputScopeProfileScan) -> F05DetailedReturn"
       },
       "9": {
         "former_symbol": "check_application_claims",
@@ -13928,6 +13928,9 @@
           "dedicated": "f05",
           "return_path": "/f05",
           "context": "F05DetailedRequest",
+          "additional_private_arguments": {
+            "input_scope_scan": "同じValidationDetailedReturn DからC01が一度だけ取得し、/input_scope_knowledge_gap/profile_scanへ保持した既存InputScopeProfileScan全値。F05DetailedRequestへmember追加せず、別private第2引数として渡す。"
+          },
           "required_comparisons": [
             {
               "context_member": "compare_applicability",
@@ -14207,7 +14210,7 @@
         "claims_comparison": "fn10のcheck_application_claimsはclaims formedならRead.present(/claims/value,実CoreComparison)、unformedならRead.present(/claims,その実Formation whole)。root=caller_return。",
         "f05_detail": "fn9のCheckApplicationClaimsDetailedContext.f05_detail及びfn10のBuildApplicationAnalysisDetailedContext.f05_detail（両者ともF05DetailedReturn）は、outer.f05.tag=formedの時にlocation={root:caller_return,pointer:/f05/value}の同実D全値へ直接束縛する。decode原wholeを含み得るDをNamedRead列へ追加しない。outer.f05がunformedならD引数は形成せずcontext_patterns/3の既存Causeを用い、その実unformed Formationだけを診断対象とする。",
         "projection": "fn10のみ最後にname=source_result_reference_projectionを追加し、Read.presentでlocation={root:caller_inputs,pointer:/source_result_reference_projection}、value=供給されたRead wholeを保存する。これはProjectionResultの型へcastした値ではない。元optional memberへの実代入は後記projection_boundaryだけ。",
-        "f05_special": "F05 rowは専用typed引数F05DetailedRequest.validation:ValidationDetailedReturnを、location={root:caller_return,pointer:/validation}の同実wholeへ直接束縛する。decode原octets/parsed_treeを含み得るValidationDetailedReturnをNamedRead又はRead<CoreJsonValue>へ入れない。二依存はrequired_comparisons原順の実observationからf05_writer/prepareどおりActualPredecessorへ渡す。専用typed request全値が原取得材料を保持し、未観測枝をnot_calledへ変えない。",
+        "f05_special": "F05 rowは専用typed引数F05DetailedRequest.validation:ValidationDetailedReturnを、location={root:caller_return,pointer:/validation}の同実wholeへ直接束縛する。decode原octets/parsed_treeを含み得るValidationDetailedReturnをNamedRead又はRead<CoreJsonValue>へ入れない。二依存はrequired_comparisons原順の実observationからf05_writer/prepareどおりActualPredecessorへ渡す。さらにC01が同じDへ一度だけ適用した既存input-only readerのInputScopeProfileScan全値を、C02がF05の別private第2引数へ渡す。scanをNamedRead、F05DetailedRequest又はoriginal_requestへ混ぜず、未観測枝をnot_calledへ変えない。",
         "storage": "本argument_read_writerのNamedRead列を実格納するのはComparison-only7rowのexplicit_skip.skip.context_operands及びunobserved.original_operandsであり、validated/元Comparison/同目録の先行枝等の既存CoreJsonValue原観測だけに限定する。F05/claims/analysis専用Formationへこの配列memberを追加しない。f05_special及びf05_detailの専用typed wholeは上記の直接bindingと既存validation/F05返却/request/DetailedContextで全保存し、NamedReadへのcast/encode又はdecode原診断の削除で代用しない。元Context自体が未形成ならnative Context whole/実引数成立を生成しない。"
       },
       "context_patterns": [
@@ -14324,7 +14327,7 @@
         "unobserved_destination": "Comparison-only rowはunobserved{producer:row.producer,original_operands:同argument列,causes:[同Cause]}。fn9/10は当該Formation.unformed.causes=[同Cause]。explicit_skipへ変換しない。返却済み原兄弟wholeと元引数を保持する。"
       },
       "f05_writer": {
-        "prepare": "指定二依存について、obs returnedならActualPredecessor.returned{producer:固定指定literal,comparison:実whole}、obs explicit_skipならActualPredecessor.not_called{producer:固定指定literal,skip:同実SkipCause全値}。この二種が双方有ればvalidation全値と共にF05を呼ぶ。親binding不足やinput=nullはF05 callerの新skip条件にせず、F01がraw_onlyで原wholeを返す範囲を保持。",
+        "prepare": "指定二依存について、obs returnedならActualPredecessor.returned{producer:固定指定literal,comparison:実whole}、obs explicit_skipならActualPredecessor.not_called{producer:固定指定literal,skip:同実SkipCause全値}。この二種が双方有れば、validation全値と同C01が先に一度だけreaderへ渡して得たInputScopeProfileScan全値を、F05DetailedRequest三memberとは分けたprivate第2引数として共にF05へ渡す。C01 scanは追加読取せず同一wholeを使う。親binding不足やinput=nullはF05 callerの新skip条件にせず、F01がraw_onlyで原wholeを返す範囲を保持。",
         "unobserved_predecessor": "二依存のobs unobservedについてrequired_comparisons原順で各一件Cause。kind=context_unformed、target={root:caller_return,pointer:当該observation_path}、left=original(Read.present(target,その実unobserved whole))、right=normative_literal(value=本f05_writer.predecessor_right_literal,rule_pointer=/f05_detail_contract/caller_return_writer_contract/f05_writer/predecessor_right_literal)、Cause.rule_pointer=/f05_detail_contract/caller_return_writer_contract/f05_writer/unobserved_predecessor。この列が非空ならF05を明示未呼出しとしouter.f05=unformed{causes:この全列}。元依存causeをflatten追加せず左whole内に保持する。",
         "predecessor_right_literal": "returned or explicit_skip",
         "actual_return": "実DetailedReturn Dを受領したらouter.f05=formed{value:D全値}。D.comparisonがunformedでもformedのまま。同Dをproducer_observationsへ入れず、Dの欠けたComparisonを偽造/skip/未観測へcastしない。",
@@ -14532,14 +14535,15 @@
         }
       },
       "input_scope_knowledge_gap_integration": {
-        "purpose_ja": "既存private callerが同一fn0 ValidationDetailedReturnを入力scope readerへ一度渡し、既存F05外側Formationへprofile別post-return projectionを結ぶ技術接続。native 36型の再定義、別fn0 graph、F05/owner/domain意味変更を行わない。",
+        "purpose_ja": "既存private callerが同一fn0 ValidationDetailedReturnを入力scope readerへ一度渡し、同じprofile_scanをF05の別private第2引数として渡したうえで、既存F05外側Formationへprofile別post-return projectionを結ぶ技術接続。native 36型の再定義、別fn0 graph、F05/owner/domain意味変更を行わない。",
         "native_type_namespace": "/f05_detail_contract/input_scope_knowledge_gap_realization/types",
         "input_reader": {
           "entry_point": "/f05_detail_contract/input_scope_knowledge_gap_realization/entry_points/reader",
           "symbol": "read_input_scope_knowledge_version_gap_native",
           "argument": "InputScopeKnowledgeGapRequest{validation_detail_return: 同C01が一度得たValidationDetailedReturn D}。request型は同native名前空間の既存閉型。",
           "output": "同native名前空間のInputScopeKnowledgeGapView全値。validation_detail_returnは同request.validation_detail_returnのD全値、profile_scanはglobal existing_type aliasが指す同InputScopeProfileScan。",
-          "stored_member": "profile_scanだけ。validation_detail_returnは既存CoreApplicationDetailReturn.validationと同一全値で重複格納しない。"
+          "stored_member": "profile_scanだけ。validation_detail_returnは既存CoreApplicationDetailReturn.validationと同一全値で重複格納しない。",
+          "f05_argument_binding": "C01が既存readerを同じDへF05前に一回だけ適用する。得た同一profile_scan全値をC02がF05の別private第2引数へ渡す。input_scope_scanはF05DetailedRequest三member又はF05 original_requestへ挿入せず、readerを再実行しない。"
         },
         "post_return": {
           "l4_api": "/input_scope_knowledge_gap_contract/post_return_projection/request_signature",
