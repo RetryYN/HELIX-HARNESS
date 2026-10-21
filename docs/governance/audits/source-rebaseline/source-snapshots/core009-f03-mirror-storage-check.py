@@ -16,6 +16,11 @@ TARGETS = ("/expected_rows/0/source_envelopes_input/value",
            "/expected_rows/0/source_candidate_envelopes")
 
 
+def require(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+
 def dump(value, *, ordered=False):
     return json.dumps(value, ensure_ascii=False, sort_keys=not ordered,
                       separators=(",", ":"), allow_nan=False).encode("utf-8")
@@ -40,10 +45,10 @@ def at(value, pointer):
 def restore(wrapper, patch):
     value = copy.deepcopy(wrapper["literal_base"])
     for operation in patch:
-        assert operation["op"] == "copy"
+        require(operation["op"] == "copy", "storage check failed: operation['op'] == 'copy'")
         parent, member = operation["path"].rsplit("/", 1)
         destination = at(value, parent)
-        assert member in destination  # 元member順を保つ既存placeholderへの置換だけ。
+        require(member in destination, "storage check failed: member in destination")  # 元member順を保つ既存placeholderへの置換だけ。
         destination[member] = copy.deepcopy(at(value, operation["from"]))
     return value
 
@@ -59,37 +64,37 @@ def main():
     old_case = at(old_doc, POINTER)
     wrapper = at(new_doc, POINTER)
     material = wrapper["materialization"]
-    assert material["operation"] == "RFC 6902"
-    assert material["source_revision"] == BASE
-    assert material["base_pointer"] == POINTER + "/literal_base"
-    assert material["base_canonical_sha256"] == sha(wrapper["literal_base"])
-    assert material["patch"] == [
+    require(material["operation"] == "RFC 6902", "storage check failed: material['operation'] == 'RFC 6902'")
+    require(material["source_revision"] == BASE, "storage check failed: material['source_revision'] == BASE")
+    require(material["base_pointer"] == POINTER + "/literal_base", "storage check failed: material['base_pointer'] == POINTER + '/literal_base'")
+    require(material["base_canonical_sha256"] == sha(wrapper["literal_base"]), "storage check failed: material['base_canonical_sha256'] == sha(wrapper['literal_base'])")
+    require(material["patch"] == [
         {"op": "copy", "from": "/raw_input/source_envelopes", "path": target}
-        for target in TARGETS]
+        for target in TARGETS], "storage check failed: material['patch'] == [{'op': 'copy', 'from': '/raw_input/source_envelopes', 'path': target} for target in TARGETS]")
     restored = restore(wrapper, material["patch"])
-    assert dump(restored, ordered=True) == dump(old_case, ordered=True)
-    assert material["materialized_canonical_sha256"] == sha(old_case)
-    assert material["prior_case_canonical_sha256"] == sha(old_case)
-    assert material["materialized_ordered_sha256"] == sha(old_case, ordered=True)
+    require(dump(restored, ordered=True) == dump(old_case, ordered=True), "storage check failed: dump(restored, ordered=True) == dump(old_case, ordered=True)")
+    require(material["materialized_canonical_sha256"] == sha(old_case), "storage check failed: material['materialized_canonical_sha256'] == sha(old_case)")
+    require(material["prior_case_canonical_sha256"] == sha(old_case), "storage check failed: material['prior_case_canonical_sha256'] == sha(old_case)")
+    require(material["materialized_ordered_sha256"] == sha(old_case, ordered=True), "storage check failed: material['materialized_ordered_sha256'] == sha(old_case, ordered=True)")
     new_doc["cases"][4]["source_result_reference_cases"]["cases"][13] = restored
-    assert dump(new_doc, ordered=True) == dump(old_doc, ordered=True)
+    require(dump(new_doc, ordered=True) == dump(old_doc, ordered=True), "storage check failed: dump(new_doc, ordered=True) == dump(old_doc, ordered=True)")
     # 元caseはliteral_base内に一件だけある。wrapperだけを逆変換して原file bytesも比較。
     text = new_raw.decode("utf-8")
     case_id_position = text.index('"id": "CORE009-F03-SOURCE-DUPLICATE-ENVELOPES"')
     marker = text.rfind('"literal_base":', 0, case_id_position)
-    assert marker >= 0
+    require(marker >= 0, "storage check failed: marker >= 0")
     start = text.rfind("{", 0, marker)
     actual, size = json.JSONDecoder().raw_decode(text[start:])
-    assert actual == wrapper
+    require(actual == wrapper, "storage check failed: actual == wrapper")
     column = start - text.rfind("\n", 0, start) - 1
     replacement = json.dumps(restored, ensure_ascii=False, indent=2).replace("\n", "\n" + " " * column)
     inverse_raw = (text[:start] + replacement + text[start + size:]).encode("utf-8")
-    assert inverse_raw == old_raw
+    require(inverse_raw == old_raw, "storage check failed: inverse_raw == old_raw")
     # 復元copy欠落・異なる原材料からのcopyは独立固定の全返却と一致しない。
-    assert dump(restore(wrapper, material["patch"][:1]), ordered=True) != dump(old_case, ordered=True)
+    require(dump(restore(wrapper, material["patch"][:1]), ordered=True) != dump(old_case, ordered=True), "storage check failed: dump(restore(wrapper, material['patch'][:1]), ordered=True) != dump(old_case, ordered=True)")
     bad = copy.deepcopy(material["patch"])
     bad[1]["from"] = "/expected_rows/0/candidate_count"
-    assert dump(restore(wrapper, bad), ordered=True) != dump(old_case, ordered=True)
+    require(dump(restore(wrapper, bad), ordered=True) != dump(old_case, ordered=True), "storage check failed: dump(restore(wrapper, bad), ordered=True) != dump(old_case, ordered=True)")
     print(json.dumps({"source_main": BASE, "case_id": CASE_ID,
                       "canonical_sha256": sha(restored), "ordered_sha256": sha(restored, ordered=True),
                       "inverse_file_sha256": hashlib.sha256(inverse_raw).hexdigest(),
