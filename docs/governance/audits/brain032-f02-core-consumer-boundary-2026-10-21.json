@@ -1,0 +1,260 @@
+{
+  "document_id": "BRAIN032-F02-CORE-CONSUMER-BOUNDARY-2026-10-21",
+  "kind": "research_premise",
+  "issue": 3502,
+  "source_main": "89d4da8eb5112a7bf4b9f86f37e9d72e4ba84fe6",
+  "authority_effect": "none",
+  "operation_effect": "none",
+  "status": "source_comparison_connection_not_established",
+  "question_ja": "BRAIN032 F02のrequired field descriptor不足を、どの既存CORE責務へ原意味を保って渡すべきか。",
+  "conclusion_ja": "F02の汎用descriptor不足とF05の個別製品fieldの定義不在を同一視しない。選択知識の不成立を扱うF06が責務上の接続候補だが、原F02結果を同じ選択template/knowledgeへ結ぶsource契約は未確定。新しいfield absenceやRef対応を生成して埋めない。",
+  "fixed_sources": [
+    {
+      "path": "docs/concept/helix-concept.md",
+      "raw_sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
+    },
+    {
+      "path": "docs/concept/helix-principles.md",
+      "raw_sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
+    },
+    {
+      "path": "docs/helix-brain/L1-planning/brain-intent.md",
+      "raw_sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
+    },
+    {
+      "path": "docs/helix-harness/L1-planning/product-intent.md",
+      "raw_sha256": "238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f"
+    },
+    {
+      "path": "docs/governance/decisions/design-as-code-tdd-po-decision-2026-10-21.md",
+      "raw_sha256": "9077a70944946b5d5211ca785b0aaf82a298ffb3e5cb1b04690562a8e0c888c9"
+    },
+    {
+      "path": "docs/governance/audits/v12-development-method-review-2026-10-21.json",
+      "raw_sha256": "dfea6713cf96d1be5b6070a94e2c3dfce04ac4458e9d6d84c33eaa1676f00277",
+      "nodes": [
+        {
+          "pointer": "/minimal_experiment",
+          "canonical_sha256": "0b3df258fcd2e51b46e95e0c56580e207e4d778c950a2ea28bc00fc15c988008"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "raw_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+      "nodes": [
+        {
+          "pointer": "/requirements/1",
+          "canonical_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "raw_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+      "nodes": [
+        {
+          "pointer": "/cases/1",
+          "canonical_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "raw_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "nodes": [
+        {
+          "pointer": "/contracts/3",
+          "canonical_sha256": "88df277182589a4ab25a960cd38d1a9e09ff67493d8a8cb22b8ed1e1b4b3b024"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "raw_sha256": "90cdaa3523def8329c2398257ce959d22e77e413064f7fd78241daf6ae8296b4",
+      "nodes": [
+        {
+          "pointer": "/cases/3/negative_cases/1",
+          "canonical_sha256": "0b4862cef4791d4515cac806cda9335b7d49ac7306b4796997fe35bebef2b4ff"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "raw_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "nodes": [
+        {
+          "pointer": "/type_contract/types/Binding",
+          "canonical_sha256": "aca0642e38993ad59213542431447e2168c7d29fd9beb532f3af331545971f7b"
+        },
+        {
+          "pointer": "/type_contract/types/DescriptorDefinitionAssessment",
+          "canonical_sha256": "50df65a158dcf6f551cb9da02f86e19d0a0244ee90dc886e565a696f5dfc5ef8"
+        },
+        {
+          "pointer": "/failure_rules/8",
+          "canonical_sha256": "7ab03caf5c308b553aa50e16b41fb1c4faddaca0dadb18f9c95462b4cf108a3d"
+        },
+        {
+          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_predicate_projection/5",
+          "canonical_sha256": "ddba421841e2589f04e2825a1532573dfd7221d7ce42365c70a33d20cd8eb9a6"
+        },
+        {
+          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3/branches/1",
+          "canonical_sha256": "ee4ba1648a1aae3b2eec4aedfeba35c0164fb5b433540ee5722cf8588c29f12c"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "raw_sha256": "671c7c10ef223c82b00e5f9b7e071865b877a55a98e89095e3b4143f81f8b481",
+      "nodes": [
+        {
+          "pointer": "/cases/3/negative_cases/1",
+          "canonical_sha256": "93e29515ba4a276ada3805cf7044cdb910b52c68031e467d7d8f6413d5966ffd"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "raw_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "nodes": [
+        {
+          "pointer": "/requirements/27",
+          "canonical_sha256": "9f92a42b7454792107df930671f190c8c8f9ffa4027dc64f384cbf65863cdb54"
+        },
+        {
+          "pointer": "/requirements/28",
+          "canonical_sha256": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "raw_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "nodes": [
+        {
+          "pointer": "/cases/28",
+          "canonical_sha256": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "raw_sha256": "def83f2217856c36bc28ae688cce8d51b030120da7ec784f61d6038e94f97a46",
+      "nodes": [
+        {
+          "pointer": "/contracts/7",
+          "canonical_sha256": "134d0b62c0e7a9c1a1739c88479a3d410cbf83ded336d4aa8ca1b5177931e31a"
+        },
+        {
+          "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+          "canonical_sha256": "1727965061b730b010a6684925c01f6ba3a44618e00e04e835ff4491424cb006"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "raw_sha256": "abc065ae86235246ee5af713e9d07a6480da125b10f025ebf6143ee6a48003e0",
+      "nodes": [
+        {
+          "pointer": "/type_contract/types/FieldInput",
+          "canonical_sha256": "2434d06a74a6df8e04bc4eb2d614d8d9a2aa3419363cd0a5fefb634f4c2c82b2"
+        },
+        {
+          "pointer": "/type_contract/types/KnowledgeUseRecord",
+          "canonical_sha256": "fa054b3059b8dff846089248d95545944d5d9f7054bc730d33a8899fbc2c4eb9"
+        },
+        {
+          "pointer": "/type_contract/types/TemplateSnapshot",
+          "canonical_sha256": "ff3fd52473e3ec06624efb1b6650d468913d1366649b282318c5328fa524aa90"
+        },
+        {
+          "pointer": "/type_contract/types/CompareSelectedKnowledgeContext",
+          "canonical_sha256": "3b227257432c6f5a2d3e5f9fb86ffbbe9cff3964e04dd2e2332fec46783bf574"
+        },
+        {
+          "pointer": "/type_contract/types/KnowledgeUseMaterial",
+          "canonical_sha256": "5a874027eaa3fd2539199eb740f47478e94a6e3865fc6451d308b627fc508e3b"
+        },
+        {
+          "pointer": "/functions/6",
+          "canonical_sha256": "3da7bce8a9bd9751d266e7702071c47aa10f701fc8cc9003f1e1bea06d970351"
+        }
+      ]
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "raw_sha256": "ed9d8247f69bc2cd566344636708bc793214c4d591f9892895d86f80f63e1b42",
+      "nodes": [
+        {
+          "pointer": "/cases/7/negative_cases/4",
+          "canonical_sha256": "9491aebe5283e45931b08399e98e803ee281d7fc7a9df40cae3f41a9d2a0b165"
+        }
+      ]
+    }
+  ],
+  "semantic_units": [
+    {
+      "owner": "BRAIN032 F02",
+      "subject": "汎用templateの15descriptor中のrequired fieldの定義。descriptor keyは原Binding/slot_identity/descriptor_kindを持つ。",
+      "absence": "required slot又は原facts等の不足を区別し、原missingを他Patternのrequired inputで補わない。",
+      "return": "原axis/assessment/理由とknowledge_ownerを保持。製品FieldInput.refの存在又はその定義不在を意味しない。"
+    },
+    {
+      "owner": "CORE009 F05",
+      "subject": "実FieldInput.ref、templateと製品ApplicationBindingへ対応する個別field。",
+      "absence": "元ownerの同field定義不在命題とcontent_refs=[]等の既存guardを要する。",
+      "return": "元定義不足のrecipient材料。汎用descriptor missing、lookup miss又はBRAINのdoes_not_define_descriptorからabsence命題を生成しない。"
+    },
+    {
+      "owner": "CORE009 F06",
+      "subject": "製品側で選択したknowledge/templateの原版・意味・state・source・必須field集合と適用条件。",
+      "absence": "選択知識の不成立を他knowledgeや任意fallbackで補わず、未完と原根拠を保持。",
+      "return": "KnowledgeUseMaterialとComparison。BRAIN descriptor keyとrequired_field_refsの各要素は同一と未証明。"
+    }
+  ],
+  "local_design_observation": {
+    "upper_expectation": "BRAIN F02の原required field.definition不足をmissingで保持し、別Pattern成功で相殺せずknowledge_ownerへ戻す。",
+    "lower_correspondence": "既存L5 failure_rules/8とspecial_predicate_projection/5、native replacement_claim field枝は同じmissing/axis/ownerを指定している。確認範囲に原missingをknownへ上書きする規則は見つからなかった。",
+    "limit": "静的なsource対応。原reader全域・同call実返却・製品実行・設計Red/Greenの観測ではない。既存L8はnot_executed。"
+  },
+  "connection_observation": {
+    "existing_entry": "Core ApplicationInput.knowledge_records/templates/sourcesと同validation snapshotを使うCompareSelectedKnowledgeContextがある。F06はvalidatedとcompare_required_axesを受ける。",
+    "missing_binding": "どの原sourceが、選択knowledge/templateに原版・scope対応を確認できるBRAIN F02原Bindingとdescriptor assessmentを表すかを指定する受渡し契約は、確認したsourceでは未特定。",
+    "conditional_f05_path": "独立ownerが同じ実fieldについて既存形式の明示absence recordを既に供給した場合は、CORE既存F05のnative経路を使える。その命題がF02 missingから生成可能とは認定しない。",
+    "qualification_boundary": "BRAINのBinding/原source観測をCOREの製品Binding/Qualificationへcastしない。両端のRef全値、source/body、scope、ownerの原対応を別々に確認する。"
+  },
+  "rejected_inferences_ja": [
+    "missingというstate名の一致を理由に、descriptor keyをCore FieldInput.ref又はrequired_field_refsの要素へ置換する。",
+    "BRAIN F03のselected field/support用契約を、F02原結果の契約として暗黙流用する。",
+    "原source対応が無い範囲へ、製品field absence命題、空required_field_refs、架空Qualification又は有効knowledgeを補完する。"
+  ],
+  "next_design_scope_proposal": {
+    "state": "既決F06の責務に照らす具体化案。接続契約の採用・設計閉包をこの監査で生成しない。",
+    "scope": "既存ApplicationInputBindingが、選択template/knowledgeとBRAIN原結果の原版・scope対応を、既存source/bodyと両端の原Bindingを保ってF06へ結ぶ最小L4/L9契約を検討する。異型Bindingのwhole同値やscope同一を推測せず、新public引数や万能bridgeを先に作らない。",
+    "preservation": "選択した汎用意味契約の不足が残る場合に原F02 missingと根拠を保持し、別Pattern/非選択knowledgeの成功だけでusable候補へ昇格させない。製品の個別field欠落へ再分類しない。",
+    "negative_controls": [
+      "選択knowledgeと原F02のidentity/revision/scope対応がない。",
+      "同じ選択knowledgeのF02不足と他Pattern成功が併存する。",
+      "非選択knowledgeだけの不足を、無関係な有効選択範囲の一律失効へ変える。"
+    ],
+    "unknowns": "原F02結果を表す既存sourceの具体的所在、同call対応、両端owner資格、F06のtyped詳細writerとconsumerは未確定。CORE側の局所unknownと原F02 missingを同じstateへ強制しない。"
+  },
+  "failure_and_legacy_basis": {
+    "current_observation": "#3502最小実験はF02のdescriptor不足だが、補助CORE knowledge版leafとF05 field absenceの具体化へ対象が広がった。原実験の完了へ読み替えない。",
+    "issue_evidence": "https://github.com/RetryYN/HELIX-HARNESS/issues/3502#issuecomment-6307009463",
+    "legacy_path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+    "legacy_asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+    "legacy_sections": "§0〜§1",
+    "keep_ja": "I/O、failure、consumer/oracleの意味署名で比較し、名称の類似だけで統合しない。",
+    "change_ja": "現行BRAIN descriptorとCORE製品field/選択知識の境界へ照合する研究材料に限定。旧schema/runtime/CIや新しいgateを移植しない。",
+    "legacy_raw_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+  },
+  "completion_boundary_ja": [
+    "新しい要求意味、層再定義、source profile/schema/公開APIの採用ではない。",
+    "原欠陥に対する設計Red→最小Green→Refactorの完了ではない。",
+    "BRAIN→CORE→OS接続成立、限定要件/基本詳細全体の完了、製品CI/実受入/Release/Deployを証明しない。",
+    "Devinのfixture構築・14control保持の結果は未受領で、この監査の証拠には使っていない。"
+  ]
+}
