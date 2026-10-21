@@ -1838,7 +1838,27 @@
         "HARNESS-L8-009-F06-NEG-07",
         "HARNESS-L8-009-ADD-17"
       ],
-      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_selected_knowledge"
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_selected_knowledge",
+      "brain_definition_source_read_binding": {
+        "scope": "既存compare_selected_knowledgeの原source取得だけをL4へ束縛する。public Context/Comparison/KnowledgeUseMaterialと既存正常返却は変更しない。typed全writer・全domain閉包ではない。",
+        "basic_contract_ref": "docs/helix-harness/L4-basic-design/product-template-application.json#/selected_brain_definition_source_contract",
+        "snapshot": "context.validated.inputが実在するときだけ、その同immutable ApplicationInputのsemantic_records/templates/knowledge_records/sources/qualifications/qualification_rootsを読む。input=nullを空ApplicationInputへ補完しない。",
+        "record_walk": "semantic_recordsの原配列順でkind=selected_brain_definition_correspondenceの全出現を読む。kind以外のRawValueを破棄せず、6member/余剰member/presenceを元wholeに保持する。Ref一意map・first/latestで重複や相反を落とさない。",
+        "target_resolution": "selected_template_ref/selected_knowledge_refは同snapshotの実template/useへ既存reference_resolution_contractのRef規則で解決する。record.bindingと製品Binding、両端template_ref/knowledge_refを別々に照合し、BRAIN Binding又はdescriptorをCore製品fieldへcastしない。非選択だけのrecordを選択範囲の新必須入力にしない。",
+        "source_resolution": "record.source_refとmeaning.brain_source_refは異なる責務の原Refとして同snapshot.sourcesの全対応出現へ解決する。各sourceのbody/content_bytes/digest/qualification/root/owner/subject条件は既存reference_resolution_contractとwire_codec_contract/source_resolution_stagesに従い別々に照合する。一方の成立で他方を補わない。",
+        "qualification_boundary": "公開validated.unusable_source_refsが空又は対象Refを含まないことから、sourceの正資格やsemantic-use成立を逆算しない。f05_detail_contract/source_observation_contractは既存fn0の照合条件と観測scopeを確認する参照であり、F06内の原operand照合をfn0の実source_observationsと称さず、そのtyped観測値を捏造・再格納しない。実root供給元認証の未閉包を新たな全入力拒否gateへ変えない。",
+        "pointer_resolution": "input_pointer/comparison_pointer/brain_binding_pointerは各同原source.bodyをrootに、既存RFC6901規則でそれぞれ解決する。存在しない/null/未到達と到達した原値を区別し、別sourceや隣接recordから補わない。原input内の明示target frameを保持する。",
+        "call_boundary": "原公開Comparisonにはcall入力との対応memberがない。pointer到達・producer_symbol・Binding一致だけで同call captureを成立させない。外部ownerの原captureにその対応が明示された根拠を取得できない経路は未形成のまま保持する。ここで新capture型/receipt/実呼出しの成功記録を生成しない。",
+        "preservation": "原Comparison全memberと全axis/findingを原値/順/反復で原sourceに保持する。CORE側の取得結果は原record/sourceへ遡れる材料であり、BRAIN missingからCORE state/Finding codeを転記しない。record不在の元入力は既存F06経路を維持する。",
+        "paired_read_oracle": "docs/helix-harness/L8-unit-verification/product-template-application.json#/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "remaining": "対象別KnowledgeUseMaterial/Comparisonの全writer、原call対応の提供形式、実資格・配送、全複合枝は未完。取得規範の追補を設計Red/Green/Refactor完了としない。",
+        "legacy_basis": {
+          "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md §0–§1 (LEGACY-ASSET-603D0E8D8193914F4AC0)",
+          "keep": "I/O・failure・consumer/oracleを保ち原根拠を照合する。",
+          "change": "同snapshotの既存Contextに取得経路を束縛し、新private入口/Context/wrapperを増やさない。旧runtime/DB/観測型は移植しない。",
+          "failure_reference": "#3522で確認したBRAIN汎用descriptorとCORE製品fieldの粒度差、#3502 comment6306696930の既存型見落とし。既存入力にある原operandのために新型を増やさない。"
+        }
+      }
     },
     {
       "id": "HARNESS-L5-009-compare_meaning_impacts",
