@@ -11239,6 +11239,14 @@
             "reason_read": "Read<CoreJsonValue>",
             "basis_occurrences": "BasisOccurrence[]",
             "causes": "Cause[]"
+          },
+          "knowledge_scope": {
+            "validation": "ValidationDetailedReturn",
+            "input_scope_scan": "InputScopeProfileScan",
+            "profile_observation_index": "Natural",
+            "field_index": "Natural",
+            "unfinished_scope": "Formation<Read<CoreRef[]>>",
+            "unfinished_scope_basis_links": "ReturnLink[]"
           }
         }
       },
@@ -12748,7 +12756,7 @@
           "RecipientMaterial全member",
           "RecipientWriteContext全member"
         ],
-        "rule_ja": "recipient_leaf_writer_contractの七分岐へ既存原判断材料を渡す閉RecipientWriteContextから、同一producer walkの実形成済根拠だけを分類する。各原根拠のsubject/basis_linksは実原nodeへ、original_owner/original_reason/unfinished_refsはFormation<Read>で出典選定済みか未形成かを保つ。複数独立根拠は原順の別行で保持し、根拠未形成又は分類対象不明をunresolvedとして返す場合も既存unformed原因を全保持する。有効なknown/missing/unknown/conflict summaryを一律unformedにせず、元owner文字列だけで受信者を決めない。OS ticket/要求採用を生成しない。",
+        "rule_ja": "recipient_leaf_writer_contractの既存七分岐とknowledge_scope_writerへ既存原判断材料を渡す閉RecipientWriteContextから、同一producer walkの実形成済根拠だけを分類する。各原根拠のsubject/basis_linksは実原nodeへ、original_owner/original_reason/unfinished_refsはFormation<Read>で出典選定済みか未形成かを保つ。複数独立根拠は原順の別行で保持し、根拠未形成又は分類対象不明をunresolvedとして返す場合も既存unformed原因を全保持する。有効なknown/missing/unknown/conflict summaryを一律unformedにせず、元owner文字列だけで受信者を決めない。OS ticket/要求採用を生成しない。",
         "source_pointers": [
           "L4:/field_semantic_evidence_contract/basic_candidate_return/owners",
           "/contracts/6/backflow",
@@ -14978,7 +14986,7 @@
         "/f05_detail_contract/consumer_interpretation_binding"
       ],
       "scope_ja": "F13が既存分類根拠ごとの候補recipientと原owner/reason/unfinished範囲を全返却する内部分岐を閉じる。新public API/owner registry/qualification/provider/承認/ticket/配送を追加しない。",
-      "context_and_acyclicity": "RecipientWriteContextは閉tagged_union。field branchは元request/index及び既存DefinitionAssessment/RoleMaterial/ValueAssessment/ObligationMaterialを受け、gap_interpretation branchは元proposal/interpretationの実EvidenceRecordOccurrence/body/judgment/reason/basis/causesを受ける。完成RecipientMaterialを持つFieldOwnerResult/GapInterpretationを自分自身のinputへ入れない。元indexは同requestの実walkに束縛し、任意bool/recipientラベルを入力しない。",
+      "context_and_acyclicity": "RecipientWriteContextは閉tagged_union。field branchは元request/index及び既存DefinitionAssessment/RoleMaterial/ValueAssessment/ObligationMaterialを受け、gap_interpretation branchは元proposal/interpretationの実EvidenceRecordOccurrence/body/judgment/reason/basis/causesを受ける。完成RecipientMaterialを持つFieldOwnerResult/GapInterpretationを自分自身のinputへ入れない。元indexは同requestの実walkに束縛し、任意bool/recipientラベルを入力しない。 knowledge_scope branchは同outer request.validationのD viewと既存same-D scan/原profile出現/index、同walkで一度形成した当該scope judgment/linkを受ける。使わない二前段whole・完成recipient・新保存状態を要求しない。",
       "recipient_material_semantics": {
         "recipient_subject_basis_causes": "recipient enumは既存契約の候補先分類、subjectは元subjectのRead、basis_linksは実形成済み根拠だけへのReturnLink、causesは個別と集約の原cause列。どれも実受信資格や配送/受入ではない。",
         "original_owner": "Formation<Read<CoreJsonValue>>。formedは当該recipient根拠を述べる実原statement/source wrapper.ref.ownerのRead（Read.present(null)/absent/unreachedも原値として保持）。unformedは元statement/所在を選定できずReadを作れない場合に、原因を保持する。field.ref.owner、source owner、元proposal.backflow_owner又はcaller名を欠落ownerの代替にしない。source ownerは別既存owner evidenceとして保持する。",
@@ -15049,7 +15057,7 @@
         }
       ],
       "unfinished_scope_unformed": {
-        "guard_ja": "当該fieldに属する元unfinished列を同callの原資料から確定できず、ObligationMaterialがglobal保管しか持たない。",
+        "guard_ja": "当該fieldに属する元unfinished列を同callの原資料から確定できず、global保管だけでは当該scopeを形成できない。実scope source/assessmentが存在する場合はその全judgment/原因を共有し、無profileの場合だけ本U0を生成する。",
         "cause": {
           "kind": "aggregation_unestablished",
           "target": {
@@ -15074,15 +15082,48 @@
           "rule_pointer": "/f05_detail_contract/recipient_leaf_writer_contract/unfinished_scope_unformed"
         },
         "placement_ja": "一つのfield/proposal scope不足Causeをscope単位で一回生成し、同scopeを表す各当該recipient row Formation及びRecipientMaterial.causesへ同じCauseをcopyする。FieldOwnerResult/OwnerMaterialへの親移送はscope生成元一回だけ。子へcopyしたCauseを再flattenせず、別field/別原scope occurrenceの同値原因は値dedupしない。",
-        "boundary_ja": "U0はscope資料の技術的未形成で、原義務自体の未完/完了/NA判断ではない。raw obligations/kind trace/global returned_refsを保持し、必要集合/義務selector/消込を生成しない。"
+        "boundary_ja": "U0はscope資料の技術的未形成で、原義務自体の未完/完了/NA判断ではない。raw obligations/kind trace/global returned_refsを保持し、必要集合/義務selector/消込を生成しない。",
+        "left_read_selection_ja": "既存cause.leftの実compare_kind_obligation_trace.comparison.material.obligationsが到達済みなら従来どおりそのReadを使う。このnodeが存在しない経路では、同D validated.inputの原/obligationsを既存Read規則で読み、root=validation_input,pointer=/obligationsのpresent/absent/unreached全memberをleft.readへ置く。これはU0を説明するglobal保全の原資料選定という技術差分で、元obligationsをfield未完scopeの証明にしない。semantic_records等の巨大wholeをcauseへ追加複製せず、元U0 target/right literal/rule_pointer/一scope一回生成は保持する。原scope profile不明/未形成を無profileへ変換しない。"
       },
       "cause_copy_and_order": "同一生成Causeを下位Formation/assessmentへcopyして保持することと、異なる原occurrenceで同値Causeが発生することを区別する。値一致でdedupしない。親集約は固定生成段階の原原因列を定義順で連結し、子へ既にcopyした列を再flattenしない。FieldOwnerResult、FieldCheckProjection、OwnerMaterial及びComparisonのcause orderはfield_summary_and_custody_writer_contract/cause_propagation_orderが正本。",
       "remaining_ja": [
         "非nullreentry Ref先collection/body/正しい再評価consumerはL4から未指定であり、この節は調べない。",
-        "knowledge版不足→BRAINの独立原命題/版/owner/source/body対応及びtyped返却、application-contract不整合の独立原命題/owner/source/body対応は既存remaining boundaryのまま。一般未形成のrecipient rowで代替又は完了扱いしない。",
+        "knowledge版不足のsource/原版/owner/body/scan→recipientはknowledge_scope_writerで限定具体化する。全guard/実scope形成/全consumerは残務。application-contract不整合の独立原命題/owner/source/body対応は既存boundaryのまま。一般未形成rowで要求義務を代替又は完了にしない。",
         "当該field/proposal未完scope以外の要件、B019/030の同query/typed全入出力、実qualified recipient/review/Backflowの成立は別責務。"
       ],
-      "field_scope_supplement_ref": "/f05_detail_contract/field_obligation_scope_writer_contract"
+      "field_scope_supplement_ref": "/f05_detail_contract/field_obligation_scope_writer_contract",
+      "knowledge_scope_writer": {
+        "id": "HARNESS-L5-009-F05-KNOWLEDGE-RECIPIENT-WRITER",
+        "scope_ja": "既存knowledge版不足→BRAIN責務の内部leaf具体化。RecipientMaterial全7memberと旧field/gap枝、public出力/元request3/実outer形成条件は保持する。新API/enum/保存列/資格/配送/承認を追加しない。",
+        "upper_refs": [
+          "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/knowledge_revision_recipient_input",
+          "L9:/f05_validation_material_call_verification/knowledge_revision_recipient_input_verification"
+        ],
+        "context_constructor": {
+          "selection": "既存F05 Context/header形成済みの同producer walkに限る。既存scan.scanned.profile_observationsを原順で読み、field_input_resolution.locatedが同Dの実field原indexに対応し既存Selection.targetedで評価対象になった各原profile出現につき一context。profile_observation_indexとsemantic_record_index、raw field_indexとfield_results内local indexを混同しない。未解決fieldや未評価範囲に架空recipient行を作らず、元scanはC01へ保持する。",
+          "validation": "outer original_request.validation全値をread-only viewとして渡す。元request/返却へ第4member又はscan全複製を追加しない。",
+          "input_scope_scan": "同DにF05前一度だけ適用しC01が保存した既存scan全値。F13はreaderを再実行せず、他case/別call/cacheのscanを借りない。scanのrootからnative Readへのcastはせず、出力Readは以下の実Dのpathから作る。",
+          "unfinished_scope": "同fieldの既存F14 scope_assessmentがあればjudgment全値と実assessment ReturnLink一つを共有する。未形成assessmentの原原因はそのまま保持する。無profileが確認された範囲だけ既存unfinished_scope_unformedのU0をそのfield/scopeで一度生成し、旧recipient枝とknowledge枝が同じFormation/原因を共有する。profile未観測を無しへ変更せず、global returned_refs/proposal.unfinished列をfield scopeへ転用しない。",
+          "no_cycle": "unfinished_scopeはrecipient完成前の実scope形成結果。完成RecipientMaterialや返却先ラベルを引数へ戻さず、同scope原因をF13で再生成しない。"
+        },
+        "classification": {
+          "guard": "元semantic_record.kind/profile_id/profile_versionと同body/source/対象/意味ownerの既存reader guardが成立し、同原owner_statement.kind=required_version_not_supplied_in_input_scope、statement.required_refとprofile.required_knowledge_ref、statement.supply_scopeとprofile.supply_scopeが既存型付き等値で対応する範囲。located/declared_owner/owner名だけで成立にせず、別根拠/異版/scope不明を補完しない。",
+          "absent": "当該同D scan判断がrequired_version_absent_from_declared_input_scopeならrecipient=BRAIN候補。原field未完scopeのFormation.unformedはこの候補根拠を消さない。",
+          "present": "同原命題に対してrequired_version_present_in_declared_input_scopeならrecipient=unresolved。元命題と存在版の左右を別に保持し、新しいdomain conflict/Causeを生成しない。",
+          "unestablished": "上記条件/元資料が未形成の範囲はunresolvedと実原原因/Readを保持。版不存在やBRAINへ補完せず、有効なdomain判断を一律unformedにも変えない。全不正/未観測枝のtyped writer閉包は残務。"
+        },
+        "member_writers": {
+          "recipient": "上の条件付き既存enum分類。実受信資格/配送/採択ではない。",
+          "subject": "同Dの実field_inputs[i].refからnative Read<CoreRef>を作る。元Read presence/全Ref属性を保持し、proposalや親bindingを代用しない。",
+          "basis_links": "既存root=f05_returnの実/original_request/validation以下だけへ、原field.ref→原semantic_records[k].meaning whole→原knowledge_records collection→同profileに実対応したsources[s] whole→同source_observations.source_occurrences[v] wholeの順でReturnLinkを保持し、その後に実unfinished_scope_basis_linksを原順で連結する。解決されていないs/vへlinkを作らない。scan判断自体はこのrootに保存されないので同C01 scan/原indexとの接合限界を開示し、新ReturnLink rootを作らない。",
+          "original_owner": "原semantic_records[k].ref.ownerのnative ReadをFormation.formedで保持する。owner_statement.declared_owner/source owner/field owner/caller名から補完しない。原statement未選定なら実原因を持つunformed。",
+          "original_reason": "同原semantic_records[k].meaning.owner_statement.reasonのnative ReadをFormation.formedで保持し、実null/absentを区別する。外側meaning.reason/proposal.reasonへfallbackしない。元statement未選定は実原因のunformed。",
+          "unfinished_refs": "context.unfinished_scope全値をそのままcopy。形成済みscopeも未形成も同一規則で、[]/global義務/元proposal列を代入しない。",
+          "causes": "元profile/source/取得の同walkで実生成された局所原因の原順を保持し、その後に未形成scopeの原原因を一度copyする。childへcopy済み列を親で再flattenせず、同scope原因を親へ一度だけ移送する。S12/S13条件付き無他原因例は共有U0一件のみ。"
+        },
+        "storage_and_order": "既存field結果recipient_materialsへ、既存definition/value行を無変更prefixとして原profile観測順に一行ずつ追加する。同じfield/refの別原出現はdedup/priority flattenしない。field_resultsの実local indexへ格納し、raw field_indexを配列添字に流用しない。既存consumer_interpretation_bindingは同wholeを受ける。全consumer typed接合/実配送成立を本leaf追加だけで認定しない。",
+        "preserve_and_remaining": "既存U0の比較由来leftが実在する旧経路/全原caseは不変。直接leafの条件付き7member期待はF05全返却/Context実形成/実source資格/実consumer/Design CIではない。F14 assessment実入力・S12/S13以外の全guard/formed scope・既存field/gapとの混在全返却は別途対照が必要。"
+      }
     },
     "collection_and_obligation_origin_writer_contract": {
       "id": "HARNESS-L5-009-F05-COLLECTION-OBLIGATION-ORIGIN-WRITER",
@@ -15391,7 +15432,6 @@
           "FieldOwnerResult",
           "GapOwnerResult",
           "RecipientMaterial",
-          "RecipientWriteContext",
           "OwnerMaterial",
           "F05DetailedRequest",
           "F05DetailedReturn",
