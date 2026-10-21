@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""#3545 A: 固定revisionのHARNESS設計を読む監査補助。書込・凍結判定をしない。"""
+"""#3545: 固定revisionのHARNESS/OS/BRAINを読む監査補助。書込・凍結判定なし。"""
+import argparse
 import bisect
 import json
 import re
@@ -15,6 +16,59 @@ CONTAINERS = {'contracts', 'functions', 'cases', 'unit_oracles',
               'normal_function_oracles', 'additional_unit_cases'}
 REF_KEYS = {'requirement_ref', 'l3_ref', 'system_oracle_ref', 'l10_ref',
             'oracle_ref', 'function_ref', 'detail_ref', 'root_id', 'l4_ref', 'l9_ref'}
+
+# Only actual top-level source records and their immediate fields are scanned.
+# Approved snapshots, trace roots, fixtures, negative branches and descendants
+# are deliberately excluded; missing matches are reported as unconfirmed.
+PROFILES = {
+    'HELIX-OS': {
+        'root': 'docs/helix-os', 'parent_prefix': 'HELIXOS',
+        'document_prefixes': ('HELIXOS', 'OS'),
+        'fields': {
+            4: {'contracts': {'requirement_ref'}},
+            9: {'cases': {'requirement_ref'},
+                'verification_obligations': {'requirement_ref'}},
+            5: {'contracts': {'requirement_ref', 'requirement_id'},
+                'contract_trace': {'requirement_ref'},
+                'l4_contracts': {'requirement_ref'}},
+            8: {'cases': {'requirement_ref'},
+                'contracts': {'requirement_ref', 'requirement_id', 'l3_requirement_ref'},
+                'case_bindings': {'requirement_ref'}},
+        },
+        # The only nested exception is this source-attested L9 path.
+        'nested_fields': {9: {'cases': {'primary_trace': {'requirement_ref'}}}},
+        'bridge': {
+            'cases': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id', 'case_id'},
+            'contracts': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
+            'case_bindings': {'function_ref', 'l5_ref', 'l9_ref', 'root_id', 'case_id'},
+        },
+        'oracle_keys': ('system_oracle_ref', 'l10_ref', 'oracle_ref', 'l10_id', 'oracle_id', 'l10'),
+    },
+    'HELIX-BRAIN': {
+        'root': 'docs/helix-brain', 'parent_prefix': 'HELIXBRAIN',
+        'document_prefixes': ('HELIXBRAIN',),
+        'fields': {
+            4: {'contracts': {'requirement_ref'}},
+            9: {'verification_obligations': {'requirement_ref'},
+                'cases': {'requirement_ref'}},
+            5: {'functions': {'requirement_ref', 'requirement_id', 'l3_ref', 'l3_id'},
+                'function_contracts': {'requirement_ref', 'l3_ref', 'l3_id'},
+                'contracts': {'requirement_ref', 'requirement_id'},
+                'l4_contracts': {'requirement_ref', 'requirement_id'},
+                'l4_contract_bindings': {'l3', 'requirement_id', 'requirement_ref'}},
+            8: {'cases': {'requirement_ref', 'l3_ref', 'l3_id'},
+                'typed_cases': {'requirement_ref', 'l3_ref', 'l3_id'},
+                'contracts': {'requirement_ref', 'l3_ref', 'l3_id'}},
+        },
+        'bridge': {
+            'cases': {'function_ref', 'formal_function_ref', 'l5_ref', 'l9_ref',
+                      'l4_ref', 'l5_id', 'l9_id', 'l3_ref', 'l3_id', 'root_id'},
+            'typed_cases': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
+            'contracts': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
+        },
+        'oracle_keys': ('system_oracle_ref', 'l10_ref', 'oracle_ref', 'l10_id', 'oracle_id', 'l10'),
+    },
+}
 TOKEN = re.compile(r'"(?:\\.|[^"\\])*"|[{}\[\]:,]|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null')
 
 
@@ -74,83 +128,146 @@ def positions(text, wanted):
             delimiter = next(tokens)
 
     consume('')
-    assert set(result) == set(wanted), ('Pointerの位置が解決できない', set(wanted) - result.keys())
+    assert set(result) == set(wanted), ('Pointer unresolved', set(wanted) - result.keys())
     return result
 
 
 class Source:
-    def __init__(self, path):
+    def __init__(self, path, layer=None, profile=None):
         self.path = path
         self.text = git('show', BASE + ':' + path).decode()
         self.data = json.loads(self.text)
         self.wanted = set()
         self.lines = None
-        self.refs = {}
-        for container in CONTAINERS & self.data.keys():
-            for pointer, node in walk(self.data[container], '/' + container):
-                if not isinstance(node, dict):
-                    continue
-                for key in REF_KEYS & node.keys():
-                    if isinstance(node[key], str):
-                        self.refs.setdefault(node[key], []).append(pointer + '/' + key)
-        for paths in self.refs.values():
-            paths.sort(key=lambda p: (p.count('/'), tuple((0, int(s)) if s.isdecimal()
-                                                        else (1, s) for s in p.split('/')), p))
+        self.refs, self.bridge_refs = {}, {}
+        if profile is None:  # 既存HARNESS抽出の出力を保持
+            for container in CONTAINERS & self.data.keys():
+                for pointer, node in walk(self.data[container], '/' + container):
+                    if not isinstance(node, dict):
+                        continue
+                    for key in REF_KEYS & node.keys():
+                        if isinstance(node[key], str):
+                            self.refs.setdefault(node[key], []).append(pointer + '/' + key)
+        else:
+            for container, keys in profile['fields'][layer].items():
+                self._index_direct_entries(container, keys, self.refs)
+            for container, paths in profile.get('nested_fields', {}).get(layer, {}).items():
+                for index, entry in enumerate(self.data.get(container, [])):
+                    if not isinstance(entry, dict):
+                        continue
+                    for nested, keys in paths.items():
+                        node = entry.get(nested)
+                        if not isinstance(node, dict):
+                            continue
+                        for key in keys & node.keys():
+                            value = node[key]
+                            if isinstance(value, str):
+                                pointer = f'/{container}/{index}/{escape(nested)}/{escape(key)}'
+                                self.refs.setdefault(value, []).append(pointer)
+            if layer == 8:
+                for container, keys in profile['bridge'].items():
+                    self._index_direct_entries(container, keys, self.bridge_refs)
+        for mapping in (self.refs, self.bridge_refs):
+            for paths in mapping.values():
+                paths.sort(key=lambda p: (p.count('/'), tuple((0, int(s)) if s.isdecimal()
+                                                             else (1, s) for s in p.split('/')), p))
 
-    def reference(self, identity):
-        paths = self.refs.get(identity, [])
+    def _index_direct_entries(self, container, keys, target):
+        entries = self.data.get(container)
+        if not isinstance(entries, list):
+            return
+        for index, entry in enumerate(entries):
+            if not isinstance(entry, dict):
+                continue
+            for key in keys & entry.keys():
+                value = entry[key]
+                if isinstance(value, str):
+                    target.setdefault(value, []).append(f'/{container}/{index}/{escape(key)}')
+
+    def reference(self, identity, bridge=False):
+        paths = (self.bridge_refs if bridge else self.refs).get(identity, [])
         return paths[0] if paths else None
 
     def request(self, pointer):
-        pointer_value(self.data, pointer)  # 不在をline 1や別nodeへ補完しない。
+        pointer_value(self.data, pointer)
         self.wanted.add(pointer)
         return (self, pointer)
 
 
-def inventory():
-    paths = git('ls-tree', '-r', '--name-only', BASE, 'docs/helix-harness').decode().splitlines()
+def inventory(owner='HELIX-HARNESS'):
+    profile = PROFILES.get(owner)
+    root = profile['root'] if profile else 'docs/helix-harness'
+    paths = git('ls-tree', '-r', '--name-only', BASE, root).decode().splitlines()
     result = {layer: {} for layer in LAYERS}
     for path in paths:
         match = re.search(r'/L([4589])-[^/]+/[^/]+\.json$', path)
         if not match:
             continue
-        layer, source = int(match[1]), Source(path)
+        layer = int(match[1])
+        source = Source(path, layer, profile)
         parent = source.data.get('parent')
-        identity = re.match(r'HARNESS-L' + str(layer) + r'-(\d{3})(?:-|$)', source.data.get('document_id', ''))
-        by_id = 'HARNESS-L2-' + identity[1] if identity else None
-        assert not parent or not by_id or parent == by_id, ('parent不一致', path)
+        if profile is None:
+            identity = re.match(r'HARNESS-L' + str(layer) + r'-(\d{3})(?:-|$)', source.data.get('document_id', ''))
+            by_id = 'HARNESS-L2-' + identity[1] if identity else None
+            assert not parent or not by_id or parent == by_id, ('親不一致', path)
+            parent = parent or by_id
+            assert parent and parent not in result[layer], ('親不明/重複', path)
+            result[layer][parent] = source
+            continue
+        pattern = r'^(?:' + '|'.join(profile['document_prefixes']) + r')-L' + str(layer) + r'-(\d{3})(?:-|$)'
+        identity = re.match(pattern, source.data.get('document_id') or '')
+        by_id = profile['parent_prefix'] + '-L2-' + identity[1] if identity else None
+        assert not parent or not by_id or parent == by_id, ('parent/document_id mismatch', path)
         parent = parent or by_id
-        assert parent and parent not in result[layer], ('親不明/重複', path)
+        assert parent and parent not in result[layer], ('parent missing/duplicate', path)
         result[layer][parent] = source
     return result
 
 
 def entry_identity(source, pointer):
-    # actual container entryのIDだけを辿る。L3/L10承認snapshotのIDで代替しない。
     entry = '/'.join(pointer.split('/')[:3])
     value = pointer_value(source.data, entry)
     return entry + '/id' if isinstance(value, dict) and isinstance(value.get('id'), str) else None
 
 
-def oracle_link(source, pointer, oracle):
+def oracle_link(source, pointer, oracle, profile=None):
     entry = '/'.join(pointer.split('/')[:3])
     value = pointer_value(source.data, entry)
-    for key in ('system_oracle_ref', 'l10_ref', 'oracle_ref'):
-        if key in value:
-            return key + ':' + ('一致' if value[key] == oracle else '不一致'), source.request(entry + '/' + key)
-    return 'L10直接参照未記載', None
+    if profile is None:  # preserve the existing HARNESS comparison rule verbatim
+        for key in ('system_oracle_ref', 'l10_ref', 'oracle_ref'):
+            if key in value:
+                return key + ':' + ('一致' if value[key] == oracle else '不一致'), source.request(entry + '/' + key)
+        return 'L10直接参照未記載', None
+    keys = profile['oracle_keys']
+    if pointer.startswith(entry + '/primary_trace/'):
+        entry += '/primary_trace'  # 選択した実traceと同じobjectに限定する。
+    locations = [(key, entry + '/' + escape(key)) for key in keys]
+    for key, ref in locations:
+        try:
+            linked_value = pointer_value(source.data, ref)
+        except (KeyError, IndexError, ValueError):
+            continue
+        if isinstance(linked_value, str):
+            return key + ':' + ('一致' if linked_value == oracle else '不一致'), source.request(ref)
+        return key + ':指定key値は文字列でなく未確認', source.request(ref)
+    return '指定keyでL10参照未確認', None
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--owner', choices=('HELIX-HARNESS', *PROFILES), default='HELIX-HARNESS')
+    owner = parser.parse_args().owner
+    profile = PROFILES.get(owner)
+    label = owner.removeprefix('HELIX-')
     audit_text = git('show', BASE + ':' + AUDIT).decode()
     audit = json.loads(audit_text)
     pairs = [(i, pair) for i, pair in enumerate(audit['pairs'])
-             if pair['requirement']['owner'] == 'HELIX-HARNESS']
+             if pair['requirement']['owner'] == owner]
     parents = {pair['requirement']['parent'] for _, pair in pairs}
-    assert len(pairs) == 126 and len(parents) == 18
+    assert (len(pairs), len(parents)) == {'HELIX-HARNESS': (126, 18), 'HELIX-OS': (79, 12), 'HELIX-BRAIN': (70, 16)}[owner]
     audit_lines = positions(audit_text, {f'/pairs/{i}/{side}/entry/id'
                                         for i, _ in pairs for side in ('requirement', 'oracle')})
-    docs, rows = inventory(), []
+    docs, rows = inventory(owner), []
     for index, pair in pairs:
         parent = pair['requirement']['parent']
         req, oracle = pair['requirement']['entry']['id'], pair['oracle']['entry']['id']
@@ -167,37 +284,46 @@ def main():
                 source, pointer = refs[previous][0]
                 identity_pointer = entry_identity(source, pointer)
                 identity = pointer_value(source.data, identity_pointer) if identity_pointer else None
-                linked = target.reference(identity) if identity else None
+                linked = target.reference(identity, bridge=bool(profile)) if identity else None
                 if linked:
                     refs[3] = [target.request(linked), source.request(identity_pointer)]
                     break
         oracle_status = 'L9子対応未確認'
         if refs[1]:
-            oracle_status, link = oracle_link(*refs[1][0], oracle)
+            oracle_status, link = oracle_link(*refs[1][0], oracle, profile)
             if link:
                 refs[1].append(link)
         rows.append((index, parent, req, oracle, refs, oracle_status))
     sources = [docs[layer][p] for p in sorted(parents) for layer in LAYERS if p in docs[layer]]
-    assert len(sources) == 72
+    assert len(sources) == {'HELIX-HARNESS': 72, 'HELIX-OS': 48, 'HELIX-BRAIN': 64}[owner]
     for source in sources:
-        source.request('/status')
+        if 'status' in source.data:
+            source.request('/status')
         for field in ('pair', 'paired_document'):
             if field in source.data:
                 source.request('/' + field)
         source.lines = positions(source.text, source.wanted)
-    print('# HARNESS下流設計の参照抽出（#3545 A、分類前の監査素材）\n')
-    print(f'source revision: `{BASE}`。18親126組。全405組の完了、意味適合、凍結成立を生成しない。\n')
-    print(f'input: `{AUDIT}`。末列は `/pairs/{{index}}/requirement/entry/id` と `/oracle/entry/id` の行番号。')
-    print('sourceは固定revisionの全HARNESS L4/L9/L5/L8 JSON。approved snapshotだけの一致はchild対応に使わない。')
-    print('抽出は9 container内の指定keyの文字列値のみ。container外・配列値・id自体・subdir JSONは探索外。代表の(+N)は同IDの追加候補数。')
-    print('L8の間接参照はL9 root／L5 functionの実IDへの参照と、そのID出典を併記する。契約適合や全edgeの証明ではない。')
-    print('未確認はartifact不存在ではない。これは参照抽出であり、5分類と凍結根拠はA2で個別照合する。\n')
+    if profile is None:
+        print('# HARNESS下流設計の参照抽出（#3545 A、分類前の監査素材）\n')
+        print(f'source revision: `{BASE}`。18親126組。全405組の完了、意味適合、凍結成立を生成しない。\n')
+        print(f'input: `{AUDIT}`。末列は `/pairs/{{index}}/requirement/entry/id` と `/oracle/entry/id` の行番号。')
+        print('sourceは固定revisionの全HARNESS L4/L9/L5/L8 JSON。approved snapshotだけの一致はchild対応に使わない。')
+        print('抽出は9 container内の指定keyの文字列値のみ。container外・配列値・id自体・subdir JSONは探索外。代表の(+N)は同IDの追加候補数。')
+        print('L8の間接参照はL9 root／L5 functionの実IDへの参照と、そのID出典を併記する。契約適合や全edgeの証明ではない。')
+        print('未確認はartifact不存在ではない。これは参照抽出であり、5分類と凍結根拠はA2で個別照合する。\n')
+    else:
+        print(f'# {label}下流設計の参照抽出（#3545 B0、分類前の監査素材）\n')
+        print(f'source revision: `{BASE}`。{len(parents)}親{len(pairs)}組。凍結・意味適合・全405組完了を生成しない。\n')
+        print(f'input: `{AUDIT}`。末列は `/pairs/{{index}}/requirement/entry/id` と `/oracle/entry/id` の行番号。')
+        print('owner/層別profileのcontainer直下entryの指定keyだけを抽出。OS L9はcases内primary_traceの明示keyも含む。')
+        print('他のnested/approved snapshot/trace root/fixture・negative内/配列値/id自体/subdirectory JSONは探索外。')
+        print('代表参照(+N)とL8 bridgeの両側Pointerを示す。未確認はartifact不存在・設計不適合を意味しない。\n')
     aliases = {id(s): f'S{i + 1}' for i, s in enumerate(sources)}
     print('| source | path | status位置 | document pair |\n|---|---|---|---|')
     for source in sources:
         pair = ', '.join(f'{k}={source.data[k]} @ {source.lines["/" + k]}'
                          for k in ('pair', 'paired_document') if k in source.data)
-        print(f'| {aliases[id(source)]} | `{source.path}` | /status:{source.lines["/status"]} | {pair or "記録未確認"} |')
+        print(f'| {aliases[id(source)]} | `{source.path}` | /status:{source.lines.get("/status", "未記載")} | {pair or "記録未確認"} |')
     print('\n| audit /pairs index | parent | L3 | L10 | L4 | L9 | L5 | L8 | audit L3/L10行 |\n|---|---|---|---|---|---|---|---|---|')
     for index, parent, req, oracle, refs, oracle_status in rows:
         evidence = []
@@ -208,7 +334,7 @@ def main():
                 citations = []
                 for source, pointer in links:
                     value = pointer_value(source.data, pointer)
-                    hits = source.refs.get(value, [])
+                    hits = (source.refs.get(value) or source.bridge_refs.get(value, []))
                     count = f'(+{len(hits) - 1})' if pointer in hits and len(hits) > 1 else ''
                     citations.append(f'{aliases[id(source)]}:{source.lines[pointer]} `{pointer}`{count}')
                 evidence.append(' ← '.join(citations))
@@ -216,6 +342,13 @@ def main():
         audit_ref = '/'.join(str(audit_lines[f'/pairs/{index}/{side}/entry/id'])
                              for side in ('requirement', 'oracle'))
         print('| ' + ' | '.join([str(index), parent, req, oracle, *evidence, audit_ref]) + ' |')
+
+    if profile:
+        print('\n## 指定profileで子対応を確認できなかった組（機構の欠落判定ではない）')
+        for offset, layer in enumerate(LAYERS):
+            misses = [(parent, req) for _, parent, req, _, refs, _ in rows if not refs[offset]]
+            examples = '; '.join(parent + ' ' + req for parent, req in misses[:2]) or 'なし'
+            print(f'- L{layer}: {len(misses)}/{len(pairs)} 未確認。例: {examples}')
 
 
 if __name__ == '__main__':
