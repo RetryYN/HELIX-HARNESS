@@ -1,0 +1,63 @@
+{
+  "document_id": "AUDIT-H001-F02-CONSTRUCTOR-CALCULATION-2026-10-21",
+  "kind": "fixed_design_program_calculation_evidence",
+  "issue": 3502,
+  "source_main": "92af2a726d0d19af26bf33452cad7ec7acdb361e",
+  "authority_effect": "none",
+  "scope_ja": "HARNESS001 F02の型付きContextと供給された内部priorを前提とする既存finish返却後段。既存L8基底8件だけ。",
+  "cause_ja": "既存の構造・hash照合と、設計の意味プログラムを実際に計算した証拠を区別し、別保管readerに依存する再現不能を避ける。BRAIN032元候補へ追加設計はしない。",
+  "source": {
+    "path": "docs/governance/audits/source-rebaseline/source-snapshots/h001-f02-constructor-calculation.py",
+    "sha256": "a36d8f8d673bcdad9dadf9afa865bace13aeb0d1ad05eba7e1bbb818a53b42cf",
+    "command": "python3 -B docs/governance/audits/source-rebaseline/source-snapshots/h001-f02-constructor-calculation.py --root ."
+  },
+  "existing_inputs": [
+    {
+      "path": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+      "pointer": "/contracts/1",
+      "role": "独立適用と003/008戻し責務の上位契約"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+      "pointer": "/cases/1",
+      "role": "独立適用・N/A不足・合意を試作成功で補完しない上位期待"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+      "pointer": "/f02_return_construction/expression_language",
+      "role": "既存24演算の意味宣言とfinish式。新DSLは追加しない"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+      "pointer": "/f02_constructor_oracles/cases",
+      "role": "既存8入力recipe・明示prior・凍結返却期待。計算器へexpectedを渡さない"
+    }
+  ],
+  "result": {
+    "status": "PASS_FIXED_CONSTRUCTOR_CALCULATION",
+    "case_count": 8,
+    "ordered_result_digest": "29d572de8ece18bcb547b6769894fc42a0cfd9b3bb8667ee1e3bda047266a165",
+    "all_full_returns_equal": true,
+    "arguments_and_prior_unchanged": true
+  },
+  "oracle_sensitivity_control": {
+    "case": "RET-L2-SUBJECT-MISSING",
+    "mutation_pointer": "/definitions/finish/body/else/body/fields/value/else/fields/agreement_state/then/literal",
+    "mutation": "missing -> current（隔離copyのみ）",
+    "observation_ja": "元のoutcomeは同じだが全返却比較が誤ったagreement_stateを拒否。元設計の欠陥又は設計Redとは呼ばない。"
+  },
+  "reader_control_ja": "Boolean/数値の区別、数値同値、object/array順、ifの非選択枝不評価、未定義演算、空first、member欠落、不正pointer escape/非ASCII配列indexを対照。現在の限定演算器の確認であり全AST正当性の証明ではない。",
+  "independent_review_input_ja": "別contextが既存L5宣言との演算対応と8全返却を再確認。不正pointer受理2点を修正し、8件の一致を再確認。上位期待との独立対応はDevinへ別依頼し、結果は未受領。これを新しい実行開始gateにはしない。",
+  "reuse": {
+    "current_example": "docs/governance/audits/source-rebaseline/source-snapshots/os016-origin-unbound-source-check.py:157-208,218-303",
+    "legacy": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md:16-47",
+    "keep_ja": "pure計算と外部作用の分離、原source/独立Context/返却期待の保持、入力不変、未知を補完しない。",
+    "change_ja": "OS016用Python programの評価器は移植せず、HARNESS001が既に持つJSON式だけを有限評価する監査sourceを公開する。旧runtime/DB/CLI/固定roleは実行・移植しない。"
+  },
+  "limits_ja": [
+    "元8caseの既存期待との一致であり、上位から新たに独立導出した全oracleとは呼ばない。",
+    "内部priorは供給値。既存F02前段・Context形成・owner資格・内容解決を再計算しない。",
+    "追加26case、順序control、全F01/B01、全入力域、consumer接続は未評価。",
+    "同じ8件の一致は新しい設計Red/Green/Refactor循環・Design CI・製品実装・実配送・受入・限定設計全体の完了を証明しない。"
+  ]
+}
