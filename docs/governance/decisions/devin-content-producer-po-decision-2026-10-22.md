@@ -25,12 +25,7 @@ authority_effect: operation_direction_only_no_runtime_activation
 
 ## Devinに限る当面の作成運転案
 
-- Devinは、必要なGitHub操作能力を割当前に確認できる場合に限り、作成側として扱える。割当範囲は自分のbranchへのpush、Draft PR作成、exact HEADを束縛した`review_request`送信、review指摘の修正、独立reviewで`no_findings`を受けた後のReady化までとする。
-- Devinが作成したPRの独立reviewと明示mergeは作成者以外が担い、当面はClaudeが担当する。Devin自身のreview・merge経路は開かない。
-- Devinが作成側の必要能力を満たさない、または作成できない場合、Codexがproposalを検収・取り込み、作成側としてPRを作成する既存の代替経路を使う。
-- Antigravityは2026-10-19の試験中・worker限定の扱いを維持し、本記録から作成・review・merge権限を導かない。
-
-これは運転方向の記録であり、現在の仮設経路を実行可能にするものではない。文書とPRは上流確認・reviewの対象に留まり、資格情報・利用者設定・通知実装を変更・有効化せず、現行経路が利用可能であることも示さない。
+統制側は、能力条件を満たしたDevinをPR作成側へ割り当て、作成者以外による独立review・mergeを行う運転方向と解釈する。運転規則は[GitHub上流運用モデル「GUIレーンの運転と通知」](../github-upstream-operating-model.md#guiレーンの運転と通知)を正とする。
 
 ## 旧HELIX・既決判断との対応
 
@@ -46,11 +41,11 @@ DevinがPR #3418・#3419を作成した実績は能力確認の参考に留ま�
 
 現行`scaffold/review-handoff/packet.py`は`PR_RUNTIMES = ("claude", "codex")`で、`validate`はauthor／reviewerをClaude・Codexの組に限定する。`gui_mailbox.py send`も同じ組を要求し、`bind`の`LANES`ではDevinを`worker`に限定する。従ってDevinをauthorとする`review_request`や、Devinの`execution` bindingは現在成立しない。運用文書だけでこの制約を通過できるものとして扱わない。
 
-別WIでは、PR packet／通知経路を**Devin author → Claude reviewer**の一方向に限って成立させる案を提示する。最小の実装範囲は、`packet.py`のPR作成側・review側の組み合わせ判定とpacket生成、`gui_mailbox.py`のDevin author bindingおよび`review_request`送信判定、対応する正例・拒否例のselftestとREADME／SCF-B-0003の境界記述である。既存のClaude↔Codex経路を保持し、PRのauthor→reviewer組としてCodex→Devin、Claude→Devinを追加しない。これは既存の`work_request`／`work_result`経路を禁止・変更する意味ではない。Devin author bindingは現行のexclusive `execution` lane制約とCodexのexecution割当が競合しうる。この競合の扱いは未解決として残し、本WI-1bではexclusive制約を変更する案を作らない。Devin自身のreview・merge、Antigravityの作成・review経路も追加しない。Devin作成PRでClaudeからexact HEADの独立review responseが返るまでReady化できない運転を対象にする。別WIの判断・実装・検証が済むまで、この経路は利用可能と宣言しない。
+別WIでは、PR packet／通知経路を**Devin author → Claude reviewer**の一方向に限って成立させる案を提示する。最小の実装範囲は、`packet.py`のPR作成側・review側の組み合わせ判定とpacket生成、`gui_mailbox.py`のDevin author bindingおよび`review_request`送信判定、対応する正例・拒否例のselftestとREADME／SCF-B-0003の境界記述である。既存のClaude↔Codex経路を保持し、PRのauthor→reviewer組としてCodex→Devin、Claude→Devinを追加しない。これは既存の`work_request`／`work_result`経路を禁止・変更する意味ではない。Devin作成のL3／L10 `design_verification`でreview側とのmodel familyが同じ、またはいずれかunknownならClaudeだけで委任承認を成立させず、別family reviewer経路が必要な場合は後続WIの範囲へ送る。Devin author bindingは現行のexclusive `execution` lane制約とCodexのexecution割当が競合しうる。この競合の扱いは未解決として残し、本WI-1bではexclusive制約を変更する案を作らない。Devin自身のreview・merge、Antigravityの作成・review経路も追加しない。Devin作成PRでClaudeからexact HEADの独立review responseが返るまでReady化できない運転を対象にする。別WIの判断・実装・検証が済むまで、この経路は利用可能と宣言しない。
 
 ## 対象外
 
 - Antigravityの権限、一般的な第三者runtimeの権限、旧HIL-BR-32全体の変更。
-- `packet.py`、`gui_mailbox.py`、README、selftest、Bindingのrole／obligationsの実装変更。
+- `packet.py`、`gui_mailbox.py`、selftest、Bindingのrole／obligationsの実装変更（READMEには現行実装制約の注記だけを加える）。
 - PR #3418・#3419の遡及承認、merge状態の変更、Issue完了。
 - 要求の意味、L3以下の承認、新しいmerge admission、release、tag、cutover、配布の許可。
