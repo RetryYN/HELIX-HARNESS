@@ -10123,5 +10123,92 @@
       "retained": "欠損を空集合へ変えず、局所原因と全支持を残し、自己申告から完了を生成しない。",
       "current_failure_example": "PR #3377で原source未取得の旧normal/ADD-11/12をknownや根拠付きN/Aとしていた期待を訂正した事例を保持する。参照・型の存在だけで新経路の実成功を宣言しない。"
     }
+  },
+  "selected_brain_definition_source_contract": {
+    "id": "HARNESS-L4-009-F06-BRAIN-DEFINITION-SOURCE",
+    "requirement_ref": "HARNESS-L3-009-F06",
+    "system_oracle_ref": "HARNESS-L10-009-F06",
+    "paired_verification_ref": "HARNESS-L9-009-F06-BRAIN-DEFINITION-SOURCE",
+    "status": "既決F06の基本接続具体化候補。下位typed writer/実接続は未成立。",
+    "authority_effect": "none",
+    "operation_effect": "none",
+    "source_basis": [
+      {
+        "revision": "85368390b6d0173fd40d0a26f2a4bbe1a3311e13",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/1",
+        "id": "HELIXBRAIN-L3-032-F02",
+        "canonical_sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+      },
+      {
+        "revision": "85368390b6d0173fd40d0a26f2a4bbe1a3311e13",
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/1",
+        "id": "HELIXBRAIN-L10-032-F02",
+        "canonical_sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+      },
+      {
+        "revision": "85368390b6d0173fd40d0a26f2a4bbe1a3311e13",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/28",
+        "id": "HARNESS-L3-009-F06",
+        "canonical_sha256": "c80dc10b5dd9a70f58283ab5b064dc59ffa77cc9e757706554f88c62b77bcabe"
+      },
+      {
+        "revision": "85368390b6d0173fd40d0a26f2a4bbe1a3311e13",
+        "path": "docs/helix-harness/L10-verification/functional-verification.json",
+        "pointer": "/cases/28",
+        "id": "HARNESS-L10-009-F06",
+        "canonical_sha256": "0bfe30ebc97c6d41bdd97a1dd1db63fa2dda0d5bd712bc5e0f22d2e6d05527f5"
+      },
+      {
+        "revision": "85368390b6d0173fd40d0a26f2a4bbe1a3311e13",
+        "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/30",
+        "id": "HARNESS-L3-009-F08",
+        "canonical_sha256": "c8b9bf5efe236099dde657908974decf43edb0e20a59ed3af3f6b327f7bb7439"
+      }
+    ],
+    "purpose_ja": "選択template/knowledgeに対応するBRAIN F02の汎用descriptor不足を、元public返却と両端Bindingのまま保持する。他Patternの成功で有効利用へ昇格させず、CORE F05の製品field absenceへ変換しない。",
+    "ownership": {
+      "mapping": "ApplicationInputBindingが製品側の対応を持つ。BRAINへApplicationBindingを保有させない。",
+      "original": "BRAIN側意味ownerが保持する原public call入力/Comparison。既存CORE transport SourceEnvelopeへ明示供給したcaptureを読む。BRAIN native QualifiedSource.contentをCORE bodyへ暗黙renameせず、Qualification型もcastしない。",
+      "projection": "F06が既存KnowledgeUseMaterial/Comparisonへ原根拠を結ぶ。COREのstateをBRAIN stateからcopyせず、OS記録・採否・配送は行わない。"
+    },
+    "carrier": {
+      "input": "既存ApplicationInputのsemantic_records/templates/knowledge_records/sourcesを同validation snapshotから読む。CompareSelectedKnowledgeContextの公開memberは増やさない。",
+      "record_selector": "SemanticRecord.kind=selected_brain_definition_correspondenceの原出現を読む。このkindは既存string欄に対する局所解釈識別子で、公開enum/登録状態を追加しない。record.bindingは原製品ApplicationBinding。既存TemplateSnapshot.meaning_contract_ref/source_ref/knowledge_refは用途も原値も保持し、対応recordへ付け替えない。",
+      "meaning_members": {
+        "selected_template_ref": "実TemplateSnapshot.refを指す原Ref。",
+        "selected_knowledge_ref": "実KnowledgeUseRecord.refを指す原Ref。",
+        "brain_source_ref": "原public captureを持つ既存CORE SourceEnvelope.ref。",
+        "input_pointer": "そのSourceEnvelope.bodyをrootとするRFC6901 pointer。原BRAIN public関数入力への所在。",
+        "comparison_pointer": "同bodyをrootとする原Comparisonへのpointer。",
+        "brain_binding_pointer": "同body内のinput_pointerが指す原入力に含まれるroot又はcandidateの原BRAIN Bindingへのpointer。target frameをfirst-matchで推定しない。"
+      },
+      "shape_boundary": "6欄は本解釈で読む論理member。元meaning whole/余剰member/presenceを保持し、既存RawValue/wire schemaを変更しない。欠けたRef/Binding/pointer値を隣接値から補完しない。",
+      "public_boundary": "原public Comparisonのaxes/findings/producer_symbol/input_binding、全AxisResultのsubject_ref/binding/axis/state/original_refs/reason/backflow_ownerを原型で保持する。private DescriptorDefinitionAssessment/DescriptorTargetCallObservationを輸入しない。"
+    },
+    "ordered_contract": [
+      "1. 既存の操作選択と対象TemplateSnapshot/KnowledgeUseRecordを先に確かめる。非選択knowledgeへの対応だけでは対象操作へ必須入力を増やさない。kind識別できる全原recordは原順/反復を保持し、同Refの複数出現を黙示dedupeしない。",
+      "2. 対応recordの原bindingと対象のCore ApplicationBinding、selected_template_ref/selected_knowledge_refと実snapshot/useの原Ref、実KnowledgeUseRecord.template_ref/TemplateSnapshot.knowledge_refの対応を既存Ref/source規則へ結ぶ。源の全Ref・版・scope・owner・所在・供給digest条件を保持する。異型Binding全体の同値や両端scope同一を条件にしない。",
+      "3. 対応record.source_refは製品側対応根拠、meaning.brain_source_refはBRAIN原captureのsourceとして別々に解決する。各SourceEnvelopeの元body/bytes/digest・Qualification/root/owner/subjectの観測は既存ApplicationInputBindingのvalidation規則に従い保持する。原source取得と意味対応を別判定にし、role名/record名/Comparison成功から資格・承認を作らない。",
+      "4. input_pointer/comparison_pointer/brain_binding_pointerは同じ原bodyに対して解決する。原captureが一つのcallの入力/返却対応を明示する範囲だけを用い、pointer到達、symbol又はBinding一致だけで同call観測を生成しない。対象Bindingの所在は原入力内に限り、root以外の正当なcandidate frameも原指定のまま保持する。",
+      "5. 原Comparison.producer_symbol=compare_descriptor_definitionsと原call入力/返却対応を確認し、対象原BRAIN Bindingへ属する全axis/finding出現を元順/全値で読む。対象FrameのRef対応とCORE側選択の意味対応が未形成なら、当該接続を未形成として保持する。input_bindingがrootを表す場合に全axisへrootを上書きせず、各原axis.bindingを使う。",
+      "6. この原対応が成立した選択範囲で、原required field.definitionのmissingがあるとき、その原axis/reason/owner/refsをsourceに保持し、他Pattern/candidateのknownで消さない。当該不足を解消していない選択knowledgeをusable_candidate_refsへ有効候補として投影しない。原selected_knowledge_refs/実checked_field_refsと原未完義務は保持し、BRAIN descriptorをchecked_field_refsの新要素へ変換しない。",
+      "7. COREの原根拠参照は対応recordとBRAIN sourceの実Refへ結び、原BRAIN Binding/Comparisonへ遡れるようにする。CORE側の局所AxisResult/state/Finding code、Ref未形成時のtyped返却、KnowledgeUseMaterialへの全writerは下位pairで独立期待と照合して定める。BRAIN missingをCORE missingへcopyせず、knowledge_gap_fallback等の既存Findingを別predicateへ流用しない。",
+      "8. 明示された対応の欠落/曖昧/別版/資格未形成は、原材料と当該接続の未形成を保持する。該当recordが存在しない元入力へ新しいBRAIN capture必須gateを課さず既存F06経路を維持する。この追加接続の未評価をBRAIN完全性成立へ読み替えず、別の有資格原根拠も捨てない。非選択/別scopeの原不足だけで無関係の有効範囲を失効させない。"
+    ],
+    "limits_ja": [
+      "原public captureの提供とsource資格の実成立は外部owner/CONNECT境界。値がschema形に合うことだけで実call/実資格を認定しない。",
+      "kind識別可能だが対象Ref未形成のrecordは未結合材料として保存し、架空の選択targetや全選択失効へ割り振らない。",
+      "同targetの複数correspondence/原axis相反は全材料を保持し、latest/first/多数決で勝者を作らない。全複合枝の下位返却は未完。",
+      "この基本pairは独立期待の接続を定める候補であり、設計Red/Green/Refactorの実験完了、F06全domain、F05/OS consumer、製品実装/CI/受入の成立ではない。"
+    ],
+    "legacy_and_refactor": {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md §0〜§1 (LEGACY-ASSET-603D0E8D8193914F4AC0)",
+      "keep": "名称でなくI/O/意味/consumer/oracleを比較し、対象粒度と原根拠を保つ。",
+      "change": "既存public返却とCORE側対応recordへ限定して接続を具体化し、私有型コピー/新wrapper/意味契約参照の転用を避ける。旧runtime/schema/gateは移さない。"
+    }
   }
 }
