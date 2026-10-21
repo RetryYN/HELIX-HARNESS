@@ -12,7 +12,7 @@ scope: HELIX-LABO 10 parents / 26 pairs / 40 source documents
 
 ## 判定基準と検索境界
 
-HARNESS A2・B1・B2とC1 R2の基準を継承する。①は対象層の明示freeze記録、②は当該pair層のfreeze未完・未凍結の明示、③は今回の限定検索で対象層のfreeze記録を確認できない、④は該当artifactなし、⑤は根拠付きscope外。③は不存在の断定ではない。L3/L10の上流承認、status、fixtureや有限caseの一部固定、branch coverage限界、工程説明だけを①/②へ移さない。
+HARNESS A2・B1・B2、C1 R2、merge済みC2（CONNECT）・C3（INFRA）の基準を継承する。①は対象層の明示freeze記録、②は当該pair層のfreeze未完・未凍結の明示、③は今回の限定検索で対象層のfreeze記録を確認できない、④は該当artifactなし、⑤は根拠付きscope外。③は不存在の断定ではない。L3/L10の上流承認、status、fixtureや有限caseの一部固定、branch coverage限界、工程説明だけを①/②へ移さない。
 
 ②は「その対象層のfreeze自体が未成立」と明示され、scopeが当該childへ及ぶ場合に限る。工程・前提素材・実TDD/CI/L11の未成立、L6/L7だけのfreeze、単なるremaining/unclosedは②の根拠にならない。L4/L9 basicとL5/L8 detailは別々に1 pair 1分類とし、両方のsource文書に同じ話があっても重複計上しない。
 
@@ -121,8 +121,12 @@ L4/L5は実 `contracts/{i}/requirement_ref`、L9は実 `verification_obligations
 
 全40文書のkey/value候補を調べたが、当該basic/detail pair層でfreeze自体の未成立を明示する根拠は確認できなかったため、今回の全26組は③。L4/L9のremainingにある「L5/L8／詳細oracle freeze未完」は下流detail側の工程・未完記述で、basicへ移さない。L5/L8での一般的なremaining、source qualification、schema/codec、実TDD/CI/L11、全92/430範囲の未成立も、それだけではpair oracle freeze状態を表さない。
 
+走査結果として、対象LABOのL5/L8に当該pairの凍結自体の未成立・未完を述べる文は0件。L5の10文書には凍結を表す語の出現もなく、L8の関連記録はfixtureや有限期待・履歴の範囲である。C1/C2の凍結自体未成立型にも、C3の工程素材型にも該当しない。
+
 - **有限fixtureのoracle記録（親056）**: S32:35695 `/oracle_freeze` は `ORACLE-056-A` / `oracle-r3` の局所比較例。S32:35698 `/oracle_freeze/fixture_reason` は固定L9 sourceの照合例であり、正式oracle承認・source資格・実適用評価を成立させないと明記する。対象L3子を直接示すpointerがなく、F01–F04へ配賦しない。pair全体の①/②根拠ではない。
 - **L4/L9下流記述の例（親001/002）**: S1:161 `/remaining/1`、S2:161 `/remaining/1`、S5:103 `/remaining/1`、S6:103 `/remaining/1` は対L5/L8やoracle freezeを未完とするが、L4/L9 basicの状態を述べない。
+- **同型の下流記述（他の親）**: 011 S9:103 `/remaining/1`・S10:103 `/remaining/1`、026 S13:108 `/remaining/1`・S14:108 `/remaining/1`、028 S17:172 `/remaining/1`・S18:172 `/remaining/1`、058 S37:398 `/remaining/1`・S38:1229 `/remaining/1` にも対L5/L8・詳細oracle凍結の下流残件がある。055 S25:543 `/unclosed/4`・S26:820 `/unclosed/4` も「L5/L8詳細設計とfixture/oracle凍結」を記す。いずれも基本対自身やL5/L8自身のfreeze状態へ転用しない。
+- **011 L9のexpected source**: S10:12466 `/scope_content_correction/expected_source` は「本document新caseのliteral expected_materialとL4原句。ignored local freezeに再構成を依存しない。」という新case期待の出典説明であり、pair全体のfreeze receipt/未成立ではない。
 - **有限の期待履歴（親055）**: S28:345528 `/typed_return_derivation_history/expectation_corrections/13/prior_frozen_expected_sha256` とS28:345699 `/typed_return_derivation_history/expectation_corrections/14/verification_boundary` は有限fixture/probe照合の来歴。独立したpair-wide oracle freeze receiptとは扱わない。
 - **artifact/子link未確認（親011）**: L5文書の `logical_contract/functions` は4関数（S11:511 `/logical_contract/functions`）で、FN-LABO011-01..04の関数定義はあるがL3 childへの結合はない。S11:6 `/scope/requirement_ref` のF01はscope記述でありchild edgeではない。L8側はF01 case refsを持つ。
 
