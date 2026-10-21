@@ -17,58 +17,43 @@ CONTAINERS = {'contracts', 'functions', 'cases', 'unit_oracles',
 REF_KEYS = {'requirement_ref', 'l3_ref', 'system_oracle_ref', 'l10_ref',
             'oracle_ref', 'function_ref', 'detail_ref', 'root_id', 'l4_ref', 'l9_ref'}
 
-# Only actual top-level source records and their immediate fields are scanned.
-# Approved snapshots, trace roots, fixtures, negative branches and descendants
-# are deliberately excluded; missing matches are reported as unconfirmed.
+# 子参照の抽出範囲。OS L9 primary_traceだけ明示nested例外を保つ。
+# 範囲外の文字列出現は別内訳で示し、子対応へ自動昇格しない。
 PROFILES = {
     'HELIX-OS': {
         'root': 'docs/helix-os', 'parent_prefix': 'HELIXOS',
         'document_prefixes': ('HELIXOS', 'OS'),
         'fields': {
             4: {'contracts': {'requirement_ref'}},
-            9: {'cases': {'requirement_ref'},
-                'verification_obligations': {'requirement_ref'}},
+            9: {'cases': {'requirement_ref'}},
             5: {'contracts': {'requirement_ref', 'requirement_id'},
-                'contract_trace': {'requirement_ref'},
-                'l4_contracts': {'requirement_ref'}},
+                'contract_trace': {'requirement_ref'}, 'l4_contracts': {'requirement_ref'}},
             8: {'cases': {'requirement_ref'},
                 'contracts': {'requirement_ref', 'requirement_id', 'l3_requirement_ref'},
                 'case_bindings': {'requirement_ref'}},
         },
-        # The only nested exception is this source-attested L9 path.
         'nested_fields': {9: {'cases': {'primary_trace': {'requirement_ref'}}}},
-        'bridge': {
-            'cases': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id', 'case_id'},
-            'contracts': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
-            'case_bindings': {'function_ref', 'l5_ref', 'l9_ref', 'root_id', 'case_id'},
-        },
-        'oracle_keys': ('system_oracle_ref', 'l10_ref', 'oracle_ref', 'l10_id', 'oracle_id', 'l10'),
+        'bridge': {},  # 固定79組でfallback bridgeの採用行はない。
+        'oracle_keys': ('system_oracle_ref', 'oracle_ref'),
     },
     'HELIX-BRAIN': {
         'root': 'docs/helix-brain', 'parent_prefix': 'HELIXBRAIN',
         'document_prefixes': ('HELIXBRAIN',),
         'fields': {
             4: {'contracts': {'requirement_ref'}},
-            9: {'verification_obligations': {'requirement_ref'},
-                'cases': {'requirement_ref'}},
-            5: {'functions': {'requirement_ref', 'requirement_id', 'l3_ref', 'l3_id'},
-                'function_contracts': {'requirement_ref', 'l3_ref', 'l3_id'},
-                'contracts': {'requirement_ref', 'requirement_id'},
-                'l4_contracts': {'requirement_ref', 'requirement_id'},
+            9: {'verification_obligations': {'requirement_ref'}, 'cases': {'requirement_ref'}},
+            5: {'functions': {'requirement_ref'}, 'function_contracts': {'l3_ref'},
+                'contracts': {'requirement_ref'}, 'l4_contracts': {'requirement_ref'},
                 'l4_contract_bindings': {'l3', 'requirement_id', 'requirement_ref'}},
-            8: {'cases': {'requirement_ref', 'l3_ref', 'l3_id'},
-                'typed_cases': {'requirement_ref', 'l3_ref', 'l3_id'},
-                'contracts': {'requirement_ref', 'l3_ref', 'l3_id'}},
+            8: {'cases': {'requirement_ref', 'l3_ref'}, 'typed_cases': {'requirement_ref'},
+                'contracts': {'requirement_ref', 'l3_ref'}},
         },
-        'bridge': {
-            'cases': {'function_ref', 'formal_function_ref', 'l5_ref', 'l9_ref',
-                      'l4_ref', 'l5_id', 'l9_id', 'l3_ref', 'l3_id', 'root_id'},
-            'typed_cases': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
-            'contracts': {'function_ref', 'l5_ref', 'l9_ref', 'l4_ref', 'root_id'},
-        },
-        'oracle_keys': ('system_oracle_ref', 'l10_ref', 'oracle_ref', 'l10_id', 'oracle_id', 'l10'),
+        'bridge': {'cases': {'function_ref', 'formal_function_ref', 'l9_ref'},
+                   'contracts': {'l9_ref'}},
+        'oracle_keys': ('system_oracle_ref',),
     },
 }
+
 TOKEN = re.compile(r'"(?:\\.|[^"\\])*"|[{}\[\]:,]|-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null')
 
 
@@ -230,6 +215,24 @@ def entry_identity(source, pointer):
     return entry + '/id' if isinstance(value, dict) and isinstance(value.get('id'), str) else None
 
 
+def occurrence_breakdown(data, identities):
+    """文字列値の出現所在だけを集約。ref/fixture/snapshotの意味は判定しない。"""
+    hits = {identity: {} for identity in identities}
+    for pointer, value in walk(data):
+        if not isinstance(value, str) or value not in hits:
+            continue
+        container = pointer.split('/')[1] if pointer else '(root)'
+        hits[value].setdefault(container, []).append(pointer)
+    result = {}
+    for identity, containers in hits.items():
+        result[identity] = {}
+        for container, pointers in sorted(containers.items()):
+            pointers.sort(key=lambda p: tuple((0, int(x)) if x.isdecimal() else (1, x)
+                                               for x in p.split('/')))
+            result[identity][container] = (len(pointers), pointers[0])
+    return result
+
+
 def oracle_link(source, pointer, oracle, profile=None):
     entry = '/'.join(pointer.split('/')[:3])
     value = pointer_value(source.data, entry)
@@ -294,6 +297,19 @@ def main():
             if link:
                 refs[1].append(link)
         rows.append((index, parent, req, oracle, refs, oracle_status))
+    occurrences = {}
+    if profile:
+        unresolved = {}
+        for _, parent, req, _, refs, _ in rows:
+            for offset, layer in enumerate(LAYERS):
+                if not refs[offset]:
+                    source = docs[layer][parent]
+                    unresolved.setdefault(source, set()).add(req)
+        for source, identities in unresolved.items():
+            occurrences[source] = occurrence_breakdown(source.data, identities)
+            for containers in occurrences[source].values():
+                for _, pointer in containers.values():
+                    source.request(pointer)
     sources = [docs[layer][p] for p in sorted(parents) for layer in LAYERS if p in docs[layer]]
     assert len(sources) == {'HELIX-HARNESS': 72, 'HELIX-OS': 48, 'HELIX-BRAIN': 64}[owner]
     for source in sources:
@@ -344,11 +360,19 @@ def main():
         print('| ' + ' | '.join([str(index), parent, req, oracle, *evidence, audit_ref]) + ' |')
 
     if profile:
-        print('\n## 指定profileで子対応を確認できなかった組（機構の欠落判定ではない）')
+        print('\n## 未確認参照の機械的な出現内訳（文字列値の所在。子対応の証拠ではない）')
+        print('snapshot/fixture/配列/nestedも含む同一文字列値を数える。意味はB1/B2で照合する。')
+        print('OS L8 primary_traceも所在内訳へ含め、機構別allowlistは追加しない。')
         for offset, layer in enumerate(LAYERS):
             misses = [(parent, req) for _, parent, req, _, refs, _ in rows if not refs[offset]]
-            examples = '; '.join(parent + ' ' + req for parent, req in misses[:2]) or 'なし'
-            print(f'- L{layer}: {len(misses)}/{len(pairs)} 未確認。例: {examples}')
+            present = sum(bool(occurrences[docs[layer][parent]][req]) for parent, req in misses)
+            print(f'- L{layer}: 未確認{len(misses)}/{len(pairs)}、allowlist外出現あり{present}、文書内出現なし{len(misses) - present}')
+            for parent, req in misses:
+                source = docs[layer][parent]
+                containers = occurrences[source][req]
+                detail = '; '.join(f'{container}: {count}件 {aliases[id(source)]}:{source.lines[pointer]} `{pointer}`'
+                                   for container, (count, pointer) in containers.items()) or '文書内出現なし'
+                print(f'  - {req}: {detail}')
 
 
 if __name__ == '__main__':

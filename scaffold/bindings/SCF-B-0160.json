@@ -28,13 +28,14 @@
   "obligations": [
     "固定base revisionのgit treeをread-onlyで参照し、HARNESS 18親・126組・72文書、OS 12親・79組・48文書、BRAIN 16親・70組・64文書の限定範囲をstdoutへ抽出する。",
     "owner/layer別に指定したcontainerと文字列fieldだけを参照抽出し、実parentを優先してdocument ID内NNNと照合する。OSは確認済みのHELIXOS-/OS- document prefixのみ許容し、不一致は停止する。",
-    "HARNESSは既存9 container/REF_KEYSの範囲を保つ。OS/BRAINはprofileのallowlistを使い、OS L9 cases/{i}/primary_trace/{requirement_ref,oracle_ref}だけをnested例外とする。例: OS L8 contracts/l3_requirement_ref、BRAIN L5 l4_contract_bindings/{l3,requirement_id,requirement_ref}。",
+    "HARNESSは既存9 container/REF_KEYSを保持する。OS/BRAINは実例を確認したprofileの文字列参照を使う。OS L9 cases/{i}/primary_trace/requirement_refだけをnested参照抽出の例外とし、oracle_refは同objectのL10照合で別に読む。OS L8 primary_traceは所在内訳に表示し、allowlistを増やさない。",
     "HARNESSは従来の9 container内再帰探索を保持し、container外・配列値・id自体・subdirectory JSONを除外する。OS/BRAINは加えて、許可していないnested field、approved snapshot、trace root、fixture/negative枝を子参照に使わない。未確認はartifact不存在を意味しない。",
     "各参照をsource path・JSON Pointer・値位置の行で示し、代表候補と同一IDの追加一致数(+N)を出す。index付き結果は数値順に並べる。",
-    "L8 bridgeは実L9 rootまたはL5 functionのIDを介する明示refだけを使い、L8側参照とL9/L5側ID出典の両pointerを併記する。",
-    "L9のL10照合はHARNESSで従来のsystem_oracle_ref/l10_ref/oracle_ref、OS/BRAINでprofileの6 keyを確認する。選択した実参照と同じentry、OS L9のprimary_trace参照なら同じprimary_trace objectだけを比較する。OS/BRAINで指定key未確認なら限定を表示し、直接参照不存在とは断言しない。",
+    "L8 bridgeはBRAINの実L9/L5 IDへの明示refだけを使い、L8側とID出典の両pointerを併記する。OSは固定79組にfallback採用行がなく、bridge profileを置かない。",
+    "L9のL10照合はHARNESSで従来3 key、OSでsystem_oracle_ref/oracle_ref、BRAINでsystem_oracle_refを確認する。選択した実参照と同じentry、OS L9 primary_trace内の参照なら同objectだけを比較する。指定key未確認を直接参照不存在へ読み替えない。",
     "paired_documentはcontainer外のため参照探索には使わず、source inventoryに別表示する。stdoutは分類前の監査素材に限る。",
-    "凍結分類、直接L5→L8 edge、設計適合、承認・authority、製品検証、他機構や全405組の完了を判定しない。"
+    "凍結分類、直接L5→L8 edge、設計適合、承認・authority、製品検証、他機構や全405組の完了を判定しない。",
+    "OS/BRAINの未確認の層/組は、文書内の同じL3文字列値を全階層・配列から機構非依存で集約し、top-level container別件数・代表Pointerを表示する。snapshot/fixture内も出現として数えるが子対応とは判断しない。allowlist外出現あり／文書内出現なしを別計上する。"
   ],
   "connections": {
     "consumers": [
@@ -57,7 +58,7 @@
     "forbidden": [
       "入力JSON、監査snapshot、L4/L5/L8/L9設計文書の変更",
       "ファイル生成・更新、外部API/GitHub操作、runtime・旧CLI・hook・旧CIの起動",
-      "allowlist外のowner・container・field・nested探索、snapshot/fixtureからの代替一致補完",
+      "allowlist外の値を子対応へ自動昇格すること、snapshot/fixtureからの代替一致補完（機械的な所在内訳は意味判断を伴わず別表示）",
       "凍結分類、直接L5→L8 edge、設計適合、承認・authorityの自動判定・生成",
       "正式resolver/parser/template/framework、要求owner、新gate、承認手続きの追加",
       "HARNESS/OS/BRAINの限定結果から他機構や全405組の完了・製品受入を表明すること"
@@ -82,7 +83,8 @@
       "python3 -B scaffold/research/harness-downstream-coverage-3545/generate.py --owner HELIX-BRAIN",
       "python3 -B scaffold/tools/scfctl.py validate",
       "python3 -B scaffold/tools/scfctl.py stale",
-      "git diff --check"
+      "git diff --check",
+      "HARNESS既定/明示owner stdout SHA-256: 0f9cb73c862281638682e182ba3539e53d2a9a5fc6517650b5a853fbb2977f1f（54456 bytes、PR3549 R2・A2固定抽出）"
     ],
     "negative_cases": [
       "HARNESS既定と--owner HELIX-HARNESSのstdout SHA-256を既存値へ一致させる。OS/BRAINは固定parent・pair・document countsを照合し、未確認組を欠落判定にしない",
