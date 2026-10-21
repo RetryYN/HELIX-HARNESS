@@ -34,7 +34,7 @@ audit_input_sha256: 6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0
 
 A2 content `d512b6a347f828be700b43501dc272531913dcb1` の本文SHAは `78a31df2d4ec771cfa7c5fe6f304857d4d4fab1a6c5fdc52ea38805fc75c6959`。A2は009詳細をF02だけ②、他10を③と記録した。本記録では以下のown-layer残件を11契約の文書scopeへ適用し、他10も②へ訂正する。F02の既存②と基本11組の③は維持する。
 
-- 固定L5 `docs/helix-harness/L5-detail-design/product-template-application.json:4590` `/implementation_preparation/next` は「実trust/実行oracle凍結/Red/Green/全限定範囲の実装準備完了は未成立。」、4603 `/remaining/4` は「実fixture凍結/実装前Red/Green/CI/実受入は未成立。」を明記する。
+- 固定L5 `docs/helix-harness/L5-detail-design/product-template-application.json:4590` `/implementation_preparation/next` は「実trust/実行oracle凍結/Red/Green/全限定範囲の実装準備完了は未成立。」を明記する。
 - 固定L8 `docs/helix-harness/L8-unit-verification/product-template-application.json:78917` `/completion/remaining` も「実trust/実行test-oracle凍結/Red/Greenは未成立。」を明記する。
 - これはC1 R2/CONNECT009と同じ凍結自体の未成立。単に「工程の素材」で実TDD等が未成立というINFRA001–004/B2前提素材とは区別する。
 
@@ -50,6 +50,11 @@ A2 content `d512b6a347f828be700b43501dc272531913dcb1` の本文SHAは `78a31df2d
 | 47 | `HARNESS-L3-009-F07` → `HARNESS-L10-009-F07` | 2442 `/contracts/8/requirement_ref` | ③ → ② |
 | 48 | `HARNESS-L3-009-F08` → `HARNESS-L10-009-F08` | 2462 `/contracts/9/requirement_ref` | ③ → ② |
 | 49 | `HARNESS-L3-009-N01` → `HARNESS-L10-009-N01` | 2482 `/contracts/10/requirement_ref` | ③ → ② |
+
+### 横断確認で③を維持した境界
+
+固定sourceの`docs/helix-brain/L5-detail-design/knowledge-hierarchy.json:1390` と`docs/helix-brain/L8-unit-verification/knowledge-hierarchy.json:8710`（双方 `/unclosed/3`）は「L6関数設計、L7関数検証、実装、oracle凍結、観測済みRed/Green/Refactor、CI、L11実行、Accepted authority、全92/430設計閉包は本範囲外または未成立。」と記す。「範囲外または」は選言で、oracle凍結が当該層で未成立なのか範囲外なのかを特定できないため、BRAIN002の詳細4組（index129–132）は③を維持する。凍結そのものを未成立と断定するH009等とは区別し、⑤の明示範囲外にも割り当てない。
+本文SHA-256（同じ固定BASE）: L5 `13b44ca0c31f6f54a8daf5d280f8f7388106664f624657f51254333473979fdf`、L8 `89b4ff8bca74d6d178da21b2c6bb13c9effd0735eec9409e1562573d98c325f7`。
 
 ## 機構別・親別の集計
 
@@ -159,10 +164,10 @@ A2 content `d512b6a347f828be700b43501dc272531913dcb1` の本文SHAは `78a31df2d
 
 ## 所在・子対応・未完の受渡し
 
-固定8機構の対象親ごとに4層の正本文書があり、348文書を確認した（87×4）。これは405×4個の別artifactがあるという意味ではない。4文書はparent fieldがなく、既存補助と同じ実document_idの機構・層・親番号から照合した。nested fixtureを別の層正本文書へ数えない。
+固定8機構の対象親ごとに4層の正本文書があり、348文書を確認した（87×4）。これは405×4個の別artifactがあるという意味ではない。4文書は最上位にparent fieldがなく、既存補助と同じ実document_idの機構・層・親番号から照合した。nested fixtureを別の層正本文書へ数えない。
 
 
-| parent fieldのない文書 | 実document_id位置・値 | 親グループ | 本文SHA-256 |
+| 最上位にparent fieldのない文書 | 実document_id位置・値 | 親グループ | 本文SHA-256 |
 |---|---|---|---|
 | `docs/helix-harness/L4-basic-design/verification-discipline.json` | 373 `/document_id` = `HARNESS-L4-005-VERIFICATION-DISCIPLINE` | HARNESS-L2-005 | `f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb` |
 | `docs/helix-harness/L9-integration-verification/verification-discipline.json` | 373 `/document_id` = `HARNESS-L9-005-VERIFICATION-DISCIPLINE` | HARNESS-L2-005 | `19498cf4c9cc07d7335592cda45bfdfbaea51cba08ec39c5118ac83b4e8e0221` |
