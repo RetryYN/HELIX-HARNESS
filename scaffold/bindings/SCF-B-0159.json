@@ -17,11 +17,11 @@
  "role": "design-json-static-reference-check-scaffold",
  "obligations": [
   "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
-  "明示されたpath/source_path/document参照、source_pins、json_pointer、scope/base/patch/document pointer、文書内$refを対象に解決する。",
-  "40hex revision/commitを持つpinはgit show <revision>:<path>のraw bytesをSHA-256照合し、pinがrevisionを持たなければ文書の40hex source_main、それも無ければ現行作業木bytesを照合する。",
-  "絶対path、.. traversal、backslash pathはfail-closeに違反として報告し、path正規化は行わない。",
-  "違反件数とfile/at/code/detail一覧をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
-  "selftestは一時repositoryだけを作り、壊した入力が拒否されることを確認する。",
+  "明示されたrepo相対pathを持つJSON参照と、自文書を対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。",
+  "path/revision-or-commit/whole-file SHA-256が同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。pointer・line_range・read_lines・historical・candidate印を持つshapeはpin照合せず未分類へ数える。",
+  "絶対path、.. traversal、backslash pathはfail-closeに違反として報告し、path正規化は行わない。prefix許可リストは持たない。",
+  "違反件数とfile/at/code/detail一覧に加え、意味未確定shapeのunclassified件数をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
+  "selftestは隔離された一時repositoryで正常系（部分hash・label revision・historical pin・repo直下path・commit pin・古いrevision pinを含む）と否定例を厳密なcode+at照合で確認する。",
   "結果はevidence_kind scaffold、authority_effect noneであり、正式CI・製品受入・設計採否を生成しない。"
  ],
  "connections": {"consumers":["#3546 design JSON static check proposal review","#3502 ②設計検証用CIの後続設計"],"dependencies":["stdlib json/hashlib/argparse/subprocess/pathlib","git show <revision>:<path> read access","RFC6901 absolute JSON Pointer"],"boundary":"scaffold/配下の読み取り専用checkerと一時repository selftestのみ。GitHub Actions workflow、旧archive実行、要求生成、設計修正、正式resolverを作らない。"},

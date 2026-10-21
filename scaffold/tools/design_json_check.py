@@ -1,198 +1,260 @@
 #!/usr/bin/env python3
-"""Read-only static check for design JSON pointers and source pins."""
-import argparse, hashlib, json, os, re, subprocess, sys
+"""Read-only static check for explicit design JSON references."""
+import argparse, collections, hashlib, json, os, re, subprocess, sys
 from pathlib import Path
 
-PRODUCTS = ("helix-brain", "helix-connect", "helix-harness", "helix-infrastructure", "helix-intelligence", "helix-labo", "helix-os", "helix-security")
-SHA = re.compile(r"^[0-9a-f]{64}$"); REV = re.compile(r"^[0-9a-f]{40}$")
-PREFIXES = ("docs/", "archive/", "scaffold/")
-REV_KEYS = ("revision", "commit", "approved_revision", "source_revision", "approval_record_revision", "base_revision", "actual_admission_revision", "approved_content_head", "source_main")
-SHA_KEYS = ("sha256", "source_sha256", "file_sha256", "file_bytes_sha256", "whole_sha256", "whole_file_sha256", "approval_record_sha256")
-DOC_KEYS = ("path", "source_path", "approval_record_path", "document", "paired_document")
-FILE_PATH_FIELDS = {"source_path", "approval_record_path", "paired_document", "archive_path", "input_source_path", "expected_source_path", "record_path", "decision_path", "test_path", "destination_path", "whole_freeze_source_path", "source_packet_source_path", "targets_control_path", "receipt_path"}
-POINTER_KEYS = {"scope_pointers", "base_pointer", "input_base_pointer", "input_patch_pointer", "source_patch_pointer", "origin_before_case_pointer", "document_id_source_pointer", "fixture_base_pointer", "base_case_pointer"}
-INHERIT_PATH_CHILDREN = {"selected_objects", "source_evidence", "original_wholes", "objects"}
+REV = re.compile(r"^[0-9a-f]{40}$")
+SHA = re.compile(r"^[0-9a-f]{64}$")
+FILE_PATH_KEYS = {"source_path", "approval_record_path", "paired_document", "document", "archive_path",
+                  "input_source_path", "expected_source_path", "record_path", "decision_path", "test_path",
+                  "whole_freeze_source_path", "source_packet_source_path", "targets_control_path", "receipt_path"}
+POINTER_KEYS = {"json_pointer", "pointer", "pointers", "base_pointer", "input_base_pointer", "input_patch_pointer",
+                "source_patch_pointer", "origin_before_case_pointer", "fixture_base_pointer", "base_case_pointer"}
+LOCAL_POINTER_KEYS = {"scope_pointers", "document_id_source_pointer"}
+REVISION_KEYS = ("revision", "commit", "source_revision", "approval_record_revision")
+PIN_TRIPLES = (
+    ("path", "revision", "sha256"), ("path", "revision", "file_sha256"),
+    ("path", "revision", "file_bytes_sha256"), ("path", "revision", "whole_sha256"),
+    ("path", "revision", "whole_file_sha256"), ("path", "commit", "sha256"),
+    ("path", "source_revision", "sha256"), ("path", "source_revision", "source_sha256"),
+    ("path", "source_revision", "file_sha256"), ("source_path", "source_revision", "source_sha256"),
+    ("source_path", "source_revision", "sha256"), ("source_path", "source_commit", "source_sha256"),
+    ("source_path", "revision", "whole_sha256"), ("source_path", "revision", "file_sha256"),
+    ("approval_record_path", "approval_record_revision", "approval_record_sha256"),
+    ("document", "revision", "sha256"), ("document", "revision", "file_sha256"))
+SKIP_PIN_KEYS = {"pointer", "pointers", "json_pointer", "line_range", "read_lines"}
+PATH_SUFFIXES = (".json", ".jsonl", ".md", ".yaml", ".yml", ".py", ".ts", ".txt")
 
+def safe(path):
+    return (isinstance(path, str) and path and os.path.normpath(path) == path
+            and not os.path.isabs(path) and ".." not in path.split("/") and "\\" not in path)
 
-def sha(data): return hashlib.sha256(data).hexdigest()
-def safe(path): return isinstance(path, str) and "#" not in path and path.startswith(PREFIXES) and os.path.normpath(path) == path and ".." not in path.split("/") and "\\" not in path
-def parse_path(value):
-    if not isinstance(value, str): return None, None, None
-    m = re.match(r"^([0-9a-f]{40}):(.*)$", value)
-    if m: return m.group(2), None, m.group(1)
-    if "#" in value:
-        p, frag = value.split("#", 1); return p, frag, None
-    return value, None, None
-def split_frag(value):
-    p, frag, rev = parse_path(value); return p, frag
-def split_ref(value):
-    if isinstance(value, str) and "#" in value:
-        p, frag = value.split("#", 1); return p, frag
-    return None, value
-def path_part(value): return parse_path(value)[0]
-def rev_of(obj):
-    for key in REV_KEYS:
-        if isinstance(obj.get(key), str) and REV.fullmatch(obj[key]): return obj[key]
-    return None
+def parse_ref(value):
+    if not isinstance(value, str):
+        return None, None, None
+    path, pointer = (value.split("#", 1) + [None])[:2] if "#" in value else (value, None)
+    match = re.match(r"^([0-9a-f]{40}):(.*)$", path)
+    return (match.group(2), pointer, match.group(1)) if match else (path, pointer, None)
+
+def looks_like_path(value):
+    path, _, _ = parse_ref(value)
+    return (isinstance(path, str) and path and not path.startswith("/")
+            and ("/" in path or path.endswith(PATH_SUFFIXES)))
+
+def unsafe_shape(value):
+    return isinstance(value, str) and (value.startswith("../") or "\\" in value or os.path.isabs(value))
+
 def resolve(doc, ref):
-    if ref == "": return doc
-    if not isinstance(ref, str) or not ref.startswith("/"): raise ValueError("not an absolute JSON Pointer")
-    cur = doc
+    if ref == "":
+        return doc
+    if not isinstance(ref, str) or not ref.startswith("/"):
+        raise ValueError("not an absolute JSON Pointer")
+    current = doc
     for raw in ref[1:].split("/"):
         part = raw.replace("~1", "/").replace("~0", "~")
-        if isinstance(cur, list):
-            if not part.isdigit() or int(part) >= len(cur): raise KeyError(part)
-            cur = cur[int(part)]
-        elif isinstance(cur, dict):
-            if part not in cur: raise KeyError(part)
-            cur = cur[part]
-        else: raise KeyError(part)
-    return cur
+        if isinstance(current, list) and part.isdigit() and int(part) < len(current):
+            current = current[int(part)]
+        elif isinstance(current, dict) and part in current:
+            current = current[part]
+        else:
+            raise KeyError(part)
+    return current
 
 class Checker:
     def __init__(self, root):
-        self.root = Path(root).resolve(); self.errors = []; self.error_seen = set(); self.files = 0; self.blobs = {}; self.docs = {};
+        self.root = Path(root).resolve()
+        self.errors, self.blobs, self.docs = [], {}, {}
+        self.files, self.unclassified = 0, collections.Counter()
+
     def fail(self, rel, at, code, detail):
-        detail = str(detail)[:300]; key = (rel, at, code, detail)
-        if key not in self.error_seen:
-            self.error_seen.add(key); self.errors.append({"file": rel, "at": at, "code": code, "detail": detail})
-    def blob(self, path, rev=None):
-        if not safe(path): raise ValueError(f"unsafe path {path!r}")
-        key = (path, rev)
+        item = {"file": rel, "at": at, "code": code, "detail": str(detail)[:300]}
+        if item not in self.errors:
+            self.errors.append(item)
+
+    def blob(self, path, revision=None):
+        if not safe(path):
+            raise ValueError("unsafe path " + repr(path))
+        key = (path, revision)
         if key not in self.blobs:
-            if rev:
-                p = subprocess.run(["git", "-C", self.root, "show", f"{rev}:{path}"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
-                if p.returncode: raise FileNotFoundError(f"{rev}:{path}")
+            if revision:
+                p = subprocess.run(["git", "-C", self.root, "show", revision + ":" + path],
+                                   stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+                if p.returncode:
+                    raise FileNotFoundError(revision + ":" + path)
                 data = p.stdout
-            else: data = (self.root / path).read_bytes()
+            else:
+                data = (self.root / path).read_bytes()
             self.blobs[key] = data
         return self.blobs[key]
-    def doc_at(self, path, rev=None):
-        key = (path, rev)
-        if key not in self.docs: self.docs[key] = json.loads(self.blob(path, rev).decode())
+
+    def document(self, path, revision=None):
+        key = (path, revision)
+        if key not in self.docs:
+            self.docs[key] = json.loads(self.blob(path, revision).decode())
         return self.docs[key]
-    def doc_path(self, obj):
-        for key in DOC_KEYS:
-            p = path_part(obj.get(key))
-            if safe(p): return p
-        return None
-    def check_path(self, rel, at, value, rev=None):
-        p, frag, embedded_rev = parse_path(value)
-        if embedded_rev: rev = embedded_rev
-        if not safe(p):
-            self.fail(rel, at, "E_PATH", repr(value)); return False
-        try:
-            if frag is None: self.blob(p, rev)
-            else: resolve(self.doc_at(p, rev), frag)
-            return True
-        except Exception as e:
-            self.fail(rel, at, "E_PATH", e); return False
-    def schema_context(self, schema):
-        context = dict(schema); defs = {}
-        for key in ("$defs", "defs", "types", "closed_types", "new_defs"):
-            if isinstance(schema.get(key), dict): defs.update(schema[key])
-        for imp in schema.get("imports") or []:
-            if isinstance(imp, dict) and safe(path_part(imp.get("path"))):
-                try: imported = resolve(self.doc_at(path_part(imp["path"]), rev_of(imp)), imp.get("pointer"))
-                except Exception: continue
-                prefix = imp.get("name") if str(imp.get("name") or "").endswith("_") else ""
-                if isinstance(imported, dict):
-                    for key, value in imported.items(): defs[prefix + key] = value
-                elif imp.get("name"): defs[imp["name"]] = imported
-        context["$defs"] = defs; return context
-    def source_targets(self, doc):
-        targets = []
-        for key in ("source_fixture", "source_packet", "source_packet_ref", "candidate_l5_binding", "l5_candidate_pin", "paired_l4_candidate_bytes"):
-            x = doc.get(key)
-            if isinstance(x, dict) and safe(path_part(x.get("path"))): targets.append((path_part(x["path"]), rev_of(x)))
-        if safe(path_part(doc.get("paired_document"))): targets.append((path_part(doc["paired_document"]), rev_of(doc)))
-        return targets
-    def check_pointer(self, rel, at, doc, obj, value, inherited_ctx):
-        if not isinstance(value, str): return
-        pth, ptr = split_ref(value)
-        path_given = pth not in (None, "")
-        embedded_rev = None
-        if path_given:
-            pth, _, embedded_rev = parse_path(pth)
-            if not safe(pth):
-                self.fail(rel, at, "E_PATH", pth); return
-        if pth is None and not (ptr == "" or ptr.startswith("/")): return
-        explicit = pth if path_given else self.doc_path(obj) or inherited_ctx[0]
-        rev = embedded_rev or rev_of(obj) or inherited_ctx[1]
-        candidates = [(explicit, rev)] if explicit else [(None, rev)] + self.source_targets(doc)
-        errors = []
-        for cpath, crev in candidates:
-            try: resolve(self.doc_at(cpath, crev) if cpath else doc, ptr); return
-            except Exception as e: errors.append(str(e))
-        self.fail(rel, at, "E_POINTER", errors[-1] if errors else "no target")
-    def check_pin(self, rel, at, obj, default_rev=None):
-        p = self.doc_path(obj)
-        if not p:
-            raw = next((obj.get(k) for k in ("path", "source_path", "approval_record_path") if isinstance(obj.get(k), str)), None)
-            if raw and (rev_of(obj) or any(k in obj for k in SHA_KEYS)): self.fail(rel, at + "/path", "E_PATH", repr(raw))
+
+    def revision(self, obj):
+        for key in REVISION_KEYS:
+            if isinstance(obj.get(key), str):
+                return obj[key], bool(REV.fullmatch(obj[key]))
+        return None, False
+
+    def path_in(self, obj):
+        for key in ("path", "source_path", "approval_record_path", "document", "paired_document"):
+            path, _, _ = parse_ref(obj.get(key))
+            if looks_like_path(obj.get(key)) and safe(path):
+                return path
+
+    def classify_pins(self, obj, rel, at):
+        if (SKIP_PIN_KEYS & obj.keys() or "candidate" in str(obj.get("kind", ""))
+                or any(key.startswith("historical") for key in obj)):
+            self.unclassified["partial_or_candidate_pin"] += 1
             return
-        raw = next((obj.get(k) for k in ("path", "source_path", "approval_record_path") if path_part(obj.get(k)) == p), p)
-        _, _, embedded_rev = parse_path(raw)
-        rev = rev_of(obj) or embedded_rev
-        for key in REV_KEYS:
-            if isinstance(obj.get(key), str) and not REV.fullmatch(obj[key]): self.fail(rel, at + "/" + key, "E_PIN_SHAPE", repr(obj[key]))
-        if default_rev and not REV.fullmatch(default_rev): self.fail(rel, at + "/source_main", "E_PIN_SHAPE", repr(default_rev)); default_rev = None
-        if not self.check_path(rel, at + "/path", raw, rev or default_rev): return
-        for key in SHA_KEYS:
-            expected = obj.get(key)
-            if not isinstance(expected, str): continue
-            if not SHA.fullmatch(expected): self.fail(rel, at + "/" + key, "E_PIN_SHAPE", repr(expected)); continue
-            try: got = sha(self.blob(p, rev or default_rev))
-            except Exception as e: self.fail(rel, at + "/" + key, "E_SOURCE", e); continue
-            if got != expected: self.fail(rel, at + "/" + key, "E_SOURCE_SHA", {"expected": expected, "actual": got})
-    def check(self, path, doc):
-        rel = str(path.relative_to(self.root))
-        pin_seen = set()
-        def walk(v, at="", inherited_ctx=(None, None), schema_root=None):
-            if isinstance(v, list):
-                for i, x in enumerate(v): walk(x, f"{at}/{i}", inherited_ctx, schema_root)
+        matched = False
+        for path_key, rev_key, sha_key in PIN_TRIPLES:
+            if not all(isinstance(obj.get(k), str) for k in (path_key, rev_key, sha_key)):
+                continue
+            matched = True
+            path, _, embedded_rev = parse_ref(obj[path_key])
+            revision = obj[rev_key] if REV.fullmatch(obj[rev_key]) else embedded_rev
+            expected = obj[sha_key]
+            if not safe(path):
+                self.fail(rel, at + "/" + path_key, "E_PATH", repr(obj[path_key]))
+            elif not revision or not SHA.fullmatch(expected):
+                self.unclassified["malformed_pin"] += 1
+            else:
+                self.verify_pin(rel, at + "/" + sha_key, path, revision, expected)
+        has_path = any(k.endswith("_path") or k in FILE_PATH_KEYS or k == "path"
+                       for k in obj if looks_like_path(obj.get(k)))
+        has_rev = any(("revision" in k or "commit" in k or k.endswith("_head")) and isinstance(obj[k], str)
+                      for k in obj)
+        has_sha = any(k.endswith("sha256") and isinstance(obj[k], str) for k in obj)
+        if not matched and sum((has_path, has_rev, has_sha)) >= 2:
+            self.unclassified["unpaired_pin_shape"] += 1
+
+    def verify_pin(self, rel, at, path, revision, expected):
+        try:
+            actual = hashlib.sha256(self.blob(path, revision)).hexdigest()
+        except Exception as error:
+            self.fail(rel, at, "E_SOURCE", error)
+            return
+        if actual != expected:
+            self.fail(rel, at, "E_SOURCE_SHA", {"expected": expected, "actual": actual})
+
+    def verify_path(self, rel, at, value):
+        path, pointer, revision = parse_ref(value)
+        if not safe(path):
+            self.fail(rel, at, "E_PATH", repr(value))
+            return
+        try:
+            if pointer is None:
+                self.blob(path, revision)
+            elif path.endswith(".json") and pointer.startswith("/"):
+                resolve(self.document(path, revision), pointer)
+            else:
+                self.blob(path, revision)
+                self.unclassified["non_json_fragment"] += 1
+        except Exception as error:
+            self.fail(rel, at, "E_PATH", error)
+
+    def pointer_target(self, doc, obj):
+        if obj.get("document") == "local":
+            return doc, None
+        path = self.path_in(obj)
+        revision, valid = self.revision(obj)
+        if revision and not valid:
+            return None, "label revision"
+        if not path:
+            return None, "implicit target"
+        try:
+            if not path.endswith(".json"):
+                self.blob(path, revision)
+                return None, "non_json_target"
+            return self.document(path, revision), None
+        except Exception as error:
+            return None, error
+
+    def verify_pointer(self, rel, at, doc, obj, value, local):
+        if not isinstance(value, str) or not value.startswith("/") and "#" not in value:
+            self.unclassified["pointer_shape"] += 1
+            return
+        path, pointer, embedded_rev = parse_ref(value) if "#" in value else (None, value, None)
+        if path:
+            revision, valid = self.revision(obj)
+            if revision and not valid:
+                self.unclassified["label_revision"] += 1
                 return
-            if not isinstance(v, dict): return
-            direct_path = self.doc_path(v); ctx = (direct_path or inherited_ctx[0], rev_of(v) or inherited_ctx[1])
-            for key, value in v.items():
-                if not isinstance(value, str): continue
-                p, _, _ = parse_path(value)
-                pin_path = key == "path" and (safe(p) or rev_of(v) or any(k in v for k in SHA_KEYS))
-                file_field = key in FILE_PATH_FIELDS or pin_path
-                unsafe = value.startswith("../") or "\\" in value or ".." in value.split("/") or (os.path.isabs(value) and key != "path")
-                if file_field and (safe(p) or unsafe or (key in FILE_PATH_FIELDS and "/" in p)): self.check_path(rel, f"{at}/{key}", value, rev_of(v))
-                elif key in ("document", "paired_document") and safe(p): self.check_path(rel, f"{at}/{key}", value, rev_of(v))
-            if direct_path and id(v) not in pin_seen and (rev_of(v) or any(k in v for k in SHA_KEYS)): self.check_pin(rel, at, v, ctx[1])
-            pins = v.get("source_pins")
-            pin_items = enumerate(pins) if isinstance(pins, list) else pins.items() if isinstance(pins, dict) else ()
-            for key, pin in pin_items:
-                if isinstance(pin, dict): pin_seen.add(id(pin)); self.check_pin(rel, f"{at}/source_pins/{key}", pin, doc.get("source_main"))
-            for key, value in v.items():
-                if key in POINTER_KEYS or (key in ("json_pointer", "pointer", "pointers") and (ctx[0] or "canonical_sha256" in v or "document" in v)):
-                    for i, ref in enumerate(value if isinstance(value, list) else [value]):
-                        self.check_pointer(rel, f"{at}/{key}/{i}", doc, v, ref, ctx)
-            ref = v.get("$ref")
-            if isinstance(ref, str) and ref.startswith("#/"):
-                try: resolve(schema_root or doc, ref[1:])
-                except Exception as e: self.fail(rel, at + "/$ref", "E_POINTER", e)
-            for key, value in v.items():
-                next_schema = self.schema_context(value) if isinstance(value, dict) and any(k in value for k in ("$defs", "defs", "types", "closed_types", "new_defs", "imports")) else schema_root
-                walk(value, f"{at}/{key}", ctx if key in INHERIT_PATH_CHILDREN else (inherited_ctx[0], ctx[1]), next_schema)
-        walk(doc)
+            try:
+                if path.endswith(".json") and pointer and pointer.startswith("/"):
+                    target, error = self.document(path, embedded_rev or revision), None
+                else:
+                    self.blob(path, embedded_rev or revision)
+                    self.unclassified["non_json_fragment"] += 1
+                    return
+            except Exception as exc:
+                target, error = None, exc
+        elif local:
+            target, error = doc, None
+        else:
+            target, error = self.pointer_target(doc, obj)
+        if error is not None:
+            skipped = error in ("implicit target", "label revision", "non_json_target")
+            self.unclassified["implicit_pointer_target" if skipped else "pointer_target_error"] += 1
+            if not skipped:
+                self.fail(rel, at, "E_PATH", error)
+            return
+        try:
+            resolve(target, pointer)
+        except Exception as error:
+            self.fail(rel, at, "E_POINTER", error)
+
+    def collect(self, value, doc, rel, at=""):
+        if isinstance(value, list):
+            for index, child in enumerate(value):
+                self.collect(child, doc, rel, at + "/" + str(index))
+            return
+        if not isinstance(value, dict):
+            return
+        for key, child in value.items():
+            child_at = at + "/" + key
+            if key in FILE_PATH_KEYS:
+                if unsafe_shape(child) or looks_like_path(child):
+                    self.verify_path(rel, child_at, child)
+                else:
+                    self.unclassified["ambiguous_path"] += 1
+            if key in LOCAL_POINTER_KEYS | POINTER_KEYS:
+                for index, pointer in enumerate(child if isinstance(child, list) else [child]):
+                    self.verify_pointer(rel, child_at + "/" + str(index), doc, value, pointer,
+                                        key in LOCAL_POINTER_KEYS)
+            self.collect(child, doc, rel, child_at)
+        self.classify_pins(value, rel, at)
+
+    def check(self, path):
+        rel = str(path.relative_to(self.root))
+        try:
+            doc = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as error:
+            self.fail(rel, "", "E_JSON", error)
+            return
+        self.collect(doc, doc, rel)
+
     def run(self):
-        for product in PRODUCTS:
-            for layer in sorted((self.root / "docs" / product).glob("L*-*/")):
-                for path in sorted(layer.rglob("*.json")):
-                    self.files += 1
-                    try: doc = json.loads(path.read_text(encoding="utf-8"))
-                    except Exception as e: self.fail(str(path.relative_to(self.root)), "", "E_JSON", e); continue
-                    self.check(path, doc)
+        for path in sorted((self.root / "docs").glob("helix-*/L*-*/**/*.json")):
+            self.files += 1
+            self.check(path)
         return self
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(); ap.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2]); a = ap.parse_args(argv)
-    c = Checker(a.root).run()
-    json.dump({"schema":"helix-design-json-check.v1","evidence_kind":"scaffold","authority_effect":"none","files":c.files,"violations":len(c.errors),"items":c.errors}, sys.stdout, ensure_ascii=False, sort_keys=True, indent=2); print()
-    return 1 if c.errors else 0
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    args = parser.parse_args(argv)
+    checker = Checker(args.root).run()
+    json.dump({"schema": "helix-design-json-check.v1", "evidence_kind": "scaffold", "authority_effect": "none",
+               "files": checker.files, "violations": len(checker.errors),
+               "unclassified": dict(checker.unclassified), "items": checker.errors},
+              sys.stdout, ensure_ascii=False, sort_keys=True, indent=2)
+    print()
+    return 1 if checker.errors else 0
 
-if __name__ == "__main__": raise SystemExit(main())
+if __name__ == "__main__":
+    raise SystemExit(main())
