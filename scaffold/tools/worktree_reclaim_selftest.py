@@ -86,22 +86,22 @@ class Cases(unittest.TestCase):
                          (0, "fresh", "open_pr_branch", "process_in_use"))
 
     def test_age_threshold_uses_unrounded_value(self):
-        # Integer seconds avoid relying on filesystem rounding at the display midpoint.
+        # Integer-second offsets avoid filesystem timestamp rounding at either boundary.
         self.now = 1_000_000.0
         self.old = self.now - 9 * WR.DAY
-        just_before = self.old_wt("just-before", "just-before-branch")
         exact = self.old_wt("exact", "exact-branch")
-        self.set_last_touch(just_before, self.now - (7 * WR.DAY - 30))
-        self.set_last_touch(exact, self.now - 7.0 * WR.DAY)
+        over = self.old_wt("over", "over-branch")
+        self.set_last_touch(exact, self.now - 7 * WR.DAY)
+        self.set_last_touch(over, self.now - (7 * WR.DAY + 30))
 
         _, report = self.invoke()
-        before_row, exact_row = self.got(report, just_before), self.got(report, exact)
-        self.assertEqual(before_row["age_days"], 7.0)
-        self.assertEqual(before_row["reason"], "fresh")
-        self.assertFalse(before_row.get("eligible", False))
+        exact_row, over_row = self.got(report, exact), self.got(report, over)
         self.assertEqual(exact_row["age_days"], 7.0)
-        self.assertEqual(exact_row["reason"], "eligible")
-        self.assertTrue(exact_row["eligible"])
+        self.assertEqual(exact_row["reason"], "fresh")
+        self.assertFalse(exact_row.get("eligible", False))
+        self.assertEqual(over_row["age_days"], 7.0)
+        self.assertEqual(over_row["reason"], "eligible")
+        self.assertTrue(over_row["eligible"])
 
     def test_directory_link_is_fail_closed(self):
         wt = self.old_wt("linked", "linked-branch", link=True)
