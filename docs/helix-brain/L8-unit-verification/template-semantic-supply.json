@@ -113088,19 +113088,33 @@
         "file_sha256": "18c30f1720d8c462f39efc0b39bd0c8d5c9ca1331e86bda4c6840c6bdba8bc1c",
         "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2",
         "derivation_ja": "frame/kind/slot原順で実slotを一度ずつ呼ぶ。"
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "9a4baa2082930efba5c302c078beee16fe7d1f59",
+        "file_sha256": "18c30f1720d8c462f39efc0b39bd0c8d5c9ca1331e86bda4c6840c6bdba8bc1c",
+        "pointer": "/functions/0",
+        "derivation_ja": "reader/projector fixtureはfn0がRawValueをValidatedSupplyへ受理した場合のみを前提にする。input=nullやqualification issueの扱いと区別する。"
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "9a4baa2082930efba5c302c078beee16fe7d1f59",
+        "file_sha256": "18c30f1720d8c462f39efc0b39bd0c8d5c9ca1331e86bda4c6840c6bdba8bc1c",
+        "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization",
+        "derivation_ja": "qualification scope不一致時のunusable_source_refs/InputIssueを保持するfn0分岐。受理を本候補で実行・証明しない境界を示す。"
       }
     ],
     "fixed_git_sources": {
       "L9": {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "revision": "4845f2758c5c709ca62d2ebe0c48f3a634c2bb4f",
-        "sha256": "590b84933e03d1f1baa512ce10cccfc585babd93c9c693046d21f90e33ceba3d"
+        "revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
+        "sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
       }
     },
     "l5_meaning_core_invariance": {
       "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core",
-      "source_revision": "4845f2758c5c709ca62d2ebe0c48f3a634c2bb4f",
-      "current_revision": "9a4baa2082930efba5c302c078beee16fe7d1f59",
+      "source_revision": "9a4baa2082930efba5c302c078beee16fe7d1f59",
+      "current_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
       "source_canonical_sha256": "67443e2c14feea3262ea1d8019b528d92f6e2c9383254b7e451fb5faf05210ce",
       "current_canonical_sha256": "67443e2c14feea3262ea1d8019b528d92f6e2c9383254b7e451fb5faf05210ce",
       "result": "same"
@@ -113111,29 +113125,29 @@
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "4845f2758c5c709ca62d2ebe0c48f3a634c2bb4f",
+          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
           "bundle_pointer": "/source_snapshot/raw_A",
-          "source_value_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f",
-          "file_sha256": "590b84933e03d1f1baa512ce10cccfc585babd93c9c693046d21f90e33ceba3d"
+          "source_value_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0",
+          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
         },
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "4845f2758c5c709ca62d2ebe0c48f3a634c2bb4f",
+          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch",
           "bundle_pointer": "/source_snapshot/patches/B",
-          "source_value_canonical_sha256": "575a607c351825c58d1e30bcdf8686b98d39148cf0c0ac098bd72271edbaebb4",
-          "file_sha256": "590b84933e03d1f1baa512ce10cccfc585babd93c9c693046d21f90e33ceba3d"
+          "source_value_canonical_sha256": "bc85ff35ddb58cb815dfd8581470a38b0aecc1beca9eebf68d7524a154627be6",
+          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
         },
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "4845f2758c5c709ca62d2ebe0c48f3a634c2bb4f",
+          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch",
           "bundle_pointer": "/source_snapshot/patches/C",
-          "source_value_canonical_sha256": "2ab4981b694d021d646961a4eef24bac5f5e66c1b97fba6946e58b6607e578c2",
-          "file_sha256": "590b84933e03d1f1baa512ce10cccfc585babd93c9c693046d21f90e33ceba3d"
+          "source_value_canonical_sha256": "26bba2be7c05482645155de174375b1410b7bd1bc994c704b91ef98ae24d0b0c",
+          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
         }
       ],
       "seed": {
@@ -113152,18 +113166,6 @@
               "input_issues": [],
               "unusable_source_refs": []
             },
-            "slots": [
-              {
-                "slot_locator": "/descriptors/0",
-                "slot_identity": "SYNTHETIC-D26-SLOT-A",
-                "descriptor_kind": "template identity",
-                "binding_raw_json_relation": "equal_to_root_raw_json",
-                "candidate_ref_relation": "no_candidate_ref_match",
-                "definition_applicability_ref_presence": "absent",
-                "reader_call_order_index": 0,
-                "projector_call_order_index": 0
-              }
-            ],
             "calls": [
               {
                 "reader_request": {
@@ -113192,28 +113194,6 @@
               "input_issues": [],
               "unusable_source_refs": []
             },
-            "slots": [
-              {
-                "slot_locator": "/descriptors/0",
-                "slot_identity": "SYNTHETIC-D26-SLOT-A",
-                "descriptor_kind": "template identity",
-                "binding_raw_json_relation": "equal_to_root_raw_json",
-                "candidate_ref_relation": "no_candidate_ref_match",
-                "definition_applicability_ref_presence": "absent",
-                "reader_call_order_index": 0,
-                "projector_call_order_index": 0
-              },
-              {
-                "slot_locator": "/descriptors/1",
-                "slot_identity": "SYNTHETIC-D26-SLOT-B",
-                "descriptor_kind": "template identity",
-                "binding_raw_json_relation": "different_from_root_raw_json",
-                "candidate_ref_relation": "explicit_candidate_ref_match",
-                "definition_applicability_ref_presence": "absent",
-                "reader_call_order_index": 1,
-                "projector_call_order_index": 1
-              }
-            ],
             "calls": [
               {
                 "reader_request": {
@@ -113260,28 +113240,6 @@
               "input_issues": [],
               "unusable_source_refs": []
             },
-            "slots": [
-              {
-                "slot_locator": "/descriptors/0",
-                "slot_identity": "SYNTHETIC-D26-SLOT-A",
-                "descriptor_kind": "template identity",
-                "binding_raw_json_relation": "equal_to_root_raw_json",
-                "candidate_ref_relation": "no_candidate_ref_match",
-                "definition_applicability_ref_presence": "absent",
-                "reader_call_order_index": 0,
-                "projector_call_order_index": 0
-              },
-              {
-                "slot_locator": "/descriptors/1",
-                "slot_identity": "SYNTHETIC-D26-SLOT-C",
-                "descriptor_kind": "template identity",
-                "binding_raw_json_relation": "different_from_root_raw_json",
-                "candidate_ref_relation": "no_candidate_ref_match",
-                "definition_applicability_ref_presence": "absent",
-                "reader_call_order_index": 1,
-                "projector_call_order_index": 1
-              }
-            ],
             "calls": [
               {
                 "reader_request": {
@@ -113468,16 +113426,15 @@
       ]
     },
     "expected_raw_input_canonical_sha256": {
-      "A": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f",
-      "B": "d3161640f26d42e5d4ac9d41a25aeb19468a7dd48fdda1a719c1c95375cc5deb",
-      "C": "fbafe8fc3a7977dcea1686c90c813aa09496caded9ea35095ac9932ab70d2fd7"
-    },
-    "non_generation_test_observation": {
-      "field": "generated_event_count",
-      "value": 0,
-      "meaning_ja": "各projector returnが[]であることからこの試験観測で記録する。NativeMaterialのmemberではなく、製品shapeへ追加しない。"
+      "A": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0",
+      "B": "03e8a3076b39f8aed795313880d30a7ab59bda21ed70d44d6165979c7ac26026",
+      "C": "af8c83f526f0d8770b590f04c521bd168f837fb63dc0e9af66dc4c3f9afb4ee4"
     },
     "native_shape_boundary_ja": "L5から導出する既存NativeMaterial列はapplicability_readsとapplicability_judgment_batchesのみ。ここではこのNA射影部分だけを期待し、NativeMaterial全体やfn1全返却値は表さない。",
-    "coverage_limit_ja": "正式rawの全source/qualification/descriptor/fact/knowledge bodyをmaterializationで保持しslotごとのreader/projector期待を列挙する。意味reader、他function、全event/Finding/Comparison期待は含めない。"
+    "coverage_limit_ja": "正式rawの全source/qualification/descriptor/fact/knowledge bodyをmaterializationで保持しslotごとのreader/projector期待を列挙する。意味reader、他function、全event/Finding/Comparison期待は含めない。",
+    "input_precondition_ja": "本reader/projector期待は、fn0が当該rawを受理した場合に限る条件付き期待。そのValidatedSupply条件はinputが非null、input_issues=[]、unusable_source_refs=[]。本単位はfn0を実行せず、A/B/Cの受理を事実として主張しない。受理前にはreader/projectorを呼ばない。",
+    "walk_population_basis_ja": "L5 single_walk_algorithm_candidate/1の全slot読取域、同/2のframe/kind/slot原順訪問、およびna_call_schedule/callに従い、各rawのdescriptorsに存在する全実slotを列挙する。frame所属やBinding比較の補助判定はNA absent枝の期待を左右しない。",
+    "projector_batch_consistency_ja": "各applicability_judgment_batches[i].judgmentsは同じcalls[i].projector_expected_returnと全値一致し、read indexとslot locatorも同callへ結ぶ。期待値配列を静的検証する。",
+    "raw_preservation_ja": "raw A全値とB/Cの公式add patch valueをfixed Gitから取り込み、各patchをRFC6902 copyで原順展開する。materialized inputはsource rawと全値一致し、9-member full Binding・source/body/bytes値を保持する。Binding関係からreader期待を導かない。"
   }
 }
