@@ -46,7 +46,7 @@
     {
       "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
       "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
-      "note": "静的read-only参照のみ。MANIFESTをprovenance evidenceとして読み、旧archiveは実行しない。照合対象のlegacy source（archive/legacy-generation-2026-09-14/MANIFEST.sha256配下のroot-relative path / asset ID / SHA-256）：root/CLAUDE.md / LEGACY-ASSET-6EBDB617A8104A7756D0 / 7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb; root/AGENTS.md / LEGACY-ASSET-A54FF182C7E8ACF56ACF / fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf; root/docs/governance/ddd-tdd-rules.md / LEGACY-ASSET-5E22432B0A5A8F7CC8B3 / 9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af; root/docs/governance/coding-rules.md / LEGACY-ASSET-4B835ADBEFBCCC13C1C0 / 4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e; root/docs/governance/repository-structure.md / LEGACY-ASSET-FDBA655B1CFF75DCDC0E / 6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262; root/docs/governance/operations-rule-audit-2026-07-26.md / LEGACY-ASSET-B8D84651753481B5F2B9 / d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e; root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md / LEGACY-ASSET-A127DEC3EEE6ED63CF17 / bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872; root/docs/skills/deprecation-cutover.md / LEGACY-ASSET-95E14F385D8C1F71C209 / cc83066540bb93976343e4d4044b943c77fd1572e9dfe51473b3f223ff6dc089; root/docs/design/helix/L4-basic-design/design-template-json-authority.md / LEGACY-ASSET-4F5A1F0739EC1111D91D / e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb; root/docs/design/helix/L5-detail/design-refactoring-domain-model.md / LEGACY-ASSET-603D0E8D8193914F4AC0 / 6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b."
+      "note": "静的read-only参照のみ。legacy sourceのpath・asset ID・本文位置はREADMEの旧HELIX source mapに記載し、source SHA-256はこのMANIFESTに固定。旧archiveは実行しない。"
     }
   ],
   "role": "開発repo運用規則を現行consumer root単位で棚卸しし、機械強制状況、機械化余地、人判断、failure根拠、旧HELIXとの対応を分類する研究記録",
@@ -105,7 +105,7 @@
     ]
   },
   "replacement": {
-    "role_target": "Issue #3565のレビュー後に、現行正式文書の責務と既存機構への重複を再照合する。移管先要求は本資料から作らない。",
+    "role_target": "HELIX-HARNESS運用規則機械化棚卸しの維持担当。Issue #3565のscopeに沿って分類記録を保守し、移管先要求は本資料から作らない。",
     "formal_artifacts": [],
     "issue": 3565,
     "status": "pending",
