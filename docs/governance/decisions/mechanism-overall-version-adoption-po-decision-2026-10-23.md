@@ -35,8 +35,8 @@ POは、統制が提示した選択肢でHELIXOS-L2-133について「採択」�
 
 | 状態更新後の値 | digest |
 |---|---|
-| L2 section SHA-256 | `f08ea105c50d1d5edbc66911f5e89343ef8866ccf51ef5807c1fd5ed96a5b65c` |
+| L2 section SHA-256 | `f9b82df54580ae75aacb19102de9848f6b2cc156687981681ddeeb50a1ef86ae` |
 | L11 section SHA-256 | `d37136b8136044359974bc0daf68bd3c931a67cd62e1708bc64693955f1ba737` |
-| register revision | `MPR-RC-HELIXOS-L2-133-003` |
+| register revision | `MPR-RC-HELIXOS-L2-133-004` |
 
 `management_state: registered_proposal`と`authority_effect: none`は仮登録の性質であり、採否statusではない。本判断は要求の採否だけを対象とし、L3承認、実装・実行・配布、受入、release、tag、cutover、内部デプロイ、Issue closeを生成しない。
