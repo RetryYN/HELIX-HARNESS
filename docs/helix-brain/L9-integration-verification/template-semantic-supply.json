@@ -92527,20 +92527,20 @@
       "指定slot不在/no same-kindの原kind-level missingと、他same-kind slotを借りられない場合を区別する。port resolvedはどちらも住所対応だけでdefinition knownではない。",
       "report/Claimの元null/欠落を保持。proposed_value欠落はunresolved intentでありtarget住所対応とは独立。"
     ],
-    "detail_followup": "同callの実fn1評価/原definition索引/既存rule87又は93への公開Axis/Finding全返却と全F09統合はL5/L8へ残す。本9port expectedをF09全Comparisonと呼ばない。",
+    "detail_followup": "D27-Aの混在target有限raw/限定期待はdefinition_meaning_resolution_verification_planに保持する。実fn1評価/原definition索引/既存rule87又は93への公開Axis/Finding全返却と全F09統合はL5/L8へ残す。本9port expectedをF09全Comparisonと呼ばない。",
     "unobserved": [
       "名指し成功と無関係malformed/identity未帰属の混在",
       "exact同値宣言の複数出現と複数source資格/body相反の混在",
       "container明示null/型外、source未資格、binding member不明",
       "全kind/fact/候補/全mutation/全shape",
-      "混在未観測: 同一target/current full Bindingの同slot Aでk1/k2が相反し、別slot Bにk1がある組合せ（A/k1、A/k2、B/k1）。9件のwholeのどれにも含まれない。",
+      "同一target/current full BindingのA/k1・A/k2・B/k1混在は旧9件のexpected_wholeに含まれない。D27-Aはfinite raw/限定期待だけをplanへ追加し、実target port actual・public wholeは未実施。",
       "13種のreason_templatesのうち9件のexpected_wholeに現れず、今回も未観測の8種: owner_source_unresolved、target_container_null、target_container_type、declaration_shape、target_ref_unresolved、binding_unresolved、target_mapping_conflict、target_not_declared。"
     ],
     "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。"
   },
   "definition_meaning_resolution_verification_plan": {
     "id": "HELIXBRAIN-L9-032-DEFINITION-MEANING-RESOLUTION-PLAN",
-    "status": "A/B/C有限rawと閉公開期待を記載したL9設計候補。有限な静的素材の固定であり、L4/L9 formal pair/contract admission・実行・実source資格・provider接続は未成立。",
+    "status": "有限な静的rawと限定期待を追加したL9設計候補。L4/L9 formal pair/contract admission、実actual、実source資格、provider接続は未成立。",
     "logical_contract_pointer": "/definition_meaning_resolution_contract",
     "normative_basis_source": {
       "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
@@ -92556,20 +92556,21 @@
       "caller/native fact両側のbody追従変更とnormative引数追従変更を区別し、固定規範と異なるframe/bodyを同じ意味の評価にしない。A/B/Cの有限rawと公開期待を本節に固定し、それ以外の入力と期待はremainingに残す。",
       "Aのroot候補空、Bの明示candidateとA frameの混合、選択Aに対する非選択Cの保持を区別する。Cの同一fact/operation二出現は原順で保持し、Cに未要求不足を増殖させない。",
       "slot/facts欠落・限定undefinedは新解釈record未供給でも元規則を維持する。意味肯定/否定/未決、同slot null/defined/未資格の併存、NA元record対象違い/未解決を原原因ごと観測する。",
-      "公開Comparison/全assessment/source read全出現、rule87/93の同Claim一件化、無関係candidate/slot保持を別に比較する。旧79+5を新fn1全値証拠として数えない。",
+      "公開Comparison/全assessment/source read全出現とrule87/93の同Claim一件化は別の有限条件で照合する。D27-Aは同snapshot Claim /claims/0をport callerへ渡す有限素材と局所target conflict材料を置くが、合成最終stateや87/93への抑止を固定しない。D26-A raw、無関係candidate/slot、旧79+5を新fn1全値証拠として数えない。",
       "NA要求member absentとsupplied nullは別の原presence/stateとして観測し、明示nullの原未決をnot_requestedへ丸めない。元definition stateは別に保持する。"
     ],
     "preservation": {
       "old_L4_file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "old_L9_file_sha256": "bf0d0f183b11a9f39e288c2f717edf78a121f7612636fa29941d61cdabccd233",
       "old_L8_file_sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
-      "old_cases_scope": "既存の旧caseは原値不変。A/Bの既存rawと期待は変更せず、Cの新caseだけを追加した。"
+      "old_cases_scope": "既存D26 case/A/B/C rawと期待は原値不変。D27-A有限raw/期待のみを追加した。"
     },
     "remaining": [
-      "有限3条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
-      "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B/C rawは合成前提のみ。",
+      "既存A/B/CとD27-A有限条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
+      "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B/C/D27-A rawは合成前提のみ。",
       "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
-      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。"
+      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C/D27-A rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。",
+      "D27-Bの同一call/call内rule87・93両positive Claimと対応期待は未作成。D27-AだけでD27全体を完了扱いしない。実actual/実source資格/providerも未実施。"
     ],
     "current_contract_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -92583,16 +92584,17 @@
         "/identity_version_trace_contract/schema/$defs/Comparison",
         "/identity_version_trace_contract/schema/$defs/AxisResult",
         "/identity_version_trace_contract/schema/$defs/Finding",
+        "/dependency_semantic_ports/descriptor_target_contract",
         "/failure_classifications",
         "/definition_meaning_resolution_contract/normative_basis_snapshot",
         "/definition_meaning_resolution_contract/normative_basis_acquisition"
       ],
-      "role": "A/B/Cのroot・選択candidate・非選択cohort母集団、現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの現行L4根拠。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
+      "role": "A/B/Cのroot・選択candidate・非選択cohort母集団、D27-A混在targetの同一target/current Binding/slot衝突とconsumer route境界、現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの現行L4根拠。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
     },
     "synthetic_fixture_premise": {
-      "scope": "A/B/Cの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
+      "scope": "A/B/C/D27-Aの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
       "qualification": "Qualification、qualification root、source digestはfixture内の整合前提だけで、実source資格・trust・runtime動作を主張しない。",
-      "meaning_owner_operation": "A/B/C caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。",
+      "meaning_owner_operation": "A/B/C caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。D27-Aのowner target宣言も合成sourceとして資格/provenanceへ接続する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。",
       "normative_argument": "raw内argumentは上記normative_basis_sourceの固定歴史snapshotをそのまま保持する。現行期待境界はcurrent_contract_sourceで別に閉じる。",
       "absence": "A/B/Cではdefinition_applicability_refは要求しないためmember自体を省略する。null値を代用しない。"
     },
@@ -93517,7 +93519,7 @@
         "original_refs/source_refsの配列構成・順序",
         "public sort順、private assessment shape、producer_symbol literal"
       ],
-      "population_limit": "14は選択cohortごとのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。いずれもComparison.findings総数ではない。全Findingやprivate assessment全体を主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。A/B/C期待を個別に保持し各case単独照合を可能にする。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
+      "population_limit": "14は選択cohortごとのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。いずれもComparison.findings総数ではない。全Findingやprivate assessment全体を主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。A/B/C/D27-A期待を個別に保持し各case単独照合を可能にする。D27-AはFinding全件数を固定しない。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
     },
     "finite_C_raw_input": {
       "materials": [
@@ -94065,6 +94067,232 @@
         }
       },
       "cohort_binding_rule": "root Aのfull Bindingはinput_bindingで示す。選択Aのsource_ref／source_qualification_refはselected_cohorts[0]の値をraw Aのsources[0].ref／sources[0].qualification_refへ照合する。非選択CのBinding、source_ref、source_qualification_refは本caseの値をraw Cのdescriptors[1].binding／sources[1].ref／sources[1].qualification_refへ照合する。各sources[].qualification_refは対応するqualifications[].refと一致し、各qualification.root_refはqualification_roots[]の同一full Refと一致する。これらの照合は各cohort内で行い、他cohortのRefへ差し替えない。"
+    },
+    "finite_D27_A_raw_input": {
+      "materials": [
+        {
+          "literal_skeleton": {},
+          "fixed_git_imports": [
+            {
+              "op": "add",
+              "path": "",
+              "value_from_fixed_git": {
+                "revision": "aff0642288cd7ce719f0a9171960db6dde6bd318",
+                "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+                "file_sha256": "b0337b35036381fa84c9798023f3aaa3e8d69b056974358bda9c20c9ee098ffe",
+                "pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+                "value_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+              }
+            }
+          ],
+          "materialized_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+        }
+      ],
+      "materialization_contract_pointer": "/field_value_applicability_verification/fixture_materialization",
+      "case": {
+        "fixture_base_pointer": "/definition_meaning_resolution_verification_plan/finite_D27_A_raw_input/materials/0",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/sources/-",
+            "value": {
+              "ref": {
+                "identity": "SYNTHETIC-D27-A-MIXED-TARGET-SOURCE",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-meaning-owner-D27A",
+                "source_locator": "urn:synthetic:d27:A:mixed-target-source",
+                "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+              },
+              "content": {
+                "binding": {
+                  "template_ref": {
+                    "identity": "SYNTHETIC-D26-TEMPLATE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-template-owner",
+                    "source_locator": "urn:synthetic:d26:A:template",
+                    "sha256": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": "urn:synthetic:d26:A:knowledge",
+                    "sha256": null
+                  }
+                },
+                "descriptor_targets": [
+                  {
+                    "target_ref": {
+                      "identity": "SYNTHETIC-D27-A-TARGET",
+                      "revision": "synthetic-D27-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner-D27A",
+                      "source_locator": "urn:synthetic:d27:A:target",
+                      "sha256": null
+                    },
+                    "slot_identity": "SYNTHETIC-D27-A-SLOT-A",
+                    "descriptor_kind": "required input"
+                  },
+                  {
+                    "target_ref": {
+                      "identity": "SYNTHETIC-D27-A-TARGET",
+                      "revision": "synthetic-D27-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner-D27A",
+                      "source_locator": "urn:synthetic:d27:A:target",
+                      "sha256": null
+                    },
+                    "slot_identity": "SYNTHETIC-D27-A-SLOT-A",
+                    "descriptor_kind": "required section"
+                  },
+                  {
+                    "target_ref": {
+                      "identity": "SYNTHETIC-D27-A-TARGET",
+                      "revision": "synthetic-D27-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner-D27A",
+                      "source_locator": "urn:synthetic:d27:A:target",
+                      "sha256": null
+                    },
+                    "slot_identity": "SYNTHETIC-D27-A-SLOT-B",
+                    "descriptor_kind": "required input"
+                  }
+                ]
+              },
+              "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"}},\"descriptor_targets\":[{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required section\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-B\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}}]}",
+              "qualification_ref": {
+                "identity": "SYNTHETIC-D27-A-MIXED-TARGET-QUALIFICATION",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-qualification-owner-D27A",
+                "source_locator": "urn:synthetic:d27:A:mixed-target-qualification",
+                "sha256": null
+              },
+              "role": "semantic_json"
+            }
+          },
+          {
+            "op": "add",
+            "path": "/qualification_roots/-",
+            "value": {
+              "identity": "SYNTHETIC-D27-A-MIXED-TARGET-ROOT",
+              "revision": "synthetic-D26-r1",
+              "scope": "synthetic-D26-cohort",
+              "owner": "synthetic-logical-root-D27A",
+              "source_locator": "urn:synthetic:d27:A:mixed-target-root",
+              "sha256": null
+            }
+          },
+          {
+            "op": "add",
+            "path": "/qualifications/-",
+            "value": {
+              "ref": {
+                "identity": "SYNTHETIC-D27-A-MIXED-TARGET-QUALIFICATION",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-qualification-owner-D27A",
+                "source_locator": "urn:synthetic:d27:A:mixed-target-qualification",
+                "sha256": null
+              },
+              "subject_ref": {
+                "identity": "SYNTHETIC-D27-A-MIXED-TARGET-SOURCE",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-meaning-owner-D27A",
+                "source_locator": "urn:synthetic:d27:A:mixed-target-source",
+                "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+              },
+              "subject_sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b",
+              "applicable_scope": "synthetic-D26-cohort",
+              "qualification_body": {
+                "record_kind": "synthetic-logical-qualification-premise",
+                "note": "局所合成fixture前提のみ。実運用trust/資格認証を証明しない。",
+                "subject_identity": "SYNTHETIC-D27-A-MIXED-TARGET-SOURCE"
+              },
+              "root_ref": {
+                "identity": "SYNTHETIC-D27-A-MIXED-TARGET-ROOT",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-root-D27A",
+                "source_locator": "urn:synthetic:d27:A:mixed-target-root",
+                "sha256": null
+              }
+            }
+          },
+          {
+            "op": "add",
+            "path": "/knowledge_records/0/provenance_refs/-",
+            "value": {
+              "identity": "SYNTHETIC-D27-A-MIXED-TARGET-SOURCE",
+              "revision": "synthetic-D26-r1",
+              "scope": "synthetic-D26-cohort",
+              "owner": "synthetic-meaning-owner-D27A",
+              "source_locator": "urn:synthetic:d27:A:mixed-target-source",
+              "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+            }
+          },
+          {
+            "op": "add",
+            "path": "/claims",
+            "value": [
+              {
+                "subject_ref": {
+                  "identity": "SYNTHETIC-D27-A-TARGET",
+                  "revision": "synthetic-D27-r1",
+                  "scope": "synthetic-D26-cohort",
+                  "owner": "synthetic-meaning-owner-D27A",
+                  "source_locator": "urn:synthetic:d27:A:target",
+                  "sha256": null
+                },
+                "binding": {
+                  "template_ref": {
+                    "identity": "SYNTHETIC-D26-TEMPLATE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-template-owner",
+                    "source_locator": "urn:synthetic:d26:A:template",
+                    "sha256": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-knowledge-owner",
+                    "source_locator": "urn:synthetic:d26:A:knowledge",
+                    "sha256": null
+                  }
+                },
+                "actor": "synthetic-claimant-D27A",
+                "kind": "fill_definition",
+                "proposed_value": null
+              }
+            ]
+          }
+        ],
+        "materialized_input_canonical_sha256": "9c91a22139f26b86e879023730a3bbf982bbc3a6dc1c246031ebdd4fbdb96927"
+      },
+      "raw_input_pointer": "",
+      "raw_input_canonical_sha256": "9c91a22139f26b86e879023730a3bbf982bbc3a6dc1c246031ebdd4fbdb96927",
+      "caller_contract": "予定するport呼出しはこのmaterialized inputを一つのimmutable validated snapshotとして使い、同snapshotの原Claim /claims/0 全値を直接引数、/claims/0をclaim_locatorとしてread_descriptor_replacement_targetへ渡す。fn1は同じvalidation/callで一度評価し、fn6/fn7はその同call結果を消費する。actual未実施でprivate index/occurrence shapeは固定しない。",
+      "materialization_note": "既存 /field_value_applicability_verification/fixture_materialization/base と /field_value_applicability_verification/fixture_materialization/hash を再利用する。fixed_git_importsの物理file SHA・imported raw canonical SHAと、case.materialized_input_canonical_sha256を別段階のpinとして保持。"
+    },
+    "finite_D27_A_expectation": {
+      "id": "D27-A-mixed-target",
+      "base_input_ref": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+      "target_source_ref_pointer": "/definition_meaning_resolution_verification_plan/finite_D27_A_raw_input/case/fixture_patch/0/value/ref",
+      "source_membership": "RFC6902 patchの /value/ref がmaterialized /sources/1/refであり、同一full knowledge_refのKnowledgeRecord.provenance_refsに含まれる。source.content.bindingはinput.bindingと同値で、Qualification subject/rootは既存資格contractに従う（L4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin）。",
+      "target_relation_observation": "同一target/current Binding/slot Aにkind相反の局所材料がある。複合DescriptorTargetReadの最終stateは固定しない。",
+      "closed_by_L4": [
+        "同一target/current full Binding/slot Aの異なる既知kindはL4 /dependency_semantic_ports/descriptor_target_contract/relevance_table/8のtarget_mapping_conflict材料に対応する。slot Bも存在するためL4 /dependency_semantic_ports/descriptor_target_contract/relevance_table/7の別slot unknown材料が同時にあるが、L4 /dependency_semantic_ports/descriptor_target_contract/ordered_branches/8の順序表現から複合最終stateの優先を確定しない。",
+        "唯一のClaimはbasis_refsがなく、追加target sourceのroleはsemantic_jsonでreference_only sourceは含まれず、Claimはfallback成立も主張しない。そのためこの入力は87/93の入口条件を持たず、conflictによる抑止を検証しない（L4 /dependency_semantic_ports/public_projection/axis_mapping/5、/dependency_semantic_ports/public_projection/axis_mapping/6、/dependency_semantic_ports/public_projection/rule_routing）。抑止の検証はBへ残す。",
+        "D27-Aのtarget Refとslot A/BはD27-A専用値で、D26 template_ref/slot/factから生成しない。targetの供給元と同full Binding対応はL4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin、/dependency_semantic_ports/descriptor_target_contract/carrier/fields/target_ref、/dependency_semantic_ports/descriptor_target_contract/relevance_table/0で確認する。",
+        "別Bindingや別slot/sourceをClaimの対応へ移さない（L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/other_same_kind、/dependency_semantic_ports/descriptor_target_contract/relevance_table/4）。"
+      ],
+      "scope_limit": "Aはfn1 1回評価用の有限入力と局所target-conflict材料だけを固定し、複合最終stateを固定しない。BはこのClaimを保持し、別locatorのrule87・rule93 positive Claimを各1件追加した計3 Claimを同じcase/callに置いて両公開tupleを扱う。A/Bとも実actualとformal pairは未成立。全Comparison/Finding数、rule_ref literal、出力Ref列、reason、sort、private index/occurrence shapeは固定しない。"
     }
   },
   "field_value_applicability_verification": {
