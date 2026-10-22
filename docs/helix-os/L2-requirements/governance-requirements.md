@@ -514,7 +514,7 @@ HARNESSの工程・提供条件に関係するRFA／DGH／FRS等は、OSの実�
 
 ## 要求正本を更新する管理条件
 
-**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。各要求節に残る採否状態の記載も判断前の状態を示し、採否は対象revisionに対応する判断記録（2026-09-29の57候補／11候補等）を正とする。要求の意味と採択したrevisionは変えない。
 
 HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と
 HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、
