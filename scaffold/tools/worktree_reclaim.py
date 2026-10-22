@@ -204,8 +204,9 @@ def evaluate(repo, main, entry, now, days, prs, backup_root, report_path):
     try: touched = last_touch(resolved)
     except RuntimeError: return {**r, "reason": "git_dir_unavailable"}
     r["last_touch"] = {"epoch": touched, "at": dt.datetime.fromtimestamp(touched, dt.timezone.utc).isoformat().replace("+00:00", "Z")}
-    r["age_days"] = round((now - touched) / DAY, 3)
-    if r["age_days"] < days: return {**r, "reason": "fresh"}
+    age_days = (now - touched) / DAY
+    r["age_days"] = round(age_days, 3)
+    if age_days < days: return {**r, "reason": "fresh"}
     rows = status_rows(resolved)
     if rows: return {**r, "reason": "backup_only_dirty", "status_count": len(rows), "preserve": True}
     if not merged(main, entry.get("head") or "HEAD"): return {**r, "reason": "backup_only_unmerged", "preserve": True}

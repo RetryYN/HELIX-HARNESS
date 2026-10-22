@@ -41,6 +41,12 @@ class Cases(unittest.TestCase):
             if p.exists(): os.utime(p, (self.old, self.old), follow_symlinks=False)
         return wt
 
+    def set_last_touch(self, wt, timestamp):
+        for p in [wt, *wt.rglob("*")]: os.utime(p, (timestamp, timestamp), follow_symlinks=False)
+        gd = WR.git_dir(wt)
+        for p in (gd / "HEAD", gd / "logs" / "HEAD"):
+            if p.exists(): os.utime(p, (timestamp, timestamp), follow_symlinks=False)
+
     def invoke(self, *args, prs=None):
         out = io.StringIO()
         argv = ["--repo", str(self.repo), "--backup-dir", str(self.root / "backup"), "--report", str(self.root / "report.json"),
@@ -78,6 +84,24 @@ class Cases(unittest.TestCase):
         finally: proc.terminate(); proc.wait()
         self.assertEqual((code, self.got(rep, fresh)["reason"], self.got(rep, openwt)["reason"], self.got(rep, procwt)["reason"]),
                          (0, "fresh", "open_pr_branch", "process_in_use"))
+
+    def test_age_threshold_uses_unrounded_value(self):
+        # A fixed epoch keeps the exact halfway input stable through float subtraction.
+        self.now = 1_000_000.0
+        self.old = self.now - 9 * WR.DAY
+        just_before = self.old_wt("just-before", "just-before-branch")
+        exact = self.old_wt("exact", "exact-branch")
+        self.set_last_touch(just_before, self.now - 6.9995 * WR.DAY)
+        self.set_last_touch(exact, self.now - 7.0 * WR.DAY)
+
+        _, report = self.invoke()
+        before_row, exact_row = self.got(report, just_before), self.got(report, exact)
+        self.assertEqual(before_row["age_days"], 7.0)
+        self.assertEqual(before_row["reason"], "fresh")
+        self.assertFalse(before_row.get("eligible", False))
+        self.assertEqual(exact_row["age_days"], 7.0)
+        self.assertEqual(exact_row["reason"], "eligible")
+        self.assertTrue(exact_row["eligible"])
 
     def test_directory_link_is_fail_closed(self):
         wt = self.old_wt("linked", "linked-branch", link=True)
