@@ -1715,15 +1715,15 @@ revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-select
 
 <a id="helixos-l2-133"></a>
 
-### HELIXOS-L2-133 機構能力版と全体到達版の対応管理（単体追補候補、未採択）
+### HELIXOS-L2-133 機構能力版と全体到達版の対応管理（単体、採択済み）
 
 #### 位置・親・対象revision
 
-本節はOS014とは別identity・別判定の独立したL2追補候補である。
-種別は`unit`、対象はHELIX-OS、状態は`registered_proposal`、`authority_effect: none`。
+本節はOS014とは別identity・別判定の独立した採択済みL2である。
+種別は`unit`、対象はHELIX-OS、状態は採択済み。採否は[判断記録](../../governance/decisions/mechanism-overall-version-adoption-po-decision-2026-10-23.md)と対象revisionへ束縛する。管理登録の管理状態は`registered_proposal`のままとし、`authority_effect: none`は仮登録の性質を示す。
 `version_target`は未指定とする。機構の現在番号、全体到達番号、収載段階も付与しない。
 対は[HELIXOS-L11-133](../L11-acceptance/governance-acceptance.md#helixos-l11-133)。
-管理登録は`MPR-RC-HELIXOS-L2-133-002`。実装・受入・実作用は未実施。
+管理登録は`MPR-RC-HELIXOS-L2-133-003`。実装・受入・実作用は未実施。登録・PR・Issueから採択を生成せず、判断記録と対象revisionの対応を採否根拠とする。
 
 親Conceptは`docs/concept/helix-concept.md@5afce0789481881fc304e22177b4160ab8171feb`、
 本文SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`。
@@ -1746,11 +1746,11 @@ L1の確定根拠は[9/28判断](../../governance/decisions/helix-os-requirement
 
 > HELIX全体はビジョン見れば結構見えてくるはず。
 
-以下は原文と既存Concept・要求の意味を区別して対応づける候補である。
+以下は原文と既存Concept・要求の意味を区別して対応づける採択対象本文である。
 本節の`+0.01`は[統制整理](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6347014279)で用いられた呼称で、原文の`0,01`を書き換えたり、表記規則を確定したりしない。
 原文が言う「ビジョン」をConcept:37–50へ対応させるのは統制の読みであり、PO原文はConceptを名指ししていない。
 原文の「タグ」からGit tagの作成や公開の許可を導かない。
-Issue commentで保存された原文は出所として参照し、本節の採択記録とは扱わない。
+Issue commentで保存された原文は出所として参照し、採択記録とは扱わない。
 
 #### 提供する意味と責務
 
@@ -1870,7 +1870,7 @@ OS030は機構能力版・全体到達とは別のpackage候補であり、保�
 新しい点数、達成率、番号算出器、gate、template、承認者、release・配布先切替・内部デプロイの許可はこの候補から生成しない。
 
 既存OS014は段階構成の軸であり、その採択済み本文にこの新しい機構版の意味を追記しない。
-「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
+「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。採択済みの本節は判断記録と対象revisionの対応で読む。
 採否は対象revisionへの判断で別に行う。
 
 #### 旧source・失敗との対応

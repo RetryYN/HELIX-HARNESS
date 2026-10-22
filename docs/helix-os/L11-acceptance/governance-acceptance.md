@@ -1376,7 +1376,7 @@ Normative inputは旧IR HIL-NFR-40 whole identity、旧L1 line 220は同文corro
 
 ### HELIXOS-L11-133 機構能力版と全体到達版の対応管理の受入候補
 
-親要求はHELIXOS-L2-133。unitの未採択・未実行の対L11候補である。
+親要求はHELIXOS-L2-133。unitの採択済み・未実行の対L11である。
 `version_target`未指定、番号境界4件、他の未決と再評価条件は親要求の表をそのまま適用する。
 対象機構、要求・要件revision、Concept revision、変更内容、参照する構成と判断の出所を固定して確かめる。
 以下は要求の意味を確かめる成功・反例であり、新しい番号計算やgateの仕様ではない。
