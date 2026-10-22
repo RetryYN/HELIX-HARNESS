@@ -35,8 +35,8 @@ POは、統制が提示した選択肢でHARNESS-L2-091について「採択」�
 
 | 状態更新後の値 | digest |
 |---|---|
-| L2 section SHA-256 | `199628961f1c0fc21db370aef65b57121c3294289a3949023c3affbe2126c30c` |
+| L2 section SHA-256 | `7089d14bf1aca2bb49be1243bc8d5a1207ba53bc17f2ff3fdb5ef6257460ac08` |
 | L11 section SHA-256 | `68ca8252ba6a3a93577c39418b9ddd2a01d6a4d6a315366cd0ce08468984a6e6` |
-| register revision | `MPR-RC-HARNESS-L2-091-003` |
+| register revision | `MPR-RC-HARNESS-L2-091-004` |
 
 `management_state: registered_proposal`と`authority_effect: none`は仮登録の性質であり、採否statusではない。本判断は要求の採否だけを対象とし、L3承認、実装・実行・配布、受入、release、tag、cutover、内部デプロイ、Issue closeを生成しない。

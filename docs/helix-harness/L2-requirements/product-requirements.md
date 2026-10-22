@@ -1777,6 +1777,6 @@ OS030保留やHARNESS064の現行版不承認を、失敗の存在を理由に�
 
 「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
 HELIX-Web／HELIX-WEB-OSは対象外。OS014の既決や単独部品内部デプロイ可否の保留を変えない。
-候補の`version_target: 1.0`から、収載段階・公開番号・tag・release・cutoverの許可は出ない。
+本要求の`version_target: 1.0`から、収載段階・公開番号・tag・release・cutoverの許可は出ない。
 採否は判断記録と対象revisionの対応で読む。Draft・仮登録・原文保全の`no_loss`・reviewは採択を生成しない。
 新しい承認者・承認手続・実作用の許可を追加しない。
