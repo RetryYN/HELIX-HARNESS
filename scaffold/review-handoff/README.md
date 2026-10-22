@@ -80,7 +80,7 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 
 ## 作業依頼と作業結果
 
-上限と並列claimは[2026-10-22のPO判断](../../docs/governance/decisions/mailbox-parallel-task-box-po-decision-2026-10-22.md)による。ボックスの形式・配送・直列後続の受信抑止まで実装している。直列の進行・実行base照合と一括inspect・通知は#3570の後続PRで扱い、現時点で直列の自走が成立したとはしない。
+上限と並列claimは[2026-10-22のPO判断](../../docs/governance/decisions/mailbox-parallel-task-box-po-decision-2026-10-22.md)による。並列は独立した複数の依頼、直列は任意の`after`で表す。一括inspect・通知は#3570の後続PRで扱う。
 
 ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
 
@@ -98,16 +98,17 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
    - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Codex/Devinの後続待機依頼は待機中にTTLが進まず、その依頼自身のclaim時から元のTTLを一度だけ数える。旧形式も同じ扱いとし、先頭の解放や他依頼のclaimではTTLを開始・再延長しない。配送開始後の未ACK依頼は期限で枠を解放する。
 
-`send-box --runtime DISPATCHER --session SESSION --request MANIFEST`は、既存のv1子依頼を変更せず同じtransactionで送る。manifestは`schema: scaffold-task-box.v1`、`evidence_kind: scaffold`、`authority_effect: none`、`box_id`、`lanes`を持つ。各列は`mode: parallel|serial`、`wait_for: merge|result`、`requests: [既存v1依頼, ...]`だけを持つ。列同士は並列で、`serial`列の配列順が直列順になる。たとえばserial `[A,B]`とparallel `[C]`で`(A⇒B)∥C`を表す。一般DAGや任意の依存辺は持たない。
 
-子は同じdispatcher/workerに最大5件で、直列後続も未完了枠を使う。既存割当と合わせて上限を超す場合は全体を拒否する。各子は元のrequest_id/base/参照/hashを保持し、結果も既存の個別request_idで返す。箱のmetadataに依頼本文を複製しない。同じbox IDへの異なるmanifestは拒否し、同じmanifestの再送は二重配送しない。
+`packet.py build-work --after PREDECESSOR_EVENT_ID`で先行のevent IDを1件指定できる。通常どおり各依頼を個別sendする。`A⇒B⇒C`はBのafter=A、Cのafter=B、`(A⇒B)∥C`はCだけafterなしで表す。先行は実際に送信済みで、同じ依頼側/作業側のruntime/sessionに属する依頼に限る。任意DAG・manifest・一括send・execution receiptは持たない。
 
-この段階ではserial列の先頭だけclaim可能で、後続のTTLは進まない。先頭の結果/releaseで後続を自動開放せず、後続は明示release可能な割当として残る。`wait_for`による進行は後続PRで接続するため、実作業の直列自走にはまだ使用しない。並列列の各子と箱に属さない依頼は独立してclaimできる。session交代で子の宛先を付け替えない。
+後続は先行の`proposal`結果までclaimを待ち、待機TTLを止める。結果の受領だけをmerge・承認にせず、PRが必要な列では作成側が独立review・明示merge・read-after後に最終のwork_resultを返す。作業側は後続着手時にfetchした最新mainと参照SHAを確認して作業baseを定め、ずれやreview findings、blockedでは`incomplete`を返す。依頼の元base/hashやdispatcherを書き換えない。blockedという新result値は追加しない。
 
-旧`PLAN-L7-64-team-runner-launch.md:48–66`のparallel/直列理由と`L6-function-design/agent-slots.md:89–108`のserialize_afterを意味から再導出した。provider起動・旧runtimeのcopy/実行はせず、既存GUIのWorkerが処理する。#3405 R1の未受信後続TTL切れを防ぐ待機TTL停止を保持する。旧sourceは`archive/legacy-generation-2026-09-14/root/docs/`配下を読取参照した。
+先行が`incomplete`/`declined`、明示release、未ACK期限切れなら、依存する後続だけを連鎖的にcancelledにし枠を外す。取消理由と先行event IDを既存の終了記録へ残す。afterのない独立依頼は維持する。各結果は元のrequest_id/payloadに対応させ、sessionを自動で付け替えない。
+
+旧`PLAN-L7-64-team-runner-launch.md:48–66`のparallelと`L6-function-design/agent-slots.md:89–108`のserialize_afterを意味から再導出した。旧sourceは`archive/legacy-generation-2026-09-14/root/docs/`配下を読取参照した。#3405 R1の未受信後続TTL切れを防ぐ待機TTL停止を保持し、旧runtime/providerは実行しない。#3573 R1で判明した未開放の直列後続・二重状態の問題を避け、既存の割当/送信記録だけを使う。
 
 
-`release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、後続を取消さず割当を保存する。待機後続のTTLはこの解放では開始せず、その依頼自身のclaimを待つ。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。
+`release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、独立した後続の割当は保存し、afterで依存する後続は上記の規則で取消す。待機後続のTTLはこの解放では開始せず、その依頼自身のclaimを待つ。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。
 
 Codex/Devinの並列claimへの切替は、次に起動したreceiverへ反映される。起動済みreceiverは旧コードを保持するため、同じsessionで待受を起動し直す。更新前receiverが非head依頼をclaimしても、新しいACK処理は一致する割当へACKを結び付ける。既存singleton状態は`work`を先頭として読み、残りを`work_queue`に保持するが、先頭は実行順の制約ではない。 session交代後の旧session宛待機依頼は自動で付け替えず、最大4枠を保持し得る。依頼側または作業側が`release-work --id EVENT_ID`で明示解放し、新sessionへ参照SHAを確認した新しい依頼を送る。
 

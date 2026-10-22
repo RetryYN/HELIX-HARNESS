@@ -88,7 +88,10 @@ def validate_work(packet, base):
     """作業依頼。記録の正本はIssueで、通知は配送。承認・要求の意味・完了を生成しない。"""
     fields = {"schema", "evidence_kind", "authority_effect", "request_id", "repository", "issue",
               "base_sha", "dispatcher", "worker", "purpose", "scope", "route", "references", "payload_sha256"}
-    require(isinstance(packet, dict) and set(packet) == fields, "作業依頼のfield不一致")
+    require(isinstance(packet, dict) and set(packet) in (fields, fields | {"after"}), "作業依頼のfield不一致")
+    if "after" in packet:
+        require(isinstance(packet["after"], str) and re.fullmatch(r"[A-Za-z0-9_-]{1,128}", packet["after"]),
+                "afterは先行event IDが必要")
     require(packet["schema"] == "scaffold-work-request.v1", "作業依頼schema不一致")
     require(packet["evidence_kind"] == "scaffold" and packet["authority_effect"] == "none", "authority不一致")
     require(packet["repository"] == "RetryYN/HELIX-HARNESS", "repository不一致")
@@ -170,6 +173,7 @@ def main():
     work.add_argument("--dispatcher", choices=PR_RUNTIMES, required=True)
     work.add_argument("--worker", choices=RUNTIMES, required=True)
     work.add_argument("--scope", action="append", required=True)
+    work.add_argument("--after", help="先行する作業依頼のevent ID（任意）")
     check = sub.add_parser("check")
     check.add_argument("request")
     check.add_argument("--base", required=True)
@@ -193,6 +197,8 @@ def main():
                           base_sha=commit(args.base), dispatcher=args.dispatcher, worker=args.worker,
                           purpose=args.purpose, scope=args.scope, route="vscode_gui_mailbox",
                           references=references(args.base))
+            if args.after is not None:
+                packet["after"] = args.after
             packet["payload_sha256"] = sha(encode(packet))
             validate_work(packet, args.base)
             print(json.dumps(packet, ensure_ascii=False, indent=2))
