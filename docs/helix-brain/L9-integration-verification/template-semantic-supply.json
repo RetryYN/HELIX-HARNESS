@@ -92566,7 +92566,7 @@
       "old_cases_scope": "既存全case/target9/conditional素材/全期待は原値不変。新ケース又は新whole期待を追加していない。"
     },
     "remaining": [
-      "Cの合成rawと閉公開期待、非選択C cohortの2 raw occurrences保持。",
+      "非対象cohort Cを実際に入力するケース、Cの合成rawと閉公開期待、および同じfact/operationを持つraw occurrence 2回の保持。",
       "A/B有限fixtureとこの契約案の独立reviewおよび正式admission。",
       "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B rawは合成前提のみ。",
       "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
@@ -93224,7 +93224,7 @@
       },
       "raw_input_pointer": "",
       "raw_input_canonical_sha256": "d3161640f26d42e5d4ac9d41a25aeb19468a7dd48fdda1a719c1c95375cc5deb",
-      "independent_source_relation": "6個のRFC6902 add値は独立著述raw Bの追記値である。固定GitでA raw全体を文書ルートへ取り込み、case.fixture_patchを既存契約どおり原順に適用した結果を、独立著述の全B rawと静的に全値照合する。この比較記録は証拠であり、生成器や期待値の正解を作るoracleではない。"
+      "independent_source_relation": "raw B固有の独立著述はこの節の6個のRFC6902 add値で保持する。固定GitでA raw全体を文書ルートへ取り込み、既存fixture_materialization契約の原順で適用した後のraw B canonical SHA-256はcase.materialized_input_canonical_sha256に固定する。固定Git物理bytes、取込A raw、適用後B rawのhashを区別する。"
     },
     "closed_public_shapes": {
       "Comparison": {
@@ -93496,7 +93496,7 @@
         "population_count_only": 28,
         "not_total_findings": true
       },
-      "cohort_binding_rule": "対応するFinding/AxisResultはA又はB各cohortの完全なBindingと同じcohortの原source参照を保持し、他cohortへ差し替えない。"
+      "cohort_binding_rule": "A root cohortの完全なBindingはinput_binding、B candidate cohortの完全なBindingはselected_cohorts[1].bindingで示す。対応するFinding/AxisResultはその完全なBindingと同cohortの原source参照を保持し、他cohortへ差し替えない。"
     },
     "public_expectation_limits": {
       "closed_by_L4": [
@@ -93518,7 +93518,7 @@
         "original_refs/source_refsの配列構成・順序",
         "public sort順、private assessment shape、producer_symbol literal"
       ],
-      "population_limit": "14は各選択cohortのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。28はComparison.findings総数ではない。A/BでL4が閉じた出る／出ない／増えない値と各source所属だけを述べ、無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。"
+      "population_limit": "14は各選択cohortのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。28はComparison.findings総数ではない。A/BでL4が閉じた出る／出ない／増えない値と各source所属だけを述べ、無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。AとBの期待を別々に残すことで各ケースを単独照合でき、Bではroot Aとcandidate Bの差分を追える。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
     }
   },
   "field_value_applicability_verification": {
