@@ -92563,7 +92563,7 @@
       "old_L4_file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "old_L9_file_sha256": "bf0d0f183b11a9f39e288c2f717edf78a121f7612636fa29941d61cdabccd233",
       "old_L8_file_sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
-      "old_cases_scope": "D26-A/B/Cのtemplate_ref/knowledge_refと原意味値は不変。A/B/Cのraw Bindingと対応する公開Bindingを各fixture frameの9-member Bindingへ補い、source content digestと同source Refを追随した。Cのfixed-Git A importはB merge済みmainの実在revision 838c960e8cd3b8dc8fbac45827c628c3cb922f1bへrebindした。D27-A/B raw・期待と各fixed-Git importはこの変更で動かさず、各専用訂正時にrebindする。"
+      "old_cases_scope": "D26-A/B/Cのtemplate_ref/knowledge_refと原意味値は不変。A/B/Cのraw Bindingと対応する公開Bindingを各fixture frameの9-member Bindingへ補い、source content digestと同source Refを追随した。Cのfixed-Git A importはB merge済みmainの実在revision 838c960e8cd3b8dc8fbac45827c628c3cb922f1bへrebindした。D27-Aでは既存2 Refを保持したままsource/Claim BindingをA frameの9-memberに揃え、source digest参照を追随した。D27-B raw・期待と各fixed-Git importは未変更で、専用訂正時にrebindする。"
     },
     "remaining": [
       "既存A/B/CとD27-A/B有限条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
@@ -94640,15 +94640,15 @@
               "op": "add",
               "path": "",
               "value_from_fixed_git": {
-                "revision": "aff0642288cd7ce719f0a9171960db6dde6bd318",
+                "revision": "09684f32b53b66f3e18abbcbba1eb4d632db7dca",
                 "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-                "file_sha256": "b0337b35036381fa84c9798023f3aaa3e8d69b056974358bda9c20c9ee098ffe",
+                "file_sha256": "477be5895dfe49790e950b549b45d48e285dfc7097116163cf6213b8ef2093da",
                 "pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
-                "value_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+                "value_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0"
               }
             }
           ],
-          "materialized_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+          "materialized_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0"
         }
       ],
       "materialization_contract_pointer": "/field_value_applicability_verification/fixture_materialization",
@@ -94665,7 +94665,7 @@
                 "scope": "synthetic-D26-cohort",
                 "owner": "synthetic-meaning-owner-D27A",
                 "source_locator": "urn:synthetic:d27:A:mixed-target-source",
-                "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+                "sha256": "7177a75e8228acc63578ffb7a850b9681cbe79cf193b5b77650940d7a48fa516"
               },
               "content": {
                 "binding": {
@@ -94684,7 +94684,35 @@
                     "owner": "synthetic-knowledge-owner",
                     "source_locator": "urn:synthetic:d26:A:knowledge",
                     "sha256": null
-                  }
+                  },
+                  "requirement_ref": {
+                    "identity": "SYNTHETIC-D26-REQUIREMENT-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "oracle_ref": {
+                    "identity": "SYNTHETIC-D26-ORACLE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-oracle-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_ref": {
+                    "identity": "SYNTHETIC-D26-PACK-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-pack-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_contract_version": "contract-A",
+                  "pack_artifact_version": "artifact-A",
+                  "pack_dependency_versions": [],
+                  "version_target": "1.0"
                 },
                 "descriptor_targets": [
                   {
@@ -94725,7 +94753,7 @@
                   }
                 ]
               },
-              "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"}},\"descriptor_targets\":[{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required section\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-B\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}}]}",
+              "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"descriptor_targets\":[{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required section\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-A\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}},{\"descriptor_kind\":\"required input\",\"slot_identity\":\"SYNTHETIC-D27-A-SLOT-B\",\"target_ref\":{\"identity\":\"SYNTHETIC-D27-A-TARGET\",\"owner\":\"synthetic-meaning-owner-D27A\",\"revision\":\"synthetic-D27-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d27:A:target\"}}]}",
               "qualification_ref": {
                 "identity": "SYNTHETIC-D27-A-MIXED-TARGET-QUALIFICATION",
                 "revision": "synthetic-D26-r1",
@@ -94767,9 +94795,9 @@
                 "scope": "synthetic-D26-cohort",
                 "owner": "synthetic-meaning-owner-D27A",
                 "source_locator": "urn:synthetic:d27:A:mixed-target-source",
-                "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+                "sha256": "7177a75e8228acc63578ffb7a850b9681cbe79cf193b5b77650940d7a48fa516"
               },
-              "subject_sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b",
+              "subject_sha256": "7177a75e8228acc63578ffb7a850b9681cbe79cf193b5b77650940d7a48fa516",
               "applicable_scope": "synthetic-D26-cohort",
               "qualification_body": {
                 "record_kind": "synthetic-logical-qualification-premise",
@@ -94795,7 +94823,7 @@
               "scope": "synthetic-D26-cohort",
               "owner": "synthetic-meaning-owner-D27A",
               "source_locator": "urn:synthetic:d27:A:mixed-target-source",
-              "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
+              "sha256": "7177a75e8228acc63578ffb7a850b9681cbe79cf193b5b77650940d7a48fa516"
             }
           },
           {
@@ -94827,7 +94855,35 @@
                     "owner": "synthetic-knowledge-owner",
                     "source_locator": "urn:synthetic:d26:A:knowledge",
                     "sha256": null
-                  }
+                  },
+                  "requirement_ref": {
+                    "identity": "SYNTHETIC-D26-REQUIREMENT-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-requirement-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "oracle_ref": {
+                    "identity": "SYNTHETIC-D26-ORACLE-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-oracle-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_ref": {
+                    "identity": "SYNTHETIC-D26-PACK-A",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-pack-owner",
+                    "source_locator": null,
+                    "sha256": null
+                  },
+                  "pack_contract_version": "contract-A",
+                  "pack_artifact_version": "artifact-A",
+                  "pack_dependency_versions": [],
+                  "version_target": "1.0"
                 },
                 "actor": "synthetic-claimant-D27A",
                 "kind": "fill_definition",
@@ -94836,10 +94892,10 @@
             ]
           }
         ],
-        "materialized_input_canonical_sha256": "9c91a22139f26b86e879023730a3bbf982bbc3a6dc1c246031ebdd4fbdb96927"
+        "materialized_input_canonical_sha256": "aabcc3b4fe03ef1e61a2604ac2c1a74e6d3e8ecc5fea4ec5dd177cf728332780"
       },
       "raw_input_pointer": "",
-      "raw_input_canonical_sha256": "9c91a22139f26b86e879023730a3bbf982bbc3a6dc1c246031ebdd4fbdb96927",
+      "raw_input_canonical_sha256": "aabcc3b4fe03ef1e61a2604ac2c1a74e6d3e8ecc5fea4ec5dd177cf728332780",
       "caller_contract": "予定するport呼出しはこのmaterialized inputを一つのimmutable validated snapshotとして使い、同snapshotの原Claim /claims/0 全値を直接引数、/claims/0をclaim_locatorとしてread_descriptor_replacement_targetへ渡す。fn1は同じvalidation/callで一度評価し、fn6/fn7はその同call結果を消費する。actual未実施でprivate index/occurrence shapeは固定しない。",
       "materialization_note": "既存 /field_value_applicability_verification/fixture_materialization/base と /field_value_applicability_verification/fixture_materialization/hash を再利用する。fixed_git_importsの物理file SHA・imported raw canonical SHAと、case.materialized_input_canonical_sha256を別段階のpinとして保持。"
     },
