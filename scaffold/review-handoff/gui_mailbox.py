@@ -12,6 +12,7 @@ import tempfile
 import time
 import uuid
 import packet as p
+import task_box as boxes
 
 HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
@@ -202,6 +203,8 @@ def compact(data, now):
         del issued[key]
     if not issued:
         data.pop("issued", None)
+    boxes.cleanup(data, {item["event_id"] for worker in RUNTIMES for item in work_items(data, worker)},
+                  now, CLOSED_RETENTION_SECONDS)
     return records
 
 
@@ -401,6 +404,8 @@ def claim(data, runtime, session, now):
         if message["status"] in ("acked", "expired", "cancelled"):
             continue
         if payload["kind"] == "work_request" and message["status"] == "queued":
+            if not boxes.can_claim(data, payload["event_id"]):
+                continue
             if not any(item["event_id"] == payload["event_id"] for item in work_items(data, runtime)):
                 continue
             if message.get("work_waiting") is True:
@@ -599,7 +604,8 @@ def hook(runtime, wait, event_arg=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    for command in ("bind", "enroll", "unbind", "send", "receive", "ack", "retry", "hook", "inspect", "release-work"):
+    for command in ("bind", "enroll", "unbind", "send", "receive", "ack", "retry", "hook", "inspect", "release-work",
+                    "send-box"):
         cmd = sub.add_parser(command)
         cmd.add_argument("--runtime", choices=RUNTIMES, required=True)
         if command not in ("hook", "enroll"): cmd.add_argument("--session", required=True)
@@ -607,6 +613,9 @@ def main():
             cmd.add_argument("--lane", choices=("execution", "review_merge", "worker"), required=True)
             cmd.add_argument("--ttl", type=int, default=3600)
         if command == "enroll": cmd.add_argument("--pid", type=int, required=True)
+        if command == "send-box":
+            cmd.add_argument("--request", required=True)
+            cmd.add_argument("--ttl", type=int, default=3600)
         if command == "send":
             cmd.add_argument("--id", required=True)
             cmd.add_argument("--kind", choices=("review_request", "review_response", "work_request", "work_result"), required=True)
@@ -647,6 +656,14 @@ def main():
         with state() as data:
             now = time.time()
             if args.command == "bind": bind(data, args.runtime, args.session, args.lane, args.ttl, now)
+            elif args.command == "send-box":
+                lane(data, args.runtime, args.session, now)
+                manifest = json.loads(Path(args.request).read_text())
+                p.require(all(child["dispatcher"] == args.runtime for column in manifest["lanes"]
+                              for child in column["requests"]), "box依頼側runtime不一致")
+                result = boxes.send_box(data, manifest, lambda target, event, child:
+                    send(target, args.runtime, args.session, event, "work_request", child, None, args.ttl, now))
+                print(json.dumps(result, ensure_ascii=False))
             elif args.command == "enroll":
                 p.require(args.runtime == "claude", "Codex enroll禁止。thread IDでbindする")
                 p.require(1 <= args.ttl <= 7200, "TTL範囲は1..7200秒")
@@ -670,7 +687,7 @@ def main():
                 m = data["messages"][args.id]
                 p.require(m["payload"]["receiver_runtime"] == args.runtime and m["payload"]["receiver_session"] == args.session, "inspect宛先不一致")
                 p.require(m["digest"] == p.sha(p.encode(m["payload"])), "保存payload破損")
-                print(json.dumps(dict(untrusted_data=m), ensure_ascii=True))
+                print(json.dumps(dict(untrusted_data=m, task_box=boxes.info(data, args.id)), ensure_ascii=True))
             elif args.command == "retry":
                 retry(data, args.runtime, args.session, args.id, now)
             elif args.command == "release-work":
