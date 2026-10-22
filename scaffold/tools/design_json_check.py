@@ -299,6 +299,12 @@ class Checker:
             return
         for key, child in value.items():
             child_at = at + "/" + key
+            if (key == "preparation_history" and isinstance(child, dict)
+                    and isinstance(child.get("role"), str) and child["role"].strip()
+                    and isinstance(value.get("normative_sources"), dict) and value["normative_sources"]
+                    and isinstance(value.get("source_by_condition"), list) and value["source_by_condition"]):
+                self.unclassified["preparation_history_literal"] += 1
+                continue
             if file_path_key(key) and key != "path":
                 path, _, _ = parse_ref(child)
                 if isinstance(path, str) and ("<" in path or ">" in path):

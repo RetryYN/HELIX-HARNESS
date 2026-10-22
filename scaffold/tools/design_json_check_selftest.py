@@ -64,6 +64,12 @@ def fixture():
                                           "file_sha256": sha(json.dumps({"value": 42}).encode()), "pointer": "/value"}],
                 "input_bases": {"sample": {"source_path": "docs/target.json#/value"}},
             },
+            "history_mapping": {
+                "preparation_history": {"role": "local authoring provenance, not a normative dependency",
+                                        "source_path": "scaffold/review-handoff/local/missing.json"},
+                "normative_sources": {"source": {"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned\n")}},
+                "source_by_condition": [{"id": "condition", "normative_source_ids": ["source"]}],
+            },
             "test_path": "AGENTS.md",
             "template_path": "helix/units/<pack-id>/src",
             "fragment_pin": {"path": "docs/target.json#/value", "revision": old, "sha256": "0" * 64},
@@ -95,7 +101,8 @@ def result(name, mutate, expected):
             doc = load(root); mutate(doc); save(root, doc)
         r = run(root); out = json.loads(r.stdout)
         if expected is None:
-            ok = r.returncode == 0 and out["violations"] == 0
+            ok = (r.returncode == 0 and out["violations"] == 0
+                  and out["unclassified"].get("preparation_history_literal") == 1)
         else:
             ok = r.returncode == 1 and any(i["code"] == code and i["at"] == at for i in out["items"] for code, at in [expected])
         print(("ok  " if ok else "NG  ") + name)
@@ -163,6 +170,14 @@ def main():
         ("non-hex material pin revision does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(revision="fixture-r1"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
         ("non-hex material pin sha does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(file_sha256="not-a-sha256"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
         ("fragment sibling sha remains unclassified", lambda d: d["fixed_path_fragment"].update(source_file_sha256="0" * 64), None),
+        ("history role declaration is required", lambda d: d["history_mapping"]["preparation_history"].pop("role"), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("history role cannot be blank", lambda d: d["history_mapping"]["preparation_history"].update(role=" "), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("history normative map is required", lambda d: d["history_mapping"].pop("normative_sources"), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("history normative map cannot be empty", lambda d: d["history_mapping"].update(normative_sources={}), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("history condition mapping is required", lambda d: d["history_mapping"].pop("source_by_condition"), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("history condition mapping cannot be empty", lambda d: d["history_mapping"].update(source_by_condition=[]), ("E_LOCAL_REF", "/history_mapping/preparation_history/source_path")),
+        ("normative sibling pin remains checked", lambda d: d["history_mapping"]["normative_sources"]["source"].update(sha256="0" * 64), ("E_SOURCE_SHA", "/history_mapping/normative_sources/source/sha256")),
+        ("local reference outside history remains checked", lambda d: d["history_mapping"].update(sibling={"source_path": "scaffold/review-handoff/local/missing.json"}), ("E_LOCAL_REF", "/history_mapping/sibling/source_path")),
     ]
     ok = all([result(name, mutate, expected) for name, mutate, expected in tests])
     ok = cache_lifetime() and ok

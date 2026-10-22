@@ -40,6 +40,7 @@
   "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。path#fragmentは明示された同objectの固定revisionを使う。input_constructionとsource_material_pinsを持つ節ではinput_bases内の参照に限り、pathとpointerが完全一致する一意な固定revision/file_sha256へ束縛する。embedded revision、同object revision、親pinの順で優先し、label revisionや曖昧なpinからは継承しない。同objectのfragment参照ではrevisionだけを解決に使い、同objectのfile SHAは照合しない（fragment shapeを未分類とする既存境界を保持）。",
   "`*_path`/例外path keyと対応する`*_revision`・`*_commit`・whole-file `*_sha256`のprefix-pairが同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。汎用例外は明示し、prefix違いのcross-pairはしない。",
   "pointer、line/read/quote/range系key、historical、candidate印、または`path#fragment`を持つshapeはpin照合せず未分類へ数える。label revision、legacy-root path、pointer-valued path、fixture/placeholder pathも未分類へ数える。",
+  "preparation_historyが非空のrole文字列を持ち、兄弟に非空のnormative_sources objectとsource_by_condition listがある既存shapeでは、その履歴subtreeをpreparation_history_literalとして未分類へ1件計上し参照解決しない。role本文の意味を自動判定せず、規範source側とscope外は通常検査を続ける。宣言shapeが欠ける場合は除外しない。",
   "絶対path・.. traversal・backslash pathはfile-shaped値でfail-closeに違反とし、path正規化は行わない。prefix許可リストは持たない。`scaffold/review-handoff/local/`参照はE_LOCAL_REFとして別codeに分ける。",
   "違反件数とfile/at/code/detail一覧に加え、意味未確定shapeのunclassified件数をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
   "selftestは隔離された一時repositoryで正常系（部分hash・label revision・historical pin・repo直下path・commit pin・古いrevision pin・legacy-root/pointer-valued/line-range path・prefix-derived pinを含む）と否定例を厳密なcode+at照合で確認する。",
@@ -130,7 +131,15 @@
    "different path material pin does not bind",
    "non-hex material pin revision does not bind",
    "non-hex material pin sha does not bind",
-   "fragment sibling sha remains unclassified"
+   "fragment sibling sha remains unclassified",
+   "history role declaration is required",
+   "history role cannot be blank",
+   "history normative map is required",
+   "history normative map cannot be empty",
+   "history condition mapping is required",
+   "history condition mapping cannot be empty",
+   "normative sibling pin remains checked",
+   "local reference outside history remains checked"
   ]
  },
  "replacement": {
