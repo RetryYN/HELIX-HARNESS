@@ -21,18 +21,19 @@
   "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core",
   "obligations": [
     "reviewed HEADとPR HEADを照合する。",
-    "temporary Git fixtureだけで試mergeし、PR changed pathのobject IDを比較する。",
+    "temporary Git fixtureと実repositoryで試mergeし、PR changed pathのobject IDを比較する。",
     "試merge treeのBinding upstreamだけを読み、scfctl.check_staleへdigest mapを渡す。",
-    "conflictはfail、git/object取得errorはunknownとして証拠とともに返す。"
+    "conflictはfail、git/object取得errorはunknownとして証拠とともに返す。",
+    "merge-treeが参照されないobjectをobject DBへ書く場合がある。ref・index・worktreeは変えない。"
   ],
   "connections": {
     "consumers": ["Issue #3565のadmission checker実装レビュー", "SCF-B-0001のBinding/stale既存機構"],
     "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale"],
-    "boundary": "scaffold内のauthority_effect:noneの研究実装。対象PR・共有checkoutのref/worktreeを変えず、GitHub外部状態も変更しない。"
+    "boundary": "scaffold内のauthority_effect:noneの研究実装。試mergeで参照されないobjectがobject DBに残る場合がある。ref・index・worktreeとGitHub外部状態は変えない。"
   },
   "operations": {
-    "allowed": ["temporary Git fixtureでのread-only merge-treeとblob ID照合", "trial treeのBinding upstream digest検査"],
-    "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkoutやPR ref/worktreeの変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
+    "allowed": ["temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合", "trial treeのBinding upstream digest検査"],
+    "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkout/PRのref・index・worktree変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
   },
   "artifacts": [
     "scaffold/tools/pr_admission_check.py",
