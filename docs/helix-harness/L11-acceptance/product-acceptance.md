@@ -1383,7 +1383,7 @@ revision 001の既存L11 bytesとfixtureは保持し、ここではsource訂正r
 
 ### HARNESS-L11-091 内部開発情報を分離したマルチプロジェクト提供物の受入候補
 
-親要求はHARNESS-L2-091。unit、`version_target: 1.0`、未採択・未実行の対L11候補。
+親要求はHARNESS-L2-091。unit、`version_target: 1.0`、採択済み・未実行の対L11。
 対象要求revision、切出し対象のsource、情報の意味・所有・利用条件を同じ対象へ束縛する。
 091の受入対象は切出し・元情報の保持・情報の区別であり、package生成や配布運転全体ではない。
 仮登録、文書、静的照合、review、PR mergeから受入passを生成しない。
@@ -1439,7 +1439,7 @@ UTW-012／016／029とT23／T37の失敗は、情報の境界・出所を失わ�
 
 #### 採否と実作用
 
-親L2の未決・既知の重なりの表を適用し、対象revisionの採否前に下流実装へ進めない。
-L2と対L11のexact revisionを採否の対象とし、文書の存在を実施済みとしない。
+親L2の未決・既知の重なりの表を適用する。下流実装は対象revisionの採否と後続条件を満たしてから進める。
+L2と対L11のexact revisionは[判断記録](../../governance/decisions/clean-deploy-adoption-po-decision-2026-10-23.md)へ束縛する。文書の存在を実施済みとしない。
 OS030保留、HARNESS064の現行版不承認、OS014の既決と単独部品内部デプロイの保留を変えない。
 HELIX-Web／WEB-OSの利用、release、tag、cutover、配布先切替、内部デプロイの許可を生成しない。

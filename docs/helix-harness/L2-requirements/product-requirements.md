@@ -1643,15 +1643,15 @@ revision 002は直前のHARNESS-L2-087 identity sectionを変更せず保持し�
 
 <a id="harness-l2-091"></a>
 
-### HARNESS-L2-091 内部開発情報を分離したマルチプロジェクト提供物（単体追補候補、未採択）
+### HARNESS-L2-091 内部開発情報を分離したマルチプロジェクト提供物（単体、採択済み）
 
 #### 位置・親・対象revision
 
-本節は一要求identityのL2追補候補であり、採択済み本文を変更しない。
+本節は一要求identityの採択済みL2であり、他の採択済み本文を変更しない。
 種別は`unit`、対象はHELIX-HARNESS、`version_target: 1.0`。
-状態は`registered_proposal`、`authority_effect: none`。実装・配布・利用者受入は未実施。
+状態は採択済み。採否は[判断記録](../../governance/decisions/clean-deploy-adoption-po-decision-2026-10-23.md)と対象revisionへ束縛する。管理登録の管理状態は`registered_proposal`のままとし、`authority_effect: none`は仮登録の性質を示す。実装・配布・利用者受入は未実施。
 対は[HARNESS-L11-091](../L11-acceptance/product-acceptance.md#harness-l11-091)。
-管理登録は`MPR-RC-HARNESS-L2-091-002`。候補ID・登録は採択や版の成立を示さない。
+管理登録は`MPR-RC-HARNESS-L2-091-003`。登録・PR・Issueから採択を生成せず、判断記録と対象revisionの対応を採否根拠とする。
 
 親Conceptは`docs/concept/helix-concept.md@5afce0789481881fc304e22177b4160ab8171feb`、
 SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`。
@@ -1669,9 +1669,9 @@ L1の確定根拠は[9/28判断](../../governance/decisions/helix-harness-requir
 
 > クリーンデプロイはHELIX内部開発の固有の情報を切り出して、マルチプロジェクトへの導入が可能な状態とする。
 
-以下は原文と既存責務境界に照らした候補であり、Issue comment自体を候補revisionの採択記録にしない。
+以下は原文と既存責務境界に照らした採択対象本文であり、Issue comment自体を採択記録にしない。
 利用者は、HELIX内部開発の固有情報を切り出し、マルチプロジェクトへ導入可能な状態にする提供物側の能力を利用できる。
-091の採否対象は、内部固有情報の切出し、元の管理責務での保持、意味・所有・利用条件による区別に限る。
+採択対象は、内部固有情報の切出し、元の管理責務での保持、意味・所有・利用条件による区別に限る。
 「クリーン」は段階を差し替えて組み直すことの別名ではない。
 提供物から分離したことを、元情報の削除や所有移転へ読み替えない。
 
@@ -1724,7 +1724,7 @@ HELIX内部開発に固有の情報を、consumerへ提供する情報から分�
 | HARNESS010:343以降 | パックの収載・依存・版・再現の既存条件へのtrace。同じ保証を091へ置かない |
 | HARNESS011／017 | 呼出し・隔離、Release Port契約へのtrace。091で変更しない |
 | HARNESS提供構成:277以降 | 収載／除外・再現・復旧等の意味候補へのtrace。その節自身の再採否待ち状態も変えない |
-| OS030:896の保証2 | dogfood情報の除外、公開asset列挙、doctor／gateの強度というpackage具体条件と重なる。091の採否対象に含めず保留経路に残す |
+| OS030:896の保証2 | dogfood情報の除外、公開asset列挙、doctor／gateの強度というpackage具体条件と重なる。091の採択対象に含めず保留経路に残す |
 | OS030:897の保証3 | clean／既存／monorepo、managed marker、consumer所有物の非破壊。091へ移さず保留経路に残す |
 | OS030:893,901–902 | package再現・同一artifact・更新復旧の具体条件。091へ移さず保留経路に残す |
 | OS014の通常consumer・段階・実利用 | 自己適用の既決へのtrace。091の成功から実利用を生成しない |
@@ -1732,7 +1732,7 @@ HELIX内部開発に固有の情報を、consumerへ提供する情報から分�
 内部固有情報を切り出す価値はOS030保証2にも現れるが、091の出所は新しいPO原文である。
 それを理由に、OS030の具体的な除外集合・公開asset・生成・検証・運転条件を先に採択したとはしない。
 clean／既存／monorepoという区分の出所は旧distribution source:27と保留中OS030:897であり、PO原文の区分ではない。
-091ではこの区分を必須consumer分類・対応環境・setupの受入集合として採択対象に含めない。
+091ではこの区分を必須consumer分類・対応環境・setupの受入集合として採択範囲に含めない。
 自己適用のtraceもPO原文外で、旧`LEGACY-ASSET-17C4BF78919578FEBB18`:170–171とOS014の既決に由来する。
 通常consumer・自己開発専用例外なしを091の追加保証として再掲せず、既存の意味に残す。
 
@@ -1778,5 +1778,5 @@ OS030保留やHARNESS064の現行版不承認を、失敗の存在を理由に�
 「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
 HELIX-Web／HELIX-WEB-OSは対象外。OS014の既決や単独部品内部デプロイ可否の保留を変えない。
 候補の`version_target: 1.0`から、収載段階・公開番号・tag・release・cutoverの許可は出ない。
-採否は本節と対L11のrevisionへ束縛し、Draft・仮登録・原文保全の`no_loss`・reviewから生成しない。
+採否は判断記録と対象revisionの対応で読む。Draft・仮登録・原文保全の`no_loss`・reviewは採択を生成しない。
 新しい承認者・承認手続・実作用の許可を追加しない。
