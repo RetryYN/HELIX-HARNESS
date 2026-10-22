@@ -514,7 +514,7 @@ HARNESSの工程・提供条件に関係するRFA／DGH／FRS等は、OSの実�
 
 ## 要求正本を更新する管理条件
 
-**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。要求の意味と採択したrevisionは変えない。
+**版**：HELIXOS-L2-001（`MPR-RC-HELIXOS-L2-001-001`、HIL-NFR-32の6条件）は`version_target: 1.0`とする（2026-10-10のPO判断、[判断記録](../../governance/decisions/discipline-requirements-into-1.0-po-decision-2026-10-10.md)）。本節に残る版の未指定、`version_target`を付けない旨、採否状態の記載は、判断前の状態を記したものである。各要求節に残る採否状態の記載も判断前の状態を示し、採否は対象revisionに対応する判断記録（2026-09-29の57候補／11候補等）を正とする。要求の意味と採択したrevisionは変えない。
 
 HELIXOS-L2-001／002／007／009を、指定JSONのHIL-BR-26、HIL-FR-51..53、HIL-NFR-30..32と
 HR-FR-HIL-19から具体化する。原文は[JSON正本](../../../archive/legacy-generation-2026-09-14/root/requirements-ir/requirements.json)、
@@ -1238,7 +1238,7 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 
 ### HELIXOS-L2-052 merge後のlocal cleanupと後続PRの再照合（connection候補、version_target: 1.0）
 
-- **親と状態**：採択済みHELIXOS-L1-002／004／009／010に接続する要求であり、2026-09-29の57候補PO判断で採択済み。`HELIXOS-L2-010／011`のticket・統合計画、`HELIXOS-L2-035`のPR lifecycle event intake、`HELIXOS-L2-046`のdispatchからmergeまでのauthority・HEAD・scope連続性を置き換えない。本文・仮登録は実装、実行、remote操作の許可を生成しない。
+- **親と状態**：採択済みHELIXOS-L1-002／004／009／010に接続する未採択候補。`HELIXOS-L2-010／011`のticket・統合計画、`HELIXOS-L2-035`のPR lifecycle event intake、`HELIXOS-L2-046`のdispatchからmergeまでのauthority・HEAD・scope連続性を置き換えない。本文・仮登録は採択、実装、実行、remote操作の許可を生成しない。
 - **merge後のlocal cleanup**：明示mergeと所定のpost-merge read-afterが成功した後、merge済みPRとassignmentの所有関係を確認できるlocal worktreeとlocal branchだけを対象とする。所有関係を確認でき、他assignmentの使用中でなく、未完作業もない対象は、自動かつ冪等にcleanupし、対象と結果を既存の証跡経路で記録する。所有関係、使用状態、参照関係またはmerge後確認がunknown／conflictなら削除せず、未完理由を返す。再試行は同じassignment所有物だけに限定し、他のPR・worktree・branchへ波及させない。
 - **remote ref境界**：remote branch／refの削除は、PR merge、post-merge read-after、repository設定または本候補の採択から許可を生成しない。実行には、現行authorityが対象repository、refおよびdelete作用を明示して包含し、実施者が対象・作用・結果を記録できることを要する。該当するauthorityがなければremote refは削除せず、cleanup未完として記録する。旧HELIXのdelete-branch-on-merge設定を現行の削除authorityとして継承しない。
 - **base driftの再照合**：上流PRのmerge後、関係する後続PRについて最新baseとの試験merge可能性、`scfctl stale`、依存条件およびreview bindingを再照合する。試験mergeはcontent HEADを書き換えずに行う。base／content HEAD pairがreview済みbindingと一致し、stale=0、依存条件が維持される場合だけ既存状態を保持できる。conflict、stale、依存変化またはbinding不一致は根拠付きの理由とともに作成側へ返す。review／merge側は作成branchを直接修正しない。
