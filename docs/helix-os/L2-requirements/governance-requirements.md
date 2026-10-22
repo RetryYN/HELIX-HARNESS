@@ -1723,7 +1723,7 @@ revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-select
 種別は`unit`、対象はHELIX-OS、状態は`registered_proposal`、`authority_effect: none`。
 `version_target`は未指定とする。機構の現在番号、全体到達番号、収載段階も付与しない。
 対は[HELIXOS-L11-133](../L11-acceptance/governance-acceptance.md#helixos-l11-133)。
-管理登録は`MPR-RC-HELIXOS-L2-133-001`。実装・受入・実作用は未実施。
+管理登録は`MPR-RC-HELIXOS-L2-133-002`。実装・受入・実作用は未実施。
 
 親Conceptは`docs/concept/helix-concept.md@5afce0789481881fc304e22177b4160ab8171feb`、
 本文SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`。
@@ -1747,7 +1747,8 @@ L1の確定根拠は[9/28判断](../../governance/decisions/helix-os-requirement
 > HELIX全体はビジョン見れば結構見えてくるはず。
 
 以下は原文と既存Concept・要求の意味を区別して対応づける候補である。
-本節の`+0.01`は依頼で用いられた呼称で、原文の`0,01`を書き換えたり、表記規則を確定したりしない。
+本節の`+0.01`は[統制整理](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6347014279)で用いられた呼称で、原文の`0,01`を書き換えたり、表記規則を確定したりしない。
+原文が言う「ビジョン」をConcept:37–50へ対応させるのは統制の読みであり、PO原文はConceptを名指ししていない。
 原文の「タグ」からGit tagの作成や公開の許可を導かない。
 Issue commentで保存された原文は出所として参照し、本節の採択記録とは扱わない。
 
@@ -1775,8 +1776,8 @@ HARNESSの工程・検証契約、LABOの評価、各機構の意味責務をOS�
 機構版の最大値・合計・平均・更新回数から、HELIX全体の到達版を求めない。
 文書revisionやcommitが増えただけで、機構版・全体版を進めない。
 
-要求／要件定義で満たすべき条件を越えた場合を、原文の`+0.1`に対応する区分として扱う。
-改善・修正・更新系を、原文の`+0.01`に対応する区分として扱う。
+要求／要件定義で満たすべき条件を越えた場合に対応する`+0.1`の区分候補を示す。
+改善・修正・更新系に対応する`+0.01`の区分候補を示す。
 いずれも条件と変更内容を対象revisionへ結び、PR数・test件数・経過日数で代用しない。
 一回の条件集合、混在時の扱い、繰上がり・表記、互換破断との数値関係は後述の未決を維持する。
 区分の候補を示せることと、具体的な番号を確定できることを同一視しない。
@@ -1808,7 +1809,7 @@ HARNESSを早く閉じることを、必要な修正・安全更新・保守の�
 | Concept:50（5.0） | ConceptのSystem Compilerの行を保持 | 個別release・配布成功を共同定義から納品・差分更新の成立へ代用しない |
 
 上表のOS L2／L11の行番号は、親Conceptと同じ読取commitでの`governance-requirements.md`／`governance-acceptance.md`。
-他機構の対の所在・不足は[調査記録](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6347149346)に束縛する。
+他機構の対の所在・不足は[調査記録](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6347149346)を参照する。Issue commentは要求意味のsourceではなく、所在を探す材料である。
 その調査の要約も新しい到達基準にはしない。
 横断対応が未特定の範囲は未特定のまま示し、対応要求がrepository全体に不存在とは断定しない。
 後の版の能力を、前の版や初期配布の成立条件へ前倒ししない。
@@ -1831,14 +1832,13 @@ release・実利用・切替許可、unit／connection／compositeの版を区�
 [10/08方針6](../../governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md):63–70の、
 種別・identity・契約／成果物／依存版・検証範囲・内部デプロイ状態という既存項目を参照する。
 フォルダのpathを型番やパック境界の正本にしない。
-作業記録の利用段階は実際に内部デプロイ中の段階であり、後のreleaseだけで書き換えない。
-10/07の当時の現況を現在の事実へ転記しない。
+実利用状態の記録と10/07当時の現況の扱いはOS014へtraceして維持する。
 10/08判断`:79`の単独部品・接続の内部デプロイ可否の保留は解除しない。
 
 #### 番号境界4件：unknown／assumptionとして保持する
 
 以下は今回POへ質問しない。数値規則の代案を採択したとも扱わない。
-各機構のL3／L10で具体的な条件集合が必要になったとき、対象例を添えて統制へ戻す。
+各機構のL3／L10で具体的な条件集合が必要になったとき、対象例を当該意味ownerと人の判断経路へ戻す。
 
 | 状態・未決 | 影響範囲 | 再評価条件・戻し先 |
 |---|---|---|
@@ -1853,17 +1853,25 @@ assumptionは、既存の対象revision・条件・証拠を区別して参照�
 
 #### OS030との関係と範囲外
 
-OS030のpackage semver／immutable tag／artifact promotionは、機構能力版・全体到達とは別の候補である。
-読取commitでの所在はL2`:901`、対L11`:494`。
-保留の根拠は[9/29判断](../../governance/decisions/po-decision-2026-09-29-57candidates.md):53。
-本候補はその保留を吸収・解除せず、`+0.1/+0.01`をSemVerのmajor／minor／patchへ翻訳しない。
-番号の更新だけで互換・安全・受入・公開を成立としない。
-新しい点数、達成率、番号算出器、gate、template、承認者は作らない。
-release、tag、cutover、配布repository切替、内部デプロイの許可を生成しない。
+OS030は機構能力版・全体到達とは別のpackage候補であり、保留全体を[9/29判断](../../governance/decisions/po-decision-2026-09-29-57candidates.md):53へ戻す。
+同`:53`の保留理由は、本体実行OSとconsumer利用先の分離、配布段階と切替条件である。semverだけを理由に保留した記録ではない。
+133の親接続として005／007を参照するが、OS030も同じ005／007を親に持つ。親の共有は同一判定ではなく、配布運転側の条件はOS030に残す。
+
+| OS030の所在（読取base） | 133での扱い |
+|---|---|
+| L2:891の状態行 | SemVer・release・tagを生成しない範囲として参照。133から実版を発行しない |
+| L2:892の入力にあるpackage version候補／requirements version | package生成の入力として133で決めない |
+| L2:895保証1／対L11:488 | manifestへversionを結ぶpackage条件。133では参照のみ |
+| L2:901保証7／対L11:494 | package semver・immutable tag・同一artifact promotion。未決3・4と同じ判断空間としてOS030側に残す |
+| L2:903保証9／対L11:496 | tag・publish・cutover等の外部作用のauthority。133では許可・権限を生成しない |
+
+番号境界の未決3（繰上がり・表記・小数／SemVer）と未決4（互換破断との関係）は、OS030保証7の採否と同じ判断経路で再評価する。
+133では`+0.1/+0.01`をSemVerのmajor／minor／patchへ翻訳せず、package版・tag・publication・cutoverの採択を解除しない。
+新しい点数、達成率、番号算出器、gate、template、承認者、release・配布先切替・内部デプロイの許可はこの候補から生成しない。
 
 既存OS014は段階構成の軸であり、その採択済み本文にこの新しい機構版の意味を追記しない。
 「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
-独立候補のrevisionを採択・保留の対象として提示し、方向だけの回答から本文承認を作らない。
+採否は対象revisionへの判断で別に行う。
 
 #### 旧source・失敗との対応
 
@@ -1890,6 +1898,5 @@ release、tag、cutover、配布repository切替、内部デプロイの許可�
 `version_target`未指定の影響は、この管理能力をどの導入範囲へ置くかが未確定なことである。
 候補の採否時に対象revisionと併せて適用範囲を確認し、本文の意味だけから1.0等へ所属変更しない。
 後続版のWeb・利用者・横断受入の具体的対応は、該当する上流要求revisionを扱う時点で再評価する。
-未特定をOS014／021／025の成功で埋めず、具体的conflict／staleは統制へ返す。
-本候補と対L11は、クリーンデプロイの別候補と一つのPO採否packetへ束ねる。
+未特定をOS014／021／025の成功で埋めず、具体的conflict／staleは当該意味ownerと人の判断経路へ返す。
 仮登録、review、PR mergeだけでは、本節の採択・個々の版の成立・下流実装許可は生じない。
