@@ -3,6 +3,8 @@
 import hashlib, json, os, shutil, subprocess, sys, tempfile
 from pathlib import Path
 
+from design_json_check import Checker
+
 TOOL = Path(__file__).resolve().parent / "design_json_check.py"
 DOC = Path("docs/helix-os/L4-basic-design/check-fixture.json")
 ENV = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
@@ -95,6 +97,27 @@ def result(name, mutate, expected):
     finally:
         shutil.rmtree(root)
 
+def cache_lifetime():
+    root = fixture()
+    try:
+        checker = Checker(root)
+        for index in range(12):
+            target = "docs/target-%s.json" % index
+            (root / target).write_text(json.dumps({"value": index}), encoding="utf-8")
+            save(root, {"first": {"path": target, "pointer": "/value"},
+                        "second": {"path": target, "pointer": "/value"}})
+            checker.check(root / DOC)
+            if checker.errors or len(checker.blobs) > 1 or len(checker.docs) > 1:
+                print("NG  reference cache grows across input files")
+                return False
+        (root / DOC).write_text("{", encoding="utf-8")
+        checker.check(root / DOC)
+        ok = not checker.blobs and not checker.docs and [e["code"] for e in checker.errors] == ["E_JSON"]
+        print(("ok  " if ok else "NG  ") + "file-scoped reference cache, including parse failure")
+        return ok
+    finally:
+        shutil.rmtree(root)
+
 def main():
     tests = [
         ("valid fixture with sibling fixed source binding", None, None),
@@ -121,6 +144,7 @@ def main():
         ("fixed source binding does not escape case", lambda d: d.update(unbound_sibling={"path": "docs/target.json", "pointer": "/value"}), ("E_POINTER", "/unbound_sibling/pointer/0")),
     ]
     ok = all([result(name, mutate, expected) for name, mutate, expected in tests])
+    ok = cache_lifetime() and ok
     print("selftest:", "OK" if ok else "FAIL")
     return 0 if ok else 1
 
