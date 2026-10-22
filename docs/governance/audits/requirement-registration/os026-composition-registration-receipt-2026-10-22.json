@@ -24,13 +24,13 @@
       816,
       832
     ],
-    "candidate_semantic_digest": "sha256:a350500fad708430bcd39d62596a001ea9824dc086b95f25a23b6d7c62796b07",
+    "candidate_semantic_digest": "sha256:f8cf960b10b209b72a78c3a50dcc8125cda80c131bb51d591b3401b906f0fd10",
     "paired_acceptance_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-026",
     "paired_acceptance_lines": [
       432,
       443
     ],
-    "paired_acceptance_semantic_digest": "sha256:ce9067df088dce903491999a990308de9690fbcb1bf441a7f5f37b37e5679adf"
+    "paired_acceptance_semantic_digest": "sha256:1673b67851262fe39936cbee933e721f958e96d608640e2c1dcc7534e5956ccc"
   },
   "correction_reason": "10/07確定方針5をOS026 L2/L11へ反映し、unit・connection・compositeの区分・版・単位別検証証拠を明示した。L11の既存入力/出力・依存・検証証拠を保持し、部品更新時は差替え部品を含む新段階構成案を導出する。案の導出とOS014の実構成受入・検証・内部デプロイを分離した。旧source atom集合の空集合・no_loss限定、親revisionの確認pending、要求の版印、採択revisionとauthorityは不変。",
   "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27-r3.json",
