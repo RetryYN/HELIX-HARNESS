@@ -3394,17 +3394,17 @@
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
   "implementation_preparation": {
     "state": "not_ready",
-    "next": "本L5/L8の有限契約・oracleと上流期待の項目別dispositionを独立reviewする。19論理型のpresenceと有限Context/Result返却を未具体化へ戻さない。正式wire/parser/実資格/全入力網羅は各ownerと後続L6/L7、実fixture/oracleとpairのfreezeは別作業へ残す。実装Readyや実行成立をこの訂正から生成しない。",
+    "next": "19型のprovided-member shapeと欠落/null/空配列のpresence候補を対L8で静的照合した。独立reviewと上流がL5/L8へ残した追随・全Context/Result等の意味照合は未完としてdisposition監査に残す。正式wire/parser/実資格は各ownerと後続L6関数設計/L7対検証、実fixture/oracleとpairの凍結は別作業へ戻し、実装Readyは生成しない。",
     "runtime_evidence": "none"
   },
   "remaining": [
-    "論理型、descriptor/source解決、claim、条件別依存、pure関数と単体oracleはL5/L8の有限契約として具体化済み。独立review・exact HEAD admissionは作成／review側へ残す。項目別の範囲と根拠はdocs/governance/audits/tdd/brain032-l5l8-remaining-disposition-2026-10-22.json。",
-    "15 descriptorの汎用意味と有限oracle、論理型・候補schemaは具体化済み。実seedの各field意味/要否/oracleの最終内容照合は知識ownerへ、正式schema/key/式木/wire/registry/resolverの採用・稼働とBRAIN運用promotion/全seed採用は各owner・後続段階へ残す。F09の採択済みL4 conditional_source_dependency_contractにおける限定対応は、core_source_selected=trueで018、labo_evaluation_selected=trueで020、025は選択channelの原operation_kind/knowledge_fields単位である。conditional_dependency_detailがこの対応を具体化しており、対応自体を未決とは扱わない。025を両selectorへ一律必須とせず、実owner producer/body供給・資格及び本section外の残務は別に保持する。",
+    "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。 候補の記載と独立review/admissionを分け、reviewは作成／独立review側へ戻す。上流がL5/L8へ残した追随の未達はdocs/governance/audits/tdd/brain032-l5l8-remaining-disposition-2026-10-22.jsonへ別記する。",
+    "15 descriptorの汎用意味と有限oracle、論理型・schemaは候補として記載済み。実seedの各field意味/要否/oracleの最終内容照合は知識ownerへ、正式schema/key/式木/wire/registry/resolverの採用・稼働とBRAIN運用promotion/全seed採用は各owner・後続段階へ残す。F09の採択済みL4 conditional_source_dependency_contractにおける限定対応は、core_source_selected=trueで018、labo_evaluation_selected=trueで020、025は選択channelの原operation_kind/knowledge_fields単位である。conditional_dependency_detailがこの対応を具体化しており、対応自体を未決とは扱わない。025を両selectorへ一律必須とせず、実owner producer/body供給・資格及び本section外の残務は別に保持する。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。 これらは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・通常L3/release/内部deployは既存authorityの担当へ戻す。",
-    "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 35件（このF09で追加した局所NEG-07〜13とADD-25〜28を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜28はL8局所検証でL9入力/期待との統合照合ではない。原L9の105負例の変更・期待・戻し先はL8へ接続済みで、件数だけを充足根拠にしない。実観測による意味識別力と全任意入力閉包は後続の実行／追加網羅へ残す。",
-    "論理wire/codecとsource返却の有限設計はwire_codec_contract/source_return_contractと対L8に記載済み。formal parser/実source資格resolver/資源条件/言語・依存・配置と実装前Red/Greenは各実装・実運用ownerへ、実fixture/oracle凍結は別のfreeze作業へ戻す。独立意味reviewはreview側へ残し、この文言訂正で成立を宣言しない。",
-    "19論理型（18構造型とRawValue）の供給member構造・presence、有限Context/Result/finding/codec契約と対oracleは記載済み。欠落slot/required集合は入力を捨てず意味不足へ保持する。実ownerの供給と実fixture/oracle凍結は各owner・別freeze作業へ、全Context/Result/finding/codecの任意入力に対する実照合・意味全域閉包は後続の追加網羅へ残す。",
-    "原意味/NA/target同walk詳細契約と固定32全返却・旧84公開等価の有限範囲は記載済み。multi-factの有限例とfn6/fn7の単独oracleを、全rawrunner callerの統合照合と区別する。非空pair/special、全caller、semantic_or_mixed alternativeの任意RawValueの追加網羅は未成立のまま後続の実行／追加有限期待設計へ戻す。固定素材のpair結果とspecial読取が空である範囲を全域充足にしない。製品codec/実provider/実資格/runtime/CIは各ownerへ戻し、その不在を論理詳細設計の新失敗gateにしない。"
+    "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 35件（このF09で追加した局所NEG-07〜13とADD-25〜28を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜28はL8局所検証でL9入力/期待との統合照合ではない。有限例の意味識別力・全任意入力閉包は未証明。 原L9の105負例の変更・期待・戻し先との静的対応を照合したが、件数を意味識別力や全域閉包の証拠にしない。",
+    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。 実機構/資源/配置は各ownerと後続L6関数設計/L7対検証、実fixture/oracleとpairの凍結は別作業、独立意味reviewはreview側へ戻す。",
+    "032 inputの19型の供給member構造とpresenceを具体化した。欠落slot/required集合は入力を捨てず意味不足へ保持。全Context/Result/finding/codec/実owner/凍結と意味閉包は未完。 19論理型（18構造型とRawValue）の候補の記載と各未完を分け、実owner供給は各source owner、実fixture/oracleとpairの凍結は別作業へ戻す。Context/Result/codecの意味照合が全て済んだとはしない。",
+    "原意味/NA/target同walk詳細契約と固定32全返却・旧84公開等価を追加した。多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。製品codec/実provider/実資格/runtime/CIの不在だけを論理詳細設計の新失敗gateにしない。"
   ],
   "evaluation_order": [
     {
