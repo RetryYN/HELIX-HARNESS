@@ -1712,3 +1712,184 @@ revision 002は既存HELIXOS-L2-130 identity sectionを維持し、source-select
 - **評価へ渡す追跡材料**：005/024を通じてLABOへ渡すtemplate利用結果には、選択された評価scopeに含まれるproject・要求revision・使用template版と期間、参照する原記録集合と抽出根拠、含めた/除外した対象と理由、重複/再送の対応、未接続・未観測・未回収・比較不能の範囲を結ぶ。不足・過剰要求・誤選定・再作業・欠陥流出のfinding候補は、発生元と対象義務/使用版/再作業/受入/運用記録を保持して渡し、因果未決は未決とする。LABOが指定または合意した評価範囲/必要入力が未決なら、不完全な入力として示し、OSが独自に評価母集団・測定定義・因果効果を決めない。未観測や観測期間不足を欠陥0・改善成功にせず、利用回数やAI自己評価でtemplateを昇格しない。これは評価入力の追跡材料であり、LABOの評価方法、接続成立、BRAINの採否を追加定義する要求ではない。
 - **責務・依存・停止範囲**：002は案件記録の追跡、001は合意/source、007/019はevidence/continuity、023は未完義務handoff、005/024/048は改善/評価/再発の既存接続を持つ。汎用知識の意味/版はBRAIN、製品適用/意味影響はCORE、効果/退行評価はLABO、操作とdata利用条件はSECURITYに従う。常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定templateを選択/使用する操作ではそのset/版/適用出力を、評価へ送る操作では選択評価scope/必要入力と利用許可を照合する。関係しない知識/全seedや、今回初めて生じる結果・受領証拠を開始前提にしない。不足/unknown/conflict/staleは該当記録または受渡しを未成立にして解消先へ返し、評価未観測だけで無関係な有効作業を止めない。未登録等での停止/Backflowとfallback拒否は既存条件を保持する。
 - **旧source・差分・限界**：旧L4 design-template-json-authority.md:24/36/47–58/83–92の選択template/requirement/obligation束縛、exact set、Backflow event、trace/pair/revisionと、旧pillar-requirements.md:54/56/58の改善循環・scope/記録責務分離・trace/driftを起点に意味を再導出する。追加は各案件記録の細粒度結合と評価入力範囲/欠落の追跡であり、旧sourceにこの全条件が既定だったと主張しない。旧DB/runtime/JSON schema/層番号/型/算法を移植せず、wire/API/event enum/計測値/閾値も固定しない。旧atom全移管、seed採用、現実のOS記録/接続成立、LABO評価済み、BRAIN採用、L3再開を生成しない。
+
+<a id="helixos-l2-133"></a>
+
+### HELIXOS-L2-133 機構能力版と全体到達版の対応管理（単体追補候補、未採択）
+
+#### 位置・親・対象revision
+
+本節はOS014とは別identity・別判定の独立したL2追補候補である。
+種別は`unit`、対象はHELIX-OS、状態は`registered_proposal`、`authority_effect: none`。
+`version_target`は未指定とする。機構の現在番号、全体到達番号、収載段階も付与しない。
+対は[HELIXOS-L11-133](../L11-acceptance/governance-acceptance.md#helixos-l11-133)。
+管理登録は`MPR-RC-HELIXOS-L2-133-001`。実装・受入・実作用は未実施。
+
+親Conceptは`docs/concept/helix-concept.md@5afce0789481881fc304e22177b4160ab8171feb`、
+本文SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`。
+primary親候補はHELIXOS-L1-001（対象のConcept・要求・採否・合意revisionと出所の管理）。
+HELIXOS-L1-008の整合管理、005／007の配布運転・release責務へ接続する。
+L1は`docs/helix-os/L1-planning/system-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc`、
+SHA-256は`2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e`。
+L1の確定根拠は[9/28判断](../../governance/decisions/helix-os-requirements-po-decision-2026-09-28.md)。
+親の確定から、この新しい対応管理の採択を生成しない。
+
+#### PO原文
+
+[追記5](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6329799952)：
+
+> あと各機構のバージョンと全体のバージョンが同じである必要もないからね？ハーネスは早いうちに終わるべきだし、ブレインは常時更新されてくべきだし。要求/要件定義で満たすべき条件を越えたら、0.1単位でバージョンが上がる。改善、修正、更新系は0,01のマイナーチェンジタグで。
+
+[追記6](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6329835777)：
+
+> HELIX全体のバージョンと機構のバージョンは別々ってことね。
+
+> HELIX全体はビジョン見れば結構見えてくるはず。
+
+以下は原文と既存Concept・要求の意味を区別して対応づける候補である。
+本節の`+0.01`は依頼で用いられた呼称で、原文の`0,01`を書き換えたり、表記規則を確定したりしない。
+原文の「タグ」からGit tagの作成や公開の許可を導かない。
+Issue commentで保存された原文は出所として参照し、本節の採択記録とは扱わない。
+
+#### 提供する意味と責務
+
+人間は、各機構の能力版とHELIX全体の到達版を、対象条件・revision・判断の出所を失わず別々に確認できる。
+OSは対応関係と状態を管理し、各機構の条件の意味を新たに所有しない。
+条件の意味はConcept、当該機構のL1／L2と有効な要件に戻して確認する。
+HARNESSの工程・検証契約、LABOの評価、各機構の意味責務をOSへ吸収しない。
+番号を自動算出する能力、点数・達成率、版だけで実行を許すgateは対象にしない。
+
+受け取るものは、対象機構のidentity、要求・要件の対象revision、成立条件とその根拠、
+変更の内容と適用範囲、既存の判断・検証の記録、参照する契約・成果物・依存の版である。
+全体については、Conceptの対象revisionと該当する版行、対象構成と各単位の証拠を受け取る。
+入力がない条件集合や比較対象を、AIの推測で補わない。
+
+提供するものは、機構ごとの変更区分と根拠、全体の該当版行への対応、
+構成内の各単位の版への参照、未決・不足・不整合とその戻し先である。
+候補・採択・条件成立・release・実利用を別に示す。
+新しい台帳形式や物理列はここで決めず、既存のidentity・revision・判断記録へ対応づける。
+
+#### 独立した機構の版と更新区分
+
+一つの機構の更新から、未変更の他機構を同じ番号へそろえない。
+機構版の最大値・合計・平均・更新回数から、HELIX全体の到達版を求めない。
+文書revisionやcommitが増えただけで、機構版・全体版を進めない。
+
+要求／要件定義で満たすべき条件を越えた場合を、原文の`+0.1`に対応する区分として扱う。
+改善・修正・更新系を、原文の`+0.01`に対応する区分として扱う。
+いずれも条件と変更内容を対象revisionへ結び、PR数・test件数・経過日数で代用しない。
+一回の条件集合、混在時の扱い、繰上がり・表記、互換破断との数値関係は後述の未決を維持する。
+区分の候補を示せることと、具体的な番号を確定できることを同一視しない。
+
+#### HARNESSとBRAINの更新周期
+
+HARNESSの当該版を閉じる条件に、BRAINの継続更新が終わることを加えない。
+BRAINの知識が更新されても、HARNESSや他機構を理由なく一斉更新しない。
+接続への影響は、該当する知識・契約・依存の版と検証範囲へ戻す。
+HARNESSを早く閉じることを、必要な修正・安全更新・保守の禁止にしない。
+原文にない締切、定期更新間隔、自動bump回数を決めない。
+各機構の周期が違う場合も、利用した版と状態を追跡できるよう対応を保つ。
+
+#### 全体到達の正本と既存の所在
+
+全体の能力・本体／Webの提供範囲・利用者価値・到達の確かめ方は、
+`docs/concept/helix-concept.md:37–50`を正本として参照する。
+同`:40`の「能力進化の節目であり、公開ソフトウェアの版番号ではない」という意味を保持する。
+各版行の一列だけを取り出し、他の列を到達判断から落とさない。
+この節の所在表はConceptを要約置換する基準ではない。
+
+| 正本の版行 | 機構別・構成別の既存の接続先 | 本候補で保持する限界 |
+|---|---|---|
+| Concept:45（1.0） | OS025 L2:754–758／対L11:398–401の統合固有条件 | 個別の単体・配布・段階成立だけで全体を完成としない |
+| Concept:46（1.x） | Webの対象要求・提供受入。OS021は配布の基盤として別参照 | Vision資料や配布成功をWeb利用者環境の全体受入へ昇格しない |
+| Concept:47（2.0） | BRAIN026／027、LABO033／051と対L11の外部知識経路 | 取得・取込みだけで推薦提供・利用者判断の列まで成立としない |
+| Concept:48（3.0） | INTELLIGENCE021〜025／065と対L11の学習・比較・評価循環 | 内部modelの成立だけでWeb提供や全体の到達を成立としない |
+| Concept:49（4.0） | OS017の既定部品1.0／部品外flow4.0の境界 | 1.0の工程組合せやOS026の構成案を4.0の全体成功にしない |
+| Concept:50（5.0） | ConceptのSystem Compilerの行を保持 | 個別release・配布成功を共同定義から納品・差分更新の成立へ代用しない |
+
+上表のOS L2／L11の行番号は、親Conceptと同じ読取commitでの`governance-requirements.md`／`governance-acceptance.md`。
+他機構の対の所在・不足は[調査記録](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6347149346)に束縛する。
+その調査の要約も新しい到達基準にはしない。
+横断対応が未特定の範囲は未特定のまま示し、対応要求がrepository全体に不存在とは断定しない。
+後の版の能力を、前の版や初期配布の成立条件へ前倒ししない。
+
+#### 構成・実利用と混ぜない版の軸
+
+| 軸 | 既存の意味・所在 | 本候補で同一視しないもの |
+|---|---|---|
+| `version_target` | 要求の所属・適用範囲の印 | 機構の現在番号、受入済み、release済み |
+| 機構能力版 | 当該機構の条件と変更区分 | 全体の到達、他機構の番号 |
+| 全体到達版 | Conceptの各版行 | 公開package版、段階構成の識別子 |
+| 段階構成の識別子 | OS014 L2:623–640／L11:317 | 全体1.0の到達、内部デプロイ済み |
+| 構成案とその単位 | OS026 L2:818–827 | 実構成の受入・利用開始 |
+| 契約／成果物／依存の版 | OS014:635、OS026:824、方針6 | 機構能力の一段の到達 |
+| 対象projectの配布状態 | OS021 L2:714–719／L11:370–373 | HELIX自身の段階成立、全体完成 |
+| 文書revision／Git commit | 本文・sourceの変更履歴 | 機構版や全体版の増分 |
+
+[10/07判断](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md):40–57,67–69の、
+release・実利用・切替許可、unit／connection／compositeの版を区別する条件を維持する。
+[10/08方針6](../../governance/decisions/po-l3-l10-post-confirmation-and-internal-deployment-policy6-2026-10-08.md):63–70の、
+種別・identity・契約／成果物／依存版・検証範囲・内部デプロイ状態という既存項目を参照する。
+フォルダのpathを型番やパック境界の正本にしない。
+作業記録の利用段階は実際に内部デプロイ中の段階であり、後のreleaseだけで書き換えない。
+10/07の当時の現況を現在の事実へ転記しない。
+10/08判断`:79`の単独部品・接続の内部デプロイ可否の保留は解除しない。
+
+#### 番号境界4件：unknown／assumptionとして保持する
+
+以下は今回POへ質問しない。数値規則の代案を採択したとも扱わない。
+各機構のL3／L10で具体的な条件集合が必要になったとき、対象例を添えて統制へ戻す。
+
+| 状態・未決 | 影響範囲 | 再評価条件・戻し先 |
+|---|---|---|
+| unknown：どの条件集合を一回の`+0.1`とするか | 集合の粒度、一部成立、同じ条件の再成立。具体的増分を確定できない | 対象機構の要求／要件で具体的集合を扱うとき、当該意味ownerと統制を通じPOへ確認する |
+| unknown：改善と能力追加が混在する場合 | 加算、吸収、優先、分割の扱い。区分候補だけでは採番できない | 混在する具体的変更と対象条件を示せたとき、同じ判断経路へ戻す |
+| unknown：`+0.01`の繰上がりと表記 | 桁・表示・開始番号・改善タグ。算術上の値を能力到達とできない | 表記・発行が必要になる具体的対象で確認する。小数／SemVerをAIで決めない |
+| unknown：互換破断と番号の関係 | major等との関係、番号からの互換推定 | 対象契約の互換・移行・復旧条件と実例がそろったときに確認する |
+
+assumptionは、既存の対象revision・条件・証拠を区別して参照できることである。
+参照不能・conflict・staleが出た場合は、その対象の意味ownerへ戻し、該当の対応を成立として扱わない。
+未決の番号規則だけで、依存しない既決作業や限定初回対象を停止しない。
+
+#### OS030との関係と範囲外
+
+OS030のpackage semver／immutable tag／artifact promotionは、機構能力版・全体到達とは別の候補である。
+読取commitでの所在はL2`:901`、対L11`:494`。
+保留の根拠は[9/29判断](../../governance/decisions/po-decision-2026-09-29-57candidates.md):53。
+本候補はその保留を吸収・解除せず、`+0.1/+0.01`をSemVerのmajor／minor／patchへ翻訳しない。
+番号の更新だけで互換・安全・受入・公開を成立としない。
+新しい点数、達成率、番号算出器、gate、template、承認者は作らない。
+release、tag、cutover、配布repository切替、内部デプロイの許可を生成しない。
+
+既存OS014は段階構成の軸であり、その採択済み本文にこの新しい機構版の意味を追記しない。
+「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
+独立候補のrevisionを採択・保留の対象として提示し、方向だけの回答から本文承認を作らない。
+
+#### 旧source・失敗との対応
+
+旧sourceのrootは`archive/legacy-generation-2026-09-14/root/`。
+原文は[限定source集合](../../governance/audits/requirement-registration/mechanism-version-source-atoms-2026-10-23.jsonl)へ保持する。
+
+| 旧asset・rootからのpath・行 | 保持する点 | 継承しないもの・変更理由 |
+|---|---|---|
+| `LEGACY-ASSET-0C5F0695490FA5D87419`、`docs/archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md:85–101` | 文書・公開版・構成・内部系列・deploymentの分離、影響対象の更新追跡 | 旧番号・SemVerを現機構・全体へ直結しない。POの追記5／6と現行Conceptの能力到達へ意味を導き直す |
+| `LEGACY-ASSET-A2F6A697D7FFFD490B57`、`docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:23–42` | 独立版、責務、artifact・依存・復旧の構成追跡 | 旧Module／Bundle・repository・lifecycleを現機構と一対一にせず、旧runtimeも写さない |
+
+再利用区分は**意味の再導出**。旧source全体の正式successorや完全一致移植とはしない。
+全入力原文を`MPR-SH-MECHANISM-VERSION-001`に保留し、候補の存在を旧sourceのretireへ使わない。
+保全の`no_loss`と、候補の意味の採択を分ける。
+旧sourceの不在・未完成を、新しい番号規則の理由にしていない。
+
+同種失敗は[10/10 rollback判断](../../governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md):33–34。
+件数・SHAだけでreviewし、版の印のない採択済み要求を1.0 rosterから落とした記録を起点にする。
+所属版の印・部品の存在・文書revisionだけで必要条件や到達を判断しない。
+失敗を理由として増分・点数・新gateを導かない。
+
+#### その他の未決・採否
+
+`version_target`未指定の影響は、この管理能力をどの導入範囲へ置くかが未確定なことである。
+候補の採否時に対象revisionと併せて適用範囲を確認し、本文の意味だけから1.0等へ所属変更しない。
+後続版のWeb・利用者・横断受入の具体的対応は、該当する上流要求revisionを扱う時点で再評価する。
+未特定をOS014／021／025の成功で埋めず、具体的conflict／staleは統制へ返す。
+本候補と対L11は、クリーンデプロイの別候補と一つのPO採否packetへ束ねる。
+仮登録、review、PR mergeだけでは、本節の採択・個々の版の成立・下流実装許可は生じない。
