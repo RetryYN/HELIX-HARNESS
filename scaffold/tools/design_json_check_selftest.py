@@ -33,6 +33,9 @@ def fixture():
         git(root, "add", "AGENTS.md", "docs")
         git(root, "commit", "-qm", "fixture")
         old = git(root, "rev-parse", "HEAD")
+        (root / "AGENTS.md").write_text("rules updated\n", encoding="utf-8")
+        git(root, "add", "AGENTS.md"); git(root, "commit", "-qm", "second fixed source revision")
+        alternate = git(root, "rev-parse", "HEAD")
         (root / "docs/source.txt").write_text("changed\n", encoding="utf-8")
         (root / "docs/target.json").write_text(json.dumps({"changed": True}), encoding="utf-8")
         git(root, "add", "docs/source.txt", "docs/target.json"); git(root, "commit", "-qm", "change")
@@ -44,6 +47,7 @@ def fixture():
             "source_audit": {"path": "docs/source.txt", "revision": old, "source_revision": git(root, "rev-parse", "HEAD"), "sha256": sha(b"pinned\n")},
             "fixed_source_binding_rule_ja": "input_baseはsource_basisの固定revisionとfile_sha256へ束縛する",
             "source_basis": [{"path": "docs/target.json", "revision": old, "file_sha256": sha(json.dumps({"value": 42}).encode()), "pointer": "/value"}],
+            "alternate_basis_revision": alternate,
             "case": {"input_base": {"path": "docs/target.json", "pointer": "/value"}},
             "partial_hash": {"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned"), "line_range": [1, 1]},
             "label_pin": {"path": "docs/source.txt", "revision": "current_candidate", "sha256": "0" * 64},
@@ -102,7 +106,16 @@ def main():
         ("absolute path reference", lambda d: d.update(test_path="/etc/passwd.txt"), ("E_PATH", "/test_path")),
         ("local-only reference", lambda d: d.update(receipt_path="scaffold/review-handoff/local/missing.json"), ("E_LOCAL_REF", "/receipt_path")),
         ("unknown pinned revision", lambda d: d["source_pins"][0].update(revision="0" * 40), ("E_SOURCE", "/source_pins/0/sha256")),
+        ("all fixed revision aliases are checked", lambda d: d.update(foo_pin={"foo_path": "docs/source.txt", "foo_revision": d["source_pins"][0]["revision"], "foo_commit": d["source_audit"]["source_revision"], "foo_sha256": d["source_pins"][0]["sha256"]}), ("E_SOURCE_SHA", "/foo_pin/foo_sha256")),
+        ("valid commit is checked after a label revision", lambda d: d.update(commit_after_label={"path": "docs/source.txt", "revision": "current_candidate", "commit": d["source_audit"]["source_revision"], "sha256": "0" * 64}), ("E_SOURCE_SHA", "/commit_after_label/sha256")),
+        ("fixed revision is checked after audit source revision", lambda d: d.update(source_pin={"source_path": "docs/source.txt", "source_revision": "current_candidate", "revision": d["source_pins"][0]["revision"], "source_sha256": "0" * 64}), ("E_SOURCE_SHA", "/source_pin/source_sha256")),
+        ("source path keeps source revision as a pin alias", lambda d: d.update(source_alias_pin={"source_path": "docs/source.txt", "source_revision": d["source_audit"]["source_revision"], "revision": d["source_pins"][0]["revision"], "source_sha256": d["source_pins"][0]["sha256"]}), ("E_SOURCE_SHA", "/source_alias_pin/source_sha256")),
         ("missing cross-file pointer", lambda d: d["cross_ref"].update(json_pointer="/absent"), ("E_POINTER", "/cross_ref/json_pointer/0")),
+        ("explicit revision overrides source basis", lambda d: (d["case"]["input_base"].update(revision=d["source_audit"]["source_revision"], pointer="/changed")), None),
+        ("ambiguous source basis does not bind", lambda d: d["source_basis"].append(dict(d["source_basis"][0], revision=d["alternate_basis_revision"])), ("E_POINTER", "/case/input_base/pointer/0")),
+        ("non-hex source basis revision does not bind", lambda d: d["source_basis"][0].update(revision="current_candidate"), ("E_POINTER", "/case/input_base/pointer/0")),
+        ("different path source basis does not bind", lambda d: d["source_basis"][0].update(path="docs/source.txt"), ("E_POINTER", "/case/input_base/pointer/0")),
+        ("pathless source basis leaves target implicit", lambda d: (d["case"]["input_base"].pop("path"), d["source_basis"][0].pop("path")), None),
         ("fixed source basis sha is enforced", lambda d: d["source_basis"][0].update(file_sha256="0" * 64), ("E_PATH", "/case/input_base/pointer/0")),
         ("fixed source binding marker is required", lambda d: d.pop("fixed_source_binding_rule_ja"), ("E_POINTER", "/case/input_base/pointer/0")),
         ("fixed source binding does not escape case", lambda d: d.update(unbound_sibling={"path": "docs/target.json", "pointer": "/value"}), ("E_POINTER", "/unbound_sibling/pointer/0")),

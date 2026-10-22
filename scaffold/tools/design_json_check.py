@@ -90,13 +90,16 @@ def pin_candidates(obj):
         else:
             prefix = path_key[:-5]
             revision_keys, sha_keys = (prefix + "_revision", prefix + "_commit"), (prefix + "_sha256",)
+        fixed = {key for key in revision_keys if key != "source_revision"
+                 and isinstance(obj.get(key), str) and REV.fullmatch(obj[key])}
         for rev_key in revision_keys:
+            if path_key == "path" and rev_key == "source_revision" and fixed:
+                continue
             if not isinstance(obj.get(rev_key), str):
                 continue
             for sha_key in sha_keys:
                 if isinstance(obj.get(sha_key), str):
                     yield path_key, rev_key, sha_key
-            break
 
 
 class Checker:
@@ -213,7 +216,7 @@ class Checker:
         revision, valid = self.revision(obj)
         if revision and not valid:
             return None, "label revision"
-        if not revision and source_basis:
+        if path and not revision and source_basis:
             matches = { (item.get("revision"), item.get("file_sha256")) for item in source_basis
                         if isinstance(item, dict) and item.get("path") == path
                         and isinstance(item.get("revision"), str) and REV.fullmatch(item["revision"])

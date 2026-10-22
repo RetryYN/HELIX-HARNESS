@@ -105,7 +105,19 @@
    "missing cross-file json_pointer",
    "local-only pointer target",
    "same-object source pin with a distinct audit source_revision",
-   "input_base bound by fixed_source_binding_rule_ja and source_basis"
+   "input_base bound by fixed_source_binding_rule_ja and source_basis",
+   "all fixed revision aliases are checked",
+   "valid commit is checked after a label revision",
+   "fixed revision is checked after audit source revision",
+   "source path keeps source revision as a pin alias",
+   "explicit revision overrides source basis",
+   "ambiguous source basis does not bind",
+   "non-hex source basis revision does not bind",
+   "different path source basis does not bind",
+   "pathless source basis leaves target implicit",
+   "fixed source basis sha is enforced",
+   "fixed source binding does not escape case",
+   "fixed source binding marker is required"
   ]
  },
  "replacement": {
