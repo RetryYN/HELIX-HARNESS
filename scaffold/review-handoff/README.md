@@ -99,11 +99,11 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
    - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Codex/Devinの後続待機依頼は待機中にTTLが進まず、その依頼自身のclaim時から元のTTLを一度だけ数える。旧形式も同じ扱いとし、先頭の解放や他依頼のclaimではTTLを開始・再延長しない。配送開始後の未ACK依頼は期限で枠を解放する。
 
 
-`gui_mailbox.py inspect --runtime RUNTIME --session SESSION --all`は、1回の操作でその作業側の未完了割当を列挙する。現sessionのreadyなqueued依頼は同じtransactionでそれぞれclaimし、各`requests`行のevent_id/digest/claim nonceで既存の`ack`を個別に行う。既にclaimedのnonceは再発行しない。review通知はclaimせず、従来の`inspect --id`で読む。`--id`と`--all`は排他である。
+`gui_mailbox.py inspect --runtime RUNTIME --session SESSION --all`は、1回の操作でその作業側の未完了割当を列挙する。現sessionのreadyなqueued依頼は同じtransactionでそれぞれclaimし、各`requests`行のevent_id/digest/claim nonceで既存の`ack`を個別に行う。既にclaimedの行は同じnonceを再表示する。review通知はclaimせず、従来の`inspect --id`で読む。`--id`と`--all`は排他である。
 
 after待機中も元本文を`untrusted_data`として表示するが、`eligible=false`・claim/nonceなしでTTLも開始しない。先行結果後の次のinspectでclaimできる。ACK済み本文は復元せずmetadataだけを返す。旧session宛/宛先不明の割当は`other_sessions`へmetadataだけ表示し、実行可能にしない。必要なら明示releaseし、新sessionへ参照SHAを確認した新しい依頼を送る。自動で付け替えない。
 
-一括対象の保存digestを先に確認し、破損時はevent IDを示してbatch全体をrollbackする。一括出力はstateの保存後に行う。hook通知は固定文でinspect/並列実行/subagent/after待機/個別ACKを案内し、依頼の自由文を注入しない。最大5件の本文を無断で省略せず、結果は依頼ごとのrequest_idで返す。
+現sessionのclaim/本文表示候補の保存digestを先に確認し、破損時はevent IDを示してbatch全体をrollbackする。期限切れ・旧session・ACK済みなど本文表示対象外の破損はmetadataのdiagnosticとして示す。一括出力はstateの保存後に行う。全通知に個別eventの`inspect --id EVENT_ID`とACK手順を残し、作業依頼通知にだけ`inspect --all`・並列実行（Codexはsubagent）・after待機の要点を固定文で案内する。運用本文はREADMEを参照し、依頼の自由文を注入しない。最大5件の本文を無断で省略せず、結果は依頼ごとのrequest_idで返す。現session宛ての取消は既存終了記録の保持期間内で`cancellations`へ理由付きmetadataとして示し、未完了`requests`と分ける。取消のために本文を復元したり、保持期間を延ばしたりしない。
 
 
 `packet.py build-work --after PREDECESSOR_EVENT_ID`で先行のevent IDを1件指定できる。通常どおり各依頼を個別sendする。`A⇒B⇒C`はBのafter=A、Cのafter=B、`(A⇒B)∥C`はCだけafterなしで表す。先行は実際に送信済みで、同じ依頼側/作業側のruntime/sessionに属する依頼に限る。任意DAG・manifest・一括send・execution receiptは持たない。
