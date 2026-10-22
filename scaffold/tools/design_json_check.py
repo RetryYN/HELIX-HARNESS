@@ -90,9 +90,15 @@ def pin_candidates(obj):
         else:
             prefix = path_key[:-5]
             revision_keys, sha_keys = (prefix + "_revision", prefix + "_commit"), (prefix + "_sha256",)
+        fixed = {key for key in revision_keys if key != "source_revision"
+                 and isinstance(obj.get(key), str) and REV.fullmatch(obj[key])}
         for rev_key in revision_keys:
+            if path_key == "path" and rev_key == "source_revision" and fixed:
+                continue
+            if not isinstance(obj.get(rev_key), str):
+                continue
             for sha_key in sha_keys:
-                if all(isinstance(obj.get(k), str) for k in (path_key, rev_key, sha_key)):
+                if isinstance(obj.get(sha_key), str):
                     yield path_key, rev_key, sha_key
 
 
@@ -203,13 +209,26 @@ class Checker:
         except Exception as error:
             self.fail(rel, at, "E_POINTER", error)
 
-    def pointer_target(self, doc, obj):
+    def pointer_target(self, doc, obj, source_basis=None):
         if obj.get("document") == "local":
             return doc, None
         path = self.path_in(obj)
         revision, valid = self.revision(obj)
         if revision and not valid:
             return None, "label revision"
+        if path and not revision and source_basis:
+            matches = { (item.get("revision"), item.get("file_sha256")) for item in source_basis
+                        if isinstance(item, dict) and item.get("path") == path
+                        and isinstance(item.get("revision"), str) and REV.fullmatch(item["revision"])
+                        and isinstance(item.get("file_sha256"), str) and SHA.fullmatch(item["file_sha256"]) }
+            if len(matches) == 1:
+                revision, expected = next(iter(matches))
+                try:
+                    actual = hashlib.sha256(self.blob(path, revision)).hexdigest()
+                except Exception as error:
+                    return None, error
+                if actual != expected:
+                    return None, "fixed source basis sha mismatch"
         if not path:
             return None, "implicit target"
         try:
@@ -220,7 +239,7 @@ class Checker:
         except Exception as error:
             return None, error
 
-    def verify_pointer(self, rel, at, doc, obj, value, local):
+    def verify_pointer(self, rel, at, doc, obj, value, local, source_basis=None):
         if not isinstance(value, str) or not value.startswith("/") and "#" not in value:
             self.unclassified["pointer_shape"] += 1
             return
@@ -242,7 +261,7 @@ class Checker:
         elif local:
             target, error = doc, None
         else:
-            target, error = self.pointer_target(doc, obj)
+            target, error = self.pointer_target(doc, obj, source_basis)
         if error is not None:
             skipped = error in ("implicit target", "label revision", "non_json_target")
             self.unclassified["implicit_pointer_target" if skipped else "pointer_target_error"] += 1
@@ -255,13 +274,15 @@ class Checker:
         except Exception as error:
             self.fail(rel, at, "E_POINTER", error)
 
-    def collect(self, value, doc, rel, at=""):
+    def collect(self, value, doc, rel, at="", source_basis=None):
         if isinstance(value, list):
             for index, child in enumerate(value):
-                self.collect(child, doc, rel, at + "/" + str(index))
+                self.collect(child, doc, rel, at + "/" + str(index), source_basis)
             return
         if not isinstance(value, dict):
             return
+        case_basis = (value.get("source_basis") if isinstance(value.get("fixed_source_binding_rule_ja"), str)
+                      and isinstance(value.get("source_basis"), list) else None)
         for key, child in value.items():
             child_at = at + "/" + key
             if file_path_key(key) and key != "path":
@@ -281,8 +302,9 @@ class Checker:
             if key in LOCAL_POINTER_KEYS | POINTER_KEYS:
                 for index, pointer in enumerate(child if isinstance(child, list) else [child]):
                     self.verify_pointer(rel, child_at + "/" + str(index), doc, value, pointer,
-                                        key in LOCAL_POINTER_KEYS)
-            self.collect(child, doc, rel, child_at)
+                                        key in LOCAL_POINTER_KEYS, source_basis)
+            child_basis = case_basis if case_basis is not None and key == "case" else source_basis
+            self.collect(child, doc, rel, child_at, child_basis)
         self.classify_pins(value, rel, at)
 
     def check(self, path):
