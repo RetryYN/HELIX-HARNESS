@@ -92548,7 +92548,8 @@
       "pointer": "/descriptor_meanings",
       "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "canonical_sha256": "224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651",
-      "role": "rawのnormative_argument.entry_valueの歴史的由来だけ。このrevisionにはdefinition_meaning_resolution_contractがなく、現行契約/schema/分類の根拠には使わない。"
+      "role": "rawのnormative_argument.entry_valueが保持する固定歴史snapshotの由来。現行L4の同名normative_basis_snapshotと全値同じだが、現行契約/schema/分類の根拠はcurrent_contract_source側で照合する。",
+      "canonicalization": "canonical SHA-256は、JSONをsort_keys=true・ensure_ascii=false・separators=(\",\", \":\")でserializeしたUTF-8 bytes（末尾LFなし）に対して計算する。"
     },
     "observation_requirements": [
       "owner原operationのfact全値と固定normative引数の両端対応、原decision/理由/rawbasis/Refを同callに保持する。source資格と意味評価を別観測にする。",
@@ -92568,13 +92569,9 @@
       "B/Cの合成rawと各閉公開期待、Bのdistinct cohort、Cの非選択重複occurrence保持。",
       "この契約案とA-only有限fixtureの独立reviewおよび正式admission。",
       "原owner/NA carrierのA以外のlogical入力、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。",
-      "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。"
+      "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
+      "原operandsを意味ownerが独立に実供給するcallerは未実施（A rawは合成前提のみ）。L4 producers.independenceのこの将来要件をAの合成作成で満たしたとは扱わない。"
     ],
-    "current_L4_candidate_binding": {
-      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "candidate_file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
-      "scope": "同じL4文書全bytesへの束縛。固定規範snapshotの歴史source pinとは別に、対象revisionはgit commitとreview対象HEADから確認する。"
-    },
     "current_contract_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "revision": "4032a7a92c4918749fb00359ca70a17685483fd8",
@@ -92587,9 +92584,11 @@
         "/identity_version_trace_contract/schema/$defs/Comparison",
         "/identity_version_trace_contract/schema/$defs/AxisResult",
         "/identity_version_trace_contract/schema/$defs/Finding",
-        "/failure_classifications"
+        "/failure_classifications",
+        "/definition_meaning_resolution_contract/normative_basis_snapshot",
+        "/definition_meaning_resolution_contract/normative_basis_acquisition"
       ],
-      "role": "Aの入力population選択、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Finding閉shape、missing分類tupleの現行L4根拠。"
+      "role": "Aの入力population選択、現行L4が保持する固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Finding閉shape、missing分類tupleの現行L4根拠。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
     },
     "synthetic_fixture_premise": {
       "scope": "Aだけの合成論理carrier。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
@@ -93064,40 +93063,6 @@
       },
       "selected_cohorts": [
         {
-          "template_ref": {
-            "identity": "SYNTHETIC-D26-TEMPLATE-A",
-            "revision": "synthetic-D26-r1",
-            "scope": "synthetic-D26-cohort",
-            "owner": "synthetic-template-owner",
-            "source_locator": "urn:synthetic:d26:A:template",
-            "sha256": null
-          },
-          "knowledge_ref": {
-            "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
-            "revision": "synthetic-D26-r1",
-            "scope": "synthetic-D26-cohort",
-            "owner": "synthetic-knowledge-owner",
-            "source_locator": "urn:synthetic:d26:A:knowledge",
-            "sha256": null
-          },
-          "binding": {
-            "template_ref": {
-              "identity": "SYNTHETIC-D26-TEMPLATE-A",
-              "revision": "synthetic-D26-r1",
-              "scope": "synthetic-D26-cohort",
-              "owner": "synthetic-template-owner",
-              "source_locator": "urn:synthetic:d26:A:template",
-              "sha256": null
-            },
-            "knowledge_ref": {
-              "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
-              "revision": "synthetic-D26-r1",
-              "scope": "synthetic-D26-cohort",
-              "owner": "synthetic-knowledge-owner",
-              "source_locator": "urn:synthetic:d26:A:knowledge",
-              "sha256": null
-            }
-          },
           "slot_identity": "SYNTHETIC-D26-SLOT-A",
           "source_ref": {
             "identity": "SYNTHETIC-D26-SOURCE-A",
@@ -93114,43 +93079,7 @@
             "owner": "synthetic-logical-qualification-owner",
             "source_locator": "urn:synthetic:d26:A:qualification",
             "sha256": null
-          },
-          "fact_occurrences": [
-            {
-              "slot_index": 0,
-              "fact_index": 0,
-              "fact_ref": {
-                "identity": "SYNTHETIC-D26-FACT-A-IDENTITY",
-                "revision": "synthetic-D26-r1",
-                "scope": "synthetic-D26-cohort",
-                "owner": "synthetic-meaning-owner",
-                "source_locator": "urn:synthetic:d26:A:fact:template-identity",
-                "sha256": null
-              }
-            }
-          ],
-          "operation_occurrences": [
-            {
-              "source_index": 0,
-              "operation_index": 0,
-              "operation_ref": {
-                "identity": "SYNTHETIC-D26-OP-A-IDENTITY",
-                "revision": "synthetic-D26-r1",
-                "scope": "synthetic-D26-cohort",
-                "owner": "synthetic-meaning-owner",
-                "source_locator": "urn:synthetic:d26:A:operation:template-identity",
-                "sha256": null
-              },
-              "fact_ref": {
-                "identity": "SYNTHETIC-D26-FACT-A-IDENTITY",
-                "revision": "synthetic-D26-r1",
-                "scope": "synthetic-D26-cohort",
-                "owner": "synthetic-meaning-owner",
-                "source_locator": "urn:synthetic:d26:A:fact:template-identity",
-                "sha256": null
-              }
-            }
-          ]
+          }
         }
       ],
       "closed_population": {
@@ -93165,7 +93094,11 @@
       "closed_by_L4": [
         "Comparison/AxisResult/Findingの各member数とrequired member集合（additionalProperties=false）。",
         "A選択populationにおけるdescriptor_02_missing〜descriptor_15_missingの各tupleとmembership。",
-        "各期待rowのfull Binding、source/revision/cohort所属をraw Aから保ち、差替・他cohort借用をしない。"
+        "各期待rowのfull Binding、source/revision/cohort所属をraw Aから保ち、差替・他cohort借用をしない。",
+        "Aのrawではtemplate identity（descriptor_01）のfactが存在し、同cohortの原owner operationはdefines_descriptor。root要求域の保持とこのslotの供給状態、および定義済み別原根拠があるとき「別根拠なし」のundefined Findingを出さない境界により、Aではdescriptor_01_missing／descriptor_01_undefinedを出さない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/identity_version_trace_contract/schema/$defs/MeaningFact、/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation、/definition_meaning_resolution_contract/consumer_branch_table/4）。",
+        "A rawのcandidatesは空。rootをcandidate filterで落とさず、他Bindingへrequired不足を増殖させない。従ってdescriptor_02_missing〜descriptor_15_missingの14 tupleはA cohortに限り、未要求cohortへ増えない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。",
+        "各A missing-kindのtupleは同A母集団で公開Finding一件として各1回現れる。既存required kindと同一callの公開一件化/同Claim担当分離が根拠であり、private assessment総数を主張しない（L4 /definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality、/identity_version_trace_contract/schema/$defs/Finding）。",
+        "Aの原factと原operationは各1件であり、原順・反復を保ち、他cohortから借用・増殖しない意味制約を持つ。slot/fact/source/operation indexやprivate occurrence-arrayの形は期待しない（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。"
       ],
       "schema_and_original_membership_only": [
         "Finding.rule_refのliteral",
@@ -93173,7 +93106,7 @@
         "original_refs/source_refsの配列構成・順序",
         "public sort順、private assessment shape、producer_symbol literal"
       ],
-      "population_limit": "14はAでrequiredなmissing kind populationだけの数であり、Comparison.findings総数ではない。無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。"
+      "population_limit": "14はAでrequiredなmissing kind populationだけの数であり、Comparison.findings総数ではない。Aに属する出る／出ない／増えない各閉値だけを述べる。無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。"
     }
   },
   "field_value_applicability_verification": {
