@@ -114,6 +114,72 @@ def work_items(data, worker):
     return ([current] if current else []) + list(data.get("work_queue", {}).get(worker, []))
 
 
+def issued_for_event(data, event_id):
+    """event IDから送信済み作業依頼の小さな保持記録を探す。"""
+    for digest, issued in data.get("issued", {}).items():
+        if issued.get("event_id") == event_id:
+            return digest, issued
+    return None, None
+
+
+def dependency_state(data, event_id):
+    """依存先の結果を未完・成功・失敗へ読む。結果の正本は既存issued記録。"""
+    _, issued = issued_for_event(data, event_id)
+    if issued is None:
+        return "failed", "predecessor_missing"
+    outcome = issued.get("outcome")
+    if outcome == "proposal":
+        return "ready", None
+    if outcome is not None:
+        return "failed", outcome
+    return "waiting", None
+
+
+def end_work(data, event_id, outcome, now):
+    """依頼の最初のterminal outcomeを固定し、失敗なら依存列だけを閉じる。"""
+    pending = [(event_id, outcome)]
+    visited = set()
+    while pending:
+        current_id, requested = pending.pop()
+        if current_id in visited:
+            continue
+        visited.add(current_id)
+        _, issued = issued_for_event(data, current_id)
+        current = issued.get("outcome") if issued is not None else None
+        if current is None:
+            current = requested
+        if issued is not None:
+            issued["outcome"] = current
+        if current == "proposal":
+            continue
+        for worker in RUNTIMES:
+            for item in list(work_items(data, worker)):
+                if item.get("after") != current_id:
+                    continue
+                message = data.get("messages", {}).get(item["event_id"])
+                if message is None or message["status"] != "queued":
+                    continue
+                child_id = item["event_id"]
+                message["status"] = "cancelled"
+                message["cancel_reason"] = "after:" + current_id + ":" + current
+                remove_work(data, worker, child_id, now)
+                pending.append((child_id, "dependency_cancelled"))
+
+
+def validate_after(data, event_id, runtime, session, worker, worker_session, request):
+    after = request.get("after")
+    if after is None:
+        return "ready", None
+    p.require(after != event_id, "afterで自己依存できない")
+    digest, issued = issued_for_event(data, after)
+    p.require(issued is not None, "afterの先行eventが送信記録にない")
+    p.require(issued.get("dispatcher") == runtime and issued.get("worker") == worker
+              and issued.get("dispatcher_session") == session
+              and issued.get("worker_session") == worker_session,
+              "afterの依頼側・作業側runtime/session不一致")
+    return dependency_state(data, after)
+
+
 def set_work_items(data, worker, items, now=None):
     work = data.setdefault("work", {})
     queue = data.setdefault("work_queue", {})
@@ -139,6 +205,7 @@ def prune_expired_work(data, worker, now):
     if not work_items(data, worker):
         return
     kept = []
+    expired = []
     for item in work_items(data, worker):
         if item.get("acked_at") is not None:
             kept.append(item)
@@ -149,9 +216,12 @@ def prune_expired_work(data, worker, now):
         waiting = message.get("work_waiting") is True
         if message["status"] in ("queued", "claimed") and not waiting and message["expires"] <= now:
             message["status"] = "expired"
+            expired.append(item["event_id"])
         if message["status"] in ("queued", "claimed"):
             kept.append(item)
     set_work_items(data, worker, kept, now)
+    for event_id in expired:
+        end_work(data, event_id, "expired", now)
 
 
 def close(data, event_id, status, now):
@@ -163,23 +233,32 @@ def close(data, event_id, status, now):
              else message["expires"] if status == "expired" else now)
     ended = min(now, ended if isinstance(ended, (int, float)) else now)
     claim = message.get("claim") or {}
-    data.setdefault("closed", {})[event_id] = dict(
-        status=status, digest=message["digest"], content=content_key(payload),
-        sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
-        receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
-        nonce=claim.get("nonce"), closed=ended)
+    closed = dict(status=status, digest=message["digest"], content=content_key(payload),
+                  sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
+                  receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
+                  nonce=claim.get("nonce"), closed=ended)
+    if message.get("cancel_reason"):
+        closed["cancel_reason"] = message["cancel_reason"]
+    data.setdefault("closed", {})[event_id] = closed
     request = payload["request"]
     if payload["kind"] == "work_request" and status != "acked":
         # 受け取られずに終わった作業依頼は着手されていない。次の依頼を止めない。
         remove_work(data, payload["receiver_runtime"], event_id, now)
+    if payload["kind"] == "work_request" and status == "expired":
+        end_work(data, event_id, "expired", now)
     # 監査記録は識別子と時刻だけ。依頼・応答の本文（purpose、scope、findings等）は書かない。
-    return dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
+    record = dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
                 sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
                 receiver_runtime=payload["receiver_runtime"], receiver_session=payload["receiver_session"],
                 request_id=request.get("request_id"), pr=request.get("pr"), issue=request.get("issue"),
                 base_sha=request.get("base_sha"),
                 content_sha=request.get("content_sha"), created=message.get("created"), expires=message["expires"],
                 claimed=claim.get("at"), acked=(message.get("ack") or {}).get("at"), closed=ended)
+    if request.get("after") is not None:
+        record["after"] = request["after"]
+    if message.get("cancel_reason"):
+        record["cancel_reason"] = message["cancel_reason"]
+    return record
 
 
 def compact(data, now):
@@ -196,9 +275,13 @@ def compact(data, now):
     for event_id in [key for key, value in closed.items() if value["closed"] <= now - CLOSED_RETENTION_SECONDS]:
         del closed[event_id]
     # 作業依頼の送信記録は、割当中か、送信・最後の結果から保持期間内だけ残す。
-    active = {item["payload_sha256"] for worker in RUNTIMES for item in work_items(data, worker)}
+    items = [item for worker in RUNTIMES for item in work_items(data, worker)]
+    active = {item["payload_sha256"] for item in items}
+    referenced_events = {item["after"] for item in items if item.get("after")}
     issued = data.get("issued", {})
-    for key in [key for key, value in issued.items() if key not in active and value["at"] <= now - CLOSED_RETENTION_SECONDS]:
+    for key in [key for key, value in issued.items()
+                if key not in active and value.get("event_id") not in referenced_events
+                and value["at"] <= now - CLOSED_RETENTION_SECONDS]:
         del issued[key]
     if not issued:
         data.pop("issued", None)
@@ -282,6 +365,9 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
         p.validate_work_result(response, request)
         # 添付の依頼は、実際に送られた作業依頼と同じ全値に限る。依頼側を書き換えた依頼で記録を偽らせない。
         p.require(issued_request(data, runtime, request), "送信記録の無い作業依頼への結果")
+        if request.get("after") is not None:
+            after_state, _ = dependency_state(data, request["after"])
+            p.require(after_state == "ready", "after未readyの作業依頼に結果を送れない")
         # 結果は自分以外の登録済みruntimeの誰へでも送れる。省略時は、停止中でも通知で起きるClaudeへ送る。
         # Claude自身が作業側のときだけ、省略時は依頼側へ返す。
         target_runtime = to or ("claude" if runtime != "claude" else request["dispatcher"])
@@ -324,30 +410,47 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
     if kind == "work_request":
         # Codex/Devinは未完了5件。他runtimeは1件。割当ごとに独立して配送する。
         prune_expired_work(data, target_runtime, now)
+        after_state, after_reason = validate_after(
+            data, event_id, runtime, session, target_runtime, target["session"], request)
         items = work_items(data, target_runtime)
         capacity = WORK_CAPACITY.get(target_runtime, 1)
-        p.require(len(items) < capacity, "作業側の未完了依頼上限")
+        p.require(after_state == "failed" or len(items) < capacity, "作業側の未完了依頼上限")
         # session交代などで通常dedupeを通らない同一依頼の二重積みを防ぐ。
         p.require(not any(item["payload_sha256"] == request["payload_sha256"] and item["dispatcher"] == runtime
                           for item in items), "同じ作業依頼が未完了")
-        waiting = target_runtime in WORK_CAPACITY and bool(items)
+        waiting = bool(items) or after_state == "waiting"
         item = dict(event_id=event_id, request_id=request["request_id"],
                           payload_sha256=request["payload_sha256"], issue=request["issue"],
                           dispatcher=runtime, since=now)
+        if request.get("after") is not None:
+            item["after"] = request["after"]
         if waiting:
             item["pending_ttl"] = ttl
-        items.append(item)
-        set_work_items(data, target_runtime, items, now)
-        data.setdefault("issued", {})[request["payload_sha256"]] = dict(
-            request_sha256=p.sha(p.encode(request)), dispatcher=runtime, worker=target_runtime, at=now)
         message = dict(payload=payload, digest=digest, created=now, expires=now + ttl,
                        status="queued", claim=None, ack=None)
         if waiting:
             message["work_waiting"] = True
+        issued = dict(request_sha256=p.sha(p.encode(request)), dispatcher=runtime, worker=target_runtime,
+                      dispatcher_session=session, worker_session=target["session"], event_id=event_id, at=now)
+        data.setdefault("issued", {})[request["payload_sha256"]] = issued
+        if after_state == "failed":
+            message["status"] = "cancelled"
+            message["cancel_reason"] = "after:" + request["after"] + ":" + after_reason
+        else:
+            items.append(item)
+            set_work_items(data, target_runtime, items, now)
         data["messages"][event_id] = message
+        if after_state == "failed":
+            end_work(data, event_id, "dependency_cancelled", now)
         return message
     elif kind == "work_result":
         # 結果は完全に一致する割当だけを外す。受信後・ACK前の結果でも元通知を残さず、後からの重複配送を防ぐ。
+        issued = data.get("issued", {}).get(request["payload_sha256"])
+        if issued and issued.get("event_id"):
+            # 結果通知は従来どおり送るが、依存stateの最初のterminal outcomeは変更しない。
+            outcome = ("proposal" if response["result"] == "proposal"
+                       else "result_" + response["result"])
+            end_work(data, issued["event_id"], outcome, now)
         matching = next((item for item in work_items(data, runtime)
                          if item["payload_sha256"] == request["payload_sha256"]
                          and item["dispatcher"] == request["dispatcher"]), None)
@@ -385,10 +488,13 @@ def release_work(data, runtime, session, worker, now, event_id=None):
     if event_id is not None:
         prune_expired_work(data, worker, now)
     message = data["messages"].get(selected["event_id"])
+    terminal_reason = "expired" if message is not None and message["status"] == "expired" else "release"
     if message is not None and message["status"] in ("queued", "claimed"):
         # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。
         message["status"] = "cancelled"
+        message["cancel_reason"] = "release"
     remove_work(data, worker, selected["event_id"], now)
+    end_work(data, selected["event_id"], terminal_reason, now)
 
 
 def claim(data, runtime, session, now):
@@ -401,8 +507,17 @@ def claim(data, runtime, session, now):
         if message["status"] in ("acked", "expired", "cancelled"):
             continue
         if payload["kind"] == "work_request" and message["status"] == "queued":
-            if not any(item["event_id"] == payload["event_id"] for item in work_items(data, runtime)):
+            item = next((item for item in work_items(data, runtime) if item["event_id"] == payload["event_id"]), None)
+            if item is None:
                 continue
+            after = item.get("after")
+            if after:
+                state, reason = dependency_state(data, after)
+                if state == "failed":
+                    end_work(data, after, reason, now)
+                    continue
+                if state != "ready":
+                    continue
             if message.get("work_waiting") is True:
                 item = next(item for item in work_items(data, runtime) if item["event_id"] == payload["event_id"])
                 pending_ttl = item.pop("pending_ttl", None)
@@ -411,6 +526,8 @@ def claim(data, runtime, session, now):
                 message.pop("work_waiting")
         if message["expires"] <= now:
             message["status"] = "expired"
+            if payload["kind"] == "work_request":
+                end_work(data, payload["event_id"], "expired", now)
             continue
         if message["status"] == "claimed":
             # 未ACKは自動再配送しない。明示retryで同じsessionへの再表示だけを許す。
