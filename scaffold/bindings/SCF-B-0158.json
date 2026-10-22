@@ -10,8 +10,8 @@
  "upstream": [
   {
    "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-   "sha256": "1c591a88af7ffed3e545dc1f0fb0495ce8e805ef53499e3306af0561752b018b",
-   "note": "HELIXOS-L2-052のmerge後local cleanup・unknown/conflict fail-close・remote ref境界の候補参照。 [2026-10-22 D-OS014-POLICY1: OS014 L2/L11へ10/07確定方針1のrelease/内部デプロイ分離・通常consumer・切戻し先保持・対象段階/作用のcutover許可を反映した現行pin追随。既存research scopeと全依存を照合し、固定capture・role・義務・操作・検証・replacement・authorityは変更しない。] [PR #3566 R1: 方針3:56の出典併記と10/07原文語への統一後のpin追随。意味・Binding責務・固定capture・authorityは不変。]"
+   "sha256": "d2ee4b5d5a6db6082efef76d3d71b162a403545b5596ae3b72a017c90534a6ea",
+   "note": "[2026-10-22 D-OS014-USED-STAGE current-pin read-after: upstream bytes refreshed; fixed capture, role, obligations, verification, replacement, and authority unchanged.] HELIXOS-L2-052のmerge後local cleanup・unknown/conflict fail-close・remote ref境界の候補参照。 [2026-10-22 D-OS014-POLICY1: OS014 L2/L11へ10/07確定方針1のrelease/内部デプロイ分離・通常consumer・切戻し先保持・対象段階/作用のcutover許可を反映した現行pin追随。既存research scopeと全依存を照合し、固定capture・role・義務・操作・検証・replacement・authorityは変更しない。] [PR #3566 R1: 方針3:56の出典併記と10/07原文語への統一後のpin追随。意味・Binding責務・固定capture・authorityは不変。] [2026-10-22 D-OS014-USED-STAGE source citation repair: L2 current bytes refreshed after exact policy scope refs; Binding responsibility, verification and authority unchanged.]"
   },
   {
    "path": "docs/governance/github-upstream-operating-model.md",
