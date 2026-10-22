@@ -5,6 +5,7 @@ import importlib.util
 import io
 import json
 import os
+import signal
 import tempfile
 import unittest
 from pathlib import Path
@@ -273,6 +274,32 @@ class OperationEntryTests(unittest.TestCase):
                 self.assertIn("E_RETIRE", output)
                 self.assertEqual(path.read_bytes(), before)
 
+    def test_validate_rejects_incomplete_fixed_revision_set(self):
+        for change, expected in (("partial_want", "E_REVISION_SET"), ("empty_formal", "E_REPL")):
+            with self.subTest(change=change), self.layout() as root:
+                binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                path = self.write_binding(binding)
+                code, output = self.invoke("retire", binding["id"])
+                self.assertEqual(code, 0, output)
+                binding = json.loads(path.read_text())
+                receipt_path = root / binding["replacement"]["confirmation_ref"]
+                receipt = json.loads(receipt_path.read_text())
+                binding["replacement"]["target_revisions"] = {}
+                if change == "empty_formal":
+                    binding["replacement"]["formal_artifacts"] = []
+                    receipt["target_revisions"] = {}
+                receipt["binding_core_digest"] = SCFCTL.binding_core_digest(binding)
+                receipt_path.write_text(json.dumps(receipt))
+                digest = SCFCTL.sha256_file(binding["replacement"]["confirmation_ref"])
+                binding["replacement"]["confirmation_digest"] = digest
+                binding["retired"]["read_after_digest"] = digest
+                self.write_binding(binding)
+                before = path.read_bytes()
+                code, output = self.invoke("validate")
+                self.assertNotEqual(code, 0, output)
+                self.assertIn(expected, output)
+                self.assertEqual(path.read_bytes(), before)
+
     def test_validate_rejects_fifo_receipt(self):
         with self.layout() as root:
             binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
@@ -283,7 +310,17 @@ class OperationEntryTests(unittest.TestCase):
             receipt.unlink()
             os.mkfifo(receipt)
             before = path.read_bytes()
-            code, output = self.invoke("validate")
+
+            def timed_out(signum, frame):
+                self.fail("validate blocked while reading a FIFO receipt")
+
+            previous = signal.signal(signal.SIGALRM, timed_out)
+            try:
+                signal.alarm(2)
+                code, output = self.invoke("validate")
+            finally:
+                signal.alarm(0)
+                signal.signal(signal.SIGALRM, previous)
             self.assertNotEqual(code, 0, output)
             self.assertIn("E_RETIRE", output)
             self.assertEqual(path.read_bytes(), before)
