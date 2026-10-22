@@ -113463,7 +113463,9 @@
         "file_sha256": "04d22b3f05237a0f1f3e3b2541c2dc6bec775f92c37f7cf847896999cf4adc99",
         "pointers": [
           "/type_contract/types/ValidatedSupply",
-        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningReadBundle",
+          "/source_return_contract/pure_reference_notation/definitions",
+          "/source_return_contract/pure_reference_notation/constant_bindings",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningReadBundle",
           "/source_return_contract/descriptor_target_dataflow/index_types/MeaningSupportOrigin",
           "/source_return_contract/descriptor_target_dataflow/index_types/MeaningProblemScope",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
@@ -113492,7 +113494,6 @@
           "git_revision": "008a146f3b16ebcd8aab125384cc67a7da279972",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
           "bundle_pointer": "/source_snapshot/raw_A",
-          "source_value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
           "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
         }
       ],
@@ -113617,14 +113618,14 @@
       "operation_types": [
         "copy"
       ],
-      "raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
       "expanded_expected_bundle_canonical_sha256": "bed488a12a3e52aacb7f06b0eab1354b1e00bfc79c0f9f0d6f93ffe3c9b5adfc",
       "expanded_expected_bundle_pointer": "/expected_bundle"
     },
     "reader_derivation_ja": [
       "requestは原index locator /descriptors/0 と /descriptors/0/facts/0、固定catalog entry /descriptor_meanings/0。出力locatorも同ValidatedSupply.input rootのRFC6901。",
       "条件付きcohortではsource[0] role=semantic_json。caller fact.source_ref、KnowledgeRecord.provenance_refs[0]、source.ref、Qualification.subject_refはcomputed digest非nullの全Ref値が一致する。carrier descriptor_facts内fact.source_ref.sha256だけnullで、owner_body_equalはcarrier→caller body比較からsource_ref memberを除外する。",
-      "source/content Binding、slot Binding、fact Binding、operation.arguments Bindingは9 member全値一致。slot_identity/kind/fact_ref/fact_bodyは元slot/factの原値と一致。operationは原index 0のDefinitionMeaningOperationとしてoriginal_recordとtyped supplied decodeに全値保存。",
+      "raw root Binding、source/content Binding、slot Binding、fact Binding、operation.arguments Bindingの5つは9 member全値一致するため、本入力のread.bindingは一意に定まる。異なる入力でどのBindingを選ぶかは本単位で固定しない。slot_identity/kind/fact_ref/fact_bodyは元slot/factの原値と一致。operationは原index 0のDefinitionMeaningOperationとしてoriginal_recordとtyped supplied decodeに全値保存。",
       "normative_frameはL4の歴史固定revision 5a3cfa984fab34f31ce623d667db1670f80b1544の/descriptor_meanings/0から構成し、source/raw argumentの記述から導出しない。operation.arguments.normative_argumentとの全member一致を静的に照合。",
       "原decision relation=defines_descriptor、reasonとraw_semantic_basisはsuppliedでbasis_refs[0]は同一fact Ref。全支持条件成立の場合のsupport一件を保持する。acquisition_state=resolvedはこの一件の所在対応を表し、実資格/definition採用や意味の真偽を単独で証明しない。",
       "成功bundleにはproblemがなくproblem_scopes=[]、support_originsはsupport_index 0にproblem_indices=[]。readの8必須memberを全て保持し、occurrence/supportのsource_index=0・record_index=0・locatorを分けて保存する。"
