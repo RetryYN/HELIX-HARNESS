@@ -1770,7 +1770,7 @@ OS030保留やHARNESS064の現行版不承認を、失敗の存在を理由に�
 
 | 状態 | 論点・影響 | 戻し先と再評価条件 |
 |---|---|---|
-| unknown | 091と対L11の採択。下流実装へ進めない | POへexact revisionを示した採否で確認 |
+| decided | 091と対L11の採択 | [判断記録](../../governance/decisions/clean-deploy-adoption-po-decision-2026-10-23.md)（対象revision `86d90e986cd645e452b7920491e899e0beadc329`）。下流実装はL3／L10の後続条件による |
 | unknown | 切出し対象の具体的な意味・所有・利用条件 | 採択後、対象sourceと所有責務をL3／L10で具体化するとき |
 | assumption | 汎用情報と内部固有情報をsourceから区別できること | 区別不能が判明した時点で当該source／HARNESS要求へ戻す |
 | known overlap／採否保留 | OS030保証2・3、package再現、更新復旧との重なりは上表のとおり | 091に含めずOS030の保留経路へ残す。具体的package条件を扱うときに対象revisionの採否へ戻す |
