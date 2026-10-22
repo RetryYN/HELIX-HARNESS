@@ -308,6 +308,9 @@ class Checker:
         self.classify_pins(value, rel, at)
 
     def check(self, path):
+        # Keep reference caches within one input file, including failed parses.
+        self.blobs.clear()
+        self.docs.clear()
         rel = str(path.relative_to(self.root))
         try:
             doc = json.loads(path.read_text(encoding="utf-8"))
