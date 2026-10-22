@@ -86,12 +86,12 @@ class Cases(unittest.TestCase):
                          (0, "fresh", "open_pr_branch", "process_in_use"))
 
     def test_age_threshold_uses_unrounded_value(self):
-        # A fixed epoch keeps the exact halfway input stable through float subtraction.
+        # Integer seconds avoid relying on filesystem rounding at the display midpoint.
         self.now = 1_000_000.0
         self.old = self.now - 9 * WR.DAY
         just_before = self.old_wt("just-before", "just-before-branch")
         exact = self.old_wt("exact", "exact-branch")
-        self.set_last_touch(just_before, self.now - 6.9995 * WR.DAY)
+        self.set_last_touch(just_before, self.now - (7 * WR.DAY - 30))
         self.set_last_touch(exact, self.now - 7.0 * WR.DAY)
 
         _, report = self.invoke()
