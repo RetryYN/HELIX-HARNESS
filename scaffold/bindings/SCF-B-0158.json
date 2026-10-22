@@ -1,102 +1,102 @@
 {
- "schema_revision": 1,
- "id": "SCF-B-0158",
- "kind": "scaffold",
- "title": "last-touch worktree reclaim helper",
- "product": "HELIX-HARNESS",
- "owner_candidate": "HELIX-OS worktree lifecycle cleanup",
- "state": "registered",
- "reason": "Issue #3510 WI-2aの仮組み。HELIXOS-L2-052候補のmerge後local cleanupに対し、cleanかつmerge済みで7日超のlocal worktreeだけをdry-run firstで分類し、必要時はno-force removeする補助scriptを置く。scaffoldは要求・承認・実装許可・本番cleanup権限を生成しない。",
- "upstream": [
-  {
-   "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-   "sha256": "d2ee4b5d5a6db6082efef76d3d71b162a403545b5596ae3b72a017c90534a6ea",
-   "note": "[2026-10-22 D-OS014-USED-STAGE current-pin read-after: upstream bytes refreshed; fixed capture, role, obligations, verification, replacement, and authority unchanged.] HELIXOS-L2-052のmerge後local cleanup・unknown/conflict fail-close・remote ref境界の候補参照。 [2026-10-22 D-OS014-POLICY1: OS014 L2/L11へ10/07確定方針1のrelease/内部デプロイ分離・通常consumer・切戻し先保持・対象段階/作用のcutover許可を反映した現行pin追随。既存research scopeと全依存を照合し、固定capture・role・義務・操作・検証・replacement・authorityは変更しない。] [PR #3566 R1: 方針3:56の出典併記と10/07原文語への統一後のpin追随。意味・Binding責務・固定capture・authorityは不変。] [2026-10-22 D-OS014-USED-STAGE source citation repair: L2 current bytes refreshed after exact policy scope refs; Binding responsibility, verification and authority unchanged.]"
+  "schema_revision": 1,
+  "id": "SCF-B-0158",
+  "kind": "scaffold",
+  "title": "last-touch worktree reclaim helper",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-OS worktree lifecycle cleanup",
+  "state": "registered",
+  "reason": "Issue #3510 WI-2aの仮組み。HELIXOS-L2-052候補のmerge後local cleanupに対し、cleanかつmerge済みで7日超のlocal worktreeだけをdry-run firstで分類し、必要時はno-force removeする補助scriptを置く。scaffoldは要求・承認・実装許可・本番cleanup権限を生成しない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "ebc66dd80f574b46ac2ab4656b1fab9402d8d0d55caf2200ef62e4e454cd2f20",
+      "note": "[2026-10-22 D-OS014-USED-STAGE current-pin read-after: upstream bytes refreshed; fixed capture, role, obligations, verification, replacement, and authority unchanged.] HELIXOS-L2-052のmerge後local cleanup・unknown/conflict fail-close・remote ref境界の候補参照。 [2026-10-22 D-OS014-POLICY1: OS014 L2/L11へ10/07確定方針1のrelease/内部デプロイ分離・通常consumer・切戻し先保持・対象段階/作用のcutover許可を反映した現行pin追随。既存research scopeと全依存を照合し、固定capture・role・義務・操作・検証・replacement・authorityは変更しない。] [PR #3566 R1: 方針3:56の出典併記と10/07原文語への統一後のpin追随。意味・Binding責務・固定capture・authorityは不変。] [2026-10-22 D-OS014-USED-STAGE source citation repair: L2 current bytes refreshed after exact policy scope refs; Binding responsibility, verification and authority unchanged.]"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "491025fe01f95da38045d1e86f8254e6ffdf8787d2576c61176b8028bdc1d1eb",
+      "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。 PR3542 R1 read-after: manual worktree remove旧3条件とignored/untracked扱い、実行前fetch/dry-runおよび#2093記録を追記。Binding v1のrole・obligations・operations・authority不変。 [2026-10-22 PR3564 read-after: L3/L10委任節へ、実依存辺で取り込む必要ピースの版の所属更新をPO判断記録へ委ねる参照句だけを追加。通知配送・PHCAP歴史snapshot・worktree回収のrole/obligations/connections/operations/verification/replacement/artifacts/stateとauthorityは変更しない。] [2026-10-22 #3570 phase1照合: Codex/Devin未完了5件と並列claim/個別ACK、待機TTL保持をPO判断へ合わせた。本Bindingの固定歴史snapshot・role・obligations・verification・replacementは不変。通知からauthorityを生成せず、box形式/一括通知は後続PR。]"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "scaffold仮組み・失敗事例起点・旧runtime実行禁止の作業規則。"
+    }
+  ],
+  "role": "helix-worktree-last-touch-reclaim-scaffold",
+  "obligations": [
+    "既定dry-runとして、7日超のlocal worktree候補とkeep理由をJSONで記録する。",
+    "cleanかつmerge済みのworktreeだけをgit worktree remove（--force不使用）へ送り、branchを削除しない。",
+    "dirty、unmerged、open PR、使用中process、進行中git操作、junction/directory-link、退避先包含はfail-closeまたはbackup-onlyとする。",
+    "dirtyまたは未merge内容は検証済み退避と報告に限定し、この版では削除しない。",
+    "primary checkoutとworktree list先頭を必ず除外し、実worktreeへの--applyを証拠にしない。"
+  ],
+  "connections": {
+    "consumers": [
+      "#3510 WI-2a proposal review",
+      "HELIXOS-L2-052 local cleanupの後続設計"
+    ],
+    "dependencies": [
+      "git worktree porcelain/status/bundle/remove",
+      "open PR headRefName/headRefOidまたは明示JSON入力"
+    ],
+    "boundary": "scaffold/配下の仮組みのみ。正式cleanup mechanism・timer・remote ref削除ではない。"
   },
-  {
-   "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "491025fe01f95da38045d1e86f8254e6ffdf8787d2576c61176b8028bdc1d1eb",
-   "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。 PR3542 R1 read-after: manual worktree remove旧3条件とignored/untracked扱い、実行前fetch/dry-runおよび#2093記録を追記。Binding v1のrole・obligations・operations・authority不変。 [2026-10-22 PR3564 read-after: L3/L10委任節へ、実依存辺で取り込む必要ピースの版の所属更新をPO判断記録へ委ねる参照句だけを追加。通知配送・PHCAP歴史snapshot・worktree回収のrole/obligations/connections/operations/verification/replacement/artifacts/stateとauthorityは変更しない。] [2026-10-22 #3570 phase1照合: Codex/Devin未完了5件と並列claim/個別ACK、待機TTL保持をPO判断へ合わせた。本Bindingの固定歴史snapshot・role・obligations・verification・replacementは不変。通知からauthorityを生成せず、box形式/一括通知は後続PR。]"
+  "operations": {
+    "allowed": [
+      "git worktree list/status/bundle/diff/removeの読み取りとno-force remove",
+      "backup/report/JSONLを明示されたrepo外backup dirへ書く",
+      "temporary repositoryでのselftest"
+    ],
+    "forbidden": [
+      "git worktree remove --force",
+      "branch・remote ref削除",
+      "junction/directory-link経由の削除",
+      "実worktreeへの未確認--apply",
+      "scaffold外への恒常書込み",
+      "要求・承認・完了・authorityの生成"
+    ]
   },
-  {
-   "path": "AGENTS.md",
-   "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
-   "note": "scaffold仮組み・失敗事例起点・旧runtime実行禁止の作業規則。"
-  }
- ],
- "role": "helix-worktree-last-touch-reclaim-scaffold",
- "obligations": [
-  "既定dry-runとして、7日超のlocal worktree候補とkeep理由をJSONで記録する。",
-  "cleanかつmerge済みのworktreeだけをgit worktree remove（--force不使用）へ送り、branchを削除しない。",
-  "dirty、unmerged、open PR、使用中process、進行中git操作、junction/directory-link、退避先包含はfail-closeまたはbackup-onlyとする。",
-  "dirtyまたは未merge内容は検証済み退避と報告に限定し、この版では削除しない。",
-  "primary checkoutとworktree list先頭を必ず除外し、実worktreeへの--applyを証拠にしない。"
- ],
- "connections": {
-  "consumers": [
-   "#3510 WI-2a proposal review",
-   "HELIXOS-L2-052 local cleanupの後続設計"
+  "artifacts": [
+    "scaffold/tools/worktree_reclaim.py",
+    "scaffold/tools/worktree_reclaim_selftest.py",
+    "scaffold/bindings/SCF-B-0158.json"
   ],
-  "dependencies": [
-   "git worktree porcelain/status/bundle/remove",
-   "open PR headRefName/headRefOidまたは明示JSON入力"
-  ],
-  "boundary": "scaffold/配下の仮組みのみ。正式cleanup mechanism・timer・remote ref削除ではない。"
- },
- "operations": {
-  "allowed": [
-   "git worktree list/status/bundle/diff/removeの読み取りとno-force remove",
-   "backup/report/JSONLを明示されたrepo外backup dirへ書く",
-   "temporary repositoryでのselftest"
-  ],
-  "forbidden": [
-   "git worktree remove --force",
-   "branch・remote ref削除",
-   "junction/directory-link経由の削除",
-   "実worktreeへの未確認--apply",
-   "scaffold外への恒常書込み",
-   "要求・承認・完了・authorityの生成"
-  ]
- },
- "artifacts": [
-  "scaffold/tools/worktree_reclaim.py",
-  "scaffold/tools/worktree_reclaim_selftest.py",
-  "scaffold/bindings/SCF-B-0158.json"
- ],
- "verification": {
-  "evidence_kind": "scaffold",
-  "scope": [
-   "deterministic_behavior",
-   "negative_case",
-   "forbidden_write_scope",
-   "source_revision_stale"
-  ],
-  "oracles": [
-   "python3 scaffold/tools/worktree_reclaim_selftest.py",
-   "python3 -m py_compile scaffold/tools/worktree_reclaim.py scaffold/tools/worktree_reclaim_selftest.py",
-   "python3 -B scaffold/tools/scfctl.py validate",
-   "python3 -B scaffold/tools/scfctl.py stale",
-   "python3 -B scaffold/tools/scfctl.py residuals",
-   "git diff --check"
-  ],
-  "negative_cases": [
-   "既定以外で削除しない",
-   "dirty/unmerged/open PR/process使用/git進行中/主checkoutを削除しない",
-   "退避不可またはopen PR判定不明でapplyしない",
-   "worktree内に退避先を置かない",
-   "selftestを製品受入・実装承認・実環境cleanup証拠にしない"
-  ]
- },
- "replacement": {
-  "role_target": "HELIXOS-L2-052の正式なmerge後local cleanup mechanism",
-  "formal_artifacts": [],
-  "issue": 3510,
-  "status": "pending",
-  "transfer": null,
-  "target_revisions": {},
-  "confirmation_ref": null,
-  "confirmation_digest": null
- },
- "created": "2026-10-22",
- "updated": "2026-10-22"
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "deterministic_behavior",
+      "negative_case",
+      "forbidden_write_scope",
+      "source_revision_stale"
+    ],
+    "oracles": [
+      "python3 scaffold/tools/worktree_reclaim_selftest.py",
+      "python3 -m py_compile scaffold/tools/worktree_reclaim.py scaffold/tools/worktree_reclaim_selftest.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "既定以外で削除しない",
+      "dirty/unmerged/open PR/process使用/git進行中/主checkoutを削除しない",
+      "退避不可またはopen PR判定不明でapplyしない",
+      "worktree内に退避先を置かない",
+      "selftestを製品受入・実装承認・実環境cleanup証拠にしない"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIXOS-L2-052の正式なmerge後local cleanup mechanism",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-22",
+  "updated": "2026-10-22"
 }

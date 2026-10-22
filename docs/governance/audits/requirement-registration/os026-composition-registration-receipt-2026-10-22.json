@@ -1,0 +1,93 @@
+{
+  "receipt_id": "MPR-RCPT-HELIXOS-L2-026-COMPOSITION-2026-10-22",
+  "authority_effect": "none",
+  "candidate_digest_rule": "docs/helix-os/L2-requirements/governance-requirements.mdの「### HELIXOS-L2-026 」見出し行から、次の「#」で始まる行の直前（またはファイル末尾）までをUTF-8で取り、末尾の空行を除いて改行1つで終える。そのSHA-256を\"sha256:\"付きで記す。",
+  "paired_acceptance_digest_rule": "docs/helix-os/L11-acceptance/governance-acceptance.mdの「### HELIXOS-L2-026 」見出し行から、次の「#」で始まる行の直前（またはファイル末尾）までをUTF-8で取り、末尾の空行を除いて改行1つで終える。そのSHA-256を\"sha256:\"付きで記す。",
+  "source_atom_set_digest_rule": "各atomを「atom_id + 半角空白 + source_line_sha256」とし、atomsの順で改行連結する。末尾改行なし。空atomsetは空byte列のSHA-256とする。",
+  "source_holding": "MPR-SH-CANDIDATE-004（docs/governance/legacy-migration/candidate/legacy-candidate-source-line-carry-forward.jsonl）",
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27-r3.json#HELIXOS-L2-026",
+  "source_atom_set_digest": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_atom_count": 0,
+  "source_collection_scope": "HELIXOS-L2-014及び現行G1〜G7候補の機能境界・依存から段階リリース範囲を導出する規則の候補。既存要求本文はprefix不変で保持。旧FRSは比較sourceで旧atom移管を主張せず、入力旧atom集合は空集合。no_lossはこの空集合についてであり、旧要求全量や候補全量の意味被覆証明ではない。親と現行条件への具体対応は導出監査と親source保存へ記録する。",
+  "coverage_result": "no_loss",
+  "carried_atom_refs": [],
+  "preserved_pending_registration_refs": [
+    "MPR-SH-CANDIDATE-004"
+  ],
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "candidate": {
+    "requirement_identity": "HELIXOS-L2-026",
+    "requirement_kind": "unit",
+    "candidate_source_path": "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-026",
+    "candidate_lines": [
+      816,
+      832
+    ],
+    "candidate_semantic_digest": "sha256:a350500fad708430bcd39d62596a001ea9824dc086b95f25a23b6d7c62796b07",
+    "paired_acceptance_path": "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-026",
+    "paired_acceptance_lines": [
+      432,
+      443
+    ],
+    "paired_acceptance_semantic_digest": "sha256:ce9067df088dce903491999a990308de9690fbcb1bf441a7f5f37b37e5679adf"
+  },
+  "correction_reason": "10/07確定方針5をOS026 L2/L11へ反映し、unit・connection・compositeの区分・版・単位別検証証拠を明示した。L11の既存入力/出力・依存・検証証拠を保持し、部品更新時は差替え部品を含む新段階構成案を導出する。案の導出とOS014の実構成受入・検証・内部デプロイを分離した。旧source atom集合の空集合・no_loss限定、親revisionの確認pending、要求の版印、採択revisionとauthorityは不変。",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27-r3.json",
+  "base_sha": "47b5a988962f40e6eb688ca88f9d640cbb16827a",
+  "scope": "10/07確定方針5のOS026 L2/L11への反映。014/026 provider/receiver、unit/connection/compositeの版・検証証拠、更新部品を含む新段階構成案の導出と、実構成受入・内部デプロイの分離に限る。014節・新しい番号やgate・approvalを加えない。旧atom集合は空集合のままno_lossを主張し、旧要求全量の被覆を主張しない。親確認pending・authority noneを維持。",
+  "policy_source_ref": "docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md:65-71",
+  "evidence_refs": [
+    "docs/governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md:65-71",
+    "docs/governance/decisions/helix-os-requirements-po-decision-2026-09-28.md:46-50",
+    "docs/helix-os/L2-requirements/governance-requirements.md#helixos-l2-014",
+    "docs/helix-os/L11-acceptance/governance-acceptance.md#helixos-l2-014",
+    "docs/governance/audits/requirement-registration/helixos-stage-scope-derivation-coverage-receipt-2026-09-27-r3.json#HELIXOS-L2-026",
+    "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md:85-101 (LEGACY-ASSET-0C5F0695490FA5D87419)",
+    "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:23-42 (LEGACY-ASSET-A2F6A697D7FFFD490B57)",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67 (LEGACY-ASSET-201EED9C5D6D2FF4D41B)",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:31-90 (LEGACY-ASSET-B75E46DBE77592351574)",
+    "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md:32-59 (LEGACY-ASSET-67ADFAB856D954B3C5D2)",
+    "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/676",
+    "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/930",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6329893943",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6329949567"
+  ],
+  "legacy_comparison": [
+    {
+      "asset_id": "LEGACY-ASSET-0C5F0695490FA5D87419",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/archive/intake/2026-09-06-concept-vision/current/HELIX_RELEASE_AND_VERSION_CATALOG_v0.6.md:85-101",
+      "treatment": "文書版・公開package版・構成版・deployment revisionを分け、未変更moduleを一斉bumpしない意味を保持。現行のunit/connection/composite版へ旧taxonomyや番号を移植しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A2F6A697D7FFFD490B57",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/release-module-bundle-composition-requirements.md:23-42",
+      "treatment": "moduleの責務所有とbundle compositionの分離を比較起点として保持し、旧module/bundle lifecycleやruntime契約は持ち込まず現行要求から意味を再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-201EED9C5D6D2FF4D41B",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requests.md:23-67",
+      "treatment": "独立した単位の昇格、明示収載/除外、個別成熟度、変更影響・局所検証、再現/rollback、安全閉包を保持し、Slice/Module/Bundle/channelのidentityは現行へ写さない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-B75E46DBE77592351574",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-requirements.md:31-90",
+      "treatment": "unit identity・個別版/evidenceとcompositionの境界を比較し、旧schema・runtime projectionは移植せず現行のunit/connection/compositeへ再導出。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-67ADFAB856D954B3C5D2",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/functional-release-slice-acceptance.md:32-59",
+      "treatment": "個別単位の条件と構成受入の分離、unknown/fail-close、更新/rollback証拠を比較し、旧gate/channelは追加しない。"
+    },
+    {
+      "path": "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/676",
+      "treatment": "clean consumerでreleaseから開発開始できないidentity・生成物・template配送の実測失敗。構成要素と消費側への明示を確かめる事例として参照し、新gateへ広げない。",
+      "source_id": "unison-ai-product/UT-TDD_AGENT-HARNESS#676"
+    },
+    {
+      "path": "https://github.com/unison-ai-product/UT-TDD_AGENT-HARNESS/issues/930",
+      "treatment": "更新実行失敗時に旧activation pointerを保持した実測。更新・切替の安全な境界を照合する事例として参照し、新しい更新承認手続きを作らない。",
+      "source_id": "unison-ai-product/UT-TDD_AGENT-HARNESS#930"
+    }
+  ]
+}
