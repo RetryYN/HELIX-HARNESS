@@ -10,7 +10,7 @@
  "upstream": [
   {
    "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-   "sha256": "980fc8dbb8fc316a514ff1c2e074dd701790462e2b87ad7502cfbe6aefa7c76d",
+   "sha256": "040645f20e5a002aa9852e465328624520244261dd504df891699be47187607f",
    "note": "HELIXOS-L2-052のmerge後local cleanup・unknown/conflict fail-close・remote ref境界の候補参照。 [2026-10-22 D-OS014-POLICY1: OS014 L2/L11へ10/07確定方針1のrelease/内部デプロイ分離・通常consumer・切戻し先保持・対象段階/作用のcutover許可を反映した現行pin追随。既存research scopeと全依存を照合し、固定capture・role・義務・操作・検証・replacement・authorityは変更しない。] [PR #3566 R1: 方針3:56の出典併記と10/07原文語への統一後のpin追随。意味・Binding責務・固定capture・authorityは不変。]"
   },
   {
