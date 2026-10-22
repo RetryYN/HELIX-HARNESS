@@ -56,6 +56,14 @@ def fixture():
             "commit_pin": {"path": "docs/source.txt", "commit": old, "sha256": sha(b"pinned\n")},
             "label_pointer": {"document": "L5", "pointer": "/functions/0"},
             "historical_pin": {"path": "docs/source.txt", "revision": old, "sha256": "0" * 64, "historical_approval": True},
+            "fixed_path_fragment": {"source_path": "docs/target.json#/value", "source_revision": old,
+                                    "source_file_sha256": sha(json.dumps({"value": 42}).encode())},
+            "source_binding_oracles": {
+                "input_construction": "expand inputs from fixed source material pins",
+                "source_material_pins": [{"path": "docs/target.json", "revision": old,
+                                          "file_sha256": sha(json.dumps({"value": 42}).encode()), "pointer": "/value"}],
+                "input_bases": {"sample": {"source_path": "docs/target.json#/value"}},
+            },
             "test_path": "AGENTS.md",
             "template_path": "helix/units/<pack-id>/src",
             "fragment_pin": {"path": "docs/target.json#/value", "revision": old, "sha256": "0" * 64},
@@ -142,6 +150,15 @@ def main():
         ("fixed source basis sha is enforced", lambda d: d["source_basis"][0].update(file_sha256="0" * 64), ("E_PATH", "/case/input_base/pointer/0")),
         ("fixed source binding marker is required", lambda d: d.pop("fixed_source_binding_rule_ja"), ("E_POINTER", "/case/input_base/pointer/0")),
         ("fixed source binding does not escape case", lambda d: d.update(unbound_sibling={"path": "docs/target.json", "pointer": "/value"}), ("E_POINTER", "/unbound_sibling/pointer/0")),
+        ("fixed fragment pointer remains checked", lambda d: d["fixed_path_fragment"].update(source_path="docs/target.json#/absent"), ("E_POINTER", "/fixed_path_fragment/source_path")),
+        ("embedded fragment revision overrides sibling", lambda d: d["fixed_path_fragment"].update(source_path=d["source_audit"]["source_revision"] + ":docs/target.json#/changed"), None),
+        ("explicit fragment revision overrides material pin", lambda d: d["source_binding_oracles"]["input_bases"]["sample"].update(source_revision=d["source_audit"]["source_revision"]), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("ambiguous material pin does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"].append(dict(d["source_binding_oracles"]["source_material_pins"][0], revision=d["alternate_basis_revision"])), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("material pin sha is enforced", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(file_sha256="0" * 64), ("E_PATH", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("material pin pointer must match", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(pointer=""), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("material pin scope does not escape input bases", lambda d: d["source_binding_oracles"].update(sibling={"source_path": "docs/target.json#/value"}), ("E_POINTER", "/source_binding_oracles/sibling/source_path")),
+        ("material construction marker is required", lambda d: d["source_binding_oracles"].pop("input_construction"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("label revision blocks material pin binding", lambda d: d["source_binding_oracles"]["input_bases"]["sample"].update(source_revision="fixture-r1"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
     ]
     ok = all([result(name, mutate, expected) for name, mutate, expected in tests])
     ok = cache_lifetime() and ok
