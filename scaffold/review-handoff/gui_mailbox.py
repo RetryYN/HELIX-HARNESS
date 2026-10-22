@@ -30,7 +30,7 @@ RECEIVE_POLL_SECONDS = 1.0
 CLOSED_RETENTION_SECONDS = 86400
 TERMINAL = ("acked", "expired", "cancelled")
 ORPHAN_TEMP_SECONDS = 600
-WORK_CAPACITY = {"devin": 3}
+WORK_CAPACITY = {"codex": 5, "devin": 5}
 
 
 def binding_active(path=BINDING):
@@ -145,7 +145,9 @@ def remove_work(data, worker, event_id, now=None):
 
 
 def prune_expired_work(data, worker, now):
-    """有効期限後の未ACK先頭を外す。待機依頼は昇格後から期限を数え、ACK済みは結果/releaseまで残す。"""
+    """配送期限後の未ACK依頼を外す。待機中は数えず、ACK済みは結果/releaseまで残す。"""
+    if not work_items(data, worker):
+        return
     kept = []
     for item in work_items(data, worker):
         if item.get("acked_at") is not None:
@@ -330,7 +332,7 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
             return dict(payload=dict(event_id=closed_id), digest=value["digest"], status=value["status"])
     work = data.setdefault("work", {})
     if kind == "work_request":
-        # PO指示によりDevinは未完了を3件まで積める。Antigravityと他workerは従来どおり1件。
+        # Codex/Devinは未完了5件。他runtimeは1件。割当ごとに独立して配送する。
         prune_expired_work(data, target_runtime, now)
         items = work_items(data, target_runtime)
         capacity = WORK_CAPACITY.get(target_runtime, 1)
@@ -338,7 +340,7 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
         # session交代などで通常dedupeを通らない同一依頼の二重積みを防ぐ。
         p.require(not any(item["payload_sha256"] == request["payload_sha256"] and item["dispatcher"] == runtime
                           for item in items), "同じ作業依頼が未完了")
-        waiting = target_runtime == "devin" and bool(items)
+        waiting = target_runtime in WORK_CAPACITY and bool(items)
         item = dict(event_id=event_id, request_id=request["request_id"],
                           payload_sha256=request["payload_sha256"], issue=request["issue"],
                           dispatcher=runtime, since=now)
@@ -375,8 +377,8 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
 
 
 def active_work(data, worker, now):
-    """作業側の現在の割当。待機依頼は先頭へ昇格してからTTLを数える。
-    未ACK先頭は期限で外し、ACK済み依頼は作業結果か明示releaseまで保持する。"""
+    """status互換用の先頭割当。全割当はwork_itemsで読み、claimを先頭へ制限しない。
+    配送期限後の未ACKは外し、ACK済みは結果か明示releaseまで保持する。"""
     prune_expired_work(data, worker, now)
     items = work_items(data, worker)
     return items[0] if items else None
@@ -409,27 +411,31 @@ def release_work(data, runtime, session, worker, now, event_id=None):
 
 def claim(data, runtime, session, now):
     lane(data, runtime, session, now)
-    if runtime in ("devin", "antigravity"):
-        prune_expired_work(data, runtime, now)
+    prune_expired_work(data, runtime, now)
     for message in data["messages"].values():
         payload = message["payload"]
         if payload["receiver_runtime"] != runtime or payload["receiver_session"] != session:
             continue
         if message["status"] in ("acked", "expired", "cancelled"):
             continue
-        if message.get("work_waiting") is True:
-            continue
+        if payload["kind"] == "work_request" and message["status"] == "queued":
+            if not any(item["event_id"] == payload["event_id"] for item in work_items(data, runtime)):
+                continue
+            if runtime in WORK_CAPACITY:
+                # 全待機依頼の配送TTLを一度だけ開始する。旧FIFO保存状態にも同じ処理を使う。
+                for item in work_items(data, runtime):
+                    waiting_message = data["messages"].get(item["event_id"])
+                    if (waiting_message and waiting_message.get("work_waiting") is True
+                            and waiting_message["payload"]["receiver_session"] == session
+                            and waiting_message["status"] in ("queued", "claimed")):
+                        waiting_message["expires"] = now + item.pop("pending_ttl")
+                        waiting_message.pop("work_waiting")
         if message["expires"] <= now:
             message["status"] = "expired"
             continue
         if message["status"] == "claimed":
             # 未ACKは自動再配送しない。明示retryで同じsessionへの再表示だけを許す。
             continue
-        if payload["kind"] == "work_request":
-            # Workerの割当は1件ずつFIFOで渡し、結果/releaseの後に次をclaim可能にする。
-            current = data.get("work", {}).get(runtime)
-            if not current or current["event_id"] != payload["event_id"]:
-                continue
         p.require(message["digest"] == p.sha(p.encode(payload)), "保存payload破損")
         message["status"] = "claimed"
         message["claim"] = dict(session=session, at=now, nonce=uuid.uuid4().hex)
@@ -463,13 +469,12 @@ def ack(data, event_id, runtime, session, digest, nonce, now):
         # 割当の結果/release後も、同じACKの再送は冪等に受け、現在のheadへ触れない。
         return
     if payload["kind"] == "work_request":
-        current = data.get("work", {}).get(runtime)
-        p.require(current and current["event_id"] == event_id, "FIFOの先頭依頼だけACKできる")
+        current = next((item for item in work_items(data, runtime) if item["event_id"] == event_id), None)
+        p.require(current is not None, "ACK対象の作業依頼がない")
     message["status"] = "acked"
     message["ack"] = dict(session=session, at=now)
     if payload["kind"] == "work_request":
-        # FIFOの先頭だけをACKできるため、割当はcurrentへ結び付く。
-        data["work"][runtime]["acked_at"] = now
+        current["acked_at"] = now
 
 
 def retry(data, runtime, session, event_id, now):
