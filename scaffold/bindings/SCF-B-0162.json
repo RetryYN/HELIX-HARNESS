@@ -1,0 +1,60 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0162",
+  "kind": "scaffold",
+  "title": "PR統合証拠のローカルcore",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS / HELIX-OS運用境界。formal owner未確定",
+  "state": "registered",
+  "reason": "Issue #3565の既存admission条件に使うローカルGit証拠の研究core。live GitHub adapterは別段階で、authority・gate・mergeを生成しない。",
+  "upstream": [
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "491025fe01f95da38045d1e86f8254e6ffdf8787d2576c61176b8028bdc1d1eb",
+      "note": "既存review/merge admission条件"
+    },
+    {
+      "path": "scaffold/tools/scfctl.py",
+      "sha256": "f25e07a8b020535186e269c758cbccf27e934c4c833e945a2c80fe4bac14b384"
+    }
+  ],
+  "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core",
+  "obligations": [
+    "reviewed HEADとPR HEADを照合する。",
+    "temporary Git fixtureだけで試mergeし、PR changed pathのobject IDを比較する。",
+    "試merge treeのBinding upstreamだけを読み、scfctl.check_staleへdigest mapを渡す。",
+    "conflictはfail、git/object取得errorはunknownとして証拠とともに返す。"
+  ],
+  "connections": {
+    "consumers": ["Issue #3565のadmission checker実装レビュー", "SCF-B-0001のBinding/stale既存機構"],
+    "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale"],
+    "boundary": "scaffold内のauthority_effect:noneの研究実装。対象PR・共有checkoutのref/worktreeを変えず、GitHub外部状態も変更しない。"
+  },
+  "operations": {
+    "allowed": ["temporary Git fixtureでのread-only merge-treeとblob ID照合", "trial treeのBinding upstream digest検査"],
+    "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkoutやPR ref/worktreeの変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
+  },
+  "artifacts": [
+    "scaffold/tools/pr_admission_check.py",
+    "scaffold/tools/pr_admission_check_selftest.py",
+    "scaffold/bindings/SCF-B-0162.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture", "scaffold/tools/scfctl.py::check_stale", "git diff --check"],
+    "negative_cases": ["reviewed HEAD mismatch", "changed blob mismatch", "stale upstream Binding", "trial merge conflict", "Git/object failure unknown", "binary/CRLF object ID", "deleted path missing on both sides"]
+  },
+  "replacement": {
+    "role_target": "既存上流運用モデルに沿うread-only admission証拠checkerの将来保守担当（formal owner未確定）",
+    "formal_artifacts": [],
+    "issue": 3565,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-22",
+  "updated": "2026-10-22"
+}
