@@ -80,10 +80,12 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 
 ## 作業依頼と作業結果
 
+上限と並列claimは[2026-10-22のPO判断](../../docs/governance/decisions/mailbox-parallel-task-box-po-decision-2026-10-22.md)による。並列/直列ボックス形式と一括inspect・通知は#3570の後続PRで扱い、本変更だけで成立したとはしない。
+
 ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
 
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
-2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Devinは未完了の依頼（処理中の1件と待機中を合わせて）を最大3件まで保持し、Antigravityと他の作業側は従来どおり1件まで保持する。DevinはFIFOで1件ずつ受け取り、先頭の作業結果か取り下げが届くまで後続をclaimしない。
+2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。CodexとDevinは未完了依頼をそれぞれ最大5件、Antigravityと他の作業側は1件まで保持する。CodexとDevinは先頭の完了を待たず各依頼をclaim/ACKでき、結果と取り下げは対応する依頼だけを解放する。
 3. 作業側は通知を`inspect`で読み、ACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行う。proposalとして割り当てた作業ではpush・PR作成をしない。DevinをPR作成側として明示割当した場合は、[GUIレーンの運転と通知](../../docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知)に従う。
 4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で送る。
    - 宛先は`--to RUNTIME`で、自分以外の登録済みruntimeの誰でも選べる。同じ結果を複数の相手へ送ってもよい。`--to`を省くと、停止中でも通知で起きるClaudeへ送る。Claude自身が作業側のときだけ、省略時は依頼側へ送る。
@@ -94,12 +96,12 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
 5. 結果を受け取ったClaude／Codexは、提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
 6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。未完了依頼が複数ある場合は、対象の`event ID`を`--id EVENT_ID`で指定する。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
-   - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Devinの待機依頼は待機中にTTLが進まず、FIFOの先頭へ昇格した時点から元のTTLを一度だけ数える。昇格後に未ACKのまま期限を過ぎた場合は、従来どおり枠を解放する。
+   - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Codex/Devinの後続待機依頼は待機中にTTLが進まず、その依頼自身のclaim時から元のTTLを一度だけ数える。旧形式も同じ扱いとし、先頭の解放や他依頼のclaimではTTLを開始・再延長しない。配送開始後の未ACK依頼は期限で枠を解放する。
 
 
-`release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、後続を取消さずFIFO先頭へ昇格して保存する。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。
+`release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、後続を取消さず割当を保存する。待機後続のTTLはこの解放では開始せず、その依頼自身のclaimを待つ。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。
 
-Devinの2件目以降をqueueへ積む切替時は、更新前receiverのwaitが残っていないことを運転側で確かめる。更新前receiverはFIFO制御を知らず後続通知をclaimし得るが、新しいACK処理は先頭以外を拒否する。その場合は先頭の結果またはrelease後に、依頼側が既存の`retry`経路で通知を再送する。既存singleton状態は`work`を先頭として読み、待機分だけを`work_queue`に保持する。
+Codex/Devinの並列claimへの切替は、次に起動したreceiverへ反映される。起動済みreceiverは旧コードを保持するため、同じsessionで待受を起動し直す。更新前receiverが非head依頼をclaimしても、新しいACK処理は一致する割当へACKを結び付ける。既存singleton状態は`work`を先頭として読み、残りを`work_queue`に保持するが、先頭は実行順の制約ではない。 session交代後の旧session宛待機依頼は自動で付け替えず、最大4枠を保持し得る。依頼側または作業側が`release-work --id EVENT_ID`で明示解放し、新sessionへ参照SHAを確認した新しい依頼を送る。
 
 ```sh
 python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
@@ -116,7 +118,7 @@ PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、�
 待受期限まで1秒未満なら残り時間だけsleepする。`--wait 0`は1回だけ確認し、sleepしない。
 従来の0.25秒間隔から確認頻度を抑える応急処置で、通知の検出には次の確認までの待ち時間とJSON読取・lock待ちが加わる。
 1秒以内の配送保証やCPU負荷の固定削減率を意味しない。稼働中の待受processは起動時のコードを保持するため、変更は次に同じ経路から起動した待受に適用される。
-payload、lease、watcher、明示retryの規則は変更しない。通知TTLは通常どおり作成時から数え、DevinのFIFO待機依頼だけは配送可能な先頭へ昇格した時点から元のTTLを一度だけ数える。記録のライフサイクルは次節「通知のライフサイクル」に置く。
+payload、lease、watcher、明示retryの規則は変更しない。通知TTLは通常どおり作成時から数え、Codex/Devinの後続待機依頼はその依頼自身のclaim時から元TTLを一度だけ数える。review通知のclaimでは待機作業のTTLを開始しない。記録のライフサイクルは次節「通知のライフサイクル」に置く。
 
 旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts:1561–1647`
 （`LEGACY-ASSET-0F66E2A823A36187D315`）の待受は、世代照合・claim・timeoutと既定2秒のpollを分離していた。
@@ -139,7 +141,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 | 対象 | hot state（`local/gui/state.json`）での扱い | 監査記録 |
 |---|---|---|
 | `acked`、`expired`、`cancelled` | `messages`から本文ごと外し、`closed`へ識別子だけを残す | 外したときに1行追記する |
-| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す。DevinのFIFO待機中はTTLと24時間整理を適用せず、先頭への昇格時に元TTLを一度だけ開始する | 外したときに1行追記する |
+| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す。Codex/Devinの後続待機中はTTLと24時間整理を適用せず、その依頼自身のclaim時に元TTLを一度だけ開始する | 外したときに1行追記する |
 | `closed`の記録 | 終わった時刻（ACK時刻、未ACKなら期限）から24時間で捨てる | 書き換えない |
 | 未期限の`queued`／`claimed` | そのまま残す | なし |
 
