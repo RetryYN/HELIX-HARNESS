@@ -92563,7 +92563,7 @@
       "old_L4_file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "old_L9_file_sha256": "bf0d0f183b11a9f39e288c2f717edf78a121f7612636fa29941d61cdabccd233",
       "old_L8_file_sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
-      "old_cases_scope": "D26-A/B/Cのtemplate_ref/knowledge_refと原意味値は不変。A/B/Cのraw Bindingと対応する公開Bindingを各fixture frameの9-member Bindingへ補い、source content digestと同source Refを追随した。Cのfixed-Git A importはB merge済みmainの実在revision 838c960e8cd3b8dc8fbac45827c628c3cb922f1bへrebindした。D27-A/Bでは元2 Refを保持し、D27-Aのsource/Claim Binding 2個とD27-Bの対象Binding 8個を9-memberへ揃え、各source digestと関連Refを追随した。D27-BのA rawおよびD27-A 5 patch固定importは、D27-A merge後の実在main revision f2dfc08a26c711d7e605ab539fc86d24050d7bb9へrebindした。"
+      "old_cases_scope": "D26-A/B/Cのtemplate_ref/knowledge_refと原意味値は不変。A/B/Cのraw Bindingと対応する公開Bindingを各fixture frameの9-member Bindingへ補い、source content digestと同source Refを追随した。各caseの固定Git importのrevision・file hash・value hashと取り込むA raw／D27-A patchの所在は、各materials/fixed_git_importsを正とする。D27-A/Bでは元2 Refを保持し、D27-Aのsource/Claim Binding 2個とD27-Bの対象Binding 8個を9-memberへ揃え、各source digestと関連Refを追随した。"
     },
     "remaining": [
       "既存A/B/CとD27-A/B有限条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
