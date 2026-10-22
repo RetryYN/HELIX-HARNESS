@@ -11914,7 +11914,7 @@
   "evidence_contract": {
     "required": "対象L4/L9 revision、fixture原source/変異、descriptor/knowledge/template各版、scope/condition、原各axis、claim判定、原因/戻し先、副作用0を個別に記録する。",
     "case_adequacy": "コード一致だけでなく原項目内容、変異した意味差、無関係項目保全、返却後の状態保存を対照実行で検査。件数/hash/空集合を意味oracle代替にしない。",
-    "real_execution": "L5/L8とL6/L7のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠を後続で接続。今は全case not_executed。"
+    "real_execution": "設計の有限契約とoracleの記載・静的照合を、実行証拠と区別する。L5/L8 pairと実fixture/oracleのfreezeは別作業で記録し、L6/L7の凍結→実装前Red→最小実装→Greenの実証拠は後続L6/L7へ戻す。今は全case not_executedを保持する。"
   },
   "completion": {
     "state": "candidate_awaiting_static_and_independent_review",
@@ -11925,7 +11925,7 @@
     "semantic_review": "not_requested",
     "meaning_coverage": "not_proven",
     "remaining_typed_case_refs": [],
-    "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6関数設計/L7対検証の成立条件は未成立。F09の追加unit局所ケースはNEG-07〜13とADD-25〜28。NEG-01〜06のみL9へ接続する。L2-018/020/025の限定条件mappingはL4/L5及び本fileのF09対検証で具体化済みで、025を両selectorへ一律必須としない。原operation/body供給・実資格と未観測分岐・全意味閉包の未成立は別に保持する。19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。",
+    "remaining": "合成source/ref資格・関数入出力・19論理型のpresence・有限Context/Result返却とF09条件mappingは本L5/L8に記載済み。原L9の105負例に対する変更と期待を対応付けた。F09 NEG-01〜06はL9接続、NEG-07〜13/ADD-25〜28は局所検証で、原L9統合照合や全入力網羅を生成しない。025を両selectorへ一律必須にせず、実producer/body供給・資格はsource ownerへ戻す。構造受理は意味充足ではなく欠落/null/空配列を原状態保存する。実fixture/oracleとpairのfreezeは別作業、独立reviewはreview側、formal wire/parser/実root resolver/実資源・L6/L7実装と実行は各owner、未観測分岐・全caller・全意味閉包は後続追加網羅へ残す。項目別根拠はdocs/governance/audits/tdd/brain032-l5l8-remaining-disposition-2026-10-22.json。",
     "additional_unit_case_count": 35,
     "normal_function_oracle_count": 9,
     "f09_local_negative_case_count": 13,
@@ -57918,7 +57918,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "file_bytes_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -67748,7 +67748,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+        "candidate_file_bytes_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -67767,21 +67767,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+        "candidate_file_bytes_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+        "candidate_file_bytes_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+        "candidate_file_bytes_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -85952,7 +85952,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -85992,7 +85992,7 @@
           "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
           "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
           "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
-          "current_file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02"
+          "current_file_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c"
         }
       ]
     }
@@ -86045,7 +86045,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+        "sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
@@ -111383,7 +111383,7 @@
     "purpose_ja": "既決L4の20有限CanonicalBodyRead全値と、case0同V/F01→fn6全Comparisonを、canonical実readと元unselected出現の詳細writerへ対応付ける。",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
       "selected_objects": [
         {
           "pointer": "/type_contract/imports",
@@ -112932,7 +112932,7 @@
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/field_value_applicability_detail",
-      "file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "file_sha256": "0f65b56033851770b9835d2b19a3b87b06a62bf5fd2382d7d806c7ad0ac7664c",
       "canonical_sha256": "3f00da4ea78ab03d2550d8517d277095e2d5670a781283a372bf99c06cc18bcf",
       "binding_state": "current_candidate_content_binding"
     },
