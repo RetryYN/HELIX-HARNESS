@@ -9491,7 +9491,8 @@
               "resolution": "readerはrequestの原locatorで同validated.inputのslot/fact全値を得る。typed requestは値の意味資格ではなく同call所在指定だけ。固定catalog constructorがnormative_entry_pointerからDefinitionNormativeFrame全memberを作る。caller supplied frameを正本へ昇格しない。"
             },
             "detailed_field_projection": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/fact_body_projection_contract",
-            "private_single_walk_binding": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle"
+            "private_single_walk_binding": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
+            "read_binding_projection": "DefinitionMeaningRead.bindingはrequest.slot_locatorが指す原DescriptorSlot.bindingをpresenceごとそのまま返し、absentはabsent、供給nullは供給nullとして保持し、root/fact/source.content/operation.argumentsのBindingで代用・補完しない（L4 /definition_meaning_resolution_contract/call_bindings/meaning_request_constructor/resolution と /definition_meaning_resolution_contract/evaluation_populations/other_binding、L5 /source_return_contract/owner_descriptor_attribution/evidence と /source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/serializer）。"
           },
           "applicability": {
             "working_contract_pointer": "/definition_meaning_resolution_contract/readers/1",
