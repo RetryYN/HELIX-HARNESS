@@ -1,0 +1,119 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0161",
+  "kind": "scaffold",
+  "title": "開発repo運用規則の機械化棚卸し（分類観察のみ）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS / HELIX-OS の運用境界に関する研究資料。formal owner未確定",
+  "state": "registered",
+  "reason": "Issue #3565 進め方1の読取専用棚卸し。運用規則を機械強制済み／機械化余地／人authority判断が必要な箇所へ分類し、既存機構、入力・判定・失敗時動作、実失敗事例または未発見、旧HELIXの保持・変更点を記録する。新規規則・gate・approval・要求を作らない。",
+  "upstream": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "現行作業規則と境界"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "9a676d8a3d8ef5edb9e1c6c3fb77ce4b6851c7c6c223613bf46307d906eda96c",
+      "note": "現行共有context"
+    },
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+      "note": "許可範囲と停止条件"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "491025fe01f95da38045d1e86f8254e6ffdf8787d2576c61176b8028bdc1d1eb",
+      "note": "運用規則の本文・consumer・移管表"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "0c9f42d1099d6d8d12979cbc86f21ce256b706f465d4e87ef71d591643fb8ab3",
+      "note": "PR記入面"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature-ticket-projection.yml",
+      "sha256": "1e3c965351e4f55455805f0804917b9af2ae834ff545610aa86957dd318f023f",
+      "note": "Feature Ticket projection面"
+    },
+    {
+      "path": "docs/governance/audits/scaffold-binding-disposition-inventory-2026-10-22.md",
+      "sha256": "4c53fd2c169a74a16e0491776194e34090d333fef05d6f44a87aeecee499a589",
+      "note": "現行consumer根13件の固定監査。closureやruntime実利用の証明ではない"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/MANIFEST.sha256",
+      "sha256": "10eda61dae461ec505fcabce89b42327bfbb968534793daf3a4758127a7dacc6",
+      "note": "静的read-only参照のみ。MANIFESTをprovenance evidenceとして読み、旧archiveは実行しない。照合対象のlegacy source（archive/legacy-generation-2026-09-14/MANIFEST.sha256配下のroot-relative path / asset ID / SHA-256）：root/CLAUDE.md / LEGACY-ASSET-6EBDB617A8104A7756D0 / 7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb; root/AGENTS.md / LEGACY-ASSET-A54FF182C7E8ACF56ACF / fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf; root/docs/governance/ddd-tdd-rules.md / LEGACY-ASSET-5E22432B0A5A8F7CC8B3 / 9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af; root/docs/governance/coding-rules.md / LEGACY-ASSET-4B835ADBEFBCCC13C1C0 / 4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e; root/docs/governance/repository-structure.md / LEGACY-ASSET-FDBA655B1CFF75DCDC0E / 6f8ee784049d03279641151714c3572656eb20c64cfb769853b6e885abf4f262; root/docs/governance/operations-rule-audit-2026-07-26.md / LEGACY-ASSET-B8D84651753481B5F2B9 / d32bb1a780a36cd0710cbd58d575e900ac14c154a0e84f5dc92423b46c01466e; root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md / LEGACY-ASSET-A127DEC3EEE6ED63CF17 / bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872; root/docs/skills/deprecation-cutover.md / LEGACY-ASSET-95E14F385D8C1F71C209 / cc83066540bb93976343e4d4044b943c77fd1572e9dfe51473b3f223ff6dc089; root/docs/design/helix/L4-basic-design/design-template-json-authority.md / LEGACY-ASSET-4F5A1F0739EC1111D91D / e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb; root/docs/design/helix/L5-detail/design-refactoring-domain-model.md / LEGACY-ASSET-603D0E8D8193914F4AC0 / 6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b."
+    }
+  ],
+  "role": "開発repo運用規則を現行consumer root単位で棚卸しし、機械強制状況、機械化余地、人判断、failure根拠、旧HELIXとの対応を分類する研究記録",
+  "obligations": [
+    "指定された5文書と2 templateを対象に分類する。",
+    "#3567起点の現行consumer root 13件を参照し、Binding pinをruntime利用証拠へ読み替えない。",
+    "各規則群に既存機構pathまたは機構なし、機械化できる場合は入力・判定・失敗動作、Issue/PR/監査failureまたは未発見を記録する。",
+    "旧source、保持点、変更点を記録し、旧実行経路を使わない。",
+    "要求候補らしい内容は分離し、運用規則から要求意味・新gate・承認を作らない。"
+  ],
+  "connections": {
+    "consumers": [
+      "Issue #3565 進め方1の分類結果レビュー",
+      "Issue #3567 consumer root inventoryとの静的照合"
+    ],
+    "dependencies": [
+      "指定した現行文書・template・consumer audit",
+      "列挙した旧source（read-only）"
+    ],
+    "boundary": "scaffold内のauthority_effect:noneの研究資料。正式運用、実装、移管、要求採否、承認、完了を確定しない。"
+  },
+  "operations": {
+    "allowed": [
+      "指定文書・audit・旧sourceのread-only照合",
+      "scfctl validate/staleによる静的確認"
+    ],
+    "forbidden": [
+      "旧CLI/hook/runtime/CI/testの実行",
+      "新規規則・gate・承認・要求の提案",
+      "archive資産の現行pathへのcopy",
+      "旧archiveは実行しない"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/operating-rule-mechanization-inventory-3565-20261022/README.md",
+    "scaffold/bindings/SCF-B-0161.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "git diff --check",
+      "manual static cross-check of consumer roots, rule classification, failure citations, and legacy paths"
+    ],
+    "negative_cases": [
+      "scaffold研究資料を正式運用や要求採否へ昇格しない",
+      "pinをruntime利用・consumer closureの証明としない",
+      "旧runtime等を起動しない"
+    ]
+  },
+  "replacement": {
+    "role_target": "Issue #3565のレビュー後に、現行正式文書の責務と既存機構への重複を再照合する。移管先要求は本資料から作らない。",
+    "formal_artifacts": [],
+    "issue": 3565,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-22",
+  "updated": "2026-10-22"
+}
