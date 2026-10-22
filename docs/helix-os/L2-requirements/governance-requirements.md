@@ -625,8 +625,9 @@ HXT-RQ-01／04／07はHELIXOS-L2-004、02は007、03／05は005、06は009を具
 - **releaseと内部デプロイ**：段階リリースの成立（release）と、その段階をHELIX自身の開発環境へ導入して自己開発に使い始めること（内部デプロイ）を別の事象として記録する。内部デプロイは下記「前の段階で次を作る」の乗り換えにあたり、外部公開ではない。
 - **通常のconsumer**：HELIX自身を内部デプロイの通常のconsumerとして扱い、自己開発のためだけの例外の契約や、手で直した記録を作らない。
 - **切替の許可**：内部デプロイの切替はcutoverにあたり、対象の段階と作用を明示したPOの許可を要する。段階の成立だけから切替の許可や利用開始を生成しない。
+- **作業記録と利用段階**：PR・判断記録・review等の作業記録に、その作業時点で実際に内部デプロイ中だった段階を記し、段階識別子と作業が触れたunit・connectionのidentity／versionを記録する。release済みでも内部デプロイ前の段階は「使った段階」とせず、内部デプロイ前は「v0.1前（scaffold運転）」と記す。これは10/07判断の方針2・3で定義した記録区分であり、同判断時点の「段階リリースなし」を現在の事実として述べるものではない。scaffold自体は段階リリースでもv0.xでもない。
 
-上の内部デプロイの意味と下記の切戻し先の保持は、[2026-10-07判断の方針1](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md#1-段階リリースを内部デプロイする)（38–44行）と、release済みでも内部デプロイ前の状態があることを明記する[同判断の方針3](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md#3-現在の状態)（56行）の確定済み意味を写したものである。要求の版の印と採択revisionは変更せず、実際のrelease・内部デプロイの実施許可を生成しない。
+上の内部デプロイの意味と下記の切戻し先の保持は、[2026-10-07判断の方針1](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md#1-段階リリースを内部デプロイする)（38–44行）、作業記録の[方針2](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md#2-自己開発に使った段階を記録する)（46–49行）、作業が触れた部品・接続の版を含む[確定範囲](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md)（31行）および[方針5の補足](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md)（69行）、release済みでも内部デプロイ前の状態を区別する[方針3](../../governance/decisions/stage-release-internal-deployment-po-decisions-2026-10-07.md#3-現在の状態)（51–57行）の確定済み意味を写したものである。方針3の当時の現況を現在の事実へ読み替えず、要求の版の印と採択revisionは変更しない。実際のrelease・内部デプロイの実施許可も生成しない。
 
 - **呼び方**：段階リリースはv0.1、v0.2…のように識別し、1.0の到達判定を通った構成をv1.0（本体）とする。これはHELIX自身の段階リリースの識別子であり、外部公開の版番号ではない。外部公開やWeb提供は、段階リリースとは別に判断する。
 - **同じパックから組む**：段階リリースを別系統の簡易実装にしない。[HARNESS-L2-010](../../helix-harness/L2-requirements/product-requirements.md#harness-l2-010-パックの境界)のパックから組む小さな稼働構成とし、次の段階ではパックを追加・更新する。各パックに必要な安全の依存を含めて組み、無関係な機構の完成を待たない。必要な安全の条件が欠ける段階はリリースしない。
