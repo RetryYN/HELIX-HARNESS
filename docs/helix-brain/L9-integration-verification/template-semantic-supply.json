@@ -94960,15 +94960,15 @@
               "op": "add",
               "path": "",
               "value_from_fixed_git": {
-                "revision": "09684f32b53b66f3e18abbcbba1eb4d632db7dca",
+                "revision": "5453c3b36f26b76814f91a3942fcf7698269cb25",
                 "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-                "file_sha256": "477be5895dfe49790e950b549b45d48e285dfc7097116163cf6213b8ef2093da",
+                "file_sha256": "e63b18e01faae6c5d466a48fcab11258e8db5ca5ca2b54acd493c45aa6dccd5e",
                 "pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
-                "value_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0"
+                "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
               }
             }
           ],
-          "materialized_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0"
+          "materialized_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
         }
       ],
       "materialization_contract_pointer": "/field_value_applicability_verification/fixture_materialization",
@@ -95212,10 +95212,10 @@
             ]
           }
         ],
-        "materialized_input_canonical_sha256": "aabcc3b4fe03ef1e61a2604ac2c1a74e6d3e8ecc5fea4ec5dd177cf728332780"
+        "materialized_input_canonical_sha256": "a5357fe0c1e484ef3af5606a4642486693bce8aa5cbf8d3cb8af87aa11fc0537"
       },
       "raw_input_pointer": "",
-      "raw_input_canonical_sha256": "aabcc3b4fe03ef1e61a2604ac2c1a74e6d3e8ecc5fea4ec5dd177cf728332780",
+      "raw_input_canonical_sha256": "a5357fe0c1e484ef3af5606a4642486693bce8aa5cbf8d3cb8af87aa11fc0537",
       "caller_contract": "予定するport呼出しはこのmaterialized inputを一つのimmutable validated snapshotとして使い、同snapshotの原Claim /claims/0 全値を直接引数、/claims/0をclaim_locatorとしてread_descriptor_replacement_targetへ渡す。fn1は同じvalidation/callで一度評価し、fn6/fn7はその同call結果を消費する。actual未実施でprivate index/occurrence shapeは固定しない。",
       "materialization_note": "既存 /field_value_applicability_verification/fixture_materialization/base と /field_value_applicability_verification/fixture_materialization/hash を再利用する。fixed_git_importsの物理file SHA・imported raw canonical SHAと、case.materialized_input_canonical_sha256を別段階のpinとして保持。"
     },
