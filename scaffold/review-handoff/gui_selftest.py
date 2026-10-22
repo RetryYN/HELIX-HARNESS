@@ -816,27 +816,21 @@ class GuiChecks(unittest.TestCase):
             g.send(self.data, "claude", "claude-gui", "work-duplicate", "work_request", work, None, 60, self.now)
         self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1"])
 
-    def legacy_waiting(self, event, ttl):
-        self.data["messages"][event]["work_waiting"] = True
-        next(w for w in g.work_items(self.data, "devin") if w["event_id"] == event)["pending_ttl"] = ttl
-
-    def test_waiting_queue_ttl_starts_once_on_promotion(self):
+    def test_waiting_queue_ttl_starts_once_on_own_claim(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
         for number, ttl in ((1, 1), (2, 1), (3, 60)):
             request = self.work(request_id=f"WORK-{number}")
             g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, ttl, self.now)
-        self.legacy_waiting("work-2", 1)
-        self.legacy_waiting("work-3", 60)
         claimed = g.claim(self.data, "devin", "devin-gui", self.now + 2)
         self.assertEqual(claimed["payload"]["event_id"], "work-2")
         self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-2", "work-3"])
         self.assertEqual(self.data["messages"]["work-1"]["status"], "expired")
         self.assertEqual(self.data["messages"]["work-2"]["expires"], self.now + 3)
         self.assertNotIn("work_waiting", self.data["messages"]["work-2"])
-        self.assertNotIn("work_waiting", self.data["messages"]["work-3"])
+        self.assertTrue(self.data["messages"]["work-3"].get("work_waiting"))
         third = g.claim(self.data, "devin", "devin-gui", self.now + 3)
         self.assertEqual(third["payload"]["event_id"], "work-3")
-        self.assertEqual(self.data["messages"]["work-3"]["expires"], self.now + 62)
+        self.assertEqual(self.data["messages"]["work-3"]["expires"], self.now + 63)
 
     def test_waiting_work_survives_ttl_compaction_and_gets_fresh_one_shot_window(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
@@ -845,7 +839,6 @@ class GuiChecks(unittest.TestCase):
         head = g.claim(self.data, "devin", "devin-gui", self.now)
         g.ack(self.data, "work-1", "devin", "devin-gui", head["digest"], head["claim"]["nonce"], self.now)
         waiting = g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 1, self.now)
-        self.legacy_waiting("work-2", 1)
         original_expiry = waiting["expires"]
         late = self.now + g.CLOSED_RETENTION_SECONDS + 20
         g.compact(self.data, late)
@@ -859,10 +852,12 @@ class GuiChecks(unittest.TestCase):
         self.assertIs(duplicate, waiting)
         self.assertEqual(waiting["expires"], original_expiry)
         g.release_work(self.data, "claude", "claude-gui", "devin", late, "work-1")
+        self.assertEqual(waiting["expires"], original_expiry)
+        self.assertTrue(waiting["work_waiting"])
+        self.assertEqual(g.claim(self.data, "devin", "devin-gui", late)["payload"]["event_id"], "work-2")
         self.assertEqual(waiting["expires"], late + 1)
         self.assertNotIn("work_waiting", waiting)
         self.assertNotIn("pending_ttl", self.data["work"]["devin"])
-        self.assertEqual(g.claim(self.data, "devin", "devin-gui", late)["payload"]["event_id"], "work-2")
         g.prune_expired_work(self.data, "devin", late + 2)
         self.assertEqual(waiting["status"], "expired")
         self.assertNotIn("devin", self.data["work"])
@@ -872,8 +867,6 @@ class GuiChecks(unittest.TestCase):
         requests = [self.work(request_id=f"WORK-{number}") for number in (1, 2, 3)]
         for number, request in enumerate(requests, 1):
             g.send(self.data, "claude", "claude-gui", f"work-{number}", "work_request", request, None, 1, self.now)
-        self.legacy_waiting("work-2", 1)
-        self.legacy_waiting("work-3", 1)
         head = self.data["work"]["devin"]
         third = copy.deepcopy(self.data["work_queue"]["devin"][1])
         late = self.now + g.CLOSED_RETENTION_SECONDS + 5
@@ -886,8 +879,8 @@ class GuiChecks(unittest.TestCase):
         records = g.compact(self.data, late)
         closed = next(record for record in records if record["event_id"] == "work-2")
         self.assertEqual(closed["closed"], late)
-        self.assertNotIn("work_waiting", self.data["messages"]["work-3"])
-        self.assertEqual(self.data["messages"]["work-3"]["expires"], late + 1)
+        self.assertTrue(self.data["messages"]["work-3"].get("work_waiting"))
+        self.assertEqual(self.data["messages"]["work-3"]["expires"], self.now + 1)
 
     def test_unauthorized_release_of_specific_queued_devin_work_is_rejected(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
@@ -908,6 +901,20 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, self.now)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
         self.assertEqual(self.data["work_queue"]["devin"][0]["event_id"], "work-2")
+
+    def test_missing_pending_ttl_keeps_original_expiry(self):
+        g.bind(self.data, "devin", "devin-gui", "worker", 600, self.now)
+        for delay in (0, 61):
+            with self.subTest(delay=delay):
+                data = copy.deepcopy(self.data)
+                for i in (1, 2):
+                    g.send(data, "claude", "claude-gui", f"work-{i}", "work_request", self.work(request_id=f"WORK-{i}"), None, 60, self.now)
+                g.work_items(data, "devin")[1].pop("pending_ttl")
+                g.claim(data, "devin", "devin-gui", self.now)
+                m = g.claim(data, "devin", "devin-gui", self.now + delay)
+                self.assertEqual(m is None, delay > 60)
+                self.assertEqual(data["messages"]["work-2"]["expires"], self.now + 60)
+                self.assertEqual(data["messages"]["work-2"]["status"], "expired" if delay else "claimed")
 
     def test_nonhead_ack_updates_only_matching_assignment(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
@@ -951,9 +958,10 @@ class GuiChecks(unittest.TestCase):
                 g.compact(self.data, self.now + 20)
                 for i in (1, 2):
                     self.assertEqual(g.effective_status(self.data["messages"][f"work-{i}"], self.now + 20), "queued")
-                claimed = [g.claim(self.data, worker, session, self.now + 20) for _ in range(2)]
-                self.assertEqual([m["payload"]["event_id"] for m in claimed], ["work-1", "work-2"])
-                self.assertEqual([m["expires"] for m in claimed], [self.now + 21] * 2)
+                for i, delay in ((1, 20), (2, 40)):
+                    m = g.claim(self.data, worker, session, self.now + delay)
+                    self.assertEqual((m["payload"]["event_id"], m["expires"]), (f"work-{i}", self.now + delay + 1))
+                    g.ack(self.data, f"work-{i}", worker, session, m["digest"], m["claim"]["nonce"], self.now + delay)
                 self.assertEqual(len(g.work_items(self.data, worker)), 3)
 
     def test_five_outstanding_requests_claim_and_finish_independently(self):
@@ -969,6 +977,7 @@ class GuiChecks(unittest.TestCase):
                     g.send(self.data, "claude", "claude-gui", "work-5", "work_request", requests[5], None, 60, self.now)
                 claimed = [g.claim(self.data, worker, session, self.now) for _ in range(5)]
                 self.assertEqual([m["payload"]["event_id"] for m in claimed], [f"work-{i}" for i in range(5)])
+                self.assertIsNone(g.claim(self.data, worker, session, self.now))
                 for i in reversed(range(5)):
                     g.ack(self.data, f"work-{i}", worker, session, claimed[i]["digest"], claimed[i]["claim"]["nonce"], self.now)
                 g.prune_expired_work(self.data, worker, self.now + 2)
@@ -1099,7 +1108,6 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "work-2", "work_request", second, None, 60, self.now + 2)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-1")
         self.assertEqual(self.data["work_queue"]["devin"][0]["event_id"], "work-2")
-        self.legacy_waiting("work-2", 60)
         # R2 F4: 終了通知の記録（closed）が保持期限で消えても、ACK済みの作業は結果かreleaseまで外れない。
         later = self.now + 2 + g.CLOSED_RETENTION_SECONDS + 1
         g.compact(self.data, later)
@@ -1112,9 +1120,9 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "work-3", "work_request", self.work(request_id="WORK-3"), None, 60, later)
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
 
-    def test_release_expired_event_persists_fifo_promotion(self):
+    def test_release_expired_event_preserves_waiting_successor(self):
         # #3086: expiry pruning must not erase the explicitly selected release
-        # before selection, abort persistence, or cancel its FIFO successor.
+        # before selection, abort persistence, or cancel its waiting successor.
         for queued in (False, True):
             with self.subTest(queued=queued), tempfile.TemporaryDirectory() as tmp:
                 data = copy.deepcopy(self.data)
@@ -1124,9 +1132,6 @@ class GuiChecks(unittest.TestCase):
                 if queued:
                     g.send(data, "claude", "claude-gui", "work-2", "work_request",
                            self.work(request_id="WORK-2"), None, 60, self.now)
-                if queued:
-                    data["messages"]["work-2"]["work_waiting"] = True
-                    data["work_queue"]["devin"][0]["pending_ttl"] = 60
                 store = Path(tmp)
                 with patch.object(g.time, "time", return_value=self.now):
                     with g.state(store) as saved:
@@ -1142,11 +1147,11 @@ class GuiChecks(unittest.TestCase):
                         if queued:
                             successor = saved["messages"]["work-2"]
                             self.assertEqual(successor["status"], "queued")
-                            self.assertEqual(successor["expires"], later + 60)
-                            self.assertNotIn("work_waiting", successor)
+                            self.assertEqual(successor["expires"], self.now + 60)
+                            self.assertTrue(successor["work_waiting"])
                             claimed = g.claim(saved, "devin", "devin-gui", later + 1)
                             self.assertEqual(claimed["payload"]["event_id"], "work-2")
-                            self.assertEqual(claimed["expires"], later + 60)
+                            self.assertEqual(claimed["expires"], later + 61)
 
     def test_expired_event_release_keeps_dispatcher_boundary(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)

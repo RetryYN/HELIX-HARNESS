@@ -5,7 +5,7 @@ decision_status: recorded
 decider_role: PO
 decided_at: 2026-10-22
 recorded_at: 2026-10-22
-source: "Issue #3570本文およびcomment 6331874297・6331875384・6331891728"
+source: "Issue #3570本文およびcomment 6331874297・6331875384・6331891728・6331913192"
 authority_effect: effective_when_this_record_is_admitted_to_main
 ---
 
@@ -33,11 +33,15 @@ authority_effect: effective_when_this_record_is_admitted_to_main
 
 > あとは直列ボックスもあり。A⇒B⇒Cの順番でやれとか。
 
+[並列と直列を組み合わせる補足](https://github.com/RetryYN/HELIX-HARNESS/issues/3570#issuecomment-6331913192)：
+
+> 並列タクスボックスと直列タクスボックスにそれぞれ入ればブロッカー部分をクリアしながら並列での処理能力を上げられるはず。
+
 ## 統制による具体化と実装範囲
 
 - Codex・Devinはそれぞれ未完了5件まで。Antigravityは指示対象外で1件を保持する。
 - mailbox全体のFIFO直列claimを廃止し、各依頼を先頭の完了なしにclaim/ACKできる。結果とreleaseは一致する依頼だけを解放し、ACK済み依頼は結果/releaseまで保持する。
-- 後続待機中はTTLを進めず、claim処理で配送可能にした時点から元TTLを一度だけ開始する。旧FIFO保存状態とsingletonも読み、既存の待機依頼を失わない。
+- 後続待機中はTTLを進めず、その依頼自身のclaim時から元TTLを一度だけ開始する。旧保存状態とsingletonも読み、他依頼のclaimや先頭の解放では待機依頼のTTLを開始しない。
 - 後続PRではparallel/serialの最小形式で並列の直列列 `(A⇒B)∥C` を表す。一般DAGは作らない。直列では前段のmerge又はwork_resultを待ち、後続baseはmerge後mainへ束縛する。incomplete/blocked/findingsでは後続へ進まず結果を返す。
 - 後続PRで一括inspectと通知に「未完了の依頼は互いに独立したものとして並列で実行する（Codexはsubagentを使う）」を反映する。依存は依頼側がscopeへ書き、結果は個別request_idで返す。
 

@@ -117,16 +117,6 @@ def work_items(data, worker):
 def set_work_items(data, worker, items, now=None):
     work = data.setdefault("work", {})
     queue = data.setdefault("work_queue", {})
-    previous = work.get(worker)
-    if items and previous and previous["event_id"] != items[0]["event_id"] and now is not None:
-        promoted = items[0]
-        message = data.get("messages", {}).get(promoted["event_id"])
-        pending_ttl = promoted.pop("pending_ttl", None)
-        if (pending_ttl is not None and message and message.get("work_waiting") is True
-                and message["status"] in ("queued", "claimed")):
-            # Waiting time is not delivery time. Start its original one-shot TTL at FIFO promotion.
-            message["expires"] = now + pending_ttl
-            message.pop("work_waiting", None)
     if items:
         work[worker] = items[0]
         if len(items) > 1:
@@ -376,19 +366,11 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
     return message
 
 
-def active_work(data, worker, now):
-    """status互換用の先頭割当。全割当はwork_itemsで読み、claimを先頭へ制限しない。
-    配送期限後の未ACKは外し、ACK済みは結果か明示releaseまで保持する。"""
-    prune_expired_work(data, worker, now)
-    items = work_items(data, worker)
-    return items[0] if items else None
-
-
 def release_work(data, runtime, session, worker, now, event_id=None):
     """依頼した側か作業側が、作業結果を送らずに作業依頼を終える（中止・取り下げ）。"""
     lane(data, runtime, session, now)
     # Select an explicit event before expiry pruning removes it. Otherwise
-    # rejection rolls back the state write, including FIFO promotion (#3086).
+    # rejection rolls back the state write, including successor retention (#3086).
     if event_id is None:
         prune_expired_work(data, worker, now)
     items = work_items(data, worker)
@@ -421,15 +403,12 @@ def claim(data, runtime, session, now):
         if payload["kind"] == "work_request" and message["status"] == "queued":
             if not any(item["event_id"] == payload["event_id"] for item in work_items(data, runtime)):
                 continue
-            if runtime in WORK_CAPACITY:
-                # 全待機依頼の配送TTLを一度だけ開始する。旧FIFO保存状態にも同じ処理を使う。
-                for item in work_items(data, runtime):
-                    waiting_message = data["messages"].get(item["event_id"])
-                    if (waiting_message and waiting_message.get("work_waiting") is True
-                            and waiting_message["payload"]["receiver_session"] == session
-                            and waiting_message["status"] in ("queued", "claimed")):
-                        waiting_message["expires"] = now + item.pop("pending_ttl")
-                        waiting_message.pop("work_waiting")
+            if message.get("work_waiting") is True:
+                item = next(item for item in work_items(data, runtime) if item["event_id"] == payload["event_id"])
+                pending_ttl = item.pop("pending_ttl", None)
+                if pending_ttl is not None:
+                    message["expires"] = now + pending_ttl
+                message.pop("work_waiting")
         if message["expires"] <= now:
             message["status"] = "expired"
             continue
