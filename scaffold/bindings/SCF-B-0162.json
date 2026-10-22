@@ -18,9 +18,10 @@
       "sha256": "f25e07a8b020535186e269c758cbccf27e934c4c833e945a2c80fe4bac14b384"
     }
   ],
-  "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core",
+  "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core、および既存admission条件をGitHub read-only snapshotから評価するadapter",
   "obligations": [
     "reviewed HEADとPR HEADを照合する。",
+    "GitHub PR viewとlatest mainのread-only snapshotを取得し、一時bare repositoryのfetch OIDがAPI観測SHAと一致する場合だけcoreへ渡す。",
     "temporary Git fixtureと実repositoryで試mergeし、PR changed pathのobject IDを比較する。",
     "試merge treeのBinding upstreamだけを読み、scfctl.check_staleへdigest mapを渡す。",
     "conflictはfail、git/object取得errorはunknownとして証拠とともに返す。",
@@ -32,10 +33,12 @@
     "boundary": "scaffold内のauthority_effect:noneの研究実装。試mergeで参照されないobjectがobject DBに残る場合がある。ref・index・worktreeとGitHub外部状態は変えない。"
   },
   "operations": {
-    "allowed": ["temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合", "trial treeのBinding upstream digest検査"],
+    "allowed": ["temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合", "trial treeのBinding upstream digest検査", "GitHub read-only snapshotと一時bare repositoryのadmission評価"],
     "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkout/PRのref・index・worktree変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
   },
   "artifacts": [
+    "scaffold/tools/pr_admission_github.py",
+    "scaffold/tools/pr_admission_github_selftest.py",
     "scaffold/tools/pr_admission_check.py",
     "scaffold/tools/pr_admission_check_selftest.py",
     "scaffold/bindings/SCF-B-0162.json"
@@ -43,8 +46,8 @@
   "verification": {
     "evidence_kind": "scaffold",
     "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
-    "oracles": ["scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture", "scaffold/tools/scfctl.py::check_stale", "git diff --check"],
-    "negative_cases": ["reviewed HEAD mismatch", "changed blob mismatch", "stale upstream Binding", "trial merge conflict", "Git/object failure unknown", "binary/CRLF object ID", "deleted path missing on both sides"]
+    "oracles": ["scaffold/tools/pr_admission_github_selftest.py: mocked GitHub plus temporary Git fixture", "scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture", "scaffold/tools/scfctl.py::check_stale", "git diff --check"],
+    "negative_cases": ["GitHub API error/missing fields", "fetch snapshot OID race", "Draft PR", "DIRTY mergeStateStatus", "reviewed HEAD mismatch", "changed blob mismatch", "stale upstream Binding", "trial merge conflict", "Git/object failure unknown", "binary/CRLF object ID", "deleted path missing on both sides"]
   },
   "replacement": {
     "role_target": "既存上流運用モデルに沿うread-only admission証拠checkerの将来保守担当（formal owner未確定）",
