@@ -113893,7 +113893,8 @@
           "/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOccurrence",
           "/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningSupport",
           "/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningProblem",
-          "/definition_meaning_resolution_contract/normative_basis_snapshot"
+          "/definition_meaning_resolution_contract/normative_basis_snapshot",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order"
         ]
       },
       {
@@ -113911,6 +113912,7 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningRead",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningOperation",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningArguments",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningSupport",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/fact_body_projection_contract/exact_projection",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning",
@@ -114187,7 +114189,7 @@
     "reader_derivation_ja": [
       "2回ともrequestは同slot /descriptors/1、fact locatorは原index 0と1を個別に指し、DefinitionMeaningRead.bindingはrequestが指すslot C bindingをpresenceごと投影する。raw rootとslot 0のBindingはAのままでも、それだけをproblemへ昇格しない。",
       "固定raw/patchからの静的照合では、source index 1 CのQualifiedSource/ref/content/qualification/provenanceとcaller fact.source_refが対応し、owner descriptor_factsの同じslot identity/kindに同一factを2出現保持する。carrier fact.source_ref.sha256のみnullで、caller factと他memberは原値のまま。source index 0のAは対象C fact.source_refと既存ref_sameで対応せずC cohort外なので、そのoperationはoccurrences/supports/problemsに現れない（L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/cohort_order/0、L4 /definition_meaning_resolution_contract/readers/0/algorithm/2）。root Bindingとの差だけもsource.content.bindingと対象slot/factの既存full Binding比較からproblemへ昇格しない（L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body/algorithm/1）。",
-      "各requestに対してsource index 1のoperation 0/1は元順・反復でcohortを満たし、原slot/fact・full Binding・固定historical normative frame・decision.relation=defines_descriptor・supplied reason/raw basis・同一fact basis_refに対応する。各readは8 memberを保持し2 occurrencesと2 supportsを持つ。supports 0/1それぞれのsupport_originはproblem_indices=[]、problem_scopesも空。",
+      "各requestに対してsource index 1のoperation 0/1は元順・反復でcohortを満たし、原slot/fact・full Binding・固定historical normative frame・decision.relation=defines_descriptor・supplied reason/raw basis・同一fact basis_refに対応する。各readは8 memberを保持し2 occurrencesと2 supportsを持つ。supports 0/1それぞれのsupport_originはproblem_indices=[]、problem_scopesも空。DefinitionMeaningArgumentsにfact locator/indexはなく、cohortはBinding→slot_identity→kind→fact_ref値で決まるため、全値同一の二factに対する各readはoperation 0/1を元順・反復で両方保持し、fact indexへ一対一割当しない（L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningArguments、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/cohort_order/2、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/support_partition、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body/algorithm/5、L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order）。",
       "2 caller factsは固定raw上で全値同一だがlocatorは別である。第2期待は第1期待bundleの既存RFC6902 copy後にfact_locatorだけをRFC6902 replaceし、2個の完全展開結果を独立したrequest locatorで照合する。これは同値入力の局所再利用であり、全slot/全sourceのpopulationやpublic finding数を定めない。",
       "fixed normative frameは歴史revision 5a3cfa984fab34f31ce623d667db1670f80b1544のcatalog/entryから独立構築し、各operation.normative_argumentと全値照合した。L9期待値/件数はこのreader期待の根拠にしない。"
     ],
