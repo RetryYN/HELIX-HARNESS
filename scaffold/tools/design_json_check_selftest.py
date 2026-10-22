@@ -159,6 +159,10 @@ def main():
         ("material pin scope does not escape input bases", lambda d: d["source_binding_oracles"].update(sibling={"source_path": "docs/target.json#/value"}), ("E_POINTER", "/source_binding_oracles/sibling/source_path")),
         ("material construction marker is required", lambda d: d["source_binding_oracles"].pop("input_construction"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
         ("label revision blocks material pin binding", lambda d: d["source_binding_oracles"]["input_bases"]["sample"].update(source_revision="fixture-r1"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("different path material pin does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(path="docs/source.txt"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("non-hex material pin revision does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(revision="fixture-r1"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("non-hex material pin sha does not bind", lambda d: d["source_binding_oracles"]["source_material_pins"][0].update(file_sha256="not-a-sha256"), ("E_POINTER", "/source_binding_oracles/input_bases/sample/source_path")),
+        ("fragment sibling sha remains unclassified", lambda d: d["fixed_path_fragment"].update(source_file_sha256="0" * 64), None),
     ]
     ok = all([result(name, mutate, expected) for name, mutate, expected in tests])
     ok = cache_lifetime() and ok

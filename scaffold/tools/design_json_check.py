@@ -28,6 +28,10 @@ SKIP_PIN_KEYS = {"pointer", "pointers", "json_pointer", "line_range", "read_line
 PATH_SUFFIXES = (".json", ".jsonl", ".md", ".yaml", ".yml", ".py", ".ts", ".txt")
 LEGACY_ROOT = "archive/legacy-generation-2026-09-14/root/"
 LOCAL_PREFIX = "scaffold/review-handoff/local/"
+FIXED_SOURCE_BINDINGS = (
+    ("fixed_source_binding_rule_ja", "source_basis", "case", False),
+    ("input_construction", "source_material_pins", "input_bases", True),
+)
 
 
 def safe(path):
@@ -181,6 +185,19 @@ class Checker:
         if actual != expected:
             self.fail(rel, at, "E_SOURCE_SHA", {"expected": expected, "actual": actual})
 
+    def bind_fixed_source(self, pins, path, pointer=None):
+        matches = {(pin.get("revision"), pin.get("file_sha256")) for pin in pins
+                   if isinstance(pin, dict) and pin.get("path") == path
+                   and (pointer is None or pin.get("pointer") == pointer)
+                   and isinstance(pin.get("revision"), str) and REV.fullmatch(pin["revision"])
+                   and isinstance(pin.get("file_sha256"), str) and SHA.fullmatch(pin["file_sha256"])}
+        if len(matches) != 1:
+            return None
+        revision, expected = next(iter(matches))
+        if hashlib.sha256(self.blob(path, revision)).hexdigest() != expected:
+            raise ValueError("fixed source pin sha mismatch")
+        return revision
+
     def verify_path(self, rel, at, value, obj=None, source_pins=None):
         path, pointer, revision = parse_ref(value)
         if path.startswith(LOCAL_PREFIX) or LOCAL_PREFIX in path:
@@ -195,15 +212,7 @@ class Checker:
                 if valid:
                     revision = sibling_revision
                 elif sibling_revision is None and source_pins:
-                    matches = {(pin.get("revision"), pin.get("file_sha256")) for pin in source_pins
-                               if isinstance(pin, dict) and pin.get("path") == path
-                               and pin.get("pointer") == pointer
-                               and REV.fullmatch(str(pin.get("revision", "")))
-                               and SHA.fullmatch(str(pin.get("file_sha256", "")))}
-                    if len(matches) == 1:
-                        revision, expected = next(iter(matches))
-                        if hashlib.sha256(self.blob(path, revision)).hexdigest() != expected:
-                            raise ValueError("fixed source material pin sha mismatch")
+                    revision = self.bind_fixed_source(source_pins, path, pointer)
             if pointer is None:
                 self.blob(path, revision)
                 return
@@ -231,18 +240,10 @@ class Checker:
         if revision and not valid:
             return None, "label revision"
         if path and not revision and source_basis:
-            matches = { (item.get("revision"), item.get("file_sha256")) for item in source_basis
-                        if isinstance(item, dict) and item.get("path") == path
-                        and isinstance(item.get("revision"), str) and REV.fullmatch(item["revision"])
-                        and isinstance(item.get("file_sha256"), str) and SHA.fullmatch(item["file_sha256"]) }
-            if len(matches) == 1:
-                revision, expected = next(iter(matches))
-                try:
-                    actual = hashlib.sha256(self.blob(path, revision)).hexdigest()
-                except Exception as error:
-                    return None, error
-                if actual != expected:
-                    return None, "fixed source basis sha mismatch"
+            try:
+                revision = self.bind_fixed_source(source_basis, path)
+            except Exception as error:
+                return None, error
         if not path:
             return None, "implicit target"
         try:
@@ -288,17 +289,14 @@ class Checker:
         except Exception as error:
             self.fail(rel, at, "E_POINTER", error)
 
-    def collect(self, value, doc, rel, at="", source_basis=None, source_pins=None):
+    def collect(self, value, doc, rel, at="", fixed_sources=None):
+        fixed_sources = fixed_sources or {}
         if isinstance(value, list):
             for index, child in enumerate(value):
-                self.collect(child, doc, rel, at + "/" + str(index), source_basis, source_pins)
+                self.collect(child, doc, rel, at + "/" + str(index), fixed_sources)
             return
         if not isinstance(value, dict):
             return
-        case_basis = (value.get("source_basis") if isinstance(value.get("fixed_source_binding_rule_ja"), str)
-                      and isinstance(value.get("source_basis"), list) else None)
-        material_pins = (value.get("source_material_pins") if isinstance(value.get("input_construction"), str)
-                         and isinstance(value.get("source_material_pins"), list) else None)
         for key, child in value.items():
             child_at = at + "/" + key
             if file_path_key(key) and key != "path":
@@ -312,16 +310,19 @@ class Checker:
                 elif isinstance(path, str) and semantic_path(path):
                     self.unclassified["ambiguous_path"] += 1
                 elif unsafe_shape(child) or looks_like_path(child):
-                    self.verify_path(rel, child_at, child, value, source_pins)
+                    self.verify_path(rel, child_at, child, value, fixed_sources.get(True))
                 else:
                     self.unclassified["ambiguous_path"] += 1
             if key in LOCAL_POINTER_KEYS | POINTER_KEYS:
                 for index, pointer in enumerate(child if isinstance(child, list) else [child]):
                     self.verify_pointer(rel, child_at + "/" + str(index), doc, value, pointer,
-                                        key in LOCAL_POINTER_KEYS, source_basis)
-            child_basis = case_basis if case_basis is not None and key == "case" else source_basis
-            child_pins = material_pins if material_pins is not None and key == "input_bases" else source_pins
-            self.collect(child, doc, rel, child_at, child_basis, child_pins)
+                                        key in LOCAL_POINTER_KEYS, fixed_sources.get(False))
+            child_sources = dict(fixed_sources)
+            for marker, pins, scope, match_pointer in FIXED_SOURCE_BINDINGS:
+                if (key == scope and isinstance(value.get(marker), str)
+                        and isinstance(value.get(pins), list)):
+                    child_sources[match_pointer] = value[pins]
+            self.collect(child, doc, rel, child_at, child_sources)
         self.classify_pins(value, rel, at)
 
     def check(self, path):
