@@ -206,7 +206,7 @@ def evaluate(repo, main, entry, now, days, prs, backup_root, report_path):
     r["last_touch"] = {"epoch": touched, "at": dt.datetime.fromtimestamp(touched, dt.timezone.utc).isoformat().replace("+00:00", "Z")}
     age_days = (now - touched) / DAY
     r["age_days"] = round(age_days, 3)
-    if age_days < days: return {**r, "reason": "fresh"}
+    if age_days <= days: return {**r, "reason": "fresh"}
     rows = status_rows(resolved)
     if rows: return {**r, "reason": "backup_only_dirty", "status_count": len(rows), "preserve": True}
     if not merged(main, entry.get("head") or "HEAD"): return {**r, "reason": "backup_only_unmerged", "preserve": True}
