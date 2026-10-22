@@ -15,8 +15,8 @@
   },
   {
    "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "468b110de56b32e3f91e6b6300699aa4f16e9b23756f1fe6c9dd84e4f397fd13",
-   "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。 PR3542 R1 read-after: manual worktree remove旧3条件とignored/untracked扱い、実行前fetch/dry-runおよび#2093記録を追記。Binding v1のrole・obligations・operations・authority不変。"
+   "sha256": "44655df73099794f0e33008c6d19c88ece7ff6d440634214daab484b4d43be6b",
+   "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。 PR3542 R1 read-after: manual worktree remove旧3条件とignored/untracked扱い、実行前fetch/dry-runおよび#2093記録を追記。Binding v1のrole・obligations・operations・authority不変。 [2026-10-22 PR3564 read-after: L3/L10委任節へ、実依存辺で取り込む必要ピースの版の所属更新をPO判断記録へ委ねる参照句だけを追加。通知配送・PHCAP歴史snapshot・worktree回収のrole/obligations/connections/operations/verification/replacement/artifacts/stateとauthorityは変更しない。]"
   },
   {
    "path": "AGENTS.md",
