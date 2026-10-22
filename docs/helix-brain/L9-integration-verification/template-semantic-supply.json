@@ -92563,7 +92563,7 @@
       "old_L4_file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
       "old_L9_file_sha256": "bf0d0f183b11a9f39e288c2f717edf78a121f7612636fa29941d61cdabccd233",
       "old_L8_file_sha256": "383ea8217d42550fca30572006606d208c44887069bd721dcff97229c0808f6f",
-      "old_cases_scope": "既存全case/target9/conditional素材/全期待は原値不変。新ケース又は新whole期待を追加していない。"
+      "old_cases_scope": "既存の旧caseは原値不変。A/Bの既存rawと期待は変更せず、Cの新caseだけを追加した。"
     },
     "remaining": [
       "有限3条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
@@ -92587,14 +92587,14 @@
         "/definition_meaning_resolution_contract/normative_basis_snapshot",
         "/definition_meaning_resolution_contract/normative_basis_acquisition"
       ],
-      "role": "A/Bのroot/candidate母集団の選択、現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの現行L4根拠。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
+      "role": "A/B/Cのroot・選択candidate・非選択cohort母集団、現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの現行L4根拠。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
     },
     "synthetic_fixture_premise": {
-      "scope": "A/Bの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
+      "scope": "A/B/Cの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
       "qualification": "Qualification、qualification root、source digestはfixture内の整合前提だけで、実source資格・trust・runtime動作を主張しない。",
-      "meaning_owner_operation": "A/B caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。",
+      "meaning_owner_operation": "A/B/C caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。",
       "normative_argument": "raw内argumentは上記normative_basis_sourceの固定歴史snapshotをそのまま保持する。現行期待境界はcurrent_contract_sourceで別に閉じる。",
-      "absence": "A/Bではdefinition_applicability_refは要求しないためmember自体を省略する。null値を代用しない。"
+      "absence": "A/B/Cではdefinition_applicability_refは要求しないためmember自体を省略する。null値を代用しない。"
     },
     "finite_A_raw_input": {
       "binding": {
@@ -93502,15 +93502,14 @@
         "Comparison/AxisResult/Findingの各member数とrequired member集合（additionalProperties=false）。",
         "A選択populationにおけるdescriptor_02_missing〜descriptor_15_missingの各tupleとmembership。",
         "各期待rowのfull Binding、source/revision/cohort所属をraw Aから保ち、差替・他cohort借用をしない。",
-        "Aのrawではtemplate identity（descriptor_01）のfactが存在し、同cohortの原owner operationはdefines_descriptor。root要求域の保持とこのslotの供給状態、および定義済み別原根拠があるとき「別根拠なし」のundefined Findingを出さない境界により、Aではdescriptor_01_missing／descriptor_01_undefinedを出さない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/identity_version_trace_contract/schema/$defs/MeaningFact、/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation、/definition_meaning_resolution_contract/consumer_branch_table/4）。",
+        "A/B/C各caseで選択されるtemplate identity（descriptor_01）のraw factと同cohortのdefines_descriptor owner operationを保持する。root要求域とconsumer branch 2によりdescriptor_01_missing／descriptor_01_undefinedを出さない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/identity_version_trace_contract/schema/$defs/MeaningFact、/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation、/definition_meaning_resolution_contract/consumer_branch_table/2）。",
         "A rawのcandidatesは空。rootをcandidate filterで落とさず、他Bindingへrequired不足を増殖させない。従ってdescriptor_02_missing〜descriptor_15_missingの14 tupleはA cohortに限り、未要求cohortへ増えない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。",
         "各A missing-kindのtupleは同A母集団で公開Finding一件として各1回現れる。既存required kindと同一callの公開一件化/同Claim担当分離が根拠であり、private assessment総数を主張しない（L4 /definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality、/identity_version_trace_contract/schema/$defs/Finding）。",
         "Aの原factと原operationは各1件であり、原順・反復を保ち、他cohortから借用・増殖しない意味制約を持つ。slot/fact/source/operation indexやprivate occurrence-arrayの形は期待しない（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。",
-        "A/Bの各root・明示candidateの母集団で、descriptor_01（template identity）の定義済みfact/原owner operationが同cohortで対応するため、descriptor_01_missingとdescriptor_01_undefinedは出ない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/consumer_branch_table/4、/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation）。",
         "B rawはA rootを保持し、template_refがcandidate Bへ対応する明示cohort Bだけを追加する。AとB各14 tuple（required missingの母集団数は28）はこの2 cohortに限り、未要求cohortへ増殖しない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。",
         "共有closed_missing_class_tuplesの各tupleはAとBの各母集団で各1回現れる。28はrequired missingの母集団数でありComparison.findings総数ではない（L4 /definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality、/identity_version_trace_contract/schema/$defs/Finding）。",
-        "A/B各rawのfact/operation/source occurrenceは各cohort固有で原順・反復を保ち、他cohortから借用・増殖しない。source_refとsource_qualification_refで各cohort所属を対応させる。indexやprivate occurrence-array shapeは期待しない（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。",
-        "C rawはA rootを保持して選択候補Aだけを指定する。非選択Cの原source/qualification所属と同一Refのfact/owner operation二出現を保持するが、Cへrequired missingの14 tupleを追加しない。期待するのは原順・非借用・非増殖の公開可能な意味であり、private occurrence/index shapeではない（L4 /definition_meaning_resolution_contract/evaluation_populations/other_binding、/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。 選択Aのtemplate identityは取込元の原factとdefines_descriptorのowner operationを保持するため、descriptor_01_missing／descriptor_01_undefinedを出さない（L4 /definition_meaning_resolution_contract/consumer_branch_table/4）。"
+        "A/B/C各rawのfact／operation／source occurrenceは各cohort固有で原locator・配列順・反復を保つ。評価単位にまとめる場合もこの原値を保持する。Cの同じfact/operation二出現は入力として固定するが、同値出現間の順や公開countは期待せず、private occurrence/index shapeはL5/L8で確かめる（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order）。",
+        "C caseではraw Cを非選択cohortとして供給し、期待のC source／qualification参照をCのsource Refへ対応させる。これはsourceとcohortの所属を保つ確認で、CのFinding件数を規定しない（L4 /definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。"
       ],
       "schema_and_original_membership_only": [
         "Finding.rule_refのliteral",
@@ -93518,7 +93517,7 @@
         "original_refs/source_refsの配列構成・順序",
         "public sort順、private assessment shape、producer_symbol literal"
       ],
-      "population_limit": "14は各選択cohortのrequired missing kindの母集団数。A/Cは選択cohort Aのみで14、BはA+Bの2 cohortで28となる。28はComparison.findings総数ではない。Cの非選択slotへ14不足を加えない。A/B/CでL4が閉じた出る／出ない／増えない値と各source所属だけを述べ、無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。A/B/C期待を個別に保持することで各caseの単独静的照合を可能にし、A/Bのcase差も見分ける。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
+      "population_limit": "14は選択cohortごとのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。いずれもComparison.findings総数ではない。全Findingやprivate assessment全体を主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。A/B/C期待を個別に保持し各case単独照合を可能にする。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
     },
     "finite_C_raw_input": {
       "materials": [
@@ -93954,25 +93953,13 @@
                 }
               ]
             }
-          },
-          {
-            "op": "add",
-            "path": "/candidates/-",
-            "value": {
-              "identity": "SYNTHETIC-D26-TEMPLATE-A",
-              "revision": "synthetic-D26-r1",
-              "scope": "synthetic-D26-cohort",
-              "owner": "synthetic-template-owner",
-              "source_locator": "urn:synthetic:d26:A:template",
-              "sha256": null
-            }
           }
         ],
-        "materialized_input_canonical_sha256": "209ce8058039512753dd2887e756a76782406a962f69f894635717e60257a5c7"
+        "materialized_input_canonical_sha256": "fbafe8fc3a7977dcea1686c90c813aa09496caded9ea35095ac9932ab70d2fd7"
       },
       "raw_input_pointer": "",
-      "raw_input_canonical_sha256": "209ce8058039512753dd2887e756a76782406a962f69f894635717e60257a5c7",
-      "independent_source_relation": "C固有値はこの節の6個のRFC6902 add値で保持する。固定Gitのroot pointer importでA rawを復元し、既存fixture_materialization契約に従いaddを原順適用した後のC raw canonical SHA-256を固定する。固定Git物理bytes、取り込んだA raw、材料化後C rawのhashは別段階である。ローカル独立raw比較は検証証拠であり、追跡本文の再構成入力ではない。"
+      "raw_input_canonical_sha256": "fbafe8fc3a7977dcea1686c90c813aa09496caded9ea35095ac9932ab70d2fd7",
+      "independent_source_relation": "C固有値はこの節の5個のRFC6902 add値で保持する。固定Gitのroot pointer importでA rawを復元し、既存fixture_materialization契約に従いaddを原順適用した後のC raw canonical SHA-256を固定する。固定Git物理bytes、取り込んだA raw、材料化後C rawのhashは別段階である。root Aと同一の候補A追加はCの検証力を増やさず、L4は同値候補の14/28挙動を閉じないため加えない。このcaseではroot同一候補の挙動を固定しない。"
     },
     "finite_C_public_expectation": {
       "id": "C",
@@ -94017,7 +94004,7 @@
       ],
       "closed_population": {
         "per_selected_cohort": 14,
-        "rule": "closed_missing_class_tuplesの14分類が、選択cohort Aで各1回現れる。非選択Cの不足は母集団へ追加しない。",
+        "rule": "closed_missing_class_tuplesの14分類が、選択cohort Aで各1回現れる。非選択Cはrequired-missing母集団に含めない。",
         "population_count_only": 14,
         "not_total_findings": true
       },
@@ -94058,7 +94045,6 @@
           "sha256": null
         },
         "repeated_raw_occurrences": {
-          "count": 2,
           "operation_ref": {
             "identity": "SYNTHETIC-D26-OP-C-IDENTITY",
             "revision": "synthetic-D26-r1",
@@ -94075,11 +94061,10 @@
             "source_locator": "urn:synthetic:d26:C:fact:template-identity",
             "sha256": null
           },
-          "rule": "同じRef値でも原source内のfactとowner operationの2出現を原順で保持し、deduplicateもAの根拠へ借用もしない。 countは原rawの出現数であり、公開Finding件数やprivate occurrence配列の形ではない。"
-        },
-        "population_effect": "Cは非選択cohortなのでrequired missing 14件を加えない。他のFinding全体の不在を主張しない。"
+          "preservation_rule": "L4 duplicates_and_orderに従い、評価単位にまとめる場合も元locator・配列順・反復を保持する。Cの同一raw値の二出現はこの入力に固定するが、同値出現間の順序や公開出力件数は期待しない。内部保持の検証はL5/L8 limitsに残す。"
+        }
       },
-      "cohort_binding_rule": "root Aのfull Bindingはinput_bindingで示す。選択Aのsource_ref／source_qualification_refはselected_cohorts[0]からraw Aのsources[].ref／source.qualification_refへ一致する。非選択Cのfull Binding、source_ref、source_qualification_refは本caseの各値からraw Cのdescriptor.binding、sources[].ref、source.qualification_refへ一致する。qualification.root_refだけがraw.qualification_rootsの同一full Refへ一致し、全Refは同一cohortの値を保つ。別cohortの値へ差し替えない。"
+      "cohort_binding_rule": "root Aのfull Bindingはinput_bindingで示す。選択Aのsource_ref／source_qualification_refはselected_cohorts[0]の値をraw Aのsources[0].ref／sources[0].qualification_refへ照合する。非選択CのBinding、source_ref、source_qualification_refは本caseの値をraw Cのdescriptors[1].binding／sources[1].ref／sources[1].qualification_refへ照合する。各sources[].qualification_refは対応するqualifications[].refと一致し、各qualification.root_refはqualification_roots[]の同一full Refと一致する。これらの照合は各cohort内で行い、他cohortのRefへ差し替えない。"
     }
   },
   "field_value_applicability_verification": {
