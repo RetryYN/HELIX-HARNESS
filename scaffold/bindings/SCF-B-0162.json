@@ -2,11 +2,11 @@
   "schema_revision": 1,
   "id": "SCF-B-0162",
   "kind": "scaffold",
-  "title": "PR統合証拠のローカルcore",
+  "title": "PR統合証拠のread-only coreとGitHub adapter",
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS / HELIX-OS運用境界。formal owner未確定",
   "state": "registered",
-  "reason": "Issue #3565の既存admission条件に使うローカルGit証拠の研究core。live GitHub adapterは別段階で、authority・gate・mergeを生成しない。",
+  "reason": "Issue #3565の既存admission条件に使うローカルGit evidence coreとread-only GitHub adapter。authority・gate・mergeを生成しない。",
   "upstream": [
     {
       "path": "docs/governance/github-upstream-operating-model.md",
@@ -29,7 +29,7 @@
   ],
   "connections": {
     "consumers": ["Issue #3565のadmission checker実装レビュー", "SCF-B-0001のBinding/stale既存機構"],
-    "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale"],
+    "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale", "gh CLI read-only PR/API GET", "GitHub HTTPS read-only fetch"],
     "boundary": "scaffold内のauthority_effect:noneの研究実装。試mergeで参照されないobjectがobject DBに残る場合がある。ref・index・worktreeとGitHub外部状態は変えない。"
   },
   "operations": {

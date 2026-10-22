@@ -4,6 +4,7 @@ import hashlib
 import io
 import importlib.util
 import json
+from functools import partial
 import subprocess
 import sys
 import tempfile
@@ -43,6 +44,9 @@ def fixture(root):
     (root / "scaffold/tools").mkdir(parents=True)
     (root / "scaffold/tools/scfctl.py").write_bytes((HERE / "scfctl.py").read_bytes())
     main_sha = commit(root, "base")
+    git(root, "checkout", "-qb", "dev"); (root / "dev-only.txt").write_text("dev\n")
+    commit(root, "dev branch")
+    git(root, "checkout", "-q", "main")
     git(root, "checkout", "-qb", "pr"); (root / "file.txt").write_text("pr\n")
     head_sha = commit(root, "pr"); git(root, "update-ref", "refs/pull/7/head", head_sha)
     return main_sha, head_sha
@@ -61,16 +65,14 @@ def main():
             def gh(args):
                 return pr if args[0] == "pr" else main_sha
             return gh
-        def fetch(repo, number, expected_main, expected_head, gitdir):
-            subprocess.run(["git", "--git-dir", str(gitdir), "fetch", "--no-tags", str(root),
-                            "refs/heads/main:refs/r18/main", "refs/pull/7/head:refs/r18/head"],
-                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        fetch = partial(adapter.fetch_refs, remote_url=str(root))
         normal = adapter.evaluate("owner/repo", 7, head_sha, response(prdata(head_sha)), fetch)
-        core = normal["core"]
-        ok &= normal["status"] == "pass" and core["status"] == "pass"
-        ok &= core["head"]["status"] == core["trial"]["status"] == core["blobs"]["status"] == core["stale"]["status"] == "pass"
-        ok &= all(item["status"] == "match" for item in core["blobs"]["items"])
-        ok &= len(core["stale"]["items"]) == 1 and core["stale"]["items"][0]["actual_sha256"] == core["stale"]["items"][0]["expected_sha256"]
+        core = normal.get("core", {})
+        ok &= normal["status"] == "pass" and core.get("status") == "pass"
+        ok &= all(core.get(key, {}).get("status") == "pass" for key in ("head", "trial", "blobs", "stale"))
+        ok &= all(item.get("status") == "match" for item in core.get("blobs", {}).get("items", []))
+        stale_items = core.get("stale", {}).get("items", [])
+        ok &= len(stale_items) == 1 and stale_items[0].get("actual_sha256") == stale_items[0].get("expected_sha256")
         print("normal real-core items+aggregate:", "ok" if ok else "FAIL", json.dumps(normal, sort_keys=True))
 
         def broken(_args): raise adapter.SnapshotError("secret must not leak")
@@ -85,42 +87,52 @@ def main():
 
         missing = prdata(head_sha); del missing["isDraft"]
         malformed = adapter.evaluate("owner/repo", 7, head_sha, response(missing), fetch)
-        observed = malformed.get("snapshot", {}).get("evidence", {}).get("observed", {})
+        fields = malformed.get("snapshot", {}).get("evidence", {}).get("fields", {})
         ok &= malformed["status"] == "unknown" and malformed["draft"]["status"] == "unknown"
         ok &= malformed["reviewed_head_check"]["status"] == "pass"
-        ok &= observed.get("head_sha") == head_sha and observed.get("main_sha") == main_sha
+        ok &= fields.get("head_sha", {}).get("value") == head_sha
+        ok &= fields.get("main_sha", {}).get("value") == main_sha
+        ok &= fields.get("draft", {}).get("status") == "unknown"
         ok &= malformed["core"]["status"] == "unknown"
-        print("missing draft retains head/main, marks draft unknown:", observed.get("head_sha") == head_sha and observed.get("main_sha") == main_sha and malformed["draft"]["status"] == "unknown")
+        print("missing draft retains head/main, marks draft unknown:", fields.get("head_sha", {}).get("value") == head_sha and fields.get("main_sha", {}).get("value") == main_sha and fields.get("draft", {}).get("status") == "unknown")
 
         merged = adapter.evaluate("owner/repo", 7, head_sha,
                                   response(prdata(head_sha, state="MERGED")), fetch)
-        merged_observed = merged.get("snapshot", {}).get("evidence", {}).get("observed", {})
-        ok &= merged_observed.get("state") == "MERGED" and merged["pr_state"]["status"] == "fail"
+        merged_state = merged.get("snapshot", {}).get("evidence", {}).get("fields", {}).get("state", {}).get("value")
+        ok &= merged_state == "MERGED" and merged["pr_state"]["status"] == "fail"
         ok &= merged["status"] == "fail"
-        print("MERGED observed then fails PR state:", merged_observed.get("state") == "MERGED" and merged["status"] == "fail")
+        print("MERGED observed then fails PR state:", merged_state == "MERGED" and merged["status"] == "fail")
 
         mismatch = adapter.evaluate("owner/repo", 7, "0" * 40, response(prdata(head_sha)), fetch)
         ok &= mismatch["status"] == "fail" and mismatch["reviewed_head_check"]["status"] == "fail"
         ok &= mismatch["core"]["status"] == "unknown"
         print("reviewed HEAD mismatch:", mismatch["status"] == "fail")
 
-        def raced(_repo, _number, expected_main, expected_head, gitdir):
-            subprocess.run(["git", "--git-dir", str(gitdir), "fetch", "--no-tags", str(root),
-                            "refs/heads/main:refs/r18/main", "refs/pull/7/head:refs/r18/head"],
-                           check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            adapter.verify_snapshot_refs(gitdir, expected_main, expected_head)
         fake_head = "0" * 40
-        race = adapter.evaluate("owner/repo", 7, fake_head, response(prdata(fake_head)), raced)
-        ok &= race["status"] == "unknown" and race["core"]["status"] == "unknown"
-        print("ref race unknown:", race["status"] == "unknown")
+        head_race = adapter.evaluate("owner/repo", 7, fake_head, response(prdata(fake_head)), fetch)
+        ok &= head_race["status"] == "unknown" and head_race["core"]["status"] == "unknown"
+        print("head ref race unknown:", head_race["status"] == "unknown")
+
+        git(root, "checkout", "-q", "main")
+        (root / "main-only.txt").write_text("advanced main\n"); commit(root, "advance main")
+        git(root, "checkout", "-q", "pr")
+        main_race = adapter.evaluate("owner/repo", 7, head_sha, response(prdata(head_sha)), fetch)
+        ok &= main_race["status"] == "unknown" and main_race["core"]["status"] == "unknown"
+        print("main ref race unknown:", main_race["status"] == "unknown")
 
         draft = adapter.evaluate("owner/repo", 7, head_sha, response(prdata(head_sha, draft=True)), fetch)
         ok &= draft["status"] == "fail" and draft["draft"]["status"] == "fail"
         dirty = adapter.evaluate("owner/repo", 7, head_sha, response(prdata(head_sha, merge="DIRTY")), fetch)
         ok &= dirty["status"] == "fail" and dirty["merge_state"]["status"] == "fail"
         ok &= adapter.main(["owner/repo", "7", head_sha], response(prdata(head_sha, merge="DIRTY")), fetch) == 1
+        blocked = adapter.evaluate("owner/repo", 7, head_sha,
+                                   response(prdata(head_sha, merge="BLOCKED")), fetch)
+        ok &= blocked["status"] == "unknown" and blocked["merge_state"]["status"] == "unknown"
+        ok &= adapter.main(["owner/repo", "7", head_sha], response(prdata(head_sha, merge="BLOCKED")), fetch) == 1
+        dev = adapter.evaluate("owner/repo", 7, head_sha, response(prdata(head_sha, base="dev")), fetch)
+        ok &= dev["status"] == "fail" and dev["pr_state"]["status"] == "fail"
         ok &= adapter.main(["owner/repo", "7", head_sha], response(prdata(head_sha, merge="UNKNOWN")), fetch) == 1
-        print("draft/dirty fail + unknown nonzero:", draft["status"], dirty["status"])
+        print("draft/dirty fail, blocked unknown, dev base fail:", draft["status"], dirty["status"], blocked["status"], dev["status"])
     print("selftest:", "OK" if ok else "FAIL")
     return 0 if ok else 1
 

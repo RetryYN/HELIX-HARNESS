@@ -75,15 +75,14 @@ def verify_snapshot_refs(gitdir, main_sha, head_sha):
         raise SnapshotError("snapshot_ref_race")
 
 
-def fetch_refs(repo, number, main_sha, head_sha, gitdir):
-    url = f"https://github.com/{repo}.git"
+def fetch_refs(repo, number, main_sha, head_sha, gitdir, remote_url=None):
+    url = remote_url or f"https://github.com/{repo}.git"
     result = subprocess.run(["git", "--git-dir", str(gitdir), "fetch", "--no-tags", url,
                              "+refs/heads/main:refs/r18/main",
                              f"+refs/pull/{number}/head:refs/r18/head"],
                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     if result.returncode:
         raise SnapshotError("git_fetch_failed")
-    verify_snapshot_refs(gitdir, main_sha, head_sha)
 
 
 def item(status, **evidence):
@@ -93,12 +92,10 @@ def item(status, **evidence):
 def evaluate(repo, number, reviewed_head, github=gh_read, fetcher=fetch_refs):
     result = {"repo": repo, "pr_number": number, "reviewed_head": reviewed_head}
     observed, fields = snapshot(repo, number, github)
-    snapshot_statuses = list(fields.values())
-    snapshot_status = "fail" if "fail" in snapshot_statuses else "unknown" if "unknown" in snapshot_statuses else "pass"
+    snapshot_status = "pass" if all(status == "pass" for status in fields.values()) else "unknown"
     result["snapshot"] = {"status": snapshot_status, "evidence": {
-        "observed": observed,
         "fields": {name: {"status": status, "value": observed.get(name)} for name, status in fields.items()}}}
-    if fields["number"] == fields["state"] == fields["head_sha"] == "unknown":
+    if snapshot_status != "pass":
         result["error"] = "github_snapshot_unknown"
     head_sha = observed.get("head_sha")
     result["reviewed_head_check"] = item(
@@ -128,6 +125,7 @@ def evaluate(repo, number, reviewed_head, github=gh_read, fetcher=fetch_refs):
                 if init.returncode:
                     raise SnapshotError("temporary_repository_failed")
                 fetcher(repo, number, observed["main_sha"], head_sha, gitdir)
+                verify_snapshot_refs(gitdir, observed["main_sha"], head_sha)
                 core_result = core.run(gitdir, reviewed_head, "refs/r18/main", "refs/r18/head")
             result["core"] = core_result
         except (SnapshotError, OSError, subprocess.SubprocessError):
