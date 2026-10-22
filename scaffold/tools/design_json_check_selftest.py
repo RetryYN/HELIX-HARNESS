@@ -34,12 +34,17 @@ def fixture():
         git(root, "commit", "-qm", "fixture")
         old = git(root, "rev-parse", "HEAD")
         (root / "docs/source.txt").write_text("changed\n", encoding="utf-8")
-        git(root, "add", "docs/source.txt"); git(root, "commit", "-qm", "change")
+        (root / "docs/target.json").write_text(json.dumps({"changed": True}), encoding="utf-8")
+        git(root, "add", "docs/source.txt", "docs/target.json"); git(root, "commit", "-qm", "change")
         doc = {
             "document_id": "SELFTEST", "items": [{"name": "x"}],
             "scope_pointers": ["/items/0"],
             "cross_ref": {"path": "docs/target.json", "revision": old, "json_pointer": "/value"},
             "source_pins": [{"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned\n")}],
+            "source_audit": {"path": "docs/source.txt", "revision": old, "source_revision": git(root, "rev-parse", "HEAD"), "sha256": sha(b"pinned\n")},
+            "fixed_source_binding_rule_ja": "input_baseはsource_basisの固定revisionとfile_sha256へ束縛する",
+            "source_basis": [{"path": "docs/target.json", "revision": old, "file_sha256": sha(json.dumps({"value": 42}).encode()), "pointer": "/value"}],
+            "case": {"input_base": {"path": "docs/target.json", "pointer": "/value"}},
             "partial_hash": {"path": "docs/source.txt", "revision": old, "sha256": sha(b"pinned"), "line_range": [1, 1]},
             "label_pin": {"path": "docs/source.txt", "revision": "current_candidate", "sha256": "0" * 64},
             "commit_pin": {"path": "docs/source.txt", "commit": old, "sha256": sha(b"pinned\n")},
@@ -88,7 +93,7 @@ def result(name, mutate, expected):
 
 def main():
     tests = [
-        ("valid fixture", None, None),
+        ("valid fixture with sibling fixed source binding", None, None),
         ("missing JSON Pointer", lambda d: d.update(scope_pointers=["/items/9"]), ("E_POINTER", "/scope_pointers/0")),
         ("missing pinned path", lambda d: d["source_pins"][0].update(path="docs/missing.txt"), ("E_SOURCE", "/source_pins/0/sha256")),
         ("wrong source sha256", lambda d: d["source_pins"][0].update(sha256="0" * 64), ("E_SOURCE_SHA", "/source_pins/0/sha256")),
@@ -98,6 +103,9 @@ def main():
         ("local-only reference", lambda d: d.update(receipt_path="scaffold/review-handoff/local/missing.json"), ("E_LOCAL_REF", "/receipt_path")),
         ("unknown pinned revision", lambda d: d["source_pins"][0].update(revision="0" * 40), ("E_SOURCE", "/source_pins/0/sha256")),
         ("missing cross-file pointer", lambda d: d["cross_ref"].update(json_pointer="/absent"), ("E_POINTER", "/cross_ref/json_pointer/0")),
+        ("fixed source basis sha is enforced", lambda d: d["source_basis"][0].update(file_sha256="0" * 64), ("E_PATH", "/case/input_base/pointer/0")),
+        ("fixed source binding marker is required", lambda d: d.pop("fixed_source_binding_rule_ja"), ("E_POINTER", "/case/input_base/pointer/0")),
+        ("fixed source binding does not escape case", lambda d: d.update(unbound_sibling={"path": "docs/target.json", "pointer": "/value"}), ("E_POINTER", "/unbound_sibling/pointer/0")),
     ]
     ok = all([result(name, mutate, expected) for name, mutate, expected in tests])
     print("selftest:", "OK" if ok else "FAIL")

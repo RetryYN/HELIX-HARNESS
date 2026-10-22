@@ -37,7 +37,7 @@
  "role": "design-json-static-reference-check-scaffold",
  "obligations": [
   "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
-  "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。",
+  "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。",
   "`*_path`/例外path keyと対応する`*_revision`・`*_commit`・whole-file `*_sha256`のprefix-pairが同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。汎用例外は明示し、prefix違いのcross-pairはしない。",
   "pointer、line/read/quote/range系key、historical、candidate印、または`path#fragment`を持つshapeはpin照合せず未分類へ数える。label revision、legacy-root path、pointer-valued path、fixture/placeholder pathも未分類へ数える。",
   "絶対path・.. traversal・backslash pathはfile-shaped値でfail-closeに違反とし、path正規化は行わない。prefix許可リストは持たない。`scaffold/review-handoff/local/`参照はE_LOCAL_REFとして別codeに分ける。",
@@ -103,7 +103,9 @@
    "local-only reference",
    "unknown pinned revision",
    "missing cross-file json_pointer",
-   "local-only pointer target"
+   "local-only pointer target",
+   "same-object source pin with a distinct audit source_revision",
+   "input_base bound by fixed_source_binding_rule_ja and source_basis"
   ]
  },
  "replacement": {
@@ -117,5 +119,5 @@
   "confirmation_digest": null
  },
  "created": "2026-10-22",
- "updated": "2026-10-22"
+ "updated": "2026-10-23"
 }
