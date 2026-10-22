@@ -92540,7 +92540,7 @@
   },
   "definition_meaning_resolution_verification_plan": {
     "id": "HELIXBRAIN-L9-032-DEFINITION-MEANING-RESOLUTION-PLAN",
-    "status": "A/B/C有限rawと閉公開期待にD27-A混在targetの有限raw/期待を追記したL9設計候補。D27-B同call両positiveは未作成。有限な静的素材の固定であり、L4/L9 formal pair/contract admission・実行・実source資格・provider接続は未成立。",
+    "status": "有限な静的rawと限定期待を追加したL9設計候補。L4/L9 formal pair/contract admission、実actual、実source資格、provider接続は未成立。",
     "logical_contract_pointer": "/definition_meaning_resolution_contract",
     "normative_basis_source": {
       "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
@@ -92556,7 +92556,7 @@
       "caller/native fact両側のbody追従変更とnormative引数追従変更を区別し、固定規範と異なるframe/bodyを同じ意味の評価にしない。A/B/Cの有限rawと公開期待を本節に固定し、それ以外の入力と期待はremainingに残す。",
       "Aのroot候補空、Bの明示candidateとA frameの混合、選択Aに対する非選択Cの保持を区別する。Cの同一fact/operation二出現は原順で保持し、Cに未要求不足を増殖させない。",
       "slot/facts欠落・限定undefinedは新解釈record未供給でも元規則を維持する。意味肯定/否定/未決、同slot null/defined/未資格の併存、NA元record対象違い/未解決を原原因ごと観測する。",
-      "公開Comparison/全assessment/source read全出現とrule87/93の同Claim一件化は別の有限条件で照合する。D27-Aは同snapshot Claim /claims/0をport callerへ渡す有限素材だけを固定し、conflict住所から87/93を生成しない。D26-A raw/期待、無関係candidate/slot保持を分け、旧79+5を新fn1全値証拠として数えない。",
+      "公開Comparison/全assessment/source read全出現とrule87/93の同Claim一件化は別の有限条件で照合する。D27-Aは同snapshot Claim /claims/0をport callerへ渡す有限素材と局所target conflict材料を置くが、合成最終stateや87/93への抑止を固定しない。D26-A raw、無関係candidate/slot、旧79+5を新fn1全値証拠として数えない。",
       "NA要求member absentとsupplied nullは別の原presence/stateとして観測し、明示nullの原未決をnot_requestedへ丸めない。元definition stateは別に保持する。"
     ],
     "preservation": {
@@ -92569,7 +92569,7 @@
       "既存A/B/CとD27-A有限条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
       "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B/C/D27-A rawは合成前提のみ。",
       "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
-      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。",
+      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C/D27-A rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。",
       "D27-Bの同一call/call内rule87・93両positive Claimと対応期待は未作成。D27-AだけでD27全体を完了扱いしない。実actual/実source資格/providerも未実施。"
     ],
     "current_contract_source": {
@@ -94277,32 +94277,22 @@
       },
       "raw_input_pointer": "",
       "raw_input_canonical_sha256": "9c91a22139f26b86e879023730a3bbf982bbc3a6dc1c246031ebdd4fbdb96927",
-      "independent_source_relation": "D27-A固有値はこの節のRFC6902 add値に保持する。固定Gitのroot pointer importでD26-A rawを復元し、既存fixture_materializationの標準RFC6902契約どおり原順適用した後のraw SHA-256を固定する。固定Git物理bytes、取込A raw、材料化D27-A rawのhashは別段階。A rawと既存期待は変更せず、混在target sourceを新規追加してQualification/root/provenanceを閉じる。",
       "caller_contract": "予定するport呼出しはこのmaterialized inputを一つのimmutable validated snapshotとして使い、同snapshotの原Claim /claims/0 全値を直接引数、/claims/0をclaim_locatorとしてread_descriptor_replacement_targetへ渡す。fn1は同じvalidation/callで一度評価し、fn6/fn7はその同call結果を消費する。actual未実施でprivate index/occurrence shapeは固定しない。",
-      "hash_stage_rule": "hash段階とcanonical方法は既存 /field_value_applicability_verification/fixture_materialization/hash、Git/RFC6901 importは /field_value_applicability_verification/fixture_materialization/base を再利用。物理file bytes SHA、取込/材料化後JSON canonical SHAを混同しない。base rawは /definition_meaning_resolution_verification_plan/finite_A_raw_input。"
+      "materialization_note": "既存 /field_value_applicability_verification/fixture_materialization/base と /field_value_applicability_verification/fixture_materialization/hash を再利用する。fixed_git_importsの物理file SHA・imported raw canonical SHAと、case.materialized_input_canonical_sha256を別段階のpinとして保持。"
     },
     "finite_D27_A_expectation": {
       "id": "D27-A-mixed-target",
       "base_input_ref": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
-      "base_public_expectation_ref": "/definition_meaning_resolution_verification_plan/finite_A_public_expectation",
-      "target_source_ref": {
-        "identity": "SYNTHETIC-D27-A-MIXED-TARGET-SOURCE",
-        "revision": "synthetic-D26-r1",
-        "scope": "synthetic-D26-cohort",
-        "owner": "synthetic-meaning-owner-D27A",
-        "source_locator": "urn:synthetic:d27:A:mixed-target-source",
-        "sha256": "520380e0c42b78066a610683f0472c5a88f40c82fde5fa10404d088fe5b7080b"
-      },
-      "source_membership": "materialized_input.sourcesにあるsource_refが、同一full knowledge_refのKnowledgeRecord.provenance_refsに含まれる。source.content.bindingはinput.bindingと同値。Qualification subject/rootも既存source qualification contract内で閉じる（L4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin）。",
-      "target_read_state": "conflict",
+      "target_source_ref_pointer": "/definition_meaning_resolution_verification_plan/finite_D27_A_raw_input/case/fixture_patch/0/value/ref",
+      "source_membership": "RFC6902 patchの /value/ref がmaterialized /sources/1/refであり、同一full knowledge_refのKnowledgeRecord.provenance_refsに含まれる。source.content.bindingはinput.bindingと同値で、Qualification subject/rootは既存資格contractに従う（L4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin）。",
+      "target_relation_observation": "同一target/current Binding/slot Aにkind相反の局所材料がある。複合DescriptorTargetReadの最終stateは固定しない。",
       "closed_by_L4": [
-        "同一target/current full Binding/slot Aの既知kind相反はtarget_mapping_conflict conflict。別slot Bのrequired input宣言も保持し、distinct slot由来unknownより既知conflictが優先する（L4 /dependency_semantic_ports/descriptor_target_contract/relevance_table/8、/dependency_semantic_ports/descriptor_target_contract/relevance_table/7、/dependency_semantic_ports/descriptor_target_contract/ordered_branches/8）。",
-        "D27-A target Refとslot A/BはD27固有で、D26 template_ref・slot/factへaliasしない。取込元D26-Aのraw/期待は変更せず、材料化ではsource・資格・provenance Ref・Claimのみ追加する。target conflictで元definition stateを置換しない（L4 /dependency_semantic_ports/descriptor_target_contract/carrier/fields/target_ref、/dependency_semantic_ports/descriptor_target_contract/carrier/origin、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality; preservation /definition_meaning_resolution_verification_plan/preservation/old_cases_scope）。",
-        "元target・元definition state・basisの対応が成立する場合だけ87/93へrouteするため、conflictで未成立の住所から同Claimへ87/93を生成しない（L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/routing）。",
-        "別Binding・別slot・別sourceを当該Claimの対応へ借用しない（L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/other_same_kind、/dependency_semantic_ports/descriptor_target_contract/relevance_table/0、/dependency_semantic_ports/descriptor_target_contract/relevance_table/4、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。"
+        "同一target/current full Binding/slot Aの異なる既知kindはL4 /dependency_semantic_ports/descriptor_target_contract/relevance_table/8のtarget_mapping_conflict材料に対応する。slot Bも存在するためL4 /dependency_semantic_ports/descriptor_target_contract/relevance_table/7の別slot unknown材料が同時にあるが、L4 /dependency_semantic_ports/descriptor_target_contract/ordered_branches/8の順序表現から複合最終stateの優先を確定しない。",
+        "唯一のClaimはbasis_refsがなく、追加target sourceのroleはsemantic_jsonでreference_only sourceは含まれず、Claimはfallback成立も主張しない。そのためこの入力は87/93の入口条件を持たず、conflictによる抑止を検証しない（L4 /dependency_semantic_ports/public_projection/axis_mapping/5、/dependency_semantic_ports/public_projection/axis_mapping/6、/dependency_semantic_ports/public_projection/rule_routing）。抑止の検証はBへ残す。",
+        "D27-Aのtarget Refとslot A/BはD27-A専用値で、D26 template_ref/slot/factから生成しない。targetの供給元と同full Binding対応はL4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin、/dependency_semantic_ports/descriptor_target_contract/carrier/fields/target_ref、/dependency_semantic_ports/descriptor_target_contract/relevance_table/0で確認する。",
+        "別Bindingや別slot/sourceをClaimの対応へ移さない（L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/other_same_kind、/dependency_semantic_ports/descriptor_target_contract/relevance_table/4）。"
       ],
-      "scope_limit": "旧9 expected_wholeの全値を保持する。本D27-Aは有限raw/限定期待だけで、実target port/fn1/public whole、全Comparison/Finding総数、rule_ref literal、出力Ref列、reason、sort、private index/occurrence shapeは固定しない。",
-      "call_scope": "callerは /definition_meaning_resolution_verification_plan/finite_D27_A_raw_input/caller_contract に従う。"
+      "scope_limit": "Aはfn1 1回評価用の有限入力と局所target-conflict材料だけを固定し、複合最終stateを固定しない。BはこのClaimを保持し、別locatorのrule87・rule93 positive Claimを各1件追加した計3 Claimを同じcase/callに置いて両公開tupleを扱う。A/Bとも実actualとformal pairは未成立。全Comparison/Finding数、rule_ref literal、出力Ref列、reason、sort、private index/occurrence shapeは固定しない。"
     }
   },
   "field_value_applicability_verification": {
