@@ -3394,16 +3394,16 @@
   "determinism": "供給immutable snapshotだけを読みtemplate/knowledge identity/revision、descriptor identity、source Ref、axisで決定的に並べる。異scope/版を併合しない。時計/env/fs/network/DB参照なし。",
   "implementation_preparation": {
     "state": "not_ready",
-    "next": "19型のprovided-member shapeと欠落/null/空配列のpresenceを対L8で静的照合・独立reviewする。正式wire/parser/実資格/全Resultと実fixture凍結は未成立のまま。",
+    "next": "19型のprovided-member shapeと欠落/null/空配列のpresence候補を対L8で静的照合した。独立reviewと上流がL5/L8へ残した追随・全Context/Result等の意味照合は未完としてdisposition監査に残す。正式wire/parser/実資格は各ownerと後続L6関数設計/L7対検証、実fixture/oracleとpairの凍結は別作業へ戻し、実装Readyは生成しない。",
     "runtime_evidence": "none"
   },
   "remaining": [
-    "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。",
-    "正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。F09の採択済みL4 conditional_source_dependency_contractにおける限定対応は、core_source_selected=trueで018、labo_evaluation_selected=trueで020、025は選択channelの原operation_kind/knowledge_fields単位である。conditional_dependency_detailがこの対応を具体化しており、対応自体を未決とは扱わない。025を両selectorへ一律必須とせず、実owner producer/body供給・資格及び本section外の残務は別に保持する。",
-    "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。",
-    "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 35件（このF09で追加した局所NEG-07〜13とADD-25〜28を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜28はL8局所検証でL9入力/期待との統合照合ではない。有限例の意味識別力・全任意入力閉包は未証明。",
-    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。",
-    "032 inputの19型の供給member構造とpresenceを具体化した。欠落slot/required集合は入力を捨てず意味不足へ保持。全Context/Result/finding/codec/実owner/凍結と意味閉包は未完。",
+    "L5/L8候補で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化した。独立review待ち。 候補の記載と独立review/admissionを分け、reviewは作成／独立review側へ戻す。上流がL5/L8へ残した追随の未達はdocs/governance/audits/tdd/brain032-l5l8-remaining-disposition-2026-10-22.jsonへ別記する。",
+    "15 descriptorの汎用意味と有限oracle、論理型・schemaは候補として記載済み。実seedの各field意味/要否/oracleの最終内容照合は知識ownerへ、正式schema/key/式木/wire/registry/resolverの採用・稼働とBRAIN運用promotion/全seed採用は各owner・後続段階へ残す。F09の採択済みL4 conditional_source_dependency_contractにおける限定対応は、core_source_selected=trueで018、labo_evaluation_selected=trueで020、025は選択channelの原operation_kind/knowledge_fields単位である。conditional_dependency_detailがこの対応を具体化しており、対応自体を未決とは扱わない。025を両selectorへ一律必須とせず、実owner producer/body供給・資格及び本section外の残務は別に保持する。",
+    "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。 これらは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・通常L3/release/内部deployは既存authorityの担当へ戻す。",
+    "failure_rules 107件、原L9負例105件、全L8 additional_unit_cases 35件（このF09で追加した局所NEG-07〜13とADD-25〜28を含む）、正常function oracle 9件を候補として記録。F09のNEG-01〜06はL9対応、NEG-07〜13とADD-25〜28はL8局所検証でL9入力/期待との統合照合ではない。有限例の意味識別力・全任意入力閉包は未証明。 原L9の105負例の変更・期待・戻し先との静的対応を照合したが、件数を意味識別力や全域閉包の証拠にしない。",
+    "formal wire/parser/実source資格resolver/資源条件/言語・依存・配置と実fixture/oracle凍結/実装前Red/Greenは未成立。独立意味review未実施。 実機構/資源/配置は各ownerと後続L6関数設計/L7対検証、実fixture/oracleとpairの凍結は別作業、独立意味reviewはreview側へ戻す。",
+    "032 inputの19型の供給member構造とpresenceを具体化した。欠落slot/required集合は入力を捨てず意味不足へ保持。全Context/Result/finding/codec/実owner/凍結と意味閉包は未完。 19論理型（18構造型とRawValue）の候補の記載と各未完を分け、実owner供給は各source owner、実fixture/oracleとpairの凍結は別作業へ戻す。Context/Result/codecの意味照合が全て済んだとはしない。",
     "原意味/NA/target同walk詳細契約と固定32全返却・旧84公開等価を追加した。多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。製品codec/実provider/実資格/runtime/CIの不在だけを論理詳細設計の新失敗gateにしない。"
   ],
   "evaluation_order": [
