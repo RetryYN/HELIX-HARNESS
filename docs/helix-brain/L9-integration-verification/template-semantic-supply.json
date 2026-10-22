@@ -92597,7 +92597,7 @@
     "synthetic_fixture_premise": {
       "scope": "A/B/C/D27-A/D27-Bの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。D26-A/B/Cへ追加したrequirement/oracle/pack Refとversion値も各既存frameをfull Bindingとして整合させる合成値であり、実要件・oracle・packの権威や資格を主張しない。",
       "qualification": "Qualification、qualification root、source digestはfixture内の整合前提だけで、実source資格・trust・runtime動作を主張しない。",
-      "meaning_owner_operation": "A/B/C caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。D27-Aのowner target宣言も合成sourceとして資格/provenanceへ接続する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。 D27-Bではunknown slotの原MeaningFactと固定normative frame付きundetermined owner operation一件を保持し、missing facts=[]に新operationを足さない。",
+      "meaning_owner_operation": "A/B/C caller側factとowner-native DefinitionMeaningOperationのargument/decisionを同じsource content内に保持し、別々の独立Ref identityで識別する。D27-Aのowner target宣言も合成sourceとして資格/provenanceへ接続する。fact_bodyをMeaningFact.meaningへ対応させるのは合成入力の前提であり、一般的なL4 field写像を追加しない。 D27-Bではunknown slotの原MeaningFactと固定normative frame付きundetermined owner operation一件を保持し、missing facts=[]に新operationを足さない。 carrier側descriptor_factsのfact.source_ref.sha256だけは、source content digestへの自己参照を避け、source_refを比較対象から除外する既存L5 owner_body_equalに従ってnullとし、source_refの他memberと他のfact memberはcaller値を保持する。",
       "normative_argument": "raw内argumentは上記normative_basis_sourceの固定歴史snapshotをそのまま保持する。現行期待境界はcurrent_contract_sourceで別に閉じる。",
       "absence": "A/B/C/D27-A/D27-Bではdefinition_applicability_refは要求しないためmember自体を省略する。null値を代用しない。"
     },
@@ -92673,7 +92673,7 @@
             "scope": "synthetic-D26-cohort",
             "owner": "synthetic-meaning-owner",
             "source_locator": "urn:synthetic:d26:A:source",
-            "sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a"
+            "sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af"
           },
           "content": {
             "binding": {
@@ -92722,6 +92722,88 @@
               "pack_dependency_versions": [],
               "version_target": "1.0"
             },
+            "descriptor_facts": [
+              {
+                "slot_identity": "SYNTHETIC-D26-SLOT-A",
+                "descriptor_kind": "template identity",
+                "facts": [
+                  {
+                    "source_ref": {
+                      "identity": "SYNTHETIC-D26-SOURCE-A",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner",
+                      "source_locator": "urn:synthetic:d26:A:source",
+                      "sha256": null
+                    },
+                    "owner": "synthetic-meaning-owner",
+                    "binding": {
+                      "template_ref": {
+                        "identity": "SYNTHETIC-D26-TEMPLATE-A",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-template-owner",
+                        "source_locator": "urn:synthetic:d26:A:template",
+                        "sha256": null
+                      },
+                      "knowledge_ref": {
+                        "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-knowledge-owner",
+                        "source_locator": "urn:synthetic:d26:A:knowledge",
+                        "sha256": null
+                      },
+                      "requirement_ref": {
+                        "identity": "SYNTHETIC-D26-REQUIREMENT-A",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-requirement-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "oracle_ref": {
+                        "identity": "SYNTHETIC-D26-ORACLE-A",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-oracle-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_ref": {
+                        "identity": "SYNTHETIC-D26-PACK-A",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-pack-owner",
+                        "source_locator": null,
+                        "sha256": null
+                      },
+                      "pack_contract_version": "contract-A",
+                      "pack_artifact_version": "artifact-A",
+                      "pack_dependency_versions": [],
+                      "version_target": "1.0"
+                    },
+                    "meaning": {
+                      "template_identity": "SYNTHETIC-D26-TEMPLATE-A",
+                      "functional_role": "設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。"
+                    },
+                    "condition": {
+                      "kind": "synthetic-fixture-condition",
+                      "scope": "A/root candidate empty case"
+                    },
+                    "reason": "合成原MeaningFact。",
+                    "ref": {
+                      "identity": "SYNTHETIC-D26-FACT-A-IDENTITY",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner",
+                      "source_locator": "urn:synthetic:d26:A:fact:template-identity",
+                      "sha256": null
+                    }
+                  }
+                ]
+              }
+            ],
             "definition_meaning_operations": [
               {
                 "operation_ref": {
@@ -92839,7 +92921,7 @@
               }
             ]
           },
-          "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"definition_meaning_operations\":[{\"arguments\":{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"descriptor_kind\":\"template identity\",\"fact_body\":{\"functional_role\":\"設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。\",\"template_identity\":\"SYNTHETIC-D26-TEMPLATE-A\"},\"fact_ref\":{\"identity\":\"SYNTHETIC-D26-FACT-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:fact:template-identity\"},\"normative_argument\":{\"catalog_canonical_sha256\":\"224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651\",\"catalog_pointer\":\"/descriptor_meanings\",\"entry_canonical_sha256\":\"6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892\",\"entry_pointer\":\"/descriptor_meanings/0\",\"entry_value\":{\"descriptor\":\"template identity\",\"meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\"},\"file_sha256\":\"033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2\",\"path\":\"docs/helix-brain/L4-basic-design/template-semantic-supply.json\",\"revision\":\"5a3cfa984fab34f31ce623d667db1670f80b1544\",\"scope\":{\"functional_requirement\":\"HELIXBRAIN-L3-032-F01\",\"parent_requirement\":\"HELIXBRAIN-L2-032\",\"scope_kind\":\"generic_design_template_descriptor\"}},\"slot_identity\":\"SYNTHETIC-D26-SLOT-A\"},\"decision\":{\"basis_refs\":[{\"identity\":\"SYNTHETIC-D26-FACT-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:fact:template-identity\"}],\"raw_semantic_basis\":{\"presence\":\"supplied\",\"value\":{\"interpreted_function\":\"設計原子の同一性を担うテンプレートA\",\"location_is_identity\":false}},\"reason\":{\"presence\":\"supplied\",\"value\":\"原ownerはAの機能識別を固定template identity規範と比較し、filenameの所在と区別する。合成論理入力の元判断として固定。\"},\"relation\":\"defines_descriptor\"},\"operation_ref\":{\"identity\":\"SYNTHETIC-D26-OP-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:operation:template-identity\"}}]}",
+          "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"definition_meaning_operations\":[{\"arguments\":{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"descriptor_kind\":\"template identity\",\"fact_body\":{\"functional_role\":\"設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。\",\"template_identity\":\"SYNTHETIC-D26-TEMPLATE-A\"},\"fact_ref\":{\"identity\":\"SYNTHETIC-D26-FACT-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:fact:template-identity\"},\"normative_argument\":{\"catalog_canonical_sha256\":\"224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651\",\"catalog_pointer\":\"/descriptor_meanings\",\"entry_canonical_sha256\":\"6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892\",\"entry_pointer\":\"/descriptor_meanings/0\",\"entry_value\":{\"descriptor\":\"template identity\",\"meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\"},\"file_sha256\":\"033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2\",\"path\":\"docs/helix-brain/L4-basic-design/template-semantic-supply.json\",\"revision\":\"5a3cfa984fab34f31ce623d667db1670f80b1544\",\"scope\":{\"functional_requirement\":\"HELIXBRAIN-L3-032-F01\",\"parent_requirement\":\"HELIXBRAIN-L2-032\",\"scope_kind\":\"generic_design_template_descriptor\"}},\"slot_identity\":\"SYNTHETIC-D26-SLOT-A\"},\"decision\":{\"basis_refs\":[{\"identity\":\"SYNTHETIC-D26-FACT-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:fact:template-identity\"}],\"raw_semantic_basis\":{\"presence\":\"supplied\",\"value\":{\"interpreted_function\":\"設計原子の同一性を担うテンプレートA\",\"location_is_identity\":false}},\"reason\":{\"presence\":\"supplied\",\"value\":\"原ownerはAの機能識別を固定template identity規範と比較し、filenameの所在と区別する。合成論理入力の元判断として固定。\"},\"relation\":\"defines_descriptor\"},\"operation_ref\":{\"identity\":\"SYNTHETIC-D26-OP-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:operation:template-identity\"}}],\"descriptor_facts\":[{\"descriptor_kind\":\"template identity\",\"facts\":[{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"pack_artifact_version\":\"artifact-A\",\"pack_contract_version\":\"contract-A\",\"pack_dependency_versions\":[],\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"},\"version_target\":\"1.0\"},\"condition\":{\"kind\":\"synthetic-fixture-condition\",\"scope\":\"A/root candidate empty case\"},\"meaning\":{\"functional_role\":\"設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。\",\"template_identity\":\"SYNTHETIC-D26-TEMPLATE-A\"},\"owner\":\"synthetic-meaning-owner\",\"reason\":\"合成原MeaningFact。\",\"ref\":{\"identity\":\"SYNTHETIC-D26-FACT-A-IDENTITY\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:fact:template-identity\"},\"source_ref\":{\"identity\":\"SYNTHETIC-D26-SOURCE-A\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:source\"}}],\"slot_identity\":\"SYNTHETIC-D26-SLOT-A\"}]}",
           "qualification_ref": {
             "identity": "SYNTHETIC-D26-QUALIFICATION-A",
             "revision": "synthetic-D26-r1",
@@ -92877,9 +92959,9 @@
             "scope": "synthetic-D26-cohort",
             "owner": "synthetic-meaning-owner",
             "source_locator": "urn:synthetic:d26:A:source",
-            "sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a"
+            "sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af"
           },
-          "subject_sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a",
+          "subject_sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af",
           "applicable_scope": "synthetic-D26-cohort",
           "qualification_body": {
             "record_kind": "synthetic-logical-qualification-premise",
@@ -92954,7 +93036,7 @@
                 "scope": "synthetic-D26-cohort",
                 "owner": "synthetic-meaning-owner",
                 "source_locator": "urn:synthetic:d26:A:source",
-                "sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a"
+                "sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af"
               },
               "owner": "synthetic-meaning-owner",
               "binding": {
@@ -93041,7 +93123,7 @@
               "scope": "synthetic-D26-cohort",
               "owner": "synthetic-meaning-owner",
               "source_locator": "urn:synthetic:d26:A:source",
-              "sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a"
+              "sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af"
             }
           ]
         }
@@ -93676,7 +93758,7 @@
             "scope": "synthetic-D26-cohort",
             "owner": "synthetic-meaning-owner",
             "source_locator": "urn:synthetic:d26:A:source",
-            "sha256": "c212134e1342b2b1340f7ac2ebcfabaa1f8192051c9fb26d501c05465c62f08a"
+            "sha256": "3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af"
           },
           "source_qualification_ref": {
             "identity": "SYNTHETIC-D26-QUALIFICATION-A",
