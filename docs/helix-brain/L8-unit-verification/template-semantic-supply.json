@@ -113107,14 +113107,14 @@
     "fixed_git_sources": {
       "L9": {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
-        "sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
+        "revision": "eff54cc4a124cc209027255f047925cc071adbec",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
       }
     },
     "l5_meaning_core_invariance": {
       "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core",
       "source_revision": "9a4baa2082930efba5c302c078beee16fe7d1f59",
-      "current_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
+      "current_revision": "eff54cc4a124cc209027255f047925cc071adbec",
       "source_canonical_sha256": "67443e2c14feea3262ea1d8019b528d92f6e2c9383254b7e451fb5faf05210ce",
       "current_canonical_sha256": "67443e2c14feea3262ea1d8019b528d92f6e2c9383254b7e451fb5faf05210ce",
       "result": "same"
@@ -113125,29 +113125,29 @@
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
+          "git_revision": "eff54cc4a124cc209027255f047925cc071adbec",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
           "bundle_pointer": "/source_snapshot/raw_A",
-          "source_value_canonical_sha256": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0",
-          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
+          "source_value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
         },
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
+          "git_revision": "eff54cc4a124cc209027255f047925cc071adbec",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch",
           "bundle_pointer": "/source_snapshot/patches/B",
-          "source_value_canonical_sha256": "bc85ff35ddb58cb815dfd8581470a38b0aecc1beca9eebf68d7524a154627be6",
-          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
+          "source_value_canonical_sha256": "2a7a88838746f3c6a8b2345194c73dbdda35f22bbab9ce14cacb497823ffe021",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
         },
         {
           "source_key": "L9",
           "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "git_revision": "2045ba9e29bba7bf05a61f0223734c1825dfad77",
+          "git_revision": "eff54cc4a124cc209027255f047925cc071adbec",
           "source_pointer": "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch",
           "bundle_pointer": "/source_snapshot/patches/C",
-          "source_value_canonical_sha256": "26bba2be7c05482645155de174375b1410b7bd1bc994c704b91ef98ae24d0b0c",
-          "file_sha256": "adfba2407d9f4adb2bc854c1bd1175dc5fa0b5f947e5d9596f663ff31d93ab11"
+          "source_value_canonical_sha256": "271fe75aaa44885aee60a8821bf46e2d59a2f7bd7a6c0e832a7869f7357a2d20",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
         }
       ],
       "seed": {
@@ -113426,9 +113426,9 @@
       ]
     },
     "expected_raw_input_canonical_sha256": {
-      "A": "245dedeb58a51bee0146369139c50a6b1623882564486b1239ae81a4559196b0",
-      "B": "03e8a3076b39f8aed795313880d30a7ab59bda21ed70d44d6165979c7ac26026",
-      "C": "af8c83f526f0d8770b590f04c521bd168f837fb63dc0e9af66dc4c3f9afb4ee4"
+      "A": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+      "B": "b72d0389e51059502ad6d9bc4e826d82df71550ee95365715feccf4db3b67e06",
+      "C": "3d3df77b5f9cc89e5fd7adc7988abca4351d466b068a37c99b8366fda9b76af6"
     },
     "native_shape_boundary_ja": "L5から導出する既存NativeMaterial列はapplicability_readsとapplicability_judgment_batchesのみ。ここではこのNA射影部分だけを期待し、NativeMaterial全体やfn1全返却値は表さない。",
     "coverage_limit_ja": "正式rawの全source/qualification/descriptor/fact/knowledge bodyをmaterializationで保持しslotごとのreader/projector期待を列挙する。意味reader、他function、全event/Finding/Comparison期待は含めない。",
