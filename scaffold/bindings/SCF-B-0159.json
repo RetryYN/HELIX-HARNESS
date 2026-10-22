@@ -37,7 +37,7 @@
  "role": "design-json-static-reference-check-scaffold",
  "obligations": [
   "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
-  "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。",
+  "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。path#fragmentは明示された同objectの固定revisionを使う。input_constructionとsource_material_pinsを持つ節ではinput_bases内の参照に限り、pathとpointerが完全一致する一意な固定revision/file_sha256へ束縛する。embedded revision、同object revision、親pinの順で優先し、label revisionや曖昧なpinからは継承しない。同objectのfragment参照ではrevisionだけを解決に使い、同objectのfile SHAは照合しない（fragment shapeを未分類とする既存境界を保持）。",
   "`*_path`/例外path keyと対応する`*_revision`・`*_commit`・whole-file `*_sha256`のprefix-pairが同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。汎用例外は明示し、prefix違いのcross-pairはしない。",
   "pointer、line/read/quote/range系key、historical、candidate印、または`path#fragment`を持つshapeはpin照合せず未分類へ数える。label revision、legacy-root path、pointer-valued path、fixture/placeholder pathも未分類へ数える。",
   "絶対path・.. traversal・backslash pathはfile-shaped値でfail-closeに違反とし、path正規化は行わない。prefix許可リストは持たない。`scaffold/review-handoff/local/`参照はE_LOCAL_REFとして別codeに分ける。",
@@ -117,7 +117,20 @@
    "pathless source basis leaves target implicit",
    "fixed source basis sha is enforced",
    "fixed source binding does not escape case",
-   "fixed source binding marker is required"
+   "fixed source binding marker is required",
+   "fixed fragment pointer remains checked",
+   "explicit fragment revision overrides material pin",
+   "ambiguous material pin does not bind",
+   "material pin sha is enforced",
+   "material pin pointer must match",
+   "material pin scope does not escape input bases",
+   "material construction marker is required",
+   "label revision blocks material pin binding",
+   "embedded fragment revision overrides sibling",
+   "different path material pin does not bind",
+   "non-hex material pin revision does not bind",
+   "non-hex material pin sha does not bind",
+   "fragment sibling sha remains unclassified"
   ]
  },
  "replacement": {
