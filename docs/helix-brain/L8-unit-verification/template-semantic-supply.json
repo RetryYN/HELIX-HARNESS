@@ -84531,7 +84531,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "abcec04ed5f8f0c67f1cc23aa361d29dc19cf234867c84ff30938ef4fd40f9e9"
+        "sha256": "b16e92c425ac3aeac82d0071eb4827ef048c251d0fae4d7b26844a9ef6996a91"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",

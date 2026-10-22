@@ -92540,7 +92540,7 @@
   },
   "definition_meaning_resolution_verification_plan": {
     "id": "HELIXBRAIN-L9-032-DEFINITION-MEANING-RESOLUTION-PLAN",
-    "status": "A/Bの合成rawと閉じた公開期待を記載したL9設計候補。C、実行、実source資格、provider接続、正式admissionは未実施。",
+    "status": "A/B/C有限rawと閉公開期待を記載したL9設計候補。有限な静的素材の固定であり、L4/L9 formal pair/contract admission・実行・実source資格・provider接続は未成立。",
     "logical_contract_pointer": "/definition_meaning_resolution_contract",
     "normative_basis_source": {
       "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
@@ -92553,8 +92553,8 @@
     },
     "observation_requirements": [
       "owner原operationのfact全値と固定normative引数の両端対応、原decision/理由/rawbasis/Refを同callに保持する。source資格と意味評価を別観測にする。",
-      "caller/native fact両側のbody追従変更とnormative引数追従変更を区別し、固定規範と異なるframe/bodyを同じ意味の評価にしない。A/Bの有限rawと公開期待を本節に固定し、それ以外の入力と期待はremainingに残す。",
-      "Aのroot候補空によるrequired域の保持と、Bの明示candidateで選ばれるdistinct cohortの範囲、未要求slotへの不足増殖を区別する。",
+      "caller/native fact両側のbody追従変更とnormative引数追従変更を区別し、固定規範と異なるframe/bodyを同じ意味の評価にしない。A/B/Cの有限rawと公開期待を本節に固定し、それ以外の入力と期待はremainingに残す。",
+      "Aのroot候補空、Bの明示candidateとA frameの混合、選択Aに対する非選択Cの保持を区別する。Cの同一fact/operation二出現は原順で保持し、Cに未要求不足を増殖させない。",
       "slot/facts欠落・限定undefinedは新解釈record未供給でも元規則を維持する。意味肯定/否定/未決、同slot null/defined/未資格の併存、NA元record対象違い/未解決を原原因ごと観測する。",
       "公開Comparison/全assessment/source read全出現、rule87/93の同Claim一件化、無関係candidate/slot保持を別に比較する。旧79+5を新fn1全値証拠として数えない。",
       "NA要求member absentとsupplied nullは別の原presence/stateとして観測し、明示nullの原未決をnot_requestedへ丸めない。元definition stateは別に保持する。"
@@ -92566,11 +92566,10 @@
       "old_cases_scope": "既存全case/target9/conditional素材/全期待は原値不変。新ケース又は新whole期待を追加していない。"
     },
     "remaining": [
-      "非対象cohort Cを実際に入力するケース、Cの合成rawと閉公開期待、および同じfact/operationを持つraw occurrence 2回の保持。",
-      "A/B有限fixtureとこの契約案の独立reviewおよび正式admission。",
-      "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B rawは合成前提のみ。",
+      "有限3条件の固定以外の契約全体の検証と、L4/L9 formal pair/contract admission。PRの独立review・mergeはこれらの成立を代替しない。",
+      "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。A/B/C rawは合成前提のみ。",
       "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
-      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。"
+      "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。"
     ],
     "current_contract_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -93510,7 +93509,8 @@
         "A/Bの各root・明示candidateの母集団で、descriptor_01（template identity）の定義済みfact/原owner operationが同cohortで対応するため、descriptor_01_missingとdescriptor_01_undefinedは出ない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/consumer_branch_table/4、/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation）。",
         "B rawはA rootを保持し、template_refがcandidate Bへ対応する明示cohort Bだけを追加する。AとB各14 tuple（required missingの母集団数は28）はこの2 cohortに限り、未要求cohortへ増殖しない（L4 /definition_meaning_resolution_contract/evaluation_populations/required_contract_domain、/definition_meaning_resolution_contract/evaluation_populations/other_binding）。",
         "共有closed_missing_class_tuplesの各tupleはAとBの各母集団で各1回現れる。28はrequired missingの母集団数でありComparison.findings総数ではない（L4 /definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality、/identity_version_trace_contract/schema/$defs/Finding）。",
-        "A/B各rawのfact/operation/source occurrenceは各cohort固有で原順・反復を保ち、他cohortから借用・増殖しない。source_refとsource_qualification_refで各cohort所属を対応させる。indexやprivate occurrence-array shapeは期待しない（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。"
+        "A/B各rawのfact/operation/source occurrenceは各cohort固有で原順・反復を保ち、他cohortから借用・増殖しない。source_refとsource_qualification_refで各cohort所属を対応させる。indexやprivate occurrence-array shapeは期待しない（L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。",
+        "C rawはA rootを保持して選択候補Aだけを指定する。非選択Cの原source/qualification所属と同一Refのfact/owner operation二出現を保持するが、Cへrequired missingの14 tupleを追加しない。期待するのは原順・非借用・非増殖の公開可能な意味であり、private occurrence/index shapeではない（L4 /definition_meaning_resolution_contract/evaluation_populations/other_binding、/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds、/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order、/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality）。 選択Aのtemplate identityは取込元の原factとdefines_descriptorのowner operationを保持するため、descriptor_01_missing／descriptor_01_undefinedを出さない（L4 /definition_meaning_resolution_contract/consumer_branch_table/4）。"
       ],
       "schema_and_original_membership_only": [
         "Finding.rule_refのliteral",
@@ -93518,7 +93518,568 @@
         "original_refs/source_refsの配列構成・順序",
         "public sort順、private assessment shape、producer_symbol literal"
       ],
-      "population_limit": "14は各選択cohortのrequired missing kindの母集団数で、BはA+Bの2 cohortで28となる。28はComparison.findings総数ではない。A/BでL4が閉じた出る／出ない／増えない値と各source所属だけを述べ、無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。AとBの期待を別々に残すことで各ケースを単独照合でき、Bではroot Aとcandidate Bの差分を追える。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
+      "population_limit": "14は各選択cohortのrequired missing kindの母集団数。A/Cは選択cohort Aのみで14、BはA+Bの2 cohortで28となる。28はComparison.findings総数ではない。Cの非選択slotへ14不足を加えない。A/B/CでL4が閉じた出る／出ない／増えない値と各source所属だけを述べ、無関係classificationやprivate assessment全体は主張しない。未閉のliteral・配列構成・公開sortの具体、および公開返却では観測できないprivate assessment/同walk indexのshapeはL5/L8で確かめる。A/B/C期待を個別に保持することで各caseの単独静的照合を可能にし、A/Bのcase差も見分ける。not_total_findingsは機械照合用boolean、closed_by_L4は根拠と出る／出ない条件、population_limitは母集団と未閉値の境界を示すため役割ごとに保持する。"
+    },
+    "finite_C_raw_input": {
+      "materials": [
+        {
+          "literal_skeleton": {},
+          "fixed_git_imports": [
+            {
+              "op": "add",
+              "path": "",
+              "value_from_fixed_git": {
+                "revision": "8daafde509b5cb37732d9b6b68845093be2654d5",
+                "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+                "file_sha256": "abcec04ed5f8f0c67f1cc23aa361d29dc19cf234867c84ff30938ef4fd40f9e9",
+                "pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+                "value_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+              }
+            }
+          ],
+          "materialized_canonical_sha256": "1e1b9583297fc4a00380e27cb16856df8570f70ebca2b05d3b10634d55cf594f"
+        }
+      ],
+      "materialization_contract_pointer": "/field_value_applicability_verification/fixture_materialization",
+      "case": {
+        "fixture_base_pointer": "/definition_meaning_resolution_verification_plan/finite_C_raw_input/materials/0",
+        "fixture_patch": [
+          {
+            "op": "add",
+            "path": "/sources/-",
+            "value": {
+              "ref": {
+                "identity": "SYNTHETIC-D26-SOURCE-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-meaning-owner-C",
+                "source_locator": "urn:synthetic:d26:C:source",
+                "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+              },
+              "content": {
+                "binding": {
+                  "template_ref": {
+                    "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-template-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:template",
+                    "sha256": null
+                  },
+                  "knowledge_ref": {
+                    "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-knowledge-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:knowledge",
+                    "sha256": null
+                  }
+                },
+                "definition_meaning_operations": [
+                  {
+                    "operation_ref": {
+                      "identity": "SYNTHETIC-D26-OP-C-IDENTITY",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:operation:template-identity",
+                      "sha256": null
+                    },
+                    "arguments": {
+                      "binding": {
+                        "template_ref": {
+                          "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-template-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:template",
+                          "sha256": null
+                        },
+                        "knowledge_ref": {
+                          "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-knowledge-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:knowledge",
+                          "sha256": null
+                        }
+                      },
+                      "slot_identity": "SYNTHETIC-D26-SLOT-C",
+                      "descriptor_kind": "template identity",
+                      "fact_ref": {
+                        "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-meaning-owner-C",
+                        "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                        "sha256": null
+                      },
+                      "fact_body": {
+                        "template_identity": "SYNTHETIC-D26-TEMPLATE-C",
+                        "functional_role": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。"
+                      },
+                      "normative_argument": {
+                        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+                        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+                        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+                        "catalog_pointer": "/descriptor_meanings",
+                        "catalog_canonical_sha256": "224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651",
+                        "scope": {
+                          "parent_requirement": "HELIXBRAIN-L2-032",
+                          "functional_requirement": "HELIXBRAIN-L3-032-F01",
+                          "scope_kind": "generic_design_template_descriptor"
+                        },
+                        "entry_pointer": "/descriptor_meanings/0",
+                        "entry_canonical_sha256": "6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892",
+                        "entry_value": {
+                          "descriptor": "template identity",
+                          "meaning": "機能としてのtemplate識別。filenameやviewの所在と分ける。"
+                        }
+                      }
+                    },
+                    "decision": {
+                      "relation": "defines_descriptor",
+                      "reason": {
+                        "presence": "supplied",
+                        "value": "合成論理入力Cの元判断。固定frameのtemplate identityと機能同一性を比較し、所在filenameと区別する。"
+                      },
+                      "raw_semantic_basis": {
+                        "presence": "supplied",
+                        "value": {
+                          "interpreted_function": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。",
+                          "location_is_identity": false
+                        }
+                      },
+                      "basis_refs": [
+                        {
+                          "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-meaning-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                          "sha256": null
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "operation_ref": {
+                      "identity": "SYNTHETIC-D26-OP-C-IDENTITY",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-meaning-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:operation:template-identity",
+                      "sha256": null
+                    },
+                    "arguments": {
+                      "binding": {
+                        "template_ref": {
+                          "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-template-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:template",
+                          "sha256": null
+                        },
+                        "knowledge_ref": {
+                          "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-knowledge-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:knowledge",
+                          "sha256": null
+                        }
+                      },
+                      "slot_identity": "SYNTHETIC-D26-SLOT-C",
+                      "descriptor_kind": "template identity",
+                      "fact_ref": {
+                        "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                        "revision": "synthetic-D26-r1",
+                        "scope": "synthetic-D26-cohort",
+                        "owner": "synthetic-meaning-owner-C",
+                        "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                        "sha256": null
+                      },
+                      "fact_body": {
+                        "template_identity": "SYNTHETIC-D26-TEMPLATE-C",
+                        "functional_role": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。"
+                      },
+                      "normative_argument": {
+                        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+                        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+                        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+                        "catalog_pointer": "/descriptor_meanings",
+                        "catalog_canonical_sha256": "224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651",
+                        "scope": {
+                          "parent_requirement": "HELIXBRAIN-L2-032",
+                          "functional_requirement": "HELIXBRAIN-L3-032-F01",
+                          "scope_kind": "generic_design_template_descriptor"
+                        },
+                        "entry_pointer": "/descriptor_meanings/0",
+                        "entry_canonical_sha256": "6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892",
+                        "entry_value": {
+                          "descriptor": "template identity",
+                          "meaning": "機能としてのtemplate識別。filenameやviewの所在と分ける。"
+                        }
+                      }
+                    },
+                    "decision": {
+                      "relation": "defines_descriptor",
+                      "reason": {
+                        "presence": "supplied",
+                        "value": "合成論理入力Cの元判断。固定frameのtemplate identityと機能同一性を比較し、所在filenameと区別する。"
+                      },
+                      "raw_semantic_basis": {
+                        "presence": "supplied",
+                        "value": {
+                          "interpreted_function": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。",
+                          "location_is_identity": false
+                        }
+                      },
+                      "basis_refs": [
+                        {
+                          "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                          "revision": "synthetic-D26-r1",
+                          "scope": "synthetic-D26-cohort",
+                          "owner": "synthetic-meaning-owner-C",
+                          "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                          "sha256": null
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "content_bytes": "{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-C\",\"owner\":\"synthetic-knowledge-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:knowledge\"},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-C\",\"owner\":\"synthetic-template-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:template\"}},\"definition_meaning_operations\":[{\"arguments\":{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-C\",\"owner\":\"synthetic-knowledge-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:knowledge\"},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-C\",\"owner\":\"synthetic-template-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:template\"}},\"descriptor_kind\":\"template identity\",\"fact_body\":{\"functional_role\":\"非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。\",\"template_identity\":\"SYNTHETIC-D26-TEMPLATE-C\"},\"fact_ref\":{\"identity\":\"SYNTHETIC-D26-FACT-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:fact:template-identity\"},\"normative_argument\":{\"catalog_canonical_sha256\":\"224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651\",\"catalog_pointer\":\"/descriptor_meanings\",\"entry_canonical_sha256\":\"6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892\",\"entry_pointer\":\"/descriptor_meanings/0\",\"entry_value\":{\"descriptor\":\"template identity\",\"meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\"},\"file_sha256\":\"033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2\",\"path\":\"docs/helix-brain/L4-basic-design/template-semantic-supply.json\",\"revision\":\"5a3cfa984fab34f31ce623d667db1670f80b1544\",\"scope\":{\"functional_requirement\":\"HELIXBRAIN-L3-032-F01\",\"parent_requirement\":\"HELIXBRAIN-L2-032\",\"scope_kind\":\"generic_design_template_descriptor\"}},\"slot_identity\":\"SYNTHETIC-D26-SLOT-C\"},\"decision\":{\"basis_refs\":[{\"identity\":\"SYNTHETIC-D26-FACT-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:fact:template-identity\"}],\"raw_semantic_basis\":{\"presence\":\"supplied\",\"value\":{\"interpreted_function\":\"非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。\",\"location_is_identity\":false}},\"reason\":{\"presence\":\"supplied\",\"value\":\"合成論理入力Cの元判断。固定frameのtemplate identityと機能同一性を比較し、所在filenameと区別する。\"},\"relation\":\"defines_descriptor\"},\"operation_ref\":{\"identity\":\"SYNTHETIC-D26-OP-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:operation:template-identity\"}},{\"arguments\":{\"binding\":{\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-C\",\"owner\":\"synthetic-knowledge-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:knowledge\"},\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-C\",\"owner\":\"synthetic-template-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:template\"}},\"descriptor_kind\":\"template identity\",\"fact_body\":{\"functional_role\":\"非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。\",\"template_identity\":\"SYNTHETIC-D26-TEMPLATE-C\"},\"fact_ref\":{\"identity\":\"SYNTHETIC-D26-FACT-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:fact:template-identity\"},\"normative_argument\":{\"catalog_canonical_sha256\":\"224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651\",\"catalog_pointer\":\"/descriptor_meanings\",\"entry_canonical_sha256\":\"6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892\",\"entry_pointer\":\"/descriptor_meanings/0\",\"entry_value\":{\"descriptor\":\"template identity\",\"meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\"},\"file_sha256\":\"033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2\",\"path\":\"docs/helix-brain/L4-basic-design/template-semantic-supply.json\",\"revision\":\"5a3cfa984fab34f31ce623d667db1670f80b1544\",\"scope\":{\"functional_requirement\":\"HELIXBRAIN-L3-032-F01\",\"parent_requirement\":\"HELIXBRAIN-L2-032\",\"scope_kind\":\"generic_design_template_descriptor\"}},\"slot_identity\":\"SYNTHETIC-D26-SLOT-C\"},\"decision\":{\"basis_refs\":[{\"identity\":\"SYNTHETIC-D26-FACT-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:fact:template-identity\"}],\"raw_semantic_basis\":{\"presence\":\"supplied\",\"value\":{\"interpreted_function\":\"非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。\",\"location_is_identity\":false}},\"reason\":{\"presence\":\"supplied\",\"value\":\"合成論理入力Cの元判断。固定frameのtemplate identityと機能同一性を比較し、所在filenameと区別する。\"},\"relation\":\"defines_descriptor\"},\"operation_ref\":{\"identity\":\"SYNTHETIC-D26-OP-C-IDENTITY\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:C:operation:template-identity\"}}]}",
+              "qualification_ref": {
+                "identity": "SYNTHETIC-D26-QUALIFICATION-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-qualification-owner-C",
+                "source_locator": "urn:synthetic:d26:C:qualification",
+                "sha256": null
+              },
+              "role": "semantic_json"
+            }
+          },
+          {
+            "op": "add",
+            "path": "/qualification_roots/-",
+            "value": {
+              "identity": "SYNTHETIC-D26-QUALIFICATION-ROOT-C",
+              "revision": "synthetic-D26-r1",
+              "scope": "synthetic-D26-cohort",
+              "owner": "synthetic-logical-root-C",
+              "source_locator": "urn:synthetic:d26:C:qualification-root",
+              "sha256": null
+            }
+          },
+          {
+            "op": "add",
+            "path": "/qualifications/-",
+            "value": {
+              "ref": {
+                "identity": "SYNTHETIC-D26-QUALIFICATION-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-qualification-owner-C",
+                "source_locator": "urn:synthetic:d26:C:qualification",
+                "sha256": null
+              },
+              "subject_ref": {
+                "identity": "SYNTHETIC-D26-SOURCE-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-meaning-owner-C",
+                "source_locator": "urn:synthetic:d26:C:source",
+                "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+              },
+              "subject_sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868",
+              "applicable_scope": "synthetic-D26-cohort",
+              "qualification_body": {
+                "record_kind": "synthetic-logical-qualification-premise",
+                "note": "局所合成fixture前提のみ。実運用trust/資格認証を証明しない。",
+                "subject_identity": "SYNTHETIC-D26-SOURCE-C"
+              },
+              "root_ref": {
+                "identity": "SYNTHETIC-D26-QUALIFICATION-ROOT-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-logical-root-C",
+                "source_locator": "urn:synthetic:d26:C:qualification-root",
+                "sha256": null
+              }
+            }
+          },
+          {
+            "op": "add",
+            "path": "/descriptors/-",
+            "value": {
+              "slot_identity": "SYNTHETIC-D26-SLOT-C",
+              "descriptor_kind": "template identity",
+              "binding": {
+                "template_ref": {
+                  "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                  "revision": "synthetic-D26-r1",
+                  "scope": "synthetic-D26-cohort",
+                  "owner": "synthetic-template-owner-C",
+                  "source_locator": "urn:synthetic:d26:C:template",
+                  "sha256": null
+                },
+                "knowledge_ref": {
+                  "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                  "revision": "synthetic-D26-r1",
+                  "scope": "synthetic-D26-cohort",
+                  "owner": "synthetic-knowledge-owner-C",
+                  "source_locator": "urn:synthetic:d26:C:knowledge",
+                  "sha256": null
+                }
+              },
+              "facts": [
+                {
+                  "source_ref": {
+                    "identity": "SYNTHETIC-D26-SOURCE-C",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-meaning-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:source",
+                    "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+                  },
+                  "owner": "synthetic-meaning-owner-C",
+                  "binding": {
+                    "template_ref": {
+                      "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-template-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:template",
+                      "sha256": null
+                    },
+                    "knowledge_ref": {
+                      "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-knowledge-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:knowledge",
+                      "sha256": null
+                    }
+                  },
+                  "meaning": {
+                    "template_identity": "SYNTHETIC-D26-TEMPLATE-C",
+                    "functional_role": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。"
+                  },
+                  "condition": {
+                    "kind": "synthetic-fixture-condition",
+                    "scope": "C nonselected duplicate occurrence"
+                  },
+                  "reason": "合成原MeaningFact。",
+                  "ref": {
+                    "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-meaning-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                    "sha256": null
+                  }
+                },
+                {
+                  "source_ref": {
+                    "identity": "SYNTHETIC-D26-SOURCE-C",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-meaning-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:source",
+                    "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+                  },
+                  "owner": "synthetic-meaning-owner-C",
+                  "binding": {
+                    "template_ref": {
+                      "identity": "SYNTHETIC-D26-TEMPLATE-C",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-template-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:template",
+                      "sha256": null
+                    },
+                    "knowledge_ref": {
+                      "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                      "revision": "synthetic-D26-r1",
+                      "scope": "synthetic-D26-cohort",
+                      "owner": "synthetic-knowledge-owner-C",
+                      "source_locator": "urn:synthetic:d26:C:knowledge",
+                      "sha256": null
+                    }
+                  },
+                  "meaning": {
+                    "template_identity": "SYNTHETIC-D26-TEMPLATE-C",
+                    "functional_role": "非選択slot Cの同一raw fact occurrenceを二度保持する合成テンプレートC。"
+                  },
+                  "condition": {
+                    "kind": "synthetic-fixture-condition",
+                    "scope": "C nonselected duplicate occurrence"
+                  },
+                  "reason": "合成原MeaningFact。",
+                  "ref": {
+                    "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+                    "revision": "synthetic-D26-r1",
+                    "scope": "synthetic-D26-cohort",
+                    "owner": "synthetic-meaning-owner-C",
+                    "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+                    "sha256": null
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "op": "add",
+            "path": "/knowledge_records/-",
+            "value": {
+              "ref": {
+                "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+                "revision": "synthetic-D26-r1",
+                "scope": "synthetic-D26-cohort",
+                "owner": "synthetic-knowledge-owner-C",
+                "source_locator": "urn:synthetic:d26:C:knowledge",
+                "sha256": null
+              },
+              "provenance_refs": [
+                {
+                  "identity": "SYNTHETIC-D26-SOURCE-C",
+                  "revision": "synthetic-D26-r1",
+                  "scope": "synthetic-D26-cohort",
+                  "owner": "synthetic-meaning-owner-C",
+                  "source_locator": "urn:synthetic:d26:C:source",
+                  "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+                }
+              ]
+            }
+          },
+          {
+            "op": "add",
+            "path": "/candidates/-",
+            "value": {
+              "identity": "SYNTHETIC-D26-TEMPLATE-A",
+              "revision": "synthetic-D26-r1",
+              "scope": "synthetic-D26-cohort",
+              "owner": "synthetic-template-owner",
+              "source_locator": "urn:synthetic:d26:A:template",
+              "sha256": null
+            }
+          }
+        ],
+        "materialized_input_canonical_sha256": "209ce8058039512753dd2887e756a76782406a962f69f894635717e60257a5c7"
+      },
+      "raw_input_pointer": "",
+      "raw_input_canonical_sha256": "209ce8058039512753dd2887e756a76782406a962f69f894635717e60257a5c7",
+      "independent_source_relation": "C固有値はこの節の6個のRFC6902 add値で保持する。固定Gitのroot pointer importでA rawを復元し、既存fixture_materialization契約に従いaddを原順適用した後のC raw canonical SHA-256を固定する。固定Git物理bytes、取り込んだA raw、材料化後C rawのhashは別段階である。ローカル独立raw比較は検証証拠であり、追跡本文の再構成入力ではない。"
+    },
+    "finite_C_public_expectation": {
+      "id": "C",
+      "input_binding": {
+        "template_ref": {
+          "identity": "SYNTHETIC-D26-TEMPLATE-A",
+          "revision": "synthetic-D26-r1",
+          "scope": "synthetic-D26-cohort",
+          "owner": "synthetic-template-owner",
+          "source_locator": "urn:synthetic:d26:A:template",
+          "sha256": null
+        },
+        "knowledge_ref": {
+          "identity": "SYNTHETIC-D26-KNOWLEDGE-A",
+          "revision": "synthetic-D26-r1",
+          "scope": "synthetic-D26-cohort",
+          "owner": "synthetic-knowledge-owner",
+          "source_locator": "urn:synthetic:d26:A:knowledge",
+          "sha256": null
+        }
+      },
+      "selected_cohorts": [
+        {
+          "slot_identity": "SYNTHETIC-D26-SLOT-A",
+          "source_ref": {
+            "identity": "SYNTHETIC-D26-SOURCE-A",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-meaning-owner",
+            "source_locator": "urn:synthetic:d26:A:source",
+            "sha256": "db5cc46fb3646c8c1f6959bff7434794dbd16f47ac2975a15c0ad0569198c549"
+          },
+          "source_qualification_ref": {
+            "identity": "SYNTHETIC-D26-QUALIFICATION-A",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-logical-qualification-owner",
+            "source_locator": "urn:synthetic:d26:A:qualification",
+            "sha256": null
+          }
+        }
+      ],
+      "closed_population": {
+        "per_selected_cohort": 14,
+        "rule": "closed_missing_class_tuplesの14分類が、選択cohort Aで各1回現れる。非選択Cの不足は母集団へ追加しない。",
+        "population_count_only": 14,
+        "not_total_findings": true
+      },
+      "nonselected_cohort": {
+        "binding": {
+          "template_ref": {
+            "identity": "SYNTHETIC-D26-TEMPLATE-C",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-template-owner-C",
+            "source_locator": "urn:synthetic:d26:C:template",
+            "sha256": null
+          },
+          "knowledge_ref": {
+            "identity": "SYNTHETIC-D26-KNOWLEDGE-C",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-knowledge-owner-C",
+            "source_locator": "urn:synthetic:d26:C:knowledge",
+            "sha256": null
+          }
+        },
+        "slot_identity": "SYNTHETIC-D26-SLOT-C",
+        "source_ref": {
+          "identity": "SYNTHETIC-D26-SOURCE-C",
+          "revision": "synthetic-D26-r1",
+          "scope": "synthetic-D26-cohort",
+          "owner": "synthetic-meaning-owner-C",
+          "source_locator": "urn:synthetic:d26:C:source",
+          "sha256": "7b7e3688e58c5aacb332dea8c46d298d74e88c29254d01db889ee3fe2d8e8868"
+        },
+        "source_qualification_ref": {
+          "identity": "SYNTHETIC-D26-QUALIFICATION-C",
+          "revision": "synthetic-D26-r1",
+          "scope": "synthetic-D26-cohort",
+          "owner": "synthetic-logical-qualification-owner-C",
+          "source_locator": "urn:synthetic:d26:C:qualification",
+          "sha256": null
+        },
+        "repeated_raw_occurrences": {
+          "count": 2,
+          "operation_ref": {
+            "identity": "SYNTHETIC-D26-OP-C-IDENTITY",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-meaning-owner-C",
+            "source_locator": "urn:synthetic:d26:C:operation:template-identity",
+            "sha256": null
+          },
+          "fact_ref": {
+            "identity": "SYNTHETIC-D26-FACT-C-IDENTITY",
+            "revision": "synthetic-D26-r1",
+            "scope": "synthetic-D26-cohort",
+            "owner": "synthetic-meaning-owner-C",
+            "source_locator": "urn:synthetic:d26:C:fact:template-identity",
+            "sha256": null
+          },
+          "rule": "同じRef値でも原source内のfactとowner operationの2出現を原順で保持し、deduplicateもAの根拠へ借用もしない。 countは原rawの出現数であり、公開Finding件数やprivate occurrence配列の形ではない。"
+        },
+        "population_effect": "Cは非選択cohortなのでrequired missing 14件を加えない。他のFinding全体の不在を主張しない。"
+      },
+      "cohort_binding_rule": "root Aのfull Bindingはinput_bindingで示す。選択Aのsource_ref／source_qualification_refはselected_cohorts[0]からraw Aのsources[].ref／source.qualification_refへ一致する。非選択Cのfull Binding、source_ref、source_qualification_refは本caseの各値からraw Cのdescriptor.binding、sources[].ref、source.qualification_refへ一致する。qualification.root_refだけがraw.qualification_rootsの同一full Refへ一致し、全Refは同一cohortの値を保つ。別cohortの値へ差し替えない。"
     }
   },
   "field_value_applicability_verification": {
