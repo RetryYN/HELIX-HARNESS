@@ -441,6 +441,44 @@ def check_receipt_revisions(binding, receipt, current_revisions):
     return []
 
 
+def check_confirmation_receipt(b):
+    """Read the fixed retirement evidence without checking live formal artifacts."""
+    r = b["replacement"]
+    ref, dig = r.get("confirmation_ref"), r.get("confirmation_digest")
+    if not ref or not dig:
+        return ["E_RETIRE: 置換確認の記録が無い"]
+    if not os.path.isfile(os.path.join(ROOT, ref)):
+        return ["E_RETIRE: 確認記録 %s を読み直せない" % ref]
+    try:
+        with open(os.path.join(ROOT, ref), "rb") as f:
+            raw = f.read()
+    except OSError:
+        return ["E_RETIRE: 確認記録 %s を読み直せない" % ref]
+    if hashlib.sha256(raw).hexdigest() != dig:
+        return ["E_RETIRE: 読み直した確認記録が記録時のdigestと一致しない（read-after不一致。SCF-OS-005）"]
+    try:
+        rec = json.loads(raw)
+    except (ValueError, UnicodeError):
+        return ["E_RETIRE: 確認記録がJSON objectではない"]
+    if not isinstance(rec, dict):
+        return ["E_RETIRE: 確認記録がJSON objectではない"]
+    errs = []
+    if rec.get("result") != "pass": errs.append("E_RETIRE: 確認記録がpassではない")
+    if rec.get("binding") != b["id"]: errs.append("E_RETIRE: 確認記録は別のbinding %s のもの" % rec.get("binding"))
+    if rec.get("binding_core_digest") != binding_core_digest(b):
+        errs.append("E_RETIRE: 確認後にbindingの内容が変わっている（対象revision不一致。SCF-OS-004）")
+    formal, want = r.get("formal_artifacts") or [], r.get("target_revisions") or {}
+    if not formal: errs.append("E_REPL: 正式artifactが未指定")
+    if set(want) != set(formal):
+        errs.append("E_REVISION_SET: target_revisions must cover every formal_artifact")
+    errs += check_receipt_revisions(b, rec, want)
+    if b["state"] == "retired":
+        retired = b.get("retired") or {}
+        if retired.get("confirmation_ref") != ref or retired.get("read_after_digest") != dig:
+            errs.append("E_RETIRE: 撤去時のread-afterと確認記録が一致しない")
+    return errs
+
+
 def operation_preflight(binding, operation, all_bindings=None):
     """Mutation/evidence entry guard: shape first, then applicable local rules.
 
@@ -609,6 +647,8 @@ def cmd_validate(args):
             errs = check_shape(b)
             if not errs:
                 errs += check_rules(b, bs)
+                if not errs and b["state"] == "retired":
+                    errs += check_confirmation_receipt(b)
         rel = os.path.relpath(p, ROOT)
         if errs:
             bad += 1
@@ -691,26 +731,10 @@ def cmd_retire(args):
     if b["state"] != "replacing": errs.append("E_RETIRE: state=replacing からだけ撤去できる（現在 %s）" % b["state"])
     if r.get("status") != "confirmed": errs.append("E_RETIRE: 置換確認が完了していない（SCF-OS-005）")
     ref, dig = r.get("confirmation_ref"), r.get("confirmation_digest")
-    if not ref or not dig:
-        errs.append("E_RETIRE: 置換確認の記録が無い")
-    else:
-        cur = sha256_file(ref)
-        if cur is None: errs.append("E_RETIRE: 確認記録 %s を読み直せない" % ref)
-        elif cur != dig: errs.append("E_RETIRE: 読み直した確認記録が記録時のdigestと一致しない（read-after不一致。SCF-OS-005）")
-        else:
-            with open(os.path.join(ROOT, ref), encoding="utf-8") as f: rec = json.load(f)
-            if rec.get("result") != "pass": errs.append("E_RETIRE: 確認記録がpassではない")
-            if rec.get("binding") != b["id"]: errs.append("E_RETIRE: 確認記録は別のbinding %s のもの" % rec.get("binding"))
-            if rec.get("binding_core_digest") != binding_core_digest(b):
-                errs.append("E_RETIRE: 確認後にbindingの内容が変わっている（対象revision不一致。SCF-OS-004）")
-            current_revisions = {}
-            for artifact in b["replacement"].get("formal_artifacts") or []:
-                digest = sha256_file(artifact)
-                if digest is not None:
-                    current_revisions[artifact] = digest
-            errs += check_receipt_revisions(b, rec, current_revisions)
-            e2, _ = check_replacement(b)
-            errs += e2
+    errs += check_confirmation_receipt(b)
+    if not errs:
+        e2, _ = check_replacement(b)
+        errs += e2
     for x in errs: print("  - " + x)
     if errs:
         print("retire %s: 拒否" % b["id"]); return 1

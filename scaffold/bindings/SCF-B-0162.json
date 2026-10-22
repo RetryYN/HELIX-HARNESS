@@ -15,7 +15,8 @@
     },
     {
       "path": "scaffold/tools/scfctl.py",
-      "sha256": "f25e07a8b020535186e269c758cbccf27e934c4c833e945a2c80fe4bac14b384"
+      "sha256": "4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0",
+      "note": "R5: retired validateへ既存固定receipt照合を再利用。check_staleと研究意味は不変。retired後の正式artifact通常更新を固定しない。check_staleのみconsumerであり、既存役割・義務・verification・replacementは不変。非regular receiptをE_RETIRE読戻し不能へ分類する1分岐を追加（FIFO read待ち回避、新field/gateなし、現SHA=4c53e471c45a079a1c546b430eba0c2497d277b8e5551f6ecb12917bb59b2df0）。"
     }
   ],
   "role": "PR reviewed exact HEADを変えずに試mergeし、changed blobとBinding staleのローカルevidenceを返すread-only研究core、および既存admission条件をGitHub read-only snapshotから評価するadapter",

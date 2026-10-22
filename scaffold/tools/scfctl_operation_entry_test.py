@@ -4,6 +4,7 @@ import contextlib
 import importlib.util
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
@@ -201,6 +202,91 @@ class OperationEntryTests(unittest.TestCase):
             code, output = self.invoke("retire", binding["id"])
             self.assertEqual(code, 0, output)
             self.assertEqual(json.loads(path.read_bytes())["state"], "retired")
+
+    def test_receipt_checks_at_retire_and_validate(self):
+        failures = {
+            "bytes": "E_RETIRE", "missing": "E_RETIRE", "json": "E_RETIRE",
+            "shape": "E_RETIRE", "result": "E_RETIRE", "binding": "E_RETIRE",
+            "core": "E_RETIRE", "revision_missing": "E_RECEIPT_REVISION_SET",
+            "revision_wrong": "E_RECEIPT_REVISION",
+        }
+        for command in ("retire", "validate"):
+            for change in ("normal", *failures, "formal_updated", "artifact_deleted"):
+                with self.subTest(command=command, change=change), self.layout() as root:
+                    binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                    path = self.write_binding(binding)
+                    if command == "validate":
+                        code, output = self.invoke("retire", binding["id"])
+                        self.assertEqual(code, 0, output)
+                        binding = json.loads(path.read_text())
+                    receipt_path = root / binding["replacement"]["confirmation_ref"]
+                    receipt = json.loads(receipt_path.read_text())
+                    if change == "bytes":
+                        receipt_path.write_text(receipt_path.read_text() + " ")
+                    elif change == "missing":
+                        receipt_path.unlink()
+                    elif change == "core":
+                        binding["reason"] += " changed"
+                    elif change == "formal_updated":
+                        (root / "formal/target.txt").write_bytes(b"new formal revision\n")
+                    elif change == "artifact_deleted":
+                        (root / "scaffold/artifact.txt").unlink()
+                    elif change in ("json", "shape", "result", "binding", "revision_missing", "revision_wrong"):
+                        if change == "result": receipt["result"] = "fail"
+                        if change == "binding": receipt["binding"] = "SCF-B-0901"
+                        if change == "revision_missing": receipt["target_revisions"] = {}
+                        if change == "revision_wrong": receipt["target_revisions"]["formal/target.txt"] = "0" * 64
+                        receipt_path.write_text("{" if change == "json" else json.dumps([] if change == "shape" else receipt))
+                        binding["replacement"]["confirmation_digest"] = SCFCTL.sha256_file(binding["replacement"]["confirmation_ref"])
+                        if command == "validate":
+                            binding["retired"]["read_after_digest"] = binding["replacement"]["confirmation_digest"]
+                    self.write_binding(binding)
+                    before = path.read_bytes()
+                    code, output = self.invoke(command, *([binding["id"]] if command == "retire" else []))
+                    expected = failures.get(change)
+                    if command == "retire" and change in ("formal_updated", "artifact_deleted"):
+                        expected = "E_REVISION" if change == "formal_updated" else "E_ARTIFACT"
+                    if expected:
+                        self.assertNotEqual(code, 0, output)
+                        self.assertIn(expected, output)
+                        self.assertEqual(path.read_bytes(), before)
+                    else:
+                        self.assertEqual(code, 0, output)
+                        if command == "validate": self.assertEqual(path.read_bytes(), before)
+
+    def test_validate_rejects_retired_read_after_mismatch(self):
+        for field, value in (
+            ("read_after_digest", "0" * 64),
+            ("confirmation_ref", "scaffold/evidence/other.json"),
+        ):
+            with self.subTest(field=field), self.layout() as root:
+                binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+                path = self.write_binding(binding)
+                code, output = self.invoke("retire", binding["id"])
+                self.assertEqual(code, 0, output)
+                binding = json.loads(path.read_text())
+                binding["retired"][field] = value
+                self.write_binding(binding)
+                before = path.read_bytes()
+                code, output = self.invoke("validate")
+                self.assertNotEqual(code, 0, output)
+                self.assertIn("E_RETIRE", output)
+                self.assertEqual(path.read_bytes(), before)
+
+    def test_validate_rejects_fifo_receipt(self):
+        with self.layout() as root:
+            binding = self.binding(root, 1, state="replacing", replacement_status="confirmed")
+            path = self.write_binding(binding)
+            code, output = self.invoke("retire", binding["id"])
+            self.assertEqual(code, 0, output)
+            receipt = root / binding["replacement"]["confirmation_ref"]
+            receipt.unlink()
+            os.mkfifo(receipt)
+            before = path.read_bytes()
+            code, output = self.invoke("validate")
+            self.assertNotEqual(code, 0, output)
+            self.assertIn("E_RETIRE", output)
+            self.assertEqual(path.read_bytes(), before)
 
 
 if __name__ == "__main__":
