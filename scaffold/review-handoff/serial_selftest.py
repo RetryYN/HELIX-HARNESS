@@ -80,19 +80,54 @@ class SerialChecks(unittest.TestCase):
         g.bind(self.data, "codex", "worker", "execution", 7200, self.now+90000)
         self.claim("B", self.now+90001)
 
-    def test_old_result_retry_does_not_rewind_later_failure(self):
-        a = self.send("A"); self.claim("A")
-        self.result(a); self.result(a, "incomplete"); self.result(a)
-        self.assertEqual(g.dependency_state(self.data, "A")[0], "failed")
+    def test_first_terminal_result_is_fixed_across_distinct_events(self):
+        for first, second, expected in (("proposal", "incomplete", "ready"), ("incomplete", "proposal", "failed")):
+            with self.subTest(first=first):
+                self.setUp(); a = self.send("A"); self.claim("A")
+                self.result(a, first); self.result(a, second); self.result(a, first)
+                self.assertEqual(g.dependency_state(self.data, "A")[0], expected)
+
+    def test_missing_predecessor_and_unready_result(self):
+        a = self.send("A"); b = self.send("B", "A"); self.send("C")
+        for kind in ("proposal", "incomplete"):
+            with self.assertRaises(ValueError): self.result(b, kind)
+        del self.data["issued"][a["payload_sha256"]]
+        self.claim("A"); self.claim("C")
+        self.assertEqual(self.data["messages"]["B"]["status"], "cancelled")
+
+    def test_capacity_counts_waiting_chain_and_failed_parent_uses_no_slot(self):
+        a = self.send("A"); self.send("B", "A"); self.send("C", "B"); self.send("D", "C"); self.send("E", "D")
+        self.assertEqual(len(g.work_items(self.data, "codex")), 5)
+        with self.assertRaises(ValueError): self.send("extra")
+        self.claim("A"); self.result(a, "incomplete")
+        self.assertEqual(g.work_items(self.data, "codex"), [])
+        self.send("late", "A")
+        self.assertEqual(self.data["messages"]["late"]["status"], "cancelled")
+        self.assertEqual(g.work_items(self.data, "codex"), [])
+
+    def test_middle_release_and_claimed_unacked_parent_expiry(self):
+        self.send("A"); self.send("B", "A"); self.send("C", "B")
+        g.release_work(self.data, "claude", "dispatcher", "codex", self.now, "B")
+        self.assertEqual({i["event_id"] for i in g.work_items(self.data,"codex")}, {"A"})
+        self.setUp(); self.send("A", ttl=1); self.send("B", "A"); self.send("C")
+        self.assertEqual(g.claim(self.data, "codex", "worker", self.now)["status"], "claimed")
+        self.claim("C", self.now+2)
+        self.assertEqual(self.data["messages"]["B"]["status"], "cancelled")
 
     def test_after_identity_and_original_result_binding(self):
         self.send("A")
         before = copy.deepcopy(self.data)
-        with self.assertRaises(ValueError): self.send("B", "missing")
+        for parent in ("missing", "B"):
+            with self.assertRaises(ValueError): self.send("B", parent)
         self.assertEqual(self.data, before)
         b = self.send("B", "A")
         altered = dict(b, after="elsewhere")
         with self.assertRaises(ValueError): p.validate_work(altered, self.base)
+        foreign = self.request("foreign", "A")
+        foreign.update(dispatcher="codex", worker="claude"); foreign.pop("payload_sha256")
+        foreign["payload_sha256"] = p.sha(p.encode(foreign))
+        with self.assertRaises(ValueError):
+            g.send(self.data, "codex", "worker", "foreign", "work_request", foreign, None, 60, self.now)
         g.bind(self.data, "codex", "replacement", "execution", 7200, self.now+7201)
         with self.assertRaises(ValueError): self.send("D", "A")
 

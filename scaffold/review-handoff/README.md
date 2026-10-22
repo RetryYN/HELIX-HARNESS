@@ -101,11 +101,11 @@ ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件�
 
 `packet.py build-work --after PREDECESSOR_EVENT_ID`で先行のevent IDを1件指定できる。通常どおり各依頼を個別sendする。`A⇒B⇒C`はBのafter=A、Cのafter=B、`(A⇒B)∥C`はCだけafterなしで表す。先行は実際に送信済みで、同じ依頼側/作業側のruntime/sessionに属する依頼に限る。任意DAG・manifest・一括send・execution receiptは持たない。
 
-後続は先行の`proposal`結果までclaimを待ち、待機TTLを止める。結果の受領だけをmerge・承認にせず、PRが必要な列では作成側が独立review・明示merge・read-after後に最終のwork_resultを返す。作業側は後続着手時にfetchした最新mainと参照SHAを確認して作業baseを定め、ずれやreview findings、blockedでは`incomplete`を返す。依頼の元base/hashやdispatcherを書き換えない。blockedという新result値は追加しない。
+後続は先行の最初の`proposal`結果までclaimを待ち、待機TTLを止める。依存状態は最初の終端結果で固定し、後の通知では変えない。afterの先行になる依頼では、PRが必要な作業のproposalは独立review・明示merge・read-after後にだけ返す。途中の報告はPR/Issue commentで行い、work_resultにしない。機構は最初のproposalで後続を解放し、merge完了自体は見ない。作業側は後続着手時にfetchした最新mainと参照SHAを確認して作業baseを定め、ずれやreview findings、blockedでは`incomplete`を返す。依頼の元base/hashやdispatcherを書き換えない。blockedという新result値は追加しない。
 
-先行が`incomplete`/`declined`、明示release、未ACK期限切れなら、依存する後続だけを連鎖的にcancelledにし枠を外す。取消理由と先行event IDを既存の終了記録へ残す。afterのない独立依頼は維持する。各結果は元のrequest_id/payloadに対応させ、sessionを自動で付け替えない。
+先行が`incomplete`/`declined`、明示release、未ACK期限切れなら、依存する後続だけを連鎖的にcancelledにし枠を外す。取消理由と先行event IDを既存の終了記録へ残す。afterのない独立依頼は維持する。各結果は元のrequest_id/payloadに対応させ、sessionを自動で付け替えない。待機中の後続も未完了5件の枠を使い、長さ5の鎖はその作業側の全枠を使う。旧形式でevent/session情報が無い先行はafterに指定できず、新しい依頼を送る。
 
-旧`PLAN-L7-64-team-runner-launch.md:48–66`のparallelと`L6-function-design/agent-slots.md:89–108`のserialize_afterを意味から再導出した。旧sourceは`archive/legacy-generation-2026-09-14/root/docs/`配下を読取参照した。#3405 R1の未受信後続TTL切れを防ぐ待機TTL停止を保持し、旧runtime/providerは実行しない。#3573 R1で判明した未開放の直列後続・二重状態の問題を避け、既存の割当/送信記録だけを使う。
+旧`PLAN-L7-64-team-runner-launch.md:48–66`のparallelと`L6-function-design/agent-slots.md:89–108`のserialize_afterを意味から再導出した。旧sourceは`archive/legacy-generation-2026-09-14/root/docs/`配下を読取参照した。#3405 R1の未受信後続TTL切れを防ぐ待機TTL停止を保持し、旧runtime/providerは実行しない。既存の割当/送信記録だけを使う。
 
 
 `release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、独立した後続の割当は保存し、afterで依存する後続は上記の規則で取消す。待機後続のTTLはこの解放では開始せず、その依頼自身のclaimを待つ。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。

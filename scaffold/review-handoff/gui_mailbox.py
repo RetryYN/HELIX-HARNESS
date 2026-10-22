@@ -119,19 +119,6 @@ def issued_for_event(data, event_id):
     for digest, issued in data.get("issued", {}).items():
         if issued.get("event_id") == event_id:
             return digest, issued
-    # 新機能導入前から割当中の依頼は、残っている本文から送信sessionを補える。
-    for worker in RUNTIMES:
-        item = next((value for value in work_items(data, worker) if value["event_id"] == event_id), None)
-        message = data.get("messages", {}).get(event_id)
-        if item and message and message["payload"]["kind"] == "work_request":
-            request = message["payload"]["request"]
-            digest = request["payload_sha256"]
-            issued = data.get("issued", {}).get(digest)
-            if issued:
-                issued.update(event_id=event_id,
-                              dispatcher_session=message["payload"]["sender_session"],
-                              worker_session=message["payload"]["receiver_session"])
-                return digest, issued
     return None, None
 
 
@@ -139,43 +126,43 @@ def dependency_state(data, event_id):
     """依存先の結果を未完・成功・失敗へ読む。結果の正本は既存issued記録。"""
     _, issued = issued_for_event(data, event_id)
     if issued is None:
-        return "missing", "predecessor_missing"
-    if issued.get("result_kind") == "proposal":
+        return "failed", "predecessor_missing"
+    outcome = issued.get("outcome")
+    if outcome == "proposal":
         return "ready", None
-    if issued.get("result_kind") in ("incomplete", "declined"):
-        return "failed", "result_" + issued["result_kind"]
-    if issued.get("terminal_reason"):
-        return "failed", issued["terminal_reason"]
+    if outcome is not None:
+        return "failed", outcome
     return "waiting", None
 
 
-def record_dependency_terminal(data, event_id, reason):
-    _, issued = issued_for_event(data, event_id)
-    if issued is not None and not issued.get("result_kind") and not issued.get("terminal_reason"):
-        issued["terminal_reason"] = reason
-
-
-def cancel_dependents(data, event_id, reason, now):
-    """失敗した依頼の直列後続だけを閉じ、独立依頼は残す。"""
-    pending = [(event_id, reason)]
+def end_work(data, event_id, outcome, now):
+    """依頼の最初のterminal outcomeを固定し、失敗なら依存列だけを閉じる。"""
+    pending = [(event_id, outcome)]
     visited = set()
     while pending:
-        predecessor, cause = pending.pop()
-        if predecessor in visited:
+        current_id, requested = pending.pop()
+        if current_id in visited:
             continue
-        visited.add(predecessor)
+        visited.add(current_id)
+        _, issued = issued_for_event(data, current_id)
+        current = issued.get("outcome") if issued is not None else None
+        if current is None:
+            current = requested
+        if issued is not None:
+            issued["outcome"] = current
+        if current == "proposal":
+            continue
         for worker in RUNTIMES:
             for item in list(work_items(data, worker)):
-                if item.get("after") != predecessor:
+                if item.get("after") != current_id:
                     continue
                 message = data.get("messages", {}).get(item["event_id"])
                 if message is None or message["status"] != "queued":
                     continue
                 child_id = item["event_id"]
                 message["status"] = "cancelled"
-                message["cancel_reason"] = "after:" + predecessor + ":" + cause
+                message["cancel_reason"] = "after:" + current_id + ":" + current
                 remove_work(data, worker, child_id, now)
-                record_dependency_terminal(data, child_id, "dependency_cancelled")
                 pending.append((child_id, "dependency_cancelled"))
 
 
@@ -229,13 +216,12 @@ def prune_expired_work(data, worker, now):
         waiting = message.get("work_waiting") is True
         if message["status"] in ("queued", "claimed") and not waiting and message["expires"] <= now:
             message["status"] = "expired"
-            record_dependency_terminal(data, item["event_id"], "expired")
             expired.append(item["event_id"])
         if message["status"] in ("queued", "claimed"):
             kept.append(item)
     set_work_items(data, worker, kept, now)
     for event_id in expired:
-        cancel_dependents(data, event_id, "expired", now)
+        end_work(data, event_id, "expired", now)
 
 
 def close(data, event_id, status, now):
@@ -259,8 +245,7 @@ def close(data, event_id, status, now):
         # 受け取られずに終わった作業依頼は着手されていない。次の依頼を止めない。
         remove_work(data, payload["receiver_runtime"], event_id, now)
     if payload["kind"] == "work_request" and status == "expired":
-        record_dependency_terminal(data, event_id, "expired")
-        cancel_dependents(data, event_id, "expired", now)
+        end_work(data, event_id, "expired", now)
     # 監査記録は識別子と時刻だけ。依頼・応答の本文（purpose、scope、findings等）は書かない。
     record = dict(event_id=event_id, kind=payload["kind"], status=status, digest=message["digest"],
                 sender_runtime=payload["sender_runtime"], sender_session=payload["sender_session"],
@@ -380,6 +365,9 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
         p.validate_work_result(response, request)
         # 添付の依頼は、実際に送られた作業依頼と同じ全値に限る。依頼側を書き換えた依頼で記録を偽らせない。
         p.require(issued_request(data, runtime, request), "送信記録の無い作業依頼への結果")
+        if request.get("after") is not None:
+            after_state, _ = dependency_state(data, request["after"])
+            p.require(after_state == "ready", "after未readyの作業依頼に結果を送れない")
         # 結果は自分以外の登録済みruntimeの誰へでも送れる。省略時は、停止中でも通知で起きるClaudeへ送る。
         # Claude自身が作業側のときだけ、省略時は依頼側へ返す。
         target_runtime = to or ("claude" if runtime != "claude" else request["dispatcher"])
@@ -448,20 +436,21 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
         if after_state == "failed":
             message["status"] = "cancelled"
             message["cancel_reason"] = "after:" + request["after"] + ":" + after_reason
-            issued["terminal_reason"] = "dependency_cancelled"
         else:
             items.append(item)
             set_work_items(data, target_runtime, items, now)
         data["messages"][event_id] = message
+        if after_state == "failed":
+            end_work(data, event_id, "dependency_cancelled", now)
         return message
     elif kind == "work_result":
         # 結果は完全に一致する割当だけを外す。受信後・ACK前の結果でも元通知を残さず、後からの重複配送を防ぐ。
         issued = data.get("issued", {}).get(request["payload_sha256"])
-        if issued and not issued.get("terminal_reason"):
-            # 同じ依頼へ段階的な結果を複数返せる。重複eventの早期return後だけ依存状態を更新する。
-            issued["result_kind"] = response["result"]
-            if response["result"] != "proposal" and issued.get("event_id"):
-                cancel_dependents(data, issued["event_id"], "result_" + response["result"], now)
+        if issued and issued.get("event_id"):
+            # 結果通知は従来どおり送るが、依存stateの最初のterminal outcomeは変更しない。
+            outcome = ("proposal" if response["result"] == "proposal"
+                       else "result_" + response["result"])
+            end_work(data, issued["event_id"], outcome, now)
         matching = next((item for item in work_items(data, runtime)
                          if item["payload_sha256"] == request["payload_sha256"]
                          and item["dispatcher"] == request["dispatcher"]), None)
@@ -504,9 +493,8 @@ def release_work(data, runtime, session, worker, now, event_id=None):
         # 取り下げた依頼を後から配送・ACKさせない。cancelledは既存の終了記録・監査記録の経路で閉じる。
         message["status"] = "cancelled"
         message["cancel_reason"] = "release"
-    record_dependency_terminal(data, selected["event_id"], terminal_reason)
     remove_work(data, worker, selected["event_id"], now)
-    cancel_dependents(data, selected["event_id"], terminal_reason, now)
+    end_work(data, selected["event_id"], terminal_reason, now)
 
 
 def claim(data, runtime, session, now):
@@ -526,7 +514,7 @@ def claim(data, runtime, session, now):
             if after:
                 state, reason = dependency_state(data, after)
                 if state == "failed":
-                    cancel_dependents(data, after, reason, now)
+                    end_work(data, after, reason, now)
                     continue
                 if state != "ready":
                     continue
@@ -538,8 +526,8 @@ def claim(data, runtime, session, now):
                 message.pop("work_waiting")
         if message["expires"] <= now:
             message["status"] = "expired"
-            record_dependency_terminal(data, payload["event_id"], "expired")
-            cancel_dependents(data, payload["event_id"], "expired", now)
+            if payload["kind"] == "work_request":
+                end_work(data, payload["event_id"], "expired", now)
             continue
         if message["status"] == "claimed":
             # 未ACKは自動再配送しない。明示retryで同じsessionへの再表示だけを許す。

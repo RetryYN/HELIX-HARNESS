@@ -15,7 +15,7 @@
   },
   {
    "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "11c29cc469e034fba23b2eadf4898a4047222373a3828944aecdd3d523c16886",
+   "sha256": "669ade56b86f5c552e819b426afc301f0c372aee45164d4b4294ab53fef7cfdf",
    "note": "GUI mailbox、worker/reviewer分離、create/review/merge責務の現行運用参照。 [2026-10-22 #3546 Codex引取照合: Devin元HEAD b600d4f9のchecker/selftest内容は不変。現行運用モデルの5件/並列claim/各自TTL起算へpinを追随し、本Bindingの静的参照検査role・obligations・authorityは不変。]"
   },
   {
