@@ -92556,7 +92556,7 @@
       "caller/native fact両側のbody追従変更とnormative引数追従変更を区別し、固定規範と異なるframe/bodyを同じ意味の評価にしない。A/B/C/D27-A/Bの有限rawと公開期待を本節に固定し、それ以外の入力と期待はremainingに残す。",
       "Aのroot候補空、Bの明示candidateとA frameの混合、選択Aに対する非選択Cの保持を区別する。Cの同一fact/operation二出現は原順で保持し、Cに未要求不足を増殖させない。",
       "slot/facts欠落・限定undefinedは新解釈record未供給でも元規則を維持する。意味肯定/否定/未決、同slot null/defined/未資格の併存、NA元record対象違い/未解決を原原因ごと観測する。",
-      "公開Comparison/全assessment/source read全出現は別の有限条件で照合する。D27-AはClaim /claims/0と局所target conflictを観測する。D27-Bは同snapshotの3 Claim rawを保持し、Claim1のrule87 tupleだけを有限期待に固定する。Claim2はfact meaning=null、owner decision=undetermined、basis Refとsemantic sourceの対応条件がL4/L5から閉じないためrule93 tupleを固定しない。Claim0の合成最終stateやmixed Claimへのroute抑止、whole callのFinding総数は固定しない。D26-A raw、無関係candidate/slot、旧79+5を新fn1全値証拠として数えない。",
+      "公開Comparison/全assessment/source read全出現は別の有限条件で照合する。D27-AはClaim /claims/0と局所target conflict、D27-Bは同snapshotの3 Claim rawとClaim1 rule87 tupleを保持する。Claim2はfinite_D27_B_public_expectation/claim2_unclosed_basis_and_originに従う。whole callのFinding総数、Claim0の合成最終stateとmixed Claimへのroute抑止は固定しない。D26-A raw、無関係candidate/slot、旧79+5を新fn1全値証拠として数えない。",
       "NA要求member absentとsupplied nullは別の原presence/stateとして観測し、明示nullの原未決をnot_requestedへ丸めない。元definition stateは別に保持する。"
     ],
     "preservation": {
@@ -92571,7 +92571,7 @@
       "実source qualification/provider/codec/custodyと後続層の接続。実行・実資格・C6/F09全体の成立は本追加から主張しない。",
       "原operandsを意味ownerが独立に実供給するcallerは未実施（A/B/C/D27-A/B rawは合成前提のみ）。L4 producers.independenceのこの将来要件を合成作成で満たしたとは扱わない。",
       "D27-A/Bの有限期待は各局所条件のみ。mixed Claimのroute抑止/合成最終stateはL4未閉のためD27-Bでも対象外・未固定。actual、実source資格、provider接続は未実施。",
-      "D27-B Claim2のorigin/basis対応はfinite_D27_B_public_expectation/claim2_unclosed_basis_and_originに記録する。fact Ref・semantic sourceをbasisにしたrule93該当はL4・L5で閉じていないため、原rawを保持して公開tupleは固定しない。"
+      "D27-B Claim2の未閉basis対応はfinite_D27_B_public_expectation/claim2_unclosed_basis_and_originを参照する。"
     ],
     "current_contract_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -92592,7 +92592,7 @@
         "/dependency_semantic_ports/claim_intent_protocol",
         "/dependency_semantic_ports/public_projection"
       ],
-      "role": "A/B/CとD27-A/Bのroot・candidate・cohort素材、D27-A混在targetの有限入力、およびD27-B Claim1 missing/reference_only rule87 tupleの現行L4根拠を示す。D27-B Claim2のunknown_fallback tupleは本節で固定しない。現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの根拠を示す。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
+      "role": "A/B/CとD27-A/Bのroot・candidate・cohort素材、D27-A混在targetの有限入力、およびD27-B Claim1 missing/reference_only rule87 tupleの現行L4根拠を示す。現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの根拠を示す。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
     },
     "synthetic_fixture_premise": {
       "scope": "A/B/C/D27-A/D27-Bの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。",
@@ -94295,7 +94295,7 @@
         "D27-Aのtarget Refとslot A/BはD27-A専用値で、D26 template_ref/slot/factから生成しない。targetの供給元と同full Binding対応はL4 /dependency_semantic_ports/descriptor_target_contract/carrier/origin、/dependency_semantic_ports/descriptor_target_contract/carrier/fields/target_ref、/dependency_semantic_ports/descriptor_target_contract/relevance_table/0で確認する。",
         "別Bindingや別slot/sourceをClaimの対応へ移さない（L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/other_same_kind、/dependency_semantic_ports/descriptor_target_contract/relevance_table/4）。"
       ],
-      "scope_limit": "Aはfn1 1回評価用の有限入力と局所target-conflict材料だけを固定し、複合最終stateを固定しない。BはこのClaimを保持し、別locatorのrule87・rule93 positive Claimを各1件追加した計3 Claimを同じcase/callに置いて両公開tupleを扱う。A/Bとも実actualとformal pairは未成立。全Comparison/Finding数、rule_ref literal、出力Ref列、reason、sort、private index/occurrence shapeは固定しない。"
+      "scope_limit": "Aはfn1 1回評価用の有限入力と局所target-conflict材料だけを固定し、複合最終stateを固定しない。BはこのClaimを保持し、別locatorのClaim1/2を追加した計3 Claimを同じcase/callに置き、公開tupleはClaim1のrule87だけを固定する。Claim2はBのclaim2_unclosed_basis_and_originに従い未固定とする。A/Bとも実actualとformal pairは未成立。全Comparison/Finding数、rule_ref literal、出力Ref列、reason、sort、private index/occurrence shapeは固定しない。"
     },
     "finite_D27_B_raw_input": {
       "materials": [
@@ -94959,32 +94959,39 @@
             "/claims/2/basis_refs/0",
             "/claims/2/basis_refs/1"
           ],
-          "role": "原Claim・target・slot・fact/source・undetermined operation・basis refsをrawのまま保持する。originの同時条件とbasis-to-source対応からrule93 tupleを導けることはL4/L5で閉じないため、このClaimに公開tupleを置かない。"
+          "role": "未固定の理由はclaim2_unclosed_basis_and_originを参照する。"
         }
       ],
       "per_claim_rule": "この有限期待でtupleを固定するClaim1は、L4 predicateが成立した場合のrule87 Finding一件だけを対応させ、同Claimを二重化しない。Claim0/2にはroute tupleを固定しない。whole callのFinding総数は示さない。",
-      "scope_limit": "D27-BはClaim0/1/2 rawを同一case/callの有限入力として保持し、Claim1のsource・Binding・target/slot・reference_only basis対応とL4閉rule87 tupleだけを固定する。Claim2はmeaning=nullとowner decision=undeterminedが同時に存在し、L4 consumer_branch_table/1・/3の間に優先/排他規則がない。またClaim2 basis_refsの一つはsourceにjoinせず、他方はsemantic_json sourceへjoinするため、L5 basis_resolution/rule93_predicateの許容basis classにも該当しない。Claim2の公開tupleは固定しない。D26 Aの14 tuple期待を新slotへ適用しない。Claim0のroute抑止/合成最終state、whole callのFinding総数、rule_ref literal、Ref列、reason、sort、private index/occurrence shapeも固定しない。schema通過は実資格、actual、formal pair admissionを示さない。",
+      "scope_limit": "D27-BはClaim0/1/2 rawを同一case/callに保持し、Claim1のsource・Binding・target/slot・reference_only basis対応とL4閉rule87 tupleを固定する。Claim2はclaim2_unclosed_basis_and_originに従う。D26 Aの14 tuple期待を新slotへ適用しない。Claim0のroute抑止/合成最終state、whole callのFinding総数、rule_ref literal、Ref列、reason、sort、private index/occurrence shapeは固定しない。schema通過は実資格、actual、formal pair admissionを示さない。",
       "claim2_unclosed_basis_and_origin": {
         "locator": "/claims/2",
-        "raw_preserved": [
-          "/descriptors/2/facts/0/meaning",
-          "/sources/2/content/definition_meaning_operations/0/decision",
-          "/claims/2/basis_refs/0",
-          "/claims/2/basis_refs/1"
-        ],
-        "l4_unclosed_origin_pointers": [
+        "l4_closed_state_retention_pointers": [
           "/definition_meaning_resolution_contract/consumer_branch_table/1",
-          "/definition_meaning_resolution_contract/consumer_branch_table/3"
+          "/definition_meaning_resolution_contract/consumer_branch_table/3",
+          "/definition_meaning_resolution_contract/consumer_branch_table/4",
+          "/definition_meaning_resolution_contract/same_call_and_public_projection/state_locality"
         ],
-        "l5_unclosed_or_individual_branch_pointers": [
+        "l5_closed_individual_branch_pointers": [
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/2",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/4",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/fact_body_projection_contract/meaning_reader_construction/1",
-          "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution",
-          "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/rule93_predicate"
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality/without_call"
         ],
-        "basis_join_observation": "basis_refs[0]のFACT-UNKNOWNはsource Refへの一致がなく、basis_refs[1]のSEMANTIC-SOURCEはsources[2]のsemantic_jsonへ対応する。L5のbasis_resolutionでは未対応Refをunresolvedとして保存し、semantic sourceの存在だけで独立意味根拠を成立させない。rule93_predicateの許容basis classにも該当しない。",
-        "not_claimed": "これはClaim2のtupleを固定しない理由の記録であり、originの優先順位を選ぶものでも、L4/L5の意味変更を述べるものでも、raw basisを変更するものでもない。"
+        "closed_state_retention": "L4のbody nullによる既存undefinedとundeterminedのunknown原因は独立に保持され、併存を排除しない。L5の個別branchも原状態を保持し、undeterminedだけをbody=nullのrule93支持へ拡大しない。この保持規則を未閉の優先選択として扱わない。",
+        "l4_unclosed_basis_pointers": [
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/routing",
+          "/dependency_semantic_ports/public_projection/rule_routing"
+        ],
+        "l5_unresolved_basis_pointers": [
+          "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution",
+          "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit",
+          "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/rule93_predicate",
+          "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order",
+          "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/mixed_states"
+        ],
+        "basis_join_observation": "原basis_refs[0]のfact Refはsource Refへの一致がなく、basis_refs[1]はsources[2]のsemantic_jsonへ対応する。L5は未対応basisをunresolvedとして保存し、semantic sourceだけから独立意味根拠を成立させない。",
+        "public_expectation": "原状態を保持したうえで、fact Ref・semantic sourceをbasisとするrule93の対応成立基準はL4で閉じていない。L5の不成立側の判定も公開期待の根拠にせず、Claim2のtupleも不発火も固定しない。"
       }
     }
   },
