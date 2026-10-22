@@ -27,28 +27,13 @@
     "merge-treeが参照されないobjectをobject DBへ書く場合がある。ref・index・worktreeは変えない。"
   ],
   "connections": {
-    "consumers": [
-      "Issue #3565のadmission checker実装レビュー",
-      "SCF-B-0001のBinding/stale既存機構"
-    ],
-    "dependencies": [
-      "git temporary repository",
-      "Python standard library",
-      "scaffold/tools/scfctl.py::check_stale"
-    ],
+    "consumers": ["Issue #3565のadmission checker実装レビュー", "SCF-B-0001のBinding/stale既存機構"],
+    "dependencies": ["git temporary repository", "Python standard library", "scaffold/tools/scfctl.py::check_stale"],
     "boundary": "scaffold内のauthority_effect:noneの研究実装。試mergeで参照されないobjectがobject DBに残る場合がある。ref・index・worktreeとGitHub外部状態は変えない。"
   },
   "operations": {
-    "allowed": [
-      "temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合",
-      "trial treeのBinding upstream digest検査"
-    ],
-    "forbidden": [
-      "GitHub review/Ready/merge/comment/mailboxの外部状態変更",
-      "共有checkout/PRのref・index・worktree変更",
-      "CodeQLやrequired checkを新しいgateにする",
-      "旧CLI/hook/runtime/test/CIの実行"
-    ]
+    "allowed": ["temporary Git fixtureと実repositoryでのmerge-treeとblob ID照合", "trial treeのBinding upstream digest検査"],
+    "forbidden": ["GitHub review/Ready/merge/comment/mailboxの外部状態変更", "共有checkout/PRのref・index・worktree変更", "CodeQLやrequired checkを新しいgateにする", "旧CLI/hook/runtime/test/CIの実行"]
   },
   "artifacts": [
     "scaffold/tools/pr_admission_check.py",
@@ -57,27 +42,9 @@
   ],
   "verification": {
     "evidence_kind": "scaffold",
-    "scope": [
-      "schema_interface",
-      "deterministic_behavior",
-      "source_revision_stale",
-      "negative_case",
-      "forbidden_write_scope"
-    ],
-    "oracles": [
-      "scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture",
-      "scaffold/tools/scfctl.py::check_stale",
-      "git diff --check"
-    ],
-    "negative_cases": [
-      "reviewed HEAD mismatch",
-      "changed blob mismatch",
-      "stale upstream Binding",
-      "trial merge conflict",
-      "Git/object failure unknown",
-      "binary/CRLF object ID",
-      "deleted path missing on both sides"
-    ]
+    "scope": ["schema_interface", "deterministic_behavior", "source_revision_stale", "negative_case", "forbidden_write_scope"],
+    "oracles": ["scaffold/tools/pr_admission_check_selftest.py: temporary Git fixture", "scaffold/tools/scfctl.py::check_stale", "git diff --check"],
+    "negative_cases": ["reviewed HEAD mismatch", "changed blob mismatch", "stale upstream Binding", "trial merge conflict", "Git/object failure unknown", "binary/CRLF object ID", "deleted path missing on both sides"]
   },
   "replacement": {
     "role_target": "既存上流運用モデルに沿うread-only admission証拠checkerの将来保守担当（formal owner未確定）",
