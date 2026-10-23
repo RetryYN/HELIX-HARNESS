@@ -8,7 +8,7 @@
     "pointer": "/definition_meaning_D27_descriptor_target_verification",
     "operation": "RFC 6902 replace"
   },
-  "scope_ja": "D27-B Claim1/2に対する2 callの直接引数とDescriptorTargetRead全8fieldを既存資格条件下で再検証する。A0/B0はcurrent閉包でconflict/matches=[]だが、そのfull readとClaimUse/全function returnはこの2call材料の対象外。",
+  "scope_ja": "rootは既存D27-B Claim1/2の2call全8field、A0_target_verificationはD27-A Claim0の単独call全8fieldを既存資格条件下で材料化する。B0 full read、全target/intent配列とwhole fn1/ClaimUse/consumer返却は対象外。",
   "execution_boundary_ja": "L4/L5からの有限reader期待と固定source/RFC材料化だけを記録する。validate_supply_input、target reader、製品runtime、helper、旧CLI/hook/test/CIは実行しない。source qualificationは実測していないため条件付き期待を越えて断定しない。",
   "fixed_git_sources": {
     "L4_CURRENT": {
@@ -152,7 +152,7 @@
     },
     {
       "item_ja": "special readの返却は本単体資料の対象外",
-      "effect_ja": "request schedule/activation/basis形状返却はcurrent契約で閉じている。この2target callの資料はspecial結果を消費又は全walkへ組み立てない。",
+      "effect_ja": "request schedule/activation/basis形状返却はcurrent契約で閉じている。本target reader資料はspecial結果を消費又は全walkへ組み立てない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -896,5 +896,174 @@
       "source_ref"
     ]
   },
-  "postclosure_revalidation_ja": "共通の閉包後再検証は descriptor-definition-projection-fixtures.json#/postclosure_revalidation_ja を参照。本資料では既存資格条件下のB Claim1/2の2 target call全8fieldを再検証し、出力値を保持した。"
+  "postclosure_revalidation_ja": "共通の閉包後再検証は descriptor-definition-projection-fixtures.json#/postclosure_revalidation_ja を参照。本資料では既存資格条件下のB Claim1/2の2 target call全8fieldを再検証し、出力値を保持した。",
+  "A0_target_verification": {
+    "id": "HELIXBRAIN-L8-D27-A0-TARGET-UNIT",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "D27-A Claim0のread_descriptor_replacement_target単独1 callに対するDescriptorTargetRead全8fieldを材料化する。親のB Claim1/2 readsは変更しない。",
+    "execution_boundary_ja": "親childの既存fixed Git imports、intent RFC、target RFCを順に材料化した後、固定L4 reason importsと本unitの標準RFCを適用する。fn0/reader/helper/product/旧CLI/hook/test/CIを起動しない。資格は条件付き。",
+    "same_artifact_basis": [
+      "/contract_basis",
+      "/fixed_git_sources",
+      "/reconstruction/seed"
+    ],
+    "reconstruction": {
+      "seed": {
+        "target_call": null,
+        "expected_read": {
+          "claim_locator": null,
+          "claim": null,
+          "candidate_indices": [],
+          "candidate_refs": null,
+          "occurrences": null,
+          "matches": [],
+          "state": "conflict",
+          "problems": null
+        },
+        "source_snapshot": {
+          "mapping_conflict_reason": null,
+          "target_ambiguous_reason": null
+        }
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L4_CURRENT",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "git_revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
+          "source_pointer": "/dependency_semantic_ports/descriptor_target_contract/reason_templates/target_mapping_conflict",
+          "bundle_pointer": "/source_snapshot/mapping_conflict_reason",
+          "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+          "value_canonical_sha256": "56809544fc69c07db7f9a51a25ab70d20cf62e51f0bffe7a169165476bb4b146"
+        },
+        {
+          "source_key": "L4_CURRENT",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "git_revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
+          "source_pointer": "/dependency_semantic_ports/descriptor_target_contract/reason_templates/target_ambiguous",
+          "bundle_pointer": "/source_snapshot/target_ambiguous_reason",
+          "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+          "value_canonical_sha256": "4b67ab728e4589481bcc4e972aedb7ce8bdb5e8836c494e6d4cf5035b3104099"
+        }
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/A0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "description_ja": "子descriptor-target fixture文書rootに適用する。copy元は親reconstruction後に存在する/reconstruction/seed配下、追加先は/A0_target_verification配下。"
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/target_calls/0",
+          "path": "/A0_target_verification/reconstruction/seed/target_call"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/inputs/A",
+          "path": "/A0_target_verification/reconstruction/seed/target_call/validated/input"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/read_calls/0/claim_locator",
+          "path": "/A0_target_verification/reconstruction/seed/target_call/claim_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/read_calls/0/claim",
+          "path": "/A0_target_verification/reconstruction/seed/target_call/claim"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/target_call/claim_locator",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/claim_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/target_call/claim",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/claim"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/inputs/A/candidates",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/candidate_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/0/occurrences",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/occurrences"
+        },
+        {
+          "op": "remove",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/occurrences/4"
+        },
+        {
+          "op": "remove",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/occurrences/3"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/0/problems",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems"
+        },
+        {
+          "op": "replace",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems/1/kind",
+          "value": "target_mapping_conflict"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/source_snapshot/mapping_conflict_reason",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems/1/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/expected_read/problems/1",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems/-"
+        },
+        {
+          "op": "replace",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems/2/kind",
+          "value": "target_ambiguous"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/source_snapshot/target_ambiguous_reason",
+          "path": "/A0_target_verification/reconstruction/seed/expected_read/problems/2/reason"
+        }
+      ],
+      "operation_count": 16,
+      "operation_types": {
+        "copy": 12,
+        "replace": 2,
+        "remove": 2
+      },
+      "expected_return_pointer": "/A0_target_verification/reconstruction/seed/expected_read",
+      "canonical_expected_return_sha256": "449b60c917a903f51a14621549f09c9751a6f2dd0bb2ef8c047889f1fb4e71c3",
+      "seed_protocol_ja": "expected_readは閉じた8field順を先に宣言する。candidate_indices=[]はraw A.candidatesの長さが0であり、全原indexを原順保持しても空となる確定期待値である。state=conflictはcontract_basis[0]の現行L4 cohort_result_contractによるSLOT-Aのkind不一致のconflict優先、matches=[]は同契約とreturn_field_mapping.matchesによるnonresolved時の空配列から独立に導いた確定期待値である。candidate_refsは原raw A.candidates全値をcopyする。occurrences/problems等のnullだけがRFC適用前のplaceholderであり、確定literalをplaceholderとは扱わない。",
+      "reason_import_basis_ja": "2reason importsは既存fixed_git_sources.L4_CURRENTの歴史revision 2f834488を共有する文字列値のsource pinであり、そのrevisionを現行契約の根拠にはしない。A0全返却の契約根拠はchild root contract_basis[0]のL4 revision 4b5fd9d1024af6f7cfca6180482277a92def63ac、SHA c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228（cohort_result_contract等を含む）である。2reasonは同契約値と完全一致を照合する。",
+      "structural_copy_preconditions_ja": "B1からのcopyを使えるのは、固定B raw.sources[1]の先頭3 descriptor_targets宣言とA raw.sources[1]の全3宣言が全値・原順で同じで、source_ref/raw binding/locatorを含むB1 occurrencesの先頭3全値がAの3 occurrencesと一致し、B1 problemsがちょうど2件（source0 target_container_absent、source1 target_not_declared）の順であるためである。source0/1の原Refとproblem locatorもAと同値である。残り2 occurrenceを除去し、第2problemをmapping conflictへ置換・複写してambiguousへ置換する。これらは固定import/patchと独立A0全返却期待に対して照合する前提であり、B raw又はB1が変わった場合にはA0の値一致を改めて確認する。",
+      "phase_protocol_ja": "親のfixed imports後にintent reconstruction operationsを/intent_workspace rootへ適用し、続いて親target 50 operationsを/reconstruction/seed rootへ適用する。最後にA0 local fixed importsをunit seed rootへ適用し、本operation arrayを子document rootへ適用する。親root reconstructionはこの最後のunit patchで不変。"
+    },
+    "closed_field_order": [
+      "claim_locator",
+      "claim",
+      "candidate_indices",
+      "candidate_refs",
+      "occurrences",
+      "matches",
+      "state",
+      "problems"
+    ],
+    "scope_limits_ja": [
+      "A rawの2sourceがunusable_source_refsに含まれずinput_issues=[]である条件付きValidatedSupplyを使う。fn0資格成立又は資格実行の証拠ではない。",
+      "Qualification/fn0、consumer route、fn1全返却はこのunitの範囲外。"
+    ],
+    "authority_effect": "none",
+    "same_artifact_materialization_ja": "既存root30importsをseedへ展開し、intent65→target50の既存sequenceを各apply rootへ適用してから本unitを材料化する。B1のcallとoccurrences/problemsは構造copy元に限り、A0の原Claim/locator/full A rawとcurrent契約から独立に固定した全8fieldへ照合する。",
+    "function_call": {
+      "symbol": "read_descriptor_replacement_target",
+      "arguments_pointer": "/A0_target_verification/reconstruction/seed/target_call"
+    }
+  }
 }
