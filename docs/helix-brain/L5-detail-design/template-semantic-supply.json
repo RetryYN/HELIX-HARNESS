@@ -7610,7 +7610,7 @@
           "undefined_guard": "undefined支持にはさらにstate=unknown AND origin_branch=meaning_undefinedが必要。definition_applicabilityのsource_unresolved/NAknown/pairknown/帰属knownは入れない。"
         },
         "route_reason_templates": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals",
-        "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。"
+        "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。出力の字面の出典を指定するもので、上流のauthority（承認状態）ではない。"
       },
       "public_output": {
         "owner_rules": {
