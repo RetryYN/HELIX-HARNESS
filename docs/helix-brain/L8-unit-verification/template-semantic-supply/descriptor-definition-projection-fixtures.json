@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・call別NativeMaterial7列を既存資格条件下で再検証する。A0/B0非発火はcurrent L4のconflict/matches=[]から導出済みで仮定にしない。target/intent全返却、fn0/製品実行、whole fn1とconsumer完了は含めない。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と、whole_fn1_verificationの同call private walk全4fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。fn0/製品実行・ClaimUse/consumer完了は含めない。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "全walk/全ClaimUse/全consumer返却",
-      "effect_ja": "局所材料の再検証はtarget_reads/intent_readsを含む単一walk全4返却、全ClaimUse/fn6/fn7の全返却又はIssue完了を成立させない。",
+      "item_ja": "有限whole walkと全ClaimUse/全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、全ClaimUse/fn6/fn7の全返却又はIssue完了を成立させない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -2301,5 +2301,255 @@
       "current_contract": "current L5 contract_basisがcall schedule/Problem writer/Origin fieldの根拠。同副fileの先行7段で材料化したraw/assessmentsを新差分操作から直接copyし、L9 expected/countを使わない。"
     }
   },
-  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2のbasisは未join fact Refと利用可能なsemantic_json source2を含む。原Ref/source対応不足に加えsemantic basisを任意proposed_valueへ結ぶowner意味対応も未確定であり、rule93のempty/nonsemantic/reference_only条件を満たさず、rule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。"
+  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2のbasisは未join fact Refと利用可能なsemantic_json source2を含む。原Ref/source対応不足に加えsemantic basisを任意proposed_valueへ結ぶowner意味対応も未確定であり、rule93のempty/nonsemantic/reference_only条件を満たさず、rule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。",
+  "whole_fn1_verification": {
+    "id": "HELIXBRAIN-L8-D27-WHOLE-FN1-WALK",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "A/Bそれぞれの同call private DefinitionMeaningWalkResult全4field。公開fn1は同walkのevaluation.comparisonだけを返し、公開型は変更しない。",
+    "same_artifact_basis": [
+      "/contract_basis",
+      "/function_call",
+      "/assessments_verification",
+      "/native_verification"
+    ],
+    "contract_basis": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "522bb492aa73d92a73a5aaff8a8b247c5f73aa57",
+      "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+      "pointers": [
+        "/functions/1",
+        "/source_return_contract/descriptor_target_dataflow/functions/0",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionEvaluation",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial"
+      ]
+    },
+    "fixed_git_source_header_pointer": "/whole_fn1_verification/fixed_git_sources",
+    "fixed_git_sources": {
+      "L8_D27_TARGET_COMPLETE": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json",
+        "revision": "522bb492aa73d92a73a5aaff8a8b247c5f73aa57",
+        "sha256": "166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2"
+      }
+    },
+    "reconstruction": {
+      "seed": {
+        "target_document": null,
+        "A": {
+          "evaluation": {
+            "comparison": null,
+            "assessments": null
+          },
+          "native_material": null,
+          "target_reads": null,
+          "intent_reads": null
+        },
+        "B": {
+          "evaluation": {
+            "comparison": null,
+            "assessments": null
+          },
+          "native_material": null,
+          "target_reads": null,
+          "intent_reads": null
+        }
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_D27_TARGET_COMPLETE",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json",
+          "git_revision": "522bb492aa73d92a73a5aaff8a8b247c5f73aa57",
+          "file_sha256": "166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2",
+          "source_pointer": "",
+          "bundle_pointer": "/target_document",
+          "value_canonical_sha256": "061811c81b417f58fbbe42a617d9b2463c3b6b406e4cba2aea6f5d68224c2d39"
+        }
+      ],
+      "preparation_operations": [
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/target_workspace",
+          "path": "/whole_fn1_verification/reconstruction/seed/target_document/reconstruction/seed"
+        }
+      ],
+      "operation_sources_in_order": [
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/preparation_operations",
+          "apply_root_pointer": "",
+          "operation_count": 1
+        },
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/seed/target_document/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/whole_fn1_verification/reconstruction/seed/target_document/reconstruction/seed",
+          "operation_count": 50
+        },
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/seed/target_document/A0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 16
+        },
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/seed/target_document/B0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 8
+        },
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 8
+        },
+        {
+          "operation_pointer": "/whole_fn1_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 26
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/comparison",
+          "path": "/whole_fn1_verification/reconstruction/seed/A/evaluation/comparison"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments_verification/reconstruction/seed/completed_A_assessments",
+          "path": "/whole_fn1_verification/reconstruction/seed/A/evaluation/assessments"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_A",
+          "path": "/whole_fn1_verification/reconstruction/seed/A/native_material"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/seed/A/target_reads",
+          "path": "/whole_fn1_verification/reconstruction/seed/A/target_reads"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/seed/A/intent_reads",
+          "path": "/whole_fn1_verification/reconstruction/seed/A/intent_reads"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/comparison_B",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/comparison"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments_verification/reconstruction/seed/assessments",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "remove",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/evaluation/assessments/0"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_B",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/native_material"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/seed/B/target_reads",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/target_reads"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/seed/B/intent_reads",
+          "path": "/whole_fn1_verification/reconstruction/seed/B/intent_reads"
+        }
+      ],
+      "operation_count": 26,
+      "operation_types": {
+        "copy": 10,
+        "remove": 16
+      },
+      "expected_return_pointers": {
+        "A": "/whole_fn1_verification/reconstruction/seed/A",
+        "B": "/whole_fn1_verification/reconstruction/seed/B"
+      },
+      "canonical_expected_returns_sha256": {
+        "A": "282fd24597d500101bac281de821c8bcf72d4443bb85bdc47a0611132af264fc",
+        "B": "b49d8d96045b7eced4e48b112407805b134da5194a1b5863fe9d169d2dd041e8"
+      },
+      "source_resolution_rule_ja": "親projectionの既存34importsとroot→assessments→native全phaseを完了し、本unit固定import1件をseedへ展開する。prepare copy1で既存target_workspace全値を置き、明示target50を適用する。次のA0 phase直前にtarget_document.A0_target_verification.reconstruction.fixed_git_importsの2宣言を、同target_documentの固定source header・file/value hashどおりA0 seedへ展開する。その後A0の16→B0の8→readarrayの8→本unitの26を各apply rootへ標準RFCだけで適用する。暗黙の再帰import/検索/fallbackは行わない。"
+    },
+    "structural_preconditions_ja": "既存全phase後のtarget_workspaceはtarget固定30imports＋intent65後・target50前seedと全値同一（canonical62415ec171cf688bd00eb0c1626c9bf4d50112e9b063e425372e5a649413f412）。A assessmentsはcompleted_Aの16件、Bは既存合成33件をcopyして新B配列先頭のA16件だけremoveし、原B17件の全9field/順を保持する。元33件/A配列/native値は変更しない。",
+    "closed_field_order": [
+      "evaluation",
+      "native_material",
+      "target_reads",
+      "intent_reads"
+    ],
+    "function_call": {
+      "symbol": "evaluate_descriptor_definition_walk",
+      "A_context_pointer": "/reconstruction/seed/function_call_arguments/A/context",
+      "B_context_pointer": "/reconstruction/seed/function_call_arguments/B/context",
+      "return_pointer_basis": "reconstruction.expected_return_pointers",
+      "public_projection_ja": "top/functions/1 compare_descriptor_definitionsは同returnのevaluation.comparisonのみ返す。"
+    },
+    "oracle_and_limits_ja": "既存の独立検収済みComparison4/Assessment9/Native7/target8/intent6を原call別に固定再利用し、新しい結合は独立whole4期待・全索引・原Claim/locator順へ照合する。fn0資格はinput_issues=[]/unusable_source_refs=[]の条件付きであり実行/成立を認定しない。reader/helper/製品/旧runtime/CIは未実行。ClaimUse/fn6fn7/14child凍結/Issue完了は範囲外。"
+  }
 }
