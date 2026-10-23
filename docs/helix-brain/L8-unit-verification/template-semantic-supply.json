@@ -119371,5 +119371,979 @@
       "B positive rowsのslot_locatorsとfact_locatorsは原raw descriptor 1の具体locatorを保持し、missing rowsはA seedの空locator列を保持する。root A 16件はA assessment既存110 RFC操作の返却順を維持する。L5 exact_sort_contractのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-B）により、A frameのaxes[0..15]とfindings[0..13]はB Comparisonでも位置・全値が不変であり、A assessment 110操作のComparisonおよびA sort表への参照をそのまま適用できる。",
       "Bの16行はassessment index 16..31へ順にappendする。B positive event ordinalは16/17、missing event ordinalは18..31であり、sort表のfinal_indexは各event ordinalから直接引く。"
     ]
+  },
+  "definition_meaning_fn1_B_native_verification": {
+    "id": "HELIXBRAIN-L8-D26B-FN1-NATIVE-MATERIAL",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "有限B rawに対するfn1のDefinitionNativeMaterial 7列とtarget_reads/intent_readsの期待候補。ComparisonとAssessment、Meaning readerは既存L8値を固定Gitと標準RFCで順に再構成する。fn0資格判定は条件付き未実行。全walk return、C、D27、fn6/fn7、finalは対象外。",
+    "execution_boundary_ja": "製品/helper/fn0/runtimeは実行しない。固定Git由来seedと固定Git由来（merge済み）のRFC列、L5 event/writer規則から有限期待を材料化する。ここでのNativeMaterial値は候補であり、実行済み・受入済みを主張しない。",
+    "fixed_git_sources": {
+      "L4_CURRENT": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      },
+      "L4_MEANING_FRAME_HISTORY": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2"
+      },
+      "L5": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
+      },
+      "L8_ACCEPTED_INPUTS": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+        "sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+      },
+      "L8_A_PREFIX_SOURCES": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+        "sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+      },
+      "L9_RAW_INPUTS": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/call_bindings/meaning_request_constructor",
+          "/definition_meaning_resolution_contract/normative_basis_snapshot/entries",
+          "/definition_meaning_resolution_contract/same_call_and_public_projection/public_types"
+        ],
+        "derivation_ja": [
+          "reader callの元slot/fact要求と固定normative basis frameの来歴を対応する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+        "pointers": [
+          "/descriptor_meanings/0"
+        ],
+        "derivation_ja": [
+          "MeaningRead.normative_frame内の歴史的revision/file hash/entry値を検証する。現在L4 pinと混同しない。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningReadBundle",
+          "/source_return_contract/descriptor_target_dataflow/index_types/MeaningReadOriginObservation",
+          "/source_return_contract/descriptor_target_dataflow/index_types/MeaningPairAnnotatedRead",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionApplicabilityJudgmentBatch",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection",
+          "/failure_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activation",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_schedule",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/source_originals/meaning_pair_axes",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/private_types/MeaningPairAnnotatedResult/invariant",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/read_binding_projection"
+        ],
+        "derivation_ja": [
+          "native各列/Originのclosed fieldsを保持する。descriptor attribution state・7fieldはhelper返却由来。meaning bundleとsidecarを別NativeMaterial列へ展開し、全反復を保持。source sort列は原fact.source_ref→同read.occurrences[].source_refを連結してsorted_valuesで全反復を保持する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+        "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction",
+          "/definition_meaning_fn1_A_assessments_verification/reconstruction",
+          "/definition_meaning_reader_verification/reconstruction",
+          "/definition_applicability_na_verification/reconstruction",
+          "/definition_meaning_fn1_B_comparison_verification/reconstruction",
+          "/definition_meaning_fn1_B_assessments_verification/reconstruction",
+          "/definition_meaning_fn1_A_native_verification/reconstruction",
+          "/definition_meaning_B_reader_verification/reconstruction",
+          "/definition_meaning_fn1_B_comparison_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_B_comparison_verification/final_sort_index",
+          "/definition_meaning_fn1_B_assessments_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_B_reader_verification/reconstruction/seed",
+          "/definition_meaning_B_reader_verification/reconstruction/rfc6902_operations",
+          "/definition_applicability_na_verification/reconstruction/seed/direct_helper_fixtures/1/calls/1/reader_expected_return",
+          "/definition_applicability_na_verification/reconstruction/seed/expected_native_material_projection/B/applicability_judgment_batches/1"
+        ],
+        "derivation_ja": [
+          "マージ済みA/BのComparison、assessment、native A、Meaning A/B、NAを固定Git seedと既存RFC配列で再構成する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0/facts/0/source_ref",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/sources",
+          "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch",
+          "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch/3/value"
+        ],
+        "derivation_ja": [
+          "raw AとB patchだけを入力とし、raw Bのroot／A cohort不変とB slotの原Bindingを保持する。claims不在をraw内で空配列へ補完しない。"
+        ]
+      }
+    ],
+    "source_order_derivation_ja": [
+      "A69→B107→A assessment110→B assessment132→A Meaning reader8→A Native107をmain rootへ適用して、Aの先頭16 origins/readを再構成する。その後B reader14を独立subworkspace rootへ適用し、固有103操作でBのread/sidecar/NA/pair/batchと16 originsをappendする。",
+      "raw Bはroot AとA cohortの原値を保持してB cohortを末尾追加した入力である。L5 exact_sort_contractのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-B）により、A axes[0..15]・findings[0..13]の位置と全値は不変であり、A native107の各既存index参照を保持できる。原event順もA16件の後へB16件が続き、B Origin.ordinalとassessment原indexは16..31で対応する。A readerが辿る原fact.source_refに対応するA source/cohortは不変で、異BindingのB sourceをA意味支持へ代入しない。",
+      "MeaningReadのread objectはmeaning_readsへ、problem_scopes/support_originsは別sidecarへ保存する。NA absent readとbatchはhelperを実行せず既存accepted fixtureをcopyする。pair呼出しは実slotごとに保存し、Bのguardが成立してもresult.axes/originsは空配列である。raw claims member不在を空配列へ補わず、target_reads/intent_readsは対象claimがないため空配列のまま。",
+      "sort_source_refsはL5 serialization_completionのsource_ref列規則を適用し、positive attributionは原fact source_ref一件、positive meaningはfact source_refと対応read occurrence source_refを順序と重複を保ち二件、missing eventはraw sources array suppliedによりsupplied([])。",
+      "B sidecarのproblem_scopes/support_originsはA由来と同値だが、固有操作7・8でB reader bundleからcopyし、B callの出典を明示する。"
+    ],
+    "reader_frame_provenance_ja": "MeaningRead.normative_frameはaccepted B reader seedに保存された歴史的L4 frame値である。現在L4/L5のcontract pinsと混同しない。B readerのreadはexpected_bundle/read、sidecarは同bundleのproblem_scopes/support_originsから別々にcopyする。",
+    "owner_and_empty_projection_ja": "attribution positiveはhelper由来でbackflow_owner=nullを保持する。meaning positiveのbackflow_ownerはAssessment original_axesから取得し、support linkはB reader read index 1/support index 0を示す。special_readsは対象eventなし、target_reads/intent_readsはraw claims memberが不在のため[]。pair Bはactual callを保存し、pair_origin_projectionのguard成立条件下でもこのrawの結果配列は空。Bのpairは原fact1件のためi<jの組合せが0件で、guardを満たしてaxes/origins=[]を返すactual call記録を残す。display group／required relation／Claimの原発見点がないためspecial_reads=[]となる。B Meaning read.bindingはL5 read_binding_projectionに従い原slot /descriptors/1/binding の9 memberを保存する。",
+    "reconstruction": {
+      "source_resolution_rule_ja": "固定Gitのrevision/file SHAとcanonical value hashを照合し、宣言済みnull destinationへdeep copyする。まずrfc6902_operation_sources_in_orderの6 pointerが指すRFC配列（69→107→110→132→8→107）を記載順にseed全体をrootとして適用する。次に /B_reader_operations の14操作を /B_reader_workspace をrootとして適用する。最後に本blockの rfc6902_operations 103操作をseed全体をrootとして原順適用する。B readerのsubworkspaceは宣言済みseedをimportしてから原raw AとB patchを取込み、mainのraw_Bとreader_input_candidate.inputの全値同値を保持する。既存RFC操作本文は再掲せず、standard copy/replaceだけを使用する。/-は配列への原順追加であり、配列indexへのcopyを置換とは扱わない。",
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null,
+          "patch_B": null,
+          "raw_B": null
+        },
+        "comparison": null,
+        "comparison_sort": null,
+        "comparison_prefix_operations": null,
+        "comparison_B_operations": null,
+        "comparison_sort_B": null,
+        "empty_ref_column": null,
+        "assessment_B_operations": null,
+        "assessments": null,
+        "assessment_prefix_operations": null,
+        "assessment_templates": null,
+        "B_slot_locators": null,
+        "B_fact_locators": null,
+        "reader_input_candidate": null,
+        "expected_bundle": null,
+        "meaning_reader_prefix_operations": null,
+        "native_A_operations": null,
+        "na_read_candidate": null,
+        "na_batch_candidate": null,
+        "na_read_B": null,
+        "na_batch_B": null,
+        "B_reader_workspace": null,
+        "B_reader_operations": null,
+        "native_material": null
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_A_native_verification/reconstruction/seed/native_material",
+          "bundle_pointer": "/native_material",
+          "value_canonical_sha256": "b8d991582c352105bdf3de46135af44b06f56e34f38e51e766445025c0511de5",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L9_RAW_INPUTS",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/comparison",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort",
+          "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_prefix_operations",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/assessments",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/assessment_prefix_operations",
+          "value_canonical_sha256": "b37db5d6cbef3e245a219ac8f22c5c0ee5ca4de471ec9c72cb097a3e8c0d5951",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/reader_input_candidate",
+          "bundle_pointer": "/reader_input_candidate",
+          "value_canonical_sha256": "52d74ec4a0cf1f6362916bf950d003526e458882273c2f337722035e9a026c88",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/expected_bundle",
+          "bundle_pointer": "/expected_bundle",
+          "value_canonical_sha256": "8694f7936ecee409962165b686fe3b5d0cb2d614e042b40cdad8ae2a2242a66d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/meaning_reader_prefix_operations",
+          "value_canonical_sha256": "c87f545ace49e49c989fb64b36102d46715f124608489e398abe04b63d66904d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/direct_helper_fixtures/0/calls/0/reader_expected_return",
+          "bundle_pointer": "/na_read_candidate",
+          "value_canonical_sha256": "78a98af9a2dc456fde501fd415b48b17fdef5fd161735595c151adc3560e8267",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/expected_native_material_projection/A/applicability_judgment_batches/0",
+          "bundle_pointer": "/na_batch_candidate",
+          "value_canonical_sha256": "603c1d314e84d848e445bf3f8f4ae8622e4841fa032ed1955335fbdef5957b69",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L9_RAW_INPUTS",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch",
+          "bundle_pointer": "/source_snapshot/patch_B",
+          "value_canonical_sha256": "2a7a88838746f3c6a8b2345194c73dbdda35f22bbab9ce14cacb497823ffe021",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_A_native_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/native_A_operations",
+          "value_canonical_sha256": "79a23f73e85d7064cb610642e0128651adf71e723547c8e11988235e99c9a6c3",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_B_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_B_operations",
+          "value_canonical_sha256": "d59fa200092c2ddd293c99dac5f8e9104b07d54571a24b5620d3e6b04b6349e0",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_B_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort_B",
+          "value_canonical_sha256": "144d6829321ed89b28bf9e17f67f9d6acf1439c268733beae4c3ec5826416ef1",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison/axes/14/original_refs",
+          "bundle_pointer": "/empty_ref_column",
+          "value_canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_B_assessments_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/assessment_B_operations",
+          "value_canonical_sha256": "753e78d5dddc8713a9fbfd571da400048522e8ad132bec25127c146cd6e0970c",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_A_PREFIX_SOURCES",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/assessment_templates",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_B_assessments_verification/reconstruction/seed/B_slot_locators",
+          "bundle_pointer": "/B_slot_locators",
+          "value_canonical_sha256": "d78a425263019ba045787fc7ef2bb5cfa507d6bbca01f41800c585fb5438ed2f",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_fn1_B_assessments_verification/reconstruction/seed/B_fact_locators",
+          "bundle_pointer": "/B_fact_locators",
+          "value_canonical_sha256": "ab4a7dcd45416086699fcc7f8c69077e7d467213aa94d0d26b3cebd82f4370df",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_B_reader_verification/reconstruction/seed",
+          "bundle_pointer": "/B_reader_workspace",
+          "value_canonical_sha256": "955ebddd191018585feb2903687c6e8d4b29f09b48a1d6f46e1e43bcc8af0d70",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L9_RAW_INPUTS",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/B_reader_workspace/source_snapshot/raw_A",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
+        },
+        {
+          "source_key": "L9_RAW_INPUTS",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_B_raw_input/case/fixture_patch",
+          "bundle_pointer": "/B_reader_workspace/source_snapshot/patch_B",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "2a7a88838746f3c6a8b2345194c73dbdda35f22bbab9ce14cacb497823ffe021"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_meaning_B_reader_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/B_reader_operations",
+          "value_canonical_sha256": "b2b7b10a39985d14cb60e35dbbf240e53d075761ca8ab31e2fd2491f379ecae9",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/direct_helper_fixtures/1/calls/1/reader_expected_return",
+          "bundle_pointer": "/na_read_B",
+          "value_canonical_sha256": "9acb06c5d431889dd16263366be0d0322f5bc96390964fc832a17bac416f678e",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2c80cb0cae40f7980f2f4033c182433ec8eb656b",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/expected_native_material_projection/B/applicability_judgment_batches/1",
+          "bundle_pointer": "/na_batch_B",
+          "value_canonical_sha256": "34837a4e07e870121bd6380d66d47adaff1e2a3600890342a05198149f691026",
+          "file_sha256": "d9cedcc35844b71a77c23c9f3bb933ef835a015c3ff53ef3d2d3c071f746f944"
+        }
+      ],
+      "rfc6902_operation_sources_in_order": [
+        "/comparison_prefix_operations",
+        "/comparison_B_operations",
+        "/assessment_prefix_operations",
+        "/assessment_B_operations",
+        "/meaning_reader_prefix_operations",
+        "/native_A_operations"
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/B_reader_workspace/expected_bundle/read",
+          "path": "/native_material/meaning_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/na_read_B",
+          "path": "/native_material/applicability_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/pair_reads/0",
+          "path": "/native_material/pair_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/B_slot_locators/0",
+          "path": "/native_material/pair_reads/1/slot_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/na_batch_B",
+          "path": "/native_material/applicability_judgment_batches/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/meaning_read_origins/0",
+          "path": "/native_material/meaning_read_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/meaning_read_origins/1/meaning_read_index",
+          "value": 1
+        },
+        {
+          "op": "copy",
+          "from": "/B_reader_workspace/expected_bundle/problem_scopes",
+          "path": "/native_material/meaning_read_origins/1/problem_scopes"
+        },
+        {
+          "op": "copy",
+          "from": "/B_reader_workspace/expected_bundle/support_origins",
+          "path": "/native_material/meaning_read_origins/1/support_origins"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/0",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/16/ordinal",
+          "value": 16
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/key",
+          "path": "/native_material/judgment_origins/16/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/slot_locators",
+          "path": "/native_material/judgment_origins/16/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/fact_locators",
+          "path": "/native_material/judgment_origins/16/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/16/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/key/binding",
+          "path": "/native_material/judgment_origins/16/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/16/original_axes/0/original_refs",
+          "path": "/native_material/judgment_origins/16/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/native_material/judgment_origins/16/sort_source_refs/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_B/descriptors/1/facts/0/source_ref",
+          "path": "/native_material/judgment_origins/16/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/1",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/17/ordinal",
+          "value": 17
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/key",
+          "path": "/native_material/judgment_origins/17/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/slot_locators",
+          "path": "/native_material/judgment_origins/17/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/fact_locators",
+          "path": "/native_material/judgment_origins/17/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/17/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/key/binding",
+          "path": "/native_material/judgment_origins/17/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/original_axes/0/original_refs",
+          "path": "/native_material/judgment_origins/17/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/native_material/judgment_origins/17/sort_source_refs/value"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/17/meaning_read_indices",
+          "value": [
+            1
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/17/original_axes/0/backflow_owner",
+          "path": "/native_material/judgment_origins/17/backflow_owner"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/17/meaning_support_links",
+          "value": [
+            {
+              "meaning_read_index": 1,
+              "support_index": 0
+            }
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_B/descriptors/1/facts/0/source_ref",
+          "path": "/native_material/judgment_origins/17/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/B_reader_workspace/expected_bundle/read/occurrences/0/source_ref",
+          "path": "/native_material/judgment_origins/17/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/18/ordinal",
+          "value": 18
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/18/key",
+          "path": "/native_material/judgment_origins/18/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/18/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/18/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/18/key/binding",
+          "path": "/native_material/judgment_origins/18/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/3",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/19/ordinal",
+          "value": 19
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/19/key",
+          "path": "/native_material/judgment_origins/19/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/19/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/19/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/19/key/binding",
+          "path": "/native_material/judgment_origins/19/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/4",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/20/ordinal",
+          "value": 20
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/20/key",
+          "path": "/native_material/judgment_origins/20/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/20/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/20/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/20/key/binding",
+          "path": "/native_material/judgment_origins/20/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/5",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/21/ordinal",
+          "value": 21
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/21/key",
+          "path": "/native_material/judgment_origins/21/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/21/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/21/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/21/key/binding",
+          "path": "/native_material/judgment_origins/21/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/6",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/22/ordinal",
+          "value": 22
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/22/key",
+          "path": "/native_material/judgment_origins/22/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/22/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/22/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/22/key/binding",
+          "path": "/native_material/judgment_origins/22/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/7",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/23/ordinal",
+          "value": 23
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/23/key",
+          "path": "/native_material/judgment_origins/23/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/23/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/23/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/23/key/binding",
+          "path": "/native_material/judgment_origins/23/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/8",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/24/ordinal",
+          "value": 24
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/24/key",
+          "path": "/native_material/judgment_origins/24/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/24/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/24/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/24/key/binding",
+          "path": "/native_material/judgment_origins/24/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/9",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/25/ordinal",
+          "value": 25
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/25/key",
+          "path": "/native_material/judgment_origins/25/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/25/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/25/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/25/key/binding",
+          "path": "/native_material/judgment_origins/25/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/10",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/26/ordinal",
+          "value": 26
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/26/key",
+          "path": "/native_material/judgment_origins/26/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/26/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/26/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/26/key/binding",
+          "path": "/native_material/judgment_origins/26/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/11",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/27/ordinal",
+          "value": 27
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/27/key",
+          "path": "/native_material/judgment_origins/27/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/27/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/27/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/27/key/binding",
+          "path": "/native_material/judgment_origins/27/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/12",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/28/ordinal",
+          "value": 28
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/28/key",
+          "path": "/native_material/judgment_origins/28/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/28/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/28/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/28/key/binding",
+          "path": "/native_material/judgment_origins/28/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/13",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/29/ordinal",
+          "value": 29
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/29/key",
+          "path": "/native_material/judgment_origins/29/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/29/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/29/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/29/key/binding",
+          "path": "/native_material/judgment_origins/29/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/14",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/30/ordinal",
+          "value": 30
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/30/key",
+          "path": "/native_material/judgment_origins/30/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/30/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/30/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/30/key/binding",
+          "path": "/native_material/judgment_origins/30/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/15",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/31/ordinal",
+          "value": 31
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/31/key",
+          "path": "/native_material/judgment_origins/31/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/31/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/31/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/31/key/binding",
+          "path": "/native_material/judgment_origins/31/binding"
+        }
+      ],
+      "operation_count": 103,
+      "operation_types": {
+        "copy": 84,
+        "replace": 19
+      },
+      "expected_raw_input_canonical_sha256": "b72d0389e51059502ad6d9bc4e826d82df71550ee95365715feccf4db3b67e06",
+      "expected_target_reads": [],
+      "expected_intent_reads": [],
+      "canonical_writer_assumption_ja": "既存L8の局所的なcanonical writer仮定であり、L5 writer契約がhash実装まで閉じると主張しない。",
+      "expected_native_material_canonical_sha256": "b52553444381f2e6810d793243f27a8027bbbf0b2668a246d8bc2f2aa2b30a83",
+      "expected_native_material_pointer": "/native_material",
+      "expected_comparison_canonical_sha256": "5ece5a92c6502cebad41ecd467b5a5a0f1a6993aae145b90058908eef1ebcd04",
+      "expected_assessments_canonical_sha256": "1b2544ac61df5a9a988a18ef6b68de5fee35e862cb362307002d85a235d62dc4",
+      "expected_B_meaning_bundle_canonical_sha256": "26cd24d04e0fc8925acfbb9d4f41096b8443bf2a2160bab7ba09edeaa9648fce",
+      "expected_A_meaning_bundle_canonical_sha256": "bed488a12a3e52aacb7f06b0eab1354b1e00bfc79c0f9f0d6f93ffe3c9b5adfc"
+    }
   }
 }
