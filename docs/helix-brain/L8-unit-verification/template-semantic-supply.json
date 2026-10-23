@@ -120875,5 +120875,1075 @@
       "expected_return_canonical_sha256": "6f3d495a7171c36f8100b6a4aceb66a0675c2ae24a0190902474cd64bda061a6",
       "canonical_writer_assumption_ja": "既存L8の局所材料化で用いるcanonical hash仮定であり、L5 writer contractがこのwriterを閉じるという意味ではない。UTF-8 JSONをensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でcanonical化し、配列順/重複を保ちobject keyのみsortする。RFC操作は標準copyのみ。"
     }
+  },
+  "definition_meaning_fn1_C_comparison_verification": {
+    "id": "HELIXBRAIN-L8-D26C-FN1-C-COMPARISON",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "有限C入力のevaluate_descriptor_definition_walk Comparison memberのみ。current L8 accepted A Comparison seed/69 RFC prefixを再構成し、C actual slotの4 positive definition axesと2 descriptor attribution axesを追加する。14 A required-slot missing axes/findingsを保持する。assessment/native materialは別blockの対象。",
+    "execution_boundary_ja": "固定L9 raw AとC fixture patch、固定GitのL8 A Comparison seedとRFC列を標準RFC6902で再構成する。静的期待候補の材料化に限り、製品/fn0/helper/runtime及び旧runtimeは実行しない。L9のpublic expectedや件数をoracleとして読まない。入力受理は条件付きで、受入・製品TDD・fn6/fn7/final完了を生成しない。",
+    "fixed_git_sources": {
+      "L8": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "sha256": "3faab0c4da5ae710da2cafff6a7f332ff54d07fca16be0586cf1f7169866e0ef"
+      },
+      "L9": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/descriptor_meanings",
+          "/definition_meaning_resolution_contract/evaluation_populations",
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/other_binding"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/wire_codec_contract/schema/$defs/Comparison",
+          "/wire_codec_contract/schema/$defs/AxisResult",
+          "/wire_codec_contract/schema/$defs/Finding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/outer",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Comparison/axes",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+          "/source_return_contract/pure_reference_notation/definitions",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "file_sha256": "3faab0c4da5ae710da2cafff6a7f332ff54d07fca16be0586cf1f7169866e0ef",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_A_comparison_verification/final_sort_index"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch"
+        ]
+      }
+    ],
+    "reconstruction": {
+      "source_resolution_rule_ja": "全fixed Git importのrevision/path/file SHA/pointer value canonical SHAを検証し、既存null宛先へcopyする。accepted A Comparison seedをcomparisonへ直接importし、固定A69 RFC prefixをworkspace rootへ先に適用する。その後このblockの103 RFC copy operations（raw C materialization 6件、C Comparison difference 97件）を順に適用する。配列行は/-へappendし、append後にrow object fieldをcopyで埋める。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
+        },
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch",
+          "bundle_pointer": "/source_snapshot/patch_C",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "271fe75aaa44885aee60a8821bf46e2d59a2f7bd7a6c0e832a7869f7357a2d20"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/comparison",
+          "file_sha256": "3faab0c4da5ae710da2cafff6a7f332ff54d07fca16be0586cf1f7169866e0ef",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_rfc_operations",
+          "file_sha256": "3faab0c4da5ae710da2cafff6a7f332ff54d07fca16be0586cf1f7169866e0ef",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "00fbdac23d6a35bad694032ea7e89a6435c54a87",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison/axes/14/original_refs",
+          "bundle_pointer": "/empty_ref_column",
+          "file_sha256": "3faab0c4da5ae710da2cafff6a7f332ff54d07fca16be0586cf1f7169866e0ef",
+          "value_canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null,
+          "patch_C": null,
+          "raw_C": null
+        },
+        "comparison": null,
+        "comparison_rfc_operations": null,
+        "empty_ref_column": null,
+        "a_comparison": null
+      },
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A",
+          "path": "/source_snapshot/raw_C"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/patch_C/0/value",
+          "path": "/source_snapshot/raw_C/sources/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/patch_C/1/value",
+          "path": "/source_snapshot/raw_C/qualification_roots/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/patch_C/2/value",
+          "path": "/source_snapshot/raw_C/qualifications/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/patch_C/3/value",
+          "path": "/source_snapshot/raw_C/descriptors/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/patch_C/4/value",
+          "path": "/source_snapshot/raw_C/knowledge_records/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison",
+          "path": "/a_comparison"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/findings"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/0",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/1",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/2",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/3",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/4",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/5",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/6",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/7",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/8",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/9",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/10",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/11",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/12",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/13",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/14",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/15",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/0",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/1",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/2",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/3",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/4",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/5",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/6",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/7",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/8",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/9",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/10",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/11",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/12",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/findings/13",
+          "path": "/comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/14",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/16/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/16/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/16/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding/knowledge_ref/owner",
+          "path": "/comparison/axes/16/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/operation_ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/decision/basis_refs/0",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/operation_ref",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/decision/basis_refs/0",
+          "path": "/comparison/axes/16/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/14",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/17/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/17/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/17/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding/knowledge_ref/owner",
+          "path": "/comparison/axes/17/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/operation_ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/decision/basis_refs/0",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/operation_ref",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/decision/basis_refs/0",
+          "path": "/comparison/axes/17/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/14",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/18/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/18/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/18/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding/knowledge_ref/owner",
+          "path": "/comparison/axes/18/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/operation_ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/decision/basis_refs/0",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/operation_ref",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/decision/basis_refs/0",
+          "path": "/comparison/axes/18/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/14",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/19/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/19/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/19/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding/knowledge_ref/owner",
+          "path": "/comparison/axes/19/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/operation_ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/0/decision/basis_refs/0",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/operation_ref",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/sources/1/content/definition_meaning_operations/1/decision/basis_refs/0",
+          "path": "/comparison/axes/19/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/15",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/20/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/20/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/20/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/ref",
+          "path": "/comparison/axes/20/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
+          "path": "/comparison/axes/20/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/a_comparison/axes/15",
+          "path": "/comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/comparison/axes/21/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/21/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/empty_ref_column",
+          "path": "/comparison/axes/21/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/ref",
+          "path": "/comparison/axes/21/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
+          "path": "/comparison/axes/21/original_refs/-"
+        }
+      ],
+      "operation_count": 103,
+      "operation_types": [
+        "copy"
+      ],
+      "rfc6902_operation_sources_in_order": [
+        "/comparison_rfc_operations"
+      ],
+      "expanded_expected_comparison_pointer": "/comparison",
+      "expected_output_counts": {
+        "axes": 22,
+        "findings": 14
+      },
+      "canonical_writer_assumption_ja": "UTF-8 JSONをensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でcanonical化する。これはL8局所hash確認の仮定で、L5の普遍writer閉包とは扱わない。",
+      "expected_raw_input_canonical_sha256": "3d3df77b5f9cc89e5fd7adc7988abca4351d466b068a37c99b8366fda9b76af6",
+      "schema_definition_pointers": [
+        "/wire_codec_contract/schema/$defs/Comparison",
+        "/wire_codec_contract/schema/$defs/AxisResult",
+        "/wire_codec_contract/schema/$defs/Finding"
+      ],
+      "expanded_expected_comparison_canonical_sha256": "d980cd19eb93f8aa7993ee97a7acae17ab6bafce7dab901fcb820ac26a170989",
+      "operation_count_breakdown": {
+        "accepted_A_prefix_external": 69,
+        "this_C_block_raw_C_materialization": 6,
+        "this_C_block_comparison_difference": 97,
+        "this_C_block_total": 103
+      }
+    },
+    "field_derivation_ja": [
+      "Comparison.input_bindingはaccepted A Comparisonのroot Bindingを維持する。L5 event orderはCのactual slotをnonselectedでも読取対象に含める。C slotはknown帰属2軸と、二つの同値caller facts×二つの同値supportsによるpositive 4軸を形成し、C missing/findingは0件。 根拠はL4 /definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain と /other_binding、L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1・2、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/outer、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Comparison/axes の組合せである。同walkの全slotから形成したaxisを公開配列へ保存し、required domain外という理由でnative限定にしない。",
+      "C positive original_refsはL5 original_ref_columns.per_fact_definitionの順で、fact.ref → fact.source_ref → occurrence 0のsource_ref/operation_ref/basis_refs → occurrence 1のsource_ref/operation_ref/basis_refs。8 Refを原順・重複ありで保持する。C attributionはhelper原順のfact.source_ref/fact.refをsorted_valuesし、2 Refを保持する。 原Ref列の根拠は /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns、帰属helper原値の根拠は /source_return_contract/pure_reference_notation/definitions と /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection。",
+      "C event ordinal 16..21はattribution fact0/1の後にfact0 support0/1、fact1 support0/1。sort_source_refsはpositiveでsource Ref 3出現、attributionで1出現。C public axesは4 positive then 2 attribution。 2 facts×2 supportsのcardinalityは /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality、source列と順序は /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column と /source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key に従う。",
+      "L5 exact_sort_contract component 0のBinding.template_ref.identityでA < Cとなるため、Aの16軸・14 findingの値と位置は固定A comparisonどおり不変。CはA missing14を増殖させず、C own missingは0。 raw Cはroot AとA cohort/sourceの全値を保持し、C cohortを末尾追加する。A prefixが辿るimmutable raw Aとその意味出典は不変で、C sourceをA支持へ代入しない。",
+      "current L4 descriptor catalog/kind contract、current L5 Comparison/AxisResult/Finding schemaとsort/ref契約をbasisにする。",
+      "C各軸のprototypeは、同じknown branchのA public positive/attribution軸からcopyする。state/reason/axisは同じL5 event規則を保持し、subject/Binding/ownerとoriginal_refsはC原入力から再構成する。原Ref列は空列copy後に原順appendし、A Refを残さない。",
+      "pair公開軸がない根拠は /source_return_contract/pure_reference_notation/definitions のmeaning_pair_axesである。完全同値の二factはunique_sorted(facts)で一factとなり、i<jの組がない。これはfact/support由来の原positive出現をdeduplicateする意味ではない。"
+    ],
+    "final_sort_index": {
+      "algorithm_basis": "L5 exact_sort_contract のaxis_key_access_paths 0〜6を順に比較し、同keyは原event ordinalを維持する。A Binding.template_ref.identityがCより先なのでA frame 16 axesが位置を保ち、C内ではsource-ref列3出現が1出現より先に確定する。",
+      "axes": {
+        "columns": [
+          "final_index",
+          "frame",
+          "axis",
+          "event_ordinal"
+        ],
+        "rows": [
+          [
+            0,
+            "A",
+            "applicability.definition",
+            4
+          ],
+          [
+            1,
+            "A",
+            "completion.definition",
+            13
+          ],
+          [
+            2,
+            "A",
+            "downstream kind.definition",
+            14
+          ],
+          [
+            3,
+            "A",
+            "layer/pair.definition",
+            3
+          ],
+          [
+            4,
+            "A",
+            "measurement.definition",
+            12
+          ],
+          [
+            5,
+            "A",
+            "negative oracle.definition",
+            11
+          ],
+          [
+            6,
+            "A",
+            "relation.definition",
+            8
+          ],
+          [
+            7,
+            "A",
+            "required field.definition",
+            7
+          ],
+          [
+            8,
+            "A",
+            "required input.definition",
+            5
+          ],
+          [
+            9,
+            "A",
+            "required section.definition",
+            6
+          ],
+          [
+            10,
+            "A",
+            "supersession.definition",
+            15
+          ],
+          [
+            11,
+            "A",
+            "trace.definition",
+            10
+          ],
+          [
+            12,
+            "A",
+            "version.definition",
+            2
+          ],
+          [
+            13,
+            "A",
+            "意味owner.definition",
+            9
+          ],
+          [
+            14,
+            "A",
+            "template identity.definition",
+            1
+          ],
+          [
+            15,
+            "A",
+            "descriptor.attribution",
+            0
+          ],
+          [
+            16,
+            "C",
+            "template identity.definition",
+            18
+          ],
+          [
+            17,
+            "C",
+            "template identity.definition",
+            19
+          ],
+          [
+            18,
+            "C",
+            "template identity.definition",
+            20
+          ],
+          [
+            19,
+            "C",
+            "template identity.definition",
+            21
+          ],
+          [
+            20,
+            "C",
+            "descriptor.attribution",
+            16
+          ],
+          [
+            21,
+            "C",
+            "descriptor.attribution",
+            17
+          ]
+        ]
+      },
+      "findings": {
+        "columns": [
+          "final_index",
+          "frame",
+          "axis",
+          "rule_ref",
+          "event_ordinal"
+        ],
+        "rows": [
+          [
+            0,
+            "A",
+            "applicability.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_04_missing",
+            4
+          ],
+          [
+            1,
+            "A",
+            "completion.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_13_missing",
+            13
+          ],
+          [
+            2,
+            "A",
+            "downstream kind.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_14_missing",
+            14
+          ],
+          [
+            3,
+            "A",
+            "layer/pair.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_03_missing",
+            3
+          ],
+          [
+            4,
+            "A",
+            "measurement.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_12_missing",
+            12
+          ],
+          [
+            5,
+            "A",
+            "negative oracle.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_11_missing",
+            11
+          ],
+          [
+            6,
+            "A",
+            "relation.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_08_missing",
+            8
+          ],
+          [
+            7,
+            "A",
+            "required field.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_07_missing",
+            7
+          ],
+          [
+            8,
+            "A",
+            "required input.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_05_missing",
+            5
+          ],
+          [
+            9,
+            "A",
+            "required section.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_06_missing",
+            6
+          ],
+          [
+            10,
+            "A",
+            "supersession.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_15_missing",
+            15
+          ],
+          [
+            11,
+            "A",
+            "trace.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_10_missing",
+            10
+          ],
+          [
+            12,
+            "A",
+            "version.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_02_missing",
+            2
+          ],
+          [
+            13,
+            "A",
+            "意味owner.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_09_missing",
+            9
+          ]
+        ]
+      },
+      "axis_event_ordinals": [
+        4,
+        13,
+        14,
+        3,
+        12,
+        11,
+        8,
+        7,
+        5,
+        6,
+        15,
+        10,
+        2,
+        9,
+        1,
+        0,
+        18,
+        19,
+        20,
+        21,
+        16,
+        17
+      ],
+      "finding_event_ordinals": [
+        4,
+        13,
+        14,
+        3,
+        12,
+        11,
+        8,
+        7,
+        5,
+        6,
+        15,
+        10,
+        2,
+        9
+      ],
+      "component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+      "component_order": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "A_before_C_reason_ja": "L5 exact_sort_contractの第0成分は原Binding.template_ref.identityであり、A < Cとなる。Aの全axis/findingの値とindexは不変である。",
+      "C_event_order": [
+        "attribution fact0",
+        "attribution fact1",
+        "fact0 support0",
+        "fact0 support1",
+        "fact1 support0",
+        "fact1 support1"
+      ],
+      "C_public_sort_positions": {
+        "meaning_indices": [
+          16,
+          17,
+          18,
+          19
+        ],
+        "attribution_indices": [
+          20,
+          21
+        ]
+      },
+      "C_source_sort_reason_ja": "Cのper_fact_definitionは同値SourceRefを3出現、attributionは1出現持つ。同じ先頭Refの後で3出現側はカンマ（U+002C）、1出現側は閉じ角括弧（U+005D）となり、canonical JSON Unicode順でpositive4軸が帰属2軸より先になる。同key内は原event順を保持する。",
+      "frame_label_semantics_ja": "表中frame Cはnonselected slot Cの出自ラベルであり、L4 required_contract_domainの追加要求frameを表さない。",
+      "positive_axis_source_key_traces": [
+        {
+          "l5_component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "component_key_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "earlier_axis": {
+            "final_index": 16,
+            "same_source_key_final_indices": [
+              16,
+              17
+            ],
+            "axis": "template identity.definition",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
+              "/source_snapshot/raw_C/sources/1/ref",
+              "/source_snapshot/raw_C/sources/1/ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "later_axis": {
+            "final_index": 20,
+            "axis": "descriptor.attribution",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "comparison_ja": "fact.source_refとsources/1/refはこの固定fixtureでcanonical同値。各出現を保持し、同じ先頭Ref後のカンマが閉じ角括弧より先となる。source列が同じpositive同士のtieは原event ordinalを保つ。"
+        },
+        {
+          "l5_component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "component_key_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "earlier_axis": {
+            "final_index": 18,
+            "same_source_key_final_indices": [
+              18,
+              19
+            ],
+            "axis": "template identity.definition",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
+              "/source_snapshot/raw_C/sources/1/ref",
+              "/source_snapshot/raw_C/sources/1/ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "later_axis": {
+            "final_index": 21,
+            "axis": "descriptor.attribution",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "comparison_ja": "fact.source_refとsources/1/refはこの固定fixtureでcanonical同値。各出現を保持し、同じ先頭Ref後のカンマが閉じ角括弧より先となる。source列が同じpositive同士のtieは原event ordinalを保つ。"
+        }
+      ]
+    }
   }
 }
