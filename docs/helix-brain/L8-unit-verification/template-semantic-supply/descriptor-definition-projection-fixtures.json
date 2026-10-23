@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。 fn3_AB_verificationは同A/B IdentityContextと公開fn3 Comparison全4fieldの有限期待を組み立てる。 fn4_AB_verificationは同A/B OracleContext3/内部frame4と公開fn4 Comparison4の有限期待を組み立てる。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。 fn3_AB_verificationは同A/B IdentityContextと公開fn3 Comparison全4fieldの有限期待を組み立てる。 fn4_AB_verificationは同A/B OracleContext3/内部frame4と公開fn4 Comparison4の有限期待を組み立てる。 fn5_AB_verificationは同A/B PromotionContext1と公開fn5 Comparison4のcandidate-empty有限期待を組み立てる。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/B/fn3 A/B/fn4 A/Bと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。 fn3_AB_verificationは原11 actual readと実slot/fact trace A1/B2を対象とする公開Comparisonの有限期待だけを組み立てる。 fn4_AB_verificationは3種definition carryと各rule必要operand不在の有限枝だけを対象とし、全fn4の未閉包枝やfn5/fn7へ一般化しない。",
+      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/B/fn3 A/B/fn4 A/B/fn5 A/Bと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。 fn3_AB_verificationは原11 actual readと実slot/fact trace A1/B2を対象とする公開Comparisonの有限期待だけを組み立てる。 fn4_AB_verificationは3種definition carryと各rule必要operand不在の有限枝だけを対象とし、全fn4の未閉包枝やfn5/fn7へ一般化しない。 fn5_AB_verificationは既存candidate選択0件と四昇格rule非発火の有限枝だけを扱い、原記録/presenceと他producer不足を保持する。fn5全域・fn7/手順7/Issue完了へ一般化しない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -4996,6 +4996,525 @@
       "元fn1/fn3返却とprivate frameは独立入力材料として全値保持する。3 carry軸だけがfn4返却であり、別producerの返却はfn4のgoldではない。",
       "fn0実行、実owner/trust、意味完成、利用許可、製品helper/runtime/旧test/CI、fn5/fn7/step7/Issue完了を示さない。",
       "旧source/保持点/差分理由は固定L4 oracle_view_boundary_contract/legacy_rederivationを継承参照し、新要求/規則/gateを追加しない。"
+    ]
+  },
+  "fn5_AB_verification": {
+    "id": "HELIXBRAIN-L8-D27-FN5-AB",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "D27 A/B各同call PromotionContext全1fieldと公開fn5 Comparison全4fieldの有限期待。既存candidate選択によるtrace0件と、四昇格rule非発火を分けて導く。",
+    "fixed_git_sources": {
+      "L8_FN3_UNIT": {
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "sha256": "813acfec04e28bdba78db33c1cbeb8694890df74648d70b4418ffbece607fdc4"
+      },
+      "L4_CURRENT": {
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c"
+      },
+      "L5_CURRENT": {
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "4e54532be373d393ac5252d89e1e4c555845aad56be68b2d852e6ab9a16d1fba"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointers": [
+          "/requirements/7"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "file_sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c",
+        "pointers": [
+          "/knowledge_promotion_contract/same_call",
+          "/knowledge_promotion_contract/finite_domain",
+          "/knowledge_promotion_contract/claim_condition_interpretation",
+          "/knowledge_promotion_contract/trace_projection",
+          "/knowledge_promotion_contract/rule_dispositions",
+          "/knowledge_promotion_contract/comparison_writer",
+          "/knowledge_promotion_contract/record_and_process_preservation",
+          "/knowledge_promotion_contract/unclosed_projection_boundaries",
+          "/knowledge_promotion_contract/legacy_rederivation"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "file_sha256": "4e54532be373d393ac5252d89e1e4c555845aad56be68b2d852e6ab9a16d1fba",
+        "pointers": [
+          "/functions/5",
+          "/type_contract/types/PromotionContext",
+          "/type_contract/types/Comparison",
+          "/source_return_contract/existing_function_bindings/1",
+          "/source_return_contract/pure_reference_notation/definitions",
+          "/source_return_contract/constructor_meaning/knowledge_trace",
+          "/source_return_contract/descriptor_target_dataflow/raw_runner/closed_context_constructors/3",
+          "/failure_rules/80",
+          "/failure_rules/81",
+          "/failure_rules/82",
+          "/failure_rules/83"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+        "file_sha256": "813acfec04e28bdba78db33c1cbeb8694890df74648d70b4418ffbece607fdc4",
+        "pointers": [
+          "/fn3_AB_verification/reconstruction"
+        ]
+      }
+    ],
+    "conditional_input_ja": "原raw A/B全値と既存input_issues=[]/unusable_source_refs=[]の条件付きValidatedSupply。logical qualification root前提を保持しfn0実行/実trustとは区別する。元fn3 unitはvalidated入力の静的復元にだけ使い、fn3返却や既存fn5goldをfn5答えへcopyしない。",
+    "reconstruction": {
+      "seed": {
+        "source_fn3_unit": null,
+        "source_contracts": {
+          "knowledge_promotion": null,
+          "fn5": null
+        },
+        "calls": {
+          "A": {
+            "validated": null
+          },
+          "B": {
+            "validated": null
+          }
+        },
+        "expected_comparisons": {
+          "A": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          },
+          "B": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          }
+        }
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_FN3_UNIT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+          "file_sha256": "813acfec04e28bdba78db33c1cbeb8694890df74648d70b4418ffbece607fdc4",
+          "source_pointer": "/fn3_AB_verification",
+          "bundle_pointer": "/source_fn3_unit",
+          "value_canonical_sha256": "61395f74e7bbc70944ac088985519ac2e76e149c0652646a11ab090c4a9e209f"
+        },
+        {
+          "source_key": "L4_CURRENT",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "git_revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+          "file_sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c",
+          "source_pointer": "/knowledge_promotion_contract",
+          "bundle_pointer": "/source_contracts/knowledge_promotion",
+          "value_canonical_sha256": "ced47c82c4785d10b74c74600a8f823f36c6a561aeecc5068b327d9258b6d3b6"
+        },
+        {
+          "source_key": "L5_CURRENT",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "git_revision": "44979e793d1b318d593b4b0fae54874c53256bc9",
+          "file_sha256": "4e54532be373d393ac5252d89e1e4c555845aad56be68b2d852e6ab9a16d1fba",
+          "source_pointer": "/functions/5",
+          "bundle_pointer": "/source_contracts/fn5",
+          "value_canonical_sha256": "9341ce93b9bc2bb1b67d5e6f537afde0c2508ecb54e36adc8e0b4b4c789b44e0"
+        }
+      ],
+      "source_fn3_materialization": {
+        "unit_pointer": "/reconstruction/seed/source_fn3_unit",
+        "recipe_pointer": "/reconstruction/seed/source_fn3_unit/reconstruction",
+        "outer_import_count": 3,
+        "nested_fn2_materialization_pointer": "/reconstruction/seed/source_fn3_unit/reconstruction/source_fn2_materialization",
+        "source_fn2_imports": 58,
+        "total_source_imports": 61,
+        "source_phase_count": 18,
+        "historical_rfc_count": 666,
+        "source_A_local_rfc_count": 58,
+        "source_fn2_local_rfc_count": 12,
+        "source_fn3_local_rfc_count": 120,
+        "total_source_rfc_count": 856,
+        "pointer_scope_ja": "fn5-unit root相対。固定fn3 unitのouter3をseedへ解決し、source_fn2_materializationの既存5group/18phaseと各apply rootを保持する。fn2 outer2+A outer5+nested51を解決し666+58+12 RFC、続いてfn3-local120copyをfn3 rootへ適用する。既存fn3 return hash照合は元入力材料の復元確認であり、新fn5答えへcopyしない。"
+      },
+      "rfc6902_operations": [
+        {"op": "copy", "from": "/reconstruction/seed/source_fn3_unit/reconstruction/seed/calls/A/validated", "path": "/reconstruction/seed/calls/A/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn3_unit/reconstruction/seed/calls/B/validated", "path": "/reconstruction/seed/calls/B/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn5/symbol", "path": "/reconstruction/seed/expected_comparisons/A/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/input_binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn5/symbol", "path": "/reconstruction/seed/expected_comparisons/B/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/B/input_binding"}
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 6
+        }
+      ],
+      "operation_count": 6,
+      "operation_types": {
+        "copy": 6
+      },
+      "total_fixed_imports": 64,
+      "total_rfc_operations": 862,
+      "expected_comparison_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "expected_canonical_sha256": {
+        "A": "65ca6fd78870660114038ebc692aca4b4d40d8c413f37262d5300e6e670e8318",
+        "B": "65ca6fd78870660114038ebc692aca4b4d40d8c413f37262d5300e6e670e8318"
+      },
+      "expected_context_canonical_sha256": {
+        "A": "47f21dda5284ae4d8146e412b77eebf924c651d7d84ad2bdf3d8da3f54ca464a",
+        "B": "dc8a04aefdae859cb01cbc3a652a15ca971327e23854e16db73806105d2b04b8"
+      },
+      "source_resolution_rule_ja": "新outer3→既存fn3 recipe61imports/856RFC→fn5-local6copy（Context2copyと返却metadata4copy）の順。全64imports/862RFC。各fixed rowのbytes/canonical hashとnull destinationを照合し、旧pinをCURRENT名だけで進めない。既存666RFCの4no-opは元値保存し、新しいno-opを足さない。",
+      "empty_population_representation_ja": "seedのaxes/findings=[]は固定L4 comparison_writerが指定する有限0行の構造で、nonnull scalar値をseedへ埋めない既存unit方式を維持する。input.candidates=[]を返却へcopyするものではない。source契約のkind/source/原presence観測と四rule非発火をA/B別々に確認した上で、行のappendが0件という有限期待を保持する。",
+      "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。"
+    },
+    "function_call": {
+      "symbol": "compare_knowledge_promotion",
+      "input_type": "PromotionContext",
+      "argument_pointers": {
+        "A": "/reconstruction/seed/calls/A",
+        "B": "/reconstruction/seed/calls/B"
+      },
+      "return_type": "Comparison",
+      "return_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "pointer_scope_ja": "fn5-unit root相対。公開引数はvalidatedだけを持つContext1、返却はComparison4。既存raw runner order3と同型でprivate frame/target/ClaimUseを追加しない。"
+    },
+    "finite_domain_observations": {
+      "A": {
+        "candidate_presence": "explicit_empty_array",
+        "selected_bindings_count": 0,
+        "knowledge_trace_axes_count": 0,
+        "knowledge_record_keys": [
+          [
+            "ref",
+            "provenance_refs"
+          ]
+        ],
+        "other_array_member_presences": {
+          "meaning_comparisons": "absent",
+          "section_fields": "absent",
+          "values": "absent",
+          "applicability_records": "absent",
+          "relations": "absent",
+          "oracle_bindings": "absent",
+          "compatibility_records": "absent",
+          "handoff_records": "absent"
+        },
+        "dependencies_presence": "absent",
+        "source_roles_and_content": [
+          {
+            "index": 0,
+            "role": "semantic_json",
+            "content_keys": [
+              "binding",
+              "descriptor_facts",
+              "definition_meaning_operations"
+            ]
+          },
+          {
+            "index": 1,
+            "role": "semantic_json",
+            "content_keys": [
+              "binding",
+              "descriptor_targets"
+            ]
+          }
+        ],
+        "typed_kind_census": [
+          {
+            "locator": "/descriptors/0/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/sources/0/content/descriptor_facts/0/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/sources/0/content/definition_meaning_operations/0/arguments/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/0/descriptor_kind",
+            "kind": "required input"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/1/descriptor_kind",
+            "kind": "required section"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/2/descriptor_kind",
+            "kind": "required input"
+          }
+        ],
+        "claims": [
+          {
+            "locator": "/claims/0",
+            "kind": "fill_definition",
+            "proposed_value": null,
+            "basis_refs_presence": "absent",
+            "raw_declaration_matches": [
+              {
+                "source_index": 1,
+                "target_index": 0,
+                "kind": "required input"
+              },
+              {
+                "source_index": 1,
+                "target_index": 1,
+                "kind": "required section"
+              },
+              {
+                "source_index": 1,
+                "target_index": 2,
+                "kind": "required input"
+              }
+            ]
+          }
+        ]
+      },
+      "B": {
+        "candidate_presence": "explicit_empty_array",
+        "selected_bindings_count": 0,
+        "knowledge_trace_axes_count": 0,
+        "knowledge_record_keys": [
+          [
+            "ref",
+            "provenance_refs"
+          ]
+        ],
+        "other_array_member_presences": {
+          "meaning_comparisons": "absent",
+          "section_fields": "absent",
+          "values": "absent",
+          "applicability_records": "absent",
+          "relations": "absent",
+          "oracle_bindings": "absent",
+          "compatibility_records": "absent",
+          "handoff_records": "absent"
+        },
+        "dependencies_presence": "absent",
+        "source_roles_and_content": [
+          {
+            "index": 0,
+            "role": "semantic_json",
+            "content_keys": [
+              "binding",
+              "descriptor_facts",
+              "definition_meaning_operations"
+            ]
+          },
+          {
+            "index": 1,
+            "role": "semantic_json",
+            "content_keys": [
+              "binding",
+              "descriptor_targets"
+            ]
+          },
+          {
+            "index": 2,
+            "role": "semantic_json",
+            "content_keys": [
+              "binding",
+              "descriptor_targets",
+              "descriptor_facts",
+              "definition_meaning_operations"
+            ]
+          },
+          {
+            "index": 3,
+            "role": "reference_only",
+            "content_keys": [
+              "binding",
+              "reference_target",
+              "reference_context"
+            ]
+          }
+        ],
+        "typed_kind_census": [
+          {
+            "locator": "/descriptors/0/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/descriptors/1/descriptor_kind",
+            "kind": "required input"
+          },
+          {
+            "locator": "/descriptors/2/descriptor_kind",
+            "kind": "required section"
+          },
+          {
+            "locator": "/sources/0/content/descriptor_facts/0/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/sources/0/content/definition_meaning_operations/0/arguments/descriptor_kind",
+            "kind": "template identity"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/0/descriptor_kind",
+            "kind": "required input"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/1/descriptor_kind",
+            "kind": "required section"
+          },
+          {
+            "locator": "/sources/1/content/descriptor_targets/2/descriptor_kind",
+            "kind": "required input"
+          },
+          {
+            "locator": "/sources/2/content/descriptor_facts/0/descriptor_kind",
+            "kind": "required section"
+          },
+          {
+            "locator": "/sources/2/content/definition_meaning_operations/0/arguments/descriptor_kind",
+            "kind": "required section"
+          },
+          {
+            "locator": "/sources/2/content/descriptor_targets/0/descriptor_kind",
+            "kind": "required input"
+          },
+          {
+            "locator": "/sources/2/content/descriptor_targets/1/descriptor_kind",
+            "kind": "required section"
+          }
+        ],
+        "claims": [
+          {
+            "locator": "/claims/0",
+            "kind": "fill_definition",
+            "proposed_value": null,
+            "basis_refs_presence": "absent",
+            "raw_declaration_matches": [
+              {
+                "source_index": 1,
+                "target_index": 0,
+                "kind": "required input"
+              },
+              {
+                "source_index": 1,
+                "target_index": 1,
+                "kind": "required section"
+              },
+              {
+                "source_index": 1,
+                "target_index": 2,
+                "kind": "required input"
+              }
+            ]
+          },
+          {
+            "locator": "/claims/1",
+            "kind": "fill_definition",
+            "proposed_value": null,
+            "basis_refs_presence": "supplied",
+            "raw_declaration_matches": [
+              {
+                "source_index": 2,
+                "target_index": 0,
+                "kind": "required input"
+              }
+            ]
+          },
+          {
+            "locator": "/claims/2",
+            "kind": "fill_definition",
+            "proposed_value": "synthetic fallback value",
+            "basis_refs_presence": "supplied",
+            "raw_declaration_matches": [
+              {
+                "source_index": 2,
+                "target_index": 1,
+                "kind": "required section"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "derivation_ja": [
+      "A/Bともcandidatesはabsentでなく明示[]。既存selected_bindingsのcandidate反復が0件でknowledge_trace_axesも0件。KnowledgeRecordが存在しoperational_state absentでも、caller knowledge_refからplaceholder行を追加しない。",
+      "全sourceは既知role/key、slot/fact/operation/target宣言kindは既知15内。source role/key/kind、原Claim宣言対応、他集合の不在はL4がfn4同様の保守shape確認とした範囲で、fn5 predicate/資格gateを増やさない。",
+      "各Claim.kindはfill_definition。A/B0は原target宣言3件の相反を保持し、B1/B2は各原宣言にsubject/full Bindingが全JSON値で対応する。宣言対応はtarget解決/資格ではなく、fn5は既存target readを再呼出し/再解釈しない。B2の非null proposed_valueも原値のまま残す。",
+      "KnowledgeRecordのref/provenance_refsと他9memberのabsent、他8array集合のabsent、dependenciesのabsentを保持する。[]/null/{}へ補完しない。これらをknown/accepted/mature又は工程完了へ変換しない。",
+      "四ruleはconditionの昇格主張とpredicateを一体で読むL4技術判断の下で個別に非発火。NEG-01〜04のknowledge_accepted/knowledge_promoted入力計画と異なり、descriptor専用の定義提案を運用state代入へ読み替えない。",
+      "原state欠落の不足はfn3 knowledge.operational_state unknownとして別に保持される。fn5の0axisを問題なし又は全F08保持の表示とは扱わず、同immutable snapshotとproducer別Comparisonの責務を維持する。",
+      "A/Bの全Contextは別々にcopyし、返却bindingも各同call入力からcopyする。共通bindingの全値が偶然一致してもContextや原provenance/claimsをAからBへ流用せず、両公開Comparisonの同値を独立導出後に照合する。"
+    ],
+    "rule_dispositions": [
+      {
+        "rule_pointer": "/failure_rules/80",
+        "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion",
+        "result_ja": "本有限枝では新Finding/追加Axisなし",
+        "condition": "AI生成だけでaccepted/matureと主張",
+        "nonfire": "非発火。全Claimはfill_definitionで、生成のみからaccepted/matureを主張しない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/81",
+        "rule_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
+        "result_ja": "本有限枝では新Finding/追加Axisなし",
+        "condition": "評価範囲無しで昇格済みと主張",
+        "nonfire": "非発火。descriptor定義のfill提案は、評価範囲なしのknowledge昇格claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/82",
+        "rule_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing",
+        "result_ja": "本有限枝では新Finding/追加Axisなし",
+        "condition": "独立検証無しで昇格済みと主張",
+        "nonfire": "非発火。昇格又は独立検証完了を主張するClaimがない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/83",
+        "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
+        "result_ja": "本有限枝では新Finding/追加Axisなし",
+        "condition": "MSGCONTENT限定意味採択を運用knowledge acceptedへ変換",
+        "nonfire": "非発火。proposed_valueはdescriptor fill値で、運用stateへのadoption claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      }
+    ],
+    "expected_counts": {
+      "A": {
+        "axes": 0,
+        "findings": 0,
+        "public_context_members": 1,
+        "public_comparison_members": 4,
+        "selected_bindings": 0,
+        "knowledge_trace_axes": 0
+      },
+      "B": {
+        "axes": 0,
+        "findings": 0,
+        "public_context_members": 1,
+        "public_comparison_members": 4,
+        "selected_bindings": 0,
+        "knowledge_trace_axes": 0
+      }
+    },
+    "limits_ja": [
+      "固定D27 A/Bとmerge済み有限writerの期待のみ。非空candidate、他Claim kind、stage carrier、record他9member供給、role/key/型外、candidates absent等の未閉包枝へ一般化しない。",
+      "元raw/validatedの全値・配列順・Ref全member・同値反復を保持。入力のsource/qualification/provenance掲載又は空unusableから実trust/採用を生成しない。",
+      "旧source/保持差分/理由は固定L4 knowledge_promotion_contract/legacy_rederivationへ束縛し、新要求/gate/transitionを作らない。",
+      "fn0/製品/helper/runtime/旧CLI/test/CI、fn5全域・fn7/手順7・Issue完了の成立を示さない。"
     ]
   }
 }
