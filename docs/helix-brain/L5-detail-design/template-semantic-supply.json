@@ -7603,24 +7603,14 @@
           "primary_definition_assessment_indices": "primary_definition_assessment_indicesはassessment_indicesのうち上記predicate成立の原indexを原順で保持する。"
         },
         "use_order": "claim_usesは原Claim配列順。各useは全read/match/assessment/basis indexを保存。完全同値Claimでも異原locatorなら別出現。",
-        "route_reason_literals": {
-          "rule87": "当該原missingとreference_only置換の元predicateが成立する。",
-          "rule93": "当該原意味未定義と独立した定義根拠なしのfallback predicateが成立する。",
-          "none": "当該Claimについて本2ruleのpredicateは成立しない。原definitionと他claim規則を保持する。",
-          "unresolved": "当該target/元definition/basisの対応を本2ruleのpredicateへ確定できない。原材料を保持し意味stateを補完しない。"
-        },
         "axis_partition": {
           "all_related": "assessment_indicesは元key/target対応する全assessmentを保持し、NA/帰属/他補助軸を理由に原材料を消さない。",
           "primary_predicate": "a.axis_name == a.key.descriptor_kind + \".definition\" を型付きexact stringで確認する。同keyだけ又はstateだけではprimaryにしない。",
           "primary_indices": "primary_definition_assessment_indicesはassessment_indicesのうち上記predicate成立の原indexを原順で保持する。",
           "undefined_guard": "undefined支持にはさらにstate=unknown AND origin_branch=meaning_undefinedが必要。definition_applicabilityのsource_unresolved/NAknown/pairknown/帰属knownは入れない。"
         },
-        "route_reason_templates": {
-          "rule87": "同呼出しの原targetに対応するdefinition missingとreference_only根拠が、既存rule87の全predicateを満たす。",
-          "rule93": "同呼出しの原targetに対応する限定meaning_undefinedと独立定義根拠のないfallbackが、既存rule93の全predicateを満たす。rule87は成立しない。",
-          "none": "既存rule87及びrule93のpredicateに明確に該当しない。原target・意図・各定義状態は同呼出し観測へ保持する。",
-          "unresolved": "既存rule87又はrule93の判定に必要な原target・意図・根拠対応が未確定である。元不成立を成功又は意味未定義へ変換しない。"
-        }
+        "route_reason_templates": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals",
+        "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。"
       },
       "public_output": {
         "owner_rules": {
