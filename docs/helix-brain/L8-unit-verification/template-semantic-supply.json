@@ -115277,5 +115277,776 @@
       ]
     },
     "population_selection_ja": "raw Aのrequired_descriptor_kindsは15件、candidatesは供給済み空配列。L4 required_contract_domainはroot要求契約を必須とし、追加frameは明示候補に限る。L5 single_walk_algorithm_candidateはそのL4 evaluation_populationsに従いroot/明示candidate domainを作り、L5 event_rulesはrequired_slot_absent eventを定義する。したがってAでrootの15種を要求し、slot reader全域は別に保持する。"
+  },
+  "definition_meaning_fn1_A_assessments_verification": {
+    "id": "HELIXBRAIN-L8-D26A-FN1-ASSESSMENTS",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "fn1 A入力のDescriptorDefinitionAssessment 16件・各9 closed fieldsだけを対象とする有限期待候補。fn0 source qualificationは条件付き未実行。Comparisonは既存L8固定材料化を再構成してcopy参照し、NativeMaterial、fn1全返却、fn6/fn7、B/C、D27、finalの実行・完了を含まない。",
+    "execution_boundary_ja": "製品runtime/helperは実行しない。期待値は固定raw AとL4/L5 writer・event/index契約から構成し、比較軸・finding index・original_axesはmerge済Comparison再構成値からRFC copyする。完了・schema validationを主張しない。",
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/evaluation_populations/required_contract_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order"
+        ],
+        "derivation_ja": [
+          "root固定kindと実在slotの両方を同walk評価母集団へ配置する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/wire_codec_contract/schema/$defs/AxisResult",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy"
+        ],
+        "derivation_ja": [
+          "slot absent eventはevent_rulesから構成する。attribution eventのstate・axis_name・元Ref等はhelper_event_projection rules/0・common_copyから元helper値を保持する。比較indexとoriginal_axesは完成Comparisonからcopyする。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/binding",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/required_descriptor_kinds",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0"
+        ],
+        "derivation_ja": [
+          "固定A rawの必須kind順、root Binding、slot/fact locatorとdescriptor Bindingを保持する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+        "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_A_comparison_verification/final_sort_index"
+        ],
+        "derivation_ja": [
+          "merge済Comparison seed・69標準RFC operations・sort tableを再構成入力として使う。"
+        ]
+      }
+    ],
+    "fixed_git_sources": {
+      "L4": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      },
+      "L5": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
+      },
+      "L8": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+        "sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
+      },
+      "L9": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "reconstruction": {
+      "source_resolution_rule_ja": "固定Git source revisionとfile SHAを検証し、JSON pointer値をensure_ascii=False、sort_keys=True、separators=(\",\", \":\")のUTF-8 canonical writerでhashしてdeep copyする。raw A、Comparison seed、sort table、Comparison RFC operations prefixを固定importする。importしたComparison RFC operations prefixをworkspaceへ先に適用し、その後でこのblock固有のRFC 6902 operationsを記載順に適用する。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/comparison",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd",
+          "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort",
+          "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43",
+          "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_rfc_operations",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43",
+          "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
+        }
+      ],
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null
+        },
+        "comparison": null,
+        "comparison_sort": null,
+        "assessments": [
+          {
+            "key": {
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "slot_identity": {
+                "presence": "supplied",
+                "value": null
+              },
+              "descriptor_kind": null
+            },
+            "state": null,
+            "origin_branch": "existing_definition_result",
+            "slot_locators": [
+              "/descriptors/0"
+            ],
+            "fact_locators": [
+              "/descriptors/0/facts/0"
+            ],
+            "comparison_axis_indices": [],
+            "comparison_finding_indices": [],
+            "original_axes": [],
+            "axis_name": null
+          },
+          {
+            "key": {
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "slot_identity": {
+                "presence": "supplied",
+                "value": null
+              },
+              "descriptor_kind": null
+            },
+            "state": "known",
+            "origin_branch": "existing_definition_result",
+            "slot_locators": [
+              "/descriptors/0"
+            ],
+            "fact_locators": [
+              "/descriptors/0/facts/0"
+            ],
+            "comparison_axis_indices": [],
+            "comparison_finding_indices": [],
+            "original_axes": [],
+            "axis_name": null
+          },
+          {
+            "key": {
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "slot_identity": {
+                "presence": "absent"
+              },
+              "descriptor_kind": null
+            },
+            "state": "missing",
+            "origin_branch": "required_slot_absent",
+            "slot_locators": [],
+            "fact_locators": [],
+            "comparison_axis_indices": [],
+            "comparison_finding_indices": [],
+            "original_axes": [],
+            "axis_name": null
+          }
+        ],
+        "comparison_rfc_operations": null
+      },
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/binding",
+          "path": "/assessments/0/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/slot_identity",
+          "path": "/assessments/0/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/descriptor_kind",
+          "path": "/assessments/0/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/15/state",
+          "path": "/assessments/0/state"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/15/0",
+          "path": "/assessments/0/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/15/axis",
+          "path": "/assessments/0/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/15",
+          "path": "/assessments/0/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/binding",
+          "path": "/assessments/1/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/slot_identity",
+          "path": "/assessments/1/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/descriptor_kind",
+          "path": "/assessments/1/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/14/0",
+          "path": "/assessments/1/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/14/axis",
+          "path": "/assessments/1/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/14",
+          "path": "/assessments/1/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/2/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/1",
+          "path": "/assessments/2/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/12/0",
+          "path": "/assessments/2/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/12/0",
+          "path": "/assessments/2/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/12/axis",
+          "path": "/assessments/2/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/12",
+          "path": "/assessments/2/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/3/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/2",
+          "path": "/assessments/3/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/3/0",
+          "path": "/assessments/3/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/3/0",
+          "path": "/assessments/3/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/3/axis",
+          "path": "/assessments/3/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/3",
+          "path": "/assessments/3/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/4/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/3",
+          "path": "/assessments/4/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/0/0",
+          "path": "/assessments/4/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/0/0",
+          "path": "/assessments/4/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/0/axis",
+          "path": "/assessments/4/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/0",
+          "path": "/assessments/4/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/5/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/4",
+          "path": "/assessments/5/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/8/0",
+          "path": "/assessments/5/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/8/0",
+          "path": "/assessments/5/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/8/axis",
+          "path": "/assessments/5/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/8",
+          "path": "/assessments/5/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/6/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/5",
+          "path": "/assessments/6/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/9/0",
+          "path": "/assessments/6/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/9/0",
+          "path": "/assessments/6/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/9/axis",
+          "path": "/assessments/6/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/9",
+          "path": "/assessments/6/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/7/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/6",
+          "path": "/assessments/7/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/7/0",
+          "path": "/assessments/7/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/7/0",
+          "path": "/assessments/7/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/7/axis",
+          "path": "/assessments/7/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/7",
+          "path": "/assessments/7/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/8/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/7",
+          "path": "/assessments/8/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/6/0",
+          "path": "/assessments/8/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/6/0",
+          "path": "/assessments/8/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/6/axis",
+          "path": "/assessments/8/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/6",
+          "path": "/assessments/8/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/9/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/8",
+          "path": "/assessments/9/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/13/0",
+          "path": "/assessments/9/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/13/0",
+          "path": "/assessments/9/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/13/axis",
+          "path": "/assessments/9/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/13",
+          "path": "/assessments/9/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/10/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/9",
+          "path": "/assessments/10/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/11/0",
+          "path": "/assessments/10/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/11/0",
+          "path": "/assessments/10/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/11/axis",
+          "path": "/assessments/10/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/11",
+          "path": "/assessments/10/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/11/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/10",
+          "path": "/assessments/11/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/5/0",
+          "path": "/assessments/11/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/5/0",
+          "path": "/assessments/11/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/5/axis",
+          "path": "/assessments/11/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/5",
+          "path": "/assessments/11/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/12/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/11",
+          "path": "/assessments/12/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/4/0",
+          "path": "/assessments/12/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/4/0",
+          "path": "/assessments/12/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/4/axis",
+          "path": "/assessments/12/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/4",
+          "path": "/assessments/12/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/13/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/12",
+          "path": "/assessments/13/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/1/0",
+          "path": "/assessments/13/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/1/0",
+          "path": "/assessments/13/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/1/axis",
+          "path": "/assessments/13/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/1",
+          "path": "/assessments/13/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/14/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/13",
+          "path": "/assessments/14/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/2/0",
+          "path": "/assessments/14/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/2/0",
+          "path": "/assessments/14/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/2/axis",
+          "path": "/assessments/14/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/2",
+          "path": "/assessments/14/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/assessments/15/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/required_descriptor_kinds/14",
+          "path": "/assessments/15/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/axes/rows/10/0",
+          "path": "/assessments/15/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort/findings/rows/10/0",
+          "path": "/assessments/15/comparison_finding_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/10/axis",
+          "path": "/assessments/15/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/10",
+          "path": "/assessments/15/original_axes/-"
+        }
+      ],
+      "operation_count": 110,
+      "operation_types": {
+        "copy": 110
+      },
+      "expanded_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494",
+      "expanded_assessments_pointer": "/assessments",
+      "assessment_count": 16,
+      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")で値hashを再現する。RFC 6902実装は既存L8記法のstandard copyのみを使う。",
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
+    },
+    "assessment_derivation_ja": "実slotのdescriptor.attribution assessment stateはL5 helper_event_projection/rules/0とcommon_copyに従い、元helper AxisResult.stateを完成Comparison axes[15]からcopyする。template identityのslot判定はL5定義結果のknown/existing_definition_result。root要求frameはraw required_descriptor_kinds固定順から実slot kindを除いた14種がslot absentとなり、missing/required_slot_absent。不在slotには対応する原slot/factがないため、その判定のslot_locatorsとfact_locatorsは空列となる。各軸・Findingは同event由来で保持し、Assessmentの配列順はroot/frame内kind走査順。indexとoriginal_axesは完成Comparisonとfinal_sort_indexからcopyする。"
   }
 }
