@@ -124016,5 +124016,36 @@
       "expected_native_material_canonical_sha256": "626ca5976c4aadc794b10de3e0db90d4749598a6a274d6540ff17973d52ce794",
       "expected_return_canonical_sha256": "d7dfe9d3352888b646a63e09c9bbcb03bfa6782ee3a163cf2a80e0cd96aff1da"
     }
+  },
+  "definition_meaning_D27_claim_intent_verification": {
+    "artifact_ref": {
+      "identity": "HELIXBRAIN-L8-D27-CLAIM-INTENT-READER",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json",
+      "file_sha256": "e1deb753d557a253db9ccc399b322b80e04c84001d4107238afed3eed7f4d7eb",
+      "pointer": "",
+      "canonical_sha256": "293d8240cf65c42337ffc4c7bf322599b7dfedfcb253fa90b3bf7e0142754c71"
+    },
+    "logical_binding": {
+      "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+      "pointer": "/definition_meaning_D27_claim_intent_verification",
+      "operation": "RFC 6902 replace",
+      "source_revision": "b273bf9453e15e538333355084233c1353a11169",
+      "source_logical_document_canonical_sha256": "c7f3290692ca0ea94b3ac4a59c3163afebf0d6b652f5b940825a770e77676f6b"
+    },
+    "materialization_contract": {
+      "適用単位": "この資料のroot値を同L8論理文書の指定pointerへ一度だけRFC6902 replaceする。既存definition_meaning_walk_verificationと同じ局所著述方式を使う。",
+      "照合と復元": "明示path、identity、空root pointer、現在file bytes SHA-256と論理root値SHA-256を照合してから、root全値を指定位置へ戻す。復元後に各既存reconstructionのroot scopeで固定Git importと標準RFC6902を解決する。",
+      "hashと来歴": "file_sha256は現在資料bytes、canonical_sha256は現在root全JSON値。source_revisionとsource_logical_document_canonical_sha256は分割前Draft snapshotの来歴であり、main統合済みや将来current全体hashの拘束を意味しない。",
+      "境界": "再帰include、自動探索、fallback、新DSL、validator、製品reader、CIを追加しない。元raw、原Claim、独立期待、欠落/null、field順、配列順と反復、全limitsを保持する。",
+      "全論理値の再照合": "git show b273bf9453e15e538333355084233c1353a11169:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonを分割前の独立snapshotとして取得する。本bindingだけを資料root全値で一度replaceした後、47memberの全JSON値をそのsnapshotと比較する。続いてgit show 2f834488fa8777c6fe786818e6c16fa2b90e9689:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonの既存46memberについて値・key順が不変であることを比較する。artifact内の65RFC適用はこの論理復元後、reconstructionの説明どおり別に行う。"
+    },
+    "legacy_comparison": {
+      "source_refs": [
+        "LEGACY-ASSET-603D0E8D8193914F4AC0:§0–§1",
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:§1–§2",
+        "LEGACY-ASSET-4B835ADBEFBCCC13C1C0:19–31"
+      ],
+      "basis_ja": "旧sourceの意味・consumer・oracle保全とJSON正本を保持し、#3139/#3362〜#3365/#3368の局所資料化へ対応する。既存親legacy_comparisonを保持し、旧DB/runtime/gateは移植しない。"
+    }
   }
 }
