@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228"
     }
   },
   "descriptor_target_port_verification": {
@@ -22891,8 +22891,8 @@
     "design_ref": "/dependency_semantic_ports/descriptor_target_contract",
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "observed_source_revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
+      "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92536,7 +92536,85 @@
       "同一target/current full BindingのA/k1・A/k2・B/k1混在は旧9件のexpected_wholeに含まれない。D27-Aはfinite raw/限定期待だけをplanへ追加し、実target port actual・public wholeは未実施。",
       "13種のreason_templatesのうち9件のexpected_wholeに現れず、今回も未観測の8種: owner_source_unresolved、target_container_null、target_container_type、declaration_shape、target_ref_unresolved、binding_unresolved、target_mapping_conflict、target_not_declared。"
     ],
-    "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。"
+    "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。",
+    "technical_closure_verification": {
+      "design_pointer": "/dependency_semantic_ports/descriptor_target_contract",
+      "scope": "住所集合と既存replacement/Claim predicateの技術条件照合。既存9材料の全返却oracleは全値保持し、この局所条件表で置き換えない。製品実行/全ClaimUse/whole fn1の証拠ではない。",
+      "basis": "L3-032 F01/F02/F09/N02の欠落/矛盾/未知保存から、候補の選択・fallback成功・全体stateを生成しない。条件の原source資格と同call対応は既存判定を消費し、新required evidenceにしない。",
+      "condition_cases": [
+        {
+          "id": "mixed-target-conflict-plus-ambiguity",
+          "conditions": "同target/current Binding、同slot input/section相反と別slot対応が併存",
+          "expected": "state=conflict、matches=[]。全3宣言とtarget_mapping_conflict/target_ambiguousの両問題を保持。special追加event無し。"
+        },
+        {
+          "id": "target-distinct-slots",
+          "conditions": "同target/current Binding、kind相反無しで複数distinct slot",
+          "expected": "state=unknown、matches=[]。全候補をoccurrencesへ残し先頭選択しない。"
+        },
+        {
+          "id": "independent-target",
+          "conditions": "当該targetは安全な単一住所、別target/Bindingの相反又は未帰属問題が併存",
+          "expected": "state=resolved、matchesは当該単一住所の原match 1件。他target/既知別Binding/identity未帰属の問題と宣言も保持し、当該住所をunknownへ相殺しない。"
+        },
+        {
+          "id": "claim-semantic-mixed",
+          "conditions": "positive/resolved/全match対応、元meaning_undefined、basisにsemantic資料又は未join対応あり",
+          "expected": "ClaimUse route=unresolved、rule93 tuple無し。元unknownを保持しrole/body hashから代替の意味成功を生成しない。"
+        },
+        {
+          "id": "mixed-definition-states-refonly",
+          "conditions": "同Claimのprimary missing/meaning_undefined併存、positive/resolved/全match対応、reference_only_only",
+          "expected": "route=rule87、rule93 tuple無し。両原stateを保持し、別Claimのunresolvedを抑止しない。"
+        },
+        {
+          "id": "empty-basis-primary-missing",
+          "conditions": "positive/resolved required section又はfield、元primary missingのみ、basis_refs=[]、target/assessment対応既知",
+          "expected": "special第三枝replacement_basis_unresolved unknown。原missingとempty分類を保持。rule87/93=false、ClaimUse route=none。"
+        },
+        {
+          "id": "empty-basis-primary-undefined",
+          "conditions": "positive/resolved required section、meaning_undefinedのみでmissing無し、basis_refs=[]、全対応既知",
+          "expected": "replacement specialは非発火。fn7のunknown_fallback Axis/Findingが出る。元meaning_undefined unknownを保持し、constructor3のmissing支持へ変換しない。"
+        },
+        {
+          "id": "required-input-special-nonfire",
+          "conditions": "positive/resolved、対象required input、元missing",
+          "expected": "constructor3のkind限定外で追加special無し。readは保存する。"
+        },
+        {
+          "id": "unknown-special-nonfire",
+          "conditions": "positive/resolved required section、元definition unknownでmissing無し",
+          "expected": "constructor3は追加event無し。取得unknownやsemantic basis問題をmissingへ変換しない。"
+        },
+        {
+          "id": "basis-absent-primary-missing",
+          "conditions": "positive/resolved required section、全match/元primary missing対応既知、basis_refs member absent",
+          "expected": "basis分類=unresolved、ClaimUse route=unresolved。置換根拠未供給でspecial第三枝unknown。absent presenceと元missingを保持。"
+        },
+        {
+          "id": "semantic-basis-primary-missing",
+          "conditions": "positive/resolved required section、primary missingのみ、semantic basis sourceと対応Refは既知、owner group kind/templateとproposed_value意味対応は未確定",
+          "expected": "ClaimUse route=unresolved、rule87/93 tuple無し。specialは必要basis kind/template未確定で第三枝unknown。元missingを保持。"
+        },
+        {
+          "id": "classified-nonempty-nonreplacement",
+          "conditions": "positive/resolved required section、primary missing、非空semantic basisの原owner kind=required sectionと別Pattern対応が確定。任意proposed_valueへの意味対応は未定義",
+          "expected": "cross-pattern rule7/8はrequired input条件が確定false、same-Patternもfalse。replacement special第三枝は非発火。ClaimUseはsemantic値の意味対応未決でroute=unresolved、rule87/93 tuple無し。"
+        },
+        {
+          "id": "exact-plus-related-unresolved",
+          "conditions": "同identity/current frame・Bindingのexact A/k1と、同identityでframe/Bindingを否定できないtarget_ref/binding/kind比較不能の原宣言が併存",
+          "expected": "state=unknown、matches=[]。exact候補もoccurrencesへ原値で全保持し、局所 *_unresolved problemを保持。identity自体未帰属の宣言はこの関連unknown条件に含めない。"
+        },
+        {
+          "id": "empty-missing-and-undefined-coexist",
+          "conditions": "positive/resolved required section、全matchとprimary missing及び限定meaning_undefinedの対応既知、basis_refs=[]",
+          "expected": "fn1 special第三枝unknown Axisとfn7 rule93 unknown_fallback Axis/Findingが併存する。第三枝finding_rule_indices=[]、rule87=false、ClaimUse route=rule93。両原definition stateとempty分類を保持。"
+        }
+      ],
+      "verification_boundary": "入力状態を明示した条件対照。D27の実raw/局所target/全期待/sort/index/assessment/nativeからこれらを導けるかはL4閉包merge後に再検証し、閉じた条件だけ外す。未観測の全域成功、上流承認又はIssue完了を生成しない。"
+    }
   },
   "definition_meaning_resolution_verification_plan": {
     "id": "HELIXBRAIN-L9-032-DEFINITION-MEANING-RESOLUTION-PLAN",
@@ -92575,8 +92653,8 @@
     ],
     "current_contract_source": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "revision": "4032a7a92c4918749fb00359ca70a17685483fd8",
-      "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
+      "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "pointers": [
         "/definition_meaning_resolution_contract/evaluation_populations",
         "/definition_meaning_resolution_contract/schema/new_defs/DefinitionMeaningOperation",
@@ -92592,7 +92670,7 @@
         "/dependency_semantic_ports/claim_intent_protocol",
         "/dependency_semantic_ports/public_projection"
       ],
-      "role": "A/B/CとD27-A/Bのroot・candidate・cohort素材、D27-A混在targetの有限入力、およびD27-B Claim1 missing/reference_only rule87 tupleの現行L4根拠を示す。現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの根拠を示す。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。"
+      "role": "A/B/CとD27-A/Bのroot・candidate・cohort素材、D27-A混在targetの有限入力、およびD27-B Claim1 missing/reference_only rule87 tupleの現行L4根拠を示す。現行L4固定規範snapshotとraw argument取得照合、Ref/Binding/MeaningFactとowner-operation契約、Comparison/AxisResult/Findingの閉shape、missing分類tupleの根拠を示す。歴史raw operandの由来sourceはnormative_basis_sourceと区別する。 D27期待内の未閉表記はbase e74c時点の観測であり、今回の技術条件閉包とは分けてmerge後に再検証する。"
     },
     "synthetic_fixture_premise": {
       "scope": "A/B/C/D27-A/D27-Bの合成論理担体。全Ref identity/revision/source_locator/owner/cohort値はfixture専用。D26-A/B/Cへ追加したrequirement/oracle/pack Refとversion値も各既存frameをfull Bindingとして整合させる合成値であり、実要件・oracle・packの権威や資格を主張しない。",
@@ -123864,7 +123942,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -184147,7 +184225,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -196961,7 +197039,7 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
       "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
