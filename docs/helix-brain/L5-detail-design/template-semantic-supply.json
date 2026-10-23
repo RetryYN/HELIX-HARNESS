@@ -9287,7 +9287,7 @@
         ],
         "special_reader": {
           "signature": "read_definition_special_support(validated:ValidatedSupply, request:DefinitionSpecialReadRequest) -> DefinitionSpecialRead",
-          "constructor": "request_kindは同walkの原必要relation/該当Claimの責務から設定し、request_locatorは元relation又はClaimのRFC6901 pointer。Refがない全native必要relationの読取はそのowner source原entry locatorを保持する。型のために新Claim/Refを作らない。",
+          "constructor": "request_kindは同walkの原必要relation/該当Claimの責務から設定し、request_locatorは元relation又はClaimのRFC6901 pointer。Refがない全native必要relationの読取はそのowner source原entry locatorを保持する。型のために新Claim/Refを作らない。 replacement_claimはreplacement_claim_request_scheduleが定める原fill_definition Claim集合から形成し、他request_kindの既存条件を変更しない。",
           "acquisition": "同fn0の既存source資格を消費。全source/record原indexを保持し、content.binding、原target/revision/scope/Ref、原arguments/body/Claim、原owner groupをtyped照合。closed projection失敗と元source未資格を別のproblemへ保存する。",
           "relevance": "明示Binding/target/Claimに対応するcohortだけを当該支持へ使う。未帰属source/別対象recordの問題を全targetへ広げず、独立source成功で当該不成立を消さない。",
           "return": "成功typed対応はsupports全件、rawはsource_occurrences全件。取得resolvedは内容の肯定でなく、原語彙/比較結果を次の既存predicateへ渡せる所在対応だけ。first-match再lookup/zip/Ref castなし。"
@@ -9762,7 +9762,7 @@
               "meaning_pair_axesの各公開axisを元helper返却順でhelper eventへ追加する。qualifed pair falseに対応する既存definition conflict eventは、その原pairの最初のpair helper emission直後に一回追加する。異なるpair又は元predicate出現をcodeだけで消さない。",
               "NAの全局所judgmentを元applicability readのsupport原順で独立eventへ追加する。absent requestは追加eventなし。"
             ],
-            "after_slots": "既存single_walk step5でtarget/intent全readを先取得し、step6のspecial readを原request発見順で評価する。display原group→required relation原source/record順→HARNESS Claim原index順→replacement Claim原index順の発見順とする。各specialの原出現順・反復を保存する。",
+            "after_slots": "既存single_walk step5でtarget/intent全readを先取得し、step6のspecial readを原request発見順で評価する。display原group→required relation原source/record順→HARNESS Claim原index順→replacement Claim原index順の発見順とする。各specialの原出現順・反復を保存する。 replacement Claim段階の対象選択・非call条件はcall_return_closure.replacement_claim_request_scheduleへ委譲する。",
             "findings_and_indices": "各同原因event/既存ruleは一回。公開全axis/findingは既存exact_sort_contractだけでsortし、同keyのevent ordinalを維持する。全assessmentはこの発生順を保持し、handle→最終indexを一度写像する。",
             "why": "公開helperの返却値を変えず、元判定に索引を付ける同walkを一意にする技術選択。全軸stateの優先順位ではない。"
           },
@@ -10521,9 +10521,76 @@
             "save": "readをapplicability_reads[r]へ、返却全11field配列をapplicability_judgment_batches[b]={applicability_read_index:r,slot_locator,judgments}へ一回保存。",
             "links": "元judgment j由来eventに[{batch_index:b,judgment_index:j}]、applicability_read_indices=[r]。他links=[]。NA支持を元<kind>.definitionへ混ぜない。"
           },
+          "replacement_claim_request_schedule": {
+            "status": "L5の技術的schedule選択",
+            "scope": "既存fn1の全fill_definition原Claim集合に対するprivate replacement_claim requestの形成・call・発見順だけを具体化する。置換の正当性、target/basis意味、rule7/8又はrule87/93のpredicateは変更しない。",
+            "call": "validated.inputがnon-nullの場合、既存target_read_scheduleとsingle_walk step5が訪問する各原Claim（kindの供給値がexact fill_definition）にreplacement_claim requestを一件形成し、read_definition_special_support(validated,request)を一回呼ぶ。input=null又は同kindの原Claim不存在なら、このrequest kindは非call。",
+            "request_constructor": "request={request_kind:replacement_claim, request_locator:当該原ClaimのRFC6901 /claims/{i}}。同target/intent訪問で保持した原Claim/locatorを使う。requestは読取対象を識別する私有技術値であり、domainの置換成立やClaim採択ではない。別Claim/Refや新required項目を作らない。",
+            "caller_not_gates": [
+              "intent positive/negative/unresolved。proposed_value member欠落のunresolvedも呼ぶ。明示nullは原供給値として保持する。",
+              "basis_refs memberの不在/null/空/非空、basis分類又はowner対応の成功/不成功。",
+              "target readのstate/matches/合成優先、slot kind、元missingの有無。",
+              "replacement_basis_uses carrierの供給/不在/null/型外、supportsの有無又はrule7/8 event predicate。"
+            ],
+            "discovery_order": "target/intent全read取得後、既存display group→required relation→HARNESS Claimに続くreplacement Claim段階で、同raw Claim index昇順にrequestを発見・call・保存する。同値Claimでも原index/locatorが異なれば別call。source内basis_use出現数だけrequestを増やさず、一requestの全source/record出現は同read内へ保持する。",
+            "save": "各callのDefinitionSpecialRead全5fieldをspecial_readsへ一回appendし、その局所indexを同request評価へ渡す。unknown、supports=[]、problems非空も保存する。取得失敗をread非call又は空read不在へ変換しない。",
+            "source_boundary": "request形成は既存source資格やcarrierを補完しない。readerは既存acquisition/relevance、producer consumer、problem_emission_tableに従い同Claim/basisの原対応を照合し、原absence/null/type/unknownを保持する。source不存在又はbasis未解決から新支持を作らない。",
+            "event_boundary": "保存したreadと既存same-call target/intent及び元missingを用いて、既存special_predicate_projection/4,5とspecial_event_constructors/constructors/3をそのまま判定する。読取対象全件をevent対象全件へ昇格しない。非positive、target未解決/複数、対象missingなし等の既存非発火枝は変更しない。",
+            "meaning_boundary": "このcall集合は既存target/intentの原fill_definition集合への技術対応であり、positive/target/missing/basisをcall gateにする新意味条件は採らない。L4のmixed target複合state、Claim2 tuple/非発火、mixed route/意味basis未閉を解決したとはしない。",
+            "diagnostic_effect": "callを増やしても出力不変とは主張しない。readの局所取得問題と、既存positive intent＋明示target/missing＋basis/template未解決のbranchはreplacement_basis_unresolved unknown診断へ影響し得る。rule7/8の肯定event条件とは区別し、当該既存branchと全原read/problemを保つ。",
+            "source_basis": [
+              {
+                "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+                "revision": "96dba2a7326290fc8a9a0a4e33d6de17114e0534",
+                "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+                "pointers": [
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/5",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/after_slots",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_source_producers/3",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionSpecialReadRequest",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activation",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3"
+                ],
+                "role_ja": "既存読取集合・原順・純粋private request形・取得とeventの分離を保持し、未記載だったcall形成条件を同集合への1:1対応として具体化する。"
+              }
+            ],
+            "legacy_comparison": {
+              "disposition": "意味再導出。request call集合への機械対応は新しいL5技術選択。旧sourceに同名producer/call selectorの直接対応は見つからず、snapshotから要求意味を生成しない。",
+              "search_scope": "archive/legacy-generation-2026-09-14/root内special_source_producers/replacement_basis_uses/ClaimIntent/special_readerを検索して0件。",
+              "retained": "LEGACY-ASSET-98372FEE8A3AC8F9C299（L5 JSON authority33–108/113–147）の原型・source authority・unknownをN/Aにしない境界、旧弱点監査UTW-014/020/021の欠損空集合化/aggregate部分失敗/自己申告の防止。",
+              "changed": "旧template registry/runtimeを移植せず、現行の既存raw Claim集合・原locator・同call記録に限定する。非callによって未取得問題が観測から消える予測を、現行のcontainer_absentとread全保存契約に合わせて分離する。",
+              "reason": "Issue3547 comment6357585182と統制確認6357651388で、既存predicateからread call有無を一意に導けないことを確認したため。新要求/required evidence/承認gateではなく、既存全fill_definition読取の私有scheduleを閉じる。",
+              "historical_snapshot": {
+                "path": "docs/governance/audits/source-rebaseline/source-snapshots/brain032-na-spec-d0c896ee.json",
+                "sha256": "d0c896ee64d5340d7dbc85d4a760c90e03bcbbcc908cac0bc2e95734aa6d8316",
+                "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_source_producers/3",
+                "role_ja": "未採用draft bytesの読取来歴。原置換Claimという語彙の所在だけを確認し、旧21case採択根拠又は現在oracleにしない。"
+              },
+              "source_assets": [
+                {
+                  "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+                  "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+                  "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+                  "lines": "33–108,113–147"
+                },
+                {
+                  "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+                  "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+                  "lines": "80–87",
+                  "failure_ids": [
+                    "UTW-014",
+                    "UTW-020",
+                    "UTW-021"
+                  ]
+                }
+              ]
+            }
+          },
           "special_event_constructors": {
             "common": {
-              "activation": "全requestは旧special_source_producersが明示する原slot/source entry/該当Claimの発見点から形成。表示group無し/required relation無し/対象外Claimには新required evidenceを増やさずrequest非call。HARNESSは該当Claimがあるため原source不取得でも当該readを保存する。required_relationの要求単位はqualified owner sourceの原required_relations entryであり、提出relationsだけから必要集合/key/slotを作らない。原必要relation entryが全sourceに無い場合、追加提出relationはimmutable validated.input.relationsへ全値/原indexを保存したまま、本required_relation read/eventは非call。これは提出relationの正当性/充足/意味対応を肯定する返却ではない。原native要求がある場合の未供給/未解決分岐は変更しない。",
+              "activation": "全requestは旧special_source_producersが明示する原slot/source entry/該当Claimの発見点から形成。表示group無し/required relation無し/対象外Claimには新required evidenceを増やさずrequest非call。HARNESSは該当Claimがあるため原source不取得でも当該readを保存する。required_relationの要求単位はqualified owner sourceの原required_relations entryであり、提出relationsだけから必要集合/key/slotを作らない。原必要relation entryが全sourceに無い場合、追加提出relationはimmutable validated.input.relationsへ全値/原indexを保存したまま、本required_relation read/eventは非call。これは提出relationの正当性/充足/意味対応を肯定する返却ではない。原native要求がある場合の未供給/未解決分岐は変更しない。 replacement_claim requestの対象選択と非call範囲はcall_return_closure.replacement_claim_request_scheduleに従う。display_group/required_relation/HARNESS Claimの既存条件は変更しない。",
               "support_multiplicity": "同special read supportsを原順全件、predicateが使用したsupport indexをSpecialSupportLinkとして同局所保存。複数元operationをfirstで潰さない。複数supportを用いた一predicateなら全リンクを原順に一eventへ。",
               "common_fields": "各表key/subject/slot_locators/fact_locatorsに加え、original_refsはserialization_completion.original_ref_columnsの当該列、sort_source_refsは同sort_source_ref_column、reason/state/axis/cause/branch/finding_rule_indicesは下表。special_read_indices=[r]、special_support_linksは当該同局所支持全件。他linksは当該表で指定するもの以外[]。Binding/subject形成不能ならeventのみ保持し公開Axis/Findingを捏造しない。",
               "no_native_claim": "取得resolved/label一致/body形は意味肯定でない。該当元predicateだけがcodeを作る。kind-level関係へ一意slot名を推測しない。"
