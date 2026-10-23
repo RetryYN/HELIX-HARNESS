@@ -1,0 +1,28 @@
+test_equivalent_qualification_copy_with_other_locator_is_retained (test_source_reference_join.TestSourceReferenceJoin.test_equivalent_qualification_copy_with_other_locator_is_retained) ... FAIL
+
+======================================================================
+FAIL: test_equivalent_qualification_copy_with_other_locator_is_retained (test_source_reference_join.TestSourceReferenceJoin.test_equivalent_qualification_copy_with_other_locator_is_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_reference_join.py", line 19, in test_equivalent_qualification_copy_with_other_locator_is_retained
+    self.assertEqual(result["unusable_source_refs"], [], "semantic: locator is not reference identity")
+AssertionError: Lists differ: [{'identity': 'synthetic-semantic-source',[259 chars]14'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'identity': 'synthetic-semantic-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-knowledge-owner', 'source_locator': None, 'sha256': '18202cd2193a6faace1308634f8c84d09f2c2e67d2f4d9b68e4280a14348ae14'}
+
++ []
+- [{'identity': 'synthetic-semantic-source',
+-   'owner': 'synthetic-knowledge-owner',
+-   'revision': 'synthetic-rev-A',
+-   'scope': {'environment': 'synthetic-E',
+-             'project': 'synthetic-P',
+-             'tenant': 'synthetic-T'},
+-   'sha256': '18202cd2193a6faace1308634f8c84d09f2c2e67d2f4d9b68e4280a14348ae14',
+-   'source_locator': None}] : semantic: locator is not reference identity
+
+----------------------------------------------------------------------
+Ran 1 test in 0.045s
+
+FAILED (failures=1)

@@ -1,0 +1,108 @@
+{
+  "phase": "Refactor regression",
+  "revision": "d1f6cc9eb13abd1de2393c1ac65e347d16d215c3",
+  "green_record": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/green-run.json",
+  "green_revision": "132b50a7dc315789624beb8f03403d350ca7873b",
+  "all_frozen_test_helper_and_source_pins_unchanged": true,
+  "transformation": "単一source判定の実挙動を保ち、原bytes/body検査とqualification/root照合を独立した私有関数へ抽出。判定順序/原diagnostic/公開signatureを維持。",
+  "before": "validate_sourceが原bytes/bodyと資格照合の両方を直接所有していた。",
+  "after": "validate_sourceは原Refと順序を所有し、_check_original_contentは原bytes/body/測定digest、_check_qualificationは資格/原scopeを所有。SHA測定を再計算せず渡す。",
+  "maintenance_effect": "別の変更理由を2関数へ分離した。13行増で、単なる行数削減・速度/全体変更コストの実測改善を主張しない。",
+  "observed": "同じ5test（source2/body-scope2/旧ADD01の1）が全てOK。入力・独立oracleを弱めず、scope診断の元locator/reason/source_refを保持。",
+  "runs": [
+    {
+      "name": "refactor-source-green",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_integrity.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:01:16.456552+00:00",
+      "finished_at_utc": "2026-10-20T18:01:16.571872+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-source-green.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-source-green.stderr.log",
+        "sha256": "13f428402f0fadd87f1b2215589f11acfdeb499e65b647c5251312f3cf0f34c0"
+      }
+    },
+    {
+      "name": "refactor-body-scope-green",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_content_and_scope.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:01:16.572401+00:00",
+      "finished_at_utc": "2026-10-20T18:01:16.678543+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-body-scope-green.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-body-scope-green.stderr.log",
+        "sha256": "afdd988d972d1f517d6de3e2777341e4da1b701a7b7e90c46f37f85b02ae9ae3"
+      }
+    },
+    {
+      "name": "refactor-add01-regression",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_supply_input.py",
+        "-k",
+        "test_add01_string_input_is_rejected",
+        "-v"
+      ],
+      "exit_code": 0,
+      "started_at_utc": "2026-10-20T18:01:16.678884+00:00",
+      "finished_at_utc": "2026-10-20T18:01:16.727403+00:00",
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-add01-regression.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/refactor-add01-regression.stderr.log",
+        "sha256": "1fa43b02d8bf84c8257444d1b0ccf44ac850f0d3345842b24a0fdb87c8e40599"
+      }
+    }
+  ],
+  "limits": "部分oracleの回帰だけ。全branch/全numeric/Unicode/資源・実root認証・fn1/F02/CORE/OS/CI/受入は未証明。",
+  "legacy_basis": "LEGACY-ASSET-603D0E8D8193914F4AC0 §0〜§1のconsumer/oracle意味保存。旧runtime/gateの移植なし。"
+}
