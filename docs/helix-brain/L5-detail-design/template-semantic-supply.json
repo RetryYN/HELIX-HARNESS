@@ -1414,7 +1414,7 @@
         "元KnowledgeRecordのstate/provenance/evaluation範囲/限界/反例/独立検証/採否をそれぞれ保持する。007/008/025の既存工程参照を使い、新昇格transitionを実装しない。",
         "AI生成だけ、評価scope無し、独立検証無しでは昇格claimをunknownとし不足工程を返す。限定意味採用を運用accepted/matureへ転換するclaimは責務境界とconflict。",
         "LABO評価/OS受領/候補生成の単独成功を運用stateに代入せず原stateを返す。採択/昇格の実作用を発行しない。",
-        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。"
+        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。本有限枝外は既存規則に従い、その一般writer未閉包を空列で置換しない。"
       ],
       "failure_rules": [
         "HELIXBRAIN-L5-032-R-generation_as_promotion",
@@ -3480,10 +3480,7 @@
     },
     {
       "symbol": "compare_knowledge_promotion",
-      "reads": [],
-      "validated_reads": [
-        "同PromotionContext.validatedを読む。reads=[]は先行Comparisonへの依存が無いことを表し、validated入力の不読を表さない。既存source_return_contractのknowledge_trace_axes(context.validated)を維持する。"
-      ]
+      "reads": []
     },
     {
       "symbol": "compare_values_and_applicability",
@@ -9711,7 +9708,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "5b066d268d4419a547f56657d0439f3d4beab91a22157d4918521eecdebacce1",
+                  "file_bytes_sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -11043,7 +11040,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "5b066d268d4419a547f56657d0439f3d4beab91a22157d4918521eecdebacce1",
+        "sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11051,7 +11048,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "74ed2c1a562f8bb70e8d2d57e17ee78b520c5cb33561cb576c71bae66240bc43"
+        "sha256": "fae4b50c8b23952b5b8c1823ab75fe6872a7ca29ced3036058f203f385911fd4"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",

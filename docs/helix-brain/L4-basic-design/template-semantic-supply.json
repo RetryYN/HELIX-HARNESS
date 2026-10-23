@@ -12756,7 +12756,9 @@
           "/failure_classifications/80",
           "/failure_classifications/81",
           "/failure_classifications/82",
-          "/failure_classifications/83"
+          "/failure_classifications/83",
+          "/identity_version_trace_contract/public_projection/axis_reason_writer/actual_roles/10",
+          "/identity_version_trace_contract/public_projection/axis_reason_writer/actual_operand_binding/knowledge_state_selection"
         ]
       },
       {
@@ -12780,8 +12782,23 @@
           "/failure_rules/80",
           "/failure_rules/81",
           "/failure_rules/82",
-          "/failure_rules/83"
+          "/failure_rules/83",
+          "/logical_input_structure/schema/$defs/SupplyInput/properties/dependencies",
+          "/logical_input_structure/schema/$defs/DependencySelection",
+          "/logical_input_structure/schema/$defs/QualifiedSource/properties/role"
         ]
+      },
+      {
+        "revision": "c8e529d854a6914c17b63f574cc84898a5612206",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "file_sha256": "dbbea701996cd8d26e11be47d51e3f879c25dac948d3725c5fd65946e06d7a33",
+        "pointers": [
+          "/cases/9/negative_cases/0/typed_mutation",
+          "/cases/9/negative_cases/1/typed_mutation",
+          "/cases/9/negative_cases/2/typed_mutation",
+          "/cases/9/negative_cases/3/typed_mutation"
+        ],
+        "read_boundary": "negative inputのtyped mutation計画だけを引用。expected_observation/保存gold/結果countは読み取らず、writerの答えにしない。"
       }
     ],
     "same_call": {
@@ -12790,20 +12807,20 @@
         "validated"
       ],
       "validated": "一回のvalidate_supply_inputから得た同immutable snapshot。inputはdecoded objectで既存typed形を満たしbindingが供給objectであることを本枝の前提とする。writer又は期待値からfn0資格を逆算しない。",
-      "dependencies": "前段Comparisonを入力しない。evaluation_order/3 reads=[]は他関数結果への依存なしであり、validated不読ではない。fn0/fn1/fn3も同列のreads=[]で直接入力を読む先例を保持する。",
+      "dependencies": "前段Comparisonを入力しない。evaluation_order/3 reads=[]は他関数結果への依存なしであり、validated不読ではない。fn0/fn1/fn3も同列のreads=[]で直接入力を読む先例を保持する。 この意味説明はL4の本項へ集約し、fn5専用の未定義validated_reads keyをL5へ追加しない。",
       "raw_runner": "既存order3 constructorのPromotionContext(validated:v)をそのまま使う。public/private署名、wrapper、walk、target/intent port呼出しを追加しない。",
       "no_ambient": "clock/fs/network/DB、別call cached結果、L9 gold、保存済み期待値、別producerのaxisを意味入力へ追加しない。"
     },
     "finite_domain": {
       "root_population": "bindingは供給object、candidatesは明示[]。required_descriptor_kinds/sources/qualification_roots/qualifications/descriptors/knowledge_records/claimsは既存typed形で、各collectionのabsentと[]はsnapshotで区別して保持する。null/型外を[]へ補わず本枝外。",
       "binding": "input.bindingはobjectとして供給され、Comparison.input_bindingへ同じsnapshotの値をそのままコピーする。",
-      "candidates": "input.candidatesは明示[]。absent/null/型外/nonemptyはこの枝に含めない。",
+      "candidates": "input.candidatesは明示[]。absent/null/型外/nonemptyは本枝外。既存as_list(absent)も空反復でtrace0件になるが、原集合未供給の所在/入力issueと明示空を区別し、このtopicは選択0件が明示された枝だけを閉じる技術範囲を採る。absentの返却一般化は未閉包へ残し、[]を入力へ補わない。",
       "claims": "claims absent、claims=[]、又は全出現kind=fill_definitionのいずれか。absentと[]は原presenceを保持し、相互変換しない。",
-      "source_roles": "全source roleはsemantic_json又はreference_only。derived_view/explanation/未知roleは枝外。",
+      "source_roles": "全source.roleは供給stringのsemantic_json又はreference_only。role member absent、明示null、型外、derived_view/explanation、未知literalはすべて本枝外。body keyからroleを推定又は補完しない。",
       "source_content_shape": "contentはobjectで、key集合はrole別allowlistのsubset。semantic_json=[binding,descriptor_facts,descriptor_targets,definition_meaning_operations]; reference_only=[binding,reference_target,reference_context]。content:RawValueのschemaやqualificationは変えない。",
       "typed_descriptor_carriers": "root descriptors[*].descriptor_kind、全semantic_json content.descriptor_facts[*].descriptor_kind、content.definition_meaning_operations[*].arguments.descriptor_kind、content.descriptor_targets[*].descriptor_kindを全原出現で読む。carrierはabsent又はarray、各record/argumentsは既存typed形、kindは同L4 descriptor_meaningsの既知15literalに限る。欠落/null/未知kind/型外は本枝外。targetは住所宣言のままで意味fact/運用stateにはしない。",
-      "knowledge_record_carrier": "このfinite branchでknowledge_recordsの各recordに供給されるmemberはref/provenance_refsのみ。残り9 memberは未供給のまま保持し、operational_stateを発明しない。",
-      "other_collections": "上記9集合はabsent又は明示[]だけを扱い、原presenceを維持する。非空の各recordとpromotion/工程の関係readerがこの有限writerでは閉じていないため、無関係に見えても保守的に枝外とする。件数から違反又は採用成功を作らない。",
+      "knowledge_record_carrier": "knowledge_recordsの各recordは既存typed objectで、refは供給objectの既存Ref形、provenance_refsはabsent又は既存Ref[]。供給keyはref/provenance_refsのみ。他9memberはabsentを保持する。ref member absent/null/非object又はrecord非objectは本枝外。selected=[]なら既存traceは0件のままだが、refなし記録の帰属/保持consumerをこの有限writerで閉じない保守条件であり、新schema必須化ではない。",
+      "other_collections": "other_collection_namesの8個のarray型集合はabsent又は明示[]だけを扱い、原presenceを維持する。非空の各recordとpromotion/工程の関係readerがこの有限writerでは閉じていないため、無関係に見えても保守的に枝外。null/型外を[]へ補わず本枝外。dependenciesは別のobject型なのでdependencies_scopeへ分ける。",
       "scope_boundary": "上記は既存raw shape内でこの有限writer分岐を選ぶ範囲定義。fn0の入力schema/資格検証、必須条件、新failure/gateを追加しない。外れた入力は本枝の結論を適用しない。",
       "other_collection_names": [
         "meaning_comparisons",
@@ -12813,10 +12830,11 @@
         "relations",
         "oracle_bindings",
         "compatibility_records",
-        "dependencies",
         "handoff_records"
       ],
-      "claim_subject_declaration": "各実fill_definition Claimについて、同inputのsemantic_json content.descriptor_targets内に、target_ref全原JSON値がClaim.subject_refと型付き再帰等値で、content.binding全原JSON値がClaim.bindingと同等値の原宣言が1件以上ある枝だけを扱う。object key順は比較identityにせず、配列順/型/null/Ref全memberは区別する。全候補/重複/相反は原順で保持し、先頭の1件で解消しない。この厳しい表示上の対応は有限shapeの技術選択で、既存ref_same/binding_same、target portの資格/resolve/conflict判定を置換しない。宣言対応なしは保守的に本枝外であり、新violation又は全入力gateではない。"
+      "claim_subject_declaration": "各実fill_definition Claimについて、同inputのsemantic_json content.descriptor_targets内に、target_ref全原JSON値がClaim.subject_refと型付き再帰等値で、content.binding全原JSON値がClaim.bindingと同等値の原宣言が1件以上ある枝だけを扱う。object key順は比較identityにせず、配列順/型/null/Ref全memberは区別する。全候補/重複/相反は原順で保持し、先頭の1件で解消しない。この厳しい表示上の対応は有限shapeの技術選択で、既存ref_same/binding_same、target portの資格/resolve/conflict判定を置換しない。宣言対応なしは保守的に本枝外であり、新violation又は全入力gateではない。",
+      "conservative_shape_basis": "fn5の既存operandはcandidates/binding/knowledge_records/Claim.kind。source_roles/source_content_shape/typed_descriptor_carriers/other_collectionsとdependencies_scopeは、fn4 /oracle_view_boundary_contract/nonfire_read_plan/raw_domainと共有する保守的shape確認の方針として本枝にまとめて置く。claim_subject_declarationは同方針をfn5のdescriptor専用範囲へ加えた表示上の限定で、既存fn5 predicateの必要operandではない。fn4の対象3kind除外又は非null時のprivate target read条件は流用しない。条件の外は一般writer未閉包へ残すだけで、schema/qualification/運用gateではない。",
+      "dependencies_scope": "SupplyInput.dependenciesはDependencySelection object型で、array集合ではない。本枝はmember absentだけを扱う。供給object（{}や全flag=falseを含む）は、選択内容と工程の一般consumerをこのsliceで閉じないため保守的に枝外。明示[]/null/その他型外も枝外とし、未供給又は選択なしへ正規化しない。既存schema/型/資格を変更しない。"
     },
     "content_key_allowlists": {
       "semantic_json": [
@@ -12836,7 +12854,8 @@
       "rawvalue_boundary": "proposed_value、MeaningFact.meaning、operation arguments.fact_body/decision等のopaque原値は全保持する。本文内の単語・Ref名・digestからpromotion主張を生成しない。任意nested本文にpromotionという文字列が無いと認定するものではなく、別kind/別工程への意味対応readerは未閉包。",
       "nonnull": "非nullの提案値も採用又は運用stateへ代入せず、原Claimとして残す。明示nullへ補正しない。descriptor targetのunknown/conflictをfn5で解消せず、同callの原read/ClaimUseは担当producerが保持する。",
       "no_private_frame": "本枝のF08はdescriptor定義の対象kind別充足を裁定せず、運用昇格主張があるかだけを上記typed解釈で区別する。非nullでもtarget住所がどのdescriptorかを追加裁定しないためframeを不要とする技術選択。fn4の非対象3kind住所確認とは役割が異なる。 raw宣言との全値対応は有限scope確認だけに使い、qualified owner/住所解決/定義knownを生成しない。既存portを呼び直さず、target unknown/conflictを保持する。",
-      "scope": "全fill_definition/任意bodyに対する一般非promotion判定ではない。有限domain外又はこのtyped解釈で確定しないoperandは未閉包へ残し、false又はemptyへ丸めない。"
+      "scope": "全fill_definition/任意bodyに対する一般非promotion判定ではない。有限domain外又はこのtyped解釈で確定しないoperandは未閉包へ残し、false又はemptyへ丸めない。",
+      "negative_input_basis": "固定L8 /cases/9/negative_cases/0..3/typed_mutationの入力計画を照合する。NEG-01/04はknowledge_accepted、NEG-02/03はknowledge_promotedというClaim kindで各昇格条件を与えている。fill_definitionだけの本枝とは対象主張が異なることを支持する。既存negative入力を削除/改変せず、その発火writerは未閉包のまま保持する。"
     },
     "trace_projection": {
       "existing_binding": "L5 source_return_contract/existing_function_bindings/1がknowledge_trace_axes(context.validated)をComparison.axesへ追加する既存規則を維持する。",
@@ -12907,7 +12926,8 @@
       "builder": "既存knowledge_materialはcandidate選択下でlimits/counterexamplesを投影する。candidate明示空ならその材料列も空であり、全原recordの別コピーを生成しない。元recordは同snapshotに残す。既存builder/composition/InputIssueを変更しない。",
       "007": "source/provenanceと独立根拠、限定内容採用を原知識記録へ結ぶ。LABO評価/OS登録/BRAIN独立検証/採否を別参照・別ownerの工程として保持する。",
       "008": "exact knowledge identity/revision/supersessionと元stateを保持し、新lifecycle enum/遷移を生成しない。",
-      "025": "候補生成・限定採択・LABO評価・OS受領の単独成功を運用accepted/mature又は独立採用へ代入しない。操作選択に応じた既存工程を全ticket共通gateへ拡張しない。"
+      "025": "候補生成・限定採択・LABO評価・OS受領の単独成功を運用accepted/mature又は独立採用へ代入しない。操作選択に応じた既存工程を全ticket共通gateへ拡張しない。",
+      "producer_cross_reference": "fn3 /identity_version_trace_contract/public_projection/axis_reason_writerのknowledge.operational_state actual軸（actual_roles/10、actual_operand_binding/knowledge_state_selection）とfn5 /knowledge_promotion_contract/trace_projectionを分担として参照する。D27の原operational_state欠落はfn3のunknown軸が返し、fn5はcandidate選択に基づくknowledge_record_traceを扱うため0axisでも問題なし/原state成立を意味しない。元fn3 Comparison/原snapshotはbuilderが独立に保持し、fn5へ複写又は相殺しない。"
     },
     "technical_decisions": [
       {
@@ -12926,13 +12946,13 @@
     "unclosed_projection_boundaries": {
       "selected_candidate": "既存選択trace規則は保持するが、非空candidate時の全normal/promotion行と複合witnessの順序は本topicで閉じない。",
       "firing_rules": "四ruleの発火又はcondition/predicate未確定時のsubject/binding/source_refs/reason/owner全割当・Axis/Finding順は未閉包。既存negative ruleを削除又は空列へ置換しない。",
-      "shape": "他Claim kind、供給されたrecord他9member、role/key/型外、他集合非空、partial/invalid input又はbinding不在は本枝外。既存規則と原InputIssueを保持し、新violation/成功へ変換しない。",
+      "shape": "他Claim kind、供給されたrecord他9member、role/key/型外、他集合非空、partial/invalid input又はbinding不在は本枝外。既存規則と原InputIssueを保持し、新violation/成功へ変換しない。 role absent/null、record.ref不在、供給DependencySelection、candidates absentの各保守除外はfinite_domainに理由を明記し、未供給を成功又は空へ補完しない。",
       "custody": "実owner/trust/LABO/OS/BRAIN工程は別責務。本writer/fixtureの一致から実資格/運用採用を認定しない。"
     },
     "consumers": [
       {
         "consumer": "L5 functions/5",
-        "material": "PromotionContext1→Comparison4。algorithm pointer/validated read記述/既存output_assignmentだけを対応させる。",
+        "material": "PromotionContext1→Comparison4。L5 algorithm pointerと既存output_assignmentの2箇所だけを対応させ、validatedの直接read説明は本L4 same_callへ集約する。",
         "boundary": "raw runner/署名/型/helper本体は変更しない。"
       },
       {
