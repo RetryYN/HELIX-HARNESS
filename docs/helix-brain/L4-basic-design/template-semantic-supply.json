@@ -13118,24 +13118,42 @@
       "original_results": "元definitions/values_applicability/identity_trace/oracle_view/promotion/dependencies_handoffと元snapshotは同callに残す。fn7はそのaxis/stateを上書きせず、別producer軸をfn7へcarryしない。"
     },
     "finite_domain": {
-      "scope": "D27 A/B形のdecoded logical inputと同call原frameを扱う有限枝。下記shape外、又は本解釈で主張の責務を確定できない入力は枝外とし、一般writer未閉へ残す。",
+      "scope": "D27 A/B形のdecoded logical inputと同call原frameを扱う有限枝。以下の各shape条件をすべて満たす場合だけ適用する。claims非空、全meaning carrierの型/own member/closed key集合、root/source/knowledge/他collectionの条件のいずれかが外れれば本枝外。",
       "root": "input.bindingは供給object、candidatesは明示[]。sources/descriptors/knowledge_records/claimsは既存typed形。source資格は既存validated条件として消費し、本writerで発行しない。",
-      "claims": "各Claimはkind=fill_definition、subject_refとbindingは供給object、proposed_valueは供給済み原null又はstringのdescriptor定義値提案。nullもpositive intentで、欠落へ変換しない。提案値を採用・known・工程stateの代入値にはしない。",
+      "claims": "claimsは非空のarray。各Claimはkind=fill_definition、subject_refとbindingは供給object、proposed_valueは供給済み原null又はstringのdescriptor定義値提案。nullもpositive intentで欠落へ変換しない。提案値を採用・known・工程stateの代入値にはしない。",
       "declared_targets": "各Claimに対応するsemantic_json原descriptor_targets宣言とcontent.bindingがある。target_ref/fullBindingは既存ref_same/binding_sameで同cohortへ照合し、同slot kind conflict・distinct slot・重複・原Ref全memberをそのまま残す。宣言対応は意味knownを証明しない。",
       "typed_kinds": "root descriptor、semantic descriptor_facts、definition_meaning_operations arguments、descriptor_targetsの各kindは固定descriptor_meaningsの既知15分類。targetはdescriptor metadataであり製品screen/API/permission/state carrierではない。",
       "sources": "全source.roleはsemantic_json又はreference_only、contentはobject。semantic keyはbinding/descriptor_facts/descriptor_targets/definition_meaning_operations、reference_only keyはbinding/reference_target/reference_contextのsubset。opaque本文の単語から別主張を生成しない。",
       "knowledge": "knowledge_recordsは1件、供給keyはref/provenance_refsのみ。refは既存Ref object、provenance_refsは既存Ref[]。他9memberはabsentを保持し、operational stateへ補完しない。",
-      "other_carriers": "meaning_comparisons/section_fields/values/applicability_records/relations/oracle_bindings/compatibility_records/handoff_recordsはabsent又は明示[]。dependenciesはabsent。原absenceと供給空を相互変換しない。製品値/別工程の主張carrierがある枝は対象外。",
+      "other_carriers": "meaning_comparisons/section_fields/values/applicability_records/relations/oracle_bindings/compatibility_records/handoff_recordsはabsent又は明示[]、dependenciesはabsent。八集合の非空/null/型外、又はdependenciesの供給値は本枝外。原absenceと供給空を相互変換しない。",
       "basis": "basis_refs absent又は原Ref[]をそのまま読む。source Refとfact Refを同一視せず全basis Ref/sourceの原順joinを既存consumerで計算する。使用可否/role/意味対応不足を別source成功で消さない。",
       "route_not_input_filter": "全原Claimを原順に走査し、同frameの全read/assessment/usesへ既存route順を適用する。望むrouteを先に選んでClaim集合を縮めず、none/unresolved/rule87/rule93の各結果を保持する。",
-      "boundary": "このshapeは有限writerの適用範囲であり、新schema必須集合・qualification・failure・gateではない。外れた入力をinvalid又は成功へ変更しない。"
+      "boundary": "このshapeは有限writerの適用範囲であり、新schema必須集合・qualification・failure・gateではない。外れた入力をinvalid又は成功へ変更しない。",
+      "meaning_carrier_predicate": {
+        "fact_arrays": [
+          "input.descriptors[*].facts[*]",
+          "input.sources[role=semantic_json].content.descriptor_facts[*].facts[*]"
+        ],
+        "fact_array_presence": "各root descriptorと各供給descriptor_facts groupのfactsは供給array。[]は元空として0回反復し、facts member absent/null/型外は本枝外。content.descriptor_facts自体がabsentのsourceにgroup/factを補わない。",
+        "fact_record": "全原factはobject、key集合はsource_ref/owner/binding/meaning/condition/reason/refのsubsetで、meaningはown memberとして供給されている。meaning_origin/domain/actor等の追加keyがfact直下にあれば本枝外。元MeaningFactのschemaを変更する規則ではない。",
+        "meaning_value": "各fact.meaningは明示null、又はkey集合が正確にtemplate_identity/functional_roleの2個で、両valueがstringかつmeaning_object_literalsの一要素と全memberの原値が一致するobjectだけ。追加key/不足key/型外/member不在、同shapeでもliteralと異なるstring値は本枝外。nullをknown又は[]へ補完しない。",
+        "operation_body": "各供給definition_meaning_operations[*].arguments.fact_bodyもown member供給が必要で、同じmeaning_valueのnull又は2string-member objectだけを扱う。無いkeyをnullにしない。fact_bodyはfact record全体と同一視しない。",
+        "raw_preservation": "root/source/operationの独立出現を全件読む。同値出現の一つだけで他を代表せず、不一致も一方へ揃えない。guardはD27の観測literalへ適用を限定する技術選択で、任意stringの意味正当性やproduct採用/資格を証明しない。",
+        "negative_input_boundary": "F07-NEG-01のmeaning_origin=project_screen_api_permission_state/domain/actorを持つ追加fact又はmeaning objectはclosed key条件から本枝外。rootのみ/sourceのみ/operation bodyのみの混入も一件で枝外となる。",
+        "meaning_object_literals": [
+          {
+            "template_identity": "SYNTHETIC-D26-TEMPLATE-A",
+            "functional_role": "設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。"
+          }
+        ]
+      }
     },
     "claim_condition_interpretation": {
       "algorithm_0": "本有限domainのfill_definitionはdescriptorの原定義値を提案する主張として読む。裏付け無し又は未確定なら原unknown/unresolvedを同callの原比較/target/basisに保持し、採用・意味known・要求合意を生成しない。",
       "unsupported_projection": "この有限枝では一般文の裏付け無しだけを根拠に、failure_rulesに無いgeneric unknown Axis/Findingを追加しない。原不足を消すのではなく、原producerの状態と原ClaimUseを保持する。枝外の裏付け無しclaimの公開writerは未閉包へ残す。",
       "non_rule93_prefix": "15個のrule93以外のconditionを下記rule_dispositionsのdescriptor専用解釈で読む。本有限枝の採用/完成/製品固有値汎用化/原state更新の主張は成立しないため、当該旧fn7 prefixのaxes/findingsを0行として形成する。旧prefix不在を推測するのでなく、本L4の局所writerとしてここに定める。",
       "rawvalue": "全opaque body/Claim値は原値保存し、文字列内のauthority/完成等の単語をparseして新kind又は免責へしない。nonnullもraw提案のままで、nullへ訂正しない。",
-      "not_general": "fill_definition全域の非発火や任意bodyの正当性を認めるものではない。typed target/責務対応を確定できない別domainは本有限解釈を適用しない。",
+      "not_general": "このshapeに入るdescriptor提案だけの有限解釈。meaning_origin等の追加fact/member、meaningの別型/不足member、claims空又は他kind、列挙した他collection非空の入力へは適用しない。fill_definition全域又は任意bodyの非発火を認めない。 meaningの同shape別string値も本枝外で、literalの別値を汎用として認めない。",
       "rule_pointer_scope_ja": "rule_dispositionsのrule_pointerはbasisに固定したL5 docs/helix-brain/L5-detail-design/template-semantic-supply.jsonのdocument root相対JSON Pointerである。L4 root相対ではない。"
     },
     "route_projection": {
@@ -13156,7 +13174,7 @@
       {
         "rule_pointer": "/failure_rules/75",
         "rule_ref": "HELIXBRAIN-L5-032-R-product_values_as_generic",
-        "finite_reading_ja": "raw claimに製品domainのscreen/API/permission/state値と識別できる根拠が無い。B2 synthetic stringだけから製品意味/採用結果を推論しない。"
+        "finite_reading_ja": "rule75はClaimではなくdescriptor factのmeaningも読む。D27 Aはroot/source/operation各1件がmeaning_object_literalsの同じ汎用テンプレート同一性・役割の原値、Bは各経路で同object1件と原null1件。全出現はclosed keyとliteral一致条件を満たす。このD27観測値へ限定した枝で0行とし、同shape任意stringや製品origin fact追加をClaim.kindだけで非発火へ落とさない。"
       },
       {
         "rule_pointer": "/failure_rules/76",
@@ -13248,11 +13266,12 @@
       "preserve": "既存L8 function_oracles/7、F07/B01/N02 negative系、descriptor-target rule93の元入力・観測・全既存期待・固定import・配列順は変更しない。",
       "normal_vs_witness": "既存normal proseやbuilder test doubleはD27全返却の答えに転用しない。発火入力は当該元condition/本L5 tuple形成へ照合する材料で、0行枝へ書換えない。",
       "limits": "このtopicは既存fn7の全negative witness・他domainの全返却writerを新規に閉じない。検証では旧全値/順序の不変と、本有限条件外の保存を別に確かめる。",
-      "observed_record_nature": "function_oracles/7はclaims=[]の文章期待、N02/F07/B01/ADD20もnot_executedのmutation/状態観測計画で、fn7 fullComparison JSONではない。元記録の全値保存を照合し、その実行一致又はB2 exact oracleへの昇格は主張しない。"
+      "observed_record_nature": "function_oracles/7はclaims=[]の文章期待、N02/F07/B01/ADD20もnot_executedのmutation/状態観測計画で、fn7 fullComparison JSONではない。元記録の全値保存を照合し、その実行一致又はB2 exact oracleへの昇格は主張しない。",
+      "outside_axis_state_source": "枝外で発火するruleのaxis/stateは、固定L5 failure_rulesのexpected_axis/expected_stateを正とする。本writerは枝外の公開行全fieldを符号化せず、元rule/期待を空列へ置換しない。"
     },
     "unclosed_projection_boundaries": {
       "semantic_owner": "semantic/mixed basisの任意RawValue意味対応自体は未閉。route unresolved/行0を保持しても意味対応成立又はpredicate falseを認定しない。",
-      "other_domain": "他Claim kind、製品固有値/採用/義務/receipt carrier、複数KnowledgeRecord、role/key/shape外又は本文から別意味主張を読む一般readerは対象外。",
+      "other_domain": "他Claim kind、claims空、追加meaning_origin等又は上記2string-member/null以外のmeaning、製品固有値/採用/義務/receipt carrier、複数KnowledgeRecord、role/key/shape外の入力は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。 meaningの同shape別string値も本枝外。",
       "generic_unknown": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。既存failureを削除/空列へ丸めない。",
       "scope": "実owner/trust/fn0資格/製品runtime/手順7/Issue完了の成立を示さない。"
     },

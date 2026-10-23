@@ -1528,7 +1528,7 @@
       "output": "Comparison",
       "effect": "none",
       "algorithm": [
-        "Claim.actor/kind/basisを原qualified事実と既存owner責務へ照合。BRAINによる採用/要求合意/設計完成/OS義務消込はconflict。裏付け無しclaimはunknown。",
+        "Claim.actor/kind/basisを原qualified事実と既存owner責務へ照合。BRAINによる採用/要求合意/設計完成/OS義務消込はconflict。裏付け無しclaimはunknown。L4 /claim_boundary_projection_contractの有限domainでは、これは元unknown/unresolved・原Claim/全比較snapshotの保持として読み、failure predicateに無い公開unknown行を追加しない。枝外の一般writerをこの有限読みに置換しない。",
         "複数候補を絶対解へ置換するclaimはCORE判断境界とconflict。未提示domain/actorも同じowner境界で処理し、新しい主体の許可を作らない。",
         "件数/hash/下位greenだけの完了claimはunknown。原missing/unknown/conflict/not_applicable/unobserved/not_receivedは比較result側で保持し、claimで原axisを上書きしない。 unknown_fallbackの既存rule93だけは/source_return_contract/descriptor_target_dataflow/consumerとpublic_outputへ結線し、当該meaning_undefined/原target/任意fallback predicateを満たすClaimへ返す。元rule87担当と二重裁定せず他claim規則を保持する。",
         "L4 /claim_boundary_projection_contractのdescriptor fill有限domainでは、既存ClaimContext全7fieldと同walk frameを保持して公開Comparison全4fieldを形成する。裏付け無しの読みと旧prefixの有限非発火は同L4に従い、元rule87/93の担当・unresolved・public tupleは既存descriptor_target_dataflow/public_outputから変更しない。原definition/stateは同call元Comparisonへ保持し、他producer全axisをfn7へcarryしない。枝外の一般writerを空列で置換しない。"
@@ -9709,7 +9709,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "9c5c69ebf1df38b24c74fab31cbbfa44881e7409a53b0f14d6574d6404342e3f",
+                  "file_bytes_sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -11041,7 +11041,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "9c5c69ebf1df38b24c74fab31cbbfa44881e7409a53b0f14d6574d6404342e3f",
+        "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11049,7 +11049,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "7024be4a9fb7b504e830682cfaaaa9787fa1d366eae85ff35059aff99e93cd4b"
+        "sha256": "edbdd5d154e9fd74198fb25bda8f62501e6d8a0bdbc7445f2e222a050a783354"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
