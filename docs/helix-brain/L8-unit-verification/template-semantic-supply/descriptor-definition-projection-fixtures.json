@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。fn0/製品実行・fn6fn7/consumer完了は含めない。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationはA一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn6 B/fn7全返却・任意入力全域consumer完了は含めない。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A/B ClaimUseと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn6/fn7の全返却又はIssue完了を成立させない。",
+      "item_ja": "有限whole walk/A/B ClaimUse/fn6 Aと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationは固定Gitの同A全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn6 B/fn7の全返却又はIssue完了を成立させない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -2986,5 +2986,779 @@
       "route_reason",
       "primary_definition_assessment_indices"
     ]
+  },
+  "fn6_A_verification": {
+    "id": "HELIXBRAIN-L8-D27-FN6-A",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "A有限入力に対するfn6 compare_dependencies_and_handoffのComparison返却のみ。fn7/B/全体資格成立・実行結果は含めない。",
+    "fixed_git_sources": {
+      "L8_PROJECTION_SOURCE": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+        "sha256": "217fa611e86c5bc17e1e2a77684b959918e0683f66670616c57bccc3d5c4366a"
+      },
+      "L4_CURRENT": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "55b020af26fae07159f34354803615df2fad1b59",
+        "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228"
+      },
+      "L5_CURRENT": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "55b020af26fae07159f34354803615df2fad1b59",
+        "sha256": "313b39a7aee7059104e6814759c3d161c0b199bdfb06b8deb40216656f108292"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "55b020af26fae07159f34354803615df2fad1b59",
+        "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
+        "pointers": [
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3",
+          "/dependency_semantic_ports/public_projection/axis_mapping",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer",
+          "/dependency_semantic_ports/public_projection/schema"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "55b020af26fae07159f34354803615df2fad1b59",
+        "file_sha256": "313b39a7aee7059104e6814759c3d161c0b199bdfb06b8deb40216656f108292",
+        "pointers": [
+          "/type_contract/types/DependencyContext",
+          "/type_contract/types/AxisResult",
+          "/type_contract/types/Finding",
+          "/functions/6",
+          "/failure_rules/105",
+          "/failure_rules/106",
+          "/canonical_dependency_detail/required_dependency_missing_axis_trace_writer",
+          "/wire_codec_contract/schema/$defs/AxisResult",
+          "/wire_codec_contract/schema/$defs/Finding",
+          "/wire_codec_contract/schema/$defs/Comparison",
+          "/type_contract/types/Comparison",
+          "/source_return_contract/descriptor_target_dataflow/functions/9",
+          "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorTargetCallFrame"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+        "file_sha256": "217fa611e86c5bc17e1e2a77684b959918e0683f66670616c57bccc3d5c4366a",
+        "pointers": [
+          "/reconstruction",
+          "/assessments_verification/reconstruction",
+          "/native_verification/reconstruction",
+          "/whole_fn1_verification/reconstruction",
+          "/claim_use_A_verification/reconstruction"
+        ]
+      }
+    ],
+    "conditional_input_ja": "L9 raw Aを既存source_document recipeから復元し、input_issues=[] / unusable_source_refs=[] のValidatedSupplyを関数引数へ渡す条件付きfinite case。これはfn0実行・資格成立の証拠ではない。",
+    "reconstruction": {
+      "seed": {
+        "source_document": null,
+        "call": {
+          "context": {
+            "validated": null,
+            "definitions": null
+          },
+          "frame": {
+            "validated": null,
+            "definition_evaluation": null,
+            "target_reads": null,
+            "claim_uses": null
+          }
+        },
+        "expected_comparison": {
+          "axes": [],
+          "findings": [],
+          "producer_symbol": "compare_dependencies_and_handoff",
+          "input_binding": null
+        },
+        "axis_missing_template": {
+          "subject_ref": null,
+          "binding": null,
+          "axis": "dependency_reference",
+          "state": "missing",
+          "original_refs": [],
+          "reason": "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。\nTRACE={\"format\":\"BRAIN032-F09-axis-reason-trace-v1\",\"producer_symbol\":\"compare_dependencies_and_handoff\",\"axis\":\"dependency_reference\",\"state\":\"missing\",\"subject_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":\"urn:synthetic:d26:A:knowledge\",\"sha256\":null},\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-template-owner\",\"source_locator\":\"urn:synthetic:d26:A:template\",\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":\"urn:synthetic:d26:A:knowledge\",\"sha256\":null},\"requirement_ref\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"original_refs\":[],\"backflow_owner\":\"knowledge_owner\",\"request_locator\":null,\"source_category_locator\":null,\"cause\":null,\"canonical_body_support\":[],\"handoff_record\":null,\"selection_observation\":null}",
+          "backflow_owner": "knowledge_owner"
+        },
+        "axis_selector_templates": [
+          {
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector core_return_requested が /dependencies/core_return_requested にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          },
+          {
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          },
+          {
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "original_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ],
+        "finding_missing_template": {
+          "code": "required_dependency_missing",
+          "rule_ref": "HELIXBRAIN-L5-032-R-required_dependency_missing",
+          "subject_ref": null,
+          "binding": null,
+          "axis": "dependency_reference",
+          "state": "missing",
+          "source_refs": [],
+          "reason": null,
+          "backflow_owner": "knowledge_owner"
+        },
+        "finding_missing_reasons": [
+          "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-003 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+          "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-005 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+          "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-007 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+          "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-008 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。",
+          "HELIXBRAIN-L3-032-F09で必要なidentity HELIXBRAIN-L2-028 が入力 /dependencies/always_refs にない。欠落Refのrevision/scope/owner/source_locator/digestは生成しない。"
+        ],
+        "finding_selector_templates": [
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector core_return_requested が /dependencies/core_return_requested にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          },
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector core_source_selected が /dependencies/core_source_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          },
+          {
+            "code": "dependency_selector_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-dependency_selector_unknown",
+            "subject_ref": null,
+            "binding": null,
+            "axis": "dependency_selection",
+            "state": "unknown",
+            "source_refs": [],
+            "reason": "条件selector labo_evaluation_selected が /dependencies/labo_evaluation_selected にない。falseを既定せず、その条件のref集合を評価しない。",
+            "backflow_owner": null
+          }
+        ]
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_PROJECTION_SOURCE",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+          "file_sha256": "217fa611e86c5bc17e1e2a77684b959918e0683f66670616c57bccc3d5c4366a",
+          "source_pointer": "",
+          "bundle_pointer": "/source_document",
+          "value_canonical_sha256": "fac46b9e043e1a6c73a186758c9e11a960313b69f55a1beba65db673ce7cac78"
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/source_document/reconstruction/seed/function_call_arguments/A/context/validated",
+          "path": "/call/context/validated"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/whole_fn1_verification/reconstruction/seed/A/evaluation/comparison",
+          "path": "/call/context/definitions"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/reconstruction/seed/function_call_arguments/A/context/validated",
+          "path": "/call/frame/validated"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/whole_fn1_verification/reconstruction/seed/A/evaluation",
+          "path": "/call/frame/definition_evaluation"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/whole_fn1_verification/reconstruction/seed/A/target_reads",
+          "path": "/call/frame/target_reads"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/claim_use_A_verification/reconstruction/seed/A",
+          "path": "/call/frame/claim_uses"
+        },
+        {
+          "op": "copy",
+          "from": "/source_document/reconstruction/seed/source_snapshot/raw_A/binding",
+          "path": "/expected_comparison/input_binding"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_missing_template",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/0/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/0/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_missing_template",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/1/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/1/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_missing_template",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/2/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/2/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_missing_template",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/3/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/3/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_missing_template",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/4/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/4/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_selector_templates/0",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/5/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/5/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_selector_templates/1",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/6/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/6/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/axis_selector_templates/2",
+          "path": "/expected_comparison/axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/axes/7/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/axes/7/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_template",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/0/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/0/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_reasons/0",
+          "path": "/expected_comparison/findings/0/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_template",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/1/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/1/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_reasons/1",
+          "path": "/expected_comparison/findings/1/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_template",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/2/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/2/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_reasons/2",
+          "path": "/expected_comparison/findings/2/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_template",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/3/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/3/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_reasons/3",
+          "path": "/expected_comparison/findings/3/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_template",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/4/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/4/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_missing_reasons/4",
+          "path": "/expected_comparison/findings/4/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_selector_templates/0",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/5/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/5/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_selector_templates/1",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/6/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/6/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/finding_selector_templates/2",
+          "path": "/expected_comparison/findings/-"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding",
+          "path": "/expected_comparison/findings/7/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/call/context/validated/input/binding/knowledge_ref",
+          "path": "/expected_comparison/findings/7/subject_ref"
+        }
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/reconstruction/rfc6902_operations",
+          "operation_pointer_scope": "fn6_A_verification unit root",
+          "apply_root_pointer": "/reconstruction/seed",
+          "apply_root_scope": "fn6_A_verification unit root",
+          "operation_count": 60
+        }
+      ],
+      "operation_count": 60,
+      "operation_types": {
+        "copy": 60,
+        "replace": 0
+      },
+      "expected_comparison_pointer": "/expected_comparison",
+      "expected_canonical_sha256": "3d707e8033ceea22cb71374d32c6d2c0a1cfa6c7736654ca73cb33c92505aa9e",
+      "field_order": {
+        "comparison": [
+          "axes",
+          "findings",
+          "producer_symbol",
+          "input_binding"
+        ],
+        "axis": [
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "finding": [
+          "code",
+          "rule_ref",
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "source_refs",
+          "reason",
+          "backflow_owner"
+        ]
+      },
+      "canonical_writer_assumption_ja": "canonical hashはensure_asciiをfalse、sort_keysをtrue、separatorsをcomma-colon形式にしたUTF-8 JSONを対象とする局所比較条件。",
+      "source_resolution_rule_ja": "順序は宣言どおりで、再帰includeを仮定しない。source_document rootの34 imports→rootの4 RFC phases→assessmentの3 imports→assessmentの3 phases→nativeの8 imports→nativeの4 phases→whole_fn1の1 import→preparation 1 / target fixtureの50→target fixture A0の2 imports→A0 16 / B0 8 / read-array 8 / whole assembly 26→ClaimUse-Aの3 imports→ClaimUse-Aの9。各importはmaterialization stepにあるheader_pointer、declaration_pointer、import_destination_rootで行い、各RFCはoperation_pointer、apply_root_pointerへ標準適用する。unit固有60 RFCはすべての既存phase後に本unitのreconstruction.seedを適用rootとして適用する。",
+      "fixed_git_import_and_rfc6902_materialization_steps_in_order": [
+        {
+          "step": "fixed_git_imports",
+          "unit": "projection-root",
+          "declaration_pointer": "/source_document/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/fixed_git_sources",
+          "declared_import_count": 34,
+          "import_destination_root": "/source_document/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "projection-root",
+          "operation_pointer": "/source_document/reconstruction/seed/target_workspace/intent_reconstruction_operations",
+          "apply_root_pointer": "/source_document/reconstruction/seed/target_workspace/intent_workspace",
+          "operation_count": 65
+        },
+        {
+          "step": "rfc6902",
+          "unit": "projection-root",
+          "operation_pointer": "/source_document/reconstruction/seed/raw_input_copy_operations",
+          "apply_root_pointer": "/source_document/reconstruction/seed",
+          "operation_count": 4
+        },
+        {
+          "step": "rfc6902",
+          "unit": "projection-root",
+          "operation_pointer": "/source_document/reconstruction/seed/A_comparison_prefix_operations",
+          "apply_root_pointer": "/source_document/reconstruction/seed",
+          "operation_count": 69
+        },
+        {
+          "step": "rfc6902",
+          "unit": "projection-root",
+          "operation_pointer": "/source_document/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/reconstruction/seed",
+          "operation_count": 24
+        },
+        {
+          "step": "fixed_git_imports",
+          "unit": "assessments",
+          "declaration_pointer": "/source_document/assessments_verification/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/fixed_git_sources",
+          "declared_import_count": 3,
+          "import_destination_root": "/source_document/assessments_verification/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "assessments",
+          "operation_pointer": "/source_document/assessments_verification/reconstruction/bridge_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 6
+        },
+        {
+          "step": "rfc6902",
+          "unit": "assessments",
+          "operation_pointer": "/source_document/assessments_verification/reconstruction/seed/assessment_prefix_operations",
+          "apply_root_pointer": "/source_document/assessments_verification/reconstruction/seed",
+          "operation_count": 110
+        },
+        {
+          "step": "rfc6902",
+          "unit": "assessments",
+          "operation_pointer": "/source_document/assessments_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/assessments_verification/reconstruction/seed",
+          "operation_count": 68
+        },
+        {
+          "step": "fixed_git_imports",
+          "unit": "native",
+          "declaration_pointer": "/source_document/native_verification/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/fixed_git_sources",
+          "declared_import_count": 8,
+          "import_destination_root": "/source_document/native_verification/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "native",
+          "operation_pointer": "/source_document/native_verification/reconstruction/bridge_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 2
+        },
+        {
+          "step": "rfc6902",
+          "unit": "native",
+          "operation_pointer": "/source_document/native_verification/reconstruction/seed/d26_A_workspace/meaning_reader_prefix_operations",
+          "apply_root_pointer": "/source_document/native_verification/reconstruction/seed/d26_A_workspace",
+          "operation_count": 8
+        },
+        {
+          "step": "rfc6902",
+          "unit": "native",
+          "operation_pointer": "/source_document/native_verification/reconstruction/seed/d26_A_native_operations",
+          "apply_root_pointer": "/source_document/native_verification/reconstruction/seed/d26_A_workspace",
+          "operation_count": 107
+        },
+        {
+          "step": "rfc6902",
+          "unit": "native",
+          "operation_pointer": "/source_document/native_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 85
+        },
+        {
+          "step": "fixed_git_imports",
+          "unit": "whole-fn1",
+          "declaration_pointer": "/source_document/whole_fn1_verification/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/whole_fn1_verification/fixed_git_sources",
+          "declared_import_count": 1,
+          "import_destination_root": "/source_document/whole_fn1_verification/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/preparation_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 1
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/reconstruction/seed",
+          "operation_count": 50
+        },
+        {
+          "step": "fixed_git_imports",
+          "unit": "whole-A0-target",
+          "declaration_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/A0_target_verification/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/fixed_git_sources",
+          "declared_import_count": 2,
+          "import_destination_root": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/A0_target_verification/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/A0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 16
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/B0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 8
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document/read_array_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document/whole_fn1_verification/reconstruction/seed/target_document",
+          "operation_count": 8
+        },
+        {
+          "step": "rfc6902",
+          "unit": "whole-fn1",
+          "operation_pointer": "/source_document/whole_fn1_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 26
+        },
+        {
+          "step": "fixed_git_imports",
+          "unit": "ClaimUse-A",
+          "declaration_pointer": "/source_document/claim_use_A_verification/reconstruction/fixed_git_imports",
+          "header_pointer": "/source_document/claim_use_A_verification/fixed_git_sources",
+          "declared_import_count": 3,
+          "import_destination_root": "/source_document/claim_use_A_verification/reconstruction/seed",
+          "resolution_ja": "各宣言source_keyをheaderから解決し、宣言bundle_pointerへ固定Git値を置く。"
+        },
+        {
+          "step": "rfc6902",
+          "unit": "ClaimUse-A",
+          "operation_pointer": "/source_document/claim_use_A_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "/source_document",
+          "operation_count": 9
+        }
+      ],
+      "operation_pointer_scope_ja": "operation_pointerはproposalのunit文書root相対、apply_root_pointerはそのunit内のseed objectを指す。operationsのfrom/pathはapply root相対。",
+      "pointer_scopes_ja": "fixed_git_imports.bundle_pointerとmaterialization_steps内の全pointerは本unitのreconstruction.seed相対。各元RFCのpath/fromは宣言apply_root_pointerの全値相対であり書き換えない。末尾のrfc6902_operation_sources_in_orderだけはfn6_A_verification root相対でoperation配列と適用seedを別に指す。function_call/private_callの引数・返却pointerはseed相対。"
+    },
+    "function_call": {
+      "symbol": "compare_dependencies_and_handoff",
+      "input_type": "DependencyContext",
+      "argument_pointer": "/call/context",
+      "return_type": "Comparison",
+      "return_pointer": "/expected_comparison",
+      "basis_pointer": {
+        "source_key": "L5_CURRENT",
+        "pointer": "/functions/6"
+      },
+      "pointer_scope_ja": "全argument/return pointerは本proposal unitのseed root相対。source_document内pointerはRFC操作from側で明示される。"
+    },
+    "derivation_ja": [
+      "raw_Aのbinding.knowledge_refは診断subjectであり、binding wholeは原input_bindingからcopyする。dependencies memberはrawで不在なのでraw値[]へdefaultせず、presence不在をValidatedSupply.input内に保つ。",
+      "L5 /functions/6 は常時identity列003/005/007/008/028をalways_refsで照合し、CORE selector未供給時はconditional refsだけを評価しない。A入力に5 identityのRefが無く、3 selectorも不在なのでrequired 5 missing、selector 3 unknownをこの順で配置する。",
+      "各missing Axisは現L5専用projectorの一identity一回に対応し、missing fixed prefix + TRACE14を保持する。cause/request/handoff/selectionはnull、support/original_refsは空配列、backflow_ownerはlogical role knowledge_owner。R105 Findingはそれぞれidentity別literalで別形成する。",
+      "R106 selector Finding/Axisはfailure_rules/106のreason templateへselectorと原input pathを補間し、backflow_owner null。既存InputIssue/資格成立、fn7 routeはこの候補から主張しない。",
+      "Aの同call ClaimUse一件はroute=unresolvedでrule87 consumerの対象ではない。原rawにhandoff record/選択Refの元出現が無く、それらの別所見を作らない。原Claimをreference_as_authority等の別述語へ読み替えない。"
+    ],
+    "expected_counts": {
+      "axes": 8,
+      "findings": 8,
+      "required_missing_axes": 5,
+      "selector_unknown_axes": 3,
+      "required_missing_findings": 5,
+      "selector_unknown_findings": 3
+    },
+    "limits_ja": [
+      "fn7の全返却、Bのfn6、資格成立、実reader/helper/runtime、任意入力全域の一般性は対象外。"
+    ],
+    "private_call": {
+      "symbol": "compare_dependencies_and_handoff_detail",
+      "input_context_pointer": "/call/context",
+      "same_call_frame_pointer": "/call/frame",
+      "frame_type": "DescriptorTargetCallFrame",
+      "frame_fields": [
+        "validated",
+        "definition_evaluation",
+        "target_reads",
+        "claim_uses"
+      ],
+      "basis_pointer": {
+        "source_key": "L5_CURRENT",
+        "pointer": "/source_return_contract/descriptor_target_dataflow/functions/9"
+      },
+      "scope_ja": "private frameの検証材料であり、public fn6にframe引数を追加しない。",
+      "pointer_scope_ja": "frame pointerは本proposal unitのseed root相対。public function argumentには含めない。"
+    }
   }
 }
