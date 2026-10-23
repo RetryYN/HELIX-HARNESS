@@ -3774,10 +3774,11 @@
       "pointer_scope_ja": "B unit document root相対。"
     },
     "derivation_ja": [
-      "A-unitが完成したComparisonの先頭8 Axis/Findingを全値copyする。この有限入力ではB原root BindingとAで先頭8行が同値であり、Bのinput_bindingはB rawから別にcopyする。producer_symbolは完成A Comparisonからcopyしliteral再掲しない。",
+      "この有限raw A/Bは/dependenciesと/handoff_recordsがどちらも不在で、/binding全値が同値である。A-unitが完成したComparisonの先頭8 Axis/Findingを全値copyする。この有限入力ではB原root BindingとAで先頭8行が同値であり、Bのinput_bindingはB rawから別にcopyする。producer_symbolは完成A Comparisonからcopyしliteral再掲しない。",
       "B context/frameはA-unit材料化後のraw_B、B whole return、ClaimUse-B returnから全fieldをcopyし、ClaimUse-B local 25 RFCを適用した後でframeを組む。B1原Claim index1/use index1だけがrule87 predicateを満たし、B2は該当せず新行を加えない。",
       "B1 Axisのsubject_ref、binding、original_refsとFindingのsource_refsは原Claimからcopyする。Axis axis/state/backflow_ownerとFinding code/rule_refは固定importしたfailure_rules/87からcopyする。Rule87 reasonは固定したpublic_output reason templateへ原Claim locator /claims/1 と原use locator /frame/claim_uses/1 を代入した有限literalであり、Finding.reasonは完成Axis reasonからcopyする。",
-      "この候補はfn0資格を実行・成立確認せず、fn7、全域consumer、B2別route、製品runtimeの返却を主張しない。"
+      "この候補はfn0資格を実行・成立確認せず、fn7、全域consumer、B2別route、製品runtimeの返却を主張しない。",
+      "fn6担当rule 1、2、84、85、86、88、89はtriggerとなるmemberがraw Bにないため行を出さない。dependenciesとhandoff_recordsは不在で、Claim3件はすべてkind=fill_definitionであり、obligation／applicability／precondition／authority系のClaimはない。"
     ],
     "expected_counts": {
       "axes": 9,
@@ -3789,8 +3790,8 @@
       "このunitは有限B fn6 Comparisonのみ。fn7、別Claim route、製品runtime、Issue完了を主張しない。",
       "context.definitionsはfn1の返却を保持するfn6入力であり、fn6 Comparisonへ混入しない。",
       "CanonicalReadFrame.invocations[]とconditional private read結果はこのunitで固定しない。",
-      "A先頭8行の再利用はこの有限A/Bのroot bindingと先頭8行の全値一致を条件とし、Bのraw/context/frame全値を保持する。",
-      "required missingの5 Axisは同一reasonでもidentity別のFindingと順序を保持する。missing TRACEのnull欄は承認済みL5の技術選択を使い、新しい要求やgateを作らない。"
+      "この有限raw A/Bは/dependenciesと/handoff_recordsがどちらも不在で、/binding全値が同値である。A先頭8行の再利用はこの有限A/Bのroot bindingと先頭8行の全値一致を条件とし、Bのraw/context/frame全値を保持する。",
+      "required missingの5 Axisは同一reasonでもidentity別のFindingと順序を保持する。missing TRACEのnull欄はL5 /canonical_dependency_detail/required_dependency_missing_axis_trace_writer/missing_no_call_technical_decision の技術選択を使い、新しい要求やgateを作らない。"
     ]
   }
 }
