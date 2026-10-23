@@ -7863,7 +7863,7 @@
         "preconditions": "旧Context.meaning/既存comparison_compositionの同immutable/same producer/binding条件を保持する。異caller cacheを新indexとして信用しない。旧public APIへ新required field追加なし。",
         "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。",
         "fn2": "既存ValueContextから同じValidatedSupply snapshotのF03 private detailを一回評価し、F03Evaluation.comparisonを既存Comparisonへfieldwise射影して返す。public signature/output shapeは維持し、F03Evaluation全体を返さない。raw runnerはこのpublic wrapperを再呼出しせず、同じdetailのcomparison projectionをAnalysisContextへ渡す。",
-        "fn4": "旧OracleContext全3fieldから、既存fn6 wrapper方式で同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsからuses/frameを一回構成しfn4_detailへ渡す新技術選択。raw runnerはこのwrapperを呼ばず前段の同frameを再利用する。context.definitions/identity_traceの同v/指定producer条件は維持し、別call cache/private overrideを追加しない。"
+        "fn4": "旧OracleContext全3fieldから、既存fn6 wrapper方式で同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsからuses/frameを一回構成しfn4_detailへ渡す新技術選択。raw runnerはこのwrapperを呼ばず前段の同frameを再利用する。context.definitions/identity_traceの同v/指定producer条件は維持し、別call cache/private overrideを追加しない。 Claimの有無によらず同vのframeを一貫させ、件数別の別経路/別call read混入を避けるためfn6方式の一回walk/frame構成へ揃える。"
       },
       "codec_boundary": "公開SupplyInput/Claim/ValidatedSupplyのwire/schemaを変更しない。basicの5target view/Presence/intent型はprivate importしてRawValueから局所constructorで構成し、untrusted raw全体へ新closed-success schemaを一律適用しない。新index/transportは同call計算の内部recordでrawから受理するpublic口ではない。型定義だけで正式codec/実providerの実装を成立済みにしない。",
       "open_items": [
@@ -9707,7 +9707,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "e95023fd044976edd3835e3a88bcf7e59d021b45519e16ab7bc31690651586bf",
+                  "file_bytes_sha256": "b4d179f888d4d5dd6e55a4976e4c5547b929eb929348b415baa30ac2f093a3cb",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -11039,7 +11039,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "e95023fd044976edd3835e3a88bcf7e59d021b45519e16ab7bc31690651586bf",
+        "sha256": "b4d179f888d4d5dd6e55a4976e4c5547b929eb929348b415baa30ac2f093a3cb",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11047,7 +11047,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "cc81946cfca930c926730aa067bedc832fa8985357275d74359d26eb0deaf345"
+        "sha256": "6328fb5aa4037c317d34759449bf536a5946fceb6f6e1f48b251e692536c9ab1"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",

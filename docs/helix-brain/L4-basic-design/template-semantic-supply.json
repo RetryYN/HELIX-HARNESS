@@ -12479,7 +12479,7 @@
       "no_ambient": "clock/fs/network/DB、別call private walk、外部のowner判断又はexpected/goldを意味入力にしない。",
       "null_input": "validated.input=nullの既存decode不能経路ではaxes/findings=[]、producer_symbolはfn4、input_binding=null。元InputIssueはvalidatedに保持し、空列を資格/評価成功にしない。これは既存empty Comparison経路との整合を取る技術選択。",
       "private_reads": "raw runnerでは同vの前段walkが既に生成した全DescriptorTargetReadを、既存DescriptorTargetCallFrame.target_readsからprivate detailへ渡す。port/intent/walkを後段で再呼出しせず、public OracleContext3にframe field又はoverrideを足さない。",
-      "direct_wrapper": "公開fn4直接呼出しは既存fn6 wrapper方式を技術選択し、同validatedのwalk一回からe/target_reads/intent_readsを得て既存uses/frameを一回構成し、fn4 private detailへ委譲する。raw runnerはこのwrapperを呼ばず既存frameを渡す。別invocationのcache又は期待値を入力しない。"
+      "direct_wrapper": "公開fn4直接呼出しは既存fn6 wrapper方式を技術選択し、同validatedのwalk一回からe/target_reads/intent_readsを得て既存uses/frameを一回構成し、fn4 private detailへ委譲する。raw runnerはこのwrapperを呼ばず既存frameを渡す。別invocationのcache又は期待値を入力しない。 Claimの有無によらずfn6方式に揃えて一回walk/frameを構成するのは、同v由来のprivate frameを一貫させ、Claim件数別の別経路や別call read混入を避けるための技術選択である。"
     },
     "source_boundary": {
       "semantic": "QualifiedSource.role=semantic_jsonと元資格/subject/frame対応を保つ意味source。content.bindingの一致だけで意味/実owner本文を作らない。",
@@ -12506,7 +12506,7 @@
         {"rule_pointer": "/failure_rules/70", "read": "全role/key集合、原Claim.kind/値と非null時の既存target read。", "nonfire": "view sourceは0件。Claimは明示null又はresolvedな非対象住所へのfill_definition提案で、表示だけの意味更新operandが無い。"},
         {"rule_pointer": "/failure_rules/71", "read": "oracle_bindings原presence/全出現、measurement実slot。", "nonfire": "実record/対象slotが0件で、別義務へ結んだ計測operandが無い。欠落から義務対応成功を作らない。"},
         {"rule_pointer": "/failure_rules/72", "read": "oracle_bindings原presence/全出現、completion実slot。", "nonfire": "実record/対象slotが0件で、要求oracle版と異なる原版のoperandが無い。欠落を一致にしない。"},
-        {"rule_pointer": "/failure_rules/73", "read": "全slot/fact/typed meaning operation kind census、全role/key集合、handoff_records原presence/全出現、Claim原値と既存target read。", "nonfire": "completionの実slot/typed fact/meaning operation、handoff実recordは0件。Claimは明示null又はresolvedな非対象住所。別kindに付属するRawValueをcompletionへ付け替えず、生成成功だけをcompletion意味にする対象operandが無い。有限枝の判定ではRawValueの内容を走査しない。別kindのRawValueをcompletionや生成成功へ結ぶreaderは追加せず、その意味対応を要する一般ケースは未閉包。"},
+        {"rule_pointer": "/failure_rules/73", "read": "全slot/fact/typed meaning operation kind census、全role/key集合、handoff_records原presence/全出現、Claim原値と既存target read。", "nonfire": "completionの実slot/typed fact/meaning operation、handoff実recordは0件。Claimは明示null又はresolvedな非対象住所。別kindに付属するRawValueをcompletionへ付け替えず、生成成功だけをcompletion意味にする対象operandが無い。有限枝の判定ではRawValueの内容を走査しない。別kindのRawValueをcompletionや生成成功へ結ぶreaderは追加せず、その意味対応を要する一般ケースは未閉包。 rule73_condition_interpretationのtyped completion operand前提という読みの下で非発火とする。"},
         {"rule_pointer": "/failure_rules/74", "read": "values原presence/全出現、原Claim値と既存target read。", "nonfire": "実値recordは0件。提案は明示null又はresolvedな非対象住所の非null値で、measurementをgeneric default閾値で埋めるoperandが無い。"}
       ],
       "observable_vs_qualification": "原role/key/件数観測は資格成立ではない。元のinput issue/source不足・target未決を保持し、別F05/F06 Findingや全体成功へ変換しない。",
@@ -12524,7 +12524,7 @@
         ]
       },
       "key_policy_boundary": "この許容集合は有限writerの保守的な入力範囲の技術選択であり、QualifiedSource.contentのRawValue schema又はfn0の受理/資格条件を変更しない。reference_onlyも同じ構造検査に掛け、生成recordらしい未知keyを意味解釈して内外を分岐しない。",
-      "typed_kind_census": "root descriptors[*].descriptor_kind、全semantic_json content.descriptor_facts[*].descriptor_kind、content.definition_meaning_operations[*].arguments.descriptor_kindを原順・全出現で読む。各供給carrierはarray、各record/argumentsは既存typed形とし、kindはL4 descriptor_meaningsの既知literalで3対象kind外に限る。carrier absentと[]は区別して原出現0件を共有するが、null/型外/欠けた又は未知kind/対象kind出現は保守的に枝外。descriptor_targetsは住所宣言のまま保持し意味factへ昇格しない。",
+      "typed_kind_census": "root descriptors[*].descriptor_kind、全semantic_json content.descriptor_facts[*].descriptor_kind、content.definition_meaning_operations[*].arguments.descriptor_kindを原順・全出現で読む。各供給carrierはarray、各record/argumentsは既存typed形とし、kindはL4 descriptor_meaningsの既知literalで3対象kind外に限る。carrier absentと[]は区別して原出現0件を共有するが、null/型外/欠けた又は未知kind/対象kind出現は保守的に枝外。descriptor_targetsは住所宣言のまま保持し意味factへ昇格しない。 descriptor_targetsの宣言kindは本意味censusの対象外であり、宣言上3対象kindでもnull Claim枝では枝内に残る。住所宣言だけでは対象kindの実意味operandが生じず、元宣言/readの状態を変更しないためである。",
       "rawvalue_boundary": "他typed kindに付属するmeaning/fact_body/decision原値は全保持し、completion/measurementの意味又は生成成功recordへ付け替えない。top-level key集合だけで任意nested生成記録の不存在を主張しない。typed対象censusと原Claim/住所/実recordの観測で必要なcompletion等のoperandが無い枝に限る。有限枝の判定でRawValueの内容を走査せず、別kindのRawValueをF05/F06へ結ぶ一般readerは追加しない。その意味対応を要する一般ケースは未閉包。"
     },
     "nonnull_claim_target_reuse": {
@@ -12538,6 +12538,7 @@
       "consumer_effect": "F05/F06非対象住所を確認して必要operandの有無を分けるだけ。原nonnull提案、fn1のmissing/unknownやfn7のfallback predicateを変更せず、generic threshold又は意味更新として勝手に解釈しない。"
     },
     "rule_condition_interpretation": "rule68/69はconditionの「viewだけで補う」とpredicateの不足保持を一体で読む判断を採る。measurement/completionのgeneric missing単独では当該補修ruleを発火せず、元definition不足をcarryする。L5 condition/predicate自体は変更せず、view根拠を使う既存negative入力を除外しない。",
+    "rule73_condition_interpretation": "rule73はconditionの生成記録とpredicateの「当該義務 completion」の意味条件/対oracle不足を一体で読み、当該completionのtyped operand（slot/fact/meaning operation）が存在することを前提とする技術判断を採る。nestedな生成記録の有無だけではこのoperandを成立させない。本有限枝のrule73非発火はこの読みの下での非発火であり、任意RawValue内の生成記録不存在を認定するものではない。L5 predicateを変更しない。",
     "rule_mapping": [
       "/failure_rules/68",
       "/failure_rules/69",
