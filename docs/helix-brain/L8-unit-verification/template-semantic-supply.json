@@ -121950,7 +121950,7 @@
     "id": "HELIXBRAIN-L8-D26C-FN1-ASSESSMENTS-CANDIDATE",
     "status": "detail_verification_candidate_unexecuted",
     "scope_ja": "有限C rawに対するfn1 assessments全22件・各9fieldの期待候補。既存A16件を維持し、C原eventの帰属2件・positive4件を追加する。Comparison/native/全walkの別責務やfn0資格判定へ拡張しない。",
-    "execution_boundary_ja": "製品/helper/runtime/fn0は実行しない。A Comparison seedと69 RFC、merge済みC Comparisonの103 RFC、A assessment seedと110 RFCを固定Gitから順適用後、C原event16..21を60 copyで追加する。C ComparisonはPR3623の明示merge/read-after済みede2580e00d890ca0353ed3884b05bdaeb6299d4に固定する。静的未実行候補であり、受入・製品TDD・fn6/fn7/final完了を生成しない。",
+    "execution_boundary_ja": "製品/helper/runtime/fn0は実行しない。A Comparison seedと69 RFC、merge済みC Comparisonの103 RFC、A assessment seedと110 RFCを固定Gitから順適用後、C原event16..21を60 copyで追加する。C ComparisonはPR3623のmerge済みede2580e00d890ca0353ed3884b05bdaeb6299d4に固定する。静的未実行候補であり、受入・製品TDD・fn6/fn7/final完了を生成しない。",
     "fixed_git_sources": {
       "L4": {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -122005,7 +122005,12 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy",
-          "/wire_codec_contract/schema/$defs/AxisResult"
+          "/wire_codec_contract/schema/$defs/AxisResult",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/locator_roots",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Assessment",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/3"
         ],
         "derivation_ja": [
           "DescriptorDefinitionAssessmentのclosed fieldsとevent/order契約を適用する。state・axis_name・original_axesは対応C Comparison axisからcopyし、indicesはC final_sort_indexのfinal_indexを使う。Cの二つの同値fact由来のattributionと各support出現はevent occurrence単位で保持する。"
@@ -122037,7 +122042,7 @@
           "/definition_meaning_fn1_C_comparison_verification/final_sort_index"
         ],
         "derivation_ja": [
-          "merge済みC Comparisonと既存A Comparison/assessmentsを同じ固定Git revisionからimportする。A seed/69 RFC→C103 RFC→Aassessment110 RFCの順に再構成し、C sort表の具体final_indexを使ってC6原eventを追加する。"
+          "merge済みC Comparisonと既存A Comparison/assessmentsを同じ固定Git revisionからimportする。A seed/69 RFC→C 103 RFC→A assessment 110 RFCの順に再構成し、C sort表の具体final_indexを使ってC6原eventを追加する。"
         ]
       }
     ],
@@ -122508,10 +122513,11 @@
       }
     },
     "field_derivation_ja": [
-      "A assessment110操作はC Comparison103操作の後に同じworkspaceへ適用する。L5 exact sortのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-C）によりA axes[0..15]・findings[0..13]の位置と全値は不変で、A16 assessmentの全値・位置を保つ。raw Cのroot AとA cohort/sourceも原値のまま保持される。",
-      "Cのactualslotはraw C descriptor locator /descriptors/1。原event順はevent16,17のattribution fact0/fact1、その後event18..21の同fact/support反復4件で、fact identityやsupport内容をkeyとしてdeduplicateしない。slot locatorとfact locatorを各eventへそのまま写す。",
-      "全6行はAssessmentの9 top-level fieldsを持つ。key binding/slot_identity/descriptor_kindはraw C slot、stateとaxis_name/original_axesは対応Comparison axis全値、comparison_axis_indicesはC final_sort_index.axes.rowsのfinal_indexからcopyする。origin_branchと空comparison_finding_indicesはaccepted A assessment templateの同event shapeを保持する。",
-      "L4 all_slot_read_domainにはCのactualslot /descriptors/1を含め、原slot/factをreadして2 attribution+4 positive eventを保存する。一方required_contract_domainの追加frameは明示契約候補に限る。有限A rawのcandidatesは空でrequired_descriptor_kindsはA root側に保持され、C patchはsource/qualification/descriptor/knowledge recordのaddだけでC要求kindや契約candidateを追加しない。C slot template_refはroot A template_refと異なり、L4 other_bindingの非対象slotに当たるため、Cは追加required frameに入らずC missing assessmentは0件。"
+      "A assessment 110操作はC Comparison 103操作の後に同じworkspaceへ適用する。L5 exact sortのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-C）によりA axes[0..15]・findings[0..13]の位置と全値は不変で、A16 assessmentの全値・位置を保つ。raw Cのroot AとA cohort/sourceも原値のまま保持される。",
+      "Cのactual slotはraw C descriptor locator /descriptors/1。原event順はevent16,17のattribution fact0/fact1、その後event18..21の同fact/support反復4件で、fact identityやsupport内容をkeyとしてdeduplicateしない。slot locatorとfact locatorを各eventへそのまま写す。",
+      "C全6行はAssessmentの9 top-level fieldsを持つ。keyの原binding/slot_identity/descriptor_kindはraw C slot、state/axis_name/original_axesは同じComparison axis全値、comparison_axis_indicesはC final_sort_index.axes.rowsの具体final_indexからcopyする。帰属2件のorigin_branchとfindingなしはL5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0、positive4件のknown/existing_definition_resultとfindingなしは /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/3 に従う。A assessment templateは同じ閉fieldを保持する値の器として再利用し、branch/findingの意味の根拠にはしない。",
+      "L4 all_slot_read_domainにはCのactual slot /descriptors/1を含め、原slot/factをreadして2 attribution+4 positive eventを保存する。一方required_contract_domainの追加frameは明示契約候補に限る。有限A rawのcandidatesは空でrequired_descriptor_kindsはA root側に保持され、C patchはsource/qualification/descriptor/knowledge recordのaddだけでC要求kindや契約candidateを追加しない。C slot template_refはroot A template_refと異なり、L4 other_bindingの非対象slotに当たるため、Cは追加required frameに入らずC missing assessmentは0件。",
+      "原event16,17は公開axis20,21へ、原event18,19,20,21は公開axis16,17,18,19へ対応する。assessment配列自体は原event順を保つ。"
     ]
   }
 }
