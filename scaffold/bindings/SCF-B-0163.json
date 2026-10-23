@@ -1,0 +1,91 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0163",
+  "kind": "scaffold",
+  "title": "上流authority状態モデルの形式化パイロット（Lean 4）",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS 設計検証手段の研究担当。formal owner未確定",
+  "state": "registered",
+  "reason": "設計の規則をモデル上の定理として検査する正式な手段は未成立。POの問い（2026-10-24）への試行として、authority-state-model.mdの規則をLean 4の抽象モデル（列挙型と自然数。状態空間は無限で、帰納法で証明）へ写し、性質の証明と既知失敗の変異モデルの反例を研究する。旧HELIXに同種の資産はなく新規案。",
+  "upstream": [
+    {
+      "path": "docs/governance/authority-state-model.md",
+      "sha256": "1c0336ec838d3603231ffe6689175e9422c9cb1d19476159f88ab27f6a6233eb",
+      "note": "モデル化の対象。五軸、許可遷移、fail-close規則"
+    },
+    {
+      "path": "docs/governance/design-as-code-reference-comparison.md",
+      "sha256": "68f355f3e96c2c94b53fe1f25b55010ad9a205557900666099e5c61586117129",
+      "note": "#3168のモデル検査候補と留保（抽象化で落とす範囲の記録）"
+    }
+  ],
+  "role": "上流authority状態モデルの規則を形式モデルへ写し、性質の証明と既知失敗の反例で検査する研究試作",
+  "obligations": [
+    "文書規則と定理・変異・失敗事例の対応をREADMEに記録する。",
+    "抽象化で落とした意味と、文書に明文のない解釈をREADMEに記録する。",
+    "sorryと非標準公理を使わず、lean AuthorityState.leanが出力なし・終了0で通る状態を保つ。",
+    "上流文書が変わったらstaleとして再照合し、写像を見直してから再束縛する。",
+    "要求・規則・gate・承認手続き・CIを生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "Issue #3657（パイロットの追跡）",
+      "PO判断（形式化を設計検証へ使うかの材料）"
+    ],
+    "dependencies": [
+      "Lean 4 toolchain leanprover/lean4:v4.34.1（elan）",
+      "docs/governance/authority-state-model.md"
+    ],
+    "boundary": "scaffold内のauthority_effect:noneの研究。モデルは文書規則の写しで、製品の正しさや文書の適合を示さない。ローカルの手動実行のみで、CIへ接続しない。"
+  },
+  "operations": {
+    "allowed": [
+      "ローカルでのLean 4による型検査（lean AuthorityState.lean）",
+      "scaffold/research/formal-authority-state-pilot-20261024/配下の更新"
+    ],
+    "forbidden": [
+      "検査結果から要求採否・承認・covered・完了を生成する",
+      "検査をgate・required check・CIにする",
+      "旧CLI/hook/runtime/test/CIの実行",
+      "authority-state-model.md等の上流文書をモデルに合わせて書き換える"
+    ]
+  },
+  "artifacts": [
+    "scaffold/research/formal-authority-state-pilot-20261024/AuthorityState.lean",
+    "scaffold/research/formal-authority-state-pilot-20261024/README.md",
+    "scaffold/research/formal-authority-state-pilot-20261024/lean-toolchain",
+    "scaffold/bindings/SCF-B-0163.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "deterministic_behavior",
+      "negative_case",
+      "source_revision_stale"
+    ],
+    "oracles": [
+      "lean AuthorityState.lean（leanprover/lean4:v4.34.1）の型検査",
+      "#print axioms（propext・Quot.sound・Classical.choiceのみ、sorryAxなし）"
+    ],
+    "negative_cases": [
+      "PR mergeを承認とする変異（stepMergeApproves）",
+      "Issue closeをcoveredとする変異（stepCloseCovers）",
+      "一部successorでcoveredとする変異（stepPartialCovers）",
+      "decisionの対象revisionを照合しない変異（stepStaleDecision）",
+      "承認の前提にCI greenを読む変異（stepGreenGuard）",
+      "意味変更・retireをdecisionの種別を照合せず成立させる変異（stepAnyChange）"
+    ]
+  },
+  "replacement": {
+    "role_target": "設計規則を形式モデルで検査する正式な検証手段（採否・formal owner未決）",
+    "formal_artifacts": [],
+    "issue": 3657,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-24",
+  "updated": "2026-10-24"
+}
