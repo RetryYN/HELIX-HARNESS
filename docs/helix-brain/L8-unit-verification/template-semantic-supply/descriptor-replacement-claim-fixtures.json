@@ -3,7 +3,7 @@
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
   "scope_ja": "B rawのClaim[1]だけについて、既存rule87局所predicateとpublic AxisResult 7 field / Finding 9 fieldを材料化する。ClaimUse全体、fn6/fn7 Comparison配列、他Claim、全体sort/indexは含めない。",
-  "execution_boundary_ja": "L4/L5と承認済child fixtureから期待を静的に構成する。fn0、product/helper/runtime、fn6/fn7 runnerを実行しない。ValidatedSupplyは条件付きでありfn0の成功証拠ではない。special-read結果をrule87の局所投影に入力しない。",
+  "execution_boundary_ja": "L4/L5とmerge済みchild fixture（intent:96dba2a7、target:375340ed）から期待を静的に構成する。fn0、product/helper/runtime、fn6/fn7 runnerを実行しない。ValidatedSupplyは条件付きでありfn0の成功証拠ではない。special-read結果をrule87の局所投影に入力しない。",
   "fixed_git_sources": {
     "L4_CURRENT": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -71,7 +71,7 @@
       "git_blob": "dded595a5e1b80aa3bf831b554e3b53dfefd1534",
       "file_sha256": "f5176f1934a1e97c6369b2c4306694f275e103412318c243ad35cc0ac98cde62",
       "pointers": [
-        "/functions/8",
+        "/functions/6",
         "/type_contract/types/AxisResult",
         "/type_contract/types/Finding",
         "/source_return_contract/pure_reference_notation/definitions",
@@ -90,7 +90,9 @@
         "/claim_intent_detail/decoder_rows/4",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/1",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3",
-        "/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/primary_predicate"
+        "/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/primary_predicate",
+        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets",
+        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order"
       ],
       "derivation_ja": "Claim useは原fill_definition出現順に全保持し、rule87 predicate/closed DescriptorClaimUseとpublic Axis/Finding writer・reason interpolationを適用する。"
     },
@@ -120,7 +122,7 @@
         "/reconstruction/expected_reads_canonical_sha256",
         "/reconstruction/expected_reads_pointer"
       ],
-      "derivation_ja": "承認済descriptor-target childのseed、30個の固定import、intent65 RFC prefix、target50 RFC列とtarget read出力構成を固定Gitから取得する。"
+      "derivation_ja": "merge済みdescriptor-target child（375340ed）のseed、30個の固定import、intent65 RFC prefix、target50 RFC列とtarget read出力構成を固定Gitから取得する。"
     }
   ],
   "field_derivation_ja": [
@@ -128,10 +130,10 @@
     "target_readはchild expected_reads[0]からcopyし、intent_readは同じintent workspaceのexpected_reads[2]からcopyする。各readは対象原Claim[1]を指し、同一raw inputへのValidatedSupply条件付きで保持する。",
     "raw Bの3 Claimはすべてfill_definitionで、L5 consumer/readsは全原出現を保持し、consumer/use_orderは原Claim配列順を定める。したがってClaim[1]のuse locatorは /frame/claim_uses/1。未解決routeもDescriptorClaimUseとして保持されるため先行useを除外して序数を詰めない。",
     "L5 rule87 predicateの材料はfill_definition、intent positive、target resolved/unmatched none、primary missing support nonempty、basis_class reference_only_only。facts=[]のrequired input slotはevent_rules/1のmissing eventへ対応する。qualification/usableがValidatedSupply条件を満たす場合に限りroute=rule87。",
-    "L5 replacement_claim special constructorのkey.kind制約（required section/required field）に対し、本raw targetはrequired inputであり対象外。さらにL5 axis_partition primary_predicateがdescriptor_kind + \".definition\" の完全一致を要求する。Claim1のrule87局所投影はrequired-input missing側から導き、replacement special-readの結果を消費しない。basis Ref/source roleは原source対応・validated usabilityと分け、role aloneで資格を発行しない。",
+    "本Claimのspecial read非消費、missing supportとreplacement_basis_unresolvedの関係及びroute順はspecial_read_nonconsumption_jaを参照する。basis Ref/source roleとvalidated usabilityを分け、roleだけで資格を発行しない。",
     "Axis reasonはL5 public_output/reason_templates/rule87に原locator `/claims/1` と、原Claim順から確定した `/frame/claim_uses/1` を挿入したliteral。Finding.reasonは完成Axis.reasonを標準RFC copyする。",
     "Axis/Findingのsource refsはClaim.basis_refsを原順/反復保持してcopyする。backflow_ownerはL4のknowledge_owner role literalでありRef.owner値ではない。",
-    "対象rawのrequired input slotは /descriptors/1 であり、required descriptor kind集合にrequired inputが現れる。replacement_claim constructorのkind=required section/required field限定と合致しない。",
+    "対象rawのrequired input slot locatorは/descriptors/1。special read非消費の根拠はspecial_read_nonconsumption_jaへ集約する。",
     "この3段RFCの根は順にchild intent workspace、child workspace、child workspaceである。public_projectionは局所seed skeletonでaxis/findingをnull宣言し、完成したpublic_axis/public_findingを最後の2 copyで格納する。"
   ],
   "limits": [
@@ -259,7 +261,7 @@
     }
   ],
   "reconstruction": {
-    "source_resolution_rule_ja": "最初に承認済descriptor-target childのseedを固定Gitから /child_workspace へ取得する。次に本blockで宣言した残りの固定Git importを同じsource key/path/revision/pointer/value hashで解決し、各null destinationへ取り込む。import完了後、child intent prefixを /child_workspace/intent_workspace に適用し、child target RFC配列を /child_workspace rootへ適用する。最後に本block固有RFC配列を同じ /child_workspace rootへ適用する。これは既存seed/import/RFC方式の延長であり、新helper/API/DSLではない。",
+    "source_resolution_rule_ja": "最初にmerge済みdescriptor-target child（375340ed）のseedを固定Gitから /child_workspace へ取得する。次に本blockで宣言した残りの固定Git importを同じsource key/path/revision/pointer/value hashで解決し、各null destinationへ取り込む。import完了後、child intent prefixを /child_workspace/intent_workspace に適用し、child target RFC配列を /child_workspace rootへ適用する。最後に本block固有RFC配列を同じ /child_workspace rootへ適用する。これは既存seed/import/RFC方式の延長であり、新helper/API/DSLではない。",
     "fixed_git_imports": [
       {
         "source_key": "L8_TARGET_SOURCE",
@@ -813,7 +815,7 @@
       "backflow_owner"
     ]
   },
-  "special_read_nonconsumption_ja": "L5のreplacement_claim special constructorはkeyのkindをrequired section/required fieldに限定する。本rawの対象slotはrequired inputである。さらにL5 consumer axis_partitionのprimary_predicateはdescriptor_kind + \".definition\" との完全一致を要求し、Claim1のrule87投影はrequired-input missingのrule87根拠から導く。従ってこの局所投影はreplacement_claim special readのevent/resultを消費しない。これは全walkでspecial eventが存在しないという主張ではない。",
+  "special_read_nonconsumption_ja": "basis_classはconsumer.basis_resolutionが原Claim.basis_refsと同validated sources/unusable_source_refsだけから構成し、special readを入力に取らない。missing_support_indicesはprimary（axis_name=key.descriptor_kind+\".definition\"）かつstate=missingのassessmentだけである。本Claimのrequired input/facts=[]のmissingはevent_rules/1から得る。special由来のmissingはconstructors/3のrule7/8だけで、key kind/axisはrequired section又はrequired fieldに限定されるため、本required inputのprimary missingへ入らない。replacement_basis_unresolvedはaxis_name=<target kind>.definitionでもstate=unknownなのでmissing supportへ入らない。従ってこのClaimのbasis_classと局所rule87 missing supportの成立はspecial read結果を消費しない。support_sets/route_orderのrule87→rule93→unresolved→noneに従い、本Claimではrule87が成立する。これは全walkでspecial read/eventが存在しない、又は全nativeが不変という主張ではない。",
   "local_projection_contract": {
     "existing_contract_pointer": "/source_return_contract/descriptor_target_dataflow/functions/8",
     "execution": "not_executed",

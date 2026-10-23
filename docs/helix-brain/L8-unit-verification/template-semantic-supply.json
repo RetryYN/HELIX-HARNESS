@@ -124080,9 +124080,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM1-RULE87-PUBLIC-PROJECTION",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json",
-      "file_sha256": "0964029d95d160bdebe7234eda4f4f525467a7968c1f043fb3544dbaf243f3c4",
+      "file_sha256": "1346d7349799f521b7eb9387ccbfbe0b5a06c20b576e1207ad90d46624ac9a13",
       "pointer": "",
-      "canonical_sha256": "1c2b9352b70f9dcb140bc894bf5c1e2ed352395af72610c154a29d394b6be622"
+      "canonical_sha256": "f7f5092cd0679d4653ac5b457bca9a255453d66d9fe0e932fae681c1a8edf085"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
