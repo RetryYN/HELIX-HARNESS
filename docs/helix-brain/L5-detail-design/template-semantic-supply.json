@@ -10523,12 +10523,12 @@
           },
           "replacement_claim_request_schedule": {
             "status": "L5の技術的schedule選択",
-            "scope": "既存fn1の全fill_definition原Claim集合に対するprivate replacement_claim requestの形成・call・発見順だけを具体化する。置換の正当性、target/basis意味、rule7/8又はrule87/93のpredicateは変更しない。",
+            "scope": "既存fn1の全fill_definition原Claim集合に対するprivate replacement_claim requestの形成・call・発見順と、basis_shape_return_limitsの取得返却writerを具体化する。置換の正当性、target/basis意味、rule7/8又はrule87/93のpredicateは変更しない。",
             "call": "validated.inputがnon-nullの場合、既存target_read_scheduleとsingle_walk step5が訪問する各原Claim（kindの供給値がexact fill_definition）にreplacement_claim requestを一件形成し、read_definition_special_support(validated,request)を一回呼ぶ。input=null又は同kindの原Claim不存在なら、このrequest kindは非call。",
             "request_constructor": "request={request_kind:replacement_claim, request_locator:当該原ClaimのRFC6901 /claims/{i}}。同target/intent訪問で保持した原Claim/locatorを使う。requestは読取対象を識別する私有技術値であり、domainの置換成立やClaim採択ではない。別Claim/Refや新required項目を作らない。",
             "caller_not_gates": [
               "intent positive/negative/unresolved。proposed_value member欠落のunresolvedも呼ぶ。明示nullは原供給値として保持する。",
-              "basis_refs memberの不在/null/空/非空、basis分類又はowner対応の成功/不成功。",
+              "basis_refs memberの不在/空/非空、basis分類又はowner対応の成功/不成功。明示nullはClaim型不正によるfn0 input=nullの既存境界に従いcallしない。",
               "target readのstate/matches/合成優先、slot kind、元missingの有無。",
               "replacement_basis_uses carrierの供給/不在/null/型外、supportsの有無又はrule7/8 event predicate。"
             ],
@@ -10624,28 +10624,53 @@
             },
             "selection_rationale": "L4の置換語彙はpositiveを指し得るが、call対象はtarget/intent読取と同じ原fill_definition全件とする。値intentの未解決を原Claim出現の不在へ変えず、取得とevent判定を分離する選択である。positive限定案に比べ非positiveのspecial_readsとread内problemsが加わるが、非positiveは既存constructors/3の第4枝により追加eventを出さないため、両案の公開event/assessmentは同じである。",
             "basis_shape_return_limits": {
-              "scope": "本nodeはrequestの形成/call/発見順だけを閉じる。下記は原basis形状からDefinitionSpecialRead.acquisition_state/problemsへの未閉であり、新problem kind/state/locatorを推測しない。",
-              "member_absent": "basis_refs欠落は既存consumer.basis_resolutionではunresolvedだが、special readのacquisition_stateとproblem kind/locatorへの写像は現sourceに無い。source_unresolved（table/1）をbasis欠落だけで生成せず、source資格/cohort不成立の既存条件と区別する。",
-              "member_null": "basis_refs=nullはClaim schemaのarray型に不適合である。既存fn0のinput保持/issue判定後に原Claimがnon-null input内に保持される場合のcallは本scheduleに従うが、当該形状からspecial read state/problemを形成する規則は未閉。型不適合を資格済みClaimへ丸めず、新native problemを捏造しない。",
-              "member_empty_array": "basis_refs=[]は既存consumerでnonsemantic_or_emptyでありreference_only_onlyではない。ただしspecial readのacquisition_state/problemsはそれだけでは決まらない。table/16のsemantic_basis_unresolvedはmeaning/harness用でspecial用でなく、空basisを新失敗gateへ変えない。",
-              "existing_problem_rows": "table/1はsource資格/cohort不成立、/2,/3,/4は対応usable sourceのreplacement_basis_uses carrier absent/null/typeの行であり、Claim basis_refsの形状と同一ではない。それぞれの既存source条件が成立した場合にだけ元kind/locator/relevance/multiplicityを使う。",
-              "activation_boundary": "全raw fill_definitionを読取対象とすることは、basis資料の常時供給・required成功条件を追加することではない。原取得問題を保存し、非callと取得不成立を区別する。replacement_claimに関する対象外Claim非callは、非fill_definition等の本call条件を満たさない原出現を指す。"
+              "scope": "replacement_claimだけのL5取得writerを具体化する。既存request集合・fn0資格・support型・problem表・公開predicateを保持し、新required evidence/failure/gateを作らない。",
+              "raw_occurrences": "同call validated.input.sourcesの既存usableなsemantic_json sourceを原source_index順に走査する。既存replacement_basis_usesがarrayなら、その全raw要素をrecord_index順にsource_occurrencesへ一件ずつ保存する。source_ref=原source.ref、source_index=i、record_index=j、locator=/sources/{i}/content/replacement_basis_uses/{j}、original_record=原要素全値。同値/foreign/別Claim/別basis/型不正も脱落・dedupしない。carrier未供給/null/非arrayは要素出現を捏造せず、原containerはimmutable validated.input内に保持する。unusable source内部を再decodeしない。",
+              "positive_cohort": "closed ReplacementBasisUseへのdecode成功後、record.claimとrequest_locatorの当該原Claimを全値照合する（全member presence/null/配列順を保持）。一致後、record.basis_refが当該Claimの供給basis_refsの原Refへ既存ref_sameで対応するrecordだけが支持候補となる。generic basis Refをsource Refへcastせず、source.content.binding==Claim.bindingを全source選択条件にしない。",
+              "support_writer": "候補のsource.content.bindingとrecord.basis_binding、元descriptor_facts groupのslot_identity/kind/fact Ref/bodyを既存producer/consumerどおり別々に照合し、既存資格と全typed対応が成立した原recordを既存replacement_claim variantのsupportへ全件保存する。支持順はsource_index→record_index。複数caller Refが同じrecordへ対応しても原record一出現を増殖せず、元basis_refsの順/反復は原Claimと既存basis_resolutionで保持する。別Patternの正当なbasis_bindingをcaller bindingへ置き換えない。",
+              "problem_writer": "既存problem_emission_table/1〜10とproblem_commonの前提・kind・locator・原値Presence・relevance・原順・multiplicityをそのまま使う。raw record全体のclosed decode失敗はtable/5の原record locatorでsource_unattributed traceとして保持し、raw claim文字列や部分memberだけでtargetへ昇格しない。正常foreign/別Claim/非選択basis recordはrawのみ保持し、新problemを作らない。source/carrier不存在・null・型外を現在Claimへ正帰属できる既存の独立対応が無ければ、そのsourceを対象とするtable/1〜4を捏造しない。basis_refs形状又は未join Refだけでsource_unresolved/container_*を生成せず、meaning/harness専用table/16を流用しない。",
+              "acquisition_fold": "このreadで成功したtyped supportsが一件以上ならresolved、なければunknown。原problemsと全raw occurrencesはどちらのstateでも全件保持する。独立source成功で他source/recordの失敗を消さず、source_unattributed traceを全対象の失敗へ伝播しない。resolvedは支持資料の所在取得だけで、全basis意味解決・内容肯定・Claim採択ではない。",
+              "member_absent": "basis_refs member欠落はvalid Claimのままcallし、選択可能なcaller basis Refがないためsupports=[]、acquisition_state=unknown。全raw carrier occurrenceと既存条件で実際に生じたproblemを保存する。欠落だけに起因する新problemは無く、problems=[]も正常な返却形。consumerのbasis_class=unresolvedは保持する。",
+              "member_null": "basis_refs=nullはClaim schemaのarray型違反。既存fn0はdecode不能をInputIssueとinput=nullへ返すため、本scheduleのreplacement_claim request/readは形成しない。nullを欠落/[]へdefaultせず、このnodeでfn0原値保持を拡張しない。",
+              "member_empty_array": "明示basis_refs=[]はvalid Claimのままcallする。caller Refを要求していないためsupports=[]、acquisition_state=unknown。全raw carrier occurrenceと既存problemを保存し、空配列形状だけのproblemを生成しない。consumerのnonsemantic_or_emptyをunresolved/reference_only_only/semantic充足へ変更しない。",
+              "nonempty_refs": "非空basis_refsも同じraw/cohort/support/problem writerとsupport有無foldを使う。成功supportと未join Refは併存でき、未join indices/意味分類は既存basis_resolutionへ残す。全Ref取得成功という新required条件をacquisition resolvedへ追加しない。",
+              "locator_boundary": "返却request.request_locatorは当該/claims/{i}を保持する。basis欠落/空/未join自体についてproblemを追加しないため、架空のbasis leaf problem locatorも作らない。実在するproblemは既存表の原source/carrier/record/field locatorだけを用いる。",
+              "event_boundary": "既存special_predicate_projection/4,5とconstructors/3は不変。取得unknown又はproblemsだけから新公開code/eventを作らず、resolvedでも既存basis分類/別template対応未解決のunknown枝を抑止しない。mixed target最終state、Claim2 tuple/非発火、mixed routeの決定は本nodeの外に保持する。",
+              "selection_rationale": "空のaddress集合をresolvedとする案は採らず、既存meaning readerの成功typed support取得とapplicability private writerのsupports_nonempty→resolved/empty→unknownへ揃える。欠落と明示[]は原Claimとbasis_resolutionで異なるまま保持し、空成功へ丸めない。state同値を原値同値や意味同値とはしない。全sourceをcohortにする案、basis Refをsource selectorへcastする案、caller binding一律filter案は対象誤帰属又はcross-pattern脱落を招くため採らない。",
+              "source_basis": [
+                {
+                  "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+                  "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
+                  "file_sha256": "f5176f1934a1e97c6369b2c4306694f275e103412318c243ad35cc0ac98cde62",
+                  "pointers": [
+                    "/functions/0",
+                    "/logical_input_structure/schema/$defs/Claim",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/ReplacementBasisUse",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionSpecialRead",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionSpecialSupport",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_reader",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_source_producers/3",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_common",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle/acquisition",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/private_field_writer/acquisition_state",
+                    "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution",
+                    "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3"
+                  ],
+                  "role_ja": "原Claim形、fn0 decode、owner対応、全raw保持、既存問題の帰属、隣接reader取得foldと公開predicate境界。"
+                }
+              ],
+              "legacy_comparison": "本scheduleのlegacy_comparison.source_assetsと限定検索を起点に意味再導出する。旧98372のunknown/missingを空成功へ丸めない原則とUTW-014/020/021の欠損空集合化/部分失敗/自己申告を再発させない。supportが無ければunknown、部分成功でも原失敗を保存する。旧registry/template lifecycleと同じ取得機構とはせず、全raw観測とtyped owner支持を分離するL5技術変更として記録する。新gateや旧runtimeは移植しない。",
+              "native_effect": "未指定だったprivate取得stateと返却配列writerを閉じる変更であり、旧candidateのnative全byte等値を主張しない。公開predicate/constructorの本文を保持することと、未閉だった実event集合の確定を区別する。"
             },
             "limits": [
               {
-                "item": "basis_refs欠落/null/空からspecial read返却への写像",
-                "unclosed": "上記3形状についてacquisition_state/problem kind/locatorの期待を固定しない。D27-A Claim0とD27-B Claim0はbasis_refs欠落を含むため、call件数を決めても全special_reads/native/fn1返却はここから完成しない。",
-                "pointers": [
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_reader",
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_source_producers/3",
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionSpecialRead",
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/1",
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/16"
-                ]
+                "item": "source/carrierの正帰属がない取得",
+                "unclosed": "Claim locatorだけから、不存在/未資格source又は欠落carrierのownerを新規に特定しない。独立の既存対応がない場合はsupportsなしunknown、対象source problemなしという取得返却までを閉じる。特定missing ownerの診断や全source資格の成立を宣言しない。"
               },
               {
                 "item": "L4 mixed/basis意味",
-                "unclosed": "mixed target複合state、Claim2公開tuple/非発火、mixed routeの抑止/合成stateは既存の未閉を維持する。"
+                "unclosed": "mixed target複合state、Claim2公開tuple/非発火、mixed routeの抑止/合成stateを維持する。空basisを意味上不要として既存unknownを抑止する判断は行わない。"
               }
             ]
           },
