@@ -116103,7 +116103,11 @@
           "/failure_rules",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality",
-          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns"
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activation",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_schedule",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/source_originals/meaning_pair_axes",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/private_types/MeaningPairAnnotatedResult/invariant"
         ],
         "derivation_ja": [
           "native各列/Originのclosed fieldsを保持する。descriptor attribution state・7fieldはhelper返却由来。meaning bundleとsidecarを別NativeMaterial列へ展開し、all duplicatesを保持。source sort列は原fact Ref→同read occurrence Refを順に加える。"
@@ -116165,8 +116169,8 @@
       }
     },
     "reader_bundle_provenance_ja": "MeaningRead.normative_frameはaccepted reader seedから再構成される歴史的L4 snapshot（revision 5a3cfa984fab34f31ce623d667db1670f80b1544、file SHA 033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2）を保持する。current L4/L5 contract pinsは別source entryであり、歴史frameを現在schema sourceへ読み替えない。",
-    "origin_derivation_ja": "OriginはAssessmentと同じevent ordinal。二つのpositive eventは、descriptor attribution helper由来のattribution eventと、meaning reader supportに支えられたpositive eventである。attribution eventのbackflow_owner=nullはhelperが返すComparison axisを介して保持する。meaning-positive eventのowner値はaccepted Assessment original_axesからcopyし、support linkだけをaccepted single read/supportから作る。rootの14 missing eventはraw required kindからdescriptor_01を除いたfixed code orderで、L5 failure-rule array indexを対応付ける。raw sourcesはsupplied arrayなのでmissing originのsort_source_refsはsupplied([])。positive originのsort refsはfact.source_refから同read occurrence.source_refへ、原順と重複を保って並べる。",
-    "reader_output_boundary_ja": "意味reader outputのread objectのみmeaning_reads[0]へcopyし、problem_scopes/support_origins sidecarをmeaning_read_origins[0]へ別々にcopyする。bundle全体をmeaning_readsへ入れない。NA read/batchはaccepted NA seed由来の全値を個別copyする。pair readerはslotごとに1件保存し、原call result axes=[]・origins=[]を保持する。raw A claims memberは欠落状態のまま。fill_definition Claim発生がないためtarget_reads/intent_readsは[]で、raw claimsを新設しない。",
+    "origin_derivation_ja": "OriginはAssessmentと同じevent ordinal。二つのpositive eventは、descriptor attribution helper由来のattribution eventと、meaning reader supportに支えられたpositive eventである。attribution eventのbackflow_owner=nullはhelperが返すComparison axisを介して保持する。meaning-positive eventのowner値はaccepted Assessment original_axesからcopyし、support linkだけをaccepted single read/supportから作る。rootの14 missing eventはAのraw required_descriptor_kindsから実slotのtemplate identityを除いた固定kind順で、L5 failure-rule array indexを対応付ける。raw sourcesはsupplied arrayなのでmissing originのsort_source_refsはsupplied([])。positive originのsort refsはfact.source_refから同read occurrence.source_refへ、原順と重複を保って並べる。このAのmissing origins 3〜15をorigin 2からcopyするのは、assessment_key・axis_name・ordinal・finding_rule_indicesを除くfieldが当該14件で同値であることに限っている。",
+    "reader_output_boundary_ja": "意味reader outputのread objectのみmeaning_reads[0]へcopyし、problem_scopes/support_origins sidecarをmeaning_read_origins[0]へ別々にcopyする。bundle全体をmeaning_readsへ入れない。NA read/batchはaccepted NA seed由来の全値を個別copyする。L9 /definition_meaning_resolution_verification_plan/finite_A_raw_inputにdisplay_groups・required_relations・claims memberがなく、L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activationが要求する原発見点がないためspecial_reads=[]。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4は原fill_definition Claimだけをtarget/intent両portの読取対象とする一方、L9同rawにclaims member自体がないためtarget_reads=[]・intent_reads=[]（absentのまま保持し[]へdefaultしない）。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_scheduleに従い実在slotでpair readerを一回呼び、全返却をpair_reads[0]へ保存する。L9 /definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0はbinding.template_refがobjectでdescriptor_kindが供給され、factsが1件なのでL5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/source_originals/meaning_pair_axesのguardは通りi<j loopは0回。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/private_types/MeaningPairAnnotatedResult/invariantに従い、guard成立時はnullでなくaxes=[]・origins=[]。",
     "reconstruction": {
       "source_resolution_rule_ja": "固定Git source revision/file SHAを照合し、import pointer値をcanonical hash後にseed placeholderへdeep copyする。workspaceに固定importを配置した後、Comparison RFC operation array、Assessment RFC operation array、Meaning reader RFC operation arrayの順に適用し、最後にこのblockのstandard RFC 6902 operationsを配列順に適用する。前段arrayはL8固定revisionからの既存RFCであり、個々のoperationを再掲しない。",
       "fixed_git_imports": [
@@ -116237,15 +116241,6 @@
           "source_key": "L8_ACCEPTED_INPUTS",
           "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
           "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
-          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/request",
-          "bundle_pointer": "/meaning_reader_request",
-          "value_canonical_sha256": "38f10fd1f8feb764b25b907275397a935d0fa90d5dd4bda6fc1a01959c39045a",
-          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
-        },
-        {
-          "source_key": "L8_ACCEPTED_INPUTS",
-          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
-          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
           "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/expected_bundle",
           "bundle_pointer": "/expected_bundle",
           "value_canonical_sha256": "8694f7936ecee409962165b686fe3b5d0cb2d614e042b40cdad8ae2a2242a66d",
@@ -116289,7 +116284,6 @@
         "assessments": null,
         "assessment_prefix_operations": null,
         "reader_input_candidate": null,
-        "meaning_reader_request": null,
         "expected_bundle": null,
         "meaning_reader_prefix_operations": null,
         "na_read_candidate": null,
@@ -116377,11 +116371,11 @@
             {
               "ordinal": 2,
               "assessment_key": null,
-              "branch": "required_slot_absent",
-              "state": "missing",
+              "branch": null,
+              "state": null,
               "cause": "required_slot_absent",
-              "slot_locators": [],
-              "fact_locators": [],
+              "slot_locators": null,
+              "fact_locators": null,
               "meaning_read_indices": [],
               "applicability_read_indices": [],
               "subject_ref": {
@@ -116393,7 +116387,7 @@
                 "value": null
               },
               "axis_name": null,
-              "original_refs": [],
+              "original_refs": null,
               "reason": null,
               "backflow_owner": null,
               "finding_rule_indices": [
@@ -116424,7 +116418,7 @@
           "meaning_read_origins": [
             {
               "meaning_read_index": 0,
-              "problem_scopes": [],
+              "problem_scopes": null,
               "support_origins": []
             }
           ]
@@ -116707,16 +116701,6 @@
           "op": "copy",
           "from": "/native_material/judgment_origins/2",
           "path": "/native_material/judgment_origins/-"
-        },
-        {
-          "op": "copy",
-          "from": "/assessments/2/key",
-          "path": "/native_material/judgment_origins/2/assessment_key"
-        },
-        {
-          "op": "copy",
-          "from": "/assessments/2/axis_name",
-          "path": "/native_material/judgment_origins/2/axis_name"
         },
         {
           "op": "copy",
@@ -117005,9 +116989,9 @@
           ]
         }
       ],
-      "operation_count": 109,
+      "operation_count": 107,
       "operation_types": {
-        "copy": 83,
+        "copy": 81,
         "replace": 26
       },
       "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
@@ -117016,7 +117000,9 @@
       "expected_native_material_pointer": "/native_material",
       "expected_target_reads": [],
       "expected_intent_reads": [],
-      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でvalue canonical SHA-256を再現する。配列順と重複は保持しobject keyだけをsortする。RFC 6902実装は既存L8記法のstandard copy/replaceのみを使う。"
+      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でvalue canonical SHA-256を再現する。配列順と重複は保持しobject keyだけをsortする。RFC 6902実装は既存L8記法のstandard copy/replaceのみを使う。",
+      "expected_comparison_canonical_sha256": "7980bd6f2e40e2d17a14f09a3b11c734e7ecb905f141c42669b67aa2780c6932",
+      "expected_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494"
     }
   }
 }
