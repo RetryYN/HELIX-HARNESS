@@ -22891,8 +22891,8 @@
     "design_ref": "/dependency_semantic_ports/descriptor_target_contract",
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "observed_source_revision": "64dc8a7032990e8f961f4e5e9601a1909d2e4f6d",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "observed_source_revision": "ebfd085ac44b7ffb288c250f737724b621a3fd75",
+      "sha256": "1beadf752b7961c1d6eba3f543c7b39be2fc8070cef3198952d08a0d32d07edb",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -92536,7 +92536,60 @@
       "同一target/current full BindingのA/k1・A/k2・B/k1混在は旧9件のexpected_wholeに含まれない。D27-Aはfinite raw/限定期待だけをplanへ追加し、実target port actual・public wholeは未実施。",
       "13種のreason_templatesのうち9件のexpected_wholeに現れず、今回も未観測の8種: owner_source_unresolved、target_container_null、target_container_type、declaration_shape、target_ref_unresolved、binding_unresolved、target_mapping_conflict、target_not_declared。"
     ],
-    "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。"
+    "limits": "上記は論理分岐として設計したが9実行前素材の全返却で観測済みとはしない。全対照追加gateを作らない。正式採用/業務evaluator/実provider/14義務完了は未成立。",
+    "technical_closure_verification": {
+      "design_pointer": "/dependency_semantic_ports/descriptor_target_contract",
+      "scope": "住所集合と既存replacement/Claim predicateの技術条件照合。既存9材料の全返却oracleは全値保持し、この局所条件表で置き換えない。製品実行/全ClaimUse/whole fn1の証拠ではない。",
+      "basis": "L3-032 F01/F02/F09/N02の欠落/矛盾/未知保存から、候補の選択・fallback成功・全体stateを生成しない。条件の原source資格と同call対応は既存判定を消費し、新required evidenceにしない。",
+      "condition_cases": [
+        {
+          "id": "mixed-target-conflict-plus-ambiguity",
+          "conditions": "同target/current Binding、同slot input/section相反と別slot対応が併存",
+          "expected": "state=conflict、matches=[]。全3宣言とtarget_mapping_conflict/target_ambiguousの両問題を保持。special追加event無し。"
+        },
+        {
+          "id": "target-distinct-slots",
+          "conditions": "同target/current Binding、kind相反無しで複数distinct slot",
+          "expected": "state=unknown、matches=[]。全候補をoccurrencesへ残し先頭選択しない。"
+        },
+        {
+          "id": "independent-target",
+          "conditions": "当該targetは安全な単一住所、別target/Bindingの相反又は未帰属問題が併存",
+          "expected": "既存relevanceで独立対応を保持。当該住所resolvedを別scope問題で相殺せず、元問題も消さない。"
+        },
+        {
+          "id": "claim-semantic-mixed",
+          "conditions": "positive/resolved/全match対応、元meaning_undefined、basisにsemantic資料又は未join対応あり",
+          "expected": "ClaimUse route=unresolved、rule93 tuple無し。元unknownを保持しrole/body hashから代替の意味成功を生成しない。"
+        },
+        {
+          "id": "mixed-definition-states-refonly",
+          "conditions": "同Claimのprimary missing/meaning_undefined併存、positive/resolved/全match対応、reference_only_only",
+          "expected": "route=rule87、rule93 tuple無し。両原stateを保持し、別Claimのunresolvedを抑止しない。"
+        },
+        {
+          "id": "empty-basis-primary-missing",
+          "conditions": "positive/resolved required section又はfield、元primary missingのみ、basis_refs=[]、target/assessment対応既知",
+          "expected": "special第三枝replacement_basis_unresolved unknown。原missingとempty分類を保持。rule87/93=false、ClaimUse route=none。"
+        },
+        {
+          "id": "empty-basis-primary-undefined",
+          "conditions": "positive/resolved required section、meaning_undefinedのみでmissing無し、basis_refs=[]、全対応既知",
+          "expected": "replacement special無し。既存rule93全条件を満たすときだけ別fn7のunknown_fallback。"
+        },
+        {
+          "id": "required-input-special-nonfire",
+          "conditions": "positive/resolved、対象required input、元missing",
+          "expected": "constructor3のkind限定外で追加special無し。readは保存する。"
+        },
+        {
+          "id": "unknown-special-nonfire",
+          "conditions": "positive/resolved required section、元definition unknownでmissing無し",
+          "expected": "constructor3は追加event無し。取得unknownやsemantic basis問題をmissingへ変換しない。"
+        }
+      ],
+      "verification_boundary": "入力状態を明示した条件対照。D27の実raw/局所target/全期待/sort/index/assessment/nativeからこれらを導けるかはL4閉包merge後に再検証し、閉じた条件だけ外す。未観測の全域成功、上流承認又はIssue完了を生成しない。"
+    }
   },
   "definition_meaning_resolution_verification_plan": {
     "id": "HELIXBRAIN-L9-032-DEFINITION-MEANING-RESOLUTION-PLAN",

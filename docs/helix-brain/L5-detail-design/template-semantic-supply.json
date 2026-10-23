@@ -6950,8 +6950,8 @@
       "status": "独立review対象の詳細設計候補。原target/意味/NAの同walk保存と公開射影を規定する。",
       "basic_contract_ref": {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "revision": "6a519760f59d43e2876ab0223fe4a2b6684d18e3",
-        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+        "revision": "ebfd085ac44b7ffb288c250f737724b621a3fd75",
+        "file_sha256": "1beadf752b7961c1d6eba3f543c7b39be2fc8070cef3198952d08a0d32d07edb",
         "pointer": "/dependency_semantic_ports/descriptor_target_contract"
       },
       "scope": "原fn1の意味判定を変えずsame-walk索引と原target readを同callで運ぶ。公開Claim6field/SupplyInput/比較4field/原79constructor/5builder wholeを保持する。",
@@ -7569,7 +7569,7 @@
       },
       "consumer": {
         "reads": "同fn1 walkが一度読んだ原fill_definition Claim/target_reads/intent_readsを消費する。全Claim原出現/locator/全6fieldを保持し、新port再呼出し又はstate再計算はしない。非fill_definitionにtarget口を常時必須にしない。",
-        "target_resolution": "既存L4 target契約のordered_branches/relevance_tableで同walkが計算したread全値を使う。再取得/first-matchを行わず全occurrences/元Refs/indices/problemsを保持する。resolvedは住所対応だけ。",
+        "target_resolution": "既存L4 target契約のordered_branches/relevance_tableで同walkが計算したread全値を使う。再取得/first-matchを行わず全occurrences/元Refs/indices/problemsを保持する。resolvedは住所対応だけ。 当該cohortのstate/matchesはL4 cohort_result_contractに従い、nonresolvedの候補から一部matchを選ばない。",
         "assessment_lookup": [
           "read.state=resolvedのmatches全件を走査。同full Bindingは既存binding_same、slot/kindはexact decoded値で照合。key.bindingはsupplied objectの場合だけ比較する。全matching assessment indexをassessment原順で保存しdedupで原評価を消さない。",
           "match.slot_locatorsに当該slotが実在する場合は同slot identity/binding/kindの全assessment。unknown/conflict/knownも全件保つ。owner targetのRefからMeaningFactを合成しない。",
@@ -7591,7 +7591,7 @@
           "undefined_support_indices": "primary_definition_assessment_indicesのうちstate=unknown AND origin_branch=meaning_undefinedの元indexだけ。NA/source未資格/住所unknownを含めない。",
           "rule87_predicate": "original Claim.kind=fill_definition、intent_read.intent=positive、target_read.state=resolved、unmatched_match_indices=[]、missing_support_indicesが非空、basis_class=reference_only_only。",
           "rule93_predicate": "同kind/positive/resolved/全match対応、undefined_support_indicesが非空、basis_class=nonsemantic_or_empty又はreference_only_only、rule87_predicateがfalse。元fn1が意味未定義で定義済み別原根拠無しを判定した枝だけ。",
-          "route_order": "rule87が成立ならroute=rule87、それ以外でrule93成立ならrule93、必要target/basis対応が未確定ならunresolved、明確な非該当ならnone。この順は既存fn6→fn7の責務と同Claim二重裁定禁止を具体化する技術選択。全axis間state優先/全体first-failureではない。",
+          "route_order": "rule87が成立ならroute=rule87、それ以外でrule93成立ならrule93、必要target/basis対応が未確定ならunresolved、明確な非該当ならnone。この順は既存fn6→fn7の責務と同Claim二重裁定禁止を具体化する技術選択。全axis間state優先/全体first-failureではない。 special replacement_basis_unresolved eventはこの2ruleの判定材料へ流用しない。target/assessment対応既知・primary missingのみ・明示empty basisでは両predicateがfalseなのでnone。",
           "mixed_states": "同targetの全assessmentにmissingとmeaning_undefined unknownが併存しても両原stateをeへ残す。reference_only置換のrule87が成立する同Claimはfn6担当に一件化しfn7へ二重Findingを作らない。unknown原stateはfn1比較/索引から消さない。別Claimをこの排他で抑止しない。",
           "primary_definition_assessment_indices": "primary_definition_assessment_indicesはassessment_indicesのうち上記predicate成立の原indexを原順で保持する。"
         },
@@ -10679,12 +10679,15 @@
                 "unclosed": "上記source_cohortで実在source又はtyped原useへjoinできないgeneric basis Refから、存在しないsource Refや親ownerを生成しない。本取得返却は支持なしunknownとshape由来problemなしまでを閉じ、未join basis意味や特定missing ownerの新診断を完成させない。"
               },
               {
-                "item": "L4 mixed/basis意味",
-                "unclosed": "mixed target複合state、Claim2公開tuple/非発火、mixed routeの抑止/合成stateを維持する。空basisを意味上不要として既存unknownを抑止する判断は行わない。"
+                "item": "L4閉包と残る意味対応",
+                "closed_contract_ref": "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary",
+                "unclosed": "mixed targetのstate/matches、Claim単位route、constructor発火条件は上記L4契約に従う。semantic_or_mixed basisを任意proposed_valueへ意味対応させる全域規則・全consumer返却・実資格は引き続き未閉。"
               },
               {
-                "item": "明示空basisでの公開unknown event発火",
-                "unclosed": "basis_refs=[]でspecial_event_constructors/constructors/3第3枝replacement_basis_unresolvedが発火するか（consumerのnonsemantic_or_emptyとbasis分類/別template対応未解決の関係）は未閉。取得state=unknownを当該公開eventの発火又は非発火の確定へ読み替えない。"
+                "item": "明示empty basisの公開unknown event",
+                "closed_contract_ref": "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special",
+                "closed": "positive・resolved同target・required section/field・元primary missingがある場合、basis_refs=[]は既知empty分類を保持し、別template対応を確定できない既存第三枝replacement_basis_unresolved unknownを形成する。",
+                "boundary": "取得unknownだけからeventを作らない。対象missing無しなら非発火。constructorのunknownをconsumer route=unresolved又はfn7 rule93へ変換しない。"
               }
             ]
           },
@@ -10902,7 +10905,7 @@
                     "origin_branch": "existing_definition_result"
                   },
                   {
-                    "when": "positive intentと明示target/missingがあるが、当該basis分類/別template対応が未解決。",
+                    "when": "positive fill_definitionとresolved同targetのrequired section/fieldの元primary missingがあり、原basis分類又は別template対応を確定できない。明示basis_refs=[]も分類は既知emptyのまま、対応する代替source/basis無しでこの第三枝に入る。同Pattern確定・既存rule7/8成立はそれぞれ既存枝へ。",
                     "cause": "replacement_basis_unresolved",
                     "state": "unknown",
                     "axis_name": "<target kind>.definition",
@@ -10917,7 +10920,8 @@
                     "reason": "原rule7/8の明示対象predicateの範囲を変えず、元取得問題を同walk観測へ残す。"
                   }
                 ],
-                "source_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_predicate_projection/4"
+                "source_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_predicate_projection/4",
+                "activation_contract_ref": "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
               }
             ],
             "relation_branch_order": "各原required relation、各提出対応原出現につき、全体不在なら一件で子比較非実行。存在時はto不足(rule4)→両端供給時direction不足(rule5)→from不足→kind/比較不能→既知差→全対応の順。rule4とfrom不足の独立原因は両方保持。未供給leafの派生known/conflictは作らない。全比較可能時だけ既知差又はknownの一件。",
