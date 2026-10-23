@@ -11840,7 +11840,269 @@
       "shape": "Comparison4 / AxisResult7 / Finding9全memberを維持。producer_symbol/input_bindingは同入力からwriterが形成する。",
       "counts": "P15 11独立+15trace=26、明示pair1群の6caseは27。[]dependencyは0原出現。unknown原軸は削らない。 ここで15traceは15実slot×各1実factの原出現数を指す。一般のtrace件数はdescriptor数でなくtrace_populationの実slot-fact出現数であり、P15件数を一般入力へ固定しない。",
       "read_vs_judgment": "元値suppliedは分類列だけ。原actual body未供給はunknown。両owner原宣言/実版範囲外/根拠NA等既存意味は独立branchで保持。",
-      "failure_rules": "既存source/version/scope missing及びrule61/62等の原predicateを維持。membership missing専用新rule/globalgate無し。"
+      "failure_rules": "既存source/version/scope missing及びrule61/62等の原predicateを維持。membership missing専用新rule/globalgate無し。",
+      "axis_reason_writer": {
+        "status": "既存F04/N01を保つ公開writerのAI技術具体化候補。既存typed readの再評価、要求・predicate・gate追加、実運用trust発行をしない。",
+        "input": "同一IdentitySnapshot、当該snapshotから得たActualOperandRead/DescriptorTraceRead/BilateralCompatibilityRead、same_call/source_qualification_writerのSourceQualificationRead全原値。L5 private実現もこの同call以外を読まない。",
+        "comparison_root": {
+          "member_order": [
+            "axes",
+            "findings",
+            "producer_symbol",
+            "input_binding"
+          ],
+          "producer_symbol": "compare_identity_versions_and_trace",
+          "input_binding": "snapshot.validated.input.bindingの原whole。input=null又はbinding absent/nullならnull。nullを成功に変えない。",
+          "axes_order": "下表actual_rolesの宣言順、原pack_dependency_versions各出現順、trace_populationのslot/fact原順、明示compatibility recordの原index順、通常rowへ対応しない既存failure predicate由来rowのrule_mapping宣言順。既存finite_multiple_record_boundaryの有限一軸は最初の原record位置に保持する。各domain内原出現順を保ち、全体連結順は本writerのAI技術選択。",
+          "findings_order": "rule_mapping宣言順、同ruleでは実predicateに関与する原input locatorの数値添字順。同一rule/同一原predicate出現から一回だけ形成し、異なる原出現は同値でも残す。",
+          "input_null": "same_call/partial_and_nullの既存全空readとaxes/findings=[]を保持する。原InputIssueをFindingへ変換しない。"
+        },
+        "actual_roles": [
+          {
+            "axis": "template.identity",
+            "role": "template_actual_ref",
+            "original_member_locator": "/binding/template_ref",
+            "subject_ref_locator": "/binding/template_ref"
+          },
+          {
+            "axis": "knowledge.identity",
+            "role": "knowledge_actual_ref",
+            "original_member_locator": "/binding/knowledge_ref",
+            "subject_ref_locator": "/binding/knowledge_ref"
+          },
+          {
+            "axis": "requirement.identity",
+            "role": "requirement_actual_ref",
+            "original_member_locator": "/binding/requirement_ref",
+            "subject_ref_locator": "/binding/requirement_ref"
+          },
+          {
+            "axis": "oracle.identity",
+            "role": "oracle_actual_ref",
+            "original_member_locator": "/binding/oracle_ref",
+            "subject_ref_locator": "/binding/oracle_ref"
+          },
+          {
+            "axis": "pack.identity",
+            "role": "pack_actual_ref",
+            "original_member_locator": "/binding/pack_ref",
+            "subject_ref_locator": "/binding/pack_ref"
+          },
+          {
+            "axis": "template.version",
+            "role": "template_actual_revision",
+            "original_member_locator": "/binding/template_ref/revision",
+            "subject_ref_locator": "/binding/template_ref"
+          },
+          {
+            "axis": "knowledge.revision",
+            "role": "knowledge_actual_revision",
+            "original_member_locator": "/binding/knowledge_ref/revision",
+            "subject_ref_locator": "/binding/knowledge_ref"
+          },
+          {
+            "axis": "pack.revision",
+            "role": "pack_actual_revision",
+            "original_member_locator": "/binding/pack_ref/revision",
+            "subject_ref_locator": "/binding/pack_ref"
+          },
+          {
+            "axis": "pack.contract_version",
+            "role": "pack_actual_contract_version",
+            "original_member_locator": "/binding/pack_contract_version",
+            "subject_ref_locator": "/binding/pack_ref"
+          },
+          {
+            "axis": "pack.artifact_version",
+            "role": "pack_actual_artifact_version",
+            "original_member_locator": "/binding/pack_artifact_version",
+            "subject_ref_locator": "/binding/pack_ref"
+          },
+          {
+            "axis": "knowledge.operational_state",
+            "role": "knowledge_actual_operational_state",
+            "original_member_locator": "knowledge_state_selection",
+            "subject_ref_locator": "/binding/knowledge_ref"
+          }
+        ],
+        "actual_operand_binding": {
+          "fixed": "knowledge_state_selection以外の表行はoriginal_member_locatorをActualOperandRequest.member_locator、roleをactual_roleとする。knowledge state行は同名selection節で実locatorを形成する。absent/null/型外を元PresenceRawで保存する。identityとrevisionの二roleは同Ref由来でも別read/別axis。",
+          "dependency": "原/binding/pack_dependency_versions/{i}をmember_locator、pack_actual_dependency_versionをrole、当該原Refをsubject_ref、pack.dependency_versionをaxisとし各原出現一row。空配列からrowを作らない。",
+          "rule59": "template_actual_revisionは/binding/template_ref/revisionだけに結ぶ。原member absent/nullはprivate input_member_absent/null unknownを保ち、既存version_missing predicateの公開missingへ結ぶ。原revision suppliedだけでactual対応は成立せず、独立actual owner本文未供給はactual_owner_body_unprovided unknown。後者だけでversion_missingを発火しない。",
+          "knowledge_state_selection": {
+            "join": "同snapshot /knowledge_recordsの全原出現を既存L5 constructor_meaning/reference_resolutionのfull Ref照合で/binding/knowledge_refへ結ぶ。identity/revision/scope/ownerと両側にあるdigestを別々に照合しlatest/先頭選択をしない。",
+            "single": "一つの対応原record index iなら/knowledge_records/{i}/operational_state。原state absent/nullは既存input_member_absent/null unknown。",
+            "collection_anchor": "0件又は複数対応なら/knowledge_recordsを実locatorとし、ActualOperandRead.original_readへ原collectionのPresenceRaw全値を保存する。read_classificationはcollection自身のabsent/null/out_of_type/suppliedを表す。架空index、Ref、stateを作らない。",
+            "equal_repetition": "複数対応recordの全whole値がexact JSON同値なら、比較operandはその共通recordのoperational_stateの原presenceだけ。全原collection/全出現index/順序をsnapshotと診断へ保持する。配列自体をstate値として比較せず、右owner観測のdedupもしない。",
+            "unresolved": "0件、複数distinct record、又はcollection選択で共通stateがabsent/null/未形成なら既存actual_owner_body_unresolved unknown。schema-valid collection自身のabsentは既存input_member_absent。typed array外のnull/型外rawをsnapshot内へ捏造しない。独立右owner本文未供給等の既存finite_branch_order先行原因があればそちらを保持する。",
+            "boundary": "これはroleの原左operandを定める局所技術選択。運用stateの採用/昇格判定ではなく、L5 knowledge_traceのunique-distinct選択とL4 actual/multipleの右actual全出現保持を別々に保つ。"
+          }
+        },
+        "axis_root": {
+          "member_order": [
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "original_refs",
+            "reason",
+            "backflow_owner"
+          ],
+          "subject_ref": "actualは表の原subject Ref、dependencyは当該原Ref、traceは原fact.ref、bilateralは原record.left_ref。typed RefとBindingを形成できないrowは公開生成せず原readをprivateへ保持する。空Refや別subjectを補完しない。",
+          "binding": "actual/dependency/bilateralは原input.binding、traceは原slot.binding全値。別slot/別callから補完しない。",
+          "axis": "actualは表literal、dependencyはpack.dependency_version、traceはdescriptor.trace、bilateralはcompatibility。既存predicate専用rowはrule_mapping.axis。",
+          "state": "原read.stateを保持する。rule59の原revision absent/nullだけはprivate unknownを変えず既存公開missing所見へ射影する。その他の既存failure predicateのexpected_stateはFindingに独立保持し、複数ruleを優先順で一つのread.stateへ集約しない。",
+          "original_refs": "下記refs_orderの実在する型適合Ref出現だけ。Ref内member全値/原順/同値反復を保ち、absence/null/型外はreasonの原Readに残す。",
+          "reason": "reason_serializationに従う同原rowの診断全値。本文からstate/causeを逆算しない。",
+          "backflow_owner": "resolvedはnull。本writerの対象はF04/N01の汎用identity/知識版/source traceであり、当該unknown/conflict/missingをknowledge_ownerへ返す局所技術選定とする（全12既存ruleも同role）。製品値/適用はCORE、project記録はOSというL3区分へこの既定を広げず、実recipient identity/資格/承認を生成しない。"
+        },
+        "refs_order": {
+          "actual": "原subject Ref、原observations順に当該source.ref、同sourceへ実対応する原Qualification.ref、原root.ref。同subject Refが原actual_read内に実在するRef値ならその出現もsource.refの前へ保持する。別role/未使用sourceは混ぜない。",
+          "trace": "原slot.binding.template_ref、原slot.binding.knowledge_ref、原fact.ref、原fact.source_ref、read.knowledge_records原順のrecord.ref、read.provenance_refs原順の原Ref、read.source_indices原順のsource.ref、当該sourceへ実対応するQualification.ref、root.ref。全列の実出現を保持し同値Refの反復を消さない。",
+          "bilateral": "原record.left_ref、right_ref、record.ref、source_ref、owner_reads原順のsource.ref、当該sourceへ実対応するQualification.ref、root.ref。実membershipのcompatible_refs全原出現はowner_reads内でも全値保持する。",
+          "qualification_route": "当該readが実際に使ったSourceQualificationRead.source_indexとの対応だけ。qualifications/rootsは同SourceQualificationReadの元配列順と全原出現を保持。別sourceの成功Q/rootを代入しない。",
+          "finding": "同predicateの原subject/Bindingに対応する上記refs列全値をsource_refsへ保持。raw claimだけのpredicateはその原claimに明示されたRefと実関与source/Q/rootの原順を保ち、無関係な全sourcesを貼らない。",
+          "technical_choice": "本節のRef参加範囲と列順は、全typed readを別に保持した上での公開writerの局所技術選定。旧sourceや型定義から唯一に復元した順ではない。資格Refの掲載だけで意味/owner対応を成立させない。"
+        },
+        "bilateral_aggregation": {
+          "one_record": "明示CompatibilityRecordの原record.left_ref/原Bindingと当該一readから一row。read.state/causeをそのまま保持する。明示record無しからpair/Axis/Findingを作らない。",
+          "existing_finite_multiple": "read_branch_contracts/bilateral/finite_multiple_record_boundaryで既に定めた有限入力は二read/原record_indices=[0,1]/record_states=[resolved,conflict]を全値保持し、既存の一compatibility conflict軸とR62一件を維持する。この原例の全source/owner理由もreason素材へ保持する。",
+          "unclosed_boundary": "上記有限例から一般record群のgroup key/集約state/競合優先順を導かない。一般multiple-recordの形成・順序・集約は既存同節の未行使/未閉包のままであり、本writerが全入力の一般集約を閉じたとは主張しない。",
+          "predicate": "独立片owner未供給等の既存R61、qualified両owner範囲外のR62が実成立する原recordだけがFinding根拠。集約stateだけからpredicateを生成しない。"
+        },
+        "finding_root": {
+          "member_order": [
+            "code",
+            "rule_ref",
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "source_refs",
+            "reason",
+            "backflow_owner"
+          ],
+          "condition": "L5 functions/3の既存failure_rulesに属し、その既存predicateが同snapshot原材料で成立した出現だけ。以下はwriter対応表でありpredicateの意味/成立条件を追加しない。actual/trace unknown/conflictへの自動Findingなし。",
+          "values": "code/rule_ref/axis/state/backflow_ownerは対応entryのliteral。subject_ref/bindingは当該原predicate witnessの対象全値、source_refsはrefs_order/finding、reasonは同witnessのreason_serialization。subject/Binding形成不能は原観測をprivateに保持しtyped Findingを捏造しない。",
+          "axis_binding": "通常rowと同原subject/Binding/axisへ対応する既存predicateはFindingを当該readと別々に保持し、通常rowを複製しない（rule59の公開missing射影は明記した例外）。通常rowが無いsource/scope/oracle.binding/identity_claim/template.version_claim等は同原witnessから既存expected_axis/stateの一rowを形成する。異predicateのstateを新優先順で一つへ畳まず、各Findingと原witnessを保持する。"
+        },
+        "rule_mapping": [
+          {
+            "code": "source_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-source_missing",
+            "axis": "source",
+            "state": "missing",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "version_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-version_missing",
+            "axis": "template.version",
+            "state": "missing",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "scope_missing",
+            "rule_ref": "HELIXBRAIN-L5-032-R-scope_missing",
+            "axis": "scope",
+            "state": "missing",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "compatibility_unknown",
+            "rule_ref": "HELIXBRAIN-L5-032-R-compatibility_unknown",
+            "axis": "compatibility",
+            "state": "unknown",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "compatibility_mismatch",
+            "rule_ref": "HELIXBRAIN-L5-032-R-compatibility_mismatch",
+            "axis": "compatibility",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "oracle_revision_mismatch",
+            "rule_ref": "HELIXBRAIN-L5-032-R-oracle_revision_mismatch",
+            "axis": "oracle.binding",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "image_identity_inference",
+            "rule_ref": "HELIXBRAIN-L5-032-R-image_identity_inference",
+            "axis": "template.identity",
+            "state": "unknown",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "tool_node_identity_inference",
+            "rule_ref": "HELIXBRAIN-L5-032-R-tool_node_identity_inference",
+            "axis": "template.version",
+            "state": "unknown",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "filename_identity_join",
+            "rule_ref": "HELIXBRAIN-L5-032-R-filename_identity_join",
+            "axis": "identity_claim",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "version_target_as_actual",
+            "rule_ref": "HELIXBRAIN-L5-032-R-version_target_as_actual",
+            "axis": "template.version_claim",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "mixed_knowledge_revision",
+            "rule_ref": "HELIXBRAIN-L5-032-R-mixed_knowledge_revision",
+            "axis": "descriptor.trace",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          },
+          {
+            "code": "silent_supersession",
+            "rule_ref": "HELIXBRAIN-L5-032-R-silent_supersession",
+            "axis": "descriptor.trace",
+            "state": "conflict",
+            "backflow_owner": "knowledge_owner"
+          }
+        ],
+        "reason_serialization": {
+          "grammar": "prefix + U+000A + \"TRACE=\" + diagnostic_json(material)。diagnostic_jsonはUTF-8、空白無し、object key Unicode codepoint昇順、配列は原順、数値は既存exact JSON数値を保持する。Ref/Binding/PresenceRawの値を正規化/省略/成功補完しない。",
+          "prefix_actual": "\"identity/version actual read: \" + ActualOperandRead.cause",
+          "prefix_trace": "\"descriptor trace read: \" + DescriptorTraceRead.cause",
+          "prefix_bilateral": "\"bilateral compatibility read: \" + 各原read.causeを原record順に\",\"で連結した値",
+          "prefix_finding": "対応rule_mapping.code literal。原recordのreasonは下記materialの原readに保持しprefixへ上書きしない。",
+          "material_members": [
+            "producer_symbol",
+            "subject_ref",
+            "binding",
+            "axis",
+            "state",
+            "original_refs",
+            "backflow_owner",
+            "requests",
+            "reads",
+            "source_qualifications"
+          ],
+          "material_values": "producer_symbolはcomparison_rootのliteral、残る先頭6memberは対応公開Axis値。requestsは当該原typed request全値配列、readsは同callの当該ActualOperandRead/DescriptorTraceRead/BilateralCompatibilityRead全値を返却原順で保持。source_qualificationsはactual.observations[].source_index、trace.source_indices、bilateral.owner_reads[].source_indexの実indexに対応するSourceQualificationRead全値を原sources index順に保持する。原配列の反復を消さない。",
+          "collection_selection": "knowledge collection anchorの場合は選択に使った全原record indexと原record whole/presenceをreadsの原collection及びsnapshotから辿れるよう保持。共通値だけへ原wholeを縮退しない。",
+          "no_new_member": "public Comparison/AxisResult/Findingへ診断memberを足さずreason string内だけに保持する。unknownを原理由文字列又は掲載Refだけでresolvedにしない。",
+          "scope": "本節identity_version_trace_contractのAxis/Finding writerに限る新しい決定論serializationの技術選択。fn1/fn2その他domainのreasonを置換しない。既存serialized出力との保存照合は統制6371035397による独立reviewの対象であり、作成側は未照合。",
+          "finding_material": "Finding.reasonのmaterialは上記10memberにcode、rule_ref、predicate_observationsの3memberを追加する。先頭7memberは当該Findingに対応するsubject/binding/axis/state/source_refs/backflow_ownerとproducer literalを使い、original_refs=当該source_refs。predicate_observationsは既存predicateが実際に関与させた同snapshot原nodeの{locator,original_read}配列（RFC6901実locatorとPresenceRaw全値）で、原配列の数値添字順に保持する。raw claim predicateでも実read無しはrequests/reads=[]とし偽readを作らない。"
+        },
+        "legacy_rederivation": {
+          "mode": "意味再導出とAI技術選択。既存legacy_rederivation/sourceの4F5A:16-92、98372:30-148、A127:65-101（UTW-014/020/021）を直接Readした。",
+          "preserve": "旧JSON正本、identity/実版/owner/source trace、unknown非成功、局所不足/相反、同call原値と#3649実slot-fact population。",
+          "change": "各公開member writer、raw role locator、Ref列順、診断serializationを同節typed portの公開射影として明記する。旧runtime/registry/整数版/承認gateを実行・移植しない。",
+          "reason": "公開shapeだけでは独立したL8 fn3期待値を形成できなかったため、readとjudgmentを分離した技術具体化として閉じる。旧sourceが唯一に指定した文字列/列順の復元とは主張しない。"
+        }
+      }
     },
     "public_type_mapping": [
       {
