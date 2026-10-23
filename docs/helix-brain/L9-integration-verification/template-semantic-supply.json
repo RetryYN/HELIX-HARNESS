@@ -8711,7 +8711,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1",
+      "sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +22883,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1"
+      "sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +22892,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
-      "sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1",
+      "sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -123939,7 +123939,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1",
+      "file_sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -184222,7 +184222,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1",
+      "sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -197036,7 +197036,7 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "0b6c5f5822e6848f9a2d9e904b80a1d73b890d881c217a59f6ca2faf0631f0b1",
+      "sha256": "1d90c1ce776ccc4c9de8412c10d313d6989f10bc84681dcf7d1ed9bf52b57489",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
       "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
