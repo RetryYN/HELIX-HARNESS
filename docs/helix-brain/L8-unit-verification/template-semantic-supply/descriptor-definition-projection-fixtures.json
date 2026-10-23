@@ -6553,9 +6553,9 @@
       "expected_canonical_sha256": "d0798e69bb0cc3ceda556ef11e2be286f4d59f8e0fedaf10297725cc4f16eeca",
       "expected_context_canonical_sha256": "4d9a867b07ac2853aa0b7b7b33e44ccdf1a69a6a7844454ba043865ddd9cef84",
       "expected_private_frame_canonical_sha256": "2d07141fa23d38c73581194fe56be6b2986e2357d9158fe91e137ef70d76d645",
-      "source_resolution_rule_ja": "新outer5→fn4元66imports/902RFC→fn5元outer3と完成fn3への置換1copy/元local6copy→fn6B元outer3と完成fn6Aへの置換1copy/元local28copy→fn7-B-local10copy。全77imports/948RFC。両置換は元未復元unitの全値・順序一致後、既に形成された値を完成木へ置換する。新10copyはnull宛先へ形成し、両置換copyも新10copyも値が変わりno-opなし。歴史666RFCの4no-opは元値保持。",
+      "source_resolution_rule_ja": "新outer5→fn4元66imports/902RFC→fn5元outer3と完成fn3への置換1copy/元local6copy→fn6B元outer3と完成fn6Aへの置換1copy/元local28copy→fn7-B-local10copy。全77imports/948RFC。両置換は元未復元unitの全値・順序一致後、既に形成された値を完成木へ置換する。新10copyはnull宛先へ形成し、両置換copyも新10copyも値が変わりno-opなし。歴史666RFCの4no-opは元値保持。 内訳は938=902+1+6+1+28で、置換2copyは938の内数。948=938+10であり、置換copyを二重加算しない。",
       "contract_pin_only_import_ja": "L4 /claim_boundary_projection_contract importは有限domain/16rule/writerの固定照合用であり、RFCのfromにせず期待値をcopyしない。",
-      "empty_population_representation_ja": "seed.expected_comparison.axes/findingsの明示[]だけは固定L4 comparison_writerのprefix0＋担当rule93なしから導く構造例外。その他期待値はnull placeholderから固定Git/RFC copyで形成する。",
+      "empty_population_representation_ja": "seed.expected_comparison.axes/findingsの明示[]だけは固定L4 comparison_writerのprefix0＋担当rule93なしから導く構造例外。その他期待値はnull placeholderから固定Git/RFC copyで形成する。 この構造例外は当該B入力と固定writerから公開返却の0行を導くもので、元6Comparisonを空Comparison/test double/normalの別入力で補うものではない。元Comparison全値と同callの出所を保持する。",
       "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。",
       "same_call_equality_check_ja": "入力材料化後、context.validatedとprivate_frame.validated、context.definitionsとprivate_frame.definition_evaluation.comparison、6つの元Comparisonの各input_bindingとcontext.validated.input.bindingについて、それぞれ全値のcanonical SHA-256一致を照合する。加えて全値の再帰member順序・配列順も照合してから公開Comparisonを形成し、等価を推定だけで済ませない。",
       "source_fn6_B_materialization": {
