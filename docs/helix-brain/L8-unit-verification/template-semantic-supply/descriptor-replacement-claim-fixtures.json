@@ -49,9 +49,9 @@
   "contract_basis": [
     {
       "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
+      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
       "git_blob": "adef0f9b0bb6b290b4893ec3c74d0c16ab5e936b",
-      "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+      "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
       "pointers": [
         "/dependency_semantic_ports/descriptor_target_contract/logical_port",
         "/dependency_semantic_ports/descriptor_target_contract/ordered_branches",
@@ -61,15 +61,18 @@
         "/dependency_semantic_ports/public_projection/refs_reason",
         "/dependency_semantic_ports/public_projection/rule_routing",
         "/dependency_semantic_ports/claim_intent_protocol/rules/4",
-        "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/4"
+        "/dependency_semantic_ports/diagnostic_return_contract/intent_reason_mapping/4",
+        "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+        "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/claim_routes",
+        "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
       ],
       "derivation_ja": "原target/slotのref_same・full Binding・kind/slot対応、missing stateの公開mapping、Claim subject/basis Ref保持、rule87担当を根拠づける。"
     },
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
+      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
       "git_blob": "dded595a5e1b80aa3bf831b554e3b53dfefd1534",
-      "file_sha256": "f5176f1934a1e97c6369b2c4306694f275e103412318c243ad35cc0ac98cde62",
+      "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
       "pointers": [
         "/functions/6",
         "/type_contract/types/AxisResult",
@@ -92,7 +95,8 @@
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3",
         "/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/primary_predicate",
         "/source_return_contract/descriptor_target_dataflow/consumer/support_sets",
-        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order"
+        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/limits/2"
       ],
       "derivation_ja": "Claim useは原fill_definition出現順に全保持し、rule87 predicate/closed DescriptorClaimUseとpublic Axis/Finding writer・reason interpolationを適用する。"
     },
@@ -138,124 +142,45 @@
   ],
   "limits": [
     {
-      "item_ja": "ValidatedSupply qualification/usability",
-      "effect_ja": "fn0未実行。仮引数はinput_issues=[]かつ全source（source3を含む）がunusable_source_refsに含まれない条件。rawから資格成立を宣言しない。",
-      "unclosed_basis": [
+      "item_ja": "fn0資格とsource usability",
+      "effect_ja": "fn0は未実行。input_issues=[]かつsource3を含む全raw sourceがunusable_source_refsに含まれない条件を保持する。rawの存在/hashは資格成立の証拠ではない。",
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
           "pointer": "/functions/0"
         },
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
           "pointer": "/type_contract/types/ValidatedSupply"
         }
       ]
     },
     {
-      "item_ja": "Claim[0]のmixed target最終state",
-      "effect_ja": "mixed target readの局所問題/occurrencesはこのblockの対象外。複合target read最終stateを確定しない。",
+      "item_ja": "任意semantic basisの意味対応",
+      "effect_ja": "Claim2のrule93非発火/route unresolvedは閉じたpredicateから判定するが、semantic basisを任意proposed_valueの正しい意味へ結ぶ全域対応は未閉。role/JSON一致から支持を作らない。",
       "unclosed_basis": [
-        {
-          "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/dependency_semantic_ports/descriptor_target_contract/ordered_branches/8"
-        }
-      ]
-    },
-    {
-      "item_ja": "Claim[2] tupleとrule93不発火",
-      "effect_ja": "Claim[2]のpublic tuple、rule93の発火/非発火を固定しない。qualified alternativeの条件未決も保持する。",
-      "unclosed_basis": [
-        {
-          "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/routing"
-        },
-        {
-          "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/dependency_semantic_ports/public_projection/rule_routing"
-        },
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
           "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit"
         }
       ]
     },
     {
-      "item_ja": "mixed route",
-      "effect_ja": "他Claimを含む混合routeと全ClaimUse配列を作成しない。",
-      "unclosed_basis": [
+      "item_ja": "他Claim/全special/全sort-indexの返却は対象外",
+      "effect_ja": "Claim1局所Axis7/Finding9だけを保持する。Claim単位routeとClaim2非発火はcurrent閉包で判定できるが、この局所資料で全ClaimUse/fn1/fn6fn7の返却を構成しない。",
+      "closed_contract_ref": [
         {
-          "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/routing"
-        },
-        {
-          "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/dependency_semantic_ports/public_projection/rule_routing"
+          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+          "pointer": "/source_return_contract/descriptor_target_dataflow/consumer"
         },
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order"
-        }
-      ]
-    },
-    {
-      "item_ja": "全special read返却とevent",
-      "effect_ja": "新L5でrequest集合・call・発見順は閉じたが、basis形状からspecial read state/problemへの写像は未閉である。この局所投影はspecial結果を消費せず、全walkのspecial返却/eventを固定しない。",
-      "unclosed_basis": [
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits"
-        },
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/limits"
-        },
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors"
-        }
-      ]
-    },
-    {
-      "item_ja": "全fn1返却 / 全Comparison配列 / sort-index",
-      "effect_ja": "fn1全4返却、全Axis/Finding配列とfinal sort/index、fn6/fn7の統合結果は対象外。",
-      "unclosed_basis": [
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/functions/1"
-        },
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/signatures_and_callers/0"
-        },
-        {
-          "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "af7c2152326d074d52a7731595d2aa7117064f52",
-          "pointer": "/source_return_contract/descriptor_target_dataflow/functions/8"
-        }
-      ]
-    },
-    {
-      "item_ja": "L9 expected/count",
-      "effect_ja": "L9はraw baseと指定RFC6902 patch valueの固定Git sourceに限る。expected/count/public outputを期待根拠に使わない。",
-      "unclosed_basis": [
-        {
-          "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-          "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
-          "pointer": "/definition_meaning_resolution_verification_plan/finite_D27_B_raw_input"
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+          "pointer": "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult/closed_fields"
         }
       ]
     }
@@ -815,7 +740,7 @@
       "backflow_owner"
     ]
   },
-  "special_read_nonconsumption_ja": "basis_classはconsumer.basis_resolutionが原Claim.basis_refsと同validated sources/unusable_source_refsだけから構成し、special readを入力に取らない。missing_support_indicesはprimary（axis_name=key.descriptor_kind+\".definition\"）かつstate=missingのassessmentだけである。本Claimのrequired input/facts=[]のmissingはevent_rules/1から得る。special由来のmissingはconstructors/3のrule7/8だけで、key kind/axisはrequired section又はrequired fieldに限定されるため、本required inputのprimary missingへ入らない。replacement_basis_unresolvedはaxis_name=<target kind>.definitionでもstate=unknownなのでmissing supportへ入らない。従ってこのClaimのbasis_classと局所rule87 missing supportの成立はspecial read結果を消費しない。support_sets/route_orderのrule87→rule93→unresolved→noneに従い、本Claimではrule87が成立する。これは全walkでspecial read/eventが存在しない、又は全nativeが不変という主張ではない。",
+  "special_read_nonconsumption_ja": "basis_classはconsumer.basis_resolutionが原Claim.basis_refsと同validated sources/unusable_source_refsだけから構成し、special readを入力に取らない。missing_support_indicesはprimary（axis_name=key.descriptor_kind+\".definition\"）かつstate=missingのassessmentだけである。本Claimのrequired input/facts=[]のmissingはevent_rules/1から得る。special由来のmissingはconstructors/3のrule7/8だけで、key kind/axisはrequired section又はrequired fieldに限定されるため、本required inputのprimary missingへ入らない。replacement_basis_unresolvedはaxis_name=<target kind>.definitionでもstate=unknownなのでmissing supportへ入らない。従ってこのClaimのbasis_classと局所rule87 missing supportの成立はspecial read結果を消費しない。support_sets/route_orderのrule87→rule93→unresolved→noneに従い、本Claimではrule87が成立する。これは全walkでspecial read/eventが存在しない、又は全nativeが不変という主張ではない。 request schedule/basis形状返却/activationの旧未閉はcurrent L5で閉じており、本局所投影の新前提にしない。",
   "local_projection_contract": {
     "existing_contract_pointer": "/source_return_contract/descriptor_target_dataflow/functions/8",
     "execution": "not_executed",
@@ -844,12 +769,14 @@
   },
   "source_roles_ja": {
     "L5_CURRENT": "先行target/intent prefixが宣言した歴史source key名を保持する。2f834488のfixed importsと値hashを変更しない。",
-    "L5_PROJECTION_CONTRACT": "局所predicate/原Claim序数/public writerの現行根拠。#3629 merge後の同consumer/writer20nodeが元pinと全値不変であることを照合した。"
+    "L5_PROJECTION_CONTRACT": "source keyの元revisionは局所投影の歴史入力として保持する。現行consumer/predicate/public writerはcontract_basisのmerge4b5fd9dのL5を正に照合し、材料化したAxis7/Finding9全値が変わらないことを確かめる。",
+    "L9_RAW_ONLY": "L9はraw baseと指定RFC6902 patch valueの固定Git sourceに限る。expected/count/public outputを期待根拠に使わない。"
   },
   "control_reference": {
     "issue": 3547,
     "local_projection_condition_comment": 6357651388,
     "condition_retained_comment": 6358112897,
     "scope_ja": "special read結果を消費しないClaim1局所rule87投影だけを先行する。全fn1/全ClaimUse/全fn6fn7を材料化しない。"
-  }
+  },
+  "postclosure_revalidation_ja": "共通の閉包後再検証は descriptor-definition-projection-fixtures.json#/postclosure_revalidation_ja を参照。本資料は既存資格条件下のClaim1局所rule87 Axis7/Finding9のみで、special readを消費せず出力値を保持した。"
 }
