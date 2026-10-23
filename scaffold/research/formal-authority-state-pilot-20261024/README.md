@@ -7,8 +7,8 @@ binding: [SCF-B-0163](../../bindings/SCF-B-0163.json)
 
 ## 何をしたか
 
-上流authority状態モデルの規則を、有限の抽象状態と遷移関数として[`AuthorityState.lean`](AuthorityState.lean)へ写した。
-主な性質を、到達可能な全状態について Lean の定理として証明した。
+上流authority状態モデルの規則を、列挙型と自然数による抽象状態と遷移関数として[`AuthorityState.lean`](AuthorityState.lean)へ写した。
+revision と件数は自然数なので、状態空間は無限である。全状態を列挙して調べたのではなく、主な性質を、到達可能な全状態について帰納法による Lean の定理として証明した。
 
 あわせて、記録された失敗の型を一つずつ埋め込んだ変異モデルを作った。変異モデルでは、同じ性質を破る具体的な状態と操作（反例）があることも証明した。
 これは設計TDDのRedに当たり、検査が既知の失敗を実際に検出できることを示す。
@@ -38,7 +38,7 @@ POの問い（2026-10-24、Anthropic の Lean による形式化を設計へ適�
 | target：`approved_revision` だけが対象revisionの現行意味authority。人間decisionまたはL3／L10の委任で遷移 | `approvalBound`（T1）、`step_inv`、`reachable_inv` | `stepMergeApproves`（PR merge を承認とする） | PR #1797（[上流運用モデル](../../../docs/governance/github-upstream-operating-model.md)：merge は承認revision・要求採否を生成しない） |
 | fail-close：revision不一致・digest不一致では元状態を保持して停止 | `step`（前提不成立は状態不変）、T1 | `stepStaleDecision`（decisionの対象revisionを照合しない） | 前身harness UTW-005（stale な review・trace evidence を現在の HEAD へ再束縛しない） |
 | carry_forward：`covered` は未被覆0件を確認した場合だけ | `coveredBound`（C1） | `stepPartialCovers`（一部の successor だけで covered）、`stepCloseCovers`（Issue close で covered） | PR #2564（兄弟対象の取りこぼし）、[開発repoチケット方針](../../../docs/governance/decisions/dev-repo-ticket-policy-po-decision-2026-10-09.md)（Issue close から完了を生成しない） |
-| 意味変更・retire は人間decisionが必要 | `changeBound`（C2） | — | （文書規則の写し。具体的な事例は未特定） |
+| 意味変更・retire は、対象revisionと変更前後を示した人間decisionが必要 | `ChangeDecision`、`changeOk`、`changeBound`（C2） | `stepAnyChange`（decisionの種別を照合せず、委任でも成立させる） | （文書規則の写し。具体的な事例は未特定） |
 | source：変更しない | `source_frame` | — | （文書規則の写し） |
 | work_projection・GitHub表示は他の四軸を変えない | `projection_frame` | `stepMergeApproves`、`stepCloseCovers` | PR #1797、チケット方針、[CI解禁判断](../../../docs/governance/decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md) L73（CI green から受入を生成しない） |
 | management：常に `authority_effect: none` | `management_frame` | — | [能力強化判断](../../../docs/governance/decisions/capability-reinforcement-po-decisions-2026-09-27.md) L117（仮登録・件数を移管完了へ読み替えない） |
@@ -47,6 +47,10 @@ POの問い（2026-10-24、Anthropic の Lean による形式化を設計へ適�
 「文書規則の写し」と書いた行は、失敗事例で裏付けた新しい予防規則ではない。文書がすでに定めている規則を、モデルへ写しただけである。
 
 ## 抽象化と解釈（落とした意味）
+
+- decisionは、種別（人間／委任）、対象revision、digestの一致、変更前後の提示（意味変更・retireのみ）を持つ証拠（witness）として表した。
+  - モデルが示すのは「これらが揃わないdecisionでは遷移しない」ことだけである。
+  - 実際の判断記録がこれらのfieldを満たすか（記録の真正性、digestの計算、委任の成立条件）はモデルの外で確かめる。モデルはそれを証明しない。
 
 - 一つの要求identityだけを扱う。複数identityの合成、successor を複数に分けた場合の atom ごとの和集合、同名IDの統合禁止は扱わない。被覆は件数 `uncovered` に抽象化した。
 - 状態値は文書の「現在使う値の例」を使った。値域を確定しない。
@@ -66,7 +70,7 @@ lean AuthorityState.lean      # 出力なし・終了0で全定理が検査済�
 ```
 
 - `sorry` は使っていない。
-- 確認時、全定理が依存する公理は Lean 標準の `propext` と `Quot.sound` だけだった（`#print axioms` で確認）。`native_decide` は使っていない。
+- 確認時、全定理が依存する公理は Lean 標準の `propext`、`Quot.sound`、`Classical.choice` だけだった（`#print axioms` で確認。`sorryAx` を含まない）。`native_decide` は使っていない。
 - 証拠種別は scaffold である。新世代CIは未構築で、検査はローカルの手動実行に限る。
 
 ## 次に試せること（未実施・候補）

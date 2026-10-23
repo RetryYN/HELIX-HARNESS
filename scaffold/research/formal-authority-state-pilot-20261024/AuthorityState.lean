@@ -2,7 +2,8 @@
 HELIX 上流authority状態モデルの形式化パイロット（scaffold、authority_effect: none）。
 
 対象: docs/governance/authority-state-model.md（五つの独立した状態軸、許可する状態遷移、fail-close規則）。
-本fileは同文書の規則を有限の抽象モデルへ写したものであり、新しい規則・gate・承認手続きを足さない。
+本fileは同文書の規則を、列挙型と自然数による抽象モデルへ写したものであり、新しい規則・gate・承認手続きを足さない。
+revisionと件数は自然数なので状態空間は無限であり、性質は全状態の列挙ではなく帰納法で証明する。
 状態値は同文書の「現在使う値の例」を抽象値として使い、値域を確定しない。
 写像と、抽象化で落とした意味は同じdirectoryの README.md に記録する。
 -/
@@ -34,6 +35,15 @@ structure Decision where
   kind : DecisionKind
   rev : Nat
   digestOk : Bool
+  deriving DecidableEq, Repr
+
+/-- 意味変更・retireのdecision。原要求の対象revision、本文digestの一致、変更前後の提示を持つ。
+    各fieldが実際の判断記録で成り立つかはモデルの外で確かめる。モデルは、これらが揃わないdecisionを受け付けないことだけを扱う。 -/
+structure ChangeDecision where
+  kind : DecisionKind
+  rev : Nat
+  digestOk : Bool
+  showsBeforeAfter : Bool
   deriving DecidableEq, Repr
 
 inductive CarryState where
@@ -77,8 +87,10 @@ structure St where
   successors : Nat
   /-- 原意味atomのうち未被覆の件数。 -/
   uncovered : Nat
-  /-- 意味変更・retireを決めた対象revision付き人間decisionの有無。 -/
-  changeDecision : Bool
+  /-- 原要求のrevision。sourceと同じくどの操作でも変えない。 -/
+  srcRev : Nat
+  /-- 意味変更・retireを成立させたdecision。 -/
+  changeDecision : Option ChangeDecision
   mgmt : MgmtState
   work : WorkState
   issue : IssueState
@@ -96,12 +108,13 @@ structure Authority where
   cf : CarryState
   successors : Nat
   uncovered : Nat
-  changeDecision : Bool
+  srcRev : Nat
+  changeDecision : Option ChangeDecision
   deriving DecidableEq, Repr
 
 def St.authority (s : St) : Authority :=
   { src := s.src, layer := s.layer, tgt := s.tgt, tgtRev := s.tgtRev, decision := s.decision,
-    cf := s.cf, successors := s.successors, uncovered := s.uncovered,
+    cf := s.cf, successors := s.successors, uncovered := s.uncovered, srcRev := s.srcRev,
     changeDecision := s.changeDecision }
 
 /-! ## 操作（authority-state-model.md「許可する状態遷移」） -/
@@ -113,8 +126,8 @@ inductive Act where
   | edit
   /-- successor一件の被覆記録。`n` は新たに被覆したatom数。 -/
   | recordCoverage (n : Nat)
-  /-- 意味変更（retire = false）またはretire（retire = true）の対象revision付き人間decision。 -/
-  | decideChange (retire : Bool) (decisionOk : Bool)
+  /-- 意味変更（retire = false）またはretire（retire = true）のdecision。 -/
+  | decideChange (retire : Bool) (w : ChangeDecision)
   | register (proposal : Bool)
   | terminate (m : MgmtState)
   | workStep (w : WorkState)
@@ -138,6 +151,10 @@ def isPending : CarryState → Bool
 /-- 被覆記録を受け付ける前提：保持中で、新たに被覆するatomが1件以上かつ未被覆の範囲内。 -/
 def canCover (cf : CarryState) (uncovered n : Nat) : Bool :=
   isPending cf && 0 < n && n ≤ uncovered
+
+/-- 意味変更・retireに要るdecision：人間、原要求の対象revision、digest一致、変更前後の提示。 -/
+def changeOk (srcRev : Nat) (w : ChangeDecision) : Bool :=
+  w.kind == .human && w.rev == srcRev && w.digestOk && w.showsBeforeAfter
 
 def isLive : MgmtState → Bool
   | .registeredSourceHolding | .registeredProposal => true
@@ -164,10 +181,10 @@ def step (s : St) : Act → St
         { s with successors := s.successors + 1, uncovered := s.uncovered - n,
                  cf := if s.uncovered - n == 0 then .covered else .partiallyCovered }
       else s
-  | .decideChange retire ok =>
-      if isPending s.cf && ok then
+  | .decideChange retire w =>
+      if isPending s.cf && changeOk s.srcRev w then
         { s with cf := if retire then .retiredByDecision else .meaningChangeDecided,
-                 changeDecision := true }
+                 changeDecision := some w }
       else s
   | .register proposal =>
       if s.mgmt == .unregistered then
@@ -192,16 +209,17 @@ def approvalBound (s : St) : Prop :=
 def coveredBound (s : St) : Prop :=
   s.cf = .covered → 0 < s.successors ∧ s.uncovered = 0
 
-/-- C2: 意味変更・retireは人間decisionがある時だけ。 -/
+/-- C2: 意味変更・retireは、人間・原要求の対象revision・digest一致・変更前後の提示が揃ったdecisionがある時だけ。 -/
 def changeBound (s : St) : Prop :=
-  (s.cf = .meaningChangeDecided ∨ s.cf = .retiredByDecision) → s.changeDecision = true
+  (s.cf = .meaningChangeDecided ∨ s.cf = .retiredByDecision) →
+    ∃ w, s.changeDecision = some w ∧ changeOk s.srcRev w = true
 
 def Inv (s : St) : Prop := approvalBound s ∧ coveredBound s ∧ changeBound s
 
 /-- 初期状態：対象は未承認、原要求は保持中、decision・被覆記録・意味変更decisionなし。 -/
 def Init (s : St) : Prop :=
   isOpenTarget s.tgt = true ∧ s.decision = none ∧ s.cf = .preservedPendingRehome ∧
-    s.successors = 0 ∧ s.changeDecision = false
+    s.successors = 0 ∧ s.changeDecision = none
 
 inductive Reachable : St → Prop where
   | init {s} : Init s → Reachable s
@@ -252,10 +270,12 @@ theorem step_inv {s : St} (a : Act) (h : Inv s) : Inv (step s a) := by
         simp only at h
         split at h <;> (rcases h with h | h <;> cases h)
     · exact ⟨hT, hC, hX⟩
-  | decideChange retire ok =>
+  | decideChange retire w =>
     simp only [step]
     split
-    · refine ⟨hT, ?_, fun _ => rfl⟩
+    · next hg =>
+      simp only [Bool.and_eq_true] at hg
+      refine ⟨hT, ?_, fun _ => ⟨w, rfl, hg.2⟩⟩
       intro hcov
       simp only at hcov
       split at hcov <;> cases hcov
@@ -279,9 +299,10 @@ theorem reachable_inv {s : St} (h : Reachable s) : Inv s := by
   | init hi => exact init_inv hi
   | next a _ ih => exact step_inv a ih
 
-/-- S1: source_authority_stateはどの操作でも変わらない。 -/
-theorem source_frame (s : St) (a : Act) : (step s a).src = s.src := by
-  cases a <;> simp only [step] <;> (try split) <;> rfl
+/-- S1: source_authority_stateと原要求のrevisionは、どの操作でも変わらない。 -/
+theorem source_frame (s : St) (a : Act) :
+    (step s a).src = s.src ∧ (step s a).srcRev = s.srcRev := by
+  cases a <;> simp only [step] <;> (try split) <;> simp
 
 def isProjection : Act → Bool
   | .workStep _ | .setIssue _ | .setPr _ | .setCheck _ => true
@@ -319,10 +340,10 @@ def stepA (x : Authority) : Act → Authority
         { x with successors := x.successors + 1, uncovered := x.uncovered - n,
                  cf := if x.uncovered - n == 0 then .covered else .partiallyCovered }
       else x
-  | .decideChange retire ok =>
-      if isPending x.cf && ok then
+  | .decideChange retire w =>
+      if isPending x.cf && changeOk x.srcRev w then
         { x with cf := if retire then .retiredByDecision else .meaningChangeDecided,
-                 changeDecision := true }
+                 changeDecision := some w }
       else x
   | _ => x
 
@@ -336,8 +357,9 @@ theorem step_authority (s : St) (a : Act) : (step s a).authority = stepA s.autho
     by_cases hc : s.tgt = .approvedRevision <;> simp [step, stepA, St.authority, hc]
   | recordCoverage n =>
     cases hc : canCover s.cf s.uncovered n <;> simp [step, stepA, St.authority, hc]
-  | decideChange r ok =>
-    by_cases hc : (isPending s.cf && ok) = true <;> simp [step, stepA, St.authority, hc]
+  | decideChange r w =>
+    by_cases hc : (isPending s.cf && changeOk s.srcRev w) = true <;>
+      simp [step, stepA, St.authority, hc]
   | register p =>
     by_cases hc : s.mgmt = .unregistered <;> simp [step, stepA, St.authority, hc]
   | terminate m =>
@@ -361,7 +383,8 @@ theorem authority_noninterference (s t : St) (a : Act) (h : s.authority = t.auth
 /-- 反例に使う基準状態：L2相当の未承認対象、未被覆2件。 -/
 def s0 : St :=
   { src := .confirmed, layer := .other, tgt := .draft, tgtRev := 1, decision := none,
-    cf := .preservedPendingRehome, successors := 0, uncovered := 2, changeDecision := false,
+    cf := .preservedPendingRehome, successors := 0, uncovered := 2, srcRev := 1,
+    changeDecision := none,
     mgmt := .unregistered, work := .proposedUpstreamWaiting, issue := .opened, pr := .draft,
     check := .none }
 
@@ -437,5 +460,23 @@ theorem greenGuard_breaks_noninterference :
     (stepGreenGuard s0 (.decide ⟨.human, 1, true⟩)).authority ≠
       (stepGreenGuard { s0 with check := .green } (.decide ⟨.human, 1, true⟩)).authority := by
   decide
+
+/-- 変異6（意味変更・retireを委任や人間以外のdecisionで成立させる＝decisionの種別を照合しない）。 -/
+def stepAnyChange (s : St) : Act → St
+  | .decideChange retire w =>
+      if isPending s.cf && w.rev == s.srcRev && w.digestOk && w.showsBeforeAfter then
+        { s with cf := if retire then .retiredByDecision else .meaningChangeDecided,
+                 changeDecision := some w }
+      else s
+  | a => step s a
+
+theorem anyChange_breaks_inv :
+    Inv s0 ∧ ¬ Inv (stepAnyChange s0 (.decideChange true ⟨.delegated, 1, true, true⟩)) := by
+  refine ⟨init_inv s0_init, ?_⟩
+  intro ⟨_, _, hX⟩
+  obtain ⟨w, hw, hok⟩ := hX (Or.inr rfl)
+  simp [stepAnyChange, s0, isPending] at hw
+  subst hw
+  simp [changeOk] at hok
 
 end HelixAuthority

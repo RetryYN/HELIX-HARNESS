@@ -6,7 +6,7 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS 設計検証手段の研究担当。formal owner未確定",
   "state": "registered",
-  "reason": "設計の規則をモデル上の定理として検査する正式な手段は未成立。POの問い（2026-10-24）への試行として、authority-state-model.mdの規則をLean 4の有限抽象モデルへ写し、性質の証明と既知失敗の変異モデルの反例を研究する。旧HELIXに同種の資産はなく新規案。",
+  "reason": "設計の規則をモデル上の定理として検査する正式な手段は未成立。POの問い（2026-10-24）への試行として、authority-state-model.mdの規則をLean 4の抽象モデル（列挙型と自然数。状態空間は無限で、帰納法で証明）へ写し、性質の証明と既知失敗の変異モデルの反例を研究する。旧HELIXに同種の資産はなく新規案。",
   "upstream": [
     {
       "path": "docs/governance/authority-state-model.md",
@@ -65,14 +65,15 @@
     ],
     "oracles": [
       "lean AuthorityState.lean（leanprover/lean4:v4.34.1）の型検査",
-      "#print axioms（propext・Quot.soundのみ）"
+      "#print axioms（propext・Quot.sound・Classical.choiceのみ、sorryAxなし）"
     ],
     "negative_cases": [
       "PR mergeを承認とする変異（stepMergeApproves）",
       "Issue closeをcoveredとする変異（stepCloseCovers）",
       "一部successorでcoveredとする変異（stepPartialCovers）",
       "decisionの対象revisionを照合しない変異（stepStaleDecision）",
-      "承認の前提にCI greenを読む変異（stepGreenGuard）"
+      "承認の前提にCI greenを読む変異（stepGreenGuard）",
+      "意味変更・retireをdecisionの種別を照合せず成立させる変異（stepAnyChange）"
     ]
   },
   "replacement": {
