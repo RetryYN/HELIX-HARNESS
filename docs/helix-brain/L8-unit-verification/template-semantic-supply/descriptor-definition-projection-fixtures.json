@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。 fn3_AB_verificationは同A/B IdentityContextと公開fn3 Comparison全4fieldの有限期待を組み立てる。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/Bと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。",
+      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/B/fn3 A/Bと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。 fn3_AB_verificationは原11 actual readと実slot/fact trace A1/B2を対象とする公開Comparisonの有限期待だけを組み立てる。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -4043,6 +4043,428 @@
       "private F03Evaluation全値はこのunitの返却期待に含めない。ValueContext.definitions全値を入力に保持するが、fn2返却ではL4のcarry対象2軸だけを保持する。",
       "rootの欠落memberを空配列に補わずValidatedSupply.input全値に保持する。空finding列はこの有限入力に担当ruleの新行がないためで、未知のproducer返却の代用ではない。",
       "fn3〜5/fn7、Issue完了、任意入力全域の成立を示さない。"
+    ]
+  },
+  "fn3_AB_verification": {
+    "id": "HELIXBRAIN-L8-D27-FN3-AB",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "D27 A/B各同call IdentityContextと公開fn3 Comparison全4fieldの有限期待。11 actual原readと実slot/fact A1/B2 traceだけを元順に射影する。",
+    "fixed_git_sources": {
+      "L8_FN2_UNIT": {
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "sha256": "260f812421eb79e0f1f35c0e87f234434a5698cbfa90601c7ea15cc3181c9294"
+      },
+      "L4_CURRENT": {
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "8d8afd4c4e6b9608e67dc158ef8aa5564aa08d5ea6314513639aed06b8659415"
+      },
+      "L5_CURRENT": {
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "932f22a2e8200a2a0fa314978a1b1f3b6748db3dcc818209a4664f8f737d2748"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "file_sha256": "8d8afd4c4e6b9608e67dc158ef8aa5564aa08d5ea6314513639aed06b8659415",
+        "pointers": [
+          "/identity_version_trace_contract/same_call",
+          "/identity_version_trace_contract/read_branch_contracts/actual",
+          "/identity_version_trace_contract/read_branch_contracts/trace",
+          "/identity_version_trace_contract/read_branch_contracts/trace_population",
+          "/identity_version_trace_contract/public_projection/axis_reason_writer"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "file_sha256": "932f22a2e8200a2a0fa314978a1b1f3b6748db3dcc818209a4664f8f737d2748",
+        "pointers": [
+          "/functions/3",
+          "/type_contract/types/IdentityContext",
+          "/type_contract/types/Comparison",
+          "/type_contract/types/AxisResult",
+          "/wire_codec_contract/schema/$defs/Comparison",
+          "/failure_rules/58",
+          "/failure_rules/59",
+          "/failure_rules/60",
+          "/failure_rules/61",
+          "/failure_rules/62",
+          "/failure_rules/63",
+          "/failure_rules/64",
+          "/failure_rules/65",
+          "/failure_rules/66",
+          "/failure_rules/67",
+          "/failure_rules/90",
+          "/failure_rules/91"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+        "file_sha256": "260f812421eb79e0f1f35c0e87f234434a5698cbfa90601c7ea15cc3181c9294",
+        "pointers": [
+          "/fn2_AB_verification/reconstruction"
+        ]
+      }
+    ],
+    "conditional_input_ja": "原raw A/B全値とinput_issues=[]/unusable_source_refs=[]を保持する条件付きValidatedSupply。logical qualification root前提の有限照合でありfn0実行/実trust成立ではない。空unusableだけからowner/意味適合を作らない。",
+    "reconstruction": {
+      "seed": {
+        "source_fn2_unit": null,
+        "source_contracts": {
+          "identity_contract": null,
+          "fn3": null
+        },
+        "calls": {
+          "A": {
+            "validated": null
+          },
+          "B": {
+            "validated": null
+          }
+        },
+        "expected_comparisons": {
+          "A": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          },
+          "B": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          }
+        },
+        "axis_template": {
+          "subject_ref": null,
+          "binding": null,
+          "axis": null,
+          "state": null,
+          "original_refs": [],
+          "reason": null,
+          "backflow_owner": null
+        }
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_FN2_UNIT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+          "file_sha256": "260f812421eb79e0f1f35c0e87f234434a5698cbfa90601c7ea15cc3181c9294",
+          "source_pointer": "/fn2_AB_verification",
+          "bundle_pointer": "/source_fn2_unit",
+          "value_canonical_sha256": "dbe1e39408b5994c8f3912067d1a943bd7f8a76573a54b81ec5fc2f1150efee2"
+        },
+        {
+          "source_key": "L4_CURRENT",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "git_revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+          "file_sha256": "8d8afd4c4e6b9608e67dc158ef8aa5564aa08d5ea6314513639aed06b8659415",
+          "source_pointer": "/identity_version_trace_contract",
+          "bundle_pointer": "/source_contracts/identity_contract",
+          "value_canonical_sha256": "3e33b8dedca93fe456b475bf903ccc2528d2b86da2aa6f65dcf3a112a868be9b"
+        },
+        {
+          "source_key": "L5_CURRENT",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "git_revision": "7b785ae74c03442f111534cafdeed0fee919fd85",
+          "file_sha256": "932f22a2e8200a2a0fa314978a1b1f3b6748db3dcc818209a4664f8f737d2748",
+          "source_pointer": "/functions/3",
+          "bundle_pointer": "/source_contracts/fn3",
+          "value_canonical_sha256": "93b305162d1d1dccf4634fcb8b993b3a7c8dd7df09106f1abfe1a24fbd02495c"
+        }
+      ],
+      "source_fn2_materialization": {
+        "unit_pointer": "/reconstruction/seed/source_fn2_unit",
+        "recipe_pointer": "/reconstruction/seed/source_fn2_unit/reconstruction",
+        "source_A_materialization_pointer": "/reconstruction/seed/source_fn2_unit/reconstruction/source_A_materialization",
+        "outer_import_count": 2,
+        "source_phase_count": 18,
+        "historical_rfc_count": 666,
+        "source_A_local_rfc_count": 58,
+        "source_fn2_local_rfc_count": 12,
+        "total_source_rfc_count": 736,
+        "pointer_scope_ja": "fn3-unit root相対。取り込んだfn2の各pointerにunit_pointerを前置し、既存Aの5group/18phase・A0 phase前importと原apply rootはfn2 recipeのまま解決する。fn2の2outer+A5outer+nested51=58importsを解決後736 RFCを適用する。新outer3を含む全61imports。"
+      },
+      "literal_expansions": {
+        "interpretation_ja": "固定L4 writer prefixとmaterial規則に原同call値を代入した有限literal。標準RFC6902には文字列連結/JSON直列化がないため著述しcopyする。比較値はL3/L4/L5とrawから独立導出し、L9既存7gold/保存抽出出力を使わない。",
+        "trace_axis": {"basis": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/axis_root/axis", "value_canonical_sha256": "189065989b3750b4504c8ffee43d1e3cf2f74162299bcc5bc0a2abc9933f40d3"}, "value": "descriptor.trace"},
+        "A_0": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/template_ref", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": {"identity": "SYNTHETIC-D26-TEMPLATE-A", "revision": "synthetic-D26-r1", "scope": "synthetic-D26-cohort", "owner": "synthetic-template-owner", "source_locator": "urn:synthetic:d26:A:template", "sha256": null}}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/template_ref\",\"original_read\":{\"presence\":\"supplied\",\"value\":{\"identity\":\"SYNTHETIC-D26-TEMPLATE-A\",\"owner\":\"synthetic-template-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:template\"}}}"},
+        "A_1": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/knowledge_ref", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": {"identity": "SYNTHETIC-D26-KNOWLEDGE-A", "revision": "synthetic-D26-r1", "scope": "synthetic-D26-cohort", "owner": "synthetic-knowledge-owner", "source_locator": "urn:synthetic:d26:A:knowledge", "sha256": null}}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/knowledge_ref\",\"original_read\":{\"presence\":\"supplied\",\"value\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"}}}"},
+        "A_2": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/requirement_ref", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": {"identity": "SYNTHETIC-D26-REQUIREMENT-A", "revision": "synthetic-D26-r1", "scope": "synthetic-D26-cohort", "owner": "synthetic-requirement-owner", "source_locator": null, "sha256": null}}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/requirement_ref\",\"original_read\":{\"presence\":\"supplied\",\"value\":{\"identity\":\"SYNTHETIC-D26-REQUIREMENT-A\",\"owner\":\"synthetic-requirement-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null}}}"},
+        "A_3": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/oracle_ref", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": {"identity": "SYNTHETIC-D26-ORACLE-A", "revision": "synthetic-D26-r1", "scope": "synthetic-D26-cohort", "owner": "synthetic-oracle-owner", "source_locator": null, "sha256": null}}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/oracle_ref\",\"original_read\":{\"presence\":\"supplied\",\"value\":{\"identity\":\"SYNTHETIC-D26-ORACLE-A\",\"owner\":\"synthetic-oracle-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null}}}"},
+        "A_4": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/pack_ref", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": {"identity": "SYNTHETIC-D26-PACK-A", "revision": "synthetic-D26-r1", "scope": "synthetic-D26-cohort", "owner": "synthetic-pack-owner", "source_locator": null, "sha256": null}}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/pack_ref\",\"original_read\":{\"presence\":\"supplied\",\"value\":{\"identity\":\"SYNTHETIC-D26-PACK-A\",\"owner\":\"synthetic-pack-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":null}}}"},
+        "A_5": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/template_ref/revision", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": "synthetic-D26-r1"}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/template_ref/revision\",\"original_read\":{\"presence\":\"supplied\",\"value\":\"synthetic-D26-r1\"}}"},
+        "A_6": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/knowledge_ref/revision", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": "synthetic-D26-r1"}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/knowledge_ref/revision\",\"original_read\":{\"presence\":\"supplied\",\"value\":\"synthetic-D26-r1\"}}"},
+        "A_7": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/pack_ref/revision", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": "synthetic-D26-r1"}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/pack_ref/revision\",\"original_read\":{\"presence\":\"supplied\",\"value\":\"synthetic-D26-r1\"}}"},
+        "A_8": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/pack_contract_version", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": "contract-A"}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/pack_contract_version\",\"original_read\":{\"presence\":\"supplied\",\"value\":\"contract-A\"}}"},
+        "A_9": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/actual_owner_body_unprovided", "value_canonical_sha256": "0034e043082ec216d58ae328525b8434c0044c2f7e3c16149ebd457093d9b44c"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/binding/pack_artifact_version", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "supplied", "value": "artifact-A"}}, "value": "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。\n{\"actual_source_pointers\":[],\"cause\":\"actual_owner_body_unprovided\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/binding/pack_artifact_version\",\"original_read\":{\"presence\":\"supplied\",\"value\":\"artifact-A\"}}"},
+        "A_10": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/read_branch_contracts/actual/finite_branch_order/1/condition", "value_canonical_sha256": "8d79fba74243bb4b6cddc86844a735b64b45073bd9f14b7914042c1bd43e2b96"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/actual_material", "value_canonical_sha256": "2e5c6820cf146a253b5fa8fda41e24523515dbbf94cc2a7442f0ac1ca65dfcdb"}, "substitution_sources": {"original_member_locator": "/knowledge_records/0/operational_state", "knowledge_ref": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "observations_ja": "全sourceに当該role actual owner本文が無い。generic binding/descriptor本文をactualへ使わない。", "original_read": {"presence": "absent"}}, "value": "原memberが欠落。原Read absent。\n{\"actual_source_pointers\":[],\"cause\":\"input_member_absent\",\"knowledge_ref\":{\"identity\":\"SYNTHETIC-D26-KNOWLEDGE-A\",\"owner\":\"synthetic-knowledge-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":null,\"source_locator\":\"urn:synthetic:d26:A:knowledge\"},\"member_pointer\":\"/knowledge_records/0/operational_state\",\"original_read\":{\"presence\":\"absent\"}}"},
+        "A_11": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/trace", "value_canonical_sha256": "6cf87a56088a6191a41ac31f108f2d6b542462a6dc36d3a4fa1b991bac21019a"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/trace_material", "value_canonical_sha256": "67e39fbf8c44743e68f83c5ea101d4ee85b8c3edccf7ee1cacd89be20bcb4bb8"}, "substitution_sources": {"raw_pointer": "/reconstruction/seed/calls/A/validated/input", "material": {"descriptor_kind": "template identity", "fact_locator": "/descriptors/0/facts/0", "knowledge_record_index": 0, "provenance_index": 0, "qualification_index": 0, "root_index": 0, "slot_identity": "SYNTHETIC-D26-SLOT-A", "slot_locator": "/descriptors/0", "source_index": 0}, "qualification_ja": "原fact/source/K provenance fullRef対応、Q subject/digest/scope/ref→原root、同slot/fact/source binding、source body内同slot/factを個別照合。内側自己source sha=nullは未供給値で既知差を生成しない。"}, "value": "原slot/fact/source/provenance/資格frameの対応を保持する。意味完成又は利用許可ではない。\n{\"descriptor_kind\":\"template identity\",\"fact_locator\":\"/descriptors/0/facts/0\",\"knowledge_record_index\":0,\"provenance_index\":0,\"qualification_index\":0,\"root_index\":0,\"slot_identity\":\"SYNTHETIC-D26-SLOT-A\",\"slot_locator\":\"/descriptors/0\",\"source_index\":0}"},
+        "B_12": {"prefix_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/problem_reason_table/trace", "value_canonical_sha256": "6cf87a56088a6191a41ac31f108f2d6b542462a6dc36d3a4fa1b991bac21019a"}, "material_template": {"source_key": "L4_CURRENT", "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/trace_material", "value_canonical_sha256": "67e39fbf8c44743e68f83c5ea101d4ee85b8c3edccf7ee1cacd89be20bcb4bb8"}, "substitution_sources": {"raw_pointer": "/reconstruction/seed/calls/B/validated/input", "material": {"descriptor_kind": "required section", "fact_locator": "/descriptors/2/facts/0", "knowledge_record_index": 0, "provenance_index": 2, "qualification_index": 2, "root_index": 2, "slot_identity": "SYNTHETIC-D27-B-SLOT-UNKNOWN", "slot_locator": "/descriptors/2", "source_index": 2}, "qualification_ja": "原fact/source/K provenance fullRef対応、Q subject/digest/scope/ref→原root、同slot/fact/source binding、source body内同slot/factを個別照合。内側自己source sha=nullは未供給値で既知差を生成しない。"}, "value": "原slot/fact/source/provenance/資格frameの対応を保持する。意味完成又は利用許可ではない。\n{\"descriptor_kind\":\"required section\",\"fact_locator\":\"/descriptors/2/facts/0\",\"knowledge_record_index\":0,\"provenance_index\":2,\"qualification_index\":2,\"root_index\":2,\"slot_identity\":\"SYNTHETIC-D27-B-SLOT-UNKNOWN\",\"slot_locator\":\"/descriptors/2\",\"source_index\":2}"}
+      },
+      "rfc6902_operations": [
+        {"op": "copy", "from": "/reconstruction/seed/source_fn2_unit/reconstruction/seed/calls/A/validated", "path": "/reconstruction/seed/calls/A/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn2_unit/reconstruction/seed/calls/B/validated", "path": "/reconstruction/seed/calls/B/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/template_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/0/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/template_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_0/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/0/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/1/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_1/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/1/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/requirement_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/2/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/requirement_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_2/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/2/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/oracle_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/3/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/oracle_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_3/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/3/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/4/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_4/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/4/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/template_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/5/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/template_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_5/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/5/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/6/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_6/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/6/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/7/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_7/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/7/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/8/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_8/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/8/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/9/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/pack_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_9/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/9/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/public_projection/axis_reason_writer/actual_roles/10/axis", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/2", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/provenance_refs/0", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/provenance_refs/1", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_10/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/10/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/descriptors/0/facts/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/descriptors/0/binding", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/binding"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/trace_axis/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/0", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/descriptors/0/facts/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/descriptors/0/facts/0/source_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/descriptors/0/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/knowledge_records/0/provenance_refs/0", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/sources/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/sources/0/qualification_ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/qualifications/0/ref", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/qualification_roots/0", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/A_11/value", "path": "/reconstruction/seed/expected_comparisons/A/axes/11/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/expected_comparisons/A/axes", "path": "/reconstruction/seed/expected_comparisons/B/axes"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/knowledge_records/0/provenance_refs/2", "path": "/reconstruction/seed/expected_comparisons/B/axes/10/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/knowledge_records/0/provenance_refs/3", "path": "/reconstruction/seed/expected_comparisons/B/axes/10/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/axis_template", "path": "/reconstruction/seed/expected_comparisons/B/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/descriptors/2/facts/0/ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/subject_ref"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/descriptors/2/binding", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/binding"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/trace_axis/value", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/axis"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/identity_contract/schema/$defs/SourceState/enum/0", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/state"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/descriptors/2/facts/0/ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/descriptors/2/facts/0/source_ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/descriptors/2/binding/knowledge_ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/knowledge_records/0/ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/knowledge_records/0/provenance_refs/2", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/sources/2/ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/sources/2/qualification_ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/qualifications/2/ref", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/qualification_roots/2", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/original_refs/-"},
+        {"op": "copy", "from": "/reconstruction/literal_expansions/B_12/value", "path": "/reconstruction/seed/expected_comparisons/B/axes/12/reason"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn3/symbol", "path": "/reconstruction/seed/expected_comparisons/A/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/input_binding"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn3/symbol", "path": "/reconstruction/seed/expected_comparisons/B/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/B/input_binding"}
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 120
+        }
+      ],
+      "operation_count": 120,
+      "operation_types": {
+        "copy": 120
+      },
+      "expected_comparison_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "expected_canonical_sha256": {
+        "A": "57d20b38d7b055b3ee8795293dcea83c31362f264b6f38958f90a90525b5a72f",
+        "B": "cda710384464bf2c28968d328dd52478f694e3cc7e30f14dc472b8120898117f"
+      },
+      "source_resolution_rule_ja": "新outer3定数importの後、source_fn2_materializationの有限recipeでfn2元材料を再構成し、local RFC copyをfn3-unit rootへ適用する。新しいwriter/runtimeや再帰includeを呼ばない。",
+      "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。"
+    },
+    "function_call": {
+      "symbol": "compare_identity_versions_and_trace",
+      "input_type": "IdentityContext",
+      "argument_pointers": {
+        "A": "/reconstruction/seed/calls/A",
+        "B": "/reconstruction/seed/calls/B"
+      },
+      "return_type": "Comparison",
+      "return_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "pointer_scope_ja": "fn3-unit root相対。各call引数はvalidatedだけを持つIdentityContext。"
+    },
+    "derivation_ja": [
+      "11 actual原memberを個別に読む。前10値は供給済みでも独立actual owner本文がなくunknown。knowledge.operational_stateは原recordのmember不在でabsent/unknown。template revisionは供給されているためrule59は出ない。各actual backflow_owner=null。",
+      "KnowledgeRecordはcaller knowledge Refへ一致する1件。knowledge.identity/revisionのRef同値反復とstate行の全provenance A2/B4を保存する。B reference_only source3のprovenanceも原Refとして残し、資格/actual成功へ変換しない。",
+      "trace母集団はA slot0/fact0、B slot0/fact0とslot2/fact0のみ。空facts slot1及び未存在kindから行を作らない。各原chainが対応しdescriptor.traceはresolved。meaning=nullは意味比較の別責務でtrace不足へ読み替えない。",
+      "各traceのfact.binding/slot.binding/source.content.bindingはcaller Binding全値に一致。B source2のRef版D27はknowledge binding D26の混在ではない。原fact.oracle_ref不在を既知異revisionへ読み替えない。",
+      "dependenciesは原pack_dependency_versions=[]のため0件、compatibility_recordsは不在のままで明示pair0件。compatibility行/Findingを捏造しない。"
+    ],
+    "finite_A_to_B_reuse_preconditions_ja": [
+      "A/Bは別に全Comparisonを導出したうえで、共通公開行だけをcopyする。両root Binding全値とactual前10原Readが一致し、追加source2/3にもactual owner artifact/version/state本文が無い。",
+      "両KnowledgeRecord.refは同一でstate memberはともに不在。state reasonは同じ原member locator/knowledge Ref/absent readに由来するが、Ref列はB追加provenance2件を原順で加える。",
+      "最初のtraceのslot/fact、選択K.ref/provenance0/source0/Q0/root0と全Bindingが同じ。K.provenance全arrayの違いを隠さず、traceで実選択した原index0だけの同一性を使う。B新traceは独立に組み立てる。",
+      "両入力の追加Claimはfill_definitionでありidentity/actual版/互換/付替えclaimへ変換しない。source3はreference_onlyのままsemantic actual候補にしない。"
+    ],
+    "rule_dispositions": [
+      {
+        "rule_pointer": "/failure_rules/58",
+        "result_ja": "新行なし",
+        "basis_ja": "参照したsource0/2は元sourcesに存在し実chainを保持する。"
+      },
+      {
+        "rule_pointer": "/failure_rules/59",
+        "result_ja": "新行なし",
+        "basis_ja": "template_ref.revisionはsynthetic-D26-r1として供給済み。actual本文未供給を版member欠落へ読み替えない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/60",
+        "result_ja": "新行なし",
+        "basis_ja": "caller各Refと対象source/qualificationのscopeは供給され同対象frame。"
+      },
+      {
+        "rule_pointer": "/failure_rules/61",
+        "result_ja": "新行なし",
+        "basis_ja": "明示CompatibilityRecordが無い。unknown actualを互換失敗へ変換しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/62",
+        "result_ja": "新行なし",
+        "basis_ja": "明示pairも範囲外/相反の原互換宣言も無い。"
+      },
+      {
+        "rule_pointer": "/failure_rules/63",
+        "result_ja": "新行なし",
+        "basis_ja": "fact.binding.oracle_refはcallerと同じ。standalone oracle_ref不在は既知異revisionでない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/64",
+        "result_ja": "新行なし",
+        "basis_ja": "画像からidentityを確定する原claimが無い。"
+      },
+      {
+        "rule_pointer": "/failure_rules/65",
+        "result_ja": "新行なし",
+        "basis_ja": "toolnodeから実版を確定する原claimが無い。"
+      },
+      {
+        "rule_pointer": "/failure_rules/66",
+        "result_ja": "新行なし",
+        "basis_ja": "同名fileをidentity結合に使う原claimが無い。"
+      },
+      {
+        "rule_pointer": "/failure_rules/67",
+        "result_ja": "新行なし",
+        "basis_ja": "version_targetは計画印のまま保持しactual版へ使う原claimが無い。"
+      },
+      {
+        "rule_pointer": "/failure_rules/90",
+        "result_ja": "新行なし",
+        "basis_ja": "全実fact/slot binding.knowledge_refはcaller D26と同じ。source自身D27版をknowledge混在へ読み替えない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/91",
+        "result_ja": "新行なし",
+        "basis_ja": "旧knowledge Refのsilent付替え又はsupersessionを示す原claimが無い。"
+      }
+    ],
+    "expected_counts": {
+      "A": {
+        "axes": 12,
+        "actual_axes": 11,
+        "trace_axes": 1,
+        "findings": 0,
+        "public_comparison_members": 4
+      },
+      "B": {
+        "axes": 13,
+        "actual_axes": 11,
+        "trace_axes": 2,
+        "findings": 0,
+        "public_comparison_members": 4
+      }
+    },
+    "limits_ja": [
+      "固定D27 A/Bの公開fn3有限期待のみ。fn0実行・物理trust・意味完成・利用許可・製品実行の成立を示さない。",
+      "writerの0/multi KnowledgeRecord、multi Q/root、multiple compatibility record集約、通常row外Finding witness、未規定reason presenceを一般閉包しない。この入力の対応はいずれも単一原chainであり担当ruleの新Finding predicateを観測しない。",
+      "fn1不足返却、knowledge_record_traceの運用state所在分類、fn4〜7、Issue完了はこのunitの返却期待ではない。",
+      "legacy source/保持差分/理由は固定L4 identity_version_trace_contract/legacy_rederivationとwriter/legacy_rederivationを継承参照し、新規要求・gateを追加しない。"
     ]
   }
 }
