@@ -118517,6 +118517,7 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult/state",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult/axis",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy",
@@ -119367,7 +119368,7 @@
       "key.bindingはBの原slot Binding、実slotのslot_identityとdescriptor_kindはraw B descriptor 1からcopyする。missing eventのslot identityは{presence:absent}のまま、kindだけをraw B fixed kind列からcopyする。",
       "各B eventのstate、axis_name、original_axesはB Comparisonのfinal axis rowから取得する。original_axesはComparison.axesの全axis objectをそのままcopyする。",
       "comparison_axis_indicesはB final_sort_index.axes.rowsのfinal_index列から同じevent ordinalのrowを選びcopyする。missing eventのcomparison_finding_indicesもB final_sort_index.findings.rowsからcopyする。算術offsetでindexを作らない。",
-      "B positive rowsのslot_locatorsとfact_locatorsは原raw descriptor 1の具体locatorを保持し、missing rowsはA seedの空locator列を保持する。root A 16件はA assessment既存110 RFC操作の返却順を維持する。",
+      "B positive rowsのslot_locatorsとfact_locatorsは原raw descriptor 1の具体locatorを保持し、missing rowsはA seedの空locator列を保持する。root A 16件はA assessment既存110 RFC操作の返却順を維持する。L5 exact_sort_contractのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-B）により、A frameのaxes[0..15]とfindings[0..13]はB Comparisonでも位置・全値が不変であり、A assessment 110操作のComparisonおよびA sort表への参照をそのまま適用できる。",
       "Bの16行はassessment index 16..31へ順にappendする。B positive event ordinalは16/17、missing event ordinalは18..31であり、sort表のfinal_indexは各event ordinalから直接引く。"
     ]
   }
