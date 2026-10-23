@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。 fn3_AB_verificationは同A/B IdentityContextと公開fn3 Comparison全4fieldの有限期待を組み立てる。 fn4_AB_verificationは同A/B OracleContext3/内部frame4と公開fn4 Comparison4の有限期待を組み立てる。 fn5_AB_verificationは同A/B PromotionContext1と公開fn5 Comparison4のcandidate-empty有限期待を組み立てる。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。 fn3_AB_verificationは同A/B IdentityContextと公開fn3 Comparison全4fieldの有限期待を組み立てる。 fn4_AB_verificationは同A/B OracleContext3/内部frame4と公開fn4 Comparison4の有限期待を組み立てる。 fn5_AB_verificationは同A/B PromotionContext1と公開fn5 Comparison4のcandidate-empty有限期待を組み立てる。 fn7_A_verificationは同A ClaimContext7/private frame4と公開fn7 Comparison4をmerge済み有限writerから組み立てる。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/B/fn3 A/B/fn4 A/B/fn5 A/Bと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。 fn3_AB_verificationは原11 actual readと実slot/fact trace A1/B2を対象とする公開Comparisonの有限期待だけを組み立てる。 fn4_AB_verificationは3種definition carryと各rule必要operand不在の有限枝だけを対象とし、全fn4の未閉包枝やfn5/fn7へ一般化しない。 fn5_AB_verificationは既存candidate選択0件と四昇格rule非発火の有限枝だけを扱い、原記録/presenceと他producer不足を保持する。fn5全域・fn7/手順7/Issue完了へ一般化しない。",
+      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/B/fn3 A/B/fn4 A/B/fn5 A/B/fn7 Aと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。 fn3_AB_verificationは原11 actual readと実slot/fact trace A1/B2を対象とする公開Comparisonの有限期待だけを組み立てる。 fn4_AB_verificationは3種definition carryと各rule必要operand不在の有限枝だけを対象とし、全fn4の未閉包枝やfn5/fn7へ一般化しない。 fn5_AB_verificationは既存candidate選択0件と四昇格rule非発火の有限枝だけを扱い、原記録/presenceと他producer不足を保持する。fn5全域・fn7/手順7/Issue完了へ一般化しない。 fn7_A_verificationはdescriptor fill専用writerのA一callだけを対象とし、元6Comparison/全frameを保持する。fn7 B・fn7全域・fn0資格・手順7・Issue完了へ一般化しない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -5590,5 +5590,454 @@
       "fn0/製品/helper/runtime/旧CLI/test/CI、fn5全域・fn7/手順7・Issue完了の成立を示さない。"
     ],
     "shape_observation_boundary_ja": "knowledge_record_shapesは固定L5 Ref schemaへの形状一致、各原Refに6memberが実在する観測だけを表す。schemaに新required集合を加えず、Ref解決/資格/運用state又はfn0成立を意味しない。kind既知判定は固定L4 /descriptor_meaningsの15literalとの全原出現照合で、required kindを実slotへ増殖させない。"
+  },
+  "fn7_A_verification": {
+    "id": "HELIXBRAIN-L8-D27-FN7-A",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "D27 Aの同call ClaimContext全7field・元private frame全4fieldと公開fn7 Comparison全4fieldの有限期待。merge済みdescriptor fill writerに従い、旧15rule prefix0とrule93担当0件を分けて導く。",
+    "fixed_git_sources": {
+      "L8_FN4_UNIT": {
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792"
+      },
+      "L8_FN5_UNIT": {
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792"
+      },
+      "L4_CURRENT": {
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2"
+      },
+      "L5_CURRENT": {
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "052cc134a2df5463fab7bbf3f1131b503a20be675e6138166fe59386830eb2c6"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointers": [
+          "/requirements/6"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "pointers": [
+          "/requirements/1"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+        "pointers": [
+          "/requirements/0"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+        "pointers": [
+          "/claim_boundary_projection_contract/same_call",
+          "/claim_boundary_projection_contract/finite_domain",
+          "/claim_boundary_projection_contract/claim_condition_interpretation",
+          "/claim_boundary_projection_contract/route_projection",
+          "/claim_boundary_projection_contract/comparison_writer",
+          "/claim_boundary_projection_contract/rule_dispositions",
+          "/claim_boundary_projection_contract/unclosed_projection_boundaries",
+          "/claim_boundary_projection_contract/legacy_rederivation",
+          "/descriptor_meanings"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "052cc134a2df5463fab7bbf3f1131b503a20be675e6138166fe59386830eb2c6",
+        "pointers": [
+          "/functions/7",
+          "/type_contract/types/ClaimContext",
+          "/type_contract/types/Comparison",
+          "/source_return_contract/descriptor_target_dataflow/raw_runner/closed_context_constructors/7",
+          "/source_return_contract/descriptor_target_dataflow/consumer",
+          "/source_return_contract/descriptor_target_dataflow/public_output",
+          "/failure_rules/0",
+          "/failure_rules/75",
+          "/failure_rules/76",
+          "/failure_rules/77",
+          "/failure_rules/78",
+          "/failure_rules/79",
+          "/failure_rules/92",
+          "/failure_rules/93",
+          "/failure_rules/94",
+          "/failure_rules/95",
+          "/failure_rules/96",
+          "/failure_rules/97",
+          "/failure_rules/98",
+          "/failure_rules/99",
+          "/failure_rules/100",
+          "/failure_rules/101"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+        "file_sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792",
+        "pointers": [
+          "/fn4_AB_verification/reconstruction",
+          "/fn5_AB_verification/reconstruction"
+        ]
+      }
+    ],
+    "conditional_input_ja": "原raw Aの全値とinput_issues=[]/unusable_source_refs=[]を条件付きValidatedSupplyとして保持する。fn0実行や実trustの成立を示さない。元fn1–fn6の全Comparisonは同callの入力operandで、fn7答えを他producer又は既存L9/normal期待から転用しない。",
+    "function_call": {
+      "symbol": "compare_claim_boundaries",
+      "input_type": "ClaimContext",
+      "argument_pointer": "/reconstruction/seed/context",
+      "private_frame_pointer": "/reconstruction/seed/private_frame",
+      "return_type": "Comparison",
+      "return_pointer": "/reconstruction/seed/expected_comparison",
+      "pointer_scope_ja": "fn7-A unit root相対。公開引数はContext7一つ。private frameは同raw runner/wrapperの内部材料で、公開override引数ではない。"
+    },
+    "finite_domain_observations": {
+      "claims": [
+        {
+          "locator": "/claims/0",
+          "kind": "fill_definition",
+          "proposed_value": null,
+          "proposed_value_presence": "supplied",
+          "intent": "positive",
+          "basis_refs_presence": "absent",
+          "target_state": "conflict",
+          "target_matches": [],
+          "route": "unresolved"
+        }
+      ],
+      "candidates": "supplied []",
+      "knowledge_record_count": 1,
+      "knowledge_record_keys": [
+        "ref",
+        "provenance_refs"
+      ],
+      "other_collection_presence": {
+        "meaning_comparisons": "absent",
+        "section_fields": "absent",
+        "values": "absent",
+        "applicability_records": "absent",
+        "relations": "absent",
+        "oracle_bindings": "absent",
+        "compatibility_records": "absent",
+        "handoff_records": "absent"
+      },
+      "dependencies_presence": "absent",
+      "source_roles": [
+        "semantic_json",
+        "semantic_json"
+      ],
+      "source_content_keys": [
+        [
+          "binding",
+          "descriptor_facts",
+          "definition_meaning_operations"
+        ],
+        [
+          "binding",
+          "descriptor_targets"
+        ]
+      ],
+      "meaning_carriers": [
+        {
+          "pointer": "/descriptors/0/facts/0/meaning",
+          "value": {
+            "template_identity": "SYNTHETIC-D26-TEMPLATE-A",
+            "functional_role": "設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。"
+          }
+        },
+        {
+          "pointer": "/sources/0/content/descriptor_facts/0/facts/0/meaning",
+          "value": {
+            "template_identity": "SYNTHETIC-D26-TEMPLATE-A",
+            "functional_role": "設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。"
+          }
+        },
+        {
+          "pointer": "/sources/0/content/definition_meaning_operations/0/arguments/fact_body",
+          "value": {
+            "template_identity": "SYNTHETIC-D26-TEMPLATE-A",
+            "functional_role": "設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。"
+          }
+        }
+      ],
+      "meaning_guard": "全fact recordは許可7key内でmeaning own memberあり。全3carrierは固定L4 meaning_object_literalsの同じ全値と一致。同shape別string/追加key/欠落memberは枝外。",
+      "typed_kinds": "root descriptor/source descriptor_facts/operation arguments/descriptor_targetsの全原kindを固定L4 descriptor_meaningsの15literalへ照合。target宣言のkind conflict/distinct slot/重複を消さない。",
+      "same_call_producer_symbols": {
+        "definitions": "compare_descriptor_definitions",
+        "values_applicability": "compare_values_and_applicability",
+        "identity_trace": "compare_identity_versions_and_trace",
+        "oracle_view": "compare_oracle_and_view_boundary",
+        "promotion": "compare_knowledge_promotion",
+        "dependencies_handoff": "compare_dependencies_and_handoff"
+      }
+    },
+    "derivation_ja": [
+      "全7fieldの元値を同Aから復元し、6producerのsymbol/input_bindingと全Comparison4を照合する。元definitionsと同private frameのdefinition_evaluation.comparisonは全値・再帰順序一致。",
+      "A Claim0は原null suppliedなのでpositive。targetは同cohort/slotの宣言kind conflictでmatches=[]、basis_refs absent、原routeはunresolved。nullだから非発火と判定せず、元read/ClaimUseをそのまま保持する。",
+      "固定L4 finite_domainを実測Aに照合したうえで、rule_dispositionsの15非rule93は局所writerが定めたprefix0。これは元文言から推測したprefix不在ではない。rule75は全meaning carrierの完全literal原値を読む。",
+      "L4 comparison_writer/axes：空prefixにrule93担当だけを追加するが、A Claim0はunresolvedで担当0件、従ってaxes=[]。comparison_writer/findings：同担当0件なのでfindings=[]。元fn1 conflict/他producer所見を相殺又はfn7へcopyしない。",
+      "seedのaxes/findingsだけは固定writerの0行を表す明示[]とするplaceholder null規則の構造例外。producer_symbolは固定L5 /functions/7/symbol、input_bindingは同context.validated.input.bindingからRFC copyで全値形成する。",
+      "fn4/fn5が固定importする未復元fn3 unit同士の全値・再帰順序一致を確認後、fn4で元recipeを適用済みの完成fn3木で、fn5の未復元fn3値を1copy置換する。fn4のClaimUse-B2材料化を含む完成木だが、fn5が読むのはcalls/{A,B}/validatedだけで、それぞれ原入力と全値/順序一致を保つ。これは入力recipe再利用で、fn7期待値の再利用ではない。"
+    ],
+    "rule_dispositions": [
+      {
+        "rule_pointer": "/failure_rules/0",
+        "rule_ref": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
+        "observation_ja": "A0はfill_definition、候補絶対選択の主張なし。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/75",
+        "rule_ref": "HELIXBRAIN-L5-032-R-product_values_as_generic",
+        "observation_ja": "root/source/operationの全3meaningは固定literalと完全一致し製品固有値の別stringを含まない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/76",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_selects_template",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/candidates=[]。A0はtemplate採用claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/77",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。人の要求合意claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/78",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_finishes_design",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。HARNESS/pair設計完成claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/79",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_closes_obligation",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。OS義務消込claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/92",
+        "rule_ref": "HELIXBRAIN-L5-032-R-missing_as_empty",
+        "observation_ja": "原null提案であり空配列gapへの置換claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/93",
+        "rule_ref": "HELIXBRAIN-L5-032-R-unknown_fallback",
+        "observation_ja": "原nullもpositiveだが、同call target conflict/matches[]→route unresolved、rule93担当0件。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/94",
+        "rule_ref": "HELIXBRAIN-L5-032-R-hash_as_complete",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null、/candidates=[]。hash/count完成claimなし。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/95",
+        "rule_ref": "HELIXBRAIN-L5-032-R-lower_green_as_complete",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。下位green完了claimなし。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/96",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_missing",
+        "observation_ja": "原definition stateを保持し、nullをknown又はgap消込へ代入しない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/97",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
+        "observation_ja": "field.value claimでない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/98",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
+        "observation_ja": "qualified meaning comparison conflictのknown更新claimでない。target宣言conflictを別predicateへ流用しない。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/99",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/applicability_recordsはabsent。field.applicabilityのN/A claimなし。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/100",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/candidates=[]。unselected_source→observed claimなし。",
+        "public_rows": 0
+      },
+      {
+        "rule_pointer": "/failure_rules/101",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/handoff_recordsと/dependenciesはabsent。handoff受領claimなし。",
+        "public_rows": 0
+      }
+    ],
+    "expected_counts": {
+      "public_context_members": 7,
+      "private_frame_members": 4,
+      "public_comparison_members": 4,
+      "claims": 1,
+      "rule93_claims": 0,
+      "non_rule93_prefix_axes": 0,
+      "non_rule93_prefix_findings": 0,
+      "axes": 0,
+      "findings": 0
+    },
+    "reconstruction": {
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_FN4_UNIT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+          "file_sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792",
+          "source_pointer": "/fn4_AB_verification",
+          "bundle_pointer": "/source_fn4_unit",
+          "value_canonical_sha256": "417014d633dc58fe2ad2850051e18a01a3e89dde0d6bec0cdc7edee218b4a33b"
+        },
+        {
+          "source_key": "L8_FN5_UNIT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+          "file_sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792",
+          "source_pointer": "/fn5_AB_verification",
+          "bundle_pointer": "/source_fn5_unit",
+          "value_canonical_sha256": "6bcaf8ac376e122086a96721d0396c70db48646bb84ac4c57a3894d25b413520"
+        },
+        {
+          "source_key": "L4_CURRENT",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "git_revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+          "file_sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+          "source_pointer": "/claim_boundary_projection_contract",
+          "bundle_pointer": "/source_contracts/claim_projection",
+          "value_canonical_sha256": "3b75668700df4f7ac96a5337bf04cf7906acad55d23621d899f55207b40f6021"
+        },
+        {
+          "source_key": "L5_CURRENT",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "git_revision": "51450284797936bc10b9875ac68bfebf18f293c7",
+          "file_sha256": "052cc134a2df5463fab7bbf3f1131b503a20be675e6138166fe59386830eb2c6",
+          "source_pointer": "/functions/7",
+          "bundle_pointer": "/source_contracts/fn7",
+          "value_canonical_sha256": "5e7e24b3126c13bf69ae087b2142394020186ef6cb209c45df2410718b25755d"
+        }
+      ],
+      "source_fn4_materialization": {
+        "unit_pointer": "/reconstruction/seed/source_fn4_unit",
+        "recipe_pointer": "/reconstruction/seed/source_fn4_unit/reconstruction",
+        "total_fixed_imports": 66,
+        "total_rfc_operations": 902,
+        "procedure_ja": "固定fn4 unitの元outer3、fn3→fn2/Aの元18phase、ClaimUse-B2import/25RFCとfn4-local21copyを各元apply rootへ順に適用する。元recipeの全hash/順序を照合する。B側の復元も元unit全体を完了するためで、fn7 B期待は作らない。"
+      },
+      "source_fn5_materialization": {
+        "unit_pointer": "/reconstruction/seed/source_fn5_unit",
+        "outer_imports_pointer": "/reconstruction/seed/source_fn5_unit/reconstruction/fixed_git_imports",
+        "outer_import_count": 3,
+        "shared_fn3_value_precondition": {
+          "source": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/source_fn3_unit",
+          "destination": "/reconstruction/seed/source_fn5_unit/reconstruction/seed/source_fn3_unit",
+          "canonical_sha256": "61395f74e7bbc70944ac088985519ac2e76e149c0652646a11ab090c4a9e209f",
+          "requirement_ja": "双方固定import直後の未復元fn3 unitを全値/再帰順序で照合して一致した場合だけ、完成fn3 recipeを1copyで再利用。"
+        },
+        "completed_fn3_copy": {
+          "op": "copy",
+          "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/source_fn3_unit",
+          "path": "/reconstruction/seed/source_fn5_unit/reconstruction/seed/source_fn3_unit"
+        },
+        "local_rfc_operation_pointer": "/reconstruction/seed/source_fn5_unit/reconstruction/rfc6902_operations",
+        "local_rfc_apply_root": "/reconstruction/seed/source_fn5_unit",
+        "local_rfc_count": 6
+      },
+      "source_materialization_totals": {
+        "existing_fixed_imports": 69,
+        "existing_rfc_operations": 909,
+        "whole_fn3_reuse_copies": 1
+      },
+      "seed": {
+        "source_fn4_unit": null,
+        "source_fn5_unit": null,
+        "source_contracts": {
+          "claim_projection": null,
+          "fn7": null
+        },
+        "context": {
+          "validated": null,
+          "definitions": null,
+          "values_applicability": null,
+          "identity_trace": null,
+          "oracle_view": null,
+          "promotion": null,
+          "dependencies_handoff": null
+        },
+        "private_frame": null,
+        "expected_comparison": {
+          "axes": [],
+          "findings": [],
+          "producer_symbol": null,
+          "input_binding": null
+        }
+      },
+      "rfc6902_operations": [
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/calls/A/validated", "path": "/reconstruction/seed/context/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/calls/A/definitions", "path": "/reconstruction/seed/context/definitions"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/source_fn3_unit/reconstruction/seed/source_fn2_unit/reconstruction/seed/expected_comparisons/A", "path": "/reconstruction/seed/context/values_applicability"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/calls/A/identity_trace", "path": "/reconstruction/seed/context/identity_trace"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/expected_comparisons/A", "path": "/reconstruction/seed/context/oracle_view"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn5_unit/reconstruction/seed/expected_comparisons/A", "path": "/reconstruction/seed/context/promotion"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/source_fn3_unit/reconstruction/seed/source_fn2_unit/reconstruction/seed/source_A_unit/reconstruction/seed/expected_comparison", "path": "/reconstruction/seed/context/dependencies_handoff"},
+        {"op": "copy", "from": "/reconstruction/seed/source_fn4_unit/reconstruction/seed/private_frames/A", "path": "/reconstruction/seed/private_frame"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn7/symbol", "path": "/reconstruction/seed/expected_comparison/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/context/validated/input/binding", "path": "/reconstruction/seed/expected_comparison/input_binding"}
+      ],
+      "operation_count": 10,
+      "operation_types": {
+        "copy": 10
+      },
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 10
+        }
+      ],
+      "total_fixed_imports": 73,
+      "total_rfc_operations": 919,
+      "expected_canonical_sha256": "d0798e69bb0cc3ceda556ef11e2be286f4d59f8e0fedaf10297725cc4f16eeca",
+      "expected_context_canonical_sha256": "538d8f0f3f0752156b66aaa3ae4c7439adefe37d1e4f83027ed1090626cac587",
+      "expected_private_frame_canonical_sha256": "4b7927bb97aefc8a2a1c494873260ecd9899e96373140343fced4e78405259f3",
+      "source_resolution_rule_ja": "新outer4→fn4元66imports/902RFC→fn5元outer3→固定import直後の未復元fn3同士の全値・再帰順序一致を照合し、fn4でrecipeを適用した後の完成fn3木（ClaimUse-B2材料化を含む）でfn5内の既存未復元fn3値を1copyで置換→fn5-local6copy→fn7-A-local10copy。fn5-local6copyがこの木から読むのはcalls/{A,B}/validatedだけで、元raw/validated/bindingの全値を保持する。合計73imports/919RFC。新10copyの各宛先はnullから形成する。reuse1copyは既存値を完成木へ置換するため、null宛先の新copyとは区別する。新10copyとreuse1copyは値が変わりno-opなし。既存666RFCの歴史4no-opは元値保持し、新no-opを足さない。",
+      "contract_pin_only_import_ja": "L4 /claim_boundary_projection_contract importは有限domain/16rule/writerの固定照合用であり、RFCのfromにせず期待値をcopyしない。",
+      "empty_population_representation_ja": "seed.expected_comparison.axes/findingsの明示[]だけは固定L4 comparison_writerのprefix0＋担当rule93なしから導く構造例外。その他期待値はnull placeholderから固定Git/RFC copyで形成する。",
+      "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。",
+      "same_call_equality_check_ja": "入力材料化後、context.validatedとprivate_frame.validated、context.definitionsとprivate_frame.definition_evaluation.comparison、6つの元Comparisonの各input_bindingとcontext.validated.input.bindingについて、それぞれ全値のcanonical SHA-256一致を照合する。加えて全値の再帰member順序・配列順も照合してから公開Comparisonを形成し、等価を推定だけで済ませない。"
+    },
+    "limits_ja": [
+      "固定D27 Aとmerge済み有限writerの期待だけ。fn7 Bは後続PRで、同形別文字列又は他kind/非空他carrier/role型外等の枝外を空出力へ一般化しない。",
+      "全raw/Ref全member/配列順/原反復・元6Comparison・全frameを保持する。空列は元unknown/conflict/未受領の不存在、採用、資格又は成功を意味しない。",
+      "元L3 F07/N02/B01の意味・旧source保持/変更理由は固定L4 legacy_rederivationへ束縛。新要求/authority/gateを足さない。",
+      "fn0/製品/helper/runtime/旧CLI/test/CI、fn7全域、手順7、Issue完了の成立を示さない。"
+    ]
   }
 }
