@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。fn6_A_verificationとfn6_B_verificationはA/B各一呼出しのComparison全4field有限期待を固定Gitのwhole walk/ClaimUseから組み立てる。公開fn1はComparisonだけを返す。fn0/製品実行・fn7全返却・任意入力全域consumer完了は含めない。 fn2_AB_verificationは各同callのValueContext全2fieldと公開fn2のComparison全4field有限期待を組み立てる。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/Bと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。",
+      "item_ja": "有限whole walk/A/B ClaimUse/fn6 A/B/fn2 A/Bと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。fn6_A_verificationとfn6_B_verificationは固定Gitの各同call全walk/ClaimUseからcontext2/private frame4とComparison4の有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn7の全返却又はIssue完了を成立させない。 fn2_AB_verificationは同A/B ValueContextとfn1 carry対象2軸を使い、公開fn2 Comparisonの有限期待だけを組み立てる。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -3792,6 +3792,257 @@
       "CanonicalReadFrame.invocations[]とconditional private read結果はこのunitで固定しない。",
       "この有限raw A/Bは/dependenciesと/handoff_recordsがどちらも不在で、/binding全値が同値である。A先頭8行の再利用はこの有限A/Bのroot bindingと先頭8行の全値一致を条件とし、Bのraw/context/frame全値を保持する。",
       "required missingの5 Axisは同一reasonでもidentity別のFindingと順序を保持する。missing TRACEのnull欄はL5 /canonical_dependency_detail/required_dependency_missing_axis_trace_writer/missing_no_call_technical_decision の技術選択を使い、新しい要求やgateを作らない。"
+    ]
+  },
+  "fn2_AB_verification": {
+    "id": "HELIXBRAIN-L8-D27-FN2-AB",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "D27 raw A/B各一呼出しの公開fn2 compare_values_and_applicability返却Comparison全4fieldを有限期待として材料化する。同call ValueContext全2fieldと原fn1のrequired field/section軸全7fieldを保持する。",
+    "fixed_git_sources": {
+      "L8_FN6_A_UNIT": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "sha256": "4a88098749a97ed372938931261618c01cdc67efcca10d082df4924096a85b0b"
+      },
+      "L4_CURRENT": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228"
+      },
+      "L5_CURRENT": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "sha256": "313b39a7aee7059104e6814759c3d161c0b199bdfb06b8deb40216656f108292"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
+        "pointers": [
+          "/field_value_applicability_contract/projection_order",
+          "/field_value_applicability_contract/same_call",
+          "/field_value_applicability_contract/functions/3",
+          "/field_value_applicability_contract/additional_leaf_rules/3",
+          "/field_value_applicability_contract/additional_leaf_rules/9"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "file_sha256": "313b39a7aee7059104e6814759c3d161c0b199bdfb06b8deb40216656f108292",
+        "pointers": [
+          "/functions/2",
+          "/type_contract/types/ValueContext",
+          "/type_contract/types/Comparison",
+          "/type_contract/types/AxisResult",
+          "/type_contract/types/Finding",
+          "/field_value_applicability_detail/comparison_writers",
+          "/field_value_applicability_detail/private_detail_binding",
+          "/wire_codec_contract/schema/$defs/Comparison",
+          "/failure_rules/54",
+          "/failure_rules/55",
+          "/failure_rules/56",
+          "/failure_rules/57",
+          "/failure_rules/102",
+          "/failure_rules/103",
+          "/failure_rules/104",
+          "/field_value_applicability_detail/not_closed_here/5"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+        "revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+        "file_sha256": "4a88098749a97ed372938931261618c01cdc67efcca10d082df4924096a85b0b",
+        "pointers": [
+          "/fn6_A_verification/reconstruction/source_materialization",
+          "/fn6_A_verification/reconstruction/fixed_git_imports",
+          "/fn6_A_verification/reconstruction/rfc6902_operations"
+        ]
+      }
+    ],
+    "conditional_input_ja": "固定raw A/Bを全値保持しinput_issues=[]/unusable_source_refs=[]の条件付きValidatedSupplyとする。fn0実行・資格成立を示さない。",
+    "reconstruction": {
+      "seed": {
+        "source_A_unit": null,
+        "source_contracts": {
+          "fn2": null
+        },
+        "calls": {
+          "A": {
+            "validated": null,
+            "definitions": null
+          },
+          "B": {
+            "validated": null,
+            "definitions": null
+          }
+        },
+        "expected_comparisons": {
+          "A": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          },
+          "B": {
+            "axes": [],
+            "findings": [],
+            "producer_symbol": null,
+            "input_binding": null
+          }
+        }
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_FN6_A_UNIT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+          "git_revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+          "file_sha256": "4a88098749a97ed372938931261618c01cdc67efcca10d082df4924096a85b0b",
+          "source_pointer": "/fn6_A_verification",
+          "bundle_pointer": "/source_A_unit",
+          "value_canonical_sha256": "2729a3c936860aec7715e7d8880d3d34db797992d913c3bdf667faa35db82842"
+        },
+        {
+          "source_key": "L5_CURRENT",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "git_revision": "60f947f9bb67a98ac4782974a15befa823af198f",
+          "file_sha256": "313b39a7aee7059104e6814759c3d161c0b199bdfb06b8deb40216656f108292",
+          "source_pointer": "/functions/2",
+          "bundle_pointer": "/source_contracts/fn2",
+          "value_canonical_sha256": "b270f5777bc6a7bb3b543e16cc4ab324e3a7cef2f6d7b22bb45aaa5cf09b39cd"
+        }
+      ],
+      "source_A_materialization": {
+        "unit_pointer": "/reconstruction/seed/source_A_unit",
+        "unit_seed_pointer": "/reconstruction/seed/source_A_unit/reconstruction/seed",
+        "unit_outer_imports_pointer": "/reconstruction/seed/source_A_unit/reconstruction/fixed_git_imports",
+        "unit_header_pointer": "/reconstruction/seed/source_A_unit/fixed_git_sources",
+        "unit_import_destination_root": "/reconstruction/seed/source_A_unit/reconstruction/seed",
+        "unit_outer_import_count": 5,
+        "materialization_pointer": "/reconstruction/seed/source_A_unit/reconstruction/source_materialization",
+        "unit_local_rfc_pointer": "/reconstruction/seed/source_A_unit/reconstruction/rfc6902_operations",
+        "unit_local_rfc_apply_root": "/reconstruction/seed/source_A_unit",
+        "unit_local_rfc_operation_count": 58,
+        "phase_pointer_scope_ja": "このmetadataのpointerはfn2-unit root相対。materialization_pointer先の既存A group pointerにunit_pointerを前置する。A固定importのbundle_pointerはA seed相対。各phase entryのoperation_pointer/apply_root_pointerはA source_document root相対、RFC from/pathは各apply root相対のまま。A-local58 RFCはA-unit rootへ適用する。"
+      },
+      "rfc6902_operations": [
+        {"op": "copy", "from": "/reconstruction/seed/source_A_unit/reconstruction/seed/source_document/reconstruction/seed/function_call_arguments/A/context/validated", "path": "/reconstruction/seed/calls/A/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_A_unit/reconstruction/seed/source_document/whole_fn1_verification/reconstruction/seed/A/evaluation/comparison", "path": "/reconstruction/seed/calls/A/definitions"},
+        {"op": "copy", "from": "/reconstruction/seed/source_A_unit/reconstruction/seed/source_document/reconstruction/seed/function_call_arguments/B/context/validated", "path": "/reconstruction/seed/calls/B/validated"},
+        {"op": "copy", "from": "/reconstruction/seed/source_A_unit/reconstruction/seed/source_document/whole_fn1_verification/reconstruction/seed/B/evaluation/comparison", "path": "/reconstruction/seed/calls/B/definitions"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/definitions/axes/7", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/definitions/axes/9", "path": "/reconstruction/seed/expected_comparisons/A/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn2/symbol", "path": "/reconstruction/seed/expected_comparisons/A/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/A/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/A/input_binding"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/definitions/axes/7", "path": "/reconstruction/seed/expected_comparisons/B/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/definitions/axes/16", "path": "/reconstruction/seed/expected_comparisons/B/axes/-"},
+        {"op": "copy", "from": "/reconstruction/seed/source_contracts/fn2/symbol", "path": "/reconstruction/seed/expected_comparisons/B/producer_symbol"},
+        {"op": "copy", "from": "/reconstruction/seed/calls/B/validated/input/binding", "path": "/reconstruction/seed/expected_comparisons/B/input_binding"}
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 12
+        }
+      ],
+      "pointer_scope_ja": "local RFCとfunction_callのpointerはfn2-unit root相対。outer fixed_git_imports.bundle_pointerはこのunitのseed相対。",
+      "expected_comparison_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "expected_canonical_sha256": {
+        "A": "1188437debc978d148fdbf787f3ccc8e76b821a2f362f8c51cc8a2208fd5fd34",
+        "B": "7abad4fd2b57f16bed3483ce6f77907679c58db8c33749618eed3b7978260bd4"
+      },
+      "operation_count": 12,
+      "operation_types": {
+        "copy": 12
+      },
+      "source_resolution_rule_ja": "outer固定imports2件の後、importした既存A recipeのouter5importsとsource_materializationの5group/18phaseを宣言順に復元する。whole phase index2直前のA0 imports2件を含めnested51、全58imports。既存18phase666操作とA-local58を適用後、local12copyをfn2-unit rootへ適用する。再帰includeや製品関数を呼ばない。",
+      "canonical_writer_assumption_ja": "canonical hashはensure_ascii=false、sort_keys=true、separators=comma-colonのUTF-8 JSONを対象とする局所比較条件。"
+    },
+    "function_call": {
+      "symbol": "compare_values_and_applicability",
+      "input_type": "ValueContext",
+      "argument_pointers": {
+        "A": "/reconstruction/seed/calls/A",
+        "B": "/reconstruction/seed/calls/B"
+      },
+      "return_type": "Comparison",
+      "return_pointers": {
+        "A": "/reconstruction/seed/expected_comparisons/A",
+        "B": "/reconstruction/seed/expected_comparisons/B"
+      },
+      "basis_pointer": {
+        "source_key": "L5_CURRENT",
+        "pointer": "/functions/2"
+      },
+      "pointer_scope_ja": "fn2-unit root相対。各callの公開引数はValueContext一つ。"
+    },
+    "derivation_ja": [
+      "A/Bともrawのsection_fields/values/applicability_recordsは不在であり、明示空配列ではない。L4 projection_order.populationはinput.section_fieldsの全原出現を対象とするため、この入力の実field原出現は0件でrows=[]となる。carryは別に適用され、原fn1のrequired field.definition/required section.definitionだけを元順・全7fieldで保持する。containerの不在はadditional_leaf_rules/3のprivate F03Problem側に保持する扱いであり、公開Axis/Findingへは射影しない。このunitはprivate F03Evaluation全値を材料化しない。",
+      "Aは元fn1 axes[7,9]、Bはaxes[7,16]を個別にcopyする。A statesはmissing/missing、Bはmissing/unknownであり、Bの2行全体をAから借りない。",
+      "定数producer_symbolは固定L5 functions/2.symbolからcopyし、input_bindingは各call原validated.input.bindingからcopyする。原fn1 findingsや他axisをfn2へ混載しない。",
+      "原ClaimはA1件・B3件で、すべてkind=fill_definitionである。rule54〜57が対象とするN/A系・案件値不足系のkindではなく、descriptor系consumerに対応するClaimであり、fn2に新行を出さない。L5 field_value_applicability_detail/not_closed_here/5のrule54〜57 Claim値表現・排他選択の未閉包は保持し、全域Claim適合をこの有限例から主張しない。"
+    ],
+    "rule_dispositions": [
+      {
+        "rule_pointer": "/failure_rules/54",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実field/valueがなく、N/A claimもない。原generic definition carryを案件値へ変換しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/55",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実fieldの意味定義readと案件値不足claimがない。generic required field.definitionのcarryは原missingのまま。"
+      },
+      {
+        "rule_pointer": "/failure_rules/56",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実field適用判断とN/A claimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/57",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。section N/Aから全field N/Aへ転写するclaimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/102",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation期限とfixture期限を既定化するclaimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/103",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation/環境CPUとfixtureCPUを既定化するclaimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/104",
+        "result_ja": "新行なし",
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation/環境memoryとfixturememoryを既定化するclaimがない。"
+      }
+    ],
+    "expected_counts": {
+      "A": {
+        "axes": 2,
+        "findings": 0,
+        "public_comparison_members": 4
+      },
+      "B": {
+        "axes": 2,
+        "findings": 0,
+        "public_comparison_members": 4
+      }
+    },
+    "limits_ja": [
+      "これは固定D27 A/Bの公開Comparison有限期待であり、fn0実行・資格成立・製品実行を示さない。",
+      "private F03Evaluation全値はこのunitの返却期待に含めない。ValueContext.definitions全値を入力に保持するが、fn2返却ではL4のcarry対象2軸だけを保持する。",
+      "rootの欠落memberを空配列に補わずValidatedSupply.input全値に保持する。空finding列はこの有限入力に担当ruleの新行がないためで、未知のproducer返却の代用ではない。",
+      "fn3〜5/fn7、Issue完了、任意入力全域の成立を示さない。"
     ]
   }
 }
