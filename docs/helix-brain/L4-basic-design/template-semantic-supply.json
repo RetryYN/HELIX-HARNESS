@@ -11700,7 +11700,94 @@
           "condition": "fullRef対応原出現が一つ以上ある。原matches全件/その他全出現は保持。membership onlyでqualified owner/互換trueへ昇格しない。"
         }
       ],
-      "membership_precedence": "request endpoint形成→container presence/type→各原memberのpresence/type/fullRef関係を全件保存→matching_ref_indices全件。matchingがあればmembershipだけresolvedとし未決/別subject memberも保存、matching無しなら型外/partialで対応可能性未決はmember_unresolved、全件既知別subject又は[]はmember_no_match。owner/record/資格/互換判断は別branch。"
+      "membership_precedence": "request endpoint形成→container presence/type→各原memberのpresence/type/fullRef関係を全件保存→matching_ref_indices全件。matchingがあればmembershipだけresolvedとし未決/別subject memberも保存、matching無しなら型外/partialで対応可能性未決はmember_unresolved、全件既知別subject又は[]はmember_no_match。owner/record/資格/互換判断は別branch。",
+      "trace_population": {
+        "population": {
+          "unit": "同IdentitySnapshot.validated.input.descriptorsの各実slotに属する、facts配列の各実fact出現。",
+          "order": "descriptorsの原index順、次に当該factsの原index順。等値Ref/slot/factも別原出現として保持し、sort/dedup/required kind順への置換をしない。",
+          "request_formation": "原slotと原factに解決するslot_locator/fact_locatorをそのままTraceRequestへ渡し、同snapshotのread_descriptor_identity_traceを各組について一回読む。型・住所・元Refを補完せず、source/knowledge/provenanceの対応は既存readerで別に照合する。",
+          "presence": "schemaに適合するvalidated.input内のrequired_descriptor_kindsを全値保持するが、未存在descriptor/factの代替出現を列挙へ足さない。同inputのdescriptors/factsのabsent、null、明示[]を別のまま保ち、as_listで同じ成功入力へ丸めない。validated.input=nullなら実slot/fact列挙はなく、既存input_issues/unusable_source_refsを維持する。型外raw値がvalidated.inputへ全値保持されるとは主張しない。"
+        },
+        "formed_public_projection": {
+          "input": "上記の原出現から形成した同call DescriptorTraceRead。原fact.refと原slot.bindingが既存公開型を形成できる範囲だけ、対応する既存descriptor.trace Axis/Finding writerへ原slot/fact/readを渡す。",
+          "preservation": "既存形成済み行のsubject/Binding/state/原Refs/reason/backflow_ownerと全出現を変更しない。private readのresolvedを意味known/採用/利用可へ変換しない。既存failure predicateが成立した場合だけ既存ruleへ結び、新しいfailure ruleを追加しない。",
+          "unformattable_subject": "原fact.ref又は原slot.bindingを形成できなければ、原read/PresenceRawをdescriptor_tracesへ保持し、typed公開Axis/Findingを生成しない。別fact/Bindingの成功、slot名、required kind又は新Refを診断subjectの代替にしない。"
+        },
+        "unformed_population_cases": [
+          {
+            "case": "required kindにdescriptor実出現がない",
+            "request": "生成しない。存在しないslot/fact locator又はslot Refを作らない。",
+            "public": "fn3 trace Axis/Findingを追加せず、state/reason/subjectを生成しない。行無しをresolved/known又は充足としない。",
+            "private_location": "入力IdentitySnapshot.validated.input.required_descriptor_kinds/descriptorsの原whole/presenceに保持する。fn1の既存F01/F02項目欠落返却を削らず、fn3 traceへコピーして二重化しない。"
+          },
+          {
+            "case": "schemaに適合する実slotのfactsが明示[]、又はfacts memberがabsent/null",
+            "request": "この列挙からは生成しない。空factsに仮のindex0 probeを足さず、実在しないfactを作らない。",
+            "public": "fn3 trace Axis/Findingを追加せず、public state/reason/subjectを生成しない。元の定義missing/unknownを充足又は未観測成功へ変えない。",
+            "private_location": "schemaに適合する入力IdentitySnapshot.validated.inputの当該原slot/facts全値とpresenceを保持する。fn1の既存欠落/未定義返却は別に維持する。schema-invalid raw値の格納先をこのtyped snapshot内に新設・推定しない。"
+          },
+          {
+            "case": "原出現からTraceRequest locatorを形成できない",
+            "request": "別node/indexを推定せず、この列挙からは生成しない。",
+            "public": "typed公開Axis/Findingを生成しない。未形成を成功へ既定しない。",
+            "private_location": "schemaに適合する入力IdentitySnapshot.validated.input内の元collection/node/所在を保持する。形成済みrequestで既存portを直接呼んだ場合のPresenceRaw/unknown readはそのまま既存descriptor_tracesに保持し、その経路を禁止・変更しない。"
+          }
+        ],
+        "private_shape_boundary": "IdentityTraceReturnの既存5field及びTraceRequest/DescriptorTraceReadのclosed shapeは不変。schema-valid入力のrequestを形成しない原欠落は入力IdentitySnapshot.validated.inputの値/presenceに残る。同returnにsnapshot memberや未形成request/新境界rowを足したと称しない。型外rawはIdentitySourceRequest.raw_input側にあり、ValidatedSupply.input=null時に違反値そのものがsnapshotへ返るとは主張しない。",
+        "technical_decision": {
+          "name": "trace_population_technical_decision",
+          "classification": "旧source又はP15件数から一意に定まる規範の復元ではなく、現L3意味を保つL4の原出現・公開投影の技術選択として記録する。",
+          "requirements_preserved": [
+            "L3 F01/F02の15項目識別と欠落/未定義/矛盾返却は既存fn1へ保持し、欠落項目を完全契約へ変えない。",
+            "L3 F04のidentity/版/source/scopeの独立比較、未評価・unknown/mismatchの非利用、fallback禁止は維持する。",
+            "L3 N01の各返却項目・不足・矛盾のsource/knowledge revision/根拠への追跡と識別不能項目の非成功を保つ。public行がないことを資格・成功の認定にしない。"
+          ],
+          "alternatives": [
+            {
+              "candidate": "実slot/fact原出現",
+              "decision": "採用。既存TraceRequestの原slot/factと原fact Refに対応する単位を使い、空probe又は合成slotを足さず既存原readの全値を保持する。"
+            },
+            {
+              "candidate": "実slotに一行、空factsにもabsent-index probe",
+              "decision": "不採用。TraceRequest string/PresenceRaw型がprobeを禁止するからではない。これは型上表現できるが、空factsからprobe index/公開subject/state/reasonを新たに選ぶ必要があり、この閉包では新しい欠落trace行を設けない。"
+            },
+            {
+              "candidate": "required kindごとに一行",
+              "decision": "不採用。未存在slot/factを原読取出現にできず、追加のlocator/subject/公開欠落行を選ぶ必要がある。必要kindの欠落を保つ既存F01/F02の責務を変更しない。"
+            }
+          ],
+          "legacy_basis": [
+            {
+              "asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+              "lines": "16–92",
+              "retained": "JSON意味/source/owner/traceの保持、generated viewとの分離。旧schema/runtimeは移植しない。"
+            },
+            {
+              "asset": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+              "lines": "30–148",
+              "retained": "識別・原version/trace・欠落/unknownの保持。現populationの件数規則を旧本文から生成しない。"
+            },
+            {
+              "asset": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+              "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+              "lines": "65–101",
+              "failures": [
+                "UTW-014",
+                "UTW-020",
+                "UTW-021"
+              ],
+              "retained": "欠落を空成功へ落とさず、原入力と局所read/理由を残す。aggregate件数・proseで意味成立を認定しない。"
+            }
+          ],
+          "old_source_preserved": "元source/trace/unknown非成功を保つ。P15の15 traceを一般D27の件数にしない。",
+          "changed": "曖昧だったoriginal itemを実slot/fact原出現へ固定し、未形成時に公開行を作らない実格納先を明示する。",
+          "reason": "L3はfn3 traceのcardinalityや表示列挙方法を固定せず、現portと原Refに結ぶ技術表現をここで選ぶ。新しい要求・gate・failure rule・owner/Ref・全producer成立は作らない。",
+          "meaning_boundary": "既存F01/F02の欠落返却又はN01追跡意味の削除・充足化はこの選択に含めない。上流が欠落kindごとのfn3 trace行を要求する意味を別に持つと判明した場合は、その意味変更を本技術選択から生成せず要求質問へ戻す。"
+        },
+        "existing_fixture_consistency": "既存P15と7fixtureの各15実descriptor・各1実factから同じ15原出現を列挙する。既存public全26/27軸・trace15・Finding・全reason/Ref/順序と原readを不変とし、L9固定gold/旧Gitseed/RFCを新規則の根拠へ昇格せず保全照合の制約だけとして使う。"
+      }
     },
     "public_projection": {
       "shape": "Comparison4 / AxisResult7 / Finding9全memberを維持。producer_symbol/input_bindingは同入力からwriterが形成する。",
