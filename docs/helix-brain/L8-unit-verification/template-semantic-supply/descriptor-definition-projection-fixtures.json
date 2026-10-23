@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationのA同call ClaimUse全14fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。B ClaimUse全返却・fn0/製品実行・consumer完了は含めない。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationとclaim_use_B_verificationのA1件/B3件の同call ClaimUse全14fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。fn0/製品実行・fn6fn7/consumer完了は含めない。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -954,8 +954,8 @@
       ]
     },
     {
-      "item_ja": "有限whole walk/A ClaimUseと全consumer返却",
-      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationはA同call ClaimUse1件の全14field有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、B全ClaimUse/fn6/fn7の全返却又はIssue完了を成立させない。",
+      "item_ja": "有限whole walk/A/B ClaimUseと全consumer返却",
+      "effect_ja": "whole_fn1_verificationはA/B各callの全4field有限期待、claim_use_A_verificationとclaim_use_B_verificationはA1件/B3件の各同call ClaimUse全14field有限期待を組み立てる。これは製品実行又は任意入力全域の完成を示さず、fn6/fn7の全返却又はIssue完了を成立させない。",
       "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -2729,6 +2729,245 @@
       "source_resolution_rule_ja": "既存root→assessments→native→whole全phaseを完了後、固定3importsを本seedのnull宛先へ展開し、本RFCを副file rootへ適用する。暗黙再帰importなし。",
       "operation_types": {
         "copy": 9
+      }
+    },
+    "closed_field_order": [
+      "claim_locator",
+      "claim",
+      "target_read",
+      "intent_read",
+      "assessment_indices",
+      "unmatched_match_indices",
+      "basis_source_indices",
+      "unresolved_basis_ref_indices",
+      "basis_class",
+      "missing_support_indices",
+      "undefined_support_indices",
+      "route",
+      "route_reason",
+      "primary_definition_assessment_indices"
+    ]
+  },
+  "claim_use_B_verification": {
+    "id": "HELIXBRAIN-L8-D27-CLAIM-USE-B",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "Bの同call build_descriptor_claim_uses返却全14field。既存whole walkの全値を再利用する有限期待。",
+    "same_artifact_basis": [
+      "/whole_fn1_verification",
+      "/reconstruction/seed/function_call_arguments/B/context",
+      "/claim_use_A_verification"
+    ],
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "33b0e24c2a7016ed3fd5ffad72643c92fc375943",
+        "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
+        "pointers": [
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/claim_routes",
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "33b0e24c2a7016ed3fd5ffad72643c92fc375943",
+        "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/functions/8",
+          "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
+          "/source_return_contract/descriptor_target_dataflow/consumer",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals"
+        ]
+      }
+    ],
+    "function_call": {
+      "symbol": "build_descriptor_claim_uses",
+      "argument_pointers": {
+        "validated": "/reconstruction/seed/function_call_arguments/B/context/validated",
+        "e": "/whole_fn1_verification/reconstruction/seed/B/evaluation",
+        "reads": "/whole_fn1_verification/reconstruction/seed/B/target_reads",
+        "intents": "/whole_fn1_verification/reconstruction/seed/B/intent_reads"
+      }
+    },
+    "field_derivation_ja": {
+      "B0": "A0完成use全14fieldをcopyしtarget_readだけB0へ置換。原Claim0/locator/intent readとその他全fieldがA0と同値の構造前提に限る。Bのcall argumentsは全B値を別途参照する。",
+      "B1": "A0 templateの各原値をB1へ置換。basis_B1のindices[3]/reference_only_onlyをcopyし、全関連/primary/missingは原ordinal5。未解決basis/undefined配列は元[]。rule87と専用理由をcopy。",
+      "B2": "A0 templateの各原値をB2へ置換。basis_B2のindices[2]/unresolved[0]をcopy。basis classとroute/reasonは元unresolved。関連ordinal6,7を全保持し、primary/undefinedは7だけ。missing/unmatchedは元[]。",
+      "structural_preconditions": "A0/B0全14fieldはtarget_read以外全値同一。B assessment/native originsの原ordinal/key/state/branch対応は同walk全値と一致し、5はrequired input missing、6は帰属known、7はrequired section meaning_undefined。basis_B0/B1/B2の原Claim basis/source対応を同call rawと照合する。",
+      "basis_sources": "B1/B2は既存priority cases2/0のstandard_input_patch=[]に対応する同raw Bのbasis projectionを固定再利用する。B0 basis absentはjoin対象Refが無く、raw A2件/raw B4件のsource差に依存しない。Bの原basis/source対応と固定case inputを同call validated.inputへ照合する。",
+      "reason": "A unitの固定reason mapは、全返却literalを定める専用詳細契約serialization_completion/use_route_reason_literals由来でconsumer/route_reason_templatesと同文。短文consumer/route_reason_literalsとは異なり、本unitは理由を新規生成しない。",
+      "replacement_special": "B0はtarget conflict/matches=[]、B1はrequired inputで対象kind外、B2は元primaryがunknownでmissing無しのため、追加replacement specialは非発火。ClaimUseにはspecialを受けるfieldがなく、special unknownをrouteの支持へ流用しない。"
+    },
+    "boundary_ja": "原Claim/readを全値保持し、既存fixture・copy元・固定hashを示す。資格はinput_issues=[]/unusable_source_refs=[]の条件付き。製品/helper/旧runtime/CI未実行。独立oracleや検収成立の証跡を本unitに生成しない。fn6fn7/14child/Issue完了は外。",
+    "fixed_git_source_header_pointer": "/claim_use_A_verification/fixed_git_sources",
+    "reconstruction": {
+      "seed": {
+        "source_snapshot": {
+          "basis_B1": null,
+          "basis_B2": null
+        },
+        "B": []
+      },
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_BASIS_CURRENT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "fa23faaf1b7857e1fa1ac6a47de7399ce4ad9573",
+          "file_sha256": "f26b8d1ff37f6409bdceeaeac6aa70c144a783cbd3f358e57e2efc33515c9ace",
+          "source_pointer": "/source_return_verification/basis_resolution_priority_verification/cases/2/expected_basis_projection",
+          "bundle_pointer": "/source_snapshot/basis_B1",
+          "value_canonical_sha256": "4ccf33f242b9b7c1ac87b92c1f9888440eb826e53ad712a655e5d4c67a99baeb"
+        },
+        {
+          "source_key": "L8_BASIS_CURRENT",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "fa23faaf1b7857e1fa1ac6a47de7399ce4ad9573",
+          "file_sha256": "f26b8d1ff37f6409bdceeaeac6aa70c144a783cbd3f358e57e2efc33515c9ace",
+          "source_pointer": "/source_return_verification/basis_resolution_priority_verification/cases/0/expected_basis_projection",
+          "bundle_pointer": "/source_snapshot/basis_B2",
+          "value_canonical_sha256": "0267ab6ca0b818a11cac2ffe5c7384855dd38cd4b323e55b45220049bce3856f"
+        }
+      ],
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/claim_use_B_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": "",
+          "operation_count": 25
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/claim_use_A_verification/reconstruction/seed/A/0",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/-"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/0",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/0/target_read"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_A_verification/reconstruction/seed/A/0",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/-"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/1/claim_locator",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/claim_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/1/claim",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/claim"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/1",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/target_read"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/intent_reads/1",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/intent_read"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/source_snapshot/basis_B1/basis_source_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/basis_source_indices"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/source_snapshot/basis_B1/basis_class",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/basis_class"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_B/judgment_origins/5/ordinal",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/assessment_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/B/1/assessment_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/primary_definition_assessment_indices"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/B/1/primary_definition_assessment_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/missing_support_indices"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_A_verification/reconstruction/seed/source_snapshot/routes/0",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/route"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_A_verification/reconstruction/seed/source_snapshot/route_reasons/rule87",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/1/route_reason"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_A_verification/reconstruction/seed/A/0",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/-"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/2/claim_locator",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/claim_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/2/claim",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/claim"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/target_reads/2",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/target_read"
+        },
+        {
+          "op": "copy",
+          "from": "/whole_fn1_verification/reconstruction/seed/B/intent_reads/2",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/intent_read"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/source_snapshot/basis_B2/basis_source_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/basis_source_indices"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/source_snapshot/basis_B2/unresolved_basis_ref_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/unresolved_basis_ref_indices"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_B/judgment_origins/6/ordinal",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/assessment_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_B/judgment_origins/7/ordinal",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/assessment_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_verification/reconstruction/seed/native_B/judgment_origins/7/ordinal",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/primary_definition_assessment_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/claim_use_B_verification/reconstruction/seed/B/2/primary_definition_assessment_indices",
+          "path": "/claim_use_B_verification/reconstruction/seed/B/2/undefined_support_indices"
+        }
+      ],
+      "operation_count": 25,
+      "expected_return_pointer": "/claim_use_B_verification/reconstruction/seed/B",
+      "canonical_expected_return_sha256": "7c7a792838f0c3db977774403986821613d04bd6d31bcd2afdfd63d56c8ca398",
+      "source_resolution_rule_ja": "既存whole全phaseとA unit全phaseを先に完了し、同A固定headerに従い本2importsをnull宛先へ展開する。本RFCは副file rootへ適用する。暗黙再帰importなし。",
+      "operation_types": {
+        "copy": 25
       }
     },
     "closed_field_order": [
