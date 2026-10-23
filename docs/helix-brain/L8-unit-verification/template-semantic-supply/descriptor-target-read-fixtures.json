@@ -71,8 +71,8 @@
     },
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-      "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
       "pointers": [
         "/functions/0",
         "/type_contract/types/ValidatedSupply",
@@ -145,7 +145,7 @@
       "unclosed_basis": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+          "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
           "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit"
         }
       ]
@@ -1154,8 +1154,8 @@
     "scope_ja": "A1/B3のtarget_readsとintent_reads全値だけを原fill_definition Claim順へ接続する。全4fieldのDefinitionMeaningWalkResultを構成しない。",
     "current_schedule_basis": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "ac49854ec32458c424d2c219f761c3eb8e0aeac8",
-      "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
       "pointers": [
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",

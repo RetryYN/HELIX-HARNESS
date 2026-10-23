@@ -70,9 +70,9 @@
     },
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-      "git_blob": "dded595a5e1b80aa3bf831b554e3b53dfefd1534",
-      "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "git_blob": "5f8f390743cb2c9858e8ad6ece84ebdebd0d83a9",
+      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
       "pointers": [
         "/functions/6",
         "/type_contract/types/AxisResult",
@@ -163,7 +163,7 @@
       "unclosed_basis": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+          "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
           "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit"
         }
       ]

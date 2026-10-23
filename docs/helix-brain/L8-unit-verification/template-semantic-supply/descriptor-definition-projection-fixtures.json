@@ -82,8 +82,8 @@
     },
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-      "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
       "pointers": [
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Finding",
@@ -975,7 +975,7 @@
       "unclosed_basis": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+          "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
           "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit"
         }
       ]
@@ -996,7 +996,7 @@
     "symbol": "compare_descriptor_definitions",
     "signature_basis": {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "ead612633e8e6a8649a779fffa4347cd90baef8f",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
       "pointers": [
         "/functions/1",
         "/source_return_contract/descriptor_target_dataflow/raw_runner/steps/1",
@@ -1051,8 +1051,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-        "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
+        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields",
           "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionKey/closed_fields",
@@ -1555,8 +1555,8 @@
     "contract_basis": [
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-        "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
+        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial/closed_fields",
           "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin/closed_fields",
@@ -2315,8 +2315,8 @@
     ],
     "contract_basis": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "522bb492aa73d92a73a5aaff8a8b247c5f73aa57",
-      "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
       "pointers": [
         "/functions/1",
         "/source_return_contract/descriptor_target_dataflow/functions/0",
@@ -2575,8 +2575,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "fa23faaf1b7857e1fa1ac6a47de7399ce4ad9573",
-        "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/functions/8",
           "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
@@ -2597,7 +2597,7 @@
     "field_derivation_ja": {
       "originals": "A wholeの原Claim0/full target/full intent/locatorをcopy。positiveでもtarget conflict/matches=[]ゆえassessment/primary/support/unmatched配列は空、route unresolved。",
       "basis": "A0/B0は同原Claim0・basis member absent。B0既存有限basis3fieldを固定再利用する。不存在Ref indexを作らず[]を保つ。 basis_refs member不存在で既存unresolved条件が成立し、join対象の原Refが無いため、raw Aのsource2件とraw Bのsource4件の差はこの3fieldを変えない。",
-      "reason": "route enumのunresolvedと、全返却literalを決定する専用詳細契約serialization_completionのuse_route_reason_literalsを固定copyする。この理由はconsumer/route_reason_templatesと同文で、consumer/route_reason_literalsの短文とは異なる。新しい理由文は生成しない。",
+      "reason": "route enumのunresolvedと、fa23faaf固定importのserialization_completion/use_route_reason_literalsをcopyする。同revisionではconsumer/route_reason_templatesも同じ長文で、consumer/route_reason_literalsは異なる短文だった。現行L5のconsumer/route_reason_templatesは同じ4 literal正本へのJSON Pointer参照であり、本unitの固定reason値は維持する。",
       "replacement_special": "targetがconflictでmatches=[]なのでL4 replacement_specialのactivationは成立せず、追加specialは非発火。ClaimUseにはspecialを受けるfieldがなく、specialのunknownをrouteの根拠へ流用しない。"
     },
     "boundary_ja": "原Claim/readを全値保持し、既存fixture・copy元・固定hashを示す。資格はinput_issues=[]/unusable_source_refs=[]の条件付き。製品/helper/旧runtime/CI未実行。独立oracleや検収成立の証跡を本unitに生成しない。fn6fn7/14child/Issue完了は外。",
@@ -2770,8 +2770,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "33b0e24c2a7016ed3fd5ffad72643c92fc375943",
-        "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/functions/8",
           "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
@@ -2795,7 +2795,7 @@
       "B2": "A0 templateの各原値をB2へ置換。basis_B2のindices[2]/unresolved[0]をcopy。basis classとroute/reasonは元unresolved。関連ordinal6,7を全保持し、primary/undefinedは7だけ。missing/unmatchedは元[]。",
       "structural_preconditions": "A0/B0全14fieldはtarget_read以外全値同一。B assessment/native originsの原ordinal/key/state/branch対応は同walk全値と一致し、5はrequired input missing、6は帰属known、7はrequired section meaning_undefined。basis_B0/B1/B2の原Claim basis/source対応を同call rawと照合する。",
       "basis_sources": "B1/B2は既存priority cases2/0のstandard_input_patch=[]に対応する同raw Bのbasis projectionを固定再利用する。B0 basis absentはjoin対象Refが無く、raw A2件/raw B4件のsource差に依存しない。Bの原basis/source対応と固定case inputを同call validated.inputへ照合する。",
-      "reason": "A unitの固定reason mapは、全返却literalを定める専用詳細契約serialization_completion/use_route_reason_literals由来でconsumer/route_reason_templatesと同文。短文consumer/route_reason_literalsとは異なり、本unitは理由を新規生成しない。",
+      "reason": "A unitがfa23faafから固定importしたreason mapをcopyする。同revisionではserialization_completion/use_route_reason_literalsとconsumer/route_reason_templatesが同じ長文で、consumer/route_reason_literalsは異なる短文だった。現行L5は同coreの4 literalを唯一の正本とし、consumer/route_reason_templatesから参照する。本unitの固定reason値は維持する。",
       "replacement_special": "B0はtarget conflict/matches=[]、B1はrequired inputで対象kind外、B2は元primaryがunknownでmissing無しのため、追加replacement specialは非発火。ClaimUseにはspecialを受けるfieldがなく、special unknownをrouteの支持へ流用しない。"
     },
     "boundary_ja": "原Claim/readを全値保持し、既存fixture・copy元・固定hashを示す。資格はinput_issues=[]/unusable_source_refs=[]の条件付き。製品/helper/旧runtime/CI未実行。独立oracleや検収成立の証跡を本unitに生成しない。fn6fn7/14child/Issue完了は外。",
