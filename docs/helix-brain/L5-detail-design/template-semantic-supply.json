@@ -1004,6 +1004,62 @@
           "canonical_body_support=[]、handoff_record=null。selection_observationは必ずno-call閉object。",
           "original_refsは元unselected_refsの当該出現一件を全値保持。subject/Bindingは同V原root Bindingの既存dependency subject形成規則、ownerはliteral null。"
         ]
+      },
+      "RequiredDependencyMissingAxisTraceMaterial": {
+        "kind": "closed_record",
+        "fields": {
+          "format": "literal BRAIN032-F09-axis-reason-trace-v1",
+          "producer_symbol": "literal compare_dependencies_and_handoff",
+          "axis": "literal dependency_reference",
+          "state": "literal missing",
+          "subject_ref": "Ref",
+          "binding": "Binding",
+          "original_refs": "Ref[]",
+          "backflow_owner": "literal knowledge_owner",
+          "request_locator": "null",
+          "source_category_locator": "string|null",
+          "cause": "null",
+          "canonical_body_support": "CanonicalBodySupportRow[]",
+          "handoff_record": "null",
+          "selection_observation": "null"
+        },
+        "required_fields": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "field_order": [
+          "format",
+          "producer_symbol",
+          "axis",
+          "state",
+          "subject_ref",
+          "binding",
+          "original_refs",
+          "backflow_owner",
+          "request_locator",
+          "source_category_locator",
+          "cause",
+          "canonical_body_support",
+          "handoff_record",
+          "selection_observation"
+        ],
+        "meaning_ja": "同Vの既存required identity missing/no-call反復からAxisを直接形成する専用14member材料。仮old Axisを受け取らず、実read用CanonicalAxisTraceMaterialとそのprefix/state規則を変更しない。",
+        "invariants": [
+          "state=missing、request_locator=null、cause=null、canonical_body_support=[]、handoff_record=null、selection_observation=null。元V全値にraw presenceを保持する。",
+          "category実arrayがあるときだけsource_category_locatorに当該実pointerを入れ、absentならnull。実readのcause=null→resolved対応をこのdomainへ一般化しない。"
+        ]
       }
     },
     "invariants": [
@@ -12150,7 +12206,8 @@
       "CanonicalAxisCause",
       "CanonicalAxisTraceMaterial",
       "UnselectedSelectionObservation",
-      "UnselectedAxisTraceMaterial"
+      "UnselectedAxisTraceMaterial",
+      "RequiredDependencyMissingAxisTraceMaterial"
     ],
     "type_binding_ja": "型は/type_contract/types及び/type_contract/imports。2locator request/whole returnはL4型をimportし、依存defsは原schema assemblyで解決する。",
     "private_functions": [
@@ -12238,6 +12295,39 @@
         },
         "effect": "none",
         "writer_ref": "/canonical_dependency_detail/unselected_axis_trace_writer/reason_writer"
+      },
+      {
+        "symbol": "project_required_dependency_missing_axis",
+        "signature": {
+          "arguments": [
+            {
+              "name": "validated",
+              "type": "ValidatedSupply"
+            },
+            {
+              "name": "category",
+              "type": "literal always_refs | core_return_refs"
+            }
+          ],
+          "returns": "AxisResult[]"
+        },
+        "effect": "none",
+        "entry_boundary_ja": "/canonical_dependency_detail/fn6_integration/ordered_steps/1の既存required identity不足枝からのみ、同V・同categoryに一度呼ぶ。現行のrequired identity集合・category対応・missing判定・identity順をそのまま維持し、別predicateや別条件の早期returnを作らない。既存ループのmissing identityごとにAxisを一件だけ形成し、同じmissing identityを別passで重複出力しない。",
+        "writer_ref": "/canonical_dependency_detail/required_dependency_missing_axis_trace_writer"
+      },
+      {
+        "symbol": "write_required_dependency_missing_axis_reason",
+        "signature": {
+          "arguments": [
+            {
+              "name": "material",
+              "type": "RequiredDependencyMissingAxisTraceMaterial"
+            }
+          ],
+          "returns": "string"
+        },
+        "effect": "none",
+        "writer_ref": "/canonical_dependency_detail/required_dependency_missing_axis_trace_writer/reason_writer"
       }
     ],
     "body_read_writer": {
@@ -12506,7 +12596,7 @@
       "locals": "fn6開始時にcanonical_frame:CanonicalReadFrame={input:context.validated全値,invocations:[]}。元fn0を再呼出ししない。definitionsは既存descriptor/Claim責務へ無変更で残し、frame比較evidenceに流用しない。",
       "ordered_steps": [
         "既存generic必要identity列をalways003/005/007/008/028→core_return_requested strict true時019/022/030の元順で辿る。core_return selector欠落/null/falseは既存判定/元所見を保持。当該条件未確定で他条件/alwaysを止めない。",
-        "各identityについて該当categoryの全元Refを元index順で照合。category absent/null/[]又は当該identityゼロなら元required_dependency_missing writerを同位置で実行し、port/Invocationなし。元category presence/全値はcanonical_frame.inputへ保持し、Ref/空成功を作らない。",
+        "各identityについて該当categoryの全元Refを元index順で照合。category absent/null/[]又は当該identityゼロなら元missing判定を保ち、同位置でproject_required_dependency_missing_axis(context.validated,category)の0又は1 Axisを保持する。R105 Findingは元identity/category/source_pathのwriterで別に一件形成し、元Axisを別passで重複emitしない。port/Request/Invocationなし。元category presence/全値はcanonical_frame.inputへ保持し、型外raw null/nonarrayをtyped V成功へ変換しない。",
         "完全identity一致する実Ref occurrenceごとrequest={request_ref_locator:/dependencies/{元category}/{元index},category_locator:/dependencies/{元category}}を生成する。固定identity列からRefのrevision/scope/owner/digestを生成せず、同値Ref反復も別callにする。型外rawはfn0のdecode失敗/原InputIssue境界を保持しRefへcastしない。",
         "result=read_canonical_dependency_body(canonical_frame.input,request)を同Vへ一回だけ適用し、invocation={request:原request,result:全6member result}をcanonical_frame.invocations末尾へappend。no-callはappendしない。",
         "直後の実invocation_indexでproject_canonical_read_axis(canonical_frame,index)のAxisResult列を元generic dependency所見の位置へ保持する。既存generic canonical body由来Axisをこの実returned materialで具体化し、旧body由来passを重ねてemitしない。必要identity missingは既存writerのまま、その他既存Failure predicate/Finding/Claim所見を本writerで上書きしない。",
@@ -12594,6 +12684,100 @@
         "reason": "下記14memberを同じiteration内で上記subject/binding/original_refsと原Vから形成し、write_unselected_axis_reasonへ一回渡す。固定L4 prefix「未選択sourceは未観測。」＋LF＋TRACE=＋正規14member JSON text。placeholder/既存reason自然文解析/再wrapをしない。",
         "backflow_owner": "同axis_valuesのliteral null。通常未観測Axisのownerと、別predicateで形成するR89 Finding/knowledge_ownerを混同しない。"
       }
+    },
+    "required_dependency_missing_axis_trace_writer": {
+      "source_basis": [
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+          "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
+          "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer"
+        },
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+          "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
+          "pointer": "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3"
+        },
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "26dfa0b71bdd4e2c034e556e48fce455b87e6573",
+          "file_sha256": "7496a4caa061b9f0f3cb7891bcfc66bf1a0bcd83529922c0bf8e4673b24bb3c4",
+          "pointer": "/failure_rules/105"
+        }
+      ],
+      "scope_ja": "既存常時/CORE-return required identity不足でportを呼ばない枝にあるdependency_reference missing Axis.reasonだけ。R105 Findingを形成する既存failure rule、R106 selector、canonical実read Axis、conditional domain、unselected/handoff Axisは扱わない。",
+      "formation_ja": "同Vとcategoryから上記7memberを直接形成し[AxisResult]を返す。元subject/Binding形成不能の場合だけ[]で原V/InputIssue/他条件を保持する。元missing identity一件につき一回呼び、同字面Axisも原identity数・順序のまま保持しdedupしない。仮old Axisを引数にせず、元prose Axisを別にappendしない。",
+      "input_domain_ja": "正規SupplyInput.dependenciesはobject|absent、同DependencySelectionのalways_refs/core_return_refsはarray|absent。既存missing branchのcategory absent/empty又は実Ref配列にrequired identityが無い場合だけ呼ぶ。raw null/nonarrayは元decoder不成立側であり、typed V成功へ補完しない。category引数は元callerが走査中のliteralで、新しい外部入力ではない。",
+      "reason_writer": {
+        "signature": "write_required_dependency_missing_axis_reason(material:RequiredDependencyMissingAxisTraceMaterial)->string",
+        "prefix_source": "L4 /dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3/reason の固定literalそのもの。R105 Finding.reason_templateとは別。",
+        "grammar": "固定missing prefix + LF + \"TRACE=\" + compact UTF-8 JSON object。trace_member_orderとensure_ascii=false、末尾空白なし、原Ref/Binding/order/反復保持はL4 reason_serialization/string_grammarを適用。",
+        "implementation_boundary_ja": "L5 canonical_dependency_detail/reason_writer/closed_grammar,value_bridge,string_leaf,reuse_boundaryの厳密leaf/escape境界を再利用する。write_canonical_axis_reason/prefix_from_material_only_jaは呼ばない（cause=null成功prefixが選ばれるため）。新ambient prefix引数は設けず、missing prefixは専用writer内でL4固定literalに束ねる。",
+        "closed_material_ja": "RequiredDependencyMissingAxisTraceMaterial.field_orderの14宣言memberを全て同順でemitする。追加field/可変prefix引数を持たず、cause=nullから成功prefixを推論しない。"
+      },
+      "trace_member_writers": {
+        "format": "BRAIN032-F09-axis-reason-trace-v1の固定識別子。",
+        "producer_symbol": "compare_dependencies_and_handoffの固定識別子。",
+        "axis": "dependency_reference。",
+        "state": "L4 axis_mapping/0と既存R105のmissingをそのまま保持する。",
+        "subject_ref": "同V.input.binding.knowledge_refがobject Refならその原全値、無ければ同じbinding.template_refがobject Refならその原全値を診断subjectとする。双方不能ならAxis[]。template_refをknowledge_refへ補完しない。",
+        "binding": "同V.input.bindingの原object全値。Binding形成不能ならAxis[]で元V/InputIssue/他所見を保持し、{}や別carrierで補わない。",
+        "original_refs": "同V.input.dependencies[category]に実供給されたRef[]全件を原順・反復込みで複写する。missing identityでfilterせず、別category Refや欠落identityのRefを追加しない。category absentなら[]だが原presenceは同V全値に保持する。",
+        "backflow_owner": "既存L4 axis_mapping/0・R105の論理role literal knowledge_owner。個別Ref.ownerを代用しない。",
+        "request_locator": "null。canonical read/CanonicalReadRequest/Invocationは無い。",
+        "source_category_locator": "同入力で当該category memberがarrayとして実在するとき、その実array pointer文字列（例: /dependencies/always_refs または /dependencies/core_return_refs）。dependencies/categoryがabsentならnull。存在しないpointerを文字列合成しない。Category非arrayはDependencySelectionの正規typed Vの成功domain外であり、新positive entryへ正規化しない。",
+        "cause": "null。no-callでありCanonicalBodyRead/BodyReadProblemの観測がない。",
+        "canonical_body_support": "[]。canonical body portは未呼出し。",
+        "handoff_record": "null。missing dependencyとhandoffを混ぜない。",
+        "selection_observation": "null。missing required identity TRACEへselector観測を混ぜない。"
+      },
+      "axis_seven_member_source_writer": {
+        "subject_ref": "同V.input.binding.knowledge_refがobject Refならその原全値、無ければ同じbinding.template_refがobject Refならその原全値を診断subjectとする。双方不能ならAxis[]。template_refをknowledge_refへ補完しない。",
+        "binding": "同V.input.bindingの原object全値。Binding形成不能ならAxis[]で元V/InputIssue/他所見を保持し、{}や別carrierで補わない。",
+        "axis": "literal dependency_reference。既存missing反復の同位置。",
+        "state": "literal missing。必要identity集合と元missing predicateを変更しない。",
+        "original_refs": "同V.input.dependencies[category]に実供給されたRef[]全件を原順・反復込みで複写する。missing identityでfilterせず、別category Refや欠落identityのRefを追加しない。category absentなら[]だが原presenceは同V全値に保持する。",
+        "reason": "同反復の同V/categoryからtrace_member_writersの全14memberを直接形成しwrite_required_dependency_missing_axis_reasonへ一回渡す。仮old Axis/old reason/別snapshotから復元又は再wrapしない。",
+        "backflow_owner": "literal knowledge_owner。元R105/L4 axis_mapping/0の論理roleで、個別Ref.ownerを転用しない。"
+      },
+      "caller_connection_ja": "既存fn6のalways003/005/007/008/028→CORE-return strict true時019/022/030の原identity反復中、元missing判定が成立した同位置だけproject_required_dependency_missing_axis(context.validated,category)を一回呼ぶ。その0又は1件を元Axis位置へ置き、R105 Findingは同identity/category/source_pathの元reason_templateと原順で別に一件保持する。canonical body port/Request/Invocationは作らず、selector R106/conditional/unselected/handoff/Claim/別identityを停止又は二重emitしない。",
+      "missing_no_call_technical_decision": {
+        "selected_representation": "cause=null, canonical_body_support=[], request_locator=null, handoff_record=null, selection_observation=null。",
+        "reason_ja": "これは「readしてproblem=0件だった」という意味ではない。canonical body portが呼ばれないmissing branchにはCanonicalBodyReadもBodyReadProblemも存在しないため、空原因をproblem objectへ作り替えずcause=nullを局所L5技術表現として選ぶ。",
+        "alternatives_considered": [
+          {
+            "alternative": "cause=[]",
+            "disposition_ja": "不採用。実read用CanonicalAxisCauseの配列variantは2件以上の実問題に属し、このno-callへ流用しない。新しい空問題配列を足さず、観測read/problem無しを専用literal nullで表す。"
+          },
+          {
+            "alternative": "synthetic BodyReadProblem",
+            "disposition_ja": "不採用。実read/problemを捏造し、no-callを観測callへ変えてしまう。"
+          },
+          {
+            "alternative": "CanonicalAxisTraceMaterialへstate=missingを追加し既存writer利用",
+            "disposition_ja": "不採用。実read用closed type/prefixの不変を保つ統制条件と衝突する。"
+          },
+          {
+            "alternative": "cause=nullの成功prefixを用いる",
+            "disposition_ja": "不採用。L4 missing専用prefix_table/2を無視して成功branchの語を使うことになる。"
+          }
+        ],
+        "L4_consistency_ja": "L4はTRACE14 grammarとmissing prefixを定め、missing/no-callを実readとして作るよう求めていない。canonical readのcause 0件→nullは別domainから直接一般化せず、no-call cause=nullをL5の局所technical decisionとして名前付き記録する。no-callのrequest_locatorはnull、category locatorは実配列pointerがなければnullとし、raw presenceはValidatedSupply内に保持する。L4との矛盾は現時点で特定していない。",
+        "decision_record_name": "missing_no_call_technical_decision",
+        "classification_ja": "no-callのcause=nullと未供給category locator=nullは現L4の実read規則から一意に導いたものではなく、この閉包で選ぶ新しいL5技術判断である。要求意味、missing predicate、公開shapeを変更しない。",
+        "L4_alignment_pointers": [
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/axis_root/writers/reason",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/trace_member_order",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/trace_value_rules/request_locator",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/trace_value_rules/source_category_locator",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/cause_cardinality_contract/scope",
+          "/dependency_semantic_ports/public_projection/axis_reason_writer/reason_serialization/prefix_table/2",
+          "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/3"
+        ],
+        "precedent_ja": "同L4 descriptor_target_contract/legacy_rederivation/technical_closure/empty_basis_technical_decision（PR3635）と同じく、旧sourceから一意ではない表示表現の選択・代替・条文整合を記録する。実read専用cause/state対応はそのdomainに保つ。"
+      },
+      "legacy_and_change_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299（archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md16–78）、4F5A1F0739EC1111D91D（同L4-basic-design/design-template-json-authority.md16–100）、603D0E8D8193914F4AC0（同L5-detail/design-refactoring-domain-model.md34–55）の閉field/意味署名/consumer保持を再導出。PR3355 bbbf39b7のunselected専用writerを構造先例とし、現D27のmissing TRACE欠落を埋める。元型/原Ref/原missing/旧Finding/公開契約を保ち、旧source本文/runtimeを移植しない。"
     }
   },
   "field_value_applicability_detail": {
