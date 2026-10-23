@@ -13020,5 +13020,312 @@
       "F08全域・全knowledge state・全negative witness・fn5実装/実行・L8全期待・fn7/手順7/Issue完了・新世代CIの成立を示さない。",
       "有限期待がこの未閉包に当たる場合は当該producerで上流へ返す。"
     ]
+  },
+  "claim_boundary_projection_contract": {
+    "id": "HELIXBRAIN-L4-032-F07-N02-CLAIM-BOUNDARY-PROJECTION",
+    "requirements": [
+      "HELIXBRAIN-L3-032-F07",
+      "HELIXBRAIN-L3-032-N02",
+      "HELIXBRAIN-L3-032-B01"
+    ],
+    "paired_verification_refs": [
+      "HELIXBRAIN-L9-032-F07",
+      "HELIXBRAIN-L9-032-N02",
+      "HELIXBRAIN-L9-032-B01"
+    ],
+    "status": "descriptor fill専用の有限Comparison writer技術選択。fn7全域又は任意RawValueの意味対応を閉じない。",
+    "basis": [
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointers": [
+          "/requirements/6"
+        ]
+      },
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "file_sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1",
+        "pointers": [
+          "/requirements/0"
+        ]
+      },
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "file_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+        "pointers": [
+          "/requirements/1"
+        ]
+      },
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "file_sha256": "19ddddaa8c694415853fe82a1bd39529caf20fc25d3a4586b3c8987328c3cc8c",
+        "pointers": [
+          "/contracts/0",
+          "/contracts/8",
+          "/contracts/12",
+          "/architecture/original_and_claim",
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/claim_routes",
+          "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract"
+        ]
+      },
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "file_sha256": "4e54532be373d393ac5252d89e1e4c555845aad56be68b2d852e6ab9a16d1fba",
+        "pointers": [
+          "/functions/7",
+          "/type_contract/types/ClaimContext",
+          "/type_contract/types/Comparison",
+          "/execution_contract/claim_locality",
+          "/source_return_contract/descriptor_target_dataflow/consumer",
+          "/source_return_contract/descriptor_target_dataflow/public_output",
+          "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn7",
+          "/source_return_contract/descriptor_target_dataflow/raw_runner/closed_context_constructors/7",
+          "/claim_intent_detail/decoder_rows/4"
+        ]
+      },
+      {
+        "revision": "7c76ab6bca2299b1994765b36ce77797ef699ee9",
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "file_sha256": "9ed3ff7eef5d0a40cc320ec6560d0de427fb78e7a2d437339e3732fadc93a10c",
+        "pointers": [
+          "/function_oracles/7",
+          "/cases/0/negative_cases/0",
+          "/cases/8",
+          "/cases/12",
+          "/additional_unit_cases/19"
+        ],
+        "read_boundary": "既存fixture保存とtyped mutation計画の照合だけ。未実行prose/fullComparisonでない値をD27答えへ転用しない。"
+      }
+    ],
+    "same_call": {
+      "entry": "compare_claim_boundaries(ClaimContext)→Comparison。既存公開signature/effect noneを保つ。",
+      "context_member_order": [
+        "validated",
+        "definitions",
+        "values_applicability",
+        "identity_trace",
+        "oracle_view",
+        "promotion",
+        "dependencies_handoff"
+      ],
+      "input": "同immutable validated＋fn1–fn6の各全Comparisonを用いる。各producer_symbol/input_bindingと同raw/orderの前提を照合し、別call/空Comparison/test double/normal別入力で補わない。",
+      "frame": "既存direct wrapper/raw runnerが一回形成した全4field frameと全ClaimUseを使う。target/intent/meaning portの再取得・同値検索・部分match選択をしない。",
+      "original_results": "元definitions/values_applicability/identity_trace/oracle_view/promotion/dependencies_handoffと元snapshotは同callに残す。fn7はそのaxis/stateを上書きせず、別producer軸をfn7へcarryしない。"
+    },
+    "finite_domain": {
+      "scope": "D27 A/B形のdecoded logical inputと同call原frameを扱う有限枝。下記shape外、又は本解釈で主張の責務を確定できない入力は枝外とし、一般writer未閉へ残す。",
+      "root": "input.bindingは供給object、candidatesは明示[]。sources/descriptors/knowledge_records/claimsは既存typed形。source資格は既存validated条件として消費し、本writerで発行しない。",
+      "claims": "各Claimはkind=fill_definition、subject_refとbindingは供給object、proposed_valueは供給済み原null又はstringのdescriptor定義値提案。nullもpositive intentで、欠落へ変換しない。提案値を採用・known・工程stateの代入値にはしない。",
+      "declared_targets": "各Claimに対応するsemantic_json原descriptor_targets宣言とcontent.bindingがある。target_ref/fullBindingは既存ref_same/binding_sameで同cohortへ照合し、同slot kind conflict・distinct slot・重複・原Ref全memberをそのまま残す。宣言対応は意味knownを証明しない。",
+      "typed_kinds": "root descriptor、semantic descriptor_facts、definition_meaning_operations arguments、descriptor_targetsの各kindは固定descriptor_meaningsの既知15分類。targetはdescriptor metadataであり製品screen/API/permission/state carrierではない。",
+      "sources": "全source.roleはsemantic_json又はreference_only、contentはobject。semantic keyはbinding/descriptor_facts/descriptor_targets/definition_meaning_operations、reference_only keyはbinding/reference_target/reference_contextのsubset。opaque本文の単語から別主張を生成しない。",
+      "knowledge": "knowledge_recordsは1件、供給keyはref/provenance_refsのみ。refは既存Ref object、provenance_refsは既存Ref[]。他9memberはabsentを保持し、operational stateへ補完しない。",
+      "other_carriers": "meaning_comparisons/section_fields/values/applicability_records/relations/oracle_bindings/compatibility_records/handoff_recordsはabsent又は明示[]。dependenciesはabsent。原absenceと供給空を相互変換しない。製品値/別工程の主張carrierがある枝は対象外。",
+      "basis": "basis_refs absent又は原Ref[]をそのまま読む。source Refとfact Refを同一視せず全basis Ref/sourceの原順joinを既存consumerで計算する。使用可否/role/意味対応不足を別source成功で消さない。",
+      "route_not_input_filter": "全原Claimを原順に走査し、同frameの全read/assessment/usesへ既存route順を適用する。望むrouteを先に選んでClaim集合を縮めず、none/unresolved/rule87/rule93の各結果を保持する。",
+      "boundary": "このshapeは有限writerの適用範囲であり、新schema必須集合・qualification・failure・gateではない。外れた入力をinvalid又は成功へ変更しない。"
+    },
+    "claim_condition_interpretation": {
+      "algorithm_0": "本有限domainのfill_definitionはdescriptorの原定義値を提案する主張として読む。裏付け無し又は未確定なら原unknown/unresolvedを同callの原比較/target/basisに保持し、採用・意味known・要求合意を生成しない。",
+      "unsupported_projection": "この有限枝では一般文の裏付け無しだけを根拠に、failure_rulesに無いgeneric unknown Axis/Findingを追加しない。原不足を消すのではなく、原producerの状態と原ClaimUseを保持する。枝外の裏付け無しclaimの公開writerは未閉包へ残す。",
+      "non_rule93_prefix": "15個のrule93以外のconditionを下記rule_dispositionsのdescriptor専用解釈で読む。本有限枝の採用/完成/製品固有値汎用化/原state更新の主張は成立しないため、当該旧fn7 prefixのaxes/findingsを0行として形成する。旧prefix不在を推測するのでなく、本L4の局所writerとしてここに定める。",
+      "rawvalue": "全opaque body/Claim値は原値保存し、文字列内のauthority/完成等の単語をparseして新kind又は免責へしない。nonnullもraw提案のままで、nullへ訂正しない。",
+      "not_general": "fill_definition全域の非発火や任意bodyの正当性を認めるものではない。typed target/責務対応を確定できない別domainは本有限解釈を適用しない。",
+      "rule_pointer_scope_ja": "rule_dispositionsのrule_pointerはbasisに固定したL5 docs/helix-brain/L5-detail-design/template-semantic-supply.jsonのdocument root相対JSON Pointerである。L4 root相対ではない。"
+    },
+    "route_projection": {
+      "source": "既存L4 dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/claim_routesとL5 descriptor_target_dataflow/consumer/public_outputを再利用する。",
+      "all_claims": "positiveはnullを含むany_supplied。target resolved/allmatch/primary definition支持/basis分類/rule87排他を元contractの順で適用し、未知の意味対応をstring/JSON一致で作らない。",
+      "none_unresolved": "none/unresolvedからrule87/93 Axis/Findingを生成しない。元definition axis/state/全read/原Claimを保持する。unresolvedはbasis成立又はrule93 predicate=falseの意味ではない。",
+      "rule87": "fn6担当の当該一件を保持しfn7へ二重追加しない。他Claimのrule93を抑止しない。",
+      "rule93": "成立時だけ既存L5 public_outputのAxis全7field/Finding全9fieldとreason_templates/rule93を元claim/use locatorで形成する。support反復で行を増殖せず原Claim出現ごと一件。",
+      "B2_current": "basisのfact Refはsource Refへjoinせず、別semantic source Refと併存。現L4のunresolved/public_tuple/mixedによりroute unresolved、当該2ruleの行0を固定する。semantic basisからproposed_valueへのowner意味対応自体はqualified_alternative_limitの未閉のまま。",
+      "history": "#3598当時のClaim2 tupleも不発火も未固定という処置の後に、#3635 commit29cf866aがrouteと公開非形成を閉じた。現在のroutingと任意semantic意味対応未閉を区別し、古い停止判断を現行規範へ戻さない。"
+    },
+    "rule_dispositions": [
+      {
+        "rule_pointer": "/failure_rules/0",
+        "rule_ref": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
+        "finite_reading_ja": "A0/B0/B1/B2全件kind=fill_definition。CORE選択をBRAIN claimとして行うabsolute_product_choiceは観測しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/75",
+        "rule_ref": "HELIXBRAIN-L5-032-R-product_values_as_generic",
+        "finite_reading_ja": "raw claimに製品domainのscreen/API/permission/state値と識別できる根拠が無い。B2 synthetic stringだけから製品意味/採用結果を推論しない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/76",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_selects_template",
+        "finite_reading_ja": "template選択/採用claimではなくfill_definition。"
+      },
+      {
+        "rule_pointer": "/failure_rules/77",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
+        "finite_reading_ja": "人の要求合意を宣言するclaimではない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/78",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_finishes_design",
+        "finite_reading_ja": "HARNESS/pair設計完成claimではない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/79",
+        "rule_ref": "HELIXBRAIN-L5-032-R-brain_closes_obligation",
+        "finite_reading_ja": "OS義務消込claimではない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/92",
+        "rule_ref": "HELIXBRAIN-L5-032-R-missing_as_empty",
+        "finite_reading_ja": "いずれのproposed_valueも空配列gap claimではない（nullは空配列でない）。"
+      },
+      {
+        "rule_pointer": "/failure_rules/93",
+        "rule_ref": "HELIXBRAIN-L5-032-R-unknown_fallback",
+        "finite_reading_ja": "rule93はany_supplied nullも含め候補になり得る。D27 A0/B0 target nonresolved/matches[]、B1 primary missing only、B2は#3635現L4 route unresolved/public rows 0。nullは非発火根拠にしない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/94",
+        "rule_ref": "HELIXBRAIN-L5-032-R-hash_as_complete",
+        "finite_reading_ja": "hash/countで全体完成とするclaimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/95",
+        "rule_ref": "HELIXBRAIN-L5-032-R-lower_green_as_complete",
+        "finite_reading_ja": "下位greenで完了を主張するclaimがない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/96",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_missing",
+        "finite_reading_ja": "B1の元primary missingはfn1に残る。fill_definitionの原nullをknown state更新又はgap消込の主張へ変換しない。null一般免責ではなく、原定義の提案とstate更新を分ける本有限解釈による。"
+      },
+      {
+        "rule_pointer": "/failure_rules/97",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
+        "finite_reading_ja": "failure ruleのaxisはfield.value。D27のClaimはdescriptor fill_definitionでfield.value主張ではない。"
+      },
+      {
+        "rule_pointer": "/failure_rules/98",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
+        "finite_reading_ja": "L5 predicateは同項目/revision qualified meaning comparison conflictのknown更新。Aのtarget宣言conflictとは異なる。B2原meaningはunknownでsemantic対応もunresolved。"
+      },
+      {
+        "rule_pointer": "/failure_rules/99",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
+        "finite_reading_ja": "field.applicabilityのN/A claim/raw evidenceなし。"
+      },
+      {
+        "rule_pointer": "/failure_rules/100",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
+        "finite_reading_ja": "unselected_sourceをobservedへ変えるclaimなし。"
+      },
+      {
+        "rule_pointer": "/failure_rules/101",
+        "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
+        "finite_reading_ja": "handoff receipt/受領claimなし。"
+      }
+    ],
+    "comparison_writer": {
+      "member_order": [
+        "axes",
+        "findings",
+        "producer_symbol",
+        "input_binding"
+      ],
+      "prefix": "本finite_domain/claim_condition_interpretationの15非該当ruleによる旧fn7 prefixはaxes=[]/findings=[]として形成する。別domainの旧prefixは変更しない。",
+      "axes": "空prefixに担当route=rule93のAxisを元Claim順で追加する。none/unresolved/rule87から追加しない。D27 A0/B0 unresolved、B1 rule87、B2 unresolvedなので両callは明示[]。",
+      "findings": "同じ担当Claimの既存rule93 Findingを同順で追加し、原反復Claimをdedupしない。D27は明示[]。原fn1又はfn6の所見を相殺又は複写しない。",
+      "order": "既存L5 public_outputの既存prefix順/Claim原順と一件化を保持する。この有限D27は0行なので新sort規則を追加しない。発火時の全域sort又は別prefixの並び替えは本topicで変更しない。",
+      "producer_symbol": "compare_claim_boundaries",
+      "input_binding": "同ClaimContext.validated.input.bindingの原object全値・再帰順序・配列順・Ref値・反復をcopyする。callerの別bindingを作らない。",
+      "empty_meaning": "空列はこのproducerの有限公開projectionであり、原unknown/conflict/未受領の不存在、資格、採用又は問題なしを意味しない。元全比較とsnapshotの保持を伴う。"
+    },
+    "existing_fixture_consistency": {
+      "preserve": "既存L8 function_oracles/7、F07/B01/N02 negative系、descriptor-target rule93の元入力・観測・全既存期待・固定import・配列順は変更しない。",
+      "normal_vs_witness": "既存normal proseやbuilder test doubleはD27全返却の答えに転用しない。発火入力は当該元condition/本L5 tuple形成へ照合する材料で、0行枝へ書換えない。",
+      "limits": "このtopicは既存fn7の全negative witness・他domainの全返却writerを新規に閉じない。検証では旧全値/順序の不変と、本有限条件外の保存を別に確かめる。",
+      "observed_record_nature": "function_oracles/7はclaims=[]の文章期待、N02/F07/B01/ADD20もnot_executedのmutation/状態観測計画で、fn7 fullComparison JSONではない。元記録の全値保存を照合し、その実行一致又はB2 exact oracleへの昇格は主張しない。"
+    },
+    "unclosed_projection_boundaries": {
+      "semantic_owner": "semantic/mixed basisの任意RawValue意味対応自体は未閉。route unresolved/行0を保持しても意味対応成立又はpredicate falseを認定しない。",
+      "other_domain": "他Claim kind、製品固有値/採用/義務/receipt carrier、複数KnowledgeRecord、role/key/shape外又は本文から別意味主張を読む一般readerは対象外。",
+      "generic_unknown": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。既存failureを削除/空列へ丸めない。",
+      "scope": "実owner/trust/fn0資格/製品runtime/手順7/Issue完了の成立を示さない。"
+    },
+    "legacy_rederivation": {
+      "mode": "意味再導出。旧schema/registry/CLI/runtime/CI/testをcopy又は実行しない。",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16-45,61-101",
+          "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "lines": "16-78,79-99,110-166",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "80-89 (UTW-014/020/021)",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+        }
+      ],
+      "preserve": "4F5A/98372のJSON正本・source/owner/trace/明示状態を保持し、原unknownとN/Aを分ける。UTW014のabsence空集合化、020のaggregate masking、021のprose自己申告を原snapshot/producer別保持で防ぐ。",
+      "change": "現行L3 F07/N02/B01と既存routeに沿い、descriptor専用有限prefixの0行と全Comparisonのfield割当を本L4へ具体化する。旧lifecycle/層番号/承認手続きを持ち込まない。",
+      "reason": "既存fn7 algorithm0と旧prefix保存の間にあったwriter不足を具体化する。BRAINが採用/完成を決めず元不足を保持する要求の意味は変えない。",
+      "failure_history": "PR3597/3598のClaim2 tuple先決め失敗、後続3635のunresolved公開非形成閉包、fn3/4/5の前段writer方式を区別して読む。失敗から新要求/gateを生成しない。"
+    },
+    "consumers": [
+      {
+        "consumer": "L5 functions/7とsource_return_contract/function_dataflow/7",
+        "material": "公開ClaimContext7→Comparison4。既存type/wrapper/frame/route/tupleは保持し、有限writer pointerだけを結ぶ。"
+      },
+      {
+        "consumer": "L8 D27 fn7 A/B",
+        "material": "writer merge後に同call全7fieldと全rule実測を固定import/copyで材料化する。L9はraw/patchのみ、他expected又はtest doubleを答えへ転用しない。"
+      },
+      {
+        "consumer": "build_supply_analysis",
+        "material": "既存producer/binding照合後に他6Comparisonと独立保持。fn7空列で他producer所見/原InputIssue/全snapshotを消さない。"
+      }
+    ],
+    "finite_domain_observation_examples": [
+      {
+        "claim": "A/claims/0",
+        "intent": "positive: null is supplied",
+        "target": "conflict, matches=[]",
+        "basis": "absent",
+        "route": "unresolved"
+      },
+      {
+        "claim": "B/claims/0",
+        "intent": "positive: null is supplied",
+        "target": "conflict, matches=[]",
+        "basis": "absent",
+        "route": "unresolved"
+      },
+      {
+        "claim": "B/claims/1",
+        "intent": "positive: null is supplied",
+        "target": "resolved, primary missing; undefined support=[]",
+        "basis": "reference_only_only",
+        "route": "rule87: fn6, not fn7"
+      },
+      {
+        "claim": "B/claims/2",
+        "intent": "positive: supplied string unchanged",
+        "target": "resolved, primary meaning_undefined unknown",
+        "basis": "fact Ref has no source Ref join; other basis Ref joins semantic source; unresolved precedence",
+        "route": "unresolved; arbitrary owner meaning mapping remains unclosed"
+      }
+    ]
   }
 }
