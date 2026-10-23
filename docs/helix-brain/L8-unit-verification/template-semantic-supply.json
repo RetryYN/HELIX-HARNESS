@@ -115308,10 +115308,12 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
           "/wire_codec_contract/schema/$defs/AxisResult",
-          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment"
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy"
         ],
         "derivation_ja": [
-          "slot eventを先行し、要求frameのslot absent 14件を固定順で保持する。各原state/branch/locatorを直接記録し、最終axis/finding indexとoriginal_axesは完成Comparisonから取得する。"
+          "slot absent eventはevent_rulesから構成する。attribution eventのstate・axis_name・元Ref等はhelper_event_projection rules/0・common_copyから元helper値を保持する。比較indexとoriginal_axesは完成Comparisonからcopyする。"
         ]
       },
       {
@@ -115364,7 +115366,7 @@
       }
     },
     "reconstruction": {
-      "source_resolution_rule_ja": "固定Git source revisionとfile SHAを検証し、JSON pointer値をensure_ascii=False、sort_keys=True、separators=(\",\", \":\")のUTF-8 canonical writerでhashしてdeep copyする。seedをworkspaceへdeep copyし、fixed Git import後に標準RFC 6902 operationsを順番に適用する。",
+      "source_resolution_rule_ja": "固定Git source revisionとfile SHAを検証し、JSON pointer値をensure_ascii=False、sort_keys=True、separators=(\",\", \":\")のUTF-8 canonical writerでhashしてdeep copyする。raw A、Comparison seed、sort table、Comparison RFC operations prefixを固定importする。importしたComparison RFC operations prefixをworkspaceへ先に適用し、その後でこのblock固有のRFC 6902 operationsを記載順に適用する。",
       "fixed_git_imports": [
         {
           "source_key": "L9",
@@ -115392,6 +115394,15 @@
           "bundle_pointer": "/comparison_sort",
           "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43",
           "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "2665446b25f5cf02fb9e982d8849d5231b1ebf6f",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_rfc_operations",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43",
+          "file_sha256": "d17f8515ba14e4777991c70e0db83c343deacc5ad22407138938bd5dd14f68b0"
         }
       ],
       "seed": {
@@ -115413,7 +115424,7 @@
               },
               "descriptor_kind": null
             },
-            "state": "known",
+            "state": null,
             "origin_branch": "existing_definition_result",
             "slot_locators": [
               "/descriptors/0"
@@ -115471,354 +115482,10 @@
             "original_axes": [],
             "axis_name": null
           }
-        ]
+        ],
+        "comparison_rfc_operations": null
       },
       "rfc6902_operations": [
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/input_binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/0/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/0/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/1/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/1/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/2/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/2/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/3/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/3/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/4/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/4/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/5/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/5/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/6/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/6/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/7/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/7/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/8/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/8/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/9/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/9/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/10/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/10/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/11/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/11/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/12/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/12/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/axes/13/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/axes/13/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/binding",
-          "path": "/comparison/axes/14/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
-          "path": "/comparison/axes/14/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/binding",
-          "path": "/comparison/axes/15/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
-          "path": "/comparison/axes/15/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/0/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/0/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/1/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/1/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/2/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/2/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/3/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/3/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/4/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/4/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/5/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/5/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/6/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/6/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/7/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/7/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/8/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/8/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/9/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/9/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/10/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/10/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/11/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/11/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/12/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/12/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding",
-          "path": "/comparison/findings/13/binding"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
-          "path": "/comparison/findings/13/subject_ref"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
-          "path": "/comparison/axes/15/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/sources/0/ref",
-          "path": "/comparison/axes/15/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
-          "path": "/comparison/axes/14/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/sources/0/ref",
-          "path": "/comparison/axes/14/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/sources/0/ref",
-          "path": "/comparison/axes/14/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/sources/0/content/definition_meaning_operations/0/operation_ref",
-          "path": "/comparison/axes/14/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
-          "path": "/comparison/axes/14/original_refs/-"
-        },
-        {
-          "op": "copy",
-          "from": "/source_snapshot/raw_A/binding/knowledge_ref/owner",
-          "path": "/comparison/axes/14/backflow_owner"
-        },
         {
           "op": "copy",
           "from": "/source_snapshot/raw_A/descriptors/0/binding",
@@ -115833,6 +115500,11 @@
           "op": "copy",
           "from": "/source_snapshot/raw_A/descriptors/0/descriptor_kind",
           "path": "/assessments/0/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/15/state",
+          "path": "/assessments/0/state"
         },
         {
           "op": "copy",
@@ -116365,16 +116037,16 @@
           "path": "/assessments/15/original_axes/-"
         }
       ],
-      "operation_count": 178,
+      "operation_count": 110,
       "operation_types": {
-        "copy": 178
+        "copy": 110
       },
-      "input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
       "expanded_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494",
       "expanded_assessments_pointer": "/assessments",
       "assessment_count": 16,
-      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")で値hashを再現する。RFC 6902実装は既存L8記法のstandard copyのみを使う。"
+      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")で値hashを再現する。RFC 6902実装は既存L8記法のstandard copyのみを使う。",
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
     },
-    "assessment_derivation_ja": "実slotの2判定はL5 event ruleによるknown/existing_definition_result。root要求frameはraw required_descriptor_kinds固定順から実slot kindを除いた14種がslot absentとなり、missing/required_slot_absent。各軸・Findingは同eventから得た値を保持し、Assessmentの配列順はroot/frame内kind走査順。indexとoriginal_axesだけ完成Comparisonとfinal_sort_indexからcopyする。"
+    "assessment_derivation_ja": "実slotのdescriptor.attribution assessment stateはL5 helper_event_projection/rules/0とcommon_copyに従い、元helper AxisResult.stateを完成Comparison axes[15]からcopyする。template identityのslot判定はL5定義結果のknown/existing_definition_result。root要求frameはraw required_descriptor_kinds固定順から実slot kindを除いた14種がslot absentとなり、missing/required_slot_absent。不在slotには対応する原slot/factがないため、その判定のslot_locatorsとfact_locatorsは空列となる。各軸・Findingは同event由来で保持し、Assessmentの配列順はroot/frame内kind走査順。indexとoriginal_axesは完成Comparisonとfinal_sort_indexからcopyする。"
   }
 }
