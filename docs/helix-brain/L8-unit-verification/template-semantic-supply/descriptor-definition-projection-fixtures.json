@@ -50,30 +50,10 @@
       "revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
       "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
     },
-    "L4_NATIVE_A_HISTORY": {
-      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
-      "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
-    },
-    "L4_NATIVE_MEANING_FRAME_HISTORY": {
-      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
-      "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2"
-    },
-    "L5_NATIVE_A_HISTORY": {
-      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
-      "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
-    },
     "L8_NATIVE_A_INPUTS": {
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
       "revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
       "sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
-    },
-    "L9_NATIVE_A_RAW": {
-      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-      "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
-      "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
     },
     "L8_NATIVE_A_BLOCK": {
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
@@ -1575,7 +1555,7 @@
     "status": "detail_verification_candidate_unexecuted",
     "authority_effect": "none",
     "scope_ja": "条件付きD27 raw A/BのDefinitionNativeMaterialを独立call別に材料化する。native_A/native_Bは各7列を持ち、OriginはA16/B17、special readはA1/B3。fn0、native以外のfn1全返却、mixed aggregate state、fn6/fn7/consumer finalは対象外。",
-    "execution_boundary_ja": "fn0 qualificationは条件付き。helper/product/runtime/旧CLI/hook/test/CIは実行しない。A0/B0ではmatches=[]の条件を継承し追加special eventを作らない。期待はcurrent L4/L5 writer契約とaccepted comparison/assessment materializationに基づく。",
+    "execution_boundary_ja": "fn0 qualificationは条件付き。helper/product/runtime/旧CLI/hook/test/CIは実行しない。A0/B0ではmatches=[]の条件を継承し追加special eventを作らない。期待はcurrent L4/L5 writer契約と先行段で材料化したComparison/Assessmentに基づく。",
     "same_artifact_materialization_ja": "このD27副fileの既存root Comparison 4段とassessments_verification 3段を既存operation_source sequenceのroot/順で適用し、raw A/BとA0..15/B16..32 assessmentが同副file文書rootに展開された後、本unit native operationsを適用する。期待配列やL9 expected/countをsourceにしない。",
     "contract_basis": [
       {
@@ -1609,7 +1589,9 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/call",
           "/failure_rules/25",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningRead",
-          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionApplicabilityRead"
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionApplicabilityRead",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/problem_reason_literals/container_absent",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_common/fields"
         ],
         "derivation_ja": [
           "DefinitionNativeMaterialとOriginのclosed field順、各event/reader call、source sort/ref反復を現行L5契約で照合する。"
@@ -1642,8 +1624,8 @@
       }
     ],
     "source_cohort_ja": "A/B raw descriptor0/fact0はD26-Aの同Binding・slot・fact Ref・source_ref/body。reader cohortはfact.source_ref基準でsource0を選ぶためA mixed target-only source1およびB source1/2/3は当該fact read cohortへ混入しない。D27 B source2のdescriptor_targetsはfact meaning readerのsource_ref選択を変えない。 bridgeするraw A全体は旧rawと異なり、そのままreader_input_candidate.inputへ保持する。元Meaning8が読むdescriptor0.binding、source0.ref/operation全値とnative107が読むfact0.source_refは旧Aと一致する。追加sourceがこのcohortへ一致しないことと、read/sidecar全値の一致を別に照合する。",
-    "origin_derivation_ja": "Aの16 originは元D26A native RFCから、原raw slot0/fact0/Binding/source0と当該meaning cohort一致を確かめて全値copyする。Bの共通14 originはmatching-kind A完成rowをcopyし、変わるcall-local ordinalだけ設定する。新B event5/6/7は対応templateへmaterialized Assessmentのkey/state/branch/locatorsと公開axisのsubject/binding/ref/reason/ownerをcopyする。facts_missingは元fact無し、meaning_undefinedはevent_rules/2とfailure_rules/25によりfinding_rule_indices=[25]。非発火条件によりspecial linkは空のまま、read自体は保存する。",
-    "special_read_derivation_ja": "claim scheduleは原orderでA0/B0/B1/B2。A0/B0 basis_refs absent、B1 basis refはreference_only source3でsemantic_json cohort外のためunknown/empty arrays。B2 basis refはsource2を選択しreplacement_basis_usesはabsentなのでtable/2のcontainer_absent problemを1件出す。Problem source_refはPresence-supplied raw source Ref、reasonはL5 table/2固定import。source2 usableは条件付き。",
+    "origin_derivation_ja": "Aの16 originは元D26A native RFCから、原raw slot0/fact0/Binding/source0と当該meaning cohort一致を確かめて全値copyする。Bの共通14 originはmatching-kind A完成rowをcopyし、変わるcall-local ordinalだけ設定する。新B event5/6/7は対応templateへmaterialized Assessmentのkey/state/branch/locatorsと公開axisのsubject/binding/ref/reason/ownerをcopyする。facts_missingは元fact無し、meaning_undefinedはevent_rules/2とfailure_rules/25によりfinding_rule_indices=[25]。非発火条件によりspecial linkは空のまま、read自体は保存する。 B1はrequired input kindでconstructor/3のrequired section/field限定外、B2は対象definitionがunknownで明示target/missingを欠くため追加special eventを発火させない。kind限定・明示missing predicate又はL4残作業による対象結果が変われば、両caseのspecial/originと全Comparison/Assessment/native・sort/indexを再検証する。",
+    "special_read_derivation_ja": "claim scheduleは原orderでA0/B0/B1/B2。A0/B0 basis_refs absent、B1 basis refはreference_only source3でsemantic_json cohort外のためunknown/empty arrays。B2 basis refはsource2を選択しreplacement_basis_usesはabsentなのでtable/2のcontainer_absent problemを1件出す。Problem source_refはPresence-supplied raw source Ref、reasonはL5 problem_common/fieldsが指定するserialization_completion.problem_reason_literals/container_absentの固定import。source2 usableは条件付き。",
     "reconstruction": {
       "seed": {
         "d26_A_workspace": null,
@@ -1738,7 +1720,7 @@
           "source_key": "L5_COMPARISON_CONTRACT",
           "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "git_revision": "ead612633e8e6a8649a779fffa4347cd90baef8f",
-          "source_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/2/reason",
+          "source_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/problem_reason_literals/container_absent",
           "bundle_pointer": "/reason_templates/container_absent",
           "value_canonical_sha256": "07cf246fffd2debac11c0777a13d94462f7e4b533bf277d8eafbc417395a552b",
           "file_sha256": "ddc48e27669204dad3c4efbec005a8000fe8ac31d8461e3984305eab5ce6a0e5"
@@ -2322,7 +2304,7 @@
       "/legacy_comparison"
     ],
     "source_roles_ja": {
-      "historical_A": "元D26A nativeのseed・Meaning reader/NA材料・8/107 RFCと歴史L4/L5/L8/L9 pinを保持する。元11 importsのraw/Comparison/Assessmentとそのprefixは先行D27材料からのbridgeへ置換し、reader/NAの5 importsを再利用する。歴史headerは旧recipeの来歴比較用で、current契約や新gateへ昇格しない。",
+      "historical_A": "元D26A nativeのseed・Meaning reader/NA材料・8/107 RFCを固定Git参照から保持する。元11 importsのraw/Comparison/Assessmentとそのprefixは先行D27材料からのbridgeへ置換し、reader/NAの5 importsを再利用する。旧recipeの歴史L4/L5/L9 pinはcontract_basisが指す元L8 blockの来歴として辿り、本副fileに未消費headerを複製しない。",
       "current_contract": "current L5 contract_basisがcall schedule/Problem writer/Origin fieldの根拠。同副fileの先行7段で材料化したraw/assessmentsを新差分操作から直接copyし、L9 expected/countを使わない。"
     }
   }
