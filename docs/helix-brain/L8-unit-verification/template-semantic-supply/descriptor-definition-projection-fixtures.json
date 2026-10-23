@@ -2,7 +2,7 @@
   "id": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
   "status": "detail_verification_candidate_unexecuted",
   "authority_effect": "none",
-  "scope_ja": "D27 raw A/Bの同call private walk全4fieldと、claim_use_A_verificationのA同call ClaimUse全14fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。B ClaimUse全返却・fn0/製品実行・consumer完了は含めない。",
+  "scope_ja": "D27 raw A/BのComparison4field・Assessment9field・NativeMaterial7列と同call private walk全4field、claim_use_A_verificationのA同call ClaimUse全14fieldを既存資格条件下で材料化する。公開fn1はComparisonだけを返す。B ClaimUse全返却・fn0/製品実行・consumer完了は含めない。",
   "execution_boundary_ja": "固定Git入力と標準RFC6902から条件付きValidatedSupplyを材料化し、現行L4/L5の公開constructorで期待を独立に記述する。fn0、製品、helper、runtime、旧CLI/hook/test/CIは実行しない。source qualificationは全sourceがunusableでないことを条件とし、fn0成功の証拠とはしない。",
   "fixed_git_sources": {
     "L8_TARGET_SEED": {
@@ -2552,7 +2552,7 @@
       "return_pointer_basis": "/whole_fn1_verification/reconstruction/expected_return_pointers",
       "public_projection_ja": "top/functions/1 compare_descriptor_definitionsは同returnのevaluation.comparisonのみ返す。"
     },
-    "oracle_and_limits_ja": "既存fixtureのComparison4/Assessment9/Native7/target8/intent6を原call別に固定再利用する。各fieldは宣言RFCのcopy元から組み立て、A assessmentsはcompleted_Aの16件、B assessmentsは合成33件をcopy後に先頭16件をremoveした後続17件、target_reads/intent_readsはread_arrayのA/B列を使い、各call全4fieldをcanonical hashで固定する。本unitは独立した全値oracle又は検収成立の証跡を収めるものではない。limits/1のclosed_contract_refは従来の境界を指す歴史pinとして保持し、現在の全4fieldと読取順の根拠は本unitのcontract_basisを参照する。fn0資格はinput_issues=[]/unusable_source_refs=[]の条件付きであり実行/成立を認定しない。reader/helper/製品/旧runtime/CIは未実行。ClaimUse/fn6fn7/14child凍結/Issue完了は範囲外。"
+    "oracle_and_limits_ja": "既存fixtureのComparison4/Assessment9/Native7/target8/intent6を原call別に固定再利用する。各fieldは宣言RFCのcopy元から組み立て、A assessmentsはcompleted_Aの16件、B assessmentsは合成33件をcopy後に先頭16件をremoveした後続17件、target_reads/intent_readsはread_arrayのA/B列を使い、各call全4fieldをcanonical hashで固定する。本unitは独立した全値oracle又は検収成立の証跡を収めるものではない。limits/1のclosed_contract_refは従来の境界を指す歴史pinとして保持し、現在の全4fieldと読取順の根拠は本unitのcontract_basisを参照する。fn0資格はinput_issues=[]/unusable_source_refs=[]の条件付きであり実行/成立を認定しない。reader/helper/製品/旧runtime/CIは未実行。本whole unitではClaimUse/fn6fn7/14child凍結/Issue完了は範囲外。"
   },
   "claim_use_A_verification": {
     "id": "HELIXBRAIN-L8-D27-CLAIM-USE-A",
@@ -2596,8 +2596,9 @@
     },
     "field_derivation_ja": {
       "originals": "A wholeの原Claim0/full target/full intent/locatorをcopy。positiveでもtarget conflict/matches=[]ゆえassessment/primary/support/unmatched配列は空、route unresolved。",
-      "basis": "A0/B0は同原Claim0・basis member absent。B0既存有限basis3fieldを固定再利用する。不存在Ref indexを作らず[]を保つ。",
-      "reason": "route enumのunresolvedと専用serialization completionの同名理由を固定copy。旧短文route_reason_literalsは使わない。"
+      "basis": "A0/B0は同原Claim0・basis member absent。B0既存有限basis3fieldを固定再利用する。不存在Ref indexを作らず[]を保つ。 basis_refs member不存在で既存unresolved条件が成立し、join対象の原Refが無いため、raw Aのsource2件とraw Bのsource4件の差はこの3fieldを変えない。",
+      "reason": "route enumのunresolvedと、全返却literalを決定する専用詳細契約serialization_completionのuse_route_reason_literalsを固定copyする。この理由はconsumer/route_reason_templatesと同文で、consumer/route_reason_literalsの短文とは異なる。新しい理由文は生成しない。",
+      "replacement_special": "targetがconflictでmatches=[]なのでL4 replacement_specialのactivationは成立せず、追加specialは非発火。ClaimUseにはspecialを受けるfieldがなく、specialのunknownをrouteの根拠へ流用しない。"
     },
     "boundary_ja": "原Claim/readを全値保持し、既存fixture・copy元・固定hashを示す。資格はinput_issues=[]/unusable_source_refs=[]の条件付き。製品/helper/旧runtime/CI未実行。独立oracleや検収成立の証跡を本unitに生成しない。fn6fn7/14child/Issue完了は外。",
     "fixed_git_source_header_pointer": "/claim_use_A_verification/fixed_git_sources",
@@ -2725,7 +2726,26 @@
       "operation_count": 9,
       "expected_return_pointer": "/claim_use_A_verification/reconstruction/seed/A",
       "canonical_expected_return_sha256": "166a14712300811ad115a32a10b72629ab2b20980556cb003f1b0412667d0867",
-      "source_resolution_rule_ja": "既存root→assessments→native→whole全phaseを完了後、固定3importsを本seedのnull宛先へ展開し、本RFCを副file rootへ適用する。暗黙再帰importなし。"
-    }
+      "source_resolution_rule_ja": "既存root→assessments→native→whole全phaseを完了後、固定3importsを本seedのnull宛先へ展開し、本RFCを副file rootへ適用する。暗黙再帰importなし。",
+      "operation_types": {
+        "copy": 9
+      }
+    },
+    "closed_field_order": [
+      "claim_locator",
+      "claim",
+      "target_read",
+      "intent_read",
+      "assessment_indices",
+      "unmatched_match_indices",
+      "basis_source_indices",
+      "unresolved_basis_ref_indices",
+      "basis_class",
+      "missing_support_indices",
+      "undefined_support_indices",
+      "route",
+      "route_reason",
+      "primary_definition_assessment_indices"
+    ]
   }
 }
