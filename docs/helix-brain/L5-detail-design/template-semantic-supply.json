@@ -6950,8 +6950,8 @@
       "status": "独立review対象の詳細設計候補。原target/意味/NAの同walk保存と公開射影を規定する。",
       "basic_contract_ref": {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "revision": "ebfd085ac44b7ffb288c250f737724b621a3fd75",
-        "file_sha256": "1beadf752b7961c1d6eba3f543c7b39be2fc8070cef3198952d08a0d32d07edb",
+        "revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
+        "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
         "pointer": "/dependency_semantic_ports/descriptor_target_contract"
       },
       "scope": "原fn1の意味判定を変えずsame-walk索引と原target readを同callで運ぶ。公開Claim6field/SupplyInput/比較4field/原79constructor/5builder wholeを保持する。",
@@ -7569,7 +7569,7 @@
       },
       "consumer": {
         "reads": "同fn1 walkが一度読んだ原fill_definition Claim/target_reads/intent_readsを消費する。全Claim原出現/locator/全6fieldを保持し、新port再呼出し又はstate再計算はしない。非fill_definitionにtarget口を常時必須にしない。",
-        "target_resolution": "既存L4 target契約のordered_branches/relevance_tableで同walkが計算したread全値を使う。再取得/first-matchを行わず全occurrences/元Refs/indices/problemsを保持する。resolvedは住所対応だけ。 当該cohortのstate/matchesはL4 cohort_result_contractに従い、nonresolvedの候補から一部matchを選ばない。",
+        "target_resolution": "既存L4 target契約のordered_branches/relevance_tableで同walkが計算したread全値を使う。再取得/first-matchを行わず全occurrences/元Refs/indices/problemsを保持する。resolvedは住所対応だけ。当該cohortのstate/matchesはL4 cohort_result_contractに従い、nonresolvedの候補から一部matchを選ばない。",
         "assessment_lookup": [
           "read.state=resolvedのmatches全件を走査。同full Bindingは既存binding_same、slot/kindはexact decoded値で照合。key.bindingはsupplied objectの場合だけ比較する。全matching assessment indexをassessment原順で保存しdedupで原評価を消さない。",
           "match.slot_locatorsに当該slotが実在する場合は同slot identity/binding/kindの全assessment。unknown/conflict/knownも全件保つ。owner targetのRefからMeaningFactを合成しない。",
@@ -7591,7 +7591,7 @@
           "undefined_support_indices": "primary_definition_assessment_indicesのうちstate=unknown AND origin_branch=meaning_undefinedの元indexだけ。NA/source未資格/住所unknownを含めない。",
           "rule87_predicate": "original Claim.kind=fill_definition、intent_read.intent=positive、target_read.state=resolved、unmatched_match_indices=[]、missing_support_indicesが非空、basis_class=reference_only_only。",
           "rule93_predicate": "同kind/positive/resolved/全match対応、undefined_support_indicesが非空、basis_class=nonsemantic_or_empty又はreference_only_only、rule87_predicateがfalse。元fn1が意味未定義で定義済み別原根拠無しを判定した枝だけ。",
-          "route_order": "rule87が成立ならroute=rule87、それ以外でrule93成立ならrule93、必要target/basis対応が未確定ならunresolved、明確な非該当ならnone。この順は既存fn6→fn7の責務と同Claim二重裁定禁止を具体化する技術選択。全axis間state優先/全体first-failureではない。 special replacement_basis_unresolved eventはこの2ruleの判定材料へ流用しない。target/assessment対応既知・primary missingのみ・明示empty basisでは両predicateがfalseなのでnone。",
+          "route_order": "原kind/intentが確定した非該当ならnone、intent/target/assessmentの必要対応が未確定ならunresolved。対応するprimary missing/meaning_undefined支持がともに無いと確定すればbasisに依らずnone。支持があれば、rule87成立→rule93成立→必要basis分類/意味対応未確定ならunresolved→明確非該当ならnoneの順。basis member absentはunresolved。semantic_or_mixedの任意proposed_valueへのowner意味対応はprimary missingのみでもqualified_alternative_limitによりunresolvedで、本2ruleの公開tupleを出さない。対応既知・primary missingのみ・明示emptyではrule87/93=falseなのでnone。special第三枝unknown eventをこのroute判定へ流用しない。同Claimのrule87/93二重Findingを防ぎ、別Claim/全原assessmentを保持する。",
           "mixed_states": "同targetの全assessmentにmissingとmeaning_undefined unknownが併存しても両原stateをeへ残す。reference_only置換のrule87が成立する同Claimはfn6担当に一件化しfn7へ二重Findingを作らない。unknown原stateはfn1比較/索引から消さない。別Claimをこの排他で抑止しない。",
           "primary_definition_assessment_indices": "primary_definition_assessment_indicesはassessment_indicesのうち上記predicate成立の原indexを原順で保持する。"
         },
@@ -9639,7 +9639,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+                  "file_bytes_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -10536,7 +10536,7 @@
             "save": "各callのDefinitionSpecialRead全5fieldをspecial_readsへ一回appendし、その局所indexを同request評価へ渡す。unknown、supports=[]、problems非空も保存する。取得失敗をread非call又は空read不在へ変換しない。 非positiveの追加readが先行すると、後続positive eventのspecial_read_indices/special_support_linksの局所index値は同保存配列に合わせて変わり得る。公開Axis/Findingとassessmentの件数・意味の比較を、native全fieldの値不変へ読み替えない。",
             "source_boundary": "request形成は既存source資格やcarrierを補完しない。readerは既存acquisition/relevance、producer consumer、problem_emission_tableに従い同Claim/basisの原対応を照合し、原absence/null/type/unknownを保持する。source不存在又はbasis未解決から新支持を作らない。",
             "event_boundary": "保存したreadと既存same-call target/intent及び元missingを用いて、既存special_predicate_projection/4,5とspecial_event_constructors/constructors/3をそのまま判定する。読取対象全件をevent対象全件へ昇格しない。非positive、target未解決/複数、対象missingなし等の既存非発火枝は変更しない。",
-            "meaning_boundary": "このcall集合は既存target/intentの原fill_definition集合への技術対応であり、positive/target/missing/basisをcall gateにする新意味条件は採らない。L4のmixed target複合state、Claim2 tuple/非発火、mixed route/意味basis未閉を解決したとはしない。",
+            "meaning_boundary": "call集合は原fill_definition全件への技術対応であり、positive/target/missing/basisを新call gateにしない。L4技術閉包によりmixed target state/matches、Claim単位route/公開tuple条件、empty basisの第三枝を明示した。任意semantic basisの意味対応、実資格、全consumer返却の未閉は保持する。",
             "diagnostic_effect": "本scheduleとpositive fill_definitionだけをcallする案を比較すると、非positive等の追加callはspecial_reads件数とread内problemsだけを増やし、公開event/assessmentは増えない。positive＋明示target/missing＋basis/template未解決のreplacement_basis_unresolved unknownは両案が共通に読むpositive集合で既存第3枝の条件を適用する診断であり、read問題だけから新公開eventを作らない。未記載だった旧call集合全般との出力等値を主張するものではない。",
             "source_basis": [
               {
@@ -10905,7 +10905,7 @@
                     "origin_branch": "existing_definition_result"
                   },
                   {
-                    "when": "positive fill_definitionとresolved同targetのrequired section/fieldの元primary missingがあり、原basis分類又は別template対応を確定できない。明示basis_refs=[]も分類は既知emptyのまま、対応する代替source/basis無しでこの第三枝に入る。同Pattern確定・既存rule7/8成立はそれぞれ既存枝へ。",
+                    "when": "positive/resolved同targetのrequired section/fieldに元primary missingがあり、既存rule7/8に必要な原basis/owner kind/template対応を確定できない。basis member absentも含む。明示emptyは対応する置換根拠が無く別template対応を確定できない新技術選択として含め、分類は既知emptyのまま保持する。必要入力が確定してrule7/8がfalse（例:非空basisの既知owner kindがrequired inputでない）又はsame-Patternが確定なら第三枝は非発火。",
                     "cause": "replacement_basis_unresolved",
                     "state": "unknown",
                     "axis_name": "<target kind>.definition",
@@ -10971,7 +10971,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -10979,7 +10979,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        "sha256": "2d160ce47ff71d4b38d64b56698f7b10616bc3bf12e42a86bbbbf04f981d2024"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",

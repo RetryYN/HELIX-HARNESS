@@ -16013,7 +16013,7 @@
         ],
         "current_basic_contract_pointer": "/field_value_applicability_contract",
         "current_l4_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "current_l4_file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "current_l4_file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
         "current_detail_oracle_pointer": "/field_value_applicability_detail_verification",
         "boundary": "公開signature/要求F03の意味は維持する。原入力を修復して旧成功期待へ合わせず、現在の基本契約から支持できない旧未実行期待だけを訂正し、その原文は固定baseと本記録に保持する。全現normal返却の新literalは未収載である。",
         "current_basic_contract_canonical_sha256": "b936641956cb36e2ff7f9c66c09e1eaf7e61f0206c35e6dd8b0e7ed02148f0d4",
@@ -84523,7 +84523,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -84531,7 +84531,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        "sha256": "2d160ce47ff71d4b38d64b56698f7b10616bc3bf12e42a86bbbbf04f981d2024"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
