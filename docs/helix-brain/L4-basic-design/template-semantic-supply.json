@@ -12715,5 +12715,290 @@
       "normal_controlは全descriptor slot15（対象3kindを含む）・oracle_bindings1・values1・handoff_records1及び許容集合外fixture_proposition等があり枝外。既存F05/F06 negative変異計画の実view/oracle/値/更新Claimがある枝も未閉包として保持し、要求や既存ruleを削除しない。",
       "fn4全域・任意opaque入力・全failure witness、D27全期待値/Issue完了、製品/helper/fn0/実trust/CIの成立を示さない。未閉包に当たる有限期待は当該producerで上流へ返す。"
     ]
+  },
+  "knowledge_promotion_contract": {
+    "id": "HELIXBRAIN-L4-032-F08-KNOWLEDGE-PROMOTION-PROJECTION",
+    "requirements": [
+      "HELIXBRAIN-L3-032-F08",
+      "HELIXBRAIN-L3-007-F01",
+      "HELIXBRAIN-L3-007-F02",
+      "HELIXBRAIN-L3-008-F01",
+      "HELIXBRAIN-L3-008-F02",
+      "HELIXBRAIN-L3-025-F01",
+      "HELIXBRAIN-L3-025-F02",
+      "HELIXBRAIN-L3-025-F03",
+      "HELIXBRAIN-L3-025-F04"
+    ],
+    "paired_verification_refs": [
+      "HELIXBRAIN-L9-032-F08"
+    ],
+    "status": "candidate明示空・descriptor専用提案の有限writer技術選択。D27 A/B形の通常Comparisonを閉じ、fn5全域・非空candidate・発火witnessは閉じない。",
+    "authority": "既存F08と007/008/025の意味、既存candidate selector/trace writerを維持する。原記録保持と局所返却を区別して公開4fieldを具体化するAI技術選択。要求・承認・stage gateは追加しない。",
+    "basis": [
+      {
+        "revision": "c8e529d854a6914c17b63f574cc84898a5612206",
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "file_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+        "pointers": [
+          "/requirements/7"
+        ]
+      },
+      {
+        "revision": "c8e529d854a6914c17b63f574cc84898a5612206",
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "file_sha256": "b4d179f888d4d5dd6e55a4976e4c5547b929eb929348b415baa30ac2f093a3cb",
+        "pointers": [
+          "/contracts/9",
+          "/architecture/promotion",
+          "/conditional_source_dependency_contract/decision_table",
+          "/oracle_view_boundary_contract/nonfire_read_plan/content_key_allowlists",
+          "/descriptor_meanings",
+          "/failure_classifications/80",
+          "/failure_classifications/81",
+          "/failure_classifications/82",
+          "/failure_classifications/83"
+        ]
+      },
+      {
+        "revision": "c8e529d854a6914c17b63f574cc84898a5612206",
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "file_sha256": "c2ef80ace87a57a062fc9e1f96354ddd328ba1b4cd50d1168c8d2fa1c33b514f",
+        "pointers": [
+          "/functions/5",
+          "/type_contract/types/PromotionContext",
+          "/type_contract/types/Comparison",
+          "/logical_input_structure/schema/$defs/KnowledgeRecord",
+          "/logical_input_structure/schema/$defs/SupplyInput",
+          "/source_return_contract/existing_function_bindings/1",
+          "/source_return_contract/pure_reference_notation/definitions",
+          "/source_return_contract/constructor_meaning/candidate_locality",
+          "/source_return_contract/constructor_meaning/reference_resolution",
+          "/source_return_contract/constructor_meaning/knowledge_trace",
+          "/source_return_contract/builder_assembly",
+          "/evaluation_order/3",
+          "/source_return_contract/descriptor_target_dataflow/raw_runner/closed_context_constructors/3",
+          "/failure_rules/80",
+          "/failure_rules/81",
+          "/failure_rules/82",
+          "/failure_rules/83"
+        ]
+      }
+    ],
+    "same_call": {
+      "entry": "compare_knowledge_promotion(PromotionContext) → Comparison。公開型/effect noneを維持。",
+      "context_member_order": [
+        "validated"
+      ],
+      "validated": "一回のvalidate_supply_inputから得た同immutable snapshot。inputはdecoded objectで既存typed形を満たしbindingが供給objectであることを本枝の前提とする。writer又は期待値からfn0資格を逆算しない。",
+      "dependencies": "前段Comparisonを入力しない。evaluation_order/3 reads=[]は他関数結果への依存なしであり、validated不読ではない。fn0/fn1/fn3も同列のreads=[]で直接入力を読む先例を保持する。",
+      "raw_runner": "既存order3 constructorのPromotionContext(validated:v)をそのまま使う。public/private署名、wrapper、walk、target/intent port呼出しを追加しない。",
+      "no_ambient": "clock/fs/network/DB、別call cached結果、L9 gold、保存済み期待値、別producerのaxisを意味入力へ追加しない。"
+    },
+    "finite_domain": {
+      "root_population": "bindingは供給object、candidatesは明示[]。required_descriptor_kinds/sources/qualification_roots/qualifications/descriptors/knowledge_records/claimsは既存typed形で、各collectionのabsentと[]はsnapshotで区別して保持する。null/型外を[]へ補わず本枝外。",
+      "binding": "input.bindingはobjectとして供給され、Comparison.input_bindingへ同じsnapshotの値をそのままコピーする。",
+      "candidates": "input.candidatesは明示[]。absent/null/型外/nonemptyはこの枝に含めない。",
+      "claims": "claims absent、claims=[]、又は全出現kind=fill_definitionのいずれか。absentと[]は原presenceを保持し、相互変換しない。",
+      "source_roles": "全source roleはsemantic_json又はreference_only。derived_view/explanation/未知roleは枝外。",
+      "source_content_shape": "contentはobjectで、key集合はrole別allowlistのsubset。semantic_json=[binding,descriptor_facts,descriptor_targets,definition_meaning_operations]; reference_only=[binding,reference_target,reference_context]。content:RawValueのschemaやqualificationは変えない。",
+      "typed_descriptor_carriers": "root descriptors[*].descriptor_kind、全semantic_json content.descriptor_facts[*].descriptor_kind、content.definition_meaning_operations[*].arguments.descriptor_kind、content.descriptor_targets[*].descriptor_kindを全原出現で読む。carrierはabsent又はarray、各record/argumentsは既存typed形、kindは同L4 descriptor_meaningsの既知15literalに限る。欠落/null/未知kind/型外は本枝外。targetは住所宣言のままで意味fact/運用stateにはしない。",
+      "knowledge_record_carrier": "このfinite branchでknowledge_recordsの各recordに供給されるmemberはref/provenance_refsのみ。残り9 memberは未供給のまま保持し、operational_stateを発明しない。",
+      "other_collections": "上記9集合はabsent又は明示[]だけを扱い、原presenceを維持する。非空の各recordとpromotion/工程の関係readerがこの有限writerでは閉じていないため、無関係に見えても保守的に枝外とする。件数から違反又は採用成功を作らない。",
+      "scope_boundary": "上記は既存raw shape内でこの有限writer分岐を選ぶ範囲定義。fn0の入力schema/資格検証、必須条件、新failure/gateを追加しない。外れた入力は本枝の結論を適用しない。",
+      "other_collection_names": [
+        "meaning_comparisons",
+        "section_fields",
+        "values",
+        "applicability_records",
+        "relations",
+        "oracle_bindings",
+        "compatibility_records",
+        "dependencies",
+        "handoff_records"
+      ],
+      "claim_subject_declaration": "各実fill_definition Claimについて、同inputのsemantic_json content.descriptor_targets内に、target_ref全原JSON値がClaim.subject_refと型付き再帰等値で、content.binding全原JSON値がClaim.bindingと同等値の原宣言が1件以上ある枝だけを扱う。object key順は比較identityにせず、配列順/型/null/Ref全memberは区別する。全候補/重複/相反は原順で保持し、先頭の1件で解消しない。この厳しい表示上の対応は有限shapeの技術選択で、既存ref_same/binding_same、target portの資格/resolve/conflict判定を置換しない。宣言対応なしは保守的に本枝外であり、新violation又は全入力gateではない。"
+    },
+    "content_key_allowlists": {
+      "semantic_json": [
+        "binding",
+        "descriptor_facts",
+        "descriptor_targets",
+        "definition_meaning_operations"
+      ],
+      "reference_only": [
+        "binding",
+        "reference_target",
+        "reference_context"
+      ]
+    },
+    "claim_condition_interpretation": {
+      "reading": "四ruleは各conditionの運用昇格/accepted主張とpredicateを一体で読む。評価範囲や独立検証refの不在単独では発火せず、昇格主張という必要operandが要る。既知descriptor専用carrier内のfill_definitionは定義値の提案として読み、knowledge運用stateの代入主張には付け替えない。",
+      "rawvalue_boundary": "proposed_value、MeaningFact.meaning、operation arguments.fact_body/decision等のopaque原値は全保持する。本文内の単語・Ref名・digestからpromotion主張を生成しない。任意nested本文にpromotionという文字列が無いと認定するものではなく、別kind/別工程への意味対応readerは未閉包。",
+      "nonnull": "非nullの提案値も採用又は運用stateへ代入せず、原Claimとして残す。明示nullへ補正しない。descriptor targetのunknown/conflictをfn5で解消せず、同callの原read/ClaimUseは担当producerが保持する。",
+      "no_private_frame": "本枝のF08はdescriptor定義の対象kind別充足を裁定せず、運用昇格主張があるかだけを上記typed解釈で区別する。非nullでもtarget住所がどのdescriptorかを追加裁定しないためframeを不要とする技術選択。fn4の非対象3kind住所確認とは役割が異なる。 raw宣言との全値対応は有限scope確認だけに使い、qualified owner/住所解決/定義knownを生成しない。既存portを呼び直さず、target unknown/conflictを保持する。",
+      "scope": "全fill_definition/任意bodyに対する一般非promotion判定ではない。有限domain外又はこのtyped解釈で確定しないoperandは未閉包へ残し、false又はemptyへ丸めない。"
+    },
+    "trace_projection": {
+      "existing_binding": "L5 source_return_contract/existing_function_bindings/1がknowledge_trace_axes(context.validated)をComparison.axesへ追加する既存規則を維持する。",
+      "selection": "既存selected_bindingsはroot/slot bindingのtemplate_refをinput.candidatesの各Refへref_sameで照合する。candidate明示[]なら内側反復0件でselected_bindings=[]。原knowledge_ref/KnowledgeRecordの存在だけで選択しない。",
+      "trace": "既存knowledge_trace_axesのselected反復も0件となりtrace axis=[]。新しいunknown行、knowledge.operational_state行、全記録のreason直列化を作らない。",
+      "nonempty": "非空candidateで選択される既存knowledge_record_traceのstate/reason/original_refs/backflow_ownerを変更しない。unknown時knowledge_ref.ownerという既存ownerをF04 actual axisのnull-ownerで置換しない。",
+      "preservation": "原記録のpresence/全原値/原provenance配列/同値反復はsameimmutable validatedに保持。0axisは原記録の不存在、資格、採用、昇格又は工程完了を意味しない。"
+    },
+    "rule_dispositions": [
+      {
+        "L5_pointer": "/failure_rules/80",
+        "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion",
+        "condition": "AI生成だけでaccepted/matureと主張",
+        "predicate": "AI生成以外の評価/独立検証/運用採否根拠がなく、昇格を裏付けない。原operational stateを保持。",
+        "nonfire": "非発火。全Claimはfill_definitionで、生成のみからaccepted/matureを主張しない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "L5_pointer": "/failure_rules/81",
+        "rule_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
+        "condition": "評価範囲無しで昇格済みと主張",
+        "predicate": "当該knowledge revisionの評価範囲が未供給で、昇格claimの該当範囲を照合できない。",
+        "nonfire": "非発火。descriptor定義のfill提案は、評価範囲なしのknowledge昇格claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "L5_pointer": "/failure_rules/82",
+        "rule_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing",
+        "condition": "独立検証無しで昇格済みと主張",
+        "predicate": "既存工程で求められる独立検証の原参照が未供給。評価/登録の別工程の成功では代替しない。",
+        "nonfire": "非発火。昇格又は独立検証完了を主張するClaimがない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      },
+      {
+        "L5_pointer": "/failure_rules/83",
+        "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
+        "condition": "MSGCONTENT限定意味採択を運用knowledge acceptedへ変換",
+        "predicate": "限定意味内容の採択だけを既存運用knowledge acceptedへ代入するclaimが採択範囲を越えている。",
+        "nonfire": "非発火。proposed_valueはdescriptor fill値で、運用stateへのadoption claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+      }
+    ],
+    "comparison_writer": {
+      "member_order": [
+        "axes",
+        "findings",
+        "producer_symbol",
+        "input_binding"
+      ],
+      "axes": "上記candidate-empty selectorによるtrace0行と、四rule非発火による追加0行。返却は明示[]。他producerからcarryしない。",
+      "findings": "各condition不成立を個別に確認した本枝では明示[]。未確定predicateを非発火へ丸める一般writerではない。",
+      "producer_symbol": "compare_knowledge_promotion",
+      "input_binding": "同validated.input.bindingの原object全値を再帰key順/配列順/Ref原値/反復ごとcopyする。metadataをcaller Claim値又は別call bindingから作らない。",
+      "empty_meaning": "Comparison4fieldは局所projection。空列で原KnowledgeRecord全11memberを表現した又はF08全域を評価したとは主張しない。"
+    },
+    "record_and_process_preservation": {
+      "record_member_names": [
+        "ref",
+        "operational_state",
+        "provenance_refs",
+        "limited_adoption_ref",
+        "evaluation_scope",
+        "evaluation_ref",
+        "os_registration_ref",
+        "independent_verification_ref",
+        "adoption_ref",
+        "limits",
+        "counterexamples"
+      ],
+      "presence": "本枝ではrecord.ref/provenance_refsだけが供給され得る。他9memberはabsentを保持しnull/[]/運用stateへ補完しない。供給された他9memberがある枝は、その原値を保持してこの有限writerの対象外とする。",
+      "consumer_custody": "L3 F08のbind/保持とL4共通output責務を、同immutable記録と各producer別のprojectionで満たす読みを採る。L5 constructor_meaning/reference_resolutionが定める同snapshotの保持を失うconsumerへtrace成立又は原値返却を主張しない。",
+      "builder": "既存knowledge_materialはcandidate選択下でlimits/counterexamplesを投影する。candidate明示空ならその材料列も空であり、全原recordの別コピーを生成しない。元recordは同snapshotに残す。既存builder/composition/InputIssueを変更しない。",
+      "007": "source/provenanceと独立根拠、限定内容採用を原知識記録へ結ぶ。LABO評価/OS登録/BRAIN独立検証/採否を別参照・別ownerの工程として保持する。",
+      "008": "exact knowledge identity/revision/supersessionと元stateを保持し、新lifecycle enum/遷移を生成しない。",
+      "025": "候補生成・限定採択・LABO評価・OS受領の単独成功を運用accepted/mature又は独立採用へ代入しない。操作選択に応じた既存工程を全ticket共通gateへ拡張しない。"
+    },
+    "technical_decisions": [
+      {
+        "topic": "有限空projection",
+        "chosen": "既存candidate selectorとtrace writerを維持し、四rule conditionの非発火を閉じたdomainで個別記述する。",
+        "alternatives": "原record1件から無条件unknown軸を作る、fn1/fn3全軸carry、原11member全複製、claims有無だけでemptyを返す。",
+        "reason": "selectorの拡張/担当外混載/新serializer/absenceからの成功を避け、既存candidate localityとsameimmutable provenanceを保持する。旧sourceが本Comparison writerを一意に定めるとの主張ではない。"
+      },
+      {
+        "topic": "有限shape",
+        "chosen": "既知role/key/kind、candidate明示空、record2member、他集合absent/[]だけを閉じる。",
+        "alternatives": "全stage/opaque body意味readerをこのsliceで作る、又は未定をemptyとする。",
+        "reason": "未確定raw意味と正常非発火を混同せず、追加要求/gateなしでD27に必要な局所field割当を具体化する。"
+      }
+    ],
+    "unclosed_projection_boundaries": {
+      "selected_candidate": "既存選択trace規則は保持するが、非空candidate時の全normal/promotion行と複合witnessの順序は本topicで閉じない。",
+      "firing_rules": "四ruleの発火又はcondition/predicate未確定時のsubject/binding/source_refs/reason/owner全割当・Axis/Finding順は未閉包。既存negative ruleを削除又は空列へ置換しない。",
+      "shape": "他Claim kind、供給されたrecord他9member、role/key/型外、他集合非空、partial/invalid input又はbinding不在は本枝外。既存規則と原InputIssueを保持し、新violation/成功へ変換しない。",
+      "custody": "実owner/trust/LABO/OS/BRAIN工程は別責務。本writer/fixtureの一致から実資格/運用採用を認定しない。"
+    },
+    "consumers": [
+      {
+        "consumer": "L5 functions/5",
+        "material": "PromotionContext1→Comparison4。algorithm pointer/validated read記述/既存output_assignmentだけを対応させる。",
+        "boundary": "raw runner/署名/型/helper本体は変更しない。"
+      },
+      {
+        "consumer": "L8 D27 fn5 A/B有限unit",
+        "material": "同call PromotionContext全値と原candidate/typed carrier/Claim censusを材料化し本writerから独立導出する。",
+        "boundary": "L9はraw/patchだけ。既存保存gold又は他fn5期待を答えとして流用しない。"
+      },
+      {
+        "consumer": "build_supply_analysis",
+        "material": "promotion producerとinput_bindingを既存表へ照合し他6Comparisonと独立保持する。",
+        "boundary": "空fn5で他producerのmissing/unknown/conflict/原記録/元InputIssueを相殺しない。"
+      }
+    ],
+    "legacy_rederivation": {
+      "mode": "意味再導出。旧runtime/registry/schema/testをcopy又は実行しない。",
+      "sources": [
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+          "read_lines": "16-60",
+          "preserve": "JSON正本とcomponent境界の規律。旧runtime/schemaをコピーしない。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+          "read_lines": "33-108",
+          "preserve": "source/version/processの追跡。旧TPL/registry/integer version/lifecycle runtimeは移植しない。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-F2C2755C8809C2C0DEAD",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requests.md",
+          "file_sha256": "c3d9f28a17ac8882f22b5cf86b6d0b16c457a996b3eb0682b6de1010d64ea29c",
+          "read_lines": "37-47",
+          "preserve": "段階的promotion、失効/revalidation、authority非侵害。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-5841D44AE1255A061667",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-requirements.md",
+          "file_sha256": "0d395f7ccd81a8c749ef4c3b8c0a660505b6183531992b4678267b5b51c929eb",
+          "read_lines": "28-51",
+          "preserve": "provenance/evaluation/独立検証/段階的adoptionの分離。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-B1F192F46FC3AC336094",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/responsibility-centric-learning-acceptance.md",
+          "file_sha256": "92331097ac54da9482db806df224b3faeb03b250de33a333089bf9f412caa3e7",
+          "read_lines": "22-33",
+          "preserve": "独立検証・段階状態・event-count promotionをしない。"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "file_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+          "read_lines": "80-89",
+          "preserve": "UTW-014 absence blindness、UTW-020 aggregateによるpartial failure隠蔽、UTW-021 prose/self-report、UTW-023 status/implementation不一致を再発させない。"
+        }
+      ],
+      "change": "旧lifecycle/DB/registryを移植せず、現行のcandidate-bound traceと有限Comparison4fieldへ具体化する。旧consumerはsource/知識/工程分離を照らす読取り資料で、現行の入力/実行経路ではない。",
+      "reason": "UTW-014の欠落→空変換、UTW-021の自己申告完了、UTW-023のstate表示と実工程の不一致を、F08既存要求の意味に照らして防ぐ。失敗から新要求又は承認gateを生成しない。"
+    },
+    "limits": [
+      "閉じるのは上記candidate-empty/descriptor専用提案枝。D27 A/Bの原non-null値/target conflict/全presenceを保存する。",
+      "F08全域・全knowledge state・全negative witness・fn5実装/実行・L8全期待・fn7/手順7/Issue完了・新世代CIの成立を示さない。",
+      "有限期待がこの未閉包に当たる場合は当該producerで上流へ返す。"
+    ]
   }
 }
