@@ -1377,7 +1377,8 @@
       "algorithm": [
         "JSON意味sourceとderived_view/explanationを別参照で保持。表示変更/生成成功から意味ID/版/運用stateの更新を成立させない。",
         "measurement/completion/negative oracleのsubject/義務/版/scope/観点/対oracleを個別照合。無関係義務/異oracle版はconflict、生成成功だけのcompletion意味はunknown。",
-        "JSON measurement/completion欠落はviewに値があってもmissingを保持する。BRAINが製品閾値を創作せず原値unknownをCOREへ返す。"
+        "JSON measurement/completion欠落はviewに値があってもmissingを保持する。BRAINが製品閾値を創作せず原値unknownをCOREへ返す。",
+        "L4 /oracle_view_boundary_contractの有限carryはprivate compare_oracle_and_view_boundary_detail(context,frame)へ委譲する。raw runnerは同vの既読frame.target_readsを渡してtarget/intentを再呼出ししない。公開fn4 wrapperは既存fn6方式で同validatedのwalk/uses/frameを一回構成して同detailへ渡す。Context3とComparison4は維持し、非null原提案のresolved非対象住所だけをこの枝で扱う。"
       ],
       "failure_rules": [
         "HELIXBRAIN-L5-032-R-view_measurement_repair",
@@ -3497,6 +3498,9 @@
       "reads": [
         "compare_descriptor_definitions",
         "compare_identity_versions_and_trace"
+      ],
+      "private_reads": [
+        "同vの全DescriptorTargetRead（既存DescriptorTargetCallFrame.target_reads。frameの他既存fieldは搬送するがfn4判定へ再解釈しない）"
       ]
     },
     {
@@ -7479,7 +7483,15 @@
           "body_contract": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
           "effect": "none"
         },
-        {"symbol":"read_claim_intent","input":"(claim:Claim,claim_locator:string)","output":"ClaimIntentRead","public":false,"body_contract":"/claim_intent_detail/reader","effect":"none"}
+        {"symbol":"read_claim_intent","input":"(claim:Claim,claim_locator:string)","output":"ClaimIntentRead","public":false,"body_contract":"/claim_intent_detail/reader","effect":"none"},
+        {
+          "symbol": "compare_oracle_and_view_boundary_detail",
+          "input": "(context:OracleContext, frame:DescriptorTargetCallFrame)",
+          "output": "Comparison",
+          "public": false,
+          "body_contract": "L4 /oracle_view_boundary_contract（同call既読target結果と有限carry writer）",
+          "effect": "none"
+        }
       ],
       "producer": {
         "preserved_core_algorithm": [
@@ -7666,7 +7678,8 @@
           "undefined_guard": "undefined支持にはさらにstate=unknown AND origin_branch=meaning_undefinedが必要。definition_applicabilityのsource_unresolved/NAknown/pairknown/帰属knownは入れない。"
         },
         "route_reason_templates": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals",
-        "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。出力の字面の出典を指定するもので、上流のauthority（承認状態）ではない。"
+        "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。出力の字面の出典を指定するもので、上流のauthority（承認状態）ではない。",
+        "fn4_read_binding": "fn4_detailは同runner/direct wrapper内の既存frame.target_reads全原値から非null Claimに対応するreadを消費する。state/matches/occurrences/problemsを再計算又は部分選択せず、元frameの全4fieldを保持する。fn4はtarget_reads以外のframe内容を新predicateへ使わず、public引数/返却fieldを増やさない。"
       },
       "public_output": {
         "owner_rules": {
@@ -7717,11 +7730,11 @@
           "target_reads=w.target_reads、intent_reads=w.intent_readsを再利用し、同e/reads/intentsからclaim_usesを一回計算する。frameの既存全fieldを同call値から構成し、target/intent portを再呼出ししない。",
           "closed_context_constructors order 2/3のidentity/promotionへ全memberを同vから供給する。既存frameは保持し、この時点で後続fn6/fn7を先行呼出ししない。order 4のF03 detailへ進む。",
           "closed_context_constructors order 4でevaluate_field_values_detailへF03BasicContext全2memberを一度だけ供給する。snapshotは同じv、definitionsは同じe.comparisonをwrite_f03b_comparison_from_existing_comparisonで全値投影する。返却field_value_evaluation.comparisonをwrite_existing_comparison_from_f03でAnalysisContext.values_applicabilityへ接続し、private full resultにF03Evaluation全値を保存する。public fn2をrunner内で再呼出ししない。",
-          "F03 detailのcomparison投影を得た後、closed_context_constructors order 5のoracle、order 6のfn6_detail、order 7のfn7_detailへ順に全memberを供給する。fn6はDependencyContext全2field＋同frame、fn7はClaimContext全7field（validated＋6Comparison）＋同frame。fn7のvalues_applicabilityはorder 4の同投影。e/reads/usesは再計算しない。",
+          "F03 detailのcomparison投影を得た後、closed_context_constructors order 5のoracle、order 6のfn6_detail、order 7のfn7_detailへ順に全memberを供給する。fn6はDependencyContext全2field＋同frame、fn7はClaimContext全7field（validated＋6Comparison）＋同frame。fn7のvalues_applicabilityはorder 4の同投影。e/reads/usesは再計算しない。 order 5もOracleContext全3field＋同frameをprivate fn4_detailへ渡し、既読target_readsを消費する。public fn4 wrapper又はtarget/intent portをrunner内で再呼出ししない。",
           "builderへ既存AnalysisContextを組み立てる。public7Comparison/producer/input_binding/Issue順だけを従来どおり検査し、frameやprivateindexを追加の必須入力にしない。",
           "同callerの既存Observationへframe、fn6/fn7 contexts/returns、definition_native_material=w.native_materialを従来どおり全値保存する。F03Evaluationはprivate DescriptorTargetFlowFullResult.field_value_evaluationへ全値保存する。既存NativeMaterial/Observationの型やmemberは変えず、raw runnerでproject/meaning/pairを再計算しない。"
         ],
-        "no_recompute": "raw runnerはpublic fn1/6/7 wrapperを順に呼び直さずprivate detailを使用。同eを全consumerへ渡し、Index/target readを後段で再walkしない。",
+        "no_recompute": "raw runnerはpublic fn1/6/7 wrapperを順に呼び直さずprivate detailを使用。同eを全consumerへ渡し、Index/target readを後段で再walkしない。 fn4もpublic wrapperを呼び直さず、同frameをprivate detailへ渡す。",
         "ownership": "frameはこのrunner自身が同v/eから構築するprivate値。public rawのstateラベル又は期待を受け取るtrusted入力ではない。新全field equality gate/source実稼働gateは設けない。",
         "closed_context_constructors": [
           {
@@ -7777,14 +7790,15 @@
           },
           {
             "order": 5,
-            "symbol": "compare_oracle_and_view_boundary",
+            "symbol": "compare_oracle_and_view_boundary_detail",
             "type": "OracleContext",
             "fields": {
               "validated": "v",
               "definitions": "e.comparison",
               "identity_trace": "identity_trace"
             },
-            "return": "oracle_view"
+            "return": "oracle_view",
+            "private_frame": "frame"
           },
           {
             "order": 6,
@@ -7848,7 +7862,8 @@
         "fn7": "旧ClaimContextから同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsでuses/frameを構築しfn7_detailへ。既存dependencies_handoffは同snapshot正規fn6の結果という条件を保持。",
         "preconditions": "旧Context.meaning/既存comparison_compositionの同immutable/same producer/binding条件を保持する。異caller cacheを新indexとして信用しない。旧public APIへ新required field追加なし。",
         "builder": "旧5builder testdouble呼出しは従来どおり。index/portsの実供給をbuilder保持wholeの前提に足さない。",
-        "fn2": "既存ValueContextから同じValidatedSupply snapshotのF03 private detailを一回評価し、F03Evaluation.comparisonを既存Comparisonへfieldwise射影して返す。public signature/output shapeは維持し、F03Evaluation全体を返さない。raw runnerはこのpublic wrapperを再呼出しせず、同じdetailのcomparison projectionをAnalysisContextへ渡す。"
+        "fn2": "既存ValueContextから同じValidatedSupply snapshotのF03 private detailを一回評価し、F03Evaluation.comparisonを既存Comparisonへfieldwise射影して返す。public signature/output shapeは維持し、F03Evaluation全体を返さない。raw runnerはこのpublic wrapperを再呼出しせず、同じdetailのcomparison projectionをAnalysisContextへ渡す。",
+        "fn4": "旧OracleContext全3fieldから、既存fn6 wrapper方式で同validatedのwalkを一回計算し、w.evaluation/w.target_reads/w.intent_readsからuses/frameを一回構成しfn4_detailへ渡す新技術選択。raw runnerはこのwrapperを呼ばず前段の同frameを再利用する。context.definitions/identity_traceの同v/指定producer条件は維持し、別call cache/private overrideを追加しない。 Claimの有無によらず同vのframeを一貫させ、件数別の別経路/別call read混入を避けるためfn6方式の一回walk/frame構成へ揃える。"
       },
       "codec_boundary": "公開SupplyInput/Claim/ValidatedSupplyのwire/schemaを変更しない。basicの5target view/Presence/intent型はprivate importしてRawValueから局所constructorで構成し、untrusted raw全体へ新closed-success schemaを一律適用しない。新index/transportは同call計算の内部recordでrawから受理するpublic口ではない。型定義だけで正式codec/実providerの実装を成立済みにしない。",
       "open_items": [
@@ -9692,7 +9707,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "8d8afd4c4e6b9608e67dc158ef8aa5564aa08d5ea6314513639aed06b8659415",
+                  "file_bytes_sha256": "b4d179f888d4d5dd6e55a4976e4c5547b929eb929348b415baa30ac2f093a3cb",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -11024,7 +11039,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "8d8afd4c4e6b9608e67dc158ef8aa5564aa08d5ea6314513639aed06b8659415",
+        "sha256": "b4d179f888d4d5dd6e55a4976e4c5547b929eb929348b415baa30ac2f093a3cb",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11032,7 +11047,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "64f2eea86fe730650e1a6dd4addb934f87a2e9dc2e78f3d5421c8170ac1261d5"
+        "sha256": "6328fb5aa4037c317d34759449bf536a5946fceb6f6e1f48b251e692536c9ab1"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
@@ -13043,7 +13058,7 @@
         "promotion": "既存promotion return",
         "dependencies_handoff": "既存fn6 return"
       },
-      "not_recomputed": "fn0, descriptor walk, target/intent readers, fn1/public fn2, fn6/fn7, buildersは一度のfull pathで二重呼出ししない。existing frameとnative material全値は旧Observationへ従来通り保持し、F03Evaluationはprivate full resultへ保持する。"
+      "not_recomputed": "fn0, descriptor walk, target/intent readers, fn1/public fn2, fn6/fn7, buildersは一度のfull pathで二重呼出ししない。existing frameとnative material全値は旧Observationへ従来通り保持し、F03Evaluationはprivate full resultへ保持する。 order 5のfn4も同frameのprivate detailを一回呼び、public wrapper/target/intent readerを重ねて呼ばない。"
     },
     "meaning_reader_boundary": {
       "existing_bundle_owner": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle は既存fn1/F01 descriptor意味reader（read_original_definition_meaning_bundle）の返却保存である。F03 field meaning readerと型/意味が同一とは仮定しない。",
