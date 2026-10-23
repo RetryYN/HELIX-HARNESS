@@ -2322,7 +2322,9 @@
         "/source_return_contract/descriptor_target_dataflow/functions/0",
         "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
         "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionEvaluation",
-        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial"
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule"
       ]
     },
     "fixed_git_source_header_pointer": "/whole_fn1_verification/fixed_git_sources",
@@ -2547,9 +2549,9 @@
       "symbol": "evaluate_descriptor_definition_walk",
       "A_context_pointer": "/reconstruction/seed/function_call_arguments/A/context",
       "B_context_pointer": "/reconstruction/seed/function_call_arguments/B/context",
-      "return_pointer_basis": "reconstruction.expected_return_pointers",
+      "return_pointer_basis": "/whole_fn1_verification/reconstruction/expected_return_pointers",
       "public_projection_ja": "top/functions/1 compare_descriptor_definitionsは同returnのevaluation.comparisonのみ返す。"
     },
-    "oracle_and_limits_ja": "既存の独立検収済みComparison4/Assessment9/Native7/target8/intent6を原call別に固定再利用し、新しい結合は独立whole4期待・全索引・原Claim/locator順へ照合する。fn0資格はinput_issues=[]/unusable_source_refs=[]の条件付きであり実行/成立を認定しない。reader/helper/製品/旧runtime/CIは未実行。ClaimUse/fn6fn7/14child凍結/Issue完了は範囲外。"
+    "oracle_and_limits_ja": "既存fixtureのComparison4/Assessment9/Native7/target8/intent6を原call別に固定再利用する。各fieldは宣言RFCのcopy元から組み立て、A assessmentsはcompleted_Aの16件、B assessmentsは合成33件をcopy後に先頭16件をremoveした後続17件、target_reads/intent_readsはread_arrayのA/B列を使い、各call全4fieldをcanonical hashで固定する。本unitは独立した全値oracle又は検収成立の証跡を収めるものではない。limits/1のclosed_contract_refは従来の境界を指す歴史pinとして保持し、現在の全4fieldと読取順の根拠は本unitのcontract_basisを参照する。fn0資格はinput_issues=[]/unusable_source_refs=[]の条件付きであり実行/成立を認定しない。reader/helper/製品/旧runtime/CIは未実行。ClaimUse/fn6fn7/14child凍結/Issue完了は範囲外。"
   }
 }
