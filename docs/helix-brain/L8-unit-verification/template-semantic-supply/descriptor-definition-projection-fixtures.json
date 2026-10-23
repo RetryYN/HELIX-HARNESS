@@ -4697,7 +4697,7 @@
         "A": "4b7927bb97aefc8a2a1c494873260ecd9899e96373140343fced4e78405259f3",
         "B": "2d07141fa23d38c73581194fe56be6b2986e2357d9158fe91e137ef70d76d645"
       },
-      "source_resolution_rule_ja": "新outer3→既存fn3 recipe61imports/856RFC→ClaimUse-B2imports/25RFC→local21copyの順（計66imports/902RFC）。各fixed rowのfile/canonical hashとnull destinationを照合し、旧revisionをcurrent名から進めない。再帰include/製品helperではなく有限の標準RFC復元だけを用いる。",
+      "source_resolution_rule_ja": "新outer3→既存fn3 recipe61imports/856RFC→ClaimUse-B2imports/25RFC→local21copyの順（計66imports/902RFC）。各fixed rowのfile/canonical hashとnull destinationを照合し、旧revisionをcurrent名から進めない。再帰include/製品helperではなく有限の標準RFC復元だけを用いる。 L4_CURRENT /oracle_view_boundary_contract→source_contracts/oracle_viewは、有限domain/rule解釈の出典を同bundleへ固定して照合する契約pin専用importである。RFC copyの値供給元として使わず、66importsの照合対象として保持する。",
       "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。"
     },
     "function_call": {
@@ -4913,6 +4913,7 @@
         ]
       }
     },
+    "finite_domain_observation_legend_ja": "claims[].null_target_resolution_requiredは、この有限観測ではfalseが明示null提案について対象住所の解決を必須にしないことを表す。nullは非null Claimでは当該null用観測が該当しないことを表し、対象確認の省略ではない。非null提案のresolved/全match非対象kindという確認結果は同じclaim観測のoriginal_target_state/original_match_kindsに保持する。",
     "derivation_ja": [
       "A/Bを別々に導出し、両fn1 axes原index1/4/5（completion/measurement/negative oracle definition）を元順でcopyする。3literalの列挙順へsortせず、全7member・原reason・反復を保持する。他fn1軸/Findingやfn3軸/Findingは転載しない。",
       "全source role/key集合と3位置typed kind censusは固定writerの許容範囲。実measurement/completion/negative oracle slot/fact/operation、oracle/values/handoff recordは0件。各absentを[]へ書き換えない。required kind一覧の3名を実slotへ変えない。",
@@ -4925,13 +4926,13 @@
         "rule_pointer": "/failure_rules/68",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "read": "全source.role/content key集合、原Claim/basis。",
-        "nonfire": "実derived_view sourceが0件で、conditionのmeasurement view補修operandが供給されない。generic missingはcarry。"
+        "nonfire": "実derived_view sourceが0件で、conditionのmeasurement view補修operandが供給されない。generic missingはcarry。 L4 rule_condition_interpretationのconditionとpredicateを一体で読む技術判断の下での非発火である。"
       },
       {
         "rule_pointer": "/failure_rules/69",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "read": "同全source/Claim、completion実slot/fact。",
-        "nonfire": "実derived_view sourceは0件で、completionをview根拠で補修するoperandが無い。kindだけを排除理由にしない。"
+        "nonfire": "実derived_view sourceは0件で、completionをview根拠で補修するoperandが無い。kindだけを排除理由にしない。 L4 rule_condition_interpretationのconditionとpredicateを一体で読む技術判断の下での非発火である。"
       },
       {
         "rule_pointer": "/failure_rules/70",
