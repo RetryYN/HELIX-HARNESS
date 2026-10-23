@@ -117004,5 +117004,294 @@
       "expected_comparison_canonical_sha256": "7980bd6f2e40e2d17a14f09a3b11c734e7ecb905f141c42669b67aa2780c6932",
       "expected_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494"
     }
+  },
+  "definition_meaning_fn1_A_full_walk_verification": {
+    "id": "HELIXBRAIN-L8-D26A-FN1-FULL-WALK",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "有限A入力に対するfn1 evaluate_descriptor_definition_walkの全4member期待候補（evaluation.comparison/assessments、native_material、target_reads、intent_reads）と一回の条件付き引数。fn0 qualificationは未実行。B/C/D27、fn6/fn7、finalは対象外。",
+    "execution_boundary_ja": "製品fn0/function/helper/runtimeは実行しない。raw Aがfn0に受理されinput_issues=[]かつunusable_source_refs=[]となる条件下の仮定引数であり、実受理・資格を主張しない。期待は前段L8 accepted blockの固定Git seedとRFC列を再構成し、全4memberをcopyで組み立てた有限候補。受入、実行結果、fn6/fn7/final完了を主張しない。",
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/same_call_and_public_projection/public_types",
+          "/definition_meaning_resolution_contract/call_bindings/meaning_request_constructor"
+        ],
+        "derivation_ja": [
+          "Comparisonは既存公開型を保持し、private walkから返る同一call値を再構成する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+        "pointers": [
+          "/descriptor_meanings/0"
+        ],
+        "derivation_ja": [
+          "MeaningRead normative frameに保持された歴史snapshot。現在のL4/L5 contract sourceと区別する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/functions/0",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/signatures_and_callers/0",
+          "/type_contract/types/DefinitionContext",
+          "/type_contract/types/ValidatedSupply",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult/closed_fields",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionEvaluation/closed_fields",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality"
+        ],
+        "derivation_ja": [
+          "function inputはDefinitionContext一つ。DefinitionContextはvalidated一fieldで、そのValidatedSupplyはinput/input_issues/unusable_source_refsの3field。返却はDefinitionMeaningWalkResultのclosed_fields 4member、evaluationはComparison/DescriptorDefinitionAssessment[]の2member。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+        "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction",
+          "/definition_meaning_fn1_A_assessments_verification/reconstruction",
+          "/definition_meaning_reader_verification/reconstruction",
+          "/definition_applicability_na_verification/reconstruction",
+          "/definition_meaning_fn1_A_native_verification/reconstruction"
+        ],
+        "derivation_ja": [
+          "accepted input seed及び各段の既存RFC operation arrayだけを固定Gitから材料化する。比較/assessment/native期待の原型を直接複製しない。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input"
+        ],
+        "derivation_ja": [
+          "有限Aのraw inputだけをimportし、L9 expected/件数を読まない。claims member不在を保つ。"
+        ]
+      }
+    ],
+    "fixed_git_sources": {
+      "L8_ACCEPTED_INPUTS": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+        "sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+      },
+      "L9_RAW_A": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "input_derivation_ja": "function_call.arguments.contextはDefinitionContext全一fieldを明示し、そのvalidatedはaccepted reader_input_candidate全値をRFC copyする。reader_input_candidateのValidatedSupplyはinput=固定L9 raw A、input_issues=[]、unusable_source_refs=[]の3fieldであり、raw canonical SHAはe387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b。これはfn0 qualificationが成立した場合の条件付き入力で、fn0は実行しない。",
+    "return_assembly_ja": "既存Comparison/Assessment/reader/NA/nativeのsource seedとoperation arraysを各固定Git pointerからimportし、比較69→assessment110→meaning reader8→native107 operationの順に標準RFC 6902として適用する。その後6 copyでcall argumentとDefinitionMeaningWalkResult全4memberを組み立て、評価値や配列内容を独立に再記述しない。各output memberは同一workspaceで前段reconstruction後に得た値をcopyする。",
+    "function_call": {
+      "symbol": "evaluate_descriptor_definition_walk",
+      "signature_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/signatures_and_callers/0",
+      "arguments_pointer": "/function_call/arguments",
+      "context_pointer": "/function_call/arguments/context",
+      "validated_pointer": "/function_call/arguments/context/validated",
+      "expected_return_pointer": "/expected_return",
+      "call_count": 1
+    },
+    "reader_frame_provenance_ja": "accepted MeaningRead normative_frameには歴史的L4 snapshot（revision 5a3cfa984fab34f31ce623d667db1670f80b1544、file SHA 033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2）が含まれる。current L4/L5 source pinsは別basisで示し、歴史frameを現行契約revisionとみなさない。",
+    "reconstruction": {
+      "source_resolution_rule_ja": "fixed Git revision/file SHAとimport pointer/value hashを照合し、全値をdeep copyする。workspace seedはaccepted native blockの完全seedを固定importし、新規wrapper seedはfunction_callのDefinitionContext validated placeholderとexpected_returnの4-member placeholderのみ。既存RFC arraysはそれぞれのbundle_pointerにimportし、listed phase pointer順に標準RFC6902 arrayとして/workspaceをrootに適用する。最後にlocal rfc6902_operationsをseed全体をrootとして原順で適用する。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_native_verification/reconstruction/seed",
+          "bundle_pointer": "/workspace",
+          "value_canonical_sha256": "4d649aac53529a6c4c469b7c4af322050a5c2a2e71a799fc83c3e3fdb769ff4b",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L9_RAW_A",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/workspace/source_snapshot/raw_A",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/workspace/comparison",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "bundle_pointer": "/workspace/comparison_sort",
+          "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/workspace/comparison_prefix_operations",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/workspace/assessments",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/workspace/assessment_prefix_operations",
+          "value_canonical_sha256": "b37db5d6cbef3e245a219ac8f22c5c0ee5ca4de471ec9c72cb097a3e8c0d5951",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/reader_input_candidate",
+          "bundle_pointer": "/workspace/reader_input_candidate",
+          "value_canonical_sha256": "52d74ec4a0cf1f6362916bf950d003526e458882273c2f337722035e9a026c88",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/expected_bundle",
+          "bundle_pointer": "/workspace/expected_bundle",
+          "value_canonical_sha256": "8694f7936ecee409962165b686fe3b5d0cb2d614e042b40cdad8ae2a2242a66d",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/workspace/meaning_reader_prefix_operations",
+          "value_canonical_sha256": "c87f545ace49e49c989fb64b36102d46715f124608489e398abe04b63d66904d",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/direct_helper_fixtures/0/calls/0/reader_expected_return",
+          "bundle_pointer": "/workspace/na_read_candidate",
+          "value_canonical_sha256": "78a98af9a2dc456fde501fd415b48b17fdef5fd161735595c151adc3560e8267",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/expected_native_material_projection/A/applicability_judgment_batches/0",
+          "bundle_pointer": "/workspace/na_batch_candidate",
+          "value_canonical_sha256": "603c1d314e84d848e445bf3f8f4ae8622e4841fa032ed1955335fbdef5957b69",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "aac65341dba64cea1e9ab3fcfbf86cbd298b82e5",
+          "source_pointer": "/definition_meaning_fn1_A_native_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/native_prefix_operations",
+          "value_canonical_sha256": "79a23f73e85d7064cb610642e0128651adf71e723547c8e11988235e99c9a6c3",
+          "file_sha256": "5963188216c7aee1096ec60843d0499d1641047e8b729d913346f68c4fb423cd"
+        }
+      ],
+      "seed": {
+        "workspace": null,
+        "native_prefix_operations": null,
+        "function_call": {
+          "arguments": {
+            "context": {
+              "validated": null
+            }
+          }
+        },
+        "expected_return": {
+          "evaluation": {
+            "comparison": null,
+            "assessments": null
+          },
+          "native_material": null,
+          "target_reads": null,
+          "intent_reads": null
+        }
+      },
+      "rfc6902_operation_sources_in_order": [
+        "/workspace/comparison_prefix_operations",
+        "/workspace/assessment_prefix_operations",
+        "/workspace/meaning_reader_prefix_operations",
+        "/native_prefix_operations"
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/workspace/reader_input_candidate",
+          "path": "/function_call/arguments/context/validated"
+        },
+        {
+          "op": "copy",
+          "from": "/workspace/comparison",
+          "path": "/expected_return/evaluation/comparison"
+        },
+        {
+          "op": "copy",
+          "from": "/workspace/assessments",
+          "path": "/expected_return/evaluation/assessments"
+        },
+        {
+          "op": "copy",
+          "from": "/workspace/native_material",
+          "path": "/expected_return/native_material"
+        },
+        {
+          "op": "copy",
+          "from": "/workspace/target_reads",
+          "path": "/expected_return/target_reads"
+        },
+        {
+          "op": "copy",
+          "from": "/workspace/intent_reads",
+          "path": "/expected_return/intent_reads"
+        }
+      ],
+      "operation_count": 6,
+      "operation_types": {
+        "copy": 6
+      },
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+      "expected_comparison_canonical_sha256": "7980bd6f2e40e2d17a14f09a3b11c734e7ecb905f141c42669b67aa2780c6932",
+      "expected_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494",
+      "expected_native_material_canonical_sha256": "70c02450d2a36ea8775ae18a256a2e40dfda579824d391190d5b99f1281c75a4",
+      "expected_return_pointer": "/expected_return",
+      "expected_return_canonical_sha256": "a570851a8566fcd2afb82969a4f71b7575386fc9307564c40649a4a41b8cbb51",
+      "canonical_writer_assumption_ja": "既存L8の局所材料化で用いるcanonical hash仮定であり、L5 writer contractがこのwriterを閉じるという意味ではない。UTF-8 JSONをensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でcanonical化し、配列順/重複を保ちobject keyのみsortする。RFC操作は標準copyのみ。"
+    }
   }
 }
