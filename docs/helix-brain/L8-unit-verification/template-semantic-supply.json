@@ -116048,5 +116048,961 @@
       "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
     },
     "assessment_derivation_ja": "実slotのdescriptor.attribution assessment stateはL5 helper_event_projection/rules/0とcommon_copyに従い、元helper AxisResult.stateを完成Comparison axes[15]からcopyする。template identityのslot判定はL5定義結果のknown/existing_definition_result。root要求frameはraw required_descriptor_kinds固定順から実slot kindを除いた14種がslot absentとなり、missing/required_slot_absent。不在slotには対応する原slot/factがないため、その判定のslot_locatorsとfact_locatorsは空列となる。各軸・Findingは同event由来で保持し、Assessmentの配列順はroot/frame内kind走査順。indexとoriginal_axesは完成Comparisonとfinal_sort_indexからcopyする。"
+  },
+  "definition_meaning_fn1_A_native_verification": {
+    "id": "HELIXBRAIN-L8-D26A-FN1-NATIVE-MATERIAL",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "fn1のA入力に対するDefinitionNativeMaterial全7列とDefinitionMeaningWalkResult.target_reads/intent_readsの有限期待候補。fn0 source qualificationは条件付き未実行。Comparison・assessment・meaning/NA readerは固定Git入力から既存RFCで再構成する。fn1 whole return、B/C、D27、fn6/fn7、finalは対象外。",
+    "execution_boundary_ja": "製品runtime/helperは実行しない。raw、accepted reader seed、既存RFC copyとL5 writer/event契約から有限期待を組み立てる。native materialと空reader arraysの期待候補であり、実行・schema validationの完了を主張しない。",
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/call_bindings/meaning_request_constructor",
+          "/definition_meaning_resolution_contract/normative_basis_snapshot/entries",
+          "/definition_meaning_resolution_contract/same_call_and_public_projection/public_types"
+        ],
+        "derivation_ja": [
+          "reader callの元slot/fact要求と固定normative basis frameの来歴を対応する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "file_sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2",
+        "pointers": [
+          "/descriptor_meanings/0"
+        ],
+        "derivation_ja": [
+          "MeaningRead.normative_frame内の歴史的revision/file hash/entry値を検証する。現在L4 pinと混同しない。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningReadBundle",
+          "/source_return_contract/descriptor_target_dataflow/index_types/MeaningReadOriginObservation",
+          "/source_return_contract/descriptor_target_dataflow/index_types/MeaningPairAnnotatedRead",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionApplicabilityJudgmentBatch",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_reader_bundle",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection",
+          "/failure_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/origin_constructor_totality",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activation",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_schedule",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/source_originals/meaning_pair_axes",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/private_types/MeaningPairAnnotatedResult/invariant"
+        ],
+        "derivation_ja": [
+          "native各列/Originのclosed fieldsを保持する。descriptor attribution state・7fieldはhelper返却由来。meaning bundleとsidecarを別NativeMaterial列へ展開し、all duplicatesを保持。source sort列は原fact Ref→同read occurrence Refを順に加える。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+        "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction",
+          "/definition_meaning_fn1_A_assessments_verification/reconstruction",
+          "/definition_meaning_reader_verification/reconstruction",
+          "/definition_applicability_na_verification/reconstruction"
+        ],
+        "derivation_ja": [
+          "accepted A Comparison/assessment/Meaning reader/NA reader materialを固定Git seedと既存RFC operation arraysで再構成する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0/facts/0/source_ref",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/sources"
+        ],
+        "derivation_ja": [
+          "formal A rawをそのまま保持し、claims member不在、sources array供給presence、slot/fact/source locatorsを維持する。"
+        ]
+      }
+    ],
+    "fixed_git_sources": {
+      "L4_CURRENT": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      },
+      "L4_MEANING_FRAME_HISTORY": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "5a3cfa984fab34f31ce623d667db1670f80b1544",
+        "sha256": "033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2"
+      },
+      "L5": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
+      },
+      "L8_ACCEPTED_INPUTS": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+        "sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+      },
+      "L9_RAW_A": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "reader_bundle_provenance_ja": "MeaningRead.normative_frameはaccepted reader seedから再構成される歴史的L4 snapshot（revision 5a3cfa984fab34f31ce623d667db1670f80b1544、file SHA 033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2）を保持する。current L4/L5 contract pinsは別source entryであり、歴史frameを現在schema sourceへ読み替えない。",
+    "origin_derivation_ja": "OriginはAssessmentと同じevent ordinal。二つのpositive eventは、descriptor attribution helper由来のattribution eventと、meaning reader supportに支えられたpositive eventである。attribution eventのbackflow_owner=nullはhelperが返すComparison axisを介して保持する。meaning-positive eventのowner値はaccepted Assessment original_axesからcopyし、support linkだけをaccepted single read/supportから作る。rootの14 missing eventはAのraw required_descriptor_kindsから実slotのtemplate identityを除いた固定kind順で、L5 failure-rule array indexを対応付ける。raw sourcesはsupplied arrayなのでmissing originのsort_source_refsはsupplied([])。positive originのsort refsはfact.source_refから同read occurrence.source_refへ、原順と重複を保って並べる。このAのmissing origins 3〜15をorigin 2からcopyするのは、assessment_key・axis_name・ordinal・finding_rule_indicesを除くfieldが当該14件で同値であることに限っている。",
+    "reader_output_boundary_ja": "意味reader outputのread objectのみmeaning_reads[0]へcopyし、problem_scopes/support_origins sidecarをmeaning_read_origins[0]へ別々にcopyする。bundle全体をmeaning_readsへ入れない。NA read/batchはaccepted NA seed由来の全値を個別copyする。L9 /definition_meaning_resolution_verification_plan/finite_A_raw_inputにdisplay_groups・required_relations・claims memberがなく、L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/activationが要求する原発見点がないためspecial_reads=[]。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4は原fill_definition Claimだけをtarget/intent両portの読取対象とする一方、L9同rawにclaims member自体がないためtarget_reads=[]・intent_reads=[]（absentのまま保持し[]へdefaultしない）。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/pair_call_scheduleに従い実在slotでpair readerを一回呼び、全返却をpair_reads[0]へ保存する。L9 /definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0はbinding.template_refがobjectでdescriptor_kindが供給され、factsが1件なのでL5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/source_originals/meaning_pair_axesのguardは通りi<j loopは0回。L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/private_types/MeaningPairAnnotatedResult/invariantに従い、guard成立時はnullでなくaxes=[]・origins=[]。",
+    "reconstruction": {
+      "source_resolution_rule_ja": "固定Git source revision/file SHAを照合し、import pointer値をcanonical hash後にseed placeholderへdeep copyする。workspaceに固定importを配置した後、Comparison RFC operation array、Assessment RFC operation array、Meaning reader RFC operation arrayの順に適用し、最後にこのblockのstandard RFC 6902 operationsを配列順に適用する。前段arrayはL8固定revisionからの既存RFCであり、個々のoperationを再掲しない。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L9_RAW_A",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/comparison",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort",
+          "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_prefix_operations",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/assessments",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/assessment_prefix_operations",
+          "value_canonical_sha256": "b37db5d6cbef3e245a219ac8f22c5c0ee5ca4de471ec9c72cb097a3e8c0d5951",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/reader_input_candidate",
+          "bundle_pointer": "/reader_input_candidate",
+          "value_canonical_sha256": "52d74ec4a0cf1f6362916bf950d003526e458882273c2f337722035e9a026c88",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/seed/expected_bundle",
+          "bundle_pointer": "/expected_bundle",
+          "value_canonical_sha256": "8694f7936ecee409962165b686fe3b5d0cb2d614e042b40cdad8ae2a2242a66d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_meaning_reader_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/meaning_reader_prefix_operations",
+          "value_canonical_sha256": "c87f545ace49e49c989fb64b36102d46715f124608489e398abe04b63d66904d",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/direct_helper_fixtures/0/calls/0/reader_expected_return",
+          "bundle_pointer": "/na_read_candidate",
+          "value_canonical_sha256": "78a98af9a2dc456fde501fd415b48b17fdef5fd161735595c151adc3560e8267",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        },
+        {
+          "source_key": "L8_ACCEPTED_INPUTS",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "0b451846df6c5cf2fef7153b64af7aa6710387d7",
+          "source_pointer": "/definition_applicability_na_verification/reconstruction/seed/expected_native_material_projection/A/applicability_judgment_batches/0",
+          "bundle_pointer": "/na_batch_candidate",
+          "value_canonical_sha256": "603c1d314e84d848e445bf3f8f4ae8622e4841fa032ed1955335fbdef5957b69",
+          "file_sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
+        }
+      ],
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null
+        },
+        "comparison": null,
+        "comparison_sort": null,
+        "comparison_prefix_operations": null,
+        "assessments": null,
+        "assessment_prefix_operations": null,
+        "reader_input_candidate": null,
+        "expected_bundle": null,
+        "meaning_reader_prefix_operations": null,
+        "na_read_candidate": null,
+        "na_batch_candidate": null,
+        "native_material": {
+          "meaning_reads": [],
+          "applicability_reads": [],
+          "special_reads": [],
+          "judgment_origins": [
+            {
+              "ordinal": 0,
+              "assessment_key": null,
+              "branch": null,
+              "state": null,
+              "cause": "owner_descriptor_attribution",
+              "slot_locators": [],
+              "fact_locators": [],
+              "meaning_read_indices": [],
+              "applicability_read_indices": [],
+              "subject_ref": {
+                "presence": "supplied",
+                "value": null
+              },
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "axis_name": null,
+              "original_refs": [],
+              "reason": null,
+              "backflow_owner": null,
+              "finding_rule_indices": [],
+              "sort_source_refs": {
+                "presence": "supplied",
+                "value": []
+              },
+              "special_read_indices": [],
+              "pair_origin_links": [],
+              "applicability_judgment_links": [],
+              "meaning_support_links": [],
+              "meaning_problem_links": [],
+              "special_support_links": []
+            },
+            {
+              "ordinal": 1,
+              "assessment_key": null,
+              "branch": null,
+              "state": null,
+              "cause": "owner_interpretation_positive_supported",
+              "slot_locators": [],
+              "fact_locators": [],
+              "meaning_read_indices": [
+                0
+              ],
+              "applicability_read_indices": [],
+              "subject_ref": {
+                "presence": "supplied",
+                "value": null
+              },
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "axis_name": null,
+              "original_refs": [],
+              "reason": null,
+              "backflow_owner": null,
+              "finding_rule_indices": [],
+              "sort_source_refs": {
+                "presence": "supplied",
+                "value": []
+              },
+              "special_read_indices": [],
+              "pair_origin_links": [],
+              "applicability_judgment_links": [],
+              "meaning_support_links": [
+                {
+                  "meaning_read_index": 0,
+                  "support_index": 0
+                }
+              ],
+              "meaning_problem_links": [],
+              "special_support_links": []
+            },
+            {
+              "ordinal": 2,
+              "assessment_key": null,
+              "branch": null,
+              "state": null,
+              "cause": "required_slot_absent",
+              "slot_locators": null,
+              "fact_locators": null,
+              "meaning_read_indices": [],
+              "applicability_read_indices": [],
+              "subject_ref": {
+                "presence": "supplied",
+                "value": null
+              },
+              "binding": {
+                "presence": "supplied",
+                "value": null
+              },
+              "axis_name": null,
+              "original_refs": null,
+              "reason": null,
+              "backflow_owner": null,
+              "finding_rule_indices": [
+                12
+              ],
+              "sort_source_refs": {
+                "presence": "supplied",
+                "value": []
+              },
+              "special_read_indices": [],
+              "pair_origin_links": [],
+              "applicability_judgment_links": [],
+              "meaning_support_links": [],
+              "meaning_problem_links": [],
+              "special_support_links": []
+            }
+          ],
+          "pair_reads": [
+            {
+              "slot_locator": null,
+              "result": {
+                "axes": [],
+                "origins": []
+              }
+            }
+          ],
+          "applicability_judgment_batches": [],
+          "meaning_read_origins": [
+            {
+              "meaning_read_index": 0,
+              "problem_scopes": null,
+              "support_origins": []
+            }
+          ]
+        },
+        "target_reads": [],
+        "intent_reads": []
+      },
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/expected_bundle/read",
+          "path": "/native_material/meaning_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/expected_bundle/problem_scopes",
+          "path": "/native_material/meaning_read_origins/0/problem_scopes"
+        },
+        {
+          "op": "copy",
+          "from": "/expected_bundle/support_origins",
+          "path": "/native_material/meaning_read_origins/0/support_origins"
+        },
+        {
+          "op": "copy",
+          "from": "/na_read_candidate",
+          "path": "/native_material/applicability_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/na_batch_candidate",
+          "path": "/native_material/applicability_judgment_batches/-"
+        },
+        {
+          "op": "copy",
+          "from": "/expected_bundle/read/slot_locator",
+          "path": "/native_material/pair_reads/0/slot_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/key",
+          "path": "/native_material/judgment_origins/0/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/origin_branch",
+          "path": "/native_material/judgment_origins/0/branch"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/state",
+          "path": "/native_material/judgment_origins/0/state"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/slot_locators",
+          "path": "/native_material/judgment_origins/0/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/fact_locators",
+          "path": "/native_material/judgment_origins/0/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/axis_name",
+          "path": "/native_material/judgment_origins/0/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/0/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/original_axes/0/binding",
+          "path": "/native_material/judgment_origins/0/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/original_axes/0/original_refs",
+          "path": "/native_material/judgment_origins/0/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/original_axes/0/reason",
+          "path": "/native_material/judgment_origins/0/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/0/original_axes/0/backflow_owner",
+          "path": "/native_material/judgment_origins/0/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/key",
+          "path": "/native_material/judgment_origins/1/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/origin_branch",
+          "path": "/native_material/judgment_origins/1/branch"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/state",
+          "path": "/native_material/judgment_origins/1/state"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/slot_locators",
+          "path": "/native_material/judgment_origins/1/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/fact_locators",
+          "path": "/native_material/judgment_origins/1/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/axis_name",
+          "path": "/native_material/judgment_origins/1/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/1/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/original_axes/0/binding",
+          "path": "/native_material/judgment_origins/1/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/original_axes/0/original_refs",
+          "path": "/native_material/judgment_origins/1/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/original_axes/0/reason",
+          "path": "/native_material/judgment_origins/1/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/1/original_axes/0/backflow_owner",
+          "path": "/native_material/judgment_origins/1/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref",
+          "path": "/native_material/judgment_origins/0/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref",
+          "path": "/native_material/judgment_origins/1/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/expected_bundle/read/occurrences/0/source_ref",
+          "path": "/native_material/judgment_origins/1/sort_source_refs/value/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/key",
+          "path": "/native_material/judgment_origins/2/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/origin_branch",
+          "path": "/native_material/judgment_origins/2/branch"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/state",
+          "path": "/native_material/judgment_origins/2/state"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/slot_locators",
+          "path": "/native_material/judgment_origins/2/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/fact_locators",
+          "path": "/native_material/judgment_origins/2/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/axis_name",
+          "path": "/native_material/judgment_origins/2/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/original_axes/0/subject_ref",
+          "path": "/native_material/judgment_origins/2/subject_ref/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/original_axes/0/binding",
+          "path": "/native_material/judgment_origins/2/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/original_axes/0/original_refs",
+          "path": "/native_material/judgment_origins/2/original_refs"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/original_axes/0/reason",
+          "path": "/native_material/judgment_origins/2/reason"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/2/original_axes/0/backflow_owner",
+          "path": "/native_material/judgment_origins/2/backflow_owner"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/native_material/judgment_origins/2",
+          "path": "/native_material/judgment_origins/-"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/3/key",
+          "path": "/native_material/judgment_origins/3/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/3/axis_name",
+          "path": "/native_material/judgment_origins/3/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/3/ordinal",
+          "value": 3
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/3/finding_rule_indices",
+          "value": [
+            15
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/4/key",
+          "path": "/native_material/judgment_origins/4/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/4/axis_name",
+          "path": "/native_material/judgment_origins/4/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/4/ordinal",
+          "value": 4
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/4/finding_rule_indices",
+          "value": [
+            18
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/5/key",
+          "path": "/native_material/judgment_origins/5/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/5/axis_name",
+          "path": "/native_material/judgment_origins/5/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/5/ordinal",
+          "value": 5
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/5/finding_rule_indices",
+          "value": [
+            21
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/6/key",
+          "path": "/native_material/judgment_origins/6/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/6/axis_name",
+          "path": "/native_material/judgment_origins/6/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/6/ordinal",
+          "value": 6
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/6/finding_rule_indices",
+          "value": [
+            24
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/7/key",
+          "path": "/native_material/judgment_origins/7/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/7/axis_name",
+          "path": "/native_material/judgment_origins/7/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/7/ordinal",
+          "value": 7
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/7/finding_rule_indices",
+          "value": [
+            27
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/8/key",
+          "path": "/native_material/judgment_origins/8/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/8/axis_name",
+          "path": "/native_material/judgment_origins/8/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/8/ordinal",
+          "value": 8
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/8/finding_rule_indices",
+          "value": [
+            30
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/9/key",
+          "path": "/native_material/judgment_origins/9/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/9/axis_name",
+          "path": "/native_material/judgment_origins/9/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/9/ordinal",
+          "value": 9
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/9/finding_rule_indices",
+          "value": [
+            33
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/10/key",
+          "path": "/native_material/judgment_origins/10/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/10/axis_name",
+          "path": "/native_material/judgment_origins/10/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/10/ordinal",
+          "value": 10
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/10/finding_rule_indices",
+          "value": [
+            36
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/11/key",
+          "path": "/native_material/judgment_origins/11/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/11/axis_name",
+          "path": "/native_material/judgment_origins/11/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/11/ordinal",
+          "value": 11
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/11/finding_rule_indices",
+          "value": [
+            39
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/12/key",
+          "path": "/native_material/judgment_origins/12/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/12/axis_name",
+          "path": "/native_material/judgment_origins/12/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/12/ordinal",
+          "value": 12
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/12/finding_rule_indices",
+          "value": [
+            42
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/13/key",
+          "path": "/native_material/judgment_origins/13/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/13/axis_name",
+          "path": "/native_material/judgment_origins/13/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/13/ordinal",
+          "value": 13
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/13/finding_rule_indices",
+          "value": [
+            45
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/14/key",
+          "path": "/native_material/judgment_origins/14/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/14/axis_name",
+          "path": "/native_material/judgment_origins/14/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/14/ordinal",
+          "value": 14
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/14/finding_rule_indices",
+          "value": [
+            48
+          ]
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/15/key",
+          "path": "/native_material/judgment_origins/15/assessment_key"
+        },
+        {
+          "op": "copy",
+          "from": "/assessments/15/axis_name",
+          "path": "/native_material/judgment_origins/15/axis_name"
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/15/ordinal",
+          "value": 15
+        },
+        {
+          "op": "replace",
+          "path": "/native_material/judgment_origins/15/finding_rule_indices",
+          "value": [
+            51
+          ]
+        }
+      ],
+      "operation_count": 107,
+      "operation_types": {
+        "copy": 81,
+        "replace": 26
+      },
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+      "expected_meaning_bundle_canonical_sha256": "bed488a12a3e52aacb7f06b0eab1354b1e00bfc79c0f9f0d6f93ffe3c9b5adfc",
+      "expected_native_material_canonical_sha256": "70c02450d2a36ea8775ae18a256a2e40dfda579824d391190d5b99f1281c75a4",
+      "expected_native_material_pointer": "/native_material",
+      "expected_target_reads": [],
+      "expected_intent_reads": [],
+      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。固定Git JSON sourceをUTF-8で読取り、ensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でvalue canonical SHA-256を再現する。配列順と重複は保持しobject keyだけをsortする。RFC 6902実装は既存L8記法のstandard copy/replaceのみを使う。",
+      "expected_comparison_canonical_sha256": "7980bd6f2e40e2d17a14f09a3b11c734e7ecb905f141c42669b67aa2780c6932",
+      "expected_assessments_canonical_sha256": "d5f72fca7133cdcf7147a49fe88610feed7bca44580aff4eba57977e664f9494"
+    }
   }
 }
