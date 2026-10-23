@@ -121945,5 +121945,573 @@
         }
       ]
     }
+  },
+  "definition_meaning_fn1_C_assessments_verification": {
+    "id": "HELIXBRAIN-L8-D26C-FN1-ASSESSMENTS-CANDIDATE",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "有限C rawに対するfn1 assessments全22件・各9fieldの期待候補。既存A16件を維持し、C原eventの帰属2件・positive4件を追加する。Comparison/native/全walkの別責務やfn0資格判定へ拡張しない。",
+    "execution_boundary_ja": "製品/helper/runtime/fn0は実行しない。A Comparison seedと69 RFC、merge済みC Comparisonの103 RFC、A assessment seedと110 RFCを固定Gitから順適用後、C原event16..21を60 copyで追加する。C ComparisonはPR3623の明示merge/read-after済みede2580e00d890ca0353ed3884b05bdaeb6299d4に固定する。静的未実行候補であり、受入・製品TDD・fn6/fn7/final完了を生成しない。",
+    "fixed_git_sources": {
+      "L4": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      },
+      "L5": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
+      },
+      "L8": {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf"
+      },
+      "L9": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/required_contract_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+          "/definition_meaning_resolution_contract/evaluation_populations/other_binding",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order"
+        ],
+        "derivation_ja": [
+          "L4 all_slot_read_domainは全descriptor原出現を読み、C actual slotも原locatorを保持する。required_contract_domainではroot Aの要求を保持し、追加要求frameは明示契約候補だけに限る。原candidatesは空でC patchもC契約候補を追加しないため、Cはother_bindingのslotとして原read/eventだけを保持し、未要求kindのmissing assessmentを追加しない。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionKey/closed_fields",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult/state",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult/axis",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/rules/0",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection/common_copy",
+          "/wire_codec_contract/schema/$defs/AxisResult"
+        ],
+        "derivation_ja": [
+          "DescriptorDefinitionAssessmentのclosed fieldsとevent/order契約を適用する。state・axis_name・original_axesは対応C Comparison axisからcopyし、indicesはC final_sort_indexのfinal_indexを使う。Cの二つの同値fact由来のattributionと各support出現はevent occurrence単位で保持する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch"
+        ],
+        "derivation_ja": [
+          "有限A rawをroot inputとし、finite_C_raw_input/case/fixture_patchのみをそのrawへ適用する。Cのdescriptor factsは追加slotのread材料であり、A rawのrequired_descriptor_kindsを置き換えたり、C用required contractを生成したりしない。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+        "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+        "pointers": [
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "/definition_meaning_fn1_A_assessments_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_C_comparison_verification/reconstruction/rfc6902_operations",
+          "/definition_meaning_fn1_C_comparison_verification/final_sort_index"
+        ],
+        "derivation_ja": [
+          "merge済みC Comparisonと既存A Comparison/assessmentsを同じ固定Git revisionからimportする。A seed/69 RFC→C103 RFC→Aassessment110 RFCの順に再構成し、C sort表の具体final_indexを使ってC6原eventを追加する。"
+        ]
+      }
+    ],
+    "reconstruction": {
+      "source_resolution_rule_ja": "固定Git importsをseedの既存null宛先へ置く。workspaceをseed deep copyとして開始し、rfc6902_operation_sources_in_orderの各pointer配列を記載順に同一workspaceへ標準RFC6902 copyとして順適用し、その後本blockの60 copyを順適用する。A Assessment prefixはA Comparison sort表を参照し、C追加行のindexのみC Comparisonの22-row final_sort_indexからcopyする。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
+        },
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_C_raw_input/case/fixture_patch",
+          "bundle_pointer": "/source_snapshot/patch_C",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+          "value_canonical_sha256": "271fe75aaa44885aee60a8821bf46e2d59a2f7bd7a6c0e832a7869f7357a2d20"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison",
+          "bundle_pointer": "/comparison",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "87f0a8dd1789b5d2dbdb8f83c54a4e1f3b2e4ef6c679234c9ea5c8b6dcf980bd"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_prefix_operations",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "52db12d8e4e302376249b80e1f395e302824b30d1454b3ddfc9fbc6df20a5f43"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_C_comparison_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/comparison_C_operations",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "d52fe5b1c7064c36b1b41243794ab9a9840a1369a9242c45bcefa2f2f9125d77"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_C_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort_C",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "d58a92057fed650ffd8c05b042f4c11ba302bea3edb31841df2a59d9a2a857bd"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/assessments",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/seed/assessments",
+          "bundle_pointer": "/assessment_templates",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "d2cdf8d110973c8add0d21a88bab6e1cb8463d67e390c7f75f18f587fe84447d"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_assessments_verification/reconstruction/rfc6902_operations",
+          "bundle_pointer": "/assessment_prefix_operations",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "b37db5d6cbef3e245a219ac8f22c5c0ee5ca4de471ec9c72cb097a3e8c0d5951"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/final_sort_index",
+          "bundle_pointer": "/comparison_sort",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "1f91a2421841eb386c6a7f4435575dc3c66d94340a778ec101b8c9beb09f3e43"
+        },
+        {
+          "source_key": "L8",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "git_revision": "ede2580e00d890ca0353ed3884b05bdaeb6299d4",
+          "source_pointer": "/definition_meaning_fn1_A_comparison_verification/reconstruction/seed/comparison/axes/14/original_refs",
+          "bundle_pointer": "/empty_ref_column",
+          "file_sha256": "1f901e6e182053ee92eeaebc08f5f30e18ddc783a76d33110099dddab50927cf",
+          "value_canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null,
+          "patch_C": null,
+          "raw_C": null
+        },
+        "comparison": null,
+        "a_comparison": null,
+        "comparison_sort": null,
+        "comparison_sort_C": null,
+        "comparison_prefix_operations": null,
+        "comparison_C_operations": null,
+        "assessments": null,
+        "assessment_templates": null,
+        "assessment_prefix_operations": null,
+        "empty_ref_column": null,
+        "C_slot_locators": [
+          "/descriptors/1"
+        ],
+        "C_fact_locator_by_event": [
+          [
+            "/descriptors/1/facts/0"
+          ],
+          [
+            "/descriptors/1/facts/1"
+          ],
+          [
+            "/descriptors/1/facts/0"
+          ],
+          [
+            "/descriptors/1/facts/0"
+          ],
+          [
+            "/descriptors/1/facts/1"
+          ],
+          [
+            "/descriptors/1/facts/1"
+          ]
+        ]
+      },
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/16/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/16/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/16/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/20/state",
+          "path": "/assessments/16/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/16/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/0",
+          "path": "/assessments/16/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/20/0",
+          "path": "/assessments/16/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/20",
+          "path": "/assessments/16/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/20/axis",
+          "path": "/assessments/16/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/17/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/17/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/17/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/21/state",
+          "path": "/assessments/17/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/17/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/1",
+          "path": "/assessments/17/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/21/0",
+          "path": "/assessments/17/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/21",
+          "path": "/assessments/17/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/21/axis",
+          "path": "/assessments/17/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/18/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/18/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/18/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/16/state",
+          "path": "/assessments/18/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/18/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/2",
+          "path": "/assessments/18/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/16/0",
+          "path": "/assessments/18/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/16",
+          "path": "/assessments/18/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/16/axis",
+          "path": "/assessments/18/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/19/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/19/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/19/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/17/state",
+          "path": "/assessments/19/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/19/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/3",
+          "path": "/assessments/19/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/17/0",
+          "path": "/assessments/19/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/17",
+          "path": "/assessments/19/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/17/axis",
+          "path": "/assessments/19/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/20/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/20/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/20/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/18/state",
+          "path": "/assessments/20/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/20/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/4",
+          "path": "/assessments/20/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/18/0",
+          "path": "/assessments/20/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/18",
+          "path": "/assessments/20/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/18/axis",
+          "path": "/assessments/20/axis_name"
+        },
+        {
+          "op": "copy",
+          "from": "/assessment_templates/0",
+          "path": "/assessments/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/binding",
+          "path": "/assessments/21/key/binding/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/slot_identity",
+          "path": "/assessments/21/key/slot_identity/value"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_C/descriptors/1/descriptor_kind",
+          "path": "/assessments/21/key/descriptor_kind"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/19/state",
+          "path": "/assessments/21/state"
+        },
+        {
+          "op": "copy",
+          "from": "/C_slot_locators",
+          "path": "/assessments/21/slot_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/C_fact_locator_by_event/5",
+          "path": "/assessments/21/fact_locators"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison_sort_C/axes/rows/19/0",
+          "path": "/assessments/21/comparison_axis_indices/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/19",
+          "path": "/assessments/21/original_axes/-"
+        },
+        {
+          "op": "copy",
+          "from": "/comparison/axes/19/axis",
+          "path": "/assessments/21/axis_name"
+        }
+      ],
+      "operation_count": 60,
+      "operation_types": {
+        "copy": 60
+      },
+      "rfc6902_operation_sources_in_order": [
+        "/comparison_prefix_operations",
+        "/comparison_C_operations",
+        "/assessment_prefix_operations"
+      ],
+      "expanded_assessments_pointer": "/assessments",
+      "assessment_count": 22,
+      "expected_raw_input_canonical_sha256": "3d3df77b5f9cc89e5fd7adc7988abca4351d466b068a37c99b8366fda9b76af6",
+      "expanded_assessments_canonical_sha256": "4a39aa458533195a94ac6f534ffdaa060b2e7932100238764bc6e8823c287e82",
+      "canonical_writer_assumption_ja": "canonical hashはRFC replay後のJSON値をUTF-8、object key昇順、空白なし、ensure_ascii=falseで直列化したSHA-256。JSON配列順と重複eventは保持する。 これは既存L8の局所hash確認仮定であり、L5 writer契約がhash実装まで閉じたとは主張しない。",
+      "operation_count_breakdown": {
+        "A_comparison_prefix": 69,
+        "C_comparison_prefix": 103,
+        "A_assessment_prefix": 110,
+        "C_assessment_local": 60
+      }
+    },
+    "field_derivation_ja": [
+      "A assessment110操作はC Comparison103操作の後に同じworkspaceへ適用する。L5 exact sortのkey0（原Binding.template_ref.identity、TEMPLATE-A < TEMPLATE-C）によりA axes[0..15]・findings[0..13]の位置と全値は不変で、A16 assessmentの全値・位置を保つ。raw Cのroot AとA cohort/sourceも原値のまま保持される。",
+      "Cのactualslotはraw C descriptor locator /descriptors/1。原event順はevent16,17のattribution fact0/fact1、その後event18..21の同fact/support反復4件で、fact identityやsupport内容をkeyとしてdeduplicateしない。slot locatorとfact locatorを各eventへそのまま写す。",
+      "全6行はAssessmentの9 top-level fieldsを持つ。key binding/slot_identity/descriptor_kindはraw C slot、stateとaxis_name/original_axesは対応Comparison axis全値、comparison_axis_indicesはC final_sort_index.axes.rowsのfinal_indexからcopyする。origin_branchと空comparison_finding_indicesはaccepted A assessment templateの同event shapeを保持する。",
+      "L4 all_slot_read_domainにはCのactualslot /descriptors/1を含め、原slot/factをreadして2 attribution+4 positive eventを保存する。一方required_contract_domainの追加frameは明示契約候補に限る。有限A rawのcandidatesは空でrequired_descriptor_kindsはA root側に保持され、C patchはsource/qualification/descriptor/knowledge recordのaddだけでC要求kindや契約candidateを追加しない。C slot template_refはroot A template_refと異なり、L4 other_bindingの非対象slotに当たるため、Cは追加required frameに入らずC missing assessmentは0件。"
+    ]
   }
 }
