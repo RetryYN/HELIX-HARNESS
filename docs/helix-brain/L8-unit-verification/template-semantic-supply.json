@@ -114194,5 +114194,1088 @@
       "fixed normative frameは歴史revision 5a3cfa984fab34f31ce623d667db1670f80b1544のcatalog/entryから独立構築し、各operation.normative_argumentと全値照合した。L9期待値/件数はこのreader期待の根拠にしない。"
     ],
     "unclosed_scope_ja": "fn0受理・資格の実成立、helper/runtime実行、NativeMaterial格納、fn1全返却、Comparison/Finding/public tuple、他slot/source population、D27/最終state裁定、独立原Meaning ownerの実供給は固定しない。"
+  },
+  "definition_meaning_fn1_A_comparison_verification": {
+    "id": "HELIXBRAIN-L8-D26A-FN1-COMPARISON",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "fn1 A入力の公開Comparison 4 field、16 AxisResult、14 Findingと最終indexだけを対象とする有限期待候補。fn0 source qualification/input validation、DescriptorDefinitionAssessment、NativeMaterial、fn1全4-member返却、fn6/fn7、D27、finalの実行・完了は含まない。",
+    "execution_boundary_ja": "runtime/helperは実行しない。期待値は固定raw AとL4/L5契約から独立に構成し、RFC materialization、値canonical hash、件数、対象schema定義を再現可能に記録する。schema validationや製品実行の完了を主張しない。",
+    "contract_basis": [
+      {
+        "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
+        "pointers": [
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/required_contract_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+          "/definition_meaning_resolution_contract/evaluation_populations/other_binding",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order",
+          "/definition_meaning_resolution_contract/normative_basis_snapshot/entries",
+          "/definition_meaning_resolution_contract/same_call_and_public_projection/public_types"
+        ],
+        "derivation_ja": [
+          "root要求domain・固定kind・追加explicit candidate・全slot読取の境界と公開投影をL4規則から対応する。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f",
+        "pointers": [
+          "/wire_codec_contract/schema/$defs/Comparison",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/Comparison",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/AxisResult",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/Finding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Finding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/finding_key",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
+          "/source_return_contract/pure_reference_notation/primitive_operators/sorted_values",
+          "/functions/1/symbol",
+          "/failure_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/Comparison/input_binding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/0",
+          "/wire_codec_contract/schema/$defs/AxisResult",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/AxisResult/subject_ref",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/AxisResult/binding",
+          "/wire_codec_contract/schema/$defs/Finding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/AxisResult/backflow_owner",
+          "/source_return_contract/constructor_meaning/axis_and_owner_composition/owner",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/proposed_private_sources/meaning_pair_axes_with_origins"
+        ],
+        "derivation_ja": [
+          "Comparison/AxisResult/Findingのclosed schema、writer・serializer・failure rule・source Ref/ordinal sortをL5から対応する。",
+          "ordinary owner candidateとhelperのknown/null規則を個別pointerから追う。"
+        ]
+      },
+      {
+        "document": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+        "pointers": [
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/binding",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/required_descriptor_kinds",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/candidates",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/sources",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0/facts/0/ref",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0/binding",
+          "/definition_meaning_resolution_verification_plan/finite_A_raw_input/descriptors/0/binding/knowledge_ref/owner"
+        ],
+        "derivation_ja": [
+          "固定finite-A rawの値とlocator。期待件数やL9 expectationをoracleにしない。"
+        ]
+      }
+    ],
+    "fixed_git_sources": {
+      "L4": {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3"
+      },
+      "L5": {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "f75fbbe823919790361a8c853038a7e2df6190b21bee735e40826f6bb2c3470f"
+      },
+      "L9": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+        "sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+      }
+    },
+    "reconstruction": {
+      "source_resolution_rule_ja": "各fixed_git_sourcesのrevisionとfile SHAを固定する。L9 source pointerのJSON値をensure_ascii=False、sort_keys=True、separators=(\",\", \":\")のUTF-8 canonical writerでhashし、seedをdeep copyしてsource bundle destinationへimportする。raw importの後で標準RFC 6902 operationsを記載順に適用する。",
+      "fixed_git_imports": [
+        {
+          "source_key": "L9",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "git_revision": "ab983abf58b898694af716d6bf0031b872ad4c28",
+          "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+          "bundle_pointer": "/source_snapshot/raw_A",
+          "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+          "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6"
+        }
+      ],
+      "seed": {
+        "source_snapshot": {
+          "raw_A": null
+        },
+        "comparison": {
+          "axes": [
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "applicability.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "completion.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "downstream kind.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "layer/pair.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "measurement.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "negative oracle.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "relation.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required field.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required input.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required section.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "supersession.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "trace.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "version.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "意味owner.definition",
+              "state": "missing",
+              "original_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "template identity.definition",
+              "state": "known",
+              "original_refs": [],
+              "reason": "当該原factへのowner意味解釈が、固定規範descriptorとの対応を支持している。",
+              "backflow_owner": null
+            },
+            {
+              "subject_ref": null,
+              "binding": null,
+              "axis": "descriptor.attribution",
+              "state": "known",
+              "original_refs": [],
+              "reason": "同じowner source内のidentity・kind・fact Ref/bodyが各caller slotへ一致する。",
+              "backflow_owner": null
+            }
+          ],
+          "findings": [
+            {
+              "code": "descriptor_04_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_04_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "applicability.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_13_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_13_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "completion.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_14_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_14_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "downstream kind.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_03_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_03_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "layer/pair.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_12_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_12_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "measurement.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_11_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_11_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "negative oracle.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_08_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_08_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "relation.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_07_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_07_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required field.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_05_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_05_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required input.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_06_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_06_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "required section.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_15_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_15_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "supersession.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_10_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_10_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "trace.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_02_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_02_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "version.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            },
+            {
+              "code": "descriptor_09_missing",
+              "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_09_missing",
+              "subject_ref": null,
+              "binding": null,
+              "axis": "意味owner.definition",
+              "state": "missing",
+              "source_refs": [],
+              "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+              "backflow_owner": "knowledge_owner"
+            }
+          ],
+          "producer_symbol": "compare_descriptor_definitions",
+          "input_binding": null
+        }
+      },
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/input_binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/0/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/0/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/1/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/1/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/2/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/2/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/3/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/3/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/4/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/4/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/5/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/5/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/6/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/6/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/7/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/7/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/8/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/8/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/9/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/9/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/10/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/10/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/11/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/11/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/12/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/12/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/axes/13/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/axes/13/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/binding",
+          "path": "/comparison/axes/14/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "path": "/comparison/axes/14/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/binding",
+          "path": "/comparison/axes/15/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "path": "/comparison/axes/15/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/0/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/0/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/1/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/1/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/2/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/2/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/3/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/3/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/4/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/4/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/5/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/5/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/6/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/6/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/7/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/7/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/8/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/8/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/9/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/9/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/10/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/10/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/11/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/11/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/12/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/12/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding",
+          "path": "/comparison/findings/13/binding"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "path": "/comparison/findings/13/subject_ref"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "path": "/comparison/axes/15/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/sources/0/ref",
+          "path": "/comparison/axes/15/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "path": "/comparison/axes/14/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/sources/0/ref",
+          "path": "/comparison/axes/14/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/sources/0/ref",
+          "path": "/comparison/axes/14/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/sources/0/content/definition_meaning_operations/0/operation_ref",
+          "path": "/comparison/axes/14/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "path": "/comparison/axes/14/original_refs/-"
+        },
+        {
+          "op": "copy",
+          "from": "/source_snapshot/raw_A/binding/knowledge_ref/owner",
+          "path": "/comparison/axes/14/backflow_owner"
+        }
+      ],
+      "operation_count": 69,
+      "operation_types": [
+        "copy"
+      ],
+      "expected_raw_input_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b",
+      "expanded_expected_comparison_canonical_sha256": "7980bd6f2e40e2d17a14f09a3b11c734e7ecb905f141c42669b67aa2780c6932",
+      "expanded_expected_comparison_pointer": "/comparison",
+      "expected_output_counts": {
+        "axes": 16,
+        "findings": 14
+      },
+      "schema_definition_pointers": [
+        "/wire_codec_contract/schema/$defs/Comparison",
+        "/wire_codec_contract/schema/$defs/AxisResult",
+        "/wire_codec_contract/schema/$defs/Finding"
+      ],
+      "canonical_writer_assumption_ja": "既存L8と同じ局所材料化の仮定であり、L5がensure_asciiのwriterを閉じたとは扱わない。value_canonical_sha256はUTF-8 JSONをensure_ascii=False、sort_keys=True、separators=(\",\", \":\")で出力したcanonical値のSHA-256。配列順と重複を保持し、object keyだけをcanonical sortする。"
+    },
+    "legacy_comparison": {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "sha256_scope": "source file whole bytes",
+      "reuse_mode": "semantic_rederivation",
+      "preserved_ja": "descriptor identity/meaningとcomponent境界を保持する。",
+      "changed_ja": "旧registry/applicability evaluator/planner/pair freeze/schema/runtimeは再利用せず、承認済みBRAIN032のL4/L5契約へ意味を再導出する。"
+    },
+    "input_precondition_ja": "L5 evaluate_descriptor_definition_walk(context:DefinitionContext)のvalidatedは{input:固定raw A,input_issues:[],unusable_source_refs:[]}を仮定する条件付き期待。raw Aのclaims memberは不在のまま保持する。この候補はfn0を実行せず、raw Aの受理・資格を主張しない。",
+    "owner_derivation_ja": "通常AxisResultのbackflow_ownerは原Binding.knowledge_ref.ownerを候補値としてcopyし、未供給ならnull。template identity axisの値はseed literalで固定せず/source_snapshot/raw_A/binding/knowledge_ref/ownerからcopyする。helperがbackflow_ownerを明示返却する枝はそのhelperの規則を保ち、known helperがnullを返す規則を別eventへ一般化しない。",
+    "final_sort_index": {
+      "algorithm_basis": "L5 exact_sort_contractのaxis_key_access_paths 0〜6を順に比較する。Findingは同0〜5の後にaxis、rule_ref、event ordinal、rule出力ordinalを比較する。各行はこのComparisonの最終0始まりindex。",
+      "axes": {
+        "columns": [
+          "final_index",
+          "axis"
+        ],
+        "rows": [
+          [
+            0,
+            "applicability.definition"
+          ],
+          [
+            1,
+            "completion.definition"
+          ],
+          [
+            2,
+            "downstream kind.definition"
+          ],
+          [
+            3,
+            "layer/pair.definition"
+          ],
+          [
+            4,
+            "measurement.definition"
+          ],
+          [
+            5,
+            "negative oracle.definition"
+          ],
+          [
+            6,
+            "relation.definition"
+          ],
+          [
+            7,
+            "required field.definition"
+          ],
+          [
+            8,
+            "required input.definition"
+          ],
+          [
+            9,
+            "required section.definition"
+          ],
+          [
+            10,
+            "supersession.definition"
+          ],
+          [
+            11,
+            "trace.definition"
+          ],
+          [
+            12,
+            "version.definition"
+          ],
+          [
+            13,
+            "意味owner.definition"
+          ],
+          [
+            14,
+            "template identity.definition"
+          ],
+          [
+            15,
+            "descriptor.attribution"
+          ]
+        ]
+      },
+      "findings": {
+        "columns": [
+          "final_index",
+          "axis",
+          "rule_ref"
+        ],
+        "rows": [
+          [
+            0,
+            "applicability.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_04_missing"
+          ],
+          [
+            1,
+            "completion.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_13_missing"
+          ],
+          [
+            2,
+            "downstream kind.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_14_missing"
+          ],
+          [
+            3,
+            "layer/pair.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_03_missing"
+          ],
+          [
+            4,
+            "measurement.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_12_missing"
+          ],
+          [
+            5,
+            "negative oracle.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_11_missing"
+          ],
+          [
+            6,
+            "relation.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_08_missing"
+          ],
+          [
+            7,
+            "required field.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_07_missing"
+          ],
+          [
+            8,
+            "required input.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_05_missing"
+          ],
+          [
+            9,
+            "required section.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_06_missing"
+          ],
+          [
+            10,
+            "supersession.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_15_missing"
+          ],
+          [
+            11,
+            "trace.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_10_missing"
+          ],
+          [
+            12,
+            "version.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_02_missing"
+          ],
+          [
+            13,
+            "意味owner.definition",
+            "HELIXBRAIN-L5-032-R-descriptor_09_missing"
+          ]
+        ]
+      },
+      "positive_axis_order_reason_ja": "index 14のtemplate identity.definitionは、L5のsort keyでsource Ref成分がindex 15のdescriptor.attributionより先に比較されるため前に来る。両方の配列は同じRefから始まり、template identity側はそのRefを2回保持し、attribution側は1回保持する。canonical JSON文字列では2件側の次文字がカンマ、1件側は閉じ角括弧となり、Unicode順でカンマが先になる。axis文字列は後続成分である。重複は保持する。",
+      "finding_tie_break_note_ja": "14 Findingはaxisとrule_refの組がそれぞれ異なるため、後続のevent ordinalとrule出力ordinalによるtie-breakは発火しない。",
+      "positive_axis_source_key_trace": {
+        "l5_component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+        "earlier_axis": {
+          "final_index": 14,
+          "axis": "template identity.definition",
+          "source_ref_occurrence_pointers": [
+            "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref",
+            "/source_snapshot/raw_A/sources/0/ref"
+          ],
+          "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-A\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af\",\"source_locator\":\"urn:synthetic:d26:A:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-A\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af\",\"source_locator\":\"urn:synthetic:d26:A:source\"}]"
+        },
+        "later_axis": {
+          "final_index": 15,
+          "axis": "descriptor.attribution",
+          "source_ref_occurrence_pointers": [
+            "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref"
+          ],
+          "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-A\",\"owner\":\"synthetic-meaning-owner\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"3c8c7acd3df2848a6d606284919db0c7eab3f1010f36b92141d9979ea6e908af\",\"source_locator\":\"urn:synthetic:d26:A:source\"}]"
+        },
+        "comparison": "同じ先頭Refの後で earlier_axis 側はカンマ、later_axis 側は閉じ角括弧となる。canonical JSON Unicode順でカンマが先。axis stringは後続成分である。"
+      },
+      "event_key_sources": {
+        "missing_root_axes": {
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "binding_source_pointer": "/source_snapshot/raw_A/binding",
+          "subject_source_pointer": "/source_snapshot/raw_A/binding/knowledge_ref",
+          "slot_identity": "absent",
+          "sort_source_refs": {
+            "presence": "supplied",
+            "value": [],
+            "source_array_pointer": "/source_snapshot/raw_A/sources"
+          }
+        },
+        "positive_slot_axes": {
+          "indices": [
+            14,
+            15
+          ],
+          "binding_source_pointer": "/source_snapshot/raw_A/descriptors/0/binding",
+          "subject_ref_source_pointer": "/source_snapshot/raw_A/descriptors/0/facts/0/ref",
+          "slot_identity_source_pointer": "/source_snapshot/raw_A/descriptors/0/slot_identity",
+          "source_ref_pointers_by_axis": {
+            "14": [
+              "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref",
+              "/source_snapshot/raw_A/sources/0/ref"
+            ],
+            "15": [
+              "/source_snapshot/raw_A/descriptors/0/facts/0/source_ref"
+            ]
+          }
+        },
+        "findings": {
+          "indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "binding_source_pointer": "/source_snapshot/raw_A/binding",
+          "slot_identity": "absent",
+          "sort_source_refs": {
+            "presence": "supplied",
+            "value": [],
+            "source_array_pointer": "/source_snapshot/raw_A/sources"
+          }
+        }
+      },
+      "axis_event_ordinals": [
+        4,
+        13,
+        14,
+        3,
+        12,
+        11,
+        8,
+        7,
+        5,
+        6,
+        15,
+        10,
+        2,
+        9,
+        1,
+        0
+      ],
+      "finding_event_ordinals": [
+        4,
+        13,
+        14,
+        3,
+        12,
+        11,
+        8,
+        7,
+        5,
+        6,
+        15,
+        10,
+        2,
+        9
+      ]
+    },
+    "population_selection_ja": "raw Aのrequired_descriptor_kindsは15件、candidatesは供給済み空配列。L4 required_contract_domainはroot要求契約を必須とし、追加frameは明示候補に限る。L5 single_walk_algorithm_candidateはそのL4 evaluation_populationsに従いroot/明示candidate domainを作り、L5 event_rulesはrequired_slot_absent eventを定義する。したがってAでrootの15種を要求し、slot reader全域は別に保持する。"
   }
 }
