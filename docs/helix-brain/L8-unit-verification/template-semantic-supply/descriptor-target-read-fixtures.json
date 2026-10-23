@@ -8,7 +8,7 @@
     "pointer": "/definition_meaning_D27_descriptor_target_verification",
     "operation": "RFC 6902 replace"
   },
-  "scope_ja": "rootは既存D27-B Claim1/2の2call全8field、A0_target_verificationはD27-A Claim0の単独call全8fieldを既存資格条件下で材料化する。B0 full read、全target/intent配列とwhole fn1/ClaimUse/consumer返却は対象外。",
+  "scope_ja": "rootは既存B1/B2、A0_target_verificationとB0_target_verificationは各Claim0のtarget全8fieldを材料化し、read_array_verificationでA1/B3のtarget_reads/intent_readsを原順へ接続する。全walk4返却/ClaimUse/consumer返却は対象外。",
   "execution_boundary_ja": "L4/L5からの有限reader期待と固定source/RFC材料化だけを記録する。validate_supply_input、target reader、製品runtime、helper、旧CLI/hook/test/CIは実行しない。source qualificationは実測していないため条件付き期待を越えて断定しない。",
   "fixed_git_sources": {
     "L4_CURRENT": {
@@ -1065,5 +1065,175 @@
       "symbol": "read_descriptor_replacement_target",
       "arguments_pointer": "/A0_target_verification/reconstruction/seed/target_call"
     }
+  },
+  "B0_target_verification": {
+    "id": "HELIXBRAIN-L8-D27-B0-TARGET-UNIT",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "B0の直接3引数とDescriptorTargetRead全8fieldだけ。既存B1/B2/A0全材料は保持する。",
+    "same_artifact_basis": [
+      "/contract_basis",
+      "/reconstruction",
+      "/A0_target_verification"
+    ],
+    "reconstruction": {
+      "seed": {
+        "target_call": null,
+        "expected_read": null
+      },
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/B0_target_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": ""
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/target_calls/0",
+          "path": "/B0_target_verification/reconstruction/seed/target_call"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/read_calls/1/claim",
+          "path": "/B0_target_verification/reconstruction/seed/target_call/claim"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/read_calls/1/claim_locator",
+          "path": "/B0_target_verification/reconstruction/seed/target_call/claim_locator"
+        },
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/expected_read",
+          "path": "/B0_target_verification/reconstruction/seed/expected_read"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/0/occurrences",
+          "path": "/B0_target_verification/reconstruction/seed/expected_read/occurrences"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/0/problems/1",
+          "path": "/B0_target_verification/reconstruction/seed/expected_read/problems/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/inputs/B/sources/2/ref",
+          "path": "/B0_target_verification/reconstruction/seed/expected_read/problems/3/source_ref/value"
+        },
+        {
+          "op": "replace",
+          "path": "/B0_target_verification/reconstruction/seed/expected_read/problems/3/locator",
+          "value": "/sources/2/content/descriptor_targets"
+        }
+      ],
+      "operation_count": 8,
+      "operation_types": {
+        "copy": 7,
+        "replace": 1
+      },
+      "expected_return_pointer": "/B0_target_verification/reconstruction/seed/expected_read",
+      "canonical_expected_return_sha256": "d7fd4bbc67ba490ab4da3adc68cb66fe9ca90acc5fbadb23293cfe3515f26761",
+      "phase_protocol_ja": "既存root imports30→intent65→target50→A0 imports2/16RFCを完了後、本8RFCをchild文書rootへ適用する。null seedはplaceholderであり返却値ではない。"
+    },
+    "structural_copy_preconditions_ja": "原A0/B0 Claim0全値・locatorとcandidates=[]が完全同値なのでA0全8fieldを構造copyし、B1の原5occurrencesへ置換する。A0問題3件はB0でも同source0/1・同順で成立する。B1問題はsource0 absent→source1 not_declaredの2件で、後者のkind/reasonとPresence形だけを再利用し、原source2 Ref/locatorへ置換する。全値は原B/L4から独立に導いたB0期待へ照合する。",
+    "field_order_ref": "/closed_field_order",
+    "qualification_and_source_scope_ja": "既存ValidatedSupplyのinput_issues=[]かつunusable_source_refs=[]の条件付き入力。target口はcarrier.originのsemantic_json owner sources0/1/2を読む。source3 reference_onlyのcontainer欠落をtarget問題へ加えない。資格実行/成立の証拠にしない。",
+    "function_call": {
+      "symbol": "read_descriptor_replacement_target",
+      "arguments_pointer": "/B0_target_verification/reconstruction/seed/target_call"
+    },
+    "limits_ja": "fn0/reader/helper/product/旧runtime/CI未実行。単独B0期待でありwhole fn1/ClaimUse/fn6/fn7を完成扱いしない。"
+  },
+  "read_array_verification": {
+    "id": "HELIXBRAIN-L8-D27-READ-ARRAY-WIRING",
+    "status": "detail_verification_candidate_unexecuted",
+    "authority_effect": "none",
+    "scope_ja": "A1/B3のtarget_readsとintent_reads全値だけを原fill_definition Claim順へ接続する。全4fieldのDefinitionMeaningWalkResultを構成しない。",
+    "current_schedule_basis": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "ac49854ec32458c424d2c219f761c3eb8e0aeac8",
+      "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
+      "pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+        "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/basis_class_precedence"
+      ]
+    },
+    "reconstruction": {
+      "seed": {
+        "A": {
+          "target_reads": [],
+          "intent_reads": []
+        },
+        "B": {
+          "target_reads": [],
+          "intent_reads": []
+        }
+      },
+      "rfc6902_operation_sources_in_order": [
+        {
+          "operation_pointer": "/read_array_verification/reconstruction/rfc6902_operations",
+          "apply_root_pointer": ""
+        }
+      ],
+      "rfc6902_operations": [
+        {
+          "op": "copy",
+          "from": "/A0_target_verification/reconstruction/seed/expected_read",
+          "path": "/read_array_verification/reconstruction/seed/A/target_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/expected_reads/0",
+          "path": "/read_array_verification/reconstruction/seed/A/intent_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/B0_target_verification/reconstruction/seed/expected_read",
+          "path": "/read_array_verification/reconstruction/seed/B/target_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/0",
+          "path": "/read_array_verification/reconstruction/seed/B/target_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/expected_reads/1",
+          "path": "/read_array_verification/reconstruction/seed/B/target_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/expected_reads/1",
+          "path": "/read_array_verification/reconstruction/seed/B/intent_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/expected_reads/2",
+          "path": "/read_array_verification/reconstruction/seed/B/intent_reads/-"
+        },
+        {
+          "op": "copy",
+          "from": "/reconstruction/seed/intent_workspace/expected_reads/3",
+          "path": "/read_array_verification/reconstruction/seed/B/intent_reads/-"
+        }
+      ],
+      "operation_count": 8,
+      "operation_types": {
+        "copy": 8
+      },
+      "expected_read_arrays_pointer": "/read_array_verification/reconstruction/seed",
+      "canonical_expected_read_arrays_sha256": {
+        "A": "6e4b7af76fd0639e3387ba413a69ff0f9d356ab59c65b992f60891392570aaf3",
+        "B": "73e72cddfd90ed733e4c655c0f53daae59c7427fee7554c86bb33908035725c7"
+      },
+      "phase_protocol_ja": "B0の8RFC完了後、本8copyをchild文書rootへ適用する。各readは既存完成値を全値copyする。空array seedへ原Claim順でappendし、各Claimのtarget/intentを同locator・原full Claimで対応させる。製品portの再呼出しではない。"
+    },
+    "schedule_and_limits_ja": "全原fill_definition Claimを各一回読むscheduleで、intent/state/basis_classをcall gateにしない。source資格は条件付き。evaluation/native_materialを作らず、全walk/ClaimUse/fn6fn7/Issue完了へ昇格しない。",
+    "B1_local_problem_state_ja": "source1は別identity Aの宣言だけでtarget_not_declaredを局所保持する。source2にB1/current Bindingの一slot/kind exactと元slot /descriptors/1があるためrelevance_table/1・cohort scope/resolved・ordered_branches/8に従いresolved/match1。全5occurrence/問題2件は残り、resolvedは全source問題解消を示さない。"
   }
 }
