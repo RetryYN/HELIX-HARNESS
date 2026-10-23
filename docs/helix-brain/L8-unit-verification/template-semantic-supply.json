@@ -124103,5 +124103,33 @@
       ],
       "basis_ja": "旧source/consumer/oracle traceとJSON正本を保持し、#3139/#3362〜#3365/#3368の局所資料化を起点に意味再導出する。親の既存legacy_comparisonを保持し、旧runtime/DB/role/gateは移植しない。"
     }
+  },
+  "definition_meaning_D27_definition_projection_verification": {
+    "artifact_ref": {
+      "identity": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
+      "file_sha256": "27c33a64c6cbe3e31014cf51c227c8891dcb7e6ee935cf3d67101deca62e78d6",
+      "pointer": "",
+      "canonical_sha256": "20ac2f9d3f05f28e0861c686a9c4d3e99c1cf7b78bb3ad756a32c2acb8ae2e14"
+    },
+    "logical_binding": {
+      "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+      "pointer": "/definition_meaning_D27_definition_projection_verification",
+      "operation": "RFC 6902 replace"
+    },
+    "materialization_contract": {
+      "適用単位": "この副file root全値を指定L8 logical pointerへ一度だけRFC6902 replaceする。既存#3368の局所著述方式と同じ。",
+      "照合と復元": "明示path/identity/空root pointerと副file現在bytes SHA、現在root canonical SHAを照合して1replaceする。次に副file rootを文書rootとして、そのreconstruction.seedへ宣言順の固定Git importsを解決する。bundle_pointerはseed相対。四つのoperation_pointer/apply_root_pointerは副file root相対の実在pointerとして65→4→69→24を各適用rootへ標準RFC6902で適用する。各raw/contextと公開Comparison全4fieldだけを材料化し製品関数は呼ばない。",
+      "来歴と不変照合": "新規単位でありinline移動ではないためhistory hashは持たない。比較元はgit show ead612633e8e6a8649a779fffa4347cd90baef8f:docs/helix-brain/L8-unit-verification/template-semantic-supply.json。その全49memberの値・key順・物理prefixを保持し、新node1replace後50memberの論理文書を作る。file_sha256は副file現在bytes、canonical_sha256は現在root全値を指す。",
+      "境界": "新include形式/探索/再帰/fallback/runtime/validator/CIを作らない。歴史prefixのpinは保持し、現L5契約は別headerで固定する。assessments/nativeは後続2PRで同副fileへ追補する。L4 mixed target・Claim2/route・empty basis公開枝とwalk全4fieldの未閉は副filelimitsを保持する。 公開Comparison全値は副file conditional_input_jaのmixed target追加event非発火条件を継承する。"
+    },
+    "legacy_comparison": {
+      "source_refs": [
+        "LEGACY-ASSET-603D0E8D8193914F4AC0:§0–§1",
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:§1–§2",
+        "LEGACY-ASSET-4B835ADBEFBCCC13C1C0:19–31"
+      ],
+      "basis_ja": "旧JSON正本/source/consumer/oracle traceを保持し、#3139/#3362〜#3365/#3368の局所著述方式から意味再導出する。親既存legacy_comparisonを保持し、旧runtime/DB/role/gateは移植しない。"
+    }
   }
 }
