@@ -1114,7 +1114,6 @@
           },
           {
             "event_ordinal": 6,
-            "origin_branch": "existing_definition_result",
             "slot_locators": [
               "/descriptors/2"
             ],
@@ -1537,7 +1536,7 @@
     "field_derivation_ja": [
       "Assessment全9型・Key3型はcurrent L5 closed_fieldsで照合する。全体Assessment JSON Schemaは無く、既存PortPresenceBinding/PortPresenceString/AxisResult schemaだけを使う。",
       "Aは同raw descriptors/Bindingと全ComparisonがD26Aと一致し、元seedと110copyを完全一致再利用する。B event0..4と8..16はAのevent0..4と7..15の全9fieldが対応し、公開sort indexだけをB表の同event rowから入れる。raw Binding、slot不在、identity factと公開axis全値が同じことを照合し、既存完成rowをcopyする。",
-      "B event5はraw descriptor1 facts=[]のfacts_missing、event6/7はdescriptor2のattribution/meaning_undefined。新3rowのkeyは当該raw descriptor全値、origin/locatorはnew_event_sourcesから、state/axis_name/original_axesはB Comparisonから、indicesはB sort tableからcopyする。",
+      "B event5はraw descriptor1 facts=[]のfacts_missing、event6/7はdescriptor2のattribution/meaning_undefined。新3rowのkeyは当該raw descriptor全値、locatorとevent5/7のorigin_branchはnew_event_sourcesから、state/axis_name/original_axesはB Comparisonから、indicesはB sort tableからcopyする。event6（row22）のorigin_branch=existing_definition_resultはassessment_templates/0の既定値を保持する。event5のfacts=[]には指す原factが無いためfact_locators=[]であり、slot_locatorsには当該/descriptors/1を保持する。",
       "event順はdescriptor0のattribution/definition、required kind1..3の不在、descriptor1のfacts_missing、descriptor2のattribution/undefined、required kind6..14の不在である。public sort順をevent順へ読み替えず、反復は保持する。"
     ]
   }
