@@ -11711,7 +11711,7 @@
         "formed_public_projection": {
           "input": "上記の原出現から形成した同call DescriptorTraceRead。原fact.refと原slot.bindingが既存公開型を形成できる範囲だけ、対応する既存descriptor.trace Axis/Finding writerへ原slot/fact/readを渡す。",
           "preservation": "既存形成済み行のsubject/Binding/state/原Refs/reason/backflow_ownerと全出現を変更しない。private readのresolvedを意味known/採用/利用可へ変換しない。既存failure predicateが成立した場合だけ既存ruleへ結び、新しいfailure ruleを追加しない。",
-          "unformattable_subject": "原fact.ref又は原slot.bindingを形成できなければ、原read/PresenceRawをdescriptor_tracesへ保持し、typed公開Axis/Findingを生成しない。別fact/Bindingの成功、slot名、required kind又は新Refを診断subjectの代替にしない。"
+          "unformattable_subject": "原fact.ref又は原slot.bindingを形成できなければ、原read/PresenceRawをdescriptor_tracesへ保持し、typed公開Axis/Findingを生成しない。別fact/Bindingの成功、slot名、required kind又は新Refを診断subjectの代替にしない。 schema-validな実配列のslot/fact locatorは元添字から形成できるため、locator未形成を独立の到達caseとして置かない。ref/bindingが未供給でtyped公開行を形成できない場合は、このconstruction guardだけに従い、新cause/failure predicateを足さない。"
         },
         "unformed_population_cases": [
           {
@@ -11725,12 +11725,6 @@
             "request": "この列挙からは生成しない。空factsに仮のindex0 probeを足さず、実在しないfactを作らない。",
             "public": "fn3 trace Axis/Findingを追加せず、public state/reason/subjectを生成しない。元の定義missing/unknownを充足又は未観測成功へ変えない。",
             "private_location": "schemaに適合する入力IdentitySnapshot.validated.inputの当該原slot/facts全値とpresenceを保持する。fn1の既存欠落/未定義返却は別に維持する。schema-invalid raw値の格納先をこのtyped snapshot内に新設・推定しない。"
-          },
-          {
-            "case": "原出現からTraceRequest locatorを形成できない",
-            "request": "別node/indexを推定せず、この列挙からは生成しない。",
-            "public": "typed公開Axis/Findingを生成しない。未形成を成功へ既定しない。",
-            "private_location": "schemaに適合する入力IdentitySnapshot.validated.input内の元collection/node/所在を保持する。形成済みrequestで既存portを直接呼んだ場合のPresenceRaw/unknown readはそのまま既存descriptor_tracesに保持し、その経路を禁止・変更しない。"
           }
         ],
         "private_shape_boundary": "IdentityTraceReturnの既存5field及びTraceRequest/DescriptorTraceReadのclosed shapeは不変。schema-valid入力のrequestを形成しない原欠落は入力IdentitySnapshot.validated.inputの値/presenceに残る。同returnにsnapshot memberや未形成request/新境界rowを足したと称しない。型外rawはIdentitySourceRequest.raw_input側にあり、ValidatedSupply.input=null時に違反値そのものがsnapshotへ返るとは主張しない。",
@@ -11740,7 +11734,8 @@
           "requirements_preserved": [
             "L3 F01/F02の15項目識別と欠落/未定義/矛盾返却は既存fn1へ保持し、欠落項目を完全契約へ変えない。",
             "L3 F04のidentity/版/source/scopeの独立比較、未評価・unknown/mismatchの非利用、fallback禁止は維持する。",
-            "L3 N01の各返却項目・不足・矛盾のsource/knowledge revision/根拠への追跡と識別不能項目の非成功を保つ。public行がないことを資格・成功の認定にしない。"
+            "L3 N01の各返却項目・不足・矛盾のsource/knowledge revision/根拠への追跡と識別不能項目の非成功を保つ。public行がないことを資格・成功の認定にしない。",
+            "欠落返却への依存先と同call結合はrequirements_dependency_pointersを参照する。これはfn1/private全返却をfn3へコピーする指示ではなく、各公開Comparisonのproducer/input_binding適合を別に保つ。"
           ],
           "alternatives": [
             {
@@ -11784,14 +11779,66 @@
           "old_source_preserved": "元source/trace/unknown非成功を保つ。P15の15 traceを一般D27の件数にしない。",
           "changed": "曖昧だったoriginal itemを実slot/fact原出現へ固定し、未形成時に公開行を作らない実格納先を明示する。",
           "reason": "L3はfn3 traceのcardinalityや表示列挙方法を固定せず、現portと原Refに結ぶ技術表現をここで選ぶ。新しい要求・gate・failure rule・owner/Ref・全producer成立は作らない。",
-          "meaning_boundary": "既存F01/F02の欠落返却又はN01追跡意味の削除・充足化はこの選択に含めない。上流が欠落kindごとのfn3 trace行を要求する意味を別に持つと判明した場合は、その意味変更を本技術選択から生成せず要求質問へ戻す。"
+          "meaning_boundary": "既存F01/F02の欠落返却又はN01追跡意味の削除・充足化はこの選択に含めない。上流が欠落kindごとのfn3 trace行を要求する意味を別に持つと判明した場合は、その意味変更を本技術選択から生成せず要求質問へ戻す。",
+          "requirements_dependency_pointers": [
+            {
+              "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+              "pointers": [
+                "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+                "/identity_version_trace_contract/same_call/fn0_realization"
+              ],
+              "meaning": "missing_required_populationと独立required_descriptor_kindsを保持し、fn1とfn3には同じvalidated値を渡す。"
+            },
+            {
+              "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+              "pointers": [
+                "/failure_rules/9",
+                "/failure_rules/12",
+                "/failure_rules/15",
+                "/failure_rules/18",
+                "/failure_rules/21",
+                "/failure_rules/24",
+                "/failure_rules/27",
+                "/failure_rules/30",
+                "/failure_rules/33",
+                "/failure_rules/36",
+                "/failure_rules/39",
+                "/failure_rules/42",
+                "/failure_rules/45",
+                "/failure_rules/48",
+                "/failure_rules/51"
+              ],
+              "meaning": "各required kindに対応するDescriptorSlot未供給は既存fn1のdescriptor_01〜15_missingが返す。空factsの実slotをこの未供給predicateへ読み替えない。"
+            },
+            {
+              "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+              "pointers": [
+                "/type_contract/types/ClaimContext",
+                "/type_contract/types/AnalysisContext",
+                "/functions/8/algorithm/0",
+                "/functions/8/algorithm/4",
+                "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member"
+              ],
+              "meaning": "definitionsとidentity_traceは同immutable validated入力の別Comparisonとして束縛される。build_supply_analysisはproducer/input_binding適合を確認した結果だけ宣言順にco-returnする。fn3直呼出し単独のIdentityTraceReturnがfn1不足返却を内包するとは主張しない。"
+            }
+          ],
+          "limits": [
+            "factsが空/absent/nullの実slotのbinding.knowledge_refのrevision又はscopeだけが異なる場合、本trace母集団にはfact/read行がなく、そのslotをfn3 descriptor.traceのmixed_knowledge_revision/scope判定へ入れたとは認定しない。/functions/3/algorithm/2、/failure_rules/90の全slot照合を本閉包が実証したとは主張しない。",
+            "fn1の欠落/未定義返却を、その空facts slotのrevision/scope矛盾を別axis/ruleが検出した証拠へ代用しない。元slot/binding/presenceはschema-valid入力に保ち、欠落/未評価を既定成功や資格成立へ変えない。本限界は技術決定の未検証範囲であり、新しいruntime limits fieldやruleではない。",
+            "L3 N01の矛盾追跡を全slotで満たしたという認定は行わない。空facts slotの独立revision/scope矛盾検出を必須とする上流意味が別に確認された場合はmeaning_boundaryに従い要求質問へ戻し、この列挙選択から要求の削除・緩和又は代替成功を生成しない。"
+          ]
         },
-        "existing_fixture_consistency": "既存P15と7fixtureの各15実descriptor・各1実factから同じ15原出現を列挙する。既存public全26/27軸・trace15・Finding・全reason/Ref/順序と原readを不変とし、L9固定gold/旧Gitseed/RFCを新規則の根拠へ昇格せず保全照合の制約だけとして使う。"
+        "existing_fixture_consistency": "既存P15と7fixtureの各15実descriptor・各1実factから同じ15原出現を列挙する。既存public全26/27軸・trace15・Finding・全reason/Ref/順序と原readを不変とし、L9固定gold/旧Gitseed/RFCを新規則の根拠へ昇格せず保全照合の制約だけとして使う。",
+        "partial_read_boundary": {
+          "common_rule": "/identity_version_trace_contract/same_call/partial_and_nullの「該当private logical read」は、trace枝では本populationの実slot/fact出現からrequestを形成して実際に読んだreadに限定する。形成済みreadのmember欠落は既存PresenceRaw/unknownとしてdescriptor_tracesへ保持し、その行を消さない。",
+          "population_difference": "actual枝は/read_branch_contracts/actual/rolesの固定roleを列挙するため、対応memberのabsent/nullやsubject_unformedも実read母集団に属する。trace枝は実slot/fact出現を母集団として選ぶため、未存在kind・facts[]/absent/nullからrequest/read行を新設しない。この非対称は型による禁止でなく母集団定義のL4技術選択である。",
+          "not_a_return_row": "request未形成の場合、IdentityTraceReturn内に欠落を表すprivate read行があるとは主張しない。schema-valid入力の元値/presenceと下記fn1欠落返却の別責務を保持し、行無しを成功へ変換しない。"
+        }
       }
     },
     "public_projection": {
       "shape": "Comparison4 / AxisResult7 / Finding9全memberを維持。producer_symbol/input_bindingは同入力からwriterが形成する。",
-      "counts": "P15 11独立+15trace=26、明示pair1群の6caseは27。[]dependencyは0原出現。unknown原軸は削らない。",
+      "counts": "P15 11独立+15trace=26、明示pair1群の6caseは27。[]dependencyは0原出現。unknown原軸は削らない。 ここで15traceは15実slot×各1実factの原出現数を指す。一般のtrace件数はdescriptor数でなくtrace_populationの実slot-fact出現数であり、P15件数を一般入力へ固定しない。",
       "read_vs_judgment": "元値suppliedは分類列だけ。原actual body未供給はunknown。両owner原宣言/実版範囲外/根拠NA等既存意味は独立branchで保持。",
       "failure_rules": "既存source/version/scope missing及びrule61/62等の原predicateを維持。membership missing専用新rule/globalgate無し。"
     },
