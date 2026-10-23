@@ -71,7 +71,7 @@
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
-      "git_blob": "dded595a5e1b80aa3bf831b554e3b53dfefd1534",
+      "git_blob": "3e803cbce739055517a55ab7380358de51020eab",
       "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
       "pointers": [
         "/functions/6",
