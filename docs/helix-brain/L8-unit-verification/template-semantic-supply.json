@@ -57918,7 +57918,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "629e88b9acfd9bed81f6232eeac6fee44a9b4da858fb92141116ee36fc3edc71",
+      "file_bytes_sha256": "5d110b5e430b814642df77974fa42bad9d374904c5fa26063b4350f537018ed4",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -67735,6 +67735,294 @@
         ],
         "limit": "残るnamed reason-only分岐の識別と全27種の再実行/残survivor総数は本追補で確定しない。部分対照の追加から全mutant排除や新gateを生成しない。",
         "published_revision_observation": "revision ef56393465927d64f44c86955888c192da1edb2cの有限対照では27種中20種の差分を識別したと記録されている。これは当該revisionの有限対照結果であり全域閉包や要求達成ではない。"
+      }
+    },
+    "basis_resolution_priority_verification": {
+      "id": "BRAIN032-D27-BASIS-CLASS-PRIORITY-VERIFICATION",
+      "status": "detail_verification_candidate_unexecuted",
+      "design_pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/basis_class_precedence",
+      "scope_ja": "単一basis_class優先をD27-B固定rawから6caseで照合する。既存79 public cases、Claim1 child、ClaimUse全体、route/public projectionは対象外。",
+      "authority_effect": "none",
+      "contract_basis": [
+        {
+          "document": "L5",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointers": [
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/inputs",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/join",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/reference_only_only",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/nonsemantic_or_empty",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/semantic_or_mixed",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/unresolved",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit",
+            "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse/closed_fields/basis_class",
+            "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse/closed_fields/basis_source_indices",
+            "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse/closed_fields/unresolved_basis_ref_indices",
+            "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/basis_class_precedence"
+          ],
+          "binding": "同じsource_return_verification/candidate_design_bytes_bindingのcurrent L5全bytesを使用する。"
+        }
+      ],
+      "reconstruction": {
+        "source_resolution_rule_ja": "3つの固定Git importでAの原raw、同revisionのA fixture_patch配列、B fixture_patch配列をnull宛先へ展開する。次に全workspace rootへ標準RFC6902 copyを原順適用し、A patch 5操作、B patch 12操作をpatch配列のvalueから原pathへ適用してraw Bを得る。期待projectionの原料としてL9期待値/countは読まない。",
+        "canonical_writer_assumption_ja": "既存L8局所再構成との照合に限り、UTF-8 ensure_ascii=false、sort_keys=true、compact JSONでcanonical SHA-256を計算する。これはL5 writer全体の規則を追加しない。",
+        "seed": {
+          "source_snapshot": {
+            "raw_base": null,
+            "patch_A": null,
+            "patch_B": null
+          },
+          "raw_input": null
+        },
+        "fixed_git_imports": [
+          {
+            "source_key": "L9_D27_BASE_A",
+            "bundle_pointer": "/source_snapshot/raw_base",
+            "source_pointer": "/definition_meaning_resolution_verification_plan/finite_A_raw_input",
+            "git_revision": "2332d7865fef4a51ea6edc92e641e4d989dccd61",
+            "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+            "file_sha256": "58401daf95ceb1286b5e78c144903b6f4264455921bf4f5641eed1cd62bb9569",
+            "value_canonical_sha256": "e387754a6bef3a43e2db62ce5cd641759cc525d34fa1515d63131fcb08c7e33b"
+          },
+          {
+            "source_key": "L9_D27_PATCH_A",
+            "bundle_pointer": "/source_snapshot/patch_A",
+            "source_pointer": "/definition_meaning_resolution_verification_plan/finite_D27_A_raw_input/case/fixture_patch",
+            "git_revision": "2332d7865fef4a51ea6edc92e641e4d989dccd61",
+            "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+            "file_sha256": "58401daf95ceb1286b5e78c144903b6f4264455921bf4f5641eed1cd62bb9569",
+            "value_canonical_sha256": "9b0d097f4dd6cdf6e40b230e11aed8bd5d3fe766eac19a7f7e0365b5d6f63a93"
+          },
+          {
+            "source_key": "L9_D27_PATCH_B",
+            "bundle_pointer": "/source_snapshot/patch_B",
+            "source_pointer": "/definition_meaning_resolution_verification_plan/finite_D27_B_raw_input/case/fixture_patch",
+            "git_revision": "2f834488fa8777c6fe786818e6c16fa2b90e9689",
+            "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+            "file_sha256": "3fe94682fcd6fa156d747b9e7f2e18b09d684bcb8474168028088799c82629b6",
+            "value_canonical_sha256": "820a7c0e82a71c2fceb5b0de362e43e21d8508e8b4da8379de3d98a4c6fd5f01"
+          }
+        ],
+        "rfc6902_operations": [
+          {
+            "op": "copy",
+            "from": "/source_snapshot/raw_base",
+            "path": "/raw_input"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_A/0/value",
+            "path": "/raw_input/sources/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_A/1/value",
+            "path": "/raw_input/qualification_roots/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_A/2/value",
+            "path": "/raw_input/qualifications/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_A/3/value",
+            "path": "/raw_input/knowledge_records/0/provenance_refs/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_A/4/value",
+            "path": "/raw_input/claims"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/0/value",
+            "path": "/raw_input/sources/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/1/value",
+            "path": "/raw_input/sources/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/2/value",
+            "path": "/raw_input/qualification_roots/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/3/value",
+            "path": "/raw_input/qualification_roots/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/4/value",
+            "path": "/raw_input/qualifications/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/5/value",
+            "path": "/raw_input/qualifications/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/6/value",
+            "path": "/raw_input/knowledge_records/0/provenance_refs/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/7/value",
+            "path": "/raw_input/knowledge_records/0/provenance_refs/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/8/value",
+            "path": "/raw_input/descriptors/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/9/value",
+            "path": "/raw_input/descriptors/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/10/value",
+            "path": "/raw_input/claims/-"
+          },
+          {
+            "op": "copy",
+            "from": "/source_snapshot/patch_B/11/value",
+            "path": "/raw_input/claims/-"
+          }
+        ],
+        "operation_count": 18,
+        "materialized_raw_input_pointer": "/raw_input",
+        "materialized_raw_input_canonical_sha256": "3182f57bbdd358a4bbea6cbe083cdce0f9efd48c0682b546638e2c5f6b0d5c49"
+      },
+      "qualification_precondition_ja": "全sourceが既存ValidatedSupply上でusable、input_issues=[]である条件付き。raw roleから資格成立を主張せずfn0/runtimeを実行しない。",
+      "cases": [
+        {
+          "id": "B2-overlap-original",
+          "claim_locator": "/claims/2",
+          "standard_input_patch": [],
+          "expected_basis_projection": {
+            "basis_class": "unresolved",
+            "basis_source_indices": [
+              2
+            ],
+            "unresolved_basis_ref_indices": [
+              0
+            ]
+          },
+          "derivation_ja": "source2のusable性はValidatedSupply条件付き。unresolvedとsemantic_jsonが併存するraw例。",
+          "input_canonical_sha256": "3182f57bbdd358a4bbea6cbe083cdce0f9efd48c0682b546638e2c5f6b0d5c49"
+        },
+        {
+          "id": "B2-semantic-only",
+          "claim_locator": "/claims/2",
+          "standard_input_patch": [
+            {
+              "op": "remove",
+              "path": "/claims/2/basis_refs/0"
+            }
+          ],
+          "expected_basis_projection": {
+            "basis_class": "semantic_or_mixed",
+            "basis_source_indices": [
+              2
+            ],
+            "unresolved_basis_ref_indices": []
+          },
+          "derivation_ja": "source2のusable性はValidatedSupply条件付き。先頭の未対応Refを除いた単独semantic例。",
+          "input_canonical_sha256": "f2d61b91c2d72f1786fedb1e05ac0a39b3345608edef5e114fea3584a21b076e"
+        },
+        {
+          "id": "B1-reference-only",
+          "claim_locator": "/claims/1",
+          "standard_input_patch": [],
+          "expected_basis_projection": {
+            "basis_class": "reference_only_only",
+            "basis_source_indices": [
+              3
+            ],
+            "unresolved_basis_ref_indices": []
+          },
+          "derivation_ja": "source3のusable性はValidatedSupply条件付き。元basis Refとsource3.refの完全一致、role=reference_only。",
+          "input_canonical_sha256": "3182f57bbdd358a4bbea6cbe083cdce0f9efd48c0682b546638e2c5f6b0d5c49"
+        },
+        {
+          "id": "B1-explicit-empty",
+          "claim_locator": "/claims/1",
+          "standard_input_patch": [
+            {
+              "op": "replace",
+              "path": "/claims/1/basis_refs",
+              "value": []
+            }
+          ],
+          "expected_basis_projection": {
+            "basis_class": "nonsemantic_or_empty",
+            "basis_source_indices": [],
+            "unresolved_basis_ref_indices": []
+          },
+          "derivation_ja": "basis_refsの明示空。資格/usableを主張しない。",
+          "input_canonical_sha256": "0c446525f5c9713c47c1850cc94a8cd0d699eefc866bc6b06ceb6b301fce54b0"
+        },
+        {
+          "id": "B0-basis-member-absent",
+          "claim_locator": "/claims/0",
+          "standard_input_patch": [],
+          "expected_basis_projection": {
+            "basis_class": "unresolved",
+            "basis_source_indices": [],
+            "unresolved_basis_ref_indices": []
+          },
+          "derivation_ja": "原rawのClaim0にbasis_refs memberが無い。空配列を補わない。",
+          "input_canonical_sha256": "3182f57bbdd358a4bbea6cbe083cdce0f9efd48c0682b546638e2c5f6b0d5c49"
+        },
+        {
+          "id": "B2-repeated-index-order",
+          "claim_locator": "/claims/2",
+          "standard_input_patch": [
+            {
+              "op": "copy",
+              "from": "/claims/2/basis_refs/1",
+              "path": "/claims/2/basis_refs/-"
+            },
+            {
+              "op": "copy",
+              "from": "/claims/2/basis_refs/0",
+              "path": "/claims/2/basis_refs/-"
+            }
+          ],
+          "expected_basis_projection": {
+            "basis_class": "unresolved",
+            "basis_source_indices": [
+              2,
+              2
+            ],
+            "unresolved_basis_ref_indices": [
+              0,
+              3
+            ]
+          },
+          "derivation_ja": "同じsemantic sourceのsource index反復と元未対応Refの反復位置を維持する。",
+          "input_canonical_sha256": "62ff24cab482e2ebd4a52a635da54d93d5f5bb9bd954fe47d008640659de7f20"
+        }
+      ],
+      "limits_ja": [
+        "各caseはbasis_class及び2つのbasis index列だけを対象とする。route、route_reason、support arrays、public tuple、original state、ClaimUse全体は期待値に含めない。",
+        "私有分類3fieldのみ。新しいsource取得・資格・意味対応・gateを要求しない。",
+        "current L8 source_return_verification.casesの79件を変更しない。"
+      ],
+      "verification_boundary_ja": "標準RFC6902による有限raw再構成と入力変異の静的materializationのみ。製品reader/helper/fn0/runtime/旧CLI/hook/test/CIは実行しない。",
+      "legacy_comparison": {
+        "source_assets": [
+          "4F5A1F0739EC1111D91D L4 JSON正本設計16–101行",
+          "98372FEE8A3AC8F9C299 L5 JSON正本設計73–108行",
+          "A127DEC3EEE6ED63CF17 弱点監査76–87行（UTW014/020/021）"
+        ],
+        "treatment_ja": "意味の再導出。JSONの原状態・完全Ref・unknownの保持を継承し、単一enum重複時の技術優先を今回補完する。旧wire/runtimeは移植しない。未確定を別source成功で隠す失敗を防ぐ。"
       }
     }
   },

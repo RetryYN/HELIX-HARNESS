@@ -7584,7 +7584,13 @@
           "nonsemantic_or_empty": "basis_refsが明示空、又は全対応が使用可能だがsemantic_jsonを含まないreference_only/derived_view/explanationのみの場合。これは意味完成/資格の認定ではない。",
           "semantic_or_mixed": "当該basisにsemantic_jsonを含む利用可能資料がある場合。住所/body/意味対応の成立をroleだけで決めない。",
           "unresolved": "basis member不在又は対応Ref/source/資格/roleの未確定がある場合。basis_source_indices/unresolved_basis_ref_indicesを原順保持し、別source成功で消さない。",
-          "qualified_alternative_limit": "新semantic basisのbodyをClaim.proposed_valueの正しい意味へ結ぶowner対応は、任意RawValue全域では現sourceに定義が無い。文字列/JSON一致gateで補わず、当該routeをunresolvedとして保存する。元fn1のknownを新gateで取り消さず、限定したempty/nonsemantic fallbackの肯定検出経路は完成させる。"
+          "qualified_alternative_limit": "新semantic basisのbodyをClaim.proposed_valueの正しい意味へ結ぶowner対応は、任意RawValue全域では現sourceに定義が無い。文字列/JSON一致gateで補わず、当該routeをunresolvedとして保存する。元fn1のknownを新gateで取り消さず、限定したempty/nonsemantic fallbackの肯定検出経路は完成させる。",
+          "basis_class_precedence": {
+            "semantic_and_unresolved_overlap": "単一basis_classを構成するとき、unresolved_basis_ref_indicesが非空、basis memberがabsent、又は対応Ref/source/qualification/roleに未確定が一つでもある場合はunresolvedを優先する。",
+            "remaining_order": "完全に対応済みの非空basisで全対応source.role=reference_onlyならreference_only_only。basis_refsが明示empty、又は完全に対応済みの全usable sourceがsemantic_json以外のreference_only/derived_view/explanationならnonsemantic_or_empty。完全に対応済みのbasisにusable semantic_jsonが一つ以上あればsemantic_or_mixed。どのclassも根拠づけられなければunresolved。",
+            "preservation": "basis_source_indicesとunresolved_basis_ref_indicesは元basis_refs/sourceのindex領域をそれぞれ保持し、元順・反復を維持する。unresolvedを優先しても、対応済みsemantic sourceのsource indexは削除しない。deduplicate/sortしない。",
+            "non_gate": "これは既存四値enumの重複条件を単一分類へ投影する優先順だけであり、source acquisition/qualificationの新required条件、basis_refs新規必須条件、public route predicateを加えない。"
+          }
         },
         "support_sets": {
           "missing_support_indices": "primary_definition_assessment_indicesのうちstate=missingの元indexだけ。NA又は別補助軸の同stateは混ぜない。",
