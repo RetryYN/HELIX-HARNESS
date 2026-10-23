@@ -124052,9 +124052,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DESCRIPTOR-TARGET-READER",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json",
-      "file_sha256": "3553a93d300aff75210f1c2f8f7b6158e55389913108aafd952e1294a82347c7",
+      "file_sha256": "f101429015067c7759d0aa8c602d430e275fb69f3ae1f30a4f1e63db4cc5cd9d",
       "pointer": "",
-      "canonical_sha256": "16547c703e20248d8046e3723881f6ffcc26570e1b9bb7aeb8f205c672797c53"
+      "canonical_sha256": "0666c0c1ef1a36b93b3e5f05ab2f6eaf4bceff557a634991332ccbc708d8c06e"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
