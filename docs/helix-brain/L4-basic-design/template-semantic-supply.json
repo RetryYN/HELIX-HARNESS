@@ -4870,7 +4870,7 @@
         "DescriptorTargetMatch.candidate_indices": "原binding.template_refに既存Ref比較で対応する全input.candidates indexを反復込みで保持。",
         "DescriptorTargetMatch.candidate_refs": "当該indexの元Refを同順保持。",
         "DescriptorTargetRead.state": "ordered_branches/relevance_tableによる当該target/Binding住所対応だけ。",
-        "DescriptorTargetRead.problems": "元scopeの全局所問題。原source/index/field順。複数distinct slotの曖昧/同slot kind相反は当該group一問題にし、候補資料は全occurrencesへ保持。",
+        "DescriptorTargetRead.problems": "元scopeの局所問題を原source/index/field順に保持する。target_mapping_conflictのgroupは当該target/current Binding/slot、target_ambiguousのgroupは当該target/current Bindingとし、各kind/group一問題。両者のgroup起点locatorが同じならtarget_mapping_conflict→target_ambiguousの順、異なる起点なら原source/index順とする。全候補はoccurrencesへ保存する。",
         "DescriptorTargetProblem.kind": "schemaの既決private13語。public codeへ転用しない。",
         "DescriptorTargetProblem.locator": "次のproblem_locator規則の原pointer。",
         "DescriptorTargetProblem.reason": "次のreason_templatesのkind対応literal。自由文を期待生成源にせず独立期待と照合する。",
@@ -4911,18 +4911,19 @@
           "shared_predicates": "同callのpositive fill_definition、resolved target、全matchと原primary definition assessmentの対応が判定の前提。primaryは当該kind.definition軸であり、帰属/NA/意味pair/住所unknownを意味未定義支持へ混ぜない。",
           "rule87": "元primary missingがあり、非空basisの全原Refに使用可能な対応sourceがあり、その全roleがreference_onlyで未解決対応が無い場合だけfn6/rule87。empty配列のallをreference_only成立としない。",
           "rule93": "元primary unknownかつmeaning_undefinedの支持があり、basisが明示empty又は全対応が使用可能な非semantic資料だけで、rule87が不成立のときだけfn7/rule93。原意味body nullに定義済み別根拠無しという元predicateを保持する。",
-          "unresolved": "判定に必要なtarget/assessment/basis対応が未確定ならunresolved。semantic又はmixed basisの任意proposed_valueを正しい意味へ結ぶowner対応は未定義のまま保持し、role/body hash/文字列一致からqualified代替を推定せずrule93 tupleを作らない。",
-          "none": "本2ruleのpredicateが明確に非該当ならnone。特に対応既知・primary missingのみ・basis_refs=[]はrule87もrule93もfalseでnone。replacement specialのunknown eventだけからroute=unresolvedを作らない。",
+          "unresolved": "basis member absent、target/assessment/source/roleの対応不足、又はsemantic/mixed basisを任意proposed_valueへ結ぶowner意味対応が未確定ならunresolved。semantic/mixedはprimary missingのみの場合も同じで、分類済みroleを意味対応の成立又は明確な非該当へ変換しない。rule93 tupleは出さず原stateを保持する。",
+          "none": "上記必要対応と評価域が確定し、本2ruleが明確に非該当ならnone。対応既知・primary missingのみ・明示emptyはrule87/93=falseでnone。basis absent又はsemantic/mixedの意味対応未決はunresolvedであり、この明確非該当例へ混ぜない。replacement specialのunknown eventからrouteを作らない。",
           "mixed": "原Claim出現ごとにrule87→rule93→未確定ならunresolved→明確非該当ならnoneを判定。同Claimのmissing/meaning_undefinedが併存しrule87成立ならfn6のみ担当し、fn7へ二重Findingを作らない。全原assessmentは残し、別Claimのrouteを抑止/合成しない。",
-          "public_tuple": "rule87/93が成立し既存公開型を形成できるときだけ、原Claim.subject_ref/binding/basis全Ref、axis=descriptor.definition、state=missing/unknown、既存code/reference_as_required_definition又はunknown_fallback、knowledge_ownerを返す。none/unresolvedから本2ruleのAxis/Findingを生成せず、元definition軸を保持する。"
+          "public_tuple": "rule87/93成立時の原Claim全Ref/Binding・既存公開tuple形成はL5 descriptor_target_dataflow.public_outputを正とする。none/unresolvedから本2ruleのAxis/Findingを生成せず元definition軸を保持する。",
+          "evaluation_boundary": "原kind/intentが確定した非該当ならnone、intent又はtarget対応が未確定ならunresolved。同targetの全primary対応が確定しmissing/meaning_undefined支持がともに無い場合はbasisに依らずnone。支持がある場合だけ必要basis分類/意味対応を上記ruleとL5 consumer.support_sets.route_orderに従い評価する。"
         },
         "replacement_special": {
           "responsibility": "fn1の既存replacement special（rule7/8及びreplacement_basis_unresolved）と、fn6/7のrule87/93を別の判定として保持する。read取得unknownだけからeventを形成しない。",
           "activation": "原Claim.kind=fill_definitionかつ同call intent=positive、target readがresolvedで原住所matchがあり、対象kindがrequired section又はrequired field、同Binding/slot/kindに対応する元primary definition missingがある場合だけ追加specialの対象とする。",
           "explicit_target_missing": "実在slotは全原slot locatorと同slotの元primary missingへ対応させる。slot不在は当該kindの元no-slot missingがある場合だけ対応し、同kind別slotのstateを借りない。住所unknown/conflict又は意味unknownをmissingへ変換しない。",
           "existing_cross_pattern": "当該原target/basis対応が既存cross-pattern rule7又は8を満たせば、その既存missing eventだけを形成する。same-Patternと確定した対応は既存非発火枝を維持する。",
-          "unresolved_third_branch": "上記activation成立かつ既存rule7/8又はsame-Pattern対応へ確定できず、当該basis分類又は別template対応が未解決なら既存replacement_basis_unresolved unknown枝を形成する。basis_refs=[]は分類自体が既知emptyだが、対応する代替source/basisが一件も無く別template対応を確定できないためこの枝に入る。absenceとemptyは原presence/取得結果に区別して保持する。",
-          "nonfire": "非positive、nonresolved/multiple target、kind対象外、同Pattern確定又は元primary missing無しでは追加event無し。元target/intent/special read、原missing/unknown、後段routeを全保持する。",
+          "unresolved_third_branch": "activation成立後、既存rule7/8の必要入力が確定してfalse又はsame-Patternが確定なら追加第三枝は出さない。必要な原basis/owner kind/template対応が未確定の場合だけ既存replacement_basis_unresolved unknownを形成する。basis member absentは原basis対応未供給としてこの未確定に含む。明示emptyは下記technical_closureの技術判断で、対応する置換根拠が無く別template対応を確定できない場合としてこの枝に含める。",
+          "nonfire": "非positive、nonresolved/multiple target、対象kind外、元primary missing無し、same-Pattern確定又はrule7/8が必要入力確定の上でfalseの場合は追加第三枝無し。特に非空basisのowner kind/templateが確定し、required inputでない等により両cross-pattern predicateがfalseならunknownを追加しない。元read/原state/後段routeは保持する。",
           "limits": "既存cause/公開型/意味状態/actor/必須sourceを増やさない。明示emptyで第三枝が出ても元missingを充足せず、fn7 rule93のundefined支持やClaimUse routeの根拠にはしない。"
         }
       },
@@ -5011,7 +5012,7 @@
           "legacy_source_refs": [
             "LEGACY-ASSET-4F5A1F0739EC1111D91D:18–45,61–99（台帳508行）",
             "LEGACY-ASSET-98372FEE8A3AC8F9C299:94–108（台帳550行）",
-            "LEGACY-ASSET-A127DEC3EEE6ED63CF17:80,86–87（台帳1000行）"
+            "LEGACY-ASSET-A127DEC3EEE6ED63CF17:80,86（台帳1000行）"
           ],
           "retained": "既存old_sourcesの原identity/owner/source traceとunknown/missingの区別、UTW-014の欠損空集合化防止、UTW-020の局所失敗保存を保持する。L3-032 F01/F02/F09/N02の欠落/矛盾/未知を充足へ変えない。",
           "search_and_absence": "上記旧L4/L5本文、archive root/docs及びroot/srcでread_descriptor_replacement_target/DescriptorTargetRead/replacement_basis_unresolved/unknown_fallbackを検索したが同一target/basis機構は無い。旧registry/predicate lifecycleの型・gateを移植せず、現行原対応からの新技術案として独立reviewへ出す。",
@@ -5024,8 +5025,15 @@
             ],
             "use": "同名節の歴史来歴のみ。新しいempty basis発火のauthorityへ転用しない。"
           },
-          "failure_and_change": "#3632 R1/統制6359417659でmixed matchesの未閉、#3631でempty basis第三枝未閉を記録した。候補を成功対応へ選ぶ余地を閉じ、既存第三枝のempty条件を明示する。原宣言/unknown/missingと同Claim排他を保ち、required evidence/失敗codeを追加しない。",
-          "consumer_and_oracle": "L5 descriptor_target_dataflow.consumerとreplacement constructor、対L9の既存9全返却と技術条件照合へ追随する。L4閉包merge後にD27全期待/sort/index/assessment/native/局所targetを再検証し、閉じた条件だけ外す。全ClaimUse/全fn1/全consumer/Issueの完成は認定しない。"
+          "failure_and_change": "#3632 R1のmixed matches未確定と#3631のempty第三枝未確定を起点に、住所集合と既存eventの技術分岐を明示する。原宣言/unknown/missingと同Claim排他を保持する。",
+          "consumer_and_oracle": "L5 descriptor_target_dataflow.consumerとreplacement constructor、対L9の既存9全返却と技術条件照合へ追随する。L4閉包merge後にD27全期待/sort/index/assessment/native/局所targetを再検証し、閉じた条件だけ外す。全ClaimUse/全fn1/全consumer/Issueの完成は認定しない。",
+          "empty_basis_technical_decision": {
+            "classification": "明示emptyの第三枝発火は、旧sourceからの一意な帰結ではなく、本閉包で選択する新しいL4技術判断である。",
+            "current_basis": "L5 definition_meaning_core.special_predicate_projection/4,5の「basis use未供給/曖昧なら当該対応unknownを残す」と、既存constructors/3/branches/2を根拠とする。空集合を代替根拠の支持へせず、元missingと未確定の別template対応を並べて返す。",
+            "alternative_and_choice": "非発火案は明示emptyを置換申告無しと扱い、通常positive fill_definitionの追加Axisを抑えられる。一方、Claim.kind/intentだけで空basisを対応不要と解釈せず、既存第三枝で未供給の代替対応をunknownとして観測に残す発火案を採る。required section/field・resolved target・元missingに限定し、元missingを充足せず、新cause/失敗条件/必須sourceを加えない。",
+            "reason_interpretation": "既存reasonの「原分類・template対応を解決できない」は両者の対応の組が未確定である意味。既知emptyという分類だけを不明と言い換えない。whenは「対応する置換根拠が無く別template対応を確定できない」に揃え、既存reason literalを追加/変更しない。",
+            "coexistence": "同targetに元missingと限定meaning_undefinedが併存し明示emptyなら、fn1の第三枝unknown Axisと、独立fn7/rule93のunknown_fallbackが並び得る。第三枝のfinding_rule_indices=[]は維持し、同Claimのrule87/93二重Finding禁止とは区別する。"
+          }
         }
       },
       "limits": [
@@ -5037,7 +5045,7 @@
       "cohort_result_contract": {
         "scope": "このcallの原Claim.subject_refとcurrent full Bindingに対する住所対応だけ。relevance_tableで別target/frame/Binding又は未帰属とされた資料を無条件に当該cohortへ混ぜない。",
         "conflict": "同cohortの同slot既知kind差又はcaller slot既知kind差があればconflict。distinct slotのtarget_ambiguousも併存保存するが、stateはconflictが優先する。独立exact対応を相殺しない別frame/Binding問題の扱いはrelevance_table/3,4のまま。",
-        "unknown": "当該cohortにconflictが無く、distinct slot又は当該住所の比較に必要な未解決があればunknown。未帰属資料だけを全target blockerにせず、独立exact対応はrelevance_table/2,6に従い保持する。",
+        "unknown": "同identityの宣言で、当該current frame/Bindingとの対応を否定できず必要revision/scope/owner/Binding/kind/slotが比較不能なら、exact対応と併存しても同cohortをunknown、matches=[]とする。conflict優先は維持する。identity自体が欠落/null/型外の未帰属、又は既知に別frame/Bindingなら既存relevance_table/2,3,4,6に従い独立exactを相殺しない。全原宣言と局所原因は保存する。",
         "resolved": "当該住所が一つのslot/kindへ確定する場合だけresolved。完全同値反復のmatch集約と原Ref optional所在等が異なる別match保持はordered_branches/6のまま。slot不在は住所の未解決ではなくslot_locators=[]を保持できる。",
         "matches": "state=resolvedの全原対応だけ。state=unknown/conflictでは、同target内の一部対応をmatchesに残さない。これは候補の削除ではなく、安全な住所対応と全候補occurrencesの区別である。",
         "preservation": "unknown/conflictでも全candidate indices/refs、全source/宣言occurrencesと局所problemsを原順・反復で保持する。問題原因を空集合又はdeclared無しに置き換えず、別Claim/別targetの処理を継続する。"
