@@ -124527,9 +124527,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
-      "file_sha256": "1bfa7323cfc6e9697c660291ac3fdc9af90bfe93ac1935c8c44545d8e781a093",
+      "file_sha256": "e28f4e6af4ba8f888abc762ea0ce45295b809a8c22d953dab1441466aa452792",
       "pointer": "",
-      "canonical_sha256": "3f0d445a0cd5641188458e49aa4f10221f04d45ca85053e5fd62207713617014"
+      "canonical_sha256": "1de116e652c81e566e99f366ae0575af8ff7a91d8c5485b260bbc2180f82db05"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",

@@ -5042,7 +5042,10 @@
           "/knowledge_promotion_contract/comparison_writer",
           "/knowledge_promotion_contract/record_and_process_preservation",
           "/knowledge_promotion_contract/unclosed_projection_boundaries",
-          "/knowledge_promotion_contract/legacy_rederivation"
+          "/knowledge_promotion_contract/legacy_rederivation",
+          "/knowledge_promotion_contract/comparison_writer/axes",
+          "/knowledge_promotion_contract/comparison_writer/findings",
+          "/descriptor_meanings"
         ]
       },
       {
@@ -5060,7 +5063,8 @@
           "/failure_rules/80",
           "/failure_rules/81",
           "/failure_rules/82",
-          "/failure_rules/83"
+          "/failure_rules/83",
+          "/logical_input_structure/schema/$defs/Ref"
         ]
       },
       {
@@ -5180,8 +5184,8 @@
         "A": "47f21dda5284ae4d8146e412b77eebf924c651d7d84ad2bdf3d8da3f54ca464a",
         "B": "dc8a04aefdae859cb01cbc3a652a15ca971327e23854e16db73806105d2b04b8"
       },
-      "source_resolution_rule_ja": "新outer3→既存fn3 recipe61imports/856RFC→fn5-local6copy（Context2copyと返却metadata4copy）の順。全64imports/862RFC。各fixed rowのbytes/canonical hashとnull destinationを照合し、旧pinをCURRENT名だけで進めない。既存666RFCの4no-opは元値保存し、新しいno-opを足さない。",
-      "empty_population_representation_ja": "seedのaxes/findings=[]は固定L4 comparison_writerが指定する有限0行の構造で、nonnull scalar値をseedへ埋めない既存unit方式を維持する。input.candidates=[]を返却へcopyするものではない。source契約のkind/source/原presence観測と四rule非発火をA/B別々に確認した上で、行のappendが0件という有限期待を保持する。",
+      "source_resolution_rule_ja": "新outer3→既存fn3 recipe61imports/856RFC→fn5-local6copy（Context2copyと返却metadata4copy）の順。全64imports/862RFC。各fixed rowのbytes/canonical hashとnull destinationを照合し、旧pinをCURRENT名だけで進めない。既存666RFCの4no-opは元値保存し、新しいno-opを足さない。 L4 fixed_git_imports/1（/knowledge_promotion_contract→/source_contracts/knowledge_promotion）は照合用の契約pin専用であり、6copyのfromには使わない。finite-domain/四rule/0行writerを固定revisionへ束縛する用途として保持し、未使用データのcopy又は新resolverは追加しない。",
+      "empty_population_representation_ja": "本有限unitではseed expected_comparisons/{A,B}/{axes,findings}だけを[]にする、placeholder null規則の明示的な構造例外を採る。L4 comparison_writer/axesとfindingsが指定する有限0行へderivation_jaで個別対応を付ける。scalar期待値はnullのまま固定Git copyで形成し、input.candidates=[]又は他unitの空Comparisonを答えとして転用しない。未知predicate/枝外の出力形をこの例外で埋めない。",
       "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。"
     },
     "function_call": {
@@ -5242,27 +5246,33 @@
         "typed_kind_census": [
           {
             "locator": "/descriptors/0/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/0/content/descriptor_facts/0/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/0/content/definition_meaning_operations/0/arguments/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/0/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/1/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/2/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           }
         ],
         "claims": [
@@ -5288,6 +5298,30 @@
                 "kind": "required input"
               }
             ]
+          }
+        ],
+        "knowledge_record_shapes": [
+          {
+            "record_index": 0,
+            "ref_pointer": "/knowledge_records/0/ref",
+            "ref_presence": "supplied",
+            "ref_schema_shape_matches": true,
+            "ref_member_names": [
+              "identity",
+              "revision",
+              "scope",
+              "owner",
+              "source_locator",
+              "sha256"
+            ],
+            "provenance_refs_pointer": "/knowledge_records/0/provenance_refs",
+            "provenance_refs_presence": "supplied_array",
+            "provenance_refs_Ref_array_shape_matches": true,
+            "provenance_ref_member_counts": [
+              6,
+              6
+            ],
+            "all_provenance_Ref_member_names_equal_ref": true
           }
         ]
       },
@@ -5353,51 +5387,63 @@
         "typed_kind_census": [
           {
             "locator": "/descriptors/0/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/descriptors/1/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/descriptors/2/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/0/content/descriptor_facts/0/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/0/content/definition_meaning_operations/0/arguments/descriptor_kind",
-            "kind": "template identity"
+            "kind": "template identity",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/0/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/1/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/1/content/descriptor_targets/2/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/2/content/descriptor_facts/0/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/2/content/definition_meaning_operations/0/arguments/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/2/content/descriptor_targets/0/descriptor_kind",
-            "kind": "required input"
+            "kind": "required input",
+            "known_in_L4_descriptor_meanings": true
           },
           {
             "locator": "/sources/2/content/descriptor_targets/1/descriptor_kind",
-            "kind": "required section"
+            "kind": "required section",
+            "known_in_L4_descriptor_meanings": true
           }
         ],
         "claims": [
@@ -5450,6 +5496,32 @@
               }
             ]
           }
+        ],
+        "knowledge_record_shapes": [
+          {
+            "record_index": 0,
+            "ref_pointer": "/knowledge_records/0/ref",
+            "ref_presence": "supplied",
+            "ref_schema_shape_matches": true,
+            "ref_member_names": [
+              "identity",
+              "revision",
+              "scope",
+              "owner",
+              "source_locator",
+              "sha256"
+            ],
+            "provenance_refs_pointer": "/knowledge_records/0/provenance_refs",
+            "provenance_refs_presence": "supplied_array",
+            "provenance_refs_Ref_array_shape_matches": true,
+            "provenance_ref_member_counts": [
+              6,
+              6,
+              6,
+              6
+            ],
+            "all_provenance_Ref_member_names_equal_ref": true
+          }
         ]
       }
     },
@@ -5460,7 +5532,8 @@
       "KnowledgeRecordのref/provenance_refsと他9memberのabsent、他8array集合のabsent、dependenciesのabsentを保持する。[]/null/{}へ補完しない。これらをknown/accepted/mature又は工程完了へ変換しない。",
       "四ruleはconditionの昇格主張とpredicateを一体で読むL4技術判断の下で個別に非発火。NEG-01〜04のknowledge_accepted/knowledge_promoted入力計画と異なり、descriptor専用の定義提案を運用state代入へ読み替えない。",
       "原state欠落の不足はfn3 knowledge.operational_state unknownとして別に保持される。fn5の0axisを問題なし又は全F08保持の表示とは扱わず、同immutable snapshotとproducer別Comparisonの責務を維持する。",
-      "A/Bの全Contextは別々にcopyし、返却bindingも各同call入力からcopyする。共通bindingの全値が偶然一致してもContextや原provenance/claimsをAからBへ流用せず、両公開Comparisonの同値を独立導出後に照合する。"
+      "A/Bの全Contextは別々にcopyし、返却bindingも各同call入力からcopyする。共通bindingの全値が偶然一致してもContextや原provenance/claimsをAからBへ流用せず、両公開Comparisonの同値を独立導出後に照合する。",
+      "seedのaxes=[]は、L4 /knowledge_promotion_contract/comparison_writer/axesに対し、A/Bとも明示candidate[]→selected_bindings 0件→knowledge_trace_axes 0行、かつ四ruleの追加Axis 0行という導出を対応させる。findings=[]は同comparison_writer/findingsに対し、A Claim0・B Claim0..2の全fill_definitionと原提案値の観測で四昇格conditionが成立しない→Finding 0行と対応させる。これはplaceholder null規則の構造例外であり、RFCによる空出力copyを装わず、規範pointerと有限導出から0行形を明示する技術選択である。"
     ],
     "rule_dispositions": [
       {
@@ -5468,28 +5541,28 @@
         "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "condition": "AI生成だけでaccepted/matureと主張",
-        "nonfire": "非発火。全Claimはfill_definitionで、生成のみからaccepted/matureを主張しない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+        "nonfire": "A Claim0とB Claim0..2はすべてfill_definition。A0/B0/B1のproposed_valueは原null、B2は原string synthetic fallback valueであり、固定L4 /knowledge_promotion_contract/claim_condition_interpretationのdescriptor専用読みの下で、AI生成だけをaccepted/matureへ昇格させる主張はない。A/Bともこのruleのcondition不成立により新行なし。"
       },
       {
         "rule_pointer": "/failure_rules/81",
         "rule_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "condition": "評価範囲無しで昇格済みと主張",
-        "nonfire": "非発火。descriptor定義のfill提案は、評価範囲なしのknowledge昇格claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+        "nonfire": "A/B KnowledgeRecord.evaluation_scopeはabsentのまま。A1件/B3件のClaimはいずれもfill_definitionで、null3件とB2の非null定義提案を評価scopeなしの昇格主張へ付け替えない。固定L4 /knowledge_promotion_contract/claim_condition_interpretationの読みに従い、欠落単独でconditionを成立させず新行なし。"
       },
       {
         "rule_pointer": "/failure_rules/82",
         "rule_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "condition": "独立検証無しで昇格済みと主張",
-        "nonfire": "非発火。昇格又は独立検証完了を主張するClaimがない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+        "nonfire": "A/B KnowledgeRecord.independent_verification_refはabsentのまま。A Claim0/B Claim0..2のkindと原proposed_valueはfinite_domain_observations/A及びBに記したkind=fill_definition、原null3件及びB2の非null stringを保持し、評価/登録の成功又は独立検証完了/昇格を主張するClaimはない。固定L4の当該claim-condition読みの下でcondition不成立により新行なし。"
       },
       {
         "rule_pointer": "/failure_rules/83",
         "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
         "result_ja": "本有限枝では新Finding/追加Axisなし",
         "condition": "MSGCONTENT限定意味採択を運用knowledge acceptedへ変換",
-        "nonfire": "非発火。proposed_valueはdescriptor fill値で、運用stateへのadoption claimではない。 上記finite_domainとclaim_condition_interpretationの読みの下でconditionが成立しない。"
+        "nonfire": "A Claim0/B Claim0..2はdescriptor fill提案で、A0/B0/B1の原nullもB2のsynthetic fallback valueも運用stateへ代入しない。limited_adoption_refも原KnowledgeRecordではabsent。固定L4 /knowledge_promotion_contract/claim_condition_interpretationの読みに従い、限定意味採択をacceptedへ変換する主張はなく新行なし。"
       }
     ],
     "expected_counts": {
@@ -5515,6 +5588,7 @@
       "元raw/validatedの全値・配列順・Ref全member・同値反復を保持。入力のsource/qualification/provenance掲載又は空unusableから実trust/採用を生成しない。",
       "旧source/保持差分/理由は固定L4 knowledge_promotion_contract/legacy_rederivationへ束縛し、新要求/gate/transitionを作らない。",
       "fn0/製品/helper/runtime/旧CLI/test/CI、fn5全域・fn7/手順7・Issue完了の成立を示さない。"
-    ]
+    ],
+    "shape_observation_boundary_ja": "knowledge_record_shapesは固定L5 Ref schemaへの形状一致、各原Refに6memberが実在する観測だけを表す。schemaに新required集合を加えず、Ref解決/資格/運用state又はfn0成立を意味しない。kind既知判定は固定L4 /descriptor_meaningsの15literalとの全原出現照合で、required kindを実slotへ増殖させない。"
   }
 }
