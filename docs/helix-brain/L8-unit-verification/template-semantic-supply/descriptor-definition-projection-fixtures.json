@@ -3824,7 +3824,9 @@
         "pointers": [
           "/field_value_applicability_contract/projection_order",
           "/field_value_applicability_contract/same_call",
-          "/field_value_applicability_contract/functions/3"
+          "/field_value_applicability_contract/functions/3",
+          "/field_value_applicability_contract/additional_leaf_rules/3",
+          "/field_value_applicability_contract/additional_leaf_rules/9"
         ]
       },
       {
@@ -3846,7 +3848,8 @@
           "/failure_rules/57",
           "/failure_rules/102",
           "/failure_rules/103",
-          "/failure_rules/104"
+          "/failure_rules/104",
+          "/field_value_applicability_detail/not_closed_here/5"
         ]
       },
       {
@@ -3981,45 +3984,46 @@
       "pointer_scope_ja": "fn2-unit root相対。各callの公開引数はValueContext一つ。"
     },
     "derivation_ja": [
-      "A/Bともrawのsection_fields/values/applicability_recordsが不在で、実field populationは0。L4 projection_order.populationのcarry-only枝に従い、原fn1のrequired field.definition/required section.definitionだけを元順・全7fieldで保持する。field reader由来の新行とFindingはない。",
+      "A/Bともrawのsection_fields/values/applicability_recordsは不在であり、明示空配列ではない。L4 projection_order.populationはinput.section_fieldsの全原出現を対象とするため、この入力の実field原出現は0件でrows=[]となる。carryは別に適用され、原fn1のrequired field.definition/required section.definitionだけを元順・全7fieldで保持する。containerの不在はadditional_leaf_rules/3のprivate F03Problem側に保持する扱いであり、公開Axis/Findingへは射影しない。このunitはprivate F03Evaluation全値を材料化しない。",
       "Aは元fn1 axes[7,9]、Bはaxes[7,16]を個別にcopyする。A statesはmissing/missing、Bはmissing/unknownであり、Bの2行全体をAから借りない。",
-      "定数producer_symbolは固定L5 functions/2.symbolからcopyし、input_bindingは各call原validated.input.bindingからcopyする。原fn1 findingsや他axisをfn2へ混載しない。"
+      "定数producer_symbolは固定L5 functions/2.symbolからcopyし、input_bindingは各call原validated.input.bindingからcopyする。原fn1 findingsや他axisをfn2へ混載しない。",
+      "原ClaimはA1件・B3件で、すべてkind=fill_definitionである。rule54〜57が対象とするN/A系・案件値不足系のkindではなく、descriptor系consumerに対応するClaimであり、fn2に新行を出さない。L5 field_value_applicability_detail/not_closed_here/5のrule54〜57 Claim値表現・排他選択の未閉包は保持し、全域Claim適合をこの有限例から主張しない。"
     ],
     "rule_dispositions": [
       {
         "rule_pointer": "/failure_rules/54",
         "result_ja": "新行なし",
-        "basis_ja": "実field/valueがなく、N/A claimもない。原generic definition carryを案件値へ変換しない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実field/valueがなく、N/A claimもない。原generic definition carryを案件値へ変換しない。"
       },
       {
         "rule_pointer": "/failure_rules/55",
         "result_ja": "新行なし",
-        "basis_ja": "実fieldの意味定義readと案件値不足claimがない。generic required field.definitionのcarryは原missingのまま。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実fieldの意味定義readと案件値不足claimがない。generic required field.definitionのcarryは原missingのまま。"
       },
       {
         "rule_pointer": "/failure_rules/56",
         "result_ja": "新行なし",
-        "basis_ja": "実field適用判断とN/A claimがない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実field適用判断とN/A claimがない。"
       },
       {
         "rule_pointer": "/failure_rules/57",
         "result_ja": "新行なし",
-        "basis_ja": "section N/Aから全field N/Aへ転写するclaimがない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。section N/Aから全field N/Aへ転写するclaimがない。"
       },
       {
         "rule_pointer": "/failure_rules/102",
         "result_ja": "新行なし",
-        "basis_ja": "実operation期限とfixture期限を既定化するclaimがない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation期限とfixture期限を既定化するclaimがない。"
       },
       {
         "rule_pointer": "/failure_rules/103",
         "result_ja": "新行なし",
-        "basis_ja": "実operation/環境CPUとfixtureCPUを既定化するclaimがない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation/環境CPUとfixtureCPUを既定化するclaimがない。"
       },
       {
         "rule_pointer": "/failure_rules/104",
         "result_ja": "新行なし",
-        "basis_ja": "実operation/環境memoryとfixturememoryを既定化するclaimがない。"
+        "basis_ja": "原Claim（A1件/B3件、全てkind=fill_definition）は保持する。当該rule対象のClaimを観測しない。実operation/環境memoryとfixturememoryを既定化するclaimがない。"
       }
     ],
     "expected_counts": {
@@ -4038,7 +4042,7 @@
       "これは固定D27 A/Bの公開Comparison有限期待であり、fn0実行・資格成立・製品実行を示さない。",
       "private F03Evaluation全値はこのunitの返却期待に含めない。ValueContext.definitions全値を入力に保持するが、fn2返却ではL4のcarry対象2軸だけを保持する。",
       "rootの欠落memberを空配列に補わずValidatedSupply.input全値に保持する。空finding列はこの有限入力に担当ruleの新行がないためで、未知のproducer返却の代用ではない。",
-      "fn3〜5/fn7、手順7、Issue完了、任意入力全域の成立を示さない。"
+      "fn3〜5/fn7、Issue完了、任意入力全域の成立を示さない。"
     ]
   }
 }
