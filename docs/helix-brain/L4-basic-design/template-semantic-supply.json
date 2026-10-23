@@ -11873,7 +11873,7 @@
         "actual_operand_binding": {
           "fixed": "knowledge_state_selection以外の表行はoriginal_member_locatorをActualOperandRequest.member_locator、roleをactual_roleとする。knowledge state行は同名selection節で実locatorを形成する。absent/null/型外を元PresenceRawで保存する。identityとrevisionの二roleは同Ref由来でも別read/別axis。",
           "dependency": "原/binding/pack_dependency_versions/{i}をmember_locator、pack_actual_dependency_versionをrole、当該原Refをsubject_ref、pack.dependency_versionをaxisとし各原出現一row。空配列からrowを作らない。",
-          "rule59": "template_actual_revisionは/binding/template_ref/revisionだけに結ぶ。原member absent/nullはprivate input_member_absent/null unknownを保ち、既存version_missing predicateの公開missingへ結ぶ。原revision suppliedだけでactual対応は成立せず、独立actual owner本文未供給はactual_owner_body_unprovided unknown。後者だけでversion_missingを発火しない。",
+          "rule59": "template_actual_revisionは/binding/template_ref/revisionへ結ぶ。原revision absent/nullで原template Refと原Bindingから通常template.version行を形成できる場合、その同一行の公開stateだけmissingとし、同subject/Bindingへversion_missing Findingを一件追加する。extra Axis rowは追加せず、private input_member_absent/null unknown/causeは不変。subject/Bindingを形成できなければAxis/Findingを捏造せず原read/presenceをprivateへ保持する。revision suppliedだが独立actual owner本文未供給だけならactual_owner_body_unprovided unknownのままで、この理由だけのR59発火はない。",
           "knowledge_state_selection": {
             "join": "同snapshot /knowledge_recordsの全原出現を既存L5 constructor_meaning/reference_resolutionのfull Ref照合で/binding/knowledge_refへ結ぶ。identity/revision/scope/ownerと両側にあるdigestを別々に照合しlatest/先頭選択をしない。",
             "single": "一つの対応原record index iなら/knowledge_records/{i}/operational_state。原state absent/nullは既存input_member_absent/null unknown。",
@@ -11907,11 +11907,12 @@
           "bilateral": "各原recordのref、left_ref、right_ref、非null source_refの順、続けて当該readが実際に使ったsourceの原index順にsource.ref、source.qualification_ref、Qualification.ref、原root Ref全値（roots[].original_read.value自身）。既存有限二record群ではこのrecord単位blockを原record順に連結し、両方のendpoint/同値Refを反復込みで残す。",
           "qualification_route": "当該readが実際に使ったSourceQualificationRead.source_indexとの対応だけ。qualifications/rootsは同SourceQualificationReadの元配列順と全原出現を保持。別sourceの成功Q/rootを代入しない。",
           "finding": "既存compatibility Findingは当該predicateの原readに実関与するsource witnessのRefだけ、元sources index順でsource_refsへ保持（片owner1件、source-null0件、両owner範囲外2件）。endpoint/knowledge/Q/root Refや無関係sourceを混ぜない。他ruleも既存predicateに実関与する原source Refだけを保持しAxis.original_refs全列を代入しない。",
-          "technical_choice": "既存7/P15の列順・反復を保存する規則化。資格Refの掲載だけで意味/owner対応を成立させない。全typed readとsource/index対応は別の既存private返却にも保持する。"
+          "technical_choice": "既存7/P15の列順・反復を保存する規則化。資格Refの掲載だけで意味/owner対応を成立させない。全typed readとsource/index対応は別の既存private返却にも保持する。",
+          "dependency": "新設literal pack.dependency_versionのRef列はactualに準じ、当該原dependency Refを先頭に、実observationsごとのsource/qualification/root/owner endpoint Refを同じ順で続ける。knowledge role固有のKnowledgeRecord Ref/provenance列は混ぜない。非空/反復dependencyは未行使。"
         },
         "bilateral_aggregation": {
           "one_record": "明示CompatibilityRecordの原record.left_ref/原Bindingと当該一readから一row。read.state/causeをそのまま保持する。明示record無しからpair/Axis/Findingを作らない。",
-          "existing_finite_multiple": "read_branch_contracts/bilateral/finite_multiple_record_boundaryで既に定めた有限入力は二read/原record_indices=[0,1]/record_states=[resolved,conflict]を全値保持し、既存の一compatibility conflict軸とR62一件を維持する。この原例の全source/owner理由もreason素材へ保持する。",
+          "existing_finite_multiple": "read_branch_contracts/bilateral/finite_multiple_record_boundaryで既に定めた有限入力は二read/原record_indices=[0,1]/record_states=[resolved,conflict]を全値保持し、既存の一compatibility conflict軸とR62一件を維持する。この原例の全source/owner理由もreason素材へ保持する。 この記述は当該特定入力の既存出力を保存するもので、入力を分類/融合する一般規則ではない。新入力へこの一軸融合又はpair_group_index=0を適用する述語は本topicでは定めない。",
           "unclosed_boundary": "上記有限例から一般record群のgroup key/集約state/競合優先順を導かない。一般multiple-recordの形成・順序・集約は既存同節の未行使/未閉包のままであり、本writerが全入力の一般集約を閉じたとは主張しない。",
           "predicate": "独立片owner未供給等の既存R61、qualified両owner範囲外のR62が実成立する原recordだけがFinding根拠。集約stateだけからpredicateを生成しない。"
         },
@@ -11929,7 +11930,7 @@
           ],
           "condition": "L5 functions/3の既存failure_rulesに属し、その既存predicateが同snapshot原材料で成立した出現だけ。以下はwriter対応表でありpredicateの意味/成立条件を追加しない。actual/trace unknown/conflictへの自動Findingなし。",
           "values": "code/rule_ref/axis/state/backflow_ownerは対応entryのliteral。subject_ref/bindingは当該原predicate witnessの対象全値、source_refsはrefs_order/finding、reasonは同witnessのreason_serialization。subject/Binding形成不能は原観測をprivateに保持しtyped Findingを捏造しない。",
-          "axis_binding": "通常rowと同原subject/Binding/axisへ対応する既存predicateはFindingを当該readと別々に保持し、通常rowを複製しない（rule59の公開missing射影は明記した例外）。通常rowが無いsource/scope/oracle.binding/identity_claim/template.version_claim等は同原witnessから既存expected_axis/stateの一rowを形成する。異predicateのstateを新優先順で一つへ畳まず、各Findingと原witnessを保持する。"
+          "axis_binding": "通常rowと同原subject/Binding/axisへ対応する既存predicateはFindingをreadと別々に保持し、通常rowを複製しない。rule59はactual_operand_binding/rule59の同一template.version行state=missingとFinding一件だけ。R59 witnessは同read.request.member_locatorとoriginal_read、subjectは原/binding/template_ref、Bindingは原input.binding、source_refsは当該read.observationsに実関与する原source Ref列（無ければ[]）。他の通常rowを持たないruleのwitness/subject/Binding/refsはunclosed_projection_boundariesに残し、未定の原材料から公開rowを新設しない。typed公開rowを形成できない観測はprivateへ保持し、代替Ref/Bindingを作らない。"
         },
         "rule_mapping": [
           {
@@ -12019,7 +12020,7 @@
         ],
         "reason_serialization": {
           "grammar": "対応固定prefix + U+000A + diagnostic_json(material)。TRACE=を足さない。diagnostic_jsonはUTF-8、object key Unicode codepoint昇順、空白/末尾LFなし、配列原順、既存exact JSON numberを保持。",
-          "prefix_selection": "actualはread.cause、traceの原対応成立はtrace、compatibility/Findingは原read.causeでproblem_reason_tableを引く。既存有限二record相反軸だけopposing。prefixは原reasonと別の固定文で、原record.reasonはmaterialへ残す。",
+          "prefix_selection": "actualはread.cause、traceの原対応成立はtrace、compatibility/Findingは原read.causeでproblem_reason_tableを引く。既存有限二record相反軸だけopposing。prefixは原reasonと別の固定文で、原record.reasonはmaterialへ残す。 表にない単一compatibility causeはunexercised_compatibilityへ分岐し、未存在keyを引かない。",
           "actual_material": {
             "actual_source_pointers": "同ActualOperandRead.observationsのbody_locator全列、原順/反復込み。",
             "cause": "同read.cause。",
@@ -12040,7 +12041,7 @@
           },
           "compatibility_material": {
             "original_record_reasons": "当該原record群のreason値列、record原順。",
-            "pair_group_index": "既存形成済みpair群の原順index。本7の唯一群は0。",
+            "pair_group_index": "保存対象の特定入力で既に返却された唯一群の値0を記録するもの。一般のgroup形成/index計算の規則ではない。",
             "record_indices": "当該各read.request.record_locatorの原record添字列。",
             "record_states": "同各read.state列、原record順。"
           },
@@ -12058,9 +12059,10 @@
           },
           "finite_trace_boundary": "上記trace materialは保存対象の一record/provenance/source/Q/root原chainを記述する。先頭を選ぶ一般規則ではない。複数sourceのRef列をsource単位/列単位のどちらで束ねるかは一意に決まらず未行使・未閉包。",
           "unexercised_actual": "表にないactual causeは既存finite_branch_orderの同cause.condition固定文をprefix、同actual_materialを使う技術選択。subject_unformedは既存construction guardでpublic row無し。read.state/causeを変更しない。",
-          "unexercised_trace": "原対応以外のtrace causeのprefixは当該cause literal、materialは同原request/read全値とする局所診断技術選択。tableの原対応chain indexを欠落時に補完しない。",
+          "unexercised_trace": "原対応以外のtrace causeはその原literalをprefixとする技術選択。materialの許可keyはcause、request、state、slot_presence、slot_is_null、fact_presence、fact_is_null、knowledge_record_indices、provenance_indices、source_indices、body_group_locatorsだけ。最初3値は同read、presenceは各slot_read/fact_read.presence、is_nullはsuppliedかつ原value=nullだけtrue。残る列は同readの原knowledge_records.index、provenance_refsの{knowledge_record_index,provenance_index}、source_indices、body_groups.locatorを各原順で保持する。原slot/fact/source bodyの全値はprivateに残しreasonへ複製しない。原対応chain indexを補完せずstate/causeを変えない。",
           "unexercised_finding": "既存compatibility以外のruleはそのL5 predicate固定文をprefix、materialは{code,rule_ref,predicate_observations}。observationsは同predicateが実関与した同snapshot原nodeの{locator,original_read}列、元配列添字順。新predicate/空の偽readを作らない。",
-          "boundary": "既存7の固定文/material/Ref保存の規則化と、未行使branchの技術選択を区別する。raw/typed read全値はprivate返却にも保持し、公開reasonへ全raw bodyを複製しない。"
+          "boundary": "既存7の固定文/material/Ref保存の規則化と、未行使branchの技術選択を区別する。raw/typed read全値はprivate返却にも保持し、公開reasonへ全raw bodyを複製しない。",
+          "unexercised_compatibility": "固定表にないcauseが単一BilateralCompatibilityReadから実返却されたとき、prefix=同cause原literal。materialの許可keyはcause、request、state、record_presence、record_is_null、owner_observationsのみ。最初3値は同readの値、record_presenceはrecord_read.presence、record_is_nullはsuppliedかつ原value=nullの場合だけtrue（他はfalseでpresenceと別保持）。owner_observationsは同owner_reads原順の{endpoint,source_index,target_scope_relation,state,cause}全列だけ。raw body/record全文はreasonへ複製せず既存private readへ保持する。これは局所serialization技術選択であり、cause競合順/正規化、新predicate/Finding又は一般multiple-record集約を定めない。"
         },
         "legacy_rederivation": {
           "mode": "意味再導出とAI技術選択。既存legacy_rederivation/sourceの4F5A:16-92、98372:30-148、A127:65-101（UTW-014/020/021）を直接Readした。",
@@ -12088,9 +12090,21 @@
           "opposing": "同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。"
         },
         "technical_decisions": {
-          "dependency_axis": "L3 F04の独立dependency版と既存pack_actual_dependency_version roleに対し各原Ref出現へpack.dependency_version一rowを選ぶ。単一aggregateは個別不足を隠し、pack.revisionへのfold/dropは別次元を失うため不採用。空[]は既存7で0row、非空/反復は未行使。",
-          "rule59_projection": "既存L5 version_missingの公開missingとprivate input_member_absent/null unknownを別列に保つ局所射影を選ぶ。全actual unknownをmissingにする案はowner本文未提供と混同するため不採用、原revision欠落でもrule59を出さない案は既存predicateを失うため不採用。7fixtureの原revision absent/nullは未行使。",
+          "dependency_axis": "軸名literal pack.dependency_version自体は本writerで新設するAI技術選択。L3 F04の独立dependency版と既存pack_actual_dependency_version roleに対し原Ref出現ごと一rowを選ぶ。単一aggregateは個別不足を隠し、pack.revisionへのfold/dropは別次元を失うため不採用。Ref列はrefs_order/dependency。空[]は既存7で0row、非空/反復は未行使。",
+          "rule59_projection": "既存L5 version_missingの公開missingとprivate input_member_absent/null unknownを別列に保つ局所射影を選ぶ。全actual unknownをmissingにする案はowner本文未提供と混同するため不採用、原revision欠落でもrule59を出さない案は既存predicateを失うため不採用。7fixtureの原revision absent/nullは未行使。 独立actual本文未供給までpredicateを広く読む案は7fixtureのversion_missing=0（特にP15全findings=0）と矛盾する。既存整合負例はL8 /cases/5/negative_cases/1（F04-NEG-02）で、template_ref.revisionをnullにしたtemplate.version missingを明示する。通常行への公開missing stateと同rule Finding一件を選び、extra行やprivate state変更はしない。",
           "bilateral_limit": "one_recordと既存finite_multiple_record_boundaryの保存例以外のgroup key/順序/集約は一意でなく未行使・未閉包。finite例から一般multiple-record規則を作らない。"
+        },
+        "compatibility_finding_cause_mapping": {
+          "left_owner_unprovided_or_null": "既存7で、独立片owner本文又は原record.source_refがnullで両owner根拠へ解決不能となる原predicateをR61 compatibility_unknownへ結ぶ。単にstate=unknownというだけから発火しない。",
+          "outside": "既存7の当該原recordでqualified両ownerが実版範囲外と原宣言するpredicateをR62 compatibility_mismatchへ結ぶ。finite相反群でもoutside側のこの原read一件だけ。",
+          "positive_scope_and_other": "既存7のpositive/scope causeからR61/R62を追加しない。その他causeと既存predicateの対応は未行使/未閉包で、cause/stateだけからFindingを作らない。"
+        },
+        "unclosed_projection_boundaries": {
+          "knowledge_records": "actual_operand_bindingの原左operand選択は記録済みだが、KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。既存一record例から先頭選択又は一般Ref集約を作らない。",
+          "qualification_routes": "複数Qualification/root対応の公開Ref列のinterleave/連結順は未行使/未閉包。SourceQualificationReadの原順/全出現保存とは区別し、保存対象の単一原chainだけを9Ref規則で記述する。",
+          "finding_range_source": "保存対象のrange_relationは当該原record.source_refへfull Ref対応する唯一の原source（右owner read.source_indexとも対応）のcontent.compatibility_range_declaration.relation。source-null例は宣言未供給/not_supplied。複数sourceが対応又は対応未形成の場合の選択は未閉包で、先頭/別sourceの宣言を補完しない。",
+          "rules_without_normal_row": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。既存predicateを変更せず、未定のwitness又は型未形成を空Ref/代替Bindingの公開rowで埋めない。原値/presence/private観測を保持する。",
+          "reason_material_presence": "保存対象の定型reason materialに必要な原memberのabsent/null/型外を一般にどう公開materialへ写すかは、各明記済みPresenceRaw/未行使single-read serialization以外は未閉包。保存対象の固定materialを架空null/indexで完成させない。"
         }
       }
     },
