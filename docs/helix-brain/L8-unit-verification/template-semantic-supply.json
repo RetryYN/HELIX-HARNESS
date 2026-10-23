@@ -117298,7 +117298,6 @@
     "id": "HELIXBRAIN-L8-D26B-FN1-COMPARISON-CANDIDATE",
     "status": "detail_verification_candidate_unexecuted",
     "scope_ja": "有限B入力のfn1 Comparison（axes/findings/producer_symbol/input_binding）だけを材料化する候補。Assessment/NativeMaterial/全walkは後段。fn0資格判定は条件付き未実行。",
-    "authority_effect": "none",
     "execution_boundary_ja": "product/helper/runtime/fn0は実行しない。accepted A comparisonは固定L8 seedと69 RFCを同じ配列先頭へ適用して再構成し、Bはfixed raw A+patch Bと追加の標準RFC copy操作だけで構成する。",
     "fixed_git_sources": {
       "L8": {
@@ -117341,7 +117340,8 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
           "/source_return_contract/owner_descriptor_attribution/evidence",
-          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/read_binding_projection"
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/read_binding_projection",
+          "/source_return_contract/pure_reference_notation/definitions"
         ]
       }
     ],
@@ -117942,19 +117942,25 @@
         }
       ],
       "operation_count": 107,
-      "operation_types": {
-        "copy": 107
-      },
+      "operation_types": [
+        "copy"
+      ],
       "expanded_expected_comparison_pointer": "/comparison",
       "expected_output_counts": {
         "axes": 32,
         "findings": 28
       },
-      "expected_output_canonical_sha256": "5ece5a92c6502cebad41ecd467b5a5a0f1a6993aae145b90058908eef1ebcd04",
       "canonical_writer_assumption_ja": "hash確認ではUTF-8 JSONをensure_ascii=false、sort_keys=true、separators=(\",\", \":\")でcanonical化する。これは既存L8の局所確認仮定であり、L5の普遍的writer閉包としては扱わない。",
       "rfc6902_operation_sources_in_order": [
         "/comparison_rfc_operations"
-      ]
+      ],
+      "expected_raw_input_canonical_sha256": "b72d0389e51059502ad6d9bc4e826d82df71550ee95365715feccf4db3b67e06",
+      "schema_definition_pointers": [
+        "/wire_codec_contract/schema/$defs/Comparison",
+        "/wire_codec_contract/schema/$defs/AxisResult",
+        "/wire_codec_contract/schema/$defs/Finding"
+      ],
+      "expanded_expected_comparison_canonical_sha256": "5ece5a92c6502cebad41ecd467b5a5a0f1a6993aae145b90058908eef1ebcd04"
     },
     "field_derivation_ja": [
       "A frameの16 axesと14 findingsは、固定L8 A Comparison seedと既存RFC prefixから再構成する。Bの明示候補を加えても、L4 required domainでrootを保持し、Bindingが異なるB frameを別に追加する。",
@@ -117962,9 +117968,10 @@
       "B frameのfindings 14行は同じ固定rule rowをcopyし、B原Bindingとknowledge_refをcopyする。source_refsは供給済み空配列を保持する。",
       "Comparison.input_bindingはraw Bのroot Bindingを保持する。これはraw A root Bindingと同値であり、B slot Bindingで置き換えない。producer_symbolはaccepted A Comparisonからcopyする。",
       "B実slotのoriginal_refsは明示空列をcopyしてから原fact/source/operation/basis Refを原順appendする。RFC copyのarray indexは挿入であり、既存A列への要素copyで置換したとは扱わない。",
-      "L4 evaluation_populations/required_contract_domainとfixed_kindsにより、root Aと明示candidate Bの各frameで、実slotの帰属1・定義支持1・未供給kind14を別々に保持し、計32 axes／28 missing findingsとなる。B rawはroot AとA cohortの全原値を保持してB cohortだけを追加したものであり、A prefix操作が読むraw Aの各pathと全原値はB raw内でも同義である。",
+      "L4 evaluation_populations/required_contract_domainとfixed_kindsにより、root Aと明示candidate Bの各frameで、実slotの帰属1・定義支持1・未供給kind14を別々に保持し、計32 axes／28 missing findingsとなる。B rawはroot AとA cohortの全原値を保持してB cohortだけを追加したものである。A操作列は不変のsource_snapshot/raw_Aだけを読み、patch_Bはraw_Aを変えない（raw_Bの各配列への末尾追加のみ）。",
       "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/read_binding_projectionにより、B Meaning readのbindingは原 /descriptors/1/binding の9 member全objectである。root A又はfact Bindingへ代入しない。このComparison分割ではread返却そのものは後段nativeに保持する。",
-      "固定L8 A seedの空original_refs列をnull placeholderへimportして、B列の組立用空列とする。source echoをliteralで埋めず、copyのarray挿入前に全列をこの空値へ置き換える。"
+      "固定L8 A seedの空original_refs列をnull placeholderへimportして、B列の組立用空列とする。source echoをliteralで埋めず、copyのarray挿入前に全列をこの空値へ置き換える。",
+      "L5 /source_return_contract/pure_reference_notation/definitions の selected_bindings は、候補template_refと原slot template_refをref_sameで比較し、knowledge_refがobjectであることを確認して、原slotBinding Bを選ぶ。"
     ],
     "final_sort_index": {
       "algorithm_basis": "L5 exact_sort_contract axis_key_access_paths 0..6の順で比較する。Findingは共通0..5の後にaxis、rule_ref、event ordinal、rule出力ordinalを比較する。各行はB Comparisonの最終0始まりindex。",
