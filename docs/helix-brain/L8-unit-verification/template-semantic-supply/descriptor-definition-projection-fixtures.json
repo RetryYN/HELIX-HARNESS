@@ -5794,7 +5794,7 @@
       "固定L4 finite_domainを実測Aに照合したうえで、rule_dispositionsの15非rule93は局所writerが定めたprefix0。これは元文言から推測したprefix不在ではない。rule75は全meaning carrierの完全literal原値を読む。",
       "L4 comparison_writer/axes：空prefixにrule93担当だけを追加するが、A Claim0はunresolvedで担当0件、従ってaxes=[]。comparison_writer/findings：同担当0件なのでfindings=[]。元fn1 conflict/他producer所見を相殺又はfn7へcopyしない。",
       "seedのaxes/findingsだけは固定writerの0行を表す明示[]とするplaceholder null規則の構造例外。producer_symbolは固定L5 /functions/7/symbol、input_bindingは同context.validated.input.bindingからRFC copyで全値形成する。",
-      "fn4/fn5の元fn3 unitは別fixed importの原値・再帰順序が完全一致することを確認後、完成recipeを1回whole copyして再利用する。これは入力復元の重複回避で、fn7期待値の再利用ではない。"
+      "fn4/fn5が固定importする未復元fn3 unit同士の全値・再帰順序一致を確認後、fn4で元recipeを適用済みの完成fn3木で、fn5の未復元fn3値を1copy置換する。fn4のClaimUse-B2材料化を含む完成木だが、fn5が読むのはcalls/{A,B}/validatedだけで、それぞれ原入力と全値/順序一致を保つ。これは入力recipe再利用で、fn7期待値の再利用ではない。"
     ],
     "rule_dispositions": [
       {
@@ -5812,25 +5812,25 @@
       {
         "rule_pointer": "/failure_rules/76",
         "rule_ref": "HELIXBRAIN-L5-032-R-brain_selects_template",
-        "observation_ja": "A0はtemplate採用claimでない。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/candidates=[]。A0はtemplate採用claimでない。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/77",
         "rule_ref": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
-        "observation_ja": "人の要求合意claimでない。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。人の要求合意claimでない。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/78",
         "rule_ref": "HELIXBRAIN-L5-032-R-brain_finishes_design",
-        "observation_ja": "HARNESS/pair設計完成claimでない。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。HARNESS/pair設計完成claimでない。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/79",
         "rule_ref": "HELIXBRAIN-L5-032-R-brain_closes_obligation",
-        "observation_ja": "OS義務消込claimでない。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。OS義務消込claimでない。",
         "public_rows": 0
       },
       {
@@ -5848,13 +5848,13 @@
       {
         "rule_pointer": "/failure_rules/94",
         "rule_ref": "HELIXBRAIN-L5-032-R-hash_as_complete",
-        "observation_ja": "hash/count完成claimなし。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null、/candidates=[]。hash/count完成claimなし。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/95",
         "rule_ref": "HELIXBRAIN-L5-032-R-lower_green_as_complete",
-        "observation_ja": "下位green完了claimなし。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/claims/0/proposed_valueは供給null。下位green完了claimなし。",
         "public_rows": 0
       },
       {
@@ -5878,19 +5878,19 @@
       {
         "rule_pointer": "/failure_rules/99",
         "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
-        "observation_ja": "field.applicabilityのN/A claimなし。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/applicability_recordsはabsent。field.applicabilityのN/A claimなし。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/100",
         "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
-        "observation_ja": "unselected_source→observed claimなし。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/candidates=[]。unselected_source→observed claimなし。",
         "public_rows": 0
       },
       {
         "rule_pointer": "/failure_rules/101",
         "rule_ref": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
-        "observation_ja": "handoff受領claimなし。",
+        "observation_ja": "A /claimsは1件、/claims/0/kind=fill_definition、/handoff_recordsと/dependenciesはabsent。handoff受領claimなし。",
         "public_rows": 0
       }
     ],
@@ -6027,10 +6027,11 @@
       "expected_canonical_sha256": "d0798e69bb0cc3ceda556ef11e2be286f4d59f8e0fedaf10297725cc4f16eeca",
       "expected_context_canonical_sha256": "538d8f0f3f0752156b66aaa3ae4c7439adefe37d1e4f83027ed1090626cac587",
       "expected_private_frame_canonical_sha256": "4b7927bb97aefc8a2a1c494873260ecd9899e96373140343fced4e78405259f3",
-      "source_resolution_rule_ja": "新outer4→fn4元66imports/902RFC→fn5元outer3→元fn3同値を確認し完成whole unitを1copy→fn5-local6copy→fn7-A-local10copy。合計73imports/919RFC。新10copy/reuse1copyは変更先が未形成でno-opなし。既存666RFCの歴史4no-opは元値保持し、新no-opを足さない。",
+      "source_resolution_rule_ja": "新outer4→fn4元66imports/902RFC→fn5元outer3→固定import直後の未復元fn3同士の全値・再帰順序一致を照合し、fn4でrecipeを適用した後の完成fn3木（ClaimUse-B2材料化を含む）でfn5内の既存未復元fn3値を1copyで置換→fn5-local6copy→fn7-A-local10copy。fn5-local6copyがこの木から読むのはcalls/{A,B}/validatedだけで、元raw/validated/bindingの全値を保持する。合計73imports/919RFC。新10copyの各宛先はnullから形成する。reuse1copyは既存値を完成木へ置換するため、null宛先の新copyとは区別する。新10copyとreuse1copyは値が変わりno-opなし。既存666RFCの歴史4no-opは元値保持し、新no-opを足さない。",
       "contract_pin_only_import_ja": "L4 /claim_boundary_projection_contract importは有限domain/16rule/writerの固定照合用であり、RFCのfromにせず期待値をcopyしない。",
       "empty_population_representation_ja": "seed.expected_comparison.axes/findingsの明示[]だけは固定L4 comparison_writerのprefix0＋担当rule93なしから導く構造例外。その他期待値はnull placeholderから固定Git/RFC copyで形成する。",
-      "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。"
+      "canonical_writer_assumption_ja": "UTF-8 ensure_ascii=false/sort_keys=true/separators=comma-colon、末尾LFなし。",
+      "same_call_equality_check_ja": "入力材料化後、context.validatedとprivate_frame.validated、context.definitionsとprivate_frame.definition_evaluation.comparison、6つの元Comparisonの各input_bindingとcontext.validated.input.bindingについて、それぞれ全値のcanonical SHA-256一致を照合する。加えて全値の再帰member順序・配列順も照合してから公開Comparisonを形成し、等価を推定だけで済ませない。"
     },
     "limits_ja": [
       "固定D27 Aとmerge済み有限writerの期待だけ。fn7 Bは後続PRで、同形別文字列又は他kind/非空他carrier/role型外等の枝外を空出力へ一般化しない。",
