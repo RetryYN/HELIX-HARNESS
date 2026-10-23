@@ -110,7 +110,7 @@
     {
       "item_ja": "fn0資格とsource usability",
       "effect_ja": "fn0は未実行。input_issues=[]かつsource3を含む全raw sourceがunusable_source_refsに含まれない条件を保持する。rawの存在/hashは資格成立の証拠ではない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -126,7 +126,7 @@
     {
       "item_ja": "全walk/全ClaimUse/全consumer返却",
       "effect_ja": "局所材料の再検証はtarget_reads/intent_readsを含む単一walk全4返却、全ClaimUse/fn6/fn7の全返却又はIssue完了を成立させない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -153,7 +153,7 @@
     {
       "item_ja": "special readの返却は本単体資料の対象外",
       "effect_ja": "request schedule/activation/basis形状返却はcurrent契約で閉じている。この2target callの資料はspecial結果を消費又は全walkへ組み立てない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -896,5 +896,5 @@
       "source_ref"
     ]
   },
-  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2は未join fact Refをbasisに含みrule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。"
+  "postclosure_revalidation_ja": "共通の閉包後再検証は descriptor-definition-projection-fixtures.json#/postclosure_revalidation_ja を参照。本資料では既存資格条件下のB Claim1/2の2 target call全8fieldを再検証し、出力値を保持した。"
 }

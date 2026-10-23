@@ -144,7 +144,7 @@
     {
       "item_ja": "fn0資格とsource usability",
       "effect_ja": "fn0は未実行。input_issues=[]かつsource3を含む全raw sourceがunusable_source_refsに含まれない条件を保持する。rawの存在/hashは資格成立の証拠ではない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -171,7 +171,7 @@
     {
       "item_ja": "他Claim/全special/全sort-indexの返却は対象外",
       "effect_ja": "Claim1局所Axis7/Finding9だけを保持する。Claim単位routeとClaim2非発火はcurrent閉包で判定できるが、この局所資料で全ClaimUse/fn1/fn6fn7の返却を構成しない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -769,7 +769,8 @@
   },
   "source_roles_ja": {
     "L5_CURRENT": "先行target/intent prefixが宣言した歴史source key名を保持する。2f834488のfixed importsと値hashを変更しない。",
-    "L5_PROJECTION_CONTRACT": "source keyの元revisionは局所投影の歴史入力として保持する。現行consumer/predicate/public writerはcontract_basisのmerge4b5fd9dのL5を正に照合し、材料化したAxis7/Finding9全値が変わらないことを確かめる。"
+    "L5_PROJECTION_CONTRACT": "source keyの元revisionは局所投影の歴史入力として保持する。現行consumer/predicate/public writerはcontract_basisのmerge4b5fd9dのL5を正に照合し、材料化したAxis7/Finding9全値が変わらないことを確かめる。",
+    "L9_RAW_ONLY": "L9はraw baseと指定RFC6902 patch valueの固定Git sourceに限る。expected/count/public outputを期待根拠に使わない。"
   },
   "control_reference": {
     "issue": 3547,
@@ -777,5 +778,5 @@
     "condition_retained_comment": 6358112897,
     "scope_ja": "special read結果を消費しないClaim1局所rule87投影だけを先行する。全fn1/全ClaimUse/全fn6fn7を材料化しない。"
   },
-  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2は未join fact Refをbasisに含みrule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。"
+  "postclosure_revalidation_ja": "共通の閉包後再検証は descriptor-definition-projection-fixtures.json#/postclosure_revalidation_ja を参照。本資料は既存資格条件下のClaim1局所rule87 Axis7/Finding9のみで、special readを消費せず出力値を保持した。"
 }

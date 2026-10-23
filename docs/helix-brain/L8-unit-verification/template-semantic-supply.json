@@ -124021,9 +124021,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM-INTENT-READER",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json",
-      "file_sha256": "165207d6870a38b2c07dfa131e9a4da91d57de63071820773db236159d9f1b24",
+      "file_sha256": "25055f1113ed652601b44d752ed4a3757899ca07ca56fea0341e044b099843cc",
       "pointer": "",
-      "canonical_sha256": "3f6efa350bedbcfbc7aa01e13ff471492e099a61f93db62ec1e0eb51b2830328"
+      "canonical_sha256": "ce2bf5fe632965fa25dd85f1716be337c5aeb5f2ea03be71dda9a17c90e7311c"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -124036,7 +124036,7 @@
       "適用単位": "この資料のroot値を同L8論理文書の指定pointerへ一度だけRFC6902 replaceする。既存definition_meaning_walk_verificationと同じ局所著述方式を使う。",
       "照合と復元": "明示path、identity、空root pointer、現在file bytes SHA-256と論理root値SHA-256を照合してから、root全値を指定位置へ戻す。復元後に各既存reconstructionのroot scopeで固定Git importと標準RFC6902を解決する。",
       "hashと来歴": "file_sha256は現在資料bytes、canonical_sha256は現在root全JSON値。source_revisionとsource_logical_document_canonical_sha256は分割前Draft snapshotの来歴であり、main統合済みや将来current全体hashの拘束を意味しない。",
-      "境界": "歴史raw/import/seed/RFCと原期待値を保持し、current contract_basisで再検証した閉包範囲だけ旧未閉注記を更新する。資格・任意semantic値対応・target/intent全返却とwhole fn1/ClaimUse/fn6fn7の境界は副filelimitsを正とする。新include/runtime/validator/CIは作らない。",
+      "境界": "個別範囲は本副fileのlimits、共通境界は /definition_meaning_D27_definition_projection_verification/materialization_contract/境界を参照する。",
       "全論理値の再照合": "初回追加/分割時点の照合記録: git show b273bf9453e15e538333355084233c1353a11169:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonを分割前の独立snapshotとして取得する。本bindingだけを資料root全値で一度replaceした後、47memberの全JSON値をそのsnapshotと比較する。続いてgit show 2f834488fa8777c6fe786818e6c16fa2b90e9689:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonの既存46memberについて値・key順が不変であることを比較する。artifact内の65RFC適用はこの論理復元後、reconstructionの説明どおり別に行う。 以降の契約追随でこの履歴snapshotへ新metadataの全値一致を要求するものではない。今回の再検証ではbase 4b5fd9d1024af6f7cfca6180482277a92def63ac の他46member値・key順を保持し、4bindingだけを現在副fileのhash/契約へ追随させる。"
     },
     "legacy_comparison": {
@@ -124052,9 +124052,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DESCRIPTOR-TARGET-READER",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json",
-      "file_sha256": "cd71ca02af6de42df167cf8650f2bfcb18d672541cd3d467b6118f000b65a901",
+      "file_sha256": "bc09eb1499671dc81bebc896c4b9245804d242fac56960c8ff186151558c78a3",
       "pointer": "",
-      "canonical_sha256": "981d1a941ce9b68c0f370ec135bba94e2506670aa64451b23511f3b7cc6e0357"
+      "canonical_sha256": "2164b2c265d81c4459c38af9ec3ef3bc0b9d74cf2a6e8067a3858ca2ab2feb0b"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -124065,7 +124065,7 @@
       "適用単位": "この副file rootを同L8論理文書の指定pointerへ一度だけRFC6902 replaceする。既存#3368と同じ局所著述方式を用いる。",
       "照合と復元": "明示path/identity/空root pointerと副file現在bytes SHA及びroot canonical SHAを照合後、そのroot全値を指定位置へ戻す。次に副filereconstructionの固定Git importsを宣言順に解決し、intentの65操作は/intent_workspaceをroot、続くtarget50操作はworkspace全体をrootとして適用する。 file_sha256は副fileの現在bytes、canonical_sha256は副fileの現在root全値を識別する。新規単位のため来歴hashは持たない。",
       "来歴と不変照合": "初回追加/分割時点の照合記録: この単位は新規のtarget reader期待であり、既存inline blockの移動ではない。base 96dba2a7326290fc8a9a0a4e33d6de17114e0534の親L8全47memberは値・key順不変と比較する。新nodeを副file全値へ1replaceして48memberの論理文書を形成し、閉じた2callの直接3引数と8field全返却を独立期待に照合する。 比較元はgit show 96dba2a7326290fc8a9a0a4e33d6de17114e0534:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonで取得する。 以降の契約追随でこの履歴snapshotへ新metadataの全値一致を要求するものではない。今回の再検証ではbase 4b5fd9d1024af6f7cfca6180482277a92def63ac の他46member値・key順を保持し、4bindingだけを現在副fileのhash/契約へ追随させる。",
-      "境界": "歴史raw/import/seed/RFCと原期待値を保持し、current contract_basisで再検証した閉包範囲だけ旧未閉注記を更新する。資格・任意semantic値対応・target/intent全返却とwhole fn1/ClaimUse/fn6fn7の境界は副filelimitsを正とする。新include/runtime/validator/CIは作らない。"
+      "境界": "個別範囲は本副fileのlimits、共通境界は /definition_meaning_D27_definition_projection_verification/materialization_contract/境界を参照する。"
     },
     "legacy_comparison": {
       "source_refs": [
@@ -124080,9 +124080,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM1-RULE87-PUBLIC-PROJECTION",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json",
-      "file_sha256": "dee87750ac841208a8081959a62bffa358ad0e34af80e2bf9e60f2f5b76a60dd",
+      "file_sha256": "82bb0cdcceec4f82a9d0c7dead42573fb2e5e96de973a5a55dda3b9ac6370290",
       "pointer": "",
-      "canonical_sha256": "7acc84350dc591bf8a5b8ecb043ab8a181c80a252267996eee7d6c490a9267a0"
+      "canonical_sha256": "49515f1b11a5b113cf6fc216c3f5f579fed50faab2d57ad208846b9dc8c59aee"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -124093,7 +124093,7 @@
       "適用単位": "この副file rootを同L8論理文書の指定pointerへ一度だけRFC6902 replaceする。既存#3368と同じ局所著述方式を用いる。",
       "照合と復元": "明示path/identity/空root pointerと副file現在bytes SHA及びroot canonical SHAを照合後、そのroot全値を指定位置へ戻す。fixed Git importsを宣言順に解決し、intent65操作は/child_workspace/intent_workspace、target50操作とlocal30操作は/child_workspaceをそれぞれrootとして適用する。file_sha256は副file現在bytes、canonical_sha256は現在root全値を識別し、新規単位のため来歴hashは持たない。",
       "来歴と不変照合": "初回追加/分割時点の照合記録: 新規のClaim1局所public投影であり既存inline blockの移動ではない。比較元はgit show af7c2152326d074d52a7731595d2aa7117064f52:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonで取得する。baseの全48memberの値・key順・物理prefixを保ち、新nodeを副file全値へ1replaceして49memberの論理文書を形成する。 以降の契約追随でこの履歴snapshotへ新metadataの全値一致を要求するものではない。今回の再検証ではbase 4b5fd9d1024af6f7cfca6180482277a92def63ac の他46member値・key順を保持し、4bindingだけを現在副fileのhash/契約へ追随させる。",
-      "境界": "歴史raw/import/seed/RFCと原期待値を保持し、current contract_basisで再検証した閉包範囲だけ旧未閉注記を更新する。資格・任意semantic値対応・target/intent全返却とwhole fn1/ClaimUse/fn6fn7の境界は副filelimitsを正とする。新include/runtime/validator/CIは作らない。"
+      "境界": "個別範囲は本副fileのlimits、共通境界は /definition_meaning_D27_definition_projection_verification/materialization_contract/境界を参照する。"
     },
     "legacy_comparison": {
       "source_refs": [
@@ -124108,9 +124108,9 @@
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
-      "file_sha256": "965603e13083ce85ce8d3752861b9766c7b134add1cccaa154468960be27fe97",
+      "file_sha256": "8ea5c562e881b005ae51581efe65943a7ce3e91dcba85a532da48153c110f315",
       "pointer": "",
-      "canonical_sha256": "5d5f2f3005ede4b00b314822cefb22bc8f5010906387cc5c72d4eea4bc17d2ec"
+      "canonical_sha256": "08e80fcc4696996f0b349aa795370b1692d9aa75348cb5f3a72d2665f1a9da6f"
     },
     "logical_binding": {
       "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",

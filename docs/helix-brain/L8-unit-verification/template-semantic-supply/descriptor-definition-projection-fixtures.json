@@ -940,7 +940,7 @@
     {
       "item_ja": "fn0資格とsource usability",
       "effect_ja": "fn0は未実行。input_issues=[]かつsource3を含む全raw sourceがunusable_source_refsに含まれない条件を保持する。rawの存在/hashは資格成立の証拠ではない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -956,7 +956,7 @@
     {
       "item_ja": "全walk/全ClaimUse/全consumer返却",
       "effect_ja": "局所材料の再検証はtarget_reads/intent_readsを含む単一walk全4返却、全ClaimUse/fn6/fn7の全返却又はIssue完了を成立させない。",
-      "unclosed_basis": [
+      "closed_contract_ref": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
           "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
@@ -1044,7 +1044,9 @@
           "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
           "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order",
           "/dependency_semantic_ports/schema/new_defs/PortPresenceBinding",
-          "/dependency_semantic_ports/schema/new_defs/PortPresenceString"
+          "/dependency_semantic_ports/schema/new_defs/PortPresenceString",
+          "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
         ]
       },
       {
@@ -1596,7 +1598,9 @@
         "file_sha256": "c8eb8b9c07b4a8f33b7a6d9ef5cc3dd8e285dffd0e32740ee83f468982eb3228",
         "pointers": [
           "/dependency_semantic_ports/claim_intent_protocol/rules/4",
-          "/dependency_semantic_ports/descriptor_target_contract/ordered_branches/8"
+          "/dependency_semantic_ports/descriptor_target_contract/ordered_branches/8",
+          "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
         ],
         "derivation_ja": [
           "A0/B0はcurrent cohort_result_contractからconflict/matches=[]と導出し、constructor activation不成立である。"
@@ -2297,5 +2301,5 @@
       "current_contract": "current L5 contract_basisがcall schedule/Problem writer/Origin fieldの根拠。同副fileの先行7段で材料化したraw/assessmentsを新差分操作から直接copyし、L9 expected/countを使わない。"
     }
   },
-  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2は未join fact Refをbasisに含みrule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。"
+  "postclosure_revalidation_ja": "merge 4b5fd9d1024af6f7cfca6180482277a92def63ac のL4/L5から再検証した。contract_basisのL4/L5は現在の意味根拠、fixed_git_sources/全imports/seed/RFCは初回導出の歴史入力として原revision/hash/全値/順を保持する。A0/B0は同slot異kindと別slotの併存からconflict・matches=[]、B1はrequired input、B2は元primary unknownで、replacement special追加eventは4件とも非発火。read取得は全Claim分を保存する。Claim1は既存資格条件下rule87、Claim2のbasisは未join fact Refと利用可能なsemantic_json source2を含む。原Ref/source対応不足に加えsemantic basisを任意proposed_valueへ結ぶowner意味対応も未確定であり、rule93のempty/nonsemantic/reference_only条件を満たさず、rule93なし・route unresolved。これらを全ClaimUse/全返却の完成へ拡張しない。"
 }
