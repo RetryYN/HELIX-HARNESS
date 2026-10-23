@@ -57,7 +57,12 @@
         "/dependency_semantic_ports/schema/new_defs/DescriptorTargetRead",
         "/dependency_semantic_ports/schema/new_defs/DescriptorTargetOccurrence",
         "/dependency_semantic_ports/schema/new_defs/DescriptorTargetMatch",
-        "/dependency_semantic_ports/schema/new_defs/DescriptorTargetProblem"
+        "/dependency_semantic_ports/schema/new_defs/DescriptorTargetProblem",
+        "/dependency_semantic_ports/descriptor_target_contract/relevance_table/1",
+        "/dependency_semantic_ports/descriptor_target_contract/relevance_table/7",
+        "/dependency_semantic_ports/descriptor_target_contract/relevance_table/8",
+        "/dependency_semantic_ports/descriptor_target_contract/carrier/origin",
+        "/dependency_semantic_ports/descriptor_target_contract/reason_templates/target_container_absent"
       ],
       "derivation_ja": "L4 ordered branch 0-8、relevance table 0-9、field mappingとschemaから、候補の原順保持、全source宣言のoccurrence列、対象住所の独立照合、局所problem保持、8field closed shapeを導く。"
     },
@@ -71,7 +76,7 @@
         "/source_return_contract/descriptor_target_dataflow/functions/7",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization"
       ],
-      "derivation_ja": "fn0はRawValueからValidatedSupplyを形成しqualificationを独立解決する。期待するresolvedはsource qualificationを実行・認証した値ではなく、同callのValidatedSupplyでsource0-2がusableとなる条件下に限る。L5 function 7の直接引数3つと出力型を使い、Claim/locatorは既存intent readerの同じB input読取列からcopyする。"
+      "derivation_ja": "fn0はRawValueからValidatedSupplyを形成しqualificationを独立解決する。期待するresolvedはsource qualificationを実行・認証した値ではなく、同callのValidatedSupplyでinput_issuesが空であり、source3を含む全sourceがunusable_source_refsに入らない条件下に限る。L5 function 7の直接引数3つと出力型を使い、Claim/locatorは既存intent readerの同じB input読取列からcopyする。"
     },
     {
       "document": "docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json",
@@ -87,8 +92,8 @@
     }
   ],
   "field_derivation_ja": [
-    "各callのdirect Claimとclaim_locatorは先行intent fixtureと同じraw B入力からcopyし、ValidatedSupplyはinput全体、input_issues=[]、unusable_source_refs=[]の3 fieldで表す。これはfn0実行結果の証明ではなく、source0/1/2がusableとなる条件付き呼出し材料である。",
-    "L4の原scope順はsource0、source1、source2。source0にdescriptor_targets memberがないためtarget_container_absentを残す。source1の3件は別target D27-A declarationsなので全てoccurrenceへ保ち、B targetの当該source内対応なしをtarget_not_declaredとして残す。",
+    "各callのdirect Claimとclaim_locatorは先行intent fixtureと同じraw B入力からcopyし、ValidatedSupplyはinput全体、input_issues=[]、unusable_source_refs=[]の3 fieldで表す。これはfn0実行結果の証明ではなく、input_issuesが空で、source3を含む全sourceがunusable_source_refsに入らない場合に限る条件付き呼出し材料である。",
+    "L4の原scope順はsource0、source1、source2。source0にdescriptor_targets memberがないためtarget_container_absentを残す。source1の3件は別target D27-A declarationsなので全てoccurrenceへ保ち、B targetの当該source内対応なしをtarget_not_declaredとして残す。 source1のD27-A groupのtarget_ambiguous/target_mapping_conflictはrelevance_table/7,8が当該targetに限るため出さない。relevance_table/1により別targetの宣言/型問題を保持し、全3宣言をoccurrencesから落とさない。",
     "source2のdescriptor_targets[0]はClaim1 subject、slot /descriptors/1、kind required inputに、descriptor_targets[1]はClaim2 subject、slot /descriptors/2、kind required sectionにそれぞれ対応する。候補配列はraw Bで空なので候補index/refは両レベルとも空。",
     "各readの5 occurrencesと2 local problemsはClaim subjectに依らず同一snapshot/source scopeから列挙されるため、2件目は1件目の当該配列をRFC copyする。Claim/locatorとsingle exact matchだけをClaim2へ差し替える。",
     "state=resolvedは独立したexact source2 target/Binding/slot/kind住所対応を表す条件付き値であり、source全体のproblem消失、meaningのknown、Claim0 mixed stateの優先規則を主張しない。",
@@ -98,7 +103,7 @@
   "limits": [
     {
       "item_ja": "fn0 source qualificationの実測",
-      "effect_ja": "fn0を実行していない。rawの存在やhashから資格を成立扱いしない。source0/1/2が同call ValidatedSupplyでusableとして認められる場合に限る条件付き期待である。",
+      "effect_ja": "fn0を実行していない。rawの存在やhashから資格を成立扱いしない。input_issuesが空で、source3を含む全sourceがunusable_source_refsに入らない場合に限る条件付き期待である。owner targetのsemantic_json originにsource0/1/2を使うことと、仮引数全体の資格条件を区別する。",
       "unclosed_basis": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
