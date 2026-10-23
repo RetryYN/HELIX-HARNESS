@@ -120350,7 +120350,7 @@
     "id": "HELIXBRAIN-L8-D26B-FN1-FULL-WALK",
     "status": "detail_verification_candidate_unexecuted",
     "scope_ja": "有限B raw入力に対するfn1 evaluate_descriptor_definition_walkの条件付き返却候補。Comparison・Assessment・NativeMaterial・target_reads・intent_readsの全返却を固定材料から再構成する。A/B/C全体、fn0の実呼出し、実行時評価、D27、fn6/fn7、final判定を確定しない。",
-    "execution_boundary_ja": "製品、fn0、helper、runtime、旧CLI・hook・test・CIは実行しない。L9から使うのはraw AとB fixture patchだけで、L9 expected/countを正解や母集団に使わない。B native sourceはmerge前の仮固定であり、merge後のsource pin再確認を要する。",
+    "execution_boundary_ja": "製品、fn0、helper、runtime、旧CLI・hook・test・CIは実行しない。L9から使うのはraw AとB fixture patchだけで、L9 expected/countを正解や母集団に使わない。B native sourceはmerge済みの9216192c8ba19dabbc424c117deac51e1a3d2a61に固定する。",
     "contract_basis": [
       {
         "document": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -120504,8 +120504,8 @@
         "sha256": "6ab0afdc7184d1e0152b0775812392632d2b08e6b4d4490c97687847031f5cf9"
       }
     },
-    "input_derivation_ja": "L9のfinite_A_raw_inputとfinite_B_raw_input.case.fixture_patchを既存B-native再構成へ固定importする。raw Bは標準prefix RFCで材料化し、その完成raw_B全体をValidatedSupply.inputへcopyする。input_issuesとunusable_source_refsは明示的な空配列である。",
-    "return_assembly_ja": "B native recipeの六つのmain prefix配列を順にworkspace rootへ適用する。B readerの14操作は/workspace/B_reader_workspaceだけを対象に適用し、その後B native固有103操作をworkspaceへ適用する。最後の6 copyでraw_Bをcall frameへ、Comparison・Assessments・NativeMaterial・target_reads・intent_readsを返却placeholderへ材料化する。ここに記すのは固定入力とRFC操作による有限候補であり、fn1やreaderの実行出力ではない。",
+    "input_derivation_ja": "L9のfinite_A_raw_inputとfinite_B_raw_input.case.fixture_patchを既存B native再構成へ固定importする。raw Bを標準prefix RFCで材料化し、B reader subworkspaceで同一入力を持つreader_input_candidate（ValidatedSupply全3field）を再構成する。その全体をcall frameのvalidatedへcopyし、input_issues/unusable_source_refsの原空列も保持する。",
+    "return_assembly_ja": "B native recipeの六つのmain prefix配列を順にworkspace rootへ適用する。B readerの14操作は/workspace/B_reader_workspaceだけを対象に適用し、その後B native固有103操作をworkspaceへ適用する。最後の6 copyでB readerのValidatedSupply全体をcall frameへ、Comparison・Assessments・NativeMaterial・target_reads・intent_readsを返却placeholderへ材料化する。ここに記すのは固定入力とRFC操作による有限候補であり、fn1やreaderの実行出力ではない。",
     "function_call": {
       "symbol": "evaluate_descriptor_definition_walk",
       "signature_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/signatures_and_callers/0",
@@ -120514,7 +120514,7 @@
       "validated_pointer": "/function_call/arguments/context/validated",
       "expected_return_pointer": "/expected_return",
       "call_count": 1,
-      "argument_derivation_ja": "DefinitionContextの唯一のmember validatedへ、input=材料化raw_B、input_issues=[]、unusable_source_refs=[]のValidatedSupply全3fieldを置く。引数は未実行の条件付き材料化候補である。"
+      "argument_derivation_ja": "DefinitionContextの唯一のmember validatedへ、B reader subworkspaceのreader_input_candidate全体をcopyする。同じraw Bをinputとして持ち、input_issues/unusable_source_refsの空列も原値で保持する。引数は未実行の条件付き材料化候補である。"
     },
     "reconstruction": {
       "source_resolution_rule_ja": "固定Git importのsource_keyと宣言revision/path/file SHA及びvalue hashを照合し、既存null宛先へdeep copyする。rfc6902_operation_sources_in_orderの先頭6配列（69→107→110→132→8→107）は/workspaceをrootとして順適用する。第7配列の14操作は/workspace/B_reader_workspaceをroot、第8配列の103操作は/workspaceをrootとして適用する。最後にこのblockの6 copyをseed全体rootへ適用する。各段は標準RFC 6902であり、操作配列もdeepcopyして元資料を変更しない。target/intentの空列はB nativeのexpectedメタデータから固定importし返却へcopyする。",
@@ -120805,11 +120805,7 @@
         "function_call": {
           "arguments": {
             "context": {
-              "validated": {
-                "input": null,
-                "input_issues": [],
-                "unusable_source_refs": []
-              }
+              "validated": null
             }
           }
         },
@@ -120838,8 +120834,8 @@
       "rfc6902_operations": [
         {
           "op": "copy",
-          "from": "/workspace/source_snapshot/raw_B",
-          "path": "/function_call/arguments/context/validated/input"
+          "from": "/workspace/B_reader_workspace/reader_input_candidate",
+          "path": "/function_call/arguments/context/validated"
         },
         {
           "op": "copy",
@@ -120875,8 +120871,6 @@
       "expected_comparison_canonical_sha256": "5ece5a92c6502cebad41ecd467b5a5a0f1a6993aae145b90058908eef1ebcd04",
       "expected_assessments_canonical_sha256": "1b2544ac61df5a9a988a18ef6b68de5fee35e862cb362307002d85a235d62dc4",
       "expected_native_material_canonical_sha256": "b52553444381f2e6810d793243f27a8027bbbf0b2668a246d8bc2f2aa2b30a83",
-      "expected_target_reads": [],
-      "expected_intent_reads": [],
       "expected_return_pointer": "/expected_return",
       "expected_return_canonical_sha256": "6f3d495a7171c36f8100b6a4aceb66a0675c2ae24a0190902474cd64bda061a6",
       "canonical_writer_assumption_ja": "既存L8の局所材料化で用いるcanonical hash仮定であり、L5 writer contractがこのwriterを閉じるという意味ではない。UTF-8 JSONをensure_ascii=False、sort_keys=True、separators=(\",\", \":\")でcanonical化し、配列順/重複を保ちobject keyのみsortする。RFC操作は標準copyのみ。"
