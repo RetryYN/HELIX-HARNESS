@@ -82,8 +82,8 @@
     },
     {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+      "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+      "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
       "pointers": [
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/AxisResult",
         "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Finding",
@@ -975,7 +975,7 @@
       "unclosed_basis": [
         {
           "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+          "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
           "pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/qualified_alternative_limit"
         }
       ]
@@ -996,7 +996,7 @@
     "symbol": "compare_descriptor_definitions",
     "signature_basis": {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
+      "revision": "ead612633e8e6a8649a779fffa4347cd90baef8f",
       "pointers": [
         "/functions/1",
         "/source_return_contract/descriptor_target_dataflow/raw_runner/steps/1",
@@ -1051,8 +1051,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+        "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+        "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields",
           "/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionKey/closed_fields",
@@ -1555,8 +1555,8 @@
     "contract_basis": [
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+        "revision": "4b5fd9d1024af6f7cfca6180482277a92def63ac",
+        "file_sha256": "74684202e03b2c81a9e9afe4c31950ca68018f8da7dc7d54aba16efdef73eefc",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionNativeMaterial/closed_fields",
           "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin/closed_fields",
@@ -2315,8 +2315,8 @@
     ],
     "contract_basis": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-      "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+      "revision": "522bb492aa73d92a73a5aaff8a8b247c5f73aa57",
+      "file_sha256": "941392cbd9e547ac83e35103e46cb03aaf48548a157afdfb5c7a277a4caecb1a",
       "pointers": [
         "/functions/1",
         "/source_return_contract/descriptor_target_dataflow/functions/0",
@@ -2575,8 +2575,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+        "revision": "f7f5c11a7985932378f305dd0d6b18b8f317cf5e",
+        "file_sha256": "7496a4caa061b9f0f3cb7891bcfc66bf1a0bcd83529922c0bf8e4673b24bb3c4",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/functions/8",
           "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
@@ -2770,8 +2770,8 @@
       },
       {
         "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "9dfb3e1988c60ee69bf333d3d107921b1e89d46a",
-        "file_sha256": "b33778c9889417520ba0313b7bbaf0cc6c2fd18db2c1f327089b4e93c9b091be",
+        "revision": "f7f5c11a7985932378f305dd0d6b18b8f317cf5e",
+        "file_sha256": "7496a4caa061b9f0f3cb7891bcfc66bf1a0bcd83529922c0bf8e4673b24bb3c4",
         "pointers": [
           "/source_return_contract/descriptor_target_dataflow/functions/8",
           "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
