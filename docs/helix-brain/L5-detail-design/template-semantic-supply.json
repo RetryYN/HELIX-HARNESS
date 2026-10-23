@@ -10533,7 +10533,7 @@
               "replacement_basis_uses carrierの供給/不在/null/型外、supportsの有無又はrule7/8 event predicate。"
             ],
             "discovery_order": "target/intent全read取得後、既存display group→required relation→HARNESS Claimに続くreplacement Claim段階で、同raw Claim index昇順にrequestを発見・call・保存する。同値Claimでも原index/locatorが異なれば別call。source内basis_use出現数だけrequestを増やさず、一requestの全source/record出現は同read内へ保持する。",
-            "save": "各callのDefinitionSpecialRead全5fieldをspecial_readsへ一回appendし、その局所indexを同request評価へ渡す。unknown、supports=[]、problems非空も保存する。取得失敗をread非call又は空read不在へ変換しない。",
+            "save": "各callのDefinitionSpecialRead全5fieldをspecial_readsへ一回appendし、その局所indexを同request評価へ渡す。unknown、supports=[]、problems非空も保存する。取得失敗をread非call又は空read不在へ変換しない。 非positiveの追加readが先行すると、後続positive eventのspecial_read_indices/special_support_linksの局所index値は同保存配列に合わせて変わり得る。公開Axis/Findingとassessmentの件数・意味の比較を、native全fieldの値不変へ読み替えない。",
             "source_boundary": "request形成は既存source資格やcarrierを補完しない。readerは既存acquisition/relevance、producer consumer、problem_emission_tableに従い同Claim/basisの原対応を照合し、原absence/null/type/unknownを保持する。source不存在又はbasis未解決から新支持を作らない。",
             "event_boundary": "保存したreadと既存same-call target/intent及び元missingを用いて、既存special_predicate_projection/4,5とspecial_event_constructors/constructors/3をそのまま判定する。読取対象全件をevent対象全件へ昇格しない。非positive、target未解決/複数、対象missingなし等の既存非発火枝は変更しない。",
             "meaning_boundary": "このcall集合は既存target/intentの原fill_definition集合への技術対応であり、positive/target/missing/basisをcall gateにする新意味条件は採らない。L4のmixed target複合state、Claim2 tuple/非発火、mixed route/意味basis未閉を解決したとはしない。",
@@ -10559,7 +10559,9 @@
                   "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/2",
                   "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/3",
                   "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/4",
-                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/16"
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/problem_emission_table/16",
+                  "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionJudgmentOrigin/closed_fields/special_read_indices",
+                  "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/common_fields"
                 ],
                 "role_ja": "既存読取集合・原順・純粋private request形・取得とeventの分離を保持し、未記載だったcall形成条件を同集合への1:1対応として具体化する。"
               },
@@ -10620,7 +10622,7 @@
                 }
               ]
             },
-            "selection_rationale": "L4の置換語彙はpositiveを指し得るが、call対象はtarget/intent読取と同じ原fill_definition全件とする。値intentの未解決を原Claim出現の不在へ変えず、取得とevent判定を分離する選択である。positive限定案との差は非positiveのspecial_reads件数とread内problemsだけで、非positiveは既存constructors/3の第4枝により追加eventを出さないため、両案の公開event/assessmentは同じである。",
+            "selection_rationale": "L4の置換語彙はpositiveを指し得るが、call対象はtarget/intent読取と同じ原fill_definition全件とする。値intentの未解決を原Claim出現の不在へ変えず、取得とevent判定を分離する選択である。positive限定案に比べ非positiveのspecial_readsとread内problemsが加わるが、非positiveは既存constructors/3の第4枝により追加eventを出さないため、両案の公開event/assessmentは同じである。",
             "basis_shape_return_limits": {
               "scope": "本nodeはrequestの形成/call/発見順だけを閉じる。下記は原basis形状からDefinitionSpecialRead.acquisition_state/problemsへの未閉であり、新problem kind/state/locatorを推測しない。",
               "member_absent": "basis_refs欠落は既存consumer.basis_resolutionではunresolvedだが、special readのacquisition_stateとproblem kind/locatorへの写像は現sourceに無い。source_unresolved（table/1）をbasis欠落だけで生成せず、source資格/cohort不成立の既存条件と区別する。",
