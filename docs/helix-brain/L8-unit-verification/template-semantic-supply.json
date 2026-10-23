@@ -120900,7 +120900,9 @@
         "file_sha256": "1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3",
         "pointers": [
           "/descriptor_meanings",
-          "/definition_meaning_resolution_contract/evaluation_populations"
+          "/definition_meaning_resolution_contract/evaluation_populations",
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/other_binding"
         ]
       },
       {
@@ -120914,7 +120916,17 @@
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns",
           "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion",
-          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules"
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/outer",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Comparison/axes",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality",
+          "/source_return_contract/pure_reference_notation/definitions",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key"
         ]
       },
       {
@@ -121480,7 +121492,7 @@
         },
         {
           "op": "copy",
-          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
           "path": "/comparison/axes/20/original_refs/-"
         },
         {
@@ -121510,7 +121522,7 @@
         },
         {
           "op": "copy",
-          "from": "/source_snapshot/raw_C/sources/1/ref",
+          "from": "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
           "path": "/comparison/axes/21/original_refs/-"
         }
       ],
@@ -121542,12 +121554,13 @@
       }
     },
     "field_derivation_ja": [
-      "Comparison.input_bindingはaccepted A Comparisonのroot Bindingを維持する。L5 event orderはCのactual slotをnonselectedでも読取対象に含める。C slotはknown帰属2軸と、二つの同値caller facts×二つの同値supportsによるpositive 4軸を形成し、C missing/findingは0件。",
-      "C positive original_refsはL5 original_ref_columns.per_fact_definitionの順で、fact.ref → fact.source_ref → occurrence 0のsource_ref/operation_ref/basis_refs → occurrence 1のsource_ref/operation_ref/basis_refs。8 Refを原順・重複ありで保持する。C attributionはhelper原順のfact.source_ref/fact.refをsorted_valuesし、2 Refを保持する。",
-      "C event ordinal 16..21はattribution fact0/1の後にfact0 support0/1、fact1 support0/1。sort_source_refsはpositiveでsource Ref 3出現、attributionで1出現。C public axesは4 positive then 2 attribution。",
+      "Comparison.input_bindingはaccepted A Comparisonのroot Bindingを維持する。L5 event orderはCのactual slotをnonselectedでも読取対象に含める。C slotはknown帰属2軸と、二つの同値caller facts×二つの同値supportsによるpositive 4軸を形成し、C missing/findingは0件。 根拠はL4 /definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain と /other_binding、L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1・2、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion/outer、/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Comparison/axes の組合せである。同walkの全slotから形成したaxisを公開配列へ保存し、required domain外という理由でnative限定にしない。",
+      "C positive original_refsはL5 original_ref_columns.per_fact_definitionの順で、fact.ref → fact.source_ref → occurrence 0のsource_ref/operation_ref/basis_refs → occurrence 1のsource_ref/operation_ref/basis_refs。8 Refを原順・重複ありで保持する。C attributionはhelper原順のfact.source_ref/fact.refをsorted_valuesし、2 Refを保持する。 原Ref列の根拠は /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns、帰属helper原値の根拠は /source_return_contract/pure_reference_notation/definitions と /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection。",
+      "C event ordinal 16..21はattribution fact0/1の後にfact0 support0/1、fact1 support0/1。sort_source_refsはpositiveでsource Ref 3出現、attributionで1出現。C public axesは4 positive then 2 attribution。 2 facts×2 supportsのcardinalityは /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/meaning_event_cardinality、source列と順序は /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column と /source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key に従う。",
       "L5 exact_sort_contract component 0のBinding.template_ref.identityでA < Cとなるため、Aの16軸・14 findingの値と位置は固定A comparisonどおり不変。CはA missing14を増殖させず、C own missingは0。 raw Cはroot AとA cohort/sourceの全値を保持し、C cohortを末尾追加する。A prefixが辿るimmutable raw Aとその意味出典は不変で、C sourceをA支持へ代入しない。",
       "current L4 descriptor catalog/kind contract、current L5 Comparison/AxisResult/Finding schemaとsort/ref契約をbasisにする。",
-      "C各軸のprototypeは、同じknown branchのA public positive/attribution軸からcopyする。state/reason/axisは同じL5 event規則を保持し、subject/Binding/ownerとoriginal_refsはC原入力から再構成する。原Ref列は空列copy後に原順appendし、A Refを残さない。"
+      "C各軸のprototypeは、同じknown branchのA public positive/attribution軸からcopyする。state/reason/axisは同じL5 event規則を保持し、subject/Binding/ownerとoriginal_refsはC原入力から再構成する。原Ref列は空列copy後に原順appendし、A Refを残さない。",
+      "pair公開軸がない根拠は /source_return_contract/pure_reference_notation/definitions のmeaning_pair_axesである。完全同値の二factはunique_sorted(facts)で一factとなり、i<jの組がない。これはfact/support由来の原positive出現をdeduplicateする意味ではない。"
     ],
     "final_sort_index": {
       "algorithm_basis": "L5 exact_sort_contract のaxis_key_access_paths 0〜6を順に比較し、同keyは原event ordinalを維持する。A Binding.template_ref.identityがCより先なのでA frame 16 axesが位置を保ち、C内ではsource-ref列3出現が1出現より先に確定する。",
@@ -121852,7 +121865,7 @@
         5,
         6
       ],
-      "A_before_C_reason_ja": "L5 key component 0 is Binding.template_ref.identity; A < C. Hence all A axis/finding values and indices remain unchanged.",
+      "A_before_C_reason_ja": "L5 exact_sort_contractの第0成分は原Binding.template_ref.identityであり、A < Cとなる。Aの全axis/findingの値とindexは不変である。",
       "C_event_order": [
         "attribution fact0",
         "attribution fact1",
@@ -121873,7 +121886,64 @@
           21
         ]
       },
-      "C_source_sort_reason_ja": "Each C per_fact_definition sort_source_refs carries three equal source Ref occurrences, while attribution carries one. The JSON canonical list comma/closing-bracket comparison places four positive meaning axes before two attribution axes; event ordinals remain 18–21 then 16–17 in public order."
+      "C_source_sort_reason_ja": "Cのper_fact_definitionは同値SourceRefを3出現、attributionは1出現持つ。同じ先頭Refの後で3出現側はカンマ（U+002C）、1出現側は閉じ角括弧（U+005D）となり、canonical JSON Unicode順でpositive4軸が帰属2軸より先になる。同key内は原event順を保持する。",
+      "frame_label_semantics_ja": "表中frame Cはnonselected slot Cの出自ラベルであり、L4 required_contract_domainの追加要求frameを表さない。",
+      "positive_axis_source_key_traces": [
+        {
+          "l5_component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "component_key_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "earlier_axis": {
+            "final_index": 16,
+            "same_source_key_final_indices": [
+              16,
+              17
+            ],
+            "axis": "template identity.definition",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref",
+              "/source_snapshot/raw_C/sources/1/ref",
+              "/source_snapshot/raw_C/sources/1/ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "later_axis": {
+            "final_index": 20,
+            "axis": "descriptor.attribution",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/0/source_ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "comparison_ja": "fact.source_refとsources/1/refはこの固定fixtureでcanonical同値。各出現を保持し、同じ先頭Ref後のカンマが閉じ角括弧より先となる。source列が同じpositive同士のtieは原event ordinalを保つ。"
+        },
+        {
+          "l5_component_order_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/axis_key_access_paths",
+          "component_key_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/component_key",
+          "earlier_axis": {
+            "final_index": 18,
+            "same_source_key_final_indices": [
+              18,
+              19
+            ],
+            "axis": "template identity.definition",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref",
+              "/source_snapshot/raw_C/sources/1/ref",
+              "/source_snapshot/raw_C/sources/1/ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"},{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "later_axis": {
+            "final_index": 21,
+            "axis": "descriptor.attribution",
+            "source_ref_occurrence_pointers": [
+              "/source_snapshot/raw_C/descriptors/1/facts/1/source_ref"
+            ],
+            "canonical_sorted_values_json": "[{\"identity\":\"SYNTHETIC-D26-SOURCE-C\",\"owner\":\"synthetic-meaning-owner-C\",\"revision\":\"synthetic-D26-r1\",\"scope\":\"synthetic-D26-cohort\",\"sha256\":\"6ad7c1313d50d2d7a582d4bbe6c36b980ff120aa2b82f6b15ff492241e947706\",\"source_locator\":\"urn:synthetic:d26:C:source\"}]"
+          },
+          "comparison_ja": "fact.source_refとsources/1/refはこの固定fixtureでcanonical同値。各出現を保持し、同じ先頭Ref後のカンマが閉じ角括弧より先となる。source列が同じpositive同士のtieは原event ordinalを保つ。"
+        }
+      ]
     }
   }
 }
