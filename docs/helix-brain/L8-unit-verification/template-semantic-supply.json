@@ -124075,5 +124075,33 @@
       ],
       "basis_ja": "旧sourceの意味・consumer・oracle traceとJSON正本を保持し、#3139/#3362〜#3365/#3368の局所資料化を起点に再導出する。既存親legacy_comparisonを保持し、旧DB/runtime/role/gateは移植しない。"
     }
+  },
+  "definition_meaning_D27_Claim1_replacement_verification": {
+    "artifact_ref": {
+      "identity": "HELIXBRAIN-L8-D27-CLAIM1-RULE87-PUBLIC-PROJECTION",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json",
+      "file_sha256": "0964029d95d160bdebe7234eda4f4f525467a7968c1f043fb3544dbaf243f3c4",
+      "pointer": "",
+      "canonical_sha256": "1c2b9352b70f9dcb140bc894bf5c1e2ed352395af72610c154a29d394b6be622"
+    },
+    "logical_binding": {
+      "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
+      "pointer": "/definition_meaning_D27_Claim1_replacement_verification",
+      "operation": "RFC 6902 replace"
+    },
+    "materialization_contract": {
+      "適用単位": "この副file rootを同L8論理文書の指定pointerへ一度だけRFC6902 replaceする。既存#3368と同じ局所著述方式を用いる。",
+      "照合と復元": "明示path/identity/空root pointerと副file現在bytes SHA及びroot canonical SHAを照合後、そのroot全値を指定位置へ戻す。fixed Git importsを宣言順に解決し、intent65操作は/child_workspace/intent_workspace、target50操作とlocal30操作は/child_workspaceをそれぞれrootとして適用する。file_sha256は副file現在bytes、canonical_sha256は現在root全値を識別し、新規単位のため来歴hashは持たない。",
+      "来歴と不変照合": "新規のClaim1局所public投影であり既存inline blockの移動ではない。比較元はgit show af7c2152326d074d52a7731595d2aa7117064f52:docs/helix-brain/L8-unit-verification/template-semantic-supply.jsonで取得する。baseの全48memberの値・key順・物理prefixを保ち、新nodeを副file全値へ1replaceして49memberの論理文書を形成する。",
+      "境界": "required inputの局所rule87 Axis7/Finding9だけを静的に構成する。special read結果は消費しない。新include形式/自動探索/runtime/CIを追加せず、全ClaimUse/fn1/fn6fn7及び未閉項目は副filelimitsに保持する。"
+    },
+    "legacy_comparison": {
+      "source_refs": [
+        "LEGACY-ASSET-603D0E8D8193914F4AC0:§0–§1",
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:§1–§2",
+        "LEGACY-ASSET-4B835ADBEFBCCC13C1C0:19–31"
+      ],
+      "basis_ja": "旧source/consumer/oracle traceとJSON正本を保持し、#3139/#3362〜#3365/#3368の局所資料化を起点に意味再導出する。親の既存legacy_comparisonを保持し、旧runtime/DB/role/gateは移植しない。"
+    }
   }
 }
