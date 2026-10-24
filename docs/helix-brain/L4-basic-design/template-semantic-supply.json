@@ -13063,7 +13063,14 @@
       },
       "return_order": "各選択Bindingの上記7field trace行を既存sorted_valuesのcanonical JSON文字列順へ置く。原state/presenceを更新せず他producerの軸を混載/相殺しない。Comparison producer_symbol/input_bindingと元snapshot保持は既存contractのまま。P2の追加Axis/Findingとの合流順はこのtrace配列だけから決めない。",
       "consumer": "P3以降でL5既存selector/trace constructorとL8全返却へ同scopeを照合する。ここではL5 algorithm/型/helper、L8 gold、builder/InputIssueを変更しない。",
-      "limits": "7合成対照は選択・原所在の有限証拠で全F08/全normal/promotion行ではない。007/008/025の参照とowner工程は保持。L9の原positive/4NEG、実資格/実LABO/OS/BRAIN採否、accepted/mature、実行/CI/Issue完了を成立させない。"
+      "limits": "10合成対照は選択・原所在の有限証拠で全F08/全normal/promotion行ではない。007/008/025の参照とowner工程は保持。L9の原positive/4NEG、実資格/実LABO/OS/BRAIN採否、accepted/mature、実行/CI/Issue完了を成立させない。",
+      "paired_verification": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/9/nonempty_candidate_trace_verification",
+        "binding_kind": "paired_node_path_without_content_hash"
+      },
+      "candidate_empty_relationship": "既存finite_domainとunclosed_projection_boundaries.shapeはcandidate-empty有限枝の制約である。P1非空枝は既存一般typed入力を前提とし、そのsource_roles/typed_descriptor_carriers/other_collections、KnowledgeRecordの2member限定、dependencies absentの枝限定除外を継承しない。P1のread setはbinding/candidates/descriptors内binding/knowledge_recordsで、他typed memberの原値/presence/原順は保存するが意味評価しない。claims absent/[]は本枝の条件として保持し、Claim witnessはP2へ残す。",
+      "legacy_and_failure_basis": "親/knowledge_promotion_contract/legacy_rederivation（4F5AのJSON構造正本、98372の旧design-template source意味）の再導出を継承する。記録済みUTW-014の未供給→空、UTW-020の部分失敗隠蔽、UTW-021の自己申告完了を防ぐ原所在/presence/未閉の保持を継承し、新しい旧資産由来の規則を足さない。"
     }
   },
   "claim_boundary_projection_contract": {
