@@ -21477,7 +21477,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02",
+      "candidate_current_file_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -22898,7 +22898,7 @@
       "QUALIFICATION-NORMAL": "root/source原契約未供給なら形成立のみ",
       "QUALIFICATION-ROOT-ABSENT": "独立root欠落を自己補充しない"
     },
-    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。 numeric_carrier_verificationの旧10件とN1の7件を保持し、N2aのencode有限全返却projection 5件を追加したが、全codec返却whole/全数値域/実adapterを閉じていない。large exponent/resource/全encode非JSON域はunfixed_numeric_and_encode_rangeへ保持し、27既存例又は新10条件の件数から完了を生成しない。",
+    "completion_limit": "schema整合・固定rawの構文/供給形/期待値とsource byte hashの静的照合のみ。実codec、正式資格供給元/実custody/独立review、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、全92親430対と実装Readyは未成立。 numeric_carrier_verificationの旧10件、N1の7件、N2a encode有限全返却projection 5件を保持し、N2b finite decode全5field projection 3件を追加したが、全codec返却whole/全数値域/実adapterを閉じていない。large exponent/resource/全encode非JSON域はunfixed_numeric_and_encode_rangeへ保持し、27既存例又は新10条件の件数から完了を生成しない。",
     "presence_contract": "decoded各caseのexpected_presenceは、既存input_structure_verificationの{pointer,state}と同じ形の列。宣言memberを原供給構造の各所在で列挙する。supplied構造object/配列要素の宣言memberへ再帰し、absent/nullの内側objectを創作しない。RawValue mapのopaque keyは宣言memberへ拡張しない。各pointerは原順序indexとRFC6901 escaping。presenceもencode/decode往復の比較対象。",
     "unfixed_numeric_and_encode_range": [
       {
@@ -57918,7 +57918,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+      "file_bytes_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -68167,7 +68167,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+        "candidate_file_bytes_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -68186,21 +68186,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+        "candidate_file_bytes_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+        "candidate_file_bytes_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+        "candidate_file_bytes_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -84961,9 +84961,9 @@
       "artifact_ref": {
         "identity": "HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK",
         "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
-        "file_sha256": "3c6907584612d26f3b40ec8446c63783f5629588ad6783c0cb13ee395b23a34b",
+        "file_sha256": "791ee52aa6cfb42d169ba19e0ff1619c26a99652361133d8bc3b6bd9013d9d7b",
         "pointer": "",
-        "canonical_sha256": "c3c6849d5ecdd8b9a28f0263d3cb8c13d2b822c23579b46c6b1efb7224726abc"
+        "canonical_sha256": "48c72469e8dd3cc26c9f347a3647a88e75cbc0392c72c57148721f628501aa11"
       },
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
@@ -85049,7 +85049,7 @@
     },
   "numeric_carrier_verification": {
     "id": "HELIXBRAIN-L8-032-EXACT-NUMERIC-CODEC",
-    "status": "旧numeric cases 10件とN1 child 7件を保持し、N2a encodeの5件有限全返却projectionを追加。N2bの全返却decodeは未閉。候補実行・任意入力全域・実codec/adapter・pair完了ではない。",
+    "status": "旧numeric cases 10件、N1 child 7件、N2a encode 5件を保持し、N2b finite decode 3件の全5field projectionを追加。任意decode全域・実codec/adapter・pair完了の証拠ではない。",
     "design_ref": {
       "document": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/wire_codec_contract/numeric_carrier_profile",
@@ -86355,11 +86355,11 @@
     ],
     "closed_finite_scope": "同値表記1/1.0/1e0、近接小数の非同値、boolとnumber、native integer metadata往復/bool拒否、等値数値を持つdecoded重複key、token/value相反の失敗と整合正例、普通objectの非cast、原数値字句/bytesの別保持。例数10を新gateへしない。",
     "remaining": [
-      "旧10件/N1 7件/N2a encode5件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。",
+      "旧10/N1 7/N2a encode5/N2b finite decode3以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。",
       "1e400その他極端な指数/桁数/容量/深さ、実Unicode/host資源失敗の全域と返却対応は未固定。許容上限や性能値を推測で追加しない。",
       "source_return局所new_defsのminimum、実consumer adapter、数値canonical-sort writer/law及びsorted_values/unique_sorted/sort_by_json接続は別未閉包。原tokenをcanonical numeric key/digestへ転用しない。",
       "parser/Decimal/validator/reader/model/native/runtime/test/旧CIは未実行、library/runtime版固定・実資格/認可/受領・全92親430義務/実装Readyは未成立。",
-      "元N2 decode対照B032-N2-05-DECODE-ORDINAL、B032-N2-06-DECODE-SHAPE-FAILUREと逆wire順の全5field/ordinal/presence/raw bytesはN2bで導出する。false又は空期待へ置き換えない。重複key/途中UTF8又は構文失敗の全返却、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。"
+      "旧10/N1 7/N2a encode5/N2b finite decode3以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。"
     ],
     "preserve_existing": "既存wire_codec_verification/cases 27件、歴史canonical/file pins、旧function oracle/意味期待/nullable controlは不変。新有限projectionから旧全域の合格を生成しない。",
     "authoring_history": {
@@ -86371,7 +86371,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+      "sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -86411,7 +86411,7 @@
           "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
           "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
           "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
-          "current_file_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4"
+          "current_file_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee"
         }
       ]
     },
@@ -86646,6 +86646,144 @@
       },
       "authority_effect": "none",
       "operation_effect": "none"
+    },
+    "n2_full_decode_return_detail": {
+      "id": "HELIXBRAIN-L8-032-N2B-NUMERIC-DECODE-RETURN",
+      "status": "固定された3 raw inputに対する全5field finite decode projection期待。実行ではない。",
+      "source_basis": [
+        {
+          "role": "現行の詳細契約",
+          "revision": "b2e82114be658894368b9ea87f12749ae1d94a33",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "file_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+          "pointers": ["/wire_codec_contract/schema/$defs/Ref","/wire_codec_contract/schema/$defs/SupplyAnalysis","/wire_codec_contract/schema/$defs/InputIssue","/logical_input_structure/member_presence","/wire_codec_contract/numeric_carrier_profile/private_types/ExactJsonNumber","/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue","/wire_codec_contract/numeric_carrier_profile/private_types/PrivateDecodeResult","/wire_codec_contract/numeric_carrier_profile/private_types/NumericTokenOccurrence","/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/non_integer_integer_member","/wire_codec_contract/numeric_carrier_profile/decode_steps/0","/wire_codec_contract/numeric_carrier_profile/decode_steps/1","/wire_codec_contract/numeric_carrier_profile/decode_steps/2","/wire_codec_contract/numeric_carrier_profile/decode_steps/3","/wire_codec_contract/numeric_carrier_profile/decode_steps/4"]
+        },
+        {
+          "role": "現行のpresence検証契約",
+          "revision": "b2e82114be658894368b9ea87f12749ae1d94a33",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "file_sha256": "48cdef49741fe8ff39eb3413a8aad1736455902f18d0497ef664c5a084f4225d",
+          "pointers": ["/wire_codec_verification/presence_contract"]
+        },
+        {
+          "role": "歴史的raw入力だけの固定出典",
+          "revision": "f6bd23b44ef09834f412e7c3e7cc968e6356a6f3",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "file_sha256": "f722d2c2d7c380c3f6493b9ec09854a9e36acd3dc10940e6f4a68abbb6807168",
+          "pointers": ["/numeric_carrier_verification/n2_finite_multi_cause_detail/cases/4/input","/numeric_carrier_verification/n2_finite_multi_cause_detail/cases/5/input"],
+          "expected_data_used": false
+        }
+      ],
+      "input_seed_sources": [
+        {"revision":"f6bd23b44ef09834f412e7c3e7cc968e6356a6f3","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"f722d2c2d7c380c3f6493b9ec09854a9e36acd3dc10940e6f4a68abbb6807168","pointer":"/numeric_carrier_verification/n2_finite_multi_cause_detail/cases/4/input","basis_role":"固定Gitの入力だけを参照し、旧期待値は用いない。逆順対照では記載のmember交換だけを加える。"},
+        {"revision":"f6bd23b44ef09834f412e7c3e7cc968e6356a6f3","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"f722d2c2d7c380c3f6493b9ec09854a9e36acd3dc10940e6f4a68abbb6807168","pointer":"/numeric_carrier_verification/n2_finite_multi_cause_detail/cases/5/input","basis_role":"固定Gitの入力だけを参照し、旧期待値は用いない。逆順対照では記載のmember交換だけを加える。"},
+        {"revision":"f6bd23b44ef09834f412e7c3e7cc968e6356a6f3","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"f722d2c2d7c380c3f6493b9ec09854a9e36acd3dc10940e6f4a68abbb6807168","pointer":"/numeric_carrier_verification/n2_finite_multi_cause_detail/cases/4/input","transformation_ja":"scope内のx/y~zとaのmember順だけを交換。他の数値token/keyは保持。","basis_role":"固定Gitの入力だけを参照し、旧期待値は用いない。逆順対照では記載のmember交換だけを加える。"}
+      ],
+      "selection_control": "https://github.com/RetryYN/HELIX-HARNESS/pull/3669#issuecomment-6380861852（分割案6380851902を採用）",
+      "scope_ja": "N2bの固定3入力について、PrivateDecodeResult全5fieldの有限期待を対のL8へ置く。実codec/helper/runtimeは未実行。",
+      "design_pointer": "/wire_codec_contract/numeric_carrier_profile/full_decode_return_detail",
+      "design_binding_pointer": "/numeric_carrier_verification/candidate_l5_binding",
+      "case_count": 3,
+      "cases": [
+        {
+          "case_id": "B032-N2-05-DECODE-ORDINAL",
+          "input": {"operation":"decode","entry_type":"Ref","raw_utf8":"{\"scope\":{\"a\":[1E+00,0.10],\"x/y~z\":-0}}","raw_utf8_sha256":"d58a3f75c7046a69936241932b285911eba95d0b8d043835ba24474f92f50361","raw_utf8_byte_length":39},
+          "input_canonical_sha256": "ca8b7e045aa9e1afa557cbbe6c0c8f677b28d6c64bd5bf4eb62fc0f7b1258acd",
+          "input_ordered_sha256": "7b837ea49526980c7ce7d97003456da10b68dd2c430abfc033782167ec65b087",
+          "raw_utf8_sha256": "d58a3f75c7046a69936241932b285911eba95d0b8d043835ba24474f92f50361",
+          "expected_result": {
+            "value": {"scope":{"a":[{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1E+00"},"token":"1E+00"}},{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"0.10"},"token":"0.10"}}],"x/y~z":{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"-0"},"token":"-0"}}}},
+            "raw_octets": {"notation":"original_octets_hex","hex":"7b2273636f7065223a7b2261223a5b31452b30302c302e31305d2c22782f797e7a223a2d307d7d"},
+            "presence": [
+              {"pointer":"/identity","state":"absent"},
+              {"pointer":"/revision","state":"absent"},
+              {"pointer":"/scope","state":"supplied"},
+              {"pointer":"/owner","state":"absent"},
+              {"pointer":"/source_locator","state":"absent"},
+              {"pointer":"/sha256","state":"absent"}
+            ],
+            "numeric_tokens": [
+              {"locator":"/scope/a/0","ordinal":0,"token":"1E+00"},
+              {"locator":"/scope/a/1","ordinal":1,"token":"0.10"},
+              {"locator":"/scope/x~1y~0z","ordinal":2,"token":"-0"}
+            ],
+            "input_issues": []
+          },
+          "expected_result_canonical_sha256": "4c9c9c9be2f56212ceeaccda8f90cfce4ac6e1fc1b6c6518a1d11179112866f6",
+          "expected_result_ordered_sha256": "a9b0ef064c66fddd780fd704e6096712cc4328c36f7961f1ca4a87d3574e1621",
+          "expected_member_order": ["value","raw_octets","presence","numeric_tokens","input_issues"],
+          "derivation_ja": "Refの宣言memberだけをpresenceへ列挙し、scope内部はRawValueのopaque内容として保持する。raw UTF-8のmember順に深さ優先で数値leafを列挙し、各tokenを厳密数値説明値へ写す。入力にshape issueはなく、元octetsとtoken字句をそのまま保持する。"
+        },
+        {
+          "case_id": "B032-N2-06-DECODE-SHAPE-FAILURE",
+          "input": {"operation":"decode","entry_type":"SupplyAnalysis","raw_utf8":"{\"binding\":null,\"candidate_refs\":[],\"comparisons\":[],\"input_issues\":[],\"source_refs\":[],\"required_inputs\":[],\"counterexamples\":null,\"limits\":{},\"side_effect_count\":1.5}","raw_utf8_sha256":"70ec0f32d3961819fae0aa22a327558812128133a6c9ca291bc98065a38c047e","raw_utf8_byte_length":168},
+          "input_canonical_sha256": "f4fb2eb0b201aeeab3cb896a339ce2c0fcd571294ea3044d188b5266b6e3fb52",
+          "input_ordered_sha256": "ead49bdae6c4833071bee4c3c773b850f2c0fb2cf50051327ba451a706250a63",
+          "raw_utf8_sha256": "70ec0f32d3961819fae0aa22a327558812128133a6c9ca291bc98065a38c047e",
+          "expected_result": {
+            "value": null,
+            "raw_octets": {"notation":"original_octets_hex","hex":"7b2262696e64696e67223a6e756c6c2c2263616e6469646174655f72656673223a5b5d2c22636f6d70617269736f6e73223a5b5d2c22696e7075745f697373756573223a5b5d2c22736f757263655f72656673223a5b5d2c2272657175697265645f696e70757473223a5b5d2c22636f756e7465726578616d706c6573223a6e756c6c2c226c696d697473223a7b7d2c22736964655f6566666563745f636f756e74223a312e357d"},
+            "presence": [
+              {"pointer":"/binding","state":"explicit_null"},
+              {"pointer":"/candidate_refs","state":"empty_array"},
+              {"pointer":"/comparisons","state":"empty_array"},
+              {"pointer":"/input_issues","state":"empty_array"},
+              {"pointer":"/source_refs","state":"empty_array"},
+              {"pointer":"/required_inputs","state":"empty_array"},
+              {"pointer":"/counterexamples","state":"explicit_null"},
+              {"pointer":"/limits","state":"supplied"},
+              {"pointer":"/side_effect_count","state":"supplied"}
+            ],
+            "numeric_tokens": [
+              {"locator":"/side_effect_count","ordinal":0,"token":"1.5"}
+            ],
+            "input_issues": [
+              {"locator":"/side_effect_count","reason":"整数を要するmemberへ非整数の数値が供給されている。","source_ref":null}
+            ]
+          },
+          "expected_result_canonical_sha256": "6ca5f8d4e72ed16f4a2c612ad96d850573e91b94f90cbc8c2bab13e08cb42ec0",
+          "expected_result_ordered_sha256": "7a44389c0924f7e15126455670d90e0b40b666dc9a471f9b4a03d3ebbc9073a8",
+          "expected_member_order": ["value","raw_octets","presence","numeric_tokens","input_issues"],
+          "derivation_ja": "SupplyAnalysisの全宣言memberをschema宣言順でpresenceへ投影する。空配列はempty_array、nullはexplicit_null、空limits objectはsupplied。side_effect_count=1.5は必須整数memberの非整数shape失敗なのでvalue=nullと既存InputIssueを返すが、raw presenceとnumeric tokenは保持する。"
+        },
+        {
+          "case_id": "B032-N2B-REVERSED-WIRE-ORDER",
+          "input": {"operation":"decode","entry_type":"Ref","raw_utf8":"{\"scope\":{\"x/y~z\":-0,\"a\":[1E+00,0.10]}}","raw_utf8_sha256":"433830a49b69ac8e0e339e680b52ac29cc073c53b4ce2584e35c07fdc1a8039a","raw_utf8_byte_length":39},
+          "input_canonical_sha256": "241f8463955b2a56893e7ca3bcbb2028b5a8a74889e30d9ee229a6e65ec7c968",
+          "input_ordered_sha256": "e2706bc03d59be1b581fe8c3212408f2ce83421b7f38d55d801f4f5a0206a536",
+          "raw_utf8_sha256": "433830a49b69ac8e0e339e680b52ac29cc073c53b4ce2584e35c07fdc1a8039a",
+          "expected_result": {
+            "value": {"scope":{"x/y~z":{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"-0"},"token":"-0"}},"a":[{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1E+00"},"token":"1E+00"}},{"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"0.10"},"token":"0.10"}}]}},
+            "raw_octets": {"notation":"original_octets_hex","hex":"7b2273636f7065223a7b22782f797e7a223a2d302c2261223a5b31452b30302c302e31305d7d7d"},
+            "presence": [
+              {"pointer":"/identity","state":"absent"},
+              {"pointer":"/revision","state":"absent"},
+              {"pointer":"/scope","state":"supplied"},
+              {"pointer":"/owner","state":"absent"},
+              {"pointer":"/source_locator","state":"absent"},
+              {"pointer":"/sha256","state":"absent"}
+            ],
+            "numeric_tokens": [
+              {"locator":"/scope/x~1y~0z","ordinal":0,"token":"-0"},
+              {"locator":"/scope/a/0","ordinal":1,"token":"1E+00"},
+              {"locator":"/scope/a/1","ordinal":2,"token":"0.10"}
+            ],
+            "input_issues": []
+          },
+          "expected_result_canonical_sha256": "bf2dca965ef6393cadb6bbc083d53da5e5357a804aafb4bebfd12a865cd36532",
+          "expected_result_ordered_sha256": "a948f529d7529e74009e5a5a91a0f92a33100fe08cc6f972b95c584167302d5c",
+          "expected_member_order": ["value","raw_octets","presence","numeric_tokens","input_issues"],
+          "derivation_ja": "case 0と同じRef構造を保ち、scope内部のobject key順だけを逆転した入力として導出する。presenceはRef宣言memberで同じだが、token走査順とordinalは原wire member順に従い、/scope/x~1y~0zを先頭に置く。"
+        }
+      ],
+      "projection_order_ja": "L5のfields記載順をL8有限projectionの列挙順として採る。これはprivate return serialization/member-order API保証ではない。",
+      "coverage_and_unexercised_ja": {
+        "included": ["固定3入力の全5field返却期待と原octets","原数値tokenの字面・原member/array順DFSとordinal","宣言memberのpresence列をshape失敗時にも保持する対照"],
+        "excluded": ["本3件以外の全返却、途中UTF-8/構文失敗、重複key、一般schema原因混在、任意資源、実adapter/runtime、N3 sort/new_defs/reader"],
+        "interpretation": "分割統制に従い旧decode2入力とmember順逆転の1入力を置く。3番目で原wire走査順とcanonical key順を区別する。"
+      },
+      "authority_effect": "none",
+      "operation_effect": "none"
     }
   },
   "conditional_dependency_verification": {
@@ -86696,7 +86834,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+        "sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
@@ -112034,7 +112172,7 @@
     "purpose_ja": "既決L4の20有限CanonicalBodyRead全値と、case0同V/F01→fn6全Comparisonを、canonical実readと元unselected出現の詳細writerへ対応付ける。",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+      "sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
       "selected_objects": [
         {
           "pointer": "/type_contract/imports",
@@ -113583,7 +113721,7 @@
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/field_value_applicability_detail",
-      "file_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+      "file_sha256": "a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee",
       "canonical_sha256": "3f00da4ea78ab03d2550d8517d277095e2d5670a781283a372bf99c06cc18bcf",
       "binding_state": "current_candidate_content_binding"
     },
@@ -113623,7 +113761,7 @@
   "claim_intent_verification": {
     "id": "HELIXBRAIN-L8-032-CLAIM-INTENT-DETAIL",
     "status": "candidate_oracles_not_product_execution",
-    "detail_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/claim_intent_detail","binding_kind":"current_candidate_file_bytes","file_sha256":"2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4"},
+    "detail_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/claim_intent_detail","binding_kind":"current_candidate_file_bytes","file_sha256":"a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee"},
     "independent_source": [{"revision":"6d32cd5282a95b4af2476b7a80ed83f47376475c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","sha256":"1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3","pointers":["/dependency_semantic_ports/claim_intent_protocol","/dependency_semantic_ports/schema/new_defs","/dependency_semantic_ports/ports","/dependency_semantic_ports/diagnostic_return_contract"]},{"revision":"6d32cd5282a95b4af2476b7a80ed83f47376475c","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","sha256":"90cdaa3523def8329c2398257ce959d22e77e413064f7fd78241daf6ae8296b4","pointers":["/dependency_semantic_port_verification/caller_contract/intent_call_order","/dependency_semantic_port_verification/cases","/dependency_semantic_port_verification/limits"]}],
     "output_field_order": ["claim_locator","claim","kind","proposed_value","intent","reason"],
     "canonical_hash": "UTF-8、object key sort、ensure_ascii=false、compact separators、末尾LFなしのSHA-256。file bytes hashと区別する。",
@@ -124786,7 +124924,7 @@
   "knowledge_promotion_nonempty_verification": {
     "id": "HELIXBRAIN-L8-032-F08-NONEMPTY-NO-CLAIM-VERIFICATION",
     "status": "detail_verification_candidate_unexecuted",
-    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_detail","file_sha256":"2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4","binding_kind":"current_working_whole_file_utf8_bytes"},
+    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_detail","file_sha256":"a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee","binding_kind":"current_working_whole_file_utf8_bytes"},
     "scope_ja": "P3a非空candidate・claims absent/明示[]のfn5全4field。旧10whole入力とclaimsだけremoveした1入力。原state/工程Refs/同値反復を保持し、record trace unknownを空列で相殺しない。",
     "fixed_git_sources": {"L4":{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointer":"/knowledge_promotion_contract/nonempty_candidate_trace","binding_kind":"fixed_historical_source"},"L9_RAW":{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"bbd44c2096fbf5f43cf2b0a515cd2b6ad02ff49539aa9f80a773b19591801c73","binding_kind":"fixed_historical_source"}},
     "materialization_ja": "各caseごとにL9_RAWの固定revision/path/whole-file SHAを照合しinput_pointerのwhole ValidatedSupplyをdeep copyする。input_patchの標準RFC6902をそのcopy rootへ原順適用し、validated_canonical_sha256を照合する。空patchは変更なし、追加caseだけ/input/claimsをremoveする。得た全3member wrapperをPromotionContext唯一member validatedへそのままcopyし、compare_knowledge_promotion(context)一回の引数とする。fn0/製品helper/関数を実行せず、別callやcaller cached結果を混ぜない。",
@@ -124894,7 +125032,7 @@
   "knowledge_promotion_claim_verification": {
     "id": "HELIXBRAIN-L8-032-F08-CLAIM-WITNESS-VERIFICATION",
     "status": "claim_verification_candidate_unexecuted",
-    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_claim_detail","file_sha256":"2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4","binding_kind":"current_working_whole_file_utf8_bytes"},
+    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_claim_detail","file_sha256":"a6947394f1a9c36156a07ed3c51dedfdd3737aa113f12df2918494daff448bee","binding_kind":"current_working_whole_file_utf8_bytes"},
     "scope_ja": "P3bの全Claimが既存P2a局所witnessを形成できる有限入力24件の全4fieldと、P3aへdispatchするclaims absentのP1対照1件。全域fn5・形成不能Claim・実資格を閉じない。",
     "return_field_order": ["axes","findings","producer_symbol","input_binding"],
     "axis_field_order": ["subject_ref","binding","axis","state","original_refs","reason","backflow_owner"],

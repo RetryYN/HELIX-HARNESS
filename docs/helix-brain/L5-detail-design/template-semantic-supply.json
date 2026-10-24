@@ -6246,7 +6246,7 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "元N2 decode対照B032-N2-05-DECODE-ORDINAL、B032-N2-06-DECODE-SHAPE-FAILUREと逆wire順の全5field/ordinal/presence/raw bytesはN2bで導出する。false又は空期待へ置き換えない。重複key/途中UTF8又は構文失敗の全返却、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。"
+        "N2bで固定した3 finite decode入力の全5field/ordinal/presence/raw bytesはこの有限集合で対照済み。重複key/途中UTF-8又は構文失敗、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -6343,6 +6343,46 @@
           "source_ref"
         ],
         "limits_ja": "元N2 decode対照B032-N2-05-DECODE-ORDINAL、B032-N2-06-DECODE-SHAPE-FAILUREと逆wire順の全5field/ordinal/presence/raw bytesはN2bで導出する。false又は空期待へ置き換えない。重複key/途中UTF8又は構文失敗の全返却、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。",
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      "full_decode_return_detail": {
+        "id": "HELIXBRAIN-L5-032-NUMERIC-DECODE-RETURN-DETAIL",
+        "status": "三つの固定raw inputに対する全5field private decode return detail候補。未実行。",
+        "source_basis": [
+          {
+            "revision": "b2e82114be658894368b9ea87f12749ae1d94a33",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "file_sha256": "2cd131a245fb3676b4c2646f1d63a55df53b2f4210bab9344074127b3dca6dd4",
+            "pointers": ["/wire_codec_contract/schema/$defs/Ref","/wire_codec_contract/schema/$defs/SupplyAnalysis","/wire_codec_contract/schema/$defs/InputIssue","/logical_input_structure/member_presence","/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue","/wire_codec_contract/numeric_carrier_profile/private_types/PrivateDecodeResult","/wire_codec_contract/numeric_carrier_profile/private_types/NumericTokenOccurrence","/wire_codec_contract/numeric_carrier_profile/decode_steps/0","/wire_codec_contract/numeric_carrier_profile/decode_steps/1","/wire_codec_contract/numeric_carrier_profile/decode_steps/2","/wire_codec_contract/numeric_carrier_profile/decode_steps/3","/wire_codec_contract/numeric_carrier_profile/decode_steps/4","/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals/non_integer_integer_member","/wire_codec_contract/numeric_carrier_profile/number_rules/factory","/wire_codec_contract/numeric_carrier_profile/number_rules/integer_predicate"],
+            "binding_kind": "fixed_base_source_snapshot"
+          }
+        ],
+        "scope_ja": "N2bの固定3入力について、PrivateDecodeResult全5fieldの有限期待を対のL8へ置く。実codec/helper/runtimeは未実行。",
+        "result_type_pointer": "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateDecodeResult",
+        "result_field_order": ["value","raw_octets","presence","numeric_tokens","input_issues"],
+        "field_contract_ja": {"value":"PrivateJsonValue|null。input_issuesが非空ならnull。成功値のJSON nullとはissuesで区別する。","raw_octets":"入力UTF-8 octetsそのもの。値の再serializeや正規化で置換しない。","presence":"既存Presence material {pointer,state}。absent/explicit_null/empty_array/suppliedを区別。RawValue内の不透明keyはpresence宣言を増やさない。","numeric_tokens":"NumericTokenOccurrence[]。元PairObject/array順の深さ優先走査、numeric leafのみ0起点ordinal、token原文保持。重複検査前のdedupなし。","input_issues":"既存InputIssue[]の{locator,reason,source_ref}。この有限集合に新public enumやgeneral schema-error orderを追加しない。"},
+        "named_order_vs_serialized_order_ja": "L5のfields記載順をL8有限projectionの列挙順として採る。これはprivate return serialization/member-order API保証ではない。",
+        "decode_steps_ja": ["原octetsを保持し、strict UTF-8 decode後に単一JSON値をparseする。","parse_int/parse_floatへexact number factory、parse_constant拒否、object_pairs_hookでPairObjectを用いる。float/int標準丸めを前置しない。","PairObjectを原順で走査しdecoded duplicate keyをdeduplicate前に検査。","重複無しtreeを通常object/list+ExactJsonNumberへ写し、entry schema/shapeを検査する。","原key/null/array orderとnumeric_tokens/presenceを別返却材料として保持。"],
+        "fixture_notation_ja": {
+          "finite": "finite_Decimal_constructor_textは厳密有限Decimal構築用説明文字列であり、正規化やcanonical表示ではない。N1で用いた非有限名nonfinite_Decimal_literalを維持。",
+          "raw_octets": "全5fieldのraw_octetsはfixture説明object {notation: original_octets_hex, hex: lowercase hex string}として元octets全体を表す。新host型/公開wire wrapper/tagではない。",
+          "numeric_value": "数値value leafはfixture説明object {host_type: ExactJsonNumber, members: {value: {notation: finite_Decimal_constructor_text, text: original token}, token: original token}}で表す。私有host値の説明であり、通常RawValue objectをwrapperへ解釈しない。",
+          "fingerprints": "input_canonical_sha256: sort_keys=true compact UTF8 no LF。input_ordered_sha256: sort_keys=false compact UTF8 no LF。raw_utf8_sha256:元octets直接。各expectedにもcanonicalとorderedを併記しprojection member順の検査に用いる。製品canonical sort/digestではない。"
+        },
+        "input_presence_contract_ja": {
+          "rule_pointer": "/logical_input_structure/member_presence; /wire_codec_verification/presence_contract",
+          "states": ["absent","explicit_null","empty_array","supplied"],
+          "interpretation": "宣言memberの原供給構造からpresenceを診断材料として別保持する。schema shape失敗のIssueとpresenceを混同しない。",
+          "opaque_RawValue_keys_extend_presence": false,
+          "Ref_declared_members": ["identity","revision","scope","owner","source_locator","sha256"],
+          "SupplyAnalysis_declared_members": ["binding","candidate_refs","comparisons","input_issues","source_refs","required_inputs","counterexamples","limits","side_effect_count"],
+          "input_presence_is_kept_on_shape_failure": true,
+          "shape_failure_rule": "shape failureはvalue/input_issuesの処理へ反映しても、presenceは解析した供給原構造から診断材料として列挙する。例: SupplyAnalysis.side_effect_count=1.5はsuppliedで、Issueの存在を理由にabsent/nullへ変換しない。",
+          "presence_does_not_recurse_rawvalue": true
+        },
+        "legacy_reconciliation_ja": "旧HELIXから保持する原字句/原順序と、変える点はnumeric_carrier_profile親のlegacy preserve/change記録を継承する。この詳細で旧資産を複製せず、旧runtime/実装は証拠にしない。",
+        "unclosed_scope_ja": "本3件以外の全返却、途中UTF-8/構文失敗、重複key、一般schema原因混在、任意資源、実adapter/runtime、N3 sort/new_defs/readerは未成立。",
         "authority_effect": "none",
         "operation_effect": "none"
       }
