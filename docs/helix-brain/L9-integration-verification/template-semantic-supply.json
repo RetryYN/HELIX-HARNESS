@@ -1254,7 +1254,163 @@
           "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "nonempty_candidate_trace_verification": {
+        "scope": "P1非空candidate選択と原record traceだけ。L3 F08/L10 F08の内容採否/運用state分離と既存L4 trace非変更を有限具体化。L5既存型/selectorは構成照合資料で、L5出力から期待を再生成しない。",
+        "basis": {"revision":"58bec9162cea4eb8a068281806d0438cfb254497","L3":"docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/7","L10":"docs/helix-brain/L10-verification/functional-verification.json#/cases/7","L4":"/knowledge_promotion_contract/trace_projection/nonempty"},
+        "material": "全Ref/Binding/KnowledgeRecordはAI技術設計の合成入力。validation/source資格/運用stateを実測した証拠でない。各caseのinput_issues=[]/unusable_source_refs=[]はstipulated snapshot材料で実fn0合格ではない。元のabsent/null/原state/反復を保存する。",
+        "cases": [
+          {
+            "id": "root_candidate_supplied_single_record",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null},"limits":{"fixture_body":"root-supplied"},"counterexamples":[],"operational_state":{"fixture_state":"root-supplied"}}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "resolved",
+                "original_refs": [{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null}],
+                "reason": "同一immutable snapshotの原KnowledgeRecordを一意に辿れる。運用成立を意味しない。",
+                "backflow_owner": null
+              }
+            ],
+            "derivation": "候補Refはroot binding.template_refだけにref_sameする。KnowledgeRecord.refはknowledge_refとsource_locatorだけが異なりref_sameするためtrace対象。subject_refはrecord.refへ置換せず、選択Binding.knowledge_ref全体を保つ。"
+          },
+          {
+            "id": "slot_candidate_does_not_select_root",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[{"slot_identity":"fixture-slot-1","descriptor_kind":"required input","binding":{"template_ref":{"identity":"TEMPLATE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/descriptors/0/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/descriptors/0/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"facts":[],"comparison_refs":[],"definition_applicability_ref":null}],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-ROOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null},"limits":{"fixture_body":"root-record"},"counterexamples":[],"operational_state":{"fixture_state":"root-record"}},{"ref":{"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/1/ref","sha256":null},"limits":{"fixture_body":"slot-record"},"counterexamples":[],"operational_state":{"fixture_state":"slot-record"}}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/descriptors/0/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/descriptors/0/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/descriptors/0/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/descriptors/0/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/descriptors/0/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/descriptors/0/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "resolved",
+                "original_refs": [{"identity":"KNOWLEDGE-SLOT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/1/ref","sha256":null}],
+                "reason": "同一immutable snapshotの原KnowledgeRecordを一意に辿れる。運用成立を意味しない。",
+                "backflow_owner": null
+              }
+            ],
+            "derivation": "candidate Refはdescriptor slotのBinding.template_refにだけref_sameする。root Bindingとroot KnowledgeRecordは他の候補の材料として混入しない。"
+          },
+          {
+            "id": "single_record_operational_state_explicit_null",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null},"limits":{"fixture_body":"null-state"},"counterexamples":[],"operational_state":null}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "unknown",
+                "original_refs": [{"identity":"KNOWLEDGE-NULL","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null}],
+                "reason": "原KnowledgeRecordのoperational_stateが未供給またはnull。",
+                "backflow_owner": "fixture-knowledge-owner"
+              }
+            ],
+            "derivation": "一意に一致するrecordでもoperational_stateのPresent(null)はresolvedではない。原Refの所在とownerを保持する。"
+          },
+          {
+            "id": "single_record_operational_state_absent",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null},"limits":{"fixture_body":"absent-state"},"counterexamples":[]}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "unknown",
+                "original_refs": [{"identity":"KNOWLEDGE-ABSENT","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null}],
+                "reason": "原KnowledgeRecordのoperational_stateが未供給またはnull。",
+                "backflow_owner": "fixture-knowledge-owner"
+              }
+            ],
+            "derivation": "一意に一致するrecordでもoperational_state member absentはnullと同じunknown分類だが、raw fixtureではabsentを保持する。"
+          },
+          {
+            "id": "same_ref_different_record_body_is_ambiguous",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},"limits":{"fixture_body":"body-alpha"},"counterexamples":[],"operational_state":{"fixture_state":"body-alpha"}},{"ref":{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},"limits":{"fixture_body":"body-beta"},"counterexamples":[],"operational_state":{"fixture_state":"body-beta"}}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "unknown",
+                "original_refs": [{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},{"identity":"KNOWLEDGE-AMBIGUOUS","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null}],
+                "reason": "同一knowledge Refの原KnowledgeRecordが未供給または一意でない。",
+                "backflow_owner": "fixture-knowledge-owner"
+              }
+            ],
+            "derivation": "ref_sameで一致する2recordは本文が異なるためunique_sorted後も複数。stateはunknown。両recordのoriginal_refsを収集してからsorted_valuesするため同じRefの反復を消さない。"
+          },
+          {
+            "id": "same_ref_identical_record_copies_collapse_for_uniqueness",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},"limits":{"fixture_body":"identical-body"},"counterexamples":[],"operational_state":{"fixture_state":"identical-body"}},{"ref":{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},"limits":{"fixture_body":"identical-body"},"counterexamples":[],"operational_state":{"fixture_state":"identical-body"}}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "resolved",
+                "original_refs": [{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null},{"identity":"KNOWLEDGE-DUPLICATE","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/shared-ref","sha256":null}],
+                "reason": "同一immutable snapshotの原KnowledgeRecordを一意に辿れる。運用成立を意味しない。",
+                "backflow_owner": null
+              }
+            ],
+            "derivation": "unique_sorted(matches)は完全にJSON同値なrecord複写を一件へ畳むため一意。refsはdistinct化前に各matchから集めるので反復保持。"
+          },
+          {
+            "id": "different_record_ref_is_excluded",
+            "synthetic_input": {
+              "input": {"binding":{"template_ref":{"identity":"TEMPLATE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},"required_descriptor_kinds":[],"sources":[],"qualification_roots":[],"qualifications":[],"descriptors":[],"meaning_comparisons":[],"section_fields":[],"values":[],"applicability_records":[],"relations":[],"oracle_bindings":[],"compatibility_records":[],"knowledge_records":[{"ref":{"identity":"KNOWLEDGE-OTHER","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/knowledge_records/0/ref","sha256":null},"limits":{"fixture_body":"unrelated"},"counterexamples":[],"operational_state":{"fixture_state":"unrelated"}}],"dependencies":{},"handoff_records":[],"claims":[],"candidates":[{"identity":"TEMPLATE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null}]},
+              "input_issues": [],
+              "unusable_source_refs": []
+            },
+            "expected_selected_bindings": [{"template_ref":{"identity":"TEMPLATE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"}],
+            "expected_trace_axes": [
+              {
+                "subject_ref": {"identity":"KNOWLEDGE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},
+                "binding": {"template_ref":{"identity":"TEMPLATE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-template-owner","source_locator":"/binding/template_ref","sha256":null},"knowledge_ref":{"identity":"KNOWLEDGE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-knowledge-owner","source_locator":"/binding/knowledge_ref","sha256":null},"requirement_ref":{"identity":"REQUIREMENT-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"ORACLE-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"PACK-NO-MATCH","revision":"fixture-r1","scope":"P1-synthetic-scope","owner":"fixture-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"fixture-contract-r1","pack_artifact_version":"fixture-artifact-r1","pack_dependency_versions":[],"version_target":"1.0-fixture"},
+                "axis": "knowledge_record_trace",
+                "state": "unknown",
+                "original_refs": [],
+                "reason": "同一knowledge Refの原KnowledgeRecordが未供給または一意でない。",
+                "backflow_owner": "fixture-knowledge-owner"
+              }
+            ],
+            "derivation": "異なるidentityのrecordはref_sameせず、一致recordなし。candidateが選んだBindingのsubjectをcallerや別recordで補完しない。"
+          }
+        ],
+        "not_closed": "P2四ruleのAxis/Finding witness・合流順とComparison全体。元F08 positive/4NEG/007/008/025・原InputIssueを保持し、本期待のtraceだけからfindings=[]へ補完しない。",
+        "execution_state": "not_executed"
+      }
     },
     {
       "id": "HELIXBRAIN-L9-032-F09",
@@ -8711,7 +8867,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+      "sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -22883,7 +23039,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2"
+      "sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2"
     }
   },
   "descriptor_target_port_verification": {
@@ -22892,7 +23048,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
-      "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+      "sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -123939,7 +124095,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+      "file_sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -184222,7 +184378,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+      "sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -197036,7 +197192,7 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "d2197dd3a2dcfae1afd2108f7ad34cc414d0481ed358f8fdb1a6e5ccf2caa4f2",
+      "sha256": "038792981351d57cfd552085317785135bd76818703ef5ef91cfabd8001989d2",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
       "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
