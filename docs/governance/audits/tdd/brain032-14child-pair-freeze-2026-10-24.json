@@ -5,13 +5,19 @@
   "request_id": "WR-CLAUDE-BRAIN032-STEP7-14CHILD-3547-20261024-01",
   "source_revision": "207e5714d9b58edadc133ad4ca0ecde902437fa6",
   "source_main": "207e5714d9b58edadc133ad4ca0ecde902437fa6",
-  "recorded_at_utc": "2026-10-23T23:45:06+00:00",
+  "recorded_at_utc": "2026-10-24T00:31:13.282688+00:00",
   "target": "BRAIN032 coverage index182–195のbasic L4/L9 14組のみ。detail L5/L8のdispositionは対象外。",
-  "freeze_state": "独立review前の候補。無条件凍結済みは0。13件はcase別独立review後の有限oracle限定候補、F09は032内部未完として凍結しない。",
-  "test_method": "各childのL3/L10上位期待を、対応L4 contractとL9 positive/全NEGの原ID・変異意味・axis/state/expected/backflow/副作用で対照する。差があれば当該pairを未凍結に戻す。製品実行/Greenを主張しない。",
+  "freeze_state": "review後もauthority_effect:noneの候補を維持する。凍結済み0。各rowは有限対照の範囲と基本義務内の明示未完を併記し、review通過からpair凍結へ自動遷移しない。",
+  "test_method": "L3/L10の義務に対してL4の挙動・限界とL9のPOS/NEGが保持する意味差をchild別に対照する。原NEGのpointer/hash照合は転記整合だけを確かめ、上位期待との意味対照を代替しない。",
   "template_source": "FN0のpins/target/independent_partial_expected/derivation/not_frozen_or_claimed欄をbasic pairだけへ意味再導出。ADD01のtest/command/実行証拠を流用しない。",
   "pointer_notation": "alias#/RFC6901 pointer。全aliasのrevisionはsource_revision、sha256はfile bytes。",
-  "external_return_scope": {"target_revision":"207e5714d9b58edadc133ad4ca0ecde902437fa6","scope":"各external_return_basisは原知識内容/版の訂正、CORE製品値/適用、OS記録、HARNESS契約又はINFRA実資源という原NEGの責務を指す。032自身の設計/検証未完は外戻しに含めない。","owner_layer":"knowledge_owner＝原知識内容/版、core_owner＝CORE製品値/適用、os_owner＝OS記録、harness_contract_owner＝HARNESS層/対、infrastructure_owner＝実資源。根拠は各L4 backflow/原NEG。","reentry":"該当原source又は対象scopeの修正/供給が得られたとき、同じchild pairで再照合する。"},
+  "external_return_scope": {
+    "target_revision": "207e5714d9b58edadc133ad4ca0ecde902437fa6",
+    "scope": "L3 F02の原項目identity/source/revision/理由/knowledge owner、F09の原source kind/scope/参考資料とauthorityの区別に基づく原知識内容/版の訂正だけをknowledge_ownerへ戻す。BRAINという語だけで032の外と推定せず、032 reader/projection/設計/oracleの未完は内部に残す。各原NEGのcore/os/HARNESS/INFRA戻しも元の製品値/記録/層契約/資源責務に限定する。",
+    "owner_layer": "knowledge_owner＝原知識内容/版、core_owner＝CORE製品値/適用、os_owner＝OS記録、harness_contract_owner＝HARNESS層/対、infrastructure_owner＝実資源。根拠は各L4 backflow/原NEG。",
+    "reentry": "該当原source又は対象scopeの修正/供給が得られたとき、同じchild pairで再照合する。",
+    "owner_basis": ["L3F#/requirements/1","L3F#/requirements/8"]
+  },
   "path_aliases": {
     "L3B": "docs/helix-brain/L3-requirements/business-requirements.json",
     "L3F": "docs/helix-brain/L3-requirements/functional-requirements.json",
@@ -39,14 +45,15 @@
   "coverage_observation": {
     "source": "COVERAGE",
     "source_revision_in_record": "ba4ac1cdd76fdd0d907e684c035b059e8029b9da",
-    "basic": "③は限定検索で既存basic freeze記録を確認できなかった意味。不在・欠陥を断定しない。本候補はL3/L10→L4/L9独自照合に基づき、独立review待ち。",
+    "basic": "③はba4ac時点の限定検索結果であり、不在/欠陥の断定ではない。207eではL4/L9が合計+5184/-32行変化したため、以下の別profileで再検索した。固定表のauthorityや状態を更新したとは扱わない。",
     "detail": "本recordでは扱わない。②[E1]のdetail側意味/完了はこのbasic判定から導かない。",
-    "preservation": "固定表・既存監査は更新しない。"
+    "preservation": "固定表・既存監査は更新しない。",
+    "refresh": {"revision":"207e5714d9b58edadc133ad4ca0ecde902437fa6","profile":"追跡docs/governance/audits/tdd/brain032*のtarget/record_kindと、追跡tree内のBRAIN032-STEP7-BASIC-14-PAIR・basic_side_scoped_freeze_candidate・BRAIN032 coverage index182–195を限定検索。L4/L9 14pairを対象としdetail markerと区別。","result":"本profileでは当該basic14pairのfreeze記録を確認できなかった。FN0/ADD01限定oracle、readback/legacy derivation、L5/L8 remaining監査は別scope。207eの固定表182–195は③を保持する。全記録の不存在を主張しない。"}
   },
   "derivation": [
     "各basic rowは対応するL3 requirement/L10 oracle、L4 contract、L9 caseだけを根拠にする。D27やL5/L8をbasic期待の代用にしない。",
-    "positive_fixture_ref/positive_input/expected_observationと、L9 caseの全original negative_casesを保持する。各NEGのID、変更意味、classification、axis、state、expected、backflow owner、副作用期待を列挙し、負例の抜けを作らない。",
-    "L4 common remainingは存在を保つ。F09に明示されたL4 /remaining/3,/5とL9 conditional-source limitsはF09の032内basic追随未完として適用する。他childへ一般gate化しない。",
+    "全105原NEGをcase別pointer/canonical SHAで参照する。ID・変異・classification・axis・state・expected・backflow・副作用を含む原配列全member/順序を静的照合し、comparison欄で上位義務との意味差を別に記録する。",
+    "名指しするL4/L9 limitsをlimit_catalogで仕分け、各rowに適用する。F09も同じ基準とし、L5/L8追随・実source・実行のremainingは基本側の未凍結理由にしない。",
     "全L9 caseはnot_executed。有限期待の設計照合と実行結果を区別し、実provider/資格/受領/採否/全域を凍結しない。",
     "detail側のcoverage marker、L5/L8 remaining、L8 completion、FE/Qはこのrecordのdisposition scope外である。basic候補からdetail完了を推論しない。"
   ],
@@ -57,13 +64,12 @@
       "upper": ["L3B#/requirements/0","L10B#/cases/0"],
       "L4_contract": "L4#/contracts/0",
       "L9_case": "L9#/cases/0",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/0/positive_input","expected_observation":"候補と未決inputが別個に残る。"},
       "comparison": "POSは複数候補と未決inputを残し、NEG-01は絶対解への上書きをproduct_selection_claim/conflictとする。L3/L10の候補提供とCORE選択の分離に対応する。",
-      "negative_oracles": {"case":"L9#/cases/0","negative_id_range":"NEG-01","items":[{"id":"HELIXBRAIN-L9-032-B01-NEG-01","change":"複数候補/必要input/反例/限界を一つの絶対解へ上書き","expected_classification":"candidate_as_absolute_choice","expected_axis":"product_selection_claim","expected_state":"conflict","expected":"各代替と反例/限界を保持し採用0。","backflow_owner":"core_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/0/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner"],"L9_NEG_pointer_prefix":"L9#/cases/0/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/0/negative_cases","count":1,"first_id":"HELIXBRAIN-L9-032-B01-NEG-01","last_id":"HELIXBRAIN-L9-032-B01-NEG-01","canonical_sha256":"3ee5dc55ef1542c27ad3c12fcd8658f65d5ffc2a71a2ff470bd4b06d0cfe00bd","negative_id_range":"01..01"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["claim_inside"],"finite_or_other_scope":["claim_finite"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "候補/必要input/反例/限界の任意domain coverageと一般writerは未行使。"
     },
     {
       "child": "HELIXBRAIN-L3-032-B02",
@@ -71,13 +77,12 @@
       "upper": ["L3B#/requirements/1","L10B#/cases/1"],
       "L4_contract": "L4#/contracts/1",
       "L9_case": "L9#/cases/1",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "記載POS/NEGだけの有限対照候補。child固有の基本内明示未完は確認範囲でなし。pair凍結は本記録から生成しない。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/1/positive_input","expected_observation":"知識受領と未完義務が同時に表せる。"},
       "comparison": "POSの知識受領と未完義務の併存に対し、NEG-01/02はreceiptを義務消込・N/Aへ変える主張を別軸のunknownにする。受領成功でCORE/OS義務を消さない期待が対応する。",
-      "negative_oracles": {"case":"L9#/cases/1","negative_id_range":"NEG-01..02","items":[{"id":"HELIXBRAIN-L9-032-B02-NEG-01","change":"BRAIN030受領可能性をCORE適用/OS義務成立へ変換","expected_classification":"receipt_as_product_discharge","expected_axis":"obligation_discharge_claim","expected_state":"unknown","expected":"知識受領/適用/記録を独立軸。","backflow_owner":"os_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-B02-NEG-02","change":"知識受領だけでCOREのN/Aが成立と主張","expected_classification":"receipt_as_na","expected_axis":"applicability_claim","expected_state":"unknown","expected":"案件N/A理由/判定者/revision/再評価条件を推定しない。","backflow_owner":"core_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/1/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","os_owner"],"L9_NEG_pointer_prefix":"L9#/cases/1/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/1/negative_cases","count":2,"first_id":"HELIXBRAIN-L9-032-B02-NEG-01","last_id":"HELIXBRAIN-L9-032-B02-NEG-02","canonical_sha256":"c061d3be93cc595253f6338988ea6a9da37f4c26041bccda0635d5e8292b57e8","negative_id_range":"01..02"},
+      "remaining_limits_applied": {"basic_internal_unfinished":[],"finite_or_other_scope":[],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "実受領/CORE適用/OS記録は未実施。child名指しの未完節はcontract以外のL4 requirements走査では見つからない。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F01",
@@ -85,13 +90,12 @@
       "upper": ["L3F#/requirements/0","L10F#/cases/0"],
       "L4_contract": "L4#/contracts/2",
       "L9_case": "L9#/cases/2",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/2/positive_input","expected_observation":"全項目が個別に参照でき、単体・接続・構成体の内容差を保持する。返却は候補であり採用判断を伴わない。"},
       "comparison": "POSの15項目個別参照に対し、NEG-01..04は同label衝突、relation片端・向きの欠落、HARNESS層/対/完了規則の上書きをそれぞれconflict/missingとして区別する。",
-      "negative_oracles": {"case":"L9#/cases/2","negative_id_range":"NEG-01..04","items":[{"id":"HELIXBRAIN-L9-032-F01-NEG-01","change":"同じ表示labelへ異なるowner意味を結ぶ","expected_classification":"descriptor_meaning_collision","expected_axis":"descriptor.definition","expected_state":"conflict","expected":"label一致で意味同一にしない。両sourceを保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F01-NEG-02","change":"relationの片端identity/revisionを除く","expected_classification":"relation_endpoint_missing","expected_axis":"relation.definition","expected_state":"missing","expected":"kind/方向/残る端を保持し、関係完全としない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F01-NEG-03","change":"relationの向きを除く","expected_classification":"relation_direction_missing","expected_axis":"relation.definition","expected_state":"missing","expected":"端の名前類似から方向を生成しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F01-NEG-04","change":"BRAIN候補がHARNESSの層/V-pair/設計完了規則を上書きする","expected_classification":"harness_contract_redefined","expected_axis":"harness_contract","expected_state":"conflict","expected":"原HARNESS参照を保持し、BRAINの再定義を成立結果にしない。","backflow_owner":"harness_contract_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/2/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["harness_contract_owner","knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/2/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/2/negative_cases","count":4,"first_id":"HELIXBRAIN-L9-032-F01-NEG-01","last_id":"HELIXBRAIN-L9-032-F01-NEG-04","canonical_sha256":"838f8591e0ee185165a7de389aaeddc26e1c5efaaedc329bf793ff61b125a9c8","negative_id_range":"01..04"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["definition_inside"],"finite_or_other_scope":["definition_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "15項目の任意source/caller全域は未行使。有限4NEGは衝突/relation/HARNESS再定義を扱う。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F02",
@@ -99,13 +103,12 @@
       "upper": ["L3F#/requirements/1","L10F#/cases/1"],
       "L4_contract": "L4#/contracts/3",
       "L9_case": "L9#/cases/3",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/3/positive_input","expected_observation":"正常材料だけが完全な定義として識別される。欠落・未定義・矛盾の種類と対象項目が区別される。"},
-      "comparison": "POSは正常/欠落/未定義/矛盾を区別する。NEG-01/02は別Patternによるsection/field補償を拒み、NEG-03..47は15項目の各missing/unknown/conflictを下記順で保持する。",
-      "negative_oracles": {"case":"L9#/cases/3","negative_id_ranges":["NEG-01","NEG-02","NEG-03..47"],"items":[{"ids":"NEG-01","meaning":"required section欠落を別Patternのrequired inputで補わない","axis":"required section.definition","state":"missing"},{"ids":"NEG-02","meaning":"required field欠落を別Patternのrequired inputで補わない","axis":"required field.definition","state":"missing"},{"ids":"NEG-03..47","meaning":"15 descriptorごとのmissing/undefined/contradictoryを個別に保つ。対象を別Pattern/viewで補わない","descriptor_axes":["template identity.definition","version.definition","layer/pair.definition","applicability.definition","required input.definition","required section.definition","required field.definition","relation.definition","意味owner.definition","trace.definition","negative oracle.definition","measurement.definition","completion.definition","downstream kind.definition","supersession.definition"],"states_in_each_descriptor_order":["missing","unknown","conflict"],"id_mapping":"descriptor01=03–05、各descriptor順に3件、descriptor15=45–47"}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/3/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/3/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "comparison": "POSは正常/欠落/未定義/矛盾を区別する。NEG-01/02は別Patternによるsection/field補償を拒み、NEG-03..47は15項目の各missing/unknown/conflictを原配列順で保持する。 03..47はdescriptor01..15ごとmissing/undefined/contradictory、classification=descriptor_{01..15}_{missing|undefined|contradictory}、expectedは対象identity/revision/source/理由と他項目保全、owner=knowledge_owner、副作用0。",
+      "negative_oracles": {"source_pointer":"L9#/cases/3/negative_cases","count":47,"first_id":"HELIXBRAIN-L9-032-F02-NEG-01","last_id":"HELIXBRAIN-L9-032-F02-NEG-47","canonical_sha256":"f181654e3b1cd64c5e6ef22de6651b2da08c4c0e298ae1188a60420d4662aa28","negative_id_range":"01..47"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["definition_inside"],"finite_or_other_scope":["definition_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "全47NEGの有限matrixを保持するが一般caller/wholeは未作成。任意mapping全域を新gateにはしない。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F03",
@@ -113,13 +116,12 @@
       "upper": ["L3F#/requirements/2","L10F#/cases/2"],
       "L4_contract": "L4#/contracts/4",
       "L9_case": "L9#/cases/4",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/4/positive_input","expected_observation":"案件値のみ未供給の材料は知識受領可能性と未完設計義務を別に表せる。非適用の根拠を保持する。"},
       "comparison": "POSの案件値未供給と非適用根拠の区別に対し、NEG-01..04は値unknown→N/A、定義missing→値不足、適用unknown→N/A、section判断→全fieldの転写をそれぞれ元の軸/状態へ戻す。",
-      "negative_oracles": {"case":"L9#/cases/4","negative_id_range":"NEG-01..04","items":[{"id":"HELIXBRAIN-L9-032-F03-NEG-01","change":"定義あり案件値unknownをN/Aへ読み替える","expected_classification":"unknown_as_na","expected_axis":"field.value","expected_state":"unknown","expected":"definitionと元value不足を保全。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F03-NEG-02","change":"定義missingを案件値unknownへ読み替える","expected_classification":"definition_as_value_gap","expected_axis":"field.definition","expected_state":"missing","expected":"定義missingの戻し先をCORE値不足へ付替えない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F03-NEG-03","change":"applicability unknownを非適用へ変換する","expected_classification":"applicability_unknown_as_na","expected_axis":"applicability.evaluation","expected_state":"unknown","expected":"N/A理由を創作しない。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F03-NEG-04","change":"sectionのN/Aを全fieldへ無条件転写する","expected_classification":"section_na_all_fields","expected_axis":"field.applicability","expected_state":"unknown","expected":"各fieldの原適用条件/根拠を個別保持。","backflow_owner":"core_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/4/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/4/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/4/negative_cases","count":4,"first_id":"HELIXBRAIN-L9-032-F03-NEG-01","last_id":"HELIXBRAIN-L9-032-F03-NEG-04","canonical_sha256":"4ef569824c5d449a2ad2ad5c2d0d212058dc59d901bb7b4b873ce0023392d319","negative_id_range":"01..04"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["definition_inside"],"finite_or_other_scope":["value_finite","definition_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "7case外のdefinition_conflict/value_naと28causeは未行使。field固有の実caller供給は未実施。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F04",
@@ -127,13 +129,12 @@
       "upper": ["L3F#/requirements/3","L10F#/cases/3"],
       "L4_contract": "L4#/contracts/5",
       "L9_case": "L9#/cases/5",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/5/positive_input","expected_observation":"各相違を正しい識別軸で返す。version_target=1.0を実版として扱わない。"},
       "comparison": "POSは同filename/異identity・同identity/異版・pack版を別軸で識別する。NEG-01..10はsource/version/scope不足、互換unknown/mismatch、別版oracle、画像/tool推定、filename結合、version_target=1.0の実版転用を個別に返す。",
-      "negative_oracles": {"case":"L9#/cases/5","negative_id_range":"NEG-01..10","items":[{"id":"HELIXBRAIN-L9-032-F04-NEG-01","change":"候補sourceを除く","expected_classification":"source_missing","expected_axis":"source","expected_state":"missing","expected":"未評価、同名source/latest補完0。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-02","change":"template versionを除く","expected_classification":"version_missing","expected_axis":"template.version","expected_state":"missing","expected":"knowledge/pack版を代替しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-03","change":"候補の適用scopeを除く","expected_classification":"scope_missing","expected_axis":"scope","expected_state":"missing","expected":"他scopeへ補完せず未評価。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-04","change":"両端契約の互換根拠を未供給にする","expected_classification":"compatibility_unknown","expected_axis":"compatibility","expected_state":"unknown","expected":"当該利用を許さない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-05","change":"owner宣言互換範囲外の版を与える","expected_classification":"compatibility_mismatch","expected_axis":"compatibility","expected_state":"conflict","expected":"最新や別candidate成功で補わない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-06","change":"別revisionのoracleを当該項目へ結ぶ","expected_classification":"oracle_revision_mismatch","expected_axis":"oracle.binding","expected_state":"conflict","expected":"元oracleと期待revisionを残す。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-07","change":"画像だけでtemplate identityを推定する","expected_classification":"image_identity_inference","expected_axis":"template.identity","expected_state":"unknown","expected":"画像からidentity/版を採番しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-08","change":"tool node IDだけでtemplate版を推定する","expected_classification":"tool_node_identity_inference","expected_axis":"template.version","expected_state":"unknown","expected":"tool nodeを意味revisionへ変換しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-09","change":"同filenameの別identityを同一と主張する","expected_classification":"filename_identity_join","expected_axis":"identity_claim","expected_state":"conflict","expected":"原別identity保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F04-NEG-10","change":"version_target=1.0をtemplate実版に代入する","expected_classification":"version_target_as_actual","expected_axis":"template.version_claim","expected_state":"conflict","expected":"能力版印と実artifact版を分ける。","backflow_owner":"knowledge_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/5/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/5/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/5/negative_cases","count":10,"first_id":"HELIXBRAIN-L9-032-F04-NEG-01","last_id":"HELIXBRAIN-L9-032-F04-NEG-10","canonical_sha256":"abcfdab221897ca7b0b01d276d42f1feee38f3e775597f1745934a049e4a1bd7","negative_id_range":"01..10"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["identity_inside"],"finite_or_other_scope":["identity_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "knowledge/packそれぞれの欠落を独立変異とするNEGは名指しされず、POSとの対照を超えるcoverageは未確認。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F05",
@@ -141,13 +142,12 @@
       "upper": ["L3F#/requirements/4","L10F#/cases/4"],
       "L4_contract": "L4#/contracts/6",
       "L9_case": "L9#/cases/6",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/6/positive_input","expected_observation":"意味内容と知識stateがJSONに結ばれ、表示変更を意味更新にしない。"},
       "comparison": "POSの表示変更とJSON意味不変に対し、NEG-01/02はviewによるmeasurement/completion補償後もmissing、NEG-03は意味更新claimをconflictとする。表示成功で原JSONを更新しない。",
-      "negative_oracles": {"case":"L9#/cases/6","negative_id_range":"NEG-01..03","items":[{"id":"HELIXBRAIN-L9-032-F05-NEG-01","change":"JSON measurement欠落をviewだけで補う","expected_classification":"view_measurement_repair","expected_axis":"measurement.definition","expected_state":"missing","expected":"表示生成成功でも原missing保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F05-NEG-02","change":"JSON completion欠落をviewだけで補う","expected_classification":"view_completion_repair","expected_axis":"completion.definition","expected_state":"missing","expected":"JSONの項目をviewから更新しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F05-NEG-03","change":"表示変更だけで意味identity/版/state更新済みと報告","expected_classification":"view_as_semantic_update","expected_axis":"meaning_update_claim","expected_state":"conflict","expected":"元JSONと原stateを保持、write0。","backflow_owner":"knowledge_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/6/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/6/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/6/negative_cases","count":3,"first_id":"HELIXBRAIN-L9-032-F05-NEG-01","last_id":"HELIXBRAIN-L9-032-F05-NEG-03","canonical_sha256":"ccc961c8ad9faad2a65216bc7bd84bf258c0cb81c343855f25a90a9813a4a357","negative_id_range":"01..03"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["oracle_inside"],"finite_or_other_scope":["oracle_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "JSON/view分離の全ruleとpartial contextのwriter閉包は未完。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F06",
@@ -155,13 +155,12 @@
       "upper": ["L3F#/requirements/5","L10F#/cases/5"],
       "L4_contract": "L4#/contracts/7",
       "L9_case": "L9#/cases/7",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/7/positive_input","expected_observation":"定義の関係は辿れ、案件値未決は未完のままCOREへ渡る。"},
       "comparison": "POSは義務/oracle参照と案件値未決を分ける。NEG-01..04は無関係計測・別版oracleをconflict、生成成功だけのcompletionと架空閾値をunknownとして区別し、案件義務を消し込まない。",
-      "negative_oracles": {"case":"L9#/cases/7","negative_id_range":"NEG-01..04","items":[{"id":"HELIXBRAIN-L9-032-F06-NEG-01","change":"適用義務と無関係な計測根拠を与える","expected_classification":"unrelated_measurement","expected_axis":"measurement.binding","expected_state":"conflict","expected":"義務/oracleの相違を返す。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F06-NEG-02","change":"completionを別revisionのoracleへ結ぶ","expected_classification":"completion_oracle_revision","expected_axis":"completion.binding","expected_state":"conflict","expected":"当該成立条件未成立、project消込0。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F06-NEG-03","change":"文書生成成功だけをcompletion根拠にする","expected_classification":"generation_as_completion","expected_axis":"completion.definition","expected_state":"unknown","expected":"対oracleによる成立を推定しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F06-NEG-04","change":"値unknownに汎用既定閾値を創作する","expected_classification":"threshold_fabricated","expected_axis":"measurement.value","expected_state":"unknown","expected":"定義knownと案件値unknownを別に返す。","backflow_owner":"core_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/7/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/7/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/7/negative_cases","count":4,"first_id":"HELIXBRAIN-L9-032-F06-NEG-01","last_id":"HELIXBRAIN-L9-032-F06-NEG-04","canonical_sha256":"e39e7d67c13b1c624b8438406c50101426fce22be2d61a9e27dff0f7ec272f73","negative_id_range":"01..04"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["oracle_inside","definition_inside"],"finite_or_other_scope":["oracle_outside","definition_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "measurement/completionの義務/根拠/oracle個別結合の全witnessは未完。具体閾値/製品値は原owner責務。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F07",
@@ -169,13 +168,12 @@
       "upper": ["L3F#/requirements/6","L10F#/cases/6"],
       "L4_contract": "L4#/contracts/8",
       "L9_case": "L9#/cases/8",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/8/positive_input","expected_observation":"汎用定義と製品値の所属を識別し、製品値・不足判断をCOREへ返す。"},
       "comparison": "POSは汎用定義と製品値の所属を分ける。NEG-01..05は製品値の汎用化、BRAINの採用/要求合意/設計完成/義務消込を各claim軸のconflictとし、CORE/OS等の裁定を代行しない。",
-      "negative_oracles": {"case":"L9#/cases/8","negative_id_range":"NEG-01..05","items":[{"id":"HELIXBRAIN-L9-032-F07-NEG-01","change":"未見domain/actorのscreen/API/permission/state値を汎用定義へ混入","expected_classification":"product_values_as_generic","expected_axis":"generic_definition","expected_state":"conflict","expected":"元製品値はCORE材料へ残し、汎用化成立にしない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F07-NEG-02","change":"BRAIN供給出力へ製品template採用を加える","expected_classification":"brain_selects_template","expected_axis":"product_selection_claim","expected_state":"conflict","expected":"候補提供とCORE採用を分離。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F07-NEG-03","change":"BRAIN出力が要求合意を宣言","expected_classification":"brain_agrees_requirements","expected_axis":"requirements_agreement_claim","expected_state":"conflict","expected":"既存要求authorityを代行しない。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F07-NEG-04","change":"BRAIN出力が設計完成を宣言","expected_classification":"brain_finishes_design","expected_axis":"design_completion_claim","expected_state":"conflict","expected":"completion定義と案件完成を区別。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F07-NEG-05","change":"BRAIN出力がproject義務を消し込む","expected_classification":"brain_closes_obligation","expected_axis":"obligation_discharge_claim","expected_state":"conflict","expected":"OS記録write/消込0。","backflow_owner":"os_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/8/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","knowledge_owner","os_owner"],"L9_NEG_pointer_prefix":"L9#/cases/8/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/8/negative_cases","count":5,"first_id":"HELIXBRAIN-L9-032-F07-NEG-01","last_id":"HELIXBRAIN-L9-032-F07-NEG-05","canonical_sha256":"824e9f98a10c325081574969e30b95f07361698640efbcad81750427645f306c","negative_id_range":"01..05"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["claim_inside"],"finite_or_other_scope":["claim_finite"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "LABO評価・単一成功事例から汎用契約への昇格を独立に変異させたNEGは名指しされない。実LABO評価の成立も示さない。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F08",
@@ -183,13 +181,12 @@
       "upper": ["L3F#/requirements/7","L10F#/cases/7"],
       "L4_contract": "L4#/contracts/9",
       "L9_case": "L9#/cases/9",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/9/positive_input","expected_observation":"内容採否と運用stateが別に辿れ、未実施工程は未実施と返る。"},
       "comparison": "POSは限定内容採用と運用promotionを分ける。NEG-01..03は生成のみ・評価scopeなし・独立検証なしをunknown、NEG-04は限定採択のaccepted転用をconflictとし、原運用stateを保持する。",
-      "negative_oracles": {"case":"L9#/cases/9","negative_id_range":"NEG-01..04","items":[{"id":"HELIXBRAIN-L9-032-F08-NEG-01","change":"AI生成だけでaccepted/matureと主張","expected_classification":"generation_as_promotion","expected_axis":"promotion","expected_state":"unknown","expected":"候補生成と運用採否を別軸。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F08-NEG-02","change":"評価範囲無しで昇格済みと主張","expected_classification":"evaluation_scope_missing","expected_axis":"promotion","expected_state":"unknown","expected":"不足scopeと既存採否ownerを返す。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F08-NEG-03","change":"独立検証無しで昇格済みと主張","expected_classification":"independent_verification_missing","expected_axis":"promotion","expected_state":"unknown","expected":"元運用stateを保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F08-NEG-04","change":"MSGCONTENT限定意味採択を運用knowledge acceptedへ変換","expected_classification":"limited_content_as_promotion","expected_axis":"promotion_claim","expected_state":"conflict","expected":"内容採否と運用stateは別。","backflow_owner":"knowledge_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/9/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/9/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/9/negative_cases","count":4,"first_id":"HELIXBRAIN-L9-032-F08-NEG-01","last_id":"HELIXBRAIN-L9-032-F08-NEG-04","canonical_sha256":"a5e27a052882b6225e8cc794cdf7fb593bf6f431b4233baad327a5285c6ccf3f","negative_id_range":"01..04"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["promotion_inside"],"finite_or_other_scope":["promotion_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "LABO評価だけ/OS受領だけでpromotionする各独立NEGは名指しされない。非空candidate全割当も未閉。"
     },
     {
       "child": "HELIXBRAIN-L3-032-F09",
@@ -197,13 +194,12 @@
       "upper": ["L3F#/requirements/8","L10F#/cases/8"],
       "L4_contract": "L4#/contracts/10",
       "L9_case": "L9#/cases/10",
-      "disposition": "032内部未完・凍結しない",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/10/positive_input","expected_observation":"選択条件で必要になる不足だけを返し、未選択source成功を主張しない。"},
-      "comparison": "POSは選択条件別の不足と未選択を分ける。NEG-01/02は未受領とsource欠落、NEG-03/04は参考資料のauthority化と必須定義代替、NEG-05は将来receipt前提化、NEG-06は非選択source成功を区別する。原caseの対照と残るF09追随は下欄で分ける。",
-      "negative_oracles": {"case":"L9#/cases/10","negative_id_range":"NEG-01..06","items":[{"id":"HELIXBRAIN-L9-032-F09-NEG-01","change":"受渡し先未受領を汎用定義欠落へ変換","expected_classification":"receipt_as_definition","expected_axis":"handoff","expected_state":"not_received","expected":"definition保持、未受領と定義不足を分離。","backflow_owner":"os_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F09-NEG-02","change":"選択CORE由来source欠落を無関係sourceで補う","expected_classification":"selected_source_substitution","expected_axis":"selected_source","expected_state":"missing","expected":"選択scope/sourceの元欠落を残す。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F09-NEG-03","change":"旧template/seed/設計例をauthorityに使う","expected_classification":"reference_as_authority","expected_axis":"authority_claim","expected_state":"conflict","expected":"限定内容採択と参考資料を分ける。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F09-NEG-04","change":"参考資料で必須項目missingを補う","expected_classification":"reference_as_required_definition","expected_axis":"descriptor.definition","expected_state":"missing","expected":"元required欠落を保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F09-NEG-05","change":"候補提供前に相手完了receiptを必須化","expected_classification":"future_receipt_as_precondition","expected_axis":"precondition_claim","expected_state":"conflict","expected":"未受領でも局所候補提供を継続。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-F09-NEG-06","change":"非選択LABO sourceを観測/評価済みと主張","expected_classification":"unselected_source_success","expected_axis":"unselected_source","expected_state":"unobserved","expected":"未観測保持、評価成功0。","backflow_owner":"knowledge_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":["L4#/remaining/3","L4#/remaining/5","L9#/conditional_source_dependency_verification/freeze_boundary","L9#/conditional_source_dependency_verification/remaining","L9#/dependency_semantic_port_verification/limits"],"032_internal_unfinished":["018/020/025の限定mappingと10case固定はL9境界の範囲で保持する。L4 remaining/3,5の同snapshot producer/公開返却追随、OS incoming/診断の032分とF09 whole独立期待はこのbasic対照では閉じず、未凍結とする。"],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/10/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner","os_owner"],"L9_NEG_pointer_prefix":"L9#/cases/10/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "comparison": "POSは選択条件別の不足と未選択を分ける。NEG-01/02は未受領とsource欠落、NEG-03/04は参考資料のauthority化と必須定義代替、NEG-05は将来receipt前提化、NEG-06は非選択source成功を区別する。原caseの対照と残る基本内未完と詳細追随は下欄で分ける。",
+      "negative_oracles": {"source_pointer":"L9#/cases/10/negative_cases","count":6,"first_id":"HELIXBRAIN-L9-032-F09-NEG-01","last_id":"HELIXBRAIN-L9-032-F09-NEG-06","canonical_sha256":"1c52143230b210fdfa896e48093dae9e2c7e86ebcaed58e39ad5cdc0966dd838","negative_id_range":"01..06"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["definition_inside"],"finite_or_other_scope":["conditional_finite","conditional_outside","definition_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "10case外の13reasonとoperation全域は未行使。一般meaning source/caller未完と詳細writer追随を区別する。"
     },
     {
       "child": "HELIXBRAIN-L3-032-N01",
@@ -211,13 +207,12 @@
       "upper": ["L3N#/requirements/0","L10N#/cases/0"],
       "L4_contract": "L4#/contracts/11",
       "L9_case": "L9#/cases/11",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/11/positive_input","expected_observation":"意味の変更点と未決点が同じ識別軸で辿れる。"},
       "comparison": "POSの原source/knowledge版への逆照合に対し、NEG-01/02は項目単位の版混在とsupersessionなしのlatest付替えをdescriptor.trace/conflictとして返し、原revision/sourceを残す。",
-      "negative_oracles": {"case":"L9#/cases/11","negative_id_range":"NEG-01..02","items":[{"id":"HELIXBRAIN-L9-032-N01-NEG-01","change":"一項目だけ別knowledge revisionへ付替え","expected_classification":"mixed_knowledge_revision","expected_axis":"descriptor.trace","expected_state":"conflict","expected":"template/knowledge/sourceの原組を保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N01-NEG-02","change":"supersession関係を省き旧knowledge参照をlatestへ付け替える","expected_classification":"silent_supersession","expected_axis":"descriptor.trace","expected_state":"conflict","expected":"原旧revision/sourceと明示supersession不足を保全し、latestで同一意味にしない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/11/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["knowledge_owner"],"L9_NEG_pointer_prefix":"L9#/cases/11/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/11/negative_cases","count":2,"first_id":"HELIXBRAIN-L9-032-N01-NEG-01","last_id":"HELIXBRAIN-L9-032-N01-NEG-02","canonical_sha256":"5e498239632f525e7314a425906c54fe3d5a76ed472254082b5581481b16f4db","negative_id_range":"01..02"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["identity_inside"],"finite_or_other_scope":["identity_outside"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "一般multiple-record集約/競合cause優先は未閉。実providerによる全返却項目の供給は未実施。"
     },
     {
       "child": "HELIXBRAIN-L3-032-N02",
@@ -225,13 +220,12 @@
       "upper": ["L3N#/requirements/1","L10N#/cases/1"],
       "L4_contract": "L4#/contracts/12",
       "L9_case": "L9#/cases/12",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "基本義務内の明示未完を残しpair未凍結。記載POS/NEGだけの有限対照候補。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/12/positive_input","expected_observation":"状態・理由・対象revision・戻し先が保たれる。"},
       "comparison": "POSは各不足状態の所在・理由・revision・戻し先を保持する。NEG-01..04は空集合/fallback/hash/下位greenによる相殺を拒み、NEG-05..10はmissing/unknown/conflict/N/A/unobserved/not_receivedを各原軸に保持する。",
-      "negative_oracles": {"case":"L9#/cases/12","negative_id_range":"NEG-01..10","items":[{"id":"HELIXBRAIN-L9-032-N02-NEG-01","change":"不足を空集合に縮退","expected_classification":"missing_as_empty","expected_axis":"descriptor.definition","expected_state":"missing","expected":"不足identity/理由を保持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-02","change":"unknownを任意fallbackで成立","expected_classification":"unknown_fallback","expected_axis":"descriptor.definition","expected_state":"unknown","expected":"元revision/sourceを返す。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-03","change":"件数/hash一致だけで全体完全","expected_classification":"hash_as_complete","expected_axis":"completion_claim","expected_state":"unknown","expected":"意味不足を相殺しない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-04","change":"下位greenで未受領/未観測を全体成功","expected_classification":"lower_green_as_complete","expected_axis":"completion_claim","expected_state":"unknown","expected":"元各状態を維持。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-05","change":"descriptor.definitionの原missingを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_missing","expected_axis":"descriptor.definition","expected_state":"missing","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-06","change":"field.valueの原unknownを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_unknown","expected_axis":"field.value","expected_state":"unknown","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-07","change":"descriptor.definitionの原conflictを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_conflict","expected_axis":"descriptor.definition","expected_state":"conflict","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-08","change":"field.applicabilityの原not_applicableを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_not_applicable","expected_axis":"field.applicability","expected_state":"not_applicable","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-09","change":"unselected_sourceの原unobservedを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_unobserved","expected_axis":"unselected_source","expected_state":"unobserved","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"knowledge_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N02-NEG-10","change":"handoffの原not_receivedを返却経路で無根拠に成立へ変換","expected_classification":"state_preservation_not_received","expected_axis":"handoff","expected_state":"not_received","expected":"元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。","backflow_owner":"os_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/12/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","knowledge_owner","os_owner"],"L9_NEG_pointer_prefix":"L9#/cases/12/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/12/negative_cases","count":10,"first_id":"HELIXBRAIN-L9-032-N02-NEG-01","last_id":"HELIXBRAIN-L9-032-N02-NEG-10","canonical_sha256":"392f75aa702f8a81f9657c33f8c254323185febbc2aabc754d72f76b0c221d47","negative_id_range":"01..10"},
+      "remaining_limits_applied": {"basic_internal_unfinished":["claim_inside"],"finite_or_other_scope":["claim_finite"],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "説明だけで成立へ変える直接NEGは名指しされない。一般unsupported claimの公開unknown writerも未閉。"
     },
     {
       "child": "HELIXBRAIN-L3-032-N03",
@@ -239,42 +233,65 @@
       "upper": ["L3N#/requirements/2","L10N#/cases/2"],
       "L4_contract": "L4#/contracts/13",
       "L9_case": "L9#/cases/13",
-      "disposition": "有限oracle照合後の限定凍結候補・独立review待ち",
+      "disposition": "記載POS/NEGだけの有限対照候補。child固有の基本内明示未完は確認範囲でなし。pair凍結は本記録から生成しない。",
       "positive_oracle": {"fixture":"TEMPLATE-SUPPLY-BASE-01","input_pointer":"L9#/cases/13/positive_input","expected_observation":"案件値未決と汎用定義不足を区別し、実測を仮定しない。"},
       "comparison": "POSは案件値未決と汎用定義不足を区別し、実測を仮定しない。NEG-01..03はfixtureの90秒/1CPU/256MiBをoperation/resource値へ転用してもunknownを保ち、CORE/INFRAへ不足を返す。",
-      "negative_oracles": {"case":"L9#/cases/13","negative_id_range":"NEG-01..03","items":[{"id":"HELIXBRAIN-L9-032-N03-NEG-01","change":"参照fixture90秒を一般期限へ転用","expected_classification":"fixture_timeout_default","expected_axis":"operation_value","expected_state":"unknown","expected":"値/根拠/operation owner未決保持。","backflow_owner":"core_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N03-NEG-02","change":"参照fixture1CPUを実資源へ転用","expected_classification":"fixture_cpu_default","expected_axis":"resource_value","expected_state":"unknown","expected":"実資源未供給を維持。","backflow_owner":"infrastructure_owner","expected_side_effect_count":0},{"id":"HELIXBRAIN-L9-032-N03-NEG-03","change":"参照fixture256MiBを実容量へ転用","expected_classification":"fixture_memory_default","expected_axis":"resource_value","expected_state":"unknown","expected":"fixtureと実計測を区別。","backflow_owner":"infrastructure_owner","expected_side_effect_count":0}]},
-      "remaining_limits_applied": {"L4_L9_specific":[],"032_internal_unfinished":[],"general_boundary":"basic_global_boundaryのL4未完・L9証拠境界を保持する。この行の有限case期待から正式化/下流/実行を成立させない。"},
-      "external_return_basis": {"L4_backflow_pointer":"L4#/contracts/13/backflow","L4_backflow":"汎用定義/知識版はBRAIN。製品値/適用はCORE。project記録はOS。意味が変わる左層へBackflow。","L9_NEG_backflow_owners":["core_owner","infrastructure_owner"],"L9_NEG_pointer_prefix":"L9#/cases/13/negative_cases"},
-      "difference_handling": "NEG単位の入力変異と期待を上書きしない。不一致なら当該basic pairを未凍結へ戻す。"
+      "negative_oracles": {"source_pointer":"L9#/cases/13/negative_cases","count":3,"first_id":"HELIXBRAIN-L9-032-N03-NEG-01","last_id":"HELIXBRAIN-L9-032-N03-NEG-03","canonical_sha256":"4e2db61b4b317a3df7eb56add4a448adbe83943ac3577dee3772b390af8826dc","negative_id_range":"01..03"},
+      "remaining_limits_applied": {"basic_internal_unfinished":[],"finite_or_other_scope":[],"basis":"limit_catalogの各IDがpointer/分類/理由を定義する。有限枝外も未成立を保持し、全体完成へ補完しない。"},
+      "unexercised_obligations": "実operation/P3FIRST/HARNESS034の測定値/適用判断は未供給・未実行。専用未閉節は確認できず、全literal gateを足さない。"
     }
   ],
   "legacy_and_failure": [
     {"asset":"LEGACY-ASSET-4F5A1F0739EC1111D91D","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md","lines":"18–45,61–101","keep":"JSON意味/trace/oracleとunknown・N/A・unresolved又はowner/reentry付きdefer。","change":"旧registry/TPL/runtime/gateをcopyせず現child pair有限scopeへ意味再導出。","file_bytes_sha256":"e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"},
     {"asset":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","lines":"73–108","keep":"版/参照とunknownをN/Aへ丸めない境界。","change":"旧整数版/式木/registryを採用せず現L3意味を維持。","file_bytes_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"},
-    {"asset":"FB-001; LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/feedback-log.md:16; archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:80,86–87","keep":"UTW-014/020/021の欠落・部分失敗・自己申告を隠さず、count/link/hashを意味閉包にしない。"},
+    {"asset":"LEGACY-ASSET-59E7DCC3DF0FDD2DC7C0","path":"archive/legacy-generation-2026-09-14/root/docs/feedback-log.md","lines":"16","file_bytes_sha256":"33255eca508d3cd01e8f0a4461aad3d8aca3a36e6c08e4bad91612a9fdc5886d","keep":"FB-001:欠落・部分失敗・自己申告を隠さない。","change":"有限対照と未完を併記し、count/hashを意味閉包にしない。"},
+    {"asset":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","lines":"80,86–87","file_bytes_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","keep":"UTW-014/020/021の部分成功・自己申告・意味未達を保持。","change":"source一致と上位義務対照を分離し、未完を外ownerへ隠さない。"},
     {"source":"RetryYN/HELIX-HARNESS#3562; #3547 comments6330316498/6330378859","failure":"既存F02結論の重複監査と、remainingを独立期待にしてRedを無理に探した。","change":"既存内容を先に照合し、上位有限期待・pair内未達・別owner/後続scopeを分ける。Red未検出を不足/新gateにしない。"}
   ],
   "not_frozen_or_claimed": [
     "detail L5/L8側の②、completion/semantic review、FE/Q、詳細候補の凍結状態。本basic recordから推論しない。",
     "全14義務の製品上の意味成立、全source/provider資格/実受領/CORE採否/OS記録、任意入力全域・全mutation/全caller、全runner/SupplyAnalysis。",
     "実行・Red/Green/CI・製品/helper/runtime/旧CLI/hook/testの結果。全case not_executedであり有限契約候補をGreenへ読み替えない。",
-    "F09のL4 remaining/3,/5および対応L9 limitsの032内追随。F09 basicは未凍結。",
+    "各rowの基本内明示未完と未行使範囲。有限oracle照合・独立reviewで自動解消しない。F09の詳細/実行残務は基本内未完と区別する。",
     "L3意味変更、新authority/承認/gate、Issue3547完了、L6/L7、release/実物受入。"
   ],
   "operation": {
-    "authority_sources": "L3/L10原項目、L4/L9 current exact pins、coverageのbasic③、FN0のaudit形式。",
+    "authority_sources": "L3/L10原項目とL4/L9 exact pins。coverage③は限定検索の観察、FN0はaudit形式の参照。",
     "environment": "固定Git bytes/JSON Pointer/hash/IDと全14 L9 NEGの静的照合のみ。",
     "isolation": "本basic 14組候補のみ。L3〜L9、固定表・既存監査は変更しない。",
     "resources": "実資源値/timeout/性能条件を新設しない。",
-    "cwd": "/home/tenni/.helix-worktrees/codex-brain032-step7-14child-audit-20261024",
+    "cwd": ".",
     "command": "JSON parse、L3/L10/L4/L9 index-ID-reference照合、NEG全件/pointer/hash readback、git diff --check。製品実行なし。",
     "evidence_destination": "本recordのexact content HEADに対するPR commentと独立review/read-after。"
   },
   "execution_state_at_freeze": "製品/testはnot_executed。静的basic case/oracle照合と独立reviewを、実観測/Greenへ読み替えない。",
   "basic_global_boundary": {
-    "L4_remaining_common": {"pointer":"L4#/remaining","meaning":["L5/L8で論理型、descriptor/source解決、claim、条件別依存とpure関数、単体oracleを具体化。","正式schema/key/型/式木/wire/registry/resolver、各field意味/要否/oracle最終照合、BRAIN運用promotionと全seed採用は未成立。","全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは未成立。","F09の018/020固定写像と025原操作scopeは本基本pair候補で具体化。L5/L8の未決記述/producer/input/返却契約への反映、実source/資格と実接続、独立reviewは未成立。","各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。","F09のcanonical全body read/Claim intent・origin incomingはdependency_semantic_portsに論理型/分岐として具体化。L5/L8の同snapshot producer/公開返却への追随と030/OS供給側pair、実source/custody/資格稼働、F09 Comparison/SupplyAnalysis全返却の独立期待は別に残る。 L5/L8追随ではclaim_intent_protocolのkind別値語彙・supplied/absent/null・typed origin/全field返却と順序を採用する。現failure ruleにその語彙が実装済みとはしない。"],"application":"remaining/0,1,2,4の下流具体化・正式化・他対象/実owner未完を保持し、今回のcase期待へ実稼働条件を追加しない。remaining/3,5のF09追随はF09欄へ個別対応する。"},
+    "L4_remaining_common": {"pointer":"L4#/remaining","application":"L5/L8具体化、正式schema/registry/全対象/実owner供給/実資格/実行は保持し、このbasic対照の新gateにしない。child内未完は各rowで別に判断する。"},
     "L9_evidence_contract": {"required":"対象L4/L9 revision、fixture原source/変異、descriptor/knowledge/template各版、scope/condition、原各axis、claim判定、原因/戻し先、副作用0を個別に記録する。","case_adequacy":"コード一致だけでなく原項目内容、変異した意味差、無関係項目保全、返却後の状態保存を対照実行で検査。件数/hash/空集合を意味oracle代替にしない。","real_execution":"L5/L8とL6/L7のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠を後続で接続。今は全case not_executed。"},
-    "L9_execution": {"completion_execution":"not_executed","per_case":"各L9_case配下のexecution_stateは全14組でnot_executed。"},
-    "L9_conditional_source_boundary": {"freeze_boundary":"この10caseのcandidate input/期待を固定する。全oracle/全mutation/全wholeゼロを新入場gateにしない。case/hash数を意味閉包や全14義務完成率にしない。","remaining":"L5/L8/実source producer/resolver/資格と全形/全operation範囲は未成立。 各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返すが、欠落を理由に新approval/全stage gateを追加しない。","dependency_semantic_limits":"port logical schema/source/type/inverseの静的検査に限る。F09全体、他6producer、全shape/全mutation、実資格/実provider/codec/resolver、全14義務完成を示さない。 OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。当該mutantを本期待が識別するとは主張せず、OS供給側pairと032 L5/L8の追随へ残す。 診断写像の未観測範囲: canonical_ordered_branchesの1・3・4・5のunusable・7・8、origin_ordered_branchesの1・2、claim_intent_protocolのfield_not_applicable・definition_missing_from_receipt・upstream_authority・require_before_supply・labo_evaluatedの各kind。観測済みのcanonical 5の対応source無し/9のresolved、origin 3のsubject又はbinding不一致/4のresolved、project_obligation_dischargeの正負、fill_definitionの正/未解決を、それ以外の分岐の検証済み根拠には用いない。","scope":"F09の条件別source追随に適用し、全basic pairの一般条件へ広げない。"}
+    "L9_execution": {"completion_execution":"not_executed","per_case":"各L9_case配下のexecution_stateは全14組でnot_executed。"}
+  },
+  "negative_reference_encoding": "全14行で原L9 negative_cases配列全体をpointerとSHA-256で固定。UTF-8 json.dumps(array,ensure_ascii=False,sort_keys=True,separators=(',',':'))、配列順を保持、末尾改行なし。原ID/change/classification/axis/state/expected/backflow/副作用を含む全memberが対象。正本はL9であり、このhashは意味閉包を示さない。",
+  "review_effect_and_reentry": {
+    "after_review": "本recordは候補のまま。実pairのfreeze成立を記録する場合は、別の固定scope記録に当該childのL3/L10・L4/L9 exact revision/bytes、独立期待、適用限界、未完と戻し先を束縛する。FN0の限定oracle/readback形式を参照し、ADD01の実行証拠は転用しない。新しい承認gateを設けない。",
+    "mismatches": ["source pin・ID・pointer・NEG原値又は順序の差","L3/L10の義務に対するL4/L9のaxis/state/owner/原根拠保全の欠落又は意味逆転","基本義務内の明示未完の漏れ・他owner/詳細への誤分類","有限scopeから全域/実行/凍結への過剰主張"],
+    "judgment": "作成側rootが上位義務と原sourceを対照して検収し、独立Claudeがexact base/content HEADをreviewする。判断・finding・修正応答を当該PR commentに記録する。値一致だけで意味一致を決めない。",
+    "reentry": "不一致のchildは未凍結を維持し、原source又は候補の訂正/供給を同じpairへ再照合する。修正HEADは既存GitHub上流運用モデルの作成側/レビュー側責務に従い再reviewする。上流意味を変える場合だけ既存authority境界へ戻す。",
+    "closed_scope": "reviewは提示revisionの静的対照を確かめる。下記内部未完、未行使義務、実行/資格/受領/製品completionを閉じない。"
+  },
+  "classification_rule": "各childの基本義務の内側にある明示未完を内部に残す。中核writer/readerが未閉ならpairは未凍結。有限caseの対照候補はそのscopeだけを示す。未行使branchは完成扱いせず、全domain・詳細・実provider/実行を新gateにしない。全14行に同じ基準を適用する。",
+  "limit_catalog": {
+    "claim_inside": {"pointers":["L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/generic_unknown","L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner"],"class":"基本義務内・未閉","reason":"一般unsupported claimの公開unknown Axis/Finding全field writerと任意RawValue意味対応は未閉。有限状態/責務分離NEGの一致でこの中核writerを閉じない。"},
+    "claim_finite": {"pointers":["L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/other_domain","L4#/claim_boundary_projection_contract/existing_fixture_consistency/limits"],"class":"基本内の有限枝外・未行使","reason":"他kind/shape/製品値/採用/義務/receipt carrier、同shape別stringと旧全negative witnessを本有限枝は扱わない。元規則/原stateを保持し、成功や空列へ補完しない。全域gateは追加しない。"},
+    "definition_inside": {"pointers":["L4#/definition_meaning_resolution_contract/preservation_and_limits/1"],"class":"基本意味readerの一般scope未完","reason":"新known/NA source/callerと独立wholeは未作成。各childの有限POS/NEGだけを対照し、全reader義務は未凍結。原知識内容の訂正責務へ032自身のreader未完を付替えない。 当該節requirementsはF01/F02/F03/F06/F09を名指しする。実owner供給未実施とは分け、既存の基本意味readerに残る未作成を記録する。"},
+    "definition_outside": {"pointers":["L4#/definition_meaning_resolution_contract/preservation_and_limits/2","L9#/definition_meaning_resolution_verification_plan/remaining","L9#/definition_meaning_resolution_verification_plan/public_expectation_limits"],"class":"詳細/実source/実行、有限公開値の境界","reason":"実owner原operands供給、L5/L8 primary/index/全field/order、provider/codec/custody/formal pairは本basic対照外。remaining/4のmixed-route未閉表現を現L4のroute契約未閉の証拠にしない。公開literal/配列/private shapeの未固定と、既存の保持規則を区別する。"},
+    "value_finite": {"pointers":["L4#/field_value_applicability_contract/limits","L9#/field_value_applicability_verification/remaining","L9#/field_value_applicability_verification/unexercised_observations"],"class":"基本7case限定＋詳細/実行外","reason":"definition_conflict/value_naと28 causeは未行使。7caseの独立期待に限り、15定義/他案件/他sourceの成功gateは足さない。実資格/全producerとL5/L8 ValueContext実現は基本未凍結の理由にしない。"},
+    "identity_inside": {"pointers":["L4#/identity_version_trace_contract/limits/2","L9#/identity_version_trace_verification/finite_branch_coverage"],"class":"基本7whole＋3membershipの限界・一般集約未閉","reason":"未行使causeの競合優先と一般multiple-record集約は未閉、validated.input=nullも未行使。有限期待保全に限り、全trace/全cause成立は未凍結。unclosed_projection_boundariesというkeyは当該契約に存在しないため引用しない。"},
+    "identity_outside": {"pointers":["L4#/identity_version_trace_contract/limits/0"],"class":"実provider/資格/実行外","reason":"実trust/provider/codec/候補実装の稼働を有限basic期待から認定しない。"},
+    "oracle_inside": {"pointers":["L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/oracle_binding","L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/rule_witness","L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/partial_context"],"class":"基本義務内・中核writer未閉","reason":"実recordの義務/根拠/oracle版対応、7ruleの全witness/Axis/Finding割当とpartial context診断は後続設計を要する。F05/F06の原NEGを削除/空列化せず、有限の値一致でもpairは未凍結。"},
+    "oracle_outside": {"pointers":["L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/qualification","L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/source_content"],"class":"実資格/任意bodyは有限枝外","reason":"実owner/custody/trustと任意body decoderは本writerの有限枝外。実資格の不在は新basic gateにしない。"},
+    "promotion_inside": {"pointers":["L4#/knowledge_promotion_contract/unclosed_projection_boundaries/selected_candidate","L4#/knowledge_promotion_contract/unclosed_projection_boundaries/firing_rules"],"class":"基本義務内・中核writer未閉","reason":"非空candidateの全normal/promotion行と4ruleの全割当・順序は未閉。candidate-empty有限枝だけでF08のpromotion分離義務を閉じない。"},
+    "promotion_outside": {"pointers":["L4#/knowledge_promotion_contract/unclosed_projection_boundaries/shape","L4#/knowledge_promotion_contract/unclosed_projection_boundaries/custody"],"class":"有限形状外/運用owner外","reason":"他Claim/record member/partial入力等は有限枝外で原規則を保持する。実LABO/OS/BRAIN工程とowner/trust成立をbasic writer一致から生成しない。"},
+    "conditional_finite": {"pointers":["L4#/conditional_source_dependency_contract/limits","L4#/dependency_semantic_ports/limits","L9#/conditional_source_dependency_verification/freeze_boundary","L9#/dependency_semantic_port_verification/limits"],"class":"基本10case限定・未行使分岐","reason":"22reason中9使用・13未行使。10candidate input/期待の固定だけを保ち、全shape/mutation/operationを追加gateにしない。全F09成立は主張しない。"},
+    "conditional_outside": {"pointers":["L4#/remaining/3","L4#/remaining/4","L4#/remaining/5","L9#/conditional_source_dependency_verification/remaining","L9#/descriptor_target_port_verification/unobserved","L9#/descriptor_target_port_verification/limits","L9#/comparison_axis_reason_writer_verification/unexercised_scope_ja","L9#/comparison_axis_reason_multi_problem_verification/limits","L9#/comparison_axis_reason_writer_verification/unexercised_l4_branches_ja","L9#/comparison_axis_reason_writer_verification/unexercised_public_failure_predicates_ja"],"class":"詳細port/writer追随又は実供給/実行外","reason":"同snapshot producer/公開返却、OS incoming/Binding/presence/原state非消込、canonical/origin/kind追随はL5/L8又は供給側pair。実source/owner-qualified carrier/資格/reviewも別責務。F09 basicをこれだけで未凍結にしない。"}
   }
 }
