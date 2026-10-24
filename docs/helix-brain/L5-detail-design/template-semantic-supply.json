@@ -6237,7 +6237,7 @@
       },
       "consumer_adapter_boundary": {
         "required_mapping": "json_kind/type判定、json_equal/所属の数値等値、原snapshotのcopyは本unionを数値として扱う値保存adapterへ対応する。copyはimmutable nodeを保持するかvalue/token双方を不変条件ごと保ち、dict化/float化しない。",
-        "not_established": "source_return読取器への実adapter接続、numeric canonical-sort用の字句則とsorted_values/unique_sorted/sort_by_jsonの具体writer、未接続new_defsのminimum比較は未閉包。既存local readerのint/float/json.dumpsを正本の数値字句則として採用しない。 ただし、数値atomと全値代表はL4 numeric_sort_writer/numeric_unique_representativeで定め、数値direct values/present numeric keyの有限pure写像はn3sort_numeric_only_detailと対L8で記述した。一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。 ただし、既存19 property fragmentへの局所predicateは/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_index_minimum_bindingで記述する。全new_defsのminimum検証とreader/実adapter接続は未閉のままである。\nこの /source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_meaning_reader_binding で定める3ケースの有限数値mappingだけを観測する。一般のnew_defs、他reader、実adapterへの成立は主張しない。\n\n有限な3 scalar fixtureでは numeric_applicability_reader_binding の記述だけを観測する。一般 new_defs、他 reader、実 adapter、資格成立は示さず、未観測枝を拒否domainやgateへ広げない。",
+        "not_established": "source_return読取器への実adapter接続、numeric canonical-sort用の字句則とsorted_values/unique_sorted/sort_by_jsonの具体writer、未接続new_defsのminimum比較は未閉包。既存local readerのint/float/json.dumpsを正本の数値字句則として採用しない。 ただし、数値atomと全値代表はL4 numeric_sort_writer/numeric_unique_representativeで定め、数値direct values/present numeric keyの有限pure写像はn3sort_numeric_only_detailと対L8で記述した。一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。 ただし、既存19 property fragmentへの局所predicateは/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_index_minimum_bindingで記述する。全new_defsのminimum検証とreader/実adapter接続は未閉のままである。\nこの /source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_meaning_reader_binding で定める3ケースの有限数値mappingだけを観測する。一般のnew_defs、他reader、実adapterへの成立は主張しない。\n\n加えて、numeric_applicability_reader_binding の4 scalar fixtureでも、原値保持とmirror比較結果を観測する。一般 new_defs、他 reader、実 adapter、資格成立は示さず、未観測枝を拒否domainやgateへ広げない。",
         "no_new_canonical_scheme": "wireの元token保持をcanonical-sort keyや意味digestへ転用しない。数値同値と原字句の違いを保ち、sortの未決を新規正規化方式で推測補完しない。",
         "wire_schema_scope": "現wire5entryのnumberはRawValue、integerはSupplyAnalysis.side_effect_count。source_return局所new_defsはここへ接続されておらず、source_index/record_indexのminimumを本profileの成立として追加しない。enum/constはTypeCheckerと別経路で、現wireはstring enumのみ。"
       },
@@ -11349,21 +11349,22 @@
               {"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","lines":"80,86-87","asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","comparison_role_ja":"UTW014欠損隠蔽・UTW020部分失敗集約・UTW021自己申告完了の照合"}
             ],
             "technical_detail": {
-              "scope_ja": "固定 WALK material 1 の既存 DefinitionApplicabilityRead 返却について、3 scalar fixtureの原値echoと限定した比較結果をmetadataで記録する。",
+              "scope_ja": "DefinitionApplicabilityRead の固定material 1にある条件付き入力について、4 scalar finite caseの原値echoとmirror比較結果（acquisition_state/supports/problems）を記録する。",
               "raw_value_mapping": {"meaning":"fixtureのExactJsonNumber説明はhost-node説明である。textとtokenは同じ文字列で、表記を正規化せずDecimal(token)を直接構築する記法の例として対応する。RawValue wire objectにhost fieldsを保存する意味ではなく、ordinary objectをcastしない。"},
               "source_and_input_ja": "/sources/15/content_bytesは不透明bytesとして一箇所literal置換・UTF8 SHA/lengthのみ照合する。source.ref/qualificationの3 digestを追随し、internal record.source_ref.sha256 nullは保持する。",
               "reference_join_ja": "source/record Refは別材料。identity/revision/scope/ownerは双方供給non-nullかつ型付き同値をRef joinの条件とし、sha256は双方供給non-null時のみ追加比較する。nullはdigest一致の証明にせず、source_locatorは所在。null inner shaへsource content digestを埋めない。",
-              "observation_ja": "今回の有限mirror観測は既存whole-record mirror条件と共通json_equal/N3a数値mappingに接続する技術具体化であり、tokenでなくexact valueとkindを区別する。boolは数値と別kind。source entry/tokenは原値保持する。Occurrence.original_valueとSupport.original_entryはsource entry全体、Problem.original_valueはsupplied presence wrapper付きsource record。source occurrence indexは15、record indexは0。sourceRef joinとwhole-record mirror比較は別条件で、失敗は既存problem 19へ接続する。algorithm[1]がjson_equalを直接callすると主張せず、この比較を実装・実行した証拠とも扱わない。request/input echoは固定copyで保持する。",
+              "mirror_comparison_technical_selection_ja": "今回のL5技術具体化として、applicability whole-record mirrorの全値対応はjson_equalで判定する。数値は既存number_rules/value_equalityのexact valueで比較し、boolは別kindとして扱う。algorithm[1]の実装上の呼出し形は未規定のままである。Ref joinとこのwhole-record比較を分け、原Ref・record・tokenは補完せず保持する。",
+              "observation_ja": "4件の有限fixtureでsource/rootの原値・tokenと既存mirror比較結果を観測する。Occurrence.original_valueとSupport.original_entryはsource entry全体、Problem.original_valueはsupplied presence wrapper付きsource record。source occurrence indexは15、record indexは0。sourceRef joinとwhole-record mirror比較は別条件で、失敗は既存problem 19へ接続する。request/input echoは固定copyで保持する。algorithm[1]の実装上の呼出し形は未規定とし、比較を実装・実行した証拠とは扱わない。",
               "conditional_boundary_ja": "fn0未実行。既存fixtureの前提である、fn0が入力を受理し返却input_issues=[]かつunusable_source_refs=[]の場合に限る条件付き観測で、実資格を証明しない。",
-              "out_of_scope_ja": "3 scalar finite mappingだけを記録する。request absent/supplied-null、reentry absent/null、nested numeric、巨大桁/負指数、other reader/special、一般new_defs、実adapter/qualificationは未観測。未観測をdomain拒否・新cause・gateにせず、既存caseと上位の意味を変更しない。",
+              "out_of_scope_ja": "4 scalar finite mappingだけを記録する。同じkindで値だけ異なる数値はcase4で扱う。reverse向きのsource boolean/root number、true/1、string \"1\"/1、number/null、およびRef比較条件の違いを識別する観測は今回対象外である。request absent/supplied-null、reentry absent/null、nested numeric、巨大桁/負指数、other reader/special、一般new_defs、実adapter/qualificationも未観測。未観測をdomain拒否・新cause・gateにせず、既存caseと上位の意味を変更しない。",
               "legacy_preserve_change_ja": {"retained":"旧JSON authority L4/L5/L6のJSON正本・原source追跡・局所failureを保持し、原NA判断と全recordを現在の固定契約に従って残す。","changed":"旧template選定predicate/JS Number/JSON.stringify/runtimeを移さず、現在のExactJsonNumberとtyped mirrorへの有限mappingとして意味を再導出する。","reason":"原tokenを保持したまま数値値同値とbool別kindを扱い、mirror失敗でも取得済entryを消さないため。auditは記録された失敗の比較材料であり、実測の数値損失や新製品gateの根拠としない。"},
               "legacy_comparison_ja": "legacy_sources 5件は原値保持・局所failure・欠損空集合化/部分failure集約/自己申告完了のfailure contextとの比較資料。旧仕様の直接実装根拠とはしない。"
             },
             "authority_effect": "none",
             "operation_effect": "none",
-            "change_reason_ja": "固定material 1から確認した3件の有限なapplicability mirror観測を記録するため、既存not_established全文を保持して限定metadata bindingを追補する。",
+            "change_reason_ja": "固定material 1から確認した4件の有限なapplicability mirror観測を記録するため、既存not_established全文を保持して限定metadata bindingを追補する。",
             "observation_fields": ["read","reader_input_after","request_after"],
-            "scope_ja": "DefinitionApplicabilityRead の固定material 1にある条件付き入力を、3 scalar finite caseで原値echoと局所出力として記録する。"
+            "scope_ja": "DefinitionApplicabilityRead の固定material 1にある条件付き入力について、4 scalar finite caseの原値echoとmirror比較結果（acquisition_state/supports/problems）を記録する。"
           }
       }
     }
