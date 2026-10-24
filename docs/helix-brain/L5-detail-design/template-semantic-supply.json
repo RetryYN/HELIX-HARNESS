@@ -6237,7 +6237,7 @@
       },
       "consumer_adapter_boundary": {
         "required_mapping": "json_kind/type判定、json_equal/所属の数値等値、原snapshotのcopyは本unionを数値として扱う値保存adapterへ対応する。copyはimmutable nodeを保持するかvalue/token双方を不変条件ごと保ち、dict化/float化しない。",
-        "not_established": "source_return読取器への実adapter接続、numeric canonical-sort用の字句則とsorted_values/unique_sorted/sort_by_jsonの具体writer、未接続new_defsのminimum比較は未閉包。既存local readerのint/float/json.dumpsを正本の数値字句則として採用しない。",
+        "not_established": "source_return読取器への実adapter接続、numeric canonical-sort用の字句則とsorted_values/unique_sorted/sort_by_jsonの具体writer、未接続new_defsのminimum比較は未閉包。既存local readerのint/float/json.dumpsを正本の数値字句則として採用しない。 数値direct values/present numeric keyの有限pure写像はn3sort_numeric_only_detailと対L8で記述するが、helperの一般入力domainを縮めず、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉のまま保持する。",
         "no_new_canonical_scheme": "wireの元token保持をcanonical-sort keyや意味digestへ転用しない。数値同値と原字句の違いを保ち、sortの未決を新規正規化方式で推測補完しない。",
         "wire_schema_scope": "現wire5entryのnumberはRawValue、integerはSupplyAnalysis.side_effect_count。source_return局所new_defsはここへ接続されておらず、source_index/record_indexのminimumを本profileの成立として追加しない。enum/constはTypeCheckerと別経路で、現wireはstring enumのみ。"
       },
@@ -6246,7 +6246,7 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "N2bで固定した3 finite decode入力の全5field/ordinal/presence/raw bytesは期待を導出して固定した（未実行）。重複key/途中UTF-8又は構文失敗、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。N3aの8件有限mapping projectionを追加するが、実行・adapter、数値canonical-sort lawは未成立。"
+        "N2bで固定した3 finite decode入力の全5field/ordinal/presence/raw bytesは期待を導出して固定した（未実行）。重複key/途中UTF-8又は構文失敗、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。N3aの8件有限mapping projectionを追加するが、実行・adapter、数値canonical-sort lawは未成立。 数値direct values/present numeric keyの有限pure写像はn3sort_numeric_only_detailと対L8で記述するが、helperの一般入力domainを縮めず、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉のまま保持する。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -6421,6 +6421,35 @@
         "boundaries_ja": "生成source_index/record_indexはnative intの別経路。raw 1.0/boolのindex代入、負indexの新return、new_defs全codec、実adapter、sort全順序/unique代表token/数値canonical字句は範囲外。既存N1/N2と全上位意味を変更せず、8件から全reader/child完了を生成しない。",
         "authority_effect": "none",
         "operation_effect": "none"
+      },
+      "n3sort_numeric_only_detail": {
+        "scope_ja": "既決L4数値atomと全値代表をL5 pure sortの有限数値写像へ束縛するprivate詳細と対L8観測。このchildの観測範囲を示すもので、既存primitiveのsignature・受入domain・generic consumer契約をnumeric-onlyへ縮めず、実adapter又は製品実行を認定しない。",
+        "observation_domain_ja": "sorted_values/unique_sortedの有限caseは全direct valueが有効ExactJsonNumber又は厳密native int、sort_by_jsonは各原containerで指定key memberがpresentかつその有効数値であるものを選ぶ。boolをnumberへ変換しない。このcase選択外を拒否する新gate・成功fallback・新returnを追加せず、既存の一般契約をそのまま残す。",
+        "numeric_key_binding_ja": "direct value又は指定memberの数値nodeを、L4 /architecture/numeric_sort_writerのdomain・value_form・zero・nonzero則に従うASCII数値atomへ写す。原tokenをkeyへ代用せず、float/context丸め/quantize/normalize/旧json.dumpsを経由しない。数値atomのUnicode文字列を比較し、数学値の大小順へ変更しない。",
+        "sorted_values_projection_ja": "数値keyが異なる有限caseでは、そのkeyのUnicode順に原値全体を置き、全出現と重複を保つ。数値同値でも異なるtoken/carrierの同key間の順序は本childで固定しない。同一表現の値が反復するcaseは個数と全値を観測し、ordinal又はhost identityの安定順を追加しない。",
+        "unique_sorted_projection_ja": "既存json_equalで実引数の同値classを定め、L4 /architecture/numeric_unique_representativeに従って各classで最初の実引数全値を残し、その数値keyのUnicode順に置く。native intとExactJsonNumberの値同値を保ち、原数値token/value/carrierを代表全体として保持する。入力の並べ替えによる原代表の変化を許す既決境界を変えない。",
+        "sort_by_json_projection_ja": "key_memberは既存sort_by_jsonの明示key引数をfixture上で指す説明field。指定された数値memberだけをnumeric keyへ写し、そのkey順へ原container全体を置く。同keyならこの関数自身の実引数順を保つ既存則を使い、global snapshot indexやcontainerの別memberを順位にしない。その他のmemberを型変換・削除・並べ替えない。Absent/null/mixed keyの既存一般契約は上書きしない。",
+        "preservation_ja": "元values arrayと全数値nodeのtoken/value、原containerの全member/presence/key順と入れ子を保持する。返却配列の表示順又はunique代表化だけを観測し、snapshot/occurrence/origin trace/原Refsを削除しない。通常objectのtoken/value等のmember名で数値wrapperへcastせず、host object identity又はaliasを保証する新規則を足さない。",
+        "notation_ja": "既存 /wire_codec_contract/numeric_carrier_profile/n3a_value_mapping_detail のoperand_baseとhost_node_assignmentsを使い、指定済みnull slotだけを同時に説明上置換する。未指定値は原JSON値のまま。operationは既存3helper名、key_memberはsort_by_jsonの既存第二引数の説明であり公開API又はwire fieldではない。数値nodeの期待投影はhost_type/membersの既存説明記法を使う。",
+        "observation_ja": "numeric_keysは各元引数出現のdirect数値又は指定数値memberを順に写した文字列列、result_valuesは当該helperの有限返却全値列、source_values_afterは元引数全値列をこの順で記録する。これらはfixture診断であり公開returnではない。L8既存primitive probeは記法参照だけで期待値の導出sourceにしない。",
+        "legacy_ja": "旧canonical-digest.tsの決定的JSON表示と旧collection-utilsの明示した順序domain・重複処理の目的を保持し、JS Number/JSON.stringifyと文字列domainから現exact数値・原token保持domainへ意味再導出する。旧JSON正本詳細設計の型/trace/pairの目的を照合するが旧schema/整数版/status語彙/runtimeを移植しない。Q8はmicrohelper重複という監査事実だけを引き、新要求又はgateを生成しない。",
+        "local_writer_exclusion_ja": "/conditional_dependency_detail/reason_display_bridgeはConditionalReasonMaterial表示専用でcanonical key/digest転用を除外し、/knowledge_promotion_claim_detail/reason_writer/encodingも当該reason用である。これらのescape/空白/RawValue object順をgeneric sort writerへ転用しない。",
+        "remaining_ja": "汎用canonical JSON serializerの非数値atom/escape/object構築、非数値・mixed・nested sort全域、sorted_valuesの異表現同key順、全consumer、new_defs minimum/全codec/reader、実adapter/runtime/library/全域資源は未閉。この有限8caseからwhole N、pair全域、child全体又は実装Readyを生成しない。実資源上限・閾値・owner採否を作らない。",
+        "source_basis": [
+          {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/functional-requirements.json","file_sha256":"60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507","pointers":["/requirements/0","/requirements/6"]},
+          {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/nfr-grade.json","file_sha256":"3ee2f57fc2fbdb48bd9134e25409645acf3b1658aafbd236b36563d385ac5b38","pointers":["/requirements/2"]},
+          {"key":"L4","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","sha256":"52ec63bace01664a1e047bceaaed402131dc36d3e3e22eb509942e0e0e6360da","bytes":767275,"pointers":["/architecture/numeric_sort_writer","/architecture/numeric_unique_representative"]},
+          {"key":"L5","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","sha256":"357604401ad93419eadc7cb5595d85671ce66de572977e9434e8b429d212ccee","bytes":966488,"pointers":["/source_return_contract/pure_reference_notation/primitive_operators","/wire_codec_contract/numeric_carrier_profile/private_types","/wire_codec_contract/numeric_carrier_profile/number_rules","/wire_codec_contract/numeric_carrier_profile/n3a_value_mapping_detail","/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary","/conditional_dependency_detail/reason_display_bridge/numeric_limit"]},
+          {"key":"L8","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","sha256":"29ae526d8ec7ed90bd04483154e390bbac8227469d21f587ef70105ffcab7ddc","bytes":6948712,"pointers":["/source_return_verification/primitive_probes"]}
+        ],
+        "legacy_sources": [
+          {"asset_id":"LEGACY-ASSET-4A9AB5B2EF182BC30431","revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts","sha256":"c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000","lines":[9,45],"reuse":"semantic_rederivation"},
+          {"asset_id":"LEGACY-ASSET-6B10C0467A1A1918D46E","revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/src/shared/collection-utils.ts","sha256":"9639253d0240104af990b2aaa22b5c18b72893c5540737d39b938589a473e7a1","lines":[1,9],"reuse":"semantic_rederivation"},
+          {"asset_id":"LEGACY-ASSET-809D616D0D7D844F5720","revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/function-spec.md","sha256":"f80b69a4d153d7775ecd789aa9e261c140baf2a443ac53a851de710cfce02b14","lines":[1036,1045],"reuse":"semantic_rederivation"},
+          {"asset_id":"LEGACY-ASSET-CCA6C60FBB1D735EC38E","revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/reference/quality-sweep4-2026-07-12.md","sha256":"364b9d70fa027525bd67f76b2b5256381eb2ef6a14867ead6f88ad267a0791be","lines":[28,28],"reuse":"semantic_rederivation"},
+          {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","lines":[16,108],"reuse":"semantic_rederivation"}
+        ],
+        "legacy_ledger_sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
       }
     }
   },
