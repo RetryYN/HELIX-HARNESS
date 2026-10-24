@@ -1414,7 +1414,7 @@
         "元KnowledgeRecordのstate/provenance/evaluation範囲/限界/反例/独立検証/採否をそれぞれ保持する。007/008/025の既存工程参照を使い、新昇格transitionを実装しない。",
         "AI生成だけ、評価scope無し、独立検証無しでは昇格claimをunknownとし不足工程を返す。限定意味採用を運用accepted/matureへ転換するclaimは責務境界とconflict。",
         "LABO評価/OS受領/候補生成の単独成功を運用stateに代入せず原stateを返す。採択/昇格の実作用を発行しない。",
-        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。本有限枝外は既存規則に従い、その一般writer未閉包を空列で置換しない。"
+        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。本有限枝外は既存規則に従い、その一般writer未閉包を空列で置換しない。 別の非空candidate・claims absent/明示[]枝の全4fieldは/knowledge_promotion_detailへ束縛する。既存knowledge_trace_axesを一回使い、Claim原出現0件による四rule追加行0と原record unknownを区別する。候補empty枝/Claim有り/枝外をこの返却で置換しない。"
       ],
       "failure_rules": [
         "HELIXBRAIN-L5-032-R-generation_as_promotion",
@@ -6525,7 +6525,7 @@
         "definition_entries": [
           "knowledge_trace_axes"
         ],
-        "output_assignment": "knowledge_trace_axes(context.validated)を既存Comparison.axesへ追加する。既存4昇格ruleの所見と相殺しない。 L4 /knowledge_promotion_contractが閉じるcandidate明示空・非promotion有限枝では、既存selected_bindingsとknowledge_trace_axesが空で全4ruleのcondition不成立を個別確認しaxes/findings=[]を返す。その他の既存trace/昇格ruleを空列で置換しない。",
+        "output_assignment": "knowledge_trace_axes(context.validated)を既存Comparison.axesへ追加する。既存4昇格ruleの所見と相殺しない。 L4 /knowledge_promotion_contractが閉じるcandidate明示空・非promotion有限枝では、既存selected_bindingsとknowledge_trace_axesが空で全4ruleのcondition不成立を個別確認しaxes/findings=[]を返す。その他の既存trace/昇格ruleを空列で置換しない。 別の非空candidate・claims absent/明示[]枝の全4fieldは/knowledge_promotion_detailへ束縛する。既存knowledge_trace_axesを一回使い、Claim原出現0件による四rule追加行0と原record unknownを区別する。候補empty枝/Claim有り/枝外をこの返却で置換しない。",
         "preserve": "原operational_stateをAxisResult.stateへ代入しない。採否/評価/登録/独立検証/運用stateを別に辿る。実promotion/実保存は発行しない。"
       },
       {
@@ -13301,5 +13301,34 @@
     "call_binding": {"raw_calls":"PortCalls.claim_intentsのlocator列を原順に同immutable inputへ解決し、当該Claim全値と原locatorを各1回readerへ渡す。空列は0件。","projection_calls":"PortCalls.claim_projectionsを原順に既存L4 read_receipt_claim_originへ渡し、その同call返却全値/source_locatorsを同順に保存する。expected/任意cached値を入力に注入しない。","derived_conditions":["caseにderived_intent_callが明示されている","projection.state=resolved","projection.claim.presence=supplied","projection.claim.valueが既存Claim値を形成する"],"derived_argument":"同call ClaimProjectionRead.claim.value全値。元boolをClaim引数として渡さない。","derived_locator":"元projection callのcarrier_locator + /producer_input/claims/receipt_obligation_completed。元bool所在をtraceとし、rawにない合成Claim locatorを作らない。","suppression":"derived指定なし、unknown/conflict、claim absent/null、又はClaim形成不能では追加intentを作らない。原projection/問題は保存する。","result_order":["raw call列の返却原順","derived指定があるprojection列の適格返却原順"],"scope":"read_receipt_claim_originは既存L4 logical契約への依存で、D32はその実OS供給やD33の全adapterを実現したとはしない。"},
     "existing_site_binding": {"site":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4","replacement":"同siteが既に一度呼ぶintent portのbodyを本readerへ束縛する。target/intentの呼出対象・順序・回数を拡大せず、w.intent_reads→Claim-use constructorの同call再利用を保持する。","consumer":"/source_return_contract/descriptor_target_dataflow/functions/8","limit":"全7kindの読み取り契約を定義しても全rawrunner/F09 wholeの成立へ拡張しない。"},
     "legacy_rederivation": {"source":"L4 /dependency_semantic_ports/legacy_rederivation","read_sources":["LEGACY-ASSET-4F5A1F0739EC1111D91D:18–30","LEGACY-ASSET-98372FEE8A3AC8F9C299:65–76"],"keep":"元source/owner/trace/原値とunknownを保持し、欠落/null/空集合を区別する。","change":"旧schema/型/CLI/runtimeを移植せず、既存L4の7kind技術語彙を詳細readerへ降ろす。","failure":"UTW-014/020/021の欠落空集合化・部分不足不可視・自己申告を避ける。"}
+  },
+  "knowledge_promotion_detail": {
+    "id": "HELIXBRAIN-L5-032-F08-NONEMPTY-NO-CLAIM-DETAIL",
+    "status": "candidate_not_runtime_implemented",
+    "scope_ja": "P3a：既存L4 P1の非空candidateかつclaims absent/明示[]枝だけのfn5全4field。P2a/P2bのClaim witness、candidate-empty枝、全域writerを置換しない。",
+    "source_basis": [{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointers":["/knowledge_promotion_contract/nonempty_candidate_trace","/knowledge_promotion_contract/same_call","/knowledge_promotion_contract/record_and_process_preservation"],"binding_kind":"fixed_historical_source"},{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","sha256":"689f8351d9d18337cadf132295596087992eb84acd100731913153a740fd9ef5","pointers":["/functions/5","/type_contract/types/PromotionContext","/type_contract/types/Comparison","/source_return_contract/pure_reference_notation","/source_return_contract/existing_function_bindings/1","/evaluation_order/3","/source_return_contract/descriptor_target_dataflow/raw_runner/closed_context_constructors/3"],"binding_kind":"fixed_historical_source"}],
+    "entry_ja": "同PromotionContext.validatedのimmutable v。L4 P1 entryの既存typed input、object root Binding、供給nonempty Ref[] candidates、typed又はabsentのdescriptors/knowledge_records、claims absent又は明示[]に限る。presence/全原値はそのまま。fn0資格やsource供給の成立は導かない。枝外は本返却を適用せず元の規則と未閉包を保持し、null/型外/未形成を空集合に補わない。",
+    "algorithm_ja": ["既存order3 constructorのPromotionContext(validated:v)をそのまま一回の公開fn5呼出しへ渡す。前段Comparison/private frame/target又はintent再呼出しを追加しない。","同vへ既存knowledge_trace_axesを一回適用する。内部selected_bindings/ref_same/unique_sorted/record_original_refs/sorted_valuesの本文とprimitiveを変更せず、P1の母集合・一意性・state/reason/原Refs/ownerへ束縛する。trace unknownを別record成功で相殺せず、原operational_stateをAxis.stateへ代入しない。","claims absentと明示[]はsnapshot内で区別して保持する。どちらも本枝にClaim原出現が0件なのでrule80/81/82/83のwitness追加数は各0。これはpredicate falseや工程充足の判定ではなく、評価対象Claimが無いことによる行数0である。","下記return_field_orderの全4fieldを同call原値から一度ずつ構成する。返却用deep copyは許すが元vの全member/presence/順/同値反復を変更しない。他producer/cached結果/L9期待を入力へ使わない。"],
+    "return_field_order": ["axes","findings","producer_symbol","input_binding"],
+    "return_field_sources": {
+      "axes": "同vの既存knowledge_trace_axes(v)全7member各行・既定順。返却配列を再sort/dedupしない。",
+      "findings": [],
+      "producer_symbol": "compare_knowledge_promotion",
+      "input_binding": "同v.input.bindingの原object全値。slot Bindingやrecord Refで置換しない。"
+    },
+    "preservation_ja": "元KnowledgeRecord全11memberとabsent/null/false/0/空値、原provenance/工程Refs/limits/counterexamples及び全source/Claim/dependencies、input_issues/unusable_source_refsを同vに保持する。Comparisonは局所投影で、全記録本文を新fieldへ複写しない。007/008/025の参照と元工程責務を保持し、実保存/登録/評価/採否/運用遷移を発行しない。",
+    "paired_verification": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/knowledge_promotion_nonempty_verification",
+      "binding_kind": "path_only_no_content_hash"
+    },
+    "legacy_rederivation": {
+      "reuse_class": "semantic_rederivation",
+      "source_refs": ["LEGACY-ASSET-4F5A1F0739EC1111D91D:16–44,61–92","LEGACY-ASSET-98372FEE8A3AC8F9C299:65–108","LEGACY-ASSET-A127DEC3EEE6ED63CF17:80–87"],
+      "keep_ja": "JSONの原source/対/consumer traceとunknown、欠落・部分不足の保持。親L4 knowledge_promotion_contract/legacy_rederivationの007/008/025工程分離を継承する。",
+      "change_ja": "既存P1 traceを公開fn5の4fieldへ接続する。旧schema/registry/runtime/承認手続きは移さず、新helper/入力型/昇格stateを作らない。",
+      "reason_ja": "UTW-014の未供給→空、UTW-020の部分不足隠蔽、UTW-021の自己申告完了を防ぐため、claims不在の行数0と原record unknown/全原値保持を区別する。"
+    },
+    "limits_ja": ["11合成入力は本有限枝の期待だけ。実関数/helper/資格/実source/工程/runtime/CIを実行した証拠ではない。","Claim有り80–83と81scope true/非0数値の有限対照は後続P3へ残す。83のknowledge_promoted unknownをfalse/trueへ変えず、accepted/matureの語彙差を解決済みとしない。","D27 candidate-emptyの期待、原L9 POS/4NEG、既存builder/composition/InputIssue、他fnと各owner責務を保持する。全fn5/凍結/実採択/Issue完了を主張しない。"]
   }
 }
