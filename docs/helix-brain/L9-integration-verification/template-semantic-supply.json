@@ -308,7 +308,193 @@
           "execution_state": "not_executed"
         }
       ],
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "numeric_sort_writer_verification": {
+        "source_basis": [
+          {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/functional-requirements.json","file_sha256":"60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507","pointers":["/requirements/0","/requirements/6"]},
+          {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/nfr-grade.json","file_sha256":"3ee2f57fc2fbdb48bd9134e25409645acf3b1658aafbd236b36563d385ac5b38","pointers":["/requirements/2"]},
+          {"revision":"b7e016a77748dc74f3e03cf559b8db21fd6e653f","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointers":["/architecture/determinism","/contracts/2","/contracts/8","/contracts/13","/field_value_applicability_contract/closed_types/F03BRawValue"]},
+          {"revision":"b7e016a77748dc74f3e03cf559b8db21fd6e653f","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"12651eb6a198c71a03cdca2f1d37de3f458ef78171c1ba8df8bae8a083ef14b6","pointers":["/source_return_contract/pure_reference_notation/primitive_operators","/wire_codec_contract/numeric_carrier_profile/private_types/ExactJsonNumber","/wire_codec_contract/numeric_carrier_profile/number_rules","/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary"]},
+          {"revision":"b7e016a77748dc74f3e03cf559b8db21fd6e653f","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"bbd44c2096fbf5f43cf2b0a515cd2b6ad02ff49539aa9f80a773b19591801c73","pointers":["/cases/2","/cases/8","/cases/13"]}
+        ],
+        "design_pointer": "/architecture/numeric_sort_writer",
+        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800","pointer":"/architecture/numeric_sort_writer","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"b7e016a77748dc74f3e03cf559b8db21fd6e653f","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9"}},
+        "observation_ja": "各input一件について数値domain判定を観測し、数値ならcanonical_numeric_text一fieldの文字列を追加する。観測recordのfield順はnumeric_domain→canonical_numeric_text（非数値controlはnumeric_domainだけ）。これはfixture記録であり実装return/APIではない。bool controlでは数値writerを呼ばない。全input/全観測recordにensure_ascii=false/compact UTF8末尾LF無しのcanonical(sort_keys=true)とordered(false)のSHAを別に置き、製品canonical digestへ転用しない。",
+        "observation_fields": {"numeric":["numeric_domain","canonical_numeric_text"],"non_numeric":["numeric_domain"]},
+        "cases": [
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1.00"},"token":"1.00"}},
+            "input_canonical_sha256": "186426f05da21b156b1e52ba519489f9310fc06bc81ed01125ff0f2889800b65",
+            "input_ordered_sha256": "2b731ac99676a117000c7016e743a4af07e84fc7b965af0bb2c2780c33dd5683",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e0"},
+            "expected_result_canonical_sha256": "b668314b0a2af4859850ca21f98a6745607da0a08f40fd140bdae131b854c9fc",
+            "expected_result_ordered_sha256": "2534ddc61d31016554786c52d4899c66d0075e1427c725695a2f0e0f979d006d",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 1.00 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数100・指数-2から2個の末尾zeroを係数から除き、係数1・指数0を得る。 atom=1e0。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1e0"},"token":"1e0"}},
+            "input_canonical_sha256": "4ee06ab1a84e8a50932008a8c8f650fb24870f9baacec68b3095dcf94cde423b",
+            "input_ordered_sha256": "2831eaf67c820c895a799967e0b94305d9ca5d6f5176cc387099f85973ce2da7",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e0"},
+            "expected_result_canonical_sha256": "b668314b0a2af4859850ca21f98a6745607da0a08f40fd140bdae131b854c9fc",
+            "expected_result_ordered_sha256": "2534ddc61d31016554786c52d4899c66d0075e1427c725695a2f0e0f979d006d",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 1e0 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数1・指数0で末尾zero除去なし。 atom=1e0。"
+          },
+          {
+            "input": 1,
+            "input_canonical_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+            "input_ordered_sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e0"},
+            "expected_result_canonical_sha256": "b668314b0a2af4859850ca21f98a6745607da0a08f40fd140bdae131b854c9fc",
+            "expected_result_ordered_sha256": "2534ddc61d31016554786c52d4899c66d0075e1427c725695a2f0e0f979d006d",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "厳密native int 1 はE0=0の整数桁列として数値domainへ入る。非zero係数は1、指数は0なので契約表記は 1e0。元のnative intは変更しない。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"-0.00e+9"},"token":"-0.00e+9"}},
+            "input_canonical_sha256": "c78e200e2e3722f21a8f6b58cfeecc2b257495cf1fc09b7bfe73a4acf3447309",
+            "input_ordered_sha256": "251d9b5082b3ff6e128d66d83c087acd0cd9ab6cf8f09249d72bd057450cfe6d",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"0"},
+            "expected_result_canonical_sha256": "e142102f1df9a1e534fae89284ce1c5ff41fc79ef891848be06fa92f19a94049",
+            "expected_result_ordered_sha256": "52d26647f0096af11811dd7d947f1aa06d53b0cdf41c78514654b03e9df216ea",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token -0.00e+9 の有限Decimal係数桁は全てzeroなので、zero規則でcanonical atomは0。token/valueは入力のまま保持する。"
+          },
+          {
+            "input": 0,
+            "input_canonical_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+            "input_ordered_sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"0"},
+            "expected_result_canonical_sha256": "e142102f1df9a1e534fae89284ce1c5ff41fc79ef891848be06fa92f19a94049",
+            "expected_result_ordered_sha256": "52d26647f0096af11811dd7d947f1aa06d53b0cdf41c78514654b03e9df216ea",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "nativezeroは単独0。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"0.10"},"token":"0.10"}},
+            "input_canonical_sha256": "7d3f50a78bcf38ef5cbec5e76b07a224592e62a8997e74ae865bf4359932c6c7",
+            "input_ordered_sha256": "46650a1deac5482f810564a1740c7748873f989fed141badc286de110cf75978",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e-1"},
+            "expected_result_canonical_sha256": "a964e724d451605bd0b33114d85eeeb04bc4315e0d080da660ef8d8ff521397b",
+            "expected_result_ordered_sha256": "61e4c23bb83856124212809130685013f9ba0ddf1b16ab2a3749a772e493af18",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 0.10 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。先頭zeroを除き、係数10・指数-2から末尾zeroを除いて係数1・指数-1を得る。 atom=1e-1。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"0.10000000000000001"},"token":"0.10000000000000001"}},
+            "input_canonical_sha256": "814c93e4e0cb0d9de701d08ae8e1cfb3ad7ddefb6d280c4f20712799edc87f78",
+            "input_ordered_sha256": "d0fd7634934ebf141a125b5b7fd5fa0bb890c842cad26f9bd529592497deb885",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"10000000000000001e-17"},
+            "expected_result_canonical_sha256": "779a5510804a74ef521f8304baae395b7b47539fdde304e6c9772f70716da6c0",
+            "expected_result_ordered_sha256": "496e3a62edad8437046bffb7bb89f066fee4dbe64f84f353966dc1d2a2eb88c9",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 0.10000000000000001 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。先頭zeroを除いた係数10000000000000001・指数-17には末尾zeroがなく、そのままexact係数・指数を使う。 atom=10000000000000001e-17。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"-12.300"},"token":"-12.300"}},
+            "input_canonical_sha256": "4e0e02d5c4addb529adcb1de07a4c47992b7cc3e20fce5c523bbf2159512af78",
+            "input_ordered_sha256": "2271a0849537c98908669e2cc1c036f98a0f927f778449a235a184cd36e88c9e",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"-123e-1"},
+            "expected_result_canonical_sha256": "0a0a026321cc24c4f8177fcc19610139b6aeb56a6c6046656bc956f8bda36eb1",
+            "expected_result_ordered_sha256": "95ab1ef7a3942668b4b189444c495a928690862f7e48c292ea6613fb09b6ca1f",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token -12.300 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数12300・指数-3から2個の末尾zeroを除き、係数123・指数-1を得て負符号を保持する。 atom=-123e-1。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1000.00"},"token":"1000.00"}},
+            "input_canonical_sha256": "0e3ba70782c96ade9dd96ac4188bbad8cfec15d76fa4f9f96c7f67ed4559cd55",
+            "input_ordered_sha256": "032a3e63cb149d757e0696cfc36034b1401429a178b7a91cae9d25c93d25c37d",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e3"},
+            "expected_result_canonical_sha256": "084e723fd9d152c1e4cb6d160414f2541d4b764b5528d539b820d37d89bd498d",
+            "expected_result_ordered_sha256": "2925334c5b982272c572e75e882400d488233b017beffcd815d9ed054a2bef6d",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 1000.00 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数100000・指数-2から5個の末尾zeroを除き、係数1・指数3を得る。 atom=1e3。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1e400"},"token":"1e400"}},
+            "input_canonical_sha256": "60b13d571c2feed4902cb6c156195ec76c358fe322ebb2bcf6066fbfbe4e9273",
+            "input_ordered_sha256": "48f0d9448557a7beb25bccb1b4d84211f676c71161227ada5bb2364571809a6b",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e400"},
+            "expected_result_canonical_sha256": "84d58d7605d4d75d7dc7e684890b83bc2f2235762554d72c07e328dcc97a33ab",
+            "expected_result_ordered_sha256": "6b0b46fda2b6ead49f2f67423903619a35193d0d00e7d4842b0a8656dcd630f9",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 1e400 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数1と元の指数e400を保ち、指数分のzeroを展開しない。 atom=1e400。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"1e-400"},"token":"1e-400"}},
+            "input_canonical_sha256": "a61a7d5ab44eff661015a7b4428c1c0da0b3342557437326df7e0bc4b6c5e442",
+            "input_ordered_sha256": "1514519922211e78c73e9649ec49c8e01ec335a80e15d82dad48221a6a577f1e",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"1e-400"},
+            "expected_result_canonical_sha256": "449fc419fd08404ddc87bf3ceca52d87cf6b616ccb00f6cfbd53be72c4a9fa5e",
+            "expected_result_ordered_sha256": "ac36083b11a1c5dfd569f2d776c38f4fa4118dcf1e947553d6d56c4609151862",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 1e-400 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数1と元の指数e-400を保ち、指数分のzeroを展開しない。 atom=1e-400。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"9007199254740993"},"token":"9007199254740993"}},
+            "input_canonical_sha256": "c3fb77747e08dec37bd149835c7f1b728b655a4506b2422e8e8c93c2d38af681",
+            "input_ordered_sha256": "142076377d38cd977481bf8c19132723f2344a05cbc4de97314a99c280eb210c",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"9007199254740993e0"},
+            "expected_result_canonical_sha256": "3dd881a4cf785116913eeded51e0a01182f5327a0d0b48fd2663969e0362a710",
+            "expected_result_ordered_sha256": "680dbb91d171da36597635f251f4a0260e6fdf96028d2ff19b2fbd5b3b114f34",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 9007199254740993 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数桁列9007199254740993・指数0をそのまま用い、binary floatへ変換しない。 atom=9007199254740993e0。"
+          },
+          {
+            "input": 9007199254740993,
+            "input_canonical_sha256": "a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d",
+            "input_ordered_sha256": "a1c367c29158357e62a3ff5d3e800fb7698a22396439dbc0a9d4929322afd35d",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"9007199254740993e0"},
+            "expected_result_canonical_sha256": "3dd881a4cf785116913eeded51e0a01182f5327a0d0b48fd2663969e0362a710",
+            "expected_result_ordered_sha256": "680dbb91d171da36597635f251f4a0260e6fdf96028d2ff19b2fbd5b3b114f34",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "厳密native int 9007199254740993 はE0=0の整数桁列として数値domainへ入る。非zero係数は9007199254740993、指数は0なので契約表記は 9007199254740993e0。元のnative intは変更しない。"
+          },
+          {
+            "input": {"host_type":"ExactJsonNumber","members":{"value":{"notation":"finite_Decimal_constructor_text","text":"11"},"token":"11"}},
+            "input_canonical_sha256": "dd5812e48c7af1f8ae55c0134fc83b1716b49997b68d21b9582648eebb5483ee",
+            "input_ordered_sha256": "14c5ca16712282c65a73ad1ceea37804220406236a7fad1195409118c6d3743c",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"11e0"},
+            "expected_result_canonical_sha256": "1314f6e4ef1c2c081b09a8f592990c6f7e0b346b0c8f83874db95d9c73e6b185",
+            "expected_result_ordered_sha256": "23142bc832125c6ed815ee4362f9ee6509f3429b3a566dee46fdebd114440520",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "元token 11 から入力済みfinite Decimal tupleの係数・指数を文字列算術で追跡する。係数11・指数0をそのまま用いる。 atom=11e0。"
+          },
+          {
+            "input": 11,
+            "input_canonical_sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8",
+            "input_ordered_sha256": "4fc82b26aecb47d2868c4efbe3581732a3e7cbcc6c2efb32062c08170a05eeb8",
+            "expected_result": {"numeric_domain":true,"canonical_numeric_text":"11e0"},
+            "expected_result_canonical_sha256": "1314f6e4ef1c2c081b09a8f592990c6f7e0b346b0c8f83874db95d9c73e6b185",
+            "expected_result_ordered_sha256": "23142bc832125c6ed815ee4362f9ee6509f3429b3a566dee46fdebd114440520",
+            "expected_member_order": ["numeric_domain","canonical_numeric_text"],
+            "derivation_ja": "厳密native int 11 はE0=0の整数桁列として数値domainへ入る。非zero係数は11、指数は0なので契約表記は 11e0。元のnative intは変更しない。"
+          },
+          {
+            "input": true,
+            "input_canonical_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+            "input_ordered_sha256": "b5bea41b6c623f7c09f1bf24dcae58ebab3c0cdd90ad966bc43a45b44867e12b",
+            "expected_result": {"numeric_domain":false},
+            "expected_result_canonical_sha256": "3b19886e108e82e0b86ff8f0718e94e618936c2d7bfbcea144144535d5cbc291",
+            "expected_result_ordered_sha256": "3b19886e108e82e0b86ff8f0718e94e618936c2d7bfbcea144144535d5cbc291",
+            "expected_member_order": ["numeric_domain"],
+            "derivation_ja": "入力はboolであり、既存L5の厳密型区別によりnumeric domain外。数値atom writerには渡さず、観測はnumeric_domain=falseのみ。"
+          },
+          {
+            "input": false,
+            "input_canonical_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+            "input_ordered_sha256": "fcbcf165908dd18a9e49f7ff27810176db8e9f63b4352213741664245224f8aa",
+            "expected_result": {"numeric_domain":false},
+            "expected_result_canonical_sha256": "3b19886e108e82e0b86ff8f0718e94e618936c2d7bfbcea144144535d5cbc291",
+            "expected_result_ordered_sha256": "3b19886e108e82e0b86ff8f0718e94e618936c2d7bfbcea144144535d5cbc291",
+            "expected_member_order": ["numeric_domain"],
+            "derivation_ja": "入力はboolであり、既存L5の厳密型区別によりnumeric domain外。数値atom writerには渡さず、観測はnumeric_domain=falseのみ。"
+          }
+        ],
+        "remaining_ja": "unique_sortedの原token代表と同keytie選択(b)、実adapter/ライブラリ/runtime、L5/L8具体writer、new_defs全codec/reader、全域資源の成立はこの(a)で閉じない。既存oraclesの無条件な互換順も主張しない。"
+      }
     },
     {
       "id": "HELIXBRAIN-L9-032-F02",
@@ -1333,13 +1519,13 @@
         ],
         "not_closed": "P2四ruleのAxis/Finding witness・合流順とComparison全体。元F08 positive/4NEG/007/008/025・原InputIssueを保持し、本期待のtraceだけからfindings=[]へ補完しない。 P2aの明示有限80–82投影scopeを除く。83はP2bで導出し全fn5の期待ではない。",
         "execution_state": "not_executed",
-        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointer":"/knowledge_promotion_contract/nonempty_candidate_trace","binding_kind":"current_working_whole_file_utf8_bytes","historical_basis":"basis.revisionとbasis.L4は元導出の履歴。新ノードの現在参照は本binding。"},
+        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800","pointer":"/knowledge_promotion_contract/nonempty_candidate_trace","binding_kind":"current_working_whole_file_utf8_bytes","historical_basis":"basis.revisionとbasis.L4は元導出の履歴。新ノードの現在参照は本binding。"},
         "unexercised_trace_branches": ["scope又はownerのみのRef不一致、sha256片側のみ供給、candidate側template_refのsha差。追加bのsha/revision対照はKnowledgeRecord joinに限定。","candidateの同値反復、candidate自体が未選択、ref_sameが等しくwhole Bindingが異なる選択。追加aは未選択Bindingと完全同値Bindingの重複除去を行使。","descriptors又はknowledge_records member absent、claims absent（全caseはclaims=[]）、knowledge_ref absent/非object、owner absentからnullへのbackflow。一般typed入力の許容範囲内に限る。","provenance/工程Refのあるoperational_state absent、各Ref memberのabsent/null/空の組合せ全域。追加cはstate null＋全工程Ref、false/0/空文字/[]を行使。","source資格/InputIssueの変動と他typed collection/dependenciesの意味。候補empty枝、Claim有りP2、実source資格/実工程採否と全Comparisonは本trace有限例の外。"]
       },
       "promotion_claim_witness_verification": {
         "scope": "P2aの明示有限Claim/原資料関連、80–82の真偽/未確定witnessとP1trace併存/順。原state/工程/007008025保持。83はP2b導出で対象外未閉。実資格・運用accepted/matureを成立させない。",
         "basis": {"source_revision":"47e3c649071d4df941c021df32ab3b000f463f05","L3":"docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/7","L10":"docs/helix-brain/L10-verification/functional-verification.json#/cases/7","historical_L4_file_sha256":"7a4a07e76aa8d68def896a61de1ffa84b307ac7a91dfa61df22c71cae956c665","source_boundary":"原role・missing field・原Ref関連を合成入力上で照合。既存L8/L9 goldや製品関数から期待を生成しない。"},
-        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointer":"/knowledge_promotion_contract/p2_claim_witness_projection","binding_kind":"current_working_whole_file_utf8_bytes"},
+        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800","pointer":"/knowledge_promotion_contract/p2_claim_witness_projection","binding_kind":"current_working_whole_file_utf8_bytes"},
         "material": "同Vのinput_issues/unusable_source_refsは合成snapshotのstipulated材料。実fn0/資格/本人性/実工程成立でない。promotion_evidenceは032P2新局所carrier、role語彙は025L4の原技術定数。原Claim/basis/source/recordの全値/presence/順/反復を保ち、opaque keywordからpromotionを作らない。",
         "expectation_scope": "Comparison形のP1 knowledge_trace_axes prefixとrule80–82投影だけの全field/個数/順。83を含むfn5全体の期待でなく、83のpredicate/publicrowはP2bで導出する。未記載を83false/空返却と解釈しない。",
         "case_id_note": "06/07/10は本有限case集合で使用しないID。既存case IDの安定のため欠番を保持し、未使用IDに検証済みを補わない。",
@@ -1470,7 +1656,7 @@
       },
       "promotion_rule83_verification": {
         "scope": "P2b明示有限rule83、M3 complete/partial/dual Ref境界とP1prefix・Claim×80–83全4field順だけ。P2a nodeの80–82契約/入力/期待を変更しない。",
-        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointer":"/knowledge_promotion_contract/p2b_rule83_extension","binding_kind":"current_working_whole_file_utf8_bytes"},
+        "current_L4_binding": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800","pointer":"/knowledge_promotion_contract/p2b_rule83_extension","binding_kind":"current_working_whole_file_utf8_bytes"},
         "input_custody": {"revision":"2f356a97279d72732f044cbbd11bdbbfc53662ad","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"8f125f2d54acb8828491490b3ba2df139055a0365cfa57813ba7065fe24f00af","pointer":"/cases/9/promotion_claim_witness_verification/cases","scope":"既存17件のcase entry source custodyはhistorical固定。各input_ref.pointerのcase entry内synthetic_input wrapper全体を用い、input_issues/unusable_source_refsも保持する。runtime resolverを定義しない。新5件はwhole wrapper inline。"},
         "material": "同Vのstipulated合成材料。actual資格/本人性/実工程ではない。全原値/presence/順/反復を保持。既存L9 goldや製品関数を導出sourceにせず、L4固定basisと参照仕様から独立導出して既存80–82の不変性を照合。",
         "expectation_scope": "全22有限入力にaxes/findings/producer_symbol/input_bindingを全値で配置。P1trace prefixの後Claim原順×80–83。fn5一般全返却ではなく各entryの明示有限投影。",
@@ -9090,7 +9276,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9",
+      "sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800",
       "meaning": "このL9と同候補のL4全UTF-8 bytesへのbinding。base source_pinsは原sourceの履歴根拠であり、このbindingを代替しない。commit revisionや上流承認をここから生成しない。"
     }
   },
@@ -23262,7 +23448,7 @@
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9"
+      "sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800"
     }
   },
   "descriptor_target_port_verification": {
@@ -23271,7 +23457,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "observed_source_revision": "29cf866a4bce07f261067b4e2696fb3a24ea0e34",
-      "sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9",
+      "sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800",
       "binding_kind": "このscaffold候補L4 whole本文bytesへのbinding。前提source revision/正式採用とは区別。"
     },
     "scope": "9素材の同call原input/Claim引数/全私的target port返却。旧10port/10conditionalの期待scopeを変更しない。",
@@ -124318,7 +124504,7 @@
     },
     "l4_candidate_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "file_sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9",
+      "file_sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800",
       "pointer": "/field_value_applicability_contract",
       "role": "現在の基本設計全bytesへの明示binding。固定履歴pinとは別。"
     },
@@ -184601,7 +184787,7 @@
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "binding_scope": "same_candidate_file_bytes",
-      "sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9",
+      "sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800",
       "current_vs_fixed": "当該提案L4全bytesへのbinding。fixed fixture gitseed及び歴史inventory/source pinを更新しない。"
     },
     "schema_resource_id": "urn:helix-brain:l4:032:identity-trace-logical",
@@ -197415,7 +197601,7 @@
     ],
     "candidate_L4_binding": {
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-      "sha256": "ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9",
+      "sha256": "a7e05d9a14a5d594118ec4d530676a9fe6fdb4bb502c0684cdd5ceb357571800",
       "binding_scope": "same_candidate_file_bytes",
       "pointer": "/dependency_semantic_ports/public_projection/axis_reason_writer",
       "canonical_sha256": "b416283c87b17eaa7f058170376f01644900335a9f2f6709409e2c6ee34613b2"
