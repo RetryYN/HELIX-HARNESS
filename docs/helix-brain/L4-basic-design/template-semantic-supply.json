@@ -297,17 +297,17 @@
     "numeric_sort_writer": {
       "scope_ja": "既存determinism/F01の限定的技術具体化として、有限exact十進JSON numberのsort用数値atom文字列だけを定める。公開関数/型/schema/wire記法を新設せず、L5/L8の実writer接続はこのpairで行わない。",
       "domain_ja": "有効ExactJsonNumber又は厳密native intが数値domain。booleanは先に別JSON kindとして識別し数値writerへ渡さない。普通objectを数値nodeへcastしない。host_type/membersとfinite_Decimal_constructor_textは既存私有fixture説明記法でありwireタグではない。",
-      "value_form_ja": "有限十進値を符号s、非負の有限十進桁列D、整数指数E0によりs*integer(D)*10^E0と読む。Decimalのfinite tupleをそのまま用い、native intは符号と絶対値の厳密十進桁列、E0=0として同じ規則へ写す。float/context丸め/quantize/算術normalizeを経由しない。",
+      "value_form_ja": "有限十進値を符号因子s（非負なら+1、負なら-1）、非負の有限十進桁列D、整数指数E0によりs*integer(D)*10^E0と読む。Decimalのfinite tupleの符号からsを定め、桁列と指数をそのまま用いる。native intは符号と絶対値の厳密十進桁列、E0=0として同じ規則へ写す。float/context丸め/quantize/算術normalizeを経由しない。",
       "zero_ja": "Dが全zeroなら符号・scale・指数を問わず文字列0。原token/valueをzeroに書き換えるのではない。",
       "nonzero_ja": "非zeroではDの先頭zeroを除き、末尾zero k個を除いた整数係数digits Cと指数E=E0+kを用いる。Cの先頭と末尾は非zero。負値だけminusを付け、C、小文字e、Eの正規整数表記を連結する。Eはzeroなら0、それ以外は負の時だけminus、先頭zero無しの十進絶対値。plus/空白/小数点/大文字Eは書かず、指数zeroでもe0を省略しない。",
-      "equality_ja": "非zeroの係数Cを10で割れない整数とするので同じexact数値は同じ(C,E)へ、同じ(C,E)は同じ数値へ対応する。zeroも単独0へ対応する。strict native intとExactJsonNumberの同値は同じatom字句になる。",
-      "ordering_ja": "得たASCII数値字句を既存canonical JSONの数値atomに使い、そのJSON Unicode文字列順を維持する。数学値の大小順や旧native intのplain表記順と一致するとは主張しない。非数値atomとobject/arrayの既存canonical構造を変える節ではない。",
+      "equality_ja": "非zeroの係数Cを10で割れない正の整数とするので、同じexact数値は同じ(符号,C,E)へ、同じ(符号,C,E)は同じ数値へ対応する。正負は先頭minusの有無で区別する。zeroは単独0へ対応する。strict native intとExactJsonNumberの同値は同じatom字句になる。",
+      "ordering_ja": "得たASCII数値字句を既存canonical JSONの数値atomに使い、そのJSON Unicode文字列順を維持する。数学値の大小順や旧native intのplain表記順と一致するとは主張しない。非数値atomとobject/arrayの既存canonical構造を変える節ではない。 例：旧plain字句のUnicode順では「200」<「21」だが、本writerの字句は「21e0」<「2e2」となる。",
       "preservation_ja": "writerは別の文字列を構成するだけで原token/value/snapshot/presence/原Refsを書き換えない。wire再出力又はsemantic digestの新schemeへ一般化しない。",
       "resource_ja": "指数の絶対値個数のzero列を展開せず係数桁列と指数表記を用いる。係数長/指数長の実資源失敗や全domain実装成功、性能値は未検証で、閾値・fallback成功値・新状態/returnを作らない。型外/非有限/不変条件不成立を成功keyへ通さず、実接続時の失敗処理は既存owner境界で具体化する。",
-      "decision_ja": "既存sourceの唯一の解とはせず、統制6381727175の範囲でrootが行うL4技術選択。plain全展開は指数に応じるzero展開、scientificは小数点分割/指数の桁数調整、engineeringは3の倍数規則が加わる。係数+指数は既存finite tupleの桁と指数を末尾zero分だけ補正し、追加の表示閾値を要しないため選ぶ。",
+      "decision_ja": "既存sourceの唯一の解とはせず、統制PR3671 comment6381727175の範囲でrootが行うL4技術選択。plain全展開は指数に応じるzero展開、scientificは小数点分割/指数の桁数調整、engineeringは3の倍数規則が加わる。係数+指数は既存finite tupleの桁と指数を末尾zero分だけ補正し、追加の表示閾値を要しないため選ぶ。",
       "legacy_ja": "旧canonical-digest.tsの決定的JSON表現という目的、旧L4/L5/L6のJSON正本/型/出典/未知保持を残し、JS Number/JSON.stringifyからexact Decimal+token domainへ意味再導出する。旧schema/runtime/unsafe integer境界は移植しない。UTW014/020/021から新gateや方式を作らない。",
       "external_ja": "RFC8785のIEEE754double/ECMAScript数値emissionとUTF16propertysortは比較資料に限る。数値の文字列型coerce、準拠宣言、数値algorithmの流用をしない。",
-      "remaining_ja": "unique_sortedの原token代表と同keytie選択(b)、実adapter/ライブラリ/runtime、L5/L8具体writer、new_defs全codec/reader、全域資源の成立はこの(a)で閉じない。既存oraclesの無条件な互換順も主張しない。",
+      "remaining_ja": "unique_sortedの原token代表と同keytie選択(b)、実adapter/ライブラリ/runtime、L5/L8具体writer、new_defs全codec/reader、全域資源の成立はこの(a)で閉じない。既存oraclesの無条件な互換順も主張しない。 L5/L8の数値字句則が未閉という記述は本規則へ接続する前のもので、後続のpairで更新する。",
       "source_basis": [
         {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/functional-requirements.json","file_sha256":"60c3b75be3b240112bf5e0dc616c2d8566b419122f32bb16a00df347f1012507","pointers":["/requirements/0","/requirements/6"]},
         {"revision":"47354be8c1ef225dd7eacffe390d268c0dfee784","path":"docs/helix-brain/L3-requirements/nfr-grade.json","file_sha256":"3ee2f57fc2fbdb48bd9134e25409645acf3b1658aafbd236b36563d385ac5b38","pointers":["/requirements/2"]},
@@ -316,7 +316,7 @@
         {"revision":"b7e016a77748dc74f3e03cf559b8db21fd6e653f","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"bbd44c2096fbf5f43cf2b0a515cd2b6ad02ff49539aa9f80a773b19591801c73","pointers":["/cases/2","/cases/8","/cases/13"]}
       ],
       "source_provenance_ja": "適用根拠はbasisに固定したL3 approved revision 47354 snapshotsおよびbase b7e016のL4/L5/L9 current snapshots。L3二文書はその各revision/file SHA/pointerに固定し、全sourceをBASEへ同一化しない。",
-      "comparison_ja": {"legacy_asset_ids":["LEGACY-ASSET-4F5A1F0739EC1111D91D","LEGACY-ASSET-98372FEE8A3AC8F9C299","LEGACY-ASSET-EF18357A994D043719D5"],"legacy_digest":{"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts","file_sha256":"c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000","lines":[9,45]},"external_reference":{"url":"https://www.rfc-editor.org/rfc/rfc8785.html","sections":["3.1","3.2.2.3","3.2.3"],"use":"comparison_only_not_algorithm_source"},"comparison_boundary":"旧目的との比較およびRFC8785参照は比較のみ。アルゴリズムの流用・準拠宣言ではない。"}
+      "comparison_ja": {"legacy_asset_ids":["LEGACY-ASSET-4F5A1F0739EC1111D91D","LEGACY-ASSET-98372FEE8A3AC8F9C299","LEGACY-ASSET-EF18357A994D043719D5","LEGACY-ASSET-4A9AB5B2EF182BC30431"],"legacy_digest":{"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/src/shared/canonical-digest.ts","file_sha256":"c8f4c6eff75cf5bde2bd467ac647c1953168cbaa5ac5b913e8298fdaddd17000","lines":[9,45]},"external_reference":{"url":"https://www.rfc-editor.org/rfc/rfc8785.html","sections":["3.1","3.2.2.3","3.2.3"],"use":"comparison_only_not_algorithm_source"},"comparison_boundary":"旧目的との比較およびRFC8785参照は比較のみ。アルゴリズムの流用・準拠宣言ではない。"}
     }
   },
   "adopted_knowledge_inputs": [
