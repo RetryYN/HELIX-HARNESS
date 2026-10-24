@@ -12732,7 +12732,7 @@
     "paired_verification_refs": [
       "HELIXBRAIN-L9-032-F08"
     ],
-    "status": "candidate明示空・descriptor専用提案の有限writer技術選択。D27 A/B形の通常Comparisonを閉じ、fn5全域・非空candidate・発火witnessは閉じない。",
+    "status": "candidate-empty既存有限writerとP1非空candidate選択/原record traceの技術具体化。P2発火witness・P3全返却・fn5全域は未閉。",
     "authority": "既存F08と007/008/025の意味、既存candidate selector/trace writerを維持する。原記録保持と局所返却を区別して公開4fieldを具体化するAI技術選択。要求・承認・stage gateは追加しない。",
     "basis": [
       {
@@ -12944,7 +12944,7 @@
       }
     ],
     "unclosed_projection_boundaries": {
-      "selected_candidate": "既存選択trace規則は保持するが、非空candidate時の全normal/promotion行と複合witnessの順序は本topicで閉じない。",
+      "selected_candidate": "P1 nonempty_candidate_traceの明示scopeで選択と原record所在の7fieldを束縛する。Claim有り/枝外・全normal/promotion行と複合witness順序は未閉。既存selector/traceを変更又は再未定義にしない。",
       "firing_rules": "四ruleの発火又はcondition/predicate未確定時のsubject/binding/source_refs/reason/owner全割当・Axis/Finding順は未閉包。既存negative ruleを削除又は空列へ置換しない。",
       "shape": "他Claim kind、供給されたrecord他9member、role/key/型外、他集合非空、partial/invalid input又はbinding不在は本枝外。既存規則と原InputIssueを保持し、新violation/成功へ変換しない。 role absent/null、record.ref不在、供給DependencySelection、candidates absentの各保守除外はfinite_domainに理由を明記し、未供給を成功又は空へ補完しない。",
       "custody": "実owner/trust/LABO/OS/BRAIN工程は別責務。本writer/fixtureの一致から実資格/運用採用を認定しない。"
@@ -13019,7 +13019,59 @@
       "閉じるのは上記candidate-empty/descriptor専用提案枝。D27 A/Bの原non-null値/target conflict/全presenceを保存する。",
       "F08全域・全knowledge state・全negative witness・fn5実装/実行・L8全期待・fn7/手順7/Issue完了・新世代CIの成立を示さない。",
       "有限期待がこの未閉包に当たる場合は当該producerで上流へ返す。"
-    ]
+    ],
+    "nonempty_candidate_trace": {
+      "scope": "P1：既存candidate選択と原knowledge_record_traceを非空候補へ明示束縛する。P2の昇格Claim発火/未確定witnessとComparison全体、P3のL5/L8全返却は閉じない。旧candidate-empty枝の条件/返却を変更しない。",
+      "upper_basis": [
+        "L3 functional-requirements.json#/requirements/7",
+        "L10 functional-verification.json#/cases/7",
+        "/contracts/9",
+        "/architecture/promotion",
+        "/knowledge_promotion_contract/record_and_process_preservation"
+      ],
+      "entry": "同call PromotionContext.validated.inputのdecode可能な既存typed snapshot。bindingはobject、candidatesは供給nonempty Ref[]、descriptors/knowledge_recordsは既存typed配列又はabsent。claimsはabsent又は明示[]に限る。元presence/全値/原順を保持し実fn0資格・実source供給は仮定から成立させない。",
+      "projection_boundary": "他typed member/dependenciesの原値を保存し、このtraceはそれらの意味評価/受領/工程を代行しない。RawValueの本文をkeyword判定せず、候補提供と運用採否を分ける。型外/未形成binding・Claim有り・枝外は元InputIssue/既存ruleとP2未閉を保持し、成功/空列へ補完しない。",
+      "selection": {
+        "population": "root input.bindingを先に、次に原descriptors順の各object bindingを候補Binding母集合とする。各binding.knowledge_refがobjectで、template_refと少なくとも一つのcandidateが既存ref_sameなら選択する。rootをslotへ代入せず、候補名からknowledge版を推測しない。",
+        "ref_same": "identity/revision/scope/ownerは双方供給non-nullかつ型付きJSON再帰等値。sha256は双方non-null供給時だけ比較。source_locatorは比較identityでなく、原wholeを保持する。key順は同一性でなく、配列順/型/nullを区別する。",
+        "unique_order": "既存unique_sortedで完全JSON同値Bindingの重複選択だけを畳み、canonical JSON Unicode文字列順へ並べる。元snapshotの原出現・同値反復は消さない。ref_sameだけで異なるwhole Bindingを同一化しない。"
+      },
+      "record_read": {
+        "matches": "選択Bindingごとにknowledge_refへref_sameする全原KnowledgeRecordを集める。別Ref recordを補償に使わず、latest/先頭の1件を選ばない。",
+        "unique_value": "完全JSON同値recordだけを一意性判断で同値として扱う。原record全11member、各memberのabsent/null/空/原stateと、同値複写・異本文の全出現はsnapshotに保持する。state文字列やRef名から採否を生成しない。",
+        "original_refs": "全matchの各record.ref、原provenance_refsの各object、limited_adoption_ref/evaluation_ref/os_registration_ref/independent_verification_ref/adoption_refの供給objectを収集し、canonical JSON文字列順へ並べる。収集は同値recordのdistinct化より前で、全Refの反復/全原memberを保存する。evaluation_scope/limits/counterexamples等の原RawValueはrecordへのtraceで辿り、Refへcastしない。"
+      },
+      "axis_member_order": [
+        "subject_ref",
+        "binding",
+        "axis",
+        "state",
+        "original_refs",
+        "reason",
+        "backflow_owner"
+      ],
+      "axis_fields": {
+        "subject_ref": "選択Binding.knowledge_refの原whole。joinしたrecord.refで置換しない。",
+        "binding": "選択Bindingの原whole（Comparison.input_bindingのroot Bindingとは別の場合もある）。",
+        "axis": "knowledge_record_trace",
+        "state": "matchの異なるrecord値が1種類だけで、そのoperational_stateが供給non-nullならresolved。それ以外はunknown。false/0/空string/空array等の供給non-nullを未供給へ変換しない。resolvedは原所在だけでstateの内容妥当性・実資格・工程採否ではない。",
+        "original_refs": "上記record_readの全原Refs。match無しは[]だが、record母集合の未供給/別Refを正常完了とはしない。",
+        "reason_resolved": "同一immutable snapshotの原KnowledgeRecordを一意に辿れる。運用成立を意味しない。",
+        "reason_state_absent_or_null": "原KnowledgeRecordのoperational_stateが未供給またはnull。",
+        "reason_no_or_multiple_distinct_records": "同一knowledge Refの原KnowledgeRecordが未供給または一意でない。",
+        "backflow_owner": "resolvedはnull、unknownは選択knowledge_ref.owner原値（未供給時null）。F04 actual軸のowner規則で置換しない。"
+      },
+      "return_order": "各選択Bindingの上記7field trace行を既存sorted_valuesのcanonical JSON文字列順へ置く。原state/presenceを更新せず他producerの軸を混載/相殺しない。Comparison producer_symbol/input_bindingと元snapshot保持は既存contractのまま。P2の追加Axis/Findingとの合流順はこのtrace配列だけから決めない。",
+      "consumer": "P3以降でL5既存selector/trace constructorとL8全返却へ同scopeを照合する。ここではL5 algorithm/型/helper、L8 gold、builder/InputIssueを変更しない。",
+      "limits": "10合成対照は選択・原所在の有限証拠で全F08/全normal/promotion行ではない。007/008/025の参照とowner工程は保持。L9の原positive/4NEG、実資格/実LABO/OS/BRAIN採否、accepted/mature、実行/CI/Issue完了を成立させない。",
+      "paired_verification": {
+        "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+        "pointer": "/cases/9/nonempty_candidate_trace_verification",
+        "binding_kind": "paired_node_path_without_content_hash"
+      },
+      "candidate_empty_relationship": "既存finite_domainとunclosed_projection_boundaries.shapeはcandidate-empty有限枝の制約である。P1非空枝は既存一般typed入力を前提とし、そのsource_roles/typed_descriptor_carriers/other_collections、KnowledgeRecordの2member限定、dependencies absentの枝限定除外を継承しない。P1のread setはbinding/candidates/descriptors内binding/knowledge_recordsで、他typed memberの原値/presence/原順は保存するが意味評価しない。claims absent/[]は本枝の条件として保持し、Claim witnessはP2へ残す。",
+      "legacy_and_failure_basis": "親/knowledge_promotion_contract/legacy_rederivation（4F5AのJSON構造正本、98372の旧design-template source意味）の再導出を継承する。記録済みUTW-014の未供給→空、UTW-020の部分失敗隠蔽、UTW-021の自己申告完了を防ぐ原所在/presence/未閉の保持を継承し、新しい旧資産由来の規則を足さない。"
+    }
   },
   "claim_boundary_projection_contract": {
     "id": "HELIXBRAIN-L4-032-F07-N02-CLAIM-BOUNDARY-PROJECTION",
