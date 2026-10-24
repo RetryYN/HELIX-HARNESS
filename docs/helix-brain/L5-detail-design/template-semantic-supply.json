@@ -6230,9 +6230,9 @@
           "non_integer_integer_member": "整数を要するmemberへ非整数の数値が供給されている。"
         },
         "reason_scope": "codecの技術失敗説明の私有writer文字列であり、新しい業務Finding分類ではない。既存UTF-8/文法/shape失敗の責務は保持し、原値やsecretを理由文字列へ埋め込まない。原octets/全pair等は許可を増やさない診断原資料へ別保持する。",
-        "aggregation": "一つの失敗原因を原所在へ保持し、失敗treeはvalue/wire_octetsをnullへ戻す。独立した複数原因の全返却順は既存InputIssue順の具体化として未閉包とし、以下の有限例では一原因を固定する。",
+        "aggregation": "各失敗原因は原所在へ保持し、encode失敗treeはwire_octetsをnullへ戻す。N2の6有限例では、同一nodeの既存優先順を保ち、carrier成立nodeだけ整数shapeを照合する。複数nodeを含む有限host treeは原member/array順の深さ優先で原因を返す。一般schema原因・任意入力の全返却順は未閉包のまま残す。",
         "source_ref_scope": "source_ref=nullは、外側wire decodeとその未資格host値のencodeに対する本writerの責務。content_bytes内側のstrict JSON読取りへ数値の精度保持は適用するが、その入力が既知QualifiedSource.refを持つ場合の既存InputIssue source_ref帰属・資格判定・失敗の返却責務をこのnull値で上書きしない。内側readerへの具体adapterはconsumer_adapter_boundaryの未接続範囲。",
-        "same_node_failure_order": "同じ数値nodeはhost型識別→tokenの全ASCII文法→value有限性/厳密表現→token/valueの値一致の順で確かめ、先に不成立となった原因を返す。文法不正tokenから数学値を作って相反比較せずinvalid_number_tokenを返す。複数node又は独立したschema原因の全返却順はaggregationの未閉包範囲。",
+        "same_node_failure_order": "同じ数値nodeはhost型識別→tokenの全ASCII文法→value有限性/厳密表現→token/valueの値一致の既存順で確かめ、先に不成立となった一原因だけを返す。carrier不成立nodeへinteger shape failureを重ねない。N2の有限6例では独立nodeを原host object member/array element順の深さ優先で検査するが、任意schema原因の全順序はaggregationの未閉包範囲。文法不正tokenから数学値を作って相反比較しない。",
         "reason_literal_reachability": "invalid_number_tokenは未検査encode数値nodeのtoken文法不正等の私有factory失敗用。外側wireのJSON文法parserが先に拒否した不正数値textは既存の文法失敗であり、同literalへ必ず到達するとはしない。"
       },
       "consumer_adapter_boundary": {
@@ -6246,7 +6246,7 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "N1の単一原因3literal・integer memberの1/1.0/1e0と非整数reasonは対応L8の有限対照。任意token/value/host/資源域の全返却、同node複合原因優先順・numeric ordinal/複数原因全fieldは未閉のままN2へ残す。"
+        "N1の単一原因3literal・integer member有限対照は対応L8に保持。N2は同node優先順、限定複数原因順、ordinalと全返却fieldを6有限例で対照するが、任意token/value/host/resource域・任意schema原因の全返却順、実adapter/runtime、N3 sort/new_defs/reader、実資格・全92親430義務/実装Readyは未成立。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -6300,6 +6300,56 @@
           "既存L4/L9意味、公開wire/schema/型、bool区別、raw presence、原state/provenance、資格/受領/採否を保持。authority/凍結/受入/child完了を生成しない。",
           "encode側の非整数のinteger memberはN1では有限対照がなく、N2で扱う。文字列/null/array/object等のinteger member reasonは既存の未固定範囲で、必要な対照を後続で選ぶ。"
         ],
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      "finite_multi_cause_detail": {
+        "id": "HELIXBRAIN-L5-032-NUMERIC-MULTI-CAUSE-DETAIL",
+        "status": "finite_detail_candidate_not_executed",
+        "source_basis": [
+          {
+            "revision": "5d63ce2ef0a5b5979a01ec4a906ead20829f203b",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "file_sha256": "474608c9dde5d8d634b491180f682d1330e0e3a78994dac509ce2075b9ca337d",
+            "pointers": [
+              "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateDecodeResult",
+              "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateEncodeResult",
+              "/wire_codec_contract/numeric_carrier_profile/private_types/NumericTokenOccurrence",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/same_node_failure_order",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/aggregation",
+              "/wire_codec_contract/numeric_carrier_profile/number_rules",
+              "/wire_codec_contract/schema/$defs/SupplyAnalysis"
+            ],
+            "binding_kind": "fixed_source_snapshot"
+          }
+        ],
+        "scope_ja": "N2の6有限encode/decode対照。既存private型・reason・schemaを用い、実codec/adapter/全域完了を主張しない。",
+        "same_node_failure_ja": "既存host型→全ASCII token文法→有限厳密value→token/value一致の最初の失敗だけ。carrier失敗nodeのinteger shape失敗を重ねない。",
+        "finite_aggregation_ja": "この6例では原host objectのmember順・array element順の深さ優先で各nodeを検査し、carrier成立後にそのnodeのinteger shapeを照合する。独立した子nodeへ進み、全原因を同順で返す。既存の一般schema reasonや任意入力の全原因順は固定しない。",
+        "decode_material_ja": "構文解析済みかつ重複keyのない2入力では全原octetsと全numeric_tokensを保持し、既存宣言member presence列をschema宣言順に得る。shape失敗でもそれらを空へ縮退させずvalueのみnull。opaque RawValue keyへpresenceを拡張しない。",
+        "fixture_notation_ja": "入力host_node_assignmentsはentry_baseのnull位置へ同時置換する未検査host値の説明。valueのExactJsonNumberは説明用の型付きliteral {host_type:ExactJsonNumber,members:{value:{notation:finite_Decimal_exact_decimal_text,text:...},token:...}}で全nodeを明示する。raw_octetsは全byteを小文字hexで表す説明literal {notation:original_octets_hex,hex:...}。いずれもfixture説明でありwire JSON object、新public tag/schema、実runtime値ではない。",
+        "decode_result_field_order": [
+          "value",
+          "raw_octets",
+          "presence",
+          "numeric_tokens",
+          "input_issues"
+        ],
+        "encode_result_field_order": [
+          "wire_octets",
+          "input_issues"
+        ],
+        "numeric_occurrence_field_order": [
+          "locator",
+          "ordinal",
+          "token"
+        ],
+        "input_issue_field_order": [
+          "locator",
+          "reason",
+          "source_ref"
+        ],
+        "limits_ja": "重複key/途中UTF8又は構文失敗時の全返却、任意独立schemaエラーの全順序、全host/resource域、実adapter/runtime実行、N3 sort/new_defs/readerは未成立。",
         "authority_effect": "none",
         "operation_effect": "none"
       }
