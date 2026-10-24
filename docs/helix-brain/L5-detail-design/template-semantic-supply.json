@@ -6277,7 +6277,9 @@
         "integer_dispatch_ja": [
           "既存SupplyAnalysis.side_effect_countは数学的整数値を要求。valid ExactJsonNumberのtokenが1/1.0/1e0でもexact値1ならnumberかつinteger。元token/valueを保ち、native intへcastしない。",
           "valid numberの数学的非整数は表現不能ではなくinteger shape失敗。non_integer_integer_memberの私有reasonを同所在へ返す。boolは既存boolean_integer_mismatch、host型外は上記failure、他schema失敗は既存のまま。",
-          "値1はcodecの供給形だけの対照でside_effect_count=0の意味義務を上書きせず、実副作用/実操作を作らない。"
+          "値1はcodecの供給形だけの対照でside_effect_count=0の意味義務を上書きせず、実副作用/実操作を作らない。",
+          "有限Decimalの符号を除く係数桁が全て0なら整数。非零係数では末尾の0を1桁除くごとに指数を1増やし、残る係数と調整後指数で指数>=0なら整数、それ以外は非整数とする。元value/tokenは変更せず、contextの丸め・量子化を使わない。1.0と1.50e1も整数である。",
+          "non_integer_integer_memberの私有文字列は、既存writerに表現可能な非整数numberのinteger shape失敗専用reasonがなかったため追加する。boolean専用又は表現不能用のliteralを流用せず、既存shape失敗とInputIssueの意味を具体化する。"
         ],
         "issue_assignment": {
           "field_order": [
@@ -6295,7 +6297,8 @@
           "単一原因と整数値/非整数値の有限分岐だけ。複数node/schema原因の集約順、numeric ordinal全field、codec全域はN2又は残差。",
           "1e400/極端指数/容量/深さ/Unicode/実資源の全域、上限/性能値、library/runtime版採用、実adapterは別。",
           "sort/new_defs/source_return readerの数値接続はN3。数値tokenをcanonical key/digestへ転用しない。",
-          "既存L4/L9意味、公開wire/schema/型、bool区別、raw presence、原state/provenance、資格/受領/採否を保持。authority/凍結/受入/child完了を生成しない。"
+          "既存L4/L9意味、公開wire/schema/型、bool区別、raw presence、原state/provenance、資格/受領/採否を保持。authority/凍結/受入/child完了を生成しない。",
+          "encode側の非整数のinteger memberはN1では有限対照がなく、N2で扱う。文字列/null/array/object等のinteger member reasonは既存の未固定範囲で、必要な対照を後続で選ぶ。"
         ],
         "authority_effect": "none",
         "operation_effect": "none"
