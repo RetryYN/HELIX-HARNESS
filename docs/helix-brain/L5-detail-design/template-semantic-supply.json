@@ -6230,9 +6230,9 @@
           "non_integer_integer_member": "整数を要するmemberへ非整数の数値が供給されている。"
         },
         "reason_scope": "codecの技術失敗説明の私有writer文字列であり、新しい業務Finding分類ではない。既存UTF-8/文法/shape失敗の責務は保持し、原値やsecretを理由文字列へ埋め込まない。原octets/全pair等は許可を増やさない診断原資料へ別保持する。",
-        "aggregation": "一つの失敗原因を原所在へ保持し、失敗treeはvalue/wire_octetsをnullへ戻す。独立した複数原因の全返却順は既存InputIssue順の具体化として未閉包とし、以下の有限例では一原因を固定する。",
+        "aggregation": "入力host treeを原object member/array element順の深さ優先で辿り、本profileの数値nodeの原因を列挙する。同nodeでcarrierが成立し、その所在がinteger memberなら直後に整数形を照合し、次のnodeへ進む前に当該nodeの数値原因を返す。対象は数値carrier原因と数値を供給したinteger形状原因であり、未知key・非数値型等の一般schema原因との混在順、全schema失敗順、任意host/resource域は未閉包。旧DesignTemplate Finding順もcanonical key順もInputIssue順へ転用しない。",
         "source_ref_scope": "source_ref=nullは、外側wire decodeとその未資格host値のencodeに対する本writerの責務。content_bytes内側のstrict JSON読取りへ数値の精度保持は適用するが、その入力が既知QualifiedSource.refを持つ場合の既存InputIssue source_ref帰属・資格判定・失敗の返却責務をこのnull値で上書きしない。内側readerへの具体adapterはconsumer_adapter_boundaryの未接続範囲。",
-        "same_node_failure_order": "同じ数値nodeはhost型識別→tokenの全ASCII文法→value有限性/厳密表現→token/valueの値一致の順で確かめ、先に不成立となった原因を返す。文法不正tokenから数学値を作って相反比較せずinvalid_number_tokenを返す。複数node又は独立したschema原因の全返却順はaggregationの未閉包範囲。",
+        "same_node_failure_order": "数値nodeは既存host型→全ASCII token文法→有限厳密value→token/value一致の最初の失敗だけを返す。carrier失敗nodeへinteger shape失敗を重ねない。",
         "reason_literal_reachability": "invalid_number_tokenは未検査encode数値nodeのtoken文法不正等の私有factory失敗用。外側wireのJSON文法parserが先に拒否した不正数値textは既存の文法失敗であり、同literalへ必ず到達するとはしない。"
       },
       "consumer_adapter_boundary": {
@@ -6246,7 +6246,7 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "N1の単一原因3literal・integer memberの1/1.0/1e0と非整数reasonは対応L8の有限対照。任意token/value/host/資源域の全返却、同node複合原因優先順・numeric ordinal/複数原因全fieldは未閉のままN2へ残す。"
+        "元N2 decode対照B032-N2-05-DECODE-ORDINAL、B032-N2-06-DECODE-SHAPE-FAILUREと逆wire順の全5field/ordinal/presence/raw bytesはN2bで導出する。false又は空期待へ置き換えない。重複key/途中UTF8又は構文失敗の全返却、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -6300,6 +6300,49 @@
           "既存L4/L9意味、公開wire/schema/型、bool区別、raw presence、原state/provenance、資格/受領/採否を保持。authority/凍結/受入/child完了を生成しない。",
           "encode側の非整数のinteger memberはN1では有限対照がなく、N2で扱う。文字列/null/array/object等のinteger member reasonは既存の未固定範囲で、必要な対照を後続で選ぶ。"
         ],
+        "authority_effect": "none",
+        "operation_effect": "none"
+      },
+      "finite_multi_cause_detail": {
+        "id": "HELIXBRAIN-L5-032-NUMERIC-MULTI-CAUSE-DETAIL",
+        "status": "finite_encode_detail_candidate_not_executed",
+        "source_basis": [
+          {
+            "revision": "5d63ce2ef0a5b5979a01ec4a906ead20829f203b",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "file_sha256": "474608c9dde5d8d634b491180f682d1330e0e3a78994dac509ce2075b9ca337d",
+            "pointers": [
+              "/wire_codec_contract/numeric_carrier_profile/number_rules/token_grammar",
+              "/wire_codec_contract/numeric_carrier_profile/number_rules/factory",
+              "/wire_codec_contract/numeric_carrier_profile/number_rules/integer_predicate",
+              "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateEncodeResult/fields",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/reason_literals",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/same_node_failure_order",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer/aggregation",
+              "/wire_codec_contract/schema/$defs/SupplyAnalysis/properties/side_effect_count",
+              "/wire_codec_contract/schema/$defs/SupplyAnalysis/properties/limits",
+              "/wire_codec_contract/numeric_carrier_profile/encode_steps/0",
+              "/wire_codec_contract/numeric_carrier_profile/encode_steps/2"
+            ],
+            "binding_kind": "fixed_source_snapshot"
+          }
+        ],
+        "scope_ja": "N2aは数値nodeのIssue順とPrivateEncodeResult全2fieldを5件の有限encode対照で固定する。whole decode返却、N2b、実codec/adapter、任意入力全域はこの詳細で閉じない。",
+        "same_node_failure_ja": "数値nodeは既存host型→全ASCII token文法→有限厳密value→token/value一致の最初の失敗だけを返す。carrier失敗nodeへinteger shape失敗を重ねない。",
+        "numeric_cause_order_ja": "入力host treeを原object member/array element順の深さ優先で辿り、本profileの数値nodeの原因を列挙する。同nodeでcarrierが成立し、その所在がinteger memberなら直後に整数形を照合し、次のnodeへ進む前に当該nodeの数値原因を返す。対象は数値carrier原因と数値を供給したinteger形状原因であり、未知key・非数値型等の一般schema原因との混在順、全schema失敗順、任意host/resource域は未閉包。旧DesignTemplate Finding順もcanonical key順もInputIssue順へ転用しない。",
+        "host_materialization_ja": "host_node_assignmentsはentry_baseの既存null位置へ説明された未検査host値を同時置換する。object memberを削除・再挿入せず原tree順を保つ。assignment列の順序はtreeの走査順・原因列挙順を決めない。host型付きliteralはfixture説明でありwire JSONのタグobjectや新public schemaではない。",
+        "fixture_notation_ja": "finite_Decimal_constructor_textのtextは厳密な有限Decimal構築用の説明入力で、正規化した数学値表示又はcanonical数値表記ではない。valueとtokenは別memberであり、相反例では異なる数値を表す。nonfinite_Decimal_literalはN1と同じ非有限Decimalの説明literalで、有効ExactJsonNumber又はwire JSON numberとしての受理を意味しない。",
+        "ordered_fingerprint_ja": "input_ordered_sha256はinput全体をmember順を保ったcompact JSON（ensure_ascii=false、sort_keys=false、separators=(comma,colon)、UTF-8、末尾LFなし）で表したSHA-256。既存sort_keys=trueのinput_canonical_sha256と併記し、host treeとassignment列の順を固定する。JSON意味同値、製品canonical sort key又はdigestへ流用しない。",
+        "encode_result_field_order": [
+          "wire_octets",
+          "input_issues"
+        ],
+        "input_issue_field_order": [
+          "locator",
+          "reason",
+          "source_ref"
+        ],
+        "limits_ja": "元N2 decode対照B032-N2-05-DECODE-ORDINAL、B032-N2-06-DECODE-SHAPE-FAILUREと逆wire順の全5field/ordinal/presence/raw bytesはN2bで導出する。false又は空期待へ置き換えない。重複key/途中UTF8又は構文失敗の全返却、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。",
         "authority_effect": "none",
         "operation_effect": "none"
       }
