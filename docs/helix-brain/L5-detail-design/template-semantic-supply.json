@@ -6226,7 +6226,8 @@
           "number_token_value_conflict": "JSON数値carrierの字句と値が相反する。",
           "non_json_host_value": "JSON carrier外のhost値。",
           "duplicate_decoded_key": "JSON objectに同じdecoded keyが重複する。",
-          "boolean_integer_mismatch": "整数を要するmemberへbooleanが供給されている。"
+          "boolean_integer_mismatch": "整数を要するmemberへbooleanが供給されている。",
+          "non_integer_integer_member": "整数を要するmemberへ非整数の数値が供給されている。"
         },
         "reason_scope": "codecの技術失敗説明の私有writer文字列であり、新しい業務Finding分類ではない。既存UTF-8/文法/shape失敗の責務は保持し、原値やsecretを理由文字列へ埋め込まない。原octets/全pair等は許可を増やさない診断原資料へ別保持する。",
         "aggregation": "一つの失敗原因を原所在へ保持し、失敗treeはvalue/wire_octetsをnullへ戻す。独立した複数原因の全返却順は既存InputIssue順の具体化として未閉包とし、以下の有限例では一原因を固定する。",
@@ -6245,10 +6246,63 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "今回の10条件ではinvalid_number_token/number_representation_failed/non_json_host_valueの3literal、integer memberへの1.0/1e0という整数値小数・指数表記、非整数値の型失敗reason、上記同node失敗優先順とordinalの全返却fieldを行使する期待は未固定。規則の記述を行使済みへしない。"
+        "N1の単一原因3literal・integer memberの1/1.0/1e0と非整数reasonは対応L8の有限対照。任意token/value/host/資源域の全返却、同node複合原因優先順・numeric ordinal/複数原因全fieldは未閉のままN2へ残す。"
       ],
       "authority_effect": "none",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "token_and_integer_detail": {
+        "id": "HELIXBRAIN-L5-032-NUMERIC-TOKEN-INTEGER-DETAIL",
+        "status": "finite_detail_candidate_not_executed",
+        "source_basis": [
+          {
+            "revision": "31746cdc015c704252fb88adb2ba62d90f36473a",
+            "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+            "file_sha256": "4924753cb3d8c21a2c28a4a1a0e337f238eb24b8b927c7bba03cff0b984c4933",
+            "pointers": [
+              "/wire_codec_contract/numeric_carrier_profile/number_rules",
+              "/wire_codec_contract/numeric_carrier_profile/private_types",
+              "/wire_codec_contract/numeric_carrier_profile/private_issue_writer",
+              "/wire_codec_contract/schema/$defs/SupplyAnalysis/properties/side_effect_count"
+            ],
+            "binding_kind": "fixed_historical_source"
+          }
+        ],
+        "scope_ja": "既存codecのtoken/valueとinteger memberの局所分岐。N1の有限対照を置くが、全codec return/複数原因/ordinal順/実adapterを閉じない。",
+        "host_input_ja": "host_node_assignmentは未検査私有host値の説明。ExactJsonNumber等のhost型名とvalue/token注記を持つfixtureをraw JSONタグobjectにしない。通常RawValue objectをmember名でwrapperへ変換しない。",
+        "failure_dispatch_ja": [
+          "host型がPrivateJsonValue union外なら既存non_json_host_value。standalone Decimal/floatをwrapperやJSON numberへcastしない。",
+          "ExactJsonNumberとして識別した未検査nodeは既存host型→token ASCII文法→value有限性/厳密表現→token/value一致の順を保持する。token不正文法はinvalid_number_token、文法正常かつvalue非有限/厳密構成不能はnumber_representation_failed、有限exact値とtoken値の相反はnumber_token_value_conflictへ対応。",
+          "上記は既存number_rulesとreason_literalsの到達対応の技術具体化。raw文書parserが先に拒否した不正JSONをinvalid_number_tokenへ必ず写さず、実資源失敗/所在不明時のroot空pointerという既存責務を変更しない。"
+        ],
+        "integer_dispatch_ja": [
+          "既存SupplyAnalysis.side_effect_countは数学的整数値を要求。valid ExactJsonNumberのtokenが1/1.0/1e0でもexact値1ならnumberかつinteger。元token/valueを保ち、native intへcastしない。",
+          "valid numberの数学的非整数は表現不能ではなくinteger shape失敗。non_integer_integer_memberの私有reasonを同所在へ返す。boolは既存boolean_integer_mismatch、host型外は上記failure、他schema失敗は既存のまま。",
+          "値1はcodecの供給形だけの対照でside_effect_count=0の意味義務を上書きせず、実副作用/実操作を作らない。",
+          "有限Decimalの符号を除く係数桁が全て0なら整数。非零係数では末尾の0を1桁除くごとに指数を1増やし、残る係数と調整後指数で指数>=0なら整数、それ以外は非整数とする。元value/tokenは変更せず、contextの丸め・量子化を使わない。1.0と1.50e1も整数である。",
+          "non_integer_integer_memberの私有文字列は、既存writerに表現可能な非整数numberのinteger shape失敗専用reasonがなかったため追加する。boolean専用又は表現不能用のliteralを流用せず、既存shape失敗とInputIssueの意味を具体化する。"
+        ],
+        "issue_assignment": {
+          "field_order": [
+            "locator",
+            "reason",
+            "source_ref"
+          ],
+          "locator": "単一原因の実pointer。RFC6901 escape。原数値/token/host reprをreasonへ埋め込まない。",
+          "reason": "上記の既存私有literal又は追加のnon_integer_integer_member文字列。public code/enumは増やさない。",
+          "source_ref": null,
+          "encode_failure": "既存PrivateEncodeResultのwire_octets=null、input_issues=[当該InputIssue]。部分JSON/修復値を成功にしない。",
+          "decode_integer_failure": "既存shape失敗としてvalue=null、原octets/presence/token材料は別保持。全返却と複数原因の順はN2の対照へ残す。"
+        },
+        "limits_ja": [
+          "単一原因と整数値/非整数値の有限分岐だけ。複数node/schema原因の集約順、numeric ordinal全field、codec全域はN2又は残差。",
+          "1e400/極端指数/容量/深さ/Unicode/実資源の全域、上限/性能値、library/runtime版採用、実adapterは別。",
+          "sort/new_defs/source_return readerの数値接続はN3。数値tokenをcanonical key/digestへ転用しない。",
+          "既存L4/L9意味、公開wire/schema/型、bool区別、raw presence、原state/provenance、資格/受領/採否を保持。authority/凍結/受入/child完了を生成しない。",
+          "encode側の非整数のinteger memberはN1では有限対照がなく、N2で扱う。文字列/null/array/object等のinteger member reasonは既存の未固定範囲で、必要な対照を後続で選ぶ。"
+        ],
+        "authority_effect": "none",
+        "operation_effect": "none"
+      }
     }
   },
   "source_return_contract": {
