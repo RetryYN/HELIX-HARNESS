@@ -6246,7 +6246,7 @@
         "library/runtime版固定、全Unicode/資源挙動・失敗locator/全複数原因順の具体化。実行/依存導入は本設計から許可しない。",
         "source_return数値adapter/canonical-sort lawとnew_defs接続、CORE/OS両端互換/実資格/receipt。",
         "BRAIN032旧21例の歴史採択根拠、全92親430義務・実装Ready・実物受入の未成立を解消したとはしない。",
-        "N2bで固定した3 finite decode入力の期待は保持。N3aの8件有限mapping projectionを追加するが、実行・adapter、N3 sort/new_defs/reader、数値canonical-sort lawは未成立。"
+        "N2bで固定した3 finite decode入力の全5field/ordinal/presence/raw bytesは期待を導出して固定した（未実行）。重複key/途中UTF-8又は構文失敗、一般schema原因混在、任意host/resource域、実adapter/runtime、N3 sort/new_defs/readerは未成立。N3aの8件有限mapping projectionを追加するが、実行・adapter、数値canonical-sort lawは未成立。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -6405,12 +6405,12 @@
           }
         ],
         "scope_ja": "N3aはsort非依存json_equal、有限list in、snapshot copyとpresence保持の8件のfixture観測projection。新public関数/型やcodec returnを追加せず、数値nodeの有限mappingだけを扱う。",
-        "materialization_ja": "inputはfixture説明。operand_baseの既存null位置へhost_node_assignmentsの有効ExactJsonNumber説明値を同時置換し、memberを削除/再挿入せず元object/array順を保つ。pointerはoperand_base rootからのRFC6901。assignment列の順は演算順を作らない。これはcodec decode/新public wireタグの実行ではない。",
+        "materialization_ja": "inputはfixture説明。operand_baseの既存null位置へhost_node_assignmentsの有効ExactJsonNumber説明値を同時置換し、memberを削除/再挿入せず元object/array順を保つ。host_node_assignmentsのpointerはoperand_base rootからのRFC6901。assignment列の順は演算順を作らない。これはcodec decode/新public wireタグの実行ではない。",
         "notation_ja": "finite_Decimal_constructor_textは既存N2aの厳密有限Decimal構築用説明文字列で、canonical/正規化表示ではない。bare整数はstrict native int、JSON booleanはboolで別kind。host_type付き説明は割当nodeだけのfixture記法であり、普通objectのvalue/token keyをwrapperへcastしない。",
         "equality_ja": "既存json_equalのJSON型付き再帰等値へ、ExactJsonNumber/strict native intを同じ数値domainで写す。exact数学値で比較しtoken/host継承/dataclass field比較を代用しない。boolは先に独立JSON kindとして識別。objectはdecoded key集合と各member値、arrayは長さと同位置値を再帰比較する。Absentは同じsentinelとだけ同値で、この8入力はAbsent sentinelを演算値へ投入しない。",
-        "membership_ja": "既存in/not inの有限list所属は同json_equalで各要素を原順に調べる。sort/uniqueを呼ばず、原haystack/needleを変更しない。この対照ではinだけを観測し、新public関数を作らない。",
+        "membership_ja": "既存in/not inの有限list所属は同json_equalで各要素を調べ、結果は走査の順に依存しない。sort/uniqueを呼ばず、原haystack/needleを変更しない。この対照ではinだけを観測し、新public関数を作らない。",
         "copy_ja": "原snapshot copyはimmutable数値nodeを保持するかvalue/tokenの両不変条件を維持して写す。ordinary object/list/厳密native int/bool/string/nullを型通り保持し、数値nodeをfloat又は通常dictへ変換しない。入力valueとpresenceの元供給材料を変更しない。新host object identity/alias保証はこのprojectionで観測しない。",
-        "copy_presence_ja": "case08のpresenceは既存Ref schema宣言順の診断材料を入力で別保持し、その列をそのままcopyする。identityはexplicit_null、その他未供給memberはabsent、scopeはsupplied。RawValue内部のopaque keyをpresence宣言へ拡張せず、nested空配列/普通objectは原valueとして保持する。ここで新presence抽出APIを作らない。",
+        "copy_presence_ja": "copyの材料のうちpresence列は既存Ref schema宣言順の診断材料を入力で別保持し、その列をそのままcopyする。presenceのpointerはvalueのrootを基準とし、host_node_assignmentsのpointerとは基準が別である。identityはexplicit_null、その他未供給memberはabsent、scopeはsupplied。RawValue内部のopaque keyをpresence宣言へ拡張せず、nested空配列/普通objectは原valueとして保持する。ここで新presence抽出APIを作らない。",
         "projection_ja": "expected_resultはfixture観測recordであり実装return型/公開API/schemaではない。json_equalはequalのboolean一field、inはmemberのboolean一field。snapshot_copyはcopied_value/copied_presence/source_value_after/source_presence_afterの全4fieldを列挙し、コピー後の材料と元入力が変わらないことを全値で固定する。数値nodeは割当と同じhost_type/members説明へ投影する。",
         "projection_field_order": {
           "json_equal": ["equal"],
