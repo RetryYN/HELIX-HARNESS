@@ -9913,7 +9913,7 @@
                 "current_basic_source": {
                   "binding_kind": "current_working_file_bytes",
                   "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-                  "file_bytes_sha256": "52ec63bace01664a1e047bceaaed402131dc36d3e3e22eb509942e0e0e6360da",
+                  "file_bytes_sha256": "2543c90d738ca14afd0d6dbb8789fa24add240674ffc2baace29d4325a870c0b",
                   "selected_objects": [
                     {
                       "pointer": "/definition_meaning_resolution_contract/readers/1",
@@ -11374,7 +11374,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "52ec63bace01664a1e047bceaaed402131dc36d3e3e22eb509942e0e0e6360da",
+        "sha256": "2543c90d738ca14afd0d6dbb8789fa24add240674ffc2baace29d4325a870c0b",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11382,7 +11382,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "70b861d3a73f01938fe4e3dbdeb013d9568dea509a483203374bef4df56b0f71"
+        "sha256": "c4bfa1aac65bb50c59b548e98252e4414de32ece72f4ef560c776cf4ad13c003"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
