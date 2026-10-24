@@ -13190,13 +13190,13 @@
       },
       "claim_kind": "継承entryのwitness形成可能時にfill_definitionは83false。knowledge_acceptedだけ83評価対象。knowledge_promotedと他kindは83unknown。次にrecord association unknownは83unknown。known acceptedではnonempty全basis joinedを必要とし、それ以外unknown。subject_ref/Binding形成不能はrowを出さず原Claim全値を保持し本公開writer外とする。",
       "complete_ref": "局所83比較用complete Refはobjectでidentity/revision/scope/ownerが全て供給non-null、各値が既存Ref wiretype（identity/revision/ownerはstring、scopeはRawValue）を満たす。source_locator/sha256はoptionalの既存wiretypeを保ち、供給自体を必須にしない。wire schema一般のoptional性を変更しない。",
-      "comparison": "basis各原出現をrecord.limited_adoption_refへ直接既存ref_sameで比較する。completeでないoperandに対するfalseを非等値証拠としない。optional sha256両供給時の既存比較を保持し、sha未供給を中継した推移結合をしない。",
+      "comparison": "basis各原出現をrecord.limited_adoption_refへ直接既存ref_sameで比較する。trueの直接同一性判定とfalseのdistinct推論を分ける。completeでないoperand又は同identity内のrevision/scope/owner/sha256差から非限定を推論しない。false第2枝のdistinctはcomplete Refのstring identityが直接異なる場合だけ。optional sha256両供給時の既存比較を保持し、sha未供給を中継した推移結合をしない。既存json_equalはJSON number値同値、booleanとnumber別であり変更しない。",
       "rule": {
         "code": "limited_content_as_promotion",
         "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
         "true": "共通known accepted/nonempty全basis joinedの後、limited_adoption_refがcomplete、全basisがcompleteで各直接ref_same=true、全対応carrierがactual limited_adoption_ref memberへcore joinし、adoption_refがabsent又はexplicit nullのときだけtrue。実採択/十分性/資格を認定しない。",
-        "false": "共通known accepted/nonempty全basis joinedの後、全carrierが既知nonlimited record memberへcore joinし、limited_adoption_refがabsent/null、又はlimited_adoption_refと全basisがcompleteで全直接ref_same=falseのときだけfalse。nonlimitedは既存列挙からlimited_adoption_refを除いたmember。falseからaccepted/mature成功を生成しない。",
-        "unknown": "上記true/false以外unknown。partial non-null limited Ref、比較operand incomplete、equal/distinct混在、同一basisがlimited Refと非limited memberへ二重所属するM3例、limited/nonlimited carrier混在、true経路でadoption_ref non-null、basis不在/空/未解決/conflictを含む。role未知やoriginal_stages供給だけを独立gateにしない。",
+        "false": "共通known accepted/nonempty全basis joinedの後、全carrierが既知nonlimited record memberへcore joinし、limited_adoption_refがabsent/null、又はlimited_adoption_refと全basisがcompleteで各basisのstring identityがlimited_refのstring identityと直接異なるときだけfalse。同identityのrevision/scope/owner/sha256差は非限定の証明にせずunknown。nonlimitedは既存列挙からlimited_adoption_refを除いたmember。falseからaccepted/mature成功を生成しない。",
+        "unknown": "上記true/false以外unknown。partial non-null limited Ref、比較operand incomplete、同identityのrevision/scope/owner/sha256相反又は版違い、equal/distinct混在、同一basisがlimited Refと非limited memberへ二重所属しcarrierが非limited memberを宣言するM3例、limited/nonlimited carrier混在、true経路でadoption_ref non-null、basis不在/空/未解決/conflictを含む。全carrierが実limited memberを宣言しtrue全条件が成立する二重所属はtrue。role未知やoriginal_stages供給だけを独立gateにしない。",
         "decision_order": "継承entryのwitness形成確認→kind→record association→nonempty全basis core joined→上記true/falseを独立検査、いずれも成立しなければunknown。形成可能なfill_definition falseと非accepted unknownではcoreを読まない。形成不能は代替Ref/Bindingやrowを生成しない。"
       },
       "projection": {
@@ -13209,16 +13209,16 @@
       },
       "reason": {
         "reuse": "/knowledge_promotion_contract/p2_claim_witness_projection/reason",
-        "override": "encoding/6member/presence/locator root/index型/順/原whole custodyは同じ。acceptedかつrecord関連既知では各basis原出現のcoreを読みoutcome/原位置を記録する。他kind/record関連未知はnot_requiredで空位置。basis absent/emptyは同presenceとoccurrences=[]を保持。P2aの83対象外説明だけ本有限拡張では適用しない。"
+        "override": "83の行のreasonに限る。80–82の行はP2aのまま。encoding/6member/presence/locator root/index型/順/原whole custodyは同じ。acceptedかつrecord関連既知では各basis原出現のcoreを読みoutcome/原位置を記録する。他kind/record関連未知はnot_requiredで空位置。basis absent/emptyは同presenceとoccurrences=[]を保持。P2aの83対象外説明だけ本有限83拡張では適用しない。"
       },
       "paired_verification": {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
         "pointer": "/cases/9/promotion_rule83_verification",
         "binding_kind": "path_only_no_content_hash"
       },
-      "legacy_and_failure_basis": "親legacy_rederivationの4F5A/98372/RCLS意味再導出とUTW-014/020/021のpresence/原所在/未確定保持を継承。直接失敗はPR3664 reviewed head911de935 R1 comment6379092548 M3のdual membershipとm1–m3。member labelだけ又はpartial ref_same(false)だけでnonlimitedを生成しない。旧runtime/CIを移植実行しない。",
+      "legacy_and_failure_basis": "親legacy_rederivationの4F5A/98372/RCLS意味再導出とUTW-014/020/021のpresence/原所在/未確定保持を継承。直接失敗はPR3664 reviewed head911de935 R1 comment6379092548 M3のdual membershipとm1–m3。member labelだけ又はpartial ref_same(false)だけでnonlimitedを生成しない。旧runtime/CIを移植実行しない。 PR3665 R1 comment6379674436 M1の同identity/SHA相反を直接失敗として、distinct推論をidentity差へ限定する。basis coreの元joined/unresolved等は改変せず、83predicateの未確定として原資料を保持する。",
       "unclosed": "有限投影だけで全fn5を閉じない。L5 functions/5のaccepted/mature一般文とfailure83 accepted条件の差はknowledge_promoted=unknownで保ちP3で整合する。R2 Info6379316261の81 scope boolean true/非0number境界もP3へ残しP2aを変更しない。形成不能Ref/Binding、任意stage-body-scope、actual資格/独立性/工程/採否/凍結/Issue完了は未閉。",
-      "scope_preservation": "同ValidatedSupplyのinput_issues/unusable_source_refs、全原Claim/record/source/carrier/presence/順/反復を保持。既存P1/空枝/POS4NEG/P2a17入力と80–82期待は不変。actual運用stateを遷移させない。"
+      "scope_preservation": "同ValidatedSupplyのinput_issues/unusable_source_refs、全原Claim/record/source/carrier/presence/順/反復を保持。既存P1/空枝/POS4NEG/P2a17入力と80–82期待は不変。actual運用stateを遷移させない。Ref.identityは既存wireのstring|nullを維持する。numeric identityは既存Ref wire型外で本typed entryの比較operandとして意味導出しない。原snapshot全値を保持し、coerce/新しい許可形/subject_refとBindingのrow形成条件を追加しない。数値scopeの1/1.0同値とbool区別も既存json_equalのまま。"
     }
   },
   "claim_boundary_projection_contract": {
