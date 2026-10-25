@@ -9564,7 +9564,33 @@
           "constructor": "request_kindは同walkの原必要relation/該当Claimの責務から設定し、request_locatorは元relation又はClaimのRFC6901 pointer。Refがない全native必要relationの読取はそのowner source原entry locatorを保持する。型のために新Claim/Refを作らない。 replacement_claimはreplacement_claim_request_scheduleが定める原fill_definition Claim集合から形成し、他request_kindの既存条件を変更しない。",
           "acquisition": "同fn0の既存source資格を消費。全source/record原indexを保持し、content.binding、原target/revision/scope/Ref、原arguments/body/Claim、原owner groupをtyped照合。closed projection失敗と元source未資格を別のproblemへ保存する。",
           "relevance": "明示Binding/target/Claimに対応するcohortだけを当該支持へ使う。未帰属source/別対象recordの問題を全targetへ広げず、独立source成功で当該不成立を消さない。",
-          "return": "成功typed対応はsupports全件、rawはsource_occurrences全件。取得resolvedは内容の肯定でなく、原語彙/比較結果を次の既存predicateへ渡せる所在対応だけ。first-match再lookup/zip/Ref castなし。"
+          "return": "成功typed対応はsupports全件、rawはsource_occurrences全件。取得resolvedは内容の肯定でなく、原語彙/比較結果を次の既存predicateへ渡せる所在対応だけ。first-match再lookup/zip/Ref castなし。",
+          "display_group_acquisition_detail": {
+            "scope_ja": "display_groupの取得だけを補足する。special_reader既存4句、schema、他request_kindの意味を置換しない。",
+            "activation_ja": "元display-group発見が無いときはrequestをcallしない。これは取得開始前の規則。",
+            "candidate_discovery_ja": "資格/typed成功で候補を絞らない。validated inputのrole=semantic_json元sourceにdescriptor_display_groups carrier memberがsuppliedなら、そのsourceをraw候補としてsource index順に保持する。member valueがnull又は非arrayでも、memberがsuppliedなら候補から落とさない。",
+            "qualification_ja": "候補sourceごとに既存fn0 qualification/usableを消費する。不成立なら原source全値/Ref/indexを既存source_unresolved problemへ保持し、carrier内部recordをdecodeせず、source_occurrences/supportsへの内部record追加も内部record由来の派生problemも行わない。",
+            "carrier_presence": {
+              "array_ja": "qualification済みcohort sourceのcarrierがarrayなら、全raw recordを原record index順に保持する。empty arrayはrecord occurrenceなしで、emptyだけのproblemを追加しない。",
+              "absent_null_type_ja": "display_groupではcarrier memberがabsentのsourceはcandidate cohort外であり、container_absentを作らない。carrier suppliedの候補でqualificationが成立した後に限り、null/non-arrayを既存container_null/container_typeへそれぞれ記録する。"
+            },
+            "raw_and_decode_ja": "qualification済みarrayの各原recordをsource_occurrencesのsource_ref/source_index/record_index/locator/original_recordへそのまま保存してからclosed projectionを行う。返却schemaにdecoded_record fieldは追加しない。",
+            "record_outcomes": {
+              "decode_failure_ja": "closed decode失敗は既存record_decode_failedとして原record locator/valueを保ち、他recordの処理を続ける。",
+              "known_foreign_ja": "known foreignはraw original_recordと元位置を保持するだけでproblem/反対意味を作らない。first-matchやdedupをしない。"
+            },
+            "group_match_ja": "typed groupのfull Binding、item_slot_identity、descriptor_kindを原slotへ対応する。display_labelはpresence/原値を保持するが、label equalityやrule3 collisionはこのreadで評価しない。",
+            "member_mapping": {
+              "slot_facts_ja": "各member.fact_ref/bodyを同inputのslot facts全件へ既存Ref/body対応する。複数の元出現は原index順と反復を保持し、最初の一factへ絞らない。fact_bodyは同fact.meaningの供給RawValueと照合する。",
+              "owner_lookup_ja": "対応した各原fact.source_refから既存owner factsを独立に照合する。member fact-ownerの照合先であることだけを理由にcarrierを要求せず、carrier欠如problemを返さない。",
+              "carrier_owner_ja": "carrierを供給する原sourceをgroup discoveryの起点とする。各member ownerのBinding/qualification/slot/kind/fact全metadataは既存attribution規則を保持する。"
+            },
+            "support_ja": "qualificationとclosed typed correspondenceが成立したgroup recordのみDefinitionSpecialSupportへ全件追加する。supportsはsource index→record index順で、raw occurrenceからのtyped-success subset。",
+            "acquisition_state_ja": "同DefinitionSpecialReadを使う既存replacement_claim basis_shape_return_limits/acquisition_foldに合わせ、supports非空ならresolved、空ならunknown。problems/raw occurrencesを両stateで保持し、resolvedは内容肯定ではない。",
+            "problem_order_ja": "既存problem_commonのread failure→source index→record index→cohort/field比較順とmultiplicityを保つ。取得成功と別問題は併存し、全source/record成功gateを作らない。",
+            "request_locator_ja": "request_kind=display_group、request_locatorは原slot objectのRFC6901 pointer。source_refをrequestへ追加せず、source locatorとmember-owner lookupを分離する。",
+            "finite_boundary_ja": "この補足はdisplay_group取得に限る。owner source不成立時のcause/support採否、known foreignと対応済mirror差の判別境界、一部member不一致groupのsupport採否は本補足で未規定。これらとunqualified/malformed/multiple producer/empty support等は有限検証で未観測。L4/L9 public rule3 axis/findingも返却へ加えない。"
+          }
         },
         "special_predicate_projection": [
           {
