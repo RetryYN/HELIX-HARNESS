@@ -17,10 +17,11 @@ HERE = Path(__file__).resolve().parent
 STORE = HERE / "local" / "gui"
 BINDING = HERE.parent / "bindings" / "SCF-B-0003.json"
 RUNTIMES = p.RUNTIMES
+# Claude・Codex・Antigravityは作成（execution）とレビュー対応（review_merge）に就く。
 # Devinはlane上はworkerのまま、packet上の作成者としてClaude reviewerへ通知できる。
 # lane登録とPR当事者pairの許可は別の制約である。
 LANES = {"claude": ("execution", "review_merge"), "codex": ("execution", "review_merge"),
-         "devin": ("worker",), "antigravity": ("worker",)}
+         "devin": ("worker",), "antigravity": ("execution", "review_merge")}
 # 同じ役割を同時に二つのruntimeへ割り当てない役割。workerは複数のruntimeが並んで持てる。
 EXCLUSIVE_LANES = ("execution", "review_merge")
 HOOK_EVENTS = {"claude": ("SessionStart", "Stop", "ConfigChange"), "codex": ("SessionStart", "Stop"),
@@ -30,7 +31,7 @@ RECEIVE_POLL_SECONDS = 1.0
 CLOSED_RETENTION_SECONDS = 86400
 TERMINAL = ("acked", "expired", "cancelled")
 ORPHAN_TEMP_SECONDS = 600
-WORK_CAPACITY = {"codex": 5, "devin": 5}
+WORK_CAPACITY = {"codex": 5, "devin": 5, "antigravity": 5}
 
 
 def binding_active(path=BINDING):
@@ -408,7 +409,7 @@ def send(data, runtime, session, event_id, kind, request, response, ttl, now, to
             return dict(payload=dict(event_id=closed_id), digest=value["digest"], status=value["status"])
     work = data.setdefault("work", {})
     if kind == "work_request":
-        # Codex/Devinは未完了5件。他runtimeは1件。割当ごとに独立して配送する。
+        # Codex/Devin/Antigravityは未完了5件。他runtimeは1件。割当ごとに独立して配送する。
         prune_expired_work(data, target_runtime, now)
         after_state, after_reason = validate_after(
             data, event_id, runtime, session, target_runtime, target["session"], request)

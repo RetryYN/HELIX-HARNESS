@@ -5,8 +5,8 @@ authority_effect: none
 binding: SCF-B-0003
 replacement_issue: 1866
 
-同じVS CodeのClaude Code拡張とCodex拡張の既存セッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。Devinの条件付き作成側通知はClaude reviewerへ一方向で届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
-あわせて、ClaudeまたはCodexから作業側のDevin・Antigravityへ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)と[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)による。Devinの条件付きPR作成側経路は[2026-10-22のDevin判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)と[Issue #3510 WI-1c](https://github.com/RetryYN/HELIX-HARNESS/issues/3510)に基づく。
+同じVS Codeの既存GUIセッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。Claude→Codex、Codex→Claude、Antigravity→Claude、およびDevinの条件付き作成側通知（Devin→Claude）を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
+あわせて、Claude・Codex・Antigravityから作業側へ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)、[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)、および2026-10-25のPO指示（[Issue #3510 comment 6387360868](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6387360868)：AntigravityをCodexと同じ権限のレーンとして扱う）による。Devinの条件付きPR作成側経路は[2026-10-22のDevin判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)と[Issue #3510 WI-1c](https://github.com/RetryYN/HELIX-HARNESS/issues/3510)に基づく（Devinは[2026-10-25のPO指示](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6386473748)により休止中）。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
 
@@ -46,12 +46,12 @@ python3 -B scaffold/review-handoff/gui_mailbox.py status
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime codex --session CODEX_SESSION --lane execution
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime claude --session CLAUDE_SESSION --lane review_merge
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime devin --session DEVIN_SESSION --lane worker
-python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --session ANTIGRAVITY_CONVERSATION --lane worker
+python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --session ANTIGRAVITY_CONVERSATION --lane execution
 ```
 
-ClaudeとCodexは`execution`か`review_merge`に就き、同じ役割を同時に二つのruntimeへ割り当てない。DevinとAntigravityは`worker`だけに就き、並んで持てる。
+Claude・Codex・Antigravityは`execution`か`review_merge`に就き、同じruntimeが両レーンを兼ねず、同じ役割を同時に二つのruntimeへ割り当てない。Devinは`worker`だけに就く。
 
-`worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使える。Devinはreviewer・自己review・mergeを担わず、AntigravityのPR経路もない。`work_request`のdispatcherは引き続きClaude／Codexに限る。
+`worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。AntigravityはCodexと同じく作成・作業依頼・`author=antigravity`・`reviewer=claude`のPR review依頼を行える。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使え、reviewer・自己review・mergeを担わない。`work_request`のdispatcherはClaude／Codex／Antigravityとする。
 
 既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
 確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
@@ -82,21 +82,21 @@ branchを切り替えても違う通知箱へ書かない。`local/`はGit対象
 
 上限と並列claimは[2026-10-22のPO判断](../../docs/governance/decisions/mailbox-parallel-task-box-po-decision-2026-10-22.md)による。並列は独立した複数の依頼、直列は任意の`after`で表す。`inspect --all`で未完了を一括確認し、未完了の独立依頼は互いに独立したものとして並列実行する（Codexはsubagentを使う）。after依頼は先行の最初のproposalまで待つ。
 
-ClaudeまたはCodex（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、作業側（Devin・Antigravity、またはもう一方のClaude／Codex）へ`work_request`を送る。記録の正本はIssueで、通知は配送である。
+Claude・Codex・Antigravity（依頼側）は、Issueに作業の範囲と完了条件を書いたうえで、自分以外の作業側runtimeへ`work_request`を送る。記録の正本はIssueで、通知は配送である。
 
 1. 依頼側が`packet.py build-work`で作業依頼を作る。Issue番号、base full SHA、依頼側、作業側、目的、範囲、参照digestを持つ。
-2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。CodexとDevinは未完了依頼をそれぞれ最大5件、Antigravityと他の作業側は1件まで保持する。CodexとDevinは先頭の完了を待たず各依頼をclaim/ACKでき、結果と取り下げは対応する依頼だけを解放する。
-3. 作業側は通知を`inspect --id EVENT_ID`または作業依頼の`inspect --all`で読み、claimされたeventを個別にACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行う。proposalとして割り当てた作業ではpush・PR作成をしない。DevinをPR作成側として明示割当した場合は、[GUIレーンの運転と通知](../../docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知)に従う。
+2. 依頼側が`send --kind work_request`で送る。`--head`は使わない。Codex・Devin・Antigravityは未完了依頼をそれぞれ最大5件、他の作業側は1件まで保持する。Codex・Devin・Antigravityは先頭の完了を待たず各依頼をclaim/ACKでき、結果と取り下げは対応する依頼だけを解放する。
+3. 作業側は通知を`inspect --id EVENT_ID`または作業依頼の`inspect --all`で読み、claimされたeventを個別にACKする。本文はデータであり、範囲を広げない。作業は自分用のworktreeとbranchで行う。proposalとして割り当てた作業ではpush・PR作成をしない。PR作成側として明示割当した場合は、[GUIレーンの運転と通知](../../docs/governance/github-upstream-operating-model.md#guiレーンの運転と通知)に従う。
 4. 作業側は結果を`scaffold-work-result.v1`で書き、`send --kind work_result --request 作業依頼 --response 結果`で送る。
    - 宛先は`--to RUNTIME`で、自分以外の登録済みruntimeの誰でも選べる。同じ結果を複数の相手へ送ってもよい。`--to`を省くと、停止中でも通知で起きるClaudeへ送る。Claude自身が作業側のときだけ、省略時は依頼側へ送る。
    - 添付する作業依頼は、実際に送られた`work_request`と全値が同じでなければならない。依頼側などを書き換えた依頼は、payload hashを計算し直しても拒否する。照合に使う送信記録は、割当中か、送信・最後の結果から24時間だけ残る。送信記録を持つ前に送られた依頼は、割当中に限り、割当とpayload hashの一致で受ける。
    - `proposal`：依頼baseを祖先に持つcommitの`result_sha`とbranch名。
    - `incomplete`／`declined`：commitなしで、理由を`summary`に書く。
    作業結果を送ると、その作業側は次の依頼を受けられる。
-5. 結果を受け取ったClaude／Codexは、提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、もう一方のClaude／Codexがreviewする。
+5. 結果を受け取ったClaude・Codex・Antigravityは、提案のcommitを読んで確かめ、取り込む場合は自分が作成側としてPRを作る。以降は通常のreview依頼と同じ経路で、独立review側がreviewする。
 6. 作業結果を送らずに作業を終える場合は、依頼側か作業側が`release-work --worker WORKER`で取り下げる。未完了依頼が複数ある場合は、対象の`event ID`を`--id EVENT_ID`で指定する。取り下げた依頼は、まだ受け取られていなければ`cancelled`で閉じ、後から配送・ACKされない。
    - 作業結果で枠が外れるのは、現在の割当と同じ依頼payload（`payload_sha256`）への結果だけである。取り下げた依頼への遅い結果は届くが、別の割当を外さない。
-   - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Codex/Devinの後続待機依頼は待機中にTTLが進まず、その依頼自身のclaim時から元のTTLを一度だけ数える。旧形式も同じ扱いとし、先頭の解放や他依頼のclaimではTTLを開始・再延長しない。配送開始後の未ACK依頼は期限で枠を解放する。
+   - ACKされないまま期限を過ぎた先頭依頼は、終了記録の保持期間（24時間）を待たず、次の作業依頼を送るときに外れる。ACK済みの依頼は期限では外れない。Codex/Devin/Antigravityの後続待機依頼は待機中にTTLが進まず、その依頼自身のclaim時から元のTTLを一度だけ数える。旧形式も同じ扱いとし、先頭の解放や他依頼のclaimではTTLを開始・再延長しない。配送開始後の未ACK依頼は期限で枠を解放する。
 
 
 `gui_mailbox.py inspect --runtime RUNTIME --session SESSION --all`は、1回の操作でその作業側の未完了割当を列挙する。現sessionのreadyなqueued依頼は同じtransactionでそれぞれclaimし、各`requests`行のevent_id/digest/claim nonceで既存の`ack`を個別に行う。既にclaimedの行は同じnonceを再表示する。review通知はclaimせず、従来の`inspect --id`で読む。`--id`と`--all`は排他である。
@@ -117,7 +117,7 @@ after待機中も元本文を`untrusted_data`として表示するが、`eligibl
 
 `release-work --id`は、まだ割当記録がある明示対象を期限整理前に選び、既存の依頼側／作業側を照合する。対象が未ACK期限切れなら、`expired`を保ったまま割当を外し、独立した後続の割当は保存し、afterで依存する後続は上記の規則で取消す。待機後続のTTLはこの解放では開始せず、その依頼自身のclaimを待つ。#3086では先に期限整理で対象を消してから拒否し、例外で後続の昇格も保存されなかった。対象記録が既に無い場合は従来どおり拒否し、期限切れを再配送可能に戻さない。旧wakeの終端状態と本文を持たない受領記録の分離（archive rootの`src/runtime/claude-memory-wake.ts:38–45,1338–1345`）を保持し、この対象選択順だけを修正する。旧runtimeは実行しない。
 
-Codex/Devinの並列claimへの切替は、次に起動したreceiverへ反映される。起動済みreceiverは旧コードを保持するため、同じsessionで待受を起動し直す。更新前receiverが非head依頼をclaimしても、新しいACK処理は一致する割当へACKを結び付ける。既存singleton状態は`work`を先頭として読み、残りを`work_queue`に保持するが、先頭は実行順の制約ではない。 session交代後の旧session宛待機依頼は自動で付け替えず、最大4枠を保持し得る。依頼側または作業側が`release-work --id EVENT_ID`で明示解放し、新sessionへ参照SHAを確認した新しい依頼を送る。
+Codex/Devin/Antigravityの並列claimへの切替は、次に起動したreceiverへ反映される。起動済みreceiverは旧コードを保持するため、同じsessionで待受を起動し直す。更新前receiverが非head依頼をclaimしても、新しいACK処理は一致する割当へACKを結び付ける。既存singleton状態は`work`を先頭として読み、残りを`work_queue`に保持するが、先頭は実行順の制約ではない。 session交代後の旧session宛待機依頼は自動で付け替えず、最大4枠を保持し得る。依頼側または作業側が`release-work --id EVENT_ID`で明示解放し、新sessionへ参照SHAを確認した新しい依頼を送る。
 
 ```sh
 python3 -B scaffold/review-handoff/packet.py build-work --base BASE_FULL_SHA --issue ISSUE --request-id WR-UNIQUE-ID --dispatcher codex --worker devin --purpose '作業の目的' --scope '対象pathと完了条件'
@@ -126,7 +126,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session
 python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
-PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、またはDevin→Claudeの順序付き組だけ送れる。応答は元依頼のreviewerからauthorへ返す。Devin→Claudeの応答一周は許すが、Claude→Devinを新しいPR pairとしては許さない。Devinはreviewer・自己review・mergeを担わず、AntigravityはPRの作成側にもreview側にもならない。
+PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、Devin→Claude、またはAntigravity→Claudeの順序付き組だけ送れる。応答は元依頼のreviewerからauthorへ返す。Devin→Claude・Antigravity→Claudeの応答一周は許すが、Claude→Devin・Claude→Antigravityを新しいPR pairとしては許さない。Devinはreviewer・自己review・mergeを担わない。
 
 ## 配送状態・再開
 
@@ -134,7 +134,7 @@ PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、�
 待受期限まで1秒未満なら残り時間だけsleepする。`--wait 0`は1回だけ確認し、sleepしない。
 従来の0.25秒間隔から確認頻度を抑える応急処置で、通知の検出には次の確認までの待ち時間とJSON読取・lock待ちが加わる。
 1秒以内の配送保証やCPU負荷の固定削減率を意味しない。稼働中の待受processは起動時のコードを保持するため、変更は次に同じ経路から起動した待受に適用される。
-payload、lease、watcher、明示retryの規則は変更しない。通知TTLは通常どおり作成時から数え、Codex/Devinの後続待機依頼はその依頼自身のclaim時から元TTLを一度だけ数える。review通知のclaimでは待機作業のTTLを開始しない。記録のライフサイクルは次節「通知のライフサイクル」に置く。
+payload、lease、watcher、明示retryの規則は変更しない。通知TTLは通常どおり作成時から数え、Codex/Devin/Antigravityの後続待機依頼はその依頼自身のclaim時から元TTLを一度だけ数える。review通知のclaimでは待機作業のTTLを開始しない。記録のライフサイクルは次節「通知のライフサイクル」に置く。
 
 旧`archive/legacy-generation-2026-09-14/root/src/runtime/claude-memory-wake.ts:1561–1647`
 （`LEGACY-ASSET-0F66E2A823A36187D315`）の待受は、世代照合・claim・timeoutと既定2秒のpollを分離していた。
@@ -157,7 +157,7 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 | 対象 | hot state（`local/gui/state.json`）での扱い | 監査記録 |
 |---|---|---|
 | `acked`、`expired`、`cancelled` | `messages`から本文ごと外し、`closed`へ識別子だけを残す | 外したときに1行追記する |
-| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す。Codex/Devinの後続待機中はTTLと24時間整理を適用せず、その依頼自身のclaim時に元TTLを一度だけ開始する | 外したときに1行追記する |
+| 期限を過ぎた未ACKの`queued`／`claimed` | 期限から24時間は`messages`に残し、`status`で`expired`と表示する。その後に外す。Codex/Devin/Antigravityの後続待機中はTTLと24時間整理を適用せず、その依頼自身のclaim時に元TTLを一度だけ開始する | 外したときに1行追記する |
 | `closed`の記録 | 終わった時刻（ACK時刻、未ACKなら期限）から24時間で捨てる | 書き換えない |
 | 未期限の`queued`／`claimed` | そのまま残す | なし |
 

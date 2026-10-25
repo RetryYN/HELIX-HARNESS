@@ -112,15 +112,18 @@ class GuiChecks(unittest.TestCase):
         self.assertEqual(data["lanes"]["codex"]["lane"], "execution")
 
     def test_devin_pr_route_rejects_other_pairs(self):
-        # Devin reviewer、Claude/CodexからDevin、DevinからCodex/Antigravityを拒否する。
+        # Devin/Antigravity reviewer、Claude/CodexからDevin/Antigravity、Devin/AntigravityからCodex等を拒否する。
         data = copy.deepcopy(self.data)
+        data["lanes"].pop("codex")
+        g.bind(data, "antigravity", "agy-gui", "execution", 60, self.now - 120)
+        g.bind(data, "codex", "codex-gui", "execution", 60, self.now)
         g.bind(data, "devin", "devin-gui", "worker", 60, self.now)
-        g.bind(data, "antigravity", "agy-gui", "worker", 60, self.now)
         sessions = {"claude": "claude-gui", "codex": "codex-gui",
                     "devin": "devin-gui", "antigravity": "agy-gui"}
         pairs = (("claude", "devin"), ("codex", "devin"), ("claude", "claude"),
                  ("codex", "codex"), ("devin", "codex"), ("devin", "devin"), ("devin", "antigravity"),
-                 ("antigravity", "devin"), ("antigravity", "claude"))
+                 ("claude", "antigravity"), ("codex", "antigravity"),
+                 ("antigravity", "devin"), ("antigravity", "codex"), ("antigravity", "antigravity"))
         for i, (author, reviewer) in enumerate(pairs):
             request = dict(self.request, author=author, reviewer=reviewer)
             core = {k: v for k, v in request.items() if k != "payload_sha256"}
@@ -128,6 +131,8 @@ class GuiChecks(unittest.TestCase):
             with self.subTest(pair=(author, reviewer)):
                 with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
                     p.validate(request, self.head, self.head)
+                for other in ("codex", "antigravity"):
+                    data["lanes"][other]["expires"] = self.now + 60 if other == author else self.now - 1
                 with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
                     g.send(data, author, sessions[author], "invalid-pair-%d" % i,
                            "review_request", request, None, 60, self.now)
@@ -135,9 +140,33 @@ class GuiChecks(unittest.TestCase):
                 response.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
                                 request_payload_sha256=request["payload_sha256"], result="no_findings",
                                 findings=[], unreviewed=[])
+                for other in ("codex", "antigravity"):
+                    data["lanes"][other]["expires"] = self.now + 60 if other == reviewer else self.now - 1
                 with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
                     g.send(data, reviewer, sessions[reviewer], "invalid-response-pair-%d" % i,
                            "review_response", request, response, 60, self.now)
+        # Antigravity author -> Claude reviewerの往復を確認する。
+        data["lanes"]["codex"]["expires"] = self.now - 1
+        g.bind(data, "antigravity", "agy-gui", "execution", 60, self.now)
+        agy_req = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build", "--base", self.head,
+            "--head", self.head, "--pr", "1", "--request-id", "GUI-AGY-REVIEW",
+            "--author", "antigravity", "--purpose", "Antigravity authorのreview経路",
+            "--scope", "合成入力のみ"
+        ]))
+        self.assertEqual((agy_req["author"], agy_req["reviewer"]), ("antigravity", "claude"))
+        sent = g.send(data, "antigravity", "agy-gui", "agy-review-req", "review_request", agy_req, None, 60, self.now)
+        self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
+        claimed = g.claim(data, "claude", "claude-gui", self.now)
+        g.ack(data, "agy-review-req", "claude", "claude-gui", claimed["digest"], claimed["claim"]["nonce"], self.now)
+        agy_resp = {k: agy_req[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+        agy_resp.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                        request_payload_sha256=agy_req["payload_sha256"], result="no_findings",
+                        findings=[], unreviewed=[])
+        reply = g.send(data, "claude", "claude-gui", "agy-review-resp", "review_response", agy_req, agy_resp, 60, self.now)
+        self.assertEqual(reply["payload"]["receiver_runtime"], "antigravity")
+        received = g.claim(data, "antigravity", "agy-gui", self.now)
+        g.ack(data, "agy-review-resp", "antigravity", "agy-gui", received["digest"], received["claim"]["nonce"], self.now)
 
     def test_send_queues_for_lapsed_registered_session(self):
         # 宛先leaseが切れても登録済みsessionへ積み、そのsessionのhook activityでleaseが戻れば受け取れる。
@@ -719,18 +748,20 @@ class GuiChecks(unittest.TestCase):
                     result_sha=None, branch=None, summary=["合成入力。提案なし"])
 
     def test_four_runtime_lanes(self):
-        # DevinとAntigravityは作業だけのworkerレーン。複数が並べる。ClaudeとCodexの排他レーンは保つ。
+        # Claude・Codex・Antigravityはexecution/review_mergeの排他レーン、Devinはworkerレーン。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
-        for runtime, lane in (("devin", "execution"), ("antigravity", "review_merge"), ("claude", "worker")):
-            with self.assertRaises(ValueError): g.bind(self.data, runtime, runtime + "-x", lane, 60, self.now + 61)
+        for lane in ("execution", "review_merge"):
+            with self.assertRaises(ValueError): g.bind(self.data, "antigravity", "agy-gui", lane, 60, self.now)
+        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now + 61)
+        for runtime, lane in (("devin", "execution"), ("antigravity", "worker"), ("claude", "worker")):
+            with self.assertRaises(ValueError): g.bind(self.data, runtime, runtime + "-x", lane, 60, self.now + 122)
         data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(data, "codex", "codex-gui", "review_merge", 60, self.now)
         with self.assertRaises(ValueError): g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
+        with self.assertRaises(ValueError): g.bind(data, "antigravity", "agy-gui", "review_merge", 60, self.now)
 
     def test_work_request_routing(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
         work = self.work()
         message = g.send(self.data, "claude", "claude-gui", "work-1", "work_request", work, None, 60, self.now)
         self.assertEqual(message["payload"]["receiver_runtime"], "devin")
@@ -743,11 +774,13 @@ class GuiChecks(unittest.TestCase):
         g.send(self.data, "claude", "claude-gui", "work-2", "work_request", work2, None, 60, self.now)
         g.send(self.data, "claude", "claude-gui", "work-3", "work_request", work3, None, 60, self.now)
         self.assertEqual([item["event_id"] for item in g.work_items(self.data, "devin")], ["work-1", "work-2", "work-3"])
-        # Antigravityの上限1件は維持。
-        g.send(self.data, "claude", "claude-gui", "agy-work-1", "work_request", self.work("antigravity", "WORK-AGY-1"), None, 60, self.now)
+        # WORK_CAPACITY対象外（claude）の上限1件は維持。
+        g.send(self.data, "codex", "codex-gui", "claude-work-1", "work_request",
+               self.work("claude", "WORK-CLAUDE-1", dispatcher="codex"), None, 60, self.now)
         with self.assertRaises(ValueError):
-            g.send(self.data, "claude", "claude-gui", "agy-work-2", "work_request", self.work("antigravity", "WORK-4"), None, 60, self.now)
-        # 作業側は依頼を送れず、Devin→CodexのPR review依頼も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
+            g.send(self.data, "codex", "codex-gui", "claude-work-2", "work_request",
+                   self.work("claude", "WORK-CLAUDE-2", dispatcher="codex"), None, 60, self.now)
+        # Devinは依頼を送れず、Devin→CodexのPR review依頼も送れない。結果は作業結果で依頼側へ返し、それで作業依頼が終わる。
         with self.assertRaises(ValueError):
             g.send(self.data, "devin", "devin-gui", "work-4", "work_request", dict(work, dispatcher="devin"), None, 60, self.now)
         with self.assertRaisesRegex(ValueError, "PR作成側・review側の組合せ対象外"):
@@ -757,7 +790,7 @@ class GuiChecks(unittest.TestCase):
             g.send(self.data, "devin", "devin-gui", "devin-review", "review_request", denied_pair, None, 60, self.now)
         result = self.result(work)
         with self.assertRaises(ValueError):
-            g.send(self.data, "antigravity", "agy-gui", "result-x", "work_result", work, result, 60, self.now)
+            g.send(self.data, "codex", "codex-gui", "result-x", "work_result", work, result, 60, self.now)
         sent = g.send(self.data, "devin", "devin-gui", "result-1", "work_result", work, result, 60, self.now)
         self.assertEqual(sent["payload"]["receiver_runtime"], "claude")
         self.assertEqual(self.data["work"]["devin"]["event_id"], "work-2")
@@ -770,9 +803,9 @@ class GuiChecks(unittest.TestCase):
         g.release_work(self.data, "claude", "claude-gui", "devin", self.now, "work-3")
         self.assertNotIn("devin", self.data["work"])
         # 中止は依頼した側か作業側だけ。
-        with self.assertRaises(ValueError): g.release_work(self.data, "codex", "codex-gui", "antigravity", self.now)
-        g.release_work(self.data, "antigravity", "agy-gui", "antigravity", self.now)
-        self.assertNotIn("antigravity", self.data["work"])
+        with self.assertRaises(ValueError): g.release_work(self.data, "devin", "devin-gui", "claude", self.now)
+        g.release_work(self.data, "claude", "claude-gui", "claude", self.now)
+        self.assertNotIn("claude", self.data["work"])
         # 作業依頼はreview依頼の種類として送れず、review依頼は作業依頼として送れない。
         with self.assertRaises(ValueError):
             g.send(self.data, "claude", "claude-gui", "mix-1", "review_request", work, None, 60, self.now)
@@ -945,11 +978,14 @@ class GuiChecks(unittest.TestCase):
 
     def test_parallel_waiting_requests_keep_full_delivery_ttl(self):
         # #3405: 先行作業中の待機時間を後続の配送TTLから引かない。
-        for worker in ("codex", "devin"):
+        for worker in ("codex", "devin", "antigravity"):
             with self.subTest(worker=worker):
                 self.setUp()
                 session = worker + "-gui"
                 if worker == "devin": g.bind(self.data, worker, session, "worker", 60, self.now)
+                if worker == "antigravity":
+                    self.data["lanes"].pop("codex")
+                    g.bind(self.data, worker, session, "execution", 60, self.now)
                 g.send(self.data, "claude", "claude-gui", "work-0", "work_request", self.work(worker, "WORK-0"), None, 1, self.now)
                 head = g.claim(self.data, worker, session, self.now)
                 g.ack(self.data, "work-0", worker, session, head["digest"], head["claim"]["nonce"], self.now)
@@ -965,11 +1001,14 @@ class GuiChecks(unittest.TestCase):
                 self.assertEqual(len(g.work_items(self.data, worker)), 3)
 
     def test_five_outstanding_requests_claim_and_finish_independently(self):
-        for worker in ("codex", "devin"):
+        for worker in ("codex", "devin", "antigravity"):
             with self.subTest(worker=worker):
                 self.setUp()
                 session = worker + "-gui"
                 if worker == "devin": g.bind(self.data, worker, session, "worker", 60, self.now)
+                if worker == "antigravity":
+                    self.data["lanes"].pop("codex")
+                    g.bind(self.data, worker, session, "execution", 60, self.now)
                 requests = [self.work(worker, f"WORK-{i}") for i in range(6)]
                 for i in range(5):
                     g.send(self.data, "claude", "claude-gui", f"work-{i}", "work_request", requests[i], None, 1, self.now)
@@ -1040,7 +1079,9 @@ class GuiChecks(unittest.TestCase):
     def test_work_result_reaches_any_runtime(self):
         # #3404: 結果は自分以外の誰へでも送れ、省略時は通知で起きるClaudeへ届く。依頼側の書換えは拒否する。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        self.data["lanes"].pop("codex")
+        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now - 120)
+        g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now)
         work = self.work(dispatcher="codex")
         g.send(self.data, "codex", "codex-gui", "work-1", "work_request", work, None, 60, self.now)
         result = self.result(work)
@@ -1196,7 +1237,8 @@ class GuiChecks(unittest.TestCase):
 
     def test_worker_hook_output(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        g.bind(self.data, "antigravity", "agy-gui", "worker", 60, self.now)
+        self.data["lanes"].pop("codex")
+        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now)
         g.send(self.data, "claude", "claude-gui", "work-1", "work_request", self.work(), None, 60, self.now)
         g.send(self.data, "claude", "claude-gui", "work-2", "work_request", self.work("antigravity", "WORK-2"), None, 60, self.now)
         from contextlib import contextmanager

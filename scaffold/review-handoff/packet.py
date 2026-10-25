@@ -19,14 +19,14 @@ REFERENCES = {
     "docs/governance/candidates/legacy-rule-derived-requirements.md": "candidate_reference_only",
     "scaffold/governance/index.md": "scaffold_reference_only",
 }
-# 2026-10-19のPO判断（docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md）。
-# ClaudeとCodexは作成・独立review・作業依頼を担う。DevinはClaude reviewerに限る条件付き作成側経路を持つ。
-# DevinとAntigravityは作業側にも就く。PR当事者pairは別途限定し、作業dispatcherは従来どおりClaude/Codexとする。
+# 2026-10-19のPO判断（docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md）と
+# 2026-10-25のPO指示（Issue #3510 comment 6387360868）。
+# Claude・Codex・Antigravityは作成・独立review・作業依頼を担う。DevinはClaude reviewerに限る条件付き作成側経路を持つ。
 # Devinの条件付き作成側pairは2026-10-22のDevin判断記録とIssue #3510 WI-1cに基づく。
 RUNTIMES = ("claude", "codex", "devin", "antigravity")
-# 作業依頼dispatcherは現行どおりClaude／Codexだけ。
-PR_RUNTIMES = ("claude", "codex")
-PR_REVIEWER = {"claude": "codex", "codex": "claude", "devin": "claude"}
+# 作業依頼dispatcherはClaude／Codex／Antigravity。
+PR_RUNTIMES = ("claude", "codex", "antigravity")
+PR_REVIEWER = {"claude": "codex", "codex": "claude", "devin": "claude", "antigravity": "claude"}
 
 
 def require(ok, message):
