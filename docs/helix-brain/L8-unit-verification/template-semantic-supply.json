@@ -125499,6 +125499,233 @@
       "expected_return_canonical_sha256": "d7dfe9d3352888b646a63e09c9bbcb03bfa6782ee3a163cf2a80e0cd96aff1da"
     }
   },
+  "definition_meaning_M2b_pair_origin_verification": {
+    "id": "HELIXBRAIN-L8-032-M2B-PAIR-ORIGIN-001",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "凍結M2b slot0の1 callに対するMeaningPairAnnotatedResultの全値・全member順・pair originを再構成する。公開axisは既存L9期待を再利用し、private origin valuesは固定raw/caller sourceから導出する。実owner/資格/reader/helper実行は含めない。",
+    "execution_boundary_ja": "固定Git blobのJSON metadata読取、source/case/hash/pointer照合、標準RFC6902の静的copy、candidate bytesの疎な挿入のみ。meaning_pair_axes_with_origins、reader、helper、predicate、sort、codec、runtime、旧CLI/hook/test/CI/new CIは実行しない。候補は実関数結果・qualification・受入・authorityを意味しない。",
+    "not_observed_ja": [
+      "fn1 native全返却とglobal conflict/Finding origin-index写像",
+      "primary consumerの非空claims返却",
+      "special reader/source、全17 calls/全9関数",
+      "3 facts以上や同値axisの別originを含む一般化",
+      "実qualification、実owner供給、実reader/helper/sort/codec/runtime",
+      "pending_source emissionと非空pending_comparison_occurrence_indices",
+      "matched=falseのcomparison occurrence",
+      "同値raw factの反復によりMeaningPairFactOrigin.raw_fact_indicesが複数になる場合",
+      "raw comparisonの重複によりMeaningPairOriginValue.comparison_occurrencesが複数になる場合",
+      "unknown/known state",
+      "guard nullと正常empty resultの枝の実際の返却",
+      "公開L9 axes[1].definition conflictはL5 conflict_separationにより独立eventとして扱われ、meaning_pair_axes_with_originsの今回のhelper返却対象外である"
+    ],
+    "case_count": 1,
+    "source_basis": [
+      {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","bytes":1018953,"pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection","role_ja":"actual-M L5のMeaningPairAnnotatedResult/Origin closed fields、値・順・producer契約。M2bでL5本文は変更しない。"},
+      {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","bytes":11783069,"pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification","public_axis_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/expected_comparison/axes/0","role_ja":"actual-M L9のfixed raw、M2a RFC patch/wrapper再構成、公開Comparison axis0再利用のtracked basis。"},
+      {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"d41734ed6250e93cfd108c226864e5242bfffe339346bb95364058ee90f34355","bytes":7047743,"pointer":"/definition_meaning_fn1_C_full_walk_verification","role_ja":"実在するactual-M L8隣接node。配置・既存layoutの来歴だけを示す。新node不存在確認は別のplacement metadata。"},
+      {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"e1269d98e2a283db688dfca5a078396cdce1731997b6adea8934dc3835073b67","bytes":21978975,"pointer":"/materials/0/raw_input","canonical_sha256":"c552d3ab0da59ea20de9dc5a065a5d23e5eb948fc0e080172a778d351eb92f30","ordered_sha256":"80835fee52e5567e07d1a0241ca6e565e9196e3164390636c2c491a2c14b3159","role_ja":"固定履歴P15 raw seed。actual-M sidefile identityとは別revision/pointerとして保持。"}
+    ],
+    "legacy_sources": [
+      {"asset_id":"LEGACY-ASSET-4F5A1F0739EC1111D91D","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb","bytes":6317,"lines":["16–45","61–92"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L4のJSON構造、owner/source/独立証拠、明示stateとmissing/unknown/N/Aの区別を読む歴史資料。旧schema・式・lifecycleの移植や実行根拠にはしない。"},
+      {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","bytes":7755,"lines":["30–78","110–148"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L5のtemplate field/trace/owner/failure由来とmissing/unknown/N/Aの区別を比較する歴史資料。旧registry/CLI/runtime/CI/test/承認lifecycleは移さない。"},
+      {"asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","bytes":11254,"lines":["65–101 UTW014/020/021"],"authority_status":"historical","disposition":"unresolved","role_ja":"前身監査のfailure contextを照合する歴史資料。再発防止の証明や新要求/gateの根拠にはしない。"}
+    ],
+    "legacy_rederivation_ja": "actual-M L9のlegacy_sources3件とactual-M ledger行を、上記asset ID/path/SHA/bytes/ranges/statusのまま別々に保持する。意味再導出では、旧L4をauthority/owner/source境界とunknown/N/A区別、旧L5をsource atom・trace・owner/failure/oracle/pairの比較、UTW-014/020/021をabsence blindness・partial-failureの診断粒度・時刻/自己申告のcompletion failure contextとして参照する。これらの歴史資料から今回のstate/owner/qualificationを作らず、合成入力の原fact、comparison occurrence、source locatorと各origin copyを固定L5契約に照らす。局所観測で由来しない点はunknown/未観測のまま保持し、旧schema/registry/evaluator/runtime/lifecycle/parity gate、旧failureからの新要求・gateは移さない。legacy authority_status/dispositionはhistory/unresolvedのまま。",
+    "legacy_ledger_pin": {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/governance/legacy-asset-disposition.jsonl","file_sha256":"cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c","authority_status":"historical","disposition":"unresolved"},
+    "current_L5_binding_reuse": {"L8_pointer":"/source_return_verification/candidate_design_bytes_binding","role_ja":"SOURCE-RETURNの既存current L5全bytes recordへのlogical pointerだけを再利用する。新しいgraph edge/current hashを複製せず、SOURCE-RETURN constructorの検証範囲とL5の設計・実装意味を変更しない。"},
+    "placement": {
+      "insert_after": "/definition_meaning_fn1_C_full_walk_verification",
+      "insert_before": "/definition_meaning_D27_claim_intent_verification",
+      "new_node_presence_at_base": false
+    },
+    "parent_source_reconstruction": {
+      "fixed_raw_input": {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"e1269d98e2a283db688dfca5a078396cdce1731997b6adea8934dc3835073b67","pointer":"/materials/0/raw_input","canonical_sha256":"c552d3ab0da59ea20de9dc5a065a5d23e5eb948fc0e080172a778d351eb92f30","ordered_sha256":"80835fee52e5567e07d1a0241ca6e565e9196e3164390636c2c491a2c14b3159"},
+      "fixed_L9_recipe": {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","node_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification","case_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0","raw_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/fixed_raw_input","patch_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch","wrapper_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals","patch_count":9,"wrapper_literals":{"symbol":"compare_descriptor_definitions","input_issues":[],"unusable_source_refs":[]},"raw_and_caller_are_reconstructed_from_tracked_source":true},
+      "parent_input_comparator": {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json",
+        "sha256": "26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574",
+        "case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
+        "case_member_order": [
+          "case_id",
+          "target_slot_index",
+          "caller",
+          "rfc6902_add_patch",
+          "added_fixture_literals",
+          "digest_and_null_sha_boundary",
+          "source_derivation_ja"
+        ],
+        "raw_canonical_sha256": "bab614d66359100f46b94d5c629ccacdef3da24ca8b533f16924d4dc5ae5f57a",
+        "raw_ordered_sha256": "4fb3121fa084cb3ff0a477541a54103f3e30b79a4235ccf8a735025411654a8a",
+        "caller_canonical_sha256": "129eec79669a6c16c74fd3148d134fb140973cac218fa2623d6f36544d698db0",
+        "caller_ordered_sha256": "8d31cdb7df1ad5486c2ad78923c67b744d7197e9e76b05294548809799765f48",
+        "role": "authorityを持たない比較資料のみ"
+      },
+      "argument_copy_rule_ja": "M2bのcall.arguments.vは再構成した親caller.context.validated全体をcopyし、slotはそのv.input.descriptors[0]全体をcopyする。親input/caller全値と順序をsourceとし、期待出力から入力を作らない。"
+    },
+    "cases": [
+      {
+        "case_id": "M2B-SLOT0-NONEMPTY-PAIR-ORIGIN",
+        "parent_case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
+        "call": {
+          "symbol": "meaning_pair_axes_with_origins",
+          "argument_member_order": [
+            "v",
+            "slot"
+          ],
+          "v_source_pointer": "/cases/0/caller/context/validated",
+          "slot_source_pointer": "/cases/0/caller/context/validated/input/descriptors/0",
+          "v_canonical_sha256": "944c409272721a615d600bbff17d8ba5c7f8bc9e2d896b59eff3960319faaed5",
+          "v_ordered_sha256": "211d75daf4d166808b73614c53b1cb9461b6a2e404756efb3f04817552d83a66",
+          "slot_canonical_sha256": "2b599deabce2b12699ab9a03c131a1738ac3f8a90f2590bc4e57677f8daa2905",
+          "slot_ordered_sha256": "29a376254b38e8a6323116fe1abdaa1cde8af0b09386f1a2cbe5d28232500325"
+        },
+        "argument_derivation": {
+          "parent_input_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json",
+          "parent_input_sha256": "26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574",
+          "parent_case_member_order": [
+            "case_id",
+            "target_slot_index",
+            "caller",
+            "rfc6902_add_patch",
+            "added_fixture_literals",
+            "digest_and_null_sha_boundary",
+            "source_derivation_ja"
+          ],
+          "tracked_L9_revision": "d55c37d50e617cc90bc3ab62f77484090f5d8120",
+          "tracked_L9_path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "tracked_L9_file_sha256": "1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128",
+          "tracked_L9_node_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification",
+          "tracked_L9_case_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0",
+          "tracked_L9_fixed_raw_input_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/fixed_raw_input",
+          "tracked_L9_patch_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch",
+          "tracked_L9_frozen_case_fingerprint_recipe_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe",
+          "tracked_L9_wrapper_literals_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals",
+          "v_source_pointer": "/cases/0/caller/context/validated",
+          "slot_source_pointer": "/cases/0/caller/context/validated/input/descriptors/0",
+          "v_reconstructed_from_tracked_L9_recipe": true,
+          "argument_member_order": [
+            "v",
+            "slot"
+          ],
+          "copy_rule_ja": "vは親caller.context.validatedの全値・順序をdeep copyし、slotはそのv.input.descriptors[0]の全値・順序をdeep copyする。"
+        },
+        "qualification_boundary_ja": "親fixtureのinput_issues=[]かつunusable_source_refs=[]という条件付き入力だけを保持する。fn0、meaning_pair_axes_with_origins、helper guard、sort、readerは未実行で、実受理・実資格・実owner供給・返却結果を生成しない。",
+        "frozen_case_member_order": [
+          "case_id",
+          "parent_case_id",
+          "call",
+          "argument_derivation",
+          "qualification_boundary_ja"
+        ],
+        "call_member_order": [
+          "symbol",
+          "arguments"
+        ],
+        "case_fingerprints": {"case_id":"M2B-SLOT0-NONEMPTY-PAIR-ORIGIN","case_canonical_sha256":"e7cf30815f6ae41bdf2bdabb0bcc22066dfc2007ac6c58ffc6fdf43dfac8eb79","case_ordered_sha256":"a8306b107a20e8f52b5663ba84ffebd5aab22cd61e7e17a84916c8229a5632ac","case_member_order":["case_id","parent_case_id","call","argument_derivation","qualification_boundary_ja"],"call_canonical_sha256":"91eb650e619e7e53775afaf2c5d016306ec5683b61e356654f25b901caa01694","call_ordered_sha256":"c83b65e869ec9472e41b017e52daef27bc63ed6d36c49ada34f9059df2f49403","v_canonical_sha256":"944c409272721a615d600bbff17d8ba5c7f8bc9e2d896b59eff3960319faaed5","v_ordered_sha256":"211d75daf4d166808b73614c53b1cb9461b6a2e404756efb3f04817552d83a66","slot_canonical_sha256":"2b599deabce2b12699ab9a03c131a1738ac3f8a90f2590bc4e57677f8daa2905","slot_ordered_sha256":"29a376254b38e8a6323116fe1abdaa1cde8af0b09386f1a2cbe5d28232500325","parent_case_canonical_sha256":"88f5c6ad5738a3760dc78076e3a7b1a1167a9ac119eb65c3cf144e0499377396","parent_case_ordered_sha256":"0d83f7fca2cf4bfc029de9f2d7a60c2dcce3fd7933dd9f0f52f4403da9458d0d","parent_raw_input_canonical_sha256":"bab614d66359100f46b94d5c629ccacdef3da24ca8b533f16924d4dc5ae5f57a","parent_raw_input_ordered_sha256":"4fb3121fa084cb3ff0a477541a54103f3e30b79a4235ccf8a735025411654a8a","parent_caller_canonical_sha256":"129eec79669a6c16c74fd3148d134fb140973cac218fa2623d6f36544d698db0","parent_caller_ordered_sha256":"8d31cdb7df1ad5486c2ad78923c67b744d7197e9e76b05294548809799765f48"},
+        "result_type": "MeaningPairAnnotatedResult",
+        "expected_return_member_order": [
+          "axes",
+          "origins"
+        ],
+        "axis_result_member_order": [
+          "subject_ref",
+          "binding",
+          "axis",
+          "state",
+          "original_refs",
+          "reason",
+          "backflow_owner"
+        ],
+        "origin_member_order": [
+          "emission_kind",
+          "local_emission_ordinal",
+          "pair",
+          "pending_comparison_occurrence_indices",
+          "axis_index"
+        ],
+        "pair_origin_member_order": [
+          "left",
+          "right",
+          "comparison_occurrences"
+        ],
+        "fact_origin_member_order": [
+          "unique_fact_index",
+          "fact_value",
+          "raw_fact_indices"
+        ],
+        "comparison_occurrence_member_order": [
+          "input_index",
+          "original_value",
+          "matched"
+        ],
+        "expected_return_seed": {
+          "axes": [],
+          "origins": [
+            {
+              "emission_kind": "pair_summary",
+              "local_emission_ordinal": 0,
+              "pair": {
+                "left": {
+                  "unique_fact_index": 0,
+                  "fact_value": null,
+                  "raw_fact_indices": [
+                    1
+                  ]
+                },
+                "right": {
+                  "unique_fact_index": 1,
+                  "fact_value": null,
+                  "raw_fact_indices": [
+                    0
+                  ]
+                },
+                "comparison_occurrences": [
+                  {
+                    "input_index": 0,
+                    "original_value": null,
+                    "matched": true
+                  }
+                ]
+              },
+              "pending_comparison_occurrence_indices": [],
+              "axis_index": 0
+            }
+          ]
+        },
+        "result_guard_semantics_boundary_ja": "この凍結caseの最終resultはaxis/originを各1件持つ。seedのaxes=[]はcopy前の再構成placeholderであって、正常empty returnではない。L5固定契約ではaxes=nullは旧guardのreturn Noneだけでorigins=[]、それ以外はlen(axes)==len(origins)。正常empty axes[]とguard nullは区別し、この1 caseではどちらも観測したとはしない。",
+        "copy_operations": [
+          {"op":"copy","from":"/l9_axis_seed/0","path":"/expected_return/axes/-","source_revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","source_path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","source_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/expected_comparison/axes/0"},
+          {"op":"copy","from":"/input/descriptors/0/facts/1","path":"/expected_return/origins/0/pair/left/fact_value"},
+          {"op":"copy","from":"/input/descriptors/0/facts/0","path":"/expected_return/origins/0/pair/right/fact_value"},
+          {"op":"copy","from":"/input/meaning_comparisons/0","path":"/expected_return/origins/0/pair/comparison_occurrences/0/original_value"}
+        ],
+        "expected_result_hashes": {"canonical_sha256":"5e63d19a8885f85ffc01b89cd8c20e1392aa202d5299dfa99787f7e21a88bea5","ordered_sha256":"44d4de57170c4ff3587a7c2cc7d8a4f33014b48abc1c55ec3f76bfd9dddd679e"},
+        "derivation_ja": "公開axes[0]はtracked L9 expected axes[0]の全値copyであり、L9 axes[1]のdefinition conflictは別eventなのでこのhelper返却に含めない。private factのunique順とraw添字はL5 sort_by_json(ref)規則に従うとRIGHT-FACTがunique 0/raw [1]、FACT-01がunique 1/raw [0]となる。凍結comparisonはresolvedとして供給されているため、このpair summaryではpendingがなく、入力comparison occurrenceはmatched=true、local ordinalは0となる。これは固定sourceとcaseの静的導出であり、sortやhelperを実行していない。axis_index=0はこのhelper返却内のindexで、fn1全体のglobal indexを示さない。",
+        "case_fingerprint_reconstruction_ja": "frozen M2b caseのcase_fingerprintsは次のrecipeで再構成する。actual-M L9のfixed rawへ同node cases[0]の9 add patchを適用し、wrapper_literalsから親callerを組み立てて7-member parent caseとそのmember順を復元する。その親caseのcaller.context.validatedとinput.descriptors[0]を全値copyし、callを{symbol,arguments:{v,slot}}（argumentsの順はv,slot）として構成する。case_id,parent_case_id,展開したcall,argument_derivation,qualification_boundary_jaをfrozen_case_member_orderの順に並べてcase hashを計算する。frozen caseとfingerprint値自体は変更しない。",
+        "copy_root_definition_ja": "copy_operationsのRFC6902 root文書は {input:v.input, l9_axis_seed:[固定L9 axis0], expected_return:deepcopy(expected_return_seed)} とする。各operationではop/from/pathだけをRFC6902実行要素として配列順に適用し、source_revision/source_path/source_pointer等のprovenance fieldは実行指示ではないmetadataとして無視する。axis0をaxes末尾へ追加した後、inputのfacts[1], facts[0], meaning_comparisons[0]を3つのnull placeholderへcopyする。",
+        "pointer_resolution_basis_ja": "call.v_source_pointer、slot_source_pointerおよびargument_derivation内の同名pointerは、tracked L9 recipeから再構成した親case文書 {cases:[7-member parent case]} を基準に解決する。local parent_input_path/SHAは入力fingerprintとの比較資料を指し、pointer解決元ではない。",
+        "parent_input_comparator_role_ja": "parent_input_path/SHAはauthorityを持たない比較資料であり、tracked L9 recipeとsourceから復元できるcase/callerの代替sourceではない。"
+      }
+    ],
+    "oracle_provenance": {
+      "local_artifacts": [
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2b-pair-origin-immutable-inputs-R1.json","sha256":"e250e939448ee07a64e3b5e9f62e78a08ddcd2c89c379fe066c6a1ae8092cddd","role":"authorityを持たない凍結入力fingerprintの比較資料。tracked source basisではない"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2b-input-intake-R1.json","sha256":"4ef853b921f912edfa9933d19c56499bf7680f6e455518a156a44be32f8f3b5b","role":"authorityを持たない別作成と記録された入力intake。作成順序と相互未読はtracked外の自己申告であり第三者未検証。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json","sha256":"26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574","role":"authorityを持たない親入力・fingerprintの比較資料。raw再構成sourceではない"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2b-pair-origin-expected-R1.json","sha256":"4d08d0d7464d8af8190e63afea5035be1ec6369e91c894095db8188794bd8467","role":"authorityを持たないroot expectedの比較資料。再構成へcopyしない"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M2b-pair-origin-independent-expected-R1.json","sha256":"81d85271bbaf66b34f5abec2addba01454c64ed035ad532a7c50fde6d6007cd7","role":"authorityを持たないworker expectedの比較資料。再構成へcopyしない"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2b-oracle-agreement-R1.json","sha256":"85deacc21386a9765e74a344e302e0dbab5fccb2a42175d9af5adb416387a61f","role":"authorityを持たない期待値agreement・custody記録"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-actual-source-graph-R1.json","sha256":"bd02eaeaa30da8a5a5c4836dd04b1ef600ec4ee1b4bb17a20f982e7e6d888a56","role":"authorityを持たないactual-M source graphのbaseline・保持記録"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M2b-L8-assembly-plan-R2.json","sha256":"4bcb261e9d6ec38760c1f98305a3a0f4792a0e688d118334445f569d09c5e917","role":"authorityを持たない配置・再構成計画"}
+      ],
+      "local_artifact_status_ja": "固定Git source_basis、parent_source_reconstruction、call/case recipe、result seed、RFC6902 copy_operationsは追跡可能な再構成根拠である。frozen input/intake、root/worker expectations、agreementは別作成・別照合として記録された比較・custody用の非authority local記録である。入力は共有され、公開axisは両期待でtracked L9値を再利用する。作成者の分離、相互未読および固定時系列はtracked外の自己申告であり第三者未検証だが、tracked recipeによる入力・結果の再構成可能性とは別の限界である。L8 layout pointerは配置来歴のみを示す。",
+      "agreement_boundary_ja": "入力凍結後、root R1をworkerの新private table未読で固定した。worker literal表もrootの新private期待未読で固定し、rootは自身固定後にworker author全文をRead/ASTしmetadataだけ実行した。公開AxisResultは両者とも同じ既存tracked L9期待の明示再利用であり、新しいblind public期待ではない。新private originの全値と順序が一致し、比較後訂正は不要だった。",
+      "expected_artifacts_are_comparison_only": true
+    },
+    "preservation_ja": "M2bはL8新nodeの疎な追加だけ。A/B/C/D27および全既存L8 member/order/bytes、L4/L5/L9/WALK source blobs、5 sidefile refs、6 semantic hashes、current/historical schema splitを保持する。新L8 self hash/cycleやgraph edgeは作らない。",
+    "authority_effect": "none",
+    "operation_effect": "none"
+  },
   "definition_meaning_D27_claim_intent_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM-INTENT-READER",
