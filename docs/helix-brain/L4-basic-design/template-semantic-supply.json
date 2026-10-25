@@ -5918,11 +5918,11 @@
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
       "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
-      "not_finished": "m1a_finite_caller_bindingのmeasurement公開Comparison 1 caseだけをL9で追随した。L8 wholeと現行詳細設計・原meaning取得の基本契約との対応は未追随・未成立として保持する。"
+      "not_finished": "m1a_finite_caller_bindingのmeasurement/completion公開Comparison 2 casesをL9で追随した。L8 wholeと現行詳細設計・原meaning取得の基本契約との対応は未追随・未成立として保持する。"
     },
     "preservation_and_limits": [
       "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
-      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。m1a_finite_caller_bindingのmeasurement 1 caseを除き、新known/NA source/callerと独立wholeはまだ作成していない。",
+      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。m1a_finite_caller_bindingのmeasurement/completion 2 casesを今回の有限pairとして追補し、他の新known/NA source/callerと独立wholeは作成していない。",
       "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。それらの稼働不在をpure設計の新必須gateにもしない。"
     ],
     "call_bindings": {
@@ -6013,11 +6013,10 @@
     },
     "m1a_finite_caller_binding": {
       "id": "HELIXBRAIN-L4-032-M1A-FINITE-CALLER-BINDING",
-      "status": "初回measurement合成callerと公開Comparison範囲の有限basic binding候補。completion callerは後続actual merge/read-after後に同nodeへ追加予定。actual未実施。",
+      "status": "measurement/completionの合成callerと公開Comparison範囲を対象にした有限2-case basic binding候補。L8 wholeと詳細実装は未成立。actual reader未実施。",
       "requirements": ["HELIXBRAIN-L3-032-F01","HELIXBRAIN-L3-032-F02","HELIXBRAIN-L3-032-F03","HELIXBRAIN-L3-032-F06","HELIXBRAIN-L3-032-F09"],
-      "scope_ja": "初回は固定P15 raw inputのmeasurement slot 11一callerだけを対象に、原known definitionと追加の合成NA判断を別軸で扱うbasic契約を記録する。source/callerと同一Invocationの公開Comparison4全値・順序に限る。completion callerは後続actual merge/read-after後の同node追補へ分ける。",
-      "case_count": 1,
-      "deferred_case_ids": ["M1A-COMPLETION-ORIGINAL-NA-WITH-KNOWN-DEFINITION"],
+      "scope_ja": "固定P15 raw inputのmeasurement slot 11とcompletion slot 12の2 callerについて、原known definitionと各callerに追加された合成NA判断を別軸で扱うbasic契約を記録する。source/callerと同一Invocationの公開Comparison4全値・順序に限る。",
+      "case_count": 2,
       "source_basis": [
         {"revision":"b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"52ec63bace01664a1e047bceaaed402131dc36d3e3e22eb509942e0e0e6360da","bytes":767275,"basis_kind":"actual_M_snapshot"},
         {"revision":"b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"5febb0cc275f2c2b8e9474ff9796579ee13f21d21cd4f7da2fc8531900b526af","bytes":1018953,"basis_kind":"actual_M_snapshot"},
@@ -6051,7 +6050,13 @@
         "validated_member_order": ["input","input_issues","unusable_source_refs"],
         "qualification_boundary_ja": "fixtureのinput_issues=[]かつunusable_source_refs=[]は条件付き入力形。fn0を実行せず、実受理/実資格を成立させない。",
         "cases": [
-          {"case_id":"M1A-MEASUREMENT-ORIGINAL-NA-WITH-KNOWN-DEFINITION","target_slot_index":11,"slot_identity":"MEANING-SLOT-12","descriptor_kind":"measurement"}
+          {"case_id":"M1A-MEASUREMENT-ORIGINAL-NA-WITH-KNOWN-DEFINITION","target_slot_index":11,"slot_identity":"MEANING-SLOT-12","descriptor_kind":"measurement"},
+          {
+            "case_id": "M1A-COMPLETION-ORIGINAL-NA-WITH-KNOWN-DEFINITION",
+            "target_slot_index": 12,
+            "slot_identity": "MEANING-SLOT-13",
+            "descriptor_kind": "completion"
+          }
         ],
         "same_invocation_ja": "比較は各固定inputと同じ呼出しframeに結び、別callやfull-return materialの流用をしない。"
       },
@@ -6078,7 +6083,18 @@
       },
       "not_established_ja": "実owner供給/資格/actual readerは未成立。任意caller/domain/all-functions、一般new_defs、実adapter、閾値・資源上限を確定しない。",
       "authority_effect": "none",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "baseline_history_snapshots": [
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"c123aa429f16a49c6176b1fab392c5a303c4b713d03f953ef918fe379cbacd1a","bytes":781579,"changed_from_original_B":true},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"4f5da8c2148eb995c978a62f2dc453216105c9062483e52f390f463e5acf7b1a","bytes":1018953,"changed_from_original_B":true},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"aff7af5a8215eefb541c738a6c3a501dcb61353b831d2e73d34c353d93a909d8","bytes":7047743,"changed_from_original_B":true},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json","file_sha256":"25055f1113ed652601b44d752ed4a3757899ca07ca56fea0341e044b099843cc","bytes":39049,"changed_from_original_B":false},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"64b547a75a4ac8da189ed774e90f358a5792270cf1824e22cd5e6d7090f4b4e6","bytes":21978975,"changed_from_original_B":true},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json","file_sha256":"3f294c49ec4868c00ac86d413bbbe634ba9f38abeb6862b2357e808c00dba203","bytes":398122,"changed_from_original_B":false},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json","file_sha256":"382af55fbea1823a71c426c2ada149009ae8718506d390738b9cc2ec447af0d6","bytes":45751,"changed_from_original_B":false},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json","file_sha256":"166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2","bytes":64372,"changed_from_original_B":false},
+        {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"66706f642325e87a87d1f9ab89a5a4b6b39b5c1bf0f10b390f5d906e8787297f","bytes":11537704,"changed_from_original_B":true}
+      ]
     }
   },
   "field_value_applicability_contract": {
