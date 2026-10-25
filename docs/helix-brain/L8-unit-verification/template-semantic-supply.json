@@ -116124,7 +116124,7 @@
     "status": "finite_source_reconstruction_candidate_unexecuted",
     "authority_effect": "none",
     "operation_effect": "none",
-    "scope_ja": "採択済みM3の同一有限範囲にある4 caller locatorと既存D27-B 3行×14 fieldの再利用を記録する。新しいClaim、reader、qualification、global consumer完了は作らない。",
+    "scope_ja": "Issue #3547 comment 6399345445のscope review結論に基づく作業範囲として、4 caller locatorと既存D27-B 3行×14 fieldの再利用を記録する。新しいClaim、reader、qualification、global consumer完了は作らない。",
     "fixed_git_sources": [
       {
         "source_id": "L5",
@@ -116200,7 +116200,7 @@
         "caller_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/caller",
         "wrapper_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/frozen_case_fingerprint_recipe/caller_wrapper_literals",
         "source_derivation_ja": "L9 tracked case patch + wrapper literalsからcaller inputを構成し、claims=[]は入力値の静的照合。実caller実行ではない。",
-        "consumer_boundary_ja": "L5 consumer/use_orderは原Claim配列順で各Claimをuse化する。固定callerのclaims=[]なのでClaimUseは0行（契約からの静的導出、実行結果ではない）。",
+        "consumer_boundary_ja": "このfn1 callerはL5 direct_wrappers/fn1のとおりwalk一回のevaluation.comparisonだけを返し、consumerを呼ばない（consumer返却なし）。仮にraw runner/fn6/fn7/fn4のconsumer経路へ同じ入力を渡した場合、原Claim順のuse_orderとclaims=[]からClaimUse0行となる（静的導出、実行結果ではない）。",
         "frozen_input_artifact": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M1a-immutable-inputs-R1.json",
         "frozen_input_artifact_sha256": "be88928ace1252ed615ce0f558265a38e63935850071e4303d875a54ee3eefea",
         "frozen_input_role_ja": "local immutable envelopeは別作成者の比較・custody証跡。復元の唯一sourceにはせず、tracked Git raw/patch/wrapperを主sourceとして参照する。"
@@ -116223,7 +116223,7 @@
         "caller_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/1/caller",
         "wrapper_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/frozen_case_fingerprint_recipe/caller_wrapper_literals",
         "source_derivation_ja": "L9 tracked case patch + wrapper literalsからcaller inputを構成し、claims=[]は入力値の静的照合。実caller実行ではない。",
-        "consumer_boundary_ja": "L5 consumer/use_orderは原Claim配列順で各Claimをuse化する。固定callerのclaims=[]なのでClaimUseは0行（契約からの静的導出、実行結果ではない）。",
+        "consumer_boundary_ja": "このfn1 callerはL5 direct_wrappers/fn1のとおりwalk一回のevaluation.comparisonだけを返し、consumerを呼ばない（consumer返却なし）。仮にraw runner/fn6/fn7/fn4のconsumer経路へ同じ入力を渡した場合、原Claim順のuse_orderとclaims=[]からClaimUse0行となる（静的導出、実行結果ではない）。",
         "frozen_input_artifact": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M1a-immutable-inputs-R1.json",
         "frozen_input_artifact_sha256": "be88928ace1252ed615ce0f558265a38e63935850071e4303d875a54ee3eefea",
         "frozen_input_role_ja": "local immutable envelopeは別作成者の比較・custody証跡。復元の唯一sourceにはせず、tracked Git raw/patch/wrapperを主sourceとして参照する。"
@@ -116232,8 +116232,8 @@
         "case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
         "caller_symbol": "compare_descriptor_definitions",
         "target_slot_index": 0,
-        "target_slot_identity": null,
-        "descriptor_kind": null,
+        "target_slot_identity": "MEANING-SLOT-01",
+        "descriptor_kind": "template identity",
         "claims_count": 0,
         "raw_source_id": "RAW_9013",
         "source_case_path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
@@ -116246,7 +116246,7 @@
         "caller_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/caller",
         "wrapper_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals",
         "source_derivation_ja": "L9 tracked case patch + wrapper literalsからcaller inputを構成し、claims=[]は入力値の静的照合。実caller実行ではない。",
-        "consumer_boundary_ja": "L5 consumer/use_orderは原Claim配列順で各Claimをuse化する。固定callerのclaims=[]なのでClaimUseは0行（契約からの静的導出、実行結果ではない）。",
+        "consumer_boundary_ja": "このfn1 callerはL5 direct_wrappers/fn1のとおりwalk一回のevaluation.comparisonだけを返し、consumerを呼ばない（consumer返却なし）。仮にraw runner/fn6/fn7/fn4のconsumer経路へ同じ入力を渡した場合、原Claim順のuse_orderとclaims=[]からClaimUse0行となる（静的導出、実行結果ではない）。",
         "frozen_input_artifact": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json",
         "frozen_input_artifact_sha256": "26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574",
         "frozen_input_role_ja": "local immutable envelopeは別作成者の比較・custody証跡。復元の唯一sourceにはせず、tracked Git raw/patch/wrapperを主sourceとして参照する。"
@@ -116255,8 +116255,8 @@
         "case_id": "M2C-SLOT0-DISPLAY-GROUP-READ",
         "caller_symbol": "read_definition_special_support",
         "target_slot_index": 0,
-        "target_slot_identity": null,
-        "descriptor_kind": null,
+        "target_slot_identity": "MEANING-SLOT-01",
+        "descriptor_kind": "template identity",
         "claims_count": 0,
         "raw_source_id": "RAW_9013",
         "source_case_path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
@@ -116279,13 +116279,22 @@
       "/definition_meaning_M1a_primary_index_verification",
       "/definition_meaning_M1a_completion_primary_index_verification"
     ],
+    "M1_private_reference_scope_ja": "この2pointerは本正本文書の現行L8を指し、固定b645 L8のpointerではない。先行PR3685/3686で照合したM1 private範囲への案内であり、今回の4caller入力又はB期待の復元sourceにしない。",
     "claim_use_consumer_contract": {
       "source_revision": "b645f6b81342224444cfd738f8acfa321cfc213e",
       "source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "consumer_pointer": "/source_return_contract/descriptor_target_dataflow/consumer",
       "use_order_pointer": "/source_return_contract/descriptor_target_dataflow/consumer/use_order",
       "use_order_value": "claim_usesは原Claim配列順。各useは全read/match/assessment/basis indexを保存。完全同値Claimでも異原locatorなら別出現。",
-      "claims_empty_derivation_ja": "M1a2件とM2aの固定raw/patch再構成後にclaims=[]を静的照合した。L5 use_orderは原Claim順の対応を示すため、ClaimUseは0行。実reader/helperは未実行。",
+      "fn1_direct_wrapper_pointer": "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn1",
+      "fn1_direct_wrapper_value": "旧DefinitionContextからwalk一回のevaluation.comparisonを返す。新公開引数なし。",
+      "consumer_call_path_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/raw_runner/steps/2",
+        "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn6",
+        "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn7",
+        "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn4"
+      ],
+      "claims_empty_derivation_ja": "M1a2件とM2aはfn1 callerであり、direct_wrappers/fn1に従いconsumerを呼ばず、consumer返却はない。同じclaims=[]入力を仮にraw runner/fn6/fn7/fn4のconsumer経路へ渡した場合は、原Claim配列順のuse_orderからClaimUse0行となる（静的導出）。実reader/helper/consumerは未実行。",
       "special_reader_boundary_ja": "M2cはread_definition_special_supportでありbuild_descriptor_claim_usesのcaller path外。ClaimUse行へ置換しない。"
     },
     "existing_D27_B_reuse": {
@@ -116302,7 +116311,7 @@
         }
       },
       "fixed_git_source_header_pointer": "/claim_use_B_verification/fixed_git_source_header_pointer",
-      "fixed_git_source_header_value": "/claim_use_A_verification/fixed_git_sources",
+      "fixed_git_source_header_resolved_pointer": "/claim_use_A_verification/fixed_git_sources",
       "expected_return_pointer": "/claim_use_B_verification/reconstruction/seed/B",
       "stored_canonical_sha256": "7c7a792838f0c3db977774403986821613d04bd6d31bcd2afdfd63d56c8ca398",
       "closed_field_order": [
@@ -116325,9 +116334,10 @@
       "same_call_scope": "finite B3 ClaimUse14 only; no qualification/fn6fn7/14child/Issuecompletion"
     },
     "whole_fn1_and_B_relationship": {
+      "comparison_scope_ja": "この同値照合と3leaf差分はDPROJのwhole_fn1_verificationとclaim_use_B_verificationのnode内に限る。DPROJ root、claim_use_A、後続追加nodeを含むfile全体の差分限定ではない。",
       "whole_fn1_pointer": "/whole_fn1_verification",
       "whole_fn1_recursive_values_and_order_equal_to_historical": true,
-      "B_only_metadata_leaf_deltas": [
+      "B_node_only_metadata_leaf_deltas": [
         "/contract_basis/1/revision",
         "/contract_basis/1/file_sha256",
         "/field_derivation_ja/reason"
@@ -116369,7 +116379,7 @@
       "authority_status": "historical",
       "disposition": "unresolved"
     },
-    "legacy_comparison_ja": "L9の既存legacy_sourcesとrootのhistorical/unresolved dispositionを保持し、新しいlegacy規則は追加しない。旧DPROJ whole_fn1とL5旧9 memberを固定履歴として照合し、現行差分はBの3 metadata leafとL5 fn4追記に限定する。",
+    "legacy_comparison_ja": "L9の既存legacy_sourcesとrootのhistorical/unresolved dispositionを保持し、新しいlegacy規則は追加しない。DPROJ内のwhole_fn1_verificationとclaim_use_B_verificationだけを歴史的sourceと比較し、前者は同値、後者node内は3metadata leaf差である。file全体の差分とは言わない。L5 consumerも旧9 member保持とfn4追記をそのnode内の差分として区別する。",
     "not_observed_ja": "このscopeは4 callerと既存D27-B3×14の有限再利用のみ。新callerでの非空ClaimUse、qualification、fn6/fn7、全consumer、global完了、reader/helperの実行結果は未観測。既存Bの非空3行は既存scopeの再利用である。",
     "local_payload_boundary_ja": "payloadと比較artifactはlocal非authorityのlocator/custody記録。tracked Git source、固定raw、L9/L8 patch・wrapperを再構成根拠とし、local artifactを入力又は返却値のsourceにしない。",
     "execution_boundary_ja": "JSON source/hash/pointerの静的照合と標準RFC6902 fixture入力再構成に限定。reader/helper/predicate/sort/codec/資格/runtime/test/CI及びDPROJ保存recipeは実行しない。",
