@@ -21477,7 +21477,7 @@
       "document_id": "HELIXBRAIN-L5-032-TEMPLATE-SEMANTIC-SUPPLY",
       "pointer": "/wire_codec_contract/schema",
       "canonical_sha256": "535d8f0b8f2e71c709e66418fa079cb4f757a7a6d0530b50267a452d74036640",
-      "candidate_current_file_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+      "candidate_current_file_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
       "candidate_current_schema_canonical_sha256": "ace94a797cce9f3b0ead1f9a909eef564b08bbdcfc6ba6ef0d5ffbd60fe21f66",
       "candidate_note": "既存canonical pinは歴史的参照として保持。二つのnullable結果memberを含む現在candidate schemaの静的照合用。"
     },
@@ -57918,7 +57918,7 @@
     ],
     "candidate_design_bytes_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+      "file_bytes_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
       "meaning": "同一candidate文書の現在bytesを照合するbinding。過去revisionにこの追補が存在したというsource pinではない。",
       "scope": "このfieldは同じPR候補のcurrent L5ファイル全bytesを指す。旧資産source引用hashはlegacy_comparison.source_assetsにあり変更しない。"
     },
@@ -68167,7 +68167,7 @@
         "revision": "c242005d1bed8c6a83b4ab3169d3234db0090e4b",
         "pointer": "/functions/8",
         "sha256": "8b42b107322b595ed694280bd2d7a7c49974291526be0b0e2f05a0f08ee52fa9",
-        "candidate_file_bytes_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+        "candidate_file_bytes_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
         "candidate_pointer_canonical_sha256": "bf868a14d00aae1498233d9137be6f1fbfc3dc90dc138cd0edeb5950a328727c",
         "candidate_note": "function本体の現在candidate bytes。歴史的revision/pinは上書きしない。"
       },
@@ -68186,21 +68186,21 @@
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary/producer_symbol_by_member",
-        "candidate_file_bytes_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+        "candidate_file_bytes_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
         "candidate_pointer_canonical_sha256": "dc690dc5e77f88850db94330710d02ade0b9883a3c6a3480c5dbdb2604cc52e8",
         "note": "AnalysisContext memberから宣言済みproducer_symbolへの対応。axes/findingsのfixtureはtest doubleであり実producer出力でない。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/output_member_rules/1",
-        "candidate_file_bytes_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+        "candidate_file_bytes_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
         "candidate_pointer_canonical_sha256": "1c6c240dee25be650e0db206ee755072fdfb497070696081b551f27314ad1e12",
         "note": "candidate欠落/空の区別を既存member_presence/construction_issuesへ結ぶ現在candidate値。"
       },
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
         "pointer": "/source_return_contract/builder_assembly/comparison_input_boundary",
-        "candidate_file_bytes_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+        "candidate_file_bytes_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
         "candidate_pointer_canonical_sha256": "8a73e82f6d1538f8330a45fa36755f95e56c08abef6785395cd4df9bb9f12506",
         "note": "producer_symbol/input_bindingの適合条件と局所issue。"
       }
@@ -84958,7 +84958,7 @@
     "revision_semantics": "revisionは結線の初期導出位置でありdocumentsの固定snapshot revisionではない。documentsのsha256は同review対象HEADの現在L4/L9全UTF-8 bytes。独立のrevision付きsource_pinsは各原履歴bytesを保持する。"
   },
   "definition_meaning_walk_verification": {
-      "artifact_ref": {"identity":"HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"d0aeab6083e1c112720784d4c32c3dfeb58d9d20e9fd78af0ec3a400ccd8b867","pointer":"","canonical_sha256":"a17679ac7544670ae39e8f5b41fafb357aaae4f7d1b1fd411c8d4509940b5c8d"},
+      "artifact_ref": {"identity":"HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"9bbe097a0d9cc657902a57a9133ebe36f511e2072cac80d14c869cdf445cd8b6","pointer":"","canonical_sha256":"81e77208506e2d3374d1b8fab5809c3c02590061ca4a0d29ab46c66aece9b10b"},
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
         "pointer": "/definition_meaning_walk_verification",
@@ -86359,7 +86359,7 @@
     "operation_effect": "none",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+      "sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
       "scope": "今回の現行L5全bytes。過去replay source pinとは別。"
     },
     "historical_replay_semantic_continuity": {
@@ -86399,7 +86399,7 @@
           "current_object_sha256": "09d2fcd7c488791e79a0ab509fd74cc6e6564081db186e182b0e3e62ab5aebf3",
           "change": "本PRはNA sort source列の一judgment単位を明文化した。固定sourceの原値は履歴として保持し、現行objectとの不変を主張しない。旧case/materialを変更せず、その有限期待との対応を別節で照合する。",
           "fixed_file_sha256": "449bc77b9775566dd516e006c5f2ee274e1493547f0e7e153f01c38d4de3c577",
-          "current_file_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704"
+          "current_file_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa"
         }
       ]
     },
@@ -86937,7 +86937,7 @@
         {"key":"L8","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","sha256":"29ae526d8ec7ed90bd04483154e390bbac8227469d21f587ef70105ffcab7ddc","bytes":6948712,"pointers":["/source_return_verification/primitive_probes"]}
       ],
       "design_pointer": "/wire_codec_contract/numeric_carrier_profile/n3sort_numeric_only_detail",
-      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","pointer":"/wire_codec_contract/numeric_carrier_profile/n3sort_numeric_only_detail","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"357604401ad93419eadc7cb5595d85671ce66de572977e9434e8b429d212ccee"}},
+      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","pointer":"/wire_codec_contract/numeric_carrier_profile/n3sort_numeric_only_detail","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"9792aa03a32a032d1c4a4c5adfbeaeb881f0cbdb","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"357604401ad93419eadc7cb5595d85671ce66de572977e9434e8b429d212ccee"}},
       "observation_fields": ["numeric_keys","result_values","source_values_after"],
       "cases": [
         {
@@ -87055,7 +87055,7 @@
         {"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","lines":"80,86-87","asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","comparison_role_ja":"UTW014欠損隠蔽・UTW020部分失敗集約・UTW021自己申告完了の照合"}
       ],
       "design_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_index_minimum_binding",
-      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_index_minimum_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"5a3dd0e5f65464f7728fa4a0f0e0eae0705bf58a","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"1d954e3a84632810cda95ae61d94778d2cadf3a41b4bee1059fc2cb56bd7f03e"}},
+      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_index_minimum_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"5a3dd0e5f65464f7728fa4a0f0e0eae0705bf58a","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"1d954e3a84632810cda95ae61d94778d2cadf3a41b4bee1059fc2cb56bd7f03e"}},
       "observation_fields": ["matches_schema","source_value_after"],
       "cases": [
         {
@@ -87243,7 +87243,7 @@
         {"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","lines":"80,86-87","asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","comparison_role_ja":"UTW014欠損隠蔽・UTW020部分失敗集約・UTW021自己申告完了の照合"}
       ],
       "design_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_meaning_reader_binding",
-      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_meaning_reader_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"06ac8c5ec58113c692a047f922cceb1955c06824","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"8049193ef53da12e1f59fe22f4489ef0d0059b67de34dedacf8e3e8e01827e9d"}},
+      "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_meaning_reader_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"06ac8c5ec58113c692a047f922cceb1955c06824","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"8049193ef53da12e1f59fe22f4489ef0d0059b67de34dedacf8e3e8e01827e9d"}},
       "observation_fields": ["bundle","reader_input_after","request_after"],
       "reconstruction": {
         "fixed_raw_A": {"revision":"06ac8c5ec58113c692a047f922cceb1955c06824","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"70b861d3a73f01938fe4e3dbdeb013d9568dea509a483203374bef4df56b0f71","pointer":"/definition_meaning_resolution_verification_plan/finite_A_raw_input"},
@@ -87358,7 +87358,7 @@
           {"revision":"c00695600ab1fed30718d89880b92a6358422131","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","lines":"80,86-87","asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","comparison_role_ja":"UTW014欠損隠蔽・UTW020部分失敗集約・UTW021自己申告完了の照合"}
         ],
         "design_pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_applicability_reader_binding",
-        "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_applicability_reader_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"1811ad348aced9d780cf0a2a7075040f1553a406","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"3850b8afb8462b4438cddcd9f7efa958eff390dcd7844e12290807eef895870f"}},
+        "current_L5_binding": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/numeric_applicability_reader_binding","binding_kind":"current_whole_file_raw_sha256","historical_basis":{"revision":"1811ad348aced9d780cf0a2a7075040f1553a406","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"3850b8afb8462b4438cddcd9f7efa958eff390dcd7844e12290807eef895870f"}},
         "observation_fields": ["read","reader_input_after","request_after"],
         "reconstruction": {
           "fixed_raw_input": {"revision":"1811ad348aced9d780cf0a2a7075040f1553a406","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"3a97bc6ca47fe3bcbafc3d8a0ebf4acbfc87a0e07fa2534b5413187dbec586c1","pointer":"/materials/1/raw_input"},
@@ -87527,7 +87527,7 @@
       ],
       "candidate_l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+        "sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
         "pointer": "/conditional_dependency_detail",
         "canonical_sha256": "766ab74095750a631999fd76ed8c7ac9e8b74a7ab699a0dfc969f619463ffa75",
         "binding_kind": "current_candidate_bytes",
@@ -112865,7 +112865,7 @@
     "purpose_ja": "既決L4の20有限CanonicalBodyRead全値と、case0同V/F01→fn6全Comparisonを、canonical実readと元unselected出現の詳細writerへ対応付ける。",
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+      "sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
       "selected_objects": [
         {
           "pointer": "/type_contract/imports",
@@ -114414,7 +114414,7 @@
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
       "pointer": "/field_value_applicability_detail",
-      "file_sha256": "cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704",
+      "file_sha256": "a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa",
       "canonical_sha256": "3f00da4ea78ab03d2550d8517d277095e2d5670a781283a372bf99c06cc18bcf",
       "binding_state": "current_candidate_content_binding"
     },
@@ -114454,7 +114454,7 @@
   "claim_intent_verification": {
     "id": "HELIXBRAIN-L8-032-CLAIM-INTENT-DETAIL",
     "status": "candidate_oracles_not_product_execution",
-    "detail_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/claim_intent_detail","binding_kind":"current_candidate_file_bytes","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704"},
+    "detail_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/claim_intent_detail","binding_kind":"current_candidate_file_bytes","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa"},
     "independent_source": [{"revision":"6d32cd5282a95b4af2476b7a80ed83f47376475c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","sha256":"1ebcd1766615e75cf291c72430dfe9369bdc2392d016445830ce111798445fd3","pointers":["/dependency_semantic_ports/claim_intent_protocol","/dependency_semantic_ports/schema/new_defs","/dependency_semantic_ports/ports","/dependency_semantic_ports/diagnostic_return_contract"]},{"revision":"6d32cd5282a95b4af2476b7a80ed83f47376475c","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","sha256":"90cdaa3523def8329c2398257ce959d22e77e413064f7fd78241daf6ae8296b4","pointers":["/dependency_semantic_port_verification/caller_contract/intent_call_order","/dependency_semantic_port_verification/cases","/dependency_semantic_port_verification/limits"]}],
     "output_field_order": ["claim_locator","claim","kind","proposed_value","intent","reason"],
     "canonical_hash": "UTF-8、object key sort、ensure_ascii=false、compact separators、末尾LFなしのSHA-256。file bytes hashと区別する。",
@@ -125726,6 +125726,247 @@
     "authority_effect": "none",
     "operation_effect": "none"
   },
+  "definition_meaning_M2c_special_group_read_verification": {
+    "id": "HELIXBRAIN-L8-032-M2C-SPECIAL-GROUP-001",
+    "status": "detail_verification_candidate_unexecuted",
+    "scope_ja": "M2c凍結slot0 display_group requestの1 callについて、candidate L5 special_reader/display_group_acquisition_detail補足の下でDefinitionSpecialRead 5 field全体をtracked seed/COPYから復元し、別作成期待と照合する。source15 carrier由来の原source occurrence 1件とtyped support 1件、問題0件のこの有限fixtureに限る。",
+    "execution_boundary_ja": "固定Git JSON bytes/hash/pointer、固定case recipe、標準RFC6902 patch/COPY、疎なJSON value span置換だけを行う。製品reader、fn0 qualification、helper、predicate、sort、codec、旧runtime/CLI/hook/test/CI、新CIは実行しない。候補作成は実資格/実reader結果/authority成立を意味しない。",
+    "not_observed_ja": [
+      "別request_kind、複数carrier source/record、empty/unqualified/malformed source、empty support/state unknown branch",
+      "source0をcarrierとして扱う枝、public L4/L9 rule3 finding/axis、comparison interpretation",
+      "実qualification、実owner供給、実reader/helper/predicate/sort/codec/runtime",
+      "新しいsource/qualification/state/gate、全sources成功条件"
+    ],
+    "case_count": 1,
+    "source_basis": [
+      {"revision":"12a3f6551f2b50491b7115f05ebacedd1ee5d38f","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","bytes":1018953,"pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_reader","role_ja":"actual-M L5 special_readerの既存signature/constructor/acquisition/relevance/return。今回追補の親sourceで、R4 local payloadは追加childの比較資料。"},
+      {"revision":"12a3f6551f2b50491b7115f05ebacedd1ee5d38f","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","bytes":11783069,"pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification","case_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0","patch_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch","wrapper_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals","role_ja":"actual-M L9の固定M2a parent raw/callerをhistorical WALK seedと9 add patchから再構成するtracked recipe。"},
+      {"revision":"12a3f6551f2b50491b7115f05ebacedd1ee5d38f","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"8726a1224129ced2ae260162735ff45d795dfb6b27d807c32dcc76c5b038f211","bytes":7073357,"pointer":"/definition_meaning_M2b_pair_origin_verification","role_ja":"actual-M L8の既存M2b siblingと挿入隣接位置のbaseline。M2b node自体は変更しない。"},
+      {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"e1269d98e2a283db688dfca5a078396cdce1731997b6adea8934dc3835073b67","bytes":21978975,"pointer":"/materials/0/raw_input","canonical_sha256":"c552d3ab0da59ea20de9dc5a065a5d23e5eb948fc0e080172a778d351eb92f30","ordered_sha256":"80835fee52e5567e07d1a0241ca6e565e9196e3164390636c2c491a2c14b3159","role_ja":"M2a parent raw再構成に使う固定履歴P15 raw seed。actual-M current WALK snapshotとは別revision/source。"},
+      {"revision":"12a3f6551f2b50491b7115f05ebacedd1ee5d38f","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"d0aeab6083e1c112720784d4c32c3dfeb58d9d20e9fd78af0ec3a400ccd8b867","bytes":21978975,"pointer":"","role_ja":"actual-M current WALK sidefile identityとcurrent pin baseline。M2a input seedとして履歴WALK rawと同一視しない。"}
+    ],
+    "legacy_sources": [
+      {"asset_id":"LEGACY-ASSET-4F5A1F0739EC1111D91D","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb","bytes":6317,"lines":["16–45","61–92"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L4のJSON構造、owner/source/独立証拠、明示stateとmissing/unknown/N/Aの区別を読む歴史資料。旧schema・式・lifecycleの移植や実行根拠にはしない。"},
+      {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","bytes":7755,"lines":["30–78","110–148"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L5のtemplate field/trace/owner/failure由来とmissing/unknown/N/Aの区別を比較する歴史資料。旧registry/CLI/runtime/CI/test/承認lifecycleは移さない。"},
+      {"asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","bytes":11254,"lines":["65–101 UTW014/020/021"],"authority_status":"historical","disposition":"unresolved","role_ja":"前身監査のfailure contextを照合する歴史資料。再発防止の証明や新要求/gateの根拠にはしない。"}
+    ],
+    "legacy_ledger_pin": {"revision":"d55c37d50e617cc90bc3ab62f77484090f5d8120","path":"docs/governance/legacy-asset-disposition.jsonl","file_sha256":"cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c","authority_status":"historical","disposition":"unresolved"},
+    "legacy_rederivation_ja": "M2bに保持された旧L4/L5 sourceとUTW-014/020/021 failure contextの3行をhistorical/unresolvedのまま複写する。今回は固定L5 display-group acquisition wordingと合成raw input/copy provenanceだけを照合し、旧schema/runtime/lifecycleや失敗資料から新gateを作らない。",
+    "current_L5_binding_reuse": {"L8_pointer":"/source_return_verification/candidate_design_bytes_binding","detail_pointer":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_reader/display_group_acquisition_detail","role_ja":"既存current L5全bytes bindingへのlogical pointerだけを再利用する。M2cはspecial_readerのdisplay_group取得detailを追補するが、この参照はその候補全bytesを結ぶだけで、SOURCE-RETURN constructorの検証範囲や既存pair/他request/public predicateの意味を変更しない。"},
+    "placement": {
+      "insert_after": "/definition_meaning_M2b_pair_origin_verification",
+      "insert_before": "/definition_meaning_D27_claim_intent_verification",
+      "new_node_presence_at_actual_M": false
+    },
+    "parent_source_reconstruction": {
+      "fixed_raw_input": {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"e1269d98e2a283db688dfca5a078396cdce1731997b6adea8934dc3835073b67","pointer":"/materials/0/raw_input","canonical_sha256":"c552d3ab0da59ea20de9dc5a065a5d23e5eb948fc0e080172a778d351eb92f30","ordered_sha256":"80835fee52e5567e07d1a0241ca6e565e9196e3164390636c2c491a2c14b3159"},
+      "fixed_L9_recipe": {"revision":"12a3f6551f2b50491b7115f05ebacedd1ee5d38f","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","node_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification","case_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0","case_metadata_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/frozen_case_metadata","patch_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch","wrapper_pointer":"/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals","patch_count":9,"parent_case_member_order":["case_id","target_slot_index","caller","rfc6902_add_patch","added_fixture_literals","digest_and_null_sha_boundary","source_derivation_ja"],"parent_raw_and_caller_reconstructed_from_tracked_Git_source":true},
+      "m2c_patch_document": {
+        "rfc6902_patch": [
+          {"op":"add","path":"/sources/15/content/descriptor_display_groups","value":[{"binding":{"template_ref":{"identity":"SYNTHETIC-TEMPLATE-A","revision":"synthetic-rev-A","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-knowledge-owner","source_locator":null,"sha256":null},"knowledge_ref":{"identity":"SYNTHETIC-KNOWLEDGE-A","revision":"synthetic-rev-A","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-knowledge-owner","source_locator":null,"sha256":null},"requirement_ref":{"identity":"synthetic-obligation-A","revision":"synthetic-rev-A","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-requirement-owner","source_locator":null,"sha256":null},"oracle_ref":{"identity":"synthetic-oracle-A","revision":"synthetic-rev-A","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-oracle-owner","source_locator":null,"sha256":null},"pack_ref":{"identity":"synthetic-pack-A","revision":"synthetic-rev-A","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-pack-owner","source_locator":null,"sha256":null},"pack_contract_version":"contract-A","pack_artifact_version":"artifact-A","pack_dependency_versions":[],"version_target":"1.0"},"item_slot_identity":"MEANING-SLOT-01","descriptor_kind":"template identity","display_label":{"presence":"supplied","value":"SYNTHETIC-M2C-DISPLAY-LABEL-A"},"members":[{"fact_ref":{"identity":"SYNTHETIC-MEANING-FACT-01","revision":"synthetic-meaning-r1","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-knowledge-owner","source_locator":null,"sha256":null},"fact_body":{"descriptor_meaning":"機能としてのtemplate識別。filenameやviewの所在と分ける。","fixture_scope":"独立owner解釈を供給する合成設計比較"},"display_label":{"presence":"supplied","value":"SYNTHETIC-M2C-DISPLAY-LABEL-A"}},{"fact_ref":{"identity":"SYNTHETIC-M2A-RIGHT-FACT","revision":"synthetic-meaning-r1","scope":{"project":"synthetic-P","tenant":"synthetic-T","environment":"synthetic-E"},"owner":"synthetic-knowledge-owner","source_locator":null,"sha256":null},"fact_body":{"descriptor_meaning":"機能としてのtemplate識別を原template identityへ結ぶ。保存filename又は表示pathそのものを識別にはしない。","fixture_scope":"synthetic-only independent owner meaning literal"},"display_label":{"presence":"supplied","value":"SYNTHETIC-M2C-DISPLAY-LABEL-A"}}]}]},
+          {"op":"replace","path":"/sources/15/content_bytes","value":"{\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"descriptor_facts\":[{\"slot_identity\":\"MEANING-SLOT-01\",\"descriptor_kind\":\"template identity\",\"facts\":[{\"source_ref\":{\"identity\":\"SYNTHETIC-M2A-RIGHT-SOURCE\",\"revision\":\"synthetic-m2a-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"owner\":\"synthetic-knowledge-owner\",\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"meaning\":{\"descriptor_meaning\":\"機能としてのtemplate識別を原template identityへ結ぶ。保存filename又は表示pathそのものを識別にはしない。\",\"fixture_scope\":\"synthetic-only independent owner meaning literal\"},\"condition\":{\"scope\":\"synthetic-only\"},\"reason\":\"原ownerが供給した当該descriptorの意味本文\",\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"ref\":{\"identity\":\"SYNTHETIC-M2A-RIGHT-FACT\",\"revision\":\"synthetic-meaning-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null}}]}],\"definition_meaning_operations\":[{\"operation_ref\":{\"identity\":\"SYNTHETIC-M2A-RIGHT-OPERATION\",\"revision\":\"synthetic-m2a-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"arguments\":{\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"slot_identity\":\"MEANING-SLOT-01\",\"descriptor_kind\":\"template identity\",\"fact_ref\":{\"identity\":\"SYNTHETIC-M2A-RIGHT-FACT\",\"revision\":\"synthetic-meaning-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"fact_body\":{\"descriptor_meaning\":\"機能としてのtemplate識別を原template identityへ結ぶ。保存filename又は表示pathそのものを識別にはしない。\",\"fixture_scope\":\"synthetic-only independent owner meaning literal\"},\"normative_argument\":{\"revision\":\"5a3cfa984fab34f31ce623d667db1670f80b1544\",\"path\":\"docs/helix-brain/L4-basic-design/template-semantic-supply.json\",\"file_sha256\":\"033cff2d2bbe00975b09ce2cbecb4f3d542bf4fae859912ac41f5a584561fdb2\",\"catalog_pointer\":\"/descriptor_meanings\",\"catalog_canonical_sha256\":\"224602413a177ad7f304bebfa9e0aea55293dc0a771b3e74d9c396c8d2f15651\",\"scope\":{\"parent_requirement\":\"HELIXBRAIN-L2-032\",\"functional_requirement\":\"HELIXBRAIN-L3-032-F01\",\"scope_kind\":\"generic_design_template_descriptor\"},\"entry_pointer\":\"/descriptor_meanings/0\",\"entry_canonical_sha256\":\"6901fa7408738f5e832a4f18dbc487d614f72cfd35328691c591dc3b5ee35892\",\"entry_value\":{\"descriptor\":\"template identity\",\"meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\"}}},\"decision\":{\"relation\":\"defines_descriptor\",\"reason\":{\"presence\":\"supplied\",\"value\":\"原ownerはこの原factを機能としてのtemplate識別の定義として評価した。\"},\"raw_semantic_basis\":{\"presence\":\"supplied\",\"value\":{\"original_owner_observation\":\"原ownerはこの原factを機能としてのtemplate識別の定義として評価した。\",\"comparison_subject\":\"当該原fact bodyと独立固定規範のtemplate identity意味\",\"scope\":\"synthetic-only\"}},\"basis_refs\":[]}}],\"descriptor_display_groups\":[{\"binding\":{\"template_ref\":{\"identity\":\"SYNTHETIC-TEMPLATE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"knowledge_ref\":{\"identity\":\"SYNTHETIC-KNOWLEDGE-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"requirement_ref\":{\"identity\":\"synthetic-obligation-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-requirement-owner\",\"source_locator\":null,\"sha256\":null},\"oracle_ref\":{\"identity\":\"synthetic-oracle-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-oracle-owner\",\"source_locator\":null,\"sha256\":null},\"pack_ref\":{\"identity\":\"synthetic-pack-A\",\"revision\":\"synthetic-rev-A\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-pack-owner\",\"source_locator\":null,\"sha256\":null},\"pack_contract_version\":\"contract-A\",\"pack_artifact_version\":\"artifact-A\",\"pack_dependency_versions\":[],\"version_target\":\"1.0\"},\"item_slot_identity\":\"MEANING-SLOT-01\",\"descriptor_kind\":\"template identity\",\"display_label\":{\"presence\":\"supplied\",\"value\":\"SYNTHETIC-M2C-DISPLAY-LABEL-A\"},\"members\":[{\"fact_ref\":{\"identity\":\"SYNTHETIC-MEANING-FACT-01\",\"revision\":\"synthetic-meaning-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"fact_body\":{\"descriptor_meaning\":\"機能としてのtemplate識別。filenameやviewの所在と分ける。\",\"fixture_scope\":\"独立owner解釈を供給する合成設計比較\"},\"display_label\":{\"presence\":\"supplied\",\"value\":\"SYNTHETIC-M2C-DISPLAY-LABEL-A\"}},{\"fact_ref\":{\"identity\":\"SYNTHETIC-M2A-RIGHT-FACT\",\"revision\":\"synthetic-meaning-r1\",\"scope\":{\"project\":\"synthetic-P\",\"tenant\":\"synthetic-T\",\"environment\":\"synthetic-E\"},\"owner\":\"synthetic-knowledge-owner\",\"source_locator\":null,\"sha256\":null},\"fact_body\":{\"descriptor_meaning\":\"機能としてのtemplate識別を原template identityへ結ぶ。保存filename又は表示pathそのものを識別にはしない。\",\"fixture_scope\":\"synthetic-only independent owner meaning literal\"},\"display_label\":{\"presence\":\"supplied\",\"value\":\"SYNTHETIC-M2C-DISPLAY-LABEL-A\"}}]}]}"},
+          {"op":"replace","path":"/sources/15/ref/sha256","value":"17854db625db6ff8f7586be0255adcc08696df128b7b8fe5af402986e24968ef"},
+          {"op":"replace","path":"/qualifications/15/subject_ref/sha256","value":"17854db625db6ff8f7586be0255adcc08696df128b7b8fe5af402986e24968ef"},
+          {"op":"replace","path":"/qualifications/15/subject_sha256","value":"17854db625db6ff8f7586be0255adcc08696df128b7b8fe5af402986e24968ef"}
+        ]
+      },
+      "case_expansion_rule_ja": "m2c_patch_documentはこのnode配下のRFC6902 5 patchだけを持つ。case_node.case_metadataとcase_node.call_reconstructionからcase_id/parent_case_id/call/argument_derivation/qualification_boundary_jaの5 memberを指定順に展開し、frozen_case_member_orderとcase全体のcanonical/ordered hashを照合する。input_patch_pointer_in_frozen_artifactは凍結artifact root相対であり、tracked側ではparent_source_reconstruction.m2c_patch_documentをdocument rootとして解決する。frozen inputは再構成後の全値/順/hash comparatorのみ。",
+      "parent_input_comparator": {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json",
+        "sha256": "26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574",
+        "role": "authorityを持たない比較資料のみ",
+        "whole_parent_case_values_order_and_hash_match_tracked_L9": true
+      },
+      "frozen_input_comparator": {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2c-special-group-immutable-inputs-R1.json",
+        "sha256": "f86b159a3e0d8aedf988edb2c60a29d270efaf9b8533eb1b55a7d8b899c75aac",
+        "role": "authorityを持たない比較資料のみ",
+        "whole_case_expanded_call_values_order_and_all_projection_hashes_match": true
+      }
+    },
+    "cases": [
+      {
+        "case_id": "M2C-SLOT0-DISPLAY-GROUP-READ",
+        "parent_case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
+        "frozen_case_member_order": [
+          "case_id",
+          "parent_case_id",
+          "call",
+          "argument_derivation",
+          "qualification_boundary_ja"
+        ],
+        "case_metadata": {
+          "case_id": "M2C-SLOT0-DISPLAY-GROUP-READ",
+          "parent_case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
+          "argument_derivation": {
+            "parent_input_path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json",
+            "parent_input_sha256": "26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574",
+            "parent_case_member_order": [
+              "case_id",
+              "target_slot_index",
+              "caller",
+              "rfc6902_add_patch",
+              "added_fixture_literals",
+              "digest_and_null_sha_boundary",
+              "source_derivation_ja"
+            ],
+            "parent_raw_input_canonical_sha256": "bab614d66359100f46b94d5c629ccacdef3da24ca8b533f16924d4dc5ae5f57a",
+            "parent_raw_input_ordered_sha256": "4fb3121fa084cb3ff0a477541a54103f3e30b79a4235ccf8a735025411654a8a",
+            "parent_caller_canonical_sha256": "129eec79669a6c16c74fd3148d134fb140973cac218fa2623d6f36544d698db0",
+            "parent_caller_ordered_sha256": "8d31cdb7df1ad5486c2ad78923c67b744d7197e9e76b05294548809799765f48",
+            "tracked_L9_revision": "12a3f6551f2b50491b7115f05ebacedd1ee5d38f",
+            "tracked_L9_path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+            "tracked_L9_file_sha256": "1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128",
+            "tracked_L9_node_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification",
+            "tracked_L9_case_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0",
+            "tracked_L9_frozen_case_metadata_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/frozen_case_metadata",
+            "tracked_L9_patch_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch",
+            "tracked_L9_wrapper_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals",
+            "historical_raw_revision": "9013d859d541cad6eb3b3b750d24f97344c06c8c",
+            "historical_raw_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
+            "historical_raw_pointer": "/materials/0/raw_input",
+            "patch_count": 9,
+            "rfc6902_patch_pointer": "/rfc6902_patch",
+            "call_argument_copy_rule_ja": "固定WALK rawへactual-M L9の9 add patchとwrapper literalsを適用して親M2a 7-member case/raw/callerを再構成する。その親raw rootへ、このartifactの/rfc6902_patchに記録したM2c 5 operationを適用してvalidated.inputを作る。input_issues/unusable_source_refsはL9 wrapper literals、requestは本caseの合成literalから置く。",
+            "parent_input_comparator_role_ja": "親input artifactはauthorityを持たない比較資料。再構成の根拠は固定WALKとactual-M L9 tracked recipeであり、親artifactは全値・順序・hashの比較先に限る。",
+            "source0_role_boundary_ja": "source0はmember fact owner lookupとして原位置に保持する。display_group carrierを追加せず、container_absent対象にも含めない。",
+            "source15_carrier_derivation_ja": "source15 contentの既存member/orderを保ち、slot0のfull Binding/item_slot_identity/descriptor_kindとraw facts順0,1のRef/bodyをcopyしたOwnerDisplayGroupを1件だけ追加。表示labelは独立のsupplied PortPresenceString literalであり、meaning/identity/qualificationへcastしない。"
+          },
+          "qualification_boundary_ja": "synthetic-onlyの条件付きfixture inputである。source15のqualification metadataは原値保持とdigest追随のみで、fn0やspecial readerを実行せず、実資格・support・problem・acquisition_stateを生成しない。"
+        },
+        "expanded_frozen_case_recipe": {
+          "member_order": [
+            "case_id",
+            "parent_case_id",
+            "call",
+            "argument_derivation",
+            "qualification_boundary_ja"
+          ],
+          "case_id_from": "case_node.case_id",
+          "parent_case_id_from": "case_node.parent_case_id",
+          "call_from": "case_node.call_reconstructionからsymbolとargumentsを復元し、argumentsはvalidated入力とrequestを組み立てる。",
+          "argument_derivation_from": "case_node.case_metadata.argument_derivation",
+          "qualification_boundary_from": "case_node.case_metadata.qualification_boundary_ja",
+          "fingerprint_scope_ja": "case_canonical_sha256/case_ordered_sha256はこの全5 memberをmember_orderどおり復元したcase object全体に適用する。call/raw/validated/requestの個別hashは別projection。"
+        },
+        "call_reconstruction": {
+          "symbol": "read_definition_special_support",
+          "member_order": [
+            "symbol",
+            "arguments"
+          ],
+          "arguments_member_order": [
+            "validated",
+            "request"
+          ],
+          "validated_member_order": [
+            "input",
+            "input_issues",
+            "unusable_source_refs"
+          ],
+          "request": {
+            "request_kind": "display_group",
+            "request_locator": "/descriptors/0"
+          },
+          "input_source_ja": "validated.inputは固定履歴raw+actual-M L9の9 add patch/wrapperから再構成するM2a parent rawへ、このnode内parent_source_reconstruction.m2c_patch_document.rfc6902_patchの5 operationを適用して復元する。",
+          "input_patch_pointer_in_frozen_artifact": "/rfc6902_patch",
+          "input_patch_document_root": "/parent_source_reconstruction/m2c_patch_document",
+          "input_patch_pointer_resolved_in_tracked_node": "/parent_source_reconstruction/m2c_patch_document/rfc6902_patch",
+          "input_issues_literal": [],
+          "unusable_source_refs_literal": []
+        },
+        "case_fingerprints": {"case_id":"M2C-SLOT0-DISPLAY-GROUP-READ","case_canonical_sha256":"8ac833e87dc5605381a59ba38c2c71b394001fc2685cb2e69bad43dd5875ba6f","case_ordered_sha256":"d2b99735fde8d8b39a42e1799c4bbabea84b689027d8073df410ab48b01ea93d","call_canonical_sha256":"ca8b2960e4895c80f0b70aa160c45a868c307ad6db3877ebf12159bb73871b0e","call_ordered_sha256":"d3fa3a3bfff2439eed110357b9013a5ef0508865a2c31ba9df47c13b3fce922e","validated_canonical_sha256":"68e980e81ac228dcb03a06c1dc5bb642d31edff6650f97e5df7ab3753586329e","validated_ordered_sha256":"cb0b24301a53782afb36c654fda47e94f87a7af65ff1fa213f323547318a6e0e","input_canonical_sha256":"4f6b1973f4aef01d609274bb6a3aacd9567ec0eff01c127a26fe321d1396e12b","input_ordered_sha256":"2a1f9d4029fb71ab5874612e3995fc2ed1d43f96a7a76666bb38c26bedb21064","request_canonical_sha256":"6c1fe4cfc671577cec5e81842dafc0a667bc25c929431bbe542eea89dbcfbb24","request_ordered_sha256":"6c1fe4cfc671577cec5e81842dafc0a667bc25c929431bbe542eea89dbcfbb24","case_member_order":["case_id","parent_case_id","call","argument_derivation","qualification_boundary_ja"],"call_member_order":["symbol","arguments"],"arguments_member_order":["validated","request"],"validated_member_order":["input","input_issues","unusable_source_refs"],"request_member_order":["request_kind","request_locator"]},
+        "expected_return_member_order": [
+          "request",
+          "acquisition_state",
+          "source_occurrences",
+          "supports",
+          "problems"
+        ],
+        "source_occurrence_member_order": [
+          "source_ref",
+          "source_index",
+          "record_index",
+          "locator",
+          "original_record"
+        ],
+        "support_member_order": [
+          "source_ref",
+          "source_index",
+          "record_index",
+          "locator",
+          "support_kind",
+          "record"
+        ],
+        "expected_return_seed": {
+          "request": null,
+          "acquisition_state": "resolved",
+          "source_occurrences": [
+            {
+              "source_ref": null,
+              "source_index": 15,
+              "record_index": 0,
+              "locator": "/sources/15/content/descriptor_display_groups/0",
+              "original_record": null
+            }
+          ],
+          "supports": [
+            {
+              "source_ref": null,
+              "source_index": 15,
+              "record_index": 0,
+              "locator": "/sources/15/content/descriptor_display_groups/0",
+              "support_kind": "display_group",
+              "record": null
+            }
+          ],
+          "problems": []
+        },
+        "copy_workspace_root": {
+          "member_order": [
+            "input",
+            "request",
+            "expected_return"
+          ],
+          "root_definition_ja": "COPY rootは{input:expanded_frozen_case.call.arguments.validated.input,request:expanded_frozen_case.call.arguments.request,expected_return:deepcopy(this_verification_node.cases[0].expected_return_seed)}。以下5 operationのfrom/pathをこのrootから解決する。",
+          "source_pointer_basis_ja": "input_source_pointerとrequest_source_pointerは展開したfrozen5member caseをrootに、expected_return_source_pointerはこのverification nodeのcases[0]をrootに解決する。",
+          "input_source_pointer": "/call/arguments/validated/input",
+          "request_source_pointer": "/call/arguments/request",
+          "expected_return_source_pointer": "/expected_return_seed",
+          "expected_return_copy_semantics_ja": "workspaceへexpected_return_seedのdeepcopyを置き、seed中のnull placeholderだけへ5 RFC6902 COPYを適用する。seed本体は変更しない。",
+          "copy_operations_apply_from_workspace_root": true
+        },
+        "copy_operations": [
+          {"op":"copy","from":"/request","path":"/expected_return/request"},
+          {"op":"copy","from":"/input/sources/15/ref","path":"/expected_return/source_occurrences/0/source_ref"},
+          {"op":"copy","from":"/input/sources/15/content/descriptor_display_groups/0","path":"/expected_return/source_occurrences/0/original_record"},
+          {"op":"copy","from":"/input/sources/15/ref","path":"/expected_return/supports/0/source_ref"},
+          {"op":"copy","from":"/input/sources/15/content/descriptor_display_groups/0","path":"/expected_return/supports/0/record"}
+        ],
+        "expected_result_hashes": {"canonical_sha256":"8842e15a7e6d522ba6cd5d2c023f6ac9b5306da5106f153005270a9418985d22","ordered_sha256":"c5a1ce7ef6991d60ebe4993a5b886adc1df5ce4358fbc5871216095fa18d0053","whole_values_and_recursive_order_equal":true},
+        "result_boundary_ja": "resolvedはこのfixed one carrierのtyped support取得stateであり、意味肯定・rule3判定ではない。source_occurrenceとsupportは同じ原groupの別投影。source0はmember-owner lookupのみでcarrier absent problemを作らない。固定入力でのproblemsは空。"
+      }
+    ],
+    "oracle_provenance": {
+      "local_artifacts": [
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2c-special-group-immutable-inputs-R1.json","sha256":"f86b159a3e0d8aedf988edb2c60a29d270efaf9b8533eb1b55a7d8b899c75aac","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 凍結case/hash比較先。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2c-special-group-input-intake-R1.json","sha256":"20102151cde7be7c98d18fee1080b586a5f4d88524864b46f564471c0621c8cf","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 input境界の記録。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2a-pair-immutable-inputs-R3.json","sha256":"26abb79f11385798ee91456b109ab2cd5c316ecf4547b384562319fc59780574","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 M2a parent raw/caller/case比較先。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2c-special-group-expected-R1.json","sha256":"11a849f905cf13db8a87fcf8639b503c39375b521a019be51baec7e97b9e17ba","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 全返却値比較先。再構成へcopyしない。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M2c-special-group-independent-expected-R2.json","sha256":"28b3220f435924fd155838538b094a716f52e9567b9de9333b6e786f0da1db3d","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 全返却値/再帰順比較先。再構成へcopyしない。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2c-oracle-agreement-R1.json","sha256":"6b494ab489338a15f7a570a022d7021cbc8c75067456709513ab52552eeee68a","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 両期待の全値/順序/hash agreement record。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M2c-L5-special-reader-supplement-R4.json","sha256":"e8aeec3fc0f7e34260eec15b4f13e349cfbe5fa243af01a15baa6860db6ae6fc","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 accepted L5 child payload comparator。Git authority sourceではない。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M2b-actual-merge-read-after-R1.json","sha256":"4e77993b9cfe1c39be17df8b6a195f153575a1fadc46022a2e4c889fb103735b","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 actual-M nine-snapshot/current graph comparison record。"},
+        {"path":"scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M2c-L8-assembly-plan-R1.json","sha256":"b3f6a3d72b7209cf55ab0c3decc0881014fa0cd2e4574f45face49e10cb5777c","role":"authorityを持たないlocal比較・custody記録。tracked source basisや返却再構成の材料ではない。 placement and static reconstruction plan."}
+      ],
+      "local_artifact_status_ja": "固定Git source basis、parent_source_reconstruction、case seed、5 RFC6902 copy_operationsが結果再構成根拠。frozen input/intake、root/worker expected、agreement、L5 R4 payloadは別作成/別照合の非authority比較・custody資料で、返却値の再構成には使わない。作成順/相互未読はlocal自己申告でtracked外・第三者未検証。",
+      "agreement_boundary_ja": "入力を凍結後、rootはworker新期待/author未読で自己の期待を固定。その後worker R1全文とR2metadata修正差分を読み、SHA/AST条件付きで実行した。入力・未適用L5補足候補を共有した別作成・別照合であり、作成順/相互未読はlocal自己申告かつtracked外・第三者未検証。両期待は比較用で再構成根拠にしない。",
+      "expected_artifacts_are_comparison_only": true
+    },
+    "preservation_ja": "M2cはL5 special_reader child、L8 sibling node、既存L8/WALK current pinsとWALK bytes/canonical pinの追随だけ。L4/L9、M2b subtree/historical pins、WALK materials/cases/raw seed、sidefile 4件、semantic hash 6件、current/historical schema split、legacy historyは保持する。L8 self pin/cycleは作らない。",
+    "authority_effect": "none",
+    "operation_effect": "none"
+  },
   "definition_meaning_D27_claim_intent_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM-INTENT-READER",
@@ -125844,7 +126085,7 @@
   "knowledge_promotion_nonempty_verification": {
     "id": "HELIXBRAIN-L8-032-F08-NONEMPTY-NO-CLAIM-VERIFICATION",
     "status": "detail_verification_candidate_unexecuted",
-    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_detail","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","binding_kind":"current_working_whole_file_utf8_bytes"},
+    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_detail","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","binding_kind":"current_working_whole_file_utf8_bytes"},
     "scope_ja": "P3a非空candidate・claims absent/明示[]のfn5全4field。旧10whole入力とclaimsだけremoveした1入力。原state/工程Refs/同値反復を保持し、record trace unknownを空列で相殺しない。",
     "fixed_git_sources": {"L4":{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"ce604842c6b82c64447eebc4763875962fc83f26ab34e0a4c735e1f8265383a9","pointer":"/knowledge_promotion_contract/nonempty_candidate_trace","binding_kind":"fixed_historical_source"},"L9_RAW":{"revision":"06cb14e7a449030eeac565a2013028fe1d3c1971","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"bbd44c2096fbf5f43cf2b0a515cd2b6ad02ff49539aa9f80a773b19591801c73","binding_kind":"fixed_historical_source"}},
     "materialization_ja": "各caseごとにL9_RAWの固定revision/path/whole-file SHAを照合しinput_pointerのwhole ValidatedSupplyをdeep copyする。input_patchの標準RFC6902をそのcopy rootへ原順適用し、validated_canonical_sha256を照合する。空patchは変更なし、追加caseだけ/input/claimsをremoveする。得た全3member wrapperをPromotionContext唯一member validatedへそのままcopyし、compare_knowledge_promotion(context)一回の引数とする。fn0/製品helper/関数を実行せず、別callやcaller cached結果を混ぜない。",
@@ -125952,7 +126193,7 @@
   "knowledge_promotion_claim_verification": {
     "id": "HELIXBRAIN-L8-032-F08-CLAIM-WITNESS-VERIFICATION",
     "status": "claim_verification_candidate_unexecuted",
-    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_claim_detail","file_sha256":"cf6b18c6ef052240e159c0344f6e0473cb052fb6973760f358f5474db8ceb704","binding_kind":"current_working_whole_file_utf8_bytes"},
+    "design_ref": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointer":"/knowledge_promotion_claim_detail","file_sha256":"a81bef889b2a72afcbc0a9f603deb9dc631c90d441e836c8270e68521f8bbcfa","binding_kind":"current_working_whole_file_utf8_bytes"},
     "scope_ja": "P3bの全Claimが既存P2a局所witnessを形成できる有限入力24件の全4fieldと、P3aへdispatchするclaims absentのP1対照1件。全域fn5・形成不能Claim・実資格を閉じない。",
     "return_field_order": ["axes","findings","producer_symbol","input_binding"],
     "axis_field_order": ["subject_ref","binding","axis","state","original_refs","reason","backflow_owner"],
