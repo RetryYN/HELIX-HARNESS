@@ -5918,11 +5918,11 @@
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
       "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
-      "not_finished": "現行L5のfn1全Comparison・全reason・形成・順序とL8 wholeは未追随。現行の詳細設計と原meaning取得の基本契約との対応は未成立として保持する。"
+      "not_finished": "m1a_finite_caller_bindingのmeasurement公開Comparison 1 caseだけをL9で追随した。L8 wholeと現行詳細設計・原meaning取得の基本契約との対応は未追随・未成立として保持する。"
     },
     "preservation_and_limits": [
       "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
-      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。新known/NA source/callerと独立wholeはまだ作成していない。",
+      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。m1a_finite_caller_bindingのmeasurement 1 caseを除き、新known/NA source/callerと独立wholeはまだ作成していない。",
       "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。それらの稼働不在をpure設計の新必須gateにもしない。"
     ],
     "call_bindings": {
@@ -6056,11 +6056,7 @@
         "same_invocation_ja": "比較は各固定inputと同じ呼出しframeに結び、別callやfull-return materialの流用をしない。"
       },
       "public_comparison_contract": {
-        "shape_source": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","pointers":["/definition_meaning_resolution_contract/schema","/definition_meaning_resolution_contract/consumer_branch_table/2","/definition_meaning_resolution_contract/consumer_branch_table/6","/dependency_semantic_ports/public_projection/schema"]},
-        "member_order": ["axes","findings","producer_symbol","input_binding"],
-        "axis_result_member_order": ["subject_ref","binding","axis","state","original_refs","reason","backflow_owner"],
-        "input_binding_member_order": ["template_ref","knowledge_ref","requirement_ref","oracle_ref","pack_ref","pack_contract_version","pack_artifact_version","pack_dependency_versions","version_target"],
-        "axis_count_per_case": 31,
+        "shape_source": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","pointers":["/definition_meaning_resolution_contract/schema","/definition_meaning_resolution_contract/consumer_branch_table/2","/definition_meaning_resolution_contract/consumer_branch_table/6","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes/comparison/members","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes/axis_result/members"],"scope_ja":"依存側producer/reason意味を移さず、既存public return shapeのmember順だけを参照する。"},
         "meaning_boundary_ja": "known meaning definition、source attribution、原NA definition_applicabilityは別軸に保持し、NAでknown definitionを上書きしない。Findingは新設せず、既存Finding条件の外を作らない。",
         "private_outputs_boundary_ja": "Assessment、NativeMaterial、target reads、intent readsは後続L5/L8詳細pair。ここではL4公開Comparisonの所有範囲にしない。",
         "reason_and_order_source_ja": "meaning event reasonとaxis/finding順はL5 event/serializer/original Ref/exact_sort sourceから照合する。F09 TRACE専用axis_reason_writerをmeaning reasonの根拠に流用しない。"
@@ -6080,7 +6076,7 @@
         "changed_ja": "現行L4/L5のtyped basic contract、固定P15 source/caller、独立Comparison全値を今回の限定pair向けに再導出する。旧schema/CLI/runtime/test/CI/approval lifecycleは移さない。",
         "reason_ja": "M1 source/callerと独立wholeの出所を固定する依頼に応じる有限basic pair。旧failure auditは保持資料であり新要求/gateを生成しない。"
       },
-      "not_established_ja": "実owner供給/資格/actual readerは未成立。任意caller/domain/all-functions、一般new_defs、実adapter、閾値・資源上限を確定しない。Q1-Q6 classはnullのまま。",
+      "not_established_ja": "実owner供給/資格/actual readerは未成立。任意caller/domain/all-functions、一般new_defs、実adapter、閾値・資源上限を確定しない。",
       "authority_effect": "none",
       "operation_effect": "none"
     }
