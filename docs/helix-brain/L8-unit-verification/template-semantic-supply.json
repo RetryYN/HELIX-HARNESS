@@ -115677,6 +115677,223 @@
     ],
     "unclosed_scope_ja": "fn0受理・資格の実成立、helper/runtime実行、NativeMaterial格納、fn1全返却、Comparison/Finding/public tuple、他slot/source population、D27/最終state裁定、独立原Meaning ownerの実供給は固定しない。"
   },
+  "definition_meaning_M1a_primary_index_verification": {
+    "id": "HELIXBRAIN-L8-M1A-PRIMARY-INDEX-MEASUREMENT",
+    "status": "metadata_payload_reconstructed_product_unexecuted",
+    "metadata_reconstruction_status": "finite_source_and_recipe_values_reconstructed_and_oracles_compared",
+    "product_execution_status": "not_executed",
+    "scope_ja": "M1a measurement caller 1件の finite primary/index/order 対応。31 Assessment、31 event-to-axis map、target slot の all_related/primary index を扱う。completion caller は後続範囲であり、このnodeに含めない。",
+    "execution_boundary_ja": "L9の既存31-axis public Comparison、固定WALK入力、既存30 Assessment baseline、明示recipe payloadからJSON値を再構成して二つの固定private期待と照合した記録。製品reader/helper/sort/predicate/qualification/runtime/test/CIは実行せず、一般caller/全関数/全domainの成立や実資格を主張しない。",
+    "source_basis": [
+      {"revision":"b645f6b81342224444cfd738f8acfa321cfc213e","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"80d84f56f245509903e20d1653e6efa88827cd2e22c17f318e6162a7fefcd7f0","pointers":["/source_return_contract/descriptor_target_dataflow/index_types/DescriptorDefinitionAssessment/closed_fields","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection/origin_constructor/fields","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer/Assessment","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/event_order_completion","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract/index_mapping","/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/all_related","/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/primary_indices","/source_return_contract/descriptor_target_dataflow/consumer/axis_partition/primary_predicate"]},
+      {"revision":"b645f6b81342224444cfd738f8acfa321cfc213e","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","pointers":["/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0","/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/patches","/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/caller","/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/expected_comparison","/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/frozen_case_fingerprint_recipe/caller_wrapper_literals","/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/conditional_premise_ja"]},
+      {"revision":"b645f6b81342224444cfd738f8acfa321cfc213e","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"0a52c0ce946ca50d189e0eb4b47d93d11f8aff288ca46d5b8831619695c8d47e","pointers":["/materials/0/expected_walk_return/evaluation/assessments","/materials/0/expected_index_map"]},
+      {"revision":"b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"7e3b3f228df3c577527750b3365ac987f138f438d04e3f69b0308c3bf29fd0a7","pointers":["/materials/0/raw_input"]}
+    ],
+    "oracle_custody_ja": "固定baseline、L9 public Comparison、L5契約を両作成者へ共有した。root期待を先に固定し、workerは別authorで独立作成したと自己申告した。型pointerは実行前に修正され、期待literalは不変。相互未読・作成順はlocal自己申告で、第三者検証ではない。",
+    "cases": [
+      {
+        "case_id": "M1A-MEASUREMENT-ORIGINAL-NA-WITH-KNOWN-DEFINITION",
+        "target_slot_index": 11,
+        "target_slot_identity": "MEANING-SLOT-12",
+        "target_descriptor_kind": "measurement",
+        "fixed_case_source": {
+          "revision": "b645f6b81342224444cfd738f8acfa321cfc213e",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "file_sha256": "1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128",
+          "case_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0",
+          "case_ordered_sha256": "f08f8f523498c7a1127a62e29d37468a7f3b8e97553f04c1a69d3460b6207a03",
+          "patches_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/patches",
+          "patches_ordered_sha256": "95873aae5fe9bcea8cf88e79e403c34d0e7d4f016c5ed7df26c410d559f5e304",
+          "caller_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/caller",
+          "caller_ordered_sha256": "9e3fe2e4a9073f977d0ed0237352c291e79df934e53fdae90f1c1ee3e80fb731",
+          "existing_public_comparison_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/expected_comparison",
+          "existing_public_comparison_ordered_sha256": "3a1cff0083e7992162b3a1a797c01910c9631ad65c91dad9a23775992a66c3f8"
+        },
+        "input_reconstruction": {
+          "raw_input_revision": "b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031",
+          "raw_input_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
+          "raw_input_file_sha256": "7e3b3f228df3c577527750b3365ac987f138f438d04e3f69b0308c3bf29fd0a7",
+          "raw_input_pointer": "/materials/0/raw_input",
+          "raw_input_canonical_sha256": "c552d3ab0da59ea20de9dc5a065a5d23e5eb948fc0e080172a778d351eb92f30",
+          "rfc6902_patch_operation_count": 5,
+          "caller_wrapper_source_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/frozen_case_fingerprint_recipe/caller_wrapper_literals",
+          "conditional_premise_source_pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/input_reconstruction/conditional_premise_ja",
+          "materialized_caller_canonical_sha256": "6d009ed09a5d2e28d9049cc6d1dd6f60b70d9b78314cf332757b3261c5eedd20",
+          "materialized_caller_ordered_sha256": "b78c08efde97f7336270a7a05d513e892a3975550958c419fc035dd24c6760a4",
+          "whole_frozen_case_canonical_sha256": "28d57d33ca8764a06de9621e1a9d5dec53cd391f3260ae22354b081c8b8f6b59",
+          "whole_frozen_case_ordered_sha256": "d76ab4f512f08848426b0a5e1ec3b66b702a90374b808e5014adbb389e37bce4",
+          "materialized_input_canonical_sha256": "553cd8f958cc8410ba43c6280bda2b8fd79a4b95a1f4911c1ae44dc6cc9a2f79",
+          "materialized_input_ordered_sha256": "421e94d766c934d89819957917c6fe12d2a4d27259e77dba21e741afdd4bc37d",
+          "materialized_source_count": 16,
+          "materialized_descriptor_count": 15
+        },
+        "public_comparison_reference": {
+          "revision": "b645f6b81342224444cfd738f8acfa321cfc213e",
+          "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+          "pointer": "/definition_meaning_resolution_verification_plan/m1a_finite_callers_verification/cases/0/expected_comparison",
+          "ordered_sha256": "3a1cff0083e7992162b3a1a797c01910c9631ad65c91dad9a23775992a66c3f8",
+          "axis_count": 31,
+          "authored_or_recreated": false
+        },
+        "baseline_source": {
+          "revision": "b645f6b81342224444cfd738f8acfa321cfc213e",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
+          "file_sha256": "0a52c0ce946ca50d189e0eb4b47d93d11f8aff288ca46d5b8831619695c8d47e",
+          "assessments_pointer": "/materials/0/expected_walk_return/evaluation/assessments",
+          "assessments_ordered_sha256": "f03326154cd462c54ca74c430d0f22a5d1be883818b05dbca720822de8804f37",
+          "index_map_pointer": "/materials/0/expected_index_map",
+          "index_map_ordered_sha256": "07fe8187e07e451b01763ca70f84abb8407f05f3c8376f9efe411410aec2c375",
+          "baseline_assessment_count": 30,
+          "baseline_map_count": 30
+        },
+        "result_reconstruction": {
+          "workspace_member_order": [
+            "baseline",
+            "comparison",
+            "na_assessment_seed",
+            "result"
+          ],
+          "workspace_materialization_ja": "baseline_sourceの固定Git/SHA/pointerの全30行を/baselineへ、public_comparison_referenceの固定Git/SHA/pointer全値を/comparisonへ置く。本nodeのna_assessment_seedとresult_seedを同名workspace memberへdeep copyし、下記rfc6902_patchをworkspace root基準で順に適用する。完成返却は/result。local payload/期待ファイルをworkspace入力に使わない。",
+          "result_seed_member_order": [
+            "assessments",
+            "index_map",
+            "target_slot_indices"
+          ],
+          "finite_literal_payload_reference": {
+            "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M1a-measurement-private-recipe-payload-R1.json",
+            "sha256": "aaf3066a98f44b26e5e4ea28328392652ca62dfd943d918605950da9c2bf3c26",
+            "artifact_id": "root-meaning-M1a-measurement-private-recipe-payload-R1",
+            "pointers": [
+              "/na_assessment_seed",
+              "/assessment_insert_index",
+              "/assessment_index_replacements",
+              "/index_map",
+              "/target_slot_indices",
+              "/na_seed_copy_operations"
+            ],
+            "role_ja": "localの作成履歴/custody参照だけ。完成seed/recipeは本tracked nodeに全値を保持し、このlocal fileを再構成入力に使わない。"
+          },
+          "result_seed": {
+            "assessments": null,
+            "index_map": [
+              {"event_ordinal":0,"axis_index":1},
+              {"event_ordinal":1,"axis_index":0},
+              {"event_ordinal":2,"axis_index":3},
+              {"event_ordinal":3,"axis_index":2},
+              {"event_ordinal":4,"axis_index":5},
+              {"event_ordinal":5,"axis_index":4},
+              {"event_ordinal":6,"axis_index":7},
+              {"event_ordinal":7,"axis_index":6},
+              {"event_ordinal":8,"axis_index":9},
+              {"event_ordinal":9,"axis_index":8},
+              {"event_ordinal":10,"axis_index":11},
+              {"event_ordinal":11,"axis_index":10},
+              {"event_ordinal":12,"axis_index":13},
+              {"event_ordinal":13,"axis_index":12},
+              {"event_ordinal":14,"axis_index":15},
+              {"event_ordinal":15,"axis_index":14},
+              {"event_ordinal":16,"axis_index":17},
+              {"event_ordinal":17,"axis_index":16},
+              {"event_ordinal":18,"axis_index":19},
+              {"event_ordinal":19,"axis_index":18},
+              {"event_ordinal":20,"axis_index":21},
+              {"event_ordinal":21,"axis_index":20},
+              {"event_ordinal":22,"axis_index":24},
+              {"event_ordinal":23,"axis_index":23},
+              {"event_ordinal":24,"axis_index":22},
+              {"event_ordinal":25,"axis_index":26},
+              {"event_ordinal":26,"axis_index":25},
+              {"event_ordinal":27,"axis_index":28},
+              {"event_ordinal":28,"axis_index":27},
+              {"event_ordinal":29,"axis_index":30},
+              {"event_ordinal":30,"axis_index":29}
+            ],
+            "target_slot_indices": {
+              "assessment_indices": [
+                22,
+                23,
+                24
+              ],
+              "primary_definition_assessment_indices": [
+                23
+              ]
+            }
+          },
+          "seed_copy_reference": "fixed WALK baseline 30 Assessment rows copied to the null result.assessments member",
+          "na_assessment_seed": {
+            "key": null,
+            "state": "not_applicable",
+            "origin_branch": "existing_definition_result",
+            "slot_locators": [
+              "/descriptors/11"
+            ],
+            "fact_locators": [
+              "/descriptors/11/facts/0"
+            ],
+            "comparison_axis_indices": [
+              22
+            ],
+            "comparison_finding_indices": [],
+            "original_axes": [],
+            "axis_name": "measurement.definition_applicability"
+          },
+          "na_assessment_insert_index": 24,
+          "assessment_index_replacement_count": 8,
+          "rfc6902_patch": [
+            {"op":"copy","from":"/baseline","path":"/result/assessments"},
+            {"op":"copy","from":"/baseline/23/key","path":"/na_assessment_seed/key"},
+            {"op":"copy","from":"/comparison/axes/22","path":"/na_assessment_seed/original_axes/-"},
+            {"op":"copy","from":"/na_assessment_seed","path":"/result/assessments/24"},
+            {"op":"replace","path":"/result/assessments/22/comparison_axis_indices","value":[24]},
+            {"op":"replace","path":"/result/assessments/23/comparison_axis_indices","value":[23]},
+            {"op":"replace","path":"/result/assessments/25/comparison_axis_indices","value":[26]},
+            {"op":"replace","path":"/result/assessments/26/comparison_axis_indices","value":[25]},
+            {"op":"replace","path":"/result/assessments/27/comparison_axis_indices","value":[28]},
+            {"op":"replace","path":"/result/assessments/28/comparison_axis_indices","value":[27]},
+            {"op":"replace","path":"/result/assessments/29/comparison_axis_indices","value":[30]},
+            {"op":"replace","path":"/result/assessments/30/comparison_axis_indices","value":[29]}
+          ],
+          "result_member_order": [
+            "assessments",
+            "index_map",
+            "target_slot_indices"
+          ],
+          "assessment_member_order": [
+            "key",
+            "state",
+            "origin_branch",
+            "slot_locators",
+            "fact_locators",
+            "comparison_axis_indices",
+            "comparison_finding_indices",
+            "original_axes",
+            "axis_name"
+          ],
+          "assessment_count": 31,
+          "index_map_count": 31,
+          "result_canonical_sha256": "352cd47f0d3921de0fb5129e0f9f620a1e9d4a96c18cb9cc8e3ebb3598d28b3c",
+          "result_ordered_sha256": "ea6944249c389515ae2f8ed15789710280962d8eec84d629d0f6643ab932260e",
+          "result_source_is_finite_recipe_payload_and_fixed_Git_sources": true,
+          "private_expected_artifacts_used_only_for_comparison": true,
+          "complete_result_values_retained_in_local_candidate_manifest_only": true
+        },
+        "baseline_non_index_fields_preserved": true,
+        "oracle_comparison": {
+          "root_expected_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M1a-primary-index-expected-R1.json",
+          "root_expected_sha256": "198d60286d5ba7867567f6a9a5226b07c93218b218bca3f299b74ac2fc95f5ba",
+          "worker_expected_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/worker-meaning-M1a-primary-index-independent-expected-R2.json",
+          "worker_expected_sha256": "0e3569fa28568aa3ceb0aa22378b90d9fdd01ece107f64bf3218f6dd8ebbe50f",
+          "agreement_path": "/home/tenni/HELIX-HARNESS/scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-meaning-M1a-primary-index-oracle-agreement-R1.json",
+          "agreement_sha256": "aab32d7ed7e396db3f4bf11af1196ae23275b4bc9c2d9e493571b6bcaebd9b72",
+          "full_values_and_recursive_member_order_equal": true
+        }
+      }
+    ],
+    "case_count": 1,
+    "authority_effect": "none",
+    "operation_effect": "none"
+  },
   "definition_meaning_fn1_A_comparison_verification": {
     "id": "HELIXBRAIN-L8-D26A-FN1-COMPARISON",
     "status": "detail_verification_candidate_unexecuted",
