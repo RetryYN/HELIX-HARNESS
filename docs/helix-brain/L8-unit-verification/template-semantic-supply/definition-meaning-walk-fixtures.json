@@ -4,7 +4,7 @@
   "candidate_L5_binding": {
     "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
     "base_revision": "fabd7834720a6ddc3f02553034de25b51ac4fc5a",
-    "file_sha256": "df54cfcae3046c9c83284e8047b57e6ac92d61e81cd6c3160c90f120616ad5e2",
+    "file_sha256": "98cc766bc4074c2f822a34a67e886e390481225880697e49be8c22b143f83159",
     "binding_kind": "current_working_file_bytes",
     "scope": "base_revisionのgit blobと同bytesという主張ではない。正式候補L5全bytesへ照合。"
   },
@@ -452525,7 +452525,7 @@
     "source_binding": {
       "binding_kind": "current_candidate_file_bytes",
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-      "file_bytes_sha256": "df54cfcae3046c9c83284e8047b57e6ac92d61e81cd6c3160c90f120616ad5e2",
+      "file_bytes_sha256": "98cc766bc4074c2f822a34a67e886e390481225880697e49be8c22b143f83159",
       "selected_objects": [
         {
           "pointer": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/applicability/body/source_occurrence_retention",

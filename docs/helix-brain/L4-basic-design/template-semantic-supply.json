@@ -5111,7 +5111,7 @@
   },
   "definition_meaning_resolution_contract": {
     "id": "HELIXBRAIN-L4-032-DEFINITION-MEANING-RESOLUTION",
-    "status": "原meaning取得の基本技術契約候補。m1a_finite_caller_bindingの有限2 caseを除き、新raw/期待/oracleは未作成。actual readerは未実施。",
+    "status": "原meaning取得の基本技術契約候補。m1a_finite_caller_bindingの有限2 caseとm2a_finite_meaning_pair_bindingの有限1 caseを記録した。詳細L5/L8整合、実reader、実資格/provider接続は未成立。",
     "requirements": [
       "HELIXBRAIN-L3-032-F01",
       "HELIXBRAIN-L3-032-F02",
@@ -5918,11 +5918,11 @@
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
       "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
-      "not_finished": "m1a_finite_caller_bindingのmeasurement/completion公開Comparison 2 casesをL9で追随した。L8 wholeと現行詳細設計・原meaning取得の基本契約との対応は未追随・未成立として保持する。"
+      "not_finished": "m1a_finite_caller_bindingの2 casesとm2a_finite_meaning_pair_bindingの1 caseの公開ComparisonをL9で追随した。L8 wholeおよび詳細L5/L8設計との対応は未追随・未成立として保持する。"
     },
     "preservation_and_limits": [
       "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
-      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。m1a_finite_caller_bindingのmeasurement/completion 2 casesを今回の有限pairとして追補し、他の新known/NA source/callerと独立wholeは作成していない。",
+      "旧基本9target port、既存conditional/canonical incoming/claim意図のraw/期待/分岐は変更しない。兄弟node m1a_finite_caller_bindingのmeasurement/completion 2 casesは保持し、m2a_finite_meaning_pair_bindingにはslot 0の有限caller 1件のみを記録する。他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
       "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。それらの稼働不在をpure設計の新必須gateにもしない。"
     ],
     "call_bindings": {
@@ -6095,6 +6095,71 @@
         {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json","file_sha256":"166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2","bytes":64372,"changed_from_original_B":false,"binding_kind":"baseline_history_not_current"},
         {"revision":"222114533682c699c4a1c60862b2835fd8cdaf02","actual_merge_revision":"222114533682c699c4a1c60862b2835fd8cdaf02","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"66706f642325e87a87d1f9ab89a5a4b6b39b5c1bf0f10b390f5d906e8787297f","bytes":11537704,"changed_from_original_B":true,"binding_kind":"baseline_history_not_current"}
       ]
+    },
+    "m2a_finite_meaning_pair_binding": {
+      "id": "HELIXBRAIN-L4-032-M2A-FINITE-MEANING-PAIR-BINDING",
+      "status": "同一対象に対する合成meaning pairが非同値とされた有限1件について、L4公開Comparisonの範囲だけを記録するbasic binding候補。実reader・実source資格は未成立。",
+      "requirements": ["HELIXBRAIN-L3-032-F01","HELIXBRAIN-L3-032-F02","HELIXBRAIN-L3-032-F03","HELIXBRAIN-L3-032-F06","HELIXBRAIN-L3-032-F09"],
+      "scope_ja": "M2aのslot 0における同一対象の合成meaning pair 1 callerについて、原入力とcaller、および同一callの公開Comparison全値・再帰順を記録する。M1aの有限2 callerは兄弟nodeに保持し、このnodeのcase数には含めない。原owner資格・実readerは成立させない。",
+      "case_count": 1,
+      "source_basis": [
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"73859d1d877aa461ae37d96f2515e9dc7303a8b6e998abc706ddde6cf9cebb7b","bytes":785622,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","file_sha256":"df54cfcae3046c9c83284e8047b57e6ac92d61e81cd6c3160c90f120616ad5e2","bytes":1018953,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"36d869d42d826b5f24672a840f09d6fc1fe21898c70029296fba80e725a642f0","bytes":7047743,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json","file_sha256":"25055f1113ed652601b44d752ed4a3757899ca07ca56fea0341e044b099843cc","bytes":39049,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"e1269d98e2a283db688dfca5a078396cdce1731997b6adea8934dc3835073b67","bytes":21978975,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json","file_sha256":"3f294c49ec4868c00ac86d413bbbe634ba9f38abeb6862b2357e808c00dba203","bytes":398122,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json","file_sha256":"382af55fbea1823a71c426c2ada149009ae8718506d390738b9cc2ec447af0d6","bytes":45751,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json","file_sha256":"166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2","bytes":64372,"basis_kind":"actual_M_fixed_source_snapshot"},
+        {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"5c158f1cca816313a6d4d8970270091cc0b70c6cf9f512144a9369869c760e7d","bytes":11637525,"basis_kind":"actual_M_fixed_source_snapshot"}
+      ],
+      "legacy_sources": [
+        {"asset_id":"LEGACY-ASSET-4F5A1F0739EC1111D91D","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb","bytes":6317,"lines":["16–45","61–92"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L4のJSON構造、owner/source/独立証拠、明示stateとmissing/unknown/N/Aの区別を読む歴史資料。旧schema・式・lifecycleの移植や実行根拠にはしない。"},
+        {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","bytes":7755,"lines":["30–78","110–148"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L5のtemplate field/trace/owner/failure由来とmissing/unknown/N/Aの区別を比較する歴史資料。旧registry/CLI/runtime/CI/test/承認lifecycleは移さない。"},
+        {"asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","bytes":11254,"lines":["65–101 UTW014/020/021"],"authority_status":"historical","disposition":"unresolved","role_ja":"前身監査のfailure contextを照合する歴史資料。再発防止の証明や新要求/gateの根拠にはしない。"}
+      ],
+      "caller_binding": {
+        "symbol": "compare_descriptor_definitions",
+        "signature": "compare_descriptor_definitions(context:DefinitionContext)->Comparison",
+        "context_member_order": ["validated"],
+        "validated_member_order": ["input","input_issues","unusable_source_refs"],
+        "case": {
+          "case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
+          "target_slot_index": 0,
+          "slot_identity": "MEANING-SLOT-01",
+          "descriptor_kind": "template identity",
+          "equivalent": false
+        },
+        "qualification_boundary_ja": "input_issues=[]かつunusable_source_refs=[]はfixture上の条件付き入力形。fn0未実行で、実受理・実owner供給・実資格は成立させない。"
+      },
+      "public_comparison_contract": {
+        "member_order": ["axes","findings","producer_symbol","input_binding"],
+        "axis_result_member_order": ["subject_ref","binding","axis","state","original_refs","reason","backflow_owner"],
+        "finding_member_order": ["code","rule_ref","subject_ref","binding","axis","state","source_refs","reason","backflow_owner"],
+        "axis_count": 34,
+        "finding_count": 1,
+        "shape_source": {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"73859d1d877aa461ae37d96f2515e9dc7303a8b6e998abc706ddde6cf9cebb7b","pointers":["/definition_meaning_resolution_contract/schema","/definition_meaning_resolution_contract/consumer_branch_table/2","/definition_meaning_resolution_contract/consumer_branch_table/5","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes"]},
+        "private_outputs_boundary_ja": "assessment、native material、target read、intent readは後続L5/L8詳細pairの範囲である。ここでL4公開Comparisonの所有範囲にしない。",
+        "reason_and_order_source_ja": "meaning eventの理由とComparison順は既存L5 event/serializer/original Ref/exact_sort資料から照合し、F09 TRACE専用writerをmeaning reasonの根拠にしない。"
+      },
+      "technical_selection": {
+        "L5_source": {
+          "revision": "9013d859d541cad6eb3b3b750d24f97344c06c8c",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "file_sha256": "df54cfcae3046c9c83284e8047b57e6ac92d61e81cd6c3160c90f120616ad5e2",
+          "pointers": ["/type_contract/types/MeaningFact","/type_contract/types/MeaningComparison","/source_return_contract/constructor_meaning/comparison_source","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection","/failure_rules/11","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract"]
+        },
+        "selected_field_roles_ja": ["MeaningFact/MeaningComparisonとcomparison_sourceは原fact・原命題・比較sourceの形を参照する。","pair_origin_projectionとhelper_event_projectionは原pairの局所originと公開eventの関係を読む。","failure_rules/11は既存pair conflict条件の参照であり、今回の期待stateを導く実装ではない。","event/serializer/original Ref/exact sort資料は公開fieldと順の対応を参照する。","na_public_projectionはNAとの境界を確認する参照であり、このpairのfalse判断根拠ではない。"]
+      },
+      "legacy_rederivation": {
+        "ledger_disposition_ja": "歴史資料のhistorical/unresolved dispositionは維持する。",
+        "preserved_ja": "原owner/sourceの出所とmeaning pairの比較結果を別材料として保持する。",
+        "changed_ja": "現行L4/L5のtyped contractと今回の固定合成source/caller/独立wholeをこの有限pair向けに再導出する。旧schema/runtime/CLI/test/CI/lifecycleは移植・実行しない。",
+        "reason_ja": "原meaningのsource/callerと独立wholeを対応付ける今回の有限pairに限る。failure資料から要求/gateを生成しない。"
+      },
+      "not_established_ja": "実ownerによる原operand供給、実source資格、実reader/provider、L5/L8詳細整合は未成立。この有限pairから任意callerや一般new_defsの成立を認定せず、新しい閾値・資源上限・gateを定めない。",
+      "authority_effect": "none",
+      "operation_effect": "none"
     }
   },
   "field_value_applicability_contract": {
