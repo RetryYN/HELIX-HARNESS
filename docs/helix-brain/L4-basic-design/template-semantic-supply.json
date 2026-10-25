@@ -6100,7 +6100,7 @@
       "id": "HELIXBRAIN-L4-032-M2A-FINITE-MEANING-PAIR-BINDING",
       "status": "同一対象に対する合成meaning pairが非同値とされた有限1件について、L4公開Comparisonの範囲だけを記録するbasic binding候補。実reader・実source資格は未成立。",
       "requirements": ["HELIXBRAIN-L3-032-F01","HELIXBRAIN-L3-032-F02","HELIXBRAIN-L3-032-F03","HELIXBRAIN-L3-032-F06","HELIXBRAIN-L3-032-F09"],
-      "scope_ja": "M2aのslot 0における同一対象の合成meaning pair 1 callerについて、原入力とcaller、および同一callの公開Comparison全値・再帰順を記録する。M1aの有限2 callerは兄弟nodeに保持し、このnodeのcase数には含めない。原owner資格・実readerは成立させない。",
+      "scope_ja": "M2aのslot 0における同一対象の合成meaning pair 1 callerについて、L4が所有する基本契約候補の範囲に限る。原入力、caller、期待Comparisonの全値・再帰順はL9 nodeが所有する。M1aの有限2 callerは兄弟nodeに保持し、原owner資格・実readerは成立させない。",
       "case_count": 1,
       "source_basis": [
         {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"73859d1d877aa461ae37d96f2515e9dc7303a8b6e998abc706ddde6cf9cebb7b","bytes":785622,"basis_kind":"actual_M_fixed_source_snapshot"},
@@ -6118,27 +6118,9 @@
         {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","bytes":7755,"lines":["30–78","110–148"],"authority_status":"historical","disposition":"unresolved","role_ja":"旧L5のtemplate field/trace/owner/failure由来とmissing/unknown/N/Aの区別を比較する歴史資料。旧registry/CLI/runtime/CI/test/承認lifecycleは移さない。"},
         {"asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","file_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","bytes":11254,"lines":["65–101 UTW014/020/021"],"authority_status":"historical","disposition":"unresolved","role_ja":"前身監査のfailure contextを照合する歴史資料。再発防止の証明や新要求/gateの根拠にはしない。"}
       ],
-      "caller_binding": {
-        "symbol": "compare_descriptor_definitions",
-        "signature": "compare_descriptor_definitions(context:DefinitionContext)->Comparison",
-        "context_member_order": ["validated"],
-        "validated_member_order": ["input","input_issues","unusable_source_refs"],
-        "case": {
-          "case_id": "M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE",
-          "target_slot_index": 0,
-          "slot_identity": "MEANING-SLOT-01",
-          "descriptor_kind": "template identity",
-          "equivalent": false
-        },
-        "qualification_boundary_ja": "input_issues=[]かつunusable_source_refs=[]はfixture上の条件付き入力形。fn0未実行で、実受理・実owner供給・実資格は成立させない。"
-      },
+      "caller_binding": {"symbol":"compare_descriptor_definitions","signature":"compare_descriptor_definitions(context:DefinitionContext)->Comparison","context_member_order":["validated"],"validated_member_order":["input","input_issues","unusable_source_refs"],"case":{"case_id":"M2A-SLOT0-QUALIFIED-MEANING-PAIR-EQUIVALENT-FALSE","target_slot_index":0,"slot_identity":"MEANING-SLOT-01","descriptor_kind":"template identity","equivalent":false,"fixture_label_boundary_ja":"QUALIFIEDは合成fixture上の条件付き入力形を表す。fn0未実行で、実受理・実owner供給・実資格は成立させない。"},"qualification_boundary_ja":"input_issues=[]かつunusable_source_refs=[]はfixture上の条件付き入力形。fn0未実行で、実受理・実owner供給・実資格は成立させない。"},
       "public_comparison_contract": {
-        "member_order": ["axes","findings","producer_symbol","input_binding"],
-        "axis_result_member_order": ["subject_ref","binding","axis","state","original_refs","reason","backflow_owner"],
-        "finding_member_order": ["code","rule_ref","subject_ref","binding","axis","state","source_refs","reason","backflow_owner"],
-        "axis_count": 34,
-        "finding_count": 1,
-        "shape_source": {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"73859d1d877aa461ae37d96f2515e9dc7303a8b6e998abc706ddde6cf9cebb7b","pointers":["/definition_meaning_resolution_contract/schema","/definition_meaning_resolution_contract/consumer_branch_table/2","/definition_meaning_resolution_contract/consumer_branch_table/5","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes"]},
+        "shape_source": {"revision":"9013d859d541cad6eb3b3b750d24f97344c06c8c","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"73859d1d877aa461ae37d96f2515e9dc7303a8b6e998abc706ddde6cf9cebb7b","pointers":["/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes/comparison/members","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes/axis_result/members","/dependency_semantic_ports/public_projection/axis_reason_writer/public_return_shapes/finding/members"]},
         "private_outputs_boundary_ja": "assessment、native material、target read、intent readは後続L5/L8詳細pairの範囲である。ここでL4公開Comparisonの所有範囲にしない。",
         "reason_and_order_source_ja": "meaning eventの理由とComparison順は既存L5 event/serializer/original Ref/exact_sort資料から照合し、F09 TRACE専用writerをmeaning reasonの根拠にしない。"
       },
@@ -6149,7 +6131,7 @@
           "file_sha256": "df54cfcae3046c9c83284e8047b57e6ac92d61e81cd6c3160c90f120616ad5e2",
           "pointers": ["/type_contract/types/MeaningFact","/type_contract/types/MeaningComparison","/source_return_contract/constructor_meaning/comparison_source","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/helper_event_projection","/failure_rules/11","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/public_field_serializer","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/original_ref_columns","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/na_public_projection","/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract"]
         },
-        "selected_field_roles_ja": ["MeaningFact/MeaningComparisonとcomparison_sourceは原fact・原命題・比較sourceの形を参照する。","pair_origin_projectionとhelper_event_projectionは原pairの局所originと公開eventの関係を読む。","failure_rules/11は既存pair conflict条件の参照であり、今回の期待stateを導く実装ではない。","event/serializer/original Ref/exact sort資料は公開fieldと順の対応を参照する。","na_public_projectionはNAとの境界を確認する参照であり、このpairのfalse判断根拠ではない。"]
+        "selected_field_roles_ja": ["MeaningFact/MeaningComparisonとcomparison_sourceは原fact・原命題・比較sourceの形を参照する。","pair_origin_projectionとhelper_event_projectionは原pairの局所originと公開eventの関係を読む。","pair軸stateはhelper原値のcopy。conflict軸/Findingはfailure_rules/11のpredicate条件成立を参照し、関数自体は未実行。","event/serializer/original Ref/exact sort資料は公開fieldと順の対応を参照する。","na_public_projectionはNAとの境界を確認する参照であり、このpairのfalse判断根拠ではない。"]
       },
       "legacy_rederivation": {
         "ledger_disposition_ja": "歴史資料のhistorical/unresolved dispositionは維持する。",
@@ -6157,7 +6139,7 @@
         "changed_ja": "現行L4/L5のtyped contractと今回の固定合成source/caller/独立wholeをこの有限pair向けに再導出する。旧schema/runtime/CLI/test/CI/lifecycleは移植・実行しない。",
         "reason_ja": "原meaningのsource/callerと独立wholeを対応付ける今回の有限pairに限る。failure資料から要求/gateを生成しない。"
       },
-      "not_established_ja": "実ownerによる原operand供給、実source資格、実reader/provider、L5/L8詳細整合は未成立。この有限pairから任意callerや一般new_defsの成立を認定せず、新しい閾値・資源上限・gateを定めない。",
+      "not_established_ja": "この1件ではequivalent=true pair、原命題未供給/未確定時のpending軸、comparison_refsを載せない入力、factが3件以上の場合、他slot、qualifiedでないcomparison、display collision（rule 3）、helper-originは観測しない。これらを新しい拒否domain・gateにはしない。実owner供給、実資格、実reader/provider、L5/L8詳細整合も未成立であり、この有限pairから一般new_defsの成立を認定しない。",
       "authority_effect": "none",
       "operation_effect": "none"
     }
