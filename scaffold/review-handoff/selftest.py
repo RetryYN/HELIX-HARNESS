@@ -56,16 +56,29 @@ class PacketChecks(unittest.TestCase):
         with self.assertRaises(ValueError): self.check(r)
 
     def test_worker_runtime_roles(self):
-        # DevinはClaude reviewに限る。他のDevin/Antigravity PR pairは拒否し、work dispatcherは別制約を保つ。
-        pairs = (("devin", "claude"), ("claude", "devin"), ("codex", "devin"),
+        # DevinとAntigravityはClaude reviewへ送れ、ClaudeはCodexまたはAntigravityへreviewを送れる。他の組は拒否する。
+        default_claude = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(p.Path(__file__).with_name("packet.py")), "build",
+            "--base", self.base, "--head", self.head, "--pr", "1", "--request-id", "CLAUDE-DEFAULT-REVIEWER",
+            "--author", "claude", "--purpose", "仮設形式検査", "--scope", "合成入力のみ"], cwd=p.ROOT))
+        self.assertEqual((default_claude["author"], default_claude["reviewer"]), ("claude", "codex"))
+        self.check(default_claude)
+        claude_to_agy = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(p.Path(__file__).with_name("packet.py")), "build",
+            "--base", self.base, "--head", self.head, "--pr", "1", "--request-id", "CLAUDE-AGY-REVIEWER",
+            "--author", "claude", "--reviewer", "antigravity", "--purpose", "仮設形式検査", "--scope", "合成入力のみ"], cwd=p.ROOT))
+        self.assertEqual((claude_to_agy["author"], claude_to_agy["reviewer"]), ("claude", "antigravity"))
+        self.check(claude_to_agy)
+        pairs = (("devin", "claude"), ("antigravity", "claude"), ("claude", "antigravity"),
+                 ("claude", "devin"), ("codex", "devin"),
                  ("devin", "codex"), ("devin", "devin"), ("antigravity", "codex"),
-                 ("antigravity", "claude"))
+                 ("codex", "antigravity"), ("antigravity", "antigravity"))
         for author, reviewer in pairs:
             r = copy.deepcopy(self.request)
             r.update(author=author, reviewer=reviewer)
             core = {k: v for k, v in r.items() if k != "payload_sha256"}
             r["payload_sha256"] = p.sha(p.encode(core))
-            if (author, reviewer) == ("devin", "claude"):
+            if (author, reviewer) in (("devin", "claude"), ("antigravity", "claude"), ("claude", "antigravity")):
                 self.check(r)
             else:
                 with self.assertRaises(ValueError): self.check(r)
@@ -76,6 +89,11 @@ class PacketChecks(unittest.TestCase):
             "--base", self.base, "--issue", "1", "--request-id", "WORK-SELFTEST", "--dispatcher", "codex",
             "--worker", "devin", "--purpose", "仮設形式検査", "--scope", "合成入力のみ"], cwd=p.ROOT))
         p.validate_work(work, self.base)
+        agy_work = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(p.Path(__file__).with_name("packet.py")), "build-work",
+            "--base", self.base, "--issue", "1", "--request-id", "WORK-AGY-DISPATCH", "--dispatcher", "antigravity",
+            "--worker", "devin", "--purpose", "仮設形式検査", "--scope", "合成入力のみ"], cwd=p.ROOT))
+        p.validate_work(agy_work, self.base)
         for field, value in (("dispatcher", "devin"), ("worker", "codex"), ("issue", 0), ("purpose", "改変"),
                              ("authority_effect", "approved"), ("route", "manual_handoff_no_launch")):
             r = copy.deepcopy(work)
