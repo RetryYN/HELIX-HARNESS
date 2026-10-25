@@ -9569,10 +9569,10 @@
             "scope_ja": "display_groupの取得だけを補足する。special_reader既存4句、schema、他request_kindの意味を置換しない。",
             "activation_ja": "元display-group発見が無いときはrequestをcallしない。これは取得開始前の規則。",
             "candidate_discovery_ja": "資格/typed成功で候補を絞らない。validated inputのrole=semantic_json元sourceにdescriptor_display_groups carrier memberがsuppliedなら、そのsourceをraw候補としてsource index順に保持する。member valueがnull又は非arrayでも、memberがsuppliedなら候補から落とさない。",
-            "qualification_ja": "候補sourceごとに既存fn0 qualification/usableを確認する。不成立ならproblem table source_unresolvedの原source Ref/indexを一件返し、carrier内部recordsをdecodeしない。",
+            "qualification_ja": "候補sourceごとに既存fn0 qualification/usableを消費する。不成立なら原source全値/Ref/indexを既存source_unresolved problemへ保持し、carrier内部recordをdecodeせず、source_occurrences/supportsへの内部record追加も内部record由来の派生problemも行わない。",
             "carrier_presence": {
               "array_ja": "qualification済みcohort sourceのcarrierがarrayなら、全raw recordを原record index順に保持する。empty arrayはrecord occurrenceなしで、emptyだけのproblemを追加しない。",
-              "absent_null_type_ja": "形成済みrequestへ独立に対応するusable producer sourceのmember absent/null/non-arrayは、既存container_absent/container_null/container_typeへそれぞれ記録する。今回のnormal positive caseでabsent branchを新設しない。"
+              "absent_null_type_ja": "display_groupではcarrier memberがabsentのsourceはcandidate cohort外であり、container_absentを作らない。carrier suppliedの候補でqualificationが成立した後に限り、null/non-arrayを既存container_null/container_typeへそれぞれ記録する。"
             },
             "raw_and_decode_ja": "qualification済みarrayの各原recordをsource_occurrencesのsource_ref/source_index/record_index/locator/original_recordへそのまま保存してからclosed projectionを行う。返却schemaにdecoded_record fieldは追加しない。",
             "record_outcomes": {
@@ -9582,14 +9582,14 @@
             "group_match_ja": "typed groupのfull Binding、item_slot_identity、descriptor_kindを原slotへ対応する。display_labelはpresence/原値を保持するが、label equalityやrule3 collisionはこのreadで評価しない。",
             "member_mapping": {
               "slot_facts_ja": "各member.fact_ref/bodyを同inputのslot facts全件へ既存Ref/body対応する。複数の元出現は原index順と反復を保持し、最初の一factへ絞らない。fact_bodyは同fact.meaningの供給RawValueと照合する。",
-              "owner_lookup_ja": "対応した各原fact.source_refから既存owner factsを独立に照合する。source0はmember-owner lookup先でありcarrier要求sourceではなく、欠落carrier problemを返さない。",
-              "carrier_owner_ja": "source15が今回の一つのsynthetic carrier候補兼right fact owner。各member ownerのBinding/qualification/slot/kind/fact全metadataは既存attribution規則を保持する。"
+              "owner_lookup_ja": "対応した各原fact.source_refから既存owner factsを独立に照合する。member fact-ownerの照合先であることだけを理由にcarrierを要求せず、carrier欠如problemを返さない。",
+              "carrier_owner_ja": "carrierを供給する原sourceをgroup discoveryの起点とする。各member ownerのBinding/qualification/slot/kind/fact全metadataは既存attribution規則を保持する。"
             },
             "support_ja": "qualificationとclosed typed correspondenceが成立したgroup recordのみDefinitionSpecialSupportへ全件追加する。supportsはsource index→record index順で、raw occurrenceからのtyped-success subset。",
             "acquisition_state_ja": "同DefinitionSpecialReadを使う既存replacement_claim basis_shape_return_limits/acquisition_foldに合わせ、supports非空ならresolved、空ならunknown。problems/raw occurrencesを両stateで保持し、resolvedは内容肯定ではない。",
             "problem_order_ja": "既存problem_commonのread failure→source index→record index→cohort/field比較順とmultiplicityを保つ。取得成功と別問題は併存し、全source/record成功gateを作らない。",
-            "request_locator_ja": "request_kind=display_group、request_locatorは原slot /descriptors/0。source_refをrequestへ追加せず、source locatorとmember-owner lookupを分離する。",
-            "finite_boundary_ja": "L8ではnormal carrier一件のDefinitionSpecialRead全5 fieldを扱う。unqualified/malformed/multiple producer/empty supportなど未観測枝をfixtureへ追加しない。L4/L9 public rule3 axis/findingも加えない。"
+            "request_locator_ja": "request_kind=display_group、request_locatorは原slot objectのRFC6901 pointer。source_refをrequestへ追加せず、source locatorとmember-owner lookupを分離する。",
+            "finite_boundary_ja": "この補足はdisplay_group取得に限る。owner source不成立時のcause/support採否、known foreignと対応済mirror差の判別境界、一部member不一致groupのsupport採否は本補足で未規定。これらとunqualified/malformed/multiple producer/empty support等は有限検証で未観測。L4/L9 public rule3 axis/findingも返却へ加えない。"
           }
         },
         "special_predicate_projection": [
