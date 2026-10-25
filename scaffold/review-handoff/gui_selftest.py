@@ -122,7 +122,7 @@ class GuiChecks(unittest.TestCase):
                     "devin": "devin-gui", "antigravity": "agy-gui"}
         pairs = (("claude", "devin"), ("codex", "devin"), ("claude", "claude"),
                  ("codex", "codex"), ("devin", "codex"), ("devin", "devin"), ("devin", "antigravity"),
-                 ("claude", "antigravity"), ("codex", "antigravity"),
+                 ("codex", "antigravity"),
                  ("antigravity", "devin"), ("antigravity", "codex"), ("antigravity", "antigravity"))
         for i, (author, reviewer) in enumerate(pairs):
             request = dict(self.request, author=author, reviewer=reviewer)
@@ -167,6 +167,27 @@ class GuiChecks(unittest.TestCase):
         self.assertEqual(reply["payload"]["receiver_runtime"], "antigravity")
         received = g.claim(data, "antigravity", "agy-gui", self.now)
         g.ack(data, "agy-review-resp", "antigravity", "agy-gui", received["digest"], received["claim"]["nonce"], self.now)
+        # Claude author -> Antigravity reviewerの往復も確認する。
+        claude_to_agy_req = json.loads(subprocess.check_output([
+            sys.executable, "-B", str(g.HERE / "packet.py"), "build", "--base", self.head,
+            "--head", self.head, "--pr", "1", "--request-id", "GUI-CLAUDE-TO-AGY-REVIEW",
+            "--author", "claude", "--reviewer", "antigravity",
+            "--purpose", "Claude author・Antigravity reviewerのreview経路",
+            "--scope", "合成入力のみ"
+        ]))
+        self.assertEqual((claude_to_agy_req["author"], claude_to_agy_req["reviewer"]), ("claude", "antigravity"))
+        sent2 = g.send(data, "claude", "claude-gui", "claude-to-agy-req", "review_request", claude_to_agy_req, None, 60, self.now)
+        self.assertEqual(sent2["payload"]["receiver_runtime"], "antigravity")
+        claimed2 = g.claim(data, "antigravity", "agy-gui", self.now)
+        g.ack(data, "claude-to-agy-req", "antigravity", "agy-gui", claimed2["digest"], claimed2["claim"]["nonce"], self.now)
+        claude_to_agy_resp = {k: claude_to_agy_req[k] for k in ("request_id", "base_sha", "content_sha", "reviewer")}
+        claude_to_agy_resp.update(schema="scaffold-review-response.v1", evidence_kind="scaffold", authority_effect="none",
+                                  request_payload_sha256=claude_to_agy_req["payload_sha256"], result="no_findings",
+                                  findings=[], unreviewed=[])
+        reply2 = g.send(data, "antigravity", "agy-gui", "claude-to-agy-resp", "review_response", claude_to_agy_req, claude_to_agy_resp, 60, self.now)
+        self.assertEqual(reply2["payload"]["receiver_runtime"], "claude")
+        received2 = g.claim(data, "claude", "claude-gui", self.now)
+        g.ack(data, "claude-to-agy-resp", "claude", "claude-gui", received2["digest"], received2["claim"]["nonce"], self.now)
 
     def test_send_queues_for_lapsed_registered_session(self):
         # 宛先leaseが切れても登録済みsessionへ積み、そのsessionのhook activityでleaseが戻れば受け取れる。
@@ -750,15 +771,39 @@ class GuiChecks(unittest.TestCase):
     def test_four_runtime_lanes(self):
         # Claude・Codex・Antigravityはexecution/review_mergeの排他レーン、Devinはworkerレーン。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        for lane in ("execution", "review_merge"):
-            with self.assertRaises(ValueError): g.bind(self.data, "antigravity", "agy-gui", lane, 60, self.now)
+        # Codexがexecution、Claudeがreview_mergeの間は、Antigravityはいずれにもbindできない（排他規則）。
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
+            g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now)
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
+            g.bind(self.data, "antigravity", "agy-gui", "review_merge", 60, self.now)
         g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now + 61)
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
+            g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now + 61)
         for runtime, lane in (("devin", "execution"), ("antigravity", "worker"), ("claude", "worker")):
             with self.assertRaises(ValueError): g.bind(self.data, runtime, runtime + "-x", lane, 60, self.now + 122)
         data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(data, "codex", "codex-gui", "review_merge", 60, self.now)
         with self.assertRaises(ValueError): g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
         with self.assertRaises(ValueError): g.bind(data, "antigravity", "agy-gui", "review_merge", 60, self.now)
+
+    def test_antigravity_dispatcher_work_request_and_self_reject(self):
+        data = dict(version=1, lanes={}, observed={}, messages={})
+        g.bind(data, "antigravity", "agy-gui", "execution", 60, self.now)
+        g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
+        g.bind(data, "devin", "devin-gui", "worker", 60, self.now)
+        work_to_devin = self.work("devin", "WORK-AGY-TO-DEVIN", dispatcher="antigravity")
+        msg_devin = g.send(data, "antigravity", "agy-gui", "agy-disp-devin", "work_request", work_to_devin, None, 60, self.now)
+        self.assertEqual(msg_devin["payload"]["receiver_runtime"], "devin")
+        work_to_claude = self.work("claude", "WORK-AGY-TO-CLAUDE", dispatcher="antigravity")
+        msg_claude = g.send(data, "antigravity", "agy-gui", "agy-disp-claude", "work_request", work_to_claude, None, 60, self.now)
+        self.assertEqual(msg_claude["payload"]["receiver_runtime"], "claude")
+        self_work = dict(work_to_devin, worker="antigravity")
+        core = {k: v for k, v in self_work.items() if k != "payload_sha256"}
+        self_work["payload_sha256"] = p.sha(p.encode(core))
+        with self.assertRaisesRegex(ValueError, "依頼側と作業側は異なるruntime"):
+            p.validate_work(self_work, self.head)
+        with self.assertRaisesRegex(ValueError, "宛先runtime不正"):
+            g.send(data, "antigravity", "agy-gui", "agy-disp-self", "work_request", self_work, None, 60, self.now)
 
     def test_work_request_routing(self):
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)

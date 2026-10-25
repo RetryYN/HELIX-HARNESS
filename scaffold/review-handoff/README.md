@@ -5,7 +5,7 @@ authority_effect: none
 binding: SCF-B-0003
 replacement_issue: 1866
 
-同じVS Codeの既存GUIセッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。Claude→Codex、Codex→Claude、Antigravity→Claude、およびDevinの条件付き作成側通知（Devin→Claude）を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
+同じVS Codeの既存GUIセッション間で、PRの作成側→独立review側への依頼と、逆方向の指摘を届ける。Claude→Codex、Claude→Antigravity、Codex→Claude、Antigravity→Claude、およびDevinの条件付き作成側通知（Devin→Claude）を届ける。向きはレーンではなくPRごとの作成側・review側で決めるため、review_merge laneが作成したPRでも同じ経路を使う。
 あわせて、Claude・Codex・Antigravityから作業側へ作業依頼を届け、作業結果（提案のcommit）を自分以外の登録済みruntimeへ届ける（省略時はClaude）。runtimeごとの役割は[2026-10-19のPO判断](../../docs/governance/decisions/four-runtime-mailbox-po-decision-2026-10-19.md)、[2026-10-20のPO判断](../../docs/governance/decisions/work-result-any-recipient-po-decision-2026-10-20.md)、および2026-10-25のPO指示（[Issue #3510 comment 6387360868](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6387360868)：AntigravityをCodexと同じ権限のレーンとして扱う）による。Devinの条件付きPR作成側経路は[2026-10-22のDevin判断記録](../../docs/governance/decisions/devin-content-producer-po-decision-2026-10-22.md)と[Issue #3510 WI-1c](https://github.com/RetryYN/HELIX-HARNESS/issues/3510)に基づく（Devinは[2026-10-25のPO指示](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6386473748)により休止中）。
 [作業契約](../../docs/governance/feature-tickets/FT-OS-REVIEWHANDOFF-001.md)、[調査](../../docs/governance/audits/source-rebaseline/rule-review-handoff-investigation-2026-09-20.md)を参照する。
 親 #1864、子 #1884、導入PR #1885、再接続revision、推進 #1859、検収 #1860、置換 #1866。旧ルール参照は既存SCF-B-0002を使う。
@@ -51,7 +51,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --s
 
 Claude・Codex・Antigravityは`execution`か`review_merge`に就き、同じruntimeが両レーンを兼ねず、同じ役割を同時に二つのruntimeへ割り当てない。Devinは`worker`だけに就く。
 
-`worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。AntigravityはCodexと同じく作成・作業依頼・`author=antigravity`・`reviewer=claude`のPR review依頼を行える。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使え、reviewer・自己review・mergeを担わない。`work_request`のdispatcherはClaude／Codex／Antigravityとする。
+`worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。AntigravityはCodexと同じく作成・作業依頼・review対応（`author=antigravity`・`reviewer=claude`および`author=claude`・`reviewer=antigravity`）を行える。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使え、reviewer・自己review・mergeを担わない。`work_request`のdispatcherはClaude／Codex／Antigravityとする。
 
 既存Claude GUIのsession IDがまだ分からない場合は`enroll --runtime claude --pid GUI_PROCESS_PID --lane review_merge`で、
 確認済みのGUI native processのPIDと開始時刻を固定できる。そのprocess配下の次のhookだけがsessionをbindする。
@@ -61,14 +61,14 @@ Claude・Codex・Antigravityは`execution`か`review_merge`に就き、同じrun
 ## 依頼と指摘返却
 
 1. PRの現在のbase／content full SHAを取得する。commit済みの対象だけを使う。
-2. `packet.py build`で参照digest付きパケットを作り、`local/request.json`へ保存する。両runtimeが同じcontent SHAの文書を読む。
+2. `packet.py build`で参照digest付きパケットを作り、`local/request.json`へ保存する（`--reviewer`省略時は`author=claude`なら`codex`、それ以外は`claude`。Claude作成PRをAntigravityがreviewするときは`--reviewer antigravity`を指定する）。両runtimeが同じcontent SHAの文書を読む。
 3. 作成側（packetの`author`）から`send`する。宛先runtimeのレーンが未登録なら拒否する。宛先leaseが切れていても登録済みsessionへ積み、そのsessionの次のhook activityでleaseが戻ったときに受け取る。`send`の出力`receiver_lease_active`がfalseの場合、受け取りは宛先GUIの次の動作を待つ。
 4. hookは固定文・event ID・digest・nonceだけを表示する。`inspect --runtime RUNTIME --session SESSION --id EVENT_ID`で本文をuntrusted_dataとして読み、承認・操作許可として扱わない。受信GUIは通知のevent ID・digest・claim nonceで`ack`する。**hookが出力しただけではACK済みにしない。**
 5. review側（packetの`reviewer`）は[応答形式](response-template.json)へ指摘・未確認範囲を書き、`review_response`として逆方向へsendする。依頼は`author`、指摘は`reviewer`のruntimeだけが送れ、packetが両者を別runtimeに限るため、自己reviewの経路にはならない。
 6. 修正でSHAが変わったら新request IDで再依頼する。受信側はPRの最新SHAを再取得してから差分を扱う。
 
 ```sh
-python3 -B scaffold/review-handoff/packet.py build --base BASE_FULL_SHA --head CONTENT_FULL_SHA --pr PR_NUMBER --request-id RH-UNIQUE-ID --author codex --purpose '対象差分のreview' --scope '対象pathと論点'
+python3 -B scaffold/review-handoff/packet.py build --base BASE_FULL_SHA --head CONTENT_FULL_SHA --pr PR_NUMBER --request-id RH-UNIQUE-ID --author codex [--reviewer claude] --purpose '対象差分のreview' --scope '対象pathと論点'
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime codex --session CODEX_SESSION --id EVENT_ID --kind review_request --request scaffold/review-handoff/local/request.json --base BASE_FULL_SHA --head CONTENT_FULL_SHA
 python3 -B scaffold/review-handoff/gui_mailbox.py ack --runtime claude --session CLAUDE_SESSION --id EVENT_ID --digest MESSAGE_DIGEST --nonce CLAIM_NONCE
 python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime claude --session CLAUDE_SESSION --id RESPONSE_EVENT_ID --kind review_response --request scaffold/review-handoff/local/request.json --response scaffold/review-handoff/local/response.json --base CURRENT_BASE_FULL_SHA --head CURRENT_CONTENT_FULL_SHA
@@ -126,7 +126,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py send --runtime devin --session
 python3 -B scaffold/review-handoff/gui_mailbox.py release-work --runtime codex --session CODEX_SESSION --worker devin --id EVENT_ID
 ```
 
-PRの`review_request`／`review_response`はClaude→Codex、Codex→Claude、Devin→Claude、またはAntigravity→Claudeの順序付き組だけ送れる。応答は元依頼のreviewerからauthorへ返す。Devin→Claude・Antigravity→Claudeの応答一周は許すが、Claude→Devin・Claude→Antigravityを新しいPR pairとしては許さない。Devinはreviewer・自己review・mergeを担わない。
+PRの`review_request`／`review_response`はClaude→Codex、Claude→Antigravity、Codex→Claude、Antigravity→Claude、またはDevin→Claudeの順序付き組だけ送れる（`author=claude`のとき`--reviewer`省略時は`codex`）。応答は元依頼のreviewerからauthorへ返す。Devin→Claudeの応答一周は許すが、Claude→Devin・Codex↔Antigravity・Codex/Antigravity↔Devinを新しいPR pairとしては許さない。Devinはreviewer・自己review・mergeを担わない。
 
 ## 配送状態・再開
 

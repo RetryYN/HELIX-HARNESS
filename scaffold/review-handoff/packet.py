@@ -26,7 +26,12 @@ REFERENCES = {
 RUNTIMES = ("claude", "codex", "devin", "antigravity")
 # 作業依頼dispatcherはClaude／Codex／Antigravity。
 PR_RUNTIMES = ("claude", "codex", "antigravity")
-PR_REVIEWER = {"claude": "codex", "codex": "claude", "devin": "claude", "antigravity": "claude"}
+PR_REVIEWER = {
+    "claude": ("codex", "antigravity"),
+    "codex": ("claude",),
+    "devin": ("claude",),
+    "antigravity": ("claude",),
+}
 
 
 def require(ok, message):
@@ -62,7 +67,7 @@ def text(value):
 
 
 def pr_review_pair_allowed(author, reviewer):
-    return author in PR_REVIEWER and PR_REVIEWER[author] == reviewer
+    return author in PR_REVIEWER and reviewer in PR_REVIEWER[author]
 
 
 def validate(packet, base, head):
@@ -164,6 +169,7 @@ def main():
         build.add_argument("--" + name, required=True)
     build.add_argument("--pr", type=int, required=True)
     build.add_argument("--author", choices=tuple(PR_REVIEWER), required=True)
+    build.add_argument("--reviewer", choices=PR_RUNTIMES)
     build.add_argument("--scope", action="append", required=True)
     build.add_argument("--route", choices=("manual_handoff_no_launch", "vscode_gui_mailbox"), default="vscode_gui_mailbox")
     work = sub.add_parser("build-work")
@@ -182,10 +188,11 @@ def main():
     args = parser.parse_args()
     try:
         if args.command == "build":
+            reviewer = args.reviewer if args.reviewer is not None else ("codex" if args.author == "claude" else PR_REVIEWER[args.author][0])
             packet = dict(schema="scaffold-review-request.v1", evidence_kind="scaffold", authority_effect="none",
                           request_id=args.request_id, repository="RetryYN/HELIX-HARNESS", pr=args.pr,
                           base_sha=commit(args.base), content_sha=commit(args.head), author=args.author,
-                          reviewer=PR_REVIEWER[args.author],
+                          reviewer=reviewer,
                           purpose=args.purpose,
                           scope=args.scope, route=args.route, references=references(args.head))
             packet["payload_sha256"] = sha(encode(packet))
