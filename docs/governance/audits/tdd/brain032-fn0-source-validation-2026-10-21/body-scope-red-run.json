@@ -1,0 +1,37 @@
+{
+  "phase": "Red after candidate static review",
+  "revision": "d6ebd9538ef9f8534e134ad1285b5aa3cd14b1b9",
+  "freeze": "docs/governance/audits/tdd/brain032-source-body-scope-freeze-2026-10-21.json",
+  "started_at_utc": "2026-10-20T17:51:08.893159+00:00",
+  "finished_at_utc": "2026-10-20T17:51:09.009720+00:00",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_source_content_and_scope.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "failures": 2,
+  "errors": 0,
+  "all_pins_unchanged": true,
+  "observed": "ADD05/ADD07ともsource0原Refがunusableに含まれないassertInで意図どおりFAIL。旧2testのGreen報告だけではbody/scopeの既存保証を満たさないことを再現。",
+  "not_claimed": "Green/Refactor/全fn0/資格認証/CI/Accepted",
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/body-scope-red.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/body-scope-red.stderr.log",
+    "sha256": "ae17219a107c884cdb385a18cf967eab4a9119184571d02a0023deae30ddd0ab"
+  }
+}

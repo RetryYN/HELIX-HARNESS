@@ -1,0 +1,56 @@
+{
+  "record_kind": "implementation_correspondence_and_review_limits",
+  "authority_effect": "none",
+  "source_main": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+  "target": "BRAIN032 fn0 source validation局所6test",
+  "current_design_refs": [
+    "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn0_source_validation_preparation",
+    "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn0_source_validation_verification"
+  ],
+  "legacy_sources": [
+    {
+      "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+      "line_span": [
+        22,
+        27
+      ],
+      "raw_sha256": "9eac2cc9e5fa8f1177b39f86681fa928cb22070666a5306dce7ae6943597d7af"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "line_span": [
+        34,
+        58
+      ],
+      "raw_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+    }
+  ],
+  "keep": "実欠陥をassertionで検出するRed、最小本体Green、consumer/oracle意味保存の実Refactor、同oracle回帰。",
+  "change": "現在のBRAIN032公開fn0と供給logical型へ意味再導出。旧runtime/test/CI/role/gateを移植しない。",
+  "failure_basis": [
+    "初回Devin da457d79aは原body/scope/root/shape等の未照合を残して2test Green報告。rootは未検収として修正branchの欠陥baselineにのみ保持。",
+    "追加Devin 036ed4ba0もstrict parse/型付き等値/scope/欠落Ref等を満たさず採用しなかった。最終source部品はCodexが実装し直した。",
+    "workerのfilterなしtest_supply_input 3test実行報告は指定scope外。正式なTDD成功証拠へ昇格せず、rootは4つの凍結commandの6testだけを検証した。"
+  ],
+  "host_binding": {
+    "logical_input": "既存logical RawValueのnative int/有限floatは原値保持。boolはnumberと区別。codecのprivate ExactJsonNumber carrierをこの入口へ導入したとは主張しない。",
+    "body_parse": "原JSON textの数値をDecimalへ直接parseし、元bytesを再serializeしない。decoded key重複・NaN/Infinity・末尾別valueを成功にしない。",
+    "numeric_comparison": "原textからのDecimal、native int、有限floatの現在の数値を厳密比較。floatはDecimal.from_floatのexactな現在値で比較し、元tokenを推定/丸め/復元しない。これをwire codec往復や全数値の成立にはしない。"
+  },
+  "static_shape_audit": "独立Lunaが18 SupplyInput memberと参照する全record/nullable/array/enum/closed/opaqueの対応をread-only照合。source部品との合成や動作証明には流用しない。",
+  "actual_evidence": [
+    "brain032-fn0-source-validation-2026-10-21/red-run.json",
+    "brain032-fn0-source-validation-2026-10-21/body-scope-red-run.json",
+    "brain032-fn0-source-validation-2026-10-21/green-run.json",
+    "brain032-fn0-source-validation-2026-10-21/refactor-run.json",
+    "brain032-fn0-source-validation-2026-10-21/locator-red-run.json",
+    "brain032-fn0-source-validation-2026-10-21/final-green-run.json"
+  ],
+  "not_complete": [
+    "全schema/全資格variant/全numeric/Unicode/資源を実行した網羅証拠",
+    "全fn0/fn1/F02/CORE/OS/CI/実root認証/custody/Accepted/release"
+  ],
+  "review_state": "Codex検収済み。別runtimeのexact HEAD reviewはこのrecord作成時点で未実施。"
+}

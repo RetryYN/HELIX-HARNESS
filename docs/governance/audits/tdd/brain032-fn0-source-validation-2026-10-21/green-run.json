@@ -1,0 +1,112 @@
+{
+  "phase": "Green",
+  "revision": "132b50a7dc315789624beb8f03403d350ca7873b",
+  "freeze_records": [
+    "docs/governance/audits/tdd/brain032-fn0-source-validation-freeze-2026-10-21.json",
+    "docs/governance/audits/tdd/brain032-source-body-scope-freeze-2026-10-21.json"
+  ],
+  "all_frozen_pins_unchanged": true,
+  "observed": "同じsource2test・追加body/scope2test・旧ADD01の1testが全てOK。原bytes SHA/strict JSON body/型付き等値/資格subject/digest/root/scopeを実照合。",
+  "implementation_split": "供給形predicate、source照合、公開orchestratorの3責務。未知key/opaque map/欠落/nullを区別し原inputを保持。",
+  "runs": [
+    {
+      "name": "source-green",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_integrity.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-20T17:59:52.112679+00:00",
+      "finished_at_utc": "2026-10-20T17:59:52.267593+00:00",
+      "exit_code": 0,
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/source-green.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/source-green.stderr.log",
+        "sha256": "d44d22c9b35e86aa3a12fb0f89d557dc208b2c05c8f0e8ecb83f9f66d659c94b"
+      }
+    },
+    {
+      "name": "body-scope-green",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_source_content_and_scope.py",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-20T17:59:52.267861+00:00",
+      "finished_at_utc": "2026-10-20T17:59:52.401626+00:00",
+      "exit_code": 0,
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/body-scope-green.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/body-scope-green.stderr.log",
+        "sha256": "1c93d50419143543bec80a4b72b86b80fc778bde514adc7daf59e4cbf72db448"
+      }
+    },
+    {
+      "name": "add01-regression",
+      "command": [
+        "timeout",
+        "10s",
+        "env",
+        "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+        "-p",
+        "test_supply_input.py",
+        "-k",
+        "test_add01_string_input_is_rejected",
+        "-v"
+      ],
+      "started_at_utc": "2026-10-20T17:59:52.401964+00:00",
+      "finished_at_utc": "2026-10-20T17:59:52.449786+00:00",
+      "exit_code": 0,
+      "stdout": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/add01-regression.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/add01-regression.stderr.log",
+        "sha256": "1fa43b02d8bf84c8257444d1b0ccf44ac850f0d3345842b24a0fdb87c8e40599"
+      }
+    }
+  ],
+  "not_claimed": [
+    "全fn0/schema/資格失敗の網羅",
+    "全numeric/Unicode/資源挙動",
+    "実root認証/custody",
+    "fn1/F02/CORE/OS/CI/Accepted"
+  ],
+  "refactor_state": "Green後の点検/必要Refactorと回帰は次。Greenをそのまま完了にはしない。"
+}

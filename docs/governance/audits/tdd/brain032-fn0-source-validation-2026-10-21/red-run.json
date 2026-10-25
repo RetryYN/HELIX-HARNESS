@@ -1,0 +1,44 @@
+{
+  "phase": "Red",
+  "revision": "e51ea8e997b908eb1a43a3a6ccdbef29334d1e6b",
+  "freeze_record": "docs/governance/audits/tdd/brain032-fn0-source-validation-freeze-2026-10-21.json",
+  "started_at_utc": "2026-10-20T17:45:20.324775+00:00",
+  "finished_at_utc": "2026-10-20T17:45:20.449915+00:00",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_source_integrity.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "tests_collected": 2,
+  "failures": 2,
+  "errors": 0,
+  "all_frozen_pins_unchanged": true,
+  "observed": "正常import/collection/setup後、baseの全sourceを未実装としてunusableへ残す不足と、ADD04で無関係sourceまでunusableに残る不足がそれぞれassertion FAIL。資格成功stubではなく、source対応照合の本体不足を検出。",
+  "implementation_limits": "このRed版はnested shapeもsource validationも未完成。実装利用/全fn0/資格成功/CI/Acceptedへ昇格しない。",
+  "unobserved": [
+    "Green",
+    "Refactor後回帰",
+    "実root認証",
+    "全fn0/fn1/F02/CORE/OS/CI/Accepted"
+  ],
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/red.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/red.stderr.log",
+    "sha256": "adcf9b5e4b6dcb801b329d3f25ab05bc6eb67262d296682b6a86bea2ad8e57e7"
+  }
+}

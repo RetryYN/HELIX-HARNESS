@@ -1,0 +1,28 @@
+test_add05_changed_body_with_original_bytes_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add05_changed_body_with_original_bytes_is_unusable) ... FAIL
+test_add07_other_qualification_tenant_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add07_other_qualification_tenant_is_unusable) ... FAIL
+
+======================================================================
+FAIL: test_add05_changed_body_with_original_bytes_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add05_changed_body_with_original_bytes_is_unusable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_content_and_scope.py", line 36, in test_add05_changed_body_with_original_bytes_is_unusable
+    self.assert_only_source_zero_unusable(raw)
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_content_and_scope.py", line 20, in assert_only_source_zero_unusable
+    self.assertIn(raw["sources"][0]["ref"], result["unusable_source_refs"],
+AssertionError: {'identity': 'synthetic-semantic-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-knowledge-owner', 'source_locator': None, 'sha256': '18202cd2193a6faace1308634f8c84d09f2c2e67d2f4d9b68e4280a14348ae14'} not found in [] : semantic: source0 with invalid body or scope must be unusable
+
+======================================================================
+FAIL: test_add07_other_qualification_tenant_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add07_other_qualification_tenant_is_unusable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_content_and_scope.py", line 43, in test_add07_other_qualification_tenant_is_unusable
+    result = self.assert_only_source_zero_unusable(raw)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_content_and_scope.py", line 20, in assert_only_source_zero_unusable
+    self.assertIn(raw["sources"][0]["ref"], result["unusable_source_refs"],
+AssertionError: {'identity': 'synthetic-semantic-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-knowledge-owner', 'source_locator': None, 'sha256': '18202cd2193a6faace1308634f8c84d09f2c2e67d2f4d9b68e4280a14348ae14'} not found in [] : semantic: source0 with invalid body or scope must be unusable
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.062s
+
+FAILED (failures=2)

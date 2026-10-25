@@ -1,0 +1,36 @@
+{
+  "phase": "locator regression Red",
+  "revision": "a0a4278d117c5ec21c19865de80bf099a8aa86b1",
+  "freeze": "docs/governance/audits/tdd/brain032-qualification-locator-freeze-2026-10-21.json",
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_source_reference_join.py",
+    "-v"
+  ],
+  "started_at_utc": "2026-10-20T18:03:39.355250+00:00",
+  "finished_at_utc": "2026-10-20T18:03:39.449862+00:00",
+  "exit_code": 1,
+  "failures": 1,
+  "errors": 0,
+  "all_pins_unchanged": true,
+  "observed": "同じ資格identityのlocator違いの複写をcohort conflictとして扱いsource0がunusableへ入る不足をassertion FAILで検出。",
+  "stdout": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/locator-red.stdout.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "docs/governance/audits/tdd/brain032-fn0-source-validation-2026-10-21/locator-red.stderr.log",
+    "sha256": "903e1baf2c9f0f9a559452afd6c3f98a7d822b4d96efefd3938bc91855ce56a7"
+  }
+}

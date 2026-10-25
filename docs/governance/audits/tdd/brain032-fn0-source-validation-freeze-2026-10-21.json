@@ -1,0 +1,114 @@
+{
+  "record_id": "BRAIN032-FN0-SOURCE-VALIDATION-FREEZE-20261021",
+  "record_kind": "scoped_test_oracle_freeze_before_source_validation_body",
+  "authority_effect": "none; existing10/12 limited scope; no new permission",
+  "source_revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+  "test_methods": [
+    "TestSourceIntegrity.test_base_retains_supplied_sources",
+    "TestSourceIntegrity.test_add04_mismatched_digest_makes_source_unusable"
+  ],
+  "pins": [
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py",
+      "file_bytes_sha256": "599ed0d49867086648edd5b0b8e3d2a1ecf5369f2ecd6749ae965433118dca69"
+    },
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/supply_input_fixtures.py",
+      "file_bytes_sha256": "8692a4bafd6ed5b7570057ed3a9baa462cf64e48033fa8ccf9e998e1e0b3a60a"
+    },
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "file_bytes_sha256": "adec4540e075371ad2f7f10d5a9a63aa01790a4844c666befbf418561a115589"
+    },
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json",
+      "file_bytes_sha256": "1b96a46257825111aef658fbe01b338c227eaf5ece6de5ee2b4ca274e59d98b5"
+    },
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "file_bytes_sha256": "4e46a6f6d4e8b8ef6354436ae047825dd3e30641ee01788924ac411a0ff75a02"
+    },
+    {
+      "revision": "095b9ab95d8808979ae7da1c8e7cdd4b4816add2",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "file_bytes_sha256": "671c7c10ef223c82b00e5f9b7e071865b877a55a98e89095e3b4143f81f8b481"
+    }
+  ],
+  "inputs": {
+    "base_pointer": "/fixture_contract/normal_control/input",
+    "base_ordered_json_sha256": "7a319d1a313738ace504a0d1dcc112a0fc25d2171e4a5490dcf544369a0bc452",
+    "ADD04_mutation": {
+      "pointer": "/sources/0/ref/sha256",
+      "value": "synthetic-mismatching-digest"
+    },
+    "ADD04_ordered_json_sha256": "c83b551186fe956c02d388f5197801af40cb48ff8ded072a7fd90457eb3eff4a"
+  },
+  "independent_partial_expected": {
+    "control": "decoded input/raw全値不変、unusable_source_refs=[]。L8が明示する合成root/body前提内の実対応照合。",
+    "ADD04": "decoded input/raw全値不変、変異後source0の原Refがunusableに入り、他4source Refは入らない。"
+  },
+  "oracle_basis": [
+    "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn0_source_validation_verification",
+    "docs/helix-brain/L8-unit-verification/template-semantic-supply.json#/function_oracles/0",
+    "docs/helix-brain/L8-unit-verification/template-semantic-supply.json#/additional_unit_cases/3",
+    "docs/helix-brain/L8-unit-verification/template-semantic-supply.json#/input_structure_verification/semantic_boundary_cases/2"
+  ],
+  "command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_source_integrity.py",
+    "-v"
+  ],
+  "regression_command": [
+    "timeout",
+    "10s",
+    "env",
+    "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src",
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+    "-p",
+    "test_supply_input.py",
+    "-k",
+    "test_add01_string_input_is_rejected",
+    "-v"
+  ],
+  "operation": {
+    "sources": [
+      "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+    ],
+    "environment": "own worktree WSL local Python3.12.3 stdlib; synthetic JSON only; selected2tests + frozenADD01 regression; timeout10s each process",
+    "effects": "no external dependency install/network/DB/credentials/real owner resolver/registration/deploy"
+  },
+  "red_acceptance": "正常import/collection/setup後、未実装source照合をsource Refの誤ったunusable状態へのassertion FAILで検出。ERROR/NotImplementedError/timeout/skipはRedではない。",
+  "green_acceptance": "同じ固定test/helper/入力/部分oracleでselected2tests OK、ADD01回帰OK。source bytes/body/digestと実qualification/root対応を比較し成功stubを置かない。",
+  "refactor": "Green後に責務/重複/変更波及を点検し、意味保存の修正時は同oracle回帰。",
+  "not_claimed": [
+    "InputIssue全件/literalと全資格失敗分類",
+    "正式root供給元/custody/authentication/内部資格resolver",
+    "全schema/codec/numeric/Unicode/資源失敗の全域網羅",
+    "fn1/F02/CORE/OS/CI/Accepted/release"
+  ],
+  "prior_implementation": "ADD01 root不正診断のみ実装済み。object経路はNotImplementedError。source validation body未著述。",
+  "verified_at_utc": "2026-10-20T17:44:43.572803+00:00"
+}

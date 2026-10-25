@@ -1,0 +1,29 @@
+test_add04_mismatched_digest_makes_source_unusable (test_source_integrity.TestSourceIntegrity.test_add04_mismatched_digest_makes_source_unusable) ... FAIL
+test_base_retains_supplied_sources (test_source_integrity.TestSourceIntegrity.test_base_retains_supplied_sources) ... FAIL
+
+======================================================================
+FAIL: test_add04_mismatched_digest_makes_source_unusable (test_source_integrity.TestSourceIntegrity.test_add04_mismatched_digest_makes_source_unusable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py", line 70, in test_add04_mismatched_digest_makes_source_unusable
+    self.assertNotIn(ref, validated["unusable_source_refs"], "semantic: unrelated source remains unaffected")
+AssertionError: {'identity': 'synthetic-core-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-core-owner', 'source_locator': None, 'sha256': '9eccc6a5105461c43d3f86dd1748c8b8c42b1f8a32d9b7cf89b93ee41de9dc02'} unexpectedly found in [{'identity': 'synthetic-semantic-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-knowledge-owner', 'source_locator': None, 'sha256': 'synthetic-mismatching-digest'}, {'identity': 'synthetic-core-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-core-owner', 'source_locator': None, 'sha256': '9eccc6a5105461c43d3f86dd1748c8b8c42b1f8a32d9b7cf89b93ee41de9dc02'}, {'identity': 'synthetic-pack-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-pack-owner', 'source_locator': None, 'sha256': '025b4b852e58bcbcaa5d55d35f690493c789ea1c463db1141435659e4315470c'}, {'identity': 'synthetic-oracle-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-oracle-owner', 'source_locator': None, 'sha256': '7229be283c000a1baf61c2749b6b9f62cb3b94d1e3b04e60d19852424e37d9df'}, {'identity': 'synthetic-harness-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-harness-owner', 'source_locator': None, 'sha256': 'fa5371c2b362d3d9e0ab2fb3ff40c02985e20712b0130bfd5451fb8cd9a12312'}] : semantic: unrelated source remains unaffected
+
+======================================================================
+FAIL: test_base_retains_supplied_sources (test_source_integrity.TestSourceIntegrity.test_base_retains_supplied_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tenni/.helix-worktrees/codex-brain032-first-tests-3502/helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py", line 56, in test_base_retains_supplied_sources
+    self.assertEqual(validated["unusable_source_refs"], [], "semantic: original synthetic sources are not unusable")
+AssertionError: Lists differ: [{'identity': 'synthetic-semantic-source',[1457 chars]12'}] != []
+
+First list contains 5 additional elements.
+First extra element 0:
+{'identity': 'synthetic-semantic-source', 'revision': 'synthetic-rev-A', 'scope': {'project': 'synthetic-P', 'tenant': 'synthetic-T', 'environment': 'synthetic-E'}, 'owner': 'synthetic-knowledge-owner', 'source_locator': None, 'sha256': '18202cd2193a6faace1308634f8c84d09f2c2e67d2f4d9b68e4280a14348ae14'}
+
+Diff is 1764 characters long. Set self.maxDiff to None to see it. : semantic: original synthetic sources are not unusable
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.070s
+
+FAILED (failures=2)

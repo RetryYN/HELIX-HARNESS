@@ -1,0 +1,7 @@
+test_add05_changed_body_with_original_bytes_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add05_changed_body_with_original_bytes_is_unusable) ... ok
+test_add07_other_qualification_tenant_is_unusable (test_source_content_and_scope.TestSourceContentAndScope.test_add07_other_qualification_tenant_is_unusable) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.065s
+
+OK
