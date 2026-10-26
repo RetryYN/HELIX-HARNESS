@@ -23,6 +23,7 @@ from identity_input_fixtures import normal_input
 
 
 FN3 = "compare_identity_versions_and_trace"
+FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 TRACE_AXIS = "descriptor.trace"
 COMPAT_AXIS = "compatibility"
 
