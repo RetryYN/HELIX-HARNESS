@@ -454,6 +454,13 @@ class TestDescriptorDefinitions(unittest.TestCase):
             compare_descriptor_definitions({"validated": validated_harness})
         self.assertIn("F01/harness_claim_unimplemented", str(caught_harness.exception))
 
+        # 別Bindingのharness_layer_pair_override Claimは当該BindingのF01停止を起こさない（R2-m3）。
+        raw_other_harness = copy.deepcopy(self.base)
+        other_binding = copy.deepcopy(self.original_binding)
+        other_binding["template_ref"]["identity"] = "OTHER-TEMPLATE-HARNESS"
+        raw_other_harness["claims"].append({**copy.deepcopy(raw_harness_claim["claims"][-1]), "binding": other_binding})
+        self.assertEqual(self._compare(raw_other_harness)["findings"], [])
+
         raw_f01_claim = copy.deepcopy(self.base)
         raw_f01_claim["claims"].append({
             "subject_ref": copy.deepcopy(raw_f01_claim["descriptors"][2]["facts"][0]["ref"]),
@@ -626,21 +633,19 @@ class TestDescriptorDefinitions(unittest.TestCase):
             ("target_src_role", lambda r: r["sources"][5].__setitem__("role", "reference_only")),
             ("target_src_unusable", lambda r: r["qualifications"][5].__setitem__("subject_sha256", "0" * 64)),
             ("target_src_no_prov", lambda r: r["knowledge_records"][0]["provenance_refs"].pop()),
+            ("target_prov_on_other_kr", lambda r: r["knowledge_records"].append({"ref": {**copy.deepcopy(r["knowledge_records"][0]["ref"]), "identity": "OTHER-KR"}, "provenance_refs": [r["knowledge_records"][0]["provenance_refs"].pop()]})),
+            ("target_prov_shape_bad", lambda r: r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("extra", 1)),
             ("target_src_content_type", lambda r: (r["sources"][5].__setitem__("content", []), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_src_binding_diff", lambda r: (r["sources"][5]["content"]["binding"]["template_ref"].__setitem__("identity", "OTHER-TPL"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("targets_not_list", lambda r: (r["sources"][5]["content"].__setitem__("descriptor_targets", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_elem_not_dict", lambda r: (r["sources"][5]["content"].__setitem__("descriptor_targets", ["bad"]), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_ref_bad", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("target_ref", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_ref_diff", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0]["target_ref"].__setitem__("identity", "OTHER-TARGET"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
-            ("target_slot_none", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("slot_identity", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_slot_non_str", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("slot_identity", 123), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_slot_empty", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("slot_identity", ""), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_kind_bad", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("descriptor_kind", "bad_kind"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
             ("target_caller_conflict", lambda r: r["descriptors"][0].__setitem__("slot_identity", "synthetic-descriptor-7")),
-            ("target_ambiguous", lambda r: (r["sources"][5]["content"]["descriptor_targets"].append({
-                "target_ref": copy.deepcopy(r["claims"][-1]["subject_ref"]),
-                "slot_identity": "synthetic-descriptor-7-alt",
-                "descriptor_kind": "required field",
-            }), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_ambiguous", lambda r: (r["sources"][5]["content"]["descriptor_targets"].append({"target_ref": copy.deepcopy(r["claims"][-1]["subject_ref"]), "slot_identity": "synthetic-descriptor-7-alt", "descriptor_kind": "required field"}), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
         ]
         for label, mutate in target_mutations:
             with self.subTest(group="target", case=label):
@@ -676,18 +681,18 @@ class TestDescriptorDefinitions(unittest.TestCase):
             ("uses_not_list", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("facts_groups_not_list", lambda r: (r["sources"][6]["content"].__setitem__("descriptor_facts", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("uses_empty", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", []), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_not_dict", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", ["bad"]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_not_dict", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", [["claim", "basis_ref", "basis_binding", "slot_identity", "descriptor_kind", "fact"]]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_extra_key", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("extra", 1), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_claim_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["claim"].__setitem__("proposed_value", "diff"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_basis_ref_id_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_ref"].__setitem__("identity", "other-src"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_basis_ref_sha_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_ref"].__setitem__("sha256", "0" * 64), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_basis_binding_bad", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("basis_binding", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_basis_binding_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_slot_none", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_slot_empty", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", ""), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_kind_invalid", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("descriptor_kind", "invalid_kind"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_basis_binding_diff", lambda r: (r["sources"][6]["content"]["binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_slot_non_str", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", 123), r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("slot_identity", 123), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_slot_empty", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", ""), r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("slot_identity", ""), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_kind_invalid", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("descriptor_kind", "invalid_kind"), r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("descriptor_kind", "invalid_kind"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("use_fact_not_dict", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("fact", "bad"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
-            ("use_fact_binding_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["fact"]["binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_fact_binding_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["fact"]["binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), r["sources"][6]["content"]["descriptor_facts"][0]["facts"][0]["binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("grp_not_dict", lambda r: (r["sources"][6]["content"].__setitem__("descriptor_facts", ["bad"]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("grp_slot_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("slot_identity", "other-slot"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
             ("grp_kind_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("descriptor_kind", "version"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
@@ -708,6 +713,36 @@ class TestDescriptorDefinitions(unittest.TestCase):
         raw_non_req_input["sources"][6]["content"]["descriptor_facts"][0]["descriptor_kind"] = "version"
         _rebind_source_digest(raw_non_req_input["sources"][6], raw_non_req_input["qualifications"][6])
         assert_no_special_event(raw_non_req_input)
+
+        # Group D (R2-m1c, R2-m2): provenance_refsが非listのKnowledgeRecord（T3）、derived_view混入（T5/E10）、cross発火＋未解決basis混在（E40/E41）。
+        raw_t3 = self._neg02_input()
+        raw_t3["descriptors"] = []
+        raw_t3["required_descriptor_kinds"] = ["required field"]
+        raw_t3["knowledge_records"][0]["provenance_refs"] = None
+        res_t3 = compare_descriptor_definitions({"validated": {"input": raw_t3, "unusable_source_refs": [], "input_issues": []}})
+        self.assertEqual([f["code"] for f in res_t3["findings"]], [MISSING_CODE])
+
+        raw_role_mix = self._neg02_input()
+        dup_t_view = copy.deepcopy(raw_role_mix["sources"][5])
+        dup_t_view["role"] = "derived_view"
+        dup_t_view["content"]["descriptor_targets"][0]["slot_identity"] = "conflicting-from-derived-view"
+        dup_b_view = copy.deepcopy(raw_role_mix["sources"][6])
+        dup_b_view["role"] = "derived_view"
+        raw_role_mix["sources"].extend([dup_t_view, dup_b_view])
+        res_role_mix = compare_descriptor_definitions({"validated": {"input": raw_role_mix, "unusable_source_refs": [], "input_issues": []}})
+        self.assertEqual([f["code"] for f in res_role_mix["findings"]], [MISSING_CODE, CROSS_CODE])
+
+        raw_mixed_basis = self._neg02_input()
+        unres_ref = copy.deepcopy(raw_mixed_basis["claims"][-1]["basis_refs"][0])
+        unres_ref["identity"] = "missing-basis-src"
+        raw_mixed_basis["claims"][-1]["basis_refs"].append(unres_ref)
+        raw_mixed_basis["sources"][6]["content"]["replacement_basis_uses"][0]["claim"] = copy.deepcopy(raw_mixed_basis["claims"][-1])
+        _rebind_source_digest(raw_mixed_basis["sources"][6], raw_mixed_basis["qualifications"][6])
+        res_mixed_basis = self._compare(raw_mixed_basis, added_sources=raw_mixed_basis["sources"][5:])
+        self.assertEqual([f["code"] for f in res_mixed_basis["findings"]], [MISSING_CODE, CROSS_CODE])
+        mixed_axes = [a for a in res_mixed_basis["axes"] if a["subject_ref"] == raw_mixed_basis["claims"][-1]["subject_ref"]]
+        self.assertEqual(len(mixed_axes), 1)
+        self.assertEqual(mixed_axes[0]["state"], "missing")
 
     def test_base_control_preserves_unknown_without_substitution(self):
         result = self._compare(copy.deepcopy(self.base))
