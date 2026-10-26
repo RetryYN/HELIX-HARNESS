@@ -14,7 +14,7 @@ import json
 import unittest
 
 from descriptor_definitions import compare_descriptor_definitions, validate_supply_input
-from supply_input_fixtures import base_input, load_document
+from supply_input_fixtures import base_input, load_document, load_materials
 
 BASE_INPUT_SHA256 = "7a319d1a313738ace504a0d1dcc112a0fc25d2171e4a5490dcf544369a0bc452"
 NEG02_INPUT_SHA256 = "718ef000f84e4511b5abda5961869b8b0ee943b56427ae1a357bbd7c915a7b3d"
@@ -45,7 +45,7 @@ class TestDescriptorDefinitions(unittest.TestCase):
         return raw
 
     def _neg02_input(self):
-        ops = self.document["cases"][3]["negative_cases"][1]["fixture_construction"]["operations"]
+        ops = load_materials()["case3_negative1_operations"]
         # この11操作の構成だけを明示する。汎用path解決/patch engineは持たない。
         self.assertEqual([(o["op"], o["path"]) for o in ops], [
             ("test", "/descriptors/6/slot_identity"),
