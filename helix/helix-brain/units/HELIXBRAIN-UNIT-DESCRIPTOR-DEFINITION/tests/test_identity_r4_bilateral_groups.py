@@ -146,6 +146,78 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
             raw["compatibility_records"][1]["ref"]["identity"],
         ])
 
+    def test_interleaved_pair_reads_aggregate_only_the_same_pair_competition(self):
+        """A/B/A order groups only A's competing pair causes; the existing two-read finite rule stays exact."""
+        raw = bilateral_input("opposing")
+        a_positive, a_outside = raw["compatibility_records"]
+        b_positive = self._append_positive_read(raw, suffix="INTERLEAVED-DISTINCT-PAIR", distinct_pair=True)
+        raw["compatibility_records"] = [a_positive, b_positive, a_outside]
+
+        result = self._call(raw)
+        rows = self._compatibility_rows(result)
+        self.assertEqual(len(rows), 2)
+        group_rows = {}
+        for row in rows:
+            _prefix, separator, encoded = row["reason"].partition("\n")
+            self.assertEqual(separator, "\n")
+            group_rows[tuple(json.loads(encoded).get("record_indices", []))] = row
+
+        # The historical finite [resolved, conflict(outside)] projection applies only
+        # to its exact two-read input (indices [0, 1]); inserting B makes this a
+        # different, general same-pair cause competition for A at indices [0, 2].
+        a_group = group_rows[(0, 2)]
+        self.assertEqual(a_group["state"], "unknown")
+        _prefix, separator, encoded = a_group["reason"].partition("\n")
+        self.assertEqual(separator, "\n")
+        self.assertEqual(json.loads(encoded), {
+            "cause_occurrences": [
+                {"cause": "positive", "record_index": 0, "state": "resolved"},
+                {"cause": "outside", "record_index": 2, "state": "conflict"},
+            ],
+        })
+        b_row = group_rows[(1,)]
+        self.assertEqual(b_row["state"], "resolved")
+        self.assertEqual(b_row["subject_ref"], b_positive["left_ref"])
+        mismatch_findings = [row for row in result["findings"] if row["code"] == "compatibility_mismatch"]
+        self.assertEqual(len(mismatch_findings), 1)
+        finding = mismatch_findings[0]
+        self.assertEqual(finding["subject_ref"], a_outside["left_ref"])
+        self.assertEqual(finding["source_refs"], [
+            a_outside["source_ref"],
+            next(source["ref"] for source in raw["sources"]
+                 if isinstance(source.get("content"), dict)
+                 and source["content"].get("compatibility_record_ref") == a_outside["ref"]),
+        ])
+        _prefix, separator, finding_material = finding["reason"].partition("\n")
+        self.assertEqual(separator, "\n")
+        self.assertEqual(json.loads(finding_material)["record_index"], 2)
+
+    def test_interleaved_same_cause_reads_keep_original_record_order(self):
+        """Noncompeting repeated pair reads stay individual and are not reordered around another pair."""
+        raw = bilateral_input("positive")
+        a_first = raw["compatibility_records"][0]
+        b_middle = self._append_positive_read(raw, suffix="ORDER-DISTINCT-PAIR", distinct_pair=True)
+        a_last = self._append_positive_read(raw, suffix="ORDER-SAME-PAIR-REPEAT", distinct_pair=False)
+        self.assertEqual(raw["compatibility_records"], [a_first, b_middle, a_last])
+
+        rows = self._compatibility_rows(self._call(raw))
+        self.assertEqual(len(rows), 3)
+        self.assertEqual([row["state"] for row in rows], ["resolved", "resolved", "resolved"])
+        observed_indices = []
+        for index, row in enumerate(rows):
+            _prefix, separator, encoded = row["reason"].partition("\n")
+            self.assertEqual(separator, "\n")
+            material = json.loads(encoded)
+            self.assertEqual(len(material["record_indices"]), 1)
+            read_index = material["record_indices"][0]
+            observed_indices.append(read_index)
+            record = raw["compatibility_records"][read_index]
+            self.assertEqual(row["subject_ref"], record["left_ref"])
+            self.assertEqual(row["original_refs"][:4], [
+                record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
+            ])
+        self.assertEqual(observed_indices, [0, 1, 2])
+
     def test_null_and_regular_multiple_left_sources_have_distinct_stop_ids(self):
         """L4 keeps null-source and ordinary owner-source reads distinct; stop IDs identify each branch."""
         cases = []
@@ -221,25 +293,28 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
 
     def test_unobserved_left_owner_scope_stays_unknown(self):
         """An unobserved target scope keeps the left owner read unknown despite qualified source scope."""
-        raw = bilateral_input("positive")
-        raw["binding"]["template_ref"]["scope"] = None
-        record = raw["compatibility_records"][0]
-        _right, left = self._record_sources(raw, record)
-        self.assertEqual(left["ref"]["scope"], record["left_ref"]["scope"])
-        self.assertIsNone(raw["binding"]["template_ref"]["scope"])
+        for record_decision in (True, None):
+            with self.subTest(record_compatible=record_decision):
+                raw = bilateral_input("positive")
+                raw["binding"]["template_ref"]["scope"] = None
+                record = raw["compatibility_records"][0]
+                record["compatible"] = record_decision
+                _right, left = self._record_sources(raw, record)
+                self.assertEqual(left["ref"]["scope"], record["left_ref"]["scope"])
+                self.assertIsNone(raw["binding"]["template_ref"]["scope"])
 
-        result = self._call(raw)
-        rows = self._compatibility_rows(result)
-        self.assertEqual(len(rows), 1)
-        self.assertEqual(rows[0]["state"], "unknown")
-        prefix, separator, encoded = rows[0]["reason"].partition("\n")
-        self.assertEqual((prefix, separator), ("scope_unresolved", "\n"))
-        material = json.loads(encoded)
-        self.assertIn("owner_observations", material)
-        left_reads = [row for row in material["owner_observations"] if row["endpoint"] == "left"]
-        self.assertEqual(len(left_reads), 1)
-        self.assertEqual(left_reads[0]["target_scope_relation"], "unobserved")
-        self.assertEqual(left_reads[0]["cause"], "owner_subject_unresolved")
+                result = self._call(raw)
+                rows = self._compatibility_rows(result)
+                self.assertEqual(len(rows), 1)
+                self.assertEqual(rows[0]["state"], "unknown")
+                prefix, separator, encoded = rows[0]["reason"].partition("\n")
+                self.assertEqual((prefix, separator), ("scope_unresolved", "\n"))
+                material = json.loads(encoded)
+                self.assertIn("owner_observations", material)
+                left_reads = [row for row in material["owner_observations"] if row["endpoint"] == "left"]
+                self.assertEqual(len(left_reads), 1)
+                self.assertEqual(left_reads[0]["target_scope_relation"], "unobserved")
+                self.assertEqual(left_reads[0]["cause"], "owner_subject_unresolved")
 
 
 if __name__ == "__main__":
