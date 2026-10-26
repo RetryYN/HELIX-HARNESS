@@ -84,22 +84,21 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
 
     def test_unresolved_source_scope_is_not_a_known_missing_semantic_source(self):
         # Ref照合に必要なscopeが不明なら、source objectの不存在を証明できない。
-        # source_unresolved等の局所unknown又は範囲外停止で保持し、missingへ丸めない。
+        # L4 read_branch_contracts/traceのとおり局所unknownを保ち、他14項目を止めない。
         raw = trace_input("positive")
         fact = raw["descriptors"][0]["facts"][0]
         fact["source_ref"]["scope"] = None
         validated, before = self._validated(raw)
         validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            self.assertIn("F04/N01/unclosed/fact_source_ref_unresolved", str(exc))
-            self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(exc))
-        else:
-            self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
-            row = next(r for r in result["axes"]
-                       if r["axis"] == "descriptor.trace" and r["subject_ref"] == fact["ref"])
-            self.assertEqual(row["state"], "unknown")
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
+        trace_rows = [r for r in result["axes"] if r["axis"] == "descriptor.trace"]
+        self.assertEqual(len(trace_rows), 15)
+        row = next(r for r in trace_rows if r["subject_ref"] == fact["ref"])
+        self.assertEqual(row["state"], "unknown")
+        siblings = [r for r in trace_rows if r["subject_ref"] != fact["ref"]]
+        self.assertEqual(len(siblings), 14)
+        self.assertTrue(all(r["state"] == "resolved" for r in siblings))
         self.assertEqual(raw, before)
         self.assertEqual(validated, validated_before)
 
