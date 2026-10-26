@@ -40,6 +40,16 @@ RULES = {
 CARRY_AXES = {"measurement.definition", "completion.definition", "negative oracle.definition"}
 
 
+def _same_source_ref(left, right):
+    """L5 reference_equality: 片方のdigestがnullなら既知digest差を作らない。"""
+    return (
+        all(left.get(key) is not None and left.get(key) == right.get(key)
+            for key in ("identity", "revision", "scope", "owner"))
+        and (left.get("sha256") is None or right.get("sha256") is None
+             or left["sha256"] == right["sha256"])
+    )
+
+
 class TestOracleViewBoundaryBindings(unittest.TestCase):
     def _run_fn4(self, rule):
         raw, raw_before, slot, fact, oracle_binding, oracle_source, old_source_ref, new_source_ref = (
@@ -120,7 +130,10 @@ class TestOracleViewBoundaryBindings(unittest.TestCase):
         self.assertEqual(finding["state"], "conflict")
         self.assertEqual(finding["backflow_owner"], "knowledge_owner")
 
-        fact_source = next(source for source in raw["sources"] if source["ref"] == fact["source_ref"])
+        fact_sources = [source for source in raw["sources"]
+                        if _same_source_ref(source["ref"], fact["source_ref"])]
+        self.assertEqual(len(fact_sources), 1, "the test input names one actual source occurrence")
+        fact_source = fact_sources[0]
         witness_refs = [fact_source["ref"], oracle_binding["source_ref"]]
         expected_sources = [
             source["ref"] for source in raw["sources"]

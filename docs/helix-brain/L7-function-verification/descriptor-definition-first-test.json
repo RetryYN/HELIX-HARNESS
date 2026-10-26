@@ -910,6 +910,13 @@
       "reviewer_mutations": "19件のうち18KILLED、1surviveはvalidated非dictguard除去のほぼ等価枝。追加mandatory findingではない。",
       "unit": "root212件208PASS、既知F02エラー2＋R71/R72未実装Red2。root15316ms/reaped/nontruncated。",
       "next": "canonicalwalk/frameをtest-firstで接続してR71/R72Green。walk後でも到達不能なら実停止IDassertとL7理由に変更可。失敗テストをmainへ入れない。R70/R73/R74は既存transport carrierだけを使い、無いcarrierはID停止とL7記録。"
+    },
+    "binding_test_source_lookup_correction": {
+      "test_revision_before": "0eda5f0ec",
+      "evidence": "root-fn4-walk-binding-green.json:25methods/23PASS/2StopIteration。fn4返却とFindingのcode/subject/binding/state/owner検査後、testの期待source探索内で失敗。",
+      "cause": "L7 fact.source_ref.sha256は明示null、actual source.ref.sha256は既知digest。辞書完全一致はL5 reference_equalityの片方null規則と異なる。",
+      "change": "test-only witness lookupをL5 identity/revision/scope/ownerと両方既知時digest比較へ訂正。predicate期待・入力fixture・source処理・Finding期待source順は変更しない。独立testhelperで正規参照規則を著述し、実装helperから期待を逆算しない。",
+      "freeze_exception": "凍結後のtest harness欠陥をここで開示する。既存期待をsource都合で成功へ変更せず、型付きRefで実sourceを特定できるようにする。"
     }
   }
 }
