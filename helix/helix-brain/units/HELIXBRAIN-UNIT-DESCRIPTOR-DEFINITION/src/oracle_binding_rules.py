@@ -139,7 +139,8 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                     ]
                     rule_ref = "HELIXBRAIN-L5-032-R-" + code
                     diagnostic = {"code": code, "rule_ref": rule_ref, "predicate_observations": observations}
-                    reason = predicate + "\n" + json.dumps(diagnostic, ensure_ascii=False, separators=(",", ":"))
+                    reason = predicate + "\n" + json.dumps(diagnostic, ensure_ascii=False, sort_keys=True,
+                                                          separators=(",", ":"))
                     original_refs = [copy.deepcopy(fact["ref"]), copy.deepcopy(fact["source_ref"]),
                                      copy.deepcopy(obligation)]
                     if kind == "completion":
