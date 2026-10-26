@@ -91,13 +91,18 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             any_qualified = False
             any_body = False
             malformed_inner_source_ref = False
+            malformed_provenance_ref = False
             for ri, rec in record_candidates:
                 provs = rec.get("provenance_refs")
                 if not isinstance(provs, list):
                     continue
                 for pi, pref in enumerate(provs):
+                    provenance_formed = _wire_ref_shape_ok(pref)
+                    if not provenance_formed:
+                        malformed_provenance_ref = True
                     matching_sources = [(idx, src) for idx, src in enumerate(sources)
-                                        if isinstance(src, dict) and _ref_same(src.get("ref"), pref)]
+                                        if provenance_formed and isinstance(src, dict)
+                                        and _ref_same(src.get("ref"), pref)]
                     provrow = {"knowledge_record_index": ri, "provenance_index": pi,
                                "locator": f"/knowledge_records/{ri}/provenance_refs/{pi}",
                                "original_read": {"presence": "supplied", "value": copy.deepcopy(pref)},
@@ -188,6 +193,7 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             cause = "original_trace_corresponding" if chains else (
                 "knowledge_unresolved" if not record_candidates else
                 "source_unresolved" if (not source_ref_joinable or malformed_inner_source_ref
+                                        or malformed_provenance_ref
                                         or not any_source) else "qualification_unresolved" if not any_qualified
                 else "body_unresolved" if not any_body else "knowledge_unresolved")
             if records_presence["presence"] == "absent":

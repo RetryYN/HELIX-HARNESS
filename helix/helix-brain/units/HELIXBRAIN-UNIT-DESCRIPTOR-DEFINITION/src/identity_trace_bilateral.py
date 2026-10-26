@@ -269,6 +269,8 @@ def _fn3_compatibility_finding_reason(raw: dict[str, Any], binding: dict[str, An
 def _fn3_compatibility_group_frame(binding: dict[str, Any], outcome: dict[str, Any]) -> bool:
     """Return whether this original read has a complete Binding frame for grouping."""
     record = outcome.get("record")
+    # Optional wire Refs may be partial. This self-comparison checks that the
+    # existing full-Ref links are formed; it is false for e.g. oracle_ref={}.
     if not isinstance(record, dict) or not _binding_same(binding, binding):
         return False
     template_ref = binding.get("template_ref")
@@ -505,7 +507,6 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
 
     finite_opposing_group = None
     if (len(outcomes) == 2 and len(groups) == 1 and len(groups[0]) == 2
-            and [outcome["record_index"] for outcome in groups[0]] == [0, 1]
             and outcomes[0]["state"] == "resolved"
             and outcomes[1]["state"] == "conflict"
             and outcomes[1]["cause"] == "outside"):
