@@ -16019,7 +16019,9 @@
         "HELIXBRAIN-L8-032-N03-NEG-02",
         "HELIXBRAIN-L8-032-N03-NEG-03",
         "HELIXBRAIN-L8-032-ADD-11",
-        "HELIXBRAIN-L8-032-ADD-12"
+        "HELIXBRAIN-L8-032-ADD-12",
+        "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
+        "HELIXBRAIN-L8-032-VF3-N03-CLAIMS"
       ],
       "execution_state": "not_executed",
       "source_rebaseline": {
@@ -114434,7 +114436,49 @@
       "authority_limit": "このnodeは既存F03の意味をL8参照へ保つ技術的対照であり、要求意味変更、新要求、新承認、source qualification、全供給gate、完了・受入・実装を生成しない。",
       "fixture_reconstruction": "固定L9の7例の格納再構成とcanonical SHA一致は確認済み。再構成は原値の回収であり、期待の意味正当性、全入力域、実reader・候補関数の実行成功を証明しない。",
       "approval_byte_distinction": "承認時whole-file SHAと現在base whole-file SHAは別に記録。現在baseのselected F03 canonical SHAは承認時selected canonical SHAと一致する。",
-      "claim_protocol": "既存L4 projection_order/claimsが後続L5へ残すF03 rule54..57のClaim値表現・排他選択は、この7golden（claims=[]）では閉じない。新たなClaim入力や定義/値の裁定を作らず、原残件を保持する。"
+      "claim_protocol": {
+        "boundary_ja": "この節は設計caseと既存oracleの対応を記録する。新しいfixture、whole期待、COPY、資格、実行証拠を追加しない。既存7 goldenはclaims=[]のままであり、Claim protocol行使済みとは扱わない。",
+        "design_cases": [
+          {
+            "case_id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
+            "target": "一つのfieldの原Claimsとapplicability/value原axis。",
+            "counterexample": "同一subject/full Bindingで定義known、元applicability/valueがunknown、field固有N/A根拠なし。Claim A/Bはkind=field_not_applicable, proposed_value=\"not_applicable\"の別原出現、Claim Cはkind=value_only_gap, proposed_value=\"unknown\"。",
+            "expected": "A/Bの各出現はrule56/54の既存predicateが重なるため各rule56だけを処理先とし、rule54へ二重裁定しない。Cは定義knownのためrule55不成立、新Findingなし。原axis eventと3 Claim出現を元順で保持。Cのliteralは今回の局所技術選択。",
+            "backflow_owner": "本反例のrule56はcore_owner。定義missingの別既存NEG-02でrule55が成立する場合はknowledge_ownerを維持。",
+            "reentry": "同field/revision/scopeの元CORE適用判断・理由・再評価条件と案件値の供給後に同frameを再評価。元reason/reentryを保持し欠落/nullを補完しない。",
+            "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+            "function_pointer": "/function_oracles/2",
+            "oracle_refs": [
+              "HELIXBRAIN-L8-032-F03-NEG-01",
+              "HELIXBRAIN-L8-032-F03-NEG-02",
+              "HELIXBRAIN-L8-032-F03-NEG-03",
+              "HELIXBRAIN-L8-032-F03-NEG-04"
+            ]
+          },
+          {
+            "case_id": "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
+            "target": "既存N03 operation_deadline/resource_capacity Claimの3 reference-fixture tuple。",
+            "counterexample": "Claim.proposed_value内に{intended_value,basis_origin}を保持する。basis_origin=\"reference_fixture\"は申告値であり、実source資格ではない。",
+            "expected": "既存predicate成立時のみ (operation_deadline,\"90 seconds\",reference_fixture)→rule102/fixture_timeout_default/operation_value/unknown/core_owner、(resource_capacity,\"1 CPU\",reference_fixture)→rule103/fixture_cpu_default/resource_value/unknown/infrastructure_owner、(resource_capacity,\"256 MiB\",reference_fixture)→rule104/fixture_memory_default/resource_value/unknown/infrastructure_owner。",
+            "backflow_owner": "各既存ruleのownerを維持：core_owner又はinfrastructure_owner。",
+            "reentry": "期限は元operationのcore_owner根拠、CPU/メモリは元operation/実環境のinfrastructure_owner根拠が供給されたとき同対象を再評価。元reentryを保持しfixtureから実値・既定値・再評価条件を作らない。",
+            "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+            "function_pointer": "/function_oracles/2",
+            "oracle_refs": [
+              "HELIXBRAIN-L8-032-N03-NEG-01",
+              "HELIXBRAIN-L8-032-N03-NEG-02",
+              "HELIXBRAIN-L8-032-N03-NEG-03"
+            ]
+          }
+        ],
+        "l5_contract_source": {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "revision": "44c1ee28ee27db302f122ef241376e7a41ac65de",
+          "pointer": "/field_value_applicability_detail/claim_protocol",
+          "function_pointer": "/functions/2"
+        },
+        "oracle_boundary_ja": "これらは今回の設計caseと既存function oracle/case参照であり、新whole期待や実行済み結果ではない。既存7 goldenはclaims=[]のまま。"
+      }
     },
     "candidate_l5_binding": {
       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
