@@ -138,14 +138,15 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     raw_binding = raw.get("binding")
     if not isinstance(raw_binding, dict):
         _stop("input_binding_shape")
-    from descriptor_definitions import _fn1_scope_guard
+    from definition_comparison import _fn1_scope_guard
 
     _fn1_scope_guard(raw, raw_binding)
     descriptors = raw.get("descriptors")
     if not isinstance(descriptors, list):
         _stop("descriptor_population")
 
-    from descriptor_definitions import _attribution_axis, _comparison, _public_axis_sort_key
+    from definition_comparison import _attribution_axis, _public_axis_sort_key
+    from descriptor_definitions import _comparison
     from descriptor_definition_normative import definition_meaning_normative_frame
     from descriptor_definition_reads import (
         project_definition_applicability,
