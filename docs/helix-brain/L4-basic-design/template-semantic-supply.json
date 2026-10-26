@@ -5919,7 +5919,7 @@
         "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405690269",
         "new_design_references": "以後の設計文書間参照は対象revisionとJSON Pointerで示し、whole-file bytesのcurrent pinを連鎖更新しない。",
         "existing_pin_placement": "既存pinは16e7728005ed02e2e9c03038ac2ce948f1f9024eで対応bytesとともに保存される履歴参照へ置く案とし、値・fieldはこの追補で変更しない；本追補後のwhole-file一致やcurrent binding成立を表す証拠にはせず、revision/Pointerへの移管方法と採否は後続で決める。",
-        "existing_fixture_placement": "merge済みliteralとfixtureは同じ場所に保持し、各childのGreen後にFT-DESIGN-REFACTOR-001の計画でtest fixture参照へ分割する；監査記録は書き換えない。"
+        "existing_fixture_placement": "L8副ディレクトリdocs/helix-brain/L8-unit-verification/template-semantic-supply/の5 fixture fileは、POの軽量化指示（Issue 3510 comment 6408252809）によりtreeから撤去した。過去本文はrevision 08982462dbce751b97e244861ac5427e40fb7325の同pathとdocs/helix-brain/L8-unit-verification/removed-materials-index.jsonのsha256で辿る。既存参照のrevision付きpointerは書き換えない。旧材料は照合用の参考に限り、L7の期待値は契約から独立に導く。監査記録は書き換えない。"
       },
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
