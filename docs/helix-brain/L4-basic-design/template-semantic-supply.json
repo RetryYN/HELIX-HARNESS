@@ -12301,6 +12301,48 @@
           "rules_without_normal_row": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。既存predicateを変更せず、未定のwitness又は型未形成を空Ref/代替Bindingの公開rowで埋めない。原値/presence/private観測を保持する。",
           "reason_material_presence": "保存対象の定型reason materialに必要な原memberのabsent/null/型外を一般にどう公開materialへ写すかは、各明記済みPresenceRaw/未行使single-read serialization以外は未閉包。保存対象の固定materialを架空null/indexで完成させない。"
         },
+        "finite_equal_knowledge_record_repetition": {
+          "id": "HELIXBRAIN-L4-I1B-EQUAL-RECORDS",
+          "basis_revision": "1bb5ab315ca26d81d0cae05a67dd0aa96fdc3726",
+          "status": "有限条件の契約選択。実reader・実資格・L7 oracleは未実行。",
+          "requirements": [
+            "HELIXBRAIN-L3-032-F04",
+            "HELIXBRAIN-L3-032-N01"
+          ],
+          "scope_ja": "同一snapshotの/knowledge_records配列がちょうど2 elementで、両方がfull Refで同じBindingへ対応し、全JSON値がexactに同じKnowledgeRecord。各対象traceは両record indexを保持し、各recordにつきrelation=correspondingのprovenance pairが一つある。非対応provenance occurrenceも既存private readの原出現として保持し、配列総長を2へ切り詰めない。二chainは同一の原source index s、Qualification index q、root index rを共有する。対象traceの既存read.cause=original_trace_correspondingと既存9-key material形成は入力前提であり、新causeや資格判定ではない。同Refの別source index、3件以上、distinct record、Q/rootの複数出現は範囲外。",
+          "existing_contract_refs": [
+            {
+              "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/actual_operand_binding/knowledge_state_selection/equal_repetition",
+              "role_ja": "共有operational_stateの原presenceをoperandとし、全record出現・index・順序を保持する既定選択。"
+            },
+            {
+              "pointer": "/identity_version_trace_contract/schema/$defs/DescriptorTraceRead/properties/knowledge_records",
+              "role_ja": "各OriginalOccurrenceのindex・locator・PresenceRawを分けて保持する閉型。"
+            },
+            {
+              "pointer": "/identity_version_trace_contract/schema/$defs/DescriptorTraceRead/properties/provenance_refs",
+              "role_ja": "knowledge_record_indexとprovenance_indexの組で原provenance出現を保持する閉型。"
+            },
+            {
+              "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/refs_order/qualification_route",
+              "role_ja": "既存SourceQualificationRead.source_indexとその原Q/root配列順を使い、別経路の資格を代用しない。"
+            }
+          ],
+          "actual_refs_ja": "既存subject Refに続け、knowledge.identity/revisionは各実対応原record.refを原record index順で連結する。knowledge.operational_stateは各実対応原recordのprovenance_refsをrecord index、provenance index順で連結する。後続の既存actual observation Ref順は変更しない。",
+          "actual_reason_material_ja": "operational_stateのactual reasonはmember_pointer=/knowledge_records、original_readは元collectionのPresenceRaw全値。比較左operandは同一の二recordに共通するoperational_stateの原presenceであり、collection診断をscalar stateで上書きしない。",
+          "trace_refs_ja": "既存traceの共通先頭3 Ref（fact.ref、fact.source_ref、slot.binding.knowledge_ref）を一度置く。二chainそれぞれにrecord Ref、corresponding provenance Ref、既存source Ref、source.qualification_ref、対応Qualification.ref、対応root Refの既存6 Ref suffixを原record/provenance index順で連結する。corresponding provenance_refs pairは(record index, provenance index)の2組を保持し先頭へ丸めない。異なるrelationのprovenance occurrence等の他原private readは既存値・順序のまま保持し、削除/再分類しない。",
+          "qualification_occurrences_ja": "二chainは同じ物理source index s・Qualification index q・root index rを参照する。source_indicesは[s]を一度、body_groupsも同一物理groupの原出現を一度だけ保持する。trace suffixのRef再掲は物理source/Q/root出現を複製しない。",
+          "plural_reason_material_ja": "本条件の複数trace reasonに限り、prefixは既存problem_reason_table.trace、materialはtrace_occurrences配列だけをmemberに持つobjectとする。配列要素は既存9-key trace_materialを各実対応chainのrecord index/provenance index順に保持し、diagnostic_json文法を使う。原indexを先頭へ丸めず、single chainの既存material・reason bytes、private read、state/causeは変えない。",
+          "finding_unknown_and_reentry_ja": "同値複写だけから新predicate/Findingやwitnessを作らず、実predicateに関与する既存witnessだけを保持する。対応未成立/異版等は既存readと未閉包境界へ戻し、unknown/未完はknowledge_ownerへ戻す。原資料の供給・訂正後、同じBinding/revision/scopeの原readから再入する。",
+          "not_established_ja": "一般multi-record、distinct record、複数Q/rootのinterleave、未対応provenance、reason一般presence、一般Finding witness形成、全callerの意味は未閉包のまま。本条件だけが knowledge_records / qualification_routes および reason_serialization/finite_trace_boundary の一部を追加行使する。新qualification、cause、Finding、gateは設けない。",
+          "legacy_rederivation": {
+            "preserved_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299のstable identityとunknown/N/A区別、LEGACY-ASSET-A127DEC3EEE6ED63CF17（UTW-014/020）のabsence・partial failure保持を照合根拠として残す。",
+            "changed_ja": "旧template lifecycleやruntimeを移植せず、現行L4の原出現・PresenceRaw・Ref位置から二出現だけを選ぶ。",
+            "reason_ja": "歴史的失敗は原値保持の照合材料であり、新しい資格・predicate・gateの根拠にしない。"
+          },
+          "authority_effect": "none",
+          "operation_effect": "none"
+        },
         "finite_zero_knowledge_record": {
           "id": "HELIXBRAIN-L4-I1A-ZERO-KNOWLEDGE-RECORD",
           "status": "有限1-caseの公開IdentityTraceReturn基本契約候補。実readerと資格成立は未実施。",
