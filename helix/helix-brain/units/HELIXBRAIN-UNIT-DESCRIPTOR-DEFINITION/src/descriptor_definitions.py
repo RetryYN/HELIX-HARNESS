@@ -2434,11 +2434,6 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                              "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
                                              _fn3_predicate_finding_reason(raw, "mixed_knowledge_revision",
                                                                            mixed_observations)))
-            elif (isinstance(fact_kref, dict) and isinstance(slot_kref, dict)
-                  and all(fact_kref.get(k) is not None and slot_kref.get(k) is not None
-                          and _json_equal(fact_kref.get(k), slot_kref.get(k)) for k in ("identity", "scope", "owner"))
-                  and not _json_equal(fact_kref.get("revision"), slot_kref.get("revision"))):
-                state, cause = "conflict", "mixed_knowledge_revision"
             if (source_ref_joinable and not any(_ref_same(src.get("ref"), fact_source_ref)
                                                 for src in sources if isinstance(src, dict))):
                 source_observations = [("/sources", "source collection presence"),
