@@ -65,12 +65,23 @@ def git_dir(wt):
     return (p if p.is_absolute() else wt / p).resolve()
 
 
+def reflog_last_timestamp(path):
+    try: lines = [l for l in path.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip()]
+    except OSError: return None
+    if not lines: return None
+    parts = lines[-1].partition("\t")[0].split()
+    if len(parts) < 2: return None
+    try: return float(int(parts[-2]))
+    except ValueError: return None
+
+
 def last_touch(wt):
     latest = latest_mtime(wt)
     gd = git_dir(wt)
-    for name in ("HEAD", os.path.join("logs", "HEAD")):
-        try: latest = max(latest, os.lstat(gd / name).st_mtime)
-        except OSError: pass
+    try: latest = max(latest, os.lstat(gd / "HEAD").st_mtime)
+    except OSError: pass
+    log_ts = reflog_last_timestamp(gd / "logs" / "HEAD")
+    if log_ts is not None: latest = max(latest, log_ts)
     return latest
 
 
