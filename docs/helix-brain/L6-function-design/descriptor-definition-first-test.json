@@ -164,5 +164,26 @@
     "test_oracles": "L8 function_oracles/0,1,2の部分観測とcases/13/negative_cases/0..2、additional_unit_cases/36。具体fixture/独立期待はtest codeに置く。",
     "legacy_basis": "既存/legacy_rederivationの4674004/FDBA655、固定L5 claim_protocol/legacy_rederivationの4F5A/98372/UTW014/020/021を再利用。元unknown/traceと同unit配置を保持し旧runtime/CIは実行しない。",
     "authority_effect": "none"
+  },
+  "fn3_identity_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN3-IDENTITY",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
+    "contract_source": {
+      "revision": "6f9c669c80e79740d2bff20daab437b9afa400cd",
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointer": "/functions/3"
+    },
+    "function": {
+      "symbol": "compare_identity_versions_and_trace",
+      "input": "IdentityContext",
+      "output": "Comparison"
+    },
+    "same_call": "同じfn0 ValidatedSupplyをfn1とfn3の各validatedへ渡す。fn3はfn1 Comparisonを引数又は代替oracleにしない。既存fn1未凍結枝のID付き未対応を保持する。",
+    "scope": "WR05のL7対象一覧に記録するL8観測とL9補足の実入力分岐だけ。未閉包は契約/分岐ID付きNotImplementedでBackflowし空の成功へ補完しない。具体入力と独立部分期待はL7 test codeへ置く。",
+    "tdd": "test commitの正式fn3未実装Redを観測し、testを変更しない別実装commitでGreenを確認する。",
+    "legacy_basis": "既存legacy_rederivationとL4 identity_version_trace_contract/legacy_rederivation、axis_reason_writer/general_occurrence_cause_witness/legacy_rederivationの原identity/unknown/局所trace保持を継承し、旧runtime/CIは実行しない。",
+    "authority_effect": "none"
   }
 }

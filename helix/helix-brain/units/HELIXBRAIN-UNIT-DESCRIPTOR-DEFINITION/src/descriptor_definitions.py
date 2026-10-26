@@ -1537,3 +1537,11 @@ def compare_values_and_applicability(context: dict[str, object]) -> dict[str, ob
     if set(evaluation) != {"comparison", "rows", "problems"}:
         raise NotImplementedError("F03Evaluation closed shape: Backflow HELIXBRAIN-L6-032-N03-PATH")
     return _write_existing_comparison_from_f03(evaluation["comparison"])
+
+
+def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str, object]:
+    """fn3の正式入口。test先行Redを観測するまで未実装。"""
+    raise NotImplementedError(
+        "F04/N01/unimplemented_fn3: identity path is not implemented; "
+        "Backflow HELIXBRAIN-L6-032-FN3-IDENTITY"
+    )
