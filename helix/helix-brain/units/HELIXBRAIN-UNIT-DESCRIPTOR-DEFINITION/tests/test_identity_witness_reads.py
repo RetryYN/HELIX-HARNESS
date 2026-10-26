@@ -1,9 +1,8 @@
-"""非compat既存Findingとprivate actual readの原観測を保存する。"""
+"""非compat既存Findingと公開actual診断の原観測を保存する。"""
 
 import copy
 import json
 import unittest
-from unittest.mock import patch
 
 import descriptor_definitions as product
 from identity_input_fixtures import bilateral_input, normal_input, trace_input
@@ -53,29 +52,24 @@ class TestIdentityWitnessReads(unittest.TestCase):
                 self.assertEqual(raw, before)
                 self.assertEqual(validated["input"], before)
 
-    def test_actual_private_body_locators_are_the_public_original_operand_pointers(self):
+    def test_actual_source_pointers_identify_the_original_artifact_operand(self):
         raw = bilateral_input("outside")
+        before = copy.deepcopy(raw)
+        record = raw["compatibility_records"][0]
+        source_index = next(i for i, source in enumerate(raw["sources"])
+                            if source["ref"] == record["source_ref"])
+        pointer = f"/sources/{source_index}/content/compatibility_range_declaration/actual_artifact_version"
+        self.assertIsInstance(raw["sources"][source_index]["content"][
+            "compatibility_range_declaration"]["actual_artifact_version"], str)
         validated = product.validate_supply_input(raw)
-        captures = []
-        original_validator = product._fn3_validate_private_return
-
-        def observe(value):
-            original_validator(value)
-            captures.append(copy.deepcopy(value))
-
-        with patch.object(product, "_fn3_validate_private_return", side_effect=observe):
-            result = product.compare_identity_versions_and_trace({"validated": validated})
-        self.assertEqual(len(captures), 1)
-        private = captures[0]
-        artifact_read = next(row for row in private["actual_operands"]
-                             if row["request"]["actual_role"] == "pack_actual_artifact_version")
+        self.assertEqual(validated["input"], before)
+        self.assertEqual(validated["input_issues"], [])
+        result = product.compare_identity_versions_and_trace({"validated": validated})
         artifact_axis = next(row for row in result["axes"] if row["axis"] == "pack.artifact_version")
         material = json.loads(artifact_axis["reason"].partition("\n")[2])
-        self.assertTrue(artifact_read["observations"])
-        self.assertEqual(material["actual_source_pointers"],
-                         [row["body_locator"] for row in artifact_read["observations"]])
-        for observation in artifact_read["observations"]:
-            self.assertTrue(observation["body_locator"].endswith("/actual_artifact_version"))
+        self.assertEqual(material["actual_source_pointers"], [pointer])
+        self.assertEqual(raw, before)
+        self.assertEqual(validated["input"], before)
 
 
 if __name__ == "__main__":
