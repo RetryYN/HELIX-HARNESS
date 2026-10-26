@@ -49,25 +49,28 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self._omitted_trace(raw)
 
     def test_unformed_source_ref_stays_raw_and_is_never_published_as_a_ref(self):
-        # R4-M2: 元RawValueをprivateへ保持し、このreadだけunknownへする。
-        raw = trace_input("positive")
-        bad = {"untyped_source_ref": "raw value"}
-        raw["descriptors"][0]["facts"][0]["source_ref"] = copy.deepcopy(bad)
-        validated, before = self._validated(raw)
-        validated_before = copy.deepcopy(validated)
-        result = compare_identity_versions_and_trace({"validated": validated})
-        traces = [r for r in result["axes"] if r["axis"] == "descriptor.trace"]
-        self.assertEqual(len(traces), 15)
-        self.assertEqual(traces[0]["state"], "unknown")
-        self.assertEqual(json.loads(traces[0]["reason"].partition("\n")[2])["cause"], "source_unresolved")
-        self.assertTrue(all(row["state"] == "resolved" for row in traces[1:]))
-        self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
-        for row in result["axes"]:
-            self.assertNotIn(bad, row["original_refs"])
-        for row in result["findings"]:
-            self.assertNotIn(bad, row["source_refs"])
-        self.assertEqual(raw, before)
-        self.assertEqual(validated, validated_before)
+        malformed_full_ref = copy.deepcopy(trace_input("positive")["descriptors"][0]["facts"][0]["source_ref"])
+        malformed_full_ref["untyped_source_ref"] = "raw value"
+        for bad in ({"untyped_source_ref": "raw value"}, malformed_full_ref, 17, ["raw"]):
+            with self.subTest(raw_type=type(bad).__name__, full_ref_fields=isinstance(bad, dict) and "identity" in bad):
+                # R4-M2: 元RawValueをprivateへ保持し、このreadだけunknownへする。
+                raw = trace_input("positive")
+                raw["descriptors"][0]["facts"][0]["source_ref"] = copy.deepcopy(bad)
+                validated, before = self._validated(raw)
+                validated_before = copy.deepcopy(validated)
+                result = compare_identity_versions_and_trace({"validated": validated})
+                traces = [r for r in result["axes"] if r["axis"] == "descriptor.trace"]
+                self.assertEqual(len(traces), 15)
+                self.assertEqual(traces[0]["state"], "unknown")
+                self.assertEqual(json.loads(traces[0]["reason"].partition("\n")[2])["cause"], "source_unresolved")
+                self.assertTrue(all(row["state"] == "resolved" for row in traces[1:]))
+                self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
+                for row in result["axes"]:
+                    self.assertNotIn(bad, row["original_refs"])
+                for row in result["findings"]:
+                    self.assertNotIn(bad, row["source_refs"])
+                self.assertEqual(raw, before)
+                self.assertEqual(validated, validated_before)
 
     def test_partial_root_binding_preserves_independently_qualified_slot_chains(self):
         raw = trace_input("positive")
