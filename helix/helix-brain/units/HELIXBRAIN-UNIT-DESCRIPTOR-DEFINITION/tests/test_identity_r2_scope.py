@@ -17,7 +17,7 @@ from identity_input_fixtures import (
 def _replace_scopes(value, replacement):
     if isinstance(value, dict):
         for key, child in list(value.items()):
-            if key == "scope":
+            if key in {"scope", "applicable_scope"}:
                 value[key] = copy.deepcopy(replacement)
             else:
                 _replace_scopes(child, replacement)
@@ -137,7 +137,7 @@ class TestIdentityR2Scope(unittest.TestCase):
                             for row in pack_rows))
         compatibility = self._axis(result, "compatibility")[0]
         self.assertEqual(compatibility["state"], "conflict")
-        self.assertTrue(compatibility["reason"].startswith("scope\n"))
+        self.assertTrue(compatibility["reason"].startswith("原source自身の資格scopeは対応するが対象pairのscopeと既知に異なる。\n"))
 
         raw = trace_input("positive")
         other_scope = "synthetic-known-different-scope"
