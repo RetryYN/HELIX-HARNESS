@@ -57,6 +57,8 @@ class TestIdentityR2PredicateNegatives(unittest.TestCase):
             ("binding_shape", lambda claim: claim.update(binding={"unrecognized": True})),
             ("proposed_value_type", lambda claim: claim.update(proposed_value="not-an-object")),
             ("basis_role", lambda claim: claim.update(proposed_value={"unrelated": True})),
+            ("basis_role", lambda claim: claim.update(proposed_value={"basis_role": []})),
+            ("basis_role", lambda claim: claim.update(proposed_value={"basis_role": {"untyped": True}})),
             ("kind_role_mismatch", lambda claim: claim.update(proposed_value={"basis_role": "tool_node_only"})),
             ("basis_refs_type", lambda claim: claim.pop("basis_refs")),
             ("basis_refs_empty", lambda claim: claim.update(basis_refs=[])),
