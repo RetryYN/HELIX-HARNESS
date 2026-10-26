@@ -146,6 +146,40 @@ def _binding_shape_ok(value: Any) -> bool:
     )
 
 
+def _wire_ref_shape_ok(value: Any) -> bool:
+    """fn0 wire decoder: L4 Ref members are optional; keep supplied presence raw."""
+    if not isinstance(value, dict):
+        return False
+    fields = {"identity", "revision", "scope", "owner", "source_locator", "sha256"}
+    if not set(value) <= fields:
+        return False
+    for key in ("identity", "revision", "owner", "source_locator", "sha256"):
+        if key in value and value[key] is not None and not isinstance(value[key], str):
+            return False
+    return "scope" not in value or _is_json_value(value["scope"])
+
+
+def _wire_binding_shape_ok(value: Any) -> bool:
+    """fn0-only optional-member wire shape; strict downstream readers stay unchanged."""
+    if not isinstance(value, dict):
+        return False
+    ref_fields = {"template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref"}
+    scalar_fields = {"pack_contract_version", "pack_artifact_version", "version_target"}
+    fields = ref_fields | scalar_fields | {"pack_dependency_versions"}
+    if not set(value) <= fields:
+        return False
+    if any(key in value and not _wire_ref_shape_ok(value[key]) for key in ref_fields):
+        return False
+    if any(key in value and value[key] is not None and not isinstance(value[key], str) for key in scalar_fields):
+        return False
+    if "pack_dependency_versions" in value and (
+        not isinstance(value["pack_dependency_versions"], list)
+        or any(not _wire_ref_shape_ok(ref) for ref in value["pack_dependency_versions"])
+    ):
+        return False
+    return True
+
+
 def _source_shape_ok(source: Any) -> bool:
     return (
         isinstance(source, dict)
@@ -327,26 +361,31 @@ def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
     if not isinstance(qualifications, list) or not isinstance(roots, list):
         return False
     matches = [
-        row for row in qualifications
+        (index, row) for index, row in enumerate(qualifications)
         if isinstance(row, dict) and _ref_same(row.get("ref"), qualification_ref)
     ]
-    if len(matches) != 1:
+    if not matches:
         return False
-    # validate_supply_input already checked every supplied Qualification shape.
-    qualification = matches[0]
-    root_ref = qualification.get("root_ref")
-    root_matches = [root for root in roots if _ref_shape_ok(root) and _ref_same(root, root_ref)]
-    if not root_matches:
+    # The sole repeated-Q branch implemented here is whole-equal occurrences;
+    # distinct candidates remain unresolved instead of selecting a winner.
+    first = matches[0][1]
+    if any(not _json_equal(row, first) for _, row in matches[1:]):
         return False
-    subject_sha = qualification.get("subject_sha256")
-    return (
-        _ref_same(qualification.get("subject_ref"), source_ref)
-        and subject_sha == digest
-        and _json_equal(qualification.get("applicable_scope"), source_ref.get("scope"))
-        # qualification_body is opaque here.  The local L6 slice does not
-        # implement a trust/custody resolver for its contents.
-        and "qualification_body" in qualification
-    )
+    for _index, qualification in matches:
+        root_ref = qualification.get("root_ref")
+        root_matches = [root for root in roots if _ref_shape_ok(root) and _ref_same(root, root_ref)]
+        if not root_matches:
+            return False
+        subject_sha = qualification.get("subject_sha256")
+        if not (
+            _ref_same(qualification.get("subject_ref"), source_ref)
+            and subject_sha == digest
+            and _json_equal(qualification.get("applicable_scope"), source_ref.get("scope"))
+            # qualification_body is opaque here; no trust resolver is implied.
+            and "qualification_body" in qualification
+        ):
+            return False
+    return True
 
 
 def validate_supply_input(raw: object) -> dict[str, object]:
@@ -374,14 +413,14 @@ def validate_supply_input(raw: object) -> dict[str, object]:
     if (
         bad_arrays
         or ("descriptors" in raw and raw["descriptors"] is not None and not isinstance(raw["descriptors"], list))
-        or ("binding" in raw and not _binding_shape_ok(raw["binding"]))
+        or ("binding" in raw and not _wire_binding_shape_ok(raw["binding"]))
         or ("dependencies" in raw and not isinstance(raw["dependencies"], dict))
     ):
         field = bad_arrays[0] if bad_arrays else next(
             key for key in ("descriptors", "binding", "dependencies")
             if key in raw and (
                 (key == "descriptors" and raw[key] is not None and not isinstance(raw[key], list))
-                or (key == "binding" and not _binding_shape_ok(raw[key]))
+                or (key == "binding" and not _wire_binding_shape_ok(raw[key]))
                 or (key == "dependencies" and not isinstance(raw[key], dict))
             )
         )
@@ -1020,3 +1059,8 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
 
     return _fn6(context)
 
+
+def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str, object]:
+    from identity_trace import compare_identity_versions_and_trace as _fn3
+
+    return _fn3(context)
