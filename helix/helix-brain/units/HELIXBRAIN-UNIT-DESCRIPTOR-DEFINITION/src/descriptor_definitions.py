@@ -1539,5 +1539,8 @@ def compare_values_and_applicability(context: dict[str, object]) -> dict[str, ob
     return _write_existing_comparison_from_f03(evaluation["comparison"])
 
 
-from dependencies_handoff import compare_dependencies_and_handoff  # noqa: E402,F401
+def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
+    from dependencies_handoff import compare_dependencies_and_handoff as _fn6
+
+    return _fn6(context)
 

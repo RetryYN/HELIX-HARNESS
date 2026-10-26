@@ -90,6 +90,10 @@
     "partial_oracle_ja": "各caseが指定する観測（対象AxisResultのsubject_ref/binding/axis/state/original_refs/backflow_owner、Findingのcode/rule_ref/subject_ref/binding/axis/state/source_refs/backflow_owner、DP-1のorigin/OS incoming member保持と非結合・入力不変性）だけをassertし、Comparison全体一致比較は行わない。",
     "unclosed_stop_branches": [
       "B02/DP2: OSObligationMeaningIncomingのdischarge_assertion=trueまたはOS実供給によるpositive義務成立経路",
+      "B02/claim_basis_not_receipt: B02肯定Claimのbasis_refsが030 ReceiptClaimCarrierへ解決できない、またはOS incomingのみ等の非receipt根拠経路",
+      "B02/claim_binding_mismatch: Claim.bindingが同snapshot input.bindingとfull Binding一致しない経路",
+      "B02/subject_field_not_found: field_not_applicable Claimのsubject_refが同snapshot section_fields[].refおよび対応DescriptorSlotへ解決できない経路",
+      "F09/B02/handoff_source_ref_absent: handoff_records[].source_refがnullまたはRef必須frame未供給の経路",
       "F09/conditional_selector: core_return_requested / core_source_selected / labo_evaluation_selectedのtrueまたは欠落・型外、および条件Ref非空経路",
       "F09/required_always_ref_missing: always_refsの常時必須5 identity欠落・Ref frame不正経路",
       "F09/canonical_body_resolved: always_refsに対応するsemantic_json原sourceが存在するcanonical body解決経路",
@@ -102,8 +106,9 @@
   "execution_state": "scope_executed_red_then_green",
   "execution_evidence": {
     "test_commit": "590b9c2d9a9368386ad7a7e7bf88f6adf478d9de",
-    "red_summary": "test_b02_dependencies_and_handoff.py 全13件を実行し、6件が未実装NotImplementedError（ERROR）、7件の対象外停止境界testが特定分岐タグ未実装（AssertionError FAIL）となるRedを観測（import/setup error・skip 0件）。",
-    "green_summary": "test_b02_dependencies_and_handoff.py を無変更のまま dependencies_handoff.py の実装により全13件Green、および既存testを含む計30件Greenを観測。"
+    "r1_test_commit": "3644c9acda0b98ba902a89ce64f46837953c37ae",
+    "red_summary": "初期test commit（590b9c2d）で全13件Red（ERROR 6 / FAIL 7）、R1追補test commit（3644c9ac）で全14件中11件Red（ERROR 3 / FAIL 8）を観測（import/setup error・skip 0件）。",
+    "green_summary": "test_b02_dependencies_and_handoff.py を無変更のまま dependencies_handoff.py の実装により新規14件全件Green、Unit全体（計34件）では既存F02の2件（test_neg02_cross_pattern_field_substitution / test_neg21_required_field_missing_without_substitution）が範囲外Redとして停止し、それ以外の32件がOK。"
   },
   "completion_boundary": "fn0→fn1→fn6のB02/DP-1垂直スライス限定検証であり、DP-2実供給・条件依存全域・F09全返却・製品CI・Accepted・releaseを成立させない。"
 }
