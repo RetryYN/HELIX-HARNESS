@@ -100,27 +100,34 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self.assertEqual(raw, before)
         self.assertEqual(validated, validated_before)
 
-    def test_null_owner_pack_revision_is_unresolved_instead_of_known_difference(self):
-        raw = bilateral_input("outside")
-        record = raw["compatibility_records"][0]
-        right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
-        body = copy.deepcopy(right["content"])
-        body["compatibility_range_declaration"]["actual_pack_ref"]["revision"] = None
-        _write_source_content(raw, right, body)
-        # ActualOperand port reads the qualified native source independently. No
-        # explicit CompatibilityRecord is needed for this actual-only observation.
-        raw["compatibility_records"] = []
-        validated, before = self._validated(raw)
-        validated_before = copy.deepcopy(validated)
-        result = compare_identity_versions_and_trace({"validated": validated})
-        for axis in ("pack.revision", "pack.identity"):
-            row = next(row for row in result["axes"] if row["axis"] == axis)
-            self.assertEqual(row["state"], "unknown")
-            material = json.loads(row["reason"].partition("\n")[2])
-            self.assertEqual(material["cause"], "actual_owner_body_unresolved")
-            self.assertTrue(material["actual_source_pointers"])
-        self.assertEqual(raw, before)
-        self.assertEqual(validated, validated_before)
+    def test_owner_pack_revision_is_compared_after_subject_binding(self):
+        for value, state, cause in (
+            (None, "unknown", "actual_owner_body_unresolved"),
+            ("synthetic-other-actual-revision", "conflict", "actual_owner_body_differs"),
+        ):
+            with self.subTest(actual_revision=value):
+                raw = bilateral_input("outside")
+                record = raw["compatibility_records"][0]
+                right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+                original_subject = copy.deepcopy(right["content"]["compatibility_range_declaration"]["right_ref"])
+                body = copy.deepcopy(right["content"])
+                body["compatibility_range_declaration"]["actual_pack_ref"]["revision"] = value
+                _write_source_content(raw, right, body)
+                self.assertEqual(right["content"]["compatibility_range_declaration"]["right_ref"], original_subject)
+                # ActualOperand port reads the qualified native source independently.
+                # right_ref is its subject link; actual_pack_ref is a separate operand.
+                raw["compatibility_records"] = []
+                validated, before = self._validated(raw)
+                validated_before = copy.deepcopy(validated)
+                result = compare_identity_versions_and_trace({"validated": validated})
+                for axis in ("pack.revision", "pack.identity"):
+                    row = next(row for row in result["axes"] if row["axis"] == axis)
+                    self.assertEqual(row["state"], state)
+                    material = json.loads(row["reason"].partition("\n")[2])
+                    self.assertEqual(material["cause"], cause)
+                    self.assertTrue(material["actual_source_pointers"])
+                self.assertEqual(raw, before)
+                self.assertEqual(validated, validated_before)
 
     def test_unformed_fact_subject_blocks_mixed_and_silent_public_findings(self):
         raw = trace_input("positive")
