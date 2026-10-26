@@ -168,7 +168,10 @@
   "fn3_identity_preparation": {
     "id": "HELIXBRAIN-L6-032-FN3-IDENTITY",
     "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
-    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "implementation_modules": ["helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py"],
+    "module_split_basis": "PR3709追補M10（comment6421876852）とIssue3547 comment6421872614。旧src/config/requirements-binding-policy.ts:4–5、src/state-db/refactor-candidates.ts:293–294の700非空行以上の候補検出、旧docs/governance/coding-rules.md:29の一behavior contract・一責務ownerを再利用する。fn3だけ責務別に移動し新module各700非空行未満、既存fn0/fn1/fn6の分割は別WR。関数本体・定数の意味は保持し、fn6同様の遅延委譲へ変える。製品gateや新承認手続きは加えない。",
     "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
     "contract_source": {
       "revision": "6f9c669c80e79740d2bff20daab437b9afa400cd",

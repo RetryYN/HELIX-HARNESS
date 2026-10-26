@@ -303,8 +303,8 @@
     ],
     "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
     "execution_observation": {
-      "source_revision": "0df7bde358cce096b132d06d479b2bd9cc5cd1eb",
-      "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+      "source_revision": "cee2d90e01526b7d9fe9633ab80683afb05d3585",
+      "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
       "test_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
       "test_groups": [
         {
@@ -385,7 +385,39 @@
       "latest_main_integration": "main 8fd1086b2fe5e83f877dfa72890c68da7c116df3をfcd6d2a29a3b53f1f5ac9200298930f82a3df792で無競合統合。実行済みsource/test群のblobは不変。L4 identity_version_trace_contractとL5 functions/3はreview基準6fa6から不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
       "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。",
-      "previous_observation": "従前55 tests/source 8f62c2fcf4d416214f1f617932ec2dc27829f210 と89 testsの統合観測はgit834e00ec15e7c3a94a503846a9541fef7d61db74の同pointerから辿る。現行test修正後のRedとは混同しない。"
+      "previous_observation": "従前55 tests/source 8f62c2fcf4d416214f1f617932ec2dc27829f210 と89 testsの統合観測はgit834e00ec15e7c3a94a503846a9541fef7d61db74の同pointerから辿る。現行test修正後のRedとは混同しない。",
+      "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+      "implementation_modules": [
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
+          "nonblank": 159
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py",
+          "nonblank": 232
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py",
+          "nonblank": 246
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
+          "nonblank": 234
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
+          "nonblank": 248
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py",
+          "nonblank": 445
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py",
+          "nonblank": 125
+        }
+      ],
+      "module_split_verification": "M10前d736e8eb7499ce6176bd0e12d56e3310507284d7と比較し、移動34関数/定数AST完全一致、非fn3 AST一致、facadeは遅延import+returnのみ。全7moduleのimportと参照global symbol解決を確認。既存testは不変で、root分割後unit120 tests=118PASS/同じ既知fn1errors2/failure0、bounded_exec reaped=true。新module125–445非空行。既存descriptor_definitions.pyは1450非空行で本PRでは分割しない。"
     },
     "R1_review_reentry": {
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421713229",
@@ -402,7 +434,7 @@
         "fn6_observations": "normalと同値Q2はfn6 7 axes/findings0。optional locator/sha欠落は既存F09/B02/binding_or_subject_ref_missingで停止する。fn6の閉Binding境界を補完して通さない。",
         "boundary": "fn0の受理/usable結果の変化を、fn1/fn2/fn6への影響なしとは申告しない。旧false/新trueの受理差と各下流の実観測を分け、全caller・全partial入力の成立やtrust取得を認定しない。"
       },
-      "state": "root_verified_120_tests_2_preexisting_fn1_errors_R2_pending",
+      "state": "root_verified_M1_M10_and_m1_m9_R3_pending",
       "additional_red_evidence": [
         {
           "test_revision": "92b15fc7ed73098d78181764ee58e1bf38d5d94d",
@@ -434,7 +466,8 @@
         "M6": "records absent、slot binding不足/型外、distinct matching KB、multiple range、unsupported Claim、provenance null/型外を明示停止。Claimは原Bindingと原basis sourceを証拠にし、root同値/qualified-basisという追加述語を除去。right target owner/membershipも独立照合。",
         "M7": "L6 fn0_shared_boundary_changesと本欄fn0_effectsに受理差・下流実測、fn0直接2testsを記録。無変更とは申告しない。",
         "M8": "private関数patchを除去。公開actual_source_pointersを原入力locatorから導く。旧ae90でassertionRedを再観測。",
-        "M9": "ADD14はfactのKB旧→新差替え+明示relation。silentなし・旧Ref保持とmixed述語を別assert。既存Green対照を新Redとしない。"
+        "M9": "ADD14はfactのKB旧→新差替え+明示relation。silentなし・旧Ref保持とmixed述語を別assert。既存Green対照を新Redとしない。",
+        "M10": "fn3追加34関数/定数を7責務moduleへAST保持で移動。新moduleは159/232/246/234/248/445/125非空行、descriptor_definitions.pyの公開fn3はfn6と同形の遅延委譲。既存非fn3部分の分割は別WR。test不変のcharacterization fenceで前後とも120件/既知2errorsのみ。"
       },
       "minor_responses": {
         "m1": "NEG01のorを除きR68 axis/state/ownerと、重なるsilent述語をL5から別観測。新抑制gateなし。",
@@ -447,9 +480,10 @@
         "m8": "scope/sourceのpredicate専用Axisを原出現ごとに同じ規則で作成し、TraceRead.source_indicesは原source index順。",
         "m9": "R63 obligation identity differsは旧wip ae90のsame-obligation guard（当時1707–1708行）が既に不成立を除外したため既存Green対照。新たなRed証拠ではない。"
       },
-      "private_read_diagnostic": "rootは公開fn3 call中のprivate localをprofileで観測し、実装をpatchせずpositive/outsideは左右owner_body_corresponding/resolved、左scope差は左のみowner_scope_differs/conflict、独立合成した右scope差は右のみ同conflictを確認。public pairはpositiveのみresolved、他3つconflict。これは回帰testのoracleや新公開interfaceにはしない。"
+      "private_read_diagnostic": "rootは公開fn3 call中のprivate localをprofileで観測し、実装をpatchせずpositive/outsideは左右owner_body_corresponding/resolved、左scope差は左のみowner_scope_differs/conflict、独立合成した右scope差は右のみ同conflictを確認。public pairはpositiveのみresolved、他3つconflict。これは回帰testのoracleや新公開interfaceにはしない。",
+      "M10_reentry": "R1追補comment6421876852をrootがR2依頼時に見落とした。comment6424577849で現HEADのReady/mergeを求めない旨を開示し、別source commit cee2d90e01526b7d9fe9633ab80683afb05d3585で分割だけを実施。R2 requestのd736e8eb7499ce6176bd0e12d56e3310507284d7ではなく更新HEADへ再reviewを依頼する。"
     },
-    "execution_state": "review_R1_root_verified_R2_pending",
+    "execution_state": "review_R1_root_verified_including_M10_R3_pending",
     "authority_effect": "none"
   }
 }
