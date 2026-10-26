@@ -173,7 +173,7 @@ def _problem(
 ) -> dict[str, Any]:
     reason = _PROBLEM_REASONS.get(cause)
     if reason is None:
-        raise _f03_stop("problem_cause_unclosed", f"unclosed F03Problem cause: {cause}")
+        raise _f03_stop("carrier_or_source_record_shape", f"unclosed F03Problem cause: {cause}")
     return {
         "cause": cause,
         "locator": locator,
@@ -212,27 +212,27 @@ def _matching_semantic_sources(
 ) -> list[tuple[int, dict[str, Any]]]:
     raw = validated.get("input")
     if not isinstance(raw, dict):
-        raise _f03_stop("validated_input_missing", "semantic source selection requires the same ValidatedSupply")
+        raise _f03_stop("carrier_or_source_record_shape", "semantic source selection requires the same ValidatedSupply")
     if "sources" not in raw or not isinstance(raw["sources"], list):
-        raise _f03_stop("sources_absent_or_shape", "sources is not supplied as an array")
+        raise _f03_stop("carrier_or_source_record_shape", "sources is not supplied as an array")
     matches: list[tuple[int, dict[str, Any]]] = []
     for index, source in enumerate(raw["sources"]):
         if not isinstance(source, dict):
-            raise _f03_stop("source_record_decoder", f"sources[{index}] is not an object")
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{index}] is not an object")
         if source.get("role") != "semantic_json":
             continue
         if not _source_shape_ok(source):
-            raise _f03_stop("semantic_source_record_decoder", f"sources[{index}] is outside the typed Source shape")
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{index}] is outside the typed Source shape")
         content = source.get("content")
         if not isinstance(content, dict):
-            raise _f03_stop("semantic_source_content_decoder", f"sources[{index}].content is not an object")
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{index}].content is not an object")
         if source_ref is not None:
             if not _ref_same(source.get("ref"), source_ref):
                 continue
         elif not _binding_same(content.get("binding"), binding):
             continue
         if not _source_usable(validated, source.get("ref")):
-            raise _f03_stop("matching_source_unusable", f"matching semantic source is unusable at /sources/{index}")
+            raise _f03_stop("carrier_or_source_record_shape", f"matching semantic source is unusable at /sources/{index}")
         matches.append((index, source))
     return matches
 
@@ -261,7 +261,7 @@ def _read_f03_field_owner_record(
                 "supports": [],
                 "problems": [_problem("app_null", request_locator, _presence(None, present=True))],
             }
-        raise _f03_stop("requested_ref_null", f"{kind} requested_ref is null at {request_locator}")
+        raise _f03_stop("carrier_or_source_record_shape", f"{kind} requested_ref is null at {request_locator}")
 
     collection = {
         "field": "section_fields",
@@ -319,17 +319,17 @@ def _read_f03_field_owner_record(
             continue
         entries = content[member]
         if entries is None or not isinstance(entries, list):
-            raise _f03_stop(f"{member}_container_shape", f"{locator} is null or not an array")
+            raise _f03_stop("carrier_or_source_record_shape", f"{locator} is null or not an array")
         if not entries:
             problems.append(_problem("lookup_unresolved", locator, _presence(entries, present=True), source.get("ref"), source_index))
             continue
         matched_in_source = False
         for rec_index, entry in enumerate(entries):
             if not isinstance(entry, dict):
-                raise _f03_stop(f"{member}_entry_shape", f"{locator}/{rec_index} is not an object")
+                raise _f03_stop("carrier_or_source_record_shape", f"{locator}/{rec_index} is not an object")
             if kind == "field":
                 if set(entry.keys()) != {"record"} or not isinstance(entry.get("record"), dict):
-                    raise _f03_stop("section_field_entry_shape", f"{locator}/{rec_index} must be F03OwnerSectionFieldEntry")
+                    raise _f03_stop("carrier_or_source_record_shape", f"{locator}/{rec_index} must be F03OwnerSectionFieldEntry")
                 rec = entry["record"]
                 if not _ref_same(rec.get("ref"), requested_ref):
                     continue
@@ -353,7 +353,7 @@ def _read_f03_field_owner_record(
                             }
                         )
                     else:
-                        raise _f03_stop("field_mirror_differs", f"{locator}/{rec_index} differs from root SectionField")
+                        raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} differs from root SectionField")
             else:
                 rec = entry
                 if not _ref_same(rec.get("ref"), requested_ref):
@@ -372,7 +372,7 @@ def _read_f03_field_owner_record(
                 for root_occ_idx, root_occ in enumerate(roots):
                     root_val = root_occ["original_value"]
                     if not _ref_same(rec.get("subject_ref"), expected_subject) or not _binding_same(rec.get("binding"), binding):
-                        raise _f03_stop("carrier_record_frame_differs", f"{locator}/{rec_index} subject or binding differs")
+                        raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} subject or binding differs")
                     if _json_equal(root_val, rec):
                         supports.append(
                             {
@@ -381,7 +381,7 @@ def _read_f03_field_owner_record(
                             }
                         )
                     else:
-                        raise _f03_stop("carrier_record_body_differs", f"{locator}/{rec_index} body differs from root record")
+                        raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} body differs from root record")
         if not matched_in_source:
             problems.append(_problem("lookup_unresolved", locator, _presence(entries, present=True), source.get("ref"), source_index))
 
@@ -392,8 +392,6 @@ def _read_f03_field_owner_record(
         problems.append(_problem(cause, request_locator, _presence(requested_ref, present=requested_ref is not None)))
 
     if supports:
-        if kind == "field":
-            problems = []
         state = "resolved"
     else:
         state = "unknown"
@@ -450,14 +448,18 @@ def _read_f03_field_descriptor_target(
                     prov_refs.append(pref)
 
     for source_index, source in enumerate(raw.get("sources", [])):
-        if not isinstance(source, dict) or source.get("role") != "semantic_json":
+        if not isinstance(source, dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] is not an object")
+        if source.get("role") != "semantic_json":
             continue
+        if not _source_shape_ok(source) or not isinstance(source.get("content"), dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] invalid semantic source shape")
+        content = source["content"]
         if not _source_usable(validated, source.get("ref")):
+            if _binding_same(content.get("binding"), binding):
+                raise _f03_stop("carrier_or_source_record_shape", f"matching semantic source unusable at /sources/{source_index}")
             continue
         if not any(_ref_same(pref, source.get("ref")) for pref in prov_refs):
-            continue
-        content = source.get("content")
-        if not isinstance(content, dict):
             continue
         locator = f"/sources/{source_index}/content/descriptor_targets"
         if "descriptor_targets" not in content:
@@ -474,7 +476,7 @@ def _read_f03_field_descriptor_target(
             continue
         raw_targets = content["descriptor_targets"]
         if raw_targets is None or not isinstance(raw_targets, list):
-            raise _f03_stop("descriptor_targets_shape", f"{locator} is null or not an array")
+            raise _f03_stop("carrier_or_source_record_shape", f"{locator} is null or not an array")
         if not raw_targets:
             problems.append(_problem("lookup_unresolved", locator, _presence(raw_targets, present=True), source.get("ref"), source_index))
             continue
@@ -487,7 +489,7 @@ def _read_f03_field_descriptor_target(
                 or not isinstance(decl.get("slot_identity"), str)
                 or decl.get("descriptor_kind") not in _APPROVED_KINDS
             ):
-                raise _f03_stop("descriptor_target_declaration_shape", f"{decl_locator} invalid F03BOwnerDescriptorTarget")
+                raise _f03_stop("carrier_or_source_record_shape", f"{decl_locator} invalid F03BOwnerDescriptorTarget")
             typed_decl = _presence(copy.deepcopy(decl), present=True)
             occurrences.append(
                 {
@@ -523,7 +525,7 @@ def _read_f03_field_descriptor_target(
 
     state = "resolved" if len(matches) == 1 else "unknown"
     if len(matches) > 1:
-        raise _f03_stop("ambiguous_or_conflicting_descriptor_target", "multiple target matches in F03FieldTargetRead")
+        raise _f03_stop("duplicate_conflicting_carrier_records", "multiple target matches in F03FieldTargetRead")
 
     return {
         "field_locator": field_locator,
@@ -547,7 +549,7 @@ def _read_f03_fact_meaning(
     kind = slot["descriptor_kind"]
     entry_meta = _NORMATIVE_ENTRIES.get(kind)
     if entry_meta is None:
-        raise _f03_stop("normative_frame_kind_unclosed", f"normative frame for kind {kind} not in F03 slice")
+        raise _f03_stop("meaning_operation_shape", f"normative frame for kind {kind} not in F03 slice")
     normative_frame = {
         "revision": _NORMATIVE_SNAPSHOT_META["revision"],
         "path": _NORMATIVE_SNAPSHOT_META["path"],
@@ -573,20 +575,24 @@ def _read_f03_fact_meaning(
     problems: list[dict[str, Any]] = []
 
     for source_index, source in enumerate(raw.get("sources", [])):
-        if not isinstance(source, dict) or source.get("role") != "semantic_json":
+        if not isinstance(source, dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] is not an object")
+        if source.get("role") != "semantic_json":
+            continue
+        if not _source_shape_ok(source) or not isinstance(source.get("content"), dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] invalid semantic source shape")
+        content = source["content"]
+        if not _binding_same(content.get("binding"), binding):
             continue
         if not _source_usable(validated, source.get("ref")):
-            continue
+            raise _f03_stop("carrier_or_source_record_shape", f"matching semantic source unusable at /sources/{source_index}")
         if not any(_ref_same(pref, source.get("ref")) for pref in prov_refs):
-            continue
-        content = source.get("content")
-        if not isinstance(content, dict) or not _binding_same(content.get("binding"), binding):
             continue
         if "definition_meaning_operations" not in content:
             continue
         ops = content["definition_meaning_operations"]
         if ops is None or not isinstance(ops, list):
-            raise _f03_stop("definition_meaning_operations_shape", f"/sources/{source_index}/content/definition_meaning_operations is invalid")
+            raise _f03_stop("meaning_operation_shape", f"/sources/{source_index}/content/definition_meaning_operations is invalid")
         for rec_index, op in enumerate(ops):
             loc = f"/sources/{source_index}/content/definition_meaning_operations/{rec_index}"
             if (
@@ -595,14 +601,35 @@ def _read_f03_fact_meaning(
                 or not isinstance(op.get("arguments"), dict)
                 or not isinstance(op.get("decision"), dict)
             ):
-                raise _f03_stop("definition_meaning_operation_record_shape", f"{loc} invalid F03BDefinitionMeaningOperation")
+                raise _f03_stop("meaning_operation_shape", f"{loc} invalid F03BDefinitionMeaningOperation")
             args = op["arguments"]
             dec = op["decision"]
             if (
                 set(args.keys()) != {"binding", "slot_identity", "descriptor_kind", "fact_ref", "fact_body", "normative_argument"}
                 or set(dec.keys()) != {"relation", "reason", "raw_semantic_basis", "basis_refs"}
+                or dec.get("relation") not in ("defines_descriptor", "does_not_define_descriptor", "undetermined")
+                or not isinstance(dec.get("reason"), dict)
+                or (
+                    dec["reason"] != {"presence": "absent"}
+                    and (
+                        set(dec["reason"].keys()) != {"presence", "value"}
+                        or dec["reason"].get("presence") != "supplied"
+                        or not isinstance(dec["reason"].get("value"), str)
+                    )
+                )
+                or not isinstance(dec.get("raw_semantic_basis"), dict)
+                or (
+                    dec["raw_semantic_basis"] != {"presence": "absent"}
+                    and (
+                        set(dec["raw_semantic_basis"].keys()) != {"presence", "value"}
+                        or dec["raw_semantic_basis"].get("presence") != "supplied"
+                        or dec["raw_semantic_basis"].get("value") is None
+                    )
+                )
+                or not isinstance(dec.get("basis_refs"), list)
+                or any(not _ref_shape_ok(r) for r in dec["basis_refs"])
             ):
-                raise _f03_stop("definition_meaning_operation_nested_shape", f"{loc} invalid arguments/decision members")
+                raise _f03_stop("meaning_operation_shape", f"{loc} invalid arguments/decision members")
             occurrences.append(
                 {
                     "source_ref": copy.deepcopy(source["ref"]),
@@ -632,7 +659,7 @@ def _read_f03_fact_meaning(
                     }
                 )
             else:
-                raise _f03_stop("definition_meaning_operation_mismatch", f"{loc} arguments or normative_frame mismatch")
+                raise _f03_stop("meaning_operation_shape", f"{loc} arguments or normative_frame mismatch")
 
     return {
         "slot_locator": slot_locator,
@@ -658,17 +685,6 @@ def _read_f03_original_field_definition(
     field_ref = field["ref"]
     knowledge_ref = binding["knowledge_ref"]
 
-    meaning_refs = field.get("meaning_fact_refs")
-    if not isinstance(meaning_refs, list) or any(not _ref_shape_ok(r) for r in meaning_refs):
-        raise _f03_stop("meaning_fact_refs_shape", f"{field_locator}/meaning_fact_refs must be a Ref array")
-    for comp in raw.get("meaning_comparisons", []):
-        if isinstance(comp, dict) and any(
-            _ref_same(comp.get(side), mref)
-            for mref in meaning_refs
-            for side in ("left_fact_ref", "right_fact_ref")
-        ):
-            raise _f03_stop("meaning_comparison_pair_read", "F03 pair_reads with participating meaning_comparisons is outside this slice")
-
     request = {
         "field_locator": field_locator,
         "field": _presence(field, present=True),
@@ -684,6 +700,7 @@ def _read_f03_original_field_definition(
     fact_reads: list[dict[str, Any]] = []
     pair_reads: list[dict[str, Any]] = []
     judgments: list[dict[str, Any]] = []
+    meaning_refs = field.get("meaning_fact_refs")
 
     if owner_read["state"] != "resolved":
         orig_refs = [field_ref, field.get("descriptor_slot_ref")]
@@ -707,6 +724,15 @@ def _read_f03_original_field_definition(
         )
     else:
         owner_src_ref = owner_read["source_occurrences"][owner_read["supports"][0]["source_occurrence_index"]]["source_ref"]
+        if not isinstance(meaning_refs, list) or any(not _ref_shape_ok(r) for r in meaning_refs):
+            raise _f03_stop("meaning_fact_refs_shape", f"{field_locator}/meaning_fact_refs must be a Ref array")
+        for comp in raw.get("meaning_comparisons", []):
+            if isinstance(comp, dict) and any(
+                _ref_same(comp.get(side), mref)
+                for mref in meaning_refs
+                for side in ("left_fact_ref", "right_fact_ref")
+            ):
+                raise _f03_stop("meaning_comparison_pair_read", "F03 pair_reads with participating meaning_comparisons is outside this slice")
         if len(meaning_refs) == 0:
             branch, state, reason = _JUDGMENT_CAUSE_TABLE["meaning_refs_empty"]
             judgments.append(
@@ -728,7 +754,7 @@ def _read_f03_original_field_definition(
             )
         else:
             if target_read["state"] != "resolved" or not target_read["matches"][0]["slot_locators"]:
-                raise _f03_stop("target_unresolved_for_nonempty_meaning_refs", "target_read unresolved for non-empty meaning_fact_refs")
+                raise _f03_stop("meaning_operation_shape", "target_read unresolved for non-empty meaning_fact_refs")
             slot_locator = target_read["matches"][0]["slot_locators"][0]
             slot_idx = int(slot_locator.rsplit("/", 1)[-1])
             slot = raw["descriptors"][slot_idx]
@@ -743,7 +769,7 @@ def _read_f03_original_field_definition(
                         matched_fact = cand_fact
                         break
                 if matched_fact is None or matched_fact_idx is None:
-                    raise _f03_stop("selected_fact_unresolved", f"selected fact not found in {slot_locator}")
+                    raise _f03_stop("meaning_operation_shape", f"selected fact not found in {slot_locator}")
                 fact_locator = f"{slot_locator}/facts/{matched_fact_idx}"
 
                 attr_supports: list[dict[str, Any]] = []
@@ -762,7 +788,7 @@ def _read_f03_original_field_definition(
                         if not isinstance(group, dict) or group.get("slot_identity") != slot.get("slot_identity"):
                             continue
                         if group.get("descriptor_kind") != slot.get("descriptor_kind"):
-                            raise _f03_stop("attribution_kind_conflict", "descriptor_kind conflict in attribution_read")
+                            raise _f03_stop("duplicate_conflicting_carrier_records", "descriptor_kind conflict in attribution_read")
                         for gf_idx, orig_fact in enumerate(group.get("facts", [])):
                             if (
                                 isinstance(orig_fact, dict)
@@ -783,7 +809,7 @@ def _read_f03_original_field_definition(
                                     }
                                 )
                 if not attr_supports:
-                    raise _f03_stop("attribution_unknown", f"attribution unresolved for {fact_locator}")
+                    raise _f03_stop("meaning_operation_shape", f"attribution unresolved for {fact_locator}")
                 attribution_read = {
                     "state": "known",
                     "supports": attr_supports,
@@ -791,7 +817,7 @@ def _read_f03_original_field_definition(
                 }
                 meaning_read_val = _read_f03_fact_meaning(validated, slot_locator, fact_locator, slot, matched_fact)
                 if not meaning_read_val["supports"]:
-                    raise _f03_stop("meaning_read_unresolved", f"meaning_read has no positive support for {fact_locator}")
+                    raise _f03_stop("meaning_operation_shape", f"meaning_read has no positive support for {fact_locator}")
 
                 fact_read_idx = len(fact_reads)
                 fact_reads.append(
@@ -816,7 +842,7 @@ def _read_f03_original_field_definition(
                         or dec["raw_semantic_basis"].get("presence") != "supplied"
                         or dec["raw_semantic_basis"].get("value") is None
                     ):
-                        raise _f03_stop("meaning_decision_non_positive", "non-positive or incomplete meaning decision")
+                        raise _f03_stop("meaning_operation_shape", "non-positive or incomplete meaning decision")
                     branch, state, reason = _JUDGMENT_CAUSE_TABLE["meaning_positive"]
                     orig_refs = [
                         field_ref,
@@ -952,6 +978,8 @@ def _build_f03_row(
     }
     if set(field.keys()) != field_members or not isinstance(field_ref, dict) or not isinstance(binding, dict):
         raise NotImplementedError(f"SectionField closed shape branch: Backflow {N03_BACKFLOW_ID}")
+    if "applicability_records" not in raw or not isinstance(raw["applicability_records"], list):
+        raise _f03_stop("applicability_records_absent_or_shape", "applicability_records is absent or not an array")
 
     definition_read = _read_f03_original_field_definition(
         validated, field_locator, field, has_f03_mode=has_f03_mode
@@ -1090,6 +1118,36 @@ def _build_f03_row(
         events.append(ev)
         public_axes.append(ax)
 
+    owner_empty = (
+        field.get("meaning_fact_refs") == []
+        and field.get("requiredness_fact_refs") == []
+        and field.get("normative_rule_refs") == []
+        and field.get("oracle_refs") == []
+        and field.get("value_fact_refs") == []
+        and applicability_ref is None
+    )
+    if (
+        definition_read["owner_read"]["state"] == "resolved"
+        and not owner_empty
+        and not value_reads
+        and applicability_ref is None
+        and not any(pr["state"] == "resolved" for pr in parent_reads)
+    ):
+        raise _f03_stop(
+            "empty_value_fact_refs_non_empty_owner",
+            "resolved non-empty SectionField without N/A or explicit applicability unknown requires value_fact_refs",
+        )
+    if (
+        definition_read["owner_read"]["state"] == "resolved"
+        and not owner_empty
+        and not value_reads
+        and applicability_read["state"] == "resolved"
+        and applicability_read["root_occurrences"][0]["original_value"].get("decision") == "applicable"
+    ):
+        raise _f03_stop(
+            "empty_value_fact_refs_non_empty_owner",
+            "applicable SectionField requires value_fact_refs",
+        )
     case_active = bool(value_reads) or (applicability_ref is not None) or any(
         pr["state"] == "resolved" for pr in parent_reads
     )
@@ -1111,7 +1169,7 @@ def _build_f03_row(
             core_owner = (
                 resolved_parent_na.get("owner")
                 if isinstance(resolved_parent_na, dict) and isinstance(resolved_parent_na.get("owner"), str)
-                else "synthetic-core-owner"
+                else None
             )
             if resolved_parent_na is not None and resolved_parent_read is not None:
                 app_mat = _build_reason_material(
@@ -1173,7 +1231,7 @@ def _build_f03_row(
             elif decision == "unknown":
                 app_branch, app_state = "applicability_unknown", "unknown"
             else:
-                raise _f03_stop("applicability_decision_invalid", f"invalid ApplicabilityRecord.decision: {decision}")
+                raise _f03_stop("na_incomplete_branch", f"invalid ApplicabilityRecord.decision: {decision}")
             app_refs = [app_rec.get("ref"), knowledge_ref, app_rec.get("source_ref")]
             app_mat = _build_reason_material(
                 app_branch,
@@ -1245,7 +1303,7 @@ def _build_f03_row(
                 elif v_rec.get("value") is None and v_rec.get("origin") in ("absent", "reference_fixture"):
                     v_branch, v_state = "value_unknown", "unknown"
                 else:
-                    raise _f03_stop("value_origin_or_value_combination", "unclosed ValueFact value/origin combination")
+                    raise _f03_stop("carrier_or_source_record_shape", "unclosed ValueFact value/origin combination")
             else:
                 v_owner = knowledge_owner
                 v_refs = [v_rec.get("ref"), v_rec.get("source_ref")] if isinstance(v_rec, dict) else []
@@ -1284,7 +1342,7 @@ def _build_f03_row(
                 p_owner = (
                     resolved_parent_na.get("owner")
                     if isinstance(resolved_parent_na.get("owner"), str)
-                    else "synthetic-core-owner"
+                    else None
                 )
                 p_refs = [resolved_parent_na.get("ref"), knowledge_ref, resolved_parent_na.get("source_ref")]
                 fapp_mat = _build_reason_material(
@@ -1315,7 +1373,7 @@ def _build_f03_row(
                 events.append(ev)
                 public_axes.append(ax)
             else:
-                f_owner = "synthetic-core-owner"
+                f_owner: str | None = None
                 if value_reads and value_reads[0]["root_occurrences"]:
                     v_src = value_reads[0]["root_occurrences"][0]["original_value"].get("source_ref")
                     if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str):
@@ -1444,31 +1502,24 @@ def _evaluate_f03_claim_on_row(
     if claim.get("actor") != "BRAIN" or not isinstance(claim.get("basis_refs"), list):
         raise NotImplementedError(f"Claim actor/basis branch: Backflow {N03_BACKFLOW_ID}")
     if any(not _ref_shape_ok(r) for r in claim["basis_refs"]):
-        raise _f03_stop("claim_basis_refs_shape", "Claim.basis_refs contains non-Ref element")
+        return None
 
     kind = claim.get("kind")
     proposed = claim.get("proposed_value")
-
     if kind == "value_only_gap":
         if proposed != "unknown":
-            raise _f03_stop("claim_proposed_value_invalid", f"invalid proposed_value for value_only_gap: {proposed!r}")
+            return None
         candidates = [55]
     elif kind == "field_not_applicable":
-        if proposed == "not_applicable":
-            candidates = [56, 54]
-        elif proposed == "applicable":
+        if proposed != "not_applicable":
             return None
-        else:
-            raise _f03_stop("claim_proposed_value_invalid", f"invalid proposed_value for field_not_applicable: {proposed!r}")
+        candidates = [56, 54]
     elif kind == "all_section_fields_not_applicable":
         if proposed != "not_applicable":
-            raise _f03_stop(
-                "claim_proposed_value_invalid",
-                f"invalid proposed_value for all_section_fields_not_applicable: {proposed!r}",
-            )
+            return None
         candidates = [57]
     else:
-        raise _f03_stop("claim_kind_unrecognized", f"unrecognized F03 Claim.kind: {kind!r}")
+        return None
 
     events_by_axis: dict[str, list[dict[str, Any]]] = {}
     for ev in row["events"]:
@@ -1549,12 +1600,12 @@ def evaluate_field_values_detail(context: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(claim, dict):
             raise NotImplementedError(f"Claim record type branch: Backflow {N03_BACKFLOW_ID}")
         if not _binding_same(claim.get("binding"), binding):
-            raise _f03_stop("claim_binding_mismatch", "Claim.binding does not match snapshot binding")
+            raise _f03_stop("carrier_or_source_record_shape", "Claim.binding does not match snapshot binding")
 
         matching_rows = [r for r in rows if _ref_same(claim.get("subject_ref"), r["field"].get("ref"))]
         if matching_rows and claim.get("kind") not in ("operation_deadline", "resource_capacity"):
             if len(matching_rows) != 1:
-                raise _f03_stop("claim_multiple_field_rows", "Claim subject_ref matches multiple section_fields")
+                raise _f03_stop("carrier_or_source_record_shape", "Claim subject_ref matches multiple section_fields")
             target_row = matching_rows[0]
             matched = _evaluate_f03_claim_on_row(claim, target_row)
             if matched is not None:
