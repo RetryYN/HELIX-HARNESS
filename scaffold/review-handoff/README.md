@@ -150,6 +150,10 @@ retry時は同じ宛先sessionを維持する。新claim nonceが発行され、
 保存はfile lockとatomic replaceで直列化する。無変更のpollでは書込み・fsyncしない。observedは各runtime最大64件・2時間で、次のhook時に整理する。
 通知本文は128KiB以内。hook継続文へ相手の自由文を注入しない。これは同一OS利用者内の協調機構で、悪意ある同一UIDに対する認証ではない。
 
+`gui_mailbox.py status`は、通知箱の読取専用表示に加えて`resource_diagnostics`を返す（[#3510 comment 6405275048](https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405275048)の提案②(b)、新規案2）。`/proc/meminfo`の`MemAvailable`／`SwapFree`と、`/proc`上で親のGUIセッションを失った長時間・高RSSの同一UIDプロセス（既定目安：`--min-age-seconds 300`、`--min-rss-bytes 536870912`）を読取専用で表示し、自動`kill`や他レーンのプロセス操作は一切行わない。引数中のtokenや秘密情報が各レーンのcontextへ入らないよう、`cmdline`は`argv0`のbasenameとscript pathだけに絞り（`-c`のインライン文字列や`--`／`=`等を含む引数は伏せる）、表示の目安値はgateや合格条件にしない。
+
+また、一時解析スクリプト等を専用process group・実行時間上限・資源上限付きで起動する補助具として[`scaffold/tools/bounded_exec.py`](../tools/bounded_exec.py)（`SCF-B-0164`、提案②(a)）を置く。旧`archive/legacy-generation-2026-09-14/root/src/runtime/provider-process-lifecycle.ts:118–400`（`LEGACY-ASSET-378CB2CCCD11F9A49502`）および旧`docs/design/helix/L6-function-design/worker-budget-lifecycle.md:11–55`（`LEGACY-ASSET-15D88CCE539AA79ED788`）から、POSIX専用process group起動、timeoutおよび親が`SIGINT`／`SIGTERM`／`SIGHUP`を受けたときの`killpg(SIGTERM)`→grace後`killpg(SIGKILL)`→`ESRCH`によるgroup消滅確認（呼出元が`SIG_IGN`にしているシグナルは保持）、direct child終了後の残存子孫（`tree_lingered`）回収、出力上限、終了分類（`timeout`／`signal`／`tree_lingered`／`reap_unconfirmed`）の意味を保持してPython標準ライブラリで再導出し、`HELIXSECURITY-L2-007`のresource limit仮組みとして`RLIMIT_AS`と`RLIMIT_CPU`の既定値・引数設定（新規案1）を加えている。Linuxではdirect childへ`PR_SET_PDEATHSIG(SIGKILL)`を付与してラッパー自身が`SIGKILL`で死んだ場合のdirect child残留を緩和するが、direct childが既に生んだ孫プロセスへの非継承、子孫が自ら`setsid()`／`setpgid()`で別セッションへ逃避した場合の`killpg`対象外化、および`RLIMIT_AS`／`RLIMIT_CPU`がcgroupではなくper-process上限である点は仮組みの構造上の限界として残る。
+
 ## 通知のライフサイクル
 
 `queued` → `claimed` → `acked`、または期限切れの`expired`で終わる。終わった通知は、次に通知箱へ書き込むとき（send・claim・ACK・hook activity）に次のとおり整理する。無変更のpollでは整理せず、書込みもしない。
