@@ -855,7 +855,7 @@
       ],
       "state": "七rule・表示only対照・typed witness・finite carry未実装。fixtureの保存全返却/hashを期待やsourceへコピーせず、前提source/runtimeの接続を確認してから対象テストを追加する。"
     },
-    "prerequisite_tracking": "Issue3547 comment6427471646。L5型/関数宣言は存在するがunit runtimeにはまだ無く、fn1 15kind固定経路との接続scopeを統制へ確認中。未確定を空成功又は新source資格で補わない。",
+    "prerequisite_tracking": "Issue3547 comment6427761585によりF05 NEG01/02はfn1固定guardの別前提WR待ち。WR12は到達可能な7ruleと有限carryを継続。canonical walk/frame runtimeの接続scopeはPR3719 comment6428081749で確認中。",
     "completion_boundary": "FN4全域、7rule、F05/F06受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。現在はWR12の作業中Draft差分でありmergeを求めない。",
     "execution_state": "partial_context_green_full_FN4_in_progress",
     "authority_effect": "none",
@@ -863,6 +863,24 @@
       "base": "a665d21ab452c014d314d954b5edfe9478c11d7c",
       "commit": "d9eb64b5906e23775d51fde9acaec23a35c9b8ed",
       "resolution": "main FN5のfacade追加と末尾で競合したためFN4/FN5両方を保持。FN4 facadeを除いたdescriptor_definitions.py全ASTはmainと一致。FN4 module/testは不変。"
+    },
+    "review_r1_context_correction": {
+      "review_comment": 6427821595,
+      "control_comment": 6427761585,
+      "rationale": "R1-M1: L4 same_call/invalid_contextは別producer/Bindingのempty成功補完を禁止する。以前の2期待を誤解釈として訂正し、独立な残り2条件も追加。入力不変・元Comparison保持は継続する。",
+      "test_revision": "83c09a4a6",
+      "source_revision": "9b8e98f8a",
+      "red": "root-fn4-r1-context-red.json:10methods中4条件がNotImplemented未発生でFAIL、null/shape6methods PASS。",
+      "green": "root-fn4-r1-context-green.json:既存unclosed2件を含む12methods PASS。shape5methods内24変異を含む。",
+      "execution": "root bounded/reaped=true/output_truncated=false。",
+      "test_scope": "producer4条件を各1箇所のみ変異。shapeの人工不正Contextはfn0成功出力とは呼ばない。"
+    },
+    "historical_red_replay": {
+      "revision": "5948c56b95201c9f2fd2a3da57bc80418cd36798",
+      "method": "同revisionのunitとL8読取文書を隔離展開し、現在のbounded runnerから実行。archive世代のruntime/testは使用しない。",
+      "result": "5methods:3 F05/F06/unimplemented NotImplementedError、2停止ID assertion failures。import/属性error0。reaped=true/nontruncated。",
+      "record": "root-fn4-5948-committed-snapshot-red.json",
+      "distinction": "5948に追加した2methodsはcommitted bootstrap snapshotではRed。当時rootが未commit実装候補とともに観測したGreen対照とは別の実行であり、元観測を実装前Redへ改称しない。"
     }
   }
 }

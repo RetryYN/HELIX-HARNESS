@@ -227,12 +227,12 @@
       "L4 /oracle_view_boundary_contract/partial_context_projection",
       "L5 template-semantic-supply.json /functions/4"
     ],
-    "implemented_scope": "現時点ではdecode-nullとproducer/Binding不適合のpartial Context境界だけ。新rowを作れない場合の元入力/Comparisonを保持し、正常意味・F05/F06の7rule・carryはまだ実装しない。",
+    "implemented_scope": "現時点ではdecode-nullとproducer/Binding不適合のpartial Context境界だけ。別producer/Bindingは4条件それぞれ固有ID・knowledge_owner Backflow付き停止とし、空Comparisonへ補完しない。正常意味・7rule・carryは作業中。",
     "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
     "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。",
-    "projection": "null inputはfn4 producerとinput_binding=nullでaxes/findings空。別producer/Bindingの原Comparisonは混在させず新Axis/Findingを作らない。行無しからknown/意味成功/資格を認定しない。型形成不能一般Contextは枝ID付きNotImplementedErrorとし、public Contextへprivate frameを追加しない。",
+    "projection": "null inputのみfn4 producer/input_binding=nullでaxes/findings空。別producer/Bindingはpartial枝ID付き停止とし原Contextを保持する。形不正もunclosed枝ID付き停止。public Contextへprivate frameを追加しない。",
     "current_unclosed": "正規producer/同Bindingのformed ContextはF05/F06/unclosed/formed_contextとして停止する。normal_controlの対象3kind slot/実oracle/valueはL4 limits[1]の有限carry枝外であり、ここをemptyへ丸めない。7rule既存predicateの意味・将来typed witnessを削除するものではない。",
-    "prerequisite_gap": "現unitにはL5 evaluate_descriptor_definition_walk/DescriptorDefinitionEvaluation/DescriptorTargetRead/DescriptorTargetCallFrameのruntimeがまだ無い。fn1は15kind固定guardでF05 slot除去/fill_definition Claimが先に未対応停止する。別call/手作りfn1結果/scaffold evaluator/旧runtimeで代用せず、Issue3547 comment6427471646へ統制のscope確認を送った。fn1/frame前提を本WRで閉じるか別前提に返すかは未決のまま明示する。",
+    "prerequisite_gap": "Issue3547 comment6427761585に従いfn1固定15kind guardのF05 NEG01/02はWR17後の別前提WR待ち。WR12は他の到達可能predicate/finite carryを継続する。現unitに未実装のcanonical walk/evaluation/target_reads/frame接続の担当範囲はPR3719 comment6428081749へ照会し、擬似assessment/別call代替を置かない。",
     "authority_items": [
       {
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
