@@ -6,37 +6,11 @@ from typing import Any
 from descriptor_definitions import (
     _binding_same,
     _copy_refs_in_source_order,
-    _is_json_value,
     _json_equal,
     _ref_same,
-    _ref_shape_ok,
     _source_qualification_ok,
     _wire_ref_shape_ok,
 )
-
-def _fn3_r59_binding_shape_ok(value: Any) -> bool:
-    """Keep the closed Binding/Ref shape while permitting only template.revision absence."""
-    fields = {
-        "template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref",
-        "pack_contract_version", "pack_artifact_version", "pack_dependency_versions", "version_target",
-    }
-    if not isinstance(value, dict) or set(value) != fields:
-        return False
-    template_ref = value.get("template_ref")
-    ref_fields = {"identity", "revision", "scope", "owner", "source_locator", "sha256"}
-    if not isinstance(template_ref, dict) or "revision" in template_ref or set(template_ref) != ref_fields - {"revision"}:
-        return False
-    if not all(isinstance(template_ref[key], (str, type(None)))
-               for key in ("identity", "owner", "source_locator", "sha256")) or not _is_json_value(template_ref["scope"]):
-        return False
-    if any(not _ref_shape_ok(value[key]) for key in ("knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref")):
-        return False
-    if any(not isinstance(value[key], (str, type(None)))
-           for key in ("pack_contract_version", "pack_artifact_version", "version_target")):
-        return False
-    return isinstance(value["pack_dependency_versions"], list) and all(
-        _ref_shape_ok(row) for row in value["pack_dependency_versions"]
-    )
 
 _FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 

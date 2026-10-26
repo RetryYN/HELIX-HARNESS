@@ -3,6 +3,8 @@ from __future__ import annotations
 import copy
 from typing import Any
 from descriptor_definitions import (
+    _binding_same,
+    _json_equal,
     _ref_same,
     _wire_ref_shape_ok,
 )
@@ -264,6 +266,72 @@ def _fn3_compatibility_finding_reason(raw: dict[str, Any], binding: dict[str, An
     }
     return _fn3_diag(prefix, material)
 
+def _fn3_compatibility_group_frame(binding: dict[str, Any], outcome: dict[str, Any]) -> bool:
+    """Return whether this original read has a complete Binding frame for grouping."""
+    record = outcome.get("record")
+    if not isinstance(record, dict) or not _binding_same(binding, binding):
+        return False
+    template_ref = binding.get("template_ref")
+    pack_ref = binding.get("pack_ref")
+    left_ref = record.get("left_ref")
+    right_ref = record.get("right_ref")
+    return (
+        _fn3_wire_full_ref(left_ref) and _fn3_wire_full_ref(right_ref)
+        and _json_equal(left_ref.get("scope"), template_ref.get("scope"))
+        and _json_equal(right_ref.get("scope"), pack_ref.get("scope"))
+    )
+
+def _fn3_compatibility_group_same_pair(binding: dict[str, Any], left: dict[str, Any],
+                                       right: dict[str, Any]) -> bool:
+    if not (_fn3_compatibility_group_frame(binding, left)
+            and _fn3_compatibility_group_frame(binding, right)):
+        return False
+    left_record, right_record = left["record"], right["record"]
+    return (_ref_same(left_record.get("left_ref"), right_record.get("left_ref"))
+            and _ref_same(left_record.get("right_ref"), right_record.get("right_ref")))
+
+def _fn3_emit_single_compatibility_axis(binding: dict[str, Any], outcome: dict[str, Any],
+                                        axes: list[dict[str, Any]]) -> None:
+    reason_prefixes = {
+        "positive": "同scope明示pairについて独立template-owner本文とpack-owner本文が共にtrueを明示する。実利用許可ではない。",
+        "outside": "同scope明示pairについて独立template-owner本文とpack-owner本文が当該実版範囲外を明示する。",
+        "scope": "原source自身の資格scopeは対応するが対象pairのscopeと既知に異なる。",
+        "null": "明示pairのsource_refは明示nullでowner互換根拠を解決できない。",
+        "left_owner_unprovided": "右pack-owner原宣言は存在するが独立template-owner本文が未供給であり当該pair互換照合はunknownに保持する。",
+    }
+    prefix = reason_prefixes.get(outcome["cause"])
+    if prefix is None:
+        outcome["reason"] = _fn3_diag(outcome["cause"], {
+            "cause": outcome["cause"],
+            "request": {"record_locator": f"/compatibility_records/{outcome['record_index']}"},
+            "state": outcome["state"], "record_presence": "supplied", "record_is_null": False,
+            "owner_observations": outcome["owner_observations"],
+        })
+    else:
+        outcome["reason"] = _fn3_diag(prefix, {
+            "original_record_reasons": [outcome["record"].get("reason")],
+            "pair_group_index": 0, "record_indices": [outcome["record_index"]],
+            "record_states": [outcome["state"]],
+        })
+    axes.append(_fn3_axis(outcome["record"].get("left_ref"), binding, "compatibility", outcome["state"],
+                          outcome["refs"], outcome["reason"],
+                          "knowledge_owner" if outcome["state"] != "resolved" else None))
+
+def _fn3_emit_compatibility_finding(raw: dict[str, Any], binding: dict[str, Any],
+                                    outcome: dict[str, Any], findings: list[dict[str, Any]]) -> None:
+    if outcome["cause"] in {"null", "left_owner_unprovided"}:
+        findings.append(_fn3_finding("compatibility_unknown", outcome["record"].get("left_ref"), binding,
+                                     "compatibility", "unknown", outcome["sources"],
+                                     _fn3_compatibility_finding_reason(raw, binding, outcome,
+                                                                       outcome["record_index"],
+                                                                       "compatibility_unknown")))
+    elif outcome["cause"] == "outside":
+        findings.append(_fn3_finding("compatibility_mismatch", outcome["record"].get("left_ref"), binding,
+                                     "compatibility", "conflict", outcome["sources"],
+                                     _fn3_compatibility_finding_reason(raw, binding, outcome,
+                                                                       outcome["record_index"],
+                                                                       "compatibility_mismatch")))
+
 def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                        axes: list[dict[str, Any]], findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
     result_reads = []
@@ -277,7 +345,7 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         if record.get("source_ref", object()) is None:
             lefts = _fn3_owner_source(raw, record.get("left_ref"), unusable, record.get("ref"))
             if len(lefts) > 1:
-                raise _fn3_stop("unclosed/multiple_finding_range_sources/left",
+                raise _fn3_stop("unclosed/multiple_finding_range_sources/left_null",
                                 "multiple left owner source occurrences match the record")
             outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "null",
                              "reason": "null", "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref")],
@@ -426,77 +494,70 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
              "cause": row["cause"]}
             for row in owner_reads
         ]
-    if len(outcomes) > 1:
-        same_pair = all(_ref_same(row["record"].get("left_ref"), outcomes[0]["record"].get("left_ref"))
-                        and _ref_same(row["record"].get("right_ref"), outcomes[0]["record"].get("right_ref"))
-                        for row in outcomes[1:])
-        if not same_pair:
-            raise _fn3_stop("unclosed/general_group_outside_pair", "compatibility records do not resolve to one explicit pair")
-        if (len(outcomes) == 2 and outcomes[0]["state"] == "resolved"
-                and outcomes[1]["state"] == "conflict" and outcomes[1]["cause"] == "outside"):
-            states = ["resolved", "conflict"]
-            reasons = [o["record"].get("reason") for o in outcomes]
-            material = {"original_record_reasons": reasons, "pair_group_index": 0,
-                        "record_indices": [o["record_index"] for o in outcomes], "record_states": states}
-            reason = _fn3_diag("同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。", material)
-            refs = [ref for outcome in outcomes for ref in outcome["refs"] if isinstance(ref, dict)]
-            axes.append(_fn3_axis(outcomes[0]["record"].get("left_ref"), binding, "compatibility", "conflict", refs, reason, "knowledge_owner"))
-            finding_outcome = outcomes[1]
-            finding_index = next(i for i, source in enumerate(records)
-                                 if source is finding_outcome["record"])
-            findings.append(_fn3_finding("compatibility_mismatch", finding_outcome["record"].get("left_ref"), binding,
-                                         "compatibility", "conflict", finding_outcome["sources"],
-                                         _fn3_compatibility_finding_reason(raw, binding, finding_outcome,
-                                                                           finding_index, "compatibility_mismatch")))
-            result_reads.extend(outcomes)
+    groups: list[list[dict[str, Any]]] = []
+    for outcome in outcomes:
+        for group in groups:
+            if _fn3_compatibility_group_same_pair(binding, group[0], outcome):
+                group.append(outcome)
+                break
         else:
-            material = {"cause_occurrences": [
-                {"cause": outcome["cause"], "record_index": outcome["record_index"],
-                 "state": outcome["state"]}
-                for outcome in outcomes
-            ]}
-            reason = _fn3_diag(
-                "両端契約のowner宣言へ解決する互換根拠が未供給で適合/不適合を評価できない。",
-                material,
-            )
-            refs = [ref for outcome in outcomes for ref in outcome["refs"] if isinstance(ref, dict)]
-            axes.append(_fn3_axis(outcomes[0]["record"].get("left_ref"), binding,
-                                  "compatibility", "unknown", refs, reason, "knowledge_owner"))
-            result_reads.extend(outcomes)
-    if len(outcomes) == 1:
-        outcome = outcomes[0]
-        reason_prefixes = {
-            "positive": "同scope明示pairについて独立template-owner本文とpack-owner本文が共にtrueを明示する。実利用許可ではない。",
-            "outside": "同scope明示pairについて独立template-owner本文とpack-owner本文が当該実版範囲外を明示する。",
-            "scope": "原source自身の資格scopeは対応するが対象pairのscopeと既知に異なる。",
-            "null": "明示pairのsource_refは明示nullでowner互換根拠を解決できない。",
-            "left_owner_unprovided": "右pack-owner原宣言は存在するが独立template-owner本文が未供給であり当該pair互換照合はunknownに保持する。",
-        }
-        prefix = reason_prefixes.get(outcome["cause"])
-        if prefix is None:
-            outcome["reason"] = _fn3_diag(outcome["cause"], {
-                "cause": outcome["cause"],
-                "request": {"record_locator": f"/compatibility_records/{outcome['record_index']}"},
-                "state": outcome["state"], "record_presence": "supplied", "record_is_null": False,
-                "owner_observations": outcome["owner_observations"],
-            })
-        else:
-            outcome["reason"] = _fn3_diag(prefix, {
-                "original_record_reasons": [outcome["record"].get("reason")],
-                "pair_group_index": 0, "record_indices": [outcome["record_index"]],
-                "record_states": [outcome["state"]],
-            })
-        axes.append(_fn3_axis(outcome["record"].get("left_ref"), binding, "compatibility", outcome["state"],
-                              outcome["refs"], outcome["reason"], "knowledge_owner" if outcome["state"] != "resolved" else None))
-        if outcome["cause"] in {"null", "left_owner_unprovided"}:
-            findings.append(_fn3_finding("compatibility_unknown", outcome["record"].get("left_ref"), binding,
-                                         "compatibility", "unknown", outcome["sources"],
-                                         _fn3_compatibility_finding_reason(raw, binding, outcome, outcome["record_index"],
-                                                                           "compatibility_unknown")))
-        elif outcome["cause"] == "outside":
-            findings.append(_fn3_finding("compatibility_mismatch", outcome["record"].get("left_ref"), binding,
-                                         "compatibility", "conflict", outcome["sources"],
-                                         _fn3_compatibility_finding_reason(raw, binding, outcome, outcome["record_index"],
-                                                                           "compatibility_mismatch")))
-        result_reads.append(outcome)
+            groups.append([outcome])
+
+    finite_opposing_group = None
+    if (len(outcomes) == 2 and len(groups) == 1 and len(groups[0]) == 2
+            and [outcome["record_index"] for outcome in groups[0]] == [0, 1]
+            and outcomes[0]["state"] == "resolved"
+            and outcomes[1]["state"] == "conflict"
+            and outcomes[1]["cause"] == "outside"):
+        finite_opposing_group = groups[0]
+
+    aggregate_groups: dict[int, list[dict[str, Any]]] = {}
+    individual_indices = set()
+    if finite_opposing_group is not None:
+        aggregate_groups[finite_opposing_group[0]["record_index"]] = finite_opposing_group
+    else:
+        for group in groups:
+            causes = []
+            for outcome in group:
+                if not any(_json_equal(outcome["cause"], seen) for seen in causes):
+                    causes.append(outcome["cause"])
+            if len(group) > 1 and len(causes) > 1:
+                aggregate_groups[group[0]["record_index"]] = group
+            else:
+                individual_indices.update(outcome["record_index"] for outcome in group)
+
+    for outcome in outcomes:
+        _fn3_emit_compatibility_finding(raw, binding, outcome, findings)
+
+    for outcome in outcomes:
+        record_index = outcome["record_index"]
+        if record_index in aggregate_groups:
+            group = aggregate_groups.pop(record_index)
+            if group is finite_opposing_group:
+                material = {
+                    "original_record_reasons": [row["record"].get("reason") for row in group],
+                    "pair_group_index": 0,
+                    "record_indices": [row["record_index"] for row in group],
+                    "record_states": [row["state"] for row in group],
+                }
+                reason = _fn3_diag("同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。", material)
+                refs = [ref for row in group for ref in row["refs"] if isinstance(ref, dict)]
+                axes.append(_fn3_axis(group[0]["record"].get("left_ref"), binding, "compatibility",
+                                      "conflict", refs, reason, "knowledge_owner"))
+            else:
+                material = {"cause_occurrences": [
+                    {"cause": row["cause"], "record_index": row["record_index"],
+                     "state": row["state"]}
+                    for row in group
+                ]}
+                reason = _fn3_diag(
+                    "両端契約のowner宣言へ解決する互換根拠が未供給で適合/不適合を評価できない。",
+                    material,
+                )
+                refs = [ref for row in group for ref in row["refs"] if isinstance(ref, dict)]
+                axes.append(_fn3_axis(group[0]["record"].get("left_ref"), binding, "compatibility",
+                                      "unknown", refs, reason, "knowledge_owner"))
+        elif record_index in individual_indices:
+            _fn3_emit_single_compatibility_axis(binding, outcome, axes)
+    result_reads.extend(outcomes)
     return result_reads

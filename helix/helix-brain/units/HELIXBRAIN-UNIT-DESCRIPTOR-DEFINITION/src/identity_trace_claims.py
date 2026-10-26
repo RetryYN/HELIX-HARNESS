@@ -108,11 +108,7 @@ def _fn3_identity_claim_candidate(raw: dict[str, Any], source_index: int, source
 def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                                  findings: list[dict[str, Any]], trace_reads: list[dict[str, Any]]) -> None:
     claims = raw.get("claims", [])
-    if not isinstance(claims, list):
-        raise _fn3_stop("unclosed/identity_claim/record_type", "claims is not an array")
     sources = raw.get("sources", [])
-    if not isinstance(sources, list):
-        sources = []
     identity_kinds = ("same_template_identity", "template_identity", "template_version")
     role_kind = {
         "image_only": "template_identity",
@@ -125,7 +121,7 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
     }
     for ci, claim in enumerate(claims):
         if not isinstance(claim, dict):
-            raise _fn3_stop("unclosed/identity_claim/record_type", f"/claims/{ci} is not a decoded Claim")
+            raise _fn3_stop("unclosed/identity_claim/claim_not_object", f"/claims/{ci} is not a decoded Claim")
         kind = claim.get("kind")
         if kind not in identity_kinds:
             continue
@@ -160,9 +156,6 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
             if any(not _wire_ref_shape_ok(ref) for ref in basis):
                 raise _fn3_stop("unclosed/identity_claim/filename_basis_ref_shape",
                                 f"/claims/{ci}/basis_refs contains a value outside the L4 wire Ref shape")
-            if "sources" in raw and not isinstance(raw["sources"], list):
-                raise _fn3_stop("unclosed/identity_claim/source_collection_type", "/sources is not an array")
-
             candidates = []
             complete = isinstance(trace_reads, list)
             if complete:
@@ -245,9 +238,6 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
         if any(not _wire_ref_shape_ok(ref) for ref in basis):
             raise _fn3_stop("unclosed/identity_claim/basis_ref_shape",
                             f"/claims/{ci}/basis_refs contains a value outside the L4 wire Ref shape")
-        if "sources" in raw and not isinstance(raw["sources"], list):
-            raise _fn3_stop("unclosed/identity_claim/source_collection_type", "/sources is not an array")
-
         participating = [
             copy.deepcopy(source["ref"])
             for source in sources

@@ -19,7 +19,6 @@ from identity_trace_support import (
     _fn3_qualified_owner_source,
     _fn3_root_rows,
     _fn3_scope_relation,
-    _fn3_stop,
     _fn3_valid_source,
 )
 
@@ -45,11 +44,7 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
     if not isinstance(slots, list):
         return reads
     records_presence = _fn3_presence(raw, "/knowledge_records")
-    records = raw.get("knowledge_records")
-    if records_presence["presence"] == "absent":
-        records = []
-    elif not isinstance(records, list):
-        raise _fn3_stop("unclosed/knowledge_records_absent", "knowledge_records collection is present but not an array")
+    records = raw.get("knowledge_records", [])
     sources = raw.get("sources") if isinstance(raw.get("sources"), list) else []
     root_binding_ref_formed = ("binding" in raw and isinstance(raw.get("binding"), dict)
                                and _wire_binding_shape_ok(raw.get("binding"))
@@ -69,9 +64,6 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                 continue
             locator = f"/descriptors/{si}/facts/{fi}"
             fact_subject_formed = _wire_ref_shape_ok(fact.get("ref"))
-            if ("source_ref" in fact and fact["source_ref"] is not None
-                    and not _wire_ref_shape_ok(fact["source_ref"])):
-                raise _fn3_stop("unclosed/fact_source_ref_unformed", f"{locator}/source_ref does not form a wire Ref")
             slot_locator = f"/descriptors/{si}"
             slot_kref = slot_binding_dict.get("knowledge_ref") if slot_binding_formed else None
             fact_binding = fact.get("binding")
@@ -87,11 +79,6 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                 slot_kref = None
             record_candidates = [(ri, rec) for ri, rec in enumerate(records)
                                  if isinstance(rec, dict) and _ref_same(rec.get("ref"), slot_kref)]
-            if len(record_candidates) > 1 and any(
-                    not _json_equal(record_candidates[0][1], candidate[1])
-                    for candidate in record_candidates[1:]):
-                raise _fn3_stop("unclosed/distinct_knowledge_records",
-                                f"multiple distinct KnowledgeRecords match {slot_locator}/binding/knowledge_ref")
             record_reads = [{"index": ri, "locator": f"/knowledge_records/{ri}",
                              "original_read": {"presence": "supplied", "value": copy.deepcopy(rec)}}
                             for ri, rec in record_candidates]
@@ -103,17 +90,11 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             any_source = False
             any_qualified = False
             any_body = False
+            malformed_inner_source_ref = False
             for ri, rec in record_candidates:
-                if "provenance_refs" not in rec:
-                    raise _fn3_stop("unclosed/knowledge_provenance_absent",
-                                    f"/knowledge_records/{ri}/provenance_refs is absent")
-                provs = rec["provenance_refs"]
-                if provs is None:
-                    raise _fn3_stop("unclosed/knowledge_provenance_null",
-                                    f"/knowledge_records/{ri}/provenance_refs is null")
+                provs = rec.get("provenance_refs")
                 if not isinstance(provs, list):
-                    raise _fn3_stop("unclosed/knowledge_provenance_type",
-                                    f"/knowledge_records/{ri}/provenance_refs is not an array")
+                    continue
                 for pi, pref in enumerate(provs):
                     matching_sources = [(idx, src) for idx, src in enumerate(sources)
                                         if isinstance(src, dict) and _ref_same(src.get("ref"), pref)]
@@ -155,7 +136,15 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                     continue
                                 any_body = True
                                 # Each relation is a direct comparison; no null-digest intermediary is reused.
-                                if not _ref_same(inner_fact.get("source_ref"), source.get("ref")):
+                                inner_source_ref = inner_fact.get("source_ref")
+                                if not _wire_ref_shape_ok(inner_source_ref):
+                                    malformed_inner_source_ref = True
+                                    continue
+                                if not _ref_same(inner_source_ref, source.get("ref")):
+                                    continue
+                                # A full raw dict with extra members may compare equal under
+                                # _ref_same, but it cannot form the typed fact source witness.
+                                if not source_ref_joinable:
                                     continue
                                 if not _ref_same(fact.get("source_ref"), source.get("ref")):
                                     continue
@@ -198,7 +187,8 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             state = "resolved" if chains else "unknown"
             cause = "original_trace_corresponding" if chains else (
                 "knowledge_unresolved" if not record_candidates else
-                "source_unresolved" if not source_ref_joinable or not any_source else "qualification_unresolved" if not any_qualified
+                "source_unresolved" if (not source_ref_joinable or malformed_inner_source_ref
+                                        or not any_source) else "qualification_unresolved" if not any_qualified
                 else "body_unresolved" if not any_body else "knowledge_unresolved")
             if records_presence["presence"] == "absent":
                 cause = "knowledge_unresolved"
@@ -212,7 +202,8 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                     (slot_locator + "/binding/knowledge_ref", "slot knowledge Ref"),
                 ]
                 findings.append(_fn3_finding("mixed_knowledge_revision", fact.get("ref"), slot_binding,
-                                             "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
+                                             "descriptor.trace", "conflict",
+                                             [fact.get("source_ref")] if _wire_ref_shape_ok(fact.get("source_ref")) else [],
                                              _fn3_predicate_finding_reason(raw, "mixed_knowledge_revision",
                                                                            mixed_observations)))
             if (root_binding_ref_formed and public_slot_formed and source_ref_joinable
@@ -248,13 +239,12 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                     else:
                         silent_observations.append(("/relations", "relation collection presence"))
                     findings.append(_fn3_finding("silent_supersession", fact.get("ref"), slot_binding,
-                                                 "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
+                                                 "descriptor.trace", "conflict",
+                                                 [fact.get("source_ref")] if _wire_ref_shape_ok(fact.get("source_ref")) else [],
                                                  _fn3_predicate_finding_reason(raw, "silent_supersession",
                                                                                silent_observations)))
             if any(c.get("scope_relation") == "different" for c in chains):
                 state, cause = "conflict", "scope_differs"
-            elif chains and any(c.get("scope_relation") == "unobserved" for c in chains):
-                state, cause = "unknown", "scope_unresolved"
             # Build the fixed 9-key per-chain trace material.
             chain_material = [{"descriptor_kind": slot.get("descriptor_kind"), "fact_locator": locator,
                                "knowledge_record_index": c["knowledge_record_index"],
@@ -282,7 +272,7 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             for c in chains:
                 refs.extend([c["record"].get("ref"), c["provenance"], c["source"].get("ref"),
                              c["source"].get("qualification_ref"), c["qualification"].get("ref"), c["root"]])
-            axis_refs = [r for r in refs if isinstance(r, dict)]
+            axis_refs = [r for r in refs if _wire_ref_shape_ok(r)]
             if fact_subject_formed and slot_binding_formed:
                 axes.append(_fn3_axis(fact.get("ref"), slot_binding, "descriptor.trace", state,
                                       axis_refs, reason, None))

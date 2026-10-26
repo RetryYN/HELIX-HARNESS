@@ -27,6 +27,16 @@ from identity_trace_support import (
     _fn3_wire_full_ref,
 )
 
+def _fn3_actual_subject_ref_same(left: Any, right: Any) -> bool:
+    """Compare the declared endpoint identity without folding scope into subject."""
+    if not _wire_ref_shape_ok(left) or not _wire_ref_shape_ok(right):
+        return False
+    if not all(left.get(key) is not None and right.get(key) is not None
+               and _json_equal(left[key], right[key]) for key in ("identity", "revision", "owner")):
+        return False
+    left_sha, right_sha = left.get("sha256"), right.get("sha256")
+    return left_sha is None or right_sha is None or _json_equal(left_sha, right_sha)
+
 def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]) -> list[dict[str, Any]]:
     """Select only explicit RangeDeclaration bodies tied to the input pack identity."""
     found = []
@@ -39,8 +49,8 @@ def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list
             continue
         actual_pack = decl.get("actual_pack_ref")
         target_pack = binding.get("pack_ref")
-        subject_same = (_ref_same(decl.get("right_ref"), target_pack)
-                        and _ref_same(decl.get("left_ref"), binding.get("template_ref")))
+        subject_same = (_fn3_actual_subject_ref_same(decl.get("right_ref"), target_pack)
+                        and _fn3_actual_subject_ref_same(decl.get("left_ref"), binding.get("template_ref")))
         if not subject_same:
             continue
         owner_declarations = decl.get("owner_declarations")
@@ -51,6 +61,8 @@ def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list
                           _fn3_scope_relation(actual_pack.get("scope"), target_pack.get("scope")),
                           _fn3_scope_relation(source.get("ref", {}).get("scope"), target_pack.get("scope")),
                           _fn3_scope_relation(decl.get("right_ref", {}).get("scope"), target_pack.get("scope")),
+                          _fn3_scope_relation(decl.get("left_ref", {}).get("scope"),
+                                              binding.get("template_ref", {}).get("scope")),
                       )),
                       "subject_same": subject_same} )
     return found
@@ -63,9 +75,7 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
     if len(range_rows) > 1:
         raise _fn3_stop("unclosed/multiple_actual_range_sources",
                         "multiple physical RangeDeclaration source occurrences match the input Binding")
-    records = raw.get("knowledge_records")
-    if not isinstance(records, list):
-        records = []
+    records = raw.get("knowledge_records", [])
     matched_records = [(i, row) for i, row in enumerate(records)
                        if isinstance(row, dict) and _ref_same(row.get("ref"), binding.get("knowledge_ref"))]
     axis_sources = {
@@ -178,17 +188,9 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
                 if axis_name != "knowledge.operational_state" and isinstance(record.get("ref"), dict):
                     refs.append(record["ref"])
                 if axis_name == "knowledge.operational_state":
-                    if "provenance_refs" not in record:
-                        raise _fn3_stop("unclosed/knowledge_provenance_absent",
-                                        f"/knowledge_records/{record_index}/provenance_refs is absent")
-                    provenance = record["provenance_refs"]
-                    if provenance is None:
-                        raise _fn3_stop("unclosed/knowledge_provenance_null",
-                                        f"/knowledge_records/{record_index}/provenance_refs is null")
-                    if not isinstance(provenance, list):
-                        raise _fn3_stop("unclosed/knowledge_provenance_type",
-                                        f"/knowledge_records/{record_index}/provenance_refs is not an array")
-                    refs.extend(ref for ref in provenance if isinstance(ref, dict))
+                    provenance = record.get("provenance_refs")
+                    if isinstance(provenance, list):
+                        refs.extend(ref for ref in provenance if _wire_ref_shape_ok(ref))
         if axis_name in axis_sources and observations:
             for row in observations:
                 src = raw["sources"][row["source_index"]]
