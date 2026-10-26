@@ -8621,6 +8621,28 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-01",
     "purpose": "canonical原body5件全値供給。常時Fact pairなし。",
     "calls": {
+     "canonical_reads": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "category_locator": "/dependencies/always_refs"
+      }
+     ],
      "claim_projections": [],
      "claim_intents": []
     }
@@ -8629,6 +8651,28 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-02",
     "purpose": "003 canonical envelopeだけ不在。依存Refと限定nested原recordは保持。",
     "calls": {
+     "canonical_reads": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "category_locator": "/dependencies/always_refs"
+      }
+     ],
      "claim_projections": [],
      "claim_intents": []
     }
@@ -8637,6 +8681,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-03",
     "purpose": "独立030 incoming true。同元record内target/binding、既存030全input/public returnを保持。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [
       {
        "carrier_locator": "/sources/10/content",
@@ -8652,6 +8697,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-04",
     "purpose": "同030 incoming false。falseを完了の肯定へ補完しない。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [
       {
        "carrier_locator": "/sources/10/content",
@@ -8667,6 +8713,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-05",
     "purpose": "fill_definition明示nullは原replacement供給済み。nullable定義を除外しない。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [],
      "claim_intents": [
       "/claims/0"
@@ -8677,6 +8724,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-06",
     "purpose": "fill_definition proposed_valueキー欠落は意図未解決。明示nullと別RawValue。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [],
      "claim_intents": [
       "/claims/0"
@@ -8687,6 +8735,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-07",
     "purpose": "同true/同030 input/returnで元targetだけ相反。無関係targetへboolを移さない。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [
       {
        "carrier_locator": "/sources/10/content",
@@ -8701,6 +8750,28 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-08",
     "purpose": "canonical003のidentityは同じだがrevision/scopeが別。対応source不存在unknown。locator/hash未供給のrequestは旧規則どおり許す。",
     "calls": {
+     "canonical_reads": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "category_locator": "/dependencies/always_refs"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "category_locator": "/dependencies/always_refs"
+      }
+     ],
      "claim_projections": [],
      "claim_intents": []
     }
@@ -8709,6 +8780,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-09",
     "purpose": "subject_ref/030 bool/input/public returnは同じでorigin.binding.pack_artifact_versionだけ別。binding不一致を無視しない。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [
       {
        "carrier_locator": "/sources/10/content",
@@ -8724,6 +8796,7 @@
     "id": "HELIXBRAIN-L9-032-F09-PORT-10",
     "purpose": "PORT03とraw/callsが完全同値だがderived_intent_callを明示しない。resolved projectionを保持しintentを自動追加しない。",
     "calls": {
+     "canonical_reads": [],
      "claim_projections": [
       {
        "carrier_locator": "/sources/10/content",
@@ -13560,7 +13633,242 @@
    {
     "case_id": "F09-C6-P15-ABSENT-01",
     "description_ja": "同一snapshotでalways Refは存在するが、対応するcanonical semantic_json owner bodyはない。",
-    "source_support_crosswalk": []
+    "source_support_crosswalk": [],
+    "canonical_source_resolution_crosswalk": {
+     "l4_port_pointer": "/dependency_semantic_ports/ports/0",
+     "l4_unavailable_branch_pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
+     "l4_problem_mapping_pointer": "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+     "basis_limit": "この固定inputに列挙したsource identityとtarget identityの不一致だけで、該当sourceが無いことを確かめる。一般のRef matching/digest解決処理を定義・実行しない。",
+     "source_ref_occurrences": [
+      {
+       "source_index": 0,
+       "source_ref_locator": "/sources/0/ref",
+       "source_identity_locator": "/sources/0/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-01"
+      },
+      {
+       "source_index": 1,
+       "source_ref_locator": "/sources/1/ref",
+       "source_identity_locator": "/sources/1/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-02"
+      },
+      {
+       "source_index": 2,
+       "source_ref_locator": "/sources/2/ref",
+       "source_identity_locator": "/sources/2/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-03"
+      },
+      {
+       "source_index": 3,
+       "source_ref_locator": "/sources/3/ref",
+       "source_identity_locator": "/sources/3/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-04"
+      },
+      {
+       "source_index": 4,
+       "source_ref_locator": "/sources/4/ref",
+       "source_identity_locator": "/sources/4/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-05"
+      },
+      {
+       "source_index": 5,
+       "source_ref_locator": "/sources/5/ref",
+       "source_identity_locator": "/sources/5/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-06"
+      },
+      {
+       "source_index": 6,
+       "source_ref_locator": "/sources/6/ref",
+       "source_identity_locator": "/sources/6/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-07"
+      },
+      {
+       "source_index": 7,
+       "source_ref_locator": "/sources/7/ref",
+       "source_identity_locator": "/sources/7/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-08"
+      },
+      {
+       "source_index": 8,
+       "source_ref_locator": "/sources/8/ref",
+       "source_identity_locator": "/sources/8/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-09"
+      },
+      {
+       "source_index": 9,
+       "source_ref_locator": "/sources/9/ref",
+       "source_identity_locator": "/sources/9/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-10"
+      },
+      {
+       "source_index": 10,
+       "source_ref_locator": "/sources/10/ref",
+       "source_identity_locator": "/sources/10/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-11"
+      },
+      {
+       "source_index": 11,
+       "source_ref_locator": "/sources/11/ref",
+       "source_identity_locator": "/sources/11/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-12"
+      },
+      {
+       "source_index": 12,
+       "source_ref_locator": "/sources/12/ref",
+       "source_identity_locator": "/sources/12/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-13"
+      },
+      {
+       "source_index": 13,
+       "source_ref_locator": "/sources/13/ref",
+       "source_identity_locator": "/sources/13/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-14"
+      },
+      {
+       "source_index": 14,
+       "source_ref_locator": "/sources/14/ref",
+       "source_identity_locator": "/sources/14/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-15"
+      }
+     ],
+     "target_occurrences": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "target_ref_locator": "/dependencies/always_refs/0",
+       "target_identity": "HELIXBRAIN-L2-003",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "target_ref_locator": "/dependencies/always_refs/1",
+       "target_identity": "HELIXBRAIN-L2-005",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "target_ref_locator": "/dependencies/always_refs/2",
+       "target_identity": "HELIXBRAIN-L2-007",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "target_ref_locator": "/dependencies/always_refs/3",
+       "target_identity": "HELIXBRAIN-L2-008",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "target_ref_locator": "/dependencies/always_refs/4",
+       "target_identity": "HELIXBRAIN-L2-028",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      }
+     ]
+    }
    },
    {
     "case_id": "F09-C6-POSITIVE-FIVE-OWNER-SOURCES-01",
@@ -14051,12 +14359,494 @@
    {
     "case_id": "F09-C6-EXPLICIT-NOT-RECEIVED-01",
     "description_ja": "明示HandoffRecordがnot_receivedを保持する。",
-    "source_support_crosswalk": []
+    "source_support_crosswalk": [],
+    "canonical_source_resolution_crosswalk": {
+     "l4_port_pointer": "/dependency_semantic_ports/ports/0",
+     "l4_unavailable_branch_pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
+     "l4_problem_mapping_pointer": "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+     "basis_limit": "この固定inputに列挙したsource identityとtarget identityの不一致だけで、該当sourceが無いことを確かめる。一般のRef matching/digest解決処理を定義・実行しない。",
+     "source_ref_occurrences": [
+      {
+       "source_index": 0,
+       "source_ref_locator": "/sources/0/ref",
+       "source_identity_locator": "/sources/0/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-01"
+      },
+      {
+       "source_index": 1,
+       "source_ref_locator": "/sources/1/ref",
+       "source_identity_locator": "/sources/1/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-02"
+      },
+      {
+       "source_index": 2,
+       "source_ref_locator": "/sources/2/ref",
+       "source_identity_locator": "/sources/2/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-03"
+      },
+      {
+       "source_index": 3,
+       "source_ref_locator": "/sources/3/ref",
+       "source_identity_locator": "/sources/3/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-04"
+      },
+      {
+       "source_index": 4,
+       "source_ref_locator": "/sources/4/ref",
+       "source_identity_locator": "/sources/4/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-05"
+      },
+      {
+       "source_index": 5,
+       "source_ref_locator": "/sources/5/ref",
+       "source_identity_locator": "/sources/5/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-06"
+      },
+      {
+       "source_index": 6,
+       "source_ref_locator": "/sources/6/ref",
+       "source_identity_locator": "/sources/6/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-07"
+      },
+      {
+       "source_index": 7,
+       "source_ref_locator": "/sources/7/ref",
+       "source_identity_locator": "/sources/7/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-08"
+      },
+      {
+       "source_index": 8,
+       "source_ref_locator": "/sources/8/ref",
+       "source_identity_locator": "/sources/8/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-09"
+      },
+      {
+       "source_index": 9,
+       "source_ref_locator": "/sources/9/ref",
+       "source_identity_locator": "/sources/9/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-10"
+      },
+      {
+       "source_index": 10,
+       "source_ref_locator": "/sources/10/ref",
+       "source_identity_locator": "/sources/10/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-11"
+      },
+      {
+       "source_index": 11,
+       "source_ref_locator": "/sources/11/ref",
+       "source_identity_locator": "/sources/11/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-12"
+      },
+      {
+       "source_index": 12,
+       "source_ref_locator": "/sources/12/ref",
+       "source_identity_locator": "/sources/12/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-13"
+      },
+      {
+       "source_index": 13,
+       "source_ref_locator": "/sources/13/ref",
+       "source_identity_locator": "/sources/13/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-14"
+      },
+      {
+       "source_index": 14,
+       "source_ref_locator": "/sources/14/ref",
+       "source_identity_locator": "/sources/14/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-15"
+      }
+     ],
+     "target_occurrences": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "target_ref_locator": "/dependencies/always_refs/0",
+       "target_identity": "HELIXBRAIN-L2-003",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "target_ref_locator": "/dependencies/always_refs/1",
+       "target_identity": "HELIXBRAIN-L2-005",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "target_ref_locator": "/dependencies/always_refs/2",
+       "target_identity": "HELIXBRAIN-L2-007",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "target_ref_locator": "/dependencies/always_refs/3",
+       "target_identity": "HELIXBRAIN-L2-008",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "target_ref_locator": "/dependencies/always_refs/4",
+       "target_identity": "HELIXBRAIN-L2-028",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      }
+     ]
+    }
    },
    {
     "case_id": "F09-C6-UNSELECTED-PRESENT-NOT-OBSERVED-01",
     "description_ja": "reference_only sourceとqualificationは存在するが、source選択はfalseのままである。",
-    "source_support_crosswalk": []
+    "source_support_crosswalk": [],
+    "canonical_source_resolution_crosswalk": {
+     "l4_port_pointer": "/dependency_semantic_ports/ports/0",
+     "l4_unavailable_branch_pointer": "/dependency_semantic_ports/canonical_ordered_branches/4",
+     "l4_problem_mapping_pointer": "/dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/6",
+     "basis_limit": "この固定inputに列挙したsource identityとtarget identityの不一致だけで、該当sourceが無いことを確かめる。一般のRef matching/digest解決処理を定義・実行しない。",
+     "source_ref_occurrences": [
+      {
+       "source_index": 0,
+       "source_ref_locator": "/sources/0/ref",
+       "source_identity_locator": "/sources/0/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-01"
+      },
+      {
+       "source_index": 1,
+       "source_ref_locator": "/sources/1/ref",
+       "source_identity_locator": "/sources/1/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-02"
+      },
+      {
+       "source_index": 2,
+       "source_ref_locator": "/sources/2/ref",
+       "source_identity_locator": "/sources/2/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-03"
+      },
+      {
+       "source_index": 3,
+       "source_ref_locator": "/sources/3/ref",
+       "source_identity_locator": "/sources/3/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-04"
+      },
+      {
+       "source_index": 4,
+       "source_ref_locator": "/sources/4/ref",
+       "source_identity_locator": "/sources/4/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-05"
+      },
+      {
+       "source_index": 5,
+       "source_ref_locator": "/sources/5/ref",
+       "source_identity_locator": "/sources/5/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-06"
+      },
+      {
+       "source_index": 6,
+       "source_ref_locator": "/sources/6/ref",
+       "source_identity_locator": "/sources/6/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-07"
+      },
+      {
+       "source_index": 7,
+       "source_ref_locator": "/sources/7/ref",
+       "source_identity_locator": "/sources/7/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-08"
+      },
+      {
+       "source_index": 8,
+       "source_ref_locator": "/sources/8/ref",
+       "source_identity_locator": "/sources/8/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-09"
+      },
+      {
+       "source_index": 9,
+       "source_ref_locator": "/sources/9/ref",
+       "source_identity_locator": "/sources/9/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-10"
+      },
+      {
+       "source_index": 10,
+       "source_ref_locator": "/sources/10/ref",
+       "source_identity_locator": "/sources/10/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-11"
+      },
+      {
+       "source_index": 11,
+       "source_ref_locator": "/sources/11/ref",
+       "source_identity_locator": "/sources/11/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-12"
+      },
+      {
+       "source_index": 12,
+       "source_ref_locator": "/sources/12/ref",
+       "source_identity_locator": "/sources/12/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-13"
+      },
+      {
+       "source_index": 13,
+       "source_ref_locator": "/sources/13/ref",
+       "source_identity_locator": "/sources/13/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-14"
+      },
+      {
+       "source_index": 14,
+       "source_ref_locator": "/sources/14/ref",
+       "source_identity_locator": "/sources/14/ref/identity",
+       "source_role": "semantic_json",
+       "source_identity": "SYNTHETIC-MEANING-SOURCE-15"
+      },
+      {
+       "source_index": 15,
+       "source_ref_locator": "/sources/15/ref",
+       "source_identity_locator": "/sources/15/ref/identity",
+       "source_role": "reference_only",
+       "source_identity": "synthetic-unselected-labo"
+      }
+     ],
+     "target_occurrences": [
+      {
+       "request_ref_locator": "/dependencies/always_refs/0",
+       "target_ref_locator": "/dependencies/always_refs/0",
+       "target_identity": "HELIXBRAIN-L2-003",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref",
+        "/sources/15/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/1",
+       "target_ref_locator": "/dependencies/always_refs/1",
+       "target_identity": "HELIXBRAIN-L2-005",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref",
+        "/sources/15/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/2",
+       "target_ref_locator": "/dependencies/always_refs/2",
+       "target_identity": "HELIXBRAIN-L2-007",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref",
+        "/sources/15/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/3",
+       "target_ref_locator": "/dependencies/always_refs/3",
+       "target_identity": "HELIXBRAIN-L2-008",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref",
+        "/sources/15/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      },
+      {
+       "request_ref_locator": "/dependencies/always_refs/4",
+       "target_ref_locator": "/dependencies/always_refs/4",
+       "target_identity": "HELIXBRAIN-L2-028",
+       "source_ref_occurrence_locators_examined": [
+        "/sources/0/ref",
+        "/sources/1/ref",
+        "/sources/2/ref",
+        "/sources/3/ref",
+        "/sources/4/ref",
+        "/sources/5/ref",
+        "/sources/6/ref",
+        "/sources/7/ref",
+        "/sources/8/ref",
+        "/sources/9/ref",
+        "/sources/10/ref",
+        "/sources/11/ref",
+        "/sources/12/ref",
+        "/sources/13/ref",
+        "/sources/14/ref",
+        "/sources/15/ref"
+       ],
+       "same_identity_semantic_json_source_indices": [],
+       "decisive_nonmatch": "全候補sourceのref.identityがこのtarget.identityと異なる。sha256/source_locatorの差をnonmatch根拠にしていない。"
+      }
+     ]
+    }
    }
   ],
   "case_boundary": {
@@ -14140,6 +14930,16 @@
     "not_a_completeness_claim": "76はこの条件のfile pin出現数。全契約の意味整合や全key被覆を意味しない。"
    },
    "input_materialization_order_ja": "shared_reason_input_materializationのscopeを固定input_seedと各caseの標準patchから深い複製へ復元し、materialized_input_sha256_sorted_keysを照合してからfixture型/意味比較へ渡す。記録recipeをdomain入力として扱わず、expected_comparison_literalは独立した原期待のまま保持する。"
+  },
+  "canonical_port_coverage": {
+   "covered_cases": "この有限oracleの固定4入力だけ。",
+   "read_count_per_case": 5,
+   "read_target_collection": "/dependencies/always_refs（固定4入力にそれぞれ含まれる必要Ref5件）",
+   "non_call_scope": "各入力にunselected_refs1件とfalse selectorがある。対応する固定traceはnot_calledであり、port返却の欠損ではない。",
+   "handoff_scope": "明示not_received例だけが別の/handoff_records/0観測を持つ。handoffをCanonicalBodyReadのcallへ混ぜない。",
+   "completeness_limit": "20件の本文返却と4件の明示no-callは固定4入力だけを覆う。全F09 request/branch/source state又は全C6を閉じない。",
+   "unknown_source_basis": "3 non-positive casesのunknown returnは、各target identityと全供給source identitiesを固定literalで照合したno-correspondence例。sha256/source_locatorの違いを根拠にせず、positive caseの条件付きRef/qualification crosswalkは既存source_support_crosswalkに保持する。",
+   "caller_frame_observation_ja": "固定4入力20readの対象はalways_refsだけである。要求Refと同じframeであるべき独立の原fullRefを結ぶtyped比較は現generic callerで未成立のため、その比較観測はnot_observedと明示する。これは到達範囲の説明であり、CanonicalBodyRead.state=unobservedや追加Problemへ投影しない。既存20件のCanonicalBodyRead全値と4件のComparison全値を保持し、canonical_diagnostic_mapping/5の正の既知相反oracleを主張しない。conditional原hint/actual比較は既存conditional経路の別domainであり、ここへcanonical呼出しを追加して二重診断しない。frame不明/相反の先行確定後にsource段5..8の不足を加える混在返却も、この20readの期待として新設しない。"
   },
   "expected_comparison_authority": {
    "description_ja": "各caseの完全な期待Comparisonはexpected_comparison_literalを正本とし、expected_comparison_sha256_sorted_keysで固定する。",
@@ -14539,6 +15339,10 @@
      "patch_pointer": "/comparison_axis_reason_multi_problem_verification/case/case_authored_input_patch_rfc6902"
     }
    },
+   "canonical_read_request": {
+    "request_ref_locator": "/dependencies/always_refs/0",
+    "category_locator": "/dependencies/always_refs"
+   },
    "problem_order_basis": "L4 /dependency_semantic_ports/diagnostic_return_contract/common_rules/problem_order と /canonical_diagnostic_mapping/4 の identity,revision,scope,owner順。identity/ownerは値あり。revision/scopeは供給nullなので2件、順はrevision→scope。branch4でframe未解決のためsource matchingを実施しない。",
    "public_comparison_base": {
     "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
@@ -14753,7 +15557,7 @@
  "removed_materials": {
   "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
   "meaning": "V字右側（L9）に実装前に書き込まれていた照合の実行材料（入力literal、materials、fixture patch、seed、RFC6902、canonical/sha256、全返却期待、reconstruction）を撤去した。残したのはcase行・観点・oracle ID・limits・remaining・境界文。過去本文はrevision 08982462dbce751b97e244861ac5427e40fb7325の同pathで辿る。",
-  "removed_key_rule": "key名が入力・材料・全返却期待・再構成を表すもの（400字未満の文字列値は残す）と、sha256を含むkey全部。残すのはpath＋revisionを持つ固定source参照のsha256/file_sha256だけ。規則はPR本文のslim.py。",
+  "removed_key_rule": "key名が入力・材料・全返却期待（canonical期待を含む）・再構成を表すもの（400字未満の文字列値は残す）と、sha256を含むkey全部（path＋revisionを持つ固定source参照のsha256/file_sha256だけ残す）。node名にcanonicalを含むだけのcase nodeは残す。規則はPR本文のslim.py。",
   "use_boundary": "旧材料は照合用の参考に限る。L7の期待値はL4/L5の契約から独立に導く。実装後のL9照合結果は、system oracleごとに1行で追記する。"
  }
 }
