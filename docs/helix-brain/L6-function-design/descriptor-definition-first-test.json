@@ -146,5 +146,24 @@
       "pointer": "/wire_codec_contract/source_byte_and_qualification_order",
       "application": "既存logical shape/ref比較/numeric carrierとこの順序を実codeへ結ぶ。手順の意味をL6へ再定義しない。"
     }
+  },
+  "n03_path_fn0_fn1_fn2_preparation": {
+    "id": "HELIXBRAIN-L6-032-N03-PATH",
+    "scope": "凍結済みN03のnormal/三独立Claim入力が通るfn0→fn1→fn2だけ。未凍結(a)の実分岐はID付き未対応としてBackflowし、他childの完成を主張しない。",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py",
+    "frozen_scope": {"revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","path":"docs/governance/audits/tdd/brain032-f03-n03-pair-freeze-2026-10-26.json","pointer":"/first_L6_L7_slice"},
+    "l5_source": {"revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json"},
+    "functions": [
+      {"symbol":"validate_supply_input","input":"RawValue","output":"ValidatedSupply","pointer":"/functions/0"},
+      {"symbol":"compare_descriptor_definitions","input":"DefinitionContext","output":"Comparison","pointer":"/functions/1"},
+      {"symbol":"compare_values_and_applicability","input":"ValueContext","output":"Comparison","pointer":"/functions/2"}
+    ],
+    "invariant": "同じfn0返却をfn1へ渡し、その実Comparisonだけを同snapshotのfn2へ渡す。任意cached結果/資格成功stubは注入しない。正式関数のNotImplemented宣言だけをtest commitへ置き、Red観測後に別commitで実装する。",
+    "test_oracles": "L8 function_oracles/0,1,2の部分観測とcases/13/negative_cases/0..2、additional_unit_cases/36。具体fixture/独立期待はtest codeに置く。",
+    "legacy_basis": "既存/legacy_rederivationの4674004/FDBA655、固定L5 claim_protocol/legacy_rederivationの4F5A/98372/UTW014/020/021を再利用。元unknown/traceと同unit配置を保持し旧runtime/CIは実行しない。",
+    "execution_state": "not_executed",
+    "authority_effect": "none"
   }
 }
