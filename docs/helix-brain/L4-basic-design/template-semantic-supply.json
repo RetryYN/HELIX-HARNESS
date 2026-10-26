@@ -12379,16 +12379,17 @@
             "return_ja": "全IdentityTraceReturn5memberとnested Comparison4memberを全値/再帰member順で照合。公共shape/producer_symbol/input_bindingと全原axis/state/reason/Refを保持。source populationを固定したcaseの有限帰結であり全callerの一般selectorではない。"
           },
           "technical_selection_source": {
-            "path": "root-identity-I1a-zero-record-technical-selection-R1.json",
+            "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-identity-I1a-zero-record-technical-selection-R1.json",
             "sha256": "b465b14bfea1ac53b655aa4bc586924d74069d58fd2522433084d75485b86af2",
-            "role_ja": "有限な局所技術選択の作成記録。authorityを生成しない。"
+            "role_ja": "localの非authority作業記録。再構成材料ではなく、検証はtracked Git seed・明示patch・COPYだけを基準とする。",
+            "boundary_ja": "この参照はlocal非authority作業記録である。検証はtracked Git seed、明示patch、tracked COPY recipeのみを基準とし、local recordを再構成材料にしない。"
           },
           "legacy_rederivation": {
             "preserved_ja": "4F5A/98372/A127の歴史的保持点を参照する。",
             "changed_ja": "現在の有限raw PresenceRawとRef列からこのcaseだけを再導出する。",
             "reason_ja": "旧runtime/schema/registry/thresholdを製品動作や新gateとして移植しない。"
           },
-          "not_established_ja": "multi record/Q/root、一般cause競合、実owner/trust/provider、全caller/domain、L5L8詳細は後続。 このcaseは一般cause優先、複数record/Q/root、全caller、実資格、L5/L8詳細を成立させない。",
+          "not_established_ja": "multi record/Q/root、一般cause競合、実owner/trust/provider、全caller/domain、L5L8詳細は後続。 このcaseは一般cause優先、複数record/Q/root、全caller、実資格、L5/L8詳細を成立させない。 chainのknowledge起点を先に評価する、この有限caseの技術選択であり、一般のtrace cause優先順位ではない。L4 unclosed_projection_boundaries/knowledge_recordsの一般0件/複数件形成は未閉包のまま、本P15 zero-record caseのknowledge_unresolvedだけを追加行使する。L9 finite_branch_coverageは既存7 whole/3 membership対象の列挙であり、本追加caseを含む全域網羅へ読み替えず、既存列挙を保持する。",
           "authority_effect": "none",
           "operation_effect": "none"
         }
