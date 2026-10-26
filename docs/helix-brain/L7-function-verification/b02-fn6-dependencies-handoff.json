@@ -99,6 +99,11 @@
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
-  "execution_state": "not_executed",
+  "execution_state": "scope_executed_red_then_green",
+  "execution_evidence": {
+    "test_commit": "590b9c2d9a9368386ad7a7e7bf88f6adf478d9de",
+    "red_summary": "test_b02_dependencies_and_handoff.py 全13件を実行し、6件が未実装NotImplementedError（ERROR）、7件の対象外停止境界testが特定分岐タグ未実装（AssertionError FAIL）となるRedを観測（import/setup error・skip 0件）。",
+    "green_summary": "test_b02_dependencies_and_handoff.py を無変更のまま dependencies_handoff.py の実装により全13件Green、および既存testを含む計30件Greenを観測。"
+  },
   "completion_boundary": "fn0→fn1→fn6のB02/DP-1垂直スライス限定検証であり、DP-2実供給・条件依存全域・F09全返却・製品CI・Accepted・releaseを成立させない。"
 }
