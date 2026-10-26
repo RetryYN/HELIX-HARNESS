@@ -141,6 +141,19 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     from definition_comparison import _fn1_scope_guard
 
     _fn1_scope_guard(raw, raw_binding)
+    # These declared producer carriers need native special readers. Their
+    # discovery precedes qualification; unknown candidates cannot become an
+    # empty successful special-read population.
+    for source in raw["sources"]:
+        if not isinstance(source, dict) or source.get("role") != "semantic_json":
+            continue
+        content = source.get("content")
+        if not isinstance(content, dict):
+            continue
+        if "descriptor_display_groups" in content:
+            _stop("display_special_ports")
+        if "required_relations" in content and content["required_relations"] != []:
+            _stop("required_relation_special_ports")
     descriptors = raw.get("descriptors")
     if not isinstance(descriptors, list):
         _stop("descriptor_population")
