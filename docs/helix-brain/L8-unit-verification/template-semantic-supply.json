@@ -11914,7 +11914,7 @@
   "evidence_contract": {
     "required": "対象L4/L9 revision、fixture原source/変異、descriptor/knowledge/template各版、scope/condition、原各axis、claim判定、原因/戻し先、副作用0を個別に記録する。",
     "case_adequacy": "コード一致だけでなく原項目内容、変異した意味差、無関係項目保全、返却後の状態保存を対照実行で検査。件数/hash/空集合を意味oracle代替にしない。",
-    "real_execution": "設計の候補契約とoracleの静的照合を実行証拠と区別する。L5/L8と実fixture/oracleの凍結は別作業、L6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠は後続へ戻す。今は全case not_executedを保持する。"
+    "real_execution": "設計の候補契約とoracleの静的照合を実行証拠と区別する。L5/L8と実fixture/oracleの凍結は別作業、L6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠は後続へ戻す。今は全case not_executedを保持する。以後のL8はL5との照合に必要なU-ID・対象・入力条件・反例・期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、L5/L4/L3/L10の契約から実装を読まずに導いたtest/oracleを凍結して実装前Red→Greenを観測する。"
   },
   "completion": {
     "state": "candidate_awaiting_static_and_independent_review",
