@@ -13050,8 +13050,8 @@
       "revision_order": "subjectと適用義務の原対応を別々に確認した後、rule 72の既存oracle revision述語を評価する。viewpoint/evidenceの完全一致を前提条件へ追加せず、別subjectや別義務の版を同一要求へ読み替えない。"
     },
     "partial_context_projection": {
-      "producer_or_binding": "別producer又は別BindingのComparisonは当該callへ混ぜず、raw OracleBindingのsubjectが型付きならその原Refと同validatedのinput Bindingを持つ既存oracle.binding AxisResultをunknownで返す。Findingは既存ruleのpredicateが成立した場合だけ出す。",
-      "member_type": "OracleBindingの型外memberは原InputIssue/RawValueを保持する。subjectが型付きなら既存oracle.binding AxisResultをunknownとして保持し、型外値をcast・欠落補完しない。",
+      "producer_or_binding": "別producer又は別BindingのComparisonを当該callへ混ぜず、新しい公開Axis/Findingも作らない。元validated、InputIssue、OracleBinding、Comparisonと原readを保持したままunknownとして扱い、owner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
+      "member_type": "OracleBindingの型外memberは元validated、InputIssue、RawValue、Comparisonと原readを保持し、新しい公開Axis/Findingを作らない。型外値をcast・欠落補完せず、unknownとしてowner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
       "subject_unformed": "subject_refを型付きRefとして形成できない場合はAxisResultを作らず、原InputIssue/原OracleBindingを保持する。空Comparisonや別subjectのrowを成功・診断の代用にしない。",
       "owner_default": "semantic definition・義務・oracle対応の未解決はknowledge_owner、製品値/thresholdの未解決はcore_owner。各既存ruleの指定ownerを優先し、新owner/cause/public memberは作らない。"
     },
