@@ -157,6 +157,34 @@ class TestIdentityR2ClaimPopulation(unittest.TestCase):
                                   for row in self._trace_rows(result)], expected_traces)
                 self.assertTrue(all(row["state"] == "unknown" for row in self._trace_rows(result)))
 
+    def test_absent_claims_means_no_explicit_identity_claim(self):
+        raw = normal_input()
+        del raw["claims"]
+        result = self._call(raw)
+        self.assertFalse(any(row["axis"] == "identity_claim" for row in result["axes"]))
+        self.assertEqual([row["code"] for row in result["findings"]], ["compatibility_unknown"])
+
+    def test_absent_compatibility_records_creates_no_explicit_pair_axis(self):
+        raw = normal_input()
+        del raw["compatibility_records"]
+        result = self._call(raw)
+        self.assertFalse(any(row["axis"] == "compatibility" for row in result["axes"]))
+        self.assertFalse(any(row["code"] in {"compatibility_unknown", "compatibility_mismatch"}
+                             for row in result["findings"]))
+        self.assertEqual(len(self._trace_rows(result)), 15)
+
+    def test_absent_sources_keeps_each_original_missing_source_witness(self):
+        raw = normal_input()
+        del raw["sources"]
+        expected_refs = [fact["source_ref"] for slot in raw["descriptors"] for fact in slot["facts"]]
+        result = self._call(raw)
+        missing = [row for row in result["findings"] if row["code"] == "source_missing"]
+        self.assertEqual(len(missing), len(expected_refs))
+        self.assertEqual([row["source_refs"] for row in missing], [[ref] for ref in expected_refs])
+        traces = self._trace_rows(result)
+        self.assertEqual(len(traces), 15)
+        self.assertTrue(all(row["state"] == "unknown" for row in traces))
+
     def test_validated_null_input_returns_the_declared_empty_comparison(self):
         """L4 same_call/partial_and_null: fn0 input=nullは公開Findingへ変換しない。"""
         validated = validate_supply_input(None)
