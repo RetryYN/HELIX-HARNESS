@@ -837,7 +837,7 @@
     },
     "green_evidence": {
       "source_revision": "4f23c16fc64272a4f3f7ed3899f2e22e13b8fe0f",
-      "result": "root context5methods PASS。全unit197件195PASS/既知fn1 NEG02・NEG21 errors2/failures0、bounded duration13288ms/reaped=true/truncated=false。",
+      "result": "root新context5methods PASS。main a665d21ab452c014d314d954b5edfe9478c11d7c統合後の全unit203件201PASS/既知fn1 NEG02・NEG21 errors2/failures0、bounded duration15449ms/reaped=true/truncated=false。統合前197件も195PASS/同errors2。",
       "baseline_errors": "2 errorsは既存F02/required_kind_slot_mismatch、WR05/baseで独立再現済み。本FN4の完成や全テスト成功にはしない。",
       "boundary": "5948追加2件の未対応/shape観測は候補でのGreen対照。3件の実装前Redと混同しない。"
     },
@@ -858,6 +858,11 @@
     "prerequisite_tracking": "Issue3547 comment6427471646。L5型/関数宣言は存在するがunit runtimeにはまだ無く、fn1 15kind固定経路との接続scopeを統制へ確認中。未確定を空成功又は新source資格で補わない。",
     "completion_boundary": "FN4全域、7rule、F05/F06受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。現在はWR12の作業中Draft差分でありmergeを求めない。",
     "execution_state": "partial_context_green_full_FN4_in_progress",
-    "authority_effect": "none"
+    "authority_effect": "none",
+    "main_integration": {
+      "base": "a665d21ab452c014d314d954b5edfe9478c11d7c",
+      "commit": "d9eb64b5906e23775d51fde9acaec23a35c9b8ed",
+      "resolution": "main FN5のfacade追加と末尾で競合したためFN4/FN5両方を保持。FN4 facadeを除いたdescriptor_definitions.py全ASTはmainと一致。FN4 module/testは不変。"
+    }
   }
 }
