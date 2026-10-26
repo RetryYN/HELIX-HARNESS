@@ -1665,7 +1665,7 @@ def _fn3_write_predicate_axes(findings: list[dict[str, Any]], axes: list[dict[st
         if matching_read:
             continue
         refs = [subject]
-        refs.extend(ref for ref in finding.get("source_refs", []) if _ref_shape_ok(ref))
+        refs.extend(ref for ref in finding.get("source_refs", []) if _wire_ref_shape_ok(ref))
         axes.append(_fn3_axis(subject, binding, finding["axis"], finding["state"], refs,
                               finding["reason"], finding.get("backflow_owner")))
 
@@ -2299,16 +2299,28 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
         if not isinstance(slot, dict) or not isinstance(slot.get("facts"), list):
             continue
         slot_binding = slot.get("binding")
-        if not isinstance(slot_binding, dict):
+        if "binding" not in slot:
             raise _fn3_stop("unclosed/slot_binding_absent", f"/descriptors/{si}/binding is absent or not an object")
+        if not _wire_binding_shape_ok(slot_binding):
+            raise _fn3_stop("unclosed/slot_binding_unformed", f"/descriptors/{si}/binding is outside the closed wire Binding shape")
         for fi, fact in enumerate(slot["facts"]):
             if not isinstance(fact, dict):
                 continue
             locator = f"/descriptors/{si}/facts/{fi}"
+            if not _wire_ref_shape_ok(fact.get("ref")):
+                raise _fn3_stop("unclosed/fact_subject_unformed", f"{locator}/ref does not form a wire Ref")
+            if ("source_ref" in fact and fact["source_ref"] is not None
+                    and not _wire_ref_shape_ok(fact["source_ref"])):
+                raise _fn3_stop("unclosed/fact_source_ref_unformed", f"{locator}/source_ref does not form a wire Ref")
             slot_locator = f"/descriptors/{si}"
             slot_kref = slot_binding.get("knowledge_ref")
             fact_binding = fact.get("binding") if isinstance(fact.get("binding"), dict) else {}
             fact_kref = fact_binding.get("knowledge_ref")
+            fact_source_ref = fact.get("source_ref")
+            source_ref_joinable = (
+                _wire_ref_shape_ok(fact_source_ref)
+                and all(fact_source_ref.get(key) is not None for key in ("identity", "revision", "scope", "owner"))
+            )
             if not isinstance(slot_kref, dict) or slot_kref.get("revision") is None:
                 raise _fn3_stop("F04-NEG-02/revision_absent", "trace slot knowledge Ref lacks a supplied revision")
             record_candidates = [(ri, rec) for ri, rec in enumerate(records)
@@ -2410,7 +2422,7 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             state = "resolved" if chains else "unknown"
             cause = "original_trace_corresponding" if chains else (
                 "knowledge_unresolved" if not record_candidates else
-                "source_unresolved" if not any_source else "qualification_unresolved" if not any_qualified
+                "source_unresolved" if not source_ref_joinable or not any_source else "qualification_unresolved" if not any_qualified
                 else "body_unresolved" if not any_body else "knowledge_unresolved")
             if fact_mixed:
                 state, cause = "conflict", "mixed_knowledge_revision"
@@ -2427,14 +2439,15 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                           and _json_equal(fact_kref.get(k), slot_kref.get(k)) for k in ("identity", "scope", "owner"))
                   and not _json_equal(fact_kref.get("revision"), slot_kref.get("revision"))):
                 state, cause = "conflict", "mixed_knowledge_revision"
-            if not any(_ref_same(src.get("ref"), fact.get("source_ref")) for src in sources if isinstance(src, dict)) and isinstance(fact.get("source_ref"), dict):
+            if (source_ref_joinable and not any(_ref_same(src.get("ref"), fact_source_ref)
+                                                for src in sources if isinstance(src, dict))):
                 source_observations = [("/sources", "source collection presence"),
                                        (locator + "/source_ref", "fact source Ref")]
                 source_observations.extend((f"/sources/{source_index}/ref", "supplied source Ref")
                                            for source_index, source in enumerate(sources)
                                            if isinstance(source, dict) and isinstance(source.get("ref"), dict))
                 findings.append(_fn3_finding("source_missing", binding.get("template_ref"), binding, "source", "missing",
-                                             [fact["source_ref"]],
+                                             [fact_source_ref],
                                              _fn3_predicate_finding_reason(raw, "source_missing", source_observations)))
             if isinstance(fact_kref, dict) and isinstance(slot_kref, dict) and not _ref_same(fact_kref, slot_kref):
                 current = binding.get("knowledge_ref")
