@@ -7868,6 +7868,7 @@
           "semantic_or_mixed": "当該basisにsemantic_jsonを含む利用可能資料がある場合。住所/body/意味対応の成立をroleだけで決めない。",
           "unresolved": "basis member不在又は対応Ref/source/資格/roleの未確定がある場合。basis_source_indices/unresolved_basis_ref_indicesを原順保持し、別source成功で消さない。",
           "qualified_alternative_limit": "新semantic basisのbodyをClaim.proposed_valueの正しい意味へ結ぶowner対応は、任意RawValue全域では現sourceに定義が無い。文字列/JSON一致gateで補わず、当該routeをunresolvedとして保存する。元fn1のknownを新gateで取り消さず、限定したempty/nonsemantic fallbackの肯定検出経路は完成させる。",
+          "semantic_owner_return": "上記限界の扱いを、032が意味対応を定めない側（unresolved保持のまま意味ownerへ返す）に確定する。semantic/mixed basisのbodyとClaim.proposed_valueの意味対応はknowledge_ownerが持つ。032は当該routeを既存unresolvedとして原値・原順のまま保持するだけで、意味対応の成立、predicate false、新しいgate・Finding・公開fieldを生成しない。既存failure ruleが別のbackflow_ownerを定める場合はそれに従い、新roleを発行しない。再入条件：knowledge_ownerが当該basis sourceの意味対応を示す原資料を供給又は訂正した後、同Binding・同revision・同scopeの原readから再評価する。",
           "basis_class_precedence": {
             "semantic_and_unresolved_overlap": "単一basis_classでは、上記既存unresolved定義が成立する場合を最優先する。",
             "remaining_order": "その後は上記同名のreference_only_only、nonsemantic_or_empty、semantic_or_mixedの既存定義が成立する最初をこの順で採用する。いずれも成立しなければunresolvedとする。class条件をここで言い直さない。",
