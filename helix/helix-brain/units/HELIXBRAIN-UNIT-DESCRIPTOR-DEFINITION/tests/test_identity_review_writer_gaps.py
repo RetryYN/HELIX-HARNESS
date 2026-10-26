@@ -233,32 +233,28 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
             if row["axis"] == "source" and row["state"] == "missing"
         ))
 
-    def test_fn0_preserves_absent_and_out_of_type_provenance_for_fn3_stop(self):
-        """L4/L5 provenance carrier境界: absentと型外は別ID付き停止で残す。"""
-        cases = (
-            ("absent", "unclosed/knowledge_provenance_absent"),
-            ("string", "unclosed/knowledge_provenance_type"),
-        )
-        for mode, branch in cases:
+    def test_fn0_preserves_partial_provenance_and_fn3_keeps_unknown_reads(self):
+        """R4-M2/L4 partial_and_null: 不形成provenanceで他原軸を消さない。"""
+        for mode, value in (("absent", None), ("null", None), ("string", "synthetic-not-a-ref-array")):
             with self.subTest(mode=mode):
                 raw = trace_input("positive")
                 record = raw["knowledge_records"][0]
                 if mode == "absent":
                     del record["provenance_refs"]
                 else:
-                    record["provenance_refs"] = "synthetic-not-a-ref-array"
-                raw_before = copy.deepcopy(raw)
-                validated = validate_supply_input(raw)
-                self.assertEqual(raw, raw_before)
-                self.assertIsNotNone(validated["input"])
-                self.assertEqual(validated["input"], raw_before)
-                validated_before = copy.deepcopy(validated)
-                with self.assertRaises(NotImplementedError) as caught:
-                    compare_identity_versions_and_trace({"validated": validated})
-                self.assertIn(f"F04/N01/{branch}", str(caught.exception))
-                self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(caught.exception))
-                self.assertEqual(validated, validated_before)
-                self.assertEqual(raw, raw_before)
+                    record["provenance_refs"] = value
+                result = self._call(raw)
+                traces = [r for r in result["axes"] if r["axis"] == "descriptor.trace"]
+                self.assertEqual(len(traces), 15)
+                for row in traces:
+                    self.assertEqual(row["state"], "unknown")
+                    prefix, separator, material = self._material(row)
+                    self.assertEqual((prefix, separator), ("knowledge_unresolved", "\n"))
+                    self.assertEqual(material["cause"], "knowledge_unresolved")
+                    self.assertEqual(material["knowledge_record_indices"], [0])
+                    self.assertEqual(material["provenance_indices"], [])
+                operational = next(r for r in result["axes"] if r["axis"] == "knowledge.operational_state")
+                self.assertEqual(operational["state"], "unknown")
 
 
 if __name__ == "__main__":

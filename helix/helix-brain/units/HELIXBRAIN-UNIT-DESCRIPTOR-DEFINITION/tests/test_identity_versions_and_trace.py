@@ -692,11 +692,17 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
                              for row in result["findings"]))
 
 
-    def test_general_group_outside_matching_pair_is_unclosed(self):
+    def test_different_pair_reads_are_not_combined_into_one_aggregate(self):
         bilateral_input, _trace_input = _identity_fixture_api()
         raw = bilateral_input("opposing")
         raw["compatibility_records"][0]["right_ref"]["identity"] = "unrelated-pack"
-        self._assert_fn3_stops_with_case_id("unclosed/general_group_outside_pair", raw)
+        result = self._assert_case_result("different-pair", raw)
+        rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertEqual([row["state"] for row in rows], ["unknown", "conflict"])
+        materials = [json.loads(row["reason"].partition("\n")[2]) for row in rows]
+        self.assertEqual(materials[0]["request"], {"record_locator": "/compatibility_records/0"})
+        self.assertEqual(materials[1]["record_indices"], [1])
+        self.assertTrue(all("cause_occurrences" not in material for material in materials))
 
 if __name__ == "__main__":
     unittest.main()

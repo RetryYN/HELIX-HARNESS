@@ -49,24 +49,23 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self._omitted_trace(raw)
 
     def test_unformed_source_ref_stays_raw_and_is_never_published_as_a_ref(self):
-        # 型不成立の原source_refはprivate RawValueへ保持する局所unknownか、
-        # 担当外の識別停止。いずれも型外dictをsource Ref又は欠落根拠に昇格しない。
+        # R4-M2: 元RawValueをprivateへ保持し、このreadだけunknownへする。
         raw = trace_input("positive")
         bad = {"untyped_source_ref": "raw value"}
         raw["descriptors"][0]["facts"][0]["source_ref"] = copy.deepcopy(bad)
         validated, before = self._validated(raw)
         validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            self.assertIn("F04/N01/unclosed/fact_source_ref_unformed", str(exc))
-            self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(exc))
-        else:
-            self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
-            for row in result["axes"]:
-                self.assertNotIn(bad, row["original_refs"])
-            for row in result["findings"]:
-                self.assertNotIn(bad, row["source_refs"])
+        result = compare_identity_versions_and_trace({"validated": validated})
+        traces = [r for r in result["axes"] if r["axis"] == "descriptor.trace"]
+        self.assertEqual(len(traces), 15)
+        self.assertEqual(traces[0]["state"], "unknown")
+        self.assertEqual(json.loads(traces[0]["reason"].partition("\n")[2])["cause"], "source_unresolved")
+        self.assertTrue(all(row["state"] == "resolved" for row in traces[1:]))
+        self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
+        for row in result["axes"]:
+            self.assertNotIn(bad, row["original_refs"])
+        for row in result["findings"]:
+            self.assertNotIn(bad, row["source_refs"])
         self.assertEqual(raw, before)
         self.assertEqual(validated, validated_before)
 

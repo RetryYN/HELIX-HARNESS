@@ -190,10 +190,7 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
         self.assertFalse(any(r["code"] == "compatibility_unknown" for r in result["findings"]))
 
 
-    def test_m6_unsupported_identity_shapes_stop_with_F04_N01_backflow(self):
-        distinct_records = trace_input("equal_records")
-        distinct_records["knowledge_records"][1]["operational_state"] = "synthetic-distinct-state"
-
+    def test_m6_unclosed_range_and_identity_claim_stop_with_F04_N01_backflow(self):
         multiple_range_sources = bilateral_input("positive")
         record = self._compat_record(multiple_range_sources)
         right = next(source for source in multiple_range_sources["sources"] if source["ref"] == record["source_ref"])
@@ -210,14 +207,9 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
             "basis_refs": [copy.deepcopy(unsupported_claim["sources"][0]["ref"])],
         })
 
-        null_provenance = trace_input("positive")
-        null_provenance["knowledge_records"][0]["provenance_refs"] = None
-
         cases = (
-            (distinct_records, "unclosed/distinct_knowledge_records"),
             (multiple_range_sources, "unclosed/multiple_finding_range_sources/right"),
             (unsupported_claim, "unclosed/identity_claim/basis_role"),
-            (null_provenance, "unclosed/knowledge_provenance_null"),
         )
         for raw, label in cases:
             with self.subTest(case=label):
