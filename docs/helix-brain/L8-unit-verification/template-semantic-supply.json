@@ -15961,6 +15961,54 @@
       "reentry_ja": "期限は元operationのcore_owner根拠、CPU/メモリは元operation/実環境のinfrastructure_owner根拠が供給されたとき同対象を再評価。元reentryを保持しfixtureから実値・既定値・再評価条件を作らない。",
       "oracle_refs": ["HELIXBRAIN-L8-032-N03-NEG-01", "HELIXBRAIN-L8-032-N03-NEG-02", "HELIXBRAIN-L8-032-N03-NEG-03"],
       "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-DP1-RECEIPT-ORIGIN",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "dp1-receipt-origin-preserved-without-discharge",
+      "contract_source": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","revision":"cc9c91d9d643d2428796cf5cc79076b800a8a150","pointer":"/dependency_incoming_detail/receipt_origin_mapping"},
+      "upstream_source": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","pointers":["/dependency_semantic_ports/ports/1","/dependency_semantic_ports/ports/2","/dependency_semantic_ports/schema/new_defs/ReceiptProjectionRequest","/dependency_semantic_ports/schema/new_defs/ReceiptInvocationOrigin","/dependency_semantic_ports/schema/new_defs/ReceiptClaimCarrier","/dependency_semantic_ports/schema/new_defs/ClaimProjectionRead","/dependency_semantic_ports/producer_incoming/030","/dependency_semantic_ports/claim_intent_protocol/rules/0"]},
+      "execution_state": "not_executed",
+      "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_product_discharge",
+      "expected_axis": "obligation_discharge_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "os_owner",
+      "expected_side_effect_count": 0,
+      "integration_case_ref": null,
+      "integration_case_status": "not_defined",
+      "integration_case_boundary_ja": "この局所consumer補足に対応するL9 integration caseは未定義。",
+      "counterexample_ja": "同じimmutable SupplyInputの原Claimはproject_obligation_discharge/supplied(true)で、subject/full consumer Bindingに対応するbasis sourceがReceiptClaimCarrier全体である。receiptが唯一の有効supportであり、同call origin/producer returnにはOSの実義務意味owner命題・対象対応がないため、既存receipt-only predicateの否定例となる。",
+      "predicate_precondition_ja": "既存ruleのpredicate成立時だけunknown/os_ownerを保持する。origin不一致/不明は元ProjectionReadの問題として保持し、投影ClaimやOS成立supportを生成しない。元raw Claimの既存rule判定は独立で、origin不足だけを理由に成立済みpredicateのFindingを抑止せず、predicate不成立からも追加しない。",
+      "expected_observation": "原Claim/basis/source indexとfullRef対応、ReceiptProjectionRequest、同callのReceiptInvocationOrigin/producer_input/producer_return/ProjectionRead/source_locatorsを全値・原順で保持する。raw Claimと投影Claimを併合せず、receipt単独でdischargeを成立させない。",
+      "reentry_ja": "DP-2でOS ownerが対象義務の意味命題とsource/qualification/target対応を、030 knowledge-query-receipt producerが同call originを供給した後、同一原出現を保って再評価する。",
+      "oracle_refs": ["HELIXBRAIN-L8-032-B02-NEG-01"],
+      "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-DP1-OS-INCOMING",
+      "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+      "name": "dp1-os-incoming-binding-and-original-state-separated",
+      "contract_source": {"path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","revision":"cc9c91d9d643d2428796cf5cc79076b800a8a150","pointer":"/dependency_incoming_detail/os_incoming_mapping"},
+      "upstream_source": {"path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","pointers":["/dependency_semantic_ports/schema/new_defs/OSObligationMeaningIncoming","/dependency_semantic_ports/schema/new_defs/PortOSOriginalBinding","/dependency_semantic_ports/schema/new_defs/PortOSOriginalScope","/dependency_semantic_ports/producer_incoming/OS","/dependency_semantic_ports/producer_incoming/OS/binding_comparison","/dependency_semantic_ports/claim_intent_protocol/rules/0","/dependency_semantic_ports/claim_intent_protocol/rules/1"]},
+      "execution_state": "not_executed",
+      "rule_ref": "HELIXBRAIN-L5-032-R-receipt_as_product_discharge",
+      "expected_axis": "obligation_discharge_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "os_owner",
+      "expected_side_effect_count": 0,
+      "integration_case_ref": null,
+      "integration_case_status": "not_defined",
+      "integration_case_boundary_ja": "この局所consumer補足に対応するL9 integration caseは未定義。",
+      "counterexample_ja": "同じimmutable SupplyInputに、同subject/full consumer Bindingのreceipt basis sourceと追加のOSObligationMeaningIncoming bodyがある。OS incomingのoriginal_stateは供給されるが、元意味owner命題/対象対応/qualificationが不足し実義務supportは形成されず、既存predicate上はreceipt-onlyのまま。consumer Claim Binding、incoming binding、original_project_binding、wrapper QualifiedSource.ref/qualification、元OS source/qualificationは各別recordである。",
+      "predicate_precondition_ja": "project_obligation_dischargeの既存ruleは、receiptが唯一の有効supportで、OS incomingから元義務の成立supportが形成されない場合にだけunknown/os_ownerを観測する。元raw Claimと030投影の対応を区別し、origin不一致は投影/支持不足として保持する。元raw Claimの既存predicateをorigin読取成否の新gateにしない。",
+      "expected_observation": "OS incomingの全11 member、original_project_bindingの5 member、project_scopeの3 memberと各presenceを保持し、異なるBinding/Refをaliasしない。肯定project_obligation_dischargeのpositive supportはdischarge_assertion.presence=supplied,value=trueかつ元対象対応・資格が既存比較を満たす場合だけ候補とする。false/null/absentや元意味owner命題・source/qualification/target対応の不足は原値を保持してpositive support未形成とし、元raw predicateに委ねる。original_stateだけで実義務supportを形成しない。",
+      "variant_expectations": [
+        {"oracle_ref":"HELIXBRAIN-L8-032-B02-NEG-01","rule_ref":"HELIXBRAIN-L5-032-R-receipt_as_product_discharge","kind":"project_obligation_discharge","proposed_value":true,"expected_axis":"obligation_discharge_claim","expected_state":"unknown","backflow_owner":"os_owner","reason_ja":"original_state又はproducer returnからpositive discharge_assertionを作らない。"},
+        {"oracle_ref":"HELIXBRAIN-L8-032-B02-NEG-02","rule_ref":"HELIXBRAIN-L5-032-R-receipt_as_na","kind":"field_not_applicable","proposed_value":"not_applicable","expected_axis":"applicability_claim","expected_state":"unknown","backflow_owner":"core_owner","predicate_precondition_ja":"receipt-only supportでCOREの独立適用判断がない場合に限る。","reason_ja":"元N/A意図を保持し、OS incoming形状から適用判断を生成しない。N/A claimをOS incomingで支持又は抑止せず、既存rule2/CORE判断へ委ねる。"}
+      ],
+      "oracle_refs": ["HELIXBRAIN-L8-032-B02-NEG-01","HELIXBRAIN-L8-032-B02-NEG-02"],
+      "reentry_ja": "DP-2でOS ownerが元stateの意味命題、対象対応、qualificationを、030 knowledge-query-receipt producerが同call originを供給した後、同原出現を再評価する。別のN/A判断はcore_ownerが元fieldの適用判断・理由・再評価条件を供給したとき既存ruleの別条件で再評価し、dischargeへ統合しない。",
+      "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff"
     }
   ],
   "function_oracles": [
@@ -16235,7 +16283,9 @@
         "HELIXBRAIN-L8-032-ADD-26",
         "HELIXBRAIN-L8-032-F09-NEG-13",
         "HELIXBRAIN-L8-032-ADD-27",
-        "HELIXBRAIN-L8-032-ADD-28"
+        "HELIXBRAIN-L8-032-ADD-28",
+        "HELIXBRAIN-L8-032-DP1-RECEIPT-ORIGIN",
+        "HELIXBRAIN-L8-032-DP1-OS-INCOMING"
       ],
       "execution_state": "not_executed",
       "materialized_input_sha256_contract": {
