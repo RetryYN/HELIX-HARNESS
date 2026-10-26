@@ -1064,3 +1064,9 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
     from identity_trace import compare_identity_versions_and_trace as _fn3
 
     return _fn3(context)
+
+
+def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, object]:
+    from oracle_view_boundary import compare_oracle_and_view_boundary as _fn4
+
+    return _fn4(context)
