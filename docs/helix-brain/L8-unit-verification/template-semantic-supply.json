@@ -85051,7 +85051,7 @@
     "revision_semantics": "revisionは結線の初期導出位置でありdocumentsの固定snapshot revisionではない。documentsのsha256は同review対象HEADの現在L4/L9全UTF-8 bytes。独立のrevision付きsource_pinsは各原履歴bytesを保持する。"
   },
   "definition_meaning_walk_verification": {
-      "artifact_ref": {"identity":"HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"1fbe40bf6d5c56b69ba4000224cc68421dc88986995376e256f27e3196e7b1ba","pointer":"","canonical_sha256":"c28f09c11b55c2b418dec835e9752137ea7acf2c6a65f462d0ad29b03dba3453"},
+      "artifact_ref": {"identity":"HELIXBRAIN-L8-032-DEFINITION-MEANING-WALK","revision":"08982462dbce751b97e244861ac5427e40fb7325","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json","file_sha256":"1fbe40bf6d5c56b69ba4000224cc68421dc88986995376e256f27e3196e7b1ba","pointer":"","canonical_sha256":"c28f09c11b55c2b418dec835e9752137ea7acf2c6a65f462d0ad29b03dba3453"},
       "logical_binding": {
         "document_id": "HELIXBRAIN-L8-032-TEMPLATE-SEMANTIC-SUPPLY",
         "pointer": "/definition_meaning_walk_verification",
@@ -115825,6 +115825,7 @@
         },
         "input_reconstruction": {
           "raw_input_revision": "b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031",
+          "revision": "08982462dbce751b97e244861ac5427e40fb7325",
           "raw_input_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
           "raw_input_file_sha256": "7e3b3f228df3c577527750b3365ac987f138f438d04e3f69b0308c3bf29fd0a7",
           "raw_input_pointer": "/materials/0/raw_input",
@@ -116047,6 +116048,7 @@
         },
         "input_reconstruction": {
           "raw_input_revision": "b8c2e3af5c6d36ae3e9ced2e38d8cf523dde1031",
+          "revision": "08982462dbce751b97e244861ac5427e40fb7325",
           "raw_input_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
           "raw_input_file_sha256": "7e3b3f228df3c577527750b3365ac987f138f438d04e3f69b0308c3bf29fd0a7",
           "raw_input_pointer": "/materials/0/raw_input",
@@ -126649,6 +126651,7 @@
             "tracked_L9_patch_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/cases/0/rfc6902_add_patch",
             "tracked_L9_wrapper_pointer": "/definition_meaning_resolution_verification_plan/m2a_finite_meaning_pair_verification/input_reconstruction/frozen_case_fingerprint_recipe/wrapper_literals",
             "historical_raw_revision": "9013d859d541cad6eb3b3b750d24f97344c06c8c",
+            "revision": "08982462dbce751b97e244861ac5427e40fb7325",
             "historical_raw_path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/definition-meaning-walk-fixtures.json",
             "historical_raw_pointer": "/materials/0/raw_input",
             "patch_count": 9,
@@ -126797,6 +126800,7 @@
   "definition_meaning_D27_claim_intent_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM-INTENT-READER",
+      "revision": "08982462dbce751b97e244861ac5427e40fb7325",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/claim-intent-read-fixtures.json",
       "file_sha256": "25055f1113ed652601b44d752ed4a3757899ca07ca56fea0341e044b099843cc",
       "pointer": "",
@@ -126828,6 +126832,7 @@
   "definition_meaning_D27_descriptor_target_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DESCRIPTOR-TARGET-READER",
+      "revision": "08982462dbce751b97e244861ac5427e40fb7325",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-target-read-fixtures.json",
       "file_sha256": "166426ff84d6e124064a30bbc87697f0f2bd3ef35c186a756ce335bde38c1dc2",
       "pointer": "",
@@ -126856,6 +126861,7 @@
   "definition_meaning_D27_Claim1_replacement_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-CLAIM1-RULE87-PUBLIC-PROJECTION",
+      "revision": "08982462dbce751b97e244861ac5427e40fb7325",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-replacement-claim-fixtures.json",
       "file_sha256": "382af55fbea1823a71c426c2ada149009ae8718506d390738b9cc2ec447af0d6",
       "pointer": "",
@@ -126884,6 +126890,7 @@
   "definition_meaning_D27_definition_projection_verification": {
     "artifact_ref": {
       "identity": "HELIXBRAIN-L8-D27-DEFINITION-PROJECTION",
+      "revision": "08982462dbce751b97e244861ac5427e40fb7325",
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply/descriptor-definition-projection-fixtures.json",
       "file_sha256": "3f294c49ec4868c00ac86d413bbbe634ba9f38abeb6862b2357e808c00dba203",
       "pointer": "",
