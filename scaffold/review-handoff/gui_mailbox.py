@@ -32,6 +32,20 @@ CLOSED_RETENTION_SECONDS = 86400
 TERMINAL = ("acked", "expired", "cancelled")
 ORPHAN_TEMP_SECONDS = 600
 WORK_CAPACITY = {"codex": 5, "devin": 5, "antigravity": 5}
+# 新規案2（#3510 comment 6405275048）: statusのread-only診断表示の目安値。gate・合格条件・自動killには使わない。
+DIAG_MIN_AGE_SECONDS = 300.0
+DIAG_MIN_RSS_BYTES = 512 * 1024 * 1024
+GUI_HOST_COMMS = ("claude", "codex", "devin", "antigravity", "code", "cursor", "electron")
+GUI_HOST_NODE_MARKERS = (
+    ".vscode-server",
+    ".antigravity-server",
+    ".cursor-server",
+    "code-server",
+    "claude",
+    "codex",
+    "devin",
+    "antigravity",
+)
 
 
 def binding_active(path=BINDING):
@@ -663,6 +677,270 @@ def effective_status(message, now):
     return message["status"]
 
 
+def read_meminfo(proc_root=Path("/proc")):
+    """/proc/meminfoからMemAvailableとSwapFreeを読取専用で取得する（新規案2）。"""
+    path = Path(proc_root) / "meminfo"
+    try:
+        raw = path.read_text(encoding="utf-8", errors="replace")
+    except OSError:
+        return dict(
+            status="unavailable",
+            mem_available_kb=None,
+            mem_available_bytes=None,
+            swap_free_kb=None,
+            swap_free_bytes=None,
+        )
+    values = {}
+    for line in raw.splitlines():
+        if ":" not in line:
+            continue
+        key, rest = line.split(":", 1)
+        parts = rest.strip().split()
+        if parts and parts[0].isdigit():
+            values[key.strip()] = int(parts[0])
+    mem_kb = values.get("MemAvailable")
+    swap_kb = values.get("SwapFree")
+    status = "ok" if (mem_kb is not None and swap_kb is not None) else "partial"
+    return dict(
+        status=status,
+        mem_available_kb=mem_kb,
+        mem_available_bytes=mem_kb * 1024 if mem_kb is not None else None,
+        swap_free_kb=swap_kb,
+        swap_free_bytes=swap_kb * 1024 if swap_kb is not None else None,
+    )
+
+
+def _sysconf_positive(name, default):
+    try:
+        val = int(os.sysconf(name))
+        return val if val > 0 else default
+    except (ValueError, OSError, AttributeError):
+        return default
+
+
+def _read_proc_entry(proc_dir, uptime_seconds, clk_tck, page_size):
+    stat_text = (proc_dir / "stat").read_text(encoding="utf-8", errors="replace")
+    open_paren = stat_text.find("(")
+    close_paren = stat_text.rfind(")")
+    if open_paren < 0 or close_paren <= open_paren:
+        raise ValueError("invalid stat format")
+    pid = int(stat_text[:open_paren].strip())
+    comm = stat_text[open_paren + 1:close_paren]
+    fields = stat_text[close_paren + 1:].split()
+    state_code = fields[0]
+    ppid = int(fields[1])
+    pgrp = int(fields[2])
+    utime_ticks = int(fields[11])
+    stime_ticks = int(fields[12])
+    starttime_ticks = int(fields[19])
+    rss_pages = int(fields[21])
+    rss_bytes = max(0, rss_pages) * page_size
+    try:
+        for line in (proc_dir / "status").read_text(encoding="utf-8", errors="replace").splitlines():
+            if line.startswith("VmRSS:"):
+                parts = line.split()
+                if len(parts) >= 2 and parts[1].isdigit():
+                    rss_bytes = int(parts[1]) * 1024
+                break
+    except OSError:
+        pass
+    cmdline = comm
+    try:
+        raw_cmd = (proc_dir / "cmdline").read_bytes().replace(b"\x00", b" ").decode("utf-8", "replace").strip()
+        if raw_cmd:
+            cmdline = raw_cmd[:200]
+    except OSError:
+        pass
+    age_seconds = max(0.0, uptime_seconds - (starttime_ticks / float(clk_tck)))
+    cpu_seconds = max(0.0, (utime_ticks + stime_ticks) / float(clk_tck))
+    return dict(
+        pid=pid,
+        ppid=ppid,
+        pgrp=pgrp,
+        state=state_code,
+        comm=comm,
+        cmdline=cmdline,
+        starttime=str(starttime_ticks),
+        age_seconds=round(age_seconds, 3),
+        cpu_seconds=round(cpu_seconds, 3),
+        rss_bytes=int(rss_bytes),
+    )
+
+
+def _is_gui_session_host(entry, enrolled_identities):
+    if (entry["pid"], entry["starttime"]) in enrolled_identities:
+        return True
+    comm_lower = entry["comm"].lower()
+    first_token = entry["cmdline"].split()[0] if entry["cmdline"].strip() else comm_lower
+    argv0_name = Path(first_token).name.lower()
+    if comm_lower.startswith("python") or argv0_name.startswith("python"):
+        return False
+    if (
+        comm_lower in GUI_HOST_COMMS
+        or argv0_name in GUI_HOST_COMMS
+        or comm_lower.startswith("language_server")
+        or argv0_name.startswith("language_server")
+    ):
+        return True
+    if (comm_lower == "node" or argv0_name == "node") and any(
+        marker in entry["cmdline"] for marker in GUI_HOST_NODE_MARKERS
+    ):
+        return True
+    return False
+
+
+def resource_diagnostics(
+    proc_root=Path("/proc"),
+    uid=None,
+    min_age_seconds=DIAG_MIN_AGE_SECONDS,
+    min_rss_bytes=DIAG_MIN_RSS_BYTES,
+    enrollment=None,
+):
+    """/procからMemAvailable/SwapFreeと、親GUIセッションを失った長時間・高RSSプロセスを読取専用で診断する（新規案2）。
+
+    自動killや他レーンのプロセス操作は一切行わず、閾値をgateや合格条件にしない。
+    """
+    proc_root = Path(proc_root)
+    meminfo = read_meminfo(proc_root)
+    enrolled_identities = set()
+    if isinstance(enrollment, dict):
+        for item in enrollment.values():
+            proc = item.get("process") if isinstance(item, dict) else None
+            if isinstance(proc, dict) and isinstance(proc.get("pid"), int) and proc.get("start") is not None:
+                enrolled_identities.add((proc["pid"], str(proc["start"])))
+
+    uptime_path = proc_root / "uptime"
+    try:
+        uptime_seconds = float(uptime_path.read_text(encoding="utf-8", errors="replace").split()[0])
+    except (OSError, ValueError, IndexError):
+        return dict(
+            read_only=True,
+            auto_kill=False,
+            authority_effect="none",
+            meminfo=meminfo,
+            thresholds=dict(
+                min_age_seconds=float(min_age_seconds),
+                min_rss_bytes=int(min_rss_bytes),
+                gate_or_admission=False,
+            ),
+            orphan_processes=[],
+        )
+
+    target_uid = os.getuid() if uid is None else uid
+    clk_tck = _sysconf_positive("SC_CLK_TCK", 100)
+    page_size = _sysconf_positive("SC_PAGE_SIZE", 4096)
+    all_entries = {}
+    user_pids = set()
+    try:
+        names = sorted((int(name) for name in os.listdir(proc_root) if name.isdigit()))
+    except OSError:
+        names = []
+    for pid in names:
+        proc_dir = proc_root / str(pid)
+        try:
+            st = os.stat(proc_dir)
+            entry = _read_proc_entry(proc_dir, uptime_seconds, clk_tck, page_size)
+        except (OSError, ValueError, IndexError):
+            continue
+        all_entries[pid] = entry
+        if target_uid is None or st.st_uid == target_uid:
+            user_pids.add(pid)
+
+    orphans = []
+    for pid in sorted(user_pids):
+        if pid <= 1:
+            continue
+        entry = all_entries[pid]
+        if _is_gui_session_host(entry, enrolled_identities):
+            continue
+        if entry["age_seconds"] < min_age_seconds or entry["rss_bytes"] < min_rss_bytes:
+            continue
+
+        cur_ppid = entry["ppid"]
+        has_gui_parent = False
+        immediate_parent_missing = cur_ppid > 1 and cur_ppid not in all_entries
+        visited = {pid}
+        for _ in range(32):
+            if cur_ppid <= 1 or cur_ppid in visited:
+                break
+            visited.add(cur_ppid)
+            parent = all_entries.get(cur_ppid)
+            if parent is None:
+                break
+            if _is_gui_session_host(parent, enrolled_identities):
+                has_gui_parent = True
+                break
+            cur_ppid = parent["ppid"]
+
+        if has_gui_parent:
+            continue
+        if entry["ppid"] <= 1:
+            reason = "reparented_to_init"
+        elif immediate_parent_missing:
+            reason = "parent_missing"
+        else:
+            reason = "no_gui_session_ancestor"
+        orphans.append(
+            dict(
+                pid=entry["pid"],
+                ppid=entry["ppid"],
+                pgrp=entry["pgrp"],
+                comm=entry["comm"],
+                cmdline=entry["cmdline"],
+                age_seconds=entry["age_seconds"],
+                cpu_seconds=entry["cpu_seconds"],
+                rss_bytes=entry["rss_bytes"],
+                orphan_reason=reason,
+            )
+        )
+
+    orphans.sort(key=lambda item: (-item["rss_bytes"], -item["age_seconds"], item["pid"]))
+    return dict(
+        read_only=True,
+        auto_kill=False,
+        authority_effect="none",
+        meminfo=meminfo,
+        thresholds=dict(
+            min_age_seconds=float(min_age_seconds),
+            min_rss_bytes=int(min_rss_bytes),
+            gate_or_admission=False,
+        ),
+        orphan_processes=orphans,
+    )
+
+
+def status_snapshot(
+    data,
+    now,
+    proc_root=Path("/proc"),
+    uid=None,
+    min_age_seconds=DIAG_MIN_AGE_SECONDS,
+    min_rss_bytes=DIAG_MIN_RSS_BYTES,
+):
+    return dict(
+        lanes=data["lanes"],
+        work=data.get("work", {}),
+        work_queue=data.get("work_queue", {}),
+        enrollment=data.get("enrollment", {}),
+        observed=data["observed"],
+        messages={
+            key: dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"])
+            for key, m in data["messages"].items()
+        },
+        closed={
+            key: dict(status=value["status"], closed=value["closed"])
+            for key, value in data.get("closed", {}).items()
+        },
+        resource_diagnostics=resource_diagnostics(
+            proc_root=proc_root,
+            uid=uid,
+            min_age_seconds=min_age_seconds,
+            min_rss_bytes=min_rss_bytes,
+            enrollment=data.get("enrollment", {}),
+        ),
+    )
+
+
 def ack(data, event_id, runtime, session, digest, nonce, now):
     lane(data, runtime, session, now)
     done = data.get("closed", {}).get(event_id)
@@ -865,7 +1143,9 @@ def main():
         if command == "ack":
             cmd.add_argument("--digest", required=True)
             cmd.add_argument("--nonce", required=True)
-    sub.add_parser("status")
+    status_cmd = sub.add_parser("status")
+    status_cmd.add_argument("--min-age-seconds", type=float, default=DIAG_MIN_AGE_SECONDS)
+    status_cmd.add_argument("--min-rss-bytes", type=int, default=DIAG_MIN_RSS_BYTES)
     args = parser.parse_args()
     try:
         post_commit_output = None
@@ -920,7 +1200,18 @@ def main():
             elif args.command == "release-work":
                 release_work(data, args.runtime, args.session, args.worker, now, args.id)
             elif args.command == "status":
-                print(json.dumps(dict(lanes=data["lanes"], work=data.get("work",{}), work_queue=data.get("work_queue",{}), enrollment=data.get("enrollment",{}), observed=data["observed"], messages={key:dict(status=effective_status(m, now), expires=m["expires"], kind=m["payload"]["kind"]) for key,m in data["messages"].items()}, closed={key:dict(status=value["status"], closed=value["closed"]) for key,value in data.get("closed",{}).items()}), ensure_ascii=False, indent=2))
+                print(
+                    json.dumps(
+                        status_snapshot(
+                            data,
+                            now,
+                            min_age_seconds=args.min_age_seconds,
+                            min_rss_bytes=args.min_rss_bytes,
+                        ),
+                        ensure_ascii=False,
+                        indent=2,
+                    )
+                )
         if post_commit_output is not None:
             print(json.dumps(post_commit_output, ensure_ascii=True))
     except (ValueError, TypeError, KeyError, OSError) as error:

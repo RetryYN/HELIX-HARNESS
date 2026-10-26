@@ -1378,5 +1378,82 @@ class GuiChecks(unittest.TestCase):
             settings.write_text(settings.read_text().replace(str(g.HERE),str(home / "missing/scaffold/review-handoff")))
             self.assertTrue(scf.external_hook_residuals(binding,str(home)))
 
+    def test_status_read_only_resource_and_orphan_diagnostics(self):
+        clk_tck = g._sysconf_positive("SC_CLK_TCK", 100)
+        uptime_sec = 50_000.0
+
+        def write_proc(proc_root, pid, comm, ppid, pgrp, age_sec, cpu_sec, rss_kb, cmdline):
+            pdir = proc_root / str(pid)
+            pdir.mkdir(parents=True, exist_ok=True)
+            starttime_ticks = int((uptime_sec - age_sec) * clk_tck)
+            utime_ticks = int(cpu_sec * clk_tck)
+            fields = ["S", str(ppid), str(pgrp), "1", "0", "-1", "0", "0", "0", "0", "0",
+                      str(utime_ticks), "0", "0", "0", "20", "0", "1", "0", str(starttime_ticks),
+                      "0", str(rss_kb // 4)]
+            (pdir / "stat").write_text(f"{pid} ({comm}) " + " ".join(fields) + "\n", encoding="utf-8")
+            (pdir / "status").write_text(f"Name:\t{comm}\nVmRSS:\t{rss_kb} kB\n", encoding="utf-8")
+            (pdir / "cmdline").write_bytes(cmdline.replace(" ", "\x00").encode("utf-8") + b"\x00")
+
+        with tempfile.TemporaryDirectory(dir=g.HERE / "local") as directory:
+            proc_root = Path(directory) / "proc"
+            proc_root.mkdir()
+            (proc_root / "meminfo").write_text(
+                "MemTotal:       12582912 kB\n"
+                "MemFree:         1048576 kB\n"
+                "MemAvailable:    2097152 kB\n"
+                "SwapTotal:       4194304 kB\n"
+                "SwapFree:         524288 kB\n",
+                encoding="utf-8",
+            )
+            (proc_root / "uptime").write_text(f"{uptime_sec} 100000.0\n", encoding="utf-8")
+            # 100: live GUI host (codex)
+            write_proc(proc_root, 100, "codex", 1, 100, 10_000, 120, 1024 * 1024, "codex --session s1")
+            # 200: python3 attached to live GUI host 100 -> not orphan
+            write_proc(proc_root, 200, "python3", 100, 200, 3_600, 500, 1024 * 1024, "python3 helper.py")
+            # 300: orphan python3 reparented to init (even with 'codex' in cmdline args)
+            write_proc(proc_root, 300, "python3", 1, 300, 39_600, 39_000, 7 * 1024 * 1024, "python3 span_scan.py --runtime codex")
+            # 301: orphan python3 whose parent PID 999 disappeared
+            write_proc(proc_root, 301, "python3", 999, 301, 1_200, 900, 1024 * 1024, "python3 lost_parent.py")
+            # 303 + 302: detached shell subtree with no GUI ancestor
+            write_proc(proc_root, 303, "sh", 1, 303, 1_500, 1, 4 * 1024, "sh -c python3")
+            write_proc(proc_root, 302, "python3", 303, 303, 1_500, 1_400, 800 * 1024, "python3 subshell_orphan.py")
+            # 400: short-lived small process -> below display thresholds
+            write_proc(proc_root, 400, "python3", 1, 400, 10, 1, 32 * 1024, "python3 quick.py")
+
+            before_state = copy.deepcopy(self.data)
+            with patch.object(g.os, "kill", side_effect=AssertionError("status must never kill")), \
+                 patch.object(g.os, "killpg", side_effect=AssertionError("status must never killpg")):
+                snap = g.status_snapshot(
+                    self.data,
+                    self.now,
+                    proc_root=proc_root,
+                    uid=g.os.getuid(),
+                    min_age_seconds=300.0,
+                    min_rss_bytes=512 * 1024 * 1024,
+                )
+            self.assertEqual(self.data, before_state)
+            diag = snap["resource_diagnostics"]
+            self.assertTrue(diag["read_only"])
+            self.assertFalse(diag["auto_kill"])
+            self.assertEqual(diag["authority_effect"], "none")
+            self.assertFalse(diag["thresholds"]["gate_or_admission"])
+            self.assertEqual(diag["meminfo"]["status"], "ok")
+            self.assertEqual(diag["meminfo"]["mem_available_kb"], 2097152)
+            self.assertEqual(diag["meminfo"]["mem_available_bytes"], 2097152 * 1024)
+            self.assertEqual(diag["meminfo"]["swap_free_kb"], 524288)
+            self.assertEqual(diag["meminfo"]["swap_free_bytes"], 524288 * 1024)
+            self.assertEqual(
+                [(p["pid"], p["orphan_reason"]) for p in diag["orphan_processes"]],
+                [
+                    (300, "reparented_to_init"),
+                    (301, "parent_missing"),
+                    (302, "no_gui_session_ancestor"),
+                ],
+            )
+
+            missing_diag = g.resource_diagnostics(proc_root=Path(directory) / "nonexistent")
+            self.assertEqual(missing_diag["meminfo"]["status"], "unavailable")
+            self.assertEqual(missing_diag["orphan_processes"], [])
+
 
 if __name__ == "__main__": unittest.main()
