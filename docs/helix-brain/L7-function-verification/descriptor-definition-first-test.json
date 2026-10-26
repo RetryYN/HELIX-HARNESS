@@ -1113,7 +1113,7 @@
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",
-    "source_revision": "9b8e98f8aef50c01d46720fc42c8f70fa682bc81",
+    "source_revision": "868b175916d6c5aa75fbc6281eead2fad55c06a2",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "test_sources": [
       {
@@ -1140,7 +1140,7 @@
       "L4 /oracle_view_boundary_contract/same_call/invalid_context",
       "L4 /oracle_view_boundary_contract/limits/1"
     ],
-    "observations": "新5methodsはdecode-nullのInputIssue・明示null metadata、producer違い、fn3 Binding違いの新公開row非生成、正規normal Control未対応ID、private frame override拒否ID、原raw/ValidatedSupply/Context全値の不変だけをassertする。7rule発火や通常oracleの完全対応をassertしていない。",
+    "observations": "R1 context5＋shape5（24変異）＋既存unclosed2＋R71/R72 2＋binding guards7＋native walk3＋native links1の計25methodsをrootで実行。predicate/ref/原入力/元Comparison/carry・native索引・実raw診断を局所期待で照合する。保存whole/hashを期待又はsourceへ複写しない。",
     "red_evidence": {
       "test_revision": "6fcc75c99320f092baeed3cb06e63f17fd4aff52",
       "source_state": "既存署名facade+固定NotImplementedErrorだけの宣言bootstrap、意味処理無し。",
@@ -1151,7 +1151,8 @@
       "source_revision": "4f23c16fc64272a4f3f7ed3899f2e22e13b8fe0f",
       "result": "root新context5methods PASS。main a665d21ab452c014d314d954b5edfe9478c11d7c統合後の全unit203件201PASS/既知fn1 NEG02・NEG21 errors2/failures0、bounded duration15449ms/reaped=true/truncated=false。統合前197件も195PASS/同errors2。",
       "baseline_errors": "2 errorsは既存F02/required_kind_slot_mismatch、WR05/baseで独立再現済み。本FN4の完成や全テスト成功にはしない。",
-      "boundary": "5948追加2件の未対応/shape観測は候補でのGreen対照。3件の実装前Redと混同しない。"
+      "boundary": "5948追加2件の未対応/shape観測は候補でのGreen対照。3件の実装前Redと混同しない。",
+      "status": "historical initial context-only evidence; current acceptance is final_root_verification"
     },
     "l8_case_boundary": {
       "normal": "L8 function_oracles/4のnormal計画とunit normal_control fixtureを同一の実oracle成立に読み替えない。今回実行は同call Contextを作れるnormal_controlがunclosed/formed_contextで止まる境界だけ。",
@@ -1165,16 +1166,19 @@
         "HELIXBRAIN-L8-032-F06-NEG-04",
         "HELIXBRAIN-L8-032-ADD-15"
       ],
-      "state": "七rule・表示only対照・typed witness・finite carry未実装。fixtureの保存全返却/hashを期待やsourceへコピーせず、前提source/runtimeの接続を確認してから対象テストを追加する。"
+      "state": "R71/R72のtyped局所反例と誤発火controlはroot Green。残るrule/carrier/非null有限carryと正式L8全受入は別途未閉包。L8保存whole/期待hashを使わず、元normalの未対応IDを保つ。"
     },
     "prerequisite_tracking": "Issue3547 comment6427761585によりF05 NEG01/02はfn1固定guardの別前提WR待ち。WR12は到達可能な7ruleと有限carryを継続。canonical walk/frame runtimeの接続scopeはPR3719 comment6428081749で確認中。",
-    "completion_boundary": "FN4全域、7rule、F05/F06受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。現在はWR12の作業中Draft差分でありmergeを求めない。",
-    "execution_state": "partial_context_green_full_FN4_in_progress",
+    "completion_boundary": "WR12の到達範囲をroot検証済み、独立reviewへ戻す。7rule全域、全caller、F05/F06のL8全受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。Ready/mergeは新contentの独立review後。",
+    "execution_state": "root_verified_reachable_FN4_review_pending",
     "authority_effect": "none",
     "main_integration": {
-      "base": "a665d21ab452c014d314d954b5edfe9478c11d7c",
-      "commit": "d9eb64b5906e23775d51fde9acaec23a35c9b8ed",
-      "resolution": "main FN5のfacade追加と末尾で競合したためFN4/FN5両方を保持。FN4 facadeを除いたdescriptor_definitions.py全ASTはmainと一致。FN4 module/testは不変。"
+      "base": "4abee6df089cbbb9654edf38c80d116ecaeca708",
+      "merge_commit": "aa87e820f",
+      "source_import_adaptation": "5779370376bb013590148e84a9b9926ecb3dab9a",
+      "resolution": "L6/L7 top-level append競合はmain全subtreeと自FN4 subtreeの全値を両保持。既存facadeのFN4以外の全ASTはmain同値。移動したattribution/scope/sort helper ASTは旧位置と一致。新walkだけをdefinition_comparison importsへ接続し、fn1/fn6公開wrapperは改変しない。",
+      "root_unit": "root-fn4-walk-post-main-unit.json:223件221PASS、既知F02 NEG02/NEG21 errors2のみ/failures0、17385ms/reaped/nontruncated。",
+      "discarded_run": "統合前full-unit実行中にmergeを始めたroot-fn4-walk-pre-main-unit.jsonはsnapshot混在のため検収証拠から除外。完了後に統合済treeを再実行した上記証拠だけを使う。"
     },
     "review_r1_context_correction": {
       "review_comment": 6427821595,
@@ -1229,6 +1233,56 @@
       "cause": "L7 fact.source_ref.sha256は明示null、actual source.ref.sha256は既知digest。辞書完全一致はL5 reference_equalityの片方null規則と異なる。",
       "change": "test-only witness lookupをL5 identity/revision/scope/ownerと両方既知時digest比較へ訂正。predicate期待・入力fixture・source処理・Finding期待source順は変更しない。独立testhelperで正規参照規則を著述し、実装helperから期待を逆算しない。",
       "freeze_exception": "凍結後のtest harness欠陥をここで開示する。既存期待をsource都合で成功へ変更せず、型付きRefで実sourceを特定できるようにする。"
+    },
+    "native_walk_tdd": {
+      "bootstrap_test_revision": "2cad0d361",
+      "red": "root-fn4-native-walk-red.json:3methods全て宣言ID付きNotImplementedError、import/属性error0、reaped/nontruncated。",
+      "links_test_revision": "da42567e5",
+      "links_red": "root-fn4-native-walk-links-bootstrap-red.json:凍結new links testを2cad bootstrap module overlayで再生した1NotImpl Red。編集中sourceの実行とは区別。",
+      "source_revision": "cefd73c60",
+      "post_split_import_revision": "5779370376bb013590148e84a9b9926ecb3dab9a",
+      "native_inputs": "元L7 normalは実source/provenance digest差をsource_unresolvedとして保存。独立trace_inputは既存入力構成helperでprovenanceを同期し、contract carrier未供給をcontainer_absentとして保存。元normal fixtureを書換えたり成功へ昇格しない。",
+      "evidence": "root-fn4-walk-binding-green-corrected-lookup.json:25PASS/1471ms/reaped/nontruncated。最後のtest-only source lookup訂正はbinding_test_source_lookup_correctionに開示。",
+      "single_call": "ASTでfn4 wrapperのwalk/uses/detail call site各1、publicfn1再評価callなし。runtime counter/privatepatch/publicobserver追加なし。",
+      "final_source_revision": "868b175916d6c5aa75fbc6281eead2fad55c06a2"
+    },
+    "reachable_rules": {
+      "71": "既存MeaningFact.ref=実fn1対象definition Axis.subject_refにOracleBinding.subject_refを明示対応。fact Binding.requirement_refとOracleBinding.obligation_refの別義務を独立比較。",
+      "72": "同subjectと同適用義務を先に確認し、同oracle identity/scope/ownerの既知revision相違だけを投影。別subject/別義務/同版/別ownerはconflictへ丸めずformed_context停止。",
+      "source_and_reason": "Finding sourceは実predicateで使用したqualified source/Q/rootを既存照合し、元sources index/出現順。reason prefixはL5既存predicate全文、LF後の各locator/PresenceRawは原inputへ解決して確認。",
+      "test_freeze": "0eda5f0ecでR71/R72 Red2（実fn0/fn1/fn3後のformed_context NotImpl）、62b31e2e1で非発火guard5＋prefix/診断positive2を追加。後者は候補Green対照、初期Redとは呼ばない。"
+    },
+    "unclosed_current": {
+      "F05_NEG01_NEG02_and_nonnull_finite_carry": "WR18待ち。root-fn4-fn1-prerequisite-probes.jsonでmeasurement/completion/3対象kind除去を実fn0→fn1へ投入し、全てF02/required_kind_slot_mismatch、fn4非callを確認。fill_definition同fact ClaimはF01/descriptor_claim_unimplemented。全raw不変。",
+      "R70_R73_R74": "現在のwalkでは供給Claim portがF01/F02/unclosed/definition_meaning_walk/supplied_claim_ports停止。transport ClaimIntentRead.proposed_value/Source.contentはRawValueで、表示変更だけ・生成成功・generic defaultの独立typed carrierを新造しない。既存L5に型がないcarrierをID停止/L7記録にする6428183181の境界。全predicate未行使を非発火又は成功に読み替えない。",
+      "typed_meaning_NA_pair": "供給operation carrier、非null NA Ref、多factpair、special支持の形成は未閉包。空source/根拠からsupports/knownを作らない。 display/必要relationの未実装special request検出はspecial_discovery_boundaryでRed→ID stop Greenを確認。",
+      "declared_shape_stops": "新private reader/request/frameの一般shape/Binding/locator不正停止は静的宣言を含み、全guardのmutation網羅や全caller成立を主張しない。"
+    },
+    "canonical_order_correction": {
+      "test_revision": "bb6af67c1a62b0f7df312d64dfc1fa0ace11bba3",
+      "source_revision": "52a51837c99c4601679566563201552bcfe9cd68",
+      "red": "root-fn4-native-walk-order-red.json:原slot逆順で訪問順が逆転して1FAIL（元locator/入力は保持）。",
+      "green": "root-fn4-canonical-order-green.json:26PASS。L5固定kind順へ訪問を訂正し、元slot indexをlocatorに使用。"
+    },
+    "special_discovery_boundary": {
+      "test_revision": "b27c8553bf20b576a5c81360428ae687a23749d8",
+      "source_revision": "868b175916d6c5aa75fbc6281eead2fad55c06a2",
+      "red": "root-fn4-native-special-red.json:qualified semantic_jsonのdisplay carrierと必要relation raw entryが無視される2FAIL、empty relation carrier control1PASS。",
+      "green": "root-fn4-special-order-green.json:29PASS/1871ms/reaped/nontruncated。",
+      "scope": "L5 special_source_producersの既存field名だけを観測。供給descriptor_display_groupsはdisplay_special_ports、required_relations非空/型不正はrequired_relation_special_portsで停止。HARNESS/fill_definitionなど原Claimはsupplied_claim_portsで先に停止。新special Axis/Findingをcarrier名だけから作らない。"
+    },
+    "binding_mutations": {
+      "source_revision": "868b175916d6c5aa75fbc6281eead2fad55c06a2",
+      "evidence": "root-fn4-binding-rule-mutations.json",
+      "result": "subject、obligation、oracle owner、revision、R71/R72欠落、carry欠落、無関係source混入、reason prefix、原診断値を崩す10変異は10KILLED/import/syntax失敗0。",
+      "method": "temporary module overlay、tracked source/test不変。新private全guardのmutation網羅は主張しない。"
+    },
+    "final_root_verification": {
+      "source_revision": "868b175916d6c5aa75fbc6281eead2fad55c06a2",
+      "unit_evidence": "root-fn4-final-scope-unit.json",
+      "result": "227件225PASS、既知F02 NEG02/NEG21 errors2のみ、failures0、17876ms/reaped=true/truncated=false/timed_out=false。",
+      "fn4_scope": "関連29methods PASS。元L7 normalをempty成功又は意味完成へ変更せず、R71/R72の独立typed反例と各誤発火controlを閉じる。",
+      "modules": "新規/変更7moduleは非空14〜337行、700未満。fn1/fn6公開wrapperはmain分割後の値を保持。"
     }
   }
 }

@@ -488,11 +488,11 @@
       "L5 /source_return_contract/descriptor_target_dataflow/private_imports",
       "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core"
     ],
-    "implemented_scope": "現時点ではdecode-nullとproducer/Binding不適合のpartial Context境界だけ。別producer/Bindingは4条件それぞれ固有ID・knowledge_owner Backflow付き停止とし、空Comparisonへ補完しない。正常意味・7rule・carryは作業中。",
+    "implemented_scope": "decode-null、4条件のpartial Context停止、Claim0/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影を閉じる。7rule全域や通常oracle全入力の成立ではない。",
     "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
     "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。",
-    "projection": "null inputのみfn4 producer/input_binding=nullでaxes/findings空。別producer/Bindingはpartial枝ID付き停止とし原Contextを保持する。形不正もunclosed枝ID付き停止。public Contextへprivate frameを追加しない。",
-    "current_unclosed": "正規producer/同Bindingのformed ContextはF05/F06/unclosed/formed_contextとして停止する。normal_controlの対象3kind slot/実oracle/valueはL4 limits[1]の有限carry枝外であり、ここをemptyへ丸めない。7rule既存predicateの意味・将来typed witnessを削除するものではない。",
+    "projection": "nullのみempty Comparison。別producer/Bindingは固有partial ID/knowledge_owner Backflow。definition carryはcontext.definitions.axesの対象3軸を全値・原順保存。R71/R72は同subject/義務の独立typed対応後の明示相違だけを投影し、source witnessを元source順で保持。元Comparisonとnew walk Comparisonの全値同一性をgateにしない。",
+    "current_unclosed": "通常controlのOB subjectはdescriptor fact Refに対応せず、F05/F06/unclosed/formed_contextで停止。供給Claimはwalk/supplied_claim_ports、typed operation carrierはdefinition_meaning_operations_unclosed、非null NAとmulti-fact/pairは個別ID停止。R70/R73/R74のdisplay-only/generation-success/generic-defaultをRawValue key又はlogical selectorから型生成しない。",
     "prerequisite_gap": "Issue3547 comment6428183181によりcanonical walk/evaluation/target_reads/intent_reads/frame runtime接続はWR12に含む。新module各700非空行未満で実装し、fn1/fn6公開wrapperのwalk経由への付替えは後続別WR。fn1 Comparison逆算assessment、別call再read、局所B02型代用は禁止。kind/slotはWR18、F05 NEG01/02と非nullfinitecarryはWR18後の追補。",
     "authority_items": [
       {
@@ -532,7 +532,18 @@
       "preserved": "JSON→view一方向、説明と意味分離、unknown非成功、原局所不足/矛盾・義務とoracle traceの保持。",
       "changed": "旧lifecycle/整数版/式木を採らず既存Context3/Comparison4へ局所返却する。finite carryはL4自身が新AI技術選択と明記し、今回まだ成立させたとはしない。"
     },
-    "execution_state": "partial_context_green_full_FN4_in_progress",
-    "authority_effect": "none"
+    "execution_state": "root_verified_reachable_FN4_review_pending",
+    "authority_effect": "none",
+    "runtime_modules": [
+      "descriptor_definition_walk.py",
+      "descriptor_definition_normative.py",
+      "descriptor_definition_reads.py",
+      "descriptor_definition_pairs.py",
+      "descriptor_target_frame.py",
+      "oracle_binding_rules.py",
+      "oracle_view_boundary.py"
+    ],
+    "same_walk_detail": "判定点でassessmentとoriginを同時生成しevent handle→sort後indexへ一度対応付ける。全meaning readとsidecar、NA readとjudgment batch、single-fact pair返却をnative_material全7列へ保持。帰属/NAをdefinition支持へ混ぜない。Claim0に限るtarget/intent/uses空列は実出現0件によるもので未実装portの成功defaultではない。 root→固定kind順→原slot index順の訪問を保ち、input slotの順変更で原event順を変えない。semantic_jsonのdescriptor_display_groups供給又は非空/不正required_relations供給は未実装special port ID停止、required_relations=[]は原entry0件の実読取として保持。",
+    "normative_source": "L4 normative_basis_snapshot/acquisitionが許す固定15catalog private constructor。規範pinはRefへcastせず全DefinitionNormativeFrameに保存し、clock/fs/network/registry/latest/caller frameを使わない。"
   }
 }
