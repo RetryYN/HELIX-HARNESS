@@ -198,7 +198,7 @@
   },
   "fn3_identity_verification": {
     "id": "HELIXBRAIN-L7-032-FN3-IDENTITY-TRACE",
-    "scope": "L5 fn3 compare_identity_versions_and_traceを対象にする既存L8行のinventory。入力・期待・fixtureを追加せず、test codeは後続段階でL5/L4から独立導出する。",
+    "scope": "L5 fn3 compare_identity_versions_and_traceを対象にする既存L8行のinventoryと限定実装の観測。具体入力・独立部分期待はL7 test codeへ置き、L8/L9の全返却を答えに複製しない。",
     "source_revision": "6f9c669c80e79740d2bff20daab437b9afa400cd",
     "source_paths": {
       "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -251,7 +251,7 @@
       "pointer": "/fn3_identity_preparation"
     },
     "test_source": {
-      "revision": "0738cd3ea8b05721b1baf11861ae6b9f929f0538",
+      "revision": "f563a071cd22f900cf720e41cb09265bd9c78f7c",
       "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
       "class": "TestIdentityVersionsAndTrace",
       "methods": [
@@ -298,16 +298,33 @@
     },
     "unreached_true_predicates": [
       {
-        "id": "HELIXBRAIN-L8-032-F04-NEG-09",
-        "reason": "qualified異template identity二候補の原入力証拠を未形成。現testはunknown/原Ref保持/無根拠R66非生成のみ。"
-      },
-      {
         "id": "HELIXBRAIN-L8-032-F04-NEG-10",
         "reason": "qualified原template実版0.1.0-seed-candidateのactual入力carrier根拠を未形成。現testはunknown/原Ref保持/無根拠R67非生成のみ。"
       }
     ],
     "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
-    "execution_state": "red_observed_implementation_pending",
+    "execution_observation": {
+      "source_revision": "8f62c2fcf4d416214f1f617932ec2dc27829f210",
+      "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+      "test_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
+      "test_groups": [
+        {"path":"test_identity_versions_and_trace.py","revision":"f563a071cd22f900cf720e41cb09265bd9c78f7c","tests":28},
+        {"path":"test_identity_contract_regressions.py","revision":"ded2aa6cf48eaf8fc8aa0a6158b0defb0e9e3036","tests":12},
+        {"path":"test_identity_filename_claim.py","revision":"c5b18f8ad65829ea9328d5454f37f147e261ca60","tests":2},
+        {"path":"test_identity_projection_boundaries.py","revision":"0dcca662971ed3eff76ff2043fb4a6948068a281","tests":4},
+        {"path":"test_identity_public_writer.py","revision":"e2ff2a85d5a63f2ec21e5dc09fc8c79fdf23bf45","tests":4},
+        {"path":"test_identity_scope_axis_order.py","revision":"a3b9130f81b4b6ecf6c661a5e98bc842b69ac9b5","tests":1},
+        {"path":"test_identity_witness_reads.py","revision":"5f8498b3c088c33bd661ef074e97cac567e9546b","tests":2},
+        {"path":"test_identity_optional_ref_presence.py","revision":"68484b4658209228740eb28d1af750d41720f024","tests":2}
+      ],
+      "test_correction": "f563はrootが未定義のまま参照したFN3_BACKFLOW定数を1行定義したtest-only訂正。期待・入力・assertを変えず、正式未実装srcで28 testsのRedを再観測した（PR3709 comment6419200210）。",
+      "red_before_source_fix": "各追加testは先にtest-only commitへ固定し、旧候補srcで意味契約の失敗をrootが再現してからsrcを修正した。contract12、R66二候補、projection4、writer4、scope順1、witness2、optional Ref2。import/NameErrorをRed証拠へ代用しない。",
+      "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
+      "root_result": "fn3 55 tests PASS。既存N03 12 tests PASS。全unit 75 testsは73 PASS/2 errorsで、既存fn1 NEG02/NEG21のF02 required_kind_slot_mismatch停止。変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも同じ2 errorsを再現した。",
+      "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
+      "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。"
+    },
+    "execution_state": "scoped_implementation_observed_unreached_R67",
     "authority_effect": "none"
   }
 }
