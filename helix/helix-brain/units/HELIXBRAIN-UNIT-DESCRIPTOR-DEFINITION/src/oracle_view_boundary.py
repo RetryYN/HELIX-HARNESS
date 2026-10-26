@@ -1,9 +1,9 @@
-"""fn4のnull入力とpartial-context公開境界。意味判定は未実装。"""
+"""fn4のContext境界と一回walkからのprivate detail委譲。"""
 from __future__ import annotations
 
 
 def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, object]:
-    from descriptor_definitions import _binding_same, _comparison, _wire_binding_shape_ok
+    from descriptor_definitions import _binding_same, _wire_binding_shape_ok
 
     context_members = {"validated", "definitions", "identity_trace"}
     if not isinstance(context, dict) or set(context) != context_members:
@@ -40,18 +40,15 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
                 "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
             )
 
-    if raw is None:
-        return _comparison([], [], "compare_oracle_and_view_boundary", None)
-
-    binding = raw.get("binding")
-    if "binding" in raw and not _wire_binding_shape_ok(binding):
+    binding = raw.get("binding") if raw is not None else None
+    if raw is not None and "binding" in raw and not _wire_binding_shape_ok(binding):
         raise NotImplementedError(
             "F05/F06/unclosed/input_binding_shape; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
         )
 
     definitions = context["definitions"]
     identity_trace = context["identity_trace"]
-    partial_context_branches = (
+    partial_context_branches = () if raw is None else (
         (definitions["producer_symbol"] != "compare_descriptor_definitions",
          "definitions_producer"),
         (identity_trace["producer_symbol"] != "compare_identity_versions_and_trace",
@@ -68,6 +65,14 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
                 "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
             )
 
-    raise NotImplementedError(
-        "F05/F06/unclosed/formed_context; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
+    from descriptor_definition_walk import evaluate_descriptor_definition_walk
+    from descriptor_target_frame import build_descriptor_claim_uses
+    from oracle_binding_rules import compare_oracle_and_view_boundary_detail
+
+    walk = evaluate_descriptor_definition_walk({"validated": validated})
+    uses = build_descriptor_claim_uses(
+        validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
     )
+    frame = {"validated": validated, "definition_evaluation": walk["evaluation"],
+             "target_reads": walk["target_reads"], "claim_uses": uses}
+    return compare_oracle_and_view_boundary_detail(context, frame)
