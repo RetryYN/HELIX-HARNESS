@@ -1,0 +1,168 @@
+{
+  "document_id": "HELIXBRAIN-L7-032-F03-FN2-VALUES-APPLICABILITY",
+  "layer": "L7",
+  "parent": "HELIXBRAIN-L2-032",
+  "status": "candidate_verification_design_only",
+  "source_main": "5f6712254031a46ac0b621af02c76c1cdb45a78c",
+  "authority_effect": "none",
+  "scope": "F03（値と適用：Claim値表現・排他選択 rule 54..57、VF-3 #3695閉じ済み）の fn0→fn1→fn2（compare_values_and_applicability / _evaluate_field_values_detail）垂直スライス対検証設計。N03経路（#3701）の上にF03凍結済みcase（F03-NEG-01..04、ADD-11、ADD-12、VF3-F03-CLAIMS、F03-DETAIL-SAME-WALK、function_oracles/2 F03部分）と非発火対照・経路外停止境界を記録する。L8/L9の全fixture/whole/hash/COPYを再保存しない。",
+  "target_l8_rows": [
+    {
+      "id": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/function_oracles/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "role": "normal_path_and_f03_partial_oracle"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-NEG-01",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/4/negative_cases/0",
+      "system_oracle_pointer": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "rule_ref": "HELIXBRAIN-L5-032-R-unknown_as_na",
+      "expected_axis": "field.value",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-NEG-02",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/4/negative_cases/1",
+      "system_oracle_pointer": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "rule_ref": "HELIXBRAIN-L5-032-R-definition_as_value_gap",
+      "expected_axis": "field.definition",
+      "expected_state": "missing",
+      "backflow_owner": "knowledge_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-NEG-03",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/4/negative_cases/2",
+      "system_oracle_pointer": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "rule_ref": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
+      "expected_axis": "applicability.evaluation",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-NEG-04",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/4/negative_cases/3",
+      "system_oracle_pointer": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "rule_ref": "HELIXBRAIN-L5-032-R-section_na_all_fields",
+      "expected_axis": "field.applicability",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-11",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/10",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "expected_axis": "field.applicability",
+      "expected_state": "unknown",
+      "role": "field-na-grounded-unmaterialized-source-locality"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-12",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/11",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "expected_axis": "field.value",
+      "expected_state": "unknown",
+      "role": "unknown-value-locality-unmaterialized-source"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/35",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "rule_ref": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
+      "expected_axis": "applicability.evaluation",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "role": "vf3-f03-claim-local-rule-selection"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-DETAIL-SAME-WALK",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/field_value_applicability_detail_verification",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "role": "same_walk_private_detail_and_seven_contrasts"
+    }
+  ],
+  "upstream_design_refs": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "pointers": [
+        "/field_value_applicability_contract/closed_types",
+        "/field_value_applicability_contract/carrier_contracts",
+        "/field_value_applicability_contract/functions",
+        "/field_value_applicability_contract/finite_branch_contract",
+        "/field_value_applicability_contract/reason_writer",
+        "/field_value_applicability_contract/projection_order",
+        "/field_value_applicability_contract/field_definition_precedence",
+        "/field_value_applicability_contract/field_definition_cause_table",
+        "/field_value_applicability_contract/field_definition_judgment_writer",
+        "/definition_meaning_resolution_contract/normative_basis_snapshot"
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointers": [
+        "/functions/2",
+        "/failure_rules/54",
+        "/failure_rules/55",
+        "/failure_rules/56",
+        "/failure_rules/57",
+        "/field_value_applicability_detail/private_reader_bindings",
+        "/field_value_applicability_detail/claim_protocol"
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "pointers": [
+        "/field_value_applicability_verification"
+      ]
+    }
+  ],
+  "test_binding": {
+    "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_f03_values_and_applicability.py",
+    "implementation_module": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability_reads.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability_rows.py"
+    ],
+    "minimal_reexport_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "backflow_id": "HELIXBRAIN-L6-032-F03-FN2-PATH"
+  },
+  "partial_oracle_and_stop_boundary": {
+    "partial_oracle_ja": "各caseが指定する公開Comparison（carry2軸と対象F03 AxisResultの7member: subject_ref/binding/axis/state/original_refs/reason/backflow_owner、Findingの9member: code/rule_ref/subject_ref/binding/axis/state/source_refs/reason/backflow_owner、producer_symbol、input_binding）と、private _evaluate_field_values_detail が返す F03Evaluation の L4/L5 closed_types スキーマ・member名完全一致、row.axis_indices と Comparison.axes のcarry offset込み1対1対応、L4 reason_writer (problem_reason_table[branch] + \"\\n\" + canonical_json(reason_material)) 完全一致、original_refs の各分岐導出順序（definition_empty: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref] / definition_unknown: [field.ref, descriptor_slot_ref, knowledge_ref] / definition_known: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref, fact.ref, fact.source_ref, op_source_ref, operation_ref, ...basis_refs] / applicability_null・field_unknown(null): [knowledge_ref] / parent_na_no_transfer・applicability_*・field_*(resolved): [app_rec.ref, knowledge_ref, app_rec.source_ref] / value_*(resolved): [val_rec.ref, knowledge_ref, val_rec.source_ref] の原出現順保持）、および入力不変性をassertする。L8/L9のwhole fixtureは複製しない。",
+    "claim_unrecognized_or_incomplete_protocol_ja": "L5#/field_value_applicability_detail/claim_protocol/unrecognized_or_incomplete_ja および target_match_ja に従い、F03対象Claimでbinding（frame）不一致、対象section_field不在、6必須member外・actor!=\"BRAIN\"・basis_refs非配列またはbasis_refs要素の非Ref形状、またはkind/proposed_valueがF03固定判定テーブルの対象外・未供給・型外・否定literalである場合はNotImplementedErrorとせず、0 finding・Claim保持・原軸不変をassertする（N03経路のoperation_deadline/resource_capacity/reference_fixture境界停止およびClaim非object停止は維持する）。",
+    "unclosed_stop_branches": [
+      "F03/context_or_input_shape: evaluate_field_values_detailのcontext/snapshot/definitions閉形状または必須root配列（binding/values/section_fields/claims）欠落・非配列経路",
+      "F03/applicability_records_absent_or_shape: raw入力のapplicability_records欠落または非配列経路",
+      "F03/carrier_or_source_record_shape: F03対象semantic sourceまたはcarrier container/entry（SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/KnowledgeRecord/MeaningComparison/DescriptorSlot/Claim）の欠落・型・形状・Ref型・ValueFact value/origin組合せ不整合またはunusable source経路",
+      "F03/duplicate_conflicting_carrier_records: 同一Refで本文またはframeが異なる複数SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/AttributionまたはClaim.subject_refに対する複数section_fields一致のconflict経路",
+      "F03/meaning_comparison_pair_read: owner解決済みSectionFieldの非空meaning_fact_refsにmeaning_comparisonsの関連pairが参加する経路",
+      "F03/meaning_operation_shape: definition_meaning_operationsの要素形状・同一factに対する引数/normative_frame不整合・decision.reason/raw_semantic_basis型・basis_refs Ref配列・非positive判定の未閉鎖経路",
+      "F03/na_incomplete_branch: ApplicabilityRecord.decision=not_applicableでowner/reason/reentry_conditionのいずれかがnullまたは未供給、またはdecision不正値の経路（fieldおよびparent_sectionの両経路）",
+      "F03/value_applicability_supplied: ValueFact.applicability_refがnon-nullで解決されるvalue_na専用評価経路",
+      "F03/empty_value_fact_refs_non_empty_owner: owner解決済み・定義knownまたはApplicabilityRecord.decision=applicable解決済みのSectionFieldでvalue_fact_refsが空配列の未閉鎖経路"
+    ]
+  },
+  "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
+  "execution_state": "green_verified",
+  "execution_evidence": {
+    "test_commit": "9c01de0181b8b07033d8dfa8135bb07e22017e69",
+    "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability",
+    "red_result": "R2 Red (501cb22762835b7292b7bc747ced95e295247daa against 0dce2697d0): FAILED (failures=33, errors=12) — R2-M1 project_owner origin check, R2-M2 container absence/type checks, R2-M3 rule 54..57 precondition negatives, R2-M4 independent L4 reason_material check, R2-M5 unclosed F03 stop branches & claim frame non-firing, R2-m1 owner-resolved meaning_fact_refs null/type -> definition_unknown, R2-m2 target_read resolved problems & source_unattributed, R2-m3 other-fact meaning operations & basis_refs/raw_semantic_basis checks, R2-m6 VF3 L8 exact C claim & multi-claim ordering, R2-i1 null owner handling all fail against 0dce2697d0（R2-m4 helper placement・R2-m5 L7 implementation_module list は静的確認（test 非対象））. R3 Red (eae04f47aceb1f3c6dd920cc8c01061d679834fa against bdad36d50385038440b24d7509aede06800796fd): FAILED (failures=6, errors=10) — R3-M1 non-Ref descriptor_slot_ref stop, R3-m1 frame-first claim matching & removal of claim_shape_or_actor stop, R3-m2 non-dict meaning_comparisons / parent applicability_records stops, R3-m3 non-null value with absent/reference_fixture origin -> value_unknown, R3-m4 target_unknown / selected_fact_unresolved / attribution_unknown / meaning_read_unresolved -> definition_unknown, R3-m5 unified backflow_owner resolution fail against bdad36d503; R3-M2 basis_refs=[{}]/[None] non-firing claims, R3-M3 parent not_applicable missing owner/reason/reentry_condition stops, R3-m6 rule 55/57 negative proposed_value checks は被覆追加（Red 前から pass）（R3-m7 execution_evidence 整合は静的確認（test 非対象））. R4 Red (9c01de0181b8b07033d8dfa8135bb07e22017e69 against 32cedbdd1f88c773600dace6fb76cb1ae11b4704): FAILED (failures=8) — R4-M1 ValueFact/ApplicabilityRecord ref & source_ref _ref_shape_ok checks (field & parent) and R4-m1 SectionField applicability_ref / value_fact_refs / parent_section_ref _ref_shape_ok checks all fail against 32cedbdd1f（R4-m2 L7 execution_state/execution_evidence 更新は静的確認（test 非対象））.",
+    "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
+    "green_result": "Ran 39 tests in 3.504s — OK (8 F03 tests including R4-M1/R4-m1 regression subTests + 31 existing unit tests all pass without regression)."
+  },
+  "completion_boundary": "fn0→fn1→fn2のF03/N03垂直スライス限定検証であり、F01/F02全域・value_na・meaning_comparisons pair・製品CI・Accepted・releaseを成立させない。"
+}

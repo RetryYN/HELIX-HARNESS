@@ -37,15 +37,27 @@ class Cases(unittest.TestCase):
             (wt / "linked-dir").symlink_to(outside, target_is_directory=True)
         for p in [wt, *wt.rglob("*")]: os.utime(p, (self.old, self.old), follow_symlinks=False)
         gd = WR.git_dir(wt)
-        for p in [gd / "HEAD", gd / "index", gd / "logs" / "HEAD"]:
+        for p in [gd / "HEAD", gd / "index"]:
             if p.exists(): os.utime(p, (self.old, self.old), follow_symlinks=False)
+        self.set_last_touch(wt, self.old)
         return wt
 
-    def set_last_touch(self, wt, timestamp):
+    def set_last_touch(self, wt, timestamp, log_mtime=None):
         for p in [wt, *wt.rglob("*")]: os.utime(p, (timestamp, timestamp), follow_symlinks=False)
         gd = WR.git_dir(wt)
-        for p in (gd / "HEAD", gd / "logs" / "HEAD"):
-            if p.exists(): os.utime(p, (timestamp, timestamp), follow_symlinks=False)
+        if (gd / "HEAD").exists(): os.utime(gd / "HEAD", (timestamp, timestamp), follow_symlinks=False)
+        log = gd / "logs" / "HEAD"
+        if log.exists():
+            lines = [l for l in log.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip()]
+            if lines:
+                head, sep, tail = lines[-1].partition("\t")
+                parts = head.split()
+                if len(parts) >= 2 and parts[-2].isdigit():
+                    parts[-2] = str(int(timestamp))
+                    lines[-1] = " ".join(parts) + (sep + tail if sep else "")
+                    log.write_text("\n".join(lines) + "\n", encoding="utf-8")
+            m = timestamp if log_mtime is None else log_mtime
+            os.utime(log, (m, m), follow_symlinks=False)
 
     def invoke(self, *args, prs=None):
         out = io.StringIO()
@@ -102,6 +114,35 @@ class Cases(unittest.TestCase):
         self.assertEqual(over_row["age_days"], 7.0)
         self.assertEqual(over_row["reason"], "eligible")
         self.assertTrue(over_row["eligible"])
+
+    def test_reflog_mtime_rewrite_does_not_reset_stale_worktree_while_recent_reflog_entry_stays_fresh(self):
+        self.now = 1_000_000.0
+        self.old = self.now - 9 * WR.DAY
+        rewritten = self.old_wt("gc-rewritten", "gc-rewritten-branch")
+        recent_entry = self.old_wt("recent-entry", "recent-entry-branch")
+        # Simulate git gc / reflog expire rewriting logs/HEAD mtime to now while last reflog entry remains old (9 days ago).
+        self.set_last_touch(rewritten, self.old, log_mtime=self.now)
+        # Contrast: worktree files and HEAD mtime are old, but the last entry in logs/HEAD is recent (1 day ago).
+        self.set_last_touch(recent_entry, self.old, log_mtime=self.old)
+        log = WR.git_dir(recent_entry) / "logs" / "HEAD"
+        lines = log.read_text(encoding="utf-8").splitlines()
+        head, sep, tail = lines[-1].partition("\t")
+        parts = head.split()
+        parts[-2] = str(int(self.now - WR.DAY))
+        lines[-1] = " ".join(parts) + (sep + tail if sep else "")
+        log.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        os.utime(log, (self.old, self.old), follow_symlinks=False)
+
+        code, report = self.invoke()
+        self.assertEqual(code, 0)
+        rewritten_row = self.got(report, rewritten)
+        recent_row = self.got(report, recent_entry)
+        self.assertEqual(rewritten_row["reason"], "eligible")
+        self.assertTrue(rewritten_row.get("eligible", False))
+        self.assertEqual(rewritten_row["age_days"], 9.0)
+        self.assertEqual(recent_row["reason"], "fresh")
+        self.assertFalse(recent_row.get("eligible", False))
+        self.assertEqual(recent_row["age_days"], 1.0)
 
     def test_directory_link_is_fail_closed(self):
         wt = self.old_wt("linked", "linked-branch", link=True)
