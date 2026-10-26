@@ -14,9 +14,9 @@ issue: #3510 (comment 6386473748 / 6386507513 / 6405275048)
   - LEGACY-ASSET-504B2BF06DD84DBD7D97（旧 docs/design/helix/L3-requirements/worker-context-boundary-compiler.md:61-78,
     sha256=fd16ae604427dc7e64b34718ffc263a5993b34fe70e2806f8442a8688f57036c）
 - 保持する点（意味の再導出）：
-  - 対象argvをPOSIX専用process group（setsid / start_new_session=True）で起動し、無制限（<=0）のbudgetを拒否する。
+  - 対象argvをPOSIX専用process group（setsid）で起動し、無制限（<=0）のbudgetを拒否する。
   - timeout到達時および親プロセスが SIGINT/SIGTERM/SIGHUP を受けた時に、process group全体へ killpg(SIGTERM) を送り、
-    grace期間後に生存していれば killpg(SIGKILL) を送り、ESRCH でgroup消滅を確かめる。
+    grace期間後に生存していれば killpg(SIGKILL) を送り、ESRCH でgroup消滅を確かめる（呼出元が SIG_IGN にしているシグナルは上書きしない）。
   - direct childが期限内に終了した後も子孫プロセスがgroupに残る場合は tree_lingered として回収する。
   - 出力capture上限（max_output_bytes）を強制しつつ実観測byte数（stdout_bytes/stderr_bytes）とtruncatedを保持する。
   - 終了分類（timeout / signal / tree_lingered / reap_unconfirmed / spawn_failed / exit_nonzero / ok）を返し、
@@ -25,10 +25,16 @@ issue: #3510 (comment 6386473748 / 6386507513 / 6405275048)
   - 旧HELIXはNode/TSのprovider CLI wrapper専用であり、メモリ上限（LEGACY-ASSET-A6C0C0BA3581CE8CF874）も終了後の事後照合のみだった。
     現行4 GUIレーン運用で直接起動される一時解析 python3 スクリプト等の孤児化・実行中メモリ膨張（#3510 comment 6386473748）を防ぐため、
     Python標準ライブラリのみで汎用argvを起動できる共通補助具とし、Linuxでは PR_SET_CHILD_SUBREAPER と waitpid(-pgid, WNOHANG) を併用して
-    孤児化した孫ゾンビも自プロセスで回収し ESRCH を確実に確認する。
+    孤児化した孫ゾンビも自プロセスで回収し ESRCH を確実に確認する。さらに Linux では direct child に PR_SET_PDEATHSIG(SIGKILL) を設定し、
+    ラッパー自身が SIGKILL 等で突然死した場合でも direct child が残らないように緩和する。
 - 新規案1（旧HELIXに根拠なし）：
   - RLIMIT_AS（仮想メモリ上限）と RLIMIT_CPU（CPU時間上限）を既定値と引数で子プロセス起動時に設定する（HELIXSECURITY-L2-007 resource limitの仮組み）。
     既定値は仮組みの運転値であり、製品のgateや合格条件ではない。
+- 仮組みとしての構造上の限界（明記）：
+  - ラッパー自身が SIGKILL で強制終了された場合、Linux の PR_SET_PDEATHSIG(SIGKILL) により direct child は即座に SIGKILL されるが、
+    direct child が既に生んでいた孫プロセスには PR_SET_PDEATHSIG が継承されないためラッパーからの回収は行えない。
+  - 子孫プロセスが自ら setsid() / setpgid() を呼んで別セッション・別 process group へ逃避した場合は、killpg(pgid) と tree_lingered 検知の対象外となる。
+  - RLIMIT_AS / RLIMIT_CPU はカーネルの per-process 制限（子孫へ継承）であり、cgroup のようなプロセスツリー全体の合算上限ではない。
 """
 import argparse
 import atexit
@@ -59,8 +65,27 @@ SIGNAL_EXIT_CODES = {
     "SIGINT": 130,
     "SIGTERM": 143,
 }
+PR_SET_PDEATHSIG = 1
 PR_SET_CHILD_SUBREAPER = 36
 PR_GET_CHILD_SUBREAPER = 37
+
+
+def _get_linux_libc():
+    if not sys.platform.startswith("linux"):
+        return None
+    try:
+        libc = ctypes.CDLL(None)
+        libc.prctl.argtypes = [
+            ctypes.c_int,
+            ctypes.c_ulong,
+            ctypes.c_ulong,
+            ctypes.c_ulong,
+            ctypes.c_ulong,
+        ]
+        libc.prctl.restype = ctypes.c_int
+        return libc
+    except Exception:
+        return None
 
 
 def assert_supported_platform(platform_name=None, has_killpg=None):
@@ -102,12 +127,13 @@ def validate_bounds(
 
 
 def _configure_subreaper(enable):
-    if not sys.platform.startswith("linux"):
+    libc = _get_linux_libc()
+    if libc is None:
         return None
     try:
-        libc = ctypes.CDLL(None)
         prev = ctypes.c_int(0)
-        if libc.prctl(PR_GET_CHILD_SUBREAPER, ctypes.byref(prev), 0, 0, 0) != 0:
+        ptr = ctypes.cast(ctypes.byref(prev), ctypes.c_void_p).value or 0
+        if libc.prctl(PR_GET_CHILD_SUBREAPER, ptr, 0, 0, 0) != 0:
             return None
         if libc.prctl(PR_SET_CHILD_SUBREAPER, 1 if enable else 0, 0, 0, 0) != 0:
             return None
@@ -172,9 +198,18 @@ def effective_rlimits(rlimit_as_bytes, rlimit_cpu_seconds):
     )
 
 
-def _make_preexec(as_bytes, cpu_seconds):
+def _make_preexec(as_bytes, cpu_seconds, parent_pid):
+    libc = _get_linux_libc()
+
     def _apply():
         os.setsid()
+        if libc is not None:
+            try:
+                libc.prctl(PR_SET_PDEATHSIG, signal.SIGKILL, 0, 0, 0)
+                if os.getppid() != parent_pid:
+                    os.kill(os.getpid(), signal.SIGKILL)
+            except Exception:
+                pass
         resource.setrlimit(resource.RLIMIT_AS, (as_bytes, as_bytes))
         resource.setrlimit(resource.RLIMIT_CPU, (cpu_seconds, cpu_seconds))
 
@@ -331,78 +366,78 @@ def run_bounded(
     except Exception as exc:
         return _finalize(None, None, False, False, None, "none", True, None, [str(exc)])
 
-    prev_subreaper = _configure_subreaper(True)
     errors = []
-    try:
-        child = subprocess.Popen(
-            [str(x) for x in argv],
-            cwd=cwd,
-            env=env,
-            stdin=subprocess.PIPE if stdin_data is not None else subprocess.DEVNULL,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            shell=False,
-            preexec_fn=_make_preexec(applied_as, applied_cpu),
-        )
-    except Exception as exc:
-        if prev_subreaper is not None:
-            _configure_subreaper(bool(prev_subreaper))
-        return _finalize(None, None, False, False, None, "none", True, None, [str(exc)])
+    interrupted = [None]
+    previous_handlers = {}
 
-    pgid = child.pid
-    if stdin_data is not None and child.stdin is not None:
-        try:
-            raw_in = stdin_data.encode("utf-8") if isinstance(stdin_data, str) else bytes(stdin_data)
-            child.stdin.write(raw_in)
-        except OSError:
-            pass
-        finally:
+    def _on_signal(signum, _frame):
+        if interrupted[0] is None:
             try:
-                child.stdin.close()
+                interrupted[0] = signal.Signals(signum).name
+            except ValueError:
+                interrupted[0] = f"SIG{signum}"
+
+    # m1 / m3: Popenより前にシグナルハンドラを登録してPopen直後の窓を塞ぎ、呼出元のSIG_IGNは上書きしない。
+    for sig in FORWARDED_SIGNALS:
+        try:
+            old_handler = signal.getsignal(sig)
+            if old_handler == signal.SIG_IGN:
+                continue
+            signal.signal(sig, _on_signal)
+            previous_handlers[sig] = old_handler
+        except (ValueError, OSError) as err:
+            errors.append(f"signal_handler_registration_failed:{sig.name}:{err}")
+
+    def _restore_signal_handlers():
+        for sig, old_handler in previous_handlers.items():
+            try:
+                signal.signal(sig, old_handler)
+            except (ValueError, OSError) as err:
+                errors.append(f"signal_handler_restore_failed:{sig.name}:{err}")
+        previous_handlers.clear()
+
+    if errors or interrupted[0] is not None:
+        _restore_signal_handlers()
+        return _finalize(None, None, False, False, interrupted[0], "none", True, None, errors)
+
+    prev_subreaper = _configure_subreaper(True)
+    parent_pid = os.getpid()
+    raw_in = None
+    if stdin_data is not None:
+        raw_in = memoryview(stdin_data.encode("utf-8") if isinstance(stdin_data, str) else bytes(stdin_data))
+
+    pgid = None
+    reaped = False
+    atexit_active = [False]
+
+    def _exit_fence():
+        if atexit_active[0] and pgid is not None:
+            signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn)
+
+    selector = None
+    stream_map = {}
+    stdin_state = {"fd": None, "pipe": None, "offset": 0}
+
+    def _close_stdin():
+        fd = stdin_state["fd"]
+        pipe_obj = stdin_state["pipe"]
+        stdin_state["fd"] = None
+        stdin_state["pipe"] = None
+        if fd is not None and selector is not None:
+            try:
+                selector.unregister(fd)
+            except Exception:
+                pass
+        if pipe_obj is not None:
+            try:
+                pipe_obj.close()
             except OSError:
                 pass
 
-    selector = selectors.DefaultSelector()
-    stream_map = {}
-    for name, pipe in (("stdout", child.stdout), ("stderr", child.stderr)):
-        if pipe is not None:
-            fd = pipe.fileno()
-            fl = fcntl.fcntl(fd, fcntl.F_GETFL)
-            fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
-            selector.register(fd, selectors.EVENT_READ, name)
-            stream_map[fd] = (name, pipe)
-
-    def _drain_pipes(wait_sec=0.0):
-        if not stream_map:
-            if wait_sec > 0:
-                time.sleep(wait_sec)
-            return
-        events = selector.select(timeout=max(0.0, wait_sec))
-        for key, _ in events:
-            fd = key.fd
-            stream_name = key.data
-            while True:
-                try:
-                    chunk = os.read(fd, 65536)
-                except BlockingIOError:
-                    break
-                except OSError:
-                    chunk = b""
-                if not chunk:
-                    try:
-                        selector.unregister(fd)
-                    except Exception:
-                        pass
-                    _, pipe_obj = stream_map.pop(fd, (None, None))
-                    if pipe_obj is not None:
-                        try:
-                            pipe_obj.close()
-                        except OSError:
-                            pass
-                    break
-                output.feed(stream_name, chunk)
-
     def _close_pipes():
+        _close_stdin()
+        if selector is None:
+            return
         for fd in list(stream_map):
             while True:
                 try:
@@ -427,38 +462,9 @@ def run_bounded(
         except Exception:
             pass
 
-    interrupted = [None]
-    previous_handlers = {}
-
-    def _on_signal(signum, _frame):
-        if interrupted[0] is None:
-            try:
-                interrupted[0] = signal.Signals(signum).name
-            except ValueError:
-                interrupted[0] = f"SIG{signum}"
-
-    for sig in FORWARDED_SIGNALS:
-        try:
-            previous_handlers[sig] = signal.getsignal(sig)
-            signal.signal(sig, _on_signal)
-        except (ValueError, OSError):
-            pass
-
-    atexit_active = [True]
-
-    def _exit_fence():
-        if atexit_active[0]:
-            signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn)
-
-    atexit.register(_exit_fence)
-
-    def _release_handlers(reaped):
-        for sig, old_handler in previous_handlers.items():
-            try:
-                signal.signal(sig, old_handler)
-            except (ValueError, OSError):
-                pass
-        if reaped:
+    def _release_handlers(is_reaped):
+        _restore_signal_handlers()
+        if is_reaped:
             atexit_active[0] = False
             try:
                 atexit.unregister(_exit_fence)
@@ -467,58 +473,183 @@ def run_bounded(
             if prev_subreaper is not None:
                 _configure_subreaper(bool(prev_subreaper))
 
-    child_rc = [None]
+    try:
+        try:
+            child = subprocess.Popen(
+                [str(x) for x in argv],
+                cwd=cwd,
+                env=env,
+                stdin=subprocess.PIPE if raw_in is not None else subprocess.DEVNULL,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                shell=False,
+                preexec_fn=_make_preexec(applied_as, applied_cpu, parent_pid),
+            )
+        except Exception as exc:
+            reaped = True
+            if prev_subreaper is not None:
+                _configure_subreaper(bool(prev_subreaper))
+            _restore_signal_handlers()
+            return _finalize(None, None, False, False, interrupted[0], "none", True, None, [str(exc)])
 
-    def _poll_child():
-        if child_rc[0] is None:
-            rc = child.poll()
-            if rc is not None:
-                child_rc[0] = rc
-        return child_rc[0] is not None
+        pgid = child.pid
+        atexit_active[0] = True
+        atexit.register(_exit_fence)
 
-    def _child_and_group_reaped(check_group):
-        if not _poll_child():
-            return False
-        if not check_group:
-            return True
-        return not process_group_alive(pgid, killpg_fn=killpg_fn)
+        selector = selectors.DefaultSelector()
+        for name, pipe in (("stdout", child.stdout), ("stderr", child.stderr)):
+            if pipe is not None:
+                fd = pipe.fileno()
+                fl = fcntl.fcntl(fd, fcntl.F_GETFL)
+                fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+                selector.register(fd, selectors.EVENT_READ, name)
+                stream_map[fd] = (name, pipe)
 
-    def _wait_until(check_group, deadline_ns, stop_on_interrupt=False):
-        while not _child_and_group_reaped(check_group):
-            if stop_on_interrupt and interrupted[0] is not None:
-                return "interrupted"
-            remaining_ns = deadline_ns - time.monotonic_ns()
-            if remaining_ns <= 0:
+        # M1: stdin_dataはO_NONBLOCK + EVENT_WRITEでselectorループ内（deadline/interrupt管理下）で書き込む。
+        if raw_in is not None and child.stdin is not None:
+            if len(raw_in) == 0:
+                try:
+                    child.stdin.close()
+                except OSError:
+                    pass
+            else:
+                sfd = child.stdin.fileno()
+                fl = fcntl.fcntl(sfd, fcntl.F_GETFL)
+                fcntl.fcntl(sfd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+                stdin_state["fd"] = sfd
+                stdin_state["pipe"] = child.stdin
+                stdin_state["offset"] = 0
+                selector.register(sfd, selectors.EVENT_WRITE, "stdin")
+
+        def _drain_pipes(wait_sec=0.0):
+            if not stream_map and stdin_state["fd"] is None:
+                if wait_sec > 0:
+                    time.sleep(wait_sec)
+                return
+            events = selector.select(timeout=max(0.0, wait_sec))
+            for key, _ in events:
+                fd = key.fd
+                stream_name = key.data
+                if stream_name == "stdin":
+                    while stdin_state["fd"] is not None:
+                        off = stdin_state["offset"]
+                        rem = len(raw_in) - off
+                        if rem <= 0:
+                            _close_stdin()
+                            break
+                        try:
+                            written = os.write(fd, raw_in[off : off + min(65536, rem)])
+                        except BlockingIOError:
+                            break
+                        except OSError:
+                            _close_stdin()
+                            break
+                        if written <= 0:
+                            _close_stdin()
+                            break
+                        stdin_state["offset"] = off + written
+                        if stdin_state["offset"] >= len(raw_in):
+                            _close_stdin()
+                            break
+                    continue
+
+                while True:
+                    try:
+                        chunk = os.read(fd, 65536)
+                    except BlockingIOError:
+                        break
+                    except OSError:
+                        chunk = b""
+                    if not chunk:
+                        try:
+                            selector.unregister(fd)
+                        except Exception:
+                            pass
+                        _, pipe_obj = stream_map.pop(fd, (None, None))
+                        if pipe_obj is not None:
+                            try:
+                                pipe_obj.close()
+                            except OSError:
+                                pass
+                        break
+                    output.feed(stream_name, chunk)
+
+        child_rc = [None]
+
+        def _poll_child():
+            if child_rc[0] is None:
+                rc = child.poll()
+                if rc is not None:
+                    child_rc[0] = rc
+                    _close_stdin()
+            return child_rc[0] is not None
+
+        def _child_and_group_reaped(check_group):
+            if not _poll_child():
                 return False
-            step_sec = min(REAP_POLL_MS / 1000.0, remaining_ns / 1_000_000_000.0)
-            _drain_pipes(wait_sec=max(0.001, step_sec))
-        _drain_pipes(wait_sec=0.0)
-        return True
+            if not check_group:
+                return True
+            return not process_group_alive(pgid, killpg_fn=killpg_fn)
 
-    def _decode_rc():
-        rc = child_rc[0]
-        if rc is None:
-            return None, None
-        if rc < 0:
-            try:
-                return None, signal.Signals(-rc).name
-            except ValueError:
-                return None, f"SIG{-rc}"
-        return int(rc), None
+        def _wait_until(check_group, deadline_ns, stop_on_interrupt=False):
+            while not _child_and_group_reaped(check_group):
+                if stop_on_interrupt and interrupted[0] is not None:
+                    return "interrupted"
+                remaining_ns = deadline_ns - time.monotonic_ns()
+                if remaining_ns <= 0:
+                    return False
+                step_sec = min(REAP_POLL_MS / 1000.0, remaining_ns / 1_000_000_000.0)
+                _drain_pipes(wait_sec=max(0.001, step_sec))
+            _drain_pipes(wait_sec=0.0)
+            return True
 
-    execution_deadline_ns = started_ns + timeout_ms * 1_000_000
-    first = _wait_until(check_group=False, deadline_ns=execution_deadline_ns, stop_on_interrupt=True)
+        def _decode_rc():
+            rc = child_rc[0]
+            if rc is None:
+                return None, None
+            if rc < 0:
+                try:
+                    return None, signal.Signals(-rc).name
+                except ValueError:
+                    return None, f"SIG{-rc}"
+            return int(rc), None
 
-    if first is True and interrupted[0] is None:
-        grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
-        reaped = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False) is True
-        if reaped:
-            _close_pipes()
-            _release_handlers(True)
-            status, sig_name = _decode_rc()
-            return _finalize(status, sig_name, False, False, None, "none", True, pgid, errors)
+        execution_deadline_ns = started_ns + timeout_ms * 1_000_000
+        first = _wait_until(check_group=False, deadline_ns=execution_deadline_ns, stop_on_interrupt=True)
 
-        # Direct child exited within deadline, but descendant processes lingered in the process group.
+        if first is True and interrupted[0] is None:
+            grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
+            grace_res = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=True)
+            reaped = grace_res is True
+            # m2: grace待ち中に親がシグナルを受けた場合もinterrupted[0]を結果に反映し、未回収なら段階停止へ進む。
+            if reaped:
+                _close_pipes()
+                _release_handlers(True)
+                status, sig_name = _decode_rc()
+                return _finalize(status, sig_name, False, False, interrupted[0], "none", True, pgid, errors)
+
+            if interrupted[0] is None:
+                # Direct child exited within deadline, but descendant processes lingered in the process group.
+                termination_stage = "term_sent"
+                errors.append(signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn))
+                grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
+                reaped = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False) is True
+                if not reaped and process_group_alive(pgid, killpg_fn=killpg_fn):
+                    termination_stage = "kill_sent"
+                    errors.append(signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn))
+                if not reaped:
+                    reap_deadline_ns = time.monotonic_ns() + reap_ms * 1_000_000
+                    reaped = _wait_until(check_group=True, deadline_ns=reap_deadline_ns, stop_on_interrupt=False) is True
+                if not reaped:
+                    errors.append("process_group_reap_timeout")
+                _close_pipes()
+                _release_handlers(reaped)
+                status, sig_name = _decode_rc()
+                return _finalize(status, sig_name, False, True, interrupted[0], termination_stage, reaped, pgid, errors)
+
+        timed_out = first is False and interrupted[0] is None
+        interrupted_by = interrupted[0]
+        _close_stdin()
         termination_stage = "term_sent"
         errors.append(signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn))
         grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
@@ -534,26 +665,14 @@ def run_bounded(
         _close_pipes()
         _release_handlers(reaped)
         status, sig_name = _decode_rc()
-        return _finalize(status, sig_name, False, True, None, termination_stage, reaped, pgid, errors)
-
-    timed_out = first is False and interrupted[0] is None
-    interrupted_by = interrupted[0]
-    termination_stage = "term_sent"
-    errors.append(signal_process_group(pgid, signal.SIGTERM, killpg_fn=killpg_fn))
-    grace_deadline_ns = time.monotonic_ns() + grace_ms * 1_000_000
-    reaped = _wait_until(check_group=True, deadline_ns=grace_deadline_ns, stop_on_interrupt=False) is True
-    if not reaped and process_group_alive(pgid, killpg_fn=killpg_fn):
-        termination_stage = "kill_sent"
-        errors.append(signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn))
-    if not reaped:
-        reap_deadline_ns = time.monotonic_ns() + reap_ms * 1_000_000
-        reaped = _wait_until(check_group=True, deadline_ns=reap_deadline_ns, stop_on_interrupt=False) is True
-    if not reaped:
-        errors.append("process_group_reap_timeout")
-    _close_pipes()
-    _release_handlers(reaped)
-    status, sig_name = _decode_rc()
-    return _finalize(status, sig_name, timed_out, False, interrupted_by, termination_stage, reaped, pgid, errors)
+        return _finalize(status, sig_name, timed_out, False, interrupted_by, termination_stage, reaped, pgid, errors)
+    finally:
+        # m1: 予期しない例外で抜ける場合でもprocess groupをSIGKILLし、ハンドラ・pipeを片付ける。
+        if pgid is not None and not reaped:
+            signal_process_group(pgid, signal.SIGKILL, killpg_fn=killpg_fn)
+            reap_process_group_zombies(pgid)
+        _close_pipes()
+        _restore_signal_handlers()
 
 
 def main(argv=None):

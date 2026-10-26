@@ -41,11 +41,11 @@
   ],
   "role": "helix-bounded-exec-and-gui-resource-diagnostics-scaffold",
   "obligations": [
-    "Python標準ライブラリだけで対象argvを専用process group（setsid）で起動し、無制限（<=0）のtimeout・resource limitを拒否する。",
-    "timeout到達時および親プロセスがSIGINT/SIGTERM/SIGHUPを受けたときに、process groupへkillpg(SIGTERM)、grace期間後にkillpg(SIGKILL)を送り、ESRCHでgroupの消滅を確かめる（LEGACY-ASSET-378CB2CCCD11F9A49502の意味の再導出）。",
+    "Python標準ライブラリだけで対象argvを専用process group（setsid）で起動し、無制限（<=0）のtimeout・resource limitを拒否する。Linuxではdirect childへPR_SET_PDEATHSIG(SIGKILL)を付与し、ラッパーSIGKILL時の孫プロセス非継承・子孫のsetsid逃避・RLIMITのper-process性の限界をdocstringとREADMEに明記する。",
+    "timeout到達時および親プロセスがSIGINT/SIGTERM/SIGHUPを受けたときに、process groupへkillpg(SIGTERM)、grace期間後にkillpg(SIGKILL)を送り、ESRCHでgroupの消滅を確かめる（LEGACY-ASSET-378CB2CCCD11F9A49502の意味の再導出。呼出元のSIG_IGNは上書きせず、stdin_dataはO_NONBLOCK+EVENT_WRITEでdeadline/interrupt管理下に置く）。",
     "direct childが期限内に終了した後も子孫プロセスがprocess groupに残る場合はtree_lingeredとして回収し、exit 0単独でtimeout・signal・tree_lingered・reap_unconfirmedを成功へ昇格しない。",
     "RLIMIT_AS（仮想メモリ上限）とRLIMIT_CPU（CPU時間上限）を既定値と引数で子プロセス起動時に設定し、出力上限（max_output_bytes）と実観測byte数・truncatedを記録する（新規案1）。",
-    "gui_mailbox.py statusで/proc/meminfoのMemAvailable/SwapFreeと、親のGUIセッションを失った長時間・高RSSのプロセスをread-onlyで表示し、自動killや他レーンのプロセス操作を行わず、閾値をgateや合格条件にしない（新規案2）。"
+    "gui_mailbox.py statusで/proc/meminfoのMemAvailable/SwapFreeと、親のGUIセッションを失った長時間・高RSSのプロセスをread-onlyで表示し（cmdlineはargv0 basenameとscript pathに絞り引数・tokenを伏せる）、自動killや他レーンのプロセス操作を行わず、閾値をgateや合格条件にしない（新規案2）。"
   ],
   "connections": {
     "consumers": [

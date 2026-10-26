@@ -1410,13 +1410,33 @@ class GuiChecks(unittest.TestCase):
             write_proc(proc_root, 100, "codex", 1, 100, 10_000, 120, 1024 * 1024, "codex --session s1")
             # 200: python3 attached to live GUI host 100 -> not orphan
             write_proc(proc_root, 200, "python3", 100, 200, 3_600, 500, 1024 * 1024, "python3 helper.py")
-            # 300: orphan python3 reparented to init (even with 'codex' in cmdline args)
-            write_proc(proc_root, 300, "python3", 1, 300, 39_600, 39_000, 7 * 1024 * 1024, "python3 span_scan.py --runtime codex")
-            # 301: orphan python3 whose parent PID 999 disappeared
-            write_proc(proc_root, 301, "python3", 999, 301, 1_200, 900, 1024 * 1024, "python3 lost_parent.py")
+            # 300: orphan python3 reparented to init (even with 'codex' and secret token in cmdline args)
+            write_proc(
+                proc_root,
+                300,
+                "python3",
+                1,
+                300,
+                39_600,
+                39_000,
+                7 * 1024 * 1024,
+                "/usr/bin/python3 -B tools/span_scan.py --runtime codex --token=SECRET_TOKEN_XYZ API_KEY=SUPER_SECRET",
+            )
+            # 301: orphan python3 whose parent PID 999 disappeared (with inline -c secret)
+            write_proc(
+                proc_root,
+                301,
+                "python3",
+                999,
+                301,
+                1_200,
+                900,
+                1024 * 1024,
+                "python3 -c import_secret_token_inline",
+            )
             # 303 + 302: detached shell subtree with no GUI ancestor
             write_proc(proc_root, 303, "sh", 1, 303, 1_500, 1, 4 * 1024, "sh -c python3")
-            write_proc(proc_root, 302, "python3", 303, 303, 1_500, 1_400, 800 * 1024, "python3 subshell_orphan.py")
+            write_proc(proc_root, 302, "python3", 303, 303, 1_500, 1_400, 800 * 1024, "python3 subshell_orphan.py --secret=HIDDEN123")
             # 400: short-lived small process -> below display thresholds
             write_proc(proc_root, 400, "python3", 1, 400, 10, 1, 32 * 1024, "python3 quick.py")
 
@@ -1443,13 +1463,18 @@ class GuiChecks(unittest.TestCase):
             self.assertEqual(diag["meminfo"]["swap_free_kb"], 524288)
             self.assertEqual(diag["meminfo"]["swap_free_bytes"], 524288 * 1024)
             self.assertEqual(
-                [(p["pid"], p["orphan_reason"]) for p in diag["orphan_processes"]],
+                [(p["pid"], p["orphan_reason"], p["cmdline"]) for p in diag["orphan_processes"]],
                 [
-                    (300, "reparented_to_init"),
-                    (301, "parent_missing"),
-                    (302, "no_gui_session_ancestor"),
+                    (300, "reparented_to_init", "python3 tools/span_scan.py"),
+                    (301, "parent_missing", "python3 -c <redacted>"),
+                    (302, "no_gui_session_ancestor", "python3 subshell_orphan.py"),
                 ],
             )
+            serialized = json.dumps(diag)
+            self.assertNotIn("SECRET_TOKEN_XYZ", serialized)
+            self.assertNotIn("SUPER_SECRET", serialized)
+            self.assertNotIn("import_secret_token_inline", serialized)
+            self.assertNotIn("HIDDEN123", serialized)
 
             missing_diag = g.resource_diagnostics(proc_root=Path(directory) / "nonexistent")
             self.assertEqual(missing_diag["meminfo"]["status"], "unavailable")

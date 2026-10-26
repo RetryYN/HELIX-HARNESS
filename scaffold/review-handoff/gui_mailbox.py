@@ -718,6 +718,40 @@ def _sysconf_positive(name, default):
         return default
 
 
+def _summarize_cmdline(raw_bytes, comm):
+    """m5: 引数中のtoken・秘密情報等をcontextへ出さないよう、argv0のbasenameとscript pathだけに絞る。"""
+    raw_text = raw_bytes.decode("utf-8", "replace").strip("\x00 ")
+    if not raw_text:
+        return comm, comm.lower(), False
+    tokens = [t for t in raw_text.split("\x00") if t] if "\x00" in raw_text else raw_text.split()
+    if not tokens:
+        return comm, comm.lower(), False
+    argv0_name = Path(tokens[0]).name or comm
+    argv0_lower = argv0_name.lower()
+    has_gui_marker = any(any(marker in tok for marker in GUI_HOST_NODE_MARKERS) for tok in tokens[:3])
+    script_part = None
+    if argv0_lower.startswith(("python", "pypy", "node", "bash", "sh", "ruby", "perl")):
+        i = 1
+        while i < len(tokens):
+            tok = tokens[i]
+            if tok in ("-B", "-u", "-S", "-E", "-O", "-OO", "-I", "-s", "-v", "-q"):
+                i += 1
+                continue
+            if tok in ("-c", "-e"):
+                script_part = f"{tok} <redacted>"
+                break
+            if tok == "-m":
+                mod = tokens[i + 1] if (i + 1 < len(tokens) and not tokens[i + 1].startswith("-") and "=" not in tokens[i + 1]) else "<redacted>"
+                script_part = f"-m {Path(mod).name[:64]}"
+                break
+            if tok.startswith("-") or "=" in tok or ":" in tok:
+                break
+            script_part = tok[:120]
+            break
+    summary = f"{argv0_name} {script_part}" if script_part else argv0_name
+    return summary, argv0_lower, has_gui_marker
+
+
 def _read_proc_entry(proc_dir, uptime_seconds, clk_tck, page_size):
     stat_text = (proc_dir / "stat").read_text(encoding="utf-8", errors="replace")
     open_paren = stat_text.find("(")
@@ -744,11 +778,9 @@ def _read_proc_entry(proc_dir, uptime_seconds, clk_tck, page_size):
                 break
     except OSError:
         pass
-    cmdline = comm
+    cmdline, argv0_lower, has_gui_marker = comm, comm.lower(), False
     try:
-        raw_cmd = (proc_dir / "cmdline").read_bytes().replace(b"\x00", b" ").decode("utf-8", "replace").strip()
-        if raw_cmd:
-            cmdline = raw_cmd[:200]
+        cmdline, argv0_lower, has_gui_marker = _summarize_cmdline((proc_dir / "cmdline").read_bytes(), comm)
     except OSError:
         pass
     age_seconds = max(0.0, uptime_seconds - (starttime_ticks / float(clk_tck)))
@@ -760,6 +792,8 @@ def _read_proc_entry(proc_dir, uptime_seconds, clk_tck, page_size):
         state=state_code,
         comm=comm,
         cmdline=cmdline,
+        argv0_lower=argv0_lower,
+        has_gui_marker=has_gui_marker,
         starttime=str(starttime_ticks),
         age_seconds=round(age_seconds, 3),
         cpu_seconds=round(cpu_seconds, 3),
@@ -771,8 +805,7 @@ def _is_gui_session_host(entry, enrolled_identities):
     if (entry["pid"], entry["starttime"]) in enrolled_identities:
         return True
     comm_lower = entry["comm"].lower()
-    first_token = entry["cmdline"].split()[0] if entry["cmdline"].strip() else comm_lower
-    argv0_name = Path(first_token).name.lower()
+    argv0_name = entry.get("argv0_lower") or comm_lower
     if comm_lower.startswith("python") or argv0_name.startswith("python"):
         return False
     if (
@@ -782,9 +815,7 @@ def _is_gui_session_host(entry, enrolled_identities):
         or argv0_name.startswith("language_server")
     ):
         return True
-    if (comm_lower == "node" or argv0_name == "node") and any(
-        marker in entry["cmdline"] for marker in GUI_HOST_NODE_MARKERS
-    ):
+    if (comm_lower == "node" or argv0_name == "node") and entry.get("has_gui_marker"):
         return True
     return False
 
