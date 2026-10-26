@@ -64,8 +64,8 @@
       "pointer": "/additional_unit_cases/10",
       "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
       "expected_axis": "field.applicability",
-      "expected_state": "not_applicable",
-      "role": "field-na-grounded"
+      "expected_state": "unknown",
+      "role": "field-na-grounded-unmaterialized-source-locality"
     },
     {
       "id": "HELIXBRAIN-L8-032-ADD-12",
@@ -74,7 +74,7 @@
       "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
       "expected_axis": "field.value",
       "expected_state": "unknown",
-      "role": "unknown-value-locality"
+      "role": "unknown-value-locality-unmaterialized-source"
     },
     {
       "id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
@@ -122,6 +122,12 @@
         "/field_value_applicability_detail/private_reader_bindings",
         "/field_value_applicability_detail/claim_protocol"
       ]
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "pointers": [
+        "/field_value_applicability_verification"
+      ]
     }
   ],
   "test_binding": {
@@ -131,15 +137,18 @@
     "backflow_id": "HELIXBRAIN-L6-032-F03-FN2-PATH"
   },
   "partial_oracle_and_stop_boundary": {
-    "partial_oracle_ja": "各caseが指定する公開Comparison（carry2軸と対象F03 AxisResultのsubject_ref/binding/axis/state/original_refs/reason/backflow_owner、Findingのcode/rule_ref/subject_ref/binding/axis/state/source_refs/reason/backflow_owner）と、private _evaluate_field_values_detail が返す F03Evaluation の L4/L5 closed_types スキーマ・member名完全一致、および入力不変性をassertする。L8/L9のwhole fixtureは複製しない。",
+    "partial_oracle_ja": "各caseが指定する公開Comparison（carry2軸と対象F03 AxisResultの7member: subject_ref/binding/axis/state/original_refs/reason/backflow_owner、Findingの9member: code/rule_ref/subject_ref/binding/axis/state/source_refs/reason/backflow_owner、producer_symbol、input_binding）と、private _evaluate_field_values_detail が返す F03Evaluation の L4/L5 closed_types スキーマ・member名完全一致、row.axis_indices と Comparison.axes のcarry offset込み1対1対応、L4 reason_writer (problem_reason_table[branch] + \"\\n\" + canonical_json(reason_material)) 完全一致、original_refs の各分岐導出順序（definition_empty: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref] / definition_unknown: [field.ref, descriptor_slot_ref, knowledge_ref] / definition_known: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref, fact.ref, fact.source_ref, op_source_ref, operation_ref, ...basis_refs] / applicability_null・field_unknown(null): [knowledge_ref] / parent_na_no_transfer・applicability_*・field_*(resolved): [app_rec.ref, knowledge_ref, app_rec.source_ref] / value_*(resolved): [val_rec.ref, knowledge_ref, val_rec.source_ref] の初出順重複除去）、および入力不変性をassertする。L8/L9のwhole fixtureは複製しない。",
+    "claim_unrecognized_or_incomplete_protocol_ja": "L5#/field_value_applicability_detail/claim_protocol/unrecognized_or_incomplete_ja に従い、F03対象fieldに対するClaimでkindまたはproposed_valueがF03固定判定テーブルの対象外・未供給・型外・否定literalである場合はNotImplementedErrorとせず、0 finding・Claim保持・原軸不変をassertする（N03経路のoperation_deadline/resource_capacity/reference_fixture境界停止は維持する）。",
     "unclosed_stop_branches": [
-      "F03/claim_kind_unrecognized: F03/N03の固定対象kind以外のClaim.kind経路",
-      "F03/claim_proposed_value_invalid: F03対象Claim.kindで固定literal以外のproposed_value（null・型外・未定義文字列）経路",
+      "F03/applicability_records_absent_or_shape: raw入力のapplicability_records欠落または非配列経路",
+      "F03/carrier_or_source_record_shape: F03対象semantic sourceまたはcarrier container/entryの型・形状不整合またはunusable source経路",
+      "F03/duplicate_conflicting_carrier_records: 同一Refで本文またはframeが異なる複数SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/Attributionのconflict経路",
       "F03/meaning_fact_refs_shape: owner解決済みSectionFieldのmeaning_fact_refsがnullまたは非Ref要素を含む経路",
-      "F03/meaning_comparison_pair_read: F03 field definition読取にmeaning_comparisonsの関連pairが参加する経路",
-      "F03/na_incomplete_branch: ApplicabilityRecord.decision=not_applicableでowner/reason/reentry_conditionのいずれかがnullまたは未供給の経路",
-      "F03/value_applicability_supplied: ValueFact.applicability_refがnon-nullで供給されるvalue_na専用評価経路",
-      "F03/duplicate_conflicting_carrier_records: 同一Refで本文が異なる複数SectionField/ValueFact/ApplicabilityRecordのconflict経路"
+      "F03/meaning_comparison_pair_read: owner解決済みSectionFieldの非空meaning_fact_refsにmeaning_comparisonsの関連pairが参加する経路",
+      "F03/meaning_operation_shape: definition_meaning_operationsの要素形状・decision.reason/raw_semantic_basis文字列型・basis_refs Ref配列・normative_frame整合・非positive判定の未閉鎖経路",
+      "F03/na_incomplete_branch: ApplicabilityRecord.decision=not_applicableでowner/reason/reentry_conditionのいずれかがnullまたは未供給、またはdecision不正値の経路",
+      "F03/value_applicability_supplied: ValueFact.applicability_refがnon-nullで解決されるvalue_na専用評価経路",
+      "F03/empty_value_fact_refs_non_empty_owner: owner解決済み・非owner_empty・非N/A・非applicability_unknownのSectionFieldでvalue_fact_refsが空配列の未閉鎖経路"
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
