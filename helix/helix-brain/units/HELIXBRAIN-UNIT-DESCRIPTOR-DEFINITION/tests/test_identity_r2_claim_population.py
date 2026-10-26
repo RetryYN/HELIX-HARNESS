@@ -157,6 +157,27 @@ class TestIdentityR2ClaimPopulation(unittest.TestCase):
                                   for row in self._trace_rows(result)], expected_traces)
                 self.assertTrue(all(row["state"] == "unknown" for row in self._trace_rows(result)))
 
+    def test_absent_knowledge_records_keeps_unknown_traces_and_original_presence(self):
+        """L4 same_call partial入力はKB列欠落でも形成済みslot/fact readを消さない。"""
+        raw = normal_input()
+        del raw["knowledge_records"]
+        result = self._call(raw)
+        rows = self._trace_rows(result)
+        self.assertEqual(len(rows), 15)
+        for row in rows:
+            self.assertEqual(row["state"], "unknown")
+            prefix, separator, encoded = row["reason"].partition("\n")
+            self.assertEqual((prefix, separator), ("knowledge_unresolved", "\n"))
+            material = json.loads(encoded)
+            self.assertEqual(material["cause"], "knowledge_unresolved")
+            self.assertEqual(material["knowledge_record_indices"], [])
+            self.assertEqual(material["source_indices"], [])
+        operational = next(row for row in result["axes"] if row["axis"] == "knowledge.operational_state")
+        material = json.loads(operational["reason"].partition("\n")[2])
+        self.assertEqual(material["original_read"], {"presence": "absent"})
+        self.assertFalse(any(row["code"] == "source_missing" for row in result["findings"]))
+        self.assertNotIn("knowledge_records", raw)
+
     def test_absent_claims_means_no_explicit_identity_claim(self):
         raw = normal_input()
         del raw["claims"]

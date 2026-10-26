@@ -59,6 +59,7 @@ class TestIdentityR2Compatibility(unittest.TestCase):
             "owner_decision_differs": "conflict",
             "owner_subject_unresolved": "unknown",
             "owner_decision_unresolved": "unknown",
+            "owner_counterpart_unresolved": "unknown",
         }
         for row in material["owner_observations"]:
             self.assertEqual(row["target_scope_relation"], "same")
@@ -135,9 +136,9 @@ class TestIdentityR2Compatibility(unittest.TestCase):
         raw = bilateral_input("positive")
         record, _left, right = self._record_and_owners(raw)
         raw["sources"].remove(right)
-        # The exact local cause for the remaining left observation is under review:
-        # L4 requires the declared counterpart to be resolved to an actual source.
-        cases.append(("right owner source unprovided", "right_owner_unprovided", "unknown", None, raw))
+        # L4 left counterpart link needs an actual right source, not just equal Ref values.
+        cases.append(("right owner source unprovided", "right_owner_unprovided", "unknown",
+                      [("left", "owner_counterpart_unresolved")], raw))
 
         for label, pair_cause, state, owner_causes, raw_case in cases:
             with self.subTest(branch=label):

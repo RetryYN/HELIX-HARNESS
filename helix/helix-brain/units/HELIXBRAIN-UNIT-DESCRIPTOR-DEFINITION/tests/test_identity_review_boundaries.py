@@ -191,9 +191,6 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
 
 
     def test_m6_unsupported_identity_shapes_stop_with_F04_N01_backflow(self):
-        missing_records = trace_input("positive")
-        missing_records.pop("knowledge_records")
-
         distinct_records = trace_input("equal_records")
         distinct_records["knowledge_records"][1]["operational_state"] = "synthetic-distinct-state"
 
@@ -217,7 +214,6 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
         null_provenance["knowledge_records"][0]["provenance_refs"] = None
 
         cases = (
-            (missing_records, "unclosed/knowledge_records_absent"),
             (distinct_records, "unclosed/distinct_knowledge_records"),
             (multiple_range_sources, "unclosed/multiple_finding_range_sources/right"),
             (unsupported_claim, "unclosed/identity_claim/basis_role"),
