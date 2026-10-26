@@ -97,6 +97,7 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         )
 
     def test_range_artifact_value_outside_local_schema_is_not_projected(self):
+        """WR05の型外artifact causes public写像は未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
@@ -118,6 +119,7 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         self._call_unformed_range(raw, "F04-NEG-10/local-RangeDeclaration value type")
 
     def test_non_outside_owner_relation_is_not_two_owner_range_evidence(self):
+        """WR05のowner relation不一致 causes public写像は未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
@@ -137,6 +139,7 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         self._call_unformed_range(raw, "RangeOwnerDeclaration relation const")
 
     def test_oracle_revision_without_subject_or_obligation_link_does_not_emit_R63(self):
+        """L4/L5のR63対象結合がないtyped inputは通常Comparisonを返し、Findingを出さない。"""
         cases = ("obligation identity differs", "subject target is absent")
         for case_id in cases:
             with self.subTest(case_id=case_id):
@@ -154,19 +157,18 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
                 self.assertEqual(validated["input"], raw_before)
                 self.assertEqual(validated["input_issues"], [])
                 validated_before = copy.deepcopy(validated)
-                try:
-                    result = compare_identity_versions_and_trace({"validated": validated})
-                except NotImplementedError as exc:
-                    self.assertTrue("F04/" in str(exc) or "N01/" in str(exc))
-                    self.assertIn(FN3_BACKFLOW, str(exc))
-                else:
-                    self.assertEqual(raw, raw_before)
-                    self.assertEqual(validated, validated_before)
-                    self.assertEqual(result["input_binding"], raw_before["binding"])
-                    self.assertFalse(any(
-                        row["code"] == "oracle_revision_mismatch"
-                        for row in result["findings"]
-                    ), case_id)
+                result = compare_identity_versions_and_trace({"validated": validated})
+                self.assertEqual(raw, raw_before)
+                self.assertEqual(validated, validated_before)
+                self.assertEqual(result["producer_symbol"], "compare_identity_versions_and_trace")
+                self.assertEqual(set(result), {"axes", "findings", "producer_symbol", "input_binding"})
+                self.assertIsInstance(result["axes"], list)
+                self.assertIsInstance(result["findings"], list)
+                self.assertEqual(result["input_binding"], raw_before["binding"])
+                self.assertFalse(any(
+                    row["code"] == "oracle_revision_mismatch"
+                    for row in result["findings"]
+                ), case_id)
 
 
 if __name__ == "__main__":

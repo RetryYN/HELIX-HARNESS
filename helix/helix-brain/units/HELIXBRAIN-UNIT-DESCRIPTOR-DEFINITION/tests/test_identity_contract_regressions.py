@@ -85,6 +85,23 @@ class TestIdentityContractRegressions(unittest.TestCase):
                 for row in result["axes"]
             ), case_id)
 
+    def _assert_compatibility_unknown(self, raw, case_id):
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertIsNotNone(validated["input"], case_id)
+        self.assertEqual(validated["input"], raw_before, case_id)
+        self.assertEqual(validated["input_issues"], [], case_id)
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertEqual(raw, raw_before, case_id)
+        self.assertEqual(validated, validated_before, case_id)
+        compatibility = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertTrue(compatibility, case_id)
+        self.assertTrue(all(row["state"] == "unknown" for row in compatibility), case_id)
+        self.assertFalse(any(
+            row["code"] == "compatibility_mismatch" for row in result["findings"]
+        ), case_id)
+
     def test_normal_actual_axis_order_and_operand_origins(self):
         raw = normal_input()
         result = self._call(raw)
@@ -246,6 +263,7 @@ class TestIdentityContractRegressions(unittest.TestCase):
         self.assertFalse(any(row["axis"] == "descriptor.trace" for row in result["findings"]))
 
     def test_source_without_matching_descriptor_fact_body_does_not_resolve_trace(self):
+        """L4 traceはqualified sourceにbody対応がなければbody_unresolved unknownを返す。"""
         raw = trace_input("positive")
         source = raw["sources"][0]
         old_ref = copy.deepcopy(source["ref"])
@@ -263,18 +281,15 @@ class TestIdentityContractRegressions(unittest.TestCase):
             copy.deepcopy(new_ref) if ref == old_ref else ref
             for ref in record["provenance_refs"]
         ]
-        try:
-            result = self._call(raw)
-        except NotImplementedError as exc:
-            self.assertTrue("F04" in str(exc) or "N01" in str(exc))
-            self.assertIn(FN3_BACKFLOW, str(exc))
-        else:
-            trace = next(row for row in result["axes"] if row["axis"] == "descriptor.trace")
-            self.assertEqual(trace["state"], "unknown")
-            _prefix, material = self._material(trace)
-            self.assertIn(material.get("cause"), {"body_unresolved", "source_unresolved", "qualification_unresolved"})
+        result = self._call(raw)
+        trace = next(row for row in result["axes"] if row["axis"] == "descriptor.trace")
+        self.assertEqual(trace["state"], "unknown")
+        prefix, material = self._material(trace)
+        self.assertEqual(prefix, "body_unresolved")
+        self.assertEqual(material["cause"], "body_unresolved")
 
     def test_left_endpoint_ref_mismatch_cannot_make_bilateral_owner_success(self):
+        """L4 endpoint対応未成立はunknownで、qualified outsideのR62は成立しない。"""
         raw = bilateral_input("positive")
         record = raw["compatibility_records"][0]
         left = next(
@@ -286,9 +301,10 @@ class TestIdentityContractRegressions(unittest.TestCase):
         body["endpoint_owner_declaration"]["endpoint_ref"] = copy.deepcopy(record["right_ref"])
         self.assertEqual(body["compatible_refs"], [record["left_ref"], record["right_ref"]])
         _write_source_content(raw, left, body)
-        self._assert_unknown_or_fn3_stop(raw, "C3/left_endpoint_ref_mismatch")
+        self._assert_compatibility_unknown(raw, "C3/left_endpoint_ref_mismatch")
 
     def test_right_boolean_outside_without_range_declaration_cannot_make_R62(self):
+        """RangeDeclaration未形成の原因→public写像はWR05で未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
@@ -327,23 +343,20 @@ class TestIdentityContractRegressions(unittest.TestCase):
         self.assertIn(raw["sources"][0]["ref"], raw["claims"][-1]["basis_refs"])
 
     def test_fn3_does_not_turn_missing_fn0_unusable_source_disposition_into_success(self):
+        """L4 same-call ValidatedSupply境界では必須disposition欠落をFN3の識別停止にする。"""
         raw = bilateral_input("positive")
         validated = validate_supply_input(raw)
         self.assertIsNotNone(validated["input"])
         self.assertIn("unusable_source_refs", validated)
         invalid_validated = copy.deepcopy(validated)
         del invalid_validated["unusable_source_refs"]
-        try:
-            result = compare_identity_versions_and_trace({"validated": invalid_validated})
-        except NotImplementedError as exc:
-            self.assertTrue("F04" in str(exc) or "N01" in str(exc))
-            self.assertIn(FN3_BACKFLOW, str(exc))
-        else:
-            self.assertFalse(any(
-                row["axis"] in {"compatibility", "descriptor.trace"}
-                and row["state"] == "resolved"
-                for row in result["axes"]
-            ))
+        invalid_before = copy.deepcopy(invalid_validated)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_identity_versions_and_trace({"validated": invalid_validated})
+        self.assertIn("F04/N01/unusable_source_refs", str(caught.exception))
+        self.assertIn(FN3_BACKFLOW, str(caught.exception))
+        self.assertEqual(invalid_validated, invalid_before)
+        self.assertEqual(validated["input"], raw)
 
     def test_known_mismatched_knowledge_hashes_do_not_join_through_null_binding_sha(self):
         raw = trace_input("positive")
