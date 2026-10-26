@@ -225,14 +225,18 @@
     "contract_sources": [
       "L4 template-semantic-supply.json /oracle_view_boundary_contract/same_call",
       "L4 /oracle_view_boundary_contract/partial_context_projection",
-      "L5 template-semantic-supply.json /functions/4"
+      "L5 template-semantic-supply.json /functions/4",
+      "L5 /source_return_contract/descriptor_target_dataflow/index_types",
+      "L5 /source_return_contract/descriptor_target_dataflow/transport_types",
+      "L5 /source_return_contract/descriptor_target_dataflow/private_imports",
+      "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core"
     ],
     "implemented_scope": "現時点ではdecode-nullとproducer/Binding不適合のpartial Context境界だけ。別producer/Bindingは4条件それぞれ固有ID・knowledge_owner Backflow付き停止とし、空Comparisonへ補完しない。正常意味・7rule・carryは作業中。",
     "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
     "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。",
     "projection": "null inputのみfn4 producer/input_binding=nullでaxes/findings空。別producer/Bindingはpartial枝ID付き停止とし原Contextを保持する。形不正もunclosed枝ID付き停止。public Contextへprivate frameを追加しない。",
     "current_unclosed": "正規producer/同Bindingのformed ContextはF05/F06/unclosed/formed_contextとして停止する。normal_controlの対象3kind slot/実oracle/valueはL4 limits[1]の有限carry枝外であり、ここをemptyへ丸めない。7rule既存predicateの意味・将来typed witnessを削除するものではない。",
-    "prerequisite_gap": "Issue3547 comment6427761585に従いfn1固定15kind guardのF05 NEG01/02はWR17後の別前提WR待ち。WR12は他の到達可能predicate/finite carryを継続する。現unitに未実装のcanonical walk/evaluation/target_reads/frame接続の担当範囲はPR3719 comment6428081749へ照会し、擬似assessment/別call代替を置かない。",
+    "prerequisite_gap": "Issue3547 comment6428183181によりcanonical walk/evaluation/target_reads/intent_reads/frame runtime接続はWR12に含む。新module各700非空行未満で実装し、fn1/fn6公開wrapperのwalk経由への付替えは後続別WR。fn1 Comparison逆算assessment、別call再read、局所B02型代用は禁止。kind/slotはWR18、F05 NEG01/02と非nullfinitecarryはWR18後の追補。",
     "authority_items": [
       {
         "path": "docs/helix-brain/L3-requirements/functional-requirements.json",

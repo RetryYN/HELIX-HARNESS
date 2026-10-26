@@ -801,7 +801,7 @@
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",
-    "source_revision": "9b8e98f8a",
+    "source_revision": "9b8e98f8aef50c01d46720fc42c8f70fa682bc81",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "test_sources": [
       {
@@ -900,6 +900,16 @@
       "actual_guard": "現fn1は承認15kind各1slot/nonempty facts必須。対象slot除去はF02/required_kind_slot_mismatch、empty factsはF02/descriptor_facts_absent_empty_or_wrong_type。",
       "state": "非null finite nonfireと現fn1の成功条件は両立しない。F05 NEG01/02と同様の別前提待ち。null pathと同一視せず、手作りComparisonを置かない。",
       "carry_source": "carry全値はcontext.definitions.axes。複写自体はframe不要だが公開wrapper全体のsame-call/frame成立を別途要する。"
+    },
+    "review_R2": {
+      "head": "e2905a24b2172d45df3089bddd293a23ecc55032",
+      "review_comment": 6428229674,
+      "control_comment": 6428183181,
+      "result": "no_findingsはWIP R1修正範囲のみ。FN4完成/Ready/mergeではない。",
+      "response": "root-fn4-3719-review-response-R2.json:original request一致/packet check/inspect照合後ACK。",
+      "reviewer_mutations": "19件のうち18KILLED、1surviveはvalidated非dictguard除去のほぼ等価枝。追加mandatory findingではない。",
+      "unit": "root212件208PASS、既知F02エラー2＋R71/R72未実装Red2。root15316ms/reaped/nontruncated。",
+      "next": "canonicalwalk/frameをtest-firstで接続してR71/R72Green。walk後でも到達不能なら実停止IDassertとL7理由に変更可。失敗テストをmainへ入れない。R70/R73/R74は既存transport carrierだけを使い、無いcarrierはID停止とL7記録。"
     }
   }
 }
