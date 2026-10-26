@@ -25,7 +25,7 @@
     },
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "48e78b6b19cbac7d450adb723b5eefd334d685439816eea9419ffe597b18f844",
+      "sha256": "11ac960bb99238c5321e86a910b80a5d72a53346c6e13a9aeaf0bfc32e76ddc1",
       "note": "GUIレーンの運転と通知、運用規則と機構への移管境界。本PRでは運用規則本文を変更しない。"
     },
     {
