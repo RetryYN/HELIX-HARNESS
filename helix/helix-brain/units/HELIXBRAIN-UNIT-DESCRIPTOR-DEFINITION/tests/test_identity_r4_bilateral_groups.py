@@ -160,7 +160,10 @@ class TestIdentityR4BilateralGroups(unittest.TestCase):
         for row in rows:
             _prefix, separator, encoded = row["reason"].partition("\n")
             self.assertEqual(separator, "\n")
-            group_rows[tuple(json.loads(encoded).get("record_indices", []))] = row
+            material = json.loads(encoded)
+            indices = (material["record_indices"] if "record_indices" in material
+                       else [occurrence["record_index"] for occurrence in material["cause_occurrences"]])
+            group_rows[tuple(indices)] = row
 
         # The historical finite [resolved, conflict(outside)] projection applies only
         # to its exact two-read input (indices [0, 1]); inserting B makes this a
