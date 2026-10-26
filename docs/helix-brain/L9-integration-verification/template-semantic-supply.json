@@ -1435,7 +1435,22 @@
        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
        "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_qualification_repetition"
      }
-    }
+    },
+     {
+       "id": "HELIXBRAIN-L9-032-F04-ID-GENERAL-OCCURRENCE-CAUSE-WITNESS",
+       "change": "複数の実対応KnowledgeRecord/provenance/source/Qualification/root出現と、通常row外の既存F04/N01 predicate witnessを原index順で投影する局所性質。未形成の対応は作らない。",
+       "expected": "各traceのprefix Refは一度、各実chainのsuffix6 Refと9-key materialは原index順で保持し、同値参照を消さない。既存12 ruleは原predicate observation locator/subject/Binding/source refs/reason PresenceRawを保つ。既存readのcause/stateは保持し、既存同一対象groupの競合causeだけ派生unknownへ戻す。",
+       "backflow_owner": "knowledge_owner",
+       "expected_side_effect_count": 0,
+       "execution_state": "not_executed",
+       "l4_contract_ref": {
+         "revision": "ffd5c8436abac0b0327cb22859cdb74b2fedb639",
+         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+         "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/general_occurrence_cause_witness"
+       },
+       "scope_boundary_ja": "性質記述であり、新fixture・全caller実行・qualificationや新cause/Finding/gateを追加しない。対応未形成・一般群未形成は原readを保ち同Binding/revision/scopeでowner再入する。",
+       "legacy_comparison_ja": "4F5A/98372/A127の保持点との照合を維持し、旧runtime/schemaを再導入しない。"
+     }
    ],
    "execution_state": "not_executed",
    "identity_trace_verification_ref": "/identity_version_trace_verification"
