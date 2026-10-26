@@ -11853,9 +11853,9 @@
             }
           ],
           "observation_preservation": "これは当該有限例の代表cause選定順であり、原source/owner/Read材料の取得・保存を代表cause一語へ畳む指示ではない。各元branchの全原観測を保持する。",
-          "unexercised": "19causeのうち上記5以外の競合順はL9 finite_branch_coverageへ未行使として明示する。未観測causeをnull/positive/owner不足へ正規化しない。"
+          "unexercised": "上記5つの有限cause precedenceにない原因競合のaggregateはgeneral_occurrence_cause_witness/cause_competition_jaへ接続する。原cause/state/readは配列出現ごと保持し、未観測causeをnull/positive/owner不足へ正規化しない。"
         },
-        "finite_multiple_record_boundary": "本7期待の最終case（C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE）では、同じ対象subject/fullframe及び同向き明示pairに対応する原record index0/1を個別に保持する。BilateralCompatibilityReadは原順でpositive/resolvedとoutside/conflictの二wholeを返し、両原source/owner/Q/rootと各reasonを残す。この有限入力の既存compatibility一軸はconflictで、原record_indices=[0,1]/record_states=[resolved,conflict]をreasonに保持する。Findingはqualified outsideの既存compatibility_mismatch predicateに対応する一件だけで、新aggregate codeを作らない。この観測から別record/別subject/別frameを無条件に一軸へ併合する一般規則を導出せず、一般multiple-recordの形成・順序・集約は未行使/未閉包へ残す。"
+        "finite_multiple_record_boundary": "本7期待の最終case（C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE）では、同じ対象subject/fullframe及び同向き明示pairに対応する原record index0/1を個別に保持する。BilateralCompatibilityReadは原順でpositive/resolvedとoutside/conflictの二wholeを返し、両原source/owner/Q/rootと各reasonを残す。この有限入力の既存compatibility一軸はconflictで、原record_indices=[0,1]/record_states=[resolved,conflict]をreasonに保持する。Findingはqualified outsideの既存compatibility_mismatch predicateに対応する一件だけで、新aggregate codeを作らない。同じ既存predicateの対象pair/full Bindingへ原full Ref/frame/pair対応が成立し、明記済みsingle/有限規則が代表causeを定めない原因競合はpublic_projection/axis_reason_writer/general_occurrence_cause_witness/cause_competition_jaへ接続する。異pair・対応未形成を併合せず原readとowner再入に残す。"
       },
       "trace": "既存原trace比較及びsource_statesを維持。元source/Q/root/provenance不足は該当trace unknown、版/対象frame既知差・原相反はconflict。現7 fixtureのtrace15は全原対応であり他14を停止しない。",
       "membership": [
@@ -12098,7 +12098,7 @@
         },
         "refs_order": {
           "actual": "原subject Ref。knowledge.identity/revisionでは対応する原KnowledgeRecord.refを続け、knowledge.operational_stateでは当該原record.provenance_refsを原順で続ける。その後、実ActualOperandRead.observations原順ごとにsource.ref、source.qualification_ref、対応Qualification.ref、原root Ref全値（roots[].original_read.value自身）、owner_declaration_read.value.endpoint_refの各実Refを続ける。既存pack actual4軸の6Ref、knowledgeの2Ref/P15 state16Refという反復を保持する。",
-          "trace": "原fact.ref、fact.source_ref、原slot.binding.knowledge_ref、実対応KnowledgeRecord.ref、実provenance Ref、source.ref、source.qualification_ref、Qualification.ref、原root Ref全値（roots[].original_read.value自身）の順。保存対象の一原chainは9Refで、knowledge/source/Qの同値反復を消さない。template_refを先頭へ足さない。複数chainのglobal flatten順は下記未閉包境界に従う。",
+          "trace": "実在し型適合するfact.ref、fact.source_ref、slot.binding.knowledge_refを各trace readの共通prefixとして一度置く。absent/null/型外は原readに残しRefを作らない。実対応した各KnowledgeRecord/provenance/source/Qualification/root chainの既存6 Ref suffixをrecord→provenance→source→Q→rootの原index順で連結し、同値Refも出現ごとに残す。単一chainは9 Ref、二chainならprefix3+suffix6×2。対応のない原出現をchainへ入れず、資格readの物理source/Q/root出現は複製しない。",
           "bilateral": "各原recordのref、left_ref、right_ref、非null source_refの順、続けて当該readが実際に使ったsourceの原index順にsource.ref、source.qualification_ref、Qualification.ref、原root Ref全値（roots[].original_read.value自身）。既存有限二record群ではこのrecord単位blockを原record順に連結し、両方のendpoint/同値Refを反復込みで残す。",
           "qualification_route": "当該readが実際に使ったSourceQualificationRead.source_indexとの対応だけ。qualifications/rootsは同SourceQualificationReadの元配列順と全原出現を保持。別sourceの成功Q/rootを代入しない。",
           "finding": "既存compatibility Findingは当該predicateの原readに実関与するsource witnessのRefだけ、元sources index順でsource_refsへ保持（片owner1件、source-null0件、両owner範囲外2件）。endpoint/knowledge/Q/root Refや無関係sourceを混ぜない。他ruleも既存predicateに実関与する原source Refだけを保持しAxis.original_refs全列を代入しない。",
@@ -12108,7 +12108,7 @@
         "bilateral_aggregation": {
           "one_record": "明示CompatibilityRecordの原record.left_ref/原Bindingと当該一readから一row。read.state/causeをそのまま保持する。明示record無しからpair/Axis/Findingを作らない。",
           "existing_finite_multiple": "read_branch_contracts/bilateral/finite_multiple_record_boundaryで既に定めた有限入力は二read/原record_indices=[0,1]/record_states=[resolved,conflict]を全値保持し、既存の一compatibility conflict軸とR62一件を維持する。この原例の全source/owner理由もreason素材へ保持する。 この記述は当該特定入力の既存出力を保存するもので、入力を分類/融合する一般規則ではない。新入力へこの一軸融合又はpair_group_index=0を適用する述語は本topicでは定めない。",
-          "unclosed_boundary": "上記有限例から一般record群のgroup key/集約state/競合優先順を導かない。一般multiple-recordの形成・順序・集約は既存同節の未行使/未閉包のままであり、本writerが全入力の一般集約を閉じたとは主張しない。",
+          "unclosed_boundary": "本節のfinite examplesは変更しない。一般の複数readを同群として投影する条件と、既存single/finite規則でaggregate代表が決まらない原因競合はgeneral_occurrence_cause_witness/cause_competition_jaに従う。full Ref/frame/pair/Bindingの対応が原値で成立しないreadは別々に保ち、新しいpair/group keyやwinnerを作らない。",
           "predicate": "独立片owner未供給等の既存R61、qualified両owner範囲外のR62が実成立する原recordだけがFinding根拠。集約stateだけからpredicateを生成しない。"
         },
         "finding_root": {
@@ -12125,7 +12125,7 @@
           ],
           "condition": "L5 functions/3の既存failure_rulesに属し、その既存predicateが同snapshot原材料で成立した出現だけ。以下はwriter対応表でありpredicateの意味/成立条件を追加しない。actual/trace unknown/conflictへの自動Findingなし。",
           "values": "code/rule_ref/axis/state/backflow_ownerは対応entryのliteral。subject_ref/bindingは当該原predicate witnessの対象全値、source_refsはrefs_order/finding、reasonは同witnessのreason_serialization。subject/Binding形成不能は原観測をprivateに保持しtyped Findingを捏造しない。",
-          "axis_binding": "通常rowと同原subject/Binding/axisへ対応する既存predicateはFindingをreadと別々に保持し、通常rowを複製しない。rule59はactual_operand_binding/rule59の同一template.version行state=missingとFinding一件だけ。R59 witnessは同read.request.member_locatorとoriginal_read、subjectは原/binding/template_ref、Bindingは原input.binding、source_refsは当該read.observationsに実関与する原source Ref列（無ければ[]）。他の通常rowを持たないruleのwitness/subject/Binding/refsはunclosed_projection_boundariesに残し、未定の原材料から公開rowを新設しない。typed公開rowを形成できない観測はprivateへ保持し、代替Ref/Bindingを作らない。"
+          "axis_binding": "通常rowと同原subject/Binding/axisへ対応する既存predicateはFindingをreadと別々に保持し、通常rowを複製しない。rule59はactual_operand_binding/rule59の同一template.version行state=missingとFinding一件だけ。R59 witnessは同read.request.member_locatorとoriginal_read、subjectは原/binding/template_ref、Bindingは原input.binding、source_refsは当該read.observationsに実関与する原source Ref列（無ければ[]）。既存12 ruleのwitness/subject/Binding/refsはgeneral_occurrence_cause_witness/finding_witness_tableに従う。typed公開rowを形成できない観測はprivateへ保持し、代替Ref/Bindingを作らない。"
         },
         "rule_mapping": [
           {
@@ -12252,12 +12252,19 @@
             "source_scope": "上記Refへ対応する同snapshot原source.ref.scope。本source-null例だけnull。",
             "target_scope": "原input.binding.template_ref.scope全値。"
           },
-          "finite_trace_boundary": "上記trace materialは保存対象の一record/provenance/source/Q/root原chainを記述する。先頭を選ぶ一般規則ではない。複数sourceのRef列をsource単位/列単位のどちらで束ねるかは一意に決まらず未行使・未閉包。",
+          "finite_trace_boundary": "一般の出現順・同値反復はaxis_reason_writer/general_occurrence_cause_witnessに従う。各chainは実対応index列だけからなり、非対応provenance/source/Q/rootや未形成memberを補わない。single chainの既存9-key reason/material、既存single reason bytes、private read/state/causeは不変。",
           "unexercised_actual": "表にないactual causeは既存finite_branch_orderの同cause.condition固定文をprefix、同actual_materialを使う技術選択。subject_unformedは既存construction guardでpublic row無し。read.state/causeを変更しない。",
           "unexercised_trace": "原対応以外のtrace causeはその原literalをprefixとする技術選択。materialの許可keyはcause、request、state、slot_presence、slot_is_null、fact_presence、fact_is_null、knowledge_record_indices、provenance_indices、source_indices、body_group_locatorsだけ。最初3値は同read、presenceは各slot_read/fact_read.presence、is_nullはsuppliedかつ原value=nullだけtrue。残る列は同readの原knowledge_records.index、provenance_refsの{knowledge_record_index,provenance_index}、source_indices、body_groups.locatorを各原順で保持する。原slot/fact/source bodyの全値はprivateに残しreasonへ複製しない。原対応chain indexを補完せずstate/causeを変えない。",
           "unexercised_finding": "既存compatibility以外のruleはそのL5 predicate固定文をprefix、materialは{code,rule_ref,predicate_observations}。observationsは同predicateが実関与した同snapshot原nodeの{locator,original_read}列、元配列添字順。新predicate/空の偽readを作らない。",
           "boundary": "既存7の固定文/material/Ref保存の規則化と、未行使branchの技術選択を区別する。raw/typed read全値はprivate返却にも保持し、公開reasonへ全raw bodyを複製しない。",
-          "unexercised_compatibility": "固定表にないcauseが単一BilateralCompatibilityReadから実返却されたとき、prefix=同cause原literal。materialの許可keyはcause、request、state、record_presence、record_is_null、owner_observationsのみ。最初3値は同readの値、record_presenceはrecord_read.presence、record_is_nullはsuppliedかつ原value=nullの場合だけtrue（他はfalseでpresenceと別保持）。owner_observationsは同owner_reads原順の{endpoint,source_index,target_scope_relation,state,cause}全列だけ。raw body/record全文はreasonへ複製せず既存private readへ保持する。これは局所serialization技術選択であり、cause競合順/正規化、新predicate/Finding又は一般multiple-record集約を定めない。"
+          "unexercised_compatibility": "固定表にないcauseが単一BilateralCompatibilityReadから実返却されたとき、prefix=同cause原literal。materialの許可keyはcause、request、state、record_presence、record_is_null、owner_observationsのみ。最初3値は同readの値、record_presenceはrecord_read.presence、record_is_nullはsuppliedかつ原value=nullの場合だけtrue（他はfalseでpresenceと別保持）。owner_observationsは同owner_reads原順の{endpoint,source_index,target_scope_relation,state,cause}全列だけ。raw body/record全文はreasonへ複製せず既存private readへ保持する。これは単一readの局所serialization選択である。同対象pair/full Bindingへ実対応した複数原readの原因競合はgeneral_occurrence_cause_witness/cause_competition_jaに従い、原対応のないgroup形成・cause正規化・新predicate/Findingは作らない。",
+          "general_cause_competition_material": {
+            "material_member_order": ["cause_occurrences"],
+            "cause_occurrence_member_order": ["cause", "record_index", "state"],
+            "source": "同じpredicateの対象pairとfull Bindingへ既存full Ref/frame/pair対応で実対応した複数原readに限定し、各readのrecord index順を保持する。",
+            "aggregate": "既存single/finite規則でaggregate代表が決まらない原因競合時だけ派生aggregateをunknown/knowledge_ownerとし、原bilateral_pairsと各cause/stateは不変。異pair/Binding/frame又は未対応readを併合しない。 reason prefixは当該既存L5 predicate固定文、materialはcause_occurrencesだけをmemberに持つobjectとし、既存diagnostic_json文法で直列化する。",
+            "boundary": "single read、明記済み有限cause precedence枝、既存finite resolved/conflict例、同じpredicate/対象pair/full Bindingへの原対応がないreadには適用しない。"
+          }
         },
         "legacy_rederivation": {
           "mode": "意味再導出とAI技術選択。既存legacy_rederivation/sourceの4F5A:16-92、98372:30-148、A127:65-101（UTW-014/020/021）を直接Readした。",
@@ -12295,11 +12302,11 @@
           "positive_scope_and_other": "既存7のpositive/scope causeからR61/R62を追加しない。その他causeと既存predicateの対応は未行使/未閉包で、cause/stateだけからFindingを作らない。"
         },
         "unclosed_projection_boundaries": {
-          "knowledge_records": "actual_operand_bindingの原左operand選択は記録済みだが、KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。既存一record例から先頭選択又は一般Ref集約を作らない。",
-          "qualification_routes": "複数Qualification/root対応の公開Ref列のinterleave/連結順は未行使/未閉包。SourceQualificationReadの原順/全出現保存とは区別し、保存対象の単一原chainだけを9Ref規則で記述する。",
+          "knowledge_records": "0/複数recordの対応出現順・trace refs/material/witnessはaxis_reason_writer/general_occurrence_cause_witnessに定める。full Ref等の既存対応が成立した各原出現だけを連結し、異なるrecordは全件、同値recordも各indexで保持する。未対応record、subject/Binding未形成、predicate witness不在から公開rowを作らず、原read/presenceを保持する。",
+          "qualification_routes": "複数Q/rootのRef flatten順はaxis_reason_writer/general_occurrence_cause_witnessの実chain順に定める。各readの実source_indexに属する原Q/root indexだけをchainへ含め、Q/rootの別source補完・直積は行わない。Qualification/root配列の物理原順と全出現は別のSourceQualificationReadにそのまま保つ。",
           "finding_range_source": "保存対象のrange_relationは当該原record.source_refへfull Ref対応する唯一の原source（右owner read.source_indexとも対応）のcontent.compatibility_range_declaration.relation。source-null例は宣言未供給/not_supplied。複数sourceが対応又は対応未形成の場合の選択は未閉包で、先頭/別sourceの宣言を補完しない。",
-          "rules_without_normal_row": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。既存predicateを変更せず、未定のwitness又は型未形成を空Ref/代替Bindingの公開rowで埋めない。原値/presence/private観測を保持する。",
-          "reason_material_presence": "保存対象の定型reason materialに必要な原memberのabsent/null/型外を一般にどう公開materialへ写すかは、各明記済みPresenceRaw/未行使single-read serialization以外は未閉包。保存対象の固定materialを架空null/indexで完成させない。"
+          "rules_without_normal_row": "L5 functions/3の既存12 ruleはaxis_reason_writer/general_occurrence_cause_witness/finding_witness_tableがlocator集合、subject、Binding、source Ref参加範囲、reason PresenceRawを定める。表にないpredicateや実readのない観測を追加せず、typed subject/Binding未形成時は原値/private readを保持して公開Findingを捏造しない。",
+          "reason_material_presence": "既存prefix/diagnostic_json文法とgeneral_occurrence_cause_witnessのtrace/cause materialに明示した範囲で原PresenceRaw・順序を保つ。reason_material_presenceは実predicate observationに由来する原readだけを使い、absent/null/型外・未形成値を架空null/indexで埋めない。その他の未行使single-read branchは原read保持のままとする。"
         },
         "finite_equal_knowledge_record_repetition": {
           "id": "HELIXBRAIN-L4-I1B-EQUAL-RECORDS",
@@ -12334,7 +12341,7 @@
           "qualification_occurrences_ja": "二chainは同じ物理source index s・Qualification index q・root index rを参照する。source_indicesは[s]を一度、body_groupsも同一物理groupの原出現を一度だけ保持する。trace suffixのRef再掲は物理source/Q/root出現を複製しない。",
           "plural_reason_material_ja": "本条件の複数trace reasonに限り、prefixは既存problem_reason_table.trace、materialはtrace_occurrences配列だけをmemberに持つobjectとする。配列要素は既存9-key trace_materialを各実対応chainのrecord index/provenance index順に保持し、diagnostic_json文法を使う。原indexを先頭へ丸めず、single chainの既存material・reason bytes、private read、state/causeは変えない。",
           "finding_unknown_and_reentry_ja": "同値複写だけから新predicate/Findingやwitnessを作らず、実predicateに関与する既存witnessだけを保持する。対応未成立/異版等は既存readと未閉包境界へ戻し、unknown/未完はknowledge_ownerへ戻す。原資料の供給・訂正後、同じBinding/revision/scopeの原readから再入する。",
-          "not_established_ja": "一般multi-record、distinct record、複数Q/rootのinterleave、未対応provenance、reason一般presence、一般Finding witness形成、全callerの意味は未閉包のまま。本条件だけが knowledge_records / qualification_routes および reason_serialization/finite_trace_boundary の一部を追加行使する。新qualification、cause、Finding、gateは設けない。",
+          "not_established_ja": "このfinite条件は全値同値の2 KnowledgeRecord・各1対応provenance・同一source/Q/rootを共有する限定例のままであり、実資格・source解決・Findingを追加しない。一般規則は実対応chainの出現順/反復だけを定め、candidateの資格やsource/Q/root対応を新たに形成しない。未形成join、未記録cause、全callerの閉包、L7実成立は依然主張しない。",
           "legacy_rederivation": {
             "preserved_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299のstable identityとunknown/N/A区別、LEGACY-ASSET-A127DEC3EEE6ED63CF17（UTW-014/020）のabsence・partial failure保持を照合根拠として残す。",
             "changed_ja": "旧template lifecycleやruntimeを移植せず、現行L4の原出現・PresenceRaw・Ref位置から二出現だけを選ぶ。",
@@ -12437,7 +12444,7 @@
             "changed_ja": "現在の有限raw PresenceRawとRef列からこのcaseだけを再導出する。",
             "reason_ja": "旧runtime/schema/registry/thresholdを製品動作や新gateとして移植しない。"
           },
-          "not_established_ja": "multi record/Q/root、一般cause競合、実owner/trust/provider、全caller/domain、L5L8詳細は後続。 このcaseは一般cause優先、複数record/Q/root、全caller、実資格、L5/L8詳細を成立させない。 chainのknowledge起点を先に評価する、この有限caseの技術選択であり、一般のtrace cause優先順位ではない。L4 unclosed_projection_boundaries/knowledge_recordsの一般0件/複数件形成は未閉包のまま、本P15 zero-record caseのknowledge_unresolvedだけを追加行使する。L9 finite_branch_coverageは既存7 whole/3 membership対象の列挙であり、本追加caseを含む全域網羅へ読み替えず、既存列挙を保持する。",
+          "not_established_ja": "本finite case自体はP15 supplied empty KnowledgeRecord一条件のみであり、実owner/trust/provider・資格・全caller/domain・L5/L8詳細を成立させない。knowledge起点先行とknowledge_unresolvedはこのcaseだけの選択で、一般cause優先順位ではない。一般の実対応chain出現順と12 rule witness範囲はaxis_reason_writer/general_occurrence_cause_witnessに従うが、そこにない対応/原因を生成しない。L9 finite_branch_coverageの既存7 whole/3 membership列挙を保ち、本caseや一般規則を全域網羅へ読み替えない。",
           "authority_effect": "none",
           "operation_effect": "none"
         },
@@ -12455,11 +12462,42 @@
           "reason_and_read_ja": "複数traceのreasonは既存problem_reason_table.trace prefixと既存diagnostic_json文法を使い、materialのtrace_occurrences配列に二つの実在9-key materialを原qualification index順で保持する。state、cause、private SourceQualificationRead、全原配列順は既存readのまま。",
           "qualification_boundary_ja": "二つのQualificationが等しいという値だけでfn0の資格成功、source選択、root選択、又はowner解決を生成しない。元SourceQualificationReadに既にある対応とread.causeのみを保持し、missing/unknown/conflictとbackflow ownerを既存契約どおりにする。",
           "finding_unknown_and_reentry_ja": "等値反復だけからFindingやwitnessを追加しない。原readのpredicateが成立したFindingは保持し、未完/unknownはknowledge_ownerへ戻す。原資料の供給・訂正後は同Binding・同revision・同scopeの原readから再評価し、旧immutable snapshotは書き換えない。",
-          "not_established_ja": "これは二つのexact-equal Qualification occurrenceとroot一つを持つ一traceだけの局所順序選択である。distinct Qualification、3件以上、複数root/source、別traceのinterleave、一般Ref flatten、cause競合、一般資格選択は未閉包のまま。",
+          "not_established_ja": "このfinite条件は同じSourceQualificationRead内のexact-equal Qualification二出現・root一出現の限定例のままであり、実資格/root/source選択を追加しない。一般規則は実対応したchainの出現順/反復を定めるが、distinct/3件以上の候補からのqualification/root選択・適格性やchain形成は定めない。実対応のないchain、未形成cause、全callerの閉包、L7実成立は依然主張しない。",
           "legacy_rederivation": {
             "preserved_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299のstable identityとunknown/N/A区別、LEGACY-ASSET-A127DEC3EEE6ED63CF17（UTW-014/020/021）のpartial observation保持を照合材料として残す。",
             "changed_ja": "旧lifecycle/runtimeを移植せず、現行L4の原Qualification occurrence順と既存trace materialをこの有限条件で連結する。",
             "reason_ja": "旧資料は原値・不明状態の保持を照合する材料であり、複数Qualificationの新資格判定やgateを導かない。"
+          },
+          "authority_effect": "none",
+          "operation_effect": "none"
+        },
+        "general_occurrence_cause_witness": {
+          "id": "HELIXBRAIN-L4-ID-GENERAL-OCCURRENCE-CAUSE-WITNESS",
+          "status": "fn3の既存出力へ接続する一般的な出現順・局所witness writer選択。製品reader/資格/実行は未確認。",
+          "trace_occurrence_order_ja": "同一IdentitySnapshotのslot/fact原順を外側に保ち、DescriptorTraceRead内の実対応chainだけをKnowledgeRecord index→provenance index→source index→qualification index→root indexの原index順で並べる。各リンクは既存read間で実際に対応付いた組のみをつなぎ、直積・別sourceのQ/root補完・未形成indexを作らない。KnowledgeRecord 0/複数、distinct、3件以上、複数source/Q/root/interleaveでも同じ原出現順規則を用い、同値の各出現を落とさない。",
+          "trace_refs_ja": "各DescriptorTraceReadの実在する共通prefix fact.ref→fact.source_ref→slot.binding.knowledge_refを一度置き、そのreadで実対応したchainごとにKnowledgeRecord.ref→対応provenance Ref→source.ref→source.qualification_ref→Qualification.ref→root Refの6 suffixを原index順で連結する。chainのないRef、未形成Ref、別sourceの資格を足さず、同値Refも出現ごと反復する。source_indices/body_groups/SourceQualificationReadの物理出現は実原出現のまま保ち、Ref列の再掲で複製しない。",
+          "trace_reason_ja": "単一chainは既存single reason/materialをそのまま保つ。複数chainを同一trace readが実際に返した場合だけ、既存diagnostic_json materialのtrace_occurrencesに既存9-key trace_materialをchainごとに同順で置く。0 chainや未形成memberは原PresenceRaw/causeと既存branch materialのまま保持し、index0/nullやchainを補って完成しない。",
+          "cause_competition_ja": "同じ既存predicateの対象pairとfull Bindingへ実対応する複数の原BilateralCompatibilityReadを一群とみなすのは、既存full Ref/frame/pair対応が原資料で成立する場合だけとする。既存single-read枝、有限cause precedenceの明記済み枝、finite [resolved, conflict]例のいずれもaggregate代表を定めない原因競合では、代表causeを選ばず派生aggregateだけunknown/knowledge_ownerとする。private bilateral_pairs各readのrecord index/state/causeは不変とし、Axis.reasonのdiagnostic_json cause_occurrences=[{record_index,cause,state}]へrecord index順・record内の既存観測順で保持し、同値causeも反復する。異pair、Binding/frame不一致又は対応未形成を同群にせず、各原readを保ちowner再入へ戻す。既存single-read reasonとfinite [resolved, conflict] compatibility軸/R62は変更しない。",
+          "finding_witness_table": [
+            {"rule_ref":"HELIXBRAIN-L5-032-R-source_missing","locators":"/binding/template_ref、述語が実際に読んだMeaningFact.source_ref、/sources配列のPresenceRaw","subject":"原 /binding/template_ref","binding":"原 /binding","source_refs":"当該predicateが実際に参照したtyped MeaningFact.source_ref等の原source Refを、参照元fact/memberの原locator順で保持する。source object不在でも原Refを落とさず、原source Ref自体が未形成のときだけ[]。欠落から新Refを作らない","reason_presence":"参照元source_refと/sources配列の原PresenceRawを別々に保持。source object不在を原Ref不在へ置換しない"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-version_missing","locators":"/binding/template_ref/revisionと、実際に読んだversion owner observation","subject":"/binding/template_ref","binding":"/binding","source_refs":"version述語に実参加したqualified source Refだけをsource_index順で保持","reason_presence":"revision/source observationのPresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-scope_missing","locators":"/binding/template_ref/scopeと、実際に関与したcandidate scope/Qualification.applicable_scope read","subject":"/binding/template_ref","binding":"/binding","source_refs":"scope述語に実参加したsource Refだけをsource_index順で保持","reason_presence":"各scope/memberのoriginal_read PresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-compatibility_unknown","locators":"/compatibility_records/{i}と実際に読んだ両endpoint owner observation","subject":"原CompatibilityRecord.left_ref","binding":"/binding","source_refs":"owner_readsの実source Refをsource_index順で保持","reason_presence":"record/source/ownerのoriginal_read PresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-compatibility_mismatch","locators":"/compatibility_records/{i}と実際にqualifiedされた両端の範囲外owner宣言","subject":"原CompatibilityRecord.left_ref","binding":"/binding","source_refs":"当該range predicateに参加した実 QualifiedSource.refだけをsource_index順で保持","reason_presence":"原record.reasonとowner observationを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-oracle_revision_mismatch","locators":"/oracle_bindings/{i}のsubject_ref/obligation_ref/oracle_refと実対応targetのbinding revision","subject":"同subject/scope対応がある場合だけOracleBinding.subject_ref","binding":"既存input/slot Binding。OracleBindingにbinding memberはない","source_refs":"oracle述語で実際に読んだsource Refだけ","reason_presence":"OracleBindingと対応observationのPresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-image_identity_inference","locators":"/claims/{i}のkind/proposed_value/basis_refsと実際に読んだimage evidence","subject":"原Claim.subject_ref","binding":"原Claim.binding","source_refs":"Claim/evidenceを通して実参加したsource Refだけ","reason_presence":"Claim/basis/owner observationのPresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-tool_node_identity_inference","locators":"/claims/{i}のkind/proposed_value/basis_refsと実際に読んだtool-node evidence","subject":"原Claim.subject_ref","binding":"原Claim.binding","source_refs":"Claim/evidenceを通して実参加したsource Refだけ","reason_presence":"Claimとversion-owner observationのPresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-filename_identity_join","locators":"/claims/{i}/basis_refsとそこから実際に参照した二候補のidentity/source observation","subject":"原Claim.subject_ref","binding":"原Claim.binding","source_refs":"当該二候補へ実対応した全source Refを原source_index順で保持。同値出現を消さない","reason_presence":"両identity/source observationとClaimのPresenceRawを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-version_target_as_actual","locators":"/claims/{i}; 原Claim.binding.version_target; 原Claim.binding.template_ref.revision","subject":"原Claim.subject_ref","binding":"原Claim.binding。version_targetをactualへ置換しない","source_refs":"actual template-version述語に実参加したsource Refだけ","reason_presence":"Claim、version_target、template revisionのPresenceRawを別々に保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-mixed_knowledge_revision","locators":"/descriptors/{slot}/facts/{fact}/binding/knowledge_ref/revisionと、/descriptors/{slot}/binding/knowledge_ref/revision・/binding/knowledge_ref/revisionとの比較","subject":"原fact.ref","binding":"原slot.binding","source_refs":"実対応したsource Refだけを原source_index順で保持","reason_presence":"slot/fact binding/knowledge ref/record/sourceのPresenceRawと原indexを保持"},
+            {"rule_ref":"HELIXBRAIN-L5-032-R-silent_supersession","locators":"/descriptors/{slot}/facts/{fact}/binding/knowledge_ref、同factのref/source_ref、実際に読んだ/relationsのPresenceRawと各原relationのfrom_ref/to_ref/kind","subject":"原fact.ref","binding":"原slot.binding","source_refs":"supersession述語に実参加したsource Refだけ","reason_presence":"fact/source旧新RefとrelationのPresenceRaw（absentを含む）を保持"}
+            ],
+          "finding_witness_ja": "L5 functions/3の既存12 predicateをrule_refと原read locator、対象subject/Binding、実参加source Ref、reason PresenceRawへ対応付ける。public code/axis/state/backflow_ownerは既存rule_mappingを使う。compatibility_unknown/mismatchは既存compatibility_finding_materialとR61/R62を維持し、rule59は既存axis_bindingの特則を維持する。これら以外の該当predicateは既存reason_serialization.unexercised_findingの{code,rule_ref,predicate_observations}を用い、同ruleの原順を保ち、新predicate/witnessを作らない。typed subject/Bindingを作れない出現はprivate原readに残し代替Ref/BindingのFindingを出さない。",
+          "scope_limitations_ja": "このwriterはfn3に渡す出現順、未定競合のunknown返却、既存12 ruleのwitness射影を定める設計候補である。未対応・member欠落・型未形成はPresenceRaw/原readを保ちknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入する。source resolver/資格の実成立、全slot/fact/全callerへのfn3実行、実装後のL7/Reverse照合又は(a)=0の認定は本書の記述だけから生成しない。",
+          "legacy_rederivation": {
+            "preserved_ja": "LEGACY-ASSET-4F5A1F0739EC1111D91Dの構造的原本/derived-view境界、LEGACY-ASSET-98372FEE8A3AC8F9C299のstable identityとunknown/N/A区別、LEGACY-ASSET-A127DEC3EEE6ED63CF17（UTW-014/020/021）のabsence・partial failure保持を照合材料として維持する。",
+            "changed_ja": "旧runtime/schemaを移植せず、現行のclosed private reads、原index、PresenceRaw、既存rule witnessで公開順を明示する。",
+            "reason_ja": "旧記録は保持点とfailureの照合元であり、新cause・qualification・gateの根拠にはしない。"
           },
           "authority_effect": "none",
           "operation_effect": "none"
