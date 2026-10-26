@@ -1729,6 +1729,13 @@ def _fn3_scope_same(left: Any, right: Any) -> bool:
     return isinstance(left, dict) and isinstance(right, dict) and _json_equal(left, right)
 
 
+def _fn3_wire_full_ref(value: Any) -> bool:
+    """L4 Refのwire shapeとfull endpoint tupleが観測済みかを確認する。"""
+    return (_wire_ref_shape_ok(value)
+            and all(key in value and value[key] is not None
+                    for key in ("identity", "revision", "scope", "owner")))
+
+
 def _fn3_range_declaration_formed(value: Any) -> bool:
     """Project only a locally well-formed L4 RangeDeclaration carrier."""
     members = {"left_ref", "right_ref", "actual_pack_ref", "actual_contract_version",
@@ -2543,25 +2550,47 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
         target_scope = raw.get("binding", {}).get("template_ref", {}).get("scope")
         relation = "same" if _fn3_scope_same(scope, target_scope) else ("different" if scope is not None and target_scope is not None else "unobserved")
         container = body.get("compatible_refs") if isinstance(body, dict) else None
+        endpoint_formed = _fn3_wire_full_ref(target)
         occurrences = []
         matches = []
+        unresolved_member = False
         if isinstance(container, list):
             for ref_index, ref in enumerate(container):
-                relation_to_target = "corresponding" if _ref_same(ref, target) else "different"
+                ref_shape_ok = _wire_ref_shape_ok(ref)
+                full_tuple_observed = _fn3_wire_full_ref(ref)
+                relation_to_target = (
+                    "corresponding" if endpoint_formed and full_tuple_observed and _ref_same(ref, target)
+                    else "different" if endpoint_formed and full_tuple_observed
+                    else "unestablished"
+                )
                 if relation_to_target == "corresponding":
                     matches.append(ref_index)
+                elif relation_to_target == "unestablished":
+                    unresolved_member = True
                 occurrences.append({
                     "ref_index": ref_index,
                     "locator": f"/sources/{source_index}/content/compatible_refs/{ref_index}",
                     "original_read": {"presence": "supplied", "value": copy.deepcopy(ref)},
-                    "read_classification": "supplied" if isinstance(ref, dict) else "out_of_type",
-                    "full_ref_relation": relation_to_target if isinstance(ref, dict) else "unestablished",
+                    "read_classification": ("null" if ref is None else
+                                            "supplied" if ref_shape_ok else "out_of_type"),
+                    "full_ref_relation": relation_to_target,
                 })
-            member_cause = "matching_refs" if matches else "member_no_match"
-            member_state = "resolved" if matches else "unknown"
+            if not endpoint_formed:
+                member_cause, member_state = "endpoint_unresolved", "unknown"
+            elif matches:
+                member_cause, member_state = "matching_refs", "resolved"
+            elif unresolved_member:
+                member_cause, member_state = "member_unresolved", "unknown"
+            else:
+                member_cause, member_state = "member_no_match", "unknown"
         else:
             member_state = "unknown"
-            if "compatible_refs" not in body if isinstance(body, dict) else True:
+            if not endpoint_formed:
+                member_cause = "endpoint_unresolved"
+                container_read = ({"presence": "supplied", "value": copy.deepcopy(container)}
+                                  if isinstance(body, dict) and "compatible_refs" in body
+                                  else {"presence": "absent"})
+            elif "compatible_refs" not in body if isinstance(body, dict) else True:
                 member_cause = "container_absent"
                 container_read = {"presence": "absent"}
             elif container is None:
@@ -2574,6 +2603,7 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
             container_read = {"presence": "supplied", "value": copy.deepcopy(container)}
         body_read = {"presence": "supplied", "value": copy.deepcopy(body)} if isinstance(body, dict) else {"presence": "absent"}
         declaration = body.get("endpoint_owner_declaration") if isinstance(body, dict) else None
+        qualified = _fn3_valid_source(raw, source, unusable)
         if endpoint == "left":
             declaration_ok = (_fn3_left_owner_body_formed(body)
                               and isinstance(declaration, dict) and declaration.get("endpoint") == "left"
@@ -2581,11 +2611,57 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
                               and declaration.get("owner") == (target.get("owner") if isinstance(target, dict) else None)
                               and _ref_same(body.get("compatibility_record_ref"), record.get("ref"))
                               and _ref_same(body.get("counterpart_source_ref"), record.get("source_ref")))
+            if not qualified:
+                owner_state, owner_cause = "unknown", "owner_qualification_unresolved"
+            elif not declaration_ok:
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif relation == "different":
+                owner_state, owner_cause = "conflict", "owner_scope_differs"
+            elif relation == "same":
+                owner_state, owner_cause = "resolved", "owner_body_corresponding"
+            else:
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
         else:
-            declaration = body.get("compatibility_range_declaration") if isinstance(body, dict) else None
-            declaration_ok = (_fn3_range_declaration_formed(declaration)
-                              and _ref_same(declaration.get("right_ref"), target)
-                              and _ref_same(declaration.get("actual_pack_ref"), target))
+            range_declaration = body.get("compatibility_range_declaration") if isinstance(body, dict) else None
+            range_owner_support = (
+                _fn3_range_declaration_formed(range_declaration)
+                and _ref_same(range_declaration.get("left_ref"), record.get("left_ref"))
+                and _ref_same(range_declaration.get("right_ref"), target)
+                and _ref_same(range_declaration.get("actual_pack_ref"), raw.get("binding", {}).get("pack_ref"))
+                and any(_ref_same(owner.get("endpoint_ref"), target)
+                        and owner.get("owner") == source_ref.get("owner")
+                        for owner in range_declaration.get("owner_declarations", [])
+                        if isinstance(owner, dict))
+            )
+            source_owner_matches = (
+                _fn3_wire_full_ref(source_ref) and endpoint_formed
+                and source_ref.get("owner") == target.get("owner")
+            )
+            subject_candidate = source_owner_matches and (member_state == "resolved" or range_owner_support)
+            record_decision = record.get("compatible")
+            body_decision = body.get("compatible") if isinstance(body, dict) else None
+            if not endpoint_formed or not source_owner_matches:
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif not qualified:
+                owner_state, owner_cause = "unknown", "owner_qualification_unresolved"
+            elif not subject_candidate:
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif relation == "different":
+                owner_state, owner_cause = "conflict", "owner_scope_differs"
+            elif relation != "same":
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif type(record_decision) is not bool or type(body_decision) is not bool:
+                owner_state, owner_cause = "unknown", "owner_decision_unresolved"
+            elif record_decision != body_decision:
+                owner_state, owner_cause = "conflict", "owner_decision_differs"
+            elif record_decision is True and member_state == "resolved":
+                owner_state, owner_cause = "resolved", "owner_body_corresponding"
+            elif record_decision is False and range_owner_support:
+                owner_state, owner_cause = "resolved", "owner_body_corresponding"
+            elif record_decision is False:
+                owner_state, owner_cause = "unknown", "owner_decision_unresolved"
+            else:
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
         membership = {
             "source_index": source_index,
             "endpoint_locator": "/binding/" + ("template_ref" if endpoint == "left" else "pack_ref"),
@@ -2606,10 +2682,7 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
             "body_read": body_read, "record_ref_read": record_ref_read,
             "counterpart_source_ref_read": counterpart_read,
             "target_scope_relation": relation,
-            "state": "resolved" if declaration_ok and _fn3_valid_source(raw, source, unusable) else "unknown",
-            "cause": "owner_body_corresponding" if declaration_ok and _fn3_valid_source(raw, source, unusable)
-                    else "owner_decision_unresolved" if _fn3_valid_source(raw, source, unusable)
-                    else "owner_qualification_unresolved",
+            "state": owner_state, "cause": owner_cause,
         })
     return rows
 
@@ -2723,12 +2796,13 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         target_scope = binding.get("template_ref", {}).get("scope")
         owner_decl = left_body.get("endpoint_owner_declaration")
         range_decl = right_body.get("compatibility_range_declaration")
-        if not _fn3_scope_same(left_scope, target_scope) or not _fn3_scope_same(right_scope, target_scope):
-            outcomes.append({"record": record, "state": "conflict", "cause": "scope",
-                             "reason": "scope: qualified owner source scope differs from the target pair scope.",
-                             "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"], left_source["ref"]],
-                             "sources": [left_source["ref"], right_source["ref"]]})
-            continue
+        right_endpoint_reads = _fn3_endpoint_owner_reads(
+            raw, record, unusable, "right", direct_sources=[(ri, right_source)])
+        right_endpoint_corresponding = (
+            len(right_endpoint_reads) == 1
+            and right_endpoint_reads[0]["state"] == "resolved"
+            and right_endpoint_reads[0]["cause"] == "owner_body_corresponding"
+        )
         left_decl_valid = (_fn3_left_owner_body_formed(left_body)
                            and isinstance(owner_decl, dict)
                            and owner_decl.get("endpoint") == "left"
@@ -2742,16 +2816,27 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                        and _ref_same(range_decl.get("actual_pack_ref"), binding.get("pack_ref")))
         left_owner = left_decl_valid and owner_decl.get("owner") == left_source.get("ref", {}).get("owner")
         range_owners = range_decl.get("owner_declarations") if range_valid else None
-        right_owner = (isinstance(range_owners, list) and len(range_owners) == 2
-                       and any(_ref_same(r.get("endpoint_ref"), record.get("right_ref"))
-                               and r.get("owner") == right_source.get("ref", {}).get("owner")
-                               for r in range_owners if isinstance(r, dict)))
+        right_range_owner = (isinstance(range_owners, list) and len(range_owners) == 2
+                             and any(_ref_same(r.get("endpoint_ref"), record.get("right_ref"))
+                                     and r.get("owner") == right_source.get("ref", {}).get("owner")
+                                     for r in range_owners if isinstance(r, dict)))
+        left_subject_candidate = (left_decl_valid
+                                  and owner_decl.get("owner") == left_source.get("ref", {}).get("owner"))
+        right_scope_candidate = (len(right_endpoint_reads) == 1
+                                 and right_endpoint_reads[0]["cause"] == "owner_scope_differs")
+        if ((not _fn3_scope_same(left_scope, target_scope) and left_subject_candidate)
+                or (not _fn3_scope_same(right_scope, target_scope) and right_scope_candidate)):
+            outcomes.append({"record": record, "state": "conflict", "cause": "scope",
+                             "reason": "scope: qualified owner source scope differs from the target pair scope.",
+                             "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"], left_source["ref"]],
+                             "sources": [left_source["ref"], right_source["ref"]]})
+            continue
         outside = (left_owner and owner_decl.get("range_relation") == "outside"
-                   and range_valid and range_decl.get("relation") == "outside" and right_owner
+                   and range_valid and range_decl.get("relation") == "outside" and right_range_owner
                    and all(r.get("relation") == "outside" for r in range_owners if isinstance(r, dict)))
         both_true = (record.get("compatible") is True and left_body.get("compatible") is True
                      and right_body.get("compatible") is True and left_owner
-                     and owner_decl.get("compatible") is True)
+                     and owner_decl.get("compatible") is True and right_endpoint_corresponding)
         if (isinstance(owner_decl, dict) and (owner_decl.get("endpoint") != "left"
                 or not _ref_same(owner_decl.get("endpoint_ref"), record.get("left_ref")))):
             outcomes.append({"record": record, "state": "unknown", "cause": "left_owner_unprovided",
@@ -2773,8 +2858,23 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                                       left_source["ref"], left_source["qualification_ref"], right_source["ref"], right_source["qualification_ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
         else:
-            raise _fn3_stop("unclosed/owner_decision_unresolved",
-                            "qualified owner decision does not form a fixed positive or bilateral-outside cause")
+            left_decision = owner_decl.get("compatible") if isinstance(owner_decl, dict) else None
+            right_decision = right_body.get("compatible")
+            if right_endpoint_reads and right_endpoint_reads[0]["cause"] == "owner_decision_differs":
+                unresolved_cause, unresolved_state = "owner_decision_differs", "conflict"
+            elif (type(left_decision) is bool and type(right_decision) is bool
+                  and left_decision != right_decision):
+                unresolved_cause, unresolved_state = "bilateral_decisions_opposing", "conflict"
+            elif (not right_endpoint_reads
+                  or right_endpoint_reads[0]["cause"] != "owner_body_corresponding"):
+                unresolved_cause, unresolved_state = "bilateral_owner_unresolved", "unknown"
+            else:
+                unresolved_cause, unresolved_state = "owner_decision_unresolved", "unknown"
+            outcomes.append({"record": record, "state": unresolved_state, "cause": unresolved_cause,
+                             "reason": f"{unresolved_cause}: qualified owner decision does not form a fixed positive or bilateral-outside cause.",
+                             "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
+                                      left_source["ref"], right_source["ref"]],
+                             "sources": [left_source["ref"], right_source["ref"]]})
     for outcome in outcomes:
         record = outcome["record"]
         base_refs = [record.get("ref"), record.get("left_ref"), record.get("right_ref")]
@@ -2810,7 +2910,9 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         else:
             # Do not choose a winner or impose a count cutoff. This exact cause
             # combination has no frozen aggregation rule, so preserve the raw read at Backflow.
-            raise _fn3_stop("unclosed/cause_to_finding_mapping", "the same-pair cause combination has no fixed public aggregation")
+            causes = [outcome["cause"] for outcome in outcomes]
+            raise _fn3_stop("unclosed/cause_to_finding_mapping",
+                            f"the same-pair cause combination {causes!r} has no fixed public aggregation")
     if len(outcomes) == 1:
         outcome = outcomes[0]
         reason_prefixes = {
@@ -2822,7 +2924,7 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         }
         prefix = reason_prefixes.get(outcome["cause"])
         if prefix is None:
-            raise _fn3_stop("unclosed/unexercised_compatibility",
+            raise _fn3_stop("unclosed/cause_to_finding_mapping",
                             f"compatibility cause {outcome['cause']} has no fixed reason serialization")
         outcome["reason"] = _fn3_diag(prefix, {
             "original_record_reasons": [outcome["record"].get("reason")],
