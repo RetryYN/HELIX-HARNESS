@@ -343,6 +343,34 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                 _, res_m = self._run_fn0_fn5(raw_m)
                 r80_m = next(a for a in res_m["axes"] if a["axis"] == "promotion" and json.loads(a["reason"])["code"] == "generation_as_promotion")
                 self.assertEqual(json.loads(r80_m["reason"])["predicate"], "predicate_unknown")
+                exp_findings = [] if stage_mem == "independent_verification_ref" else ["independent_verification_missing"]
+                self.assertEqual([f["code"] for f in res_f["findings"]], exp_findings)
+                self.assertEqual([a["axis"] for a in res_f["axes"]], ["knowledge_record_trace", "promotion", "promotion_claim"])
+
+        with self.subTest(case="R2-M2_and_R2-m3_slot_binding_distinct_from_root_and_second_claim_locator"):
+            raw_sb = base_input(self.document)
+            k_ref = raw_sb["binding"]["knowledge_ref"]
+            slot_bind = copy.deepcopy(raw_sb["descriptors"][0]["binding"])
+            slot_bind["version_target"] = "slot-specific-version-target"
+            raw_sb["descriptors"][0]["binding"] = copy.deepcopy(slot_bind)
+            ai_ref = _ref_from(k_ref, "SYNTHETIC-F08-SLOT-BIND-AI", sha256=None, source_locator="synthetic://slot-bind-ai.json")
+            raw_sb["knowledge_records"][0]["provenance_refs"].append(copy.deepcopy(ai_ref))
+            cl0 = _make_claim(k_ref, raw_sb["binding"], "fill_definition", basis_refs=[raw_sb["sources"][0]["ref"]])
+            cl1 = _make_claim(k_ref, slot_bind, "knowledge_accepted", basis_refs=[ai_ref])
+            raw_sb["claims"] = [copy.deepcopy(cl0), copy.deepcopy(cl1)]
+            c_sb = _carrier_entry(1, cl1, 0, ai_ref, k_ref, "provenance_refs", original_evidence_set=["AI_generated"])
+            src_sb = _add_promotion_semantic_source(raw_sb, identity="SYNTHETIC-F08-SLOT-BIND-AI", promotion_evidence=[c_sb], binding=slot_bind)
+            _, res_sb = self._run_fn0_fn5(raw_sb)
+            self.assertEqual(res_sb["input_binding"], raw_sb["binding"])
+            exp_b_sb = {"presence": "supplied", "occurrences": [{"basis_index": 0, "source_indices": [5], "carrier_locations": [{"source_index": 5, "carrier_index": 0}], "record_member_matches": [{"source_index": 5, "carrier_index": 0, "record_index": 0, "member": "provenance_refs", "member_index": 1}], "outcome": "joined"}]}
+            exp_obs_sb = [_obs("/knowledge_records/0", evaluation_scope="null", independent_verification_ref="null")]
+            exp_r80_sb = _expected_reason("generation_as_promotion", "condition_true", 1, ["/knowledge_records/0"], exp_obs_sb, exp_b_sb)
+            rec_refs_sb = _record_refs_from(raw_sb["knowledge_records"][0])
+            orig_refs_sb = _sorted_vals([ai_ref, *rec_refs_sb, src_sb])
+            f80_sb = next(f for f in res_sb["findings"] if f["code"] == "generation_as_promotion")
+            self._assert_finding_9(f80_sb, code="generation_as_promotion", rule_ref="HELIXBRAIN-L5-032-R-generation_as_promotion", subject_ref=k_ref, binding=slot_bind, axis="promotion", state="unknown", source_refs=[src_sb], reason=exp_r80_sb, backflow_owner="knowledge_owner")
+            ax80_sb = next(a for a in res_sb["axes"] if a["axis"] == "promotion" and json.loads(a["reason"])["code"] == "generation_as_promotion")
+            self._assert_axis_7(ax80_sb, subject_ref=k_ref, binding=slot_bind, axis="promotion", state="unknown", original_refs=orig_refs_sb, reason=exp_r80_sb, backflow_owner="knowledge_owner")
 
         with self.subTest(case="Rule80_true_blocked_when_any_stage_ref_nonnull_or_record_member_not_provenance"):
             for stage_mem in ("evaluation_ref", "independent_verification_ref", "adoption_ref"):
@@ -376,8 +404,9 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                 "claim_body_diff", "basis_ref_diff", "kref_not_ref", "kref_diff", "target_not_dict", "target_id_diff", "target_rev_diff", "target_scope_diff", "target_key_absent", "target_key_null",
                 "record_member_unknown", "record_member_not_str", "carrier_missing_req_key", "carrier_not_dict",
                 "source_role_ref_only", "source_content_binding_diff", "source_content_binding_not_dict", "promotion_evidence_not_list",
-                "no_matching_carrier_entry", "no_matching_source", "record_member_ref_not_in_record", "multi_basis_partial_join",
+                "no_matching_carrier_entry", "basis_index_mismatch", "no_matching_source", "record_member_ref_not_in_record", "multi_basis_partial_join",
                 "claim_index_bool", "basis_index_bool",
+                "stages_supplied_with_eval_role", "evset_non_str_with_eval_role", "evset_unknown_role_with_eval_role",
             ):
                 raw_u = base_input(self.document)
                 k_ref = raw_u["binding"]["knowledge_ref"]
@@ -427,8 +456,18 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                 elif mode == "source_content_binding_not_dict": src_bind = "not-a-dict"
                 elif mode == "promotion_evidence_not_list": pe_val = "not-a-list"
                 elif mode == "no_matching_carrier_entry": pe_val = [_carrier_entry(99, cl, 0, b_ref, k_ref, "provenance_refs", original_evidence_set=["AI_generated"])]
+                elif mode == "basis_index_mismatch": pe_val = [_carrier_entry(0, cl, 99, b_ref, k_ref, "provenance_refs", original_evidence_set=["AI_generated"])]
                 elif mode == "claim_index_bool": pe_val = [_carrier_entry(False, cl, 0, b_ref, k_ref, "provenance_refs", original_evidence_set=["AI_generated"])]
                 elif mode == "basis_index_bool": pe_val = [_carrier_entry(0, cl, False, b_ref, k_ref, "provenance_refs", original_evidence_set=["AI_generated"])]
+                elif mode == "stages_supplied_with_eval_role":
+                    raw_u["knowledge_records"][0]["evaluation_ref"] = copy.deepcopy(b_ref)
+                    pe_val = [_carrier_entry(0, cl, 0, b_ref, k_ref, "evaluation_ref", original_evidence_set=["evaluation"], original_stages=None)]
+                elif mode == "evset_non_str_with_eval_role":
+                    raw_u["knowledge_records"][0]["evaluation_ref"] = copy.deepcopy(b_ref)
+                    pe_val = [_carrier_entry(0, cl, 0, b_ref, k_ref, "evaluation_ref", original_evidence_set=["evaluation", 123])]
+                elif mode == "evset_unknown_role_with_eval_role":
+                    raw_u["knowledge_records"][0]["evaluation_ref"] = copy.deepcopy(b_ref)
+                    pe_val = [_carrier_entry(0, cl, 0, b_ref, k_ref, "evaluation_ref", original_evidence_set=["evaluation", "unknown_role"])]
 
                 if mode != "no_matching_source":
                     _add_promotion_semantic_source(raw_u, identity=ident, promotion_evidence=pe_val, binding=src_bind, qualify=qualify_flag, role=role_val)
@@ -441,7 +480,7 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                     self.assertEqual(r80_reason["basis_reads"]["occurrences"][0]["outcome"], "conflict")
                 elif mode == "multi_basis_partial_join":
                     self.assertEqual([o["outcome"] for o in r80_reason["basis_reads"]["occurrences"]], ["joined", "unresolved"])
-                elif mode in ("unusable_source", "claim_body_diff", "basis_ref_diff", "kref_not_ref", "kref_diff", "target_not_dict", "target_id_diff", "target_rev_diff", "target_scope_diff", "target_key_absent", "target_key_null", "record_member_unknown", "record_member_not_str", "carrier_missing_req_key", "carrier_not_dict", "source_role_ref_only", "source_content_binding_diff", "source_content_binding_not_dict", "promotion_evidence_not_list", "no_matching_carrier_entry", "no_matching_source", "record_member_ref_not_in_record", "claim_index_bool", "basis_index_bool"):
+                elif mode in ("unusable_source", "claim_body_diff", "basis_ref_diff", "kref_not_ref", "kref_diff", "target_not_dict", "target_id_diff", "target_rev_diff", "target_scope_diff", "target_key_absent", "target_key_null", "record_member_unknown", "record_member_not_str", "carrier_missing_req_key", "carrier_not_dict", "source_role_ref_only", "source_content_binding_diff", "source_content_binding_not_dict", "promotion_evidence_not_list", "no_matching_carrier_entry", "basis_index_mismatch", "no_matching_source", "record_member_ref_not_in_record", "claim_index_bool", "basis_index_bool"):
                     self.assertEqual(r80_reason["basis_reads"]["occurrences"][0]["outcome"], "unresolved", f"mode={mode}")
                     if mode == "unusable_source":
                         self.assertEqual(r80_reason["basis_reads"]["occurrences"][0]["carrier_locations"], [{"source_index": 5, "carrier_index": 0}])
@@ -489,10 +528,13 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                 if assoc_mode == "duplicate_identical_records_observations":
                     r81_a = next(a for a in res_a["axes"] if a["axis"] == "promotion" and json.loads(a["reason"])["code"] == "evaluation_scope_missing")
                     parsed = json.loads(r81_a["reason"])
+                    self.assertEqual(parsed["predicate"], "condition_true")
                     self.assertEqual(parsed["record_locators"], ["/knowledge_records/0", "/knowledge_records/1"])
                     self.assertEqual(len(parsed["observations"]), 2)
                     self.assertEqual(parsed["observations"][0]["limited_adoption_ref"], "supplied")
                     self.assertEqual(parsed["observations"][0]["adoption_ref"], "supplied")
+                    r80_a = next(a for a in res_a["axes"] if a["axis"] == "promotion" and json.loads(a["reason"])["code"] == "generation_as_promotion")
+                    self.assertEqual(json.loads(r80_a["reason"])["basis_reads"]["presence"], "supplied")
                 else:
                     self.assertEqual(res_a["findings"], [], f"assoc_mode={assoc_mode}")
                     rule_axes = [a for a in res_a["axes"] if a["axis"] in ("promotion", "promotion_claim")]
@@ -660,6 +702,7 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                 "partial_basis_ref_owner_null",
                 "multi_basis_one_equal_one_distinct_lim",
                 "multi_basis_mixed_limited_and_nonlimited_carrier",
+                "multi_basis_partial_join",
                 "basis_empty",
             ):
                 raw_u83 = base_input(self.document)
@@ -729,6 +772,18 @@ class TestF08KnowledgePromotion(unittest.TestCase):
                             _carrier_entry(0, cl_u, 1, b1, k_ref, "provenance_refs", original_evidence_set=["proposal"]),
                         ],
                     )
+                elif u83_mode == "multi_basis_partial_join":
+                    rec["limited_adoption_ref"] = copy.deepcopy(b1)
+                    rec["adoption_ref"] = None
+                    cl_u = _make_claim(k_ref, raw_u83["binding"], "knowledge_accepted", basis_refs=[b1, b1])
+                    raw_u83["claims"] = [copy.deepcopy(cl_u)]
+                    _add_promotion_semantic_source(
+                        raw_u83,
+                        identity=b1["identity"],
+                        promotion_evidence=[
+                            _carrier_entry(0, cl_u, 0, b1, k_ref, "limited_adoption_ref", original_evidence_set=["proposal"]),
+                        ],
+                    )
 
                 _, res_u83 = self._run_fn0_fn5(raw_u83)
                 self.assertNotIn("limited_content_as_promotion", [f["code"] for f in res_u83["findings"]], f"u83_mode={u83_mode}")
@@ -774,8 +829,10 @@ class TestF08KnowledgePromotion(unittest.TestCase):
 
         for case_name, mut_fn in (
             ("candidates_absent", lambda v: v["input"].pop("candidates", None)),
+            ("candidates_null", lambda v: v["input"].__setitem__("candidates", None)),
             ("candidates_not_list", lambda v: v["input"].__setitem__("candidates", 123)),
             ("candidate_elem_not_ref", lambda v: v["input"]["candidates"].append("not-a-ref")),
+            ("binding_absent", lambda v: v["input"].pop("binding", None)),
             ("binding_not_shape", lambda v: v["input"].__setitem__("binding", {})),
             ("claims_not_list", lambda v: v["input"].__setitem__("claims", 123)),
             ("R1-M1_sources_none", lambda v: v["input"].__setitem__("sources", None)),
@@ -793,10 +850,15 @@ class TestF08KnowledgePromotion(unittest.TestCase):
             ("descriptor_slot_binding_invalid", lambda v: v["input"]["descriptors"][0].__setitem__("binding", {})),
             ("knowledge_records_not_list_int", lambda v: v["input"].__setitem__("knowledge_records", 123)),
             ("record_not_dict", lambda v: v["input"]["knowledge_records"].append("bad")),
+            ("record_ref_absent", lambda v: v["input"]["knowledge_records"][0].pop("ref", None)),
             ("record_ref_null", lambda v: v["input"]["knowledge_records"][0].__setitem__("ref", None)),
             ("provenance_refs_not_list_int", lambda v: v["input"]["knowledge_records"][0].__setitem__("provenance_refs", 123)),
             ("provenance_refs_elem_not_ref", lambda v: v["input"]["knowledge_records"][0]["provenance_refs"].append("bad-ref")),
-            ("stage_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("evaluation_ref", "bad-ref")),
+            ("evaluation_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("evaluation_ref", "bad-ref")),
+            ("independent_verification_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("independent_verification_ref", 123)),
+            ("limited_adoption_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("limited_adoption_ref", "bad-ref")),
+            ("adoption_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("adoption_ref", 123)),
+            ("os_registration_ref_not_ref", lambda v: v["input"]["knowledge_records"][0].__setitem__("os_registration_ref", "bad-ref")),
         ):
             with self.subTest(branch=tag_rec, case=case_name):
                 assert_stops(base_input(self.document), tag_rec, mutate_validated_fn=mut_fn)
@@ -805,6 +867,7 @@ class TestF08KnowledgePromotion(unittest.TestCase):
         for case_name, mut_fn in (
             ("R1-M3_dependencies_none", lambda v: v["input"].__setitem__("dependencies", None)),
             ("R1-M3_dependencies_empty_dict", lambda v: v["input"].__setitem__("dependencies", {})),
+            ("dependencies_nonempty", lambda v: v["input"].__setitem__("dependencies", copy.deepcopy(base_input(self.document)["dependencies"]))),
             ("other_collection_nonempty", lambda v: v["input"].__setitem__("relations", [{}])),
             ("other_collection_null", lambda v: v["input"].__setitem__("values", None)),
             ("knowledge_record_stage_key_present", lambda v: v["input"]["knowledge_records"][0].__setitem__("operational_state", None)),
@@ -821,11 +884,15 @@ class TestF08KnowledgePromotion(unittest.TestCase):
             ("descriptor_facts_elem_bad_kind", lambda v: v["input"]["sources"][0]["content"].__setitem__("descriptor_facts", [{"descriptor_kind": "bad"}])),
             ("R1-M2_definition_meaning_ops_null", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", None)),
             ("R1-M2_definition_meaning_ops_int", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", 123)),
+            ("definition_meaning_ops_elem_not_dict", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", ["bad"])),
+            ("definition_meaning_ops_args_none", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", [{"arguments": None}])),
+            ("definition_meaning_ops_args_int", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", [{"arguments": 1}])),
             ("definition_meaning_ops_elem_bad_kind", lambda v: v["input"]["sources"][0]["content"].__setitem__("definition_meaning_operations", [{"arguments": {"descriptor_kind": "bad"}}])),
             ("R1-M2_descriptor_targets_null", lambda v: v["input"]["sources"][0]["content"].__setitem__("descriptor_targets", None)),
             ("R1-M2_descriptor_targets_int", lambda v: v["input"]["sources"][0]["content"].__setitem__("descriptor_targets", 123)),
+            ("descriptor_targets_elem_not_dict", lambda v: v["input"]["sources"][0]["content"].__setitem__("descriptor_targets", ["bad"])),
             ("descriptor_targets_elem_bad_kind", lambda v: v["input"]["sources"][0]["content"].__setitem__("descriptor_targets", [{"descriptor_kind": "bad"}])),
-            ("claim_not_fill_definition", lambda v: v["input"].__setitem__("claims", [_make_claim(v["input"]["binding"]["knowledge_ref"], v["input"]["binding"], "knowledge_accepted")])),
+            ("claim_not_fill_definition_with_declared_target", lambda v: v["input"].__setitem__("claims", [_make_claim(v["input"]["sources"][0]["content"]["descriptor_targets"][0]["target_ref"], v["input"]["sources"][0]["content"]["binding"], "knowledge_accepted")])),
             ("fill_definition_subject_undeclared", lambda v: v["input"].__setitem__("claims", [_make_claim(v["input"]["binding"]["knowledge_ref"], v["input"]["binding"], "fill_definition")])),
             ("fill_definition_binding_mismatch", lambda v: v["input"].__setitem__("claims", [_make_claim(v["input"]["sources"][0]["content"]["descriptor_targets"][0]["target_ref"], {**copy.deepcopy(v["input"]["binding"]), "version_target": "diff"}, "fill_definition")])),
         ):
