@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "48e78b6b19cbac7d450adb723b5eefd334d685439816eea9419ffe597b18f844",
+      "sha256": "b7ba29b45f6926639eafddbc2f782dfa518e7cde41099795d9862115882602e8",
       "note": "既存review/merge admission条件"
     },
     {
