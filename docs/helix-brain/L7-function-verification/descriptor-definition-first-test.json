@@ -1143,7 +1143,7 @@
         "test_neg02_cross_pattern_field_substitution (test_descriptor_definitions.TestDescriptorDefinitions)",
         "test_neg21_required_field_missing_without_substitution (test_descriptor_definitions.TestDescriptorDefinitions)"
       ],
-      "summary": "Ran 208 tests in 16.680s — OK",
+      "summary": "Ran 208 tests in 16.870s — OK (including R3 mutation regression cases for R2-m1..m4)",
       "reaped": true,
       "timed_out": false
     },
@@ -1195,6 +1195,15 @@
       ],
       "reaped": true,
       "timed_out": false
-    }
+    },
+    "r3_test_commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+    "equivalent_mutants_recorded": [
+      {
+        "id": "S1",
+        "location": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py:_public_finding_sort_key",
+        "condition": "_component_key(\"rule_ref\" in finding, finding.get(\"rule_ref\"))",
+        "reason": "fn1のFinding生成は (1) slot欠落 descriptor_01_missing..descriptor_15_missing（各kindにつき最大1件・slot_identity不在でsort_source_refs=[]）と (2) cross_pattern_section_substitution / cross_pattern_field_substitution（target slot_identityが存在しsort_source_refsは非空）の2系統のみであり、同一axis（例: required field.definition）上で descriptor_07_missing と cross_pattern_field_substitution が共存しても、前段の _origin_prefix_key の slot_identity 成分（absent=(0,\"\") vs present=(1,slot_id)）および sort_source_refs 成分で必ず順位が確定する。また同一slot上の複数cross_pattern Findingはすべて同一rule_refを持つため、fn1単独の到達可能入力では rule_ref 成分の削除（S1）は出力順序を変えない等価変異である（L5 finding_key 契約の対称性保持のため実装には残す）。"
+      }
+    ]
   }
 }
