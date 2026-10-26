@@ -199,7 +199,7 @@
   "fn3_identity_verification": {
     "id": "HELIXBRAIN-L7-032-FN3-IDENTITY-TRACE",
     "scope": "L5 fn3 compare_identity_versions_and_traceを対象にする既存L8行のinventoryと限定実装の観測。具体入力・独立部分期待はL7 test codeへ置き、L8/L9の全返却を答えに複製しない。",
-    "source_revision": "6f9c669c80e79740d2bff20daab437b9afa400cd",
+    "source_revision": "71052b6deb18321caf992e4c89d92335944caf76",
     "source_paths": {
       "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -208,40 +208,184 @@
     },
     "normal_input_boundary_ja": "既存normal inputはそのまま用いる。source 5件・KnowledgeRecord 1件・CompatibilityRecord 1件の既存状態を修復しない。意味provenance digestとsourceの不一致、pack sourceの両端Ref掲載のみで独立left ownerが無い状態を、qualified成功へ補修せずunknownの根拠として保持する。",
     "l8_direct_sources": [
-      {"pointer":"/function_oracles/3","id":"HELIXBRAIN-L8-032-NORMAL-compare_identity_versions_and_trace","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/0","id":"HELIXBRAIN-L8-032-F04-NEG-01","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/1","id":"HELIXBRAIN-L8-032-F04-NEG-02","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/2","id":"HELIXBRAIN-L8-032-F04-NEG-03","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/3","id":"HELIXBRAIN-L8-032-F04-NEG-04","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/4","id":"HELIXBRAIN-L8-032-F04-NEG-05","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/5","id":"HELIXBRAIN-L8-032-F04-NEG-06","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/6","id":"HELIXBRAIN-L8-032-F04-NEG-07","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/7","id":"HELIXBRAIN-L8-032-F04-NEG-08","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/8","id":"HELIXBRAIN-L8-032-F04-NEG-09","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/9","id":"HELIXBRAIN-L8-032-F04-NEG-10","execution_state":"not_executed"},
-      {"pointer":"/cases/5/negative_cases/11","id":"HELIXBRAIN-L8-032-I1B-EQUAL-RECORDS","execution_state":"not_executed"},
-      {"pointer":"/cases/11/negative_cases/0","id":"HELIXBRAIN-L8-032-N01-NEG-01","execution_state":"not_executed"},
-      {"pointer":"/cases/11/negative_cases/1","id":"HELIXBRAIN-L8-032-N01-NEG-02","execution_state":"not_executed"},
-      {"pointer":"/additional_unit_cases/12","id":"HELIXBRAIN-L8-032-ADD-13","execution_state":"not_executed"},
-      {"pointer":"/additional_unit_cases/13","id":"HELIXBRAIN-L8-032-ADD-14","execution_state":"not_executed"},
-      {"pointer":"/additional_unit_cases/39","id":"HELIXBRAIN-L8-032-ID-GENERAL-OCCURRENCE-CAUSE-WITNESS","execution_state":"not_executed"}
+      {
+        "pointer": "/function_oracles/3",
+        "id": "HELIXBRAIN-L8-032-NORMAL-compare_identity_versions_and_trace",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/0",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-01",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/1",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-02",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/2",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-03",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/3",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-04",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/4",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-05",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/5",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-06",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/6",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-07",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/7",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-08",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/8",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-09",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/9",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-10",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/5/negative_cases/11",
+        "id": "HELIXBRAIN-L8-032-I1B-EQUAL-RECORDS",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/11/negative_cases/0",
+        "id": "HELIXBRAIN-L8-032-N01-NEG-01",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/cases/11/negative_cases/1",
+        "id": "HELIXBRAIN-L8-032-N01-NEG-02",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/additional_unit_cases/12",
+        "id": "HELIXBRAIN-L8-032-ADD-13",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/additional_unit_cases/13",
+        "id": "HELIXBRAIN-L8-032-ADD-14",
+        "execution_state": "not_executed"
+      },
+      {
+        "pointer": "/additional_unit_cases/39",
+        "id": "HELIXBRAIN-L8-032-ID-GENERAL-OCCURRENCE-CAUSE-WITNESS",
+        "execution_state": "not_executed"
+      }
     ],
     "indirect_design_references": [
-      {"source":"L8","pointer":"/cases/5/negative_cases/10","id":"HELIXBRAIN-L8-032-F04-NEG-11","relation_ja":"I1A zero-recordの設計参照。L7のzero入力は原fixture/expectedをコピーせず独立形成する。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/cases/5/negative_cases/11","id":"HELIXBRAIN-L9-032-I1QR-EQUAL-QUALIFICATIONS","relation_ja":"2Q条件の設計参照。L7のequal_qualifications入力は原expectedをコピーせず独立形成する。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/0","id":"C3-P15-26-AXIS-15-TRACE-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/1","id":"C3-ORIGINAL-ONE-OWNER-PAIR-UNKNOWN-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/2","id":"C3-INDEPENDENT-BILATERAL-TEMPLATE-PACK-POSITIVE-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/3","id":"C3-PAIR-SOURCE-NULL-UNKNOWN-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/4","id":"C3-QUALIFIED-SOURCE-OTHER-SCOPE-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/5","id":"C3-QUALIFIED-BILATERAL-RANGE-FALSE-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"},
-      {"source":"L9","pointer":"/identity_version_trace_verification/typed_index_supplement/6","id":"C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE","relation_ja":"C3 typed index supplement。L9-only参照。","execution_state":"not_executed"}
+      {
+        "source": "L8",
+        "pointer": "/cases/5/negative_cases/10",
+        "id": "HELIXBRAIN-L8-032-F04-NEG-11",
+        "relation_ja": "I1A zero-recordの設計参照。L7のzero入力は原fixture/expectedをコピーせず独立形成する。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/cases/5/negative_cases/11",
+        "id": "HELIXBRAIN-L9-032-I1QR-EQUAL-QUALIFICATIONS",
+        "relation_ja": "2Q条件の設計参照。L7のequal_qualifications入力は原expectedをコピーせず独立形成する。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/0",
+        "id": "C3-P15-26-AXIS-15-TRACE-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/1",
+        "id": "C3-ORIGINAL-ONE-OWNER-PAIR-UNKNOWN-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/2",
+        "id": "C3-INDEPENDENT-BILATERAL-TEMPLATE-PACK-POSITIVE-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/3",
+        "id": "C3-PAIR-SOURCE-NULL-UNKNOWN-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/4",
+        "id": "C3-QUALIFIED-SOURCE-OTHER-SCOPE-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/5",
+        "id": "C3-QUALIFIED-BILATERAL-RANGE-FALSE-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      },
+      {
+        "source": "L9",
+        "pointer": "/identity_version_trace_verification/typed_index_supplement/6",
+        "id": "C3-TWO-INDEPENDENT-BILATERAL-OPPOSING-SOURCES-WHOLE",
+        "relation_ja": "C3 typed index supplement。L9-only参照。",
+        "execution_state": "not_executed"
+      }
     ],
     "unclosed_stop_branches": [
-      {"branch":"nonempty_or_repeated_dependency_operations","source_refs":["L5 /functions/3/algorithm/0","L4 /identity_version_trace_contract/public_projection/axis_reason_writer/technical_decisions/dependency_axis"],"stop_ja":"非空・反復dependencyの分岐は今回未対応として明示停止し、空結果や既定値へ丸めない。","execution_state":"not_executed"},
-      {"branch":"multiple_source_finding_range_source","source_refs":["L4 /identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/finding_range_source"],"stop_ja":"複数source対応時のfinding range source選択は未閉包。先頭や別sourceを補完せず停止する。","execution_state":"not_executed"},
-      {"branch":"other_cause_finding_mapping","source_refs":["L4 /identity_version_trace_contract/public_projection/axis_reason_writer/compatibility_finding_cause_mapping/positive_scope_and_other","L4 /identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/unexercised_compatibility"],"stop_ja":"既存positive/scopeのFinding非生成は保持し、それ以外のcause→Findingの未行使対応を創作せず停止する。","execution_state":"not_executed"},
-      {"branch":"unmatched_general_bilateral_aggregation","source_refs":["L4 /identity_version_trace_contract/public_projection/axis_reason_writer/general_occurrence_cause_witness/scope_limitations_ja","L4 /identity_version_trace_contract/public_projection/axis_reason_writer/bilateral_aggregation/unclosed_boundary"],"stop_ja":"同一predicate・対象pair・full Bindingへ対応しないgeneral群を集約せず、既定の未閉包停止へ戻す。","execution_state":"not_executed"}
+      {
+        "branch": "nonempty_or_repeated_dependency_operations",
+        "source_refs": [
+          "L5 /functions/3/algorithm/0",
+          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/technical_decisions/dependency_axis"
+        ],
+        "stop_ja": "非空・反復dependencyの分岐は今回未対応として明示停止し、空結果や既定値へ丸めない。",
+        "execution_state": "not_executed"
+      },
+      {
+        "branch": "multiple_source_finding_range_source",
+        "source_refs": [
+          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/finding_range_source"
+        ],
+        "stop_ja": "複数source対応時のfinding range source選択は未閉包。先頭や別sourceを補完せず停止する。",
+        "execution_state": "not_executed"
+      },
+      {
+        "branch": "unmatched_general_bilateral_aggregation",
+        "source_refs": [
+          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/general_occurrence_cause_witness/scope_limitations_ja",
+          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/bilateral_aggregation/unclosed_boundary"
+        ],
+        "stop_ja": "同一predicate・対象pair・full Bindingへ対応しないgeneral群を集約せず、既定の未閉包停止へ戻す。",
+        "execution_state": "not_executed"
+      }
     ],
     "test_boundary_ja": "I1A/I1B/2Q/C3を含むL7実入力はtest codeで独立形成し、設計文書のfixture/expectedをコピーしない。C3 positiveは別入力であり、L9 whole証拠の再作成ではない。全返却/全cause/全組合せの合格、fn1未凍結F01/F02の実装・期待変更は含めない。",
     "design_binding_ref": {
@@ -250,7 +394,7 @@
       "pointer": "/fn3_identity_preparation"
     },
     "test_source": {
-      "revision": "12b806b6f7b7ac7a2426fa7877b9b8ae575a6ac3",
+      "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
       "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
       "class": "TestIdentityVersionsAndTrace",
       "methods": [
@@ -280,7 +424,7 @@
         "test_F04_NEG_02_R59_projects_absent_and_null_revision",
         "test_nonempty_dependency_branch_is_unclosed",
         "test_multiple_finding_range_sources_are_unclosed",
-        "test_unmapped_cause_to_finding_is_unclosed",
+        "test_null_compatibility_decision_keeps_unknown_axis_without_new_finding",
         "test_general_group_outside_matching_pair_is_unclosed"
       ]
     },
@@ -303,18 +447,28 @@
     ],
     "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
     "execution_observation": {
-      "source_revision": "cee2d90e01526b7d9fe9633ab80683afb05d3585",
+      "source_revision": "71052b6deb18321caf992e4c89d92335944caf76",
       "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
       "test_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
       "test_groups": [
         {
+          "path": "test_fn0_identity_wire_and_qualifications.py",
+          "revision": "befa3e9cce433744d285bfaa4705c5b269a59441",
+          "tests": 2
+        },
+        {
+          "path": "test_fn0_r2_negative_boundaries.py",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
+          "tests": 7
+        },
+        {
           "path": "test_identity_claim_source_witnesses.py",
-          "revision": "56f86bd7e9237e8494c6cacfa080c9be4ac6391e",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 3
         },
         {
           "path": "test_identity_contract_regressions.py",
-          "revision": "91bea106825cafd79be4f552788ce403150b018f",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 12
         },
         {
@@ -324,7 +478,7 @@
         },
         {
           "path": "test_identity_left_owner_projection.py",
-          "revision": "55dc006590efcca66ac9ad8a2d8c00f3bbdd5248",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 2
         },
         {
@@ -334,13 +488,13 @@
         },
         {
           "path": "test_identity_projection_boundaries.py",
-          "revision": "91bea106825cafd79be4f552788ce403150b018f",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 4
         },
         {
           "path": "test_identity_public_formation_guards.py",
-          "revision": "d6c26103cb82bf51b888dd0433c90167e0e634a5",
-          "tests": 5
+          "revision": "1b55c47d78f78d987db9d30345525ff9a195dfb9",
+          "tests": 9
         },
         {
           "path": "test_identity_public_writer.py",
@@ -348,18 +502,38 @@
           "tests": 4
         },
         {
+          "path": "test_identity_r2_claim_population.py",
+          "revision": "044b61eeb0018ccb84d3ad21b6a9d379dae7d930",
+          "tests": 11
+        },
+        {
+          "path": "test_identity_r2_compatibility.py",
+          "revision": "044b61eeb0018ccb84d3ad21b6a9d379dae7d930",
+          "tests": 5
+        },
+        {
+          "path": "test_identity_r2_predicate_negatives.py",
+          "revision": "fbe49e851272ac90ad06579fa909f64621ca9913",
+          "tests": 7
+        },
+        {
+          "path": "test_identity_r2_scope.py",
+          "revision": "883c089f6ad414f945edc25ef1466b65ebf0e341",
+          "tests": 4
+        },
+        {
           "path": "test_identity_review_boundaries.py",
-          "revision": "befa3e9cce433744d285bfaa4705c5b269a59441",
+          "revision": "044b61eeb0018ccb84d3ad21b6a9d379dae7d930",
           "tests": 8
         },
         {
           "path": "test_identity_review_writer_gaps.py",
-          "revision": "92b15fc7ed73098d78181764ee58e1bf38d5d94d",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 8
         },
         {
           "path": "test_identity_right_owner_membership_gaps.py",
-          "revision": "8f012cd79da09aba4110d34bd7db3f267c62d822",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 3
         },
         {
@@ -369,7 +543,7 @@
         },
         {
           "path": "test_identity_versions_and_trace.py",
-          "revision": "12b806b6f7b7ac7a2426fa7877b9b8ae575a6ac3",
+          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
           "tests": 28
         },
         {
@@ -379,45 +553,47 @@
         }
       ],
       "test_correction": "f563はrootが未定義のまま参照したFN3_BACKFLOW定数を1行定義したtest-only訂正。期待・入力・assertを変えず、正式未実装srcで28 testsのRedを再観測した（PR3709 comment6419200210）。",
-      "red_before_source_fix": "各追加testは先にtest-only commitへ固定し、旧候補srcで意味契約の失敗をrootが再現してからsrcを修正した。contract12、R66二候補、projection4、writer4、scope順1、witness2、optional Ref2。import/NameErrorをRed証拠へ代用しない。",
+      "red_before_source_fix": "初回・R1・M10のtest-first履歴に加え、最新reviewのtest-only訂正とR3追加観測はR3_review_reentryに記録する。旧期待のRedと訂正後のRed、修正前Redと既存Green対照を区別する。",
       "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
-      "root_result": "root独立実行: fn3 identity 84 tests、fn0直接回帰2 tests、既存N03 12 tests、fn6 14 testsを含む全unit120 testsは118 PASS/既知fn1 NEG02・NEG21の2 errors、failures=0。両errorはF02/required_kind_slot_mismatchで変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも再現済み。全成功とは認定しない。",
+      "root_result": "root独立実行: 全unit158 tests=156 PASS/既知fn1 NEG02・NEG21の2 errors、failures=0。fn3 identity 115 tests、fn0直接9 testsを含む。両errorはF02/required_kind_slot_mismatchで変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも再現済み。bounded_exec duration8288ms/reaped=true/truncated=false。全成功とは認定しない。",
       "latest_main_integration": "main 8fd1086b2fe5e83f877dfa72890c68da7c116df3をfcd6d2a29a3b53f1f5ac9200298930f82a3df792で無競合統合。実行済みsource/test群のblobは不変。L4 identity_version_trace_contractとL5 functions/3はreview基準6fa6から不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
       "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。",
-      "previous_observation": "従前55 tests/source 8f62c2fcf4d416214f1f617932ec2dc27829f210 と89 testsの統合観測はgit834e00ec15e7c3a94a503846a9541fef7d61db74の同pointerから辿る。現行test修正後のRedとは混同しない。",
+      "previous_observation": "M10分割時cee2d90e01526b7d9fe9633ab80683afb05d3585では120件/118PASS/既知fn1errors2。初回55/89件とR1の記録はgit bd9cc52f18d416d43b9e674f19e2b8d175e8942bの同pointerから辿る。各旧観測を現行test訂正後のRedへ流用しない。",
       "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
       "implementation_modules": [
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
-          "nonblank": 159
-        },
-        {
-          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py",
-          "nonblank": 232
+          "nonblank": 139
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py",
-          "nonblank": 246
-        },
-        {
-          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
-          "nonblank": 234
-        },
-        {
-          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
-          "nonblank": 248
+          "nonblank": 264
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py",
-          "nonblank": 445
+          "nonblank": 497
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
+          "nonblank": 260
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py",
           "nonblank": 125
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
+          "nonblank": 293
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py",
+          "nonblank": 241
         }
       ],
-      "module_split_verification": "M10前d736e8eb7499ce6176bd0e12d56e3310507284d7と比較し、移動34関数/定数AST完全一致、非fn3 AST一致、facadeは遅延import+returnのみ。全7moduleのimportと参照global symbol解決を確認。既存testは不変で、root分割後unit120 tests=118PASS/同じ既知fn1errors2/failure0、bounded_exec reaped=true。新module125–445非空行。既存descriptor_definitions.pyは1450非空行で本PRでは分割しない。"
+      "module_split_verification": "M10前d736e8eb7499ce6176bd0e12d56e3310507284d7と比較し、移動34関数/定数AST完全一致、非fn3 AST一致、facadeは遅延import+returnのみ。全7moduleのimportと参照global symbol解決を確認。既存testは不変で、root分割後unit120 tests=118PASS/同じ既知fn1errors2/failure0、bounded_exec reaped=true。新module125–445非空行。既存descriptor_definitions.pyは1450非空行で本PRでは分割しない。",
+      "R3_static_verification": "全7moduleのAST parse/import成功、各700非空行未満。descriptor_definitions.pyとdependencies_handoff.pyはreviewed bd9ccとbyte一致。未使用sources_presence/currentはAST load無しを確認して削除した。M10の34関数AST保持確認は分割時の証拠であり、今回の意味修正後のAST一致とは主張しない。",
+      "private_partial_observation": "rootの公開call内診断で実private validatorを通した返却を採取: root Binding={}でも15trace resolved・actual11件subject_unformed、slot Binding型外/fact subject nullはpublic14trace/private15readと原fact保持、KB absentは15trace knowledge_unresolved、descriptors absentはprivate/public trace0。input=nullはaxes/findings空・input_binding=null。全raw/v不変。この診断をprivate関数patch前提の回帰test又は新公開interfaceにしない。"
     },
     "R1_review_reentry": {
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421713229",
@@ -434,7 +610,7 @@
         "fn6_observations": "normalと同値Q2はfn6 7 axes/findings0。optional locator/sha欠落は既存F09/B02/binding_or_subject_ref_missingで停止する。fn6の閉Binding境界を補完して通さない。",
         "boundary": "fn0の受理/usable結果の変化を、fn1/fn2/fn6への影響なしとは申告しない。旧false/新trueの受理差と各下流の実観測を分け、全caller・全partial入力の成立やtrust取得を認定しない。"
       },
-      "state": "root_verified_M1_M10_and_m1_m9_R3_pending",
+      "state": "historical_R1_M10_observation_superseded_by_R3_review_reentry",
       "additional_red_evidence": [
         {
           "test_revision": "92b15fc7ed73098d78181764ee58e1bf38d5d94d",
@@ -481,9 +657,59 @@
         "m9": "R63 obligation identity differsは旧wip ae90のsame-obligation guard（当時1707–1708行）が既に不成立を除外したため既存Green対照。新たなRed証拠ではない。"
       },
       "private_read_diagnostic": "rootは公開fn3 call中のprivate localをprofileで観測し、実装をpatchせずpositive/outsideは左右owner_body_corresponding/resolved、左scope差は左のみowner_scope_differs/conflict、独立合成した右scope差は右のみ同conflictを確認。public pairはpositiveのみresolved、他3つconflict。これは回帰testのoracleや新公開interfaceにはしない。",
-      "M10_reentry": "R1追補comment6421876852をrootがR2依頼時に見落とした。comment6424577849で現HEADのReady/mergeを求めない旨を開示し、別source commit cee2d90e01526b7d9fe9633ab80683afb05d3585で分割だけを実施。R2 requestのd736e8eb7499ce6176bd0e12d56e3310507284d7ではなく更新HEADへ再reviewを依頼する。"
+      "M10_reentry": "R1追補comment6421876852をrootがR2依頼時に見落とした。comment6424577849で現HEADのReady/mergeを求めない旨を開示し、別source commit cee2d90e01526b7d9fe9633ab80683afb05d3585で分割だけを実施。R2 requestのd736e8eb7499ce6176bd0e12d56e3310507284d7ではなく更新HEADへ再reviewを依頼する。",
+      "historical_boundary": "以下のR1応答は当時の実装記録。M3–M6等の停止判断は最新reviewによるR3_review_reentryの訂正を現行とし、現在の許容操作や公開写像の定義に使わない。"
     },
-    "execution_state": "review_R1_root_verified_including_M10_R3_pending",
-    "authority_effect": "none"
+    "execution_state": "root_verified_R3_corrections_independent_review_pending",
+    "authority_effect": "none",
+    "R3_review_reentry": {
+      "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6424756090",
+      "review_request": "WR-CLAUDE-BRAIN032-FN3-IDENTITY-TDD-3547-20261026-05-review-R3",
+      "reviewed_base": "8fd1086b2fe5e83f877dfa72890c68da7c116df3",
+      "reviewed_content": "bd9cc52f18d416d43b9e674f19e2b8d175e8942b",
+      "scope_correction": "最新reviewは旧R1 M6-bのslot binding停止指示を訂正した。slot/fact公開subject不形成は既存construction guardへ戻し、原private read/RawValueを保持してtyped公開行を作らない。単一compatibilityの既存unexercised serializationと同pair cause competitionを停止対象にした旧解釈も訂正する。Findingを新設せず既存Axisを返す。knowledge_records欠落も同same_call partial規則で局所unknownへ保持する。",
+      "test_revisions": [
+        "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
+        "4ee0b9e33faf64fb609b3aa4eb9c541623c8b7f0",
+        "440414c91f05d2c1c37fd8ed0af64131405ec7cf",
+        "044b61eeb0018ccb84d3ad21b6a9d379dae7d930",
+        "fbe49e851272ac90ad06579fa909f64621ca9913",
+        "4d214c5560a3852e465ba8d9bfb6f9f14bf04478",
+        "5988dc2712f3bf3db91314358d2cd5fe3d1b9d39",
+        "883c089f6ad414f945edc25ef1466b65ebf0e341",
+        "1b55c47d78f78d987db9d30345525ff9a195dfb9"
+      ],
+      "test_changes": "本PR追加testの旧stop/unknown二択・旧停止期待をL4と最新統制指示に沿ってtest-onlyで訂正した。互換cause/state/reason、scope三値、他fn kind無作用、population/partial read、Claim一意ID、R66/relation/outside負側、fn0負側を追加。base testは改変しない。",
+      "red_observation": "source bd9ccのまま訂正後150 testsをroot実行しfailures21/errors43（うち既知fn1errors2）、NameError/import/TypeError=0。bounded_exec nontruncated/reaped。fn0負側7件など既存Green対照を新Redとしない。source変更前に固定したtest群だけを証拠とする。",
+      "setup_correction": "3f0初回scope入力でQualification.applicable_scopeの同期漏れがありfn0 issuesを生じたため、test-only4ee0で同期した。既知scope差のcompatibility reason prefixをcause literalとした誤期待も既存固定日本語prefixへ訂正した。訂正後に全150件を再Redし、scalar scopeはfn0 issues0かつactual conflict!=resolvedの意味失敗になった。訂正前のsetup failureを意味Redへ流用しない。",
+      "additional_absence_evidence": "440414の3追加caseを旧bd9cc source8module隔離で実行: claims absentとcompatibility_records absentは既存Green、sources absentはright_owner_unprovided停止のRed。044b61のKB欠落とcounterpart causeの2methodsも旧bd9cc隔離で7 NotImplemented errors、import/type/setup error無し。",
+      "pair_endpoint_cause_mapping": "L4 schemaの既存enumを区別する。Endpoint owner_decision_differsはpair body_record_differsへ、左右body原判断相反はpair bilateral_decisions_opposing、endpoint decision未解決はpair bilateral_owner_unresolved、record nullはcompatible_null。pair reasonはその原pair cause、owner_observationsは原endpoint cause/stateを保持し新enumを作らない。右source欠落はpair right_owner_unprovided、左counterpartは実右sourceへ結べずowner_counterpart_unresolved。",
+      "mixed_silent_overlap": "L5 R-mixed_knowledge_revisionは一項目がexact knowledge Bindingと異版、R-silent_supersessionは旧新を結ぶ明示関係無しが述語であり、互いを除外する条件が無い。NEG01/NEG02の合成入力はいずれも一項目を旧→新へ変えrelationを持たないため両述語が真。L8の負例分類を新たな排他gateにせず、両Finding有無を各testで独立assertする。ADD14の明示relation対照はmixed有り/silent無し。",
+      "fn0_boundary": "L4 Ref/Binding required無し・additionalProperties=falseに基づき、Binding={}、member欠落、partial Refをfn0で原presence保持して受理する差をL6へ明記。Source/Qualificationの既存closed decoderのpartial対応へscope拡張しない。",
+      "fn0_effects": {
+        "current": "normalはfn0 issues/unusable0、fn1 axes45/findings0、fn2 axes6/findings0、fn6 axes7/findings0。Binding empty/template_ref absent/oracle_ref partial/template identity absentはfn0受理issues0だがfn1の既存F02/descriptor_slot_binding_unresolvedで停止し、正規definitionsが未形成なのでfn2/fn6は未呼出。template locator absentはfn1/fn2同件数、fn6既存F09/B02/binding_or_subject_ref_missingで停止。全raw/v不変。",
+        "baseline": "旧main6fa6のsrc+fn6を隔離して同6caseを実行。normal以外の5caseはfn0 input=null/InputIssue1で下流未呼出。受理差が全caller無影響とは言わない。",
+        "negative_controls": "distinct Q・一コピーsubject digest不正・Ref非string/未知key・Binding型外/未知keyを固定。完全whole-equality guardを残した後段Q検証loopだけのfirst1変異は論理同値でありkill要件を追加しない。Q選択/whole equality guard自体をfirst1化する意味差は新negativeが対象とする。変異実行でkill確認したとは主張しない。"
+      },
+      "state": "root_verified_R3_corrections_independent_review_pending",
+      "authority_effect": "none",
+      "additional_acceptance_red": "fbe49e851のbasis_role list/dictで旧sourceに実TypeError2（setup由来ではない）とID/負側のassertion failuresを確認。4d214c556のroot Binding/source+KB不在/actual null operand/unformed subject Findingの4件は候補sourceで4 assertion failures。883c089f6のscope reasonは2 assertion failures。1b55c47d7はactual scope=nullでKeyError1、revision null/既知差とscope既知差のexact L4 prefixで3 assertion failures。各test-only固定後、対応修正前に実行した。",
+      "green_control_limit": "5988dc271で追加した既知revision差のsubcaseは候補actual修正後のGreen対照であり新Redとは主張しない。claims absent/compatibility_records absent、fn0負側7件の一部も既存Green。scope setup訂正前のfn0入力失敗を意味契約Redへ数えない。",
+      "major_responses": {
+        "M1": "単一pairは原cause literal+LF+6key material、endpoint原cause保持。同pair cause競合はL5 R61 prefix+cause_occurrencesだけでunknown/knowledge_ownerへ集約し新Finding無し。既存positive/outside相反はconflict/R62を維持。",
+        "M2": "actual/trace/endpoint/pairのscopeはRawValue exact比較でsame/different/unobserved。null/欠落はunobserved、object以外を未観測扱いしない。",
+        "M3": "他fn Claim kindは無作用、identity対象の型外/role/basis未成立だけ一意branch IDで停止。全Claim一律停止を除去。",
+        "M4": "descriptors/facts absent/null/[]は原fact0件。slot Bindingやfact subject未形成はprivate保持/public省略。他形成済みtraceを消さず、KB欠落/版nullは局所unknown、input=nullは空Comparison。",
+        "M5": "L4 optional wire受理を維持する選択と完全な受理差/下流停止観測をL6と本欄へ明示。未知key/型外拒否、distinct Qとbad subject copyはusableへ昇格しない。"
+      },
+      "minor_responses": {
+        "m1": "Claim各shape/role/basis/R66枝、左/右multiple Finding range、actual multipleの停止IDを分離。",
+        "m2": "compatible=null、右unusable、左multiple、R66 filename/identity/物理一意/basis malformed、全owner outside、relation kind/from/toの負側を追加。",
+        "m3": "NEG01/02でmixedとsilent両述語を各assert、ADD14で明示relationのsilent非発火を対照。新排他gate無し。",
+        "m4": "actual_pack_refはdecl.right_refのsubject linkと別operandとしてnull/欠落型をunknownへ読み、既知差をconflictへ。actual_scope_unresolvedの理由writer欠落とexact condition prefixもroot検収で修正。",
+        "m5": "claims/compatibility_records不在は意図した0観測、sources不在は元factごとのmissing witness。dead guard/unused引数/index/変数と重複template_ref取得を削除。"
+      },
+      "source_revision": "71052b6deb18321caf992e4c89d92335944caf76"
+    }
   }
 }

@@ -187,10 +187,11 @@
     "scope": "WR05のL7対象一覧に記録するL8観測とL9補足の実入力分岐だけ。未閉包は契約/分岐ID付きNotImplementedでBackflowし空の成功へ補完しない。具体入力と独立部分期待はL7 test codeへ置く。",
     "tdd": "各test revisionを先に固定しRedを観測して、別src commitでGreenを確認する。reviewによる誤期待・不十分な観測の訂正は根拠とtest-only revisionをL7へ記録し、訂正前のRedを訂正後testの証拠へ流用しない。",
     "fn0_shared_boundary_changes": {
-      "changed": "validate_supply_inputへoptional memberを保つ_wire_ref_shape_ok/_wire_binding_shape_okを適用し、_source_qualification_okは完全同値Qualificationの全原出現を照合する。fn0の受理結果とunusable/InputIssueは変更前mainから変わる。",
+      "changed": "validate_supply_inputへL4のoptional Ref/Bindingを読む_wire_ref_shape_ok/_wire_binding_shape_okを適用する。受理差はlocator/shaだけでなく、Binding={}、template_ref等のmember欠落、oracle_ref={}、Refのcore member欠落を含む。absent/nullを原値のまま保持する。_source_qualification_okは完全同値Qualificationの全原出現を照合し、fn0のinput/unusable/InputIssueは変更前mainから変わる。",
       "basis": "L4 identity_version_trace_contract/schema/$defs/RefとBindingにはrequired指定がなく、同contractのsame_callとpublic_projection/axis_reason_writer/finite_equal_qualification_repetitionが同ValidatedSupplyと同値Q反復を扱う。",
       "preserved": "入力のabsence/null/原配列・反復を保持し、bytes/body/digest・subject・applicable_scope・root Refの既存照合を省略しない。qualification_bodyはfn0ではopaqueのままで、owner/trust解決や新資格を発行しない。distinct Qは未解決のまま。fn1/fn2/fn6の既存guardは変更しない。",
-      "impact": "fn0変更の波及を無変更とは扱わない。fn1/fn2は新しく受理された同snapshotを読む場合があり、fn6は別の閉Binding境界で止まる場合がある。L7 R1_review_reentry/fn0_effectsに実測と固定testを記録する。"
+      "impact": "fn0のpartial受理を意味成立へ昇格しない。fn1/fn2/fn6の既存closed guardは保持し、停止する部分入力をfn3へ渡る同snapshotの受理差と区別する。fn3はsame_call/partial_and_nullとtrace_populationに従い、入力nullは空Comparison、typed公開subject/Bindingが作れないreadはprivateに保持し、他の形成済みreadを消さない。L7に各直接test/下流の実観測を記録する。",
+      "wire_type_boundary": "Refは宣言済みmemberのみ、identity/revision/owner/source_locator/sha256は供給時string又はnull、scopeはRawValue。Bindingは宣言済みmemberのみ、各Ref memberは供給時Ref object、版値はstring又はnull、dependency列は供給時Ref配列。required指定が無いことをmember補完/unknown key・型外の受理へ読み替えない。Source/Qualificationの既存閉decoderを本変更から拡張したとは主張しない。"
     },
     "legacy_basis": "既存legacy_rederivationとL4 identity_version_trace_contract/legacy_rederivation、axis_reason_writer/general_occurrence_cause_witness/legacy_rederivationの原identity/unknown/局所trace保持を継承し、旧runtime/CIは実行しない。",
     "authority_effect": "none"
