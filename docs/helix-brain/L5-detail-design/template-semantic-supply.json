@@ -13055,12 +13055,12 @@
         "元selector core_return/core_source/labo順、既決conditional同V一回read/元投影を元順/元predicateのまま続ける。元false時unselected_refs source-state passの同iterationで/canonical_dependency_detail/unselected_axis_trace_writerの全7member writerへ同V/原実indexを一回渡し、原L4 prefixと14member TRACEによるreasonを含むAxisを元位置へ形成する。元predicate/状態/subject/Binding/原Ref順/旧Findingは変更しない。元handoff/Claim/全既存Findingは元責務のまま保持し、conditional/unselectedへcanonical body portを追加しない。",
         "Comparison.axes/findingsは上記既存順で保持し、producer_symbolは元literal compare_dependencies_and_handoff、input_bindingは同V原Binding又は元null。canonical_frameは同callのprivate全値としてreason writer完了まで保持し、public返却/member/cache/第二entrypointへしない。"
       ],
-      "frame_observation": "現generic独立frame比較not_observed。新evidence引数を足さず、既知比較成功/相反を捏造しない。条件付きknown conflict保証を消さず未形成と明示する。",
+      "frame_observation": "現SupplyInput/DependencyContextにはcanonical dependency category（always_refs/core_return_refs）に対する独立known-frame比較先とtyped前提が存在しないため、read_canonical_dependency_bodyのframe段（branch 1..3）通過後は独立frame相反（frame_conflict_observed）を形成せずsource段（branch 4..8）へ進む。比較先やtyped前提が未形成の部分、及びsource段でproblemsが1件以上ある場合はaxis=dependency_reference, state=unknown, backflow_owner=knowledge_ownerを返し、原資料の供給・訂正後に同Binding・同revision・同scopeの原readからknowledge_ownerへ再入する。",
       "consumer_members": "fn6公Comparison4/Axis7/Finding9、InputIssue、whole conditional detail/元全公predicateは不変。新canonical body unknownを既存Finding codeのpredicate外へ流用しない。"
     },
     "remaining_general_domain_ja": [
       "任意string locatorを製品callerの到達domainと同一視せず、型外先へのtotal APIや新returnを捏造しない。",
-      "generic known-frame conflictの比較先/typed前提は未形成。conditional実H/A根拠は既存専担経路のまま。",
+      "generic known-frame conflictの比較先/typed前提は現SupplyInputに存在しないためframe段では未形成とし、未形成部・source段問題はunknown＋knowledge_ownerで同Binding/revision/scopeの原readからknowledge_ownerへ再入する。conditional実H/A根拠は既存専担経路のまま。",
       "実owner/trust resolver/parser/資源/数値adapter/runtimeの成立はこの論理詳細案から認定しない。",
       "全F09旧Finding predicate/その他原domain writerの実装をこのcanonical実read sliceで置換しない。"
     ],
@@ -13234,6 +13234,15 @@
         "identity_projection_consequence_ja": "required_identity引数は元反復の一出現を識別するが、TRACE14へidentity fieldを追加しない。固定missing prefixと他14値が同じAxis.reasonは同字面になり、identity/category対応は元必要列の出現順と各R105 Finding.reasonの完全identity/source_pathに保持する。同字面Axisも原missing identity数だけ並べ、dedup/一括化しない。"
       },
       "legacy_and_change_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299（archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md16–78）、4F5A1F0739EC1111D91D（同L4-basic-design/design-template-json-authority.md16–100）、603D0E8D8193914F4AC0（同L5-detail/design-refactoring-domain-model.md34–55）の閉field/意味署名/consumer保持を再導出。PR3355 bbbf39b7のunselected専用writerを構造先例とし、Issue3547の返却6366560711で記録したmissing TRACE欠落を埋める。元型/原Ref/原missing/旧Finding/公開契約を保ち、旧source本文/runtimeを移植しない。"
+    },
+    "known_frame_and_reentry_contract": {
+      "known_frame_comparison_ja": "現SupplyInput/DependencyContextにはcanonical dependency category（always_refs/core_return_refs）に対する独立known-frame比較先・typed前提が存在しないため、read_canonical_dependency_bodyのframe段（branch 1..3: binding_missing, binding_invalid, target_ref_missing）通過後は独立frame相反（frame_conflict_observed）を形成せず、後続source段（branch 4..8: frame_mismatch, matching_source_missing, source_integrity_failed, body_container_missing, canonical_body_missing）へ進む。",
+      "unknown_and_reentry_ja": "比較先やtyped前提が決まらない部分、及びsource段で問題が1件以上生じた場合は公開AxisResultでstate=unknown, backflow_owner=knowledge_ownerを返し、原資料の供給・訂正後に同Binding・同revision・同scopeの原readからknowledge_ownerへ再入する（#3707 general_occurrence_cause_witnessと同型）。#3710でfn6が実装済みのDP-1の型・経路と矛盾しない。",
+      "legacy_rederivation": {
+        "source": "LEGACY-ASSET-4F5A1F0739EC1111D91D:18–30, LEGACY-ASSET-98372FEE8A3AC8F9C299:65–76",
+        "keep": "JSON正本・source/owner/trace・明示unknown保持を継承し、欠落/null/空集合と未観測を混同しない（UTW-014/020/021防止）。",
+        "change": "独立known-frame比較先不在から架空のconflict/knownを合成せず、unknown＋knowledge_owner返却と同Binding/revision/scope原readからの再入を明記する。"
+      }
     }
   },
   "field_value_applicability_detail": {
@@ -13824,7 +13833,71 @@
     "return_field_sources": {"claim_locator":"argument.claim_locator","claim":"argument.claim","kind":"P(argument.claim,kind)","proposed_value":"P(argument.claim,proposed_value)","intent":"decision.intent","reason":"decision.reason"},
     "call_binding": {"raw_calls":"PortCalls.claim_intentsのlocator列を原順に同immutable inputへ解決し、当該Claim全値と原locatorを各1回readerへ渡す。空列は0件。","projection_calls":"PortCalls.claim_projectionsを原順に既存L4 read_receipt_claim_originへ渡し、その同call返却全値/source_locatorsを同順に保存する。expected/任意cached値を入力に注入しない。","derived_conditions":["caseにderived_intent_callが明示されている","projection.state=resolved","projection.claim.presence=supplied","projection.claim.valueが既存Claim値を形成する"],"derived_argument":"同call ClaimProjectionRead.claim.value全値。元boolをClaim引数として渡さない。","derived_locator":"元projection callのcarrier_locator + /producer_input/claims/receipt_obligation_completed。元bool所在をtraceとし、rawにない合成Claim locatorを作らない。","suppression":"derived指定なし、unknown/conflict、claim absent/null、又はClaim形成不能では追加intentを作らない。原projection/問題は保存する。","result_order":["raw call列の返却原順","derived指定があるprojection列の適格返却原順"],"scope":"read_receipt_claim_originは既存L4 logical契約への依存で、D32はその実OS供給やD33の全adapterを実現したとはしない。"},
     "existing_site_binding": {"site":"/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4","replacement":"同siteが既に一度呼ぶintent portのbodyを本readerへ束縛する。target/intentの呼出対象・順序・回数を拡大せず、w.intent_reads→Claim-use constructorの同call再利用を保持する。","consumer":"/source_return_contract/descriptor_target_dataflow/functions/8","limit":"全7kindの読み取り契約を定義しても全rawrunner/F09 wholeの成立へ拡張しない。"},
-    "legacy_rederivation": {"source":"L4 /dependency_semantic_ports/legacy_rederivation","read_sources":["LEGACY-ASSET-4F5A1F0739EC1111D91D:18–30","LEGACY-ASSET-98372FEE8A3AC8F9C299:65–76"],"keep":"元source/owner/trace/原値とunknownを保持し、欠落/null/空集合を区別する。","change":"旧schema/型/CLI/runtimeを移植せず、既存L4の7kind技術語彙を詳細readerへ降ろす。","failure":"UTW-014/020/021の欠落空集合化・部分不足不可視・自己申告を避ける。"}
+    "predicate_reflection_boundary": {
+      "scope_ja": "claim_intent_detail（D32）の7 Claim.kind語彙をL5 failure_rules（1, 2, 84, 86, 87, 88, 89、及びD27 routeで87と対になる93）のpredicateへ反映する範囲は、該当ruleの入力門（対象Claim.kindの認識とintent=positiveの主張成立）に限る。#3710でfn6が実装済みのDP-1（OS渡りBinding照合と原handoff/definition/applicability状態分離）の型・経路と矛盾しない。",
+      "domain_predicate_and_l7_test_boundary_ja": "各ruleの残りのdomain条件（DP-1のOS渡りBinding照合、原handoff/definition/applicability/unselected_source状態、reference_only資格役割、先行受領条件など）はread_claim_intent単体では判定せず、predicateへ直接反映できない部分（intent=negative/unresolved、未認識Claim.kind、及びpositive intentと原domain状態の組合せ対照）はL7でtest化する。",
+      "unformed_default_reentry_ja": "既存ruleのtyped前提や比較先が決まらない部分はunknownを返し、原資料の供給・訂正後に同Binding・同revision・同scopeの原readから既存owner（os_owner/core_owner/knowledge_owner）へ再入する（#3707 general_occurrence_cause_witnessと同型）。新gate・cause・資格・公開型は作らない。",
+      "rule_reflection_table": [
+        {
+          "kind": "project_obligation_discharge",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-receipt_as_discharge"
+          ],
+          "reflected_entry_ja": "Claim.kind=project_obligation_discharge かつ intent=positive（proposed_value===true）を主張門とする。",
+          "l7_test_boundary_ja": "DP-1のOS渡りBinding照合・OS実行義務未確認の対照、及びintent=negative/unresolved・未認識kindはL7でtest化する。"
+        },
+        {
+          "kind": "field_not_applicable",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-receipt_as_na"
+          ],
+          "reflected_entry_ja": "Claim.kind=field_not_applicable かつ intent=positive（proposed_value===\"not_applicable\"）を主張門とする。",
+          "l7_test_boundary_ja": "DP-1のCORE適用判断根拠不在と受領receiptのみの対照、及びintent=negative/unresolved・未認識kindはL7でtest化する。"
+        },
+        {
+          "kind": "definition_missing_from_receipt",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-receipt_as_definition"
+          ],
+          "reflected_entry_ja": "Claim.kind=definition_missing_from_receipt かつ intent=positive（proposed_value===\"missing\"）を主張門とする。",
+          "l7_test_boundary_ja": "原definition=knownかつ原handoff=not_receivedのdomain対照、及びintent=negative/unresolvedはL7でtest化する。"
+        },
+        {
+          "kind": "upstream_authority",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-reference_as_authority"
+          ],
+          "reflected_entry_ja": "Claim.kind=upstream_authority かつ intent=positive（proposed_value===true）を主張門とする。",
+          "l7_test_boundary_ja": "reference_only資料をauthority根拠にするdomain対照、及びintent=negative/unresolvedはL7でtest化する。"
+        },
+        {
+          "kind": "fill_definition",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-reference_as_required_definition",
+            "HELIXBRAIN-L5-032-R-unknown_fallback"
+          ],
+          "reflected_entry_ja": "Claim.kind=fill_definition かつ intent=positive（proposed_value any_supplied）はD27 routeに従い原definition missing時rule 87、原meaning null/unknown fallback時rule 93の主張門とする。",
+          "l7_test_boundary_ja": "rule 87（fn6）とrule 93（fn7）のdomain分岐対照、及びintent=negative/unresolvedはL7でtest化する。"
+        },
+        {
+          "kind": "require_before_supply",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-future_receipt_as_precondition"
+          ],
+          "reflected_entry_ja": "Claim.kind=require_before_supply かつ intent=positive（proposed_value===\"future-receiver-completion-receipt\"）を主張門とする。",
+          "l7_test_boundary_ja": "後続receiver完了receiptを供給開始前必須にするdomain対照、及びintent=negative/unresolvedはL7でtest化する。"
+        },
+        {
+          "kind": "labo_evaluated",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-unselected_source_success"
+          ],
+          "reflected_entry_ja": "Claim.kind=labo_evaluated かつ intent=positive（proposed_value===true）を主張門とする。",
+          "l7_test_boundary_ja": "labo_evaluation_selected=false/unobservedのdomain対照、及びintent=negative/unresolvedはL7でtest化する。"
+        }
+      ]
+    },
+    "legacy_rederivation": {"source":"L4 /dependency_semantic_ports/legacy_rederivation","read_sources":["LEGACY-ASSET-4F5A1F0739EC1111D91D:18–30","LEGACY-ASSET-98372FEE8A3AC8F9C299:65–76"],"keep":"元source/owner/trace/原値とunknownを保持し、欠落/null/空集合を区別する。","change":"旧schema/型/CLI/runtimeを移植せず、既存L4の7kind技術語彙を詳細readerへ降ろし、failure_rulesへの反映範囲（kind認識＋intent=positiveの主張門）とL7 test化境界・未形成時unknown再入を明記する。","failure":"UTW-014/020/021の欠落空集合化・部分不足不可視・自己申告を避ける。"}
   },
   "knowledge_promotion_detail": {
     "id": "HELIXBRAIN-L5-032-F08-NONEMPTY-NO-CLAIM-DETAIL",
