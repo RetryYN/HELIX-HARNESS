@@ -1713,6 +1713,44 @@ def _fn3_range_declaration_formed(value: Any) -> bool:
             and sum(_ref_same(row["endpoint_ref"], value["right_ref"]) for row in owners) == 1)
 
 
+def _fn3_left_owner_body_formed(value: Any) -> bool:
+    """Project only one of the two closed L4 LeftOwnerSourceBody branches."""
+    common = {"compatible_refs", "compatible", "compatibility_record_ref",
+              "counterpart_source_ref", "endpoint_owner_declaration"}
+    if not isinstance(value, dict) or type(value.get("compatible")) is not bool:
+        return False
+    expected = common if value["compatible"] else common | {"declared_range"}
+    if set(value) != expected:
+        return False
+    if (not isinstance(value.get("compatible_refs"), list)
+            or any(not _wire_ref_shape_ok(ref) for ref in value["compatible_refs"])
+            or not _wire_ref_shape_ok(value.get("compatibility_record_ref"))
+            or not _wire_ref_shape_ok(value.get("counterpart_source_ref"))):
+        return False
+    declaration = value.get("endpoint_owner_declaration")
+    declaration_fields = {"endpoint", "endpoint_ref", "owner", "compatible",
+                          "range_relation", "range_reason"}
+    if (not isinstance(declaration, dict) or set(declaration) != declaration_fields
+            or declaration.get("endpoint") != "left"
+            or not _wire_ref_shape_ok(declaration.get("endpoint_ref"))
+            or not isinstance(declaration.get("owner"), str)
+            or type(declaration.get("compatible")) is not bool
+            or not isinstance(declaration.get("range_relation"), str)
+            or declaration.get("range_relation") not in {"outside", "not_supplied"}
+            or (declaration.get("range_reason") is not None
+                and not isinstance(declaration.get("range_reason"), str))):
+        return False
+    if not value["compatible"]:
+        declared = value.get("declared_range")
+        if (not isinstance(declared, dict)
+                or set(declared) != {"pack_contract_versions", "pack_artifact_versions"}
+                or any(not isinstance(declared.get(key), list)
+                       or any(not isinstance(item, str) for item in declared[key])
+                       for key in ("pack_contract_versions", "pack_artifact_versions"))):
+            return False
+    return True
+
+
 def _fn3_resolve_pointer(root: Any, pointer: str) -> tuple[bool, Any]:
     if pointer in {"", "/"}:
         return True, root
@@ -2435,7 +2473,8 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
         body_read = {"presence": "supplied", "value": copy.deepcopy(body)} if isinstance(body, dict) else {"presence": "absent"}
         declaration = body.get("endpoint_owner_declaration") if isinstance(body, dict) else None
         if endpoint == "left":
-            declaration_ok = (isinstance(declaration, dict) and declaration.get("endpoint") == "left"
+            declaration_ok = (_fn3_left_owner_body_formed(body)
+                              and isinstance(declaration, dict) and declaration.get("endpoint") == "left"
                               and _ref_same(declaration.get("endpoint_ref"), target)
                               and declaration.get("owner") == (target.get("owner") if isinstance(target, dict) else None)
                               and _ref_same(body.get("compatibility_record_ref"), record.get("ref"))
@@ -2585,7 +2624,8 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"], left_source["ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
             continue
-        left_decl_valid = (isinstance(owner_decl, dict)
+        left_decl_valid = (_fn3_left_owner_body_formed(left_body)
+                           and isinstance(owner_decl, dict)
                            and owner_decl.get("endpoint") == "left"
                            and _ref_same(owner_decl.get("endpoint_ref"), record.get("left_ref"))
                            and owner_decl.get("owner") == record.get("left_ref", {}).get("owner")
