@@ -616,7 +616,8 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
                 else:
                     template_ref["revision"] = None
                 raw_before = copy.deepcopy(raw)
-                validated, validated_before = self._validate(raw)
+                validated, _ = self._validate(raw)
+                validated_before = copy.deepcopy(validated)
                 result = compare_identity_versions_and_trace({"validated": validated})
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated, validated_before)
