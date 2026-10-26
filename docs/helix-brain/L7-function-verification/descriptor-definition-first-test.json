@@ -180,6 +180,20 @@
       "green": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408974955",
       "boundary": "normalとN03独立三入力の四testだけ。実trust/全schema/全返却/他child/実装全域の成立ではない。"
     },
+    "review_regressions": {
+      "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py",
+      "test_commit": "6268d069ae2ddffcebba237c7ba67a00d6f81033",
+      "implementation_commit": "456d05d020e3303d0812419074f28cd4a35c140b",
+      "red": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409187359",
+      "green": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302",
+      "scope": "元4testは不変。追加8testはcarry2軸・F02対象外guard・N03非発火側の未対応と不変性。先行8件中3件Redの後に別実装commitで合計12件Green。",
+      "outside_scope_red": {
+        "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+        "methods": ["test_neg02_cross_pattern_field_substitution", "test_neg21_required_field_missing_without_substitution"],
+        "result": "元testを改変/skipせず、実fn1のF02/required_kind_slot_mismatch・N03PATH付きNotImplementedで2件の範囲外Redを保持。証拠は上記green記録内。"
+      },
+      "boundary": "追加testは対象外枝の完成を認定しない。診断Ref列の局所writer選択はsrcコメントに開示し、新しい一般式/資格/predicateは作らない。"
+    },
     "authority_effect": "none"
   }
 }
