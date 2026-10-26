@@ -1109,5 +1109,61 @@
       },
       "result_match": true
     }
+  },
+  "fn1_kind_slot_and_substitution_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-KIND-SLOT-TDD",
+    "design_ref": "HELIXBRAIN-L6-032-FN1-KIND-SLOT-TDD",
+    "request_id": "WR-CLAUDE-BRAIN032-FN1-KIND-SLOT-TDD-3547-20261027-18",
+    "governance_decision": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6427761585",
+    "source_main": "4abee6df089cbbb9654edf38c80d116ecaeca708",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "authority_effect": "none",
+    "test_commit": "49cda14af1c2cf75e3fa958d1fea8c4e36662bc6",
+    "test_immutability_after_red": "test commit 49cda14af1c2cf75e3fa958d1fea8c4e36662bc6 以降の実装commitでは tests/ 配下を一切変更していない（git diff 0行）。",
+    "red_observation": {
+      "commit": "49cda14af1c2cf75e3fa958d1fea8c4e36662bc6",
+      "command": "python3 -B scaffold/tools/bounded_exec.py --cwd /home/tenni/.helix-worktrees/agy-3547-fn1-kind-slot --timeout-ms 60000 -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py",
+      "classification": "exit_nonzero",
+      "status": 1,
+      "ran_tests": 17,
+      "subtest_errors": 24,
+      "observed_exception": "NotImplementedError: F02/required_kind_slot_mismatch (and F02/required_kinds_outside_frozen_path on kind surplus); Backflow HELIXBRAIN-L6-032-N03-PATH",
+      "reaped": true,
+      "timed_out": false
+    },
+    "green_observation": {
+      "command": "python3 -B scaffold/tools/bounded_exec.py --cwd /home/tenni/.helix-worktrees/agy-3547-fn1-kind-slot --timeout-ms 60000 -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -p 'test_*.py'",
+      "classification": "ok",
+      "status": 0,
+      "total_tests": 204,
+      "passed": 204,
+      "failures": 0,
+      "errors": 0,
+      "resolved_known_f02_errors": [
+        "test_neg02_cross_pattern_field_substitution (test_descriptor_definitions.TestDescriptorDefinitions)",
+        "test_neg21_required_field_missing_without_substitution (test_descriptor_definitions.TestDescriptorDefinitions)"
+      ],
+      "summary": "Ran 204 tests in 15.050s — OK",
+      "reaped": true,
+      "timed_out": false
+    },
+    "unit_all_modules_nonblank_lines": {
+      "definition_comparison.py": 625,
+      "dependencies_handoff.py": 485,
+      "dependencies_handoff_ports.py": 601,
+      "descriptor_definitions.py": 205,
+      "identity_trace.py": 139,
+      "identity_trace_actual.py": 265,
+      "identity_trace_bilateral.py": 551,
+      "identity_trace_claims.py": 252,
+      "identity_trace_projection.py": 125,
+      "identity_trace_reader.py": 289,
+      "identity_trace_support.py": 216,
+      "knowledge_promotion.py": 512,
+      "supply_validation.py": 446,
+      "values_applicability.py": 492,
+      "values_applicability_reads.py": 646,
+      "values_applicability_rows.py": 601
+    }
   }
 }

@@ -467,5 +467,110 @@
         ]
       }
     ]
+  },
+  "fn1_kind_slot_and_substitution_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-KIND-SLOT-TDD",
+    "request_id": "WR-CLAUDE-BRAIN032-FN1-KIND-SLOT-TDD-3547-20261027-18",
+    "governance_decision": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6427761585",
+    "source_main": "4abee6df089cbbb9654edf38c80d116ecaeca708",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "authority_effect": "none",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "implementation_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py"
+    ],
+    "scope": "fn1 compare_descriptor_definitions の F02/required_kind_slot_mismatch（固定15kind guard）経路と、同経路で到達する required_slot_absent（descriptor_01_missing..descriptor_15_missing）・kind余剰（all_slot_read_domain と fixed_kinds の分離）・fill_definition 代替Claim（rule7 cross_pattern_section_substitution / rule8 cross_pattern_field_substitution / constructors/3 第3枝 replacement_basis_unresolved / 第4枝及kind限定外の非発火）をL4/L5契約に沿って実装する。既知の範囲外Red 2件（test_neg02/test_neg21）の解消と fn4 F05-NEG-01/02（measurement/completion slot欠落＋derived_view fill_definition Claim）の共通前提を閉じる。経路外の実分岐は分岐ID付きNotImplementedErrorで保持する。",
+    "contract_basis": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointers": [
+          "/descriptor_meanings",
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+          "/dependency_semantic_ports/descriptor_target_contract",
+          "/dependency_semantic_ports/claim_intent_protocol/rules/4",
+          "/oracle_view_boundary_contract"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/1",
+          "/failure_rules/7",
+          "/failure_rules/8",
+          "/failure_rules/9",
+          "/failure_rules/12",
+          "/failure_rules/15",
+          "/failure_rules/18",
+          "/failure_rules/21",
+          "/failure_rules/24",
+          "/failure_rules/27",
+          "/failure_rules/30",
+          "/failure_rules/33",
+          "/failure_rules/36",
+          "/failure_rules/39",
+          "/failure_rules/42",
+          "/failure_rules/45",
+          "/failure_rules/48",
+          "/failure_rules/51",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointers": [
+          "/cases/3/negative_cases/0",
+          "/cases/3/negative_cases/1",
+          "/cases/3/negative_cases/20",
+          "/cases/3/negative_cases/35",
+          "/cases/3/negative_cases/38",
+          "/cases/6/negative_cases/0",
+          "/cases/6/negative_cases/1",
+          "/function_oracles/1"
+        ]
+      }
+    ],
+    "legacy_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-4674004E096A88836B67",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5.md",
+        "lines": [
+          49,
+          121
+        ],
+        "keep": "固定15 descriptor意味に対する各slot欠落診断（descriptor_01_missing..descriptor_15_missing）と別Patternのrequired inputによるrequired section/field代替禁止（cross_pattern_section_substitution / cross_pattern_field_substitution）。",
+        "change": "新世代L4/L5 JSON契約のAxisResult/Finding表現、exact_sort_contract（axis_key_access_paths / finding_key）、descriptor_targets + replacement_basis_uses の明示対応で評価し、旧runtime/DBは実行しない。",
+        "reason": "既知の範囲外Red 2件（NEG02/NEG21）とfn4 F05-NEG-01/02のfn1前提をL4/L5契約どおり閉じるため。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4.md",
+        "lines": [
+          1,
+          120
+        ],
+        "keep": "all_slot_read_domain（供給された全DescriptorSlotの原評価）とfixed_kinds（独立required_descriptor_kindsへの照合・候補からの必要集合非合成）の分離、およびfn1 constructors/3のrequired section/required field限定境界。",
+        "change": "F05-NEG-01/02のmeasurement/completion欠落＋derived_view fill_definition Claimではfn1がdescriptor_12_missing / descriptor_13_missingを返し、rule68/69の判定はfn4へ委ねる。",
+        "reason": "統制判断 #3547 comment 6427761585 に従い、fn1とfn4の責務境界をL4/L5契約どおり維持するため。"
+      }
+    ],
+    "preserved_not_implemented_branches": [
+      "F02/required_kinds_absent",
+      "F02/required_kinds_shape_or_value",
+      "F02/required_kinds_outside_frozen_path (duplicate required_descriptor_kinds)",
+      "F02/descriptor_kind_duplicate_slot",
+      "F01/related_relation_unresolved (when relation slot is supplied without same-Binding RelationRecord)",
+      "F01/descriptor_claim_unimplemented (non-fill_definition descriptor claim)"
+    ],
+    "module_nonblank_lines": {
+      "definition_comparison.py": 625,
+      "limit_nonblank_lines": 700
+    }
   }
 }
