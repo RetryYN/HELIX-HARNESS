@@ -1580,17 +1580,17 @@ def compare_values_and_applicability(context: dict[str, object]) -> dict[str, ob
 
 _FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 _IDENTITY_ACTUAL_AXES = (
-    ("template.identity", "template_ref"),
-    ("knowledge.identity", "knowledge_ref"),
-    ("requirement.identity", "requirement_ref"),
-    ("oracle.identity", "oracle_ref"),
-    ("pack.identity", "pack_ref"),
-    ("template.version", "template_ref"),
-    ("knowledge.revision", "knowledge_ref"),
-    ("pack.contract_version", "pack_ref"),
-    ("pack.artifact_version", "pack_ref"),
-    ("pack.dependency_version", "pack_ref"),
-    ("knowledge.operational_state", "knowledge_ref"),
+    ("template.identity", "template_actual_ref", "/binding/template_ref", "/binding/template_ref"),
+    ("knowledge.identity", "knowledge_actual_ref", "/binding/knowledge_ref", "/binding/knowledge_ref"),
+    ("requirement.identity", "requirement_actual_ref", "/binding/requirement_ref", "/binding/requirement_ref"),
+    ("oracle.identity", "oracle_actual_ref", "/binding/oracle_ref", "/binding/oracle_ref"),
+    ("pack.identity", "pack_actual_ref", "/binding/pack_ref", "/binding/pack_ref"),
+    ("template.version", "template_actual_revision", "/binding/template_ref/revision", "/binding/template_ref"),
+    ("knowledge.revision", "knowledge_actual_revision", "/binding/knowledge_ref/revision", "/binding/knowledge_ref"),
+    ("pack.revision", "pack_actual_revision", "/binding/pack_ref/revision", "/binding/pack_ref"),
+    ("pack.contract_version", "pack_actual_contract_version", "/binding/pack_contract_version", "/binding/pack_ref"),
+    ("pack.artifact_version", "pack_actual_artifact_version", "/binding/pack_artifact_version", "/binding/pack_ref"),
+    ("knowledge.operational_state", "knowledge_actual_operational_state", "knowledge_state_selection", "/binding/knowledge_ref"),
 )
 
 
@@ -1651,262 +1651,726 @@ def _fn3_diag(prefix: str, material: dict[str, Any]) -> str:
     return prefix + "\n" + json.dumps(material, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
+_FN3_FINDING_PREFIXES = {
+    "source_missing": "candidate-Aのbindingで参照されたsemantic sourceが供給されていない。他候補sourceは当該sourceではない。",
+    "scope_missing": "候補の適用scopeが未供給で、同名または他scopeの供給で補えない。",
+    "mixed_knowledge_revision": "一項目の根拠だけが同templateのexact knowledge bindingと異なるrevisionへ結ばれている。",
+    "silent_supersession": "原旧knowledge参照を異版へ付け替えたが、その旧新を結ぶ明示supersession原関係がない。",
+    "oracle_revision_mismatch": "同subject/要求scopeへ束縛されたoracleの版が当該bindingのoracle版と異なる。",
+    "image_identity_inference": "template意味identityのowner原根拠が未供給で、画像だけの推定claimがある。",
+    "tool_node_identity_inference": "実template版のowner原根拠が未供給で、tool node IDだけの推定claimがある。",
+    "filename_identity_join": "qualified原記録で異identityの二候補に、filename一致だけでsame identity claimを付けている。",
+}
+
+
+def _fn3_predicate_finding_reason(raw: dict[str, Any], code: str,
+                                 observations: list[tuple[str, str]]) -> str:
+    rule_ref = f"HELIXBRAIN-L5-032-R-{code}"
+    reads = [{"locator": pointer, "original_read": _fn3_presence(raw, pointer)}
+             for pointer, _role in observations]
+    return _fn3_diag(_FN3_FINDING_PREFIXES[code],
+                     {"code": code, "rule_ref": rule_ref, "predicate_observations": reads})
+
+
 def _fn3_scope_same(left: Any, right: Any) -> bool:
     return isinstance(left, dict) and isinstance(right, dict) and _json_equal(left, right)
 
 
+def _fn3_range_declaration_formed(value: Any) -> bool:
+    """Project only a locally well-formed L4 RangeDeclaration carrier."""
+    members = {"left_ref", "right_ref", "actual_pack_ref", "actual_contract_version",
+               "actual_artifact_version", "declared_range", "relation", "reason", "owner_declarations"}
+    if not isinstance(value, dict) or set(value) != members:
+        return False
+    if not all(_wire_ref_shape_ok(value.get(key)) for key in ("left_ref", "right_ref", "actual_pack_ref")):
+        return False
+    if (not isinstance(value.get("actual_contract_version"), str)
+            or not isinstance(value.get("actual_artifact_version"), str)
+            or value.get("relation") != "outside" or not isinstance(value.get("reason"), str)):
+        return False
+    declared = value.get("declared_range")
+    if (not isinstance(declared, dict) or set(declared) != {"pack_contract_versions", "pack_artifact_versions"}
+            or any(not isinstance(declared.get(key), list)
+                   or any(not isinstance(item, str) for item in declared[key])
+                   for key in ("pack_contract_versions", "pack_artifact_versions"))):
+        return False
+    owners = value.get("owner_declarations")
+    if not isinstance(owners, list) or len(owners) != 2:
+        return False
+    if not all(isinstance(row, dict) and set(row) == {"endpoint_ref", "owner", "relation"}
+               and _wire_ref_shape_ok(row.get("endpoint_ref"))
+               and isinstance(row.get("owner"), str)
+               and row["owner"] == row["endpoint_ref"].get("owner")
+               and row.get("relation") == "outside" for row in owners):
+        return False
+    return (sum(_ref_same(row["endpoint_ref"], value["left_ref"]) for row in owners) == 1
+            and sum(_ref_same(row["endpoint_ref"], value["right_ref"]) for row in owners) == 1)
+
+
+def _fn3_resolve_pointer(root: Any, pointer: str) -> tuple[bool, Any]:
+    if pointer in {"", "/"}:
+        return True, root
+    if not isinstance(pointer, str) or not pointer.startswith("/"):
+        return False, None
+    current = root
+    for raw_part in pointer[1:].split("/"):
+        part = raw_part.replace("~1", "/").replace("~0", "~")
+        if isinstance(current, dict) and part in current:
+            current = current[part]
+        elif isinstance(current, list) and part.isdigit() and int(part) < len(current):
+            current = current[int(part)]
+        else:
+            return False, None
+    return True, current
+
+
+def _fn3_presence(root: Any, pointer: str) -> dict[str, Any]:
+    present, value = _fn3_resolve_pointer(root, pointer)
+    return {"presence": "supplied", "value": copy.deepcopy(value)} if present else {"presence": "absent"}
+
+
+def _fn3_qualified_owner_source(raw: dict[str, Any], index: int, source: dict[str, Any],
+                                unusable: list[Any]) -> bool:
+    if not _fn3_valid_source(raw, index, source, unusable):
+        return False
+    qrows = _fn3_qualification_rows(raw, source.get("qualification_ref"))
+    if not qrows or any(not _json_equal(q, qrows[0][1]) for _, q in qrows[1:]):
+        return False
+    q = qrows[0][1]
+    body = q.get("qualification_body")
+    roots = _fn3_root_rows(raw, q.get("root_ref"))
+    return (isinstance(body, dict) and body.get("owner") == source.get("ref", {}).get("owner")
+            and bool(roots) and all(root.get("owner") == source.get("ref", {}).get("owner") for _, root in roots))
+
+
+def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]) -> list[dict[str, Any]]:
+    """Select only explicit RangeDeclaration bodies tied to the input pack identity."""
+    found = []
+    for index, source in enumerate(raw.get("sources", [])):
+        if not isinstance(source, dict) or source.get("role") != "semantic_json":
+            continue
+        body = source.get("content")
+        decl = body.get("compatibility_range_declaration") if isinstance(body, dict) else None
+        if not _fn3_range_declaration_formed(decl):
+            continue
+        actual_pack = decl.get("actual_pack_ref")
+        target_pack = binding.get("pack_ref")
+        if not _ref_same(actual_pack, target_pack):
+            continue
+        owner_declarations = decl.get("owner_declarations")
+        owner_shape = True
+        found.append({"source_index": index, "source": source, "body": body, "declaration": decl,
+                      "owner_declarations": owner_declarations if isinstance(owner_declarations, list) else [],
+                      "owner_shape": owner_shape,
+                      "qualified": _fn3_qualified_owner_source(raw, index, source, unusable),
+                      "scope_same": (_fn3_scope_same(actual_pack.get("scope"), target_pack.get("scope"))
+                                     and _fn3_scope_same(source.get("ref", {}).get("scope"), target_pack.get("scope"))
+                                     and _fn3_scope_same(decl.get("right_ref", {}).get("scope"), target_pack.get("scope"))),
+                      "subject_same": (_ref_same(decl.get("right_ref"), target_pack)
+                                       and _ref_same(decl.get("left_ref"), binding.get("template_ref")))} )
+    return found
+
 def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                      axes: list[dict[str, Any]], findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Read the eleven fixed actual operands without inferring an owner from a carrier."""
     reads: list[dict[str, Any]] = []
-    template = binding.get("template_ref")
-    for axis_name, member in _IDENTITY_ACTUAL_AXES:
-        ref = binding.get(member)
-        if not isinstance(ref, dict):
-            raise _fn3_stop("F04/N01/actual_operand_ref", f"{member} is absent or not a Ref")
-        if ref.get("revision") is None:
-            raise _fn3_stop("F04/N01/actual_operand_revision", f"{member}.revision is absent or null")
-        # These source bodies are retained as private input/qualification rows;
-        # none is an actual-owner declaration for these finite axes.
-        obs: list[dict[str, Any]] = []
-        state = "unknown"
-        reason = _fn3_diag("actual_owner_body_unprovided", {
-            "cause": "actual_owner_body_unprovided", "knowledge_ref": copy.deepcopy(binding["knowledge_ref"]),
-            "member_pointer": "/binding/" + member, "original_read": {"presence": "supplied", "value": copy.deepcopy(ref)},
-            "actual_source_pointers": ["/sources/%d/content" % row["source_index"] for row in obs],
-        })
-        if member == "template_ref" and template.get("scope") is None:
-            reason = "scope_missing: 対象template Refのscopeが明示nullであり他のscopeから補完しない。"
-            findings.append(_fn3_finding("scope_missing", template, binding, axis_name, "missing", [], reason))
-            state = "unknown"
-        axis = _fn3_axis(ref, binding, axis_name, state, [ref], reason)
-        axes.append(axis)
-        role_names = {
-            "template.identity": "template_actual_ref", "knowledge.identity": "knowledge_actual_ref",
-            "requirement.identity": "requirement_actual_ref", "oracle.identity": "oracle_actual_ref",
-            "pack.identity": "pack_actual_ref", "template.version": "template_actual_revision",
-            "knowledge.revision": "knowledge_actual_revision", "pack.contract_version": "pack_actual_contract_version",
-            "pack.artifact_version": "pack_actual_artifact_version", "pack.dependency_version": "pack_actual_dependency_version",
-            "knowledge.operational_state": "knowledge_actual_operational_state",
-        }
-        reads.append({"request": {"member_locator": "/binding/" + member, "actual_role": role_names[axis_name]},
-                      "original_read": {"presence": "supplied", "value": copy.deepcopy(ref)},
-                      "read_classification": "supplied", "observations": obs,
-                      "state": state, "cause": "actual_owner_body_unprovided"})
+    range_rows = _fn3_range_rows(raw, binding, unusable)
+    records = raw.get("knowledge_records")
+    if not isinstance(records, list):
+        records = []
+    matched_records = [(i, row) for i, row in enumerate(records)
+                       if isinstance(row, dict) and _ref_same(row.get("ref"), binding.get("knowledge_ref"))]
+    axis_sources = {
+        "pack.identity": "actual_pack_ref", "pack.revision": "actual_pack_ref/revision",
+        "pack.contract_version": "actual_contract_version", "pack.artifact_version": "actual_artifact_version",
+    }
+    for axis_name, role, member_pointer, subject_pointer in _IDENTITY_ACTUAL_AXES:
+        if axis_name == "knowledge.operational_state":
+            member_pointer = (f"/knowledge_records/{matched_records[0][0]}/operational_state"
+                              if len(matched_records) == 1 else "/knowledge_records")
+            original_read = _fn3_presence(raw, member_pointer)
+            subject = binding.get("knowledge_ref")
+        else:
+            original_read = _fn3_presence(raw, member_pointer)
+            _, subject = _fn3_resolve_pointer(raw, subject_pointer)
+        ref_axes = {"template.identity", "knowledge.identity", "requirement.identity", "oracle.identity", "pack.identity"}
+        if original_read.get("presence") == "absent":
+            classification = "absent"
+        elif original_read.get("value") is None:
+            classification = "null"
+        elif axis_name in ref_axes and not isinstance(original_read.get("value"), dict):
+            classification = "out_of_type"
+        elif axis_name not in ref_axes and axis_name != "knowledge.operational_state" and not isinstance(original_read.get("value"), (str, dict)):
+            classification = "out_of_type"
+        else:
+            classification = "supplied"
 
-    # Oracle revision is checked only against a directly corresponding supplied OracleBinding.
-    oracle_rows = raw.get("oracle_bindings", [])
-    if isinstance(oracle_rows, list):
-        for row in oracle_rows:
-            if not isinstance(row, dict):
-                continue
-            oracle_candidate = row.get("oracle_ref")
-            bound_oracle = binding.get("oracle_ref")
-            same_oracle_subject = (isinstance(oracle_candidate, dict) and isinstance(bound_oracle, dict)
-                                   and all(_json_equal(oracle_candidate.get(k), bound_oracle.get(k))
-                                           for k in ("identity", "scope", "owner")))
-            if not (_ref_same(row.get("obligation_ref"), binding.get("requirement_ref")) and same_oracle_subject):
-                continue
-            supplied = row.get("oracle_ref")
-            expected = binding.get("oracle_ref")
-            if isinstance(supplied, dict) and isinstance(expected, dict) and not _ref_same(supplied, expected):
-                if supplied.get("revision") != expected.get("revision"):
-                    findings.append(_fn3_finding(
-                        "oracle_revision_mismatch", binding["template_ref"], binding, "oracle.identity", "conflict",
-                        [row.get("source_ref")] if isinstance(row.get("source_ref"), dict) else [],
-                        "oracle_revision_mismatch: 供給されたOracleBindingの原revisionをBindingへ置換しない。"))
-                break
+        observations = []
+        actual_cause = None
+        if axis_name in axis_sources:
+            for selected in range_rows:
+                decl = selected["declaration"]
+                declaration_locator = f"/sources/{selected['source_index']}/content/compatibility_range_declaration"
+                body_locator = declaration_locator + "/" + axis_sources[axis_name]
+                actual = _fn3_presence(raw, body_locator)
+                owner_rows = selected["owner_declarations"]
+                owner_match = next(((oi, r) for oi, r in enumerate(owner_rows)
+                                    if _ref_same(r.get("endpoint_ref"), decl.get("right_ref"))), None)
+                owner_index, owner = owner_match if owner_match is not None else (None, None)
+                target = (binding.get("pack_ref") if axis_name == "pack.identity"
+                          else binding.get("pack_ref", {}).get("revision") if axis_name == "pack.revision"
+                          else binding.get("pack_contract_version") if axis_name == "pack.contract_version"
+                          else binding.get("pack_artifact_version"))
+                if not selected["qualified"]:
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_qualification_unresolved"
+                elif not selected["scope_same"]:
+                    relation, obs_state, actual_cause = "different", "conflict", "actual_scope_differs"
+                elif not selected["subject_same"] or not selected["owner_shape"] or owner is None:
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
+                elif actual.get("presence") == "absent":
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
+                elif (actual.get("presence") == "supplied"
+                      and not (_ref_same(actual.get("value"), target) if axis_name == "pack.identity"
+                               else _json_equal(actual.get("value"), target))):
+                    relation, obs_state, actual_cause = "different", "conflict", "actual_owner_body_differs"
+                else:
+                    relation, obs_state, actual_cause = "corresponding", "resolved", "actual_owner_body_corresponding"
+                observations.append({"source_index": selected["source_index"], "body_locator": body_locator,
+                                    "actual_read": actual,
+                                    "owner_declaration_locator": declaration_locator + f"/owner_declarations/{owner_index}" if owner_index is not None else declaration_locator + "/owner_declarations",
+                                    "owner_declaration_read": ({"presence": "supplied", "value": copy.deepcopy(owner)}
+                                                                if owner is not None else {"presence": "absent"}),
+                                    "relation": relation, "state": obs_state})
+        # No KnowledgeRecord or claim is an actual owner declaration. Only the
+        # qualified RangeDeclaration is a candidate right operand for these pack axes.
+        states = [row["state"] for row in observations]
+        if classification == "absent":
+            state, cause, prefix = "unknown", "input_member_absent", "原値memberがabsentである。"
+        elif classification == "null":
+            state, cause, prefix = "unknown", "input_member_null", "原値memberが明示nullである。"
+        elif classification == "out_of_type":
+            state, cause, prefix = "unknown", "input_member_out_of_type", "原値memberがdeclared型外である。"
+        elif "conflict" in states and "resolved" in states:
+            state, cause = "conflict", "actual_owner_body_multiple_opposing"
+            prefix = "同subject/fullframeへの資格済みactual本文が相反し、原出現を保持する。"
+        elif actual_cause is not None:
+            state = ("conflict" if actual_cause in {"actual_scope_differs", "actual_owner_body_differs"}
+                     else "resolved" if actual_cause == "actual_owner_body_corresponding" else "unknown")
+            cause = actual_cause
+            prefix = {
+                "actual_qualification_unresolved": "原actual sourceのQualification/root/owner資格が未解決である。",
+                "actual_scope_differs": "原actual宣言のscopeが対象frameと異なる。",
+                "actual_owner_body_unresolved": "原actual owner operandの対応が未解決である。",
+                "actual_owner_body_differs": "原actual owner operandと原値が異なる。",
+                "actual_owner_body_corresponding": "原値とqualified実owner本文の明示actual operandが対応する。互換適合又は実利用許可を意味しない。",
+            }[cause]
+        else:
+            state, cause = "unknown", "actual_owner_body_unprovided"
+            prefix = "原値は供給されているが独立した実owner本文のactual operandが未供給であり、当該照合はunknownに保持する。"
+        pointers = []
+        for row in observations:
+            pointers.append(row["body_locator"])
+        material = {"actual_source_pointers": pointers, "cause": cause,
+                    "knowledge_ref": copy.deepcopy(binding.get("knowledge_ref")),
+                    "member_pointer": member_pointer, "original_read": copy.deepcopy(original_read)}
+        refs = [subject] if isinstance(subject, dict) else []
+        if axis_name.startswith("knowledge."):
+            for record_index, record in matched_records:
+                if axis_name != "knowledge.operational_state" and isinstance(record.get("ref"), dict):
+                    refs.append(record["ref"])
+                if axis_name == "knowledge.operational_state":
+                    refs.extend(ref for ref in record.get("provenance_refs", []) if isinstance(ref, dict))
+        if axis_name in axis_sources and observations:
+            for row in observations:
+                src = raw["sources"][row["source_index"]]
+                refs.extend([src.get("ref"), src.get("qualification_ref")])
+                for _, q in _fn3_qualification_rows(raw, src.get("qualification_ref")):
+                    refs.append(q.get("ref"))
+                    refs.extend(root for _, root in _fn3_root_rows(raw, q.get("root_ref")))
+                owner_value = row.get("owner_declaration_read", {}).get("value")
+                if isinstance(owner_value, dict) and isinstance(owner_value.get("endpoint_ref"), dict):
+                    refs.append(owner_value["endpoint_ref"])
+        reason = _fn3_diag(prefix, material)
+        axes.append(_fn3_axis(subject if isinstance(subject, dict) else binding.get("template_ref"), binding,
+                              axis_name, state, refs, reason))
+        reads.append({"request": {"member_locator": member_pointer, "actual_role": role},
+                      "original_read": copy.deepcopy(original_read), "read_classification": classification,
+                      "observations": observations, "state": state, "cause": cause})
 
-    # Claims that are not backed by independent qualified actual operands remain
-    # diagnostic observations; they never rewrite the supplied Binding.
-    claims = raw.get("claims", [])
-    if isinstance(claims, list):
-        for claim in claims:
-            if not isinstance(claim, dict) or not isinstance(claim.get("kind"), str):
-                continue
-            kind = claim["kind"]
-            mapping = {
-                "template_identity": ("image_identity_inference", "template.identity", "image-only claim does not establish template identity"),
-                "template_version": ("tool_node_identity_inference", "template.version", "tool-only claim does not establish template version"),
-            }
-            if kind not in mapping:
-                continue
-            # Same-filename and version_target cases intentionally have no new Finding.
-            if isinstance(claim.get("proposed_value"), dict) and ("same_filename" in claim["proposed_value"] or
-                    claim.get("proposed_value") == binding.get("version_target")):
-                continue
-            code, axis_name, text = mapping[kind]
-            findings.append(_fn3_finding(code, claim.get("subject_ref"), binding, axis_name, "unknown",
-                                         claim.get("basis_refs", []), text))
-    raw_sources = raw.get("sources", [])
-    if isinstance(raw_sources, list):
-        for slot in raw.get("descriptors", []) if isinstance(raw.get("descriptors"), list) else []:
-            if not isinstance(slot, dict):
-                continue
-            for fact in slot.get("facts", []) if isinstance(slot.get("facts"), list) else []:
-                source_ref = fact.get("source_ref") if isinstance(fact, dict) else None
-                if not isinstance(source_ref, dict):
-                    continue
-                if not _fn3_source_rows(raw, source_ref) and not any(
-                    _json_equal(row["source_refs"][0], source_ref)
-                    for row in findings if row.get("code") == "source_missing" and row.get("source_refs")
-                ):
-                    findings.append(_fn3_finding(
-                        "source_missing", template, binding, "source", "missing", [source_ref],
-                        "source_missing: 元fact.source_refに対応するsource出現がない。"))
+    _fn3_oracle_revision_findings(raw, binding, findings)
     return reads
 
+
+def _fn3_oracle_revision_findings(raw: dict[str, Any], binding: dict[str, Any], findings: list[dict[str, Any]]) -> None:
+    rows = raw.get("oracle_bindings")
+    if not isinstance(rows, list):
+        return
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            continue
+        oracle = row.get("oracle_ref")
+        target = binding.get("oracle_ref")
+        if not isinstance(oracle, dict) or not isinstance(target, dict):
+            continue
+        target_values = []
+        if isinstance(raw.get("values"), list):
+            for value_index, value in enumerate(raw["values"]):
+                value_binding = value.get("binding") if isinstance(value, dict) else None
+                if (isinstance(value, dict) and _ref_same(row.get("subject_ref"), value.get("subject_ref"))
+                        and _binding_same(value_binding, binding)
+                        and _ref_same(row.get("obligation_ref"), binding.get("requirement_ref"))
+                        and isinstance(value_binding, dict)
+                        and _ref_same(value_binding.get("requirement_ref"), row.get("obligation_ref"))):
+                    target_values.append((value_index, value))
+        same_oracle_target = (
+            all(oracle.get(k) is not None and target.get(k) is not None
+                and _json_equal(oracle.get(k), target.get(k)) for k in ("identity", "scope", "owner"))
+            and (oracle.get("sha256") is None or target.get("sha256") is None
+                 or _json_equal(oracle.get("sha256"), target.get("sha256")))
+        )
+        if (target_values and same_oracle_target
+                and isinstance(oracle.get("revision"), str) and isinstance(target.get("revision"), str)
+                and oracle.get("revision") != target.get("revision")):
+            subject = row.get("subject_ref")
+            refs = [row.get("source_ref")] if isinstance(row.get("source_ref"), dict) else []
+            rule_ref = "HELIXBRAIN-L5-032-R-oracle_revision_mismatch"
+            observations = [
+                {"locator": f"/oracle_bindings/{index}",
+                 "original_read": {"presence": "supplied", "value": copy.deepcopy(row)}},
+                {"locator": "/binding", "original_read": {"presence": "supplied", "value": copy.deepcopy(binding)}},
+            ]
+            observations.extend(
+                {"locator": f"/values/{value_index}",
+                 "original_read": {"presence": "supplied", "value": copy.deepcopy(value)}}
+                for value_index, value in target_values
+            )
+            reason = _fn3_diag("同subject/要求scopeへ束縛されたoracleの版が当該bindingのoracle版と異なる。",
+                               {"code": "oracle_revision_mismatch", "rule_ref": rule_ref,
+                                "predicate_observations": observations})
+            findings.append(_fn3_finding("oracle_revision_mismatch", subject, binding, "oracle.binding",
+                                         "conflict", refs, reason))
+
+
+def _fn3_identity_claim_candidate(raw: dict[str, Any], source_index: int, source: dict[str, Any],
+                                  trace_reads: list[dict[str, Any]], unusable: list[Any]) -> dict[str, Any] | None:
+    """Return a candidate only from its qualified source and same-call native trace."""
+    content = source.get("content")
+    source_ref = source.get("ref")
+    source_binding = content.get("binding") if isinstance(content, dict) else None
+    template_ref = source_binding.get("template_ref") if isinstance(source_binding, dict) else None
+    if (not isinstance(source_ref, dict) or not isinstance(source_binding, dict) or not _binding_shape_ok(source_binding)
+            or not isinstance(template_ref, dict) or not _fn3_valid_source(raw, source_index, source, unusable)):
+        return None
+
+    # The same private DescriptorTraceRead must show this body, its record/provenance,
+    # and a fact from this qualified source under the body's own Binding.
+    for read in trace_reads:
+        slot_read = read.get("slot_read", {})
+        fact_read = read.get("fact_read", {})
+        slot = slot_read.get("value") if slot_read.get("presence") == "supplied" else None
+        fact = fact_read.get("value") if fact_read.get("presence") == "supplied" else None
+        slot_binding = slot.get("binding") if isinstance(slot, dict) else None
+        if (read.get("state") != "resolved" or source_index not in read.get("source_indices", [])
+                or not isinstance(slot_binding, dict) or not _binding_same(slot_binding, source_binding)
+                or not isinstance(fact, dict) or not _ref_same(fact.get("source_ref"), source_ref)
+                or not isinstance(fact.get("binding"), dict) or not _binding_same(fact["binding"], source_binding)):
+            continue
+
+        # A resolved chain must include this source's own KnowledgeRecord provenance,
+        # not just an unrelated resolved source elsewhere in the same snapshot.
+        record_by_index = {}
+        for row in read.get("knowledge_records", []):
+            if not isinstance(row, dict) or not isinstance(row.get("index"), int):
+                continue
+            original = row.get("original_read", {}).get("value")
+            if isinstance(original, dict) and _ref_same(original.get("ref"), source_binding.get("knowledge_ref")):
+                record_by_index[row["index"]] = original
+        provenance_linked = any(
+            isinstance(row, dict) and row.get("relation") == "corresponding"
+            and row.get("knowledge_record_index") in record_by_index
+            and _ref_same(row.get("original_read", {}).get("value"), source_ref)
+            for row in read.get("provenance_refs", [])
+        )
+        if not provenance_linked:
+            continue
+
+        # Tie the public fact back to a fact inside this source's native descriptor group.
+        groups = content.get("descriptor_facts")
+        if not isinstance(groups, list):
+            continue
+        for group_index, group in enumerate(groups):
+            if not isinstance(group, dict) or not isinstance(group.get("facts"), list):
+                continue
+            group_locator = f"/sources/{source_index}/content/descriptor_facts/{group_index}"
+            if not any(row.get("locator") == group_locator for row in read.get("body_groups", []) if isinstance(row, dict)):
+                continue
+            for fact_index, original_fact in enumerate(group["facts"]):
+                if not isinstance(original_fact, dict):
+                    continue
+                public_fact_body = copy.deepcopy(fact)
+                owner_fact_body = copy.deepcopy(original_fact)
+                public_fact_body.pop("source_ref", None)
+                owner_fact_body.pop("source_ref", None)
+                if (_ref_same(original_fact.get("ref"), fact.get("ref"))
+                        and _ref_same(original_fact.get("source_ref"), source_ref)
+                        and isinstance(original_fact.get("binding"), dict)
+                        and _binding_same(original_fact["binding"], source_binding)
+                        and _json_equal(owner_fact_body, public_fact_body)):
+                    qualification_ref = source.get("qualification_ref")
+                    qualification_rows = _fn3_qualification_rows(raw, qualification_ref)
+                    root_rows = []
+                    for _qi, qualification in qualification_rows:
+                        if _ref_same(qualification.get("subject_ref"), source_ref):
+                            root_rows.extend(_fn3_root_rows(raw, qualification.get("root_ref")))
+                    if not qualification_rows or not root_rows:
+                        continue
+                    return {
+                        "source_index": source_index, "source": source, "template_ref": template_ref,
+                        "binding": source_binding, "trace_read": read,
+                        "fact_locator": f"{group_locator}/facts/{fact_index}",
+                        "qualification_indices": [i for i, _ in qualification_rows],
+                        "root_indices": [i for i, _ in root_rows],
+                        "record_indices": sorted(record_by_index),
+                    }
+    return None
+
+
+def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
+                                 findings: list[dict[str, Any]], trace_reads: list[dict[str, Any]]) -> None:
+    claims, slots = raw.get("claims"), raw.get("descriptors")
+    if not isinstance(claims, list) or not isinstance(slots, list):
+        return
+    for ci, claim in enumerate(claims):
+        if not isinstance(claim, dict):
+            continue
+        proposed = claim.get("proposed_value")
+        if not isinstance(proposed, dict):
+            continue
+
+        # R66 is a single frozen predicate: a root-A claim uses two original
+        # qualified candidates, one from the root Binding and one from an explicit slot.
+        # Filename is only the raw source locator; candidate identity comes from each
+        # candidate's own Binding.template_ref.
+        basis = claim.get("basis_refs")
+        if (claim.get("kind") == "same_template_identity" and proposed.get("same_filename") is True
+                and isinstance(basis, list) and len(basis) == 2
+                and _binding_same(claim.get("binding"), binding)
+                and _ref_same(claim.get("subject_ref"), binding.get("template_ref"))):
+            candidates = []
+            complete = True
+            for basis_index, basis_ref in enumerate(basis):
+                matching = _fn3_source_rows(raw, basis_ref)
+                # A nullable digest cannot pick a winning physical source occurrence.
+                if len(matching) != 1:
+                    complete = False
+                    break
+                source_index, source = matching[0]
+                candidate = _fn3_identity_claim_candidate(raw, source_index, source, trace_reads, unusable)
+                if candidate is None or not isinstance(source.get("ref", {}).get("source_locator"), str):
+                    complete = False
+                    break
+                candidate["basis_index"] = basis_index
+                candidates.append(candidate)
+            if complete and len({c["source_index"] for c in candidates}) == 2:
+                candidates.sort(key=lambda c: c["source_index"])
+                first, second = candidates
+                root_candidate = next((c for c in candidates if _binding_same(c["binding"], binding)), None)
+                slot_candidate = next((c for c in candidates if any(
+                    isinstance(slot, dict) and isinstance(slot.get("binding"), dict)
+                    and _binding_same(slot["binding"], c["binding"])
+                    and not _binding_same(slot["binding"], binding)
+                    for slot in slots)), None)
+                same_filename = (first["source"]["ref"].get("source_locator")
+                                 == second["source"]["ref"].get("source_locator"))
+                distinct_identity = (first["template_ref"].get("identity") is not None
+                                     and second["template_ref"].get("identity") is not None
+                                     and not _json_equal(first["template_ref"].get("identity"),
+                                                         second["template_ref"].get("identity")))
+                if root_candidate is not None and slot_candidate is not None and same_filename and distinct_identity:
+                    observations = [
+                        {"locator": f"/claims/{ci}/kind", "original_read": _fn3_presence(raw, f"/claims/{ci}/kind")},
+                        {"locator": f"/claims/{ci}/proposed_value/same_filename",
+                         "original_read": _fn3_presence(raw, f"/claims/{ci}/proposed_value/same_filename")},
+                        {"locator": f"/claims/{ci}/subject_ref",
+                         "original_read": _fn3_presence(raw, f"/claims/{ci}/subject_ref")},
+                    ]
+                    for candidate in candidates:
+                        si = candidate["source_index"]
+                        observations.extend([
+                            {"locator": f"/claims/{ci}/basis_refs/{candidate['basis_index']}",
+                             "original_read": _fn3_presence(raw, f"/claims/{ci}/basis_refs/{candidate['basis_index']}")},
+                            {"locator": f"/sources/{si}/ref/source_locator",
+                             "original_read": _fn3_presence(raw, f"/sources/{si}/ref/source_locator")},
+                            {"locator": f"/sources/{si}/content/binding/template_ref",
+                             "original_read": _fn3_presence(raw, f"/sources/{si}/content/binding/template_ref")},
+                            {"locator": candidate["fact_locator"],
+                             "original_read": _fn3_presence(raw, candidate["fact_locator"])},
+                        ])
+                        for qi in candidate["qualification_indices"]:
+                            observations.append({"locator": f"/qualifications/{qi}",
+                                                 "original_read": _fn3_presence(raw, f"/qualifications/{qi}")})
+                        for ri in candidate["root_indices"]:
+                            observations.append({"locator": f"/qualification_roots/{ri}",
+                                                 "original_read": _fn3_presence(raw, f"/qualification_roots/{ri}")})
+                        for ri in candidate["record_indices"]:
+                            observations.append({"locator": f"/knowledge_records/{ri}/provenance_refs",
+                                                 "original_read": _fn3_presence(raw, f"/knowledge_records/{ri}/provenance_refs")})
+                    rule_ref = "HELIXBRAIN-L5-032-R-filename_identity_join"
+                    reason = _fn3_diag(_FN3_FINDING_PREFIXES["filename_identity_join"],
+                                       {"code": "filename_identity_join", "rule_ref": rule_ref,
+                                        "predicate_observations": observations})
+                    findings.append(_fn3_finding("filename_identity_join", claim["subject_ref"], claim["binding"],
+                                                 "identity_claim", "conflict",
+                                                 [c["source"]["ref"] for c in candidates], reason))
+
+        basis_role = proposed.get("basis_role")
+        mapping = {"image_only": ("template_identity", "image_identity_inference", "template.identity"),
+                   "tool_node_only": ("template_version", "tool_node_identity_inference", "template.version")}
+        if (basis_role not in mapping or claim.get("kind") != mapping[basis_role][0]
+                or not _binding_same(claim.get("binding"), binding)):
+            continue
+        if not any(_ref_same(claim.get("subject_ref"), fact.get("ref"))
+                   for slot in slots if isinstance(slot, dict) for fact in slot.get("facts", []) if isinstance(fact, dict)):
+            continue
+        basis = claim.get("basis_refs")
+        if not isinstance(basis, list) or not basis:
+            continue
+        participating = []
+        predicate_observations = [
+            (f"/claims/{ci}/kind", "claim kind"),
+            (f"/claims/{ci}/proposed_value/basis_role", "claim basis role"),
+            (f"/claims/{ci}/subject_ref", "claim subject"),
+            (f"/claims/{ci}/binding", "claim Binding"),
+        ]
+        for basis_index, ref in enumerate(basis):
+            predicate_observations.append((f"/claims/{ci}/basis_refs/{basis_index}", "claim basis Ref"))
+            matches = _fn3_source_rows(raw, ref)
+            if any(_fn3_valid_source(raw, idx, src, unusable) for idx, src in matches):
+                for source_index, source in matches:
+                    if not _fn3_valid_source(raw, source_index, source, unusable):
+                        continue
+                    participating.append(source.get("ref"))
+                    predicate_observations.extend([
+                        (f"/sources/{source_index}/ref", "qualified source Ref"),
+                        (f"/sources/{source_index}/qualification_ref", "source Qualification Ref"),
+                    ])
+                    for qualification_index, qualification in _fn3_qualification_rows(raw, source.get("qualification_ref")):
+                        predicate_observations.append((f"/qualifications/{qualification_index}", "Qualification occurrence"))
+                        for root_index, _root in _fn3_root_rows(raw, qualification.get("root_ref")):
+                            predicate_observations.append((f"/qualification_roots/{root_index}", "qualification root occurrence"))
+        if not participating:
+            continue
+        _kind, code, axis = mapping[basis_role]
+        reason = _fn3_predicate_finding_reason(raw, code, predicate_observations)
+        findings.append(_fn3_finding(code, claim.get("subject_ref"), binding, axis, "unknown", participating, reason))
 
 def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                axes: list[dict[str, Any]], findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Resolve only direct slot/fact/record/provenance/source/body/Q/root links."""
     reads: list[dict[str, Any]] = []
-    slots = raw.get("descriptors", [])
-    if not isinstance(slots, list):
+    slots = raw.get("descriptors")
+    records = raw.get("knowledge_records")
+    if not isinstance(slots, list) or not isinstance(records, list):
         return reads
-    records = raw.get("knowledge_records", [])
-    if not isinstance(records, list):
-        records = []
-    for slot_index, slot in enumerate(slots):
+    sources = raw.get("sources") if isinstance(raw.get("sources"), list) else []
+    for si, slot in enumerate(slots):
         if not isinstance(slot, dict) or not isinstance(slot.get("facts"), list):
             continue
         slot_binding = slot.get("binding")
-        if not isinstance(slot_binding, dict):
-            continue
-        for fact_index, fact in enumerate(slot["facts"]):
-            if not isinstance(fact, dict):
+        for fi, fact in enumerate(slot["facts"]):
+            if not isinstance(fact, dict) or not isinstance(slot_binding, dict):
                 continue
-            fact_binding = fact.get("binding")
-            if not isinstance(fact_binding, dict):
-                continue
-            knowledge_ref = slot_binding.get("knowledge_ref")
-            if not isinstance(knowledge_ref, dict):
-                raise _fn3_stop("F04/N01/trace_knowledge_ref", "descriptor slot knowledge_ref is absent")
-            if knowledge_ref.get("revision") is None:
-                raise _fn3_stop("F04/N01/trace_knowledge_revision", "descriptor slot knowledge revision is absent or null")
-            fact_knowledge = fact_binding.get("knowledge_ref")
-            fact_mixed = isinstance(fact_knowledge, dict) and _ref_identity_same(fact_knowledge, knowledge_ref) and not _ref_same(fact_knowledge, knowledge_ref)
-            matching_records = [(ri, r) for ri, r in enumerate(records)
-                                if isinstance(r, dict) and _ref_same(r.get("ref"), knowledge_ref)]
-            if len(matching_records) in (1, 2) and any(not _json_equal(r, matching_records[0][1]) for _, r in matching_records[1:]):
-                raise _fn3_stop("unclosed/nonempty_dependency/record_candidates", "distinct knowledge record candidates are outside this finite branch")
-            if len(matching_records) > 2:
-                raise _fn3_stop("unclosed/general_group_outside_pair", "three or more matching records are outside the finite branch")
-            chains: list[dict[str, Any]] = []
-            provenance_pairs: list[dict[str, Any]] = []
+            locator = f"/descriptors/{si}/facts/{fi}"
+            slot_locator = f"/descriptors/{si}"
+            slot_kref = slot_binding.get("knowledge_ref")
+            fact_binding = fact.get("binding") if isinstance(fact.get("binding"), dict) else {}
+            fact_kref = fact_binding.get("knowledge_ref")
+            if not isinstance(slot_kref, dict) or slot_kref.get("revision") is None:
+                raise _fn3_stop("F04-NEG-02/revision_absent", "trace slot knowledge Ref lacks a supplied revision")
+            record_candidates = [(ri, rec) for ri, rec in enumerate(records)
+                                 if isinstance(rec, dict) and _ref_same(rec.get("ref"), slot_kref)]
+            record_reads = [{"index": ri, "locator": f"/knowledge_records/{ri}",
+                             "original_read": {"presence": "supplied", "value": copy.deepcopy(rec)}}
+                            for ri, rec in record_candidates]
+            prov_rows: list[dict[str, Any]] = []
             source_indices: list[int] = []
             body_groups: list[dict[str, Any]] = []
-            for record_index, record in matching_records:
-                provenance = record.get("provenance_refs")
-                if not isinstance(provenance, list):
+            chains: list[dict[str, Any]] = []
+            any_source = False
+            any_qualified = False
+            any_body = False
+            for ri, rec in record_candidates:
+                provs = rec.get("provenance_refs")
+                if not isinstance(provs, list):
                     continue
-                for provenance_index, provenance_ref in enumerate(provenance):
-                    provenance_pairs.append({"knowledge_record_index": record_index, "provenance_index": provenance_index,
-                                             "locator": f"/knowledge_records/{record_index}/provenance_refs/{provenance_index}",
-                                             "original_read": {"presence": "supplied", "value": copy.deepcopy(provenance_ref)},
-                                             "relation": "corresponding" if _fn3_source_rows(raw, provenance_ref) else "unestablished"})
-                    for source_index, source in _fn3_source_rows(raw, provenance_ref):
-                        source_indices.append(source_index)
-                        body_groups.append({"index": source_index, "locator": f"/sources/{source_index}/content",
-                                            "original_read": {"presence": "supplied", "value": copy.deepcopy(source["content"])}})
-                        if not _json_equal(fact.get("source_ref"), source.get("ref")):
+                for pi, pref in enumerate(provs):
+                    matching_sources = [(idx, src) for idx, src in enumerate(sources)
+                                        if isinstance(src, dict) and _ref_same(src.get("ref"), pref)]
+                    provrow = {"knowledge_record_index": ri, "provenance_index": pi,
+                               "locator": f"/knowledge_records/{ri}/provenance_refs/{pi}",
+                               "original_read": {"presence": "supplied", "value": copy.deepcopy(pref)},
+                               "relation": "corresponding" if matching_sources else "unestablished"}
+                    prov_rows.append(provrow)
+                    for source_index, source in matching_sources:
+                        any_source = True
+                        if source_index not in source_indices:
+                            source_indices.append(source_index)
+                        content = source.get("content")
+                        if not _fn3_qualified_owner_source(raw, source_index, source, unusable):
                             continue
-                        if not _fn3_valid_source(raw, source_index, source, unusable):
+                        any_qualified = True
+                        if not isinstance(content, dict) or not _binding_same(content.get("binding"), slot_binding):
                             continue
-                        qref = source.get("qualification_ref")
-                        qrows = _fn3_qualification_rows(raw, qref)
-                        if qrows and any(not _json_equal(q, qrows[0][1]) for _, q in qrows[1:]):
-                            raise _fn3_stop("unclosed/qualification_candidates", "distinct Qualification candidates are outside the equal-Q branch")
-                        for qualification_index, qualification in qrows:
-                            for root_index, root in _fn3_root_rows(raw, qualification.get("root_ref")):
-                                chains.append({
-                                    "knowledge_record_index": record_index, "provenance_index": provenance_index,
-                                    "source_index": source_index, "qualification_index": qualification_index,
-                                    "root_index": root_index, "record": record, "provenance_ref": provenance_ref,
-                                    "source": source, "qualification": qualification, "root": root,
-                                })
-            # Same-source physical duplicates cannot be converted into a winner.
-            if len(set(source_indices)) != len(source_indices) and source_indices:
-                # A repeated provenance/source pair is retained by the L4 reader; this
-                # finite function stops only when it creates ambiguous same-chain rows.
-                unique_pairs = {(c["knowledge_record_index"], c["provenance_index"], c["source_index"],
-                                 c["qualification_index"], c["root_index"]) for c in chains}
-                if len(unique_pairs) != len(chains):
-                    raise _fn3_stop("unclosed/general_group_outside_pair", "source occurrences do not map to a unique finite chain")
-            prefix_refs = [fact.get("ref"), fact.get("source_ref"), slot_binding.get("knowledge_ref")]
-            suffixes: list[Any] = []
+                        groups = content.get("descriptor_facts")
+                        if not isinstance(groups, list):
+                            continue
+                        for gi, group in enumerate(groups):
+                            if not isinstance(group, dict) or not isinstance(group.get("facts"), list):
+                                continue
+                            gloc = f"/sources/{source_index}/content/descriptor_facts/{gi}"
+                            if not any(x.get("locator") == gloc for x in body_groups):
+                                body_groups.append({"index": source_index, "locator": gloc,
+                                                    "original_read": {"presence": "supplied", "value": copy.deepcopy(group)}})
+                            for inner_index, inner_fact in enumerate(group["facts"]):
+                                if not isinstance(inner_fact, dict):
+                                    continue
+                                if not _ref_same(inner_fact.get("ref"), fact.get("ref")):
+                                    continue
+                                any_body = True
+                                # Each relation is a direct comparison; no null-digest intermediary is reused.
+                                if not _ref_same(inner_fact.get("source_ref"), source.get("ref")):
+                                    continue
+                                if not _ref_same(fact.get("source_ref"), source.get("ref")):
+                                    continue
+                                if not _binding_same(fact_binding, slot_binding):
+                                    continue
+                                if not _binding_same(inner_fact.get("binding"), slot_binding):
+                                    continue
+                                if not _ref_same(fact_kref, rec.get("ref")):
+                                    continue
+                                qref = source.get("qualification_ref")
+                                for qi, qual in _fn3_qualification_rows(raw, qref):
+                                    if not _ref_same(qual.get("subject_ref"), source.get("ref")):
+                                        continue
+                                    if not _fn3_valid_source(raw, source_index, source, unusable):
+                                        continue
+                                    roots = _fn3_root_rows(raw, qual.get("root_ref"))
+                                    for root_index, root in roots:
+                                        chains.append({"knowledge_record_index": ri, "provenance_index": pi,
+                                                       "source_index": source_index, "qualification_index": qi,
+                                                       "root_index": root_index, "record": rec, "provenance": pref,
+                                                       "source": source, "qualification": qual, "root": root,
+                                                       "body_group_index": gi, "inner_fact_index": inner_index})
+            fact_mixed = (isinstance(fact_kref, dict) and isinstance(slot_kref, dict)
+                          and all(fact_kref.get(k) is not None and slot_kref.get(k) is not None
+                                  and _json_equal(fact_kref.get(k), slot_kref.get(k)) for k in ("identity", "scope", "owner"))
+                          and not _json_equal(fact_kref.get("revision"), slot_kref.get("revision")))
+            # Preserve all physically distinct chain rows in source order; repeated Qs remain
+            # occurrences, while a shared physical source/root is listed once in its read column.
+            slot_scope = slot_binding.get("template_ref", {}).get("scope") if isinstance(slot_binding.get("template_ref"), dict) else None
             for chain in chains:
-                suffixes.extend([chain["record"]["ref"], chain["provenance_ref"], chain["source"]["ref"],
-                                 chain["source"].get("qualification_ref"), chain["qualification"]["ref"], chain["root"]])
-            refs = [r for r in prefix_refs + suffixes if isinstance(r, dict)]
+                if not _fn3_scope_same(chain["source"].get("ref", {}).get("scope"), slot_scope):
+                    chain["scope_mismatch"] = True
             state = "resolved" if chains else "unknown"
-            cause = "original_trace_corresponding" if chains else "knowledge_unresolved"
+            cause = "original_trace_corresponding" if chains else (
+                "source_unresolved" if not any_source else "qualification_unresolved" if not any_qualified
+                else "body_unresolved" if not any_body else "knowledge_unresolved")
             if fact_mixed:
-                state = "conflict"
-                cause = "mixed_knowledge_revision"
+                state, cause = "conflict", "mixed_knowledge_revision"
+                mixed_observations = [
+                    (locator + "/binding/knowledge_ref", "fact knowledge Ref"),
+                    (slot_locator + "/binding/knowledge_ref", "slot knowledge Ref"),
+                ]
                 findings.append(_fn3_finding("mixed_knowledge_revision", fact.get("ref"), slot_binding,
-                                             "descriptor.trace", "conflict", [fact.get("source_ref")],
-                                             "mixed_knowledge_revision: factとslotのknowledge revision差を保持する。"))
-            current_knowledge = binding.get("knowledge_ref")
-            if isinstance(fact_knowledge, dict) and isinstance(current_knowledge, dict) and not _ref_same(fact_knowledge, current_knowledge):
-                old_candidates = [r for _, r in matching_records]
-                has_supersedes = any(isinstance(rel, dict) and rel.get("kind") == "supersedes"
-                                     and any(_ref_same(rel.get("from_ref"), r.get("ref")) for r in old_candidates)
-                                     and _ref_same(rel.get("to_ref"), fact_knowledge)
-                                     for rel in raw.get("relations", []) if isinstance(raw.get("relations"), list))
-                if old_candidates and not has_supersedes:
-                    state = "conflict"
-                    cause = "silent_supersession"
+                                             "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
+                                             _fn3_predicate_finding_reason(raw, "mixed_knowledge_revision",
+                                                                           mixed_observations)))
+            elif (isinstance(fact_kref, dict) and isinstance(slot_kref, dict)
+                  and all(fact_kref.get(k) is not None and slot_kref.get(k) is not None
+                          and _json_equal(fact_kref.get(k), slot_kref.get(k)) for k in ("identity", "scope", "owner"))
+                  and not _json_equal(fact_kref.get("revision"), slot_kref.get("revision"))):
+                state, cause = "conflict", "mixed_knowledge_revision"
+            if not any(_ref_same(src.get("ref"), fact.get("source_ref")) for src in sources if isinstance(src, dict)) and isinstance(fact.get("source_ref"), dict):
+                source_observations = [("/sources", "source collection presence"),
+                                       (locator + "/source_ref", "fact source Ref")]
+                source_observations.extend((f"/sources/{source_index}/ref", "supplied source Ref")
+                                           for source_index, source in enumerate(sources)
+                                           if isinstance(source, dict) and isinstance(source.get("ref"), dict))
+                findings.append(_fn3_finding("source_missing", binding.get("template_ref"), binding, "source", "missing",
+                                             [fact["source_ref"]],
+                                             _fn3_predicate_finding_reason(raw, "source_missing", source_observations)))
+            if isinstance(fact_kref, dict) and isinstance(slot_kref, dict) and not _ref_same(fact_kref, slot_kref):
+                current = binding.get("knowledge_ref")
+                old_records = [(idx, rec) for idx, rec in record_candidates if _ref_same(rec.get("ref"), slot_kref)]
+                superseded = any(isinstance(rel, dict) and rel.get("kind") == "supersedes"
+                                 and any(_ref_same(rel.get("from_ref"), rec.get("ref")) for _, rec in old_records)
+                                 and _ref_same(rel.get("to_ref"), fact_kref)
+                                 for rel in raw.get("relations", []) if isinstance(raw.get("relations"), list))
+                if old_records and not superseded:
+                    state, cause = "conflict", "mixed_knowledge_revision"
+                    silent_observations = [
+                        (locator + "/binding/knowledge_ref", "new fact knowledge Ref"),
+                        (slot_locator + "/binding/knowledge_ref", "original slot knowledge Ref"),
+                    ]
+                    silent_observations.extend((f"/knowledge_records/{old_index}/ref", "original KnowledgeRecord Ref")
+                                               for old_index, _old_record in old_records)
+                    relations = raw.get("relations")
+                    if isinstance(relations, list) and relations:
+                        silent_observations.extend((f"/relations/{relation_index}", "original relation occurrence")
+                                                   for relation_index, _relation in enumerate(relations))
+                    else:
+                        silent_observations.append(("/relations", "relation collection presence"))
                     findings.append(_fn3_finding("silent_supersession", fact.get("ref"), slot_binding,
-                                                 "descriptor.trace", "conflict", [fact.get("source_ref")],
-                                                 "silent_supersession: 原record Refを保持し明示supersessionがない新revisionへ置換しない。"))
-            if len(chains) > 1:
-                chain_material = [{
-                    "descriptor_kind": slot.get("descriptor_kind"),
-                    "fact_locator": f"/descriptors/{slot_index}/facts/{fact_index}",
-                    "knowledge_record_index": c["knowledge_record_index"],
-                    "provenance_index": c["provenance_index"],
-                    "qualification_index": c["qualification_index"], "root_index": c["root_index"],
-                    "slot_identity": slot.get("slot_identity"), "slot_locator": f"/descriptors/{slot_index}",
-                    "source_index": c["source_index"],
-                } for c in chains]
-                reason = _fn3_diag("trace", {"trace_occurrences": chain_material})
-            elif chains:
-                reason = "trace"
+                                                 "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
+                                                 _fn3_predicate_finding_reason(raw, "silent_supersession",
+                                                                               silent_observations)))
+            if any(c.get("scope_mismatch") for c in chains):
+                state, cause = "conflict", "scope_differs"
+            # Build the fixed 9-key per-chain trace material.
+            chain_material = [{"descriptor_kind": slot.get("descriptor_kind"), "fact_locator": locator,
+                               "knowledge_record_index": c["knowledge_record_index"],
+                               "provenance_index": c["provenance_index"],
+                               "qualification_index": c["qualification_index"], "root_index": c["root_index"],
+                               "slot_identity": slot.get("slot_identity"), "slot_locator": slot_locator,
+                               "source_index": c["source_index"]} for c in chains]
+            if len(chain_material) == 1:
+                material = chain_material[0]
+            elif chain_material:
+                material = {"trace_occurrences": chain_material}
             else:
-                reason = _fn3_diag(cause, {
-                    "cause": cause, "request": {"slot_locator": f"/descriptors/{slot_index}",
-                    "fact_locator": f"/descriptors/{slot_index}/facts/{fact_index}"},
-                    "state": state, "slot_presence": "supplied", "slot_is_null": False,
-                    "fact_presence": "supplied", "fact_is_null": False,
-                    "knowledge_record_indices": [i for i, _ in matching_records],
-                    "provenance_indices": [p["provenance_index"] for p in provenance_pairs],
-                    "source_indices": source_indices, "body_group_locators": [x["locator"] for x in body_groups],
-                })
-            axes.append(_fn3_axis(fact.get("ref"), slot_binding, "descriptor.trace", state, refs, reason,
-                                  binding.get("knowledge_ref", {}).get("owner")))
-            reads.append({
-                "request": {"slot_locator": f"/descriptors/{slot_index}", "fact_locator": f"/descriptors/{slot_index}/facts/{fact_index}"},
-                "slot_read": {"presence": "supplied", "value": copy.deepcopy(slot)},
-                "fact_read": {"presence": "supplied", "value": copy.deepcopy(fact)},
-                "knowledge_records": [{"index": i, "locator": f"/knowledge_records/{i}",
-                                       "original_read": {"presence": "supplied", "value": copy.deepcopy(r)}} for i, r in matching_records],
-                "provenance_refs": provenance_pairs, "source_indices": list(dict.fromkeys(source_indices)),
-                "body_groups": body_groups, "state": state, "cause": cause,
-            })
+                material = {"cause": cause, "request": {"slot_locator": slot_locator, "fact_locator": locator},
+                            "state": state, "slot_presence": "supplied", "slot_is_null": False,
+                            "fact_presence": "supplied", "fact_is_null": False,
+                            "knowledge_record_indices": [i for i, _ in record_candidates],
+                            "provenance_indices": [{"knowledge_record_index": p["knowledge_record_index"],
+                                                     "provenance_index": p["provenance_index"]} for p in prov_rows],
+                            "source_indices": source_indices,
+                            "body_group_locators": [g["locator"] for g in body_groups]}
+            reason = _fn3_diag("原slot/fact/source/provenance/資格frameの対応を保持する。意味完成又は利用許可ではない。" if chains
+                               else "原slot/fact/KnowledgeRecord/provenance/source/bodyの未解決を保持する。", material)
+            refs = [fact.get("ref"), fact.get("source_ref"), slot_kref]
+            for c in chains:
+                refs.extend([c["record"].get("ref"), c["provenance"], c["source"].get("ref"),
+                             c["source"].get("qualification_ref"), c["qualification"].get("ref"), c["root"]])
+            axis_refs = [r for r in refs if isinstance(r, dict)]
+            axes.append(_fn3_axis(fact.get("ref"), slot_binding, "descriptor.trace", state, axis_refs, reason, None))
+            reads.append({"request": {"slot_locator": slot_locator, "fact_locator": locator},
+                          "slot_read": {"presence": "supplied", "value": copy.deepcopy(slot)},
+                          "fact_read": {"presence": "supplied", "value": copy.deepcopy(fact)},
+                          "knowledge_records": record_reads, "provenance_refs": prov_rows,
+                          "source_indices": source_indices, "body_groups": body_groups,
+                          "state": state, "cause": cause})
     return reads
-
 
 def _fn3_owner_source(raw: dict[str, Any], candidate_ref: Any, unusable: list[Any], record_ref: Any,
                       counterpart: Any = None) -> list[tuple[int, dict[str, Any], dict[str, Any]]]:
     found = []
     for index, source in enumerate(raw.get("sources", [])):
-        if not isinstance(source, dict) or source.get("role") != "semantic_json" or not _fn3_valid_source(raw, index, source, unusable):
+        if not isinstance(source, dict) or source.get("role") != "semantic_json" or not _fn3_qualified_owner_source(raw, index, source, unusable):
             continue
         body = source.get("content")
         if not isinstance(body, dict):
             continue
-        if candidate_ref is not None:
-            if not any(_ref_same(r, candidate_ref) for r in body.get("compatible_refs", []) if isinstance(body.get("compatible_refs"), list)):
-                continue
         if record_ref is not None and not _ref_same(body.get("compatibility_record_ref"), record_ref):
             continue
         if counterpart is not None and not _ref_same(body.get("counterpart_source_ref"), counterpart):
@@ -1963,6 +2427,18 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
         if isinstance(container, list):
             container_read = {"presence": "supplied", "value": copy.deepcopy(container)}
         body_read = {"presence": "supplied", "value": copy.deepcopy(body)} if isinstance(body, dict) else {"presence": "absent"}
+        declaration = body.get("endpoint_owner_declaration") if isinstance(body, dict) else None
+        if endpoint == "left":
+            declaration_ok = (isinstance(declaration, dict) and declaration.get("endpoint") == "left"
+                              and _ref_same(declaration.get("endpoint_ref"), target)
+                              and declaration.get("owner") == (target.get("owner") if isinstance(target, dict) else None)
+                              and _ref_same(body.get("compatibility_record_ref"), record.get("ref"))
+                              and _ref_same(body.get("counterpart_source_ref"), record.get("source_ref")))
+        else:
+            declaration = body.get("compatibility_range_declaration") if isinstance(body, dict) else None
+            declaration_ok = (_fn3_range_declaration_formed(declaration)
+                              and _ref_same(declaration.get("right_ref"), target)
+                              and _ref_same(declaration.get("actual_pack_ref"), target))
         membership = {
             "source_index": source_index,
             "endpoint_locator": "/binding/" + ("template_ref" if endpoint == "left" else "pack_ref"),
@@ -1983,12 +2459,73 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
             "body_read": body_read, "record_ref_read": record_ref_read,
             "counterpart_source_ref_read": counterpart_read,
             "target_scope_relation": relation,
-            "state": "resolved" if member_state == "resolved" and _fn3_valid_source(raw, source_index, source, unusable) else "unknown",
-            "cause": "owner_body_corresponding" if member_state == "resolved" and _fn3_valid_source(raw, source_index, source, unusable)
+            "state": "resolved" if declaration_ok and _fn3_valid_source(raw, source_index, source, unusable) else "unknown",
+            "cause": "owner_body_corresponding" if declaration_ok and _fn3_valid_source(raw, source_index, source, unusable)
+                    else "owner_decision_unresolved" if _fn3_valid_source(raw, source_index, source, unusable)
                     else "owner_qualification_unresolved",
         })
     return rows
 
+
+
+def _fn3_source_reference_block(raw: dict[str, Any], refs: list[Any]) -> tuple[list[int], list[dict[str, Any]]]:
+    indices = sorted({index for ref in refs if isinstance(ref, dict) for index, _ in _fn3_source_rows(raw, ref)})
+    projected: list[dict[str, Any]] = []
+    for index in indices:
+        source = raw["sources"][index]
+        projected.append(source["ref"])
+        if isinstance(source.get("qualification_ref"), dict):
+            projected.append(source["qualification_ref"])
+        for _qi, qualification in _fn3_qualification_rows(raw, source.get("qualification_ref")):
+            if isinstance(qualification.get("ref"), dict):
+                projected.append(qualification["ref"])
+            projected.extend(root for _ri, root in _fn3_root_rows(raw, qualification.get("root_ref")))
+    return indices, projected
+
+
+def _fn3_compatibility_finding_reason(raw: dict[str, Any], binding: dict[str, Any],
+                                     outcome: dict[str, Any], record_index: int,
+                                     code: str) -> str:
+    record = outcome["record"]
+    used_refs = outcome.get("sources", [])
+    used_sources = [(i, source) for i, source in enumerate(raw.get("sources", []))
+                    if isinstance(source, dict)
+                    and any(_ref_same(source.get("ref"), ref) for ref in used_refs)]
+    left_indices = [i for i, source in used_sources
+                    if isinstance(source.get("content"), dict)
+                    and _ref_same(source["content"].get("compatibility_record_ref"), record.get("ref"))
+                    and _ref_same(source["content"].get("counterpart_source_ref"), record.get("source_ref"))]
+    source_matches = _fn3_source_rows(raw, record.get("source_ref"))
+    right_indices = [i for i, source in source_matches
+                     if any(_ref_same(source.get("ref"), ref) for ref in used_refs)]
+    right_source = next((source for _i, source in source_matches
+                         if any(_ref_same(source.get("ref"), ref) for ref in used_refs)), None)
+    range_relation = "not_supplied"
+    if isinstance(right_source, dict) and isinstance(right_source.get("content"), dict):
+        declaration = right_source["content"].get("compatibility_range_declaration")
+        if isinstance(declaration, dict) and "relation" in declaration:
+            range_relation = declaration["relation"]
+    if outcome.get("cause") == "outside":
+        prefix = "同scope明示pairについて独立template-owner本文とpack-owner本文が当該実版範囲外を明示する。"
+    elif outcome.get("cause") == "opposing":
+        prefix = "同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。"
+    elif outcome.get("cause") == "null":
+        prefix = "明示pairのsource_refは明示nullでowner互換根拠を解決できない。"
+    else:
+        prefix = "右pack-owner原宣言は存在するが独立template-owner本文が未供給であり当該pair互換照合はunknownに保持する。"
+    material = {
+        "bilateral_read_index": record_index,
+        "left_owner_source_indices": left_indices,
+        "original_record_reason": record.get("reason"),
+        "range_relation": range_relation,
+        "record_compatible": record.get("compatible"),
+        "record_index": record_index,
+        "right_owner_source_indices": right_indices,
+        "source_ref": copy.deepcopy(record.get("source_ref")),
+        "source_scope": copy.deepcopy(right_source.get("ref", {}).get("scope")) if right_source else None,
+        "target_scope": copy.deepcopy(binding.get("template_ref", {}).get("scope")),
+    }
+    return _fn3_diag(prefix, material)
 
 def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                        axes: list[dict[str, Any]], findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1996,8 +2533,6 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
     records = raw.get("compatibility_records", [])
     if not isinstance(records, list):
         return result_reads
-    if len(records) > 2:
-        raise _fn3_stop("unclosed/general_group_outside_pair", "more than two compatibility records are outside the finite pair branch")
     outcomes: list[dict[str, Any]] = []
     for index, record in enumerate(records):
         if not isinstance(record, dict):
@@ -2044,11 +2579,35 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"], left_source["ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
             continue
-        outside = (isinstance(owner_decl, dict) and owner_decl.get("range_relation") == "outside") or (
-            isinstance(range_decl, dict) and range_decl.get("relation") == "outside")
+        left_decl_valid = (isinstance(owner_decl, dict)
+                           and owner_decl.get("endpoint") == "left"
+                           and _ref_same(owner_decl.get("endpoint_ref"), record.get("left_ref"))
+                           and owner_decl.get("owner") == record.get("left_ref", {}).get("owner")
+                           and _ref_same(left_body.get("compatibility_record_ref"), record.get("ref"))
+                           and _ref_same(left_body.get("counterpart_source_ref"), record.get("source_ref")))
+        range_valid = (_fn3_range_declaration_formed(range_decl)
+                       and _ref_same(range_decl.get("left_ref"), record.get("left_ref"))
+                       and _ref_same(range_decl.get("right_ref"), record.get("right_ref"))
+                       and _ref_same(range_decl.get("actual_pack_ref"), binding.get("pack_ref")))
+        left_owner = left_decl_valid and owner_decl.get("owner") == left_source.get("ref", {}).get("owner")
+        range_owners = range_decl.get("owner_declarations") if range_valid else None
+        right_owner = (isinstance(range_owners, list) and len(range_owners) == 2
+                       and any(_ref_same(r.get("endpoint_ref"), record.get("right_ref"))
+                               and r.get("owner") == right_source.get("ref", {}).get("owner")
+                               for r in range_owners if isinstance(r, dict)))
+        outside = (left_owner and owner_decl.get("range_relation") == "outside"
+                   and range_valid and range_decl.get("relation") == "outside" and right_owner
+                   and all(r.get("relation") == "outside" for r in range_owners if isinstance(r, dict)))
         both_true = (record.get("compatible") is True and left_body.get("compatible") is True
-                     and right_body.get("compatible") is True
-                     and isinstance(owner_decl, dict) and owner_decl.get("compatible") is True)
+                     and right_body.get("compatible") is True and left_owner
+                     and owner_decl.get("compatible") is True)
+        if (isinstance(owner_decl, dict) and (owner_decl.get("endpoint") != "left"
+                or not _ref_same(owner_decl.get("endpoint_ref"), record.get("left_ref")))):
+            outcomes.append({"record": record, "state": "unknown", "cause": "left_owner_unprovided",
+                             "reason": "left_owner_unprovided: left owner declaration does not name the original left endpoint.",
+                             "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref"), record.get("source_ref")],
+                             "sources": [left_source.get("ref")]})
+            continue
         if outside:
             outcomes.append({"record": record, "state": "conflict", "cause": "outside",
                              "reason": "同scope明示pairについて独立template-owner本文とpack-owner本文が当該実版範囲外を明示する。",
@@ -2067,37 +2626,185 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                              "reason": "owner_decision_unresolved: 原qualified owner declarationはpositive/outside predicateを満たさない。",
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
-    if len(outcomes) == 2:
-        if not (_ref_same(outcomes[0]["record"].get("left_ref"), outcomes[1]["record"].get("left_ref"))
-                and _ref_same(outcomes[0]["record"].get("right_ref"), outcomes[1]["record"].get("right_ref"))):
-            raise _fn3_stop("unclosed/general_group_outside_pair", "compatibility records do not target the same explicit pair")
-        if outcomes[0]["state"] == "resolved" and outcomes[1]["state"] == "conflict" and outcomes[1]["cause"] == "outside":
+    for outcome in outcomes:
+        record = outcome["record"]
+        base_refs = [record.get("ref"), record.get("left_ref"), record.get("right_ref")]
+        if isinstance(record.get("source_ref"), dict):
+            base_refs.append(record["source_ref"])
+        used_indices, source_refs = _fn3_source_reference_block(raw, outcome.get("sources", []))
+        outcome["source_indices"] = used_indices
+        outcome["refs"] = [*base_refs, *source_refs]
+        outcome["sources"] = [raw["sources"][i]["ref"] for i in used_indices]
+    if len(outcomes) > 1:
+        same_pair = all(_ref_same(row["record"].get("left_ref"), outcomes[0]["record"].get("left_ref"))
+                        and _ref_same(row["record"].get("right_ref"), outcomes[0]["record"].get("right_ref"))
+                        for row in outcomes[1:])
+        if not same_pair:
+            raise _fn3_stop("unclosed/general_group_outside_pair", "compatibility records do not resolve to one explicit pair")
+        if (len(outcomes) == 2 and outcomes[0]["state"] == "resolved"
+                and outcomes[1]["state"] == "conflict" and outcomes[1]["cause"] == "outside"):
             states = ["resolved", "conflict"]
             reasons = [o["record"].get("reason") for o in outcomes]
             material = {"original_record_reasons": reasons, "pair_group_index": 0,
                         "record_indices": [0, 1], "record_states": states}
             reason = _fn3_diag("同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。", material)
             refs = [ref for outcome in outcomes for ref in outcome["refs"] if isinstance(ref, dict)]
-            axes.append(_fn3_axis(binding.get("template_ref"), binding, "compatibility", "conflict", refs, reason, "knowledge_owner"))
-            findings.append(_fn3_finding("compatibility_mismatch", binding.get("template_ref"), binding,
-                                         "compatibility", "conflict", outcomes[1]["sources"],
-                                         "compatibility_mismatch: qualified outside owner predicate is satisfied."))
+            axes.append(_fn3_axis(outcomes[0]["record"].get("left_ref"), binding, "compatibility", "conflict", refs, reason, "knowledge_owner"))
+            finding_outcome = outcomes[1]
+            finding_index = next(i for i, source in enumerate(records)
+                                 if source is finding_outcome["record"])
+            findings.append(_fn3_finding("compatibility_mismatch", finding_outcome["record"].get("left_ref"), binding,
+                                         "compatibility", "conflict", finding_outcome["sources"],
+                                         _fn3_compatibility_finding_reason(raw, binding, finding_outcome,
+                                                                           finding_index, "compatibility_mismatch")))
             result_reads.extend(outcomes)
+        elif len(outcomes) == 1:
+            pass
         else:
-            raise _fn3_stop("unclosed/general_group_outside_pair", "the two-record cause combination is outside the fixed opposing pair")
-    elif outcomes:
+            # Do not choose a winner or impose a count cutoff. This exact cause
+            # combination has no frozen aggregation rule, so preserve the raw read at Backflow.
+            raise _fn3_stop("unclosed/cause_to_finding_mapping", "the same-pair cause combination has no fixed public aggregation")
+    if len(outcomes) == 1:
         outcome = outcomes[0]
-        axes.append(_fn3_axis(binding.get("template_ref"), binding, "compatibility", outcome["state"],
+        axes.append(_fn3_axis(outcome["record"].get("left_ref"), binding, "compatibility", outcome["state"],
                               outcome["refs"], outcome["reason"], "knowledge_owner" if outcome["state"] != "resolved" else None))
         if outcome["cause"] in {"null", "left_owner_unprovided"}:
-            findings.append(_fn3_finding("compatibility_unknown", binding.get("template_ref"), binding,
-                                         "compatibility", "unknown", outcome["sources"], outcome["reason"]))
+            findings.append(_fn3_finding("compatibility_unknown", outcome["record"].get("left_ref"), binding,
+                                         "compatibility", "unknown", outcome["sources"],
+                                         _fn3_compatibility_finding_reason(raw, binding, outcome, index,
+                                                                           "compatibility_unknown")))
         elif outcome["cause"] == "outside":
-            findings.append(_fn3_finding("compatibility_mismatch", binding.get("template_ref"), binding,
-                                         "compatibility", "conflict", outcome["sources"], outcome["reason"]))
+            findings.append(_fn3_finding("compatibility_mismatch", outcome["record"].get("left_ref"), binding,
+                                         "compatibility", "conflict", outcome["sources"],
+                                         _fn3_compatibility_finding_reason(raw, binding, outcome, index,
+                                                                           "compatibility_mismatch")))
         result_reads.append(outcome)
     return result_reads
 
+
+def _fn3_validate_private_return(value: dict[str, Any]) -> None:
+    """Keep the internal read return aligned to the L4 closed private types."""
+    def exact_object(row: Any, members: set[str]) -> bool:
+        return isinstance(row, dict) and set(row) == members
+
+    def presence_raw(row: Any) -> bool:
+        return ((exact_object(row, {"presence"}) and row.get("presence") == "absent")
+                or (exact_object(row, {"presence", "value"}) and row.get("presence") == "supplied"))
+
+    def occurrence(row: Any) -> bool:
+        return (exact_object(row, {"index", "locator", "original_read"})
+                and type(row.get("index")) is int and row["index"] >= 0
+                and isinstance(row.get("locator"), str) and presence_raw(row.get("original_read")))
+
+    def source_state(value: Any) -> bool:
+        return isinstance(value, str) and value in {"resolved", "missing", "unknown", "conflict", "unobserved"}
+
+    expected = {"comparison", "source_qualifications", "actual_operands", "descriptor_traces", "bilateral_pairs"}
+    if set(value) != expected:
+        raise _fn3_stop("F04/N01/private_return_shape", "IdentityTraceReturn closed keys differ")
+    actual_causes = {"actual_owner_body_unprovided", "actual_owner_body_corresponding", "actual_owner_body_differs",
+                     "actual_owner_body_unresolved", "actual_owner_body_multiple_opposing", "input_member_absent",
+                     "input_member_null", "input_member_out_of_type", "subject_unformed", "actual_scope_unresolved",
+                     "actual_scope_differs", "actual_qualification_unresolved"}
+    actual_roles = {"template_actual_ref", "knowledge_actual_ref", "requirement_actual_ref", "oracle_actual_ref",
+                    "pack_actual_ref", "template_actual_revision", "knowledge_actual_revision", "pack_actual_revision",
+                    "pack_actual_contract_version", "pack_actual_artifact_version", "knowledge_actual_operational_state",
+                    "pack_actual_dependency_version"}
+    if any(not exact_object(row, {"request", "original_read", "read_classification", "observations", "state", "cause"})
+           or not exact_object(row.get("request"), {"member_locator", "actual_role"})
+           or not isinstance(row["request"].get("member_locator"), str)
+           or row["request"].get("actual_role") not in actual_roles
+           or not presence_raw(row.get("original_read"))
+           or row["read_classification"] not in {"absent", "null", "out_of_type", "supplied"}
+           or not isinstance(row.get("observations"), list)
+           or any(not exact_object(obs, {"source_index", "body_locator", "actual_read", "owner_declaration_locator",
+                                        "owner_declaration_read", "relation", "state"})
+                  or type(obs.get("source_index")) is not int or obs["source_index"] < 0
+                  or not isinstance(obs.get("body_locator"), str)
+                  or not isinstance(obs.get("owner_declaration_locator"), str)
+                  or not presence_raw(obs.get("actual_read"))
+                  or not presence_raw(obs.get("owner_declaration_read"))
+                  or obs.get("relation") not in {"corresponding", "different", "unestablished", "not_applicable"}
+                  or not source_state(obs.get("state")) for obs in row.get("observations", []))
+           or not source_state(row.get("state")) or row.get("cause") not in actual_causes
+           for row in value["actual_operands"]):
+        raise _fn3_stop("F04/N01/private_actual_shape", "ActualOperandRead is outside its closed shape")
+    trace_causes = {"original_trace_corresponding", "source_unresolved", "qualification_unresolved", "body_unresolved",
+                    "knowledge_unresolved", "mixed_knowledge_revision", "scope_unresolved", "scope_differs"}
+    if any(not exact_object(row, {"request", "slot_read", "fact_read", "knowledge_records", "provenance_refs", "source_indices",
+                                  "body_groups", "state", "cause"})
+           or not exact_object(row.get("request"), {"slot_locator", "fact_locator"})
+           or not all(isinstance(row["request"].get(k), str) for k in ("slot_locator", "fact_locator"))
+           or not presence_raw(row.get("slot_read")) or not presence_raw(row.get("fact_read"))
+           or not isinstance(row.get("knowledge_records"), list) or any(not occurrence(x) for x in row["knowledge_records"])
+           or not isinstance(row.get("body_groups"), list) or any(not occurrence(x) for x in row["body_groups"])
+           or not isinstance(row.get("source_indices"), list)
+           or any(type(i) is not int or i < 0 for i in row.get("source_indices", []))
+           or not isinstance(row.get("provenance_refs"), list)
+           or any(not exact_object(p, {"knowledge_record_index", "provenance_index", "locator", "original_read", "relation"})
+                  or type(p.get("knowledge_record_index")) is not int or p["knowledge_record_index"] < 0
+                  or type(p.get("provenance_index")) is not int or p["provenance_index"] < 0
+                  or not isinstance(p.get("locator"), str) or not presence_raw(p.get("original_read"))
+                  or p.get("relation") not in {"corresponding", "different", "unestablished", "not_applicable"}
+                  for p in row.get("provenance_refs", []))
+           or not source_state(row.get("state")) or row.get("cause") not in trace_causes
+           for row in value["descriptor_traces"]):
+        raise _fn3_stop("F04/N01/private_trace_shape", "DescriptorTraceRead is outside its closed shape")
+    bilateral_causes = {"positive", "null", "scope", "outside", "opposing", "source_ref_absent", "source_unresolved",
+                        "source_unusable", "qualification_unresolved", "endpoint_unresolved", "endpoint_differs",
+                        "scope_unresolved", "body_record_differs", "compatible_null", "range_unresolved",
+                        "left_owner_unprovided", "right_owner_unprovided", "bilateral_owner_unresolved",
+                        "bilateral_decisions_opposing"}
+    membership_causes = {"matching_refs", "container_absent", "container_null", "container_type", "endpoint_unresolved",
+                         "member_no_match", "member_unresolved"}
+    owner_causes = {"owner_body_corresponding", "owner_scope_differs", "owner_qualification_unresolved",
+                    "owner_subject_unresolved", "owner_decision_unresolved", "owner_decision_differs",
+                    "owner_counterpart_unresolved"}
+    if any(not exact_object(row, {"request", "record_read", "owner_reads", "state", "cause"})
+           or not exact_object(row.get("request"), {"record_locator"})
+           or not isinstance(row["request"].get("record_locator"), str)
+           or not presence_raw(row.get("record_read"))
+           or not isinstance(row.get("owner_reads"), list)
+           or any(not exact_object(owner, {"endpoint", "source_index", "membership", "body_read", "record_ref_read",
+                                           "counterpart_source_ref_read", "target_scope_relation", "state", "cause"})
+                  or owner.get("endpoint") not in {"left", "right"}
+                  or type(owner.get("source_index")) is not int or owner["source_index"] < 0
+                  or not presence_raw(owner.get("body_read")) or not presence_raw(owner.get("record_ref_read"))
+                  or not presence_raw(owner.get("counterpart_source_ref_read"))
+                  or owner.get("target_scope_relation") not in {"same", "different", "unobserved"}
+                  or not source_state(owner.get("state")) or owner.get("cause") not in owner_causes
+                  or not exact_object(owner.get("membership"), {"source_index", "endpoint_locator", "endpoint_read",
+                                                                 "container_read", "occurrences", "matching_ref_indices",
+                                                                 "state", "cause", "meaning_limit"})
+                  or type(owner["membership"].get("source_index")) is not int
+                  or not isinstance(owner["membership"].get("endpoint_locator"), str)
+                  or not presence_raw(owner["membership"].get("endpoint_read"))
+                  or not presence_raw(owner["membership"].get("container_read"))
+                  or not isinstance(owner["membership"].get("occurrences"), list)
+                  or any(not exact_object(o, {"ref_index", "locator", "original_read", "read_classification", "full_ref_relation"})
+                         or type(o.get("ref_index")) is not int or o["ref_index"] < 0
+                         or not isinstance(o.get("locator"), str) or not presence_raw(o.get("original_read"))
+                         or o.get("read_classification") not in {"null", "out_of_type", "supplied"}
+                         or o.get("full_ref_relation") not in {"corresponding", "different", "unestablished", "not_applicable"}
+                         for o in owner["membership"].get("occurrences", []))
+                  or not isinstance(owner["membership"].get("matching_ref_indices"), list)
+                  or any(type(i) is not int or i < 0 for i in owner["membership"].get("matching_ref_indices", []))
+                  or owner["membership"].get("state") not in {"resolved", "unknown"}
+                  or owner["membership"].get("cause") not in membership_causes
+                  or owner["membership"].get("meaning_limit") != "raw_endpoint_ref_membership_only"
+                  for owner in row.get("owner_reads", []))
+           or not source_state(row.get("state")) or row.get("cause") not in bilateral_causes
+           for row in value["bilateral_pairs"]):
+        raise _fn3_stop("F04/N01/private_bilateral_shape", "BilateralCompatibilityRead is outside its closed shape")
+    if any(not exact_object(row, {"source_index", "source", "qualifications", "roots", "fn0_disposition", "state"})
+           or type(row.get("source_index")) is not int or row["source_index"] < 0
+           or not occurrence(row.get("source"))
+           or not isinstance(row.get("qualifications"), list) or any(not occurrence(x) for x in row.get("qualifications", []))
+           or not isinstance(row.get("roots"), list) or any(not occurrence(x) for x in row.get("roots", []))
+           or row["fn0_disposition"] not in {"usable", "unusable", "unobserved"}
+           or not source_state(row.get("state"))
+           for row in value["source_qualifications"]):
+        raise _fn3_stop("F04/N01/private_source_qualification_shape", "SourceQualificationRead is outside its closed shape")
 
 def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str, object]:
     """fn3: 同じfn0 ValidatedSupplyから有限actual/trace/bilateral readを射影する。"""
@@ -2106,9 +2813,11 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
     validated = context.get("validated")
     if not isinstance(validated, dict) or "input" not in validated:
         raise _fn3_stop("F04/N01/validated_context", "IdentityContext.validated is absent")
+    if "unusable_source_refs" not in validated or not isinstance(validated.get("unusable_source_refs"), list):
+        raise _fn3_stop("F04/N01/unusable_source_refs", "fn0 source disposition is absent or not an array")
     raw = validated.get("input")
     if raw is None:
-        return _comparison([], [], "compare_identity_versions_and_trace", None)
+        raise _fn3_stop("F04/N01/validated_input_null", "ValidatedSupply.input is explicitly null and the identity read is unexercised")
     if not isinstance(raw, dict):
         raise _fn3_stop("F04/N01/validated_input", "ValidatedSupply.input is not an object or null")
     before = copy.deepcopy(raw)
@@ -2141,11 +2850,34 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
     findings: list[dict[str, Any]] = []
     actual_reads = _fn3_actual_axes(raw, binding, unusable, axes, findings)
     trace_reads = _fn3_trace(raw, binding, unusable, axes, findings)
+    _fn3_identity_claim_findings(raw, binding, unusable, findings, trace_reads)
     bilateral_reads = _fn3_compatibility(raw, binding, unusable, axes, findings)
+    template_ref = binding.get("template_ref")
+    if isinstance(template_ref, dict) and template_ref.get("scope") is None:
+        axis_reason = "原template Refのscopeが明示nullであり、他のscopeから補完しない。"
+        axes.append(_fn3_axis(template_ref, binding, "scope", "missing", [template_ref], axis_reason,
+                              "knowledge_owner"))
+        findings.append(_fn3_finding(
+            "scope_missing", template_ref, binding, "scope", "missing", [],
+            _fn3_predicate_finding_reason(raw, "scope_missing",
+                                          [("/binding/template_ref/scope", "scope")]))
+        )
+    rule_order = {
+        "source_missing": 0, "version_missing": 1, "scope_missing": 2,
+        "compatibility_unknown": 3, "compatibility_mismatch": 4,
+        "oracle_revision_mismatch": 5, "image_identity_inference": 6,
+        "tool_node_identity_inference": 7, "filename_identity_join": 8,
+        "version_target_as_actual": 9, "mixed_knowledge_revision": 10,
+        "silent_supersession": 11,
+    }
+    findings.sort(key=lambda row: rule_order.get(row.get("code"), len(rule_order)))
     if not _json_equal(raw, before):
         raise AssertionError("fn3 mutated the supplied immutable snapshot")
     # Keep the private reader result closed and local; only its Comparison is public.
     observed_source_indices = {i for read in trace_reads for i in read.get("source_indices", [])}
+    for read in actual_reads:
+        observed_source_indices.update(row["source_index"] for row in read.get("observations", [])
+                                       if isinstance(row, dict) and isinstance(row.get("source_index"), int))
     for read in bilateral_reads:
         for ref in read.get("sources", []):
             observed_source_indices.update(i for i, _source in _fn3_source_rows(raw, ref))
@@ -2162,13 +2894,14 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
             for qi, q in qrows
         ]
         root_occurrences = []
+        seen_root_indices = set()
         for _qi, q in qrows:
             root_ref = q.get("root_ref")
-            root_occurrences.extend(
-                {"index": ri, "locator": f"/qualification_roots/{ri}",
-                 "original_read": {"presence": "supplied", "value": copy.deepcopy(root)}}
-                for ri, root in _fn3_root_rows(raw, root_ref)
-            )
+            for ri, root in _fn3_root_rows(raw, root_ref):
+                if ri not in seen_root_indices:
+                    seen_root_indices.add(ri)
+                    root_occurrences.append({"index": ri, "locator": f"/qualification_roots/{ri}",
+                                             "original_read": {"presence": "supplied", "value": copy.deepcopy(root)}})
         usable = _fn3_valid_source(raw, source_index, source, unusable)
         source_qualification_reads.append({
             "source_index": source_index,
@@ -2188,11 +2921,13 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
         private_bilateral_reads.append({
             "request": {"record_locator": f"/compatibility_records/{index}"},
             "record_read": {"presence": "supplied", "value": copy.deepcopy(record)},
-            "owner_reads": owner_reads, "state": read["state"], "cause": read["cause"],
+            "owner_reads": owner_reads, "state": read["state"],
+            "cause": ("bilateral_owner_unresolved" if read["cause"] == "owner_decision_unresolved" else read["cause"]),
         })
     private_return = {
         "comparison": _comparison(axes, findings, "compare_identity_versions_and_trace", binding),
         "source_qualifications": source_qualification_reads, "actual_operands": actual_reads,
         "descriptor_traces": trace_reads, "bilateral_pairs": private_bilateral_reads,
     }
+    _fn3_validate_private_return(private_return)
     return copy.deepcopy(private_return["comparison"])
