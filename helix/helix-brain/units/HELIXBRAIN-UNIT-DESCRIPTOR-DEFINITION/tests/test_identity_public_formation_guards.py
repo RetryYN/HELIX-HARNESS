@@ -101,17 +101,19 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self.assertEqual(validated, validated_before)
 
     def test_owner_pack_revision_is_compared_after_subject_binding(self):
-        for value, state, cause in (
-            (None, "unknown", "actual_owner_body_unresolved"),
-            ("synthetic-other-actual-revision", "conflict", "actual_owner_body_differs"),
+        for member, value, state, cause, prefix in (
+            ("revision", None, "unknown", "actual_owner_body_unresolved", "上記以外の原値/operand/対応が未成立。"),
+            ("revision", "synthetic-other-actual-revision", "conflict", "actual_owner_body_differs", "同subject/fullframeの独立actual本文と原値が既知差。"),
+            ("scope", None, "unknown", "actual_scope_unresolved", "対象frame又はsource frame未観測。"),
+            ("scope", "synthetic-other-scope", "conflict", "actual_scope_differs", "原actual宣言が当該subject候補を指すが要求frameと既知差。別subjectの原宣言はactual対応候補を生成しない。"),
         ):
-            with self.subTest(actual_revision=value):
+            with self.subTest(actual_member=member, actual_value=value):
                 raw = bilateral_input("outside")
                 record = raw["compatibility_records"][0]
                 right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
                 original_subject = copy.deepcopy(right["content"]["compatibility_range_declaration"]["right_ref"])
                 body = copy.deepcopy(right["content"])
-                body["compatibility_range_declaration"]["actual_pack_ref"]["revision"] = value
+                body["compatibility_range_declaration"]["actual_pack_ref"][member] = value
                 _write_source_content(raw, right, body)
                 self.assertEqual(right["content"]["compatibility_range_declaration"]["right_ref"], original_subject)
                 # ActualOperand port reads the qualified native source independently.
@@ -125,6 +127,7 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
                     self.assertEqual(row["state"], state)
                     material = json.loads(row["reason"].partition("\n")[2])
                     self.assertEqual(material["cause"], cause)
+                    self.assertEqual(row["reason"].partition("\n")[0], prefix)
                     self.assertTrue(material["actual_source_pointers"])
                 self.assertEqual(raw, before)
                 self.assertEqual(validated, validated_before)
