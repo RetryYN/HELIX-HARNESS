@@ -15895,6 +15895,72 @@
           "source_ref": null
         }
       ]
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "name": "vf3-f03-claim-local-rule-selection",
+      "execution_state": "not_executed",
+      "rule_ref": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
+      "rule_number": 56,
+      "expected_axis": "applicability.evaluation",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "integration_case_ref": null,
+      "integration_case_status": "not_defined",
+      "integration_case_boundary_ja": "この変更に対応するL9 integration caseは未定義。",
+      "counterexample_ja": "同一subject/full Bindingで定義known、元applicability/valueがunknown、field固有N/A根拠なし。Claim A/Bは同値field_not_applicable/not_applicableの別原出現、Claim Cはvalue_only_gap/unknown。",
+      "expected_observation": "既存predicate成立時、A/Bは各1件ずつrule56で処理し公開Findingは計2件。等値でもdedup/勝者化しない。Cはこのknown-definition反例ではrule55不成立でFinding 0件。原axisと3 Claim出現を元順保持。",
+      "variant_expectations": [
+        {"oracle_ref":"HELIXBRAIN-L8-032-F03-NEG-01","rule_ref":"HELIXBRAIN-L5-032-R-unknown_as_na","kind":"field_not_applicable","proposed_value":"not_applicable","applicability_precondition":"known","rule_number":54,"expected_axis":"field.value","expected_state":"unknown","backflow_owner":"core_owner","expected_ja":"applicability knownを前提にrule54へ到達する。fixture確定はL7。"},
+        {"oracle_ref":"HELIXBRAIN-L8-032-F03-NEG-02","rule_ref":"HELIXBRAIN-L5-032-R-definition_as_value_gap","kind":"value_only_gap","proposed_value":"unknown","definition_precondition":"missing","rule_number":55,"expected_axis":"field.definition","expected_state":"missing","backflow_owner":"knowledge_owner","expected_ja":"definition missingの独立変異でのみrule55 predicateを成立させる。"},
+        {"oracle_ref":"HELIXBRAIN-L8-032-F03-NEG-04","rule_ref":"HELIXBRAIN-L5-032-R-section_na_all_fields","kind":"all_section_fields_not_applicable","proposed_value":"not_applicable","section_precondition":"not_applicable","field_decision_precondition":"absent","rule_number":57,"expected_axis":"field.applicability","expected_state":"unknown","backflow_owner":"core_owner","expected_ja":"section根拠あり/field根拠なしの独立変異でrule57 predicateを成立させる。"},
+        {
+          "oracle_refs": ["HELIXBRAIN-L8-032-F03-NEG-02", "HELIXBRAIN-L8-032-F03-NEG-04"],
+          "rule_ref": null,
+          "rule_number": null,
+          "expected_axis": "field.applicability",
+          "expected_state": "unknown",
+          "backflow_owner": "core_owner",
+          "kind": "field_not_applicable",
+          "proposed_value": "applicable",
+          "mutation_boundary_ja": "L6/L7で肯定側literalを持つNEG-02/04を別変異として具体化し、併せてこの否定側applicableの変異も置く。矛盾するknown/missing状態を同一入力へ混在させない。",
+          "expected_positive_na_findings": 0,
+          "expected_ja": "肯定N/A Findingは0件。これは今回のClaim rowのfixtureではなく、下流具体化時の期待記述。",
+          "original_axis_state_precondition": "unknown"
+        }
+      ],
+      "reentry_ja": "同field/revision/scopeの元CORE適用判断・理由・再評価条件と案件値の供給後に同frameを再評価。元reason/reentryを保持し欠落/nullを補完しない。",
+      "oracle_refs": ["HELIXBRAIN-L8-032-F03-NEG-01", "HELIXBRAIN-L8-032-F03-NEG-02", "HELIXBRAIN-L8-032-F03-NEG-03", "HELIXBRAIN-L8-032-F03-NEG-04"],
+      "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+      "expected_finding_count": 2,
+      "finding_occurrence_identity_ja": "A/B各原Claim配列indexをprivate対応として保持する。公開Findingに新fieldを足さず同値でも2件を原順保持、Cは0件。"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
+      "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "name": "vf3-n03-reference-fixture-claim-route",
+      "execution_state": "not_executed",
+      "rule_ref": "HELIXBRAIN-L5-032-R-fixture_timeout_default",
+      "rule_number": 102,
+      "expected_axis": "operation_value",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "integration_case_ref": null,
+      "integration_case_status": "not_defined",
+      "integration_case_boundary_ja": "この変更に対応するL9 integration caseは未定義。",
+      "counterexample_ja": "reference_fixtureと申告された値を、実期限/資源又は既定値として採用しない。",
+      "expected_observation": "各既存rule predicate成立時にだけ対応するruleへ進み、Claim proposed_value内のintended_valueとbasis_originを読む。数値変換・単位換算・閾値・既定値なし。",
+      "variant_expectations": [
+        {"oracle_ref":"HELIXBRAIN-L8-032-N03-NEG-01","rule_ref":"HELIXBRAIN-L5-032-R-fixture_timeout_default","kind":"operation_deadline","intended_value":"90 seconds","basis_origin":"reference_fixture","rule_number":102,"expected_axis":"operation_value","expected_state":"unknown","backflow_owner":"core_owner"},
+        {"oracle_ref":"HELIXBRAIN-L8-032-N03-NEG-02","rule_ref":"HELIXBRAIN-L5-032-R-fixture_cpu_default","kind":"resource_capacity","intended_value":"1 CPU","basis_origin":"reference_fixture","rule_number":103,"expected_axis":"resource_value","expected_state":"unknown","backflow_owner":"infrastructure_owner"},
+        {"oracle_ref":"HELIXBRAIN-L8-032-N03-NEG-03","rule_ref":"HELIXBRAIN-L5-032-R-fixture_memory_default","kind":"resource_capacity","intended_value":"256 MiB","basis_origin":"reference_fixture","rule_number":104,"expected_axis":"resource_value","expected_state":"unknown","backflow_owner":"infrastructure_owner"}
+      ],
+      "reentry_ja": "期限は元operationのcore_owner根拠、CPU/メモリは元operation/実環境のinfrastructure_owner根拠が供給されたとき同対象を再評価。元reentryを保持しfixtureから実値・既定値・再評価条件を作らない。",
+      "oracle_refs": ["HELIXBRAIN-L8-032-N03-NEG-01", "HELIXBRAIN-L8-032-N03-NEG-02", "HELIXBRAIN-L8-032-N03-NEG-03"],
+      "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability"
     }
   ],
   "function_oracles": [
@@ -114438,46 +114504,24 @@
       "approval_byte_distinction": "承認時whole-file SHAと現在base whole-file SHAは別に記録。現在baseのselected F03 canonical SHAは承認時selected canonical SHAと一致する。",
       "claim_protocol": {
         "boundary_ja": "この節は設計caseと既存oracleの対応を記録する。新しいfixture、whole期待、COPY、資格、実行証拠を追加しない。既存7 goldenはclaims=[]のままであり、Claim protocol行使済みとは扱わない。",
-        "design_cases": [
-          {
-            "case_id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
-            "target": "一つのfieldの原Claimsとapplicability/value原axis。",
-            "counterexample": "同一subject/full Bindingで定義known、元applicability/valueがunknown、field固有N/A根拠なし。Claim A/Bはkind=field_not_applicable, proposed_value=\"not_applicable\"の別原出現、Claim Cはkind=value_only_gap, proposed_value=\"unknown\"。",
-            "expected": "A/Bの各出現はrule56/54の既存predicateが重なるため各rule56だけを処理先とし、rule54へ二重裁定しない。Cは定義knownのためrule55不成立、新Findingなし。原axis eventと3 Claim出現を元順で保持。Cのliteralは今回の局所技術選択。",
-            "backflow_owner": "本反例のrule56はcore_owner。定義missingの別既存NEG-02でrule55が成立する場合はknowledge_ownerを維持。",
-            "reentry": "同field/revision/scopeの元CORE適用判断・理由・再評価条件と案件値の供給後に同frameを再評価。元reason/reentryを保持し欠落/nullを補完しない。",
-            "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
-            "function_pointer": "/function_oracles/2",
-            "oracle_refs": [
-              "HELIXBRAIN-L8-032-F03-NEG-01",
-              "HELIXBRAIN-L8-032-F03-NEG-02",
-              "HELIXBRAIN-L8-032-F03-NEG-03",
-              "HELIXBRAIN-L8-032-F03-NEG-04"
-            ]
-          },
-          {
-            "case_id": "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
-            "target": "既存N03 operation_deadline/resource_capacity Claimの3 reference-fixture tuple。",
-            "counterexample": "Claim.proposed_value内に{intended_value,basis_origin}を保持する。basis_origin=\"reference_fixture\"は申告値であり、実source資格ではない。",
-            "expected": "既存predicate成立時のみ (operation_deadline,\"90 seconds\",reference_fixture)→rule102/fixture_timeout_default/operation_value/unknown/core_owner、(resource_capacity,\"1 CPU\",reference_fixture)→rule103/fixture_cpu_default/resource_value/unknown/infrastructure_owner、(resource_capacity,\"256 MiB\",reference_fixture)→rule104/fixture_memory_default/resource_value/unknown/infrastructure_owner。",
-            "backflow_owner": "各既存ruleのownerを維持：core_owner又はinfrastructure_owner。",
-            "reentry": "期限は元operationのcore_owner根拠、CPU/メモリは元operation/実環境のinfrastructure_owner根拠が供給されたとき同対象を再評価。元reentryを保持しfixtureから実値・既定値・再評価条件を作らない。",
-            "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
-            "function_pointer": "/function_oracles/2",
-            "oracle_refs": [
-              "HELIXBRAIN-L8-032-N03-NEG-01",
-              "HELIXBRAIN-L8-032-N03-NEG-02",
-              "HELIXBRAIN-L8-032-N03-NEG-03"
-            ]
-          }
-        ],
         "l5_contract_source": {
           "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "revision": "44c1ee28ee27db302f122ef241376e7a41ac65de",
+          "revision": "6a3b5d0cbd90c858c5638b2ead4da6fb6e8dbadd",
           "pointer": "/field_value_applicability_detail/claim_protocol",
           "function_pointer": "/functions/2"
         },
-        "oracle_boundary_ja": "これらは今回の設計caseと既存function oracle/case参照であり、新whole期待や実行済み結果ではない。既存7 goldenはclaims=[]のまま。"
+        "oracle_boundary_ja": "これらは今回の設計caseと既存function oracle/case参照であり、新whole期待や実行済み結果ではない。既存7 goldenはclaims=[]のまま。",
+        "case_refs": [
+          {
+            "id": "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
+            "pointer": "/additional_unit_cases/35"
+          },
+          {
+            "id": "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
+            "pointer": "/additional_unit_cases/36"
+          }
+        ],
+        "case_boundary_ja": "上記参照は設計caseであり、L9 integration case未定義、実行未実施。既存7 goldenはclaims=[]のまま。"
       }
     },
     "candidate_l5_binding": {
