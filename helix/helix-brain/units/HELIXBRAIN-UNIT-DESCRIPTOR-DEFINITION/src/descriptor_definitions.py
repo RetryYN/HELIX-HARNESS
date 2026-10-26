@@ -1267,7 +1267,7 @@ def _evaluate_field_values_detail(context: dict[str, Any]) -> dict[str, Any]:
     # from the actual same-call fn1 result. Other fn1 axes belong to fn1 only.
     carried = [
         copy.deepcopy(axis) for axis in definitions["axes"]
-        if isinstance(axis, dict) and axis.get("axis") in {"section.definition", "required field.definition"}
+        if isinstance(axis, dict) and axis.get("axis") in {"required section.definition", "required field.definition"}
     ]
     if carried:
         for row in rows:
