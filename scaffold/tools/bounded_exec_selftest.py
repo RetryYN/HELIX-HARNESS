@@ -11,6 +11,7 @@ import tempfile
 import threading
 import time
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bounded_exec as b
@@ -329,6 +330,30 @@ class BoundedExecSelftest(unittest.TestCase):
             self.assertEqual(signal.getsignal(signal.SIGHUP), signal.SIG_IGN)
         finally:
             signal.signal(signal.SIGHUP, old_hup)
+
+        # n1: signal.getsignalがNoneを返すシグナル（C側ハンドラ等）は登録・上書きせず、復元時にTypeErrorを出さない。
+        real_getsignal = signal.getsignal
+        real_signal_fn = signal.signal
+        registered_signals = []
+
+        def fake_getsignal(sig):
+            if sig == signal.SIGHUP:
+                return None
+            return real_getsignal(sig)
+
+        def tracking_signal(sig, handler):
+            registered_signals.append((sig, handler))
+            return real_signal_fn(sig, handler)
+
+        with patch.object(b.signal, "getsignal", side_effect=fake_getsignal), patch.object(
+            b.signal, "signal", side_effect=tracking_signal
+        ):
+            n1_outcome = b.run_bounded([sys.executable, "-c", "print('n1-ok')"], timeout_ms=2_000)
+        self.assertTrue(n1_outcome["ok"])
+        self.assertEqual(n1_outcome["classification"], "ok")
+        self.assertEqual(n1_outcome["stdout"], "n1-ok\n")
+        self.assertNotIn(signal.SIGHUP, [sig for sig, _ in registered_signals])
+        self.assertTrue(all(handler is not None for _, handler in registered_signals))
 
         # m2: direct child終了後のgrace待ち中に親がシグナルを受けた場合もsignalとして分類する。
         with tempfile.TemporaryDirectory() as tmp:
