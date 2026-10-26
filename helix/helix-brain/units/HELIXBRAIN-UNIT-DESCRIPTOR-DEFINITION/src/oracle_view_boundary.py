@@ -51,11 +51,22 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
 
     definitions = context["definitions"]
     identity_trace = context["identity_trace"]
-    if (definitions["producer_symbol"] != "compare_descriptor_definitions"
-            or identity_trace["producer_symbol"] != "compare_identity_versions_and_trace"
-            or not _binding_same(definitions["input_binding"], binding)
-            or not _binding_same(identity_trace["input_binding"], binding)):
-        return _comparison([], [], "compare_oracle_and_view_boundary", binding)
+    partial_context_branches = (
+        (definitions["producer_symbol"] != "compare_descriptor_definitions",
+         "definitions_producer"),
+        (identity_trace["producer_symbol"] != "compare_identity_versions_and_trace",
+         "identity_trace_producer"),
+        (not _binding_same(definitions["input_binding"], binding),
+         "definitions_binding"),
+        (not _binding_same(identity_trace["input_binding"], binding),
+         "identity_trace_binding"),
+    )
+    for mismatch, branch in partial_context_branches:
+        if mismatch:
+            raise NotImplementedError(
+                f"F05/F06/partial/{branch}; owner=knowledge_owner; "
+                "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
+            )
 
     raise NotImplementedError(
         "F05/F06/unclosed/formed_context; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
