@@ -106,43 +106,68 @@ class TestOracleViewBoundaryContext(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(context, context_before)
 
-    def test_wrong_definitions_producer_adds_no_fn4_public_rows(self):
-        """L4 partial_context_projection: 別producerを補正せず、FN4行を新設しない。"""
-        raw, raw_before, validated, validated_before, context = self._normal_context()
-        definitions = copy.deepcopy(context["definitions"])
-        definitions["producer_symbol"] = "another_producer"
-        context["definitions"] = definitions
+    def _assert_partial_context_stop(
+        self, context, raw, raw_before, validated, validated_before, branch
+    ):
         context_before = copy.deepcopy(context)
-
-        result = compare_oracle_and_view_boundary(context)
-
-        self._assert_fn4_comparison(result, raw_before["binding"])
-        self.assertEqual(result["axes"], [])
-        self.assertEqual(result["findings"], [])
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        message = str(caught.exception)
+        self.assertIn(f"F05/F06/partial/{branch};", message)
+        self.assertIn("knowledge_owner", message)
+        self.assertIn("Backflow HELIXBRAIN-L6-032-FN4-ORACLE", message)
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated["input"], raw_before)
         self.assertEqual(validated, validated_before)
         self.assertEqual(context, context_before)
 
-    def test_identity_trace_binding_mismatch_adds_no_fn4_public_rows(self):
-        """L4 partial_context_projection: 異Bindingのcached Comparisonで補完しない。"""
+    def test_wrong_definitions_producer_stops_as_partial_context(self):
+        """L4 same_call/invalid_context: 別producerをempty成功で補完しない。"""
+        raw, raw_before, validated, validated_before, context = self._normal_context()
+        definitions = copy.deepcopy(context["definitions"])
+        definitions["producer_symbol"] = "another_producer"
+        context["definitions"] = definitions
+        self._assert_partial_context_stop(
+            context, raw, raw_before, validated, validated_before,
+            "definitions_producer",
+        )
+
+    def test_identity_trace_binding_mismatch_stops_as_partial_context(self):
+        """L4 partial_context_projection: 異Bindingをempty成功で補完しない。"""
         raw, raw_before, validated, validated_before, context = self._normal_context()
         identity_trace = copy.deepcopy(context["identity_trace"])
         mismatched_binding = copy.deepcopy(raw_before["binding"])
         mismatched_binding["template_ref"]["identity"] = "SYNTHETIC-OTHER-TEMPLATE"
         identity_trace["input_binding"] = mismatched_binding
         context["identity_trace"] = identity_trace
-        context_before = copy.deepcopy(context)
+        self._assert_partial_context_stop(
+            context, raw, raw_before, validated, validated_before,
+            "identity_trace_binding",
+        )
 
-        result = compare_oracle_and_view_boundary(context)
+    def test_identity_trace_producer_mismatch_stops_as_partial_context(self):
+        """L4 partial_context_projection: identity_trace producerも同call限定。"""
+        raw, raw_before, validated, validated_before, context = self._normal_context()
+        identity_trace = copy.deepcopy(context["identity_trace"])
+        identity_trace["producer_symbol"] = "another_producer"
+        context["identity_trace"] = identity_trace
+        self._assert_partial_context_stop(
+            context, raw, raw_before, validated, validated_before,
+            "identity_trace_producer",
+        )
 
-        self._assert_fn4_comparison(result, raw_before["binding"])
-        self.assertEqual(result["axes"], [])
-        self.assertEqual(result["findings"], [])
-        self.assertEqual(raw, raw_before)
-        self.assertEqual(validated["input"], raw_before)
-        self.assertEqual(validated, validated_before)
-        self.assertEqual(context, context_before)
+    def test_definitions_binding_mismatch_stops_as_partial_context(self):
+        """L4 partial_context_projection: definitions Bindingも同call限定。"""
+        raw, raw_before, validated, validated_before, context = self._normal_context()
+        definitions = copy.deepcopy(context["definitions"])
+        mismatched_binding = copy.deepcopy(raw_before["binding"])
+        mismatched_binding["template_ref"]["identity"] = "SYNTHETIC-OTHER-TEMPLATE"
+        definitions["input_binding"] = mismatched_binding
+        context["definitions"] = definitions
+        self._assert_partial_context_stop(
+            context, raw, raw_before, validated, validated_before,
+            "definitions_binding",
+        )
 
 
 if __name__ == "__main__":
