@@ -204,10 +204,11 @@
     "legacy_basis": "既存legacy_rederivationとL4 identity_version_trace_contract/legacy_rederivation、axis_reason_writer/general_occurrence_cause_witness/legacy_rederivationの原identity/unknown/局所trace保持を継承し、旧runtime/CIは実行しない。",
     "authority_effect": "none",
     "read_projection_choices": {
-      "partial_read": "L4 same_call/partial_and_nullと既存closed private型を使い、distinct KnowledgeRecord全出現を連結する。provenance不形成は原record全値に保持し、結線できないreadだけsource_unresolved。型不成立source Refは成功chain/public Ref列へ使わない。actualは原left operandを保持し、不形成provenance Refを加えない。",
+      "partial_read": "L4 same_call/partial_and_nullと既存closed private型を使い、distinct KnowledgeRecord全出現を連結する。provenance不形成は原record全値に保持し、結線できないreadだけsource_unresolved。型不成立provenance/source Refは成功chain/public Ref列へ使わない。actualは原left operandを保持し、不形成provenance Refを加えない。",
       "subject_frame": "actualのsubject候補は原decl左右Refのidentity/revision/ownerと両側digestを既存規則で比較し、scopeは別frame三値へ渡す。別subjectを候補へ昇格させず、既知scope差と未観測を区別する。",
       "bilateral_group": "原Bindingの既存full照合、各原endpoint fullRef/frame、同向きpairの直接対応が成立したreadだけ同群の候補とする。Bindingは原input.bindingでありper-record Bindingや新group keyを作らない。対応未成立/異pair/同cause反復は各single投影を原record順に維持する。既存finite二read例だけ既存融合、一般の実cause競合だけunknown aggregateを先頭原出現位置へ置きprivate各readを原順に保つ。各原readの実R61/R62は集約とは独立して保持する。",
-      "legacy_boundary": "L4/L5の既存原Ref/source/unknown保存の意味再導出。legacy_basisの旧asset対応を継承し、新しい要求/資格/ゲート/承認/代替carrierは加えない。"
+      "legacy_boundary": "L4/L5の既存原Ref/source/unknown保存の意味再導出。legacy_basisの旧asset対応を継承し、新しい要求/資格/ゲート/承認/代替carrierは加えない。",
+      "frame_guard": "group frameの_binding_same(binding,binding)は恒真比較ではなく、同call原Bindingの各既存full Ref結線が成立するかの確認。fn0が受理するoracle_ref={}等のpartial wire Bindingではfalseとなり、各single readへ保持する。正常returnで原record毎に必ず一outcomeのため、outcomes2件ならindex[0,1]は自明であり重複条件を削除した。新たなindex制約や代替group判定を加えない。"
     }
   }
 }
