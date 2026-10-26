@@ -1,0 +1,135 @@
+{
+  "document_id": "HELIXBRAIN-L7-032-F08-FN5-KNOWLEDGE-PROMOTION",
+  "layer": "L7",
+  "parent": "HELIXBRAIN-L2-032",
+  "status": "candidate_verification_design_only",
+  "source_main": "21d3f72066f84fbade2f0ac085cd37eb121a7ef8",
+  "authority_effect": "none",
+  "scope": "F08（知識stateとpromotion）の fn0→fn5（compare_knowledge_promotion）垂直スライス対検証設計。正常入力1経路・F08 negative 4件（rule 80..83）・ADD-16・PR-1語彙整合・P3a非空candidate trace・P3b Claim witness・candidate-empty有限枝と未閉包分岐停止境界を記録する。L8の全fixture/返却を再保存しない。",
+  "target_l8_rows": [
+    {
+      "id": "HELIXBRAIN-L8-032-NORMAL-compare_knowledge_promotion",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/function_oracles/5",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "role": "normal_path_partial_oracle"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08-NEG-01",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/9/negative_cases/0",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "rule_ref": "HELIXBRAIN-L5-032-R-generation_as_promotion",
+      "expected_axis": "promotion",
+      "expected_state": "unknown",
+      "backflow_owner": "knowledge_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08-NEG-02",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/9/negative_cases/1",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "rule_ref": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
+      "expected_axis": "promotion",
+      "expected_state": "unknown",
+      "backflow_owner": "knowledge_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08-NEG-03",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/9/negative_cases/2",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "rule_ref": "HELIXBRAIN-L5-032-R-independent_verification_missing",
+      "expected_axis": "promotion",
+      "expected_state": "unknown",
+      "backflow_owner": "knowledge_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08-NEG-04",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/cases/9/negative_cases/3",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
+      "expected_axis": "promotion_claim",
+      "expected_state": "conflict",
+      "backflow_owner": "knowledge_owner"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-ADD-16",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/15",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "role": "limited_adoption_no_operational_claim"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F08-PR1-VOCABULARY-ALIGNMENT",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/40",
+      "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+      "rule_ref": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
+      "expected_axis": "promotion_claim",
+      "expected_state": "unknown",
+      "backflow_owner": "knowledge_owner"
+    }
+  ],
+  "upstream_design_refs": [
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "pointers": [
+        "/contracts/9",
+        "/failure_classifications/80",
+        "/failure_classifications/81",
+        "/failure_classifications/82",
+        "/failure_classifications/83",
+        "/knowledge_promotion_contract",
+        "/knowledge_promotion_contract/nonempty_candidate_trace",
+        "/knowledge_promotion_contract/p2_claim_witness_projection",
+        "/knowledge_promotion_contract/p2b_rule83_extension"
+      ]
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "pointers": [
+        "/functions/5",
+        "/failure_rules/80",
+        "/failure_rules/81",
+        "/failure_rules/82",
+        "/failure_rules/83",
+        "/source_return_contract/pure_reference_notation",
+        "/source_return_contract/existing_function_bindings/1",
+        "/knowledge_promotion_detail",
+        "/knowledge_promotion_claim_detail",
+        "/knowledge_promotion_claim_detail/vocabulary_alignment_and_default_reentry"
+      ]
+    }
+  ],
+  "test_binding": {
+    "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_f08_knowledge_promotion.py",
+    "implementation_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/knowledge_promotion.py",
+    "minimal_reexport_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "backflow_id": "HELIXBRAIN-L6-032-F08-FN5-PATH"
+  },
+  "partial_oracle_and_stop_boundary": {
+    "partial_oracle_ja": "各caseが指定する観測（Comparison全4field、knowledge_record_traceおよびpromotion/promotion_claimのAxisResult全7field［descriptor slot固有binding含む］、Finding全9field［descriptor slot固有binding含む］、reason_writerの6member canonical JSON完全一致［複数Claimの/claims/1 locator含む］、Claim association/basis_reads/rules 80..83の対照境界［rule 83部分joinでのpredicate_unknown含む］、複数KnowledgeRecord［重複・競合］のrecord_locators/observations 5member全3tokenおよびrule 80/81のbasis_reads/predicate、candidate-empty/P3a/P3bの選択・順序・presence・入力不変性）をassertする。",
+    "unclosed_stop_branches": [
+      "F08/candidate_empty_outside_finite_domain: candidates==[]においてdependenciesキー存在（非空Dependencies・空dict・null含む）、other_collections非配列または非空、KnowledgeRecordのref/provenance_refs外キー供給、source非objectまたはsource.role/content allowlist外、semantic_jsonのdescriptor_facts/definition_meaning_operations/descriptor_targets供給時非配列・要素非object・arguments非object（null/int）またはdescriptor_kind不正、宣言target一致時のfill_definition外Claimまたはfill_definitionのtarget/binding不一致の経路",
+      "F08/claim_witness_formation: 非空candidatesかつ非空claimsにおいて、Claim非object、kind非string、subject_refのidentity/revision/scope/owner欠落・nullまたはRef wire型外、bindingの9member full Binding wire型外、basis_refs非配列または要素Ref wire型外の経路",
+      "F08/context_or_input_shape: PromotionContext非objectまたはvalidated以外のキー、validatedまたはvalidated.input/input_issues/unusable_source_refs型不正、root binding不在・wire型外、candidates不在・null・非配列・要素Ref wire型外、またはclaims/sourcesが供給時に非配列の経路",
+      "F08/record_or_descriptor_carrier_shape: descriptorsまたはknowledge_recordsが供給時に非配列、descriptors要素非objectまたはslot binding wire型外、knowledge_records要素非object、record.ref不在・null・Ref wire型外、provenance_refs非配列・要素Ref wire型外、または5種の単一工程Ref（evaluation_ref/os_registration_ref/independent_verification_ref/limited_adoption_ref/adoption_ref）が非null時にRef wire型外の経路"
+    ]
+  },
+  "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
+  "execution_state": "green_verified",
+  "completion_boundary": "fn0→fn5のF08垂直スライス限定検証であり、007/008/025実工程の採否・運用state遷移・製品CI・Accepted・releaseを成立させない。",
+  "execution_evidence": {
+    "initial_test_commit": "90bd6f3f75c25c8acf8349edf631e3659e937d89",
+    "initial_red_result": "Ran 6 tests in 0.295s — FAILED (failures=20, errors=15) (NotImplementedError: F08/fn5_unimplemented: compare_knowledge_promotion is not yet implemented; Backflow HELIXBRAIN-L6-032-F08-FN5-PATH)",
+    "test_commit": "bdcdd92c58b8a091f680bf7231ddf70e62cd6896",
+    "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion",
+    "red_result": "Ran 6 tests in 1.534s — FAILED (failures=5, errors=6) on 3a131dda68849815c9d2100dc66a0ae793c85343 (R1-M1 sources=None/str/int and candidates=[]+sources=str [4 failures], R1-M3 dependencies=None in candidate-empty [1 failure], R1-M2 descriptor_facts/definition_meaning_operations/descriptor_targets=None/int [6 errors]; R1-M4..M7 and R1-m1..m2 subTests are coverage additions that pass before the Green fix).",
+    "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
+    "green_result": "Ran 37 tests in 2.279s — OK (6 F08 tests + 31 non-F02 unit tests in test_n03_values_and_applicability, test_n03_path_boundaries, test_b02_dependencies_and_handoff, test_supply_input, test_source_integrity pass; note that test_descriptor_definitions has 2 pre-existing F02 stop errors on main).",
+    "r2_coverage_note": "R2 (RR-AGY-PR3718-R2-20261027-01-response): src/knowledge_promotion.py is unchanged; tests/test_f08_knowledge_promotion.py adds coverage subTests for R2-M1 (Rule 83 partial join), R2-M2 (slot binding on AxisResult 7 fields and Finding 9 fields), R2-M3 (non-fill_definition Claim with declared target), R2-m1 (definition_meaning_operations arguments None/int), R2-m2 (basis_index mismatch and unknown/non-str role or stages mixed with evaluation role), R2-m3 (/claims/1 locator and duplicate records predicate/basis_reads), R2-m4 (Rule 80 false findings/axes and non-empty dependencies), and R2-m5 (binding_absent, candidates_null, all 5 stage refs non-Ref, and L7 unclosed_stop_branches alignment).",
+    "main_integration_note": "Integrated latest main (21d3f72066f84fbade2f0ac085cd37eb121a7ef8, post-#3709): descriptor_definitions.py retains both fn3 (compare_identity_versions_and_trace) and fn5 (compare_knowledge_promotion) delegations; bounded_exec verified test_f08_knowledge_promotion (Ran 6 tests in 1.733s — OK) and full unit discover (Ran 198 tests in 15.405s — 196 pass, 2 known F02 stop errors)."
+  }
+}

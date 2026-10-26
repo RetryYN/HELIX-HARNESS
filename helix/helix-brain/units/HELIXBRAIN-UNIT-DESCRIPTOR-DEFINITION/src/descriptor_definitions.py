@@ -1064,3 +1064,9 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
     from identity_trace import compare_identity_versions_and_trace as _fn3
 
     return _fn3(context)
+
+
+def compare_knowledge_promotion(context: dict[str, object]) -> dict[str, object]:
+    from knowledge_promotion import compare_knowledge_promotion as _fn5
+
+    return _fn5(context)
