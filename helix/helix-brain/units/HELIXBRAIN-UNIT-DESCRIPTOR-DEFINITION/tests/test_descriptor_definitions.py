@@ -440,19 +440,274 @@ class TestDescriptorDefinitions(unittest.TestCase):
             compare_descriptor_definitions({"validated": validated_rel})
         self.assertIn("F01/related_relation_unresolved", str(caught_rel.exception))
 
+        raw_harness_claim = copy.deepcopy(self.base)
+        raw_harness_claim["claims"].append({
+            "subject_ref": copy.deepcopy(self.original_binding["template_ref"]),
+            "binding": copy.deepcopy(self.original_binding),
+            "actor": "BRAIN",
+            "kind": "harness_layer_pair_override",
+            "proposed_value": "synthetic harness layer pair override",
+            "basis_refs": [],
+        })
+        validated_harness = validate_supply_input(raw_harness_claim)
+        with self.assertRaises(NotImplementedError) as caught_harness:
+            compare_descriptor_definitions({"validated": validated_harness})
+        self.assertIn("F01/harness_claim_unimplemented", str(caught_harness.exception))
+
         raw_f01_claim = copy.deepcopy(self.base)
         raw_f01_claim["claims"].append({
             "subject_ref": copy.deepcopy(raw_f01_claim["descriptors"][2]["facts"][0]["ref"]),
             "binding": copy.deepcopy(self.original_binding),
             "actor": None,
-            "kind": "redefine_layer_pair",
-            "proposed_value": "synthetic redefine layer pair",
+            "kind": "custom_descriptor_claim",
+            "proposed_value": "synthetic descriptor claim on fact_ref",
             "basis_refs": [],
         })
         validated_claim = validate_supply_input(raw_f01_claim)
         with self.assertRaises(NotImplementedError) as caught_claim:
             compare_descriptor_definitions({"validated": validated_claim})
         self.assertIn("F01/descriptor_claim_unimplemented", str(caught_claim.exception))
+
+        # fill_definition Claimはsubject_refがfact_refと一致してもF01停止にしない。
+        raw_fill_on_fact = copy.deepcopy(self.base)
+        raw_fill_on_fact["claims"].append({
+            "subject_ref": copy.deepcopy(raw_fill_on_fact["descriptors"][2]["facts"][0]["ref"]),
+            "binding": copy.deepcopy(self.original_binding),
+            "actor": None,
+            "kind": "fill_definition",
+            "proposed_value": "synthetic fill definition",
+            "basis_refs": [],
+        })
+        result_fill_on_fact = self._compare(raw_fill_on_fact)
+        self.assertEqual(result_fill_on_fact["findings"], [])
+
+    def test_r1_m1_fill_definition_positive_intent_values_and_actor(self):
+        # L4 claim_intent_protocol/rules/4: proposed_valueキー供給済みの全RawValue（null/false/0/空文字/空配列）と非null actorはpositive。
+        cases = (
+            ("null_value", None, None),
+            ("false_value", False, None),
+            ("zero_value", 0, None),
+            ("empty_string", "", None),
+            ("empty_list", [], None),
+            ("non_null_actor", "filled", "synthetic-actor"),
+        )
+        for label, proposed_val, actor_val in cases:
+            with self.subTest(case=label):
+                raw = self._neg02_input()
+                raw["claims"][-1]["proposed_value"] = copy.deepcopy(proposed_val)
+                raw["claims"][-1]["actor"] = actor_val
+                basis_source = raw["sources"][6]
+                basis_qual = raw["qualifications"][6]
+                basis_source["content"]["replacement_basis_uses"][0]["claim"] = copy.deepcopy(raw["claims"][-1])
+                _rebind_source_digest(basis_source, basis_qual)
+                result = self._compare(raw, added_sources=raw["sources"][5:])
+                self._assert_missing(result, CROSS_CODE, raw["claims"][-1]["subject_ref"])
+
+        # proposed_valueキー欠落のみunresolved（constructors/3 第4枝で追加event非発火）。
+        raw_absent_pv = self._neg02_input()
+        del raw_absent_pv["claims"][-1]["proposed_value"]
+        result_absent_pv = self._compare(raw_absent_pv, added_sources=raw_absent_pv["sources"][5:])
+        self.assertEqual([f["code"] for f in result_absent_pv["findings"]], [MISSING_CODE])
+        self.assertFalse(any(
+            a["subject_ref"] == raw_absent_pv["claims"][-1]["subject_ref"]
+            for a in result_absent_pv["axes"]
+        ))
+
+    def test_r1_m2_basis_refs_member_absent_emits_replacement_basis_unresolved(self):
+        # L4 replacement_special/unresolved_third_branch & L5 constructors/3/branches/2: basis_refsキー欠落はunknownを出して保持。
+        raw = self._neg02_input()
+        subject = copy.deepcopy(raw["claims"][-1]["subject_ref"])
+        del raw["claims"][-1]["basis_refs"]
+        result = self._compare(raw, added_sources=raw["sources"][5:])
+        self.assertEqual([f["code"] for f in result["findings"]], [MISSING_CODE])
+        unresolved = [a for a in result["axes"] if a["subject_ref"] == subject]
+        self.assertEqual(len(unresolved), 1)
+        self.assertEqual(unresolved[0]["axis"], "required field.definition")
+        self.assertEqual(unresolved[0]["state"], "unknown")
+        self.assertEqual(unresolved[0]["reason"], REPLACEMENT_UNRESOLVED_REASON)
+        self.assertEqual(unresolved[0]["original_refs"], [
+            raw["sources"][5]["content"]["descriptor_targets"][0]["target_ref"],
+            raw["sources"][5]["ref"],
+        ])
+
+    def test_r1_m2_special_sort_source_refs_per_usable_occurrence_and_finding_sort(self):
+        # 1. descriptor_06_missing (required section.definition) と descriptor_07_missing (required field.definition) のaxis順整列。
+        raw_two_missing = copy.deepcopy(self.base)
+        raw_two_missing["descriptors"] = [
+            s for s in raw_two_missing["descriptors"]
+            if s["descriptor_kind"] not in ("required section", "required field")
+        ]
+        res_two = self._compare(raw_two_missing)
+        self.assertEqual([f["code"] for f in res_two["findings"]], ["descriptor_07_missing", "descriptor_06_missing"])
+
+        # 2. special sort_source_refs は usable な replacement_basis_uses の要素ごとに積まれる（L5 sort_source_ref_column/special）。
+        raw_multi = self._neg02_input()
+        claim0 = raw_multi["claims"][-1]
+        b_source = raw_multi["sources"][6]
+        b_qual = raw_multi["qualifications"][6]
+        use0 = copy.deepcopy(b_source["content"]["replacement_basis_uses"][0])
+
+        def clone_basis_source(suffix, fact_id):
+            src = copy.deepcopy(b_source)
+            qual = copy.deepcopy(b_qual)
+            src_id = f"synthetic-semantic-source-{suffix}"
+            qual_id = f"synthetic-source-qualification-{suffix}"
+            src["ref"]["identity"] = src_id
+            src["qualification_ref"]["identity"] = qual_id
+            qual["ref"]["identity"] = qual_id
+            qual["subject_ref"]["identity"] = src_id
+            qual["qualification_body"]["subject"] = src_id
+            src["content"]["descriptor_facts"][0]["facts"][0]["source_ref"]["identity"] = src_id
+            src["content"]["descriptor_facts"][0]["facts"][0]["ref"]["identity"] = fact_id
+            ref = copy.deepcopy(claim0["basis_refs"][0])
+            ref["identity"] = src_id
+            return src, qual, ref
+
+        c_source, c_qual, c_ref = clone_basis_source("C", "synthetic-descriptor-C5-fact-1")
+        b2_source, b2_qual, b2_ref = clone_basis_source("B2", "synthetic-descriptor-B2-fact-1")
+        b_ref = copy.deepcopy(claim0["basis_refs"][0])
+
+        # claim0: basis_refs=[B, B2]。Bに2要素、B2に0要素 -> 要素単位では [B, B] (R1のsource単位では [B, B2])。
+        # claim1: basis_refs=[B, C]。Bに2要素、Cに1要素 -> 要素単位では [B, B, C] (R1のsource単位では [B, C])。
+        # 要素単位では [B, B, C] < [B, B] (JSON文字列で ',' < ']') となるため claim1 の3行が claim0 の2行より先に整列する。
+        claim0["basis_refs"] = [copy.deepcopy(b_ref), copy.deepcopy(b2_ref)]
+        claim1 = copy.deepcopy(claim0)
+        claim1["proposed_value"] = "claim1-val"
+        claim1["basis_refs"] = [copy.deepcopy(b_ref), copy.deepcopy(c_ref)]
+
+        def make_use(claim_obj, src_id, fact_id):
+            u = copy.deepcopy(use0)
+            u["claim"] = copy.deepcopy(claim_obj)
+            u["basis_ref"]["identity"] = src_id
+            u["fact"]["source_ref"]["identity"] = src_id
+            u["fact"]["ref"]["identity"] = fact_id
+            return u
+
+        b_source["content"]["replacement_basis_uses"] = [
+            make_use(claim0, "synthetic-semantic-source-B", "synthetic-descriptor-B5-fact-1"),
+            make_use(claim1, "synthetic-semantic-source-B", "synthetic-descriptor-B5-fact-1"),
+        ]
+        b2_source["content"]["replacement_basis_uses"] = []
+        c_source["content"]["replacement_basis_uses"] = [
+            make_use(claim1, "synthetic-semantic-source-C", "synthetic-descriptor-C5-fact-1"),
+        ]
+
+        _rebind_source_digest(b_source, b_qual)
+        _rebind_source_digest(c_source, c_qual)
+        _rebind_source_digest(b2_source, b2_qual)
+
+        raw_multi["sources"].extend([c_source, b2_source])
+        raw_multi["qualifications"].extend([c_qual, b2_qual])
+        raw_multi["claims"].append(claim1)
+
+        res_multi = self._compare(raw_multi, added_sources=raw_multi["sources"][5:])
+        cross_axes = [a for a in res_multi["axes"] if a["reason"].endswith("別Patternのrequired inputで補うことはできない。")]
+        self.assertEqual(len(cross_axes), 3)
+        self.assertEqual([a["original_refs"][1]["identity"] for a in cross_axes], [
+            "synthetic-semantic-source-C",
+            "synthetic-semantic-source-C",
+            "synthetic-semantic-source-B2",
+        ])
+
+    def test_r1_m4_target_and_basis_negative_boundary_mutations(self):
+        # Group A: target解決の各条件を1つずつ崩すと追加special eventは非発火（descriptor_07_missingのみ）。
+        def assert_no_special_event(raw):
+            validated = validate_supply_input(raw)
+            if validated["input"] is None:
+                validated = {"input": raw, "unusable_source_refs": [], "input_issues": []}
+            res = compare_descriptor_definitions({"validated": validated})
+            self.assertEqual([f["code"] for f in res["findings"]], [MISSING_CODE])
+            self.assertEqual(len(res["axes"]), 14 * 3 + 1)
+
+        target_mutations = [
+            ("claim_kind_other", lambda r: r["claims"][-1].__setitem__("kind", "other_kind")),
+            ("claim_binding_diff", lambda r: r["claims"][-1]["binding"]["template_ref"].__setitem__("identity", "OTHER-TPL")),
+            ("subject_ref_bad", lambda r: r["claims"][-1].__setitem__("subject_ref", {"identity": ""})),
+            ("target_src_role", lambda r: r["sources"][5].__setitem__("role", "reference_only")),
+            ("target_src_unusable", lambda r: r["qualifications"][5].__setitem__("subject_sha256", "0" * 64)),
+            ("target_src_no_prov", lambda r: r["knowledge_records"][0]["provenance_refs"].pop()),
+            ("target_src_content_type", lambda r: (r["sources"][5].__setitem__("content", []), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_src_binding_diff", lambda r: (r["sources"][5]["content"]["binding"]["template_ref"].__setitem__("identity", "OTHER-TPL"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("targets_not_list", lambda r: (r["sources"][5]["content"].__setitem__("descriptor_targets", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_elem_not_dict", lambda r: (r["sources"][5]["content"].__setitem__("descriptor_targets", ["bad"]), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_ref_bad", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("target_ref", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_ref_diff", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0]["target_ref"].__setitem__("identity", "OTHER-TARGET"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_slot_none", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("slot_identity", None), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_slot_empty", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("slot_identity", ""), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_kind_bad", lambda r: (r["sources"][5]["content"]["descriptor_targets"][0].__setitem__("descriptor_kind", "bad_kind"), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+            ("target_caller_conflict", lambda r: r["descriptors"][0].__setitem__("slot_identity", "synthetic-descriptor-7")),
+            ("target_ambiguous", lambda r: (r["sources"][5]["content"]["descriptor_targets"].append({
+                "target_ref": copy.deepcopy(r["claims"][-1]["subject_ref"]),
+                "slot_identity": "synthetic-descriptor-7-alt",
+                "descriptor_kind": "required field",
+            }), _rebind_source_digest(r["sources"][5], r["qualifications"][5]), r["knowledge_records"][0]["provenance_refs"][-1].__setitem__("sha256", r["sources"][5]["ref"]["sha256"]))),
+        ]
+        for label, mutate in target_mutations:
+            with self.subTest(group="target", case=label):
+                raw = self._neg02_input()
+                mutate(raw)
+                assert_no_special_event(raw)
+
+        # target slotが欠落していない（primary missing無し）場合も追加special非発火。
+        raw_not_missing = self._neg02_input()
+        raw_not_missing["descriptors"].insert(6, copy.deepcopy(self.base["descriptors"][6]))
+        res_not_missing = self._compare(raw_not_missing, added_sources=raw_not_missing["sources"][5:])
+        self.assertEqual(res_not_missing["findings"], [])
+        self.assertFalse(any(
+            a["subject_ref"] == raw_not_missing["claims"][-1]["subject_ref"]
+            for a in res_not_missing["axes"]
+        ))
+
+        # Group B: basis解決・replacement_basis_uses・descriptor_factsの各条件を1つずつ崩すとunknown（replacement_basis_unresolved）になりrule8は非発火。
+        def assert_unresolved_unknown(raw):
+            subject = raw["claims"][-1]["subject_ref"]
+            validated = validate_supply_input(raw)
+            res = compare_descriptor_definitions({"validated": validated})
+            self.assertEqual([f["code"] for f in res["findings"]], [MISSING_CODE])
+            rows = [a for a in res["axes"] if a["subject_ref"] == subject]
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["state"], "unknown")
+            self.assertEqual(rows[0]["reason"], REPLACEMENT_UNRESOLVED_REASON)
+
+        basis_mutations = [
+            ("basis_src_role_view", lambda r: (r["sources"][6].__setitem__("role", "derived_view"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("basis_ref_unmatched", lambda r: r["claims"][-1]["basis_refs"][0].__setitem__("identity", "missing-basis-src")),
+            ("basis_src_unusable", lambda r: r["qualifications"][6].__setitem__("subject_sha256", "0" * 64)),
+            ("uses_not_list", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("facts_groups_not_list", lambda r: (r["sources"][6]["content"].__setitem__("descriptor_facts", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("uses_empty", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", []), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_not_dict", lambda r: (r["sources"][6]["content"].__setitem__("replacement_basis_uses", ["bad"]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_extra_key", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("extra", 1), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_claim_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["claim"].__setitem__("proposed_value", "diff"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_basis_ref_id_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_ref"].__setitem__("identity", "other-src"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_basis_ref_sha_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_ref"].__setitem__("sha256", "0" * 64), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_basis_binding_bad", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("basis_binding", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_basis_binding_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["basis_binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_slot_none", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_slot_empty", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("slot_identity", ""), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_kind_invalid", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("descriptor_kind", "invalid_kind"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_fact_not_dict", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__("fact", "bad"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("use_fact_binding_diff", lambda r: (r["sources"][6]["content"]["replacement_basis_uses"][0]["fact"]["binding"]["template_ref"].__setitem__("identity", "SYNTHETIC-TEMPLATE-C"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("grp_not_dict", lambda r: (r["sources"][6]["content"].__setitem__("descriptor_facts", ["bad"]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("grp_slot_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("slot_identity", "other-slot"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("grp_kind_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("descriptor_kind", "version"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("grp_facts_not_list", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("facts", None), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("orig_fact_not_dict", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0].__setitem__("facts", ["bad"]), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("orig_fact_ref_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0]["facts"][0]["ref"].__setitem__("identity", "other-fact"), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+            ("orig_fact_body_diff", lambda r: (r["sources"][6]["content"]["descriptor_facts"][0]["facts"][0].__setitem__("meaning", {"changed": True}), _rebind_source_digest(r["sources"][6], r["qualifications"][6]))),
+        ]
+        for label, mutate in basis_mutations:
+            with self.subTest(group="basis", case=label):
+                raw = self._neg02_input()
+                mutate(raw)
+                assert_unresolved_unknown(raw)
+
+        # Group C: 既知owner kindがrequired input以外（例: version）で確定した場合はrule8も第3枝unknownも非発火。
+        raw_non_req_input = self._neg02_input()
+        raw_non_req_input["sources"][6]["content"]["replacement_basis_uses"][0]["descriptor_kind"] = "version"
+        raw_non_req_input["sources"][6]["content"]["descriptor_facts"][0]["descriptor_kind"] = "version"
+        _rebind_source_digest(raw_non_req_input["sources"][6], raw_non_req_input["qualifications"][6])
+        assert_no_special_event(raw_non_req_input)
 
     def test_base_control_preserves_unknown_without_substitution(self):
         result = self._compare(copy.deepcopy(self.base))
