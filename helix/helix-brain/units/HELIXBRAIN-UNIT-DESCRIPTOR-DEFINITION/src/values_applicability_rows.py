@@ -11,60 +11,120 @@ from descriptor_definitions import (
     _ordered,
     _presence,
     _ref_same,
-    _ref_shape_ok,
-    _root_occurrences,
 )
 from values_applicability_reads import (
-    N03_BACKFLOW_ID,
     _PROBLEM_REASONS,
     _f03_stop,
-    _problem,
-    _read_f03_fact_meaning,
-    _read_f03_field_descriptor_target,
     _read_f03_field_owner_record,
+    _root_occurrences,
 )
 
+
+def _build_reason_material(
+    branch: str,
+    field_locator: str,
+    request_locator: str,
+    root_locators: list[str],
+    source_locators: list[str],
+    original_presence: dict[str, Any],
+    original_reason: dict[str, Any],
+    original_owner: dict[str, Any],
+    original_decision: dict[str, Any],
+    original_reentry: dict[str, Any],
+    knowledge_ref: dict[str, Any],
+    definition_cause: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "branch": branch,
+        "field_locator": field_locator,
+        "request_locator": request_locator,
+        "root_locators": list(root_locators),
+        "source_locators": list(source_locators),
+        "original_presence": copy.deepcopy(original_presence),
+        "original_reason": copy.deepcopy(original_reason),
+        "original_owner": copy.deepcopy(original_owner),
+        "original_decision": copy.deepcopy(original_decision),
+        "original_reentry": copy.deepcopy(original_reentry),
+        "knowledge_ref": copy.deepcopy(knowledge_ref),
+        "definition_cause": copy.deepcopy(definition_cause),
+    }
+
+
+def _emit_event_and_axis(
+    branch: str,
+    subject_ref: dict[str, Any],
+    binding: dict[str, Any],
+    axis_name: str,
+    state: str,
+    original_refs: list[Any],
+    backflow_owner: str | None,
+    material: dict[str, Any],
+    judgment_indices: list[int],
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    reason = _PROBLEM_REASONS[branch] + "\n" + _ordered(material)
+    cleaned_refs = _copy_refs_in_source_order([r for r in original_refs if r is not None])
+    axis = {
+        "subject_ref": copy.deepcopy(subject_ref),
+        "binding": copy.deepcopy(binding),
+        "axis": axis_name,
+        "state": state,
+        "original_refs": cleaned_refs,
+        "reason": reason,
+        "backflow_owner": backflow_owner,
+    }
+    event = {
+        "branch": branch,
+        "subject_ref": _presence(subject_ref, present=True),
+        "binding": _presence(binding, present=True),
+        "axis": axis_name,
+        "state": state,
+        "original_refs": copy.deepcopy(cleaned_refs),
+        "reason_material": material,
+        "reason": reason,
+        "backflow_owner": backflow_owner,
+        "definition_judgment_indices": list(judgment_indices),
+    }
+    return event, axis
+
+
+_FIELD_MEMBERS = {
+    "ref",
+    "descriptor_slot_ref",
+    "parent_section_ref",
+    "meaning_fact_refs",
+    "requiredness_fact_refs",
+    "normative_rule_refs",
+    "oracle_refs",
+    "value_fact_refs",
+    "applicability_ref",
+}
+
+
+def _validate_f03_row_preconditions(raw: dict[str, Any], field: dict[str, Any]) -> None:
+    binding = raw.get("binding")
+    field_ref = field.get("ref")
+    if set(field.keys()) != _FIELD_MEMBERS or not isinstance(field_ref, dict) or not isinstance(binding, dict):
+        raise _f03_stop("carrier_or_source_record_shape", "SectionField closed shape branch")
+    if "applicability_records" not in raw or not isinstance(raw["applicability_records"], list):
+        raise _f03_stop("applicability_records_absent_or_shape", "applicability_records is absent or not an array")
+
+
 def _build_f03_row(
-    orig_def_reader: Any,
-    reason_mat_builder: Any,
-    event_axis_emitter: Any,
     validated: dict[str, Any],
     index: int,
     field: dict[str, Any],
+    definition_read: dict[str, Any],
     *,
     has_f03_mode: bool,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
     raw = validated["input"]
     field_locator = f"/section_fields/{index}"
     binding = raw["binding"]
-    field_ref = field.get("ref")
-    field_members = {
-        "ref",
-        "descriptor_slot_ref",
-        "parent_section_ref",
-        "meaning_fact_refs",
-        "requiredness_fact_refs",
-        "normative_rule_refs",
-        "oracle_refs",
-        "value_fact_refs",
-        "applicability_ref",
-    }
-    if set(field.keys()) != field_members or not isinstance(field_ref, dict) or not isinstance(binding, dict):
-        raise NotImplementedError(f"SectionField closed shape branch: Backflow {N03_BACKFLOW_ID}")
-    if "applicability_records" not in raw or not isinstance(raw["applicability_records"], list):
-        raise _f03_stop("applicability_records_absent_or_shape", "applicability_records is absent or not an array")
+    field_ref = field["ref"]
 
-    definition_read = orig_def_reader(
-        validated, field_locator, field, has_f03_mode=has_f03_mode
-    )
-
-    if "applicability_ref" not in field:
-        raise NotImplementedError(f"field applicability absent branch: Backflow {N03_BACKFLOW_ID}")
     applicability_ref = field["applicability_ref"]
     if applicability_ref is not None and not isinstance(applicability_ref, dict):
-        raise NotImplementedError(f"field applicability Ref type branch: Backflow {N03_BACKFLOW_ID}")
-    if applicability_ref is None and not has_f03_mode:
-        raise NotImplementedError(f"field applicability absent/null branch: Backflow {N03_BACKFLOW_ID}")
+        raise _f03_stop("carrier_or_source_record_shape", "field applicability Ref type branch")
 
     applicability_request_locator = field_locator + "/applicability_ref"
     applicability_read = _read_f03_field_owner_record(
@@ -77,21 +137,21 @@ def _build_f03_row(
     )
 
     value_reads: list[dict[str, Any]] = []
-    values = raw.get("values")
+    values = raw["values"]
     value_refs = field.get("value_fact_refs")
-    if not isinstance(values, list) or not isinstance(value_refs, list):
-        raise NotImplementedError(f"SectionField.value_fact_refs absence/null/type branch: Backflow {N03_BACKFLOW_ID}")
+    if not isinstance(value_refs, list):
+        raise _f03_stop("carrier_or_source_record_shape", "SectionField.value_fact_refs absence/null/type branch")
     for value_index, value_ref in enumerate(value_refs):
         if not isinstance(value_ref, dict):
-            raise NotImplementedError(f"SectionField.value_fact_refs non-Ref branch: Backflow {N03_BACKFLOW_ID}")
+            raise _f03_stop("carrier_or_source_record_shape", "SectionField.value_fact_refs non-Ref branch")
         matching_values = [row for row in values if _ref_same(row.get("ref"), value_ref)]
         if len(matching_values) > 1:
-            raise NotImplementedError(f"duplicate same-ref ValueFact body branch: Backflow {N03_BACKFLOW_ID}")
+            raise _f03_stop("duplicate_conflicting_carrier_records", "duplicate same-ref ValueFact body branch")
         if matching_values and (
             not _ref_same(matching_values[0].get("subject_ref"), field_ref)
             or not _binding_same(matching_values[0].get("binding"), binding)
         ):
-            raise NotImplementedError(f"ValueFact subject/full Binding mismatch branch: Backflow {N03_BACKFLOW_ID}")
+            raise _f03_stop("carrier_or_source_record_shape", "ValueFact subject/full Binding mismatch branch")
         source_ref = matching_values[0].get("source_ref") if matching_values else None
         value_read = _read_f03_field_owner_record(
             validated,
@@ -107,7 +167,7 @@ def _build_f03_row(
             value_app_ref = matching_values[0]["applicability_ref"]
             if value_app_ref is not None:
                 if not isinstance(value_app_ref, dict):
-                    raise NotImplementedError(f"ValueFact.applicability_ref type branch: Backflow {N03_BACKFLOW_ID}")
+                    raise _f03_stop("carrier_or_source_record_shape", "ValueFact.applicability_ref type branch")
                 val_app_read = _read_f03_field_owner_record(
                     validated,
                     "value_applicability",
@@ -125,9 +185,9 @@ def _build_f03_row(
     parent_ref = field.get("parent_section_ref")
     if parent_ref is not None:
         if not isinstance(parent_ref, dict):
-            raise NotImplementedError(f"SectionField.parent_section_ref type branch: Backflow {N03_BACKFLOW_ID}")
+            raise _f03_stop("carrier_or_source_record_shape", "SectionField.parent_section_ref type branch")
         if has_f03_mode:
-            for app_rec in raw.get("applicability_records", []):
+            for app_rec in raw["applicability_records"]:
                 if isinstance(app_rec, dict) and _ref_same(app_rec.get("subject_ref"), parent_ref):
                     parent_reads.append(
                         _read_f03_field_owner_record(
@@ -163,7 +223,7 @@ def _build_f03_row(
         j_branch = judgment["branch"]
         j_state = judgment["state"]
         j_cause = judgment["cause"]
-        mat = reason_mat_builder(
+        mat = _build_reason_material(
             j_branch,
             field_locator,
             field_locator + "/meaning_fact_refs",
@@ -177,7 +237,7 @@ def _build_f03_row(
             knowledge_ref,
             _presence(j_cause, present=True),
         )
-        ev, ax = event_axis_emitter(
+        ev, ax = _emit_event_and_axis(
             j_branch,
             field_ref,
             binding,
@@ -191,28 +251,21 @@ def _build_f03_row(
         events.append(ev)
         public_axes.append(ax)
 
-    owner_empty = (
-        field.get("meaning_fact_refs") == []
-        and field.get("requiredness_fact_refs") == []
-        and field.get("normative_rule_refs") == []
-        and field.get("oracle_refs") == []
-        and field.get("value_fact_refs") == []
-        and applicability_ref is None
-    )
+    has_known_def = any(j["branch"] == "definition_known" for j in definition_read["judgments"])
     if (
         definition_read["owner_read"]["state"] == "resolved"
-        and not owner_empty
+        and has_known_def
         and not value_reads
         and applicability_ref is None
         and not any(pr["state"] == "resolved" for pr in parent_reads)
     ):
         raise _f03_stop(
             "empty_value_fact_refs_non_empty_owner",
-            "resolved non-empty SectionField without N/A or explicit applicability unknown requires value_fact_refs",
+            "resolved defined SectionField without N/A or explicit applicability unknown requires value_fact_refs",
         )
     if (
         definition_read["owner_read"]["state"] == "resolved"
-        and not owner_empty
+        and has_known_def
         and not value_reads
         and applicability_read["state"] == "resolved"
         and applicability_read["root_occurrences"][0]["original_value"].get("decision") == "applicable"
@@ -245,7 +298,7 @@ def _build_f03_row(
                 else None
             )
             if resolved_parent_na is not None and resolved_parent_read is not None:
-                app_mat = reason_mat_builder(
+                app_mat = _build_reason_material(
                     "applicability_null",
                     field_locator,
                     applicability_request_locator,
@@ -264,7 +317,7 @@ def _build_f03_row(
                     v_src = value_reads[0]["root_occurrences"][0]["original_value"].get("source_ref")
                     if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str):
                         core_owner = v_src["owner"]
-                app_mat = reason_mat_builder(
+                app_mat = _build_reason_material(
                     "applicability_null",
                     field_locator,
                     applicability_request_locator,
@@ -278,7 +331,7 @@ def _build_f03_row(
                     knowledge_ref,
                     _presence(present=False),
                 )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 "applicability_null",
                 field_ref,
                 binding,
@@ -306,7 +359,7 @@ def _build_f03_row(
             else:
                 raise _f03_stop("na_incomplete_branch", f"invalid ApplicabilityRecord.decision: {decision}")
             app_refs = [app_rec.get("ref"), knowledge_ref, app_rec.get("source_ref")]
-            app_mat = reason_mat_builder(
+            app_mat = _build_reason_material(
                 app_branch,
                 field_locator,
                 applicability_request_locator,
@@ -320,7 +373,7 @@ def _build_f03_row(
                 knowledge_ref,
                 _presence(present=False),
             )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 app_branch,
                 field_ref,
                 binding,
@@ -334,7 +387,7 @@ def _build_f03_row(
             events.append(ev)
             public_axes.append(ax)
         else:
-            app_mat = reason_mat_builder(
+            app_mat = _build_reason_material(
                 "applicability_unknown",
                 field_locator,
                 applicability_request_locator,
@@ -348,7 +401,7 @@ def _build_f03_row(
                 knowledge_ref,
                 _presence(present=False),
             )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 "applicability_unknown",
                 field_ref,
                 binding,
@@ -369,20 +422,21 @@ def _build_f03_row(
             v_rec = v_occs[0]["original_value"] if v_occs else None
             if v_read["state"] == "resolved" and isinstance(v_rec, dict):
                 v_src = v_rec.get("source_ref")
-                v_owner = v_src.get("owner") if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str) else knowledge_owner
+                v_owner = v_src.get("owner") if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str) else None
                 v_refs = [v_rec.get("ref"), knowledge_ref, v_src]
-                if v_rec.get("value") is not None and v_rec.get("origin") == "product_input":
+                if v_rec.get("value") is not None and v_rec.get("origin") == "project_owner":
                     v_branch, v_state = "value_supplied", "supplied"
                 elif v_rec.get("value") is None and v_rec.get("origin") in ("absent", "reference_fixture"):
                     v_branch, v_state = "value_unknown", "unknown"
                 else:
                     raise _f03_stop("carrier_or_source_record_shape", "unclosed ValueFact value/origin combination")
             else:
-                v_owner = knowledge_owner
+                v_src = v_rec.get("source_ref") if isinstance(v_rec, dict) else None
+                v_owner = None if (isinstance(v_src, dict) and v_src.get("owner") is None) else knowledge_owner
                 v_refs = [v_rec.get("ref"), v_rec.get("source_ref")] if isinstance(v_rec, dict) else []
                 v_branch, v_state = "value_unknown", "unknown"
 
-            v_mat = reason_mat_builder(
+            v_mat = _build_reason_material(
                 v_branch,
                 field_locator,
                 v_read["request"]["request_locator"],
@@ -396,7 +450,7 @@ def _build_f03_row(
                 knowledge_ref,
                 _presence(present=False),
             )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 v_branch,
                 field_ref,
                 binding,
@@ -418,7 +472,7 @@ def _build_f03_row(
                     else None
                 )
                 p_refs = [resolved_parent_na.get("ref"), knowledge_ref, resolved_parent_na.get("source_ref")]
-                fapp_mat = reason_mat_builder(
+                fapp_mat = _build_reason_material(
                     "parent_na_no_transfer",
                     field_locator,
                     applicability_request_locator,
@@ -432,7 +486,7 @@ def _build_f03_row(
                     knowledge_ref,
                     _presence(present=False),
                 )
-                ev, ax = event_axis_emitter(
+                ev, ax = _emit_event_and_axis(
                     "parent_na_no_transfer",
                     field_ref,
                     binding,
@@ -451,7 +505,7 @@ def _build_f03_row(
                     v_src = value_reads[0]["root_occurrences"][0]["original_value"].get("source_ref")
                     if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str):
                         f_owner = v_src["owner"]
-                fapp_mat = reason_mat_builder(
+                fapp_mat = _build_reason_material(
                     "field_unknown",
                     field_locator,
                     applicability_request_locator,
@@ -465,7 +519,7 @@ def _build_f03_row(
                     knowledge_ref,
                     _presence(present=False),
                 )
-                ev, ax = event_axis_emitter(
+                ev, ax = _emit_event_and_axis(
                     "field_unknown",
                     field_ref,
                     binding,
@@ -489,7 +543,7 @@ def _build_f03_row(
             else:
                 f_branch, f_state = "field_unknown", "unknown"
             f_refs = [app_rec.get("ref"), knowledge_ref, app_rec.get("source_ref")]
-            fapp_mat = reason_mat_builder(
+            fapp_mat = _build_reason_material(
                 f_branch,
                 field_locator,
                 applicability_request_locator,
@@ -503,7 +557,7 @@ def _build_f03_row(
                 knowledge_ref,
                 _presence(present=False),
             )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 f_branch,
                 field_ref,
                 binding,
@@ -517,7 +571,7 @@ def _build_f03_row(
             events.append(ev)
             public_axes.append(ax)
         else:
-            fapp_mat = reason_mat_builder(
+            fapp_mat = _build_reason_material(
                 "field_unknown",
                 field_locator,
                 applicability_request_locator,
@@ -531,7 +585,7 @@ def _build_f03_row(
                 knowledge_ref,
                 _presence(present=False),
             )
-            ev, ax = event_axis_emitter(
+            ev, ax = _emit_event_and_axis(
                 "field_unknown",
                 field_ref,
                 binding,
@@ -563,5 +617,3 @@ def _build_f03_row(
         + [problem for read in parent_reads for problem in read["problems"]]
     )
     return row, public_axes, all_problems
-
-

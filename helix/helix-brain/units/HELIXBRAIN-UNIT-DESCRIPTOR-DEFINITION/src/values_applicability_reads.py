@@ -19,21 +19,12 @@ from typing import Any
 from descriptor_definitions import (
     _APPROVED_KINDS,
     _binding_same,
-    _comparison,
-    _copy_refs_in_source_order,
-    _f03_request,
     _json_equal,
-    _n03_rule,
-    _ordered,
-    _owner_body_equal,
     _presence,
     _ref_same,
     _ref_shape_ok,
-    _root_occurrences,
-    _same_claim_target,
     _source_shape_ok,
     _source_usable,
-    _write_f03b_comparison_from_existing_comparison,
 )
 
 F03_BACKFLOW_ID = "HELIXBRAIN-L6-032-F03-FN2-PATH"
@@ -102,6 +93,9 @@ _PROBLEM_REASONS: dict[str, str] = {
     "field_applicable": "同fieldの原適用判断applicableだけを保持する。",
     "value_na": "当該原値が指す同fieldの根拠付き非適用を別観点として保持する。",
     "field_owner_unresolved": "同field/subject/full Binding/bodyの独立owner宣言を取得できない。",
+    "meaning_refs_absent": "原owner対応fieldにmeaning_fact_refsが供給されていない。",
+    "meaning_refs_null": "原owner対応fieldのmeaning_fact_refsは明示nullである。",
+    "meaning_refs_type": "原owner対応fieldのmeaning_fact_refsがRef配列でない。",
     "meaning_refs_empty": "原owner対応fieldのmeaning_fact_refsは明示空配列である。",
     "meaning_positive": "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。",
 }
@@ -111,6 +105,21 @@ _JUDGMENT_CAUSE_TABLE: dict[str, tuple[str, str, str]] = {
         "definition_unknown",
         "unknown",
         "同field/subject/full Binding/bodyの独立owner宣言を取得できない。",
+    ),
+    "meaning_refs_absent": (
+        "definition_unknown",
+        "unknown",
+        "原owner対応fieldにmeaning_fact_refsが供給されていない。",
+    ),
+    "meaning_refs_null": (
+        "definition_unknown",
+        "unknown",
+        "原owner対応fieldのmeaning_fact_refsは明示nullである。",
+    ),
+    "meaning_refs_type": (
+        "definition_unknown",
+        "unknown",
+        "原owner対応fieldのmeaning_fact_refsがRef配列でない。",
     ),
     "meaning_refs_empty": (
         "definition_empty",
@@ -124,10 +133,42 @@ _JUDGMENT_CAUSE_TABLE: dict[str, tuple[str, str, str]] = {
     ),
 }
 
+
 def _f03_stop(branch: str, detail: str) -> NotImplementedError:
     err = NotImplementedError(f"F03/{branch}: {detail}; Backflow {F03_BACKFLOW_ID}")
     err._n03_branch_tagged = True
     return err
+
+
+def _f03_request(
+    kind: str,
+    field_locator: str,
+    subject_ref: Any,
+    binding: Any,
+    request_locator: str,
+    requested_ref: Any,
+) -> dict[str, Any]:
+    return {
+        "kind": kind,
+        "field_locator": field_locator,
+        "subject_ref": _presence(subject_ref, present=subject_ref is not None),
+        "binding": _presence(binding, present=binding is not None),
+        "request_locator": request_locator,
+        "requested_ref": _presence(requested_ref, present=requested_ref is not None),
+    }
+
+
+def _root_occurrences(raw: dict[str, Any], collection: str, requested_ref: Any) -> list[dict[str, Any]]:
+    if collection not in raw or not isinstance(raw[collection], list):
+        raise _f03_stop("carrier_or_source_record_shape", f"{collection} is absent or not an array")
+    rows = raw[collection]
+    occurrences: list[dict[str, Any]] = []
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"/{collection}/{index} is not an object")
+        if _ref_same(row.get("ref"), requested_ref):
+            occurrences.append({"index": index, "locator": f"/{collection}/{index}", "original_value": copy.deepcopy(row)})
+    return occurrences
 
 
 def _problem(
@@ -142,19 +183,13 @@ def _problem(
     reason = _PROBLEM_REASONS.get(cause)
     if reason is None:
         raise _f03_stop("carrier_or_source_record_shape", f"unclosed F03Problem cause: {cause}")
-    return {
-        "cause": cause,
-        "locator": locator,
-        "original_value": copy.deepcopy(original_value),
-        "source_ref": _presence(source_ref, present=isinstance(source_ref, dict)),
-        "source_index": source_index,
-        "relevance": relevance,
-        "reason": reason,
-    }
+    return {"cause": cause, "locator": locator, "original_value": copy.deepcopy(original_value), "source_ref": _presence(source_ref, present=isinstance(source_ref, dict)), "source_index": source_index, "relevance": relevance, "reason": reason}
 
 
 def _has_f03_carriers_or_null_applicability(raw: dict[str, Any]) -> bool:
-    for source in raw.get("sources", []):
+    if "sources" not in raw or not isinstance(raw["sources"], list):
+        raise _f03_stop("carrier_or_source_record_shape", "sources is absent or not an array")
+    for source in raw["sources"]:
         if isinstance(source, dict) and isinstance(source.get("content"), dict):
             content = source["content"]
             if any(
@@ -167,10 +202,27 @@ def _has_f03_carriers_or_null_applicability(raw: dict[str, Any]) -> bool:
                 )
             ):
                 return True
-    for field in raw.get("section_fields", []):
+    for field in raw["section_fields"]:
         if isinstance(field, dict) and field.get("applicability_ref") is None:
             return True
     return False
+
+
+def _provenance_refs_for_knowledge(raw: dict[str, Any], knowledge_ref: dict[str, Any]) -> list[dict[str, Any]]:
+    if "knowledge_records" not in raw or not isinstance(raw["knowledge_records"], list):
+        raise _f03_stop("carrier_or_source_record_shape", "knowledge_records is absent or not an array")
+    prov_refs: list[dict[str, Any]] = []
+    for k_idx, krec in enumerate(raw["knowledge_records"]):
+        if not isinstance(krec, dict):
+            raise _f03_stop("carrier_or_source_record_shape", f"/knowledge_records/{k_idx} is not an object")
+        if _ref_same(krec.get("ref"), knowledge_ref):
+            if "provenance_refs" not in krec or not isinstance(krec["provenance_refs"], list):
+                raise _f03_stop("carrier_or_source_record_shape", f"/knowledge_records/{k_idx}/provenance_refs is absent or not an array")
+            for pref in krec["provenance_refs"]:
+                if not _ref_shape_ok(pref):
+                    raise _f03_stop("carrier_or_source_record_shape", f"/knowledge_records/{k_idx}/provenance_refs contains non-Ref")
+                prov_refs.append(pref)
+    return prov_refs
 
 
 def _matching_semantic_sources(
@@ -267,19 +319,13 @@ def _read_f03_field_owner_record(
         content = source["content"]
         locator = f"/sources/{source_index}/content/{member}"
         if "binding" not in content:
-            problems.append(
-                _problem("lookup_unresolved", f"/sources/{source_index}/content/binding", _presence(present=False), source.get("ref"), source_index)
-            )
+            problems.append(_problem("lookup_unresolved", f"/sources/{source_index}/content/binding", _presence(present=False), source.get("ref"), source_index))
             continue
         if content.get("binding") is None or not isinstance(content.get("binding"), dict):
-            problems.append(
-                _problem("null_or_type", f"/sources/{source_index}/content/binding", _presence(content.get("binding"), present=True), source.get("ref"), source_index)
-            )
+            problems.append(_problem("null_or_type", f"/sources/{source_index}/content/binding", _presence(content.get("binding"), present=True), source.get("ref"), source_index))
             continue
         if not _binding_same(content.get("binding"), binding):
-            problems.append(
-                _problem("frame_differs", f"/sources/{source_index}/content/binding", _presence(content.get("binding"), present=True), source.get("ref"), source_index)
-            )
+            problems.append(_problem("frame_differs", f"/sources/{source_index}/content/binding", _presence(content.get("binding"), present=True), source.get("ref"), source_index))
             continue
         if member not in content:
             cause = "field_owner_not_found" if kind == "field" else "container_absent"
@@ -314,12 +360,7 @@ def _read_f03_field_owner_record(
                 )
                 for root_occ_idx, root_occ in enumerate(roots):
                     if _json_equal(root_occ["original_value"], rec):
-                        supports.append(
-                            {
-                                "root_occurrence_index": root_occ_idx,
-                                "source_occurrence_index": src_occ_idx,
-                            }
-                        )
+                        supports.append({"root_occurrence_index": root_occ_idx, "source_occurrence_index": src_occ_idx})
                     else:
                         raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} differs from root SectionField")
             else:
@@ -342,12 +383,7 @@ def _read_f03_field_owner_record(
                     if not _ref_same(rec.get("subject_ref"), expected_subject) or not _binding_same(rec.get("binding"), binding):
                         raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} subject or binding differs")
                     if _json_equal(root_val, rec):
-                        supports.append(
-                            {
-                                "root_occurrence_index": root_occ_idx,
-                                "source_occurrence_index": src_occ_idx,
-                            }
-                        )
+                        supports.append({"root_occurrence_index": root_occ_idx, "source_occurrence_index": src_occ_idx})
                     else:
                         raise _f03_stop("duplicate_conflicting_carrier_records", f"{locator}/{rec_index} body differs from root record")
         if not matched_in_source:
@@ -359,14 +395,9 @@ def _read_f03_field_owner_record(
         cause = "field_owner_not_found" if kind == "field" else "lookup_unresolved"
         problems.append(_problem(cause, request_locator, _presence(requested_ref, present=requested_ref is not None)))
 
-    if supports:
-        state = "resolved"
-    else:
-        state = "unknown"
-
     return {
         "request": request,
-        "state": state,
+        "state": "resolved" if supports else "unknown",
         "root_occurrences": roots,
         "source_occurrences": source_occurrences,
         "supports": supports,
@@ -407,15 +438,13 @@ def _read_f03_field_descriptor_target(
             "problems": problems,
         }
 
-    knowledge_ref = binding["knowledge_ref"]
-    prov_refs: list[dict[str, Any]] = []
-    for krec in raw.get("knowledge_records", []):
-        if isinstance(krec, dict) and _ref_same(krec.get("ref"), knowledge_ref):
-            for pref in krec.get("provenance_refs", []):
-                if isinstance(pref, dict):
-                    prov_refs.append(pref)
+    if "sources" not in raw or not isinstance(raw["sources"], list):
+        raise _f03_stop("carrier_or_source_record_shape", "sources is absent or not an array")
+    if "descriptors" not in raw or not isinstance(raw["descriptors"], list):
+        raise _f03_stop("carrier_or_source_record_shape", "descriptors is absent or not an array")
+    prov_refs = _provenance_refs_for_knowledge(raw, binding["knowledge_ref"])
 
-    for source_index, source in enumerate(raw.get("sources", [])):
+    for source_index, source in enumerate(raw["sources"]):
         if not isinstance(source, dict):
             raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] is not an object")
         if source.get("role") != "semantic_json":
@@ -427,15 +456,27 @@ def _read_f03_field_descriptor_target(
             if _binding_same(content.get("binding"), binding):
                 raise _f03_stop("carrier_or_source_record_shape", f"matching semantic source unusable at /sources/{source_index}")
             continue
-        if not any(_ref_same(pref, source.get("ref")) for pref in prov_refs):
-            continue
+        is_in_prov = any(_ref_same(pref, source.get("ref")) for pref in prov_refs)
         locator = f"/sources/{source_index}/content/descriptor_targets"
         if "descriptor_targets" not in content:
+            if _binding_same(content.get("binding"), binding):
+                problems.append(
+                    _problem(
+                        "container_absent",
+                        locator,
+                        _presence(present=False),
+                        source.get("ref"),
+                        source_index,
+                        relevance="target" if is_in_prov else "source_unattributed",
+                    )
+                )
+            continue
+        if not is_in_prov:
             problems.append(
                 _problem(
-                    "container_absent",
+                    "qualification_unresolved",
                     locator,
-                    _presence(present=False),
+                    _presence(content["descriptor_targets"], present=True),
                     source.get("ref"),
                     source_index,
                     relevance="source_unattributed",
@@ -473,7 +514,7 @@ def _read_f03_field_descriptor_target(
             if _binding_same(content.get("binding"), binding) and _ref_same(decl["target_ref"], slot_ref):
                 slot_locators = [
                     f"/descriptors/{s_idx}"
-                    for s_idx, s_obj in enumerate(raw.get("descriptors", []))
+                    for s_idx, s_obj in enumerate(raw["descriptors"])
                     if isinstance(s_obj, dict)
                     and s_obj.get("slot_identity") == decl["slot_identity"]
                     and s_obj.get("descriptor_kind") == decl["descriptor_kind"]
@@ -530,19 +571,15 @@ def _read_f03_fact_meaning(
         "entry_value": copy.deepcopy(entry_meta["entry_value"]),
     }
 
-    knowledge_ref = binding["knowledge_ref"]
-    prov_refs: list[dict[str, Any]] = []
-    for krec in raw.get("knowledge_records", []):
-        if isinstance(krec, dict) and _ref_same(krec.get("ref"), knowledge_ref):
-            for pref in krec.get("provenance_refs", []):
-                if isinstance(pref, dict):
-                    prov_refs.append(pref)
+    if "sources" not in raw or not isinstance(raw["sources"], list):
+        raise _f03_stop("carrier_or_source_record_shape", "sources is absent or not an array")
+    prov_refs = _provenance_refs_for_knowledge(raw, binding["knowledge_ref"])
 
     occurrences: list[dict[str, Any]] = []
     supports: list[dict[str, Any]] = []
     problems: list[dict[str, Any]] = []
 
-    for source_index, source in enumerate(raw.get("sources", [])):
+    for source_index, source in enumerate(raw["sources"]):
         if not isinstance(source, dict):
             raise _f03_stop("carrier_or_source_record_shape", f"sources[{source_index}] is not an object")
         if source.get("role") != "semantic_json":
@@ -555,8 +592,10 @@ def _read_f03_fact_meaning(
         if not _source_usable(validated, source.get("ref")):
             raise _f03_stop("carrier_or_source_record_shape", f"matching semantic source unusable at /sources/{source_index}")
         if not any(_ref_same(pref, source.get("ref")) for pref in prov_refs):
+            problems.append({"cause": "source_unresolved", "source_ref": _presence(source.get("ref"), present=isinstance(source.get("ref"), dict)), "source_index": source_index, "locator": f"/sources/{source_index}", "original_value": _presence(source.get("ref"), present=isinstance(source.get("ref"), dict)), "reason": "当該sourceがknowledge_refのprovenance_refsに掲載されていない。"})
             continue
         if "definition_meaning_operations" not in content:
+            problems.append({"cause": "container_absent", "source_ref": _presence(source.get("ref"), present=isinstance(source.get("ref"), dict)), "source_index": source_index, "locator": f"/sources/{source_index}/content/definition_meaning_operations", "original_value": _presence(present=False), "reason": "owner原sourceにdefinition_meaning_operationsが供給されていない。"})
             continue
         ops = content["definition_meaning_operations"]
         if ops is None or not isinstance(ops, list):
@@ -608,11 +647,22 @@ def _read_f03_fact_meaning(
                     "decoded_record": _presence(copy.deepcopy(op), present=True),
                 }
             )
+            if not _ref_same(args["fact_ref"], fact["ref"]):
+                problems.append(
+                    {
+                        "cause": "fact_differs",
+                        "source_ref": _presence(source.get("ref"), present=isinstance(source.get("ref"), dict)),
+                        "source_index": source_index,
+                        "locator": f"{loc}/arguments/fact_ref",
+                        "original_value": _presence(args["fact_ref"], present=True),
+                        "reason": "operationのfact_refが当該選択factと異なる。",
+                    }
+                )
+                continue
             if (
                 _binding_same(args["binding"], binding)
                 and args["slot_identity"] == slot["slot_identity"]
                 and args["descriptor_kind"] == kind
-                and _ref_same(args["fact_ref"], fact["ref"])
                 and _json_equal(args["fact_body"], fact["meaning"])
                 and _json_equal(args["normative_argument"], normative_frame)
             ):
@@ -639,5 +689,3 @@ def _read_f03_fact_meaning(
         "supports": supports,
         "problems": problems,
     }
-
-

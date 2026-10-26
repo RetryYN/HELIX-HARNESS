@@ -159,11 +159,11 @@
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
   "execution_state": "scope_executed_red_then_green",
   "execution_evidence": {
-    "test_commit": "6a720fd9ab4cf393546abac73bac5ed95eaf269d",
+    "test_commit": "501cb22762835b7292b7bc747ced95e295247daa",
     "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability",
-    "red_summary": "Initial F03 Red at 5a4ae7ab23300d92f28242df40287c51ab36e510: Ran 8 tests — FAILED (failures=1, errors=7). R2 strengthened F03 test commit 6a720fd9ab against R1 implementation 9f99fe7f57: Ran 8 tests in 0.748s — FAILED (failures=8, errors=5), reproducing M1/M2/M3/M4/M5/M6/M7/m1/m2/m3/m4/m5/m6/m7.",
+    "red_result": "FAILED (failures=33, errors=12) — R2-M1 project_owner origin check, R2-M2 container absence/type checks, R2-M3 rule 54..57 precondition negatives, R2-M4 independent L4 reason_material check, R2-M5 unclosed F03 stop branches & claim frame non-firing, R2-m1 owner-resolved meaning_fact_refs null/type -> definition_unknown, R2-m2 target_read resolved problems & source_unattributed, R2-m3 other-fact meaning operations & basis_refs/raw_semantic_basis checks, R2-m4 helper placement & signature cleanup, R2-m5 L7 implementation_module list, R2-m6 VF3 L8 exact C claim & multi-claim ordering, R2-i1 null owner handling all fail against 0dce2697d0.",
     "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
-    "green_summary": "Ran 39 tests — OK (8 in test_f03_values_and_applicability, 4 in test_n03_values_and_applicability, 8 in test_n03_path_boundaries, 14 in test_b02_dependencies_and_handoff, 3 in test_supply_input, 2 in test_source_integrity). Note (m8): test_descriptor_definitions.py is an out-of-scope F02 test module that stops at 6 pre-existing F02 NotImplementedError branches (Backflow HELIXBRAIN-L6-032-N03-PATH in _build_f02_row / F02 helpers) unchanged from base_sha 06725ba50a."
+    "green_result": "Ran 39 tests — OK (8 F03 tests + 31 existing unit tests all pass without regression)."
   },
   "completion_boundary": "fn0→fn1→fn2のF03/N03垂直スライス限定検証であり、F01/F02全域・value_na・meaning_comparisons pair・製品CI・Accepted・releaseを成立させない。"
 }

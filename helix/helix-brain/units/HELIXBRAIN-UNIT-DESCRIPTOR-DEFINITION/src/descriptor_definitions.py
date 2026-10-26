@@ -773,36 +773,6 @@ def _presence(value: Any = None, *, present: bool) -> dict[str, Any]:
     return {"presence": "supplied", "value": copy.deepcopy(value)} if present else {"presence": "absent"}
 
 
-def _f03_request(kind: str, field_locator: str, subject_ref: Any, binding: Any, request_locator: str, requested_ref: Any) -> dict[str, Any]:
-    return {
-        "kind": kind,
-        "field_locator": field_locator,
-        "subject_ref": _presence(subject_ref, present=subject_ref is not None),
-        "binding": _presence(binding, present=binding is not None),
-        "request_locator": request_locator,
-        "requested_ref": _presence(requested_ref, present=requested_ref is not None),
-    }
-
-
-def _root_occurrences(raw: dict[str, Any], collection: str, requested_ref: Any) -> list[dict[str, Any]]:
-    occurrences = []
-    if collection not in raw:
-        raise _unsupported("F03", f"{collection}_absent", f"{collection} is not supplied in the same snapshot")
-    rows = raw[collection]
-    if not isinstance(rows, list):
-        raise _unsupported("F03", f"{collection}_shape", f"{collection} is not an array")
-    if any(not isinstance(row, dict) for row in rows):
-        raise _unsupported("F03", f"{collection}_record_decoder", f"{collection} contains an unsupported record shape")
-    for index, row in enumerate(rows):
-        if _ref_same(row.get("ref"), requested_ref):
-            occurrences.append({
-                "index": index,
-                "locator": f"/{collection}/{index}",
-                "original_value": copy.deepcopy(row),
-            })
-    return occurrences
-
-
 def _component_key(present: bool, value: Any = None) -> tuple[int, str]:
     # L5 exact_sort_contract.component_key. Explicit null is supplied and sorts
     # as canonical JSON; only an absent member has the lower rank.
