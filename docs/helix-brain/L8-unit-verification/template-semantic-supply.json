@@ -213,6 +213,7 @@
  },
  "verification_scope": "14義務、原L9負例105件、failure_rules 107件、additional_unit_cases 35件、正常関数oracle 9件の論理設計候補。F09のNEG-01〜06のみL9統合caseに対応し、NEG-07〜13とADD-25〜28はL8局所の反例/対照でL9対応なし。F09の018→core_source、020→labo_evaluation、025→選択channelの原operation_kind/knowledge_fieldsという限定対応は、L4 conditional_source_dependency_contractとL5 conditional_dependency_detail及び本fileのconditional_dependency_verificationに従う。対応自体は未決とせず、025を両selectorへ一律必須にしない。実producer/body供給・資格、未観測分岐と全意味閉包は別残件として保持する。これはfixture凍結/実行/意味完了証拠ではない。",
  "cl2_claim_projection_property_ja": "not_executed: 原Claim順・同Claim内の既存rule順と述語に実参加したsource witnessだけを保ち、元Comparisonを上書きせず、未形成枝はunknownのまま既存ownerへ再入する。function_oracles/7はclaims=[]で本性質を実行していない。",
+ "dp45_dependency_and_claim_intent_property_ja": "not_executed: DP-4はL4 canonical_ordered_branches order 3のmissingとorder 4/10の既存比較conflictを保持し、genericな独立known-frame比較先不在で比較できない部分だけをunknown＋knowledge_ownerとして同Binding/revision/scopeの原readから再入させ、DP-5はclaim_intent 7語彙のintent=positive主張門だけをClaim由来failure_rulesへ反映し（Claim入口を持たない3 ruleは対象外）残余はL7でtest化する。",
  "fixture_contract": {
   "id": "TEMPLATE-SUPPLY-BASE-01",
   "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
