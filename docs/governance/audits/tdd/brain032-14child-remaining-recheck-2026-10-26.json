@@ -1,0 +1,2646 @@
+{
+  "record_id": "brain032-14child-remaining-recheck-2026-10-26",
+  "record_kind": "freeze_recheck_under_boundary_decision",
+  "authority_effect": "none",
+  "status": "control_draft_for_independent_review",
+  "source_main": "4c31bdb2273ef888d3af80806d1bc0b9c0d77078",
+  "source_main_note": "git rev-parse origin/main の値（#3693 merge、識別 4c31bdb22）。作業中に 6f8ad0508(#3692) から進んだため L5/L8 を取り直した。L3/L10/L4/L9 は両時点で同一bytes。",
+  "recorded_at_utc": "2026-10-26T02:30:00Z",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405690269",
+  "decision_ref_note": "gh api repos/RetryYN/HELIX-HARNESS/issues/comments/6405690269 で全文を読んだ（統制の決定：設計と実装の役割の切り分け、2026-10-26）。",
+  "criterion": {
+    "summary": "L3の義務ごとに、L4/L5の契約の行と、L8/L9のcase行（oracle ID付き）がそろっていること。unknown・N/A・未完のそれぞれに戻し先（ownerとreentry）が付いていること。全返却の列挙は条件にしない。具体fixture・全返却期待・hash・直列化・実fixture/oracleの凍結と実装前Red→GreenはL6/L7（Vの谷）の役割で、未了でも設計の凍結を妨げない（L6/L7へ戻すことをownerとして明記）。",
+    "classification_rule": {
+      "a": "凍結前に032の設計（L4/L5/L8/L9）で閉じる必要がある。(1)契約/決定表の行や返却の形が無い、(2)unknown/未完にownerもreentryも付いていない、のいずれか。迷うものは(a)。a_kind: missing_return=本文にownerもreentryも無い／internal_hole_with_return=戻し先は本文にあるが規則そのものが空（新条件を「戻し先付きなら凍結可」と読むなら凍結を妨げない可能性がある。統制の判断が要る）",
+      "b": "L6/L7の役割（fixture・全返却・hash・oracle凍結・Red/Green・実装）。契約は在り、期待値の実体だけが無い",
+      "c": "外部owner（core_owner/os_owner/infrastructure_owner/knowledge_owner/実provider/PO等）へ返す",
+      "d": "有限枝外・未行使として範囲外に残す（新gateにしない）"
+    },
+    "method": "各childについて pointer の実在と backflow_owner／oracle ID の有無を機械的に確かめ、limit_catalogの項目は現mainの文言を2026-10-24監査の根拠commit fca036071 の同pointerと比べて closed/narrowed/unchanged を判定した。意味の判定（a〜dの分類、narrowedの程度）は人手の読みで、推測を含む箇所は note に推測と書いた。"
+  },
+  "prior_records": [
+    {
+      "path": "docs/governance/audits/tdd/brain032-14child-pair-freeze-2026-10-24.json",
+      "sha256": "71e3eab8e3009c59e646bf6573c4c873ad7c43cbebc42964b996dc65edc0a419",
+      "source_main": "207e5714d9b58edadc133ad4ca0ecde902437fa6"
+    },
+    {
+      "path": "docs/governance/audits/tdd/brain032-detail-14child-pair-freeze-2026-10-24.json",
+      "sha256": "ba04aebc8d6bc146e6a2fa16f12c294ceebf7bee556d491911eb840aa8003fe1",
+      "source_main": "fca036071af7a95c5d694b3404976f3cb0fbefe1"
+    }
+  ],
+  "compared_baseline": {
+    "revision": "fca036071af7a95c5d694b3404976f3cb0fbefe1",
+    "role": "2026-10-24の詳細監査が固定したrevision。closed/narrowed/unchanged の比較元"
+  },
+  "merged_since_baseline": [
+    "N（数値carrier）: N1 token/integer、N2a/N2b multi-cause・full decode、N3a value mapping、N3 sort numeric-only、N3c/N3d numeric reader",
+    "M（measurement/completion）: M1a primary index（measurement、completion）、M2a/M2b/M2c、M3 finite consumer reuse（#3685, #3686, #3687）",
+    "P（promotion）: P1 非空trace、P2a 80-82、P2b 83、P3a claims無し、P3b 24 Claim入力",
+    "I（identity）: I1a zero record（#3688,#3690）、F04-NEG-04 source-null（#3691）、I1b equal records（#3692 L4/L9、#3693 L5/L8）",
+    "#3689: L8/L9 evidence_contract.real_execution と L4 not_finished に、設計とL6/L7の境界を追補"
+  ],
+  "children": [
+    {
+      "child": "HELIXBRAIN-L3-032-B01",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "claim_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "claim_finite"
+        ],
+        "detail_specific": [
+          "claim",
+          "builder"
+        ],
+        "detail_pending_Q": [
+          "Q3"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/business-requirements.json#/requirements/0 (HELIXBRAIN-L3-032-B01)",
+        "L10": "docs/helix-brain/L10-verification/business-verification.json#/cases/0 (HELIXBRAIN-L10-032-B01)",
+        "L4_contract": "L4#/contracts/0",
+        "L5_contract": "L5#/contracts/0",
+        "L5_failure_rules_count": 1,
+        "L9_case": "L9#/cases/0",
+        "L8_case": "L8#/cases/0",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/7",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_claim_boundaries",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 1,
+        "L9_negatives_with_id_and_backflow_owner": 1,
+        "L9_backflow_owners": [
+          "core_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 1,
+        "L8_negatives_with_id_and_backflow_owner": 1,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "CL-1",
+          "prior_class": "basic:claim_inside(semantic_owner) / detail:claim / Q3",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner",
+          "quote": "semantic/mixed basisの任意RawValue意味対応自体は未閉。",
+          "category": "a",
+          "owner": "未特定（推測: 意味内容の供給側は knowledge_owner だが、Q3 自身が担当を特定していない。HISTORY Q3 の other_owner_boundary）",
+          "reentry": "L4 claim_boundary_projection_contract と L5 consumer/basis_resolution/qualified_alternative_limit に、(i)対応を032が定める か (ii)unresolved保持のまま knowledge_owner へ返す のどちらかと、再入条件（原owner資料の供給・訂正後に同Binding/revision/scopeの原readから）を1行で付す",
+          "a_kind": "missing_return",
+          "note": "該当pointer本文に owner も reentry も無い。担当の決定が要るため、迷いなく(a)。決めるだけで済めば F01/F02 は(a)=0になる。"
+        },
+        {
+          "id": "CL-2",
+          "prior_class": "basic:claim_inside(generic_unknown) / detail:claim",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/generic_unknown",
+          "quote": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。",
+          "category": "a",
+          "owner": "032設計（L4 claim_boundary_projection_contract）。外部owner分は core_owner/knowledge_owner（各NEGのbackflow_owner）",
+          "reentry": "裏付け無しclaim が failure rule（B01 product_selection_claim、F07、N02）を発火したときの公開Axis/Finding の返却の形（subject_ref/Binding/source_refs/reason の出所と順序の規則）を決定表1枚で定める。全発火の全返却や全witnessの列挙は不要（L6/L7）。または、この境界を unknown＋knowledge_owner/core_owner 返却として明記する",
+          "a_kind": "missing_return",
+          "note": "判断が割れうる箇所: 「全field writer」を全返却の列挙（=L6/L7）と読めば(b)。ただし返却の形は L4 の役割（統制の決定の表）なので(a)とした。"
+        },
+        {
+          "id": "CL-3",
+          "prior_class": "basic:claim_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/other_domain",
+          "quote": "他Claim kind、claims空、追加meaning_origin等…は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。",
+          "category": "d",
+          "owner": "（範囲外。新gateにしない）",
+          "reentry": "有限枝外。必要になった時点で当該Claim kind の child 設計から再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 2,
+      "blocking_count_missing_return_only": 2,
+      "blocking_item_ids": [
+        "CL-1",
+        "CL-2"
+      ],
+      "verdict": "(a)が残る: 保守計上2件（うち戻し先が本文に無いもの2件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-B02",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [],
+        "basic_finite_or_other_scope": [],
+        "detail_specific": [
+          "builder",
+          "dependency"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/business-requirements.json#/requirements/1 (HELIXBRAIN-L3-032-B02)",
+        "L10": "docs/helix-brain/L10-verification/business-verification.json#/cases/1 (HELIXBRAIN-L10-032-B02)",
+        "L4_contract": "L4#/contracts/1",
+        "L5_contract": "L5#/contracts/1",
+        "L5_failure_rules_count": 2,
+        "L9_case": "L9#/cases/1",
+        "L8_case": "L8#/cases/1",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/6",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 2,
+        "L9_negatives_with_id_and_backflow_owner": 2,
+        "L9_backflow_owners": [
+          "core_owner",
+          "os_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 2,
+        "L8_negatives_with_id_and_backflow_owner": 2,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "DP-1",
+          "prior_class": "detail:dependency / Q4(D33) / basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/dependency_semantic_port_verification/limits",
+          "quote": "OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。…OS供給側pairと032 L5/L8の追随へ残す。",
+          "category": "a",
+          "owner": "os_owner（供給側pair）＋032設計（L5/L8の追随）",
+          "reentry": "L5 compare_dependencies_and_handoff に、L4 dependency_semantic_ports の typed incoming（ReceiptInvocationOrigin / OSObligationMeaningIncoming / original_project_binding と consumer Binding の分離、原state非discharge）を受ける規則行を追補し、対L8 に case 行を1〜2行。OS/030 供給側の実供給は DP-2",
+          "a_kind": "internal_hole_with_return",
+          "note": "戻し先（OS供給側pair＋032 L5/L8追随）は本文に在る。ただし L5 には ReceiptInvocationOrigin / OSObligationMeaningIncoming が limit文中に各1回しか出ず、original_project_binding と discharge_assertion は0回（grep相当の件数確認）。B02 の核（受領は消込でない）の「消込を生成しない」分岐を L5 が型で受けていない。B02 の NEG 2件は prose の predicate と L4 axis_mapping/4 で成立しているため、これを(a)とするかは迷う点。迷うので(a)。"
+        },
+        {
+          "id": "DP-2",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/dependency_semantic_ports/limits/1",
+          "quote": "030/OSの元producer側typed供給契約は上記追随先が必要。本pairでその実供給/運用成立を認定しない。",
+          "category": "c",
+          "owner": "os_owner／knowledge_owner（030 knowledge-query-receipt）",
+          "reentry": "供給側pair成立後に再入"
+        },
+        {
+          "id": "DP-3",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/6/local_result_projection_contract/no_subject_ref_limit",
+          "quote": "ADD-28ではbinding.template_ref/knowledge_ref双方がobject Refでない。…subject_refは…Comparison.axes/findingsに捏造せず、test-side input_binding projectionで原欠落を保持する。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "ADD-27/28 の期待は設計済み。L7 で fixture と全返却を独立に著述"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "DP-1"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F01",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "definition_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "definition_outside"
+        ],
+        "detail_specific": [
+          "meaning",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": [
+          "Q1",
+          "Q2",
+          "Q3"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/0 (HELIXBRAIN-L3-032-F01)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/0 (HELIXBRAIN-L10-032-F01)",
+        "L4_contract": "L4#/contracts/2",
+        "L5_contract": "L5#/contracts/2",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/2",
+        "L8_case": "L8#/cases/2",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/1",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_descriptor_definitions",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 4,
+        "L9_negatives_with_id_and_backflow_owner": 4,
+        "L9_backflow_owners": [
+          "harness_contract_owner",
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 4,
+        "L8_negatives_with_id_and_backflow_owner": 4,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "CL-1",
+          "prior_class": "basic:claim_inside(semantic_owner) / detail:claim / Q3",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner",
+          "quote": "semantic/mixed basisの任意RawValue意味対応自体は未閉。",
+          "category": "a",
+          "owner": "未特定（推測: 意味内容の供給側は knowledge_owner だが、Q3 自身が担当を特定していない。HISTORY Q3 の other_owner_boundary）",
+          "reentry": "L4 claim_boundary_projection_contract と L5 consumer/basis_resolution/qualified_alternative_limit に、(i)対応を032が定める か (ii)unresolved保持のまま knowledge_owner へ返す のどちらかと、再入条件（原owner資料の供給・訂正後に同Binding/revision/scopeの原readから）を1行で付す",
+          "a_kind": "missing_return",
+          "note": "該当pointer本文に owner も reentry も無い。担当の決定が要るため、迷いなく(a)。決めるだけで済めば F01/F02 は(a)=0になる。"
+        },
+        {
+          "id": "DF-1",
+          "prior_class": "basic:definition_inside / detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
+        },
+        {
+          "id": "DF-2",
+          "prior_class": "detail:historical Q1(D21)",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/definition_meaning_resolution_verification_plan/remaining/1",
+          "quote": "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "M1a(measurement/completion)で primary/index を固定済み。他callerは L7 で追加。追加期待の選定は fixture 選択であり設計ではない"
+        },
+        {
+          "id": "DF-3",
+          "prior_class": "detail:historical Q2(D28)",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/source_return_contract/descriptor_target_dataflow/definition_meaning_core/pair_origin_projection/remaining_before_oracles",
+          "quote": "非空pair origin・多fact・同値axis別originの全枝は未照合。（本文は不変。L8#/definition_meaning_M2b_pair_origin_verification で有限1callを追加）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "M2b の not_observed_ja（3 facts以上、同値axisの別origin、matched=false 等）は L7 の追加fixtureへ。意味の変更が要るときだけ L5 へ戻す"
+        },
+        {
+          "id": "DF-4",
+          "prior_class": "detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/remaining/6",
+          "quote": "多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "prior_class": "basic:definition_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/2",
+          "quote": "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 1,
+      "blocking_item_ids": [
+        "CL-1"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの1件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F02",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "definition_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "definition_outside"
+        ],
+        "detail_specific": [
+          "meaning",
+          "builder"
+        ],
+        "detail_pending_Q": [
+          "Q1",
+          "Q3"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/1 (HELIXBRAIN-L3-032-F02)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/1 (HELIXBRAIN-L10-032-F02)",
+        "L4_contract": "L4#/contracts/3",
+        "L5_contract": "L5#/contracts/3",
+        "L5_failure_rules_count": 47,
+        "L9_case": "L9#/cases/3",
+        "L8_case": "L8#/cases/3",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/1",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_descriptor_definitions",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 47,
+        "L9_negatives_with_id_and_backflow_owner": 47,
+        "L9_backflow_owners": [
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 47,
+        "L8_negatives_with_id_and_backflow_owner": 47,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "CL-1",
+          "prior_class": "basic:claim_inside(semantic_owner) / detail:claim / Q3",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner",
+          "quote": "semantic/mixed basisの任意RawValue意味対応自体は未閉。",
+          "category": "a",
+          "owner": "未特定（推測: 意味内容の供給側は knowledge_owner だが、Q3 自身が担当を特定していない。HISTORY Q3 の other_owner_boundary）",
+          "reentry": "L4 claim_boundary_projection_contract と L5 consumer/basis_resolution/qualified_alternative_limit に、(i)対応を032が定める か (ii)unresolved保持のまま knowledge_owner へ返す のどちらかと、再入条件（原owner資料の供給・訂正後に同Binding/revision/scopeの原readから）を1行で付す",
+          "a_kind": "missing_return",
+          "note": "該当pointer本文に owner も reentry も無い。担当の決定が要るため、迷いなく(a)。決めるだけで済めば F01/F02 は(a)=0になる。"
+        },
+        {
+          "id": "DF-1",
+          "prior_class": "basic:definition_inside / detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
+        },
+        {
+          "id": "DF-2",
+          "prior_class": "detail:historical Q1(D21)",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/definition_meaning_resolution_verification_plan/remaining/1",
+          "quote": "原owner/NA carrierの実caller供給、L5/L8 primary比較・同walk index・全field形成・順序へのpin追随。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "M1a(measurement/completion)で primary/index を固定済み。他callerは L7 で追加。追加期待の選定は fixture 選択であり設計ではない"
+        },
+        {
+          "id": "DF-4",
+          "prior_class": "detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/remaining/6",
+          "quote": "多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "prior_class": "basic:definition_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/2",
+          "quote": "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 1,
+      "blocking_item_ids": [
+        "CL-1"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの1件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F03",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "definition_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "value_finite",
+          "definition_outside"
+        ],
+        "detail_specific": [
+          "F03_claim",
+          "builder",
+          "meaning",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": [
+          "Q5"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/2 (HELIXBRAIN-L3-032-F03)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2 (HELIXBRAIN-L10-032-F03)",
+        "L4_contract": "L4#/contracts/4",
+        "L5_contract": "L5#/contracts/4",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/4",
+        "L8_case": "L8#/cases/4",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 4,
+        "L9_negatives_with_id_and_backflow_owner": 4,
+        "L9_backflow_owners": [
+          "core_owner",
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 4,
+        "L8_negatives_with_id_and_backflow_owner": 4,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "VF-1",
+          "prior_class": "basic:value_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/field_value_applicability_verification/unexercised_observations",
+          "quote": "unexercised_branches: definition_conflict, value_na。unexercised_definition_causes は28語。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "契約（field_definition_cause_table 等）は L4 に在る。未行使causeの入力と期待は L7 で独立に導く。7caseの外へ新gateは足さない"
+        },
+        {
+          "id": "VF-2",
+          "prior_class": "basic:value_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/field_value_applicability_verification/remaining",
+          "quote": "7case以外のmalformed/複数/別subjectframe/claim等の独立literal、実資格/全producer/詳細実現は未実施。",
+          "category": "c",
+          "owner": "core_owner（実field値・適用判定）",
+          "reentry": "CORE の実値供給後、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "id": "VF-3",
+          "prior_class": "detail:F03_claim / Q5(D34)",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/field_value_applicability_detail/not_closed_here/5",
+          "quote": "L4 rule54..57 Claim値表現・排他選択のL5追補（今回のF03 seven-case same-walk scopeでは未閉包。…）",
+          "category": "a",
+          "owner": "032設計（L5 field_value_applicability_detail）。reentry の宛先は L4#/field_value_applicability_contract/projection_order/claims が「L5追補で閉じる」と明記",
+          "reentry": "L5 に rule54..57 の Claim 値表現（kind/intended value の型）と同一field複数Claimの排他選択の規則を追補。対L8に case 行（oracle ID付き）を1〜2行。全Claim組合せの返却列挙は L7",
+          "a_kind": "internal_hole_with_return",
+          "note": "戻し先（L5追補・032）は本文に在るので、新条件では「戻し先付き」と読めば凍結を妨げない可能性がある。ただし L5 の規則そのものが空のため(a)に計上（統制の判断に委ねる）。N03 にも同じ fn2 の Claim 経路が掛かる（N03 の typed_mutation は claims に operation_deadline を足す）。"
+        },
+        {
+          "id": "DF-1",
+          "prior_class": "basic:definition_inside / detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
+        },
+        {
+          "id": "DF-4",
+          "prior_class": "detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/remaining/6",
+          "quote": "多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "prior_class": "basic:definition_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/2",
+          "quote": "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "VF-3"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F04",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "identity_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "identity_outside"
+        ],
+        "detail_specific": [
+          "identity",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/3 (HELIXBRAIN-L3-032-F04)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/3 (HELIXBRAIN-L10-032-F04)",
+        "L4_contract": "L4#/contracts/5",
+        "L5_contract": "L5#/contracts/5",
+        "L5_failure_rules_count": 10,
+        "L9_case": "L9#/cases/5",
+        "L8_case": "L8#/cases/5",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/3",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_identity_versions_and_trace",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 11,
+        "L9_negatives_with_id_and_backflow_owner": 11,
+        "L9_backflow_owners": [
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 12,
+        "L8_negatives_with_id_and_backflow_owner": 12,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "ID-1",
+          "prior_class": "basic:identity_inside / detail:identity",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/knowledge_records",
+          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。",
+          "category": "a",
+          "owner": "knowledge_owner（各case本文の finding_unknown_and_reentry_ja / F04-NEG-11 preserved_control に明記）",
+          "reentry": "残る distinct record、3件以上、複数Q/rootのinterleave、range source の複数対応、は I1 系の続きで finite case を足すか、「未閉包=knowledge_owner へ返し、同Binding/revision/scopeの原readから再入」を一般規則として L4 境界へ1文で持ち上げる",
+          "a_kind": "internal_hole_with_return",
+          "note": "0件（I1a、finite_zero_knowledge_record）と同値2件（I1b、finite_equal_knowledge_record_repetition）は、L4/L9/L5/L8の4層で有限に追加された（supporting_pointers）。残るのは一般の複数record（distinct record、3件以上、複数Q/root）での公開Ref列・trace material index・Finding witnessの形成で、引用箇所は未閉包のまま。F04-NEG-11（I1a）とI1B（equal records）は#3690〜#3693で4層がそろった。F04-NEG-04のsource-nullはL5に有限caseとして記載（L4 finite_cause_precedence/ordered_cases/0）。",
+          "supporting_pointers": [
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record",
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
+          ]
+        },
+        {
+          "id": "ID-2",
+          "prior_class": "basic:identity_inside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/read_branch_contracts/bilateral/finite_cause_precedence/unexercised",
+          "quote": "19causeのうち上記5以外の競合順はL9 finite_branch_coverageへ未行使として明示する。未観測causeをnull/positive/owner不足へ正規化しない。",
+          "category": "a",
+          "owner": "knowledge_owner（F04/N01 の backflow_owner）",
+          "reentry": "競合順を定めるか、「競合時は全causeを原順で保持し knowledge_owner へ unknown として返す」を既定規則として1文で置く。単一causeの未行使分岐の入力と期待は L7（ID-4）",
+          "a_kind": "internal_hole_with_return",
+          "note": "単一causeは契約があり(b)。複数causeが同時に成立するときの順序だけが設計の空き（分岐の順序は L4 の役割）。"
+        },
+        {
+          "id": "ID-3",
+          "prior_class": "basic:identity_inside / detail:identity",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/rules_without_normal_row",
+          "quote": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。",
+          "category": "a",
+          "owner": "knowledge_owner",
+          "reentry": "F04 の NEG（source/scope/oracle版/identity/version_target）が発火したときの公開Finding の witness 規則（locator集合・subject・Binding・source Ref）を決定表で定める。reason_material_presence（原memberのabsent/null/型外）も同じ表へ",
+          "a_kind": "internal_hole_with_return",
+          "note": "F04 の NEG はこれらの rule 群そのもの。rule 行と case 行はあるが公開Findingの形が無い。"
+        },
+        {
+          "id": "ID-4",
+          "prior_class": "basic:identity_inside",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/identity_version_trace_verification/finite_branch_coverage",
+          "quote": "cause_inventory の unexercised: DescriptorTraceRead 7語、BilateralCompatibilityRead 14語、ActualOperandRead 10語、他。validated.input=null も未行使。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "契約（cause enum と L4 read_branch_contracts）は在る。単一causeごとの入力と期待を L7 で独立に導く"
+        },
+        {
+          "id": "ID-5",
+          "prior_class": "basic:identity_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/unexercised_trace",
+          "quote": "原対応以外のtrace causeはその原literalをprefixとする技術選択。…",
+          "category": "d",
+          "owner": "（範囲外。技術選択として記録済み。新しい基本未完にしない）",
+          "reentry": "必要になれば ID-2/ID-3 の決定表へ統合"
+        },
+        {
+          "id": "ID-6",
+          "prior_class": "basic:identity_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/limits/0",
+          "quote": "基本logical port候補のみ。実資格provider/trustresolver/codec/候補実装の実行成立を認定しない。",
+          "category": "c",
+          "owner": "infrastructure_owner／実provider",
+          "reentry": "実provider・資格の供給後、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 3,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "ID-1",
+        "ID-2",
+        "ID-3"
+      ],
+      "verdict": "(a)が残る: 保守計上3件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F05",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "oracle_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "oracle_outside"
+        ],
+        "detail_specific": [
+          "oracle",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/4 (HELIXBRAIN-L3-032-F05)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/4 (HELIXBRAIN-L10-032-F05)",
+        "L4_contract": "L4#/contracts/6",
+        "L5_contract": "L5#/contracts/6",
+        "L5_failure_rules_count": 3,
+        "L9_case": "L9#/cases/6",
+        "L8_case": "L8#/cases/6",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/4",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_oracle_and_view_boundary",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 3,
+        "L9_negatives_with_id_and_backflow_owner": 3,
+        "L9_backflow_owners": [
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 3,
+        "L8_negatives_with_id_and_backflow_owner": 3,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "OR-1",
+          "prior_class": "basic:oracle_inside / detail:oracle",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/oracle_binding",
+          "quote": "実recordのsubject/kind/義務/観点/根拠/要求oracle版の原対応、qualification、unknown/conflict競合、normal row identity/ref/reason。空枝で一般照合済みとはしない。",
+          "category": "a",
+          "owner": "未特定（推測: knowledge_owner。F05/F06 の NEG backflow_owner は knowledge_owner／core_owner）",
+          "reentry": "義務/観点/根拠/oracle版の対応規則（F06 の measurement/completion 結合）と partial_context 診断（別producer・型外member・形成不能subject）の返却の形を決定表で定める。または unknown＋knowledge_owner 返却と明記",
+          "a_kind": "missing_return",
+          "note": "L4 oracle_view_boundary_contract の本文に owner も reentry も無い。F06 の中核（measurement/completion の義務・根拠・oracle個別結合）に直結。M1a は measurement/completion の primary index を固定したが、この oracle 側の結合は別。"
+        },
+        {
+          "id": "OR-2",
+          "prior_class": "basic:oracle_inside / detail:oracle",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/rule_witness",
+          "quote": "7 ruleの実発火又はpredicate未確定時の全witness・全Axis/Finding返却。既存negative入力のruleを削除しない。後続設計が要る。",
+          "category": "a",
+          "owner": "knowledge_owner／core_owner（F05/F06 の backflow_owner）",
+          "reentry": "7 rule それぞれの発火時の Axis/Finding の割当と witness 集合・列順（複数rule/複数Claim時の順序）の決定表。全返却の列挙は L7",
+          "a_kind": "internal_hole_with_return",
+          "note": "「後続設計が要る」と本文に在る＝戻し先（032の後続設計）付き。ただし設計が空。"
+        },
+        {
+          "id": "OR-3",
+          "prior_class": "basic:oracle_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/qualification",
+          "quote": "実owner/custody/trust接続は未成立。fn4 finite writer/field一致から原source資格を発行しない。",
+          "category": "c",
+          "owner": "knowledge_owner／infrastructure_owner（custody/trust）",
+          "reentry": "実資格・実oracleの供給後に再入（L4 limits/2「未閉包に当たる有限期待は当該producerで上流へ返す」）"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 2,
+      "blocking_count_missing_return_only": 1,
+      "blocking_item_ids": [
+        "OR-1",
+        "OR-2"
+      ],
+      "verdict": "(a)が残る: 保守計上2件（うち戻し先が本文に無いもの1件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F06",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "oracle_inside",
+          "definition_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "oracle_outside",
+          "definition_outside"
+        ],
+        "detail_specific": [
+          "oracle",
+          "builder",
+          "meaning"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/5 (HELIXBRAIN-L3-032-F06)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/5 (HELIXBRAIN-L10-032-F06)",
+        "L4_contract": "L4#/contracts/7",
+        "L5_contract": "L5#/contracts/7",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/7",
+        "L8_case": "L8#/cases/7",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/4",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_oracle_and_view_boundary",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 4,
+        "L9_negatives_with_id_and_backflow_owner": 4,
+        "L9_backflow_owners": [
+          "core_owner",
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 4,
+        "L8_negatives_with_id_and_backflow_owner": 4,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "OR-1",
+          "prior_class": "basic:oracle_inside / detail:oracle",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/oracle_binding",
+          "quote": "実recordのsubject/kind/義務/観点/根拠/要求oracle版の原対応、qualification、unknown/conflict競合、normal row identity/ref/reason。空枝で一般照合済みとはしない。",
+          "category": "a",
+          "owner": "未特定（推測: knowledge_owner。F05/F06 の NEG backflow_owner は knowledge_owner／core_owner）",
+          "reentry": "義務/観点/根拠/oracle版の対応規則（F06 の measurement/completion 結合）と partial_context 診断（別producer・型外member・形成不能subject）の返却の形を決定表で定める。または unknown＋knowledge_owner 返却と明記",
+          "a_kind": "missing_return",
+          "note": "L4 oracle_view_boundary_contract の本文に owner も reentry も無い。F06 の中核（measurement/completion の義務・根拠・oracle個別結合）に直結。M1a は measurement/completion の primary index を固定したが、この oracle 側の結合は別。"
+        },
+        {
+          "id": "OR-2",
+          "prior_class": "basic:oracle_inside / detail:oracle",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/rule_witness",
+          "quote": "7 ruleの実発火又はpredicate未確定時の全witness・全Axis/Finding返却。既存negative入力のruleを削除しない。後続設計が要る。",
+          "category": "a",
+          "owner": "knowledge_owner／core_owner（F05/F06 の backflow_owner）",
+          "reentry": "7 rule それぞれの発火時の Axis/Finding の割当と witness 集合・列順（複数rule/複数Claim時の順序）の決定表。全返却の列挙は L7",
+          "a_kind": "internal_hole_with_return",
+          "note": "「後続設計が要る」と本文に在る＝戻し先（032の後続設計）付き。ただし設計が空。"
+        },
+        {
+          "id": "OR-3",
+          "prior_class": "basic:oracle_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/oracle_view_boundary_contract/unclosed_projection_boundaries/qualification",
+          "quote": "実owner/custody/trust接続は未成立。fn4 finite writer/field一致から原source資格を発行しない。",
+          "category": "c",
+          "owner": "knowledge_owner／infrastructure_owner（custody/trust）",
+          "reentry": "実資格・実oracleの供給後に再入（L4 limits/2「未閉包に当たる有限期待は当該producerで上流へ返す」）"
+        },
+        {
+          "id": "DF-1",
+          "prior_class": "basic:definition_inside / detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。 F06の有限meaning caller（measurement と completion）は L8 definition_meaning_M1a_primary_index / M1a_completion_primary_index で primary/index/order が有限に固定された（#3685/#3686）。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
+        },
+        {
+          "id": "DF-4",
+          "prior_class": "detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/remaining/6",
+          "quote": "多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "prior_class": "basic:definition_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/2",
+          "quote": "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 2,
+      "blocking_count_missing_return_only": 1,
+      "blocking_item_ids": [
+        "OR-1",
+        "OR-2"
+      ],
+      "verdict": "(a)が残る: 保守計上2件（うち戻し先が本文に無いもの1件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F07",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "claim_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "claim_finite"
+        ],
+        "detail_specific": [
+          "claim",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": [
+          "Q3"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/6 (HELIXBRAIN-L3-032-F07)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/6 (HELIXBRAIN-L10-032-F07)",
+        "L4_contract": "L4#/contracts/8",
+        "L5_contract": "L5#/contracts/8",
+        "L5_failure_rules_count": 5,
+        "L9_case": "L9#/cases/8",
+        "L8_case": "L8#/cases/8",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/7",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_claim_boundaries",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 5,
+        "L9_negatives_with_id_and_backflow_owner": 5,
+        "L9_backflow_owners": [
+          "core_owner",
+          "knowledge_owner",
+          "os_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 5,
+        "L8_negatives_with_id_and_backflow_owner": 5,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "CL-1",
+          "prior_class": "basic:claim_inside(semantic_owner) / detail:claim / Q3",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner",
+          "quote": "semantic/mixed basisの任意RawValue意味対応自体は未閉。",
+          "category": "a",
+          "owner": "未特定（推測: 意味内容の供給側は knowledge_owner だが、Q3 自身が担当を特定していない。HISTORY Q3 の other_owner_boundary）",
+          "reentry": "L4 claim_boundary_projection_contract と L5 consumer/basis_resolution/qualified_alternative_limit に、(i)対応を032が定める か (ii)unresolved保持のまま knowledge_owner へ返す のどちらかと、再入条件（原owner資料の供給・訂正後に同Binding/revision/scopeの原readから）を1行で付す",
+          "a_kind": "missing_return",
+          "note": "該当pointer本文に owner も reentry も無い。担当の決定が要るため、迷いなく(a)。決めるだけで済めば F01/F02 は(a)=0になる。"
+        },
+        {
+          "id": "CL-2",
+          "prior_class": "basic:claim_inside(generic_unknown) / detail:claim",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/generic_unknown",
+          "quote": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。",
+          "category": "a",
+          "owner": "032設計（L4 claim_boundary_projection_contract）。外部owner分は core_owner/knowledge_owner（各NEGのbackflow_owner）",
+          "reentry": "裏付け無しclaim が failure rule（B01 product_selection_claim、F07、N02）を発火したときの公開Axis/Finding の返却の形（subject_ref/Binding/source_refs/reason の出所と順序の規則）を決定表1枚で定める。全発火の全返却や全witnessの列挙は不要（L6/L7）。または、この境界を unknown＋knowledge_owner/core_owner 返却として明記する",
+          "a_kind": "missing_return",
+          "note": "判断が割れうる箇所: 「全field writer」を全返却の列挙（=L6/L7）と読めば(b)。ただし返却の形は L4 の役割（統制の決定の表）なので(a)とした。"
+        },
+        {
+          "id": "CL-3",
+          "prior_class": "basic:claim_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/other_domain",
+          "quote": "他Claim kind、claims空、追加meaning_origin等…は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。",
+          "category": "d",
+          "owner": "（範囲外。新gateにしない）",
+          "reentry": "有限枝外。必要になった時点で当該Claim kind の child 設計から再入"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 2,
+      "blocking_count_missing_return_only": 2,
+      "blocking_item_ids": [
+        "CL-1",
+        "CL-2"
+      ],
+      "verdict": "(a)が残る: 保守計上2件（うち戻し先が本文に無いもの2件）"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F08",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "promotion_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "promotion_outside"
+        ],
+        "detail_specific": [
+          "promotion",
+          "builder"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/7 (HELIXBRAIN-L3-032-F08)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/7 (HELIXBRAIN-L10-032-F08)",
+        "L4_contract": "L4#/contracts/9",
+        "L5_contract": "L5#/contracts/9",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/9",
+        "L8_case": "L8#/cases/9",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/5",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_knowledge_promotion",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 4,
+        "L9_negatives_with_id_and_backflow_owner": 4,
+        "L9_backflow_owners": [
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 4,
+        "L8_negatives_with_id_and_backflow_owner": 4,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "PR-1",
+          "prior_class": "basic:promotion_inside（残り）",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/knowledge_promotion_detail/limits_ja/1",
+          "quote": "83のknowledge_promoted unknownをfalse/trueへ変えず、accepted/matureの語彙差を解決済みとしない。",
+          "category": "a",
+          "owner": "032設計（L5 fn5 一般文と L4 P2b rule83 の整合）。reentry は L4 p2b_rule83_extension/unclosed が「P3で整合」と明記",
+          "reentry": "L5 fn5 の「accepted/mature 非昇格」一般文と rule83 の accepted 条件の語彙を1文で整合させる（または knowledge_promoted=unknown の返却を意図した既定と明記し、owner=knowledge_owner を付す）。R2 Info の 81 scope(true/非0number) は L8 P3b で predicate 対照済み",
+          "a_kind": "internal_hole_with_return",
+          "note": "P1(非空trace)・P2a(80-82)・P2b(83)・P3a(claims無し)・P3b(24 Claim入力)が merge され、旧 promotion_inside の「4ruleの全割当・順序」は有限に閉じた。残るのは語彙差1点のみ（小さい）。"
+        },
+        {
+          "id": "PR-2",
+          "prior_class": "basic:promotion_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/knowledge_promotion_contract/unclosed_projection_boundaries/firing_rules",
+          "quote": "各子entryの外、形成不能、任意stage/body/実資格/工程は原値とunknownを保持。全fn5返却はP3以降。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "P3a/P3b が全4field の有限期待を持つ。未行使（同値candidate反復、片側SHA 等＝L8 knowledge_promotion_nonempty_verification/unexercised_ja）は L7 で追加"
+        },
+        {
+          "id": "PR-3",
+          "prior_class": "basic:promotion_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/knowledge_promotion_claim_verification/unexercised_ja",
+          "quote": "形成不能Claimを含む入力、任意Claim集合、scope妥当性/十分性、実source資格/実工程、accepted/mature一般語彙の全意味、全fn5 domain。",
+          "category": "d",
+          "owner": "（範囲外。新gateにしない）",
+          "reentry": "有限枝外。実工程分は PR-4"
+        },
+        {
+          "id": "PR-4",
+          "prior_class": "basic:promotion_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/knowledge_promotion_contract/unclosed_projection_boundaries/custody",
+          "quote": "実owner/trust/LABO/OS/BRAIN工程は別責務。本writer/fixtureの一致から実資格/運用採用を認定しない。",
+          "category": "c",
+          "owner": "knowledge_owner／os_owner（LABO・OS・BRAIN工程）",
+          "reentry": "実工程・実資格の供給後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "PR-1"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-F09",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "definition_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "conditional_finite",
+          "conditional_outside",
+          "definition_outside"
+        ],
+        "detail_specific": [
+          "dependency",
+          "meaning",
+          "builder"
+        ],
+        "detail_pending_Q": [
+          "Q4",
+          "Q6"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/8 (HELIXBRAIN-L3-032-F09)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/8 (HELIXBRAIN-L10-032-F09)",
+        "L4_contract": "L4#/contracts/10",
+        "L5_contract": "L5#/contracts/10",
+        "L5_failure_rules_count": 8,
+        "L9_case": "L9#/cases/10",
+        "L8_case": "L8#/cases/10",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/6",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 6,
+        "L9_negatives_with_id_and_backflow_owner": 6,
+        "L9_backflow_owners": [
+          "knowledge_owner",
+          "os_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 15,
+        "L8_negatives_with_id_and_backflow_owner": 6,
+        "L8_negative_entries_that_are_ref_only": 9,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "DP-1",
+          "prior_class": "detail:dependency / Q4(D33) / basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/dependency_semantic_port_verification/limits",
+          "quote": "OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。…OS供給側pairと032 L5/L8の追随へ残す。",
+          "category": "a",
+          "owner": "os_owner（供給側pair）＋032設計（L5/L8の追随）",
+          "reentry": "L5 compare_dependencies_and_handoff に、L4 dependency_semantic_ports の typed incoming（ReceiptInvocationOrigin / OSObligationMeaningIncoming / original_project_binding と consumer Binding の分離、原state非discharge）を受ける規則行を追補し、対L8 に case 行を1〜2行。OS/030 供給側の実供給は DP-2",
+          "a_kind": "internal_hole_with_return",
+          "note": "戻し先（OS供給側pair＋032 L5/L8追随）は本文に在る。ただし L5 には ReceiptInvocationOrigin / OSObligationMeaningIncoming が limit文中に各1回しか出ず、original_project_binding と discharge_assertion は0回（grep相当の件数確認）。B02 の核（受領は消込でない）の「消込を生成しない」分岐を L5 が型で受けていない。B02 の NEG 2件は prose の predicate と L4 axis_mapping/4 で成立しているため、これを(a)とするかは迷う点。迷うので(a)。"
+        },
+        {
+          "id": "DP-2",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/dependency_semantic_ports/limits/1",
+          "quote": "030/OSの元producer側typed供給契約は上記追随先が必要。本pairでその実供給/運用成立を認定しない。",
+          "category": "c",
+          "owner": "os_owner／knowledge_owner（030 knowledge-query-receipt）",
+          "reentry": "供給側pair成立後に再入"
+        },
+        {
+          "id": "DP-3",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/6/local_result_projection_contract/no_subject_ref_limit",
+          "quote": "ADD-28ではbinding.template_ref/knowledge_ref双方がobject Refでない。…subject_refは…Comparison.axes/findingsに捏造せず、test-side input_binding projectionで原欠落を保持する。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "ADD-27/28 の期待は設計済み。L7 で fixture と全返却を独立に著述"
+        },
+        {
+          "id": "DP-4",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/canonical_dependency_detail/remaining_general_domain_ja/1",
+          "quote": "generic known-frame conflictの比較先/typed前提は未形成。",
+          "category": "a",
+          "owner": "未特定（032設計の L5 canonical_dependency_detail）",
+          "reentry": "known-frame の既知相反の比較先と typed 前提を L5 で定めるか、unknown＋owner 返却と明記",
+          "a_kind": "missing_return",
+          "note": "F09 のみ。本文に owner も reentry も無い。"
+        },
+        {
+          "id": "DP-5",
+          "prior_class": "detail:dependency / basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/remaining/5",
+          "quote": "L5/L8追随ではclaim_intent_protocolのkind別値語彙・supplied/absent/null・typed origin/全field返却と順序を採用する。現failure ruleにその語彙が実装済みとはしない。",
+          "category": "a",
+          "owner": "032設計（L5 claim_intent_detail → failure_rules）",
+          "reentry": "L5#/claim_intent_detail（D32）の語彙を failure_rules の predicate へ反映する範囲を決める（または反映は L7 で test 化と明記）",
+          "a_kind": "internal_hole_with_return",
+          "note": "L5 claim_intent_detail と L8 claim_intent_verification は在る（部分的に狭まっている可能性）。failure rule 行への反映が未確認なので(a)に残した。"
+        },
+        {
+          "id": "DP-6",
+          "prior_class": "detail:Q6(D35)",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/comparison_axis_reason_multi_problem_verification/limits",
+          "quote": "本例はrevision/scopeの供給nullを原順2problemとして保持する有限例。全problem組合せ又は全Finding分岐を行使した証拠ではない。",
+          "category": "b",
+          "owner": "L6/L7（既存契約に対する未行使検証）",
+          "reentry": "L7で、既存のproblem_order・reason写像の契約から導いた期待値で複数problemの組合せをtestにする。設計の追補は要しない",
+          "note": "R1 A1により(a)から(b)へ移した。複数problemの順・全原因保持・reason写像は既存契約が定める：L4#/dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order・/problem_order・canonical_diagnostic_mapping、L5#/canonical_dependency_detail/body_read_writer/return_member_writers/problems、/public_axis_writer/trace_member_writers/cause、/reason_writer/prefix_from_material_only_ja。L9#/comparison_axis_reason_multi_problem_verification/source_basis は同problem_orderを固定参照し、limitsは全組合せ・全Finding分岐の未行使を述べる。全組合せの行使はL6/L7の役割（統制の決定6405690269）。"
+        },
+        {
+          "id": "DF-1",
+          "prior_class": "basic:definition_inside / detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
+        },
+        {
+          "id": "DF-4",
+          "prior_class": "detail:meaning",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/remaining/6",
+          "quote": "多fact/非空pair/special/fn6/fn7/全9関数rawrunnerの全caller、semantic_or_mixed alternativeの任意RawValue対応は未照合・未閉包を別記する。",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "prior_class": "basic:definition_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/2",
+          "quote": "局所logical schemaの成立は正式codec/provider binding/実資格/任意自然言語bodyの意味抽出/実運転を成立させない。",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "CF-1",
+          "prior_class": "basic:conditional_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/conditional_source_dependency_contract/limits/3",
+          "quote": "10有限projectionの期待で実使用するreason_codeは22語中9語。未観測の13語は…これらの分岐の対照実行は未成立であり、宣言22語の全分岐検証を意味しない。",
+          "category": "d",
+          "owner": "（未行使。新gateにしない）",
+          "reentry": "L7 で任意に追加可。13語は契約（reason enum）が在る単一分岐"
+        },
+        {
+          "id": "CO-2",
+          "prior_class": "basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/remaining/4",
+          "quote": "各ownerの原operation producer/供給contract、正式carrier/schema/owner-qualified bindingは未成立。未供給で025 unknownを返す。",
+          "category": "c",
+          "owner": "os_owner／knowledge_owner／core_owner（018/020/025 の各producer owner）",
+          "reentry": "各ownerの供給pair成立後、同Binding/revision/scopeの原readから再入（欠落を理由に新approval/全stage gateを足さない）"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 3,
+      "blocking_count_missing_return_only": 1,
+      "blocking_item_ids": [
+        "DP-1",
+        "DP-4",
+        "DP-5"
+      ],
+      "verdict": "(a)が残る: 保守計上3件（うち戻し先が本文に無いもの1件）。R1 A1によりDP-6を(b)へ移した。"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-N01",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "identity_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "identity_outside"
+        ],
+        "detail_specific": [
+          "identity",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/nfr-grade.json#/requirements/0 (HELIXBRAIN-L3-032-N01)",
+        "L10": "docs/helix-brain/L10-verification/nfr-verification.json#/cases/0 (HELIXBRAIN-L10-032-N01)",
+        "L4_contract": "L4#/contracts/11",
+        "L5_contract": "L5#/contracts/11",
+        "L5_failure_rules_count": 2,
+        "L9_case": "L9#/cases/11",
+        "L8_case": "L8#/cases/11",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/3",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_identity_versions_and_trace",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 2,
+        "L9_negatives_with_id_and_backflow_owner": 2,
+        "L9_backflow_owners": [
+          "knowledge_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 2,
+        "L8_negatives_with_id_and_backflow_owner": 2,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "ID-1",
+          "prior_class": "basic:identity_inside / detail:identity",
+          "change": "narrowed",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/knowledge_records",
+          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。",
+          "category": "a",
+          "owner": "knowledge_owner（各case本文の finding_unknown_and_reentry_ja / F04-NEG-11 preserved_control に明記）",
+          "reentry": "残る distinct record、3件以上、複数Q/rootのinterleave、range source の複数対応、は I1 系の続きで finite case を足すか、「未閉包=knowledge_owner へ返し、同Binding/revision/scopeの原readから再入」を一般規則として L4 境界へ1文で持ち上げる",
+          "a_kind": "internal_hole_with_return",
+          "note": "0件（I1a、finite_zero_knowledge_record）と同値2件（I1b、finite_equal_knowledge_record_repetition）は、L4/L9/L5/L8の4層で有限に追加された（supporting_pointers）。残るのは一般の複数record（distinct record、3件以上、複数Q/root）での公開Ref列・trace material index・Finding witnessの形成で、引用箇所は未閉包のまま。N01の原NEGは、L8#/cases/11/negative_cases/0/typed_mutation が一factのbinding.knowledge_ref.revisionのreplace、/1 がrevisionとrelationsの変更であり、distinct KnowledgeRecordの追加を要しない。その判定はL5のmixed_knowledge_revision predicate（一項目のexact bindingとのrevision差）が定める。したがってN01の核の分岐は既存契約にあり、ID-1はN01の核ではなく、一般の複数record形成の未閉包として残る（R1 A2で訂正）。",
+          "supporting_pointers": [
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record",
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
+          ]
+        },
+        {
+          "id": "ID-2",
+          "prior_class": "basic:identity_inside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/read_branch_contracts/bilateral/finite_cause_precedence/unexercised",
+          "quote": "19causeのうち上記5以外の競合順はL9 finite_branch_coverageへ未行使として明示する。未観測causeをnull/positive/owner不足へ正規化しない。",
+          "category": "a",
+          "owner": "knowledge_owner（F04/N01 の backflow_owner）",
+          "reentry": "競合順を定めるか、「競合時は全causeを原順で保持し knowledge_owner へ unknown として返す」を既定規則として1文で置く。単一causeの未行使分岐の入力と期待は L7（ID-4）",
+          "a_kind": "internal_hole_with_return",
+          "note": "単一causeは契約があり(b)。複数causeが同時に成立するときの順序だけが設計の空き（分岐の順序は L4 の役割）。"
+        },
+        {
+          "id": "ID-3",
+          "prior_class": "basic:identity_inside / detail:identity",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/rules_without_normal_row",
+          "quote": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。",
+          "category": "a",
+          "owner": "knowledge_owner",
+          "reentry": "F04 の NEG（source/scope/oracle版/identity/version_target）が発火したときの公開Finding の witness 規則（locator集合・subject・Binding・source Ref）を決定表で定める。reason_material_presence（原memberのabsent/null/型外）も同じ表へ",
+          "a_kind": "internal_hole_with_return",
+          "note": "F04 の NEG はこれらの rule 群そのもの。rule 行と case 行はあるが公開Findingの形が無い。"
+        },
+        {
+          "id": "ID-4",
+          "prior_class": "basic:identity_inside",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/identity_version_trace_verification/finite_branch_coverage",
+          "quote": "cause_inventory の unexercised: DescriptorTraceRead 7語、BilateralCompatibilityRead 14語、ActualOperandRead 10語、他。validated.input=null も未行使。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "契約（cause enum と L4 read_branch_contracts）は在る。単一causeごとの入力と期待を L7 で独立に導く"
+        },
+        {
+          "id": "ID-5",
+          "prior_class": "basic:identity_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/unexercised_trace",
+          "quote": "原対応以外のtrace causeはその原literalをprefixとする技術選択。…",
+          "category": "d",
+          "owner": "（範囲外。技術選択として記録済み。新しい基本未完にしない）",
+          "reentry": "必要になれば ID-2/ID-3 の決定表へ統合"
+        },
+        {
+          "id": "ID-6",
+          "prior_class": "basic:identity_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/identity_version_trace_contract/limits/0",
+          "quote": "基本logical port候補のみ。実資格provider/trustresolver/codec/候補実装の実行成立を認定しない。",
+          "category": "c",
+          "owner": "infrastructure_owner／実provider",
+          "reentry": "実provider・資格の供給後、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 3,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "ID-1",
+        "ID-2",
+        "ID-3"
+      ],
+      "verdict": "(a)が残る: 保守計上3件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-N02",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [
+          "claim_inside"
+        ],
+        "basic_finite_or_other_scope": [
+          "claim_finite"
+        ],
+        "detail_specific": [
+          "claim",
+          "dependency",
+          "builder",
+          "numeric_inside",
+          "numeric_outside"
+        ],
+        "detail_pending_Q": [
+          "Q3",
+          "Q4",
+          "Q6"
+        ]
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/nfr-grade.json#/requirements/1 (HELIXBRAIN-L3-032-N02)",
+        "L10": "docs/helix-brain/L10-verification/nfr-verification.json#/cases/1 (HELIXBRAIN-L10-032-N02)",
+        "L4_contract": "L4#/contracts/12",
+        "L5_contract": "L5#/contracts/12",
+        "L5_failure_rules_count": 10,
+        "L9_case": "L9#/cases/12",
+        "L8_case": "L8#/cases/12",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/7",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_claim_boundaries",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 10,
+        "L9_negatives_with_id_and_backflow_owner": 10,
+        "L9_backflow_owners": [
+          "core_owner",
+          "knowledge_owner",
+          "os_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 10,
+        "L8_negatives_with_id_and_backflow_owner": 10,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "CL-1",
+          "prior_class": "basic:claim_inside(semantic_owner) / detail:claim / Q3",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/semantic_owner",
+          "quote": "semantic/mixed basisの任意RawValue意味対応自体は未閉。",
+          "category": "a",
+          "owner": "未特定（推測: 意味内容の供給側は knowledge_owner だが、Q3 自身が担当を特定していない。HISTORY Q3 の other_owner_boundary）",
+          "reentry": "L4 claim_boundary_projection_contract と L5 consumer/basis_resolution/qualified_alternative_limit に、(i)対応を032が定める か (ii)unresolved保持のまま knowledge_owner へ返す のどちらかと、再入条件（原owner資料の供給・訂正後に同Binding/revision/scopeの原readから）を1行で付す",
+          "a_kind": "missing_return",
+          "note": "該当pointer本文に owner も reentry も無い。担当の決定が要るため、迷いなく(a)。決めるだけで済めば F01/F02 は(a)=0になる。"
+        },
+        {
+          "id": "CL-2",
+          "prior_class": "basic:claim_inside(generic_unknown) / detail:claim",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/generic_unknown",
+          "quote": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。",
+          "category": "a",
+          "owner": "032設計（L4 claim_boundary_projection_contract）。外部owner分は core_owner/knowledge_owner（各NEGのbackflow_owner）",
+          "reentry": "裏付け無しclaim が failure rule（B01 product_selection_claim、F07、N02）を発火したときの公開Axis/Finding の返却の形（subject_ref/Binding/source_refs/reason の出所と順序の規則）を決定表1枚で定める。全発火の全返却や全witnessの列挙は不要（L6/L7）。または、この境界を unknown＋knowledge_owner/core_owner 返却として明記する",
+          "a_kind": "missing_return",
+          "note": "判断が割れうる箇所: 「全field writer」を全返却の列挙（=L6/L7）と読めば(b)。ただし返却の形は L4 の役割（統制の決定の表）なので(a)とした。"
+        },
+        {
+          "id": "CL-3",
+          "prior_class": "basic:claim_finite",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/claim_boundary_projection_contract/unclosed_projection_boundaries/other_domain",
+          "quote": "他Claim kind、claims空、追加meaning_origin等…は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。",
+          "category": "d",
+          "owner": "（範囲外。新gateにしない）",
+          "reentry": "有限枝外。必要になった時点で当該Claim kind の child 設計から再入"
+        },
+        {
+          "id": "DP-1",
+          "prior_class": "detail:dependency / Q4(D33) / basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/dependency_semantic_port_verification/limits",
+          "quote": "OSObligationMeaningIncoming、OS Field presence、original_project_bindingとconsumer Bindingの分離、原stateからdischargeを生成しない分岐は本10件では未観測である。…OS供給側pairと032 L5/L8の追随へ残す。",
+          "category": "a",
+          "owner": "os_owner（供給側pair）＋032設計（L5/L8の追随）",
+          "reentry": "L5 compare_dependencies_and_handoff に、L4 dependency_semantic_ports の typed incoming（ReceiptInvocationOrigin / OSObligationMeaningIncoming / original_project_binding と consumer Binding の分離、原state非discharge）を受ける規則行を追補し、対L8 に case 行を1〜2行。OS/030 供給側の実供給は DP-2",
+          "a_kind": "internal_hole_with_return",
+          "note": "戻し先（OS供給側pair＋032 L5/L8追随）は本文に在る。ただし L5 には ReceiptInvocationOrigin / OSObligationMeaningIncoming が limit文中に各1回しか出ず、original_project_binding と discharge_assertion は0回（grep相当の件数確認）。B02 の核（受領は消込でない）の「消込を生成しない」分岐を L5 が型で受けていない。B02 の NEG 2件は prose の predicate と L4 axis_mapping/4 で成立しているため、これを(a)とするかは迷う点。迷うので(a)。"
+        },
+        {
+          "id": "DP-2",
+          "prior_class": "detail:dependency",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/dependency_semantic_ports/limits/1",
+          "quote": "030/OSの元producer側typed供給契約は上記追随先が必要。本pairでその実供給/運用成立を認定しない。",
+          "category": "c",
+          "owner": "os_owner／knowledge_owner（030 knowledge-query-receipt）",
+          "reentry": "供給側pair成立後に再入"
+        },
+        {
+          "id": "DP-5",
+          "prior_class": "detail:dependency / basic:conditional_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L4#/remaining/5",
+          "quote": "L5/L8追随ではclaim_intent_protocolのkind別値語彙・supplied/absent/null・typed origin/全field返却と順序を採用する。現failure ruleにその語彙が実装済みとはしない。",
+          "category": "a",
+          "owner": "032設計（L5 claim_intent_detail → failure_rules）",
+          "reentry": "L5#/claim_intent_detail（D32）の語彙を failure_rules の predicate へ反映する範囲を決める（または反映は L7 で test 化と明記）",
+          "a_kind": "internal_hole_with_return",
+          "note": "L5 claim_intent_detail と L8 claim_intent_verification は在る（部分的に狭まっている可能性）。failure rule 行への反映が未確認なので(a)に残した。"
+        },
+        {
+          "id": "DP-6",
+          "prior_class": "detail:Q6(D35)",
+          "change": "unchanged",
+          "current_quote_pointer": "L9#/comparison_axis_reason_multi_problem_verification/limits",
+          "quote": "本例はrevision/scopeの供給nullを原順2problemとして保持する有限例。全problem組合せ又は全Finding分岐を行使した証拠ではない。",
+          "category": "b",
+          "owner": "L6/L7（既存契約に対する未行使検証）",
+          "reentry": "L7で、既存のproblem_order・reason写像の契約から導いた期待値で複数problemの組合せをtestにする。設計の追補は要しない",
+          "note": "R1 A1により(a)から(b)へ移した。複数problemの順・全原因保持・reason写像は既存契約が定める：L4#/dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order・/problem_order・canonical_diagnostic_mapping、L5#/canonical_dependency_detail/body_read_writer/return_member_writers/problems、/public_axis_writer/trace_member_writers/cause、/reason_writer/prefix_from_material_only_ja。L9#/comparison_axis_reason_multi_problem_verification/source_basis は同problem_orderを固定参照し、limitsは全組合せ・全Finding分岐の未行使を述べる。全組合せの行使はL6/L7の役割（統制の決定6405690269）。"
+        },
+        {
+          "id": "NM-1",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L8#/numeric_carrier_verification/remaining/0",
+          "quote": "旧10/N1 7/N2a 5/N2b 3/N3a有限8件以外の全codec返却field・任意token ordinal・全域InputIssue順のwhole固定は未成立。（invalid_number_token等の3literal、integer 1.0/1e0、同node優先順、複数原因順、codec whole は N1/N2a/N2b/N3a で固定済み）",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7",
+          "note": "2026-10-24 の numeric_inside 11 pointers のうち、同node優先順(same_node_failure_order)・consumer_adapter_boundary・numeric_carrier_profile/remaining は文言が更新済み、L8 remaining は5→4件。"
+        },
+        {
+          "id": "NM-2",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/wire_codec_verification/unfixed_numeric_and_encode_range",
+          "quote": "large_exponent 1e400 と encode_non_json_value は expected_stage: not_fixed。許容上限や性能値を推測で追加しない。",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）",
+          "note": "1e400 は契約の選択（成功/失敗）自体が上限値に依存するので(b)ではなく(c)。"
+        },
+        {
+          "id": "NM-3",
+          "prior_class": "detail:numeric_inside",
+          "change": "narrowed",
+          "current_quote_pointer": "L5#/wire_codec_contract/numeric_carrier_profile/consumer_adapter_boundary",
+          "quote": "一般helper域のwriter、未規定tie・汎用serializer・new_defs/reader・実adapter/runtime・資源は未閉であり、既存helperの入力domainを縮めない。",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計",
+          "note": "推測: sorted_values 等の一般域が F04 の Ref 整列に波及するかは未確認。数値以外の整列は影響しない（builder は Ref を整列）。"
+        },
+        {
+          "id": "NM-4",
+          "prior_class": "detail:numeric_outside",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/wire_codec_contract/owner_boundary",
+          "quote": "BRAIN Ref/Qualification/SupplyAnalysisだけの形。COREのSourceEnvelope…と無言共通化しない。両端schema/互換/receiptは各ownerとCONNECTの後続設計。",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 4,
+      "blocking_count_missing_return_only": 2,
+      "blocking_item_ids": [
+        "CL-1",
+        "CL-2",
+        "DP-1",
+        "DP-5"
+      ],
+      "verdict": "(a)が残る: 保守計上4件（うち戻し先が本文に無いもの2件）。R1 A1によりDP-6を(b)へ移した。"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-N03",
+      "prior_limit_ids": {
+        "basic_internal_unfinished": [],
+        "basic_finite_or_other_scope": [],
+        "detail_specific": [
+          "builder"
+        ],
+        "detail_pending_Q": []
+      },
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/nfr-grade.json#/requirements/2 (HELIXBRAIN-L3-032-N03)",
+        "L10": "docs/helix-brain/L10-verification/nfr-verification.json#/cases/2 (HELIXBRAIN-L10-032-N03)",
+        "L4_contract": "L4#/contracts/13",
+        "L5_contract": "L5#/contracts/13",
+        "L5_failure_rules_count": 3,
+        "L9_case": "L9#/cases/13",
+        "L8_case": "L8#/cases/13",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "row_checks": {
+        "L3_oracle_ref_ok": true,
+        "L3_failure_return_present": true,
+        "L4_contract_requirement_ref_ok": true,
+        "L4_backflow_present": true,
+        "L5_contract_requirement_ref_ok": true,
+        "L5_backflow_present": true,
+        "L9_design_ref_ok": true,
+        "L9_negative_count": 3,
+        "L9_negatives_with_id_and_backflow_owner": 3,
+        "L9_backflow_owners": [
+          "core_owner",
+          "infrastructure_owner"
+        ],
+        "L8_design_ref_ok": true,
+        "L8_negative_entries": 3,
+        "L8_negatives_with_id_and_backflow_owner": 3,
+        "L8_negative_entries_that_are_ref_only": 0,
+        "normal_oracles_list_this_child_contract": true
+      },
+      "rows_present_under_new_criterion": true,
+      "limits": [
+        {
+          "id": "VF-3",
+          "prior_class": "detail:F03_claim / Q5(D34)",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/field_value_applicability_detail/not_closed_here/5",
+          "quote": "L4 rule54..57 Claim値表現・排他選択のL5追補（今回のF03 seven-case same-walk scopeでは未閉包。…）",
+          "category": "a",
+          "owner": "032設計（L5 field_value_applicability_detail）。reentry の宛先は L4#/field_value_applicability_contract/projection_order/claims が「L5追補で閉じる」と明記",
+          "reentry": "L5 に rule54..57 の Claim 値表現（kind/intended value の型）と同一field複数Claimの排他選択の規則を追補。対L8に case 行（oracle ID付き）を1〜2行。全Claim組合せの返却列挙は L7",
+          "a_kind": "internal_hole_with_return",
+          "note": "戻し先（L5追補・032）は本文に在るので、新条件では「戻し先付き」と読めば凍結を妨げない可能性がある。ただし L5 の規則そのものが空のため(a)に計上（統制の判断に委ねる）。N03 にも同じ fn2 の Claim 経路が掛かる（N03 の typed_mutation は claims に operation_deadline を足す）。 推測: N03 の rule は 102-104（fixture_timeout/cpu/memory_default、predicate は「根拠が未供給」＝単一Claimで足りる）で F03 の rule54..57 とは別。排他選択には依存しない可能性が高いが、typed_mutation が ValueContext.claims に operation_deadline を足すため同じ fn2 の Claim 経路を通る。2026-10-24 監査も「同経路の未照合範囲として保持」と書く。迷うので(a)計上。F03 の追補（VF-3）が入れば同時に(a)=0。"
+        },
+        {
+          "id": "BU-1",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L5#/source_return_contract/builder_assembly/limits",
+          "quote": "null wrapperをproducerへ渡した場合の成功・比較結果はこのpairでは成立を示さず未実証である。両返却bindingがnullの一致はbuilder wrapper上の構造的対応のみ。",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "prior_class": "detail:builder",
+          "change": "unchanged",
+          "current_quote_pointer": "L8#/function_oracles/8/expected_observation",
+          "quote": "返却bindingとComparison.input_bindingの未供給はnullとして保持し、代替Bindingやproducer計算の成立を生成しない。",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "prior_class": "detail:E1_common",
+          "change": "narrowed",
+          "current_quote_pointer": "L9#/evidence_contract/real_execution",
+          "quote": "以後のL9は…期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、…実装前Red→Greenを観測する。（L8 evidence_contract/real_execution も同旨。#3689で追補）",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）",
+          "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
+        }
+      ],
+      "blocking_count": 1,
+      "blocking_count_missing_return_only": 0,
+      "blocking_item_ids": [
+        "VF-3"
+      ],
+      "verdict": "(a)が残る: 保守計上1件（うち戻し先が本文に無いもの0件）。戻し先付きの内部設計の空きだけなので、戻し先付き=凍結可と統制が読むなら凍結候補"
+    }
+  ],
+  "common_prefreeze_items": [
+    {
+      "id": "G1",
+      "category": "a",
+      "a_kind": "internal_hole_with_return",
+      "summary": "戻し先の表を1枚持つ",
+      "detail": "owner と reentry は、L5#/remaining/4・5、L8#/completion、L9#/evidence_contract/real_execution に「各owner／L6-L7／review側へ戻す」と区分単位で在り、各NEG行に backflow_owner が在る。しかし個々の未閉境界（例 L4 unclosed_projection_boundaries の各キー）には付いていない。区分表を L4 に1枚（区分→owner→reentry）置けば、(b)(c)(d)の項目は個別に付けなくて済む（推測）。子ごとの(a)件数には含めていない。"
+    }
+  ],
+  "shortest_candidates": {
+    "ranking_basis": "保守計上の(a)件数。1件のchildは B02、F01、F02、F03、F08、N03。",
+    "requested_first": [
+      {
+        "child": "HELIXBRAIN-L3-032-B02",
+        "blocking": [
+          "DP-1"
+        ],
+        "why_short": "契約行（L4/L5 contracts/1、failure_rules 1,2）とcase行（L9/L8 NEG-01,02 oracle ID付き、owner os_owner/core_owner）がそろい、基本の child固有未完は無い。残る(a)は DP-1（L5が typed incoming を受ける規則行を持たない）の1件だけで、戻し先は本文に在る。",
+        "first_L6_L7_slice": "fn6 compare_dependencies_and_handoff を、L8 B02-NEG-01（receipt_as_product_discharge→obligation_discharge_claim unknown、os_owner）と B02-NEG-02（receipt_as_na→applicability_claim unknown、core_owner）、normal oracle HELIXBRAIN-L8-032-NORMAL-compare_dependencies_and_handoff から先に test 化する。期待値は L5 failure_rules/1,2 と L4 dependency_semantic_ports/public_projection/axis_mapping/4 から独立に導く（実装を読まない）。DP-1 を閉じるまでは typed incoming の分岐は test に入れない。"
+      },
+      {
+        "child": "HELIXBRAIN-L3-032-N03",
+        "blocking": [
+          "VF-3"
+        ],
+        "why_short": "contract/case/oracle の行は3NEG（fixture_timeout/cpu/memory_default）まで揃い、owner は core_owner/infrastructure_owner。(a)は F03 の Claim 値表現・排他選択（VF-3）と同じ fn2 経路を通る1件のみで、N03 自身の規則とは別（推測）。VF-3 を閉じれば F03 と N03 が同時に(a)=0。",
+        "first_L6_L7_slice": "fn2 compare_values_and_applicability を、L8 N03-NEG-01（R-fixture_timeout_default→operation_value unknown、core_owner）、NEG-02（R-fixture_cpu_default→resource_value unknown、infrastructure_owner）、NEG-03（R-fixture_memory_default→resource_value unknown、infrastructure_owner）と normal oracle HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability から test 化する。期待値は L5 failure_rules/102-104 の predicate と L9 N03-NEG の期待から導く。claims を持たない normal 入力から先に Red を取り、Claim 付き変異は VF-3 の後。"
+      }
+    ],
+    "highest_leverage_decisions": [
+      {
+        "item": "CL-1",
+        "effect": "F01 と F02 が(a)=0になる（B01 は2→1、F07 は2→1、N02 は4→3）",
+        "what": "semantic/mixed の任意RawValue意味対応の owner を決める（Q3）。決定が必要で、設計の量は小さい。"
+      },
+      {
+        "item": "VF-3",
+        "effect": "F03 と N03 が(a)=0になる",
+        "what": "L5 に rule54..57 の Claim 値表現・排他選択を追補し、対L8 の case 行を足す。"
+      },
+      {
+        "item": "DP-1",
+        "effect": "B02 が(a)=0になる（F09 は3→2、N02 は4→3）",
+        "what": "L5/L8 が typed incoming（original_project_binding 分離、非discharge）を受ける規則行と case 行を足す。"
+      },
+      {
+        "item": "PR-1",
+        "effect": "F08 が(a)=0になる",
+        "what": "L5 fn5 一般文と rule83 の accepted 条件の語彙を整合させる、または unknown 返却の既定を明記する。"
+      }
+    ],
+    "not_short": "B01(2)、F05/F06(2)、F07(2)、F04/N01(3)、F09(3)、N02(4)。F05/F06 は OR-1 が戻し先なし、F09 は DP-4 が戻し先なし。"
+  },
+  "control_decision": {
+    "reading": "internal_hole_with_return（戻し先が032設計自身で、規則そのものが空）は、凍結前に設計で閉じる(a)として扱う。戻し先が外部owner・L6/L7・範囲外に向くものだけを凍結を妨げない未完とする。",
+    "reason": "統制の決定の凍結条件は、未完に戻し先が付くことを求める。戻し先が032設計自身である空の規則を戻し先付きと読むと、L5/L8の契約行が無いままL6/L7が期待値を独自に決めることになり、同源化の禁止と層の役割に反する。",
+    "next": [
+      "VF-3（L5 fn2のClaim値表現・排他選択、rule54..57）を先に閉じる。F03とN03が同時に(a)=0になる。",
+      "DP-1（L5 fn6のtyped incoming規則行）を閉じる。B02が(a)=0になる。",
+      "(a)=0になったchildから、独立reviewを経て凍結を判断し、L6/L7と実装に入る。最初のsliceは本記録のfirst_L6_L7_sliceを起点にする。",
+      "Identityの残り（ID-1〜3）はその後に続ける。"
+    ],
+    "dispatch_ref": "WR-CLAUDE-BRAIN032-FREEZE-UNLOCK-VF3-DP1-3547-20261026-01",
+    "authority_effect": "none"
+  },
+  "counts_summary": {
+    "B01": {
+      "blocking_conservative": 2,
+      "blocking_missing_return_only": 2
+    },
+    "B02": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 0
+    },
+    "F01": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 1
+    },
+    "F02": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 1
+    },
+    "F03": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 0
+    },
+    "F04": {
+      "blocking_conservative": 3,
+      "blocking_missing_return_only": 0
+    },
+    "F05": {
+      "blocking_conservative": 2,
+      "blocking_missing_return_only": 1
+    },
+    "F06": {
+      "blocking_conservative": 2,
+      "blocking_missing_return_only": 1
+    },
+    "F07": {
+      "blocking_conservative": 2,
+      "blocking_missing_return_only": 2
+    },
+    "F08": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 0
+    },
+    "F09": {
+      "blocking_conservative": 3,
+      "blocking_missing_return_only": 1
+    },
+    "N01": {
+      "blocking_conservative": 3,
+      "blocking_missing_return_only": 0
+    },
+    "N02": {
+      "blocking_conservative": 4,
+      "blocking_missing_return_only": 2
+    },
+    "N03": {
+      "blocking_conservative": 1,
+      "blocking_missing_return_only": 0
+    }
+  },
+  "not_claimed": [
+    "凍結の成立・完了・承認を宣言しない。本記録は draft であり authority_effect は none。",
+    "件数、hash、pointer の実在の一致を意味閉包とみなさない。(a)=0 は「新条件の候補」であり凍結ではない。",
+    "新しい gate を作らない。(a)に挙げた項目は統制が凍結の判断に使う材料で、child や PR の入場条件ではない。",
+    "実行していない: 候補実装、reader/helper、旧CLI・hook・test・CI。静的に JSON を読み、pointer と文言を照合しただけ。",
+    "分類(a)〜(d)と narrowed の程度は人手の読みであり、独立review未実施。推測は note に推測と書いた。",
+    "L8/L9 を含む大きいJSONは 2500000KB の仮想メモリ上限と 120 秒の timeout 付きで、一つずつ読んだ。"
+  ],
+  "review_corrections": [
+    {
+      "review": "PR #3694 R1（Codex）",
+      "fixed": [
+        "A1: DP-6をF09/N02で(a)から(b)へ移し、件数を同期",
+        "A2: ID-1 noteのdistinct record必須の推測を除き、N01核は既存のrevision差契約にあると訂正",
+        "A3: ID-1/DF-1のquoteを原文に限定し、補足をnoteとsupporting_pointersへ分離",
+        "A4: PR本文にPR classを明記"
+      ]
+    }
+  ]
+}
