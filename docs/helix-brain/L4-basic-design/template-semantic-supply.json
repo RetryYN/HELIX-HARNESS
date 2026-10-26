@@ -12790,8 +12790,8 @@
       "HELIXBRAIN-L9-032-F05",
       "HELIXBRAIN-L9-032-F06"
     ],
-    "status": "原operand未供給の有限carry枝（D27 A/B形、空/absent原集合を含む）の基本writer技術選択候補。normal_control等の実oracle/値/対象slotがある枝や全fn4を閉じるものではない。",
-    "authority": "既存F05/F06の意味を変えず、同call既存definitionを公開fn4へ保存する射影をAI技術選定する。新しい要求・承認・stage gateは作らない。",
+    "status": "原operand未供給の有限carry枝（D27 A/B形、空/absent原集合を含む）の基本writer技術選択候補。既存7 ruleの公開割当/順序を定めるが、normal_control等の実oracle/値/対象slotの実行・資格・全fn4を閉じない。",
+    "authority": "既存F05/F06の意味を変えず、同call definition carryと既存7 ruleのAxis/Finding projectionをAI技術選定する。新しい要求・承認・stage gateは作らない。",
     "basis": [
       {
         "revision": "6a049bfc0860142d6c509f84f2a6e8e1c0c86d23",
@@ -12871,7 +12871,7 @@
       "definitions": "同validatedにcompare_descriptor_definitionsが返したComparison全値。新たなfn4不足行を作るためにrawから既存definitionを再構築しない。",
       "identity_trace": "既存OracleContextの互換入力として全値を保持する。本枝のaxis/finding生成には使用せず、同call/producer/bindingという既存Context条件だけを維持する。F04判定をfn4で再評価又は転載する指定ではない。",
       "producer_binding": "各入力Comparisonは指定producer_symbolと同validated.input.binding由来のinput_bindingを持つ。別snapshot/別producer/別bindingのcached結果を正規入力へ置換しない。",
-      "invalid_context": "OracleContext.meaningを満たさない入力のfn4単独回復/diagnostic writerは未閉包。別Binding又はempty成功Comparisonで補完しない。builderの既存composition所見をfn4の新出力fieldへ移さない。",
+      "invalid_context": "OracleContext.meaningを満たさない一般入力のfn4単独回復は未閉包。別producer/Bindingはpartial_context_projectionのunknown限定に従い、別Binding又はempty成功Comparisonで補完しない。builderの既存composition所見をfn4の新出力fieldへ移さない。",
       "no_ambient": "clock/fs/network/DB、別call private walk、外部のowner判断又はexpected/goldを意味入力にしない。",
       "null_input": "validated.input=nullの既存decode不能経路ではaxes/findings=[]、producer_symbolはfn4、input_binding=null。元InputIssueはvalidatedに保持し、空列を資格/評価成功にしない。これは既存empty Comparison経路との整合を取る技術選択。",
       "private_reads": "raw runnerでは同vの前段walkが既に生成した全DescriptorTargetReadを、既存DescriptorTargetCallFrame.target_readsからprivate detailへ渡す。port/intent/walkを後段で再呼出しせず、public OracleContext3にframe field又はoverrideを足さない。",
@@ -12957,8 +12957,8 @@
       "noncarry": "definitionsの他axis/findings及びidentity_traceのaxis/findingsはfn4返却へ混載しない。全元ComparisonはOracleContextに保持され、builderでは既存独立producerとして別に保持される。",
       "empty_population": "選択対象axisの実原出現0件ならcarry=[]。missing表示を目的に空Ref/別subject/新reasonの代替行を作らない。0件から評価成功又は定義不要を認定しない。",
       "oracle_binding_presence": "oracle_bindingsのabsentと[]は原presenceを保持したまま実record原出現0件というpopulationだけを共有する。null/型外は同一視せず本枝外。入力へ[]を補わない。",
-      "oracle_binding_rows": "原OracleBindingが存在するときのnormal axis populationとsubject/obligation/viewpoint/evidence/pair-oracle対応は未閉包。0件枝から架空の成功binding行を作らず、実record枝をこの有限carryで代替しない。",
-      "findings": "閉じた枝では既存7 ruleの必要operand不存在を個別に照合するため[]。任意unknownへのempty一般writerではない。発火側のwitness/配列順は下記未閉包に残す。"
+      "oracle_binding_rows": "この有限nonfire carryでは、原OracleBindingが存在するときのnormal axis populationとsubject/obligation/viewpoint/evidence/pair-oracle対応は未閉包のまま保つ。既存7 ruleのpredicateが実際に発火する場合だけrule_projection_tableの範囲を適用する。0件枝から架空の成功binding行を作らず、実record枝を有限carryで代替しない。",
+      "findings": "この有限nonfire枝では既存7 ruleの必要operand不存在を個別照合して[]を保つ。これは発火側のtable適用を妨げず、任意unknownへのempty一般writerでもない。発火時のFinding生成は下記rule_projection_tableとfinding_reason、順序はmulti_occurrence_orderを参照する。"
     },
     "comparison_writer": {
       "member_order": [
@@ -12967,8 +12967,8 @@
         "producer_symbol",
         "input_binding"
       ],
-      "axes": "projection_orderの原carry全行。実OracleBinding/新rule行の未閉包をcarry成功で覆わない。",
-      "findings": "上記閉じた非発火枝では[]。発火rowの一般writerはunclosed_projection_boundariesへ残す。",
+      "axes": "有限nonfire枝ではprojection_orderの原carry全行を返す。7既存rule発火時のAxisResultはaxis_row_selectionに従い、carry成功からOracleBindingの一般対応を認定しない。",
+      "findings": "有限nonfire枝では既存[]を保つ。発火枝はrule_projection_tableの7 ruleとfinding_reasonに限り、そこで未形成のtyped predicate/witnessはunclosed_projection_boundariesに残す。",
       "producer_symbol": "compare_oracle_and_view_boundary",
       "input_binding": "同validated.input.bindingの原全値。未供給はnullを保持し、欠落memberを{}又は別call Bindingで埋めない。",
       "metadata": "producerとbindingはwriterが同入力から形成し、caller Claimの提案値を採用しない。metadataの一致自体は意味/資格成立ではない。"
@@ -12989,6 +12989,7 @@
       "state": "選んだ原state。viewに内容があることや生成成功でresolvedへ更新しない。",
       "original_refs": "原Ref全列/各Ref全member/原順/同値反復を保持する。原配列へtemplate/knowledge/source/Q/root Refを追加しない。",
       "reason": "原reason文字列全値を保持する。prefix/JSON/locatorをfn4用に再直列化せず、reasonからstate又はcauseを逆算しない。",
+      "scope": "本axis_writerは原carry行を扱う。既存rule発火で初めて形成する行はaxis_row_selection/predicate_axis_fieldsに従う。",
       "backflow_owner": "選んだ原ownerをnullを含め保持する。missing等だけからknowledge_owner/core_ownerを補完又は置換しない。"
     },
     "finding_writer_boundary": {
@@ -13004,7 +13005,7 @@
         "backflow_owner"
       ],
       "mapped_members": "既存7 ruleのcode/rule_ref/axis/state/backflow_ownerはrule_mappingのまま。新classification/predicate/ownerを作らない。",
-      "unclosed_members": "発火時のsubject_ref/binding/source_refs/reasonの原witness集合と列順、複数rule/複数Claim時のFinding及び追加Axis順は現writerでは閉じない。",
+      "unclosed_members": "下記rule_projection_tableの7 predicateをtyped形で照合できない場合と表外のpredicateに限り、完全witnessは未閉。7 ruleの既存code/rule_ref/axis/state/ownerとFindingの9 member順は維持する。発火時のaxis row選択とreason形式は同表・finding_reasonに従う。",
       "no_empty_witness": "型必須Refを形成できないとき、代替Ref/空Ref/別subjectのBindingや空の架空witnessで9memberを完成させない。非発火枝の[]を発火枝へ流用しない。"
     },
     "technical_decisions": [
@@ -13035,12 +13036,85 @@
       }
     ],
     "unclosed_projection_boundaries": {
-      "oracle_binding": "実recordのsubject/kind/義務/観点/根拠/要求oracle版の原対応、qualification、unknown/conflict競合、normal row identity/ref/reason。空枝で一般照合済みとはしない。",
-      "rule_witness": "7 ruleの実発火又はpredicate未確定時の全witness・全Axis/Finding返却。既存negative入力のruleを削除しない。後続設計が要る。",
-      "partial_context": "別producer/binding、型外oracle member、形成不能subject、decode可能な未定義partial入力のfn4局所diagnostic。既存validated/原InputIssueを保持する。",
+      "oracle_binding": "有限nonfire carryでの実recordのsource qualification、viewpoint/evidenceの一般意味解釈、複数候補の競合、normal rowの完全なidentity/ref/reasonは未閉。実際に発火した既存7 ruleに限るprojectionはrule_projection_tableを使い、空枝から一般照合済みとはしない。",
+      "rule_witness": "下記7 rule以外、又は表のtyped predicate/witnessを形成できない部分の完全返却。既存negative入力のruleを削除しない。",
+      "partial_context": "subjectを形成できない場合のAxisResult、decode可能な未定義partial入力の個別分類。既存validated/原InputIssueを保持し、型必須memberを捏造しない。",
       "qualification": "実owner/custody/trust接続は未成立。fn4 finite writer/field一致から原source資格を発行しない。",
       "source_content": "許容key外/非object/他roleのbodyは一律有限枝外。任意body decoder、実oracle/値/Claimの全対象判定をこのwriterで新設しない。"
     },
+    "oracle_binding_correspondence": {
+      "placement_boundary": "#3510 comment 6408252809 の層責務に従い、L4は対応境界/決定表/L9は実行境界と性質参照のみ、L8は対象・反例・既存oracleへの性質参照のみを置く。fixture/全返却/期待hashはL7に留め、本追補では作らない。",
+      "source_fields": "L5 OracleBindingのsubject_ref/obligation_ref/oracle_ref/viewpoint/evidence_refs/source_refを同一原出現から読む。Ref対応はL5 reference_equality、RawValueは原値を保ち、Ref掲載・同じfilename・同じscopeだけから義務対応を作らない。",
+      "f06_join": "subject_refは要求側の同じ対象subjectへ、obligation_refはその対象に適用される義務へ、各々L5 reference_equality等の既存typed対応で別々に結ぶ。viewpoint/evidenceは原値・原Refと順を保つが、同じJSON値/全証拠対応を新たな必須gateにしない。既存対応が追えない関連はunknownのままknowledge_ownerへ戻し、推測の意味同一性を作らない。",
+      "mismatch": "rule 71はL5で定めるmeasurementの別義務という明示相違。rule 72はcompletionの適用義務が既存typed対応で特定され、その義務に対する要求oracle版とcompletionのoracle版が異なる場合の相違。部分対応だけでconflictにせず、raw意味対応が未決ならunknown/owner再入とする。",
+      "revision_order": "subjectと適用義務の原対応を別々に確認した後、rule 72の既存oracle revision述語を評価する。viewpoint/evidenceの完全一致を前提条件へ追加せず、別subjectや別義務の版を同一要求へ読み替えない。"
+    },
+    "partial_context_projection": {
+      "producer_or_binding": "別producer又は別BindingのComparisonを当該callへ混ぜず、新しい公開Axis/Findingも作らない。元validated、InputIssue、OracleBinding、Comparisonと原readを保持したままunknownとして扱い、owner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
+      "member_type": "OracleBindingの型外memberは元validated、InputIssue、RawValue、Comparisonと原readを保持し、新しい公開Axis/Findingを作らない。型外値をcast・欠落補完せず、unknownとしてowner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
+      "subject_unformed": "subject_refを型付きRefとして形成できない場合はAxisResultを作らず、原InputIssue/原OracleBindingを保持する。空Comparisonや別subjectのrowを成功・診断の代用にしない。",
+      "owner_default": "semantic definition・義務・oracle対応の未解決はknowledge_owner、製品値/thresholdの未解決はcore_owner。各既存ruleの指定ownerを優先し、新owner/cause/public memberは作らない。"
+    },
+    "rule_projection_table": [
+      {
+        "rule_pointer": "/failure_rules/68",
+        "finding": "view_measurement_repair / measurement.definition / missing / knowledge_owner",
+        "axis_and_subject": "原measurement.definition Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのmeasurement.definition/missing rowを追加する。Finding subjectは対象measurement、Bindingは同call input Binding。",
+        "source_refs": "欠落を読んだsemantic_json sourceと代替として読んだderived_view sourceの実predicate witnessのみ。元sources index順、出現をdedupしない。",
+        "reason_presence": "原measurement対象と実際に読んだsource/member locatorのPresenceRawを保つ。"
+      },
+      {
+        "rule_pointer": "/failure_rules/69",
+        "finding": "view_completion_repair / completion.definition / missing / knowledge_owner",
+        "axis_and_subject": "原completion.definition Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのcompletion.definition/missing rowを追加する。Finding subjectは対象completion、Bindingは同call input Binding。",
+        "source_refs": "欠落を読んだsemantic_json sourceと代替として読んだderived_view sourceの実predicate witnessのみ。元sources index順、出現をdedupしない。",
+        "reason_presence": "原completion対象と実際に読んだsource/member locatorのPresenceRawを保つ。"
+      },
+      {
+        "rule_pointer": "/failure_rules/70",
+        "finding": "view_as_semantic_update / meaning_update_claim / conflict / knowledge_owner",
+        "axis_and_subject": "既存meaning_update_claim Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのmeaning_update_claim/conflict rowを追加する。Finding subject/Bindingは発火Claimの同出現から取る。",
+        "source_refs": "Claim basis及び表示変更を述べる実predicate witness sourceのみ。元sources index順、複数Claimは各出現を保持。",
+        "reason_presence": "原Claimの全memberと表示変更を述べる原readのPresenceRawを保つ。"
+      },
+      {
+        "rule_pointer": "/failure_rules/71",
+        "finding": "unrelated_measurement / measurement.binding / conflict / knowledge_owner",
+        "axis_and_subject": "原measurement.binding Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのmeasurement.binding/conflict rowを追加する。Finding subjectはtyped measurement、Bindingは同call input Binding。",
+        "source_refs": "measurementと比較に実使用した義務/OracleBinding sourceのみ。元sources index順、無関係な候補を含めない。",
+        "reason_presence": "measurement・義務・OracleBindingの比較対象memberとlocatorのPresenceRawを保つ。"
+      },
+      {
+        "rule_pointer": "/failure_rules/72",
+        "finding": "completion_oracle_revision / completion.binding / conflict / knowledge_owner",
+        "axis_and_subject": "原completion.binding Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのcompletion.binding/conflict rowを追加する。Finding subjectはtyped completion、Bindingは同call input Binding。",
+        "source_refs": "completion及び実際に対照した要求/OracleBinding sourceのみ。元sources index順、版相違だけで別subject witnessを足さない。",
+        "reason_presence": "completionと要求/OracleBindingの各比較対象memberのPresenceRawを保つ。"
+      },
+      {
+        "rule_pointer": "/failure_rules/73",
+        "finding": "generation_as_completion / completion.definition / unknown / knowledge_owner",
+        "axis_and_subject": "原completion.definition Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのcompletion.definition/unknown rowを追加する。Finding subjectはtyped completion、Bindingは同call input Binding。",
+        "source_refs": "completion扱いされた生成記録の実sourceのみ。存在しないsemantic completion sourceをwitnessに作らない。",
+        "reason_presence": "生成記録の実memberとcompletion意味条件/対oracleの原readを別に保持する。"
+      },
+      {
+        "rule_pointer": "/failure_rules/74",
+        "finding": "threshold_fabricated / measurement.value / unknown / core_owner",
+        "axis_and_subject": "原measurement.value Axisは全値・順を保つ。同subject/Binding/axis rowがなければ既存rule literalのmeasurement.value/unknown rowを追加する。Finding subjectとBindingは実predicate対象の原ValueFact/Claimから取る。対象又はBindingを一意に追跡できなければunknownでownerへ戻す。",
+        "source_refs": "unknown値とthreshold提案のpredicateに実使用したValueFact/Claim basis sourceのみ。元sources index順、原Ref出現をdedupしない。",
+        "reason_presence": "元ValueFact/Claimの値、basis、対象BindingのPresenceRawを保つ。"
+      }
+    ],
+    "axis_row_selection": "発火ruleのAxisResultは、既存原Comparisonに同じsubject/Binding/axisのrowがあればそれを複製せず全値・原順で保持する。なければ本表の既存rule axis/state literalによるrowをcarry後にrule表順で追加する。typed subject又は該当Bindingを追跡できない場合はrowを作らずunknown/owner再入とする。rule 74のsubject/Bindingは実predicate対象から取り、Claim又はValueFactの一方を先に仮定しない。",
+    "predicate_axis_fields": "新たに形成する既存rule行は表の実predicate対象のsubject_ref/Bindingを使い、axis/state/backflow_ownerは当該既存rule値、original_refsは実witnessが読んだtyped Refだけを原locator順・反復込みで保持する。reasonは同じ原predicateのfinding_reasonとする。原carryの7member・reason・順序は変更しない。",
+    "finding_reason": "Finding.reasonは既存L4 identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/unexercised_findingと同じ局所形式にする。L5 predicate固定prefix + U+000A + diagnostic JSON {code,rule_ref,predicate_observations:[{locator,original_read}]}。観測は実predicateが読んだ同一原出現だけで、元のcarry reasonは変更しない。",
+    "multi_occurrence_order": "原ComparisonのAxis配列と既存row順を保持する。Findingは既存rule_mapping（/failure_rules/68..74）の順、rule内はpredicateの原出現index順に各出現一件。別原indexの出現は値が同じでも残す。異なるraw配列間の相対順が既存sourceで定まらなければ順を捏造せずunknown/owner再入とする。各Finding.source_refsは実predicateのwitnessだけを元source index/出現順で列挙。",
+    "unknown_reentry": "表でtyped対応又はwitnessを形成できない場合は既存型のunknownを返し、同Binding/revision/scopeの原readとInputIssueを保つ。semantic/oracle側はknowledge_owner、製品値側はcore_ownerへ戻し、原owner資料の供給・訂正後に同じscopeの原readから再入する。新cause・資格条件・公開型は追加しない。",
+    "legacy_oracle_rederivation": [
+      "LEGACY-ASSET-4F5A1F0739EC1111D91D（旧L4 design-template-json-authority.md 16–92）: JSON意味からgenerated viewへの一方向と構造意味/説明の分離を保持する。",
+      "LEGACY-ASSET-98372FEE8A3AC8F9C299（旧L5 design-template-json-authority.md 30–148）及びUTW-021（旧predecessor-harness-full-weakness-audit 65–101）: source版とcompletion根拠の追跡を保持し、表示/生成成功を意味成立へ昇格させない。旧registry/projector/runtimeは移植しない。"
+    ],
     "consumers": [
       {
         "consumer": "fn4公開呼出し/L5 functions/4",
