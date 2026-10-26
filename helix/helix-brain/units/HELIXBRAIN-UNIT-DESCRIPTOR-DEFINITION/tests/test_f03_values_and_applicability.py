@@ -781,19 +781,15 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             definitions = compare_descriptor_definitions({"validated": validated})
             if mutate_validated_fn is not None:
                 mutate_validated_fn(validated)
-            validated_before = copy.deepcopy(validated)
-            definitions_before = copy.deepcopy(definitions)
+            validated_before, definitions_before = copy.deepcopy(validated), copy.deepcopy(definitions)
             with self.assertRaises(NotImplementedError) as caught:
                 if call_detail_ctx is not None:
                     _evaluate_field_values_detail(call_detail_ctx(validated, definitions))
                 else:
                     compare_values_and_applicability({"validated": validated, "definitions": definitions})
             msg = str(caught.exception)
-            self.assertIn(expected_branch_tag, msg)
-            self.assertIn(F03_BACKFLOW_ID, msg)
-            self.assertEqual(raw, raw_before)
-            self.assertEqual(validated, validated_before)
-            self.assertEqual(definitions, definitions_before)
+            self.assertIn(expected_branch_tag, msg); self.assertIn(F03_BACKFLOW_ID, msg); self.assertNotIn("HELIXBRAIN-L6-032-N03-PATH", msg)
+            self.assertEqual((raw, validated, definitions), (raw_before, validated_before, definitions_before))
 
         expected_l7_tags = [entry.split(":", 1)[0].strip() for entry in self.l7_doc["partial_oracle_and_stop_boundary"]["unclosed_stop_branches"]]
         impl_tags = {f"F03/{m}" for py_file in sorted(SRC_DIR.glob("values_applicability*.py")) for m in re.findall(r'_f03_stop\(\s*"([^"]+)"', py_file.read_text(encoding="utf-8"))}
@@ -812,9 +808,7 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             with self.subTest(branch=tag0, case=label):
                 assert_stops(make_f03_base(), tag0, call_detail_ctx=ctx_fn)
         for missing_key in ("values", "section_fields", "claims"):
-            with self.subTest(branch=tag0, missing=missing_key):
-                assert_stops(make_f03_base(), tag0, mutate_validated_fn=lambda v, k=missing_key: v["input"].pop(k, None))
-                assert_stops(make_f03_base(), tag0, mutate_validated_fn=lambda v, k=missing_key: v["input"].__setitem__(k, "not-a-list"))
+            with self.subTest(branch=tag0, missing=missing_key): assert_stops(make_f03_base(), tag0, mutate_validated_fn=lambda v, k=missing_key: v["input"].pop(k, None)); assert_stops(make_f03_base(), tag0, mutate_validated_fn=lambda v, k=missing_key: v["input"].__setitem__(k, "not-a-list"))
 
         # 1) F03/applicability_records_absent_or_shape
         tag1 = "F03/applicability_records_absent_or_shape"
@@ -857,6 +851,14 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             ("R3-m2_meaning_comparisons_elem_not_dict", lambda v: v["input"]["meaning_comparisons"].append("not-a-dict")),
             ("R3-m2_parent_applicability_elem_not_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), _resync_last_semantic_source(v["input"]), v["input"]["applicability_records"].append("not-a-dict"))),
             ("R3-m1_claim_not_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("meaning_fact_refs", []), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("meaning_fact_refs", []), _resync_last_semantic_source(v["input"]), v["input"]["claims"].append("not-a-dict"))),
+            ("R4-m1_applicability_ref_empty_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("applicability_ref", {}), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("applicability_ref", {}))),
+            ("R4-m1_value_fact_refs_empty_dict_elem", lambda v: (v["input"]["section_fields"][0].__setitem__("value_fact_refs", [{}]), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("value_fact_refs", [{}]))),
+            ("R4-m1_parent_section_ref_empty_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", {}), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", {}))),
+            ("R4-M1_value_fact_source_ref_not_ref", lambda v: (v["input"]["section_fields"][0].__setitem__("value_fact_refs", [_ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-VAL-R4")]), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("value_fact_refs", [_ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-VAL-R4")]), _resync_last_semantic_source(v["input"]), v["input"]["values"].append({"ref": _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-VAL-R4"), "subject_ref": copy.deepcopy(v["input"]["section_fields"][0]["ref"]), "binding": copy.deepcopy(v["input"]["binding"]), "value": None, "source_ref": "bad-source-ref", "reason": "r", "origin": "absent", "applicability_ref": None}))),
+            ("R4-M1_value_fact_ref_not_ref", lambda v: v["input"]["values"].append({"ref": "bad-ref", "subject_ref": copy.deepcopy(v["input"]["section_fields"][0]["ref"]), "binding": copy.deepcopy(v["input"]["binding"]), "value": None, "source_ref": copy.deepcopy(v["input"]["sources"][-1]["ref"]), "reason": "r", "origin": "absent", "applicability_ref": None})),
+            ("R4-M1_field_applicability_source_ref_not_ref", lambda v: (v["input"]["section_fields"][0].__setitem__("applicability_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-APP-R4")), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("applicability_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-APP-R4")), _resync_last_semantic_source(v["input"]), v["input"]["applicability_records"].append({"ref": _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-APP-R4"), "subject_ref": copy.deepcopy(v["input"]["section_fields"][0]["ref"]), "binding": copy.deepcopy(v["input"]["binding"]), "owner": "synthetic-core-owner", "decision": "applicable", "reason": "r", "reentry_condition": {"when": "常時"}, "source_ref": "bad-source-ref"}))),
+            ("R4-M1_parent_applicability_source_ref_not_ref", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), _resync_last_semantic_source(v["input"]), v["input"]["applicability_records"].append({"ref": _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-APP"), "subject_ref": _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC"), "binding": copy.deepcopy(v["input"]["binding"]), "owner": "synthetic-core-owner", "decision": "not_applicable", "reason": "r", "reentry_condition": {"when": "常時"}, "source_ref": "bad-source-ref"}))),
+            ("R4-M1_parent_applicability_ref_not_ref", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), _resync_last_semantic_source(v["input"]), v["input"]["applicability_records"].append({"ref": "bad-app-ref", "subject_ref": _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC"), "binding": copy.deepcopy(v["input"]["binding"]), "owner": "synthetic-core-owner", "decision": "not_applicable", "reason": "r", "reentry_condition": {"when": "常時"}, "source_ref": copy.deepcopy(v["input"]["sources"][-1]["ref"])}))),
         ):
             with self.subTest(branch=tag2, case=sub_case):
                 assert_stops(make_f03_base(with_meaning=True), tag2, mutate_validated_fn=mut_fn)
