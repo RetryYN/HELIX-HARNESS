@@ -7,7 +7,7 @@ import json
 import unittest
 
 from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
-from identity_input_fixtures import _write_source_content, bilateral_input, trace_input
+from identity_input_fixtures import _append_qualified_source, _write_source_content, bilateral_input, trace_input
 
 
 class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
@@ -150,6 +150,19 @@ class TestIdentityR5ReaderActualNegatives(unittest.TestCase):
         malformed = copy.deepcopy(record["provenance_refs"][provenance_index])
         malformed["untyped_provenance_member"] = "raw value"
         record["provenance_refs"][provenance_index] = copy.deepcopy(malformed)
+        # An independently qualified but unrelated body must not hide the
+        # malformed source occurrence by turning its cause into body_unresolved.
+        unrelated_body = copy.deepcopy(raw["sources"][0]["content"])
+        unrelated_body["descriptor_facts"] = []
+        unrelated_source = _append_qualified_source(
+            raw, identity="SYNTHETIC-R5-UNRELATED-PROVENANCE-SOURCE",
+            owner=raw["sources"][0]["ref"]["owner"],
+            scope=copy.deepcopy(raw["sources"][0]["ref"]["scope"]),
+            content=unrelated_body,
+            qualification_identity="SYNTHETIC-R5-UNRELATED-PROVENANCE-Q",
+            root_identity="SYNTHETIC-R5-UNRELATED-PROVENANCE-ROOT",
+        )
+        record["provenance_refs"].append(copy.deepcopy(unrelated_source["ref"]))
         expected_actual_refs = [raw["binding"]["knowledge_ref"]]
         expected_actual_refs.extend(ref for index, ref in enumerate(record["provenance_refs"])
                                     if index != provenance_index)
