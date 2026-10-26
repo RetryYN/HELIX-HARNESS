@@ -23,7 +23,7 @@
       "L8#/additional_unit_cases/36"
     ],
     "pointer_revision": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
-    "remaining_declared_by_closure": "L5#/field_value_applicability_detail/not_closed_here/5（全Claim組合せの入力・網羅検証、Claim間の矛盾裁定の一般規則、未認識値の一般回避は未閉包。いずれも新gateにせず、L7又は後続設計へ戻す）"
+    "remaining_declared_by_closure": "L5#/field_value_applicability_detail/not_closed_here/5 の3項目は、children/*/remaining_with_return の VF3-R1（b）、VF3-R2（d）、VF3-R3（d）として個別に分類した。R2とR3は現行契約が動作を定めており、032設計の空白（(a)）ではない。"
   },
   "path_aliases": {
     "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
@@ -126,6 +126,33 @@
           "category": "b",
           "owner": "L7 test author（032）＋独立review",
           "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        },
+        {
+          "id": "VF3-R1",
+          "category": "b",
+          "item": "全Claim組合せの入力と網羅検証",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "L7 test author（032）",
+          "reentry": "L5 claim_protocol の契約から、組合せ入力と期待をL7で独立に導いてtestにする。設計の追補は要しない。",
+          "basis": "処理先の規則（同一Claim内の第一一致、各出現を一度ずつ処理）は契約で定まっており、残るのは組合せの行使だけ。"
+        },
+        {
+          "id": "VF3-R2",
+          "category": "d",
+          "item": "Claim間の矛盾裁定・勝者選択の一般規則",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（L3 F03/N03は求めていない）",
+          "reentry": "Claim間の裁定を求める要求が承認されたとき、L3からBackflowして新しく設計する。",
+          "basis": "現行契約は矛盾するClaimも各原出現を個別に一度処理し、勝者選択もdedupもしないと動作を定めている（L5 claim_protocol/claim_occurrence_and_rule_selection/selection_ja）。動作が定義済みなので032設計の空白ではない。"
+        },
+        {
+          "id": "VF3-R3",
+          "category": "d",
+          "item": "未認識値・null・型違い・basis_origin書換えの一般回避",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（新しいkind・literalの採用はknowledge_owner）",
+          "reentry": "新しいClaim kindやliteralが採用されたとき、その範囲でL5 claim_protocolへ追補する。",
+          "basis": "現行契約は未認識のときFindingを出さず、元のraw value・presence・axis/stateを保持し、他のdiagnosticを抑止しないと動作を定めている（L5 claim_protocol/value_expression/unrecognized_or_incomplete_ja）。動作が定義済みなので032設計の空白ではない。"
         }
       ],
       "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
@@ -170,6 +197,33 @@
           "category": "b",
           "owner": "L7 test author（032）＋独立review",
           "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        },
+        {
+          "id": "VF3-R1",
+          "category": "b",
+          "item": "全Claim組合せの入力と網羅検証",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "L7 test author（032）",
+          "reentry": "L5 claim_protocol の契約から、組合せ入力と期待をL7で独立に導いてtestにする。設計の追補は要しない。",
+          "basis": "処理先の規則（同一Claim内の第一一致、各出現を一度ずつ処理）は契約で定まっており、残るのは組合せの行使だけ。"
+        },
+        {
+          "id": "VF3-R2",
+          "category": "d",
+          "item": "Claim間の矛盾裁定・勝者選択の一般規則",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（L3 F03/N03は求めていない）",
+          "reentry": "Claim間の裁定を求める要求が承認されたとき、L3からBackflowして新しく設計する。",
+          "basis": "現行契約は矛盾するClaimも各原出現を個別に一度処理し、勝者選択もdedupもしないと動作を定めている（L5 claim_protocol/claim_occurrence_and_rule_selection/selection_ja）。動作が定義済みなので032設計の空白ではない。"
+        },
+        {
+          "id": "VF3-R3",
+          "category": "d",
+          "item": "未認識値・null・型違い・basis_origin書換えの一般回避",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（新しいkind・literalの採用はknowledge_owner）",
+          "reentry": "新しいClaim kindやliteralが採用されたとき、その範囲でL5 claim_protocolへ追補する。",
+          "basis": "現行契約は未認識のときFindingを出さず、元のraw value・presence・axis/stateを保持し、他のdiagnosticを抑止しないと動作を定めている（L5 claim_protocol/value_expression/unrecognized_or_incomplete_ja）。動作が定義済みなので032設計の空白ではない。"
         }
       ],
       "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
@@ -184,11 +238,11 @@
       "rows": [
         {
           "condition": "対象L3/L10の既存委任承認",
-          "state": "BRAIN032は同判断の主対象（30行目、採用済み15項目）で、L3/L10の委任承認の記録は既存。本記録はその承認を再生成しない。"
+          "state": "BRAIN032の前提L3/L10は委任承認済み：docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md（reviewed content 47354be8c1ef225dd7eacffe390d268c0dfee784、PR #2938 comment 6113010770）。対象4 JSONの承認本文との一致は同記録が固定する。本記録は承認を再生成しない。"
         },
         {
           "condition": "必要な設計知識の内容採否",
-          "state": "F03/N03が使うのは採用済み15項目の範囲。新しい知識の採否を本記録で行わない。"
+          "state": "15項目の採択：docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md（packet 5624705c0f98e22b646860a61c6512ee12598170）。F03/N03はその範囲だけを使い、新しい知識の採否は行わない。"
         },
         {
           "condition": "対設計/test-oracle凍結",
