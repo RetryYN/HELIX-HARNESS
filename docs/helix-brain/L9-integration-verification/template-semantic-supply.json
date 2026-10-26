@@ -1366,14 +1366,13 @@
         },
         {
           "id": "HELIXBRAIN-L9-032-I1B-EQUAL-RECORDS",
-          "change": "同一Bindingへfull Refで対応する全JSON値同一のKnowledgeRecordを原配列へ二出現置く。各実対応provenanceのrelationはcorresponding、各source/Q/rootは既存一経路。 対象traceは既存read.cause=original_trace_correspondingで9-key materialを形成できる範囲。既存positive_fixture_refをこの重複入力の実体とは扱わず、具体fixtureはL7で定義する。",
-          "expected": "既存F04/N01のstate/causeを保持し、operational_stateの左operandはL4 equal_repetitionに従う。actual Refは原subjectの後へ実record/provenance Refを原index順で保持する。trace Refは共通先頭3件を一度、その後に原record/provenance indexごとの既存6件suffixを連結する。trace_occurrencesだけを複数reason materialに使い、既存source/Q/root raw出現を増やさない。実関与した既存source witness以外を加えない。 unknown/未完は既存ownerへ返し、原資料の供給・訂正後、同じBinding/revision/scopeの原readから再入する。",
+          "change": "同一Bindingへfull Refで対応する全JSON値同一のKnowledgeRecordをknowledge_records配列にちょうど二件置く。各recordにつきcorresponding provenance pairは一つ。二trace chainは同じ原source index s/Q index q/root index rを共有する。その他のprovenance occurrenceは既存private readの原出現として保持する。既存read.cause=original_trace_correspondingで既存9-key materialを実在値から形成できる有限範囲。既存positive_fixture_refをこの二出現入力の実体とせず、具体fixtureはL7で独立に定義する。",
+          "expected": "negative_casesに置くのは、先頭選択や原出現消失を落とす反例として扱うため。期待性質は複数axis/stateにまたがるので単一expected_classification/axis/state enum欄を設けない。oracleは親F04から継承する。knowledge_records二出現と、corresponding relationを持つ二つの(record index, provenance index)組を原順で保持し、trace_occurrencesの要素数は実対応chain数2と一致し、原indexを先頭へ丸めない。actual RefはL4の役割別record/provenance順、trace Refは共通先頭3件を一度、その後に二chainの既存6 Ref suffixを原record/provenance index順に連結した15件とし、同値Refの反復を消さない。非対応provenance occurrenceを含む他の原private readも保持し、provenance_refs全体を2件へ切り詰めない。actual reasonはmember_pointer=/knowledge_records、original_read=元collection PresenceRaw全値、比較operand=共通operational_state原presence。source_indicesは[s]一度、body_groupsは同一物理groupの原出現一度。既存source/Q/root物理出現、state/cause、実predicate由来witnessを増やさず、同値複写だけの新Findingを作らない。unknown/未完はknowledge_ownerへ戻し、原資料の供給・訂正後に同じBinding/revision/scopeの原readへ再入する。",
           "backflow_owner": "knowledge_owner",
           "expected_side_effect_count": 0,
           "execution_state": "not_executed",
-          "system_oracle_ref": "HELIXBRAIN-L10-032-F04",
           "l4_contract_ref": {
-            "revision": "d5471f140cb2496280e14b267dbadc1178415e06",
+            "revision": "ef0e0ddf5d18acbb28c036e0eb63c4bb1f4e5a48",
             "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
             "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
           }
