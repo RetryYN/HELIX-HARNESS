@@ -69575,5 +69575,59 @@
   "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（入力literal、materials、fixture、seed、RFC6902、全返却期待、hash、再構成）を撤去した。残したのはcase行・観点・oracle ID・rule/axis/state/owner・reentry・境界文。過去本文はrevision 3d6639764238adae19ff323396b76b8f0aa952a7の同pathで辿る。副ディレクトリのfixtureの撤去はdocs/helix-brain/L8-unit-verification/removed-materials-index.jsonを参照。",
   "removed_key_rule": "key名が入力・材料・全返却期待（canonical期待を含む）・再構成を表すもの（400字未満の文字列値は残す）と、sha256を含むkey全部（path＋revisionを持つ固定source参照のsha256/file_sha256だけ残す）。規則はPR本文のslim.py。",
   "use_boundary": "旧材料は照合用の参考に限る。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
+ },
+ "n03_path_scoped_execution_results": {
+  "boundary_ja": "passedはfn0→fn1→fn2の正常1経路とN03独立3入力の限定観測だけを示す。関数oracle全条件、F01の意味解決、未実資格source、全F02枝、他child・全返却の完了を示さず、既存execution_stateは変更しない。",
+  "results": [
+   {
+    "id": "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+    "case_pointer": "/function_oracles/0",
+    "result": "passed",
+    "observed_scope": "正常経路でfn0入力受理を観測した。fn0全入力形やsource資格の成立を網羅した結果ではない。",
+    "evidence_refs": ["docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#/n03_path_fn0_fn1_fn2_verification", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-NORMAL-compare_descriptor_definitions",
+    "case_pointer": "/function_oracles/1",
+    "result": "passed",
+    "observed_scope": "正常経路で文書化されたpartial Comparisonを観測した。15 meaning unknown・帰属known・明示NA unknownはこの限定期待であり、F01意味解決やsource資格の成立を示さない。",
+    "evidence_refs": ["docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#/n03_path_fn0_fn1_fn2_verification", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+    "case_pointer": "/function_oracles/2",
+    "result": "passed",
+    "observed_scope": "正常1経路と独立N03 3入力で文書化されたunknown保持と限定predicate経路を観測した。fn2全条件・全返却の合格ではない。",
+    "evidence_refs": ["docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#/n03_path_fn0_fn1_fn2_verification", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-N03-NEG-01",
+    "case_pointer": "/cases/13/negative_cases/0",
+    "result": "passed",
+    "observed_scope": "独立timeout入力で参照fixture 90秒を実期限へ転用せずunknownを保持する限定反例を観測した。",
+    "evidence_refs": ["helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#test_n03_neg01_timeout_fixture_is_not_a_runtime_deadline", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-N03-NEG-02",
+    "case_pointer": "/cases/13/negative_cases/1",
+    "result": "passed",
+    "observed_scope": "独立CPU入力で参照fixture 1 CPUを実資源へ転用せずunknownを保持する限定反例を観測した。",
+    "evidence_refs": ["helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#test_n03_neg02_cpu_fixture_is_not_a_runtime_capacity", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-N03-NEG-03",
+    "case_pointer": "/cases/13/negative_cases/2",
+    "result": "passed",
+    "observed_scope": "独立memory入力で参照fixture 256 MiBを実容量へ転用せずunknownを保持する限定反例を観測した。",
+    "evidence_refs": ["helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#test_n03_neg03_memory_fixture_is_not_a_runtime_capacity", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   },
+   {
+    "id": "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
+    "case_pointer": "/additional_unit_cases/36",
+    "result": "passed",
+    "observed_scope": "timeout・CPU・memoryの3独立variantを各1入力で観測した。全組合せや未記載variantの結果を含まない。",
+    "evidence_refs": ["docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json@5013d44a844baad1e4b5ef8a0fccab9b2a6e8fc4#/n03_path_fn0_fn1_fn2_verification", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409401302", "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6409532758", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6409650385"]
+   }
+  ]
  }
 }
