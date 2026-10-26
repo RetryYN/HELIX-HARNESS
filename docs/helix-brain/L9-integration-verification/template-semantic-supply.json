@@ -144,7 +144,7 @@
  },
  "verification_scope": "BRAIN候補供給の意味境界とCORE/OS/HARNESS/知識ownerへの返却の対検証設計。接続を実行した証拠ではない。",
  "cl2_claim_projection_property_ja": "not_executed: 原Claim順・同Claim内の既存rule順、predicate参加source witness、元Comparison非上書き、未形成時unknown保持とowner再入を対照する設計性質であり、integration case・実接続・実行証拠は追加しない。",
- "dp45_dependency_and_claim_intent_property_ja": "not_executed: DP-4のcanonical known-frame未形成時unknown＋knowledge_owner返却と同Binding/revision/scope原read再入、及びDP-5のclaim_intent 7語彙のpositive主張門反映とL7 test化境界を対照する設計性質であり、integration case・実接続・実行証拠は追加しない。",
+ "dp45_dependency_and_claim_intent_property_ja": "not_executed: DP-4のL4 canonical_ordered_branches order 3 missing及びorder 4/10既存conflict保持・generic独立known-frame比較先不在部分のunknown＋knowledge_owner原read再入と、DP-5のclaim_intent 7語彙positive主張門反映（Claim入口なし3 rule除外）・L7 test化境界を対照する設計性質であり、integration case・実接続・実行証拠は追加しない。",
  "fixture_contract": {
   "id": "TEMPLATE-SUPPLY-BASE-01",
   "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
