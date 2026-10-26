@@ -170,7 +170,15 @@
     "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
     "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
-    "implementation_modules": ["helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py", "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py"],
+    "implementation_modules": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py"
+    ],
     "module_split_basis": "PR3709追補M10（comment6421876852）とIssue3547 comment6421872614。旧src/config/requirements-binding-policy.ts:4–5、src/state-db/refactor-candidates.ts:293–294の700非空行以上の候補検出、旧docs/governance/coding-rules.md:29の一behavior contract・一責務ownerを再利用する。fn3だけ責務別に移動し新module各700非空行未満、既存fn0/fn1/fn6の分割は別WR。関数本体・定数の意味は保持し、fn6同様の遅延委譲へ変える。製品gateや新承認手続きは加えない。",
     "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
     "contract_source": {
@@ -194,6 +202,12 @@
       "wire_type_boundary": "Refは宣言済みmemberのみ、identity/revision/owner/source_locator/sha256は供給時string又はnull、scopeはRawValue。Bindingは宣言済みmemberのみ、各Ref memberは供給時Ref object、版値はstring又はnull、dependency列は供給時Ref配列。required指定が無いことをmember補完/unknown key・型外の受理へ読み替えない。Source/Qualificationの既存閉decoderを本変更から拡張したとは主張しない。"
     },
     "legacy_basis": "既存legacy_rederivationとL4 identity_version_trace_contract/legacy_rederivation、axis_reason_writer/general_occurrence_cause_witness/legacy_rederivationの原identity/unknown/局所trace保持を継承し、旧runtime/CIは実行しない。",
-    "authority_effect": "none"
+    "authority_effect": "none",
+    "read_projection_choices": {
+      "partial_read": "L4 same_call/partial_and_nullと既存closed private型を使い、distinct KnowledgeRecord全出現を連結する。provenance不形成は原record全値に保持し、結線できないreadだけsource_unresolved。型不成立source Refは成功chain/public Ref列へ使わない。actualは原left operandを保持し、不形成provenance Refを加えない。",
+      "subject_frame": "actualのsubject候補は原decl左右Refのidentity/revision/ownerと両側digestを既存規則で比較し、scopeは別frame三値へ渡す。別subjectを候補へ昇格させず、既知scope差と未観測を区別する。",
+      "bilateral_group": "原Bindingの既存full照合、各原endpoint fullRef/frame、同向きpairの直接対応が成立したreadだけ同群の候補とする。Bindingは原input.bindingでありper-record Bindingや新group keyを作らない。対応未成立/異pair/同cause反復は各single投影を原record順に維持する。既存finite二read例だけ既存融合、一般の実cause競合だけunknown aggregateを先頭原出現位置へ置きprivate各readを原順に保つ。各原readの実R61/R62は集約とは独立して保持する。",
+      "legacy_boundary": "L4/L5の既存原Ref/source/unknown保存の意味再導出。legacy_basisの旧asset対応を継承し、新しい要求/資格/ゲート/承認/代替carrierは加えない。"
+    }
   }
 }

@@ -199,7 +199,7 @@
   "fn3_identity_verification": {
     "id": "HELIXBRAIN-L7-032-FN3-IDENTITY-TRACE",
     "scope": "L5 fn3 compare_identity_versions_and_traceを対象にする既存L8行のinventoryと限定実装の観測。具体入力・独立部分期待はL7 test codeへ置き、L8/L9の全返却を答えに複製しない。",
-    "source_revision": "71052b6deb18321caf992e4c89d92335944caf76",
+    "source_revision": "370d42857ac5c094542faa4fc34566bf9dbf65bd",
     "source_paths": {
       "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -376,15 +376,6 @@
         ],
         "stop_ja": "複数source対応時のfinding range source選択は未閉包。先頭や別sourceを補完せず停止する。",
         "execution_state": "not_executed"
-      },
-      {
-        "branch": "unmatched_general_bilateral_aggregation",
-        "source_refs": [
-          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/general_occurrence_cause_witness/scope_limitations_ja",
-          "L4 /identity_version_trace_contract/public_projection/axis_reason_writer/bilateral_aggregation/unclosed_boundary"
-        ],
-        "stop_ja": "同一predicate・対象pair・full Bindingへ対応しないgeneral群を集約せず、既定の未閉包停止へ戻す。",
-        "execution_state": "not_executed"
       }
     ],
     "test_boundary_ja": "I1A/I1B/2Q/C3を含むL7実入力はtest codeで独立形成し、設計文書のfixture/expectedをコピーしない。C3 positiveは別入力であり、L9 whole証拠の再作成ではない。全返却/全cause/全組合せの合格、fn1未凍結F01/F02の実装・期待変更は含めない。",
@@ -394,7 +385,7 @@
       "pointer": "/fn3_identity_preparation"
     },
     "test_source": {
-      "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
+      "revision": "8872eab066bd5a1ea49d7b53ee4194af0a605c75",
       "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
       "class": "TestIdentityVersionsAndTrace",
       "methods": [
@@ -425,7 +416,7 @@
         "test_nonempty_dependency_branch_is_unclosed",
         "test_multiple_finding_range_sources_are_unclosed",
         "test_null_compatibility_decision_keeps_unknown_axis_without_new_finding",
-        "test_general_group_outside_matching_pair_is_unclosed"
+        "test_different_pair_reads_are_not_combined_into_one_aggregate"
       ]
     },
     "input_source": {
@@ -447,7 +438,7 @@
     ],
     "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
     "execution_observation": {
-      "source_revision": "71052b6deb18321caf992e4c89d92335944caf76",
+      "source_revision": "370d42857ac5c094542faa4fc34566bf9dbf65bd",
       "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace.py",
       "test_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
       "test_groups": [
@@ -493,7 +484,7 @@
         },
         {
           "path": "test_identity_public_formation_guards.py",
-          "revision": "1b55c47d78f78d987db9d30345525ff9a195dfb9",
+          "revision": "0ef3647d90ccd530486f527f2c60bdbd81a0b58d",
           "tests": 9
         },
         {
@@ -522,13 +513,28 @@
           "tests": 4
         },
         {
+          "path": "test_identity_r4_bilateral_groups.py",
+          "revision": "9fd28bb3184bced9bffaa9a8b8277423a56fa4bb",
+          "tests": 8
+        },
+        {
+          "path": "test_identity_r4_claim_negatives.py",
+          "revision": "3dc88a26cbc1369ba31579247ebc48c25ca9c6fe",
+          "tests": 3
+        },
+        {
+          "path": "test_identity_r4_partial_reads.py",
+          "revision": "7e13c3ab6b9fdb5338d32bd65eeb9156044fde12",
+          "tests": 5
+        },
+        {
           "path": "test_identity_review_boundaries.py",
-          "revision": "044b61eeb0018ccb84d3ad21b6a9d379dae7d930",
+          "revision": "8872eab066bd5a1ea49d7b53ee4194af0a605c75",
           "tests": 8
         },
         {
           "path": "test_identity_review_writer_gaps.py",
-          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
+          "revision": "7e13c3ab6b9fdb5338d32bd65eeb9156044fde12",
           "tests": 8
         },
         {
@@ -543,7 +549,7 @@
         },
         {
           "path": "test_identity_versions_and_trace.py",
-          "revision": "3f0c3f984c33e11cd555509ec61ce1c3b8731fce",
+          "revision": "8872eab066bd5a1ea49d7b53ee4194af0a605c75",
           "tests": 28
         },
         {
@@ -555,9 +561,9 @@
       "test_correction": "f563はrootが未定義のまま参照したFN3_BACKFLOW定数を1行定義したtest-only訂正。期待・入力・assertを変えず、正式未実装srcで28 testsのRedを再観測した（PR3709 comment6419200210）。",
       "red_before_source_fix": "初回・R1・M10のtest-first履歴に加え、最新reviewのtest-only訂正とR3追加観測はR3_review_reentryに記録する。旧期待のRedと訂正後のRed、修正前Redと既存Green対照を区別する。",
       "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
-      "root_result": "root独立実行: 全unit158 tests=156 PASS/既知fn1 NEG02・NEG21の2 errors、failures=0。fn3 identity 115 tests、fn0直接9 testsを含む。両errorはF02/required_kind_slot_mismatchで変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも再現済み。bounded_exec duration8288ms/reaped=true/truncated=false。全成功とは認定しない。",
-      "latest_main_integration": "main 1589b664f82531991684e97fc0d7c1390386f728を8ed800f9990afc5b2994d5a00679a1b71ac2d117で無競合統合。差分はscaffold/tools/worktree_reclaim.pyと同selftestのみで、実行済みsource/testとL4 identity_version_trace_contract/L5 functions/3のblobは不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
-      "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
+      "root_result": "root独立実行: main cf13c10fc39be1ea4da7b1d542144afd1605e33cを統合後、全unit182 tests=180 PASS/既知fn1 NEG02・NEG21 errors2、failures0。fn3 identity131件とfn0直接9件を含む。bounded_exec duration13109ms/reaped=true/truncated=false。統合前174件も172PASS/同じ既知errors2のみ。両errorはF02/required_kind_slot_mismatchで旧base6f9でも再現済み。全成功とは認定しない。",
+      "latest_main_integration": "main cf13c10fc39be1ea4da7b1d542144afd1605e33c（F03/fn2 PR3714）を566daa6fed5c03daeb8a9ba55961b059545ccf8aで無競合統合。fn3全7moduleのblobとfn0受理/資格照合・fn3 facade ASTはsource 370d42857ac5c094542faa4fc34566bf9dbf65bdから不変。共有main変更があるため全unit182件を再実行し、fn0下流6caseも再観測して前記45/6/7axesとpartialの既存停止が同じことを確認。L4 identity_version_trace_contract/L5 functions/3は不変。",
+      "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6426363103",
       "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。",
       "previous_observation": "M10分割時cee2d90e01526b7d9fe9633ab80683afb05d3585では120件/118PASS/既知fn1errors2。初回55/89件とR1の記録はgit bd9cc52f18d416d43b9e674f19e2b8d175e8942bの同pointerから辿る。各旧観測を現行test訂正後のRedへ流用しない。",
       "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
@@ -568,15 +574,15 @@
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_actual.py",
-          "nonblank": 264
+          "nonblank": 265
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py",
-          "nonblank": 497
+          "nonblank": 550
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
-          "nonblank": 260
+          "nonblank": 252
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py",
@@ -584,16 +590,17 @@
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
-          "nonblank": 293
+          "nonblank": 283
         },
         {
           "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_support.py",
-          "nonblank": 241
+          "nonblank": 216
         }
       ],
       "module_split_verification": "M10前d736e8eb7499ce6176bd0e12d56e3310507284d7と比較し、移動34関数/定数AST完全一致、非fn3 AST一致、facadeは遅延import+returnのみ。全7moduleのimportと参照global symbol解決を確認。既存testは不変で、root分割後unit120 tests=118PASS/同じ既知fn1errors2/failure0、bounded_exec reaped=true。新module125–445非空行。既存descriptor_definitions.pyは1450非空行で本PRでは分割しない。",
       "R3_static_verification": "全7moduleのAST parse/import成功、各700非空行未満。descriptor_definitions.pyとdependencies_handoff.pyはreviewed bd9ccとbyte一致。未使用sources_presence/currentはAST load無しを確認して削除した。M10の34関数AST保持確認は分割時の証拠であり、今回の意味修正後のAST一致とは主張しない。",
-      "private_partial_observation": "rootの公開call内診断で実private validatorを通した返却を採取: root Binding={}でも15trace resolved・actual11件subject_unformed、slot Binding型外/fact subject nullはpublic14trace/private15readと原fact保持、KB absentは15trace knowledge_unresolved、descriptors absentはprivate/public trace0。input=nullはaxes/findings空・input_binding=null。全raw/v不変。この診断をprivate関数patch前提の回帰test又は新公開interfaceにしない。"
+      "private_partial_observation": "rootの公開call内診断で実private validatorを通した返却を採取: root Binding={}でも15trace resolved・actual11件subject_unformed、slot Binding型外/fact subject nullはpublic14trace/private15readと原fact保持、KB absentは15trace knowledge_unresolved、descriptors absentはprivate/public trace0。input=nullはaxes/findings空・input_binding=null。全raw/v不変。この診断をprivate関数patch前提の回帰test又は新公開interfaceにしない。",
+      "R4_static_verification": "7module AST/import、各125–550非空行、diff-checkと文書参照整合。supportの未使用r59helper/専用importsとfn0 _INPUT_ARRAYS保証で到達不能なclaims/sources container guardを除去。reader chains scope-unobservedはsource/Q/body Binding結線がnon-null scopeを要求するため到達不能、別のpartial scope diagnostic branchは保持。generic/fn6はR4意味修正中byte不変、main統合では上記共有ASTとfn3全blob不変を確認。"
     },
     "R1_review_reentry": {
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421713229",
@@ -660,7 +667,7 @@
       "M10_reentry": "R1追補comment6421876852をrootがR2依頼時に見落とした。comment6424577849で現HEADのReady/mergeを求めない旨を開示し、別source commit cee2d90e01526b7d9fe9633ab80683afb05d3585で分割だけを実施。R2 requestのd736e8eb7499ce6176bd0e12d56e3310507284d7ではなく更新HEADへ再reviewを依頼する。",
       "historical_boundary": "以下のR1応答は当時の実装記録。M3–M6等の停止判断は最新reviewによるR3_review_reentryの訂正を現行とし、現在の許容操作や公開写像の定義に使わない。"
     },
-    "execution_state": "root_verified_R3_corrections_independent_review_pending",
+    "execution_state": "root_verified_R4_corrections_independent_review_pending",
     "authority_effect": "none",
     "R3_review_reentry": {
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6424756090",
@@ -691,7 +698,7 @@
         "baseline": "旧main6fa6のsrc+fn6を隔離して同6caseを実行。normal以外の5caseはfn0 input=null/InputIssue1で下流未呼出。受理差が全caller無影響とは言わない。",
         "negative_controls": "distinct Q・一コピーsubject digest不正・Ref非string/未知key・Binding型外/未知keyを固定。完全whole-equality guardを残した後段Q検証loopだけのfirst1変異は論理同値でありkill要件を追加しない。Q選択/whole equality guard自体をfirst1化する意味差は新negativeが対象とする。変異実行でkill確認したとは主張しない。"
       },
-      "state": "root_verified_R3_corrections_independent_review_pending",
+      "state": "historical_R3_corrections_reviewed_in_R4_remaining_findings_in_R4_review_reentry",
       "authority_effect": "none",
       "additional_acceptance_red": "fbe49e851のbasis_role list/dictで旧sourceに実TypeError2（setup由来ではない）とID/負側のassertion failuresを確認。4d214c556のroot Binding/source+KB不在/actual null operand/unformed subject Findingの4件は候補sourceで4 assertion failures。883c089f6のscope reasonは2 assertion failures。1b55c47d7はactual scope=nullでKeyError1、revision null/既知差とscope既知差のexact L4 prefixで3 assertion failures。各test-only固定後、対応修正前に実行した。",
       "green_control_limit": "5988dc271で追加した既知revision差のsubcaseは候補actual修正後のGreen対照であり新Redとは主張しない。claims absent/compatibility_records absent、fn0負側7件の一部も既存Green。scope setup訂正前のfn0入力失敗を意味契約Redへ数えない。",
@@ -710,6 +717,45 @@
         "m5": "claims/compatibility_records不在は意図した0観測、sources不在は元factごとのmissing witness。dead guard/unused引数/index/変数と重複template_ref取得を削除。"
       },
       "source_revision": "71052b6deb18321caf992e4c89d92335944caf76"
+    },
+    "R4_review_reentry": {
+      "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6426323676",
+      "review_request": "WR-CLAUDE-BRAIN032-FN3-IDENTITY-TDD-3547-20261026-05-review-R4",
+      "reviewed_base": "1589b664f82531991684e97fc0d7c1390386f728",
+      "reviewed_content": "733fd1afb28bc91c2d9865dd6394a8a4e0bb5561",
+      "previous_findings": "R4-i1で前回Major5件の対応、testの締め直しとL4/L5期待、mixed/silent重複の根拠が確認された。残るMajor2/Minor6だけを本欄で修正する。R3/R1応答の旧停止宣言を現行根拠にしない。",
+      "test_revisions": [
+        "8872eab066bd5a1ea49d7b53ee4194af0a605c75",
+        "3dc88a26cbc1369ba31579247ebc48c25ca9c6fe",
+        "7e13c3ab6b9fdb5338d32bd65eeb9156044fde12",
+        "9317f766d34ae7b2a793c26b38408ff780210734",
+        "0ef3647d90ccd530486f527f2c60bdbd81a0b58d",
+        "4b21638ce1b365b5f6add8cc2a321171be849fa6",
+        "9fd28bb3184bced9bffaa9a8b8277423a56fa4bb"
+      ],
+      "test_correction": "8872で本PR追加testのpartial provenance/fact sourceRef停止・異pair停止・停止/非停止二択をL4局所unknown/原read保持へ訂正。base既存testは変えていない。provenance不形成の技術原因は元readerの結線不足と同じsource_unresolvedへ統一し、KB原collection absentのknowledge_unresolvedとは分ける。",
+      "red_observation": "8872の訂正対象3methodsは1assertionFAIL/4NotImplemented errors。3dc88 Claim3methodsはstop ID不一致1assertFAIL/他2既存Green対照。7e13 partial5methodsはscope1assertFAIL/distinct・partial5NotImplemented errors、mixed負側は既存Green。9317 bilateral6methodsは3assertFAIL（1件はID失敗に伴う二次count失敗）/異pairNotImplemented error1、負側3件は既存Green。いずれも対応source修正前に固定しrootがbounded実行。",
+      "root_acceptance_gap": "候補reader546a48の検収でfull identity memberと未知keyを持つ型外fact sourceRefがchainに結ばれてresolvedになる問題を発見。0ef3647d9を先に固定して1assertFAILを観測し、typed Ref形を結線前にも確認するよう修正した。原型外値はprivate fact_readへ保持する。",
+      "interleave_red": "候補bilateral e214ecの検収でA/B/A個別readの公開順が[0,2,1]、cause競合時に元outsideのR62が消える問題を発見。4b21638ceで2testを先に固定。初回testはaggregateに無いrecord_indicesを探すKeyErrorも出たため、9fd28bb31でcause_occurrencesの原indexで探すよう訂正。期待は不変。訂正後同じ候補を再実行して2assertFAIL/0errorを確認し、その後sourceを修正。初回test KeyErrorを意味Redへ流用しない。",
+      "major_responses": {
+        "M1": "distinctな対応KnowledgeRecordも全原index→provenance→source→Q→rootの順で実chainだけを連結し、同値反復も落とさない。distinctのoperational_state/provenance差を持つ原record2件・chain3件を固定。",
+        "M2": "absent/null/型外provenanceで全体停止せず元recordをprivateへ保持。actualは不形成provenance Refを足さず左operand原readを維持。malformed fact sourceRefはsource_unresolved/public型適合Refだけ/他14trace resolved。"
+      },
+      "minor_responses": {
+        "m1": "pair/原full Binding/frameの直接対応が未成立なら各single readを保持、異pairを併合しない。原input Bindingを使い新pair keyやper-record Bindingを作らない。",
+        "m2": "同cause/stateの反復はsingle stateを保持し原record順。原因が複数種ある同pair群だけunknown aggregate。既存finite[0,1]二read例は一conflict軸を維持し、A/B/Aへ一般化しない。",
+        "m3": "Claim非objectはclaim_not_object、null-sourceの左multipleはleft_null、通常leftはleft。provenance停止は除去。claims/sources非arrayはfn0がinput=nullにする到達不能guardを削除し人工ValidatedSupplyで新停止testを作らない。",
+        "m4": "原decl subject候補のidentity/revision/ownerと両側digestを直接比較し、左右scopeを別frame三値へ。scopeだけの既知差はactual_scope_differs。",
+        "m5": "左range not_supplied/右outside、右source owner差、same_filename=False、basis_refs null/dict、fact knowledgeのrevision差にidentity/scope/owner一つの差を加える負側、unobserved左scopeにrecord compatible True/Noneの対照を追加。既存Greenを新Redとしない。",
+        "m6": "unused r59helper/importsと到達不能chain-unobserved branchを根拠確認して除去。partial scope unknown枝は残す。"
+      },
+      "root_mutation_check": "一時ディレクトリへcurrent srcをコピーし、本体を変えず8変異を各target testで実行。outside左range条件、右range owner条件、filename false gate、filename basis array guard、左owner unobserved優先、fact mixed identity/scope/ownerの各条件を除去して全8件KILLED。import/syntax失敗なし。これは今回8箇所の実測であり全変異網羅とはしない。",
+      "private_read_observation": "rootはsourceを書換えずsys.setprofileで公開call完了時の既存private_returnを診断。distinct record全whole/index保持、provenance absent/null/objectの原record保持とunknown、型外full sourceRefの原fact保持、interleave private bilateral0/1/2順とstates resolved/resolved/conflictを確認。全6case raw/v不変・既存private validator完了。test oracle又は新公開interfaceにしない。",
+      "source_revision": "370d42857ac5c094542faa4fc34566bf9dbf65bd",
+      "verification_revision": "566daa6fed5c03daeb8a9ba55961b059545ccf8a",
+      "root_result": "統合前174件172PASS、最新main統合後182件180PASS、両方とも既知fn1errors2のみ/failures0。fn0下流6caseの受理差・guard停止はmain統合後も同じ。",
+      "state": "root_verified_R4_corrections_independent_review_pending",
+      "authority_effect": "none"
     }
   }
 }
