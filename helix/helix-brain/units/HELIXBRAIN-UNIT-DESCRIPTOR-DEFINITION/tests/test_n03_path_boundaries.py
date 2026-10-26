@@ -83,7 +83,7 @@ class TestN03PathBoundaries(unittest.TestCase):
         self.assertEqual(validated["input"], before)
         self.assertEqual(raw, before)
 
-    def test_missing_required_field_slot_stops_as_f02_n03_path(self):
+    def test_missing_required_field_slot_emits_descriptor_07_missing_and_carries_to_fn2(self):
         raw = base_input(self.document)
         matching = [
             index for index, slot in enumerate(raw["descriptors"])
@@ -92,7 +92,26 @@ class TestN03PathBoundaries(unittest.TestCase):
         self.assertEqual(len(matching), 1)
         self.assertIn("required field", raw["required_descriptor_kinds"])
         raw["descriptors"].pop(matching[0])
-        self._assert_f02_path_stop(raw)
+        validated, before = self._validate(raw)
+        definitions = compare_descriptor_definitions({"validated": validated})
+        self.assertEqual([f["code"] for f in definitions["findings"]], ["descriptor_07_missing"])
+        carried = [
+            copy.deepcopy(axis)
+            for axis in definitions["axes"]
+            if axis["axis"] in DEFINITION_AXES
+        ]
+        self.assertEqual(len(carried), 2)
+        self.assertEqual(
+            {axis["axis"]: axis["state"] for axis in carried},
+            {"required section.definition": "unknown", "required field.definition": "missing"},
+        )
+        result = compare_values_and_applicability({
+            "validated": validated,
+            "definitions": definitions,
+        })
+        self.assertEqual(result["axes"][:2], carried)
+        self.assertEqual(validated["input"], before)
+        self.assertEqual(raw, before)
 
     def test_duplicate_required_field_kind_stops_as_f02_n03_path(self):
         raw = base_input(self.document)
@@ -104,7 +123,7 @@ class TestN03PathBoundaries(unittest.TestCase):
         raw["descriptors"].append(copy.deepcopy(slots[0]))
         self._assert_f02_path_stop(raw)
 
-    def test_required_descriptor_kinds_mismatch_stops_as_f02_n03_path(self):
+    def test_required_descriptor_kinds_surplus_slot_is_read_and_duplicate_required_stops(self):
         raw = base_input(self.document)
         self.assertIn("required field", raw["required_descriptor_kinds"])
         self.assertTrue(any(
@@ -115,7 +134,21 @@ class TestN03PathBoundaries(unittest.TestCase):
             kind for kind in raw["required_descriptor_kinds"]
             if kind != "required field"
         ]
-        self._assert_f02_path_stop(raw)
+        validated, before = self._validate(raw)
+        definitions = compare_descriptor_definitions({"validated": validated})
+        self.assertEqual(definitions["findings"], [])
+        carried = [
+            copy.deepcopy(axis)
+            for axis in definitions["axes"]
+            if axis["axis"] in DEFINITION_AXES
+        ]
+        self.assertEqual(len(carried), 2)
+        self.assertEqual(validated["input"], before)
+        self.assertEqual(raw, before)
+
+        raw_dup_required = base_input(self.document)
+        raw_dup_required["required_descriptor_kinds"].append("required field")
+        self._assert_f02_path_stop(raw_dup_required)
 
     def _assert_n03_not_implemented_without_result(self, mutate):
         raw, _value_fact, claim = _n03_input(self.document, N03_CASES[0])
