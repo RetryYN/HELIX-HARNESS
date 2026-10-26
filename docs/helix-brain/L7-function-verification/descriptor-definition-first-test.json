@@ -801,7 +801,7 @@
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",
-    "source_revision": "4f23c16fc64272a4f3f7ed3899f2e22e13b8fe0f",
+    "source_revision": "9b8e98f8a",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "test_sources": [
       {
@@ -873,7 +873,8 @@
       "red": "root-fn4-r1-context-red.json:10methods中4条件がNotImplemented未発生でFAIL、null/shape6methods PASS。",
       "green": "root-fn4-r1-context-green.json:既存unclosed2件を含む12methods PASS。shape5methods内24変異を含む。",
       "execution": "root bounded/reaped=true/output_truncated=false。",
-      "test_scope": "producer4条件を各1箇所のみ変異。shapeの人工不正Contextはfn0成功出力とは呼ばない。"
+      "test_scope": "producer4条件を各1箇所のみ変異。shapeの人工不正Contextはfn0成功出力とは呼ばない。",
+      "mutations": "root-fn4-r1-stop-mutations.json:形guard5件を各無効化、partial4条件を各無効化した一時module overlayの9変異は全KILLED。tracked source/test不変。全演算子のmutation網羅を主張しない。"
     },
     "historical_red_replay": {
       "revision": "5948c56b95201c9f2fd2a3da57bc80418cd36798",
@@ -881,6 +882,24 @@
       "result": "5methods:3 F05/F06/unimplemented NotImplementedError、2停止ID assertion failures。import/属性error0。reaped=true/nontruncated。",
       "record": "root-fn4-5948-committed-snapshot-red.json",
       "distinction": "5948に追加した2methodsはcommitted bootstrap snapshotではRed。当時rootが未commit実装候補とともに観測したGreen対照とは別の実行であり、元観測を実装前Redへ改称しない。"
+    },
+    "typed_binding_red": {
+      "test_revision": "0eda5f0ec",
+      "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_oracle_view_boundary_bindings.py",
+      "fixture_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/oracle_binding_input_fixtures.py",
+      "rules": [
+        71,
+        72
+      ],
+      "native_input": "fact.refとOracleBinding.subject_refを明示対応。R71は別obligation、R72は同subject/obligationでoracle revision違い。meaning RawValue内の追加keyを解析しない。source3 body mirrorにsource_refは元からなく、外側typed source_refとsource bytes/digest/Q/provenanceを同期。",
+      "result": "root-fn4-binding-red.json:2methodsともfn0 decode/issues/unusable問題なし、実fn1/fn3 Comparison形成と対象definition Axis.subject_ref=fact.refを確認後、fn4 F05/F06/unclosed/formed_contextでNotImplementedError。reaped=true/nontruncated。",
+      "state": "実typed入力からpublic fn4到達のRed。共有walk/frame接続scope確認中であり、predicate Green/完成とはしない。"
+    },
+    "finite_carry_reachability": {
+      "contract": "L4 nonfire_read_plan/raw_domain/descriptorsは対象3kind実slot0件（facts=[]も枝外）。",
+      "actual_guard": "現fn1は承認15kind各1slot/nonempty facts必須。対象slot除去はF02/required_kind_slot_mismatch、empty factsはF02/descriptor_facts_absent_empty_or_wrong_type。",
+      "state": "非null finite nonfireと現fn1の成功条件は両立しない。F05 NEG01/02と同様の別前提待ち。null pathと同一視せず、手作りComparisonを置かない。",
+      "carry_source": "carry全値はcontext.definitions.axes。複写自体はframe不要だが公開wrapper全体のsame-call/frame成立を別途要する。"
     }
   }
 }
