@@ -15,7 +15,7 @@
   },
   {
    "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "11ac960bb99238c5321e86a910b80a5d72a53346c6e13a9aeaf0bfc32e76ddc1",
+   "sha256": "b7ba29b45f6926639eafddbc2f782dfa518e7cde41099795d9862115882602e8",
    "note": "作業branchとworktreeの片付け、作成側／review側の責務、GUIレーン通知の現行参照。 WI-2b read-after: 運用モデルの片付け節と移管表を、本Binding v1（7日閾値、clean+main-merged worktreeのみremove、dirty/unmergedはbackup/report、branch refs不変、timerなし、remote branch規則不変）に追随。formal transfer/completeは主張せず、role・obligations・operations・authority不変。 PR3542 R1 read-after: manual worktree remove旧3条件とignored/untracked扱い、実行前fetch/dry-runおよび#2093記録を追記。Binding v1のrole・obligations・operations・authority不変。 [2026-10-22 PR3564 read-after: L3/L10委任節へ、実依存辺で取り込む必要ピースの版の所属更新をPO判断記録へ委ねる参照句だけを追加。通知配送・PHCAP歴史snapshot・worktree回収のrole/obligations/connections/operations/verification/replacement/artifacts/stateとauthorityは変更しない。] [2026-10-22 #3570 phase1照合: Codex/Devin未完了5件と並列claim/個別ACK、待機TTL保持をPO判断へ合わせた。本Bindingの固定歴史snapshot・role・obligations・verification・replacementは不変。通知からauthorityを生成せず、box形式/一括通知は後続PR。]"
   },
   {
