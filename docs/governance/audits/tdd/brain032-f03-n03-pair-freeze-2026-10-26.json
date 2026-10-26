@@ -178,7 +178,28 @@
   "freeze_effect": {
     "frozen": "F03とN03について、L4/L5の契約行とL8/L9のcase行を、source_mainのrevisionで凍結する。以後の意味変更は左の層へのBackflowとして扱い、L6/L7はこのrevisionの契約から期待値を独立に導く。",
     "not_frozen": "fixture、全返却期待、hash、直列化、実装。これらはL6/L7でtestを先に書き、Redを観測してから実装でGreenにする。",
-    "implementation_entry": "凍結できたchildからL6/L7と実装に入る（統制の決定6405690269「実装に入る時期」、2026-10-12 PO判断 docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目 段階2）。"
+    "implementation_entry": "凍結できたchildからL6/L7と実装に入る（統制の決定6405690269「実装に入る時期」、2026-10-12 PO判断 docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目 段階2）。",
+    "stage2_conditions": {
+      "source": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目（段階2）",
+      "rows": [
+        {
+          "condition": "対象L3/L10の既存委任承認",
+          "state": "BRAIN032は同判断の主対象（30行目、採用済み15項目）で、L3/L10の委任承認の記録は既存。本記録はその承認を再生成しない。"
+        },
+        {
+          "condition": "必要な設計知識の内容採否",
+          "state": "F03/N03が使うのは採用済み15項目の範囲。新しい知識の採否を本記録で行わない。"
+        },
+        {
+          "condition": "対設計/test-oracle凍結",
+          "state": "対設計（L4/L5↔L8/L9の契約行とcase行）は本記録で凍結する。test-oracleの実体（fixture・全返却期待）はL6/L7でtestを先に書くときに凍結し、Redを観測する。"
+        },
+        {
+          "condition": "実operationのauthority/隔離/資源",
+          "state": "最初のsliceは外部作用のない純関数の局所unit test（Python標準unittest、L4 first_local_unit_bindingの方式）。実operationを伴わない。"
+        }
+      ]
+    }
   },
   "first_L6_L7_slice": {
     "child": "HELIXBRAIN-L3-032-N03",
