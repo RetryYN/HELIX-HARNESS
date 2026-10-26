@@ -210,5 +210,68 @@
       "legacy_boundary": "L4/L5の既存原Ref/source/unknown保存の意味再導出。legacy_basisの旧asset対応を継承し、新しい要求/資格/ゲート/承認/代替carrierは加えない。",
       "frame_guard": "group frameの_binding_same(binding,binding)は恒真比較ではなく、同call原Bindingの各既存full Ref結線が成立するかの確認。fn0が受理するoracle_ref={}等のpartial wire Bindingではfalseとなり、各single readへ保持する。正常returnで原record毎に必ず一outcomeのため、outcomes2件ならindex[0,1]は自明であり重複条件を削除した。新たなindex制約や代替group判定を加えない。"
     }
+  },
+  "fn4_oracle_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN4-ORACLE",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_oracle_and_view_boundary",
+    "input": "OracleContext",
+    "output": "Comparison",
+    "effect": "none",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "working_base": "21d3f72066f84fbade2f0ac085cd37eb121a7ef8",
+    "request": "WR-CLAUDE-BRAIN032-FN4-ORACLE-TDD-3547-20261027-12",
+    "contract_sources": [
+      "L4 template-semantic-supply.json /oracle_view_boundary_contract/same_call",
+      "L4 /oracle_view_boundary_contract/partial_context_projection",
+      "L5 template-semantic-supply.json /functions/4"
+    ],
+    "implemented_scope": "現時点ではdecode-nullとproducer/Binding不適合のpartial Context境界だけ。新rowを作れない場合の元入力/Comparisonを保持し、正常意味・F05/F06の7rule・carryはまだ実装しない。",
+    "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
+    "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。",
+    "projection": "null inputはfn4 producerとinput_binding=nullでaxes/findings空。別producer/Bindingの原Comparisonは混在させず新Axis/Findingを作らない。行無しからknown/意味成功/資格を認定しない。型形成不能一般Contextは枝ID付きNotImplementedErrorとし、public Contextへprivate frameを追加しない。",
+    "current_unclosed": "正規producer/同Bindingのformed ContextはF05/F06/unclosed/formed_contextとして停止する。normal_controlの対象3kind slot/実oracle/valueはL4 limits[1]の有限carry枝外であり、ここをemptyへ丸めない。7rule既存predicateの意味・将来typed witnessを削除するものではない。",
+    "prerequisite_gap": "現unitにはL5 evaluate_descriptor_definition_walk/DescriptorDefinitionEvaluation/DescriptorTargetRead/DescriptorTargetCallFrameのruntimeがまだ無い。fn1は15kind固定guardでF05 slot除去/fill_definition Claimが先に未対応停止する。別call/手作りfn1結果/scaffold evaluator/旧runtimeで代用せず、Issue3547 comment6427471646へ統制のscope確認を送った。fn1/frame前提を本WRで閉じるか別前提に返すかは未決のまま明示する。",
+    "authority_items": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/4",
+        "id": "HELIXBRAIN-L3-032-F05",
+        "canonical_json_sha256": "8031f597a4a329d36a8d011f817ff9415e41d7a1d4da14c572b82e128711eeb7"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/5",
+        "id": "HELIXBRAIN-L3-032-F06",
+        "canonical_json_sha256": "9721a41851277293e285543b3afa3676f455ac7c9a14a2624e127d9326ad01d8"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/4",
+        "id": "HELIXBRAIN-L10-032-F05",
+        "canonical_json_sha256": "cfa8fc2a5e9a23bdc55890925d6b8a20e33b16afd8c897f3a2e7f3191cc0522f"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/5",
+        "id": "HELIXBRAIN-L10-032-F06",
+        "canonical_json_sha256": "50a001af2e6bb9a3267a0c3a890e931071e0cdffb67e3e3345c36e7d0786f178"
+      }
+    ],
+    "authority_boundary": "47354be8c1ef225dd7eacffe390d268c0dfee784のF05/F06 L3/L10対象4項目と現行entryは同値、decision admission f28f1c9cd8f725758f8904d92dfa8c851f1ddb60はworking baseの祖先。文書全体へ旧承認を拡張しない。",
+    "legacy_rederivation": {
+      "mode": "L4で既定の意味再導出を継承し、旧registry/projector/runtimeをcopy/実行しない。",
+      "sources": [
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 design-template-json-authority.md:16–92",
+        "LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5同名:30–148",
+        "LEGACY-ASSET-F280A8697E2AA4E7D18E:旧tests/requirement-generated-view.test.ts:13–57（本文読取りのみ）"
+      ],
+      "failure": "旧predecessor-harness-full-weakness-audit:65–101 UTW-014/020/021",
+      "preserved": "JSON→view一方向、説明と意味分離、unknown非成功、原局所不足/矛盾・義務とoracle traceの保持。",
+      "changed": "旧lifecycle/整数版/式木を採らず既存Context3/Comparison4へ局所返却する。finite carryはL4自身が新AI技術選択と明記し、今回まだ成立させたとはしない。"
+    },
+    "execution_state": "partial_context_green_full_FN4_in_progress",
+    "authority_effect": "none"
   }
 }
