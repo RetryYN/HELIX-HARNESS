@@ -556,7 +556,7 @@
       "red_before_source_fix": "初回・R1・M10のtest-first履歴に加え、最新reviewのtest-only訂正とR3追加観測はR3_review_reentryに記録する。旧期待のRedと訂正後のRed、修正前Redと既存Green対照を区別する。",
       "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
       "root_result": "root独立実行: 全unit158 tests=156 PASS/既知fn1 NEG02・NEG21の2 errors、failures=0。fn3 identity 115 tests、fn0直接9 testsを含む。両errorはF02/required_kind_slot_mismatchで変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも再現済み。bounded_exec duration8288ms/reaped=true/truncated=false。全成功とは認定しない。",
-      "latest_main_integration": "main 8fd1086b2fe5e83f877dfa72890c68da7c116df3をfcd6d2a29a3b53f1f5ac9200298930f82a3df792で無競合統合。実行済みsource/test群のblobは不変。L4 identity_version_trace_contractとL5 functions/3はreview基準6fa6から不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
+      "latest_main_integration": "main 1589b664f82531991684e97fc0d7c1390386f728を8ed800f9990afc5b2994d5a00679a1b71ac2d117で無競合統合。差分はscaffold/tools/worktree_reclaim.pyと同selftestのみで、実行済みsource/testとL4 identity_version_trace_contract/L5 functions/3のblobは不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
       "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。",
       "previous_observation": "M10分割時cee2d90e01526b7d9fe9633ab80683afb05d3585では120件/118PASS/既知fn1errors2。初回55/89件とR1の記録はgit bd9cc52f18d416d43b9e674f19e2b8d175e8942bの同pointerから辿る。各旧観測を現行test訂正後のRedへ流用しない。",
