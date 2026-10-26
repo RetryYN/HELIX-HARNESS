@@ -142,22 +142,21 @@
   },
   "partial_oracle_and_stop_boundary": {
     "partial_oracle_ja": "各caseが指定する公開Comparison（carry2軸と対象F03 AxisResultの7member: subject_ref/binding/axis/state/original_refs/reason/backflow_owner、Findingの9member: code/rule_ref/subject_ref/binding/axis/state/source_refs/reason/backflow_owner、producer_symbol、input_binding）と、private _evaluate_field_values_detail が返す F03Evaluation の L4/L5 closed_types スキーマ・member名完全一致、row.axis_indices と Comparison.axes のcarry offset込み1対1対応、L4 reason_writer (problem_reason_table[branch] + \"\\n\" + canonical_json(reason_material)) 完全一致、original_refs の各分岐導出順序（definition_empty: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref] / definition_unknown: [field.ref, descriptor_slot_ref, knowledge_ref] / definition_known: [field.ref, descriptor_slot_ref, knowledge_ref, owner_source_ref, fact.ref, fact.source_ref, op_source_ref, operation_ref, ...basis_refs] / applicability_null・field_unknown(null): [knowledge_ref] / parent_na_no_transfer・applicability_*・field_*(resolved): [app_rec.ref, knowledge_ref, app_rec.source_ref] / value_*(resolved): [val_rec.ref, knowledge_ref, val_rec.source_ref] の原出現順保持）、および入力不変性をassertする。L8/L9のwhole fixtureは複製しない。",
-    "claim_unrecognized_or_incomplete_protocol_ja": "L5#/field_value_applicability_detail/claim_protocol/unrecognized_or_incomplete_ja および target_match_ja に従い、F03対象Claimでbinding（frame）不一致、対象section_field不在、basis_refs要素の非Ref形状、またはkind/proposed_valueがF03固定判定テーブルの対象外・未供給・型外・否定literalである場合はNotImplementedErrorとせず、0 finding・Claim保持・原軸不変をassertする（N03経路のoperation_deadline/resource_capacity/reference_fixture境界停止は維持する）。",
+    "claim_unrecognized_or_incomplete_protocol_ja": "L5#/field_value_applicability_detail/claim_protocol/unrecognized_or_incomplete_ja および target_match_ja に従い、F03対象Claimでbinding（frame）不一致、対象section_field不在、6必須member外・actor!=\"BRAIN\"・basis_refs非配列またはbasis_refs要素の非Ref形状、またはkind/proposed_valueがF03固定判定テーブルの対象外・未供給・型外・否定literalである場合はNotImplementedErrorとせず、0 finding・Claim保持・原軸不変をassertする（N03経路のoperation_deadline/resource_capacity/reference_fixture境界停止およびClaim非object停止は維持する）。",
     "unclosed_stop_branches": [
       "F03/context_or_input_shape: evaluate_field_values_detailのcontext/snapshot/definitions閉形状または必須root配列（binding/values/section_fields/claims）欠落・非配列経路",
       "F03/applicability_records_absent_or_shape: raw入力のapplicability_records欠落または非配列経路",
-      "F03/carrier_or_source_record_shape: F03対象semantic sourceまたはcarrier container/entry（SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/KnowledgeRecord/MeaningComparison/DescriptorSlot）の欠落・型・形状・Ref型・ValueFact value/origin組合せ不整合またはunusable source経路",
+      "F03/carrier_or_source_record_shape: F03対象semantic sourceまたはcarrier container/entry（SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/KnowledgeRecord/MeaningComparison/DescriptorSlot/Claim）の欠落・型・形状・Ref型・ValueFact value/origin組合せ不整合またはunusable source経路",
       "F03/duplicate_conflicting_carrier_records: 同一Refで本文またはframeが異なる複数SectionField/ValueFact/ApplicabilityRecord/DescriptorTarget/AttributionまたはClaim.subject_refに対する複数section_fields一致のconflict経路",
       "F03/meaning_comparison_pair_read: owner解決済みSectionFieldの非空meaning_fact_refsにmeaning_comparisonsの関連pairが参加する経路",
-      "F03/meaning_operation_shape: definition_meaning_operationsの要素形状・同一factに対する引数/normative_frame不整合・decision.reason/raw_semantic_basis型・basis_refs Ref配列・非positive判定・target/fact/attribution未解決の未閉鎖経路",
-      "F03/na_incomplete_branch: ApplicabilityRecord.decision=not_applicableでowner/reason/reentry_conditionのいずれかがnullまたは未供給、またはdecision不正値の経路",
+      "F03/meaning_operation_shape: definition_meaning_operationsの要素形状・同一factに対する引数/normative_frame不整合・decision.reason/raw_semantic_basis型・basis_refs Ref配列・非positive判定の未閉鎖経路",
+      "F03/na_incomplete_branch: ApplicabilityRecord.decision=not_applicableでowner/reason/reentry_conditionのいずれかがnullまたは未供給、またはdecision不正値の経路（fieldおよびparent_sectionの両経路）",
       "F03/value_applicability_supplied: ValueFact.applicability_refがnon-nullで解決されるvalue_na専用評価経路",
-      "F03/empty_value_fact_refs_non_empty_owner: owner解決済み・定義knownまたはApplicabilityRecord.decision=applicable解決済みのSectionFieldでvalue_fact_refsが空配列の未閉鎖経路",
-      "F03/claim_shape_or_actor: F03経路で評価されるClaimが非object・6必須member外・actor!=\"BRAIN\"・basis_refs非配列である経路"
+      "F03/empty_value_fact_refs_non_empty_owner: owner解決済み・定義knownまたはApplicabilityRecord.decision=applicable解決済みのSectionFieldでvalue_fact_refsが空配列の未閉鎖経路"
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
-  "execution_state": "scope_executed_red_then_green",
+  "execution_state": "red_pending_r3_fixes",
   "execution_evidence": {
     "test_commit": "501cb22762835b7292b7bc747ced95e295247daa",
     "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability",

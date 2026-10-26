@@ -20,25 +20,11 @@ def _load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 def _ref_from(base_ref: dict, identity: str, *, owner: str | None = "_KEEP_", sha256: str | None = None) -> dict:
-    ref = copy.deepcopy(base_ref)
-    ref["identity"] = identity
-    if owner != "_KEEP_":
-        ref["owner"] = owner
-    ref["source_locator"] = None
-    ref["sha256"] = sha256
-    return ref
-
-def _refs_in_order(refs: list[dict | None]) -> list[dict]:
-    return [copy.deepcopy(ref) for ref in refs if isinstance(ref, dict)]
-
-def _pres(val: object = None, *, present: bool = True) -> dict:
-    return {"presence": "supplied", "value": copy.deepcopy(val)} if present else {"presence": "absent"}
-
-def _ev(branch: str, axis: str, state: str, owner: str | None, refs: list[dict | None], *, cause: str | None = None) -> dict:
-    return {"branch": branch, "axis": axis, "state": state, "backflow_owner": owner, "original_refs": refs, "cause": cause}
-
-def _fnd(code: str, rule_ref: str, subject_ref: dict, axis: str, state: str, refs: list[dict | None], owner: str) -> dict:
-    return {"code": code, "rule_ref": rule_ref, "subject_ref": subject_ref, "axis": axis, "state": state, "source_refs": refs, "backflow_owner": owner}
+    return {**copy.deepcopy(base_ref), "identity": identity, "owner": base_ref["owner"] if owner == "_KEEP_" else owner, "source_locator": None, "sha256": sha256}
+def _refs_in_order(refs: list[dict | None]) -> list[dict]: return [copy.deepcopy(ref) for ref in refs if isinstance(ref, dict)]
+def _pres(val: object = None, *, present: bool = True) -> dict: return {"presence": "supplied", "value": copy.deepcopy(val)} if present else {"presence": "absent"}
+def _ev(branch: str, axis: str, state: str, owner: str | None, refs: list[dict | None], *, cause: str | None = None) -> dict: return {"branch": branch, "axis": axis, "state": state, "backflow_owner": owner, "original_refs": refs, "cause": cause}
+def _fnd(code: str, rule_ref: str, subject_ref: dict, axis: str, state: str, refs: list[dict | None], owner: str) -> dict: return {"code": code, "rule_ref": rule_ref, "subject_ref": subject_ref, "axis": axis, "state": state, "source_refs": refs, "backflow_owner": owner}
 
 def _add_qualified_semantic_source(raw: dict, *, identity: str, owner: str | None, content: dict, add_to_knowledge_provenance: bool = False) -> dict:
     body_bytes = canonical_json_bytes(content)
@@ -389,6 +375,12 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             _, definitions_neg02, detail_neg02, public_neg02 = self._run_fn0_fn1_fn2(raw_neg02)
             self._assert_row_and_public_oracle( raw_neg02, definitions_neg02, detail_neg02, public_neg02, expected_events=expected_ev, expected_findings=[_fnd("definition_as_value_gap", "HELIXBRAIN-L5-032-R-definition_as_value_gap", field["ref"], "field.definition", "missing", [*expected_refs, field["ref"], basis_ref], "knowledge_owner")], )
             self.assertEqual(detail_neg02["rows"][0]["finding_indices"], [0])
+        with self.subTest(case="R3-m6_rule55_neg_proposed_not_value_only_on_definition_empty"):
+            raw_r55_neg = copy.deepcopy(raw)
+            raw_r55_neg["claims"] = [_claim(field["ref"], raw["binding"], "value_only_gap", "not_value_only")]
+            _, defs_r55_neg, detail_r55_neg, pub_r55_neg = self._run_fn0_fn1_fn2(raw_r55_neg)
+            self._assert_row_and_public_oracle(raw_r55_neg, defs_r55_neg, detail_r55_neg, pub_r55_neg, expected_events=expected_ev, expected_findings=[])
+            self.assertEqual(detail_r55_neg["rows"][0]["finding_indices"], [])
         with self.subTest(case="m3_other_source_owner_problems_preserved_when_resolved"):
             raw_multi = copy.deepcopy(raw)
             other_field = copy.deepcopy(field)
@@ -541,7 +533,17 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
                     raw_m5["values"][0]["source_ref"]["owner"] = None
                 else:
                     _, defs_m5, detail_m5, pub_m5 = self._run_fn0_fn1_fn2(raw_m5)
-                self._assert_row_and_public_oracle( raw_m5, defs_m5, detail_m5, pub_m5, row_index=0, expected_events=[ _ev("definition_known", "field.definition", "known", "synthetic-knowledge-owner", self._def_known_refs(raw_m5, f0, map_src_ref, op_m5)), _ev("applicability_null", "applicability.evaluation", "unknown", custom_owner, [raw_m5["binding"]["knowledge_ref"]]), _ev("value_unknown", "field.value", "unknown", custom_owner, [v0["ref"], raw_m5["binding"]["knowledge_ref"], v_src_placeholder] if custom_owner is not None else [v0["ref"], v_src_placeholder]), _ev("field_unknown", "field.applicability", "unknown", custom_owner, [raw_m5["binding"]["knowledge_ref"]]), ], expected_findings=[], )
+                self._assert_row_and_public_oracle( raw_m5, defs_m5, detail_m5, pub_m5, row_index=0, expected_events=[ _ev("definition_known", "field.definition", "known", "synthetic-knowledge-owner", self._def_known_refs(raw_m5, f0, map_src_ref, op_m5)), _ev("applicability_null", "applicability.evaluation", "unknown", custom_owner, [raw_m5["binding"]["knowledge_ref"]]), _ev("value_unknown", "field.value", "unknown", custom_owner if custom_owner is not None else "synthetic-knowledge-owner", [v0["ref"], raw_m5["binding"]["knowledge_ref"], v_src_placeholder] if custom_owner is not None else [v0["ref"], v_src_placeholder]), _ev("field_unknown", "field.applicability", "unknown", custom_owner, [raw_m5["binding"]["knowledge_ref"]]), ], expected_findings=[], )
+            with self.subTest(case="R3-m5_resolved_app_read_with_null_owner_is_none"):
+                raw_r5 = base_input(self.document)
+                _, f0_r5 = self._prep_f03_field0(raw_r5, with_meaning=True, clear_values=True)
+                core_ref_r5 = _ref_from(raw_r5["binding"]["template_ref"], "SYNTHETIC-F03-CORE-SOURCE-R5", owner="synthetic-core-owner")
+                app0_r5 = raw_r5["applicability_records"][0]
+                app0_r5.update({"owner": None, "decision": "unknown", "reason": "未決", "reentry_condition": {"when": "変更時"}, "source_ref": copy.deepcopy(core_ref_r5)})
+                op_r5, map_ref_r5 = self._add_f03_core_and_mapping_sources(raw_r5, [f0_r5], app_records=[app0_r5], core_owner="synthetic-core-owner", core_id="SYNTHETIC-F03-CORE-SOURCE-R5", map_id="SYNTHETIC-F03-MAPPING-SOURCE-R5")
+                _, defs_r5, detail_r5, pub_r5 = self._run_fn0_fn1_fn2(raw_r5)
+                app_refs_r5 = [app0_r5["ref"], raw_r5["binding"]["knowledge_ref"], core_ref_r5]
+                self._assert_row_and_public_oracle(raw_r5, defs_r5, detail_r5, pub_r5, row_index=0, expected_events=[_ev("definition_known", "field.definition", "known", "synthetic-knowledge-owner", self._def_known_refs(raw_r5, f0_r5, map_ref_r5, op_r5)), _ev("applicability_unknown", "applicability.evaluation", "unknown", None, app_refs_r5), _ev("field_unknown", "field.applicability", "unknown", None, app_refs_r5)], expected_findings=[])
 
     def test_f03_explicit_applicability_unknown_and_neg03_applicability_unknown_as_na(self) -> None:
         raw = base_input(self.document)
@@ -588,6 +590,12 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             _, definitions_neg04, detail_neg04, public_neg04 = self._run_fn0_fn1_fn2(raw_neg04)
             self._assert_row_and_public_oracle( raw_neg04, definitions_neg04, detail_neg04, public_neg04, expected_events=expected_ev, expected_findings=[_fnd("section_na_all_fields", "HELIXBRAIN-L5-032-R-section_na_all_fields", field0["ref"], "field.applicability", "unknown", [*parent_refs, field0["ref"]], "core_owner")], )
             self.assertEqual(detail_neg04["rows"][0]["finding_indices"], [0])
+        with self.subTest(case="R3-m6_rule57_neg_proposed_applicable_on_parent_na_no_transfer"):
+            raw_r57_neg = copy.deepcopy(raw)
+            raw_r57_neg["claims"] = [_claim(field0["ref"], raw["binding"], "all_section_fields_not_applicable", "applicable")]
+            _, defs_r57_neg, detail_r57_neg, pub_r57_neg = self._run_fn0_fn1_fn2(raw_r57_neg)
+            self._assert_row_and_public_oracle(raw_r57_neg, defs_r57_neg, detail_r57_neg, pub_r57_neg, expected_events=expected_ev, expected_findings=[])
+            self.assertEqual(detail_r57_neg["rows"][0]["finding_indices"], [])
 
     def test_f03_l9_justified_field_na_and_supplied_false_zero_empty_applicable(self) -> None:
         with self.subTest(case="F03-L9-JUSTIFIED-FIELD-NA"):
@@ -618,6 +626,46 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
                 val_refs = [val0["ref"], raw_sup["binding"]["knowledge_ref"], core_src_placeholder]
                 self._assert_row_and_public_oracle( raw_sup, definitions_sup, detail_sup, public_sup, expected_events=[ _ev("definition_known", "field.definition", "known", "synthetic-knowledge-owner", self._def_known_refs(raw_sup, field0, mapping_source_ref, op)), _ev("applicability_applicable", "applicability.evaluation", "applicable", "synthetic-core-owner", app_refs), _ev("value_supplied", "field.value", "supplied", "synthetic-core-owner", val_refs), _ev("field_applicable", "field.applicability", "applicable", "synthetic-core-owner", app_refs), ], expected_findings=[], )
                 self.assertEqual(detail_sup["rows"][0]["events"][2]["reason_material"]["original_presence"], {"presence": "supplied", "value": supplied_val})
+        for unk_origin in ("absent", "reference_fixture"):
+            with self.subTest(case="R3-m3_non_null_value_with_non_operational_origin_is_value_unknown", origin=unk_origin):
+                raw_m3 = base_input(self.document)
+                _, f0_m3 = self._prep_f03_field0(raw_m3, with_meaning=True, clear_values=False)
+                core_ref_m3 = _ref_from(raw_m3["binding"]["template_ref"], "SYNTHETIC-F03-CORE-SOURCE", owner="synthetic-core-owner")
+                val_m3 = raw_m3["values"][0]
+                val_m3.update({"value": "7 years", "origin": unk_origin, "reason": "参照fixture又は未供給origin", "source_ref": copy.deepcopy(core_ref_m3), "applicability_ref": None})
+                app_m3 = raw_m3["applicability_records"][0]
+                app_m3.update({"owner": "synthetic-core-owner", "decision": "applicable", "reason": "適用", "reentry_condition": {"when": "条件変更時"}, "source_ref": copy.deepcopy(core_ref_m3)})
+                op_m3, map_ref_m3 = self._add_f03_core_and_mapping_sources(raw_m3, [f0_m3], value_facts=[val_m3], app_records=[app_m3])
+                _, defs_m3, detail_m3, pub_m3 = self._run_fn0_fn1_fn2(raw_m3)
+                app_refs_m3 = [app_m3["ref"], raw_m3["binding"]["knowledge_ref"], core_ref_m3]
+                val_refs_m3 = [val_m3["ref"], raw_m3["binding"]["knowledge_ref"], core_ref_m3]
+                self._assert_row_and_public_oracle(raw_m3, defs_m3, detail_m3, pub_m3, expected_events=[_ev("definition_known", "field.definition", "known", "synthetic-knowledge-owner", self._def_known_refs(raw_m3, f0_m3, map_ref_m3, op_m3)), _ev("applicability_applicable", "applicability.evaluation", "applicable", "synthetic-core-owner", app_refs_m3), _ev("value_unknown", "field.value", "unknown", "synthetic-core-owner", val_refs_m3), _ev("field_applicable", "field.applicability", "applicable", "synthetic-core-owner", app_refs_m3)], expected_findings=[])
+                self.assertEqual(detail_m3["rows"][0]["events"][2]["reason_material"]["original_presence"], {"presence": "supplied", "value": "7 years"})
+        # R3-m4: target_unknown, selected_fact_unresolved, attribution_unknown, meaning_read_unresolved -> definition_unknown
+        for m4_cause, mut_m4 in (
+            ("target_unknown", lambda r: r["sources"][-1]["content"].__setitem__("descriptor_targets", [])),
+            ("selected_fact_unresolved", lambda r: next(s for s in r["descriptors"] if s["descriptor_kind"] == "required field").__setitem__("facts", [])),
+            ("attribution_unknown", lambda r: next(g for g in r["sources"][0]["content"]["descriptor_facts"] if g["slot_identity"] == "synthetic-descriptor-7").__setitem__("facts", [])),
+            ("meaning_read_unresolved", lambda r: r["sources"][-1]["content"].__setitem__("definition_meaning_operations", [])),
+        ):
+            with self.subTest(case="R3-m4_definition_unknown_causes", cause=m4_cause):
+                raw_m4 = base_input(self.document)
+                slot7_m4, f0_m4 = self._prep_f03_field0(raw_m4, with_meaning=True, clear_values=True)
+                f0_m4["applicability_ref"] = None
+                raw_m4["applicability_records"] = []
+                fact0_m4 = copy.deepcopy(slot7_m4["facts"][0])
+                _, map_ref_m4 = self._add_f03_core_and_mapping_sources(raw_m4, [f0_m4])
+                val_m4 = validate_supply_input(raw_m4)
+                defs_m4 = compare_descriptor_definitions({"validated": val_m4})
+                mut_m4(val_m4["input"])
+                if m4_cause in ("target_unknown", "meaning_read_unresolved"):
+                    _resync_last_semantic_source(val_m4["input"])
+                map_ref_m4_after = copy.deepcopy(val_m4["input"]["sources"][-1]["ref"])
+                exp_refs_m4 = [f0_m4["ref"], f0_m4["descriptor_slot_ref"], raw_m4["binding"]["knowledge_ref"], map_ref_m4_after, fact0_m4["ref"]] if m4_cause in ("target_unknown", "selected_fact_unresolved") else [f0_m4["ref"], f0_m4["descriptor_slot_ref"], raw_m4["binding"]["knowledge_ref"], map_ref_m4_after, fact0_m4["ref"], fact0_m4["source_ref"]]
+                detail_m4 = _evaluate_field_values_detail({"snapshot": val_m4, "definitions": defs_m4})
+                pub_m4 = compare_values_and_applicability({"validated": val_m4, "definitions": defs_m4})
+                self._assert_row_and_public_oracle(val_m4["input"], defs_m4, detail_m4, pub_m4, expected_events=[_ev("definition_unknown", "field.definition", "unknown", "synthetic-knowledge-owner", exp_refs_m4, cause=m4_cause)], expected_findings=[])
+                self.assertEqual(detail_m4["rows"][0]["definition_read"]["judgments"][0]["cause"], m4_cause)
 
     def test_f03_vf3_claim_selection_and_non_firing_contrasts(self) -> None:
         raw = base_input(self.document)
@@ -656,7 +704,7 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
         other_binding = copy.deepcopy(raw["binding"])
         other_binding["template_ref"] = _ref_from(raw["binding"]["template_ref"], "SYNTHETIC-OTHER-TEMPLATE-99")
         other_subject = _ref_from(field0["ref"], "SYNTHETIC-OTHER-FIELD-99")
-        non_firing_claim_cases = [ ("rule55_contrast_definition_known_not_missing", [_claim(field0["ref"], raw["binding"], "value_only_gap", "unknown")]), ("rule55_contrast_negative_proposed_value", [_claim(field0["ref"], raw["binding"], "value_only_gap", "not_value_only")]), ("rule56_contrast_negative_proposed_value", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "applicable")]), ("rule57_contrast_not_parent_na_branch", [_claim(field0["ref"], raw["binding"], "all_section_fields_not_applicable", "not_applicable")]), ("m2_unrecognized_f03_claim_kind", [_claim(field0["ref"], raw["binding"], "unrecognized_f03_kind", "unknown")]), ("m2_unrecognized_f03_proposed_value_literal", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "invalid_literal")]), ("m2_null_f03_proposed_value", [_claim(field0["ref"], raw["binding"], "value_only_gap", None)]), ("R2-M5_claim_frame_binding_mismatch_preserved_0_findings", [_claim(field0["ref"], other_binding, "field_not_applicable", "not_applicable")]), ("R2-M5_claim_subject_mismatch_preserved_0_findings", [_claim(other_subject, raw["binding"], "field_not_applicable", "not_applicable")]), ]
+        non_firing_claim_cases = [ ("rule55_contrast_definition_known_not_missing", [_claim(field0["ref"], raw["binding"], "value_only_gap", "unknown")]), ("rule55_contrast_negative_proposed_value", [_claim(field0["ref"], raw["binding"], "value_only_gap", "not_value_only")]), ("rule56_contrast_negative_proposed_value", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "applicable")]), ("rule57_contrast_not_parent_na_branch", [_claim(field0["ref"], raw["binding"], "all_section_fields_not_applicable", "not_applicable")]), ("m2_unrecognized_f03_claim_kind", [_claim(field0["ref"], raw["binding"], "unrecognized_f03_kind", "unknown")]), ("m2_unrecognized_f03_proposed_value_literal", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "invalid_literal")]), ("m2_null_f03_proposed_value", [_claim(field0["ref"], raw["binding"], "value_only_gap", None)]), ("R2-M5_claim_frame_binding_mismatch_preserved_0_findings", [_claim(field0["ref"], other_binding, "field_not_applicable", "not_applicable")]), ("R2-M5_claim_subject_mismatch_preserved_0_findings", [_claim(other_subject, raw["binding"], "field_not_applicable", "not_applicable")]), ("R3-M2_claim_basis_refs_empty_dict_elem", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "not_applicable", [{}])]), ("R3-M2_claim_basis_refs_none_elem", [_claim(field0["ref"], raw["binding"], "field_not_applicable", "not_applicable", [None])]), ("R3-m1_claim_extra_key_preserved_0_findings", [{**_claim(field0["ref"], raw["binding"], "field_not_applicable", "not_applicable"), "extra": 1}]), ("R3-m1_claim_actor_other_preserved_0_findings", [{**_claim(field0["ref"], raw["binding"], "field_not_applicable", "not_applicable"), "actor": "OTHER"}]), ("R3-m1_claim_basis_refs_not_list_preserved_0_findings", [{**_claim(field0["ref"], raw["binding"], "field_not_applicable", "not_applicable"), "basis_refs": "bad"}]), ("R3-m1_other_frame_malformed_claim_preserved_0_findings", [{**_claim(other_subject, other_binding, "field_not_applicable", "not_applicable"), "actor": "OTHER", "basis_refs": "bad", "extra": 1}]), ]
         for label, claims_list in non_firing_claim_cases:
             with self.subTest(case=label):
                 raw_nf = copy.deepcopy(raw)
@@ -748,11 +796,7 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             self.assertEqual(definitions, definitions_before)
 
         expected_l7_tags = [entry.split(":", 1)[0].strip() for entry in self.l7_doc["partial_oracle_and_stop_boundary"]["unclosed_stop_branches"]]
-        impl_tags = {
-            f"F03/{m}"
-            for py_file in sorted(SRC_DIR.glob("values_applicability*.py"))
-            for m in re.findall(r'_f03_stop\(\s*"([^"]+)"', py_file.read_text(encoding="utf-8"))
-        }
+        impl_tags = {f"F03/{m}" for py_file in sorted(SRC_DIR.glob("values_applicability*.py")) for m in re.findall(r'_f03_stop\(\s*"([^"]+)"', py_file.read_text(encoding="utf-8"))}
         with self.subTest(check="impl_stop_tags_match_l7"):
             self.assertEqual(sorted(impl_tags), sorted(expected_l7_tags))
         tested_tags: set[str] = set()
@@ -809,6 +853,10 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             ("value_fact_refs_not_list", lambda v: (v["input"]["section_fields"][0].__setitem__("value_fact_refs", "bad"), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("value_fact_refs", "bad"))),
             ("value_fact_refs_non_ref_elem", lambda v: (v["input"]["section_fields"][0].__setitem__("value_fact_refs", ["bad"]), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("value_fact_refs", ["bad"]))),
             ("parent_section_ref_not_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", "bad"), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", "bad"))),
+            ("R3-M1_descriptor_slot_ref_not_ref", lambda v: (v["input"]["section_fields"][0].__setitem__("descriptor_slot_ref", "bad-slot-ref"), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("descriptor_slot_ref", "bad-slot-ref"))),
+            ("R3-m2_meaning_comparisons_elem_not_dict", lambda v: v["input"]["meaning_comparisons"].append("not-a-dict")),
+            ("R3-m2_parent_applicability_elem_not_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("parent_section_ref", _ref_from(v["input"]["binding"]["template_ref"], "SYNTHETIC-PARENT-SEC")), _resync_last_semantic_source(v["input"]), v["input"]["applicability_records"].append("not-a-dict"))),
+            ("R3-m1_claim_not_dict", lambda v: (v["input"]["section_fields"][0].__setitem__("meaning_fact_refs", []), v["input"]["sources"][-1]["content"]["section_field_records"][0]["record"].__setitem__("meaning_fact_refs", []), _resync_last_semantic_source(v["input"]), v["input"]["claims"].append("not-a-dict"))),
         ):
             with self.subTest(branch=tag2, case=sub_case):
                 assert_stops(make_f03_base(with_meaning=True), tag2, mutate_validated_fn=mut_fn)
@@ -887,6 +935,20 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
                 raw7["applicability_records"] = [copy.deepcopy(inc_app)]
                 _add_qualified_semantic_source(raw7, identity="SYNTHETIC-F03-CORE-SOURCE", owner="synthetic-core-owner", content={"binding": copy.deepcopy(raw7["binding"]), "field_applicability_records": [copy.deepcopy(inc_app)]}, add_to_knowledge_provenance=False)
                 assert_stops(raw7, tag7)
+        for missing_parent_key in ("owner", "reason", "reentry_condition"):
+            with self.subTest(branch=tag7, parent_na_null_key=missing_parent_key):
+                raw7p = make_f03_base(with_meaning=True)
+                p_sec_ref = _ref_from(raw7p["binding"]["template_ref"], "SYNTHETIC-F03-PARENT-SEC", owner="synthetic-knowledge-owner")
+                p_app_ref = _ref_from(raw7p["binding"]["template_ref"], "SYNTHETIC-F03-PARENT-APP-INC", owner="synthetic-core-owner")
+                core_ref7p = _ref_from(raw7p["binding"]["template_ref"], "SYNTHETIC-F03-CORE-SOURCE-7P", owner="synthetic-core-owner")
+                raw7p["section_fields"][0]["parent_section_ref"] = copy.deepcopy(p_sec_ref)
+                raw7p["sources"][-1]["content"]["section_field_records"][0]["record"]["parent_section_ref"] = copy.deepcopy(p_sec_ref)
+                _resync_last_semantic_source(raw7p)
+                p_inc_rec = {"ref": copy.deepcopy(p_app_ref), "subject_ref": copy.deepcopy(p_sec_ref), "binding": copy.deepcopy(raw7p["binding"]), "owner": "synthetic-core-owner", "decision": "not_applicable", "reason": "親N/A理由", "reentry_condition": {"when": "later"}, "source_ref": copy.deepcopy(core_ref7p)}
+                p_inc_rec[missing_parent_key] = None
+                raw7p["applicability_records"] = [copy.deepcopy(p_inc_rec)]
+                _add_qualified_semantic_source(raw7p, identity="SYNTHETIC-F03-CORE-SOURCE-7P", owner="synthetic-core-owner", content={"binding": copy.deepcopy(raw7p["binding"]), "field_applicability_records": [copy.deepcopy(p_inc_rec)]}, add_to_knowledge_provenance=False)
+                assert_stops(raw7p, tag7)
 
         # 7) F03/value_applicability_supplied
         tag8 = "F03/value_applicability_supplied"
@@ -924,17 +986,6 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
             _add_qualified_semantic_source(raw9_app, identity="SYNTHETIC-F03-CORE-SOURCE-9", owner="synthetic-core-owner", content={"binding": copy.deepcopy(raw9_app["binding"]), "field_applicability_records": [copy.deepcopy(app_rec9)]}, add_to_knowledge_provenance=False)
             assert_stops(raw9_app, tag9)
 
-        # 9) F03/claim_shape_or_actor (R2-M5)
-        tag10 = "F03/claim_shape_or_actor"
-        tested_tags.add(tag10)
-        for claim_case, mut_claim in (
-            ("claim_not_dict", lambda v: v["input"]["claims"].append("not-a-dict")),
-            ("claim_extra_key", lambda v: v["input"]["claims"].append({**_claim(v["input"]["section_fields"][0]["ref"], v["input"]["binding"], "value_only_gap", "unknown"), "extra": 1})),
-            ("claim_bad_actor", lambda v: v["input"]["claims"].append({**_claim(v["input"]["section_fields"][0]["ref"], v["input"]["binding"], "value_only_gap", "unknown"), "actor": "OTHER"})),
-            ("claim_basis_refs_not_list", lambda v: v["input"]["claims"].append({**_claim(v["input"]["section_fields"][0]["ref"], v["input"]["binding"], "value_only_gap", "unknown"), "basis_refs": "bad"})),
-        ):
-            with self.subTest(branch=tag10, case=claim_case):
-                assert_stops(make_f03_base(), tag10, mutate_validated_fn=mut_claim)
 
         self.assertEqual(sorted(tested_tags), sorted(expected_l7_tags))
 
