@@ -1,0 +1,201 @@
+{
+  "record_id": "BRAIN032-F03-N03-PAIR-FREEZE-20261026",
+  "record_kind": "child_pair_freeze_under_boundary_decision",
+  "authority_effect": "none",
+  "source_main": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
+  "recorded_at_utc": "2026-10-26T03:41:02+00:00",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405690269",
+  "prior_record": {
+    "path": "docs/governance/audits/tdd/brain032-14child-remaining-recheck-2026-10-26.json",
+    "revision": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
+    "sha256": "8c20bde6d97e66b99f6297c492ab4dccfe09e1448d737e9e352182a9f8bb54a8",
+    "pointer_F03": "/children/4",
+    "pointer_N03": "/children/13"
+  },
+  "criterion": "L3の義務ごとにL4/L5の契約の行とL8/L9のcase行（oracle ID付き）がそろい、unknown・N/A・未完のそれぞれに戻し先（ownerとreentry）が付いていること。032設計自身へ戻す空の規則（(a)）が0件であること（再照合記録のcontrol_decision）。全返却の列挙は条件にしない。",
+  "closure_of_blocking_item": {
+    "id": "VF-3",
+    "closed_by": "PR #3695（merge commit 7d2aa64f62c5bb9df83c3c6b9057fa369a116858）",
+    "pointers": [
+      "L5#/field_value_applicability_detail/claim_protocol",
+      "L5#/functions/2/claim_protocol_pointer",
+      "L8#/additional_unit_cases/35",
+      "L8#/additional_unit_cases/36"
+    ],
+    "pointer_revision": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
+    "remaining_declared_by_closure": "L5#/field_value_applicability_detail/not_closed_here/5（全Claim組合せの入力・網羅検証、Claim間の矛盾裁定の一般規則、未認識値の一般回避は未閉包。いずれも新gateにせず、L7又は後続設計へ戻す）"
+  },
+  "path_aliases": {
+    "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+    "L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "L8": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+    "L9": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json"
+  },
+  "children": [
+    {
+      "child": "HELIXBRAIN-L3-032-F03",
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/2 (HELIXBRAIN-L3-032-F03)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2 (HELIXBRAIN-L10-032-F03)",
+        "L4_contract": "L4#/contracts/4",
+        "L5_contract": "L5#/contracts/4",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/4",
+        "L8_case": "L8#/cases/4",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "blocking_a_after_closure": 0,
+      "remaining_with_return": [
+        {
+          "id": "VF-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "契約（field_definition_cause_table 等）は L4 に在る。未行使causeの入力と期待は L7 で独立に導く。7caseの外へ新gateは足さない"
+        },
+        {
+          "id": "VF-2",
+          "category": "c",
+          "owner": "core_owner（実field値・適用判定）",
+          "reentry": "CORE の実値供給後、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "id": "DF-1",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）"
+        },
+        {
+          "id": "DF-4",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "NM-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7"
+        },
+        {
+          "id": "NM-2",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）"
+        },
+        {
+          "id": "NM-3",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計"
+        },
+        {
+          "id": "NM-4",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        }
+      ],
+      "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-N03",
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/nfr-grade.json#/requirements/2 (HELIXBRAIN-L3-032-N03)",
+        "L10": "docs/helix-brain/L10-verification/nfr-verification.json#/cases/2 (HELIXBRAIN-L10-032-N03)",
+        "L4_contract": "L4#/contracts/13",
+        "L5_contract": "L5#/contracts/13",
+        "L5_failure_rules_count": 3,
+        "L9_case": "L9#/cases/13",
+        "L8_case": "L8#/cases/13",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "blocking_a_after_closure": 0,
+      "remaining_with_return": [
+        {
+          "id": "BU-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        }
+      ],
+      "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
+    }
+  ],
+  "freeze_effect": {
+    "frozen": "F03とN03について、L4/L5の契約行とL8/L9のcase行を、source_mainのrevisionで凍結する。以後の意味変更は左の層へのBackflowとして扱い、L6/L7はこのrevisionの契約から期待値を独立に導く。",
+    "not_frozen": "fixture、全返却期待、hash、直列化、実装。これらはL6/L7でtestを先に書き、Redを観測してから実装でGreenにする。",
+    "implementation_entry": "凍結できたchildからL6/L7と実装に入る（統制の決定6405690269「実装に入る時期」、2026-10-12 PO判断 docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目 段階2）。"
+  },
+  "first_L6_L7_slice": {
+    "child": "HELIXBRAIN-L3-032-N03",
+    "function": "L5#/functions/2（compare_values_and_applicability）",
+    "tests_first": [
+      "L8#/cases/13/negative_cases/0..2（N03-NEG-01..03、rule 102..104）",
+      "L8#/additional_unit_cases/36（VF3-N03-CLAIMS）",
+      "L8#/function_oracles/2（normal oracle）"
+    ],
+    "expected_source": "期待値はL5 failure_rules 102..104とclaim_protocol/value_expression/n03_reference_fixtureから独立に導き、実装コードから読まない。",
+    "placement": "既存unit HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITIONの配置規則（L4#/first_local_unit_binding）に倣う。新しいunit identityを要する場合はL6で示す。",
+    "memory_bound": "大きいJSONの読込は時間とメモリの上限付きで行う。"
+  },
+  "not_claimed": [
+    "承認、完了、Issueのclose、実装Readyの宣言はしない。",
+    "件数やpointerの実在を意味閉包の根拠にしない。",
+    "新しいgate・閾値・資格・要求を作らない。",
+    "他の12 childは凍結しない（再照合記録の(a)が残る）。"
+  ]
+}
