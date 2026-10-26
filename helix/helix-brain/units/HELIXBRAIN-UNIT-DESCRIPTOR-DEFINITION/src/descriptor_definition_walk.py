@@ -141,6 +141,13 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     from definition_comparison import _fn1_scope_guard
 
     _fn1_scope_guard(raw, raw_binding)
+    from supply_validation import _json_equal
+
+    # Nullable Ref digests may compare equal while the original frames differ.
+    # This walk implements one raw root frame; retain other populations as an
+    # explicit unclosed branch instead of silently coalescing them.
+    if any(not _json_equal(slot["binding"], raw_binding) for slot in raw["descriptors"]):
+        _stop("raw_distinct_binding_frames")
     # These declared producer carriers need native special readers. Their
     # discovery precedes qualification; unknown candidates cannot become an
     # empty successful special-read population.
