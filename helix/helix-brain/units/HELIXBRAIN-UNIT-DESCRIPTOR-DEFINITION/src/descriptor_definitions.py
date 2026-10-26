@@ -1578,6 +1578,12 @@ def compare_values_and_applicability(context: dict[str, object]) -> dict[str, ob
     return _write_existing_comparison_from_f03(evaluation["comparison"])
 
 
+def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
+    from dependencies_handoff import compare_dependencies_and_handoff as _fn6
+
+    return _fn6(context)
+
+
 _FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 _IDENTITY_ACTUAL_AXES = (
     ("template.identity", "template_actual_ref", "/binding/template_ref", "/binding/template_ref"),

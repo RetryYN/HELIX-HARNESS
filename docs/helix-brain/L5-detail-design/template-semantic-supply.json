@@ -1421,9 +1421,9 @@
       "effect": "none",
       "algorithm": [
         "元KnowledgeRecordのstate/provenance/evaluation範囲/限界/反例/独立検証/採否をそれぞれ保持する。007/008/025の既存工程参照を使い、新昇格transitionを実装しない。",
-        "AI生成だけ、評価scope無し、独立検証無しでは昇格claimをunknownとし不足工程を返す。限定意味採用を運用accepted/matureへ転換するclaimは責務境界とconflict。",
+        "AI生成だけ、評価scope無し、独立検証無しでは昇格claim（knowledge_accepted/knowledge_promoted）をunknownとし不足工程を返す。一般文の「運用accepted/matureへ転換するclaimは責務境界とconflict」におけるaccepted/matureは運用採択・成熟状態の総称であり、failure_rules/83（limited_content_as_promotion）がconflict（true）又は非限定によるfalseを直接判定するaccepted条件はClaim.kind=knowledge_acceptedが限定意味採択（limited_adoption_ref）だけを根拠に運用knowledge acceptedを主張する場合に限る。knowledge_promotedとaccepted/matureの語彙対応など整合が一意に決まらない部分は、unknownを返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入することを既定とする。",
         "LABO評価/OS受領/候補生成の単独成功を運用stateに代入せず原stateを返す。採択/昇格の実作用を発行しない。",
-        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。本有限枝外は既存規則に従い、その一般writer未閉包を空列で置換しない。 別の非空candidate・claims absent/明示[]枝の全4fieldは/knowledge_promotion_detailへ束縛する。既存knowledge_trace_axesを一回使い、Claim原出現0件による四rule追加行0と原record unknownを区別する。候補empty枝/Claim有り/枝外をこの返却で置換しない。 Claimを含む有限P3b枝は/knowledge_promotion_claim_detailへdispatchする。全Claimが既存P2a局所witnessを形成可能な有限枝に限り同callの全4fieldを構成し、形成不能をskipした全返却成立にしない。P3a、candidate-empty、枝外とfn5全域を置換しない。"
+        "L4 /knowledge_promotion_contractの有限candidate-empty/非promotion枝に従いComparison全4fieldを返す。既存source_return_contractのknowledge_trace_axes/selected_bindingsを維持し、原KnowledgeRecord全値/presenceは同immutable validatedに保持する。空candidateをcaller knowledge_refで補わず、新昇格axis/transitionを作らない。本有限枝外は既存規則に従い、その一般writer未閉包を空列で置換しない。 別の非空candidate・claims absent/明示[]枝の全4fieldは/knowledge_promotion_detailへ束縛する。既存knowledge_trace_axesを一回使い、Claim原出現0件による四rule追加行0と原record unknownを区別する。候補empty枝/Claim有り/枝外をこの返却で置換しない。 Claimを含む有限P3b枝は/knowledge_promotion_claim_detailへdispatchする。全Claimが既存P2a局所witnessを形成可能な有限枝に限り同callの全4fieldを構成し、形成不能をskipした全返却成立にしない。本関数一般文のaccepted/matureとfailure_rules/83のaccepted条件の語彙整合及び一意に決まらない部分のunknown/knowledge_owner既定再入は/knowledge_promotion_claim_detail/vocabulary_alignment_and_default_reentryに従う。P3a、candidate-empty、枝外とfn5全域を置換しない。"
       ],
       "failure_rules": [
         "HELIXBRAIN-L5-032-R-generation_as_promotion",
@@ -3117,7 +3117,7 @@
       "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
       "oracle_ref": "HELIXBRAIN-L8-032-F08-NEG-04",
       "condition": "MSGCONTENT限定意味採択を運用knowledge acceptedへ変換",
-      "predicate": "限定意味内容の採択だけを既存運用knowledge acceptedへ代入するclaimが採択範囲を越えている。",
+      "predicate": "限定意味内容の採択（limited_adoption_ref）だけを既存運用knowledge accepted（Claim.kind=knowledge_accepted）へ代入するclaimが採択範囲を越えている。functions/5一般文のaccepted/mature非昇格のうち本ruleがconflict（true）又はfalseを直接判定するaccepted条件はClaim.kind=knowledge_acceptedに限られ、knowledge_promoted等の対応が一意に決まらない部分はunknownを返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入することを既定とする。",
       "predicate_status": "defined_candidate",
       "expected_axis": "promotion_claim",
       "expected_state": "conflict",
@@ -13853,7 +13853,7 @@
       "change_ja": "既存P1 traceを公開fn5の4fieldへ接続する。旧schema/registry/runtime/承認手続きは移さず、新helper/入力型/昇格stateを作らない。",
       "reason_ja": "UTW-014の未供給→空、UTW-020の部分不足隠蔽、UTW-021の自己申告完了を防ぐため、claims不在の行数0と原record unknown/全原値保持を区別する。"
     },
-    "limits_ja": ["11合成入力は本有限枝の期待だけ。実関数/helper/資格/実source/工程/runtime/CIを実行した証拠ではない。","Claim有り80–83と81scope true/非0数値の有限対照は後続P3へ残す。83のknowledge_promoted unknownをfalse/trueへ変えず、accepted/matureの語彙差を解決済みとしない。","D27 candidate-emptyの期待、原L9 POS/4NEG、既存builder/composition/InputIssue、他fnと各owner責務を保持する。全fn5/凍結/実採択/Issue完了を主張しない。"]
+    "limits_ja": ["11合成入力は本有限枝の期待だけ。実関数/helper/資格/実source/工程/runtime/CIを実行した証拠ではない。","Claim有り80–83と81scope true/非0数値の有限対照は/knowledge_promotion_claim_detail（P3b）で扱い、functions/5一般文のaccepted/mature非昇格とfailure_rules/83のaccepted条件（Claim.kind=knowledge_accepted）の語彙整合は同entryのvocabulary_alignment_and_default_reentryに定める。一意に決まらないknowledge_promoted等はunknownを返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入する既定とする。","D27 candidate-emptyの期待、原L9 POS/4NEG、既存builder/composition/InputIssue、他fnと各owner責務を保持する。全fn5/凍結/実採択/Issue完了を主張しない。"]
   },
   "knowledge_promotion_claim_detail": {
     "id": "HELIXBRAIN-L5-032-F08-CLAIM-WITNESS-DETAIL",
@@ -13906,7 +13906,42 @@
         "input_binding": "同v.input.binding原whole。Claim/slot bindingで置換しない。"
       }
     },
-    "generic_prohibition_boundary": "既存fn5一般文のaccepted/mature非昇格は責務禁止として保ち、83のkind対応をその一般文だけで拡大しない。有限83はL4 P2bのaccepted限定を採りknowledge_promoted unknownを明示保持する。両kindを同義にした又は全語彙差を解消したとは主張しない。",
+    "generic_prohibition_boundary": "functions/5一般文のaccepted/mature非昇格は007/008/025の責務境界を越える昇格主張全般の禁止を表し、failure_rules/83（limited_content_as_promotion）のaccepted条件はClaim.kind=knowledge_acceptedがlimited_adoption_refだけを根拠に運用knowledge acceptedを主張する場合を直接のconflict（true）又は非限定によるfalseの対象とする。整合が一意に決まらないknowledge_promotedや運用mature語彙との対応等は、unknownを返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入することを既定とする。",
+    "vocabulary_alignment_and_default_reentry": {
+      "id": "HELIXBRAIN-L5-032-F08-PR1-VOCABULARY-ALIGNMENT",
+      "status": "candidate_not_runtime_implemented",
+      "general_statement_and_rule83_ja": "functions/5一般文「限定意味採用を運用accepted/matureへ転換するclaimは責務境界とconflict」のaccepted/matureは、候補生成・限定意味採用・LABO評価・OS受領の単独成功から運用上の採択・成熟状態を成立させない責務境界の総称である。これに対しfailure_rules/83（limited_content_as_promotion）のaccepted条件は、閉じたClaim.kindのうちknowledge_acceptedがlimited_adoption_refだけを根拠に運用knowledge acceptedを主張する場合を直接のconflict（true）または非限定根拠によるfalseの評価対象とする。",
+      "default_unknown_and_reentry_ja": "Claim.kind=knowledge_promotedと運用accepted/mature語彙の対応、record association未確定、partial Ref、同一identityのrevision/scope/owner/sha256差、nonlimited carrier宣言の二重所属など整合が一意に決まらない部分は、unknown（axis=promotion_claim, state=unknown, Findingなし）を返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入することを既定とする。",
+      "rule_family_alignment_ja": "rule 80/81/82は昇格claim（knowledge_acceptedおよびknowledge_promoted）を対象に不足工程をunknown（axis=promotion, backflow_owner=knowledge_owner）で返し、rule 83はfill_definitionをfalse、knowledge_acceptedを直接比較対象、knowledge_promotedと他kindを既定のunknown（core=not_required）で保持する。新しいgate・cause・資格・公開型は作らない。",
+      "kind_and_vocabulary_mapping": [
+        {
+          "claim_kind_or_vocabulary": "knowledge_accepted",
+          "functions_5_general_role": "運用accepted/mature非昇格のうち運用knowledge acceptedの主張",
+          "rule_80_to_82": "評価対象（AI生成のみ・評価scope欠落・独立検証欠落はaxis=promotion, state=unknown, backflow_owner=knowledge_owner）",
+          "rule_83": "直接比較対象（limited_adoption_refのみを根拠としadoption_ref absent/nullでconflict、既知nonlimited memberへjoinしlimited_ref不在又はidentity直接不一致でfalse、それ以外unknown）"
+        },
+        {
+          "claim_kind_or_vocabulary": "knowledge_promoted / 運用mature語彙",
+          "functions_5_general_role": "運用accepted/mature非昇格のうち昇格済み・運用matureの主張",
+          "rule_80_to_82": "評価対象（不足工程はaxis=promotion, state=unknown, backflow_owner=knowledge_owner）",
+          "rule_83": "accepted条件との語彙対応が一意に決まらないため既定でunknown（axis=promotion_claim, state=unknown, Findingなし, core=not_required）を返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "claim_kind_or_vocabulary": "fill_definition / その他Claim.kind・形成未確定",
+          "functions_5_general_role": "昇格主張外の定義充足または未確定kind",
+          "rule_80_to_82": "fill_definitionはfalse（行なし）、他kind・association unknownはunknown（knowledge_owner、同Binding/revision/scope原read再入）",
+          "rule_83": "fill_definitionはfalse（行なし、core=not_required）、他kind・association unknownは既定のunknown（knowledge_owner、同Binding/revision/scope原read再入）"
+        }
+      ],
+      "verification_boundary_ja": "各層の最小責務に従い、本節はL5における語彙整合とunknown/knowledge_owner既定再入を定め、L8には未実行の性質行だけを対応付ける。実装後の単体・右側の検証はL7および右側Reverse照合で確かめる。",
+      "legacy_rederivation": {
+        "preserved_ja": "旧HELIX L5のcandidate→verified→approved→canonical段階遷移（LEGACY-ASSET-98372FEE8A3AC8F9C299:58–63）、RCLSの段階的promotionと曖昧値のauthority非昇格・隔離（LEGACY-ASSET-F2C2755C8809C2C0DEAD:37–47、LEGACY-ASSET-5841D44AE1255A061667:48–65、LEGACY-ASSET-B1F192F46FC3AC336094:27–39）、UTW-014/020/021（LEGACY-ASSET-A127DEC3EEE6ED63CF17:80–87）の未確定保持を引き継ぐ。",
+        "changed_ja": "旧template statusやRCLS lifecycle enum・runtimeを移植せず、現行L5のfunctions/5一般文とfailure_rules/83（Claim.kind=knowledge_accepted直接対象＋一意に決まらない部分のunknown/knowledge_owner既定再入）へ意味を再導出する。",
+        "reason_ja": "限定意味採択の運用昇格誤認と、語彙差の暗黙同一視・false/true丸めによる抜け漏れを防ぐため。"
+      },
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
     "paired_verification": {
       "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
       "pointer": "/knowledge_promotion_claim_verification",
@@ -13920,6 +13955,6 @@
       "change_ja": "採択済みL4 P2a/P2bの有限witnessを既存fn5の局所reader/順/全4fieldへ具体化する。",
       "failure_ja": "UTW014/020/021とPR3664 R1 M3/PR3665 R1 M1を起点に、欠落→空・部分不足隠蔽・自己申告・二重所属・同identity/SHA差のdistinct誤認を避ける。carrier coreの原joined等を83predicateのunknownへ書換えず分けて保持する。"
     },
-    "limits_ja": ["有限24 Claim入力の全返却とP3a dispatch対照1の予定であり、全任意入力/形成不能/型外/実scope妥当性/原stage-body全域/実資格/独立性/工程/採否/本人性/運用accepted/matureを閉じない。","source役割宣言と実資格/実工程、Ref供給と独立検証実施、scope非空と十分性を区別する。実関数/helper/runtime/CI/旧testは未実行。","既存要求意味を変更せず新gate/遷移/許可を作らない。凍結/全fn5/Issue完了を主張しない。"]
+    "limits_ja": ["有限24 Claim入力の全返却とP3a dispatch対照1の予定であり、functions/5一般文のaccepted/matureとrule 83のaccepted条件の語彙整合はvocabulary_alignment_and_default_reentryのunknown/knowledge_owner既定再入に従う。全任意入力/形成不能/型外/実scope妥当性/原stage-body全域/実資格/独立性/実工程の採否・運用遷移は閉じない。","source役割宣言と実資格/実工程、Ref供給と独立検証実施、scope非空と十分性を区別する。実関数/helper/runtime/CI/旧testは未実行。","既存要求意味を変更せず新gate/遷移/許可を作らない。凍結/全fn5/Issue完了を主張しない。"]
   }
 }

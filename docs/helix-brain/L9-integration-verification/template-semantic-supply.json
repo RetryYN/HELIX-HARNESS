@@ -143,6 +143,7 @@
   "meaning": "UTW014の欠損→空集合、UTW020のaggregateで部分不足不可視、UTW021の自己申告/件数/hash完了を項目/義務/接続各軸で防ぐ。実再発防止は未証明。"
  },
  "verification_scope": "BRAIN候補供給の意味境界とCORE/OS/HARNESS/知識ownerへの返却の対検証設計。接続を実行した証拠ではない。",
+ "cl2_claim_projection_property_ja": "not_executed: 原Claim順・同Claim内の既存rule順、predicate参加source witness、元Comparison非上書き、未形成時unknown保持とowner再入を対照する設計性質であり、integration case・実接続・実行証拠は追加しない。",
  "fixture_contract": {
   "id": "TEMPLATE-SUPPLY-BASE-01",
   "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",

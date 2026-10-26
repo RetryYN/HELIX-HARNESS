@@ -1,0 +1,123 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0164",
+  "kind": "scaffold",
+  "title": "時間・資源上限付きsubprocess実行ラッパーとGUI statusの資源・孤児プロセス読取診断",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS Worker予算・期限・回収統制およびHELIX-SECURITY実行環境制約",
+  "state": "registered",
+  "reason": "Issue #3510 comment 6386473748 / 6386507513（Codex session 01a15f92の一時解析python3が孤児化してCPU 11時間・RSS 7.1GB・peak 11GBに達しWSL 12GB RAM＋4GB swapを枯渇させた事例）およびcomment 6405275048の提案②を仮組みする。(1) 旧HELIXとの対応：LEGACY-ASSET-378CB2CCCD11F9A49502（旧src/runtime/provider-process-lifecycle.ts:118-400）およびLEGACY-ASSET-15D88CCE539AA79ED788（旧docs/design/helix/L6-function-design/worker-budget-lifecycle.md:11-55）から、POSIX専用process group起動、timeoutと親がSIGINT/SIGTERM/SIGHUPを受けたときのkillpg(SIGTERM)→grace後killpg(SIGKILL)→ESRCHによるgroup消滅確認、direct child終了後の残存子孫（tree_lingered）回収、出力上限、終了分類（timeout/signal/tree_lingered/reap_unconfirmed）の意味を保持し、Node/TS provider wrapper専用・事後メモリ照合のみ（LEGACY-ASSET-A6C0C0BA3581CE8CF874）から、4 GUIレーンが直接起動する一時解析python3等にも適用できるようPython標準ライブラリへ変更して再導出した。(2) 新規案1（旧HELIXに根拠なし）：HELIXSECURITY-L2-007のresource limit仮組みとしてRLIMIT_ASとRLIMIT_CPUを既定値と引数で子プロセス起動時に設定する。(3) 新規案2（旧HELIXに根拠なし）：gui_mailbox.py statusで/proc/meminfoのMemAvailable/SwapFreeと親GUIセッションを失った長時間・高RSSプロセスをread-onlyで表示し、自動killや他レーンのプロセス操作は行わず、閾値をgateや合格条件にしない。",
+  "upstream": [
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "note": "HELIXOS-L2-004 / L2-018のWorker予算・期限・lease・停止・回収統制。"
+    },
+    {
+      "path": "docs/helix-security/L2-requirements/security-requirements.md",
+      "sha256": "aa9d6446e97d7027da6c15bbb315bdfa524edf0fa3e5252403f91e7cbac1abdf",
+      "note": "HELIXSECURITY-L2-007（Worker実行環境のtimeout / resource limit強制）およびL2-009（runtime逸脱時の停止・隔離）。"
+    },
+    {
+      "path": "docs/helix-infrastructure/L2-requirements/infrastructure-requirements.md",
+      "sha256": "569cbf7767be79b07568663026a0ab05e9fe70ea29c3636401a5db1038b8183b",
+      "note": "HELIXINFRASTRUCTURE-L2-003 / L2-004 / L2-025（1.0容量・飽和観測）およびL2-012（1.0より後：Control/Execution資源隔離）。"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "48e78b6b19cbac7d450adb723b5eefd334d685439816eea9419ffe597b18f844",
+      "note": "GUIレーンの運転と通知、運用規則と機構への移管境界。本PRでは運用規則本文を変更しない。"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "再構築の原則（失敗事例起点、旧HELIX対応記録、新規案明示、旧runtime非実行、scaffold登録）。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/runtime/provider-process-lifecycle.ts",
+      "sha256": "a071f8437b7de6afc1d69f8dae3b37946aaa882adec1d7640db83bf0a222755d",
+      "note": "LEGACY-ASSET-378CB2CCCD11F9A49502: 専用process group起動、SIGTERM/SIGKILL段階停止、ESRCH消滅確認、tree_lingered回収、出力上限、終了分類の意味の再導出元。静的read-only参照のみ"
+    }
+  ],
+  "role": "helix-bounded-exec-and-gui-resource-diagnostics-scaffold",
+  "obligations": [
+    "Python標準ライブラリだけで対象argvを専用process group（setsid）で起動し、無制限（<=0）のtimeout・resource limitを拒否する。メインスレッド以外からの呼出は子プロセスを起動せずspawn_failedとして返し、Linuxではdirect childへPR_SET_PDEATHSIG(SIGKILL)を付与し、ラッパーSIGKILL時の孫プロセス非継承・PR_SET_PDEATHSIGがforkしたスレッド終了で発火する限界・子孫のsetsid逃避・RLIMITのper-process性の限界をdocstringとREADMEに明記する。",
+    "timeout到達時および親プロセスがSIGINT/SIGTERM/SIGHUPを受けたときに、process groupへkillpg(SIGTERM)、grace期間後にkillpg(SIGKILL)を送り、ESRCHでgroupの消滅を確かめる（LEGACY-ASSET-378CB2CCCD11F9A49502の意味の再導出。呼出元のSIG_IGNおよびgetsignal()==Noneは上書きせず、stdin_dataはO_NONBLOCK+EVENT_WRITEでdeadline/interrupt管理下に置く）。",
+    "direct childが期限内に終了した後も子孫プロセスがprocess groupに残る場合はtree_lingeredとして回収し、exit 0単独でtimeout・signal・tree_lingered・reap_unconfirmedを成功へ昇格しない。",
+    "RLIMIT_AS（仮想メモリ上限）とRLIMIT_CPU（CPU時間上限）を既定値と引数で子プロセス起動時に設定し、出力上限（max_output_bytes）と実観測byte数・truncatedを記録する（新規案1）。",
+    "gui_mailbox.py statusで/proc/meminfoのMemAvailable/SwapFreeと、親のGUIセッションを失った長時間・高RSSのプロセスをread-onlyで表示し（cmdlineはargv0 basenameとscript pathに絞り引数・tokenを伏せる）、自動killや他レーンのプロセス操作を行わず、閾値をgateや合格条件にしない（新規案2）。"
+  ],
+  "connections": {
+    "consumers": [
+      "#3510 WSL資源枯渇・孤児プロセス防止の仮組みreview",
+      "SCF-B-0003 GUIレーン通知status確認",
+      "HELIXOS-L2-004/018・HELIXSECURITY-L2-007・HELIXINFRASTRUCTURE-L2-003/012の後続正式設計"
+    ],
+    "dependencies": [
+      "Python標準ライブラリ（subprocess, os, signal, resource, selectors, ctypes）",
+      "Linux /proc（meminfo, uptime, <pid>/stat, <pid>/status, <pid>/cmdline）読取"
+    ],
+    "boundary": "scaffold/配下の仮組み補助具とgui_mailbox.py statusの読取専用診断のみ。運用規則は変更せず、閾値をgateや合格条件にせず、自動killや他レーンのプロセス操作を行わない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/tools/bounded_exec.py [options] -- <command...>",
+      "python3 -B scaffold/tools/bounded_exec_selftest.py",
+      "python3 -B scaffold/review-handoff/gui_mailbox.py status",
+      "python3 -B scaffold/review-handoff/gui_selftest.py"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "gui_mailbox.py statusからの自動kill・シグナル送信・他レーンプロセス操作",
+      "診断閾値やRLIMIT既定値を製品gate・受入合格条件・承認成立条件として扱うこと",
+      "scaffold外への恒常書込み",
+      "要求・承認・完了・authorityの生成"
+    ]
+  },
+  "artifacts": [
+    "scaffold/tools/bounded_exec.py",
+    "scaffold/tools/bounded_exec_selftest.py",
+    "scaffold/bindings/SCF-B-0164.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/tools/bounded_exec_selftest.py",
+      "python3 -B scaffold/review-handoff/gui_selftest.py",
+      "python3 -m py_compile scaffold/tools/bounded_exec.py scaffold/tools/bounded_exec_selftest.py scaffold/review-handoff/gui_mailbox.py scaffold/review-handoff/gui_selftest.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "無制限または0以下のtimeout/RLIMIT指定を拒否する",
+      "非POSIX環境で無期限実行へfallbackせずfail-closeする",
+      "SIGTERMを無視する親・孫プロセスをgrace後にSIGKILLしESRCHまで回収する",
+      "direct childがexit 0しても孫プロセスが残る場合はtree_lingeredとして失敗分類する",
+      "親プロセスへのSIGINT/SIGTERM/SIGHUPおよびcleanup中の再送で孫プロセスを孤児化しない",
+      "group消滅（ESRCH）が未確認の場合はreap_unconfirmedを返す",
+      "RLIMIT_AS超過（MemoryError）とRLIMIT_CPU超過（SIGKILL/SIGXCPU）を強制する",
+      "gui_mailbox.py statusがプロセスへkill/killpgを送らずstateを書き換えない"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-OS（HELIXOS-L2-004/018）・HELIX-SECURITY（HELIXSECURITY-L2-007/009）・HELIX-INFRASTRUCTURE（HELIXINFRASTRUCTURE-L2-003/012）の正式なWorker実行制約・process group回収・資源観測機構",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-26",
+  "updated": "2026-10-26"
+}

@@ -321,6 +321,7 @@
       "red_before_source_fix": "各追加testは先にtest-only commitへ固定し、旧候補srcで意味契約の失敗をrootが再現してからsrcを修正した。contract12、R66二候補、projection4、writer4、scope順1、witness2、optional Ref2。import/NameErrorをRed証拠へ代用しない。",
       "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
       "root_result": "fn3 55 tests PASS。既存N03 12 tests PASS。全unit 75 testsは73 PASS/2 errorsで、既存fn1 NEG02/NEG21のF02 required_kind_slot_mismatch停止。変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも同じ2 errorsを再現した。",
+      "latest_main_integration": "main 6fa6b752106cb0254c8d3f870b4ffefa56d4b9d7を統合し、fn6 wrapperとfn3追加のEOF競合だけを両方保持で解消。fn6 wrapper ASTはmainと一致、残り全ASTは8f62後のfn3候補と一致。全unit 89 testsは87 PASS/同じ既存fn1 2 errorsで、追加されたfn6 14 testsもPASS。",
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
       "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。"
     },

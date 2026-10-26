@@ -13858,6 +13858,59 @@
       "input_binding": "同ClaimContext.validated.input.bindingの原object全値・再帰順序・配列順・Ref値・反復をcopyする。callerの別bindingを作らない。",
       "empty_meaning": "空列はこのproducerの有限公開projectionであり、原unknown/conflict/未受領の不存在、資格、採用又は問題なしを意味しない。元全比較とsnapshotの保持を伴う。"
     },
+    "supported_claim_rule_projection": {
+      "scope_ja": "L5 functions/7 の既存 failure rule が真となった B01/F07/N02 の出現だけを既存 Comparison 型へ投影する。述語、rule、公開型、D27 の rule87/93 route は変更しない。",
+      "decision_table": [
+        {
+          "family": "B01",
+          "rule_refs": ["HELIXBRAIN-L5-032-R-candidate_as_absolute_choice"],
+          "match_source": "L5 failure_rules の predicate と対応する L4 failure_classifications の code",
+          "projection": "一致した L4 row の expected_axis/state/backflow_owner と同 code を用いる。"
+        },
+        {
+          "family": "F07",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-product_values_as_generic",
+            "HELIXBRAIN-L5-032-R-brain_selects_template",
+            "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
+            "HELIXBRAIN-L5-032-R-brain_finishes_design",
+            "HELIXBRAIN-L5-032-R-brain_closes_obligation"
+          ],
+          "match_source": "各 L5 predicate と同 code の L4 failure_classifications",
+          "projection": "一致した各 row の expected_axis/state/backflow_owner を使い、別 rule の owner/axis を流用しない。"
+        },
+        {
+          "family": "N02",
+          "rule_refs": [
+            "HELIXBRAIN-L5-032-R-missing_as_empty",
+            "HELIXBRAIN-L5-032-R-unknown_fallback",
+            "HELIXBRAIN-L5-032-R-hash_as_complete",
+            "HELIXBRAIN-L5-032-R-lower_green_as_complete",
+            "HELIXBRAIN-L5-032-R-state_preservation_missing",
+            "HELIXBRAIN-L5-032-R-state_preservation_unknown",
+            "HELIXBRAIN-L5-032-R-state_preservation_conflict",
+            "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
+            "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
+            "HELIXBRAIN-L5-032-R-state_preservation_not_received"
+          ],
+          "match_source": "各 L5 predicate と同 code の L4 failure_classifications",
+          "projection": "一致した各 row の expected_axis/state/backflow_owner を使う。rule87/93相当の既存routeは既存public_outputに従い二重出力しない。"
+        }
+      ],
+      "field_sources_ja": {
+        "rule_and_axis_state": "code は同一 code の L4 failure_classifications row、rule_ref は対応する L5 failure_rules.id。axis/state/backflow_owner は L4 row の既存値を使い、L5 rule の同名値と照合する。L4 row に rule_ref member はない。",
+        "subject_ref": "述語が実際に対象とした原 Claim.subject_ref。Claim以外を直接対象とする既存predicateではその既存typed subject locatorを用いる。typed subjectが形成できなければ合成しない。",
+        "binding": "同じ原 Claim.binding、又は既存predicateが使う原 input/slot Binding。別Bindingや欠落memberを作らない。",
+        "axis_original_refs": "AxisResult.original_refs は述語が実際に読んだtyped Refだけを原参照元locator順・反復込みで保持する。",
+        "finding_source_refs": "Finding.source_refs は述語に実参加したQualifiedSource.ref又は原source Refだけをsource index順・反復込みで保持する。Claim.basis_refsはその対応を実際にたどってpredicateが使った場合だけ含め、Claim subject/Q/rootをsource_refsへ代入せずQualificationを発行しない。",
+        "reason": "既存axis_reason_writer/reason_serializationのunexercised_finding形式を使う。reasonは固定L5 predicate文 + U+000A + diagnostic_json({code,rule_ref,predicate_observations:[{locator,original_read}]}); observationは実参加memberだけをrule operand順で置き、AxisResultと対になるFindingで同じreasonを使う。既存rule87/93のprefix/materialは変更しない。"
+      },
+      "owner_routing_ja": "返却ownerは一致したL4 row.backflow_ownerをそのまま使う。B01 candidate_as_absolute_choiceはcore_owner、F07 product_values_as_genericはknowledge_owner、brain_selects_template/brain_agrees_requirements/brain_finishes_designはcore_owner、brain_closes_obligationはos_owner。N02は一致rowの既存ownerを使い、state_preservation_unknown/not_applicableはcore_owner、state_preservation_not_receivedはos_owner、他の列挙ruleはknowledge_owner。",
+      "emission_order_ja": "既存Comparison prefix/orderを保ち、追加行はClaim原配列順、同一Claim内はL5 functions/7.failure_rulesの原順とする。真になった既存ruleごとに対応行を一度だけ出し、別Claim出現をdedupしない。",
+      "unresolved_return_ja": "ruleが特定できてもtyped subject又はBindingを形成できない場合は、公開Axis/Findingや代替Refを作らず、元Comparison/ClaimContext内のunknownと原PresenceRawを保持する。対応rule rowのbackflow_ownerがある場合だけそこへ返し、原owner資料の供給/訂正後に同Binding・同revision・同scopeの原readから再入する。rule又はowner自体が未特定なら新しい返却先を作らず元unknownを保持する。",
+      "authority_effect": "none",
+      "operation_effect": "none"
+    },
     "existing_fixture_consistency": {
       "preserve": "既存L8 function_oracles/7、F07/B01/N02 negative系、descriptor-target rule93の元入力・観測・全既存期待・固定import・配列順は変更しない。",
       "normal_vs_witness": "既存normal proseやbuilder test doubleはD27全返却の答えに転用しない。発火入力は当該元condition/本L5 tuple形成へ照合する材料で、0行枝へ書換えない。",
@@ -13869,7 +13922,7 @@
       "semantic_owner": "semantic/mixed basisの任意RawValue意味対応自体は未閉。route unresolved/行0を保持しても意味対応成立又はpredicate falseを認定しない。",
       "semantic_owner_return": "semantic_ownerの限界は、032が意味対応を定めず、unresolved保持のままknowledge_ownerへ返す側に確定する（詳細はrevision 155f23984fc0e6c6736be3fa346ad165243c6471のdocs/helix-brain/L5-detail-design/template-semantic-supply.json /source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/semantic_owner_return）。再入は、knowledge_ownerが原資料を供給又は訂正した後、同Binding・同revision・同scopeの原readから行う。新しいgate・Finding・公開fieldは作らない。",
       "other_domain": "他Claim kind、claims空、追加meaning_origin等又は上記2string-member/null以外のmeaning、製品固有値/採用/義務/receipt carrier、複数KnowledgeRecord、role/key/shape外の入力は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。 meaningの同shape別string値も本枝外。",
-      "generic_unknown": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。既存failureを削除/空列へ丸めない。",
+      "generic_unknown": "上表にない裏付け無しclaimの公開unknown writerと全witnessの複合prefix/sortは未閉。既存ruleを特定できない場合は原readをunknownのまま既存ownerへ返し、原資料の供給/訂正後に同Binding・同revision・同scopeの原readから再入する。既存failureを削除/空列へ丸めない。",
       "scope": "実owner/trust/fn0資格/製品runtime/手順7/Issue完了の成立を示さない。"
     },
     "legacy_rederivation": {
@@ -13895,7 +13948,7 @@
         }
       ],
       "preserve": "4F5A/98372のJSON正本・source/owner/trace/明示状態を保持し、原unknownとN/Aを分ける。UTW014のabsence空集合化、020のaggregate masking、021のprose自己申告を原snapshot/producer別保持で防ぐ。",
-      "change": "現行L3 F07/N02/B01と既存routeに沿い、descriptor専用有限prefixの0行と全Comparisonのfield割当を本L4へ具体化する。旧lifecycle/層番号/承認手続きを持ち込まない。",
+      "change": "現行L3 F07/N02/B01と既存routeに沿い、descriptor専用有限prefixの0行と全Comparisonのfield割当を本L4へ具体化する。CL-2では旧schemaを移植せず、既存ruleからAxis/Findingへのfield出所と順序だけを具体化する。旧lifecycle/層番号/承認手続きを持ち込まない。",
       "reason": "既存fn7 algorithm0と旧prefix保存の間にあったwriter不足を具体化する。BRAINが採用/完成を決めず元不足を保持する要求の意味は変えない。",
       "failure_history": "PR3597/3598のClaim2 tuple先決め失敗、後続3635のunresolved公開非形成閉包、fn3/4/5の前段writer方式を区別して読む。失敗から新要求/gateを生成しない。"
     },

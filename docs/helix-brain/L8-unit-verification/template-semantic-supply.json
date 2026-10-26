@@ -212,6 +212,7 @@
   "meaning": "UTW014の欠損→空集合、UTW020のaggregateで部分不足不可視、UTW021の自己申告/件数/hash完了を項目/義務/接続各軸で防ぐ。実再発防止は未証明。"
  },
  "verification_scope": "14義務、原L9負例105件、failure_rules 107件、additional_unit_cases 35件、正常関数oracle 9件の論理設計候補。F09のNEG-01〜06のみL9統合caseに対応し、NEG-07〜13とADD-25〜28はL8局所の反例/対照でL9対応なし。F09の018→core_source、020→labo_evaluation、025→選択channelの原operation_kind/knowledge_fieldsという限定対応は、L4 conditional_source_dependency_contractとL5 conditional_dependency_detail及び本fileのconditional_dependency_verificationに従う。対応自体は未決とせず、025を両selectorへ一律必須にしない。実producer/body供給・資格、未観測分岐と全意味閉包は別残件として保持する。これはfixture凍結/実行/意味完了証拠ではない。",
+ "cl2_claim_projection_property_ja": "not_executed: 原Claim順・同Claim内の既存rule順と述語に実参加したsource witnessだけを保ち、元Comparisonを上書きせず、未形成枝はunknownのまま既存ownerへ再入する。function_oracles/7はclaims=[]で本性質を実行していない。",
  "fixture_contract": {
   "id": "TEMPLATE-SUPPLY-BASE-01",
   "scope": "合成project-P/tenant-T/environment-E、要求032と採用knowledgeのexact revisionを別参照で固定。",
@@ -7934,6 +7935,25 @@
      "reentry_ja": "原資料の供給・訂正後、同Binding/revision/scopeの原readから再入する。",
      "expected_observation": "原read/state/cause/PresenceRawと既存公開shapeを変えず、public serializationの順序・reason materialだけをこの契約に従わせる。",
      "legacy_comparison_ja": "4F5A/98372/A127の既存比較を保持する。旧schema/runtime/thresholdを移植しない。",
+     "effect": "none"
+   },
+   {
+     "id": "HELIXBRAIN-L8-032-F08-PR1-VOCABULARY-ALIGNMENT",
+     "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+     "name": "promotion-accepted-mature-general-wording-and-rule83-accepted-alignment-property",
+     "contract_source": {
+       "revision": "e7523d4462db5b1673a9297c0ad1ad888d095341",
+       "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+       "pointer": "/knowledge_promotion_claim_detail/vocabulary_alignment_and_default_reentry"
+     },
+     "execution_state": "not_executed",
+     "expected_side_effect_count": 0,
+     "property_ja": "functions/5一般文のaccepted/mature非昇格のうち、failure_rules/83（limited_content_as_promotion）がconflict（true）又は非限定によるfalseを直接判定するaccepted条件はClaim.kind=knowledge_acceptedがlimited_adoption_refだけを根拠に運用knowledge acceptedを主張する場合に限る。Claim.kind=knowledge_promotedや運用mature語彙との対応など整合が一意に決まらない部分は、既定でunknown（axis=promotion_claim, state=unknown, Findingなし）を返してknowledge_ownerへ戻し、同Binding/revision/scopeの原readから再入する。",
+     "scope_boundary_ja": "新しいfixture・期待whole・hash・COPY・新gate/cause/資格/公開型を追加しない。実装後の単体・右側の検証はL7および右側Reverse照合で確かめる。",
+     "backflow_owner": "knowledge_owner",
+     "reentry_ja": "原資料の供給・訂正後、同Binding/revision/scopeの原readから再入する。",
+     "expected_observation": "rule 80/81/82とrule 83の既存出力shape・原KnowledgeRecord/Claim全値保持を変えず、accepted/mature一般文とrule 83 accepted条件の語彙整合およびunknown/knowledge_owner既定再入をこの契約に従わせる。",
+     "legacy_comparison_ja": "98372/F2C2/5841/B1F1/A127の段階的promotionと未確定・曖昧値のauthority非昇格保持を継承し、旧lifecycle/runtimeは移植しない。",
      "effect": "none"
    }
  ],
@@ -69259,7 +69279,7 @@
   "unexercised_ja": [
    "scope/ownerのみのRef差、片側SHA、candidate側SHA差、同値candidate反復、ref_same同一でwhole Binding異値。",
    "descriptors/knowledge_records absent、unknown owner absent、未形成/型外、source資格/InputIssue変動と他typed memberの意味。",
-   "Claim有り80–83、81scope true/非0数値、83knowledge_promotedの差は後続P3。candidate-emptyの既存D27期待を本非空枝の証拠にしない。"
+   "Claim有り80–83と81scope true/非0数値は/knowledge_promotion_claim_verificationで扱い、functions/5一般文のaccepted/matureと83 accepted条件の語彙整合および一意に決まらないknowledge_promoted等のunknown/knowledge_owner既定再入はHELIXBRAIN-L8-032-F08-PR1-VOCABULARY-ALIGNMENTで扱う。candidate-emptyの既存D27期待を本非空枝の証拠にしない。"
   ],
   "preservation_ja": "既存L8 fn5 normal/4NEG/ADD16、D27候補空、他fn、原L9 POS/4NEG/P1/P2a/P2bを変更しない。007/008/025の工程/原state/provenanceは同vに保持し、採用・実資格・実保存/昇格を発行しない。",
   "legacy_comparison_ja": "L5 /knowledge_promotion_detail/legacy_rederivationと固定L4親の旧4F5A/98372/UTW014/020/021原source/対/consumer/未供給/部分不足保持を継承する。旧runtime/schema/test/CIは移さない。",
@@ -69359,7 +69379,7 @@
   "coverage_ja": "25 finite comparisons: 22既存P2b inputs、同じ歴史seedにevaluation_scope true/number1のleaf-only patchを各1件、claims absent dispatch対照1件。scope true/number1はL4 rule81の供給nonempty値のfinite falseのみを対照し、妥当性・十分性・実評価を認定しない。83 accepted-onlyとknowledge_promoted unknown等L4 finite contractの未確定をそのまま保持する。",
   "preservation_ja": "P3aの11ケース・期待値、既存L9 P1/P2a/P2b入力/期待、L4/L9、全helper/type/failure rule、原工程責務を変更しない。入力全体と原Issue/unusable refsを保持し、実採用・昇格・運用stateを発行しない。",
   "unexercised_ja": [
-   "形成不能Claimを含む入力、任意Claim集合、scope妥当性/十分性、実source資格/実工程、accepted/mature一般語彙の全意味、全fn5 domain。",
+   "形成不能Claimを含む入力、任意Claim集合、scope妥当性/十分性、実source資格/実工程、実運用での採否・成熟遷移（accepted/mature一般文とrule 83 accepted条件の語彙整合自体はHELIXBRAIN-L8-032-F08-PR1-VOCABULARY-ALIGNMENTのunknown/knowledge_owner既定再入で閉包）、全fn5 domain。",
    "scope true/number1はpredicate対照であり、実評価又は適切scopeを証明しない。"
   ],
   "limits_ja": "候補有限期待の配置のみ。runtime/test/CI/資格/実工程未実行。review、case数、hashの存在をauthority/freeze/acceptance/Issue完了へ変換しない。",
