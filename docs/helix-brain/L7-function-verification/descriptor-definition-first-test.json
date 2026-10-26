@@ -303,26 +303,89 @@
     ],
     "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
     "execution_observation": {
-      "source_revision": "8f62c2fcf4d416214f1f617932ec2dc27829f210",
+      "source_revision": "0df7bde358cce096b132d06d479b2bd9cc5cd1eb",
       "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
       "test_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests",
       "test_groups": [
-        {"path":"test_identity_versions_and_trace.py","revision":"f563a071cd22f900cf720e41cb09265bd9c78f7c","tests":28},
-        {"path":"test_identity_contract_regressions.py","revision":"ded2aa6cf48eaf8fc8aa0a6158b0defb0e9e3036","tests":12},
-        {"path":"test_identity_filename_claim.py","revision":"c5b18f8ad65829ea9328d5454f37f147e261ca60","tests":2},
-        {"path":"test_identity_projection_boundaries.py","revision":"0dcca662971ed3eff76ff2043fb4a6948068a281","tests":4},
-        {"path":"test_identity_public_writer.py","revision":"e2ff2a85d5a63f2ec21e5dc09fc8c79fdf23bf45","tests":4},
-        {"path":"test_identity_scope_axis_order.py","revision":"a3b9130f81b4b6ecf6c661a5e98bc842b69ac9b5","tests":1},
-        {"path":"test_identity_witness_reads.py","revision":"5f8498b3c088c33bd661ef074e97cac567e9546b","tests":2},
-        {"path":"test_identity_optional_ref_presence.py","revision":"68484b4658209228740eb28d1af750d41720f024","tests":2}
+        {
+          "path": "test_identity_claim_source_witnesses.py",
+          "revision": "56f86bd7e9237e8494c6cacfa080c9be4ac6391e",
+          "tests": 3
+        },
+        {
+          "path": "test_identity_contract_regressions.py",
+          "revision": "91bea106825cafd79be4f552788ce403150b018f",
+          "tests": 12
+        },
+        {
+          "path": "test_identity_filename_claim.py",
+          "revision": "befa3e9cce433744d285bfaa4705c5b269a59441",
+          "tests": 2
+        },
+        {
+          "path": "test_identity_left_owner_projection.py",
+          "revision": "55dc006590efcca66ac9ad8a2d8c00f3bbdd5248",
+          "tests": 2
+        },
+        {
+          "path": "test_identity_optional_ref_presence.py",
+          "revision": "68484b4658209228740eb28d1af750d41720f024",
+          "tests": 2
+        },
+        {
+          "path": "test_identity_projection_boundaries.py",
+          "revision": "91bea106825cafd79be4f552788ce403150b018f",
+          "tests": 4
+        },
+        {
+          "path": "test_identity_public_formation_guards.py",
+          "revision": "d6c26103cb82bf51b888dd0433c90167e0e634a5",
+          "tests": 5
+        },
+        {
+          "path": "test_identity_public_writer.py",
+          "revision": "e2ff2a85d5a63f2ec21e5dc09fc8c79fdf23bf45",
+          "tests": 4
+        },
+        {
+          "path": "test_identity_review_boundaries.py",
+          "revision": "befa3e9cce433744d285bfaa4705c5b269a59441",
+          "tests": 8
+        },
+        {
+          "path": "test_identity_review_writer_gaps.py",
+          "revision": "92b15fc7ed73098d78181764ee58e1bf38d5d94d",
+          "tests": 8
+        },
+        {
+          "path": "test_identity_right_owner_membership_gaps.py",
+          "revision": "8f012cd79da09aba4110d34bd7db3f267c62d822",
+          "tests": 3
+        },
+        {
+          "path": "test_identity_scope_axis_order.py",
+          "revision": "a3b9130f81b4b6ecf6c661a5e98bc842b69ac9b5",
+          "tests": 1
+        },
+        {
+          "path": "test_identity_versions_and_trace.py",
+          "revision": "12b806b6f7b7ac7a2426fa7877b9b8ae575a6ac3",
+          "tests": 28
+        },
+        {
+          "path": "test_identity_witness_reads.py",
+          "revision": "62e6713f261bcd08cee724203a168a2eade84bcd",
+          "tests": 2
+        }
       ],
       "test_correction": "f563はrootが未定義のまま参照したFN3_BACKFLOW定数を1行定義したtest-only訂正。期待・入力・assertを変えず、正式未実装srcで28 testsのRedを再観測した（PR3709 comment6419200210）。",
       "red_before_source_fix": "各追加testは先にtest-only commitへ固定し、旧候補srcで意味契約の失敗をrootが再現してからsrcを修正した。contract12、R66二候補、projection4、writer4、scope順1、witness2、optional Ref2。import/NameErrorをRed証拠へ代用しない。",
       "reached_R66": "既存native owner binding/descriptor fact/KnowledgeRecord provenanceとQualification/rootから二候補を形成し、同filename・異identity claimのR66発火とB未資格時の非発火を観測した。新しいactual template artifact carrierは作っていない。",
-      "root_result": "fn3 55 tests PASS。既存N03 12 tests PASS。全unit 75 testsは73 PASS/2 errorsで、既存fn1 NEG02/NEG21のF02 required_kind_slot_mismatch停止。変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも同じ2 errorsを再現した。",
-      "latest_main_integration": "main 6fa6b752106cb0254c8d3f870b4ffefa56d4b9d7を統合し、fn6 wrapperとfn3追加のEOF競合だけを両方保持で解消。fn6 wrapper ASTはmainと一致、残り全ASTは8f62後のfn3候補と一致。全unit 89 testsは87 PASS/同じ既存fn1 2 errorsで、追加されたfn6 14 testsもPASS。",
+      "root_result": "root独立実行: fn3 identity 84 tests、fn0直接回帰2 tests、既存N03 12 tests、fn6 14 testsを含む全unit120 testsは118 PASS/既知fn1 NEG02・NEG21の2 errors、failures=0。両errorはF02/required_kind_slot_mismatchで変更前6f9c669c80e79740d2bff20daab437b9afa400cdでも再現済み。全成功とは認定しない。",
+      "latest_main_integration": "main 8fd1086b2fe5e83f877dfa72890c68da7c116df3をfcd6d2a29a3b53f1f5ac9200298930f82a3df792で無競合統合。実行済みsource/test群のblobは不変。L4 identity_version_trace_contractとL5 functions/3はreview基準6fa6から不変。後続CL2/OR12/DP4・5/運用規則を保持する。",
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421179857",
-      "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。"
+      "boundary": "ID付き未対応停止は停止を観測しただけで当該要求成立ではない。R67 true predicate未形成、fn1未凍結枝、全caller/全L8/全fn3、(a)=0、Issue完了は未認定。",
+      "previous_observation": "従前55 tests/source 8f62c2fcf4d416214f1f617932ec2dc27829f210 と89 testsの統合観測はgit834e00ec15e7c3a94a503846a9541fef7d61db74の同pointerから辿る。現行test修正後のRedとは混同しない。"
     },
     "R1_review_reentry": {
       "record": "https://github.com/RetryYN/HELIX-HARNESS/pull/3709#issuecomment-6421713229",
@@ -339,9 +402,54 @@
         "fn6_observations": "normalと同値Q2はfn6 7 axes/findings0。optional locator/sha欠落は既存F09/B02/binding_or_subject_ref_missingで停止する。fn6の閉Binding境界を補完して通さない。",
         "boundary": "fn0の受理/usable結果の変化を、fn1/fn2/fn6への影響なしとは申告しない。旧false/新trueの受理差と各下流の実観測を分け、全caller・全partial入力の成立やtrust取得を認定しない。"
       },
-      "state": "red_observed_source_fix_pending"
+      "state": "root_verified_120_tests_2_preexisting_fn1_errors_R2_pending",
+      "additional_red_evidence": [
+        {
+          "test_revision": "92b15fc7ed73098d78181764ee58e1bf38d5d94d",
+          "observation": "writer gaps8 tests/9 failuresを候補a8fcで観測。R59 prefix・trace原因・claim黙殺・Axis順/原source・provenance型の公開部分観測。"
+        },
+        {
+          "test_revision": "56f86bd7e9237e8494c6cacfa080c9be4ac6391e",
+          "observation": "Claim source witness3 tests/3 failuresを候補b669で観測。KB/Qをsourceへ捏造しないことと、basis原順でなくsources原index順の証拠。未資格sourceの原witness対照は既存Green。"
+        },
+        {
+          "test_revision": "d6c26103cb82bf51b888dd0433c90167e0e634a5",
+          "observation": "formation5 tests/9 failuresを候補b275で観測。型外subject/Binding/sourceRefを公開型へ流さず、scope未解決sourceRefは1trace unknown/他14trace resolved。optional sha absent保持。"
+        },
+        {
+          "test_revision": "8f012cd79da09aba4110d34bd7db3f267c62d822",
+          "observation": "right owner3 tests/2 assertion failuresを1c644で観測。自己資格のある別ownerとnative右endpoint membershipなしをpositiveにしない。位置入替positive controlは既存Green。"
+        },
+        {
+          "test_revision": "91bea106825cafd79be4f552788ce403150b018f",
+          "observation": "R1m2の期待厳密化/理由追記。4ccのsrcを隔離してcontract/projection16 testsを再実行し、body_unresolved prefixのassertion1件Red/他15件は既存Green対照。"
+        }
+      ],
+      "major_responses": {
+        "M1": "R59を既存template.version行missing+Finding1件へ。absent/nullを同じ公開部分観測で固定しextra rowなし。",
+        "M2": "0KBのcause=knowledge_unresolvedを先に選択しindices/body_groups空、literal prefixをassert。",
+        "M3": "単一compatibilityは固定prefix+LF+4key compatibility_material。未閉包cause写像はID付き停止。",
+        "M4": "既知の原判断差をunknown成功へ落とさず、公開写像未閉包のbranch IDと原causeを含む停止。新Findingなし。",
+        "M5": "右source不足はunclosed/right_owner_unprovidedで停止。left不足/R61と混同しない。",
+        "M6": "records absent、slot binding不足/型外、distinct matching KB、multiple range、unsupported Claim、provenance null/型外を明示停止。Claimは原Bindingと原basis sourceを証拠にし、root同値/qualified-basisという追加述語を除去。right target owner/membershipも独立照合。",
+        "M7": "L6 fn0_shared_boundary_changesと本欄fn0_effectsに受理差・下流実測、fn0直接2testsを記録。無変更とは申告しない。",
+        "M8": "private関数patchを除去。公開actual_source_pointersを原入力locatorから導く。旧ae90でassertionRedを再観測。",
+        "M9": "ADD14はfactのKB旧→新差替え+明示relation。silentなし・旧Ref保持とmixed述語を別assert。既存Green対照を新Redとしない。"
+      },
+      "minor_responses": {
+        "m1": "NEG01のorを除きR68 axis/state/ownerと、重なるsilent述語をL5から別観測。新抑制gateなし。",
+        "m2": "trace body・左endpoint不一致・oracle対象不一致・不正Validatedを一枝へ固定。range3件はWR05の未閉包public写像によるID停止許容理由を各docstringに記す。",
+        "m3": "NEG05/06のaxis/state/owner、NEG05の左右sourceRefsをassert。",
+        "m4": "I1B trace_occurrencesの全2件と原index対をassert。",
+        "m5": "NORMALのactual unknownとR61をassert。",
+        "m6": "未資格filename対照はidentity_claim行なしをassertし空loopを除去。",
+        "m7": "重複elifはfact_mixedとのAST同一をroot確認して1c644で削除。他のpass/定数owner_shape/subject fallback/未使用引数も除去。",
+        "m8": "scope/sourceのpredicate専用Axisを原出現ごとに同じ規則で作成し、TraceRead.source_indicesは原source index順。",
+        "m9": "R63 obligation identity differsは旧wip ae90のsame-obligation guard（当時1707–1708行）が既に不成立を除外したため既存Green対照。新たなRed証拠ではない。"
+      },
+      "private_read_diagnostic": "rootは公開fn3 call中のprivate localをprofileで観測し、実装をpatchせずpositive/outsideは左右owner_body_corresponding/resolved、左scope差は左のみowner_scope_differs/conflict、独立合成した右scope差は右のみ同conflictを確認。public pairはpositiveのみresolved、他3つconflict。これは回帰testのoracleや新公開interfaceにはしない。"
     },
-    "execution_state": "review_R1_findings_test_red_source_fix_pending",
+    "execution_state": "review_R1_root_verified_R2_pending",
     "authority_effect": "none"
   }
 }
