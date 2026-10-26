@@ -1422,6 +1422,19 @@
       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
       "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
      }
+    },
+    {
+     "id": "HELIXBRAIN-L9-032-I1QR-EQUAL-QUALIFICATIONS",
+     "change": "同じ原SourceQualificationRead内に、全JSON値がexactに等しいQualification occurrenceを二つ置き、両方を同じ物理source s・root rへ対応させる。KnowledgeRecord一件、対応provenance一件、read.cause=original_trace_corresponding、既存9-key material形成は入力前提。具体fixtureは追加しない。",
+     "expected": "negative_casesに置く順序保持の有限反例であり、単一classification enumや実資格成立を追加しない。各qualification occurrenceの原indexと9-key trace materialを二要素で保持する。公開trace refsは共通先頭3件を一度、その後に各chainの既存6件を原qualification index順で連結した15件とし、同値Refの反復を残す。source_indicesとbody_groupsは同じ物理sourceを一度、rootsは一つの原出現を一度だけ保持する。元readのstate/cause、Qualification/root原配列、既存Finding/witnessとowner/reentryを変えず、同値反復だけのFindingや資格成功を作らない。distinct/複数source・root、3件以上、一般interleave/qualification選択は未閉包。",
+     "backflow_owner": "knowledge_owner",
+     "expected_side_effect_count": 0,
+     "execution_state": "not_executed",
+     "l4_contract_ref": {
+       "revision": "9ce0a8eb171b1a64627b4283f30100559cad7a9d",
+       "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+       "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_qualification_repetition"
+     }
     }
    ],
    "execution_state": "not_executed",
