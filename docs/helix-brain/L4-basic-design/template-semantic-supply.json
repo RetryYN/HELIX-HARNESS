@@ -12294,6 +12294,104 @@
           "finding_range_source": "保存対象のrange_relationは当該原record.source_refへfull Ref対応する唯一の原source（右owner read.source_indexとも対応）のcontent.compatibility_range_declaration.relation。source-null例は宣言未供給/not_supplied。複数sourceが対応又は対応未形成の場合の選択は未閉包で、先頭/別sourceの宣言を補完しない。",
           "rules_without_normal_row": "source_missing、scope_missing、oracle_revision_mismatch、identity_claim、template.version_claim等の通常row外ruleについて、原predicate witnessのlocator集合、subject、Binding、source Ref参加範囲/列順は未行使/未閉包。既存predicateを変更せず、未定のwitness又は型未形成を空Ref/代替Bindingの公開rowで埋めない。原値/presence/private観測を保持する。",
           "reason_material_presence": "保存対象の定型reason materialに必要な原memberのabsent/null/型外を一般にどう公開materialへ写すかは、各明記済みPresenceRaw/未行使single-read serialization以外は未閉包。保存対象の固定materialを架空null/indexで完成させない。"
+        },
+        "finite_zero_knowledge_record": {
+          "id": "HELIXBRAIN-L4-I1A-ZERO-KNOWLEDGE-RECORD",
+          "status": "有限1-caseの公開IdentityTraceReturn基本契約候補。実readerと資格成立は未実施。",
+          "requirements": [
+            "HELIXBRAIN-L3-032-F04",
+            "HELIXBRAIN-L3-032-N01"
+          ],
+          "scope_ja": "固定P15 inputの supplied empty KnowledgeRecord collectionを持つ一caseで、実在Binding、原15 descriptor/fact、source/Q/root、actual/trace読みと全公開Comparisonを扱う。空配列をabsent/nullと同じ扱いにせず、record/provenance chainを創作しない。",
+          "case_count": 1,
+          "source_basis": [
+            {"revision":"d57efa8a0bba10f69a6a18cde1c64a91c735accb","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"b231603702040eeccfb4da8e3fc696f5ff60cfd47a863afff89f7524650c1710","pointer":"/identity_version_trace_contract/public_projection/axis_reason_writer/actual_roles","role_ja":"元のactual role列を保持し、knowledge.identity/revisionとoperational_stateの入力起点を区別する。"},
+            {"revision":"d57efa8a0bba10f69a6a18cde1c64a91c735accb","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"b231603702040eeccfb4da8e3fc696f5ff60cfd47a863afff89f7524650c1710","pointer":"/identity_version_trace_contract/read_branch_contracts/actual/finite_branch_order","role_ja":"actual owner未供給がKnowledgeRecord未解決より先行する順序を保持する。"},
+            {"revision":"d57efa8a0bba10f69a6a18cde1c64a91c735accb","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"b231603702040eeccfb4da8e3fc696f5ff60cfd47a863afff89f7524650c1710","pointer":"/identity_version_trace_contract/read_branch_contracts/actual/six_case_source_selection/source_unprovided_cases","role_ja":"固定P15のactual owner本文未供給という有限条件を根拠にする。"},
+            {"revision":"d57efa8a0bba10f69a6a18cde1c64a91c735accb","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","file_sha256":"b231603702040eeccfb4da8e3fc696f5ff60cfd47a863afff89f7524650c1710","pointer":"/identity_version_trace_contract/public_projection/axis_reason_writer/actual_operand_binding/knowledge_state_selection","role_ja":"operational_stateだけがKnowledgeRecord joinを使う既存契約。"},
+            {"revision":"d57efa8a0bba10f69a6a18cde1c64a91c735accb","path":"docs/helix-brain/L9-integration-verification/template-semantic-supply.json","file_sha256":"1463d06d2d7861540fcc868ff77171f878f6375e2bf570f00a73cad196cfb128","pointer":"/identity_version_trace_verification/seven_expected_results_storage","role_ja":"既存7 wholeを保持し、新caseを別caseとして置く。"},
+            {"revision":"3d0fcfcde6338272d9d1a5f70cfb0e7ce4df446b","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","file_sha256":"4fe718c77c656739d34e920388f54e6809f92f8201158c6653f963957d7c1be9","pointer":"/definition_meaning_walk_verification/materials/0/raw_input","role_ja":"固定P15 rawの歴史sourceであり現行authorityではない。"}
+          ],
+          "legacy_sources": [
+            {"asset_id":"LEGACY-ASSET-4F5A1F0739EC1111D91D","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md","file_sha256":"e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb","lines":"16-92","role_ja":"JSON正本とgenerated viewを分ける歴史起点。旧registry/runtimeは移植しない。"},
+            {"asset_id":"LEGACY-ASSET-98372FEE8A3AC8F9C299","path":"archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md","file_sha256":"3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830","lines":"30-148","role_ja":"stable identityとunknown/N/A区別の歴史起点。閾値/旧lifecycleは再導入しない。"},
+            {"asset_id":"LEGACY-ASSET-A127DEC3EEE6ED63CF17","path":"archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md","file_sha256":"bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872","lines":"65-101","role_ja":"absence blindness、partial failure診断、self-report failureの履歴。製品reject ruleやgateの根拠にしない。"}
+          ],
+          "caller_binding": {
+            "symbol": "compare_identity_trace_snapshot",
+            "signature": "IdentitySnapshot -> IdentityTraceReturn",
+            "context_member_order": [
+              "validated"
+            ],
+            "validated_member_order": [
+              "input",
+              "input_issues",
+              "unusable_source_refs"
+            ],
+            "qualification_boundary_ja": "fixtureのwrapper値は条件付き入力でありfn0/資格処理を実行しない。",
+            "cases": [
+              {"case_id":"I1A-P15-ZERO-KNOWLEDGE-RECORDS","raw_input_pointer":"/definition_meaning_walk_verification/materials/0/raw_input","input_patch":[{"op":"replace","path":"/knowledge_records","value":[]}],"raw_input_canonical_sha256":"f80648c40aff645e32fcc6504f7a6abd897955f1eee7cf37ad3cfc5211e8dc97","raw_input_ordered_sha256":"a2c96353a41eb55109cba0abdd4eef4bbc5d85e2d724cd17ba73670bbb10c0c0","caller_canonical_sha256":"20870ccf701da581a5e0bc90c53beb141235f669128941b14cc66680fe8cd3e6","caller_ordered_sha256":"1370851578cc0467b67d0a0bff355a3482945baa23586b0b9ddbc886b3f872ee"}
+            ],
+            "same_invocation_ja": "各readは一つのfrozen validated inputを共有する有限basic観測。"
+          },
+          "public_comparison_contract": {
+            "shape_source": {
+              "revision": "d57efa8a0bba10f69a6a18cde1c64a91c735accb",
+              "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+              "file_sha256": "b231603702040eeccfb4da8e3fc696f5ff60cfd47a863afff89f7524650c1710",
+              "pointer": "/identity_version_trace_contract/schema/$defs/Comparison"
+            },
+            "return_member_order": [
+              "comparison",
+              "source_qualifications",
+              "actual_operands",
+              "descriptor_traces",
+              "bilateral_pairs"
+            ],
+            "comparison_member_order": [
+              "axes",
+              "findings",
+              "producer_symbol",
+              "input_binding"
+            ],
+            "axis_result_member_order": [
+              "subject_ref",
+              "binding",
+              "axis",
+              "state",
+              "original_refs",
+              "reason",
+              "backflow_owner"
+            ],
+            "finite_population_ja": "11 actual roleと15原slot/fact traceを本caseだけで全値照合する。knowledge.identity/revisionはBinding由来、knowledge.operational_stateのみrecord join。",
+            "whole_boundary_ja": "全returnの期待値はL9 nodeに再構成seedと明示COPYで別保持する。既存7 whole/3 membershipを変更・代用しない。"
+          },
+          "source_scope_ja": "固定P15の他root memberの全値/順序を保持する。削除recordのprovenance_refsは元Git seedに保存し、新inputに残ったとは言わない。",
+          "technical_selection": {
+            "source_basis_ja": "同snapshotの実slot/factからTraceRequestを原順形成し、同knowledge/provenance chainからsource対象を形成する有限選択。空recordだけから全診断列を機械的に空とする一般規則ではない。",
+            "actual_roles_ja": "固定L4 actual_rolesの全roleを宣言順で保持。knowledge.identity/revisionはBindingから読む。knowledge.operational_stateだけcollection locator /knowledge_recordsを使いsupplied []を原Readに保つ。既存他role/readを落とさない。",
+            "actual_owner_ja": "P15 source roleはsemantic_json。actual-owner本文未供給の根拠は固定L4 read_branch_contracts/actual/six_case_source_selection/source_unprovided_casesであり、contentのsemantic_jsonキー不在を資格判定にしない。元role/値/unknownとactual_owner_body_unprovidedを先行保持し、0recordだけからactual_owner_body_unresolvedを選ばない。",
+            "trace_ja": "15原slot/factから形成した各DescriptorTraceReadのslot_read/fact_read全PresenceRawを保持。対応knowledge_records=[]、provenance_refs=[]。元fact.source_refだけで代替provenance chainを作らず、このcaseではsource_indices=[]とbody_groups=[]、state unknown/cause knowledge_unresolvedを選ぶ。原input sources/Q/rootは削除せず保持。",
+            "source_qualification_ja": "actualは原P15の独立role body未供給、traceは上記chain未形成、bilateralは原compatibility_records=[]。この有限caseでsource対象indexを束縛又は局所資格検査しないと明示し、source_qualifications=[]。入力全sourcesの走査/所在をqualified成功/失敗rowへ変えない。",
+            "public_refs_ja": "knowledge.identity/revisionは実subject Refを保持し、対応record.ref追加列は0件。operational_stateもsubject Refを保ちrecord由来provenance列は0件。traceは実fact.ref、fact.source_ref、slot.binding.knowledge_refの3列を原順/反復で保持し、record/provenance/source/Q/rootの未形成chain列を足さない。",
+            "reason_ja": "actualは既存actual_materialを使い、operational_state.member_pointerは/knowledge_records、original_readはsupplied []。traceは既存reason_serialization/unexercised_traceの配列materialとcause literal prefixを使い、knowledge_record_indices/provenance_indices/source_indices/body_group_locatorsを空列に保つ。架空scalar index0/nullやRefで埋めない。",
+            "findings_ja": "既存rule_mappingと原predicateを保持し、0 KnowledgeRecordだけをsource_missing等の新predicate又は自動Findingへ変えない。既存predicateへの関与と形成された全返却を期待authorが明示する。",
+            "return_ja": "全IdentityTraceReturn5memberとnested Comparison4memberを全値/再帰member順で照合。公共shape/producer_symbol/input_bindingと全原axis/state/reason/Refを保持。source populationを固定したcaseの有限帰結であり全callerの一般selectorではない。"
+          },
+          "technical_selection_source": {
+            "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-identity-I1a-zero-record-technical-selection-R1.json",
+            "sha256": "b465b14bfea1ac53b655aa4bc586924d74069d58fd2522433084d75485b86af2",
+            "role_ja": "localの非authority作業記録。再構成材料ではなく、検証はtracked Git seed・明示patch・COPYだけを基準とする。",
+            "boundary_ja": "この参照はlocal非authority作業記録である。検証はtracked Git seed、明示patch、tracked COPY recipeのみを基準とし、local recordを再構成材料にしない。"
+          },
+          "legacy_rederivation": {
+            "preserved_ja": "4F5A/98372/A127の歴史的保持点を参照する。",
+            "changed_ja": "現在の有限raw PresenceRawとRef列からこのcaseだけを再導出する。",
+            "reason_ja": "旧runtime/schema/registry/thresholdを製品動作や新gateとして移植しない。"
+          },
+          "not_established_ja": "multi record/Q/root、一般cause競合、実owner/trust/provider、全caller/domain、L5L8詳細は後続。 このcaseは一般cause優先、複数record/Q/root、全caller、実資格、L5/L8詳細を成立させない。 chainのknowledge起点を先に評価する、この有限caseの技術選択であり、一般のtrace cause優先順位ではない。L4 unclosed_projection_boundaries/knowledge_recordsの一般0件/複数件形成は未閉包のまま、本P15 zero-record caseのknowledge_unresolvedだけを追加行使する。L9 finite_branch_coverageは既存7 whole/3 membership対象の列挙であり、本追加caseを含む全域網羅へ読み替えず、既存列挙を保持する。",
+          "authority_effect": "none",
+          "operation_effect": "none"
         }
       }
     },
