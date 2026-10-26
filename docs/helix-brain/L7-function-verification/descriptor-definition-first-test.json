@@ -175,9 +175,9 @@
     "execution_state": "scope_executed_red_then_green",
     "execution_evidence": {
       "test_commit": "9ed30a59ae0fc821be2e07634056847b15f9aecb",
-      "implementation_commit": "5db992e160203b3da81c18d0c38d74a7bf9b2c14",
+      "implementation_commit": "f1a4c2d54cfa6f9f1eaecd67563113393406d06d",
       "red": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408366414",
-      "green": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408902736",
+      "green": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408974955",
       "boundary": "normalとN03独立三入力の四testだけ。実trust/全schema/全返却/他child/実装全域の成立ではない。"
     },
     "authority_effect": "none"
