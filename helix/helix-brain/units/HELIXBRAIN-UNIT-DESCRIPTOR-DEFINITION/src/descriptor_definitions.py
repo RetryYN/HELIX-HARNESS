@@ -1544,3 +1544,8 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
 
     return _fn6(context)
 
+
+def compare_knowledge_promotion(context: dict[str, object]) -> dict[str, object]:
+    from knowledge_promotion import compare_knowledge_promotion as _fn5
+
+    return _fn5(context)
