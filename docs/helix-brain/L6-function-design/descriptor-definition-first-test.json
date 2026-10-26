@@ -163,7 +163,6 @@
     "invariant": "同じfn0返却をfn1へ渡し、その実Comparisonだけを同snapshotのfn2へ渡す。任意cached結果/資格成功stubは注入しない。正式関数のNotImplemented宣言だけをtest commitへ置き、Red観測後に別commitで実装する。",
     "test_oracles": "L8 function_oracles/0,1,2の部分観測とcases/13/negative_cases/0..2、additional_unit_cases/36。具体fixture/独立期待はtest codeに置く。",
     "legacy_basis": "既存/legacy_rederivationの4674004/FDBA655、固定L5 claim_protocol/legacy_rederivationの4F5A/98372/UTW014/020/021を再利用。元unknown/traceと同unit配置を保持し旧runtime/CIは実行しない。",
-    "execution_state": "not_executed",
     "authority_effect": "none"
   }
 }

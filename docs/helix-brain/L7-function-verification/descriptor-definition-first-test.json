@@ -172,7 +172,14 @@
     "old_binding_boundary": "既存paired_working_bindingのliteralは保持し、今回N03のcurrent証拠にはしない。N03は上記design_binding_refの固定revision＋Pointerで追う。",
     "red_then_green": "rootがtest commit後に同じtestを実行し、正式関数のNotImplemented又は意味不一致のRedを観測する。import/setup error・skipは代替にせず、testを変えない別実装commitでGreenにする。出力はPRへ記録する。",
     "legacy_basis_ref": {"revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","path":"docs/helix-brain/L6-function-design/descriptor-definition-first-test.json","pointer":"/legacy_rederivation"},
-    "execution_state": "not_executed",
+    "execution_state": "scope_executed_red_then_green",
+    "execution_evidence": {
+      "test_commit": "9ed30a59ae0fc821be2e07634056847b15f9aecb",
+      "implementation_commit": "5db992e160203b3da81c18d0c38d74a7bf9b2c14",
+      "red": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408366414",
+      "green": "https://github.com/RetryYN/HELIX-HARNESS/pull/3701#issuecomment-6408902736",
+      "boundary": "normalとN03独立三入力の四testだけ。実trust/全schema/全返却/他child/実装全域の成立ではない。"
+    },
     "authority_effect": "none"
   }
 }
