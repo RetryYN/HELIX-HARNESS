@@ -245,7 +245,69 @@
       {"branch":"unmatched_general_bilateral_aggregation","source_refs":["L4 /identity_version_trace_contract/public_projection/axis_reason_writer/general_occurrence_cause_witness/scope_limitations_ja","L4 /identity_version_trace_contract/public_projection/axis_reason_writer/bilateral_aggregation/unclosed_boundary"],"stop_ja":"同一predicate・対象pair・full Bindingへ対応しないgeneral群を集約せず、既定の未閉包停止へ戻す。","execution_state":"not_executed"}
     ],
     "test_boundary_ja": "I1A/I1B/2Q/C3は参照範囲でありfixtureを複製しない。具体入力は後続L7 test codeで独立導出し、C3 positiveは別入力とする。全返却/全cause/全組合せの合格、L9 whole証拠の再作成、fn1未凍結F01/F02の実装・期待変更は含めない。",
-    "execution_state": "not_executed",
+    "design_binding_ref": {
+      "revision": "7cda10d1d8848c5cd227c17e7b734f1f83442bb5",
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn3_identity_preparation"
+    },
+    "test_source": {
+      "revision": "0738cd3ea8b05721b1baf11861ae6b9f929f0538",
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
+      "class": "TestIdentityVersionsAndTrace",
+      "methods": [
+        "test_NORMAL_fn3_uses_the_same_fn0_snapshot_as_fn1",
+        "test_F04_NEG_01_missing_semantic_source_keeps_the_original_ref",
+        "test_F04_NEG_03_scope_null_is_not_repaired_from_filename_or_other_scope",
+        "test_F04_NEG_04_source_null_keeps_null_reason_and_does_not_add_null_ref",
+        "test_F04_NEG_05_qualified_outside_range_uses_the_existing_mismatch_rule",
+        "test_F04_NEG_06_oracle_revision_mismatch_preserves_the_supplied_revision",
+        "test_F04_NEG_07_image_only_claim_does_not_replace_original_identity",
+        "test_F04_NEG_08_tool_node_only_claim_does_not_replace_template_revision",
+        "test_F04_NEG_09_same_filename_claim_does_not_join_identity",
+        "test_F04_NEG_10_version_target_claim_does_not_rewrite_template_version",
+        "test_F04_NEG_11_zero_knowledge_records_keep_unknown_trace",
+        "test_I1B_equal_records_keep_both_raw_occurrences",
+        "test_I1Q_equal_qualification_occurrences_keep_both_global_indices",
+        "test_N01_NEG_01_mixed_revision_is_not_silently_collapsed",
+        "test_N01_NEG_02_missing_supersession_keeps_the_original_binding",
+        "test_ADD_13_pack_artifact_change_keeps_template_and_knowledge_versions",
+        "test_ADD_14_explicit_supersession_does_not_rewrite_old_trace_refs",
+        "test_C3_positive_pair_is_resolved_only_from_bilateral_owner_sources",
+        "test_C3_original_one_owner_stays_unknown_and_keeps_R61_mapping",
+        "test_general_single_trace_chain_preserves_the_l4_ref_sequence",
+        "test_C3_scope_difference_remains_conflict_without_a_new_finding",
+        "test_C3_range_false_uses_only_the_qualified_outside_predicate",
+        "test_C3_opposing_records_keep_the_existing_mismatch_finding",
+        "test_F04_NEG_02_absent_and_null_revision_are_unclosed",
+        "test_nonempty_dependency_branch_is_unclosed",
+        "test_multiple_finding_range_sources_are_unclosed",
+        "test_unmapped_cause_to_finding_is_unclosed",
+        "test_general_group_outside_matching_pair_is_unclosed"
+      ]
+    },
+    "input_source": {
+      "revision": "0738cd3ea8b05721b1baf11861ae6b9f929f0538",
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/identity_input_fixtures.py"
+    },
+    "red_evidence": {
+      "test_commit": "0738cd3ea8b05721b1baf11861ae6b9f929f0538",
+      "command": "unit cwd: PYTHONPATH=src:tests python3 -B -m unittest discover -s tests -p test_identity_versions_and_trace.py -v",
+      "result": "28tests、failures28/errors1（dependency subtest分を含む）。fn3正式入口NotImplementedとfn0 partialRef/同値Q二出現の意味不足。",
+      "record": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418908525",
+      "boundary": "import/setup error又はskipはRed証拠へ代用しない。初回-E runnerはPYTHONPATHを無視し未進入だったため修正、正規runだけを記録。既存testを改変しない。"
+    },
+    "unreached_true_predicates": [
+      {
+        "id": "HELIXBRAIN-L8-032-F04-NEG-09",
+        "reason": "qualified異template identity二候補の原入力証拠を未形成。現testはunknown/原Ref保持/無根拠R66非生成のみ。"
+      },
+      {
+        "id": "HELIXBRAIN-L8-032-F04-NEG-10",
+        "reason": "qualified原template実版0.1.0-seed-candidateのactual入力carrier根拠を未形成。現testはunknown/原Ref保持/無根拠R67非生成のみ。"
+      }
+    ],
+    "input_evidence_backflow": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6418740897",
+    "execution_state": "red_observed_implementation_pending",
     "authority_effect": "none"
   }
 }
