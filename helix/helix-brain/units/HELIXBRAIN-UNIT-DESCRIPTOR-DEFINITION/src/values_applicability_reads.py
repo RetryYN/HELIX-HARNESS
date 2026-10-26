@@ -126,11 +126,11 @@ _JUDGMENT_CAUSE_TABLE: dict[str, tuple[str, str, str]] = {
         "missing",
         "原owner対応fieldのmeaning_fact_refsは明示空配列である。",
     ),
-    "meaning_positive": (
-        "definition_known",
-        "known",
-        "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。",
-    ),
+    "meaning_positive": ("definition_known", "known", "固定frame/原fact/body/原理由/basisへ対応する肯定意味判断を保持する。"),
+    "target_unknown": ("definition_unknown", "unknown", "fieldの原descriptor targetを一意のslot対応へ結べない。"),
+    "selected_fact_unresolved": ("definition_unknown", "unknown", "選択した原意味Refを対応slotの実factへ結べない。"),
+    "attribution_unknown": ("definition_unknown", "unknown", "選択factの原owner帰属を解決できない。帰属から意味knownを生成しない。"),
+    "meaning_read_unresolved": ("definition_unknown", "unknown", "原意味readerの当該fact支持を取得できない。"),
 }
 
 

@@ -11,6 +11,7 @@ from descriptor_definitions import (
     _ordered,
     _presence,
     _ref_same,
+    _ref_shape_ok,
 )
 from values_applicability_reads import (
     _PROBLEM_REASONS,
@@ -103,7 +104,8 @@ _FIELD_MEMBERS = {
 def _validate_f03_row_preconditions(raw: dict[str, Any], field: dict[str, Any]) -> None:
     binding = raw.get("binding")
     field_ref = field.get("ref")
-    if set(field.keys()) != _FIELD_MEMBERS or not isinstance(field_ref, dict) or not isinstance(binding, dict):
+    slot_ref = field.get("descriptor_slot_ref")
+    if set(field.keys()) != _FIELD_MEMBERS or not _ref_shape_ok(field_ref) or not _ref_shape_ok(slot_ref) or not isinstance(binding, dict):
         raise _f03_stop("carrier_or_source_record_shape", "SectionField closed shape branch")
     if "applicability_records" not in raw or not isinstance(raw["applicability_records"], list):
         raise _f03_stop("applicability_records_absent_or_shape", "applicability_records is absent or not an array")
@@ -187,8 +189,10 @@ def _build_f03_row(
         if not isinstance(parent_ref, dict):
             raise _f03_stop("carrier_or_source_record_shape", "SectionField.parent_section_ref type branch")
         if has_f03_mode:
-            for app_rec in raw["applicability_records"]:
-                if isinstance(app_rec, dict) and _ref_same(app_rec.get("subject_ref"), parent_ref):
+            for app_idx, app_rec in enumerate(raw["applicability_records"]):
+                if not isinstance(app_rec, dict):
+                    raise _f03_stop("carrier_or_source_record_shape", f"/applicability_records/{app_idx} is not an object")
+                if _ref_same(app_rec.get("subject_ref"), parent_ref):
                     parent_reads.append(
                         _read_f03_field_owner_record(
                             validated,
@@ -346,7 +350,7 @@ def _build_f03_row(
             public_axes.append(ax)
         elif applicability_read["state"] == "resolved":
             app_rec = applicability_read["root_occurrences"][0]["original_value"]
-            app_owner = app_rec.get("owner") if isinstance(app_rec.get("owner"), str) else knowledge_owner
+            app_owner = app_rec.get("owner") if isinstance(app_rec.get("owner"), str) else None
             decision = app_rec.get("decision")
             if decision == "applicable":
                 app_branch, app_state = "applicability_applicable", "applicable"
@@ -420,19 +424,20 @@ def _build_f03_row(
                 continue
             v_occs = v_read["root_occurrences"]
             v_rec = v_occs[0]["original_value"] if v_occs else None
+            # R3-m5: L4 projection_order/public「public original_refs/ownerは実読取原値だけ」:
+            # owner解決済みreadは実読取record/source_refのowner原値（nullならNone）を保持し、未解決readは同一frameの実読取knowledge_ref.ownerを使う。
             if v_read["state"] == "resolved" and isinstance(v_rec, dict):
                 v_src = v_rec.get("source_ref")
                 v_owner = v_src.get("owner") if isinstance(v_src, dict) and isinstance(v_src.get("owner"), str) else None
                 v_refs = [v_rec.get("ref"), knowledge_ref, v_src]
-                if v_rec.get("value") is not None and v_rec.get("origin") == "project_owner":
-                    v_branch, v_state = "value_supplied", "supplied"
-                elif v_rec.get("value") is None and v_rec.get("origin") in ("absent", "reference_fixture"):
+                if v_rec.get("origin") in ("absent", "reference_fixture"):
                     v_branch, v_state = "value_unknown", "unknown"
+                elif v_rec.get("origin") == "project_owner" and v_rec.get("value") is not None:
+                    v_branch, v_state = "value_supplied", "supplied"
                 else:
                     raise _f03_stop("carrier_or_source_record_shape", "unclosed ValueFact value/origin combination")
             else:
-                v_src = v_rec.get("source_ref") if isinstance(v_rec, dict) else None
-                v_owner = None if (isinstance(v_src, dict) and v_src.get("owner") is None) else knowledge_owner
+                v_owner = knowledge_owner
                 v_refs = [v_rec.get("ref"), v_rec.get("source_ref")] if isinstance(v_rec, dict) else []
                 v_branch, v_state = "value_unknown", "unknown"
 
@@ -534,7 +539,7 @@ def _build_f03_row(
                 public_axes.append(ax)
         elif applicability_read["state"] == "resolved":
             app_rec = applicability_read["root_occurrences"][0]["original_value"]
-            app_owner = app_rec.get("owner") if isinstance(app_rec.get("owner"), str) else knowledge_owner
+            app_owner = app_rec.get("owner") if isinstance(app_rec.get("owner"), str) else None
             decision = app_rec.get("decision")
             if decision == "applicable":
                 f_branch, f_state = "field_applicable", "applicable"

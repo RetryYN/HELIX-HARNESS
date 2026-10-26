@@ -147,12 +147,10 @@ def _read_f03_original_field_definition(
         else:
             if "meaning_comparisons" not in raw or not isinstance(raw["meaning_comparisons"], list):
                 raise _f03_stop("carrier_or_source_record_shape", "meaning_comparisons is absent or not an array")
-            for comp in raw["meaning_comparisons"]:
-                if isinstance(comp, dict) and any(
-                    _ref_same(comp.get(side), mref)
-                    for mref in meaning_refs
-                    for side in ("left_fact_ref", "right_fact_ref")
-                ):
+            for comp_idx, comp in enumerate(raw["meaning_comparisons"]):
+                if not isinstance(comp, dict):
+                    raise _f03_stop("carrier_or_source_record_shape", f"/meaning_comparisons/{comp_idx} is not an object")
+                if any(_ref_same(comp.get(side), mref) for mref in meaning_refs for side in ("left_fact_ref", "right_fact_ref")):
                     raise _f03_stop("meaning_comparison_pair_read", "F03 pair_reads with participating meaning_comparisons is outside this slice")
             if len(meaning_refs) == 0:
                 branch, state, reason = _JUDGMENT_CAUSE_TABLE["meaning_refs_empty"]
@@ -173,9 +171,11 @@ def _read_f03_original_field_definition(
                         "reason": reason,
                     }
                 )
+            elif target_read["state"] != "resolved" or not target_read["matches"][0]["slot_locators"]:
+                branch, state, reason = _JUDGMENT_CAUSE_TABLE["target_unknown"]
+                for ref_idx, req_ref in enumerate(meaning_refs):
+                    judgments.append({"branch": branch, "cause": "target_unknown", "state": state, "request_ref_index": ref_idx, "fact_read_indices": [], "meaning_support_indices": [], "pair_read_indices": [], "original_refs": _copy_refs_in_source_order([field_ref, field.get("descriptor_slot_ref"), knowledge_ref, owner_src_ref, req_ref]), "original_reason": _presence(present=False), "original_semantic_basis": _presence(present=False), "reason": reason})
             else:
-                if target_read["state"] != "resolved" or not target_read["matches"][0]["slot_locators"]:
-                    raise _f03_stop("meaning_operation_shape", "target_read unresolved for non-empty meaning_fact_refs")
                 slot_locator = target_read["matches"][0]["slot_locators"][0]
                 slot_idx = int(slot_locator.rsplit("/", 1)[-1])
                 slot = raw["descriptors"][slot_idx]
@@ -192,7 +192,11 @@ def _read_f03_original_field_definition(
                             matched_fact = cand_fact
                             break
                     if matched_fact is None or matched_fact_idx is None:
-                        raise _f03_stop("meaning_operation_shape", f"selected fact not found in {slot_locator}")
+                        fact_read_idx = len(fact_reads)
+                        fact_reads.append({"request_locator": req_loc, "requested_ref": _presence(req_ref, present=True), "slot_locator": slot_locator, "fact_locator": None, "fact": _presence(present=False), "attribution_read": {"state": "unknown", "supports": [], "problems": []}, "meaning_read": _presence(present=False), "problems": []})
+                        branch, state, reason = _JUDGMENT_CAUSE_TABLE["selected_fact_unresolved"]
+                        judgments.append({"branch": branch, "cause": "selected_fact_unresolved", "state": state, "request_ref_index": ref_idx, "fact_read_indices": [fact_read_idx], "meaning_support_indices": [], "pair_read_indices": [], "original_refs": _copy_refs_in_source_order([field_ref, field.get("descriptor_slot_ref"), knowledge_ref, owner_src_ref, req_ref]), "original_reason": _presence(present=False), "original_semantic_basis": _presence(present=False), "reason": reason})
+                        continue
                     fact_locator = f"{slot_locator}/facts/{matched_fact_idx}"
 
                     attr_supports: list[dict[str, Any]] = []
@@ -238,7 +242,11 @@ def _read_f03_original_field_definition(
                                         }
                                     )
                     if not attr_supports:
-                        raise _f03_stop("meaning_operation_shape", f"attribution unresolved for {fact_locator}")
+                        fact_read_idx = len(fact_reads)
+                        fact_reads.append({"request_locator": req_loc, "requested_ref": _presence(req_ref, present=True), "slot_locator": slot_locator, "fact_locator": fact_locator, "fact": _presence(matched_fact, present=True), "attribution_read": {"state": "unknown", "supports": [], "problems": []}, "meaning_read": _presence(present=False), "problems": []})
+                        branch, state, reason = _JUDGMENT_CAUSE_TABLE["attribution_unknown"]
+                        judgments.append({"branch": branch, "cause": "attribution_unknown", "state": state, "request_ref_index": ref_idx, "fact_read_indices": [fact_read_idx], "meaning_support_indices": [], "pair_read_indices": [], "original_refs": _copy_refs_in_source_order([field_ref, field.get("descriptor_slot_ref"), knowledge_ref, owner_src_ref, matched_fact["ref"], matched_fact["source_ref"]]), "original_reason": _presence(present=False), "original_semantic_basis": _presence(present=False), "reason": reason})
+                        continue
                     attribution_read = {
                         "state": "known",
                         "supports": attr_supports,
@@ -246,7 +254,11 @@ def _read_f03_original_field_definition(
                     }
                     meaning_read_val = _read_f03_fact_meaning(validated, slot_locator, fact_locator, slot, matched_fact)
                     if not meaning_read_val["supports"]:
-                        raise _f03_stop("meaning_operation_shape", f"meaning_read has no positive support for {fact_locator}")
+                        fact_read_idx = len(fact_reads)
+                        fact_reads.append({"request_locator": req_loc, "requested_ref": _presence(req_ref, present=True), "slot_locator": slot_locator, "fact_locator": fact_locator, "fact": _presence(matched_fact, present=True), "attribution_read": attribution_read, "meaning_read": _presence(meaning_read_val, present=True), "problems": []})
+                        branch, state, reason = _JUDGMENT_CAUSE_TABLE["meaning_read_unresolved"]
+                        judgments.append({"branch": branch, "cause": "meaning_read_unresolved", "state": state, "request_ref_index": ref_idx, "fact_read_indices": [fact_read_idx], "meaning_support_indices": [], "pair_read_indices": [], "original_refs": _copy_refs_in_source_order([field_ref, field.get("descriptor_slot_ref"), knowledge_ref, owner_src_ref, matched_fact["ref"], matched_fact["source_ref"]]), "original_reason": _presence(present=False), "original_semantic_basis": _presence(present=False), "reason": reason})
+                        continue
 
                     fact_read_idx = len(fact_reads)
                     fact_reads.append(
@@ -316,19 +328,16 @@ def _read_f03_original_field_definition(
     }
 
 
-def _validate_f03_claim_shape_and_actor(claim: dict[str, Any]) -> None:
-    if set(claim.keys()) != _REQUIRED_CLAIM_MEMBERS:
-        raise _f03_stop("claim_shape_or_actor", "Claim does not match closed 6-member shape")
-    if claim.get("actor") != "BRAIN" or not isinstance(claim.get("basis_refs"), list):
-        raise _f03_stop("claim_shape_or_actor", "Claim actor must be BRAIN and basis_refs must be a list")
-
-
 def _evaluate_f03_claim_on_row(
     claim: dict[str, Any],
     row: dict[str, Any],
 ) -> tuple[int, dict[str, Any]] | None:
-    _validate_f03_claim_shape_and_actor(claim)
-    if any(not _ref_shape_ok(r) for r in claim["basis_refs"]):
+    if (
+        set(claim.keys()) != _REQUIRED_CLAIM_MEMBERS
+        or claim.get("actor") != "BRAIN"
+        or not isinstance(claim.get("basis_refs"), list)
+        or any(not _ref_shape_ok(r) for r in claim["basis_refs"])
+    ):
         return None
 
     kind = claim.get("kind")
@@ -430,11 +439,10 @@ def evaluate_field_values_detail(context: dict[str, Any]) -> dict[str, Any]:
 
     for claim in raw["claims"]:
         if not isinstance(claim, dict):
-            raise _f03_stop("claim_shape_or_actor", "Claim record is not an object")
+            raise _f03_stop("carrier_or_source_record_shape", "Claim record is not an object")
         matching_rows = [r for r in rows if _ref_same(claim.get("subject_ref"), r["field"].get("ref"))]
         is_n03_claim_kind = claim.get("kind") in ("operation_deadline", "resource_capacity")
         if not is_n03_claim_kind:
-            _validate_f03_claim_shape_and_actor(claim)
             if not _binding_same(claim.get("binding"), binding) or not matching_rows:
                 continue
             if len(matching_rows) != 1:
