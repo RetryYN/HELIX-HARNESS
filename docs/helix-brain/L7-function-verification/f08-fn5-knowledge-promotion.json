@@ -119,6 +119,13 @@
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
-  "execution_state": "red_pending_implementation",
-  "completion_boundary": "fn0→fn5のF08垂直スライス限定検証であり、007/008/025実工程の採否・運用state遷移・製品CI・Accepted・releaseを成立させない。"
+  "execution_state": "green_verified",
+  "completion_boundary": "fn0→fn5のF08垂直スライス限定検証であり、007/008/025実工程の採否・運用state遷移・製品CI・Accepted・releaseを成立させない。",
+  "execution_evidence": {
+    "test_commit": "90bd6f3f75c25c8acf8349edf631e3659e937d89",
+    "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion",
+    "red_result": "Ran 6 tests in 0.295s — FAILED (failures=20, errors=15) (NotImplementedError: F08/fn5_unimplemented: compare_knowledge_promotion is not yet implemented; Backflow HELIXBRAIN-L6-032-F08-FN5-PATH)",
+    "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
+    "green_result": "Ran 37 tests in 1.628s — OK (6 F08 tests + 31 existing unit tests all pass without regression)."
+  }
 }
