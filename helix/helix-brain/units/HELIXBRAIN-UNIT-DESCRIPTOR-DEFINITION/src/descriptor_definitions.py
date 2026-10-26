@@ -14,3 +14,13 @@ def validate_supply_input(raw: object) -> dict[str, object]:
         }],
         "unusable_source_refs": [],
     }
+
+
+def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, object]:
+    """公開fn1。実TDDで同じSupplyInput経路を段階的に形成する。"""
+    raise NotImplementedError("compare_descriptor_definitions is not implemented")
+
+
+def compare_values_and_applicability(context: dict[str, object]) -> dict[str, object]:
+    """公開fn2。fn1の同一snapshot Comparisonを受ける。"""
+    raise NotImplementedError("compare_values_and_applicability is not implemented")
