@@ -375,11 +375,14 @@
           "prior_class": "basic:definition_inside / detail:meaning",
           "change": "narrowed",
           "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
-          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。（m1a/m2a の有限caller 1件ずつを記録済み）",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
           "category": "b",
           "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
           "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
-          "note": "2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a(measurement/completion)・M2a/M2b(有限pair)・M2c(special)・M3(finite consumer reuse)で狭まった。契約（evaluation_populations 等）は在るため(b)としたが、他callerのrequest constructor 契約が空なら(a)になる＝要確認（推測）。"
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
         },
         {
           "id": "DF-2",
@@ -578,11 +581,14 @@
           "prior_class": "basic:definition_inside / detail:meaning",
           "change": "narrowed",
           "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
-          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。（m1a/m2a の有限caller 1件ずつを記録済み）",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
           "category": "b",
           "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
           "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
-          "note": "2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a(measurement/completion)・M2a/M2b(有限pair)・M2c(special)・M3(finite consumer reuse)で狭まった。契約（evaluation_populations 等）は在るため(b)としたが、他callerのrequest constructor 契約が空なら(a)になる＝要確認（推測）。"
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
         },
         {
           "id": "DF-2",
@@ -752,11 +758,14 @@
           "prior_class": "basic:definition_inside / detail:meaning",
           "change": "narrowed",
           "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
-          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。（m1a/m2a の有限caller 1件ずつを記録済み）",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
           "category": "b",
           "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
           "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
-          "note": "2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a(measurement/completion)・M2a/M2b(有限pair)・M2c(special)・M3(finite consumer reuse)で狭まった。契約（evaluation_populations 等）は在るため(b)としたが、他callerのrequest constructor 契約が空なら(a)になる＝要確認（推測）。"
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
         },
         {
           "id": "DF-4",
@@ -922,12 +931,16 @@
           "prior_class": "basic:identity_inside / detail:identity",
           "change": "narrowed",
           "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/knowledge_records",
-          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。（0件=finite_zero_knowledge_record、同値2件=finite_equal_knowledge_record_repetition を追加済み）",
+          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。",
           "category": "a",
           "owner": "knowledge_owner（各case本文の finding_unknown_and_reentry_ja / F04-NEG-11 preserved_control に明記）",
           "reentry": "残る distinct record、3件以上、複数Q/rootのinterleave、range source の複数対応、は I1 系の続きで finite case を足すか、「未閉包=knowledge_owner へ返し、同Binding/revision/scopeの原readから再入」を一般規則として L4 境界へ1文で持ち上げる",
           "a_kind": "internal_hole_with_return",
-          "note": "0件(I1a)と同値2件(I1b)は有限に閉じた（L4+L9+L5+L8 が #3693 までそろった）。N01 の「項目だけ別knowledge版」は distinct record を要するので、この残りは N01 に直接効く（推測）。戻し先はcase単位にしか書かれていないので、一般境界側には無い。 F04-NEG-11（I1a zero record）と I1B（equal records）は L4/L5/L8/L9 の4層がそろった（#3690-#3693）。F04-NEG-04 の source-null は L5 に有限caseとして記載（L4 finite_cause_precedence/ordered_cases/0）。"
+          "note": "0件（I1a、finite_zero_knowledge_record）と同値2件（I1b、finite_equal_knowledge_record_repetition）は、L4/L9/L5/L8の4層で有限に追加された（supporting_pointers）。残るのは一般の複数record（distinct record、3件以上、複数Q/root）での公開Ref列・trace material index・Finding witnessの形成で、引用箇所は未閉包のまま。F04-NEG-11（I1a）とI1B（equal records）は#3690〜#3693で4層がそろった。F04-NEG-04のsource-nullはL5に有限caseとして記載（L4 finite_cause_precedence/ordered_cases/0）。",
+          "supporting_pointers": [
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record",
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
+          ]
         },
         {
           "id": "ID-2",
@@ -1339,11 +1352,14 @@
           "prior_class": "basic:definition_inside / detail:meaning",
           "change": "narrowed",
           "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
-          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。（m1a/m2a の有限caller 1件ずつを記録済み）",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
           "category": "b",
           "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
           "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
-          "note": "2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a(measurement/completion)・M2a/M2b(有限pair)・M2c(special)・M3(finite consumer reuse)で狭まった。契約（evaluation_populations 等）は在るため(b)としたが、他callerのrequest constructor 契約が空なら(a)になる＝要確認（推測）。 F06 の有限meaning caller（measurement と completion）は L8 definition_meaning_M1a_primary_index / M1a_completion_primary_index で primary/index/order が有限に固定された（#3685/#3686）。残るのは他callerの一般化（b）。"
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。 F06の有限meaning caller（measurement と completion）は L8 definition_meaning_M1a_primary_index / M1a_completion_primary_index で primary/index/order が有限に固定された（#3685/#3686）。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
         },
         {
           "id": "DF-4",
@@ -1843,22 +1859,24 @@
           "change": "unchanged",
           "current_quote_pointer": "L9#/comparison_axis_reason_multi_problem_verification/limits",
           "quote": "本例はrevision/scopeの供給nullを原順2problemとして保持する有限例。全problem組合せ又は全Finding分岐を行使した証拠ではない。",
-          "category": "a",
-          "owner": "032設計（L9 comparison_axis_reason_writer の未行使L4分岐: canonical_ordered_branches 0,1,2,3,4,6,7,9）",
-          "reentry": "未観測枝の診断写像・reason・集約順の規則を決定表で定める（単一枝の入力は L7）",
-          "a_kind": "internal_hole_with_return",
-          "note": "Q6 は「032内部」と明記。単一枝は(b)、複数problem同時の集約順は設計の空き。"
+          "category": "b",
+          "owner": "L6/L7（既存契約に対する未行使検証）",
+          "reentry": "L7で、既存のproblem_order・reason写像の契約から導いた期待値で複数problemの組合せをtestにする。設計の追補は要しない",
+          "note": "R1 A1により(a)から(b)へ移した。複数problemの順・全原因保持・reason写像は既存契約が定める：L4#/dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order・/problem_order・canonical_diagnostic_mapping、L5#/canonical_dependency_detail/body_read_writer/return_member_writers/problems、/public_axis_writer/trace_member_writers/cause、/reason_writer/prefix_from_material_only_ja。L9#/comparison_axis_reason_multi_problem_verification/source_basis は同problem_orderを固定参照し、limitsは全組合せ・全Finding分岐の未行使を述べる。全組合せの行使はL6/L7の役割（統制の決定6405690269）。"
         },
         {
           "id": "DF-1",
           "prior_class": "basic:definition_inside / detail:meaning",
           "change": "narrowed",
           "current_quote_pointer": "L4#/definition_meaning_resolution_contract/preservation_and_limits/1",
-          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。（m1a/m2a の有限caller 1件ずつを記録済み）",
+          "quote": "他のknown/NA source/caller、詳細L5/L8整合、実reader/実資格/provider接続は未成立。",
           "category": "b",
           "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
           "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）",
-          "note": "2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a(measurement/completion)・M2a/M2b(有限pair)・M2c(special)・M3(finite consumer reuse)で狭まった。契約（evaluation_populations 等）は在るため(b)としたが、他callerのrequest constructor 契約が空なら(a)になる＝要確認（推測）。"
+          "note": "監査者の補足（引用ではない）：L4 preservation_and_limits/1 は、m1a measurement/completion の2 casesと、m2a slot0 の1件を別に記す。2026-10-24 時点の「新known/NA source/callerと独立wholeは未作成」から、M1a・M2a/M2b・M2c・M3で狭まった。契約（evaluation_populations等）があるため(b)とした。他callerのrequest constructor契約が空なら(a)になる余地は推測として残す。",
+          "supporting_pointers": [
+            "L4#/definition_meaning_resolution_contract/preservation_and_limits/1"
+          ]
         },
         {
           "id": "DF-4",
@@ -1932,15 +1950,14 @@
           "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
         }
       ],
-      "blocking_count": 4,
+      "blocking_count": 3,
       "blocking_count_missing_return_only": 1,
       "blocking_item_ids": [
         "DP-1",
         "DP-4",
-        "DP-5",
-        "DP-6"
+        "DP-5"
       ],
-      "verdict": "(a)が残る: 保守計上4件（うち戻し先が本文に無いもの1件）"
+      "verdict": "(a)が残る: 保守計上3件（うち戻し先が本文に無いもの1件）。R1 A1によりDP-6を(b)へ移した。"
     },
     {
       "child": "HELIXBRAIN-L3-032-N01",
@@ -2004,12 +2021,16 @@
           "prior_class": "basic:identity_inside / detail:identity",
           "change": "narrowed",
           "current_quote_pointer": "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/unclosed_projection_boundaries/knowledge_records",
-          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。（0件=finite_zero_knowledge_record、同値2件=finite_equal_knowledge_record_repetition を追加済み）",
+          "quote": "KnowledgeRecord対応0件/複数件における公開original_refs列・trace material index・Finding witnessの形成は未行使/未閉包。",
           "category": "a",
           "owner": "knowledge_owner（各case本文の finding_unknown_and_reentry_ja / F04-NEG-11 preserved_control に明記）",
           "reentry": "残る distinct record、3件以上、複数Q/rootのinterleave、range source の複数対応、は I1 系の続きで finite case を足すか、「未閉包=knowledge_owner へ返し、同Binding/revision/scopeの原readから再入」を一般規則として L4 境界へ1文で持ち上げる",
           "a_kind": "internal_hole_with_return",
-          "note": "0件(I1a)と同値2件(I1b)は有限に閉じた（L4+L9+L5+L8 が #3693 までそろった）。N01 の「項目だけ別knowledge版」は distinct record を要するので、この残りは N01 に直接効く（推測）。戻し先はcase単位にしか書かれていないので、一般境界側には無い。 N01 の NEG は「項目だけ別knowledge版」「supersessionなしのlatest付替え」で、distinct record を要する（推測）。I1a/I1b はどちらも distinct を範囲外としているため、N01 の核の分岐は未着手。"
+          "note": "0件（I1a、finite_zero_knowledge_record）と同値2件（I1b、finite_equal_knowledge_record_repetition）は、L4/L9/L5/L8の4層で有限に追加された（supporting_pointers）。残るのは一般の複数record（distinct record、3件以上、複数Q/root）での公開Ref列・trace material index・Finding witnessの形成で、引用箇所は未閉包のまま。N01の原NEGは、L8#/cases/11/negative_cases/0/typed_mutation が一factのbinding.knowledge_ref.revisionのreplace、/1 がrevisionとrelationsの変更であり、distinct KnowledgeRecordの追加を要しない。その判定はL5のmixed_knowledge_revision predicate（一項目のexact bindingとのrevision差）が定める。したがってN01の核の分岐は既存契約にあり、ID-1はN01の核ではなく、一般の複数record形成の未閉包として残る（R1 A2で訂正）。",
+          "supporting_pointers": [
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record",
+            "L4#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
+          ]
         },
         {
           "id": "ID-2",
@@ -2287,11 +2308,10 @@
           "change": "unchanged",
           "current_quote_pointer": "L9#/comparison_axis_reason_multi_problem_verification/limits",
           "quote": "本例はrevision/scopeの供給nullを原順2problemとして保持する有限例。全problem組合せ又は全Finding分岐を行使した証拠ではない。",
-          "category": "a",
-          "owner": "032設計（L9 comparison_axis_reason_writer の未行使L4分岐: canonical_ordered_branches 0,1,2,3,4,6,7,9）",
-          "reentry": "未観測枝の診断写像・reason・集約順の規則を決定表で定める（単一枝の入力は L7）",
-          "a_kind": "internal_hole_with_return",
-          "note": "Q6 は「032内部」と明記。単一枝は(b)、複数problem同時の集約順は設計の空き。"
+          "category": "b",
+          "owner": "L6/L7（既存契約に対する未行使検証）",
+          "reentry": "L7で、既存のproblem_order・reason写像の契約から導いた期待値で複数problemの組合せをtestにする。設計の追補は要しない",
+          "note": "R1 A1により(a)から(b)へ移した。複数problemの順・全原因保持・reason写像は既存契約が定める：L4#/dependency_semantic_ports/diagnostic_return_contract/common_rules/branch_order・/problem_order・canonical_diagnostic_mapping、L5#/canonical_dependency_detail/body_read_writer/return_member_writers/problems、/public_axis_writer/trace_member_writers/cause、/reason_writer/prefix_from_material_only_ja。L9#/comparison_axis_reason_multi_problem_verification/source_basis は同problem_orderを固定参照し、limitsは全組合せ・全Finding分岐の未行使を述べる。全組合せの行使はL6/L7の役割（統制の決定6405690269）。"
         },
         {
           "id": "NM-1",
@@ -2368,16 +2388,15 @@
           "note": "「成長を止める」追補（#3689）の結果、本項は閉じではなく「L6/L7の役割と明記」へ移った。"
         }
       ],
-      "blocking_count": 5,
+      "blocking_count": 4,
       "blocking_count_missing_return_only": 2,
       "blocking_item_ids": [
         "CL-1",
         "CL-2",
         "DP-1",
-        "DP-5",
-        "DP-6"
+        "DP-5"
       ],
-      "verdict": "(a)が残る: 保守計上5件（うち戻し先が本文に無いもの2件）"
+      "verdict": "(a)が残る: 保守計上4件（うち戻し先が本文に無いもの2件）。R1 A1によりDP-6を(b)へ移した。"
     },
     {
       "child": "HELIXBRAIN-L3-032-N03",
@@ -2514,7 +2533,7 @@
     "highest_leverage_decisions": [
       {
         "item": "CL-1",
-        "effect": "F01 と F02 が(a)=0になる（B01 は2→1、F07 は2→1、N02 は5→4）",
+        "effect": "F01 と F02 が(a)=0になる（B01 は2→1、F07 は2→1、N02 は4→3）",
         "what": "semantic/mixed の任意RawValue意味対応の owner を決める（Q3）。決定が必要で、設計の量は小さい。"
       },
       {
@@ -2524,7 +2543,7 @@
       },
       {
         "item": "DP-1",
-        "effect": "B02 が(a)=0になる（F09 は4→3、N02 は5→4）",
+        "effect": "B02 が(a)=0になる（F09 は3→2、N02 は4→3）",
         "what": "L5/L8 が typed incoming（original_project_binding 分離、非discharge）を受ける規則行と case 行を足す。"
       },
       {
@@ -2589,7 +2608,7 @@
       "blocking_missing_return_only": 0
     },
     "F09": {
-      "blocking_conservative": 4,
+      "blocking_conservative": 3,
       "blocking_missing_return_only": 1
     },
     "N01": {
@@ -2597,7 +2616,7 @@
       "blocking_missing_return_only": 0
     },
     "N02": {
-      "blocking_conservative": 5,
+      "blocking_conservative": 4,
       "blocking_missing_return_only": 2
     },
     "N03": {
@@ -2612,5 +2631,16 @@
     "実行していない: 候補実装、reader/helper、旧CLI・hook・test・CI。静的に JSON を読み、pointer と文言を照合しただけ。",
     "分類(a)〜(d)と narrowed の程度は人手の読みであり、独立review未実施。推測は note に推測と書いた。",
     "L8/L9 を含む大きいJSONは 2500000KB の仮想メモリ上限と 120 秒の timeout 付きで、一つずつ読んだ。"
+  ],
+  "review_corrections": [
+    {
+      "review": "PR #3694 R1（Codex）",
+      "fixed": [
+        "A1: DP-6をF09/N02で(a)から(b)へ移し、件数を同期",
+        "A2: ID-1 noteのdistinct record必須の推測を除き、N01核は既存のrevision差契約にあると訂正",
+        "A3: ID-1/DF-1のquoteを原文に限定し、補足をnoteとsupporting_pointersへ分離",
+        "A4: PR本文にPR classを明記"
+      ]
+    }
   ]
 }
