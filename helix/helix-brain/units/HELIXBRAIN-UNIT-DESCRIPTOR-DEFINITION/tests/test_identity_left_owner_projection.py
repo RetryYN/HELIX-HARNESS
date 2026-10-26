@@ -15,9 +15,6 @@ from descriptor_definitions import compare_identity_versions_and_trace, validate
 from identity_input_fixtures import _write_source_content, bilateral_input
 
 
-FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
-
-
 class TestIdentityLeftOwnerProjection(unittest.TestCase):
     def _input_with_left_declaration(self, mutate):
         raw = bilateral_input("positive")
@@ -43,25 +40,19 @@ class TestIdentityLeftOwnerProjection(unittest.TestCase):
         self.assertEqual(validated["input"], raw_before, label)
         self.assertEqual(validated["input_issues"], [], label)
         validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            message = str(exc)
-            self.assertTrue("F04/" in message or "N01/" in message, label)
-            self.assertIn(FN3_BACKFLOW, message, label)
-        else:
-            self.assertEqual(raw, raw_before, label)
-            self.assertEqual(validated, validated_before, label)
-            self.assertEqual(result["input_binding"], raw_before["binding"], label)
-            # Type failure alone has no fixed Finding mapping. In particular, it
-            # cannot satisfy the existing known-outside rule R62.
-            self.assertFalse(any(
-                finding["code"] == "compatibility_mismatch"
-                for finding in result["findings"]
-            ), label)
-            rows = [axis for axis in result["axes"] if axis["axis"] == "compatibility"]
-            self.assertTrue(rows, label)
-            self.assertTrue(all(axis["state"] == "unknown" for axis in rows), label)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertEqual(raw, raw_before, label)
+        self.assertEqual(validated, validated_before, label)
+        self.assertEqual(result["input_binding"], raw_before["binding"], label)
+        # L4 raw_carriers/projection_guard keeps the malformed private body without
+        # forming a qualified outside predicate or synthesizing an R62 Finding.
+        self.assertFalse(any(
+            finding["code"] == "compatibility_mismatch"
+            for finding in result["findings"]
+        ), label)
+        rows = [axis for axis in result["axes"] if axis["axis"] == "compatibility"]
+        self.assertTrue(rows, label)
+        self.assertTrue(all(axis["state"] == "unknown" for axis in rows), label)
         self.assertEqual(raw, raw_before, label)
         self.assertEqual(validated, validated_before, label)
 

@@ -15,17 +15,23 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self.assertEqual(validated["input_issues"], [])
         return validated, before
 
-    def _stop(self, raw, branch):
+    def _omitted_trace(self, raw):
+        # 最新review6424756090は旧R1停止指示を訂正し、L4 construction guardへ戻した。
         validated, before = self._validated(raw)
         validated_before = copy.deepcopy(validated)
-        with self.assertRaises(NotImplementedError) as caught:
-            compare_identity_versions_and_trace({"validated": validated})
-        self.assertIn(f"F04/N01/unclosed/{branch}", str(caught.exception))
-        self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(caught.exception))
+        result = compare_identity_versions_and_trace({"validated": validated})
+        traces = [row for row in result["axes"] if row["axis"] == "descriptor.trace"]
+        self.assertEqual(len(traces), 14)
+        self.assertTrue(all(row["state"] == "resolved" for row in traces))
+        self.assertEqual(
+            [(row["subject_ref"], row["binding"]) for row in traces],
+            [(fact["ref"], slot["binding"]) for slot in raw["descriptors"][1:]
+             for fact in slot["facts"]],
+        )
         self.assertEqual(raw, before)
         self.assertEqual(validated, validated_before)
 
-    def test_fact_without_a_typed_subject_stops_instead_of_emitting_an_invalid_axis(self):
+    def test_fact_without_a_typed_subject_omits_only_its_public_trace(self):
         for value in ("absent", None, 7, "untyped-subject", {"untyped": "subject"}):
             with self.subTest(value=value):
                 raw = trace_input("positive")
@@ -34,12 +40,12 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
                     fact.pop("ref")
                 else:
                     fact["ref"] = copy.deepcopy(value)
-                self._stop(raw, "fact_subject_unformed")
+                self._omitted_trace(raw)
 
-    def test_slot_binding_outside_the_closed_binding_type_stops_without_dropping_keys(self):
+    def test_unformattable_slot_binding_omits_only_its_public_trace(self):
         raw = trace_input("positive")
         raw["descriptors"][0]["binding"]["untyped_member"] = 1
-        self._stop(raw, "slot_binding_unformed")
+        self._omitted_trace(raw)
 
     def test_unformed_source_ref_stays_raw_and_is_never_published_as_a_ref(self):
         # 型不成立の原source_refはprivate RawValueへ保持する局所unknownか、

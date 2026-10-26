@@ -57,34 +57,6 @@ class TestIdentityContractRegressions(unittest.TestCase):
         self.assertTrue(separator, "L4 reason is fixed prefix + diagnostic JSON")
         return prefix, json.loads(encoded)
 
-    def _assert_unknown_or_fn3_stop(self, raw, case_id):
-        raw_before = copy.deepcopy(raw)
-        validated = validate_supply_input(raw)
-        self.assertIsNotNone(validated["input"], "fn0 decoding contract preserves the regression input")
-        self.assertEqual(validated["input"], raw_before)
-        self.assertEqual(validated["input_issues"], [])
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            message = str(exc)
-            self.assertIn("F04/N01/", message)
-            self.assertIn(FN3_BACKFLOW, message)
-        else:
-            self.assertEqual(raw, raw_before)
-            self.assertEqual(validated["input"], raw_before)
-            self.assertFalse(any(
-                row["axis"] == "compatibility" and row["state"] == "resolved"
-                for row in result["axes"]
-            ), case_id)
-            self.assertFalse(any(
-                row["code"] == "compatibility_mismatch"
-                for row in result["findings"]
-            ), case_id)
-            self.assertTrue(any(
-                row["axis"] == "compatibility" and row["state"] == "unknown"
-                for row in result["axes"]
-            ), case_id)
-
     def _assert_compatibility_unknown(self, raw, case_id):
         raw_before = copy.deepcopy(raw)
         validated = validate_supply_input(raw)
@@ -304,7 +276,7 @@ class TestIdentityContractRegressions(unittest.TestCase):
         self._assert_compatibility_unknown(raw, "C3/left_endpoint_ref_mismatch")
 
     def test_right_boolean_outside_without_range_declaration_cannot_make_R62(self):
-        """RangeDeclaration未形成の原因→public写像はWR05で未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
+        """L4 bilateral endpoint_cause_state_table/pair_aggregationでは、range未観測はbilateral_owner_unresolved unknownである。既存R62の左右qualified outside predicateを成立させない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
@@ -320,7 +292,22 @@ class TestIdentityContractRegressions(unittest.TestCase):
         left_content = copy.deepcopy(left["content"])
         left_content["counterpart_source_ref"] = copy.deepcopy(right["ref"])
         _write_source_content(raw, left, left_content)
-        self._assert_unknown_or_fn3_stop(raw, "C3/right_outside_boolean_without_range")
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertIsNotNone(validated["input"])
+        self.assertEqual(validated["input"], raw_before)
+        self.assertEqual(validated["input_issues"], [])
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
+        compatibility = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertTrue(compatibility)
+        self.assertTrue(all(row["state"] == "unknown" for row in compatibility))
+        _prefix, separator, material_json = compatibility[0]["reason"].partition("\n")
+        self.assertTrue(separator)
+        self.assertEqual(json.loads(material_json)["cause"], "bilateral_owner_unresolved")
+        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
 
     def test_semantic_json_basis_claim_is_not_treated_as_image_only_identity(self):
         raw = normal_input()

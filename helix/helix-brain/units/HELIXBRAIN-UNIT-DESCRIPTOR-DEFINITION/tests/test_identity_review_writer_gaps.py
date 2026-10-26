@@ -3,9 +3,10 @@
 L4 identity_version_trace_contract/public_projection/axis_reason_writer と
 L5 functions/3 の述語を、既存のnormal/trace/bilateral入力から独立に照合する。
 保存済みwhole/hashや実装private関数は期待値に使わず、ValidatedSupplyと入力の
-不変性、公開Comparisonの局所Finding/Axisのみを見る。R64相当のClaimは、L5の
-画像only述語に対する担当範囲が確定できないため、対応Findingまたは
-F04/N01/unclosed/identity_claim停止を許容し、黙殺は許容しない。
+不変性、公開Comparisonの局所Finding/Axisのみを見る。R64のimage-only Claimは
+L4 rule_mapping/finding_witness_tableの既存Findingへ原Claim.subject_ref/Bindingで結ぶ。
+identity Claimのunsupported basis_roleと空basisは、review R3の修正で確定した
+枝別stop IDをassertする。
 """
 
 from __future__ import annotations
@@ -96,8 +97,8 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
         ]
         self.assertEqual(material["source_indices"], expected_source_indices)
 
-    def test_R64_image_only_claim_is_reported_or_stopped_not_silently_ignored(self):
-        """L5 image-only述語の担当外入力をFindingかID付き停止で保持する。"""
+    def test_R64_image_only_claim_is_reported_against_original_claim_subject(self):
+        """L4既存R64 Findingを原Claim.subject_ref/Bindingへ固定する。"""
         raw = normal_input()
         claim = {
             "actor": "BRAIN",
@@ -108,16 +109,10 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
             "proposed_value": {"basis_role": "image_only"},
         }
         raw["claims"].append(claim)
-        try:
-            result = self._call(raw)
-        except NotImplementedError as exc:
-            self.assertIn("F04/N01/unclosed/identity_claim", str(exc))
-            self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(exc))
-            return
-
+        result = self._call(raw)
         findings = [row for row in result["findings"] if row["code"] == "image_identity_inference"]
-        self.assertTrue(findings, "L5画像only claimを黙殺しない")
-        finding = findings[-1]
+        self.assertEqual(len(findings), 1)
+        finding = findings[0]
         self.assertEqual(finding["rule_ref"], "HELIXBRAIN-L5-032-R-image_identity_inference")
         self.assertEqual(finding["subject_ref"], claim["subject_ref"])
         self.assertEqual(finding["binding"], claim["binding"])
@@ -125,7 +120,7 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
         self.assertEqual(finding["state"], "unknown")
 
     def test_unknown_identity_claim_basis_role_stops_with_fn3_backflow(self):
-        """L5にないbasis_roleは、known kindでも未閉包ID停止にする。"""
+        """R3 M1の枝別stop契約: unsupported roleはbasis_role locatorの一意IDで止める。"""
         raw = normal_input()
         raw["claims"].append({
             "actor": "BRAIN",
@@ -137,11 +132,11 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
         })
         with self.assertRaises(NotImplementedError) as caught:
             self._call(raw)
-        self.assertIn("F04/N01/unclosed/identity_claim", str(caught.exception))
+        self.assertIn("F04/N01/unclosed/identity_claim/basis_role", str(caught.exception))
         self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(caught.exception))
 
     def test_image_only_claim_with_empty_basis_stops_explicitly(self):
-        """空basis_refsは画像only述語の明示的な未閉包caseとして止める。"""
+        """R3 M1の枝別stop契約: explicit empty basisはbasis_refs_empty IDで止める。"""
         raw = normal_input()
         raw["claims"].append({
             "actor": "BRAIN",
@@ -153,7 +148,7 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
         })
         with self.assertRaises(NotImplementedError) as caught:
             self._call(raw)
-        self.assertIn("F04/N01/unclosed/identity_claim", str(caught.exception))
+        self.assertIn("F04/N01/unclosed/identity_claim/basis_refs_empty", str(caught.exception))
         self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(caught.exception))
 
     def test_R63_oracle_binding_axis_follows_trace_and_bilateral_rows(self):

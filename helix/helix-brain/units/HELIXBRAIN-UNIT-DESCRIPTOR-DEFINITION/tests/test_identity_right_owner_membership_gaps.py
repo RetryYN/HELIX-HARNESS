@@ -9,6 +9,7 @@ compatible_refsの右endpoint fullRef membershipは独立したreadである。m
 from __future__ import annotations
 
 import copy
+import json
 import unittest
 
 from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
@@ -17,9 +18,6 @@ from identity_input_fixtures import (
     _write_source_content,
     bilateral_input,
 )
-
-
-FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 
 
 class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
@@ -31,23 +29,21 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         self.assertEqual(validated["input_issues"], [])
         return validated, raw_before
 
-    def _call_or_unknown_or_identified_stop(self, raw):
-        """未定義のcause→public Finding写像は既存F04/N01停止を許容する。"""
+    def _call_bilateral_owner_unresolved(self, raw):
+        """L4 pair_aggregation: owner資格/endpoint membershipの未成立はbilateral_owner_unresolved unknown。"""
         validated, raw_before = self._validated(raw)
         validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            message = str(exc)
-            self.assertIn("F04/N01/", message)
-            self.assertIn(FN3_BACKFLOW, message)
-        else:
-            self.assertEqual(raw, raw_before)
-            self.assertEqual(validated, validated_before)
-            compatibility_rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
-            self.assertTrue(compatibility_rows)
-            self.assertTrue(all(row["state"] == "unknown" for row in compatibility_rows))
-            self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
+        compatibility_rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertTrue(compatibility_rows)
+        self.assertTrue(all(row["state"] == "unknown" for row in compatibility_rows))
+        for row in compatibility_rows:
+            _prefix, separator, material = row["reason"].partition("\n")
+            self.assertTrue(separator)
+            self.assertEqual(json.loads(material)["cause"], "bilateral_owner_unresolved")
+        self.assertFalse(any(row["code"] == "compatibility_mismatch" for row in result["findings"]))
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
@@ -103,7 +99,7 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         left_body["counterpart_source_ref"] = copy.deepcopy(other_owner_source["ref"])
         _write_source_content(raw, left, left_body)
 
-        self._call_or_unknown_or_identified_stop(raw)
+        self._call_bilateral_owner_unresolved(raw)
 
     def test_right_membership_uses_all_original_members_not_a_fixed_position(self):
         """右memberだけを別typed Refへ置換してもresolved/R62にしない。"""
@@ -137,7 +133,7 @@ class TestIdentityRightOwnerMembershipGaps(unittest.TestCase):
         left_body["counterpart_source_ref"] = copy.deepcopy(right["ref"])
         _write_source_content(raw, left, left_body)
 
-        self._call_or_unknown_or_identified_stop(raw)
+        self._call_bilateral_owner_unresolved(raw)
 
     def test_positive_right_membership_at_reordered_position_stays_resolved(self):
         """L4 membershipはmatching_ref_indices全件を見るため位置を入れ替えてもpositive。"""

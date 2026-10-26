@@ -124,23 +124,11 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
                 self.assertEqual(material["record_states"], [state])
                 self.assertEqual(material["original_record_reasons"], [raw["compatibility_records"][0]["reason"]])
 
-    def _assert_conflict_or_identified_stop(self, raw, label):
-        # L4 private判断はconflict。公開cause→FindingがWR05の未閉包範囲なら
-        # 指定Backflowで止める。unknownへの丸め込みはどちらの契約でも許されない。
-        validated, original = self._validated(raw)
-        validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            message = str(exc)
-            self.assertIn("F04/N01/", message)
-            self.assertIn(FN3_BACKFLOW, message)
-        else:
-            self.assertEqual(raw, original)
-            self.assertEqual(validated, validated_before)
-            self.assertEqual(self._axis(result, "compatibility")["state"], "conflict", label)
-        self.assertEqual(raw, original)
-        self.assertEqual(validated, validated_before)
+    def _assert_compatibility_conflict(self, raw, label):
+        # R3-M1: L4に既存Axis serializationがあるため停止との二択を廃止する。
+        result = self._call(raw)
+        self.assertEqual(self._axis(result, "compatibility")["state"], "conflict", label)
+
 
     def test_m4_opposing_owner_decisions_never_silently_become_unknown(self):
         # Left false without an outside declaration, while the pack owner is true.
@@ -183,7 +171,7 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
             ("left-only outside vs right positive", left_outside),
         ):
             with self.subTest(case=label):
-                self._assert_conflict_or_identified_stop(raw, label)
+                self._assert_compatibility_conflict(raw, label)
 
     def test_m5_missing_right_source_is_not_mislabeled_as_missing_left_owner(self):
         raw = bilateral_input("positive")
@@ -191,35 +179,25 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
         missing_ref = copy.deepcopy(record["source_ref"])
         right = next(source for source in raw["sources"] if source["ref"] == missing_ref)
         raw["sources"].remove(right)
-        validated, original = self._validated(raw)
-        validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            self.assertIn("F04/N01/", str(exc))
-            self.assertIn(FN3_BACKFLOW, str(exc))
-        else:
-            row = self._axis(result, "compatibility")
-            self.assertEqual(row["state"], "unknown")
-            prefix, separator, encoded = row["reason"].partition("\n")
-            if separator:
-                self.assertEqual(json.loads(encoded).get("cause"), "right_owner_unprovided")
-            else:
-                self.assertIn("right_owner_unprovided", prefix)
-        self.assertEqual(validated, validated_before)
-        self.assertEqual(raw, original)
+        result = self._call(raw)
+        row = self._axis(result, "compatibility")
+        self.assertEqual(row["state"], "unknown")
+        prefix, material = self._reason(row)
+        self.assertEqual(prefix, "right_owner_unprovided")
+        self.assertEqual(material["cause"], "right_owner_unprovided")
+        self.assertEqual(material["state"], "unknown")
+        self.assertEqual(material["request"], {"record_locator": "/compatibility_records/0"})
+        self.assertFalse(any(r["code"] == "compatibility_unknown" for r in result["findings"]))
+
 
     def test_m6_unsupported_identity_shapes_stop_with_F04_N01_backflow(self):
         missing_records = trace_input("positive")
         missing_records.pop("knowledge_records")
 
-        missing_slot_binding = trace_input("positive")
-        missing_slot_binding["descriptors"][0].pop("binding")
-
         distinct_records = trace_input("equal_records")
         distinct_records["knowledge_records"][1]["operational_state"] = "synthetic-distinct-state"
 
-        multiple_range_sources = bilateral_input("outside")
+        multiple_range_sources = bilateral_input("positive")
         record = self._compat_record(multiple_range_sources)
         right = next(source for source in multiple_range_sources["sources"] if source["ref"] == record["source_ref"])
         multiple_range_sources["sources"].append(copy.deepcopy(right))
@@ -230,7 +208,7 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
             "subject_ref": copy.deepcopy(fact["ref"]),
             "binding": copy.deepcopy(unsupported_claim["binding"]),
             "actor": "BRAIN",
-            "kind": "unrecognized_identity_claim",
+            "kind": "template_identity",
             "proposed_value": {"basis_role": "unrecognized"},
             "basis_refs": [copy.deepcopy(unsupported_claim["sources"][0]["ref"])],
         })
@@ -240,10 +218,9 @@ class TestIdentityReviewBoundaries(unittest.TestCase):
 
         cases = (
             (missing_records, "unclosed/knowledge_records_absent"),
-            (missing_slot_binding, "unclosed/slot_binding_absent"),
             (distinct_records, "unclosed/distinct_knowledge_records"),
-            (multiple_range_sources, "unclosed/multiple_finding_range_sources"),
-            (unsupported_claim, "unclosed/identity_claim"),
+            (multiple_range_sources, "unclosed/multiple_finding_range_sources/right"),
+            (unsupported_claim, "unclosed/identity_claim/basis_role"),
             (null_provenance, "unclosed/knowledge_provenance_null"),
         )
         for raw, label in cases:

@@ -408,11 +408,13 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         fact = slot["facts"][0]
         fact["binding"]["knowledge_ref"]["revision"] = "synthetic-other-revision"
         result = self._assert_case_result("HELIXBRAIN-L8-032-N01-NEG-01", raw)
-        # mixed_knowledge_revision is independently asserted; a separate silent_supersession result, if present,
-        # is not used as a fallback for this assertion.
+        # L5 R-mixed: 一項目のrevision差。R-silent: 同じ旧新pairに明示relationなし。
+        # この入力は両述語を満たす。L8 NEG番号を相互排他gateへ変えない（R3-m3）。
         findings = [row for row in result["findings"] if row["code"] == "mixed_knowledge_revision"]
         self.assertTrue(findings)
         self._assert_mixed_revision_finding(result, fact, slot)
+        self._assert_finding(result, "silent_supersession", "conflict", TRACE_AXIS)
+        self.assertEqual(sum(row["code"] == "silent_supersession" for row in result["findings"]), 1)
         self._assert_axis_state(result, TRACE_AXIS, "conflict")
 
     def test_N01_NEG_02_missing_supersession_keeps_the_original_binding(self):
@@ -434,6 +436,7 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         result = self._assert_case_result("HELIXBRAIN-L8-032-N01-NEG-02", raw)
         self.assertEqual(result["input_binding"]["knowledge_ref"], original)
         self._assert_finding(result, "silent_supersession", "conflict", TRACE_AXIS)
+        self._assert_mixed_revision_finding(result, fact, raw["descriptors"][0])
         self.assertTrue(any(
             row["axis"] == TRACE_AXIS and old_trace_ref in row["original_refs"]
             for row in result["axes"]
@@ -654,9 +657,10 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
 
     def test_multiple_finding_range_sources_are_unclosed(self):
         bilateral_input, _trace_input = _identity_fixture_api()
-        raw = bilateral_input("outside")
+        raw = bilateral_input("positive")
         record = raw["compatibility_records"][0]
         right_source = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+        # positiveにrange actual bodyは無いので、actual側停止ではこのassertを満たせない。
         qualifications_before = copy.deepcopy(raw["qualifications"])
         roots_before = copy.deepcopy(raw["qualification_roots"])
         # 同じRef/whole sourceの物理原出現だけを重ねる。record/Q/rootは増やさない。
@@ -667,14 +671,26 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         self.assertEqual(raw["qualifications"], qualifications_before)
         self.assertEqual(raw["qualification_roots"], roots_before)
         self.assertEqual(len(raw["compatibility_records"]), 1)
-        self._assert_fn3_stops_with_case_id("unclosed/multiple_finding_range_sources", raw)
+        self._assert_fn3_stops_with_case_id("unclosed/multiple_finding_range_sources/right", raw)
 
-    def test_unmapped_cause_to_finding_is_unclosed(self):
+    def test_null_compatibility_decision_keeps_unknown_axis_without_new_finding(self):
+        # R3-M1: compatible_nullは既存L4の単一read reasonへ射影し、停止にしない。
         bilateral_input, _trace_input = _identity_fixture_api()
         raw = bilateral_input("positive")
-        # 原recordのdecisionをnullにし、qualified owner declarationと同値補完しない。
         raw["compatibility_records"][0]["compatible"] = None
-        self._assert_fn3_stops_with_case_id("unclosed/cause_to_finding_mapping", raw)
+        result = self._assert_case_result("compatible_null", raw)
+        rows = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["state"], "unknown")
+        prefix, separator, encoded = rows[0]["reason"].partition("\n")
+        self.assertEqual((prefix, separator), ("compatible_null", "\n"))
+        material = json.loads(encoded)
+        self.assertEqual(material["cause"], "compatible_null")
+        self.assertEqual(material["state"], "unknown")
+        self.assertEqual(material["request"], {"record_locator": "/compatibility_records/0"})
+        self.assertFalse(any(row["code"] in {"compatibility_unknown", "compatibility_mismatch"}
+                             for row in result["findings"]))
+
 
     def test_general_group_outside_matching_pair_is_unclosed(self):
         bilateral_input, _trace_input = _identity_fixture_api()

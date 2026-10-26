@@ -33,22 +33,20 @@ class TestIdentityClaimSourceWitnesses(unittest.TestCase):
             self.assertEqual(validated, validated_before)
 
     def test_generic_knowledge_or_qualification_basis_is_not_published_as_source(self):
-        # 実sourceへ辿れないGenericRefはsource witnessではない。未閉包なら停止、
-        # Claim不足をunknownで返すならsource_refsに非sourceを混ぜない、という局所境界。
+        """L4 R64は原Claimをunknown Findingへ投影し、GenericRefをsource_refsにしない。"""
         for role in ("knowledge", "qualification"):
             with self.subTest(role=role):
                 raw = normal_input()
                 basis = raw["knowledge_records"][0]["ref"] if role == "knowledge" else raw["qualifications"][0]["ref"]
-                self._claim(raw, [basis])
-                try:
-                    result = self._call(raw)
-                except NotImplementedError as exc:
-                    self.assertIn("F04/N01/unclosed/identity_claim", str(exc))
-                    self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(exc))
-                else:
-                    rows = [r for r in result["findings"] if r["code"] == "image_identity_inference"]
-                    self.assertEqual(len(rows), 1)
-                    self.assertEqual(rows[0]["source_refs"], [])
+                claim = self._claim(raw, [basis])
+                result = self._call(raw)
+                rows = [r for r in result["findings"] if r["code"] == "image_identity_inference"]
+                self.assertEqual(len(rows), 1)
+                self.assertEqual(rows[0]["rule_ref"], "HELIXBRAIN-L5-032-R-image_identity_inference")
+                self.assertEqual(rows[0]["subject_ref"], claim["subject_ref"])
+                self.assertEqual(rows[0]["binding"], claim["binding"])
+                self.assertEqual(rows[0]["state"], "unknown")
+                self.assertEqual(rows[0]["source_refs"], [])
 
     def test_image_claim_source_witnesses_follow_source_indices_not_basis_order(self):
         raw = normal_input()

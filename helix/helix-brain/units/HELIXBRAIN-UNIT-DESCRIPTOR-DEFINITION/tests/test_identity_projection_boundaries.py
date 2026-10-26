@@ -12,13 +12,11 @@ whole Comparisonやfixture期待値は複製しない。
 from __future__ import annotations
 
 import copy
+import json
 import unittest
 
 from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
 from identity_input_fixtures import _write_source_content, bilateral_input, normal_input
-
-
-FN3_BACKFLOW = "HELIXBRAIN-L6-032-FN3-IDENTITY"
 
 
 class TestIdentityProjectionBoundaries(unittest.TestCase):
@@ -45,20 +43,20 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         self.assertEqual(validated["input"], raw_before, case_id)
         self.assertEqual(validated["input_issues"], [], case_id)
         validated_before = copy.deepcopy(validated)
-        try:
-            result = compare_identity_versions_and_trace({"validated": validated})
-        except NotImplementedError as exc:
-            message = str(exc)
-            self.assertTrue("F04/" in message or "N01/" in message, case_id)
-            self.assertIn(FN3_BACKFLOW, message, case_id)
-        else:
-            self.assertEqual(raw, raw_before, case_id)
-            self.assertEqual(validated, validated_before, case_id)
-            self.assertFalse(any(
-                row["code"] == "compatibility_mismatch" for row in result["findings"]
-            ), case_id)
-            artifact = self._axis(result, "pack.artifact_version")
-            self.assertEqual(artifact["state"], "unknown", case_id)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertEqual(raw, raw_before, case_id)
+        self.assertEqual(validated, validated_before, case_id)
+        self.assertFalse(any(
+            row["code"] == "compatibility_mismatch" for row in result["findings"]
+        ), case_id)
+        artifact = self._axis(result, "pack.artifact_version")
+        self.assertEqual(artifact["state"], "unknown", case_id)
+        compatibility = [row for row in result["axes"] if row["axis"] == "compatibility"]
+        self.assertTrue(compatibility, case_id)
+        self.assertTrue(all(row["state"] == "unknown" for row in compatibility), case_id)
+        _prefix, separator, material_json = compatibility[0]["reason"].partition("\n")
+        self.assertTrue(separator, case_id)
+        self.assertEqual(json.loads(material_json)["cause"], "bilateral_owner_unresolved", case_id)
 
     def test_pack_identity_does_not_compare_source_locator(self):
         raw = bilateral_input("outside")
@@ -97,7 +95,7 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         )
 
     def test_range_artifact_value_outside_local_schema_is_not_projected(self):
-        """WR05の型外artifact causes public写像は未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
+        """L4 actual finite_branch_orderの型外operandはunknown、compatibilityの未形成rangeもbilateral_owner_unresolved unknownで、R62は成立しない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
@@ -119,7 +117,7 @@ class TestIdentityProjectionBoundaries(unittest.TestCase):
         self._call_unformed_range(raw, "F04-NEG-10/local-RangeDeclaration value type")
 
     def test_non_outside_owner_relation_is_not_two_owner_range_evidence(self):
-        """WR05のowner relation不一致 causes public写像は未閉包。L4局所unknownを観測するか、未形成写像をF04/N01+FN3へBackflowするため両経路を許す。本testは未完成predicateや新Findingを生成せず、public写像の成立を認定しない。"""
+        """L4 pair_aggregationでは左右両ownerのqualified outsideが必要。型外relationはunknownであり、片側だけの宣言からR62を作らない。"""
         raw = bilateral_input("outside")
         record = raw["compatibility_records"][0]
         right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
