@@ -85,6 +85,21 @@ class TestIdentityR2Scope(unittest.TestCase):
         self.assertTrue(rows, f"expected a public {name} observation")
         return rows
 
+    def _assert_nonresolved_scope_reason(self, rows, cause):
+        for index, row in enumerate(rows):
+            prefix, separator, encoded = row["reason"].partition("\n")
+            self.assertEqual((prefix, separator), (cause, "\n"))
+            material = json.loads(encoded)
+            self.assertEqual(set(material), {
+                "cause", "request", "state", "slot_presence", "slot_is_null",
+                "fact_presence", "fact_is_null", "knowledge_record_indices",
+                "provenance_indices", "source_indices", "body_group_locators",
+            })
+            self.assertEqual(material["cause"], cause)
+            self.assertEqual(material["state"], row["state"])
+            self.assertEqual(material["request"], {"slot_locator": f"/descriptors/{index}",
+                                                  "fact_locator": f"/descriptors/{index}/facts/0"})
+
     def test_same_scalar_scope_is_equal_in_actual_and_trace_reads(self):
         raw = bilateral_input("outside")
         _replace_scopes(raw, "synthetic-scope-token")
@@ -162,6 +177,7 @@ class TestIdentityR2Scope(unittest.TestCase):
         self.assertEqual(len(traces), 15)
         self.assertTrue(all(row["state"] == "conflict" and "scope_differs" in row["reason"]
                             for row in traces))
+        self._assert_nonresolved_scope_reason(traces, "scope_differs")
 
     def test_unobserved_scope_stays_unknown_in_trace_bilateral_and_actual_reads(self):
         raw = trace_input("positive")
@@ -184,6 +200,7 @@ class TestIdentityR2Scope(unittest.TestCase):
         traces = self._axis(self._call(raw), "descriptor.trace")
         self.assertEqual(len(traces), 15)
         self.assertTrue(all(row["state"] == "unknown" for row in traces))
+        self._assert_nonresolved_scope_reason(traces, "scope_unresolved")
 
         raw = bilateral_input("positive")
         raw["binding"]["template_ref"]["scope"] = None
