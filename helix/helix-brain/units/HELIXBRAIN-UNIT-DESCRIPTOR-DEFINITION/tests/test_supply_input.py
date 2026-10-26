@@ -37,10 +37,14 @@ def load_document():
         return json.loads(fh.read().decode("utf-8"))
 
 
+MATERIALS_PATH = Path(__file__).resolve().parent / "fixtures" / "supply-input-materials.json"
+
+
 def base_input(document):
-    return copy.deepcopy(
-        document["fixture_contract"]["normal_control"]["input"]
-    )
+    # 正常対照の入力はL8から撤去済み。撤去前revisionの値をL7のtest材料から読む。
+    with open(MATERIALS_PATH, "rb") as fh:
+        materials = json.loads(fh.read().decode("utf-8"))
+    return copy.deepcopy(materials["normal_control_input"])
 
 
 class TestSupplyInput(unittest.TestCase):
