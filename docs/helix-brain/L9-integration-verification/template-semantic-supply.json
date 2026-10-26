@@ -2273,7 +2273,7 @@
   "evidence_contract": {
     "required": "対象L4/L9 revision、fixture原source/変異、descriptor/knowledge/template各版、scope/condition、原各axis、claim判定、原因/戻し先、副作用0を個別に記録する。",
     "case_adequacy": "コード一致だけでなく原項目内容、変異した意味差、無関係項目保全、返却後の状態保存を対照実行で検査。件数/hash/空集合を意味oracle代替にしない。",
-    "real_execution": "L5/L8とL6/L7のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠を後続で接続。今は全case not_executed。"
+    "real_execution": "L5/L8とL6/L7のtest/oracle凍結→実装前Red→最小実装→Greenの実証拠を後続で接続。今は全case not_executed。以後のL9はL4との照合に必要な入力条件・反例・期待する性質と鍵となる値・oracle ID・戻し先を持ち、具体fixture・全返却期待・hash・直列化はL6/L7の谷へ置き、L4/L3/L10の契約から実装を読まずに導いたtest/oracleを凍結して実装前Red→Greenを観測する。"
   },
   "completion": {
     "design": "独立reviewとexact HEAD admission/read-afterで当該基本pairを統合する。",

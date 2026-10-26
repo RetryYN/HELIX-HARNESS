@@ -5915,10 +5915,16 @@
       }
     ],
     "same_call_and_public_projection": {
+      "design_reference_placement": {
+        "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405690269",
+        "new_design_references": "以後の設計文書間参照は対象revisionとJSON Pointerで示し、whole-file bytesのcurrent pinを連鎖更新しない。",
+        "existing_pin_placement": "既存pinは16e7728005ed02e2e9c03038ac2ce948f1f9024eで対応bytesとともに保存される履歴参照へ置く案とし、値・fieldはこの追補で変更しない；本追補後のwhole-file一致やcurrent binding成立を表す証拠にはせず、revision/Pointerへの移管方法と採否は後続で決める。",
+        "existing_fixture_placement": "merge済みliteralとfixtureは同じ場所に保持し、各childのGreen後にFT-DESIGN-REFACTOR-001の計画でtest fixture参照へ分割する；監査記録は書き換えない。"
+      },
       "raw_runner": "fn0は同snapshotの既存資格判定を一度行う。fn1 private coreは同validatedから全slot/domain、規範frame、原owner意味/NA readと既存比較を一walkで計算する。元Comparisonと全assessmentを返し、fn6/7は同call indexを消費する。rawrunner又はpublicwrapperを連鎖して再計算しない。",
       "public_types": "Claim6field/SupplyInput/Comparison/AnalysisContext/既存9公開関数署名を変更しない。新記録はsource.content RawValueとprivate context内。builderに新index必須引数を足さない。",
       "state_locality": "帰属/規範原評価/定義/NA判断の原因は全保持し、同kind sibling/target住所resolvedを意味knownへ借りない。rule87/93は既存同Claim担当分離に従い、全assessment保持と公開Finding一件化を混同しない。",
-      "not_finished": "m1a_finite_caller_bindingの2 casesとm2a_finite_meaning_pair_bindingの1 caseの公開ComparisonをL9で追随した。L8 wholeおよび詳細L5/L8設計との対応は未追随・未成立として保持する。"
+      "not_finished": "m1a_finite_caller_bindingの2 casesとm2a_finite_meaning_pair_bindingの1 caseの公開ComparisonをL9で追随した。L8 wholeおよび詳細L5/L8設計との対応は未追随・未成立として保持する。以後のL4/L5は型・契約・分岐順・決定表、L9/L8は入力条件・反例・期待する性質と鍵となる値・oracle ID・戻し先を持ち、L3義務ごとの契約行・oracle ID付きcase行・unknown/N/A/未完のownerとreentryを揃えて凍結し、全返却の列挙を条件にせず、具体fixture・全返却期待・hash・直列化はL6/L7の谷で独立に定義・凍結して実装前Red→Greenを観測する。"
     },
     "preservation_and_limits": [
       "旧L8 79constructor/5builderのraw/全返却を保存する。これらはprimary fn1全意味計算/新owner readのwhole証拠ではない。旧Comparison shape/値を無断上書きしない。",
