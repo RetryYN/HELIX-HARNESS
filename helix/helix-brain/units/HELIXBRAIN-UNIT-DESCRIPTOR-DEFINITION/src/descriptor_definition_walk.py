@@ -154,6 +154,7 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         read_original_definition_meaning_bundle,
     )
     from descriptor_definition_pairs import meaning_pair_axes_with_origins
+    from supply_validation import _APPROVED_KINDS
 
     native: dict[str, list[Any]] = {
         "meaning_reads": [],
@@ -165,7 +166,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         "meaning_read_origins": [],
     }
     events: list[dict[str, Any]] = []
-    for slot_index, slot in enumerate(descriptors):
+    ordered_slots = sorted(enumerate(descriptors),
+                           key=lambda pair: _APPROVED_KINDS.index(pair[1]["descriptor_kind"]))
+    for slot_index, slot in ordered_slots:
         if not isinstance(slot, dict):
             _stop("descriptor_slot_shape")
         slot_locator = f"/descriptors/{slot_index}"
