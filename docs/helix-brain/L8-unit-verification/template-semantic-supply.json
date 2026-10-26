@@ -10762,6 +10762,17 @@
           },
           "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
           "predicate_ref": "HELIXBRAIN-L5-032-R-version_target_as_actual"
+        },
+        {
+          "id": "HELIXBRAIN-L8-032-F04-NEG-11",
+          "change": "L4有限I1a P15 caseのsupplied empty KnowledgeRecord collectionをfn3 Comparisonへ追随",
+          "expected": "L4（16e7728005ed02e2e9c03038ac2ce948f1f9024e、docs/helix-brain/L4-basic-design/template-semantic-supply.json#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record）の原条件を使う。fn3はComparisonだけを返しIdentityTraceReturn wrapperは対象外。actual_owner_body_unprovidedを既存順序で先行して保持し、knowledge.operational_stateを含むactual側とdescriptor.trace側を混同せず、後者はknowledge_unresolved、両方unknown。supplied []はabsent/null/N/Aではなく、original refs/orderを保つ。record/provenance chain・資格成立・source_missing・新Findingを生成しない。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+          "input_refinement_status": "defined_candidate_not_executed",
+          "preserved_control": "汎用knowledge version/sourceの不足は既存knowledge_ownerとL3 F04/N01 failure_returnに従いBRAINへ戻す。意味変更は左層へBackflowする。product値/適用のCORE、project記録のOS責務をこのcaseへ移さない。再入はBRAINの原owner資料又はknowledge/provenance参照の供給・訂正後、同じBinding/revision/scopeの原readから行い、元のP15条件を外れた結果は本caseの成立に読み替えない。全callerのcause優先順を定めない。"
         }
       ],
       "execution_state": "not_executed",
@@ -16066,7 +16077,8 @@
         "HELIXBRAIN-L8-032-N01-NEG-01",
         "HELIXBRAIN-L8-032-N01-NEG-02",
         "HELIXBRAIN-L8-032-ADD-13",
-        "HELIXBRAIN-L8-032-ADD-14"
+        "HELIXBRAIN-L8-032-ADD-14",
+        "HELIXBRAIN-L8-032-F04-NEG-11"
       ],
       "execution_state": "not_executed"
     },
