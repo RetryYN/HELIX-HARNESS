@@ -15,25 +15,23 @@ from identity_trace_support import (
     _fn3_qualified_owner_source,
     _fn3_range_declaration_formed,
     _fn3_root_rows,
-    _fn3_scope_same,
+    _fn3_scope_relation,
     _fn3_source_rows,
     _fn3_stop,
     _fn3_valid_source,
     _fn3_wire_full_ref,
 )
 
-def _fn3_owner_source(raw: dict[str, Any], candidate_ref: Any, unusable: list[Any], record_ref: Any,
-                      counterpart: Any = None) -> list[tuple[int, dict[str, Any], dict[str, Any]]]:
+def _fn3_owner_source(raw: dict[str, Any], candidate_ref: Any, unusable: list[Any],
+                      record_ref: Any) -> list[tuple[int, dict[str, Any], dict[str, Any]]]:
     found = []
     for index, source in enumerate(raw.get("sources", [])):
-        if not isinstance(source, dict) or source.get("role") != "semantic_json" or not _fn3_qualified_owner_source(raw, index, source, unusable):
+        if not isinstance(source, dict) or source.get("role") != "semantic_json" or not _fn3_qualified_owner_source(raw, source, unusable):
             continue
         body = source.get("content")
         if not isinstance(body, dict):
             continue
         if record_ref is not None and not _ref_same(body.get("compatibility_record_ref"), record_ref):
-            continue
-        if counterpart is not None and not _ref_same(body.get("counterpart_source_ref"), counterpart):
             continue
         found.append((index, source, body))
     return found
@@ -47,14 +45,14 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
             direct_sources = _fn3_source_rows(raw, record.get("source_ref"))
         else:
             direct_sources = [(i, s) for i, s, _body in _fn3_owner_source(
-                raw, target, unusable, record.get("ref"), record.get("source_ref"))]
+                raw, target, unusable, record.get("ref"))]
     rows = []
     for source_index, source in direct_sources:
         body = source.get("content") if isinstance(source, dict) else None
         source_ref = source.get("ref") if isinstance(source, dict) else None
         scope = source_ref.get("scope") if isinstance(source_ref, dict) else None
         target_scope = raw.get("binding", {}).get("template_ref", {}).get("scope")
-        relation = "same" if _fn3_scope_same(scope, target_scope) else ("different" if scope is not None and target_scope is not None else "unobserved")
+        relation = _fn3_scope_relation(scope, target_scope)
         container = body.get("compatible_refs") if isinstance(body, dict) else None
         endpoint_formed = _fn3_wire_full_ref(target)
         occurrences = []
@@ -115,14 +113,30 @@ def _fn3_endpoint_owner_reads(raw: dict[str, Any], record: dict[str, Any], unusa
                               and isinstance(declaration, dict) and declaration.get("endpoint") == "left"
                               and _ref_same(declaration.get("endpoint_ref"), target)
                               and declaration.get("owner") == (target.get("owner") if isinstance(target, dict) else None)
-                              and _ref_same(body.get("compatibility_record_ref"), record.get("ref"))
-                              and _ref_same(body.get("counterpart_source_ref"), record.get("source_ref")))
+                              and _ref_same(body.get("compatibility_record_ref"), record.get("ref")))
+            counterpart_rows = _fn3_source_rows(raw, record.get("source_ref"))
+            counterpart_qualified = any(_fn3_valid_source(raw, row, unusable)
+                                        for _index, row in counterpart_rows)
+            counterpart_linked = (_ref_same(body.get("counterpart_source_ref"), record.get("source_ref"))
+                                  and counterpart_qualified)
             if not qualified:
                 owner_state, owner_cause = "unknown", "owner_qualification_unresolved"
             elif not declaration_ok:
                 owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif not counterpart_rows:
+                owner_state, owner_cause = "unknown", "owner_counterpart_unresolved"
+            elif not counterpart_qualified:
+                owner_state, owner_cause = "unknown", "owner_qualification_unresolved"
+            elif not counterpart_linked:
+                owner_state, owner_cause = "unknown", "owner_counterpart_unresolved"
             elif relation == "different":
                 owner_state, owner_cause = "conflict", "owner_scope_differs"
+            elif relation == "unobserved":
+                owner_state, owner_cause = "unknown", "owner_subject_unresolved"
+            elif type(record.get("compatible")) is not bool or type(declaration.get("compatible")) is not bool:
+                owner_state, owner_cause = "unknown", "owner_decision_unresolved"
+            elif record.get("compatible") is not declaration.get("compatible"):
+                owner_state, owner_cause = "conflict", "owner_decision_differs"
             elif relation == "same":
                 owner_state, owner_cause = "resolved", "owner_body_corresponding"
             else:
@@ -260,36 +274,39 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
     for index, record in enumerate(records):
         if not isinstance(record, dict):
             raise _fn3_stop("unclosed/cause_to_finding_mapping", "compatibility record is not a decoded object")
-        if record.get("compatible") is None:
-            raise _fn3_stop("unclosed/cause_to_finding_mapping", "compatibility cause has no frozen Finding mapping")
         if record.get("source_ref", object()) is None:
-            reason = _fn3_diag("明示pairのsource_refは明示nullでowner互換根拠を解決できない。", {
-                "cause": "null", "record_index": index, "record_state": "unknown", "original_record_reason": record.get("reason")})
-            outcomes.append({"record": record, "state": "unknown", "cause": "null", "reason": reason,
-                             "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref")], "sources": []})
+            lefts = _fn3_owner_source(raw, record.get("left_ref"), unusable, record.get("ref"))
+            if len(lefts) > 1:
+                raise _fn3_stop("unclosed/multiple_finding_range_sources/left",
+                                "multiple left owner source occurrences match the record")
+            outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "null",
+                             "reason": "null", "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref")],
+                             "sources": [lefts[0][1]["ref"]] if lefts else []})
             continue
         right_rows = _fn3_source_rows(raw, record.get("source_ref"))
         if len(right_rows) > 1:
-            raise _fn3_stop("unclosed/multiple_finding_range_sources", "multiple physical source occurrences match a Finding range record")
+            raise _fn3_stop("unclosed/multiple_finding_range_sources/right", "multiple physical source occurrences match a Finding range record")
         right = right_rows[0] if right_rows else None
-        lefts = _fn3_owner_source(raw, record.get("left_ref"), unusable, record.get("ref"),
-                                 record.get("source_ref"))
+        lefts = _fn3_owner_source(raw, record.get("left_ref"), unusable, record.get("ref"))
         if len(lefts) > 1:
-            raise _fn3_stop("unclosed/multiple_finding_range_sources", "multiple left owner source occurrences match the record")
+            raise _fn3_stop("unclosed/multiple_finding_range_sources/left", "multiple left owner source occurrences match the record")
         if right is None or not _fn3_valid_source(raw, right[1], unusable):
-            raise _fn3_stop("unclosed/right_owner_unprovided",
-                            "right pack-owner source is absent or unusable")
+            outcomes.append({"record": record, "record_index": index, "state": "unknown",
+                             "cause": "right_owner_unprovided", "reason": "right_owner_unprovided",
+                             "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref"), record.get("source_ref")],
+                             "sources": [lefts[0][1]["ref"]] if lefts else []})
+            continue
         if not lefts:
-            outcomes.append({"record": record, "state": "unknown", "cause": "left_owner_unprovided",
+            outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "left_owner_unprovided",
                              "reason": "left_owner_unprovided: 両端の独立qualified owner本文が揃わない。",
                              "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref"), record.get("source_ref")],
                              "sources": [right[1]["ref"]] if right and _fn3_valid_source(raw, right[1], unusable) else []})
             continue
-        li, left_source, left_body = lefts[0]
+        left_source, left_body = lefts[0][1:]
         ri, right_source = right
         right_body = right_source.get("content")
         if not isinstance(right_body, dict):
-            outcomes.append({"record": record, "state": "unknown", "cause": "owner_decision_unresolved",
+            outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "bilateral_owner_unresolved",
                              "reason": "owner_decision_unresolved: right owner body is not a JSON object.",
                              "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref"), record.get("source_ref")],
                              "sources": []})
@@ -327,11 +344,21 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                                   and owner_decl.get("owner") == left_source.get("ref", {}).get("owner"))
         right_scope_candidate = (len(right_endpoint_reads) == 1
                                  and right_endpoint_reads[0]["cause"] == "owner_scope_differs")
-        if ((not _fn3_scope_same(left_scope, target_scope) and left_subject_candidate)
-                or (not _fn3_scope_same(right_scope, target_scope) and right_scope_candidate)):
-            outcomes.append({"record": record, "state": "conflict", "cause": "scope",
+        left_scope_relation = _fn3_scope_relation(left_scope, target_scope)
+        right_scope_relation = _fn3_scope_relation(right_scope, target_scope)
+        if ((left_scope_relation == "different" and left_subject_candidate)
+                or (right_scope_relation == "different" and right_scope_candidate)):
+            outcomes.append({"record": record, "record_index": index, "state": "conflict", "cause": "scope",
                              "reason": "scope: qualified owner source scope differs from the target pair scope.",
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"], left_source["ref"]],
+                             "sources": [left_source["ref"], right_source["ref"]]})
+            continue
+        if ((left_scope_relation == "unobserved" and left_subject_candidate)
+                or (right_scope_relation == "unobserved" and right_scope_candidate)):
+            outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "scope_unresolved",
+                             "reason": "scope_unresolved: target or qualified source scope is unobserved.",
+                             "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
+                                      left_source["ref"], right_source["ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
             continue
         outside = (left_owner and owner_decl.get("range_relation") == "outside"
@@ -342,20 +369,20 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                      and owner_decl.get("compatible") is True and right_endpoint_corresponding)
         if (isinstance(owner_decl, dict) and (owner_decl.get("endpoint") != "left"
                 or not _ref_same(owner_decl.get("endpoint_ref"), record.get("left_ref")))):
-            outcomes.append({"record": record, "state": "unknown", "cause": "left_owner_unprovided",
+            outcomes.append({"record": record, "record_index": index, "state": "unknown", "cause": "left_owner_unprovided",
                              "reason": "left_owner_unprovided: left owner declaration does not name the original left endpoint.",
                              "refs": [record.get("ref"), record.get("left_ref"), record.get("right_ref"), record.get("source_ref")],
                              "sources": [left_source.get("ref")]})
             continue
         if outside:
-            outcomes.append({"record": record, "state": "conflict", "cause": "outside",
+            outcomes.append({"record": record, "record_index": index, "state": "conflict", "cause": "outside",
                              "reason": "同scope明示pairについて独立template-owner本文とpack-owner本文が当該実版範囲外を明示する。",
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
                                       left_source["ref"], left_source["qualification_ref"], lefts[0][2].get("compatibility_record_ref"),
                                       right_source["ref"], right_source["qualification_ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
         elif both_true:
-            outcomes.append({"record": record, "state": "resolved", "cause": "positive",
+            outcomes.append({"record": record, "record_index": index, "state": "resolved", "cause": "positive",
                              "reason": "同scope明示pairについて独立template-owner本文とpack-owner本文が共にtrueを明示する。実利用許可ではない。",
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
                                       left_source["ref"], left_source["qualification_ref"], right_source["ref"], right_source["qualification_ref"]],
@@ -363,18 +390,19 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         else:
             left_decision = owner_decl.get("compatible") if isinstance(owner_decl, dict) else None
             right_decision = right_body.get("compatible")
-            if right_endpoint_reads and right_endpoint_reads[0]["cause"] == "owner_decision_differs":
-                unresolved_cause, unresolved_state = "owner_decision_differs", "conflict"
-            elif (type(left_decision) is bool and type(right_decision) is bool
-                  and left_decision != right_decision):
-                unresolved_cause, unresolved_state = "bilateral_decisions_opposing", "conflict"
-            elif (not right_endpoint_reads
-                  or right_endpoint_reads[0]["cause"] != "owner_body_corresponding"):
+            record_decision = record.get("compatible")
+            if type(record_decision) is not bool:
+                unresolved_cause, unresolved_state = "compatible_null", "unknown"
+            elif type(left_decision) is not bool or type(right_decision) is not bool:
                 unresolved_cause, unresolved_state = "bilateral_owner_unresolved", "unknown"
+            elif left_decision is not right_decision:
+                unresolved_cause, unresolved_state = "bilateral_decisions_opposing", "conflict"
+            elif record_decision is not left_decision:
+                unresolved_cause, unresolved_state = "body_record_differs", "conflict"
             else:
-                unresolved_cause, unresolved_state = "owner_decision_unresolved", "unknown"
-            outcomes.append({"record": record, "state": unresolved_state, "cause": unresolved_cause,
-                             "reason": f"{unresolved_cause}: qualified owner decision does not form a fixed positive or bilateral-outside cause.",
+                unresolved_cause, unresolved_state = "bilateral_owner_unresolved", "unknown"
+            outcomes.append({"record": record, "record_index": index, "state": unresolved_state, "cause": unresolved_cause,
+                             "reason": unresolved_cause,
                              "refs": [record["ref"], record["left_ref"], record["right_ref"], record["source_ref"],
                                       left_source["ref"], right_source["ref"]],
                              "sources": [left_source["ref"], right_source["ref"]]})
@@ -387,6 +415,17 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         outcome["source_indices"] = used_indices
         outcome["refs"] = [*base_refs, *source_refs]
         outcome["sources"] = [raw["sources"][i]["ref"] for i in used_indices]
+        left_sources = [(i, source) for i, source, _body in _fn3_owner_source(
+            raw, record.get("left_ref"), unusable, record.get("ref"))]
+        right_sources = _fn3_source_rows(raw, record.get("source_ref"))
+        owner_reads = _fn3_endpoint_owner_reads(raw, record, unusable, "left", left_sources)
+        owner_reads.extend(_fn3_endpoint_owner_reads(raw, record, unusable, "right", right_sources))
+        outcome["owner_observations"] = [
+            {"endpoint": row["endpoint"], "source_index": row["source_index"],
+             "target_scope_relation": row["target_scope_relation"], "state": row["state"],
+             "cause": row["cause"]}
+            for row in owner_reads
+        ]
     if len(outcomes) > 1:
         same_pair = all(_ref_same(row["record"].get("left_ref"), outcomes[0]["record"].get("left_ref"))
                         and _ref_same(row["record"].get("right_ref"), outcomes[0]["record"].get("right_ref"))
@@ -398,7 +437,7 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
             states = ["resolved", "conflict"]
             reasons = [o["record"].get("reason") for o in outcomes]
             material = {"original_record_reasons": reasons, "pair_group_index": 0,
-                        "record_indices": [0, 1], "record_states": states}
+                        "record_indices": [o["record_index"] for o in outcomes], "record_states": states}
             reason = _fn3_diag("同scope同明示pairのqualified原宣言が相反する。両原宣言を保持する。", material)
             refs = [ref for outcome in outcomes for ref in outcome["refs"] if isinstance(ref, dict)]
             axes.append(_fn3_axis(outcomes[0]["record"].get("left_ref"), binding, "compatibility", "conflict", refs, reason, "knowledge_owner"))
@@ -411,11 +450,19 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
                                                                            finding_index, "compatibility_mismatch")))
             result_reads.extend(outcomes)
         else:
-            # Do not choose a winner or impose a count cutoff. This exact cause
-            # combination has no frozen aggregation rule, so preserve the raw read at Backflow.
-            causes = [outcome["cause"] for outcome in outcomes]
-            raise _fn3_stop("unclosed/cause_to_finding_mapping",
-                            f"the same-pair cause combination {causes!r} has no fixed public aggregation")
+            material = {"cause_occurrences": [
+                {"cause": outcome["cause"], "record_index": outcome["record_index"],
+                 "state": outcome["state"]}
+                for outcome in outcomes
+            ]}
+            reason = _fn3_diag(
+                "両端契約のowner宣言へ解決する互換根拠が未供給で適合/不適合を評価できない。",
+                material,
+            )
+            refs = [ref for outcome in outcomes for ref in outcome["refs"] if isinstance(ref, dict)]
+            axes.append(_fn3_axis(outcomes[0]["record"].get("left_ref"), binding,
+                                  "compatibility", "unknown", refs, reason, "knowledge_owner"))
+            result_reads.extend(outcomes)
     if len(outcomes) == 1:
         outcome = outcomes[0]
         reason_prefixes = {
@@ -427,24 +474,29 @@ def _fn3_compatibility(raw: dict[str, Any], binding: dict[str, Any], unusable: l
         }
         prefix = reason_prefixes.get(outcome["cause"])
         if prefix is None:
-            raise _fn3_stop("unclosed/cause_to_finding_mapping",
-                            f"compatibility cause {outcome['cause']} has no fixed reason serialization")
-        outcome["reason"] = _fn3_diag(prefix, {
-            "original_record_reasons": [outcome["record"].get("reason")],
-            "pair_group_index": 0, "record_indices": [index],
-            "record_states": [outcome["state"]],
-        })
+            outcome["reason"] = _fn3_diag(outcome["cause"], {
+                "cause": outcome["cause"],
+                "request": {"record_locator": f"/compatibility_records/{outcome['record_index']}"},
+                "state": outcome["state"], "record_presence": "supplied", "record_is_null": False,
+                "owner_observations": outcome["owner_observations"],
+            })
+        else:
+            outcome["reason"] = _fn3_diag(prefix, {
+                "original_record_reasons": [outcome["record"].get("reason")],
+                "pair_group_index": 0, "record_indices": [outcome["record_index"]],
+                "record_states": [outcome["state"]],
+            })
         axes.append(_fn3_axis(outcome["record"].get("left_ref"), binding, "compatibility", outcome["state"],
                               outcome["refs"], outcome["reason"], "knowledge_owner" if outcome["state"] != "resolved" else None))
         if outcome["cause"] in {"null", "left_owner_unprovided"}:
             findings.append(_fn3_finding("compatibility_unknown", outcome["record"].get("left_ref"), binding,
                                          "compatibility", "unknown", outcome["sources"],
-                                         _fn3_compatibility_finding_reason(raw, binding, outcome, index,
+                                         _fn3_compatibility_finding_reason(raw, binding, outcome, outcome["record_index"],
                                                                            "compatibility_unknown")))
         elif outcome["cause"] == "outside":
             findings.append(_fn3_finding("compatibility_mismatch", outcome["record"].get("left_ref"), binding,
                                          "compatibility", "conflict", outcome["sources"],
-                                         _fn3_compatibility_finding_reason(raw, binding, outcome, index,
+                                         _fn3_compatibility_finding_reason(raw, binding, outcome, outcome["record_index"],
                                                                            "compatibility_mismatch")))
         result_reads.append(outcome)
     return result_reads

@@ -6,10 +6,13 @@ from descriptor_definitions import (
     _binding_same,
     _json_equal,
     _ref_same,
+    _wire_binding_shape_ok,
+    _wire_ref_shape_ok,
 )
 from identity_trace_support import (
     _IDENTITY_ACTUAL_AXES,
     _fn3_axis,
+    _fn3_combine_scope_relations,
     _fn3_diag,
     _fn3_finding,
     _fn3_predicate_finding_reason,
@@ -19,8 +22,9 @@ from identity_trace_support import (
     _fn3_range_declaration_formed,
     _fn3_resolve_pointer,
     _fn3_root_rows,
-    _fn3_scope_same,
+    _fn3_scope_relation,
     _fn3_stop,
+    _fn3_wire_full_ref,
 )
 
 def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]) -> list[dict[str, Any]]:
@@ -35,17 +39,20 @@ def _fn3_range_rows(raw: dict[str, Any], binding: dict[str, Any], unusable: list
             continue
         actual_pack = decl.get("actual_pack_ref")
         target_pack = binding.get("pack_ref")
-        if not _ref_same(actual_pack, target_pack):
+        subject_same = (_ref_same(decl.get("right_ref"), target_pack)
+                        and _ref_same(decl.get("left_ref"), binding.get("template_ref")))
+        if not subject_same:
             continue
         owner_declarations = decl.get("owner_declarations")
         found.append({"source_index": index, "source": source, "body": body, "declaration": decl,
                       "owner_declarations": owner_declarations if isinstance(owner_declarations, list) else [],
-                      "qualified": _fn3_qualified_owner_source(raw, index, source, unusable),
-                      "scope_same": (_fn3_scope_same(actual_pack.get("scope"), target_pack.get("scope"))
-                                     and _fn3_scope_same(source.get("ref", {}).get("scope"), target_pack.get("scope"))
-                                     and _fn3_scope_same(decl.get("right_ref", {}).get("scope"), target_pack.get("scope"))),
-                      "subject_same": (_ref_same(decl.get("right_ref"), target_pack)
-                                       and _ref_same(decl.get("left_ref"), binding.get("template_ref")))} )
+                      "qualified": _fn3_qualified_owner_source(raw, source, unusable),
+                      "scope_relation": _fn3_combine_scope_relations((
+                          _fn3_scope_relation(actual_pack.get("scope"), target_pack.get("scope")),
+                          _fn3_scope_relation(source.get("ref", {}).get("scope"), target_pack.get("scope")),
+                          _fn3_scope_relation(decl.get("right_ref", {}).get("scope"), target_pack.get("scope")),
+                      )),
+                      "subject_same": subject_same} )
     return found
 
 def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
@@ -55,7 +62,7 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
     range_rows = _fn3_range_rows(raw, binding, unusable)
     if len(range_rows) > 1:
         raise _fn3_stop("unclosed/multiple_actual_range_sources",
-                        "unclosed/multiple_finding_range_sources: multiple physical RangeDeclaration source occurrences match the input Binding")
+                        "multiple physical RangeDeclaration source occurrences match the input Binding")
     records = raw.get("knowledge_records")
     if not isinstance(records, list):
         records = []
@@ -74,6 +81,7 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
         else:
             original_read = _fn3_presence(raw, member_pointer)
             _, subject = _fn3_resolve_pointer(raw, subject_pointer)
+        subject_formed = _wire_ref_shape_ok(subject)
         ref_axes = {"template.identity", "knowledge.identity", "requirement.identity", "oracle.identity", "pack.identity"}
         if original_read.get("presence") == "absent":
             classification = "absent"
@@ -89,7 +97,7 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
         observations = []
         actual_cause = None
         if axis_name in axis_sources:
-            for selected in range_rows:
+            for selected in (range_rows if subject_formed else []):
                 decl = selected["declaration"]
                 declaration_locator = f"/sources/{selected['source_index']}/content/compatibility_range_declaration"
                 body_locator = declaration_locator + "/" + axis_sources[axis_name]
@@ -104,11 +112,18 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
                           else binding.get("pack_artifact_version"))
                 if not selected["qualified"]:
                     relation, obs_state, actual_cause = "unestablished", "unknown", "actual_qualification_unresolved"
-                elif not selected["scope_same"]:
+                elif selected["scope_relation"] == "different":
                     relation, obs_state, actual_cause = "different", "conflict", "actual_scope_differs"
+                elif selected["scope_relation"] == "unobserved":
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_scope_unresolved"
                 elif not selected["subject_same"] or owner is None:
                     relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
                 elif actual.get("presence") == "absent":
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
+                elif (axis_name == "pack.identity" and not _fn3_wire_full_ref(actual.get("value"))):
+                    relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
+                elif (axis_name in {"pack.revision", "pack.contract_version", "pack.artifact_version"}
+                      and not isinstance(actual.get("value"), str)):
                     relation, obs_state, actual_cause = "unestablished", "unknown", "actual_owner_body_unresolved"
                 elif (actual.get("presence") == "supplied"
                       and not (_ref_same(actual.get("value"), target) if axis_name == "pack.identity"
@@ -125,24 +140,27 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
         # No KnowledgeRecord or claim is an actual owner declaration. Only the
         # qualified RangeDeclaration is a candidate right operand for these pack axes.
         states = [row["state"] for row in observations]
-        if classification == "absent":
-            state, cause, prefix = "unknown", "input_member_absent", "原値memberがabsentである。"
+        if not subject_formed:
+            state, cause, prefix = "unknown", "subject_unformed", "原subject Refを形成できず、public軸は生成せずprivateへ保持。"
+        elif classification == "absent":
+            state, cause, prefix = "unknown", "input_member_absent", "原memberが欠落。原Read absent。"
         elif classification == "null":
-            state, cause, prefix = "unknown", "input_member_null", "原値memberが明示nullである。"
+            state, cause, prefix = "unknown", "input_member_null", "原memberは明示null。原Read supplied(null)。"
         elif classification == "out_of_type":
-            state, cause, prefix = "unknown", "input_member_out_of_type", "原値memberがdeclared型外である。"
+            state, cause, prefix = "unknown", "input_member_out_of_type", "原member型外。原Read supplied原値。"
         elif "conflict" in states and "resolved" in states:
             state, cause = "conflict", "actual_owner_body_multiple_opposing"
-            prefix = "同subject/fullframeへの資格済みactual本文が相反し、原出現を保持する。"
+            prefix = "同subject/fullframeへの資格済みactual複数判断が既知相反。"
         elif actual_cause is not None:
             state = ("conflict" if actual_cause in {"actual_scope_differs", "actual_owner_body_differs"}
                      else "resolved" if actual_cause == "actual_owner_body_corresponding" else "unknown")
             cause = actual_cause
             prefix = {
-                "actual_qualification_unresolved": "原actual sourceのQualification/root/owner資格が未解決である。",
-                "actual_scope_differs": "原actual宣言のscopeが対象frameと異なる。",
-                "actual_owner_body_unresolved": "原actual owner operandの対応が未解決である。",
-                "actual_owner_body_differs": "原actual owner operandと原値が異なる。",
+                "actual_qualification_unresolved": "原source/Q/root/owner資格未成立。",
+                "actual_scope_unresolved": "対象frame又はsource frame未観測。",
+                "actual_scope_differs": "原actual宣言が当該subject候補を指すが要求frameと既知差。別subjectの原宣言はactual対応候補を生成しない。",
+                "actual_owner_body_unresolved": "上記以外の原値/operand/対応が未成立。",
+                "actual_owner_body_differs": "同subject/fullframeの独立actual本文と原値が既知差。",
                 "actual_owner_body_corresponding": "原値とqualified実owner本文の明示actual operandが対応する。互換適合又は実利用許可を意味しない。",
             }[cause]
         else:
@@ -183,17 +201,17 @@ def _fn3_actual_axes(raw: dict[str, Any], binding: dict[str, Any], unusable: lis
                     refs.append(owner_value["endpoint_ref"])
         reason = _fn3_diag(prefix, material)
         public_state = state
-        if (axis_name == "template.version" and isinstance(subject, dict)
-                and isinstance(binding, dict) and classification in {"absent", "null"}):
+        binding_formed = _wire_binding_shape_ok(binding)
+        if (axis_name == "template.version" and subject_formed and binding_formed
+                and classification in {"absent", "null"}):
             public_state = "missing"
             findings.append(_fn3_finding(
                 "version_missing", subject, binding, axis_name, "missing", [],
                 _fn3_predicate_finding_reason(
                     raw, "version_missing", [("/binding/template_ref/revision", "template revision")]))
             )
-        if not isinstance(subject, dict):
-            raise _fn3_stop("unclosed/actual_subject_unformed", f"{subject_pointer} does not form a typed subject Ref")
-        axes.append(_fn3_axis(subject, binding, axis_name, public_state, refs, reason))
+        if subject_formed and binding_formed:
+            axes.append(_fn3_axis(subject, binding, axis_name, public_state, refs, reason))
         reads.append({"request": {"member_locator": member_pointer, "actual_role": role},
                       "original_read": copy.deepcopy(original_read), "read_classification": classification,
                       "observations": observations, "state": state, "cause": cause})

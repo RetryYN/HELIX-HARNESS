@@ -14,55 +14,77 @@ from identity_trace_support import (
     _fn3_diag,
     _fn3_finding,
     _fn3_predicate_finding_reason,
+    _fn3_presence,
     _fn3_qualification_rows,
     _fn3_qualified_owner_source,
     _fn3_root_rows,
-    _fn3_scope_same,
+    _fn3_scope_relation,
     _fn3_stop,
     _fn3_valid_source,
 )
+
+def _fn3_binding_equal_except_template_scope(left: Any, right: Any) -> bool:
+    """Recognize an otherwise equal partial read without forming a scope chain."""
+    if not _wire_binding_shape_ok(left) or not _wire_binding_shape_ok(right):
+        return False
+    left_copy = copy.deepcopy(left)
+    right_copy = copy.deepcopy(right)
+    left_template = left_copy.get("template_ref")
+    right_template = right_copy.get("template_ref")
+    if not isinstance(left_template, dict) or not isinstance(right_template, dict):
+        return False
+    left_template.pop("scope", None)
+    right_template.pop("scope", None)
+    return _json_equal(left_copy, right_copy)
 
 def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                axes: list[dict[str, Any]], findings: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Resolve only direct slot/fact/record/provenance/source/body/Q/root links."""
     reads: list[dict[str, Any]] = []
     slots = raw.get("descriptors")
-    records = raw.get("knowledge_records")
     if not isinstance(slots, list):
-        raise _fn3_stop("unclosed/descriptor_slots_absent", "descriptor slot collection is absent or not an array")
-    if not isinstance(records, list):
-        raise _fn3_stop("unclosed/knowledge_records_absent", "knowledge_records collection is absent or not an array")
-    if not isinstance(raw.get("claims", []), list):
-        raise _fn3_stop("unclosed/identity_claim", "claims is not an array")
+        return reads
+    records_presence = _fn3_presence(raw, "/knowledge_records")
+    records = raw.get("knowledge_records")
+    if records_presence["presence"] == "absent":
+        records = []
+    elif not isinstance(records, list):
+        raise _fn3_stop("unclosed/knowledge_records_absent", "knowledge_records collection is present but not an array")
     sources = raw.get("sources") if isinstance(raw.get("sources"), list) else []
+    root_binding_ref_formed = ("binding" in raw and isinstance(raw.get("binding"), dict)
+                               and _wire_binding_shape_ok(raw.get("binding"))
+                               and _wire_ref_shape_ok(raw.get("binding", {}).get("template_ref")))
     for si, slot in enumerate(slots):
         if not isinstance(slot, dict) or not isinstance(slot.get("facts"), list):
             continue
         slot_binding = slot.get("binding")
-        if "binding" not in slot:
-            raise _fn3_stop("unclosed/slot_binding_absent", f"/descriptors/{si}/binding is absent or not an object")
-        if not _wire_binding_shape_ok(slot_binding):
-            raise _fn3_stop("unclosed/slot_binding_unformed", f"/descriptors/{si}/binding is outside the closed wire Binding shape")
+        slot_binding_formed = _wire_binding_shape_ok(slot_binding)
+        slot_binding_dict = slot_binding if isinstance(slot_binding, dict) else None
+        slot_template_ref = (slot_binding_dict.get("template_ref")
+                             if slot_binding_formed else None)
+        slot_scope = (slot_template_ref.get("scope")
+                      if isinstance(slot_template_ref, dict) else None)
         for fi, fact in enumerate(slot["facts"]):
             if not isinstance(fact, dict):
                 continue
             locator = f"/descriptors/{si}/facts/{fi}"
-            if not _wire_ref_shape_ok(fact.get("ref")):
-                raise _fn3_stop("unclosed/fact_subject_unformed", f"{locator}/ref does not form a wire Ref")
+            fact_subject_formed = _wire_ref_shape_ok(fact.get("ref"))
             if ("source_ref" in fact and fact["source_ref"] is not None
                     and not _wire_ref_shape_ok(fact["source_ref"])):
                 raise _fn3_stop("unclosed/fact_source_ref_unformed", f"{locator}/source_ref does not form a wire Ref")
             slot_locator = f"/descriptors/{si}"
-            slot_kref = slot_binding.get("knowledge_ref")
-            fact_binding = fact.get("binding") if isinstance(fact.get("binding"), dict) else {}
-            fact_kref = fact_binding.get("knowledge_ref")
+            slot_kref = slot_binding_dict.get("knowledge_ref") if slot_binding_formed else None
+            fact_binding = fact.get("binding")
+            fact_binding_formed = _wire_binding_shape_ok(fact_binding)
+            fact_binding_dict = fact_binding if isinstance(fact_binding, dict) else None
+            fact_kref = fact_binding_dict.get("knowledge_ref") if fact_binding_formed else None
             fact_source_ref = fact.get("source_ref")
             source_ref_joinable = (
                 _wire_ref_shape_ok(fact_source_ref)
                 and all(fact_source_ref.get(key) is not None for key in ("identity", "revision", "scope", "owner"))
             )
-            if not isinstance(slot_kref, dict) or slot_kref.get("revision") is None:
-                raise _fn3_stop("F04-NEG-02/revision_absent", "trace slot knowledge Ref lacks a supplied revision")
+            if not _wire_ref_shape_ok(slot_kref):
+                slot_kref = None
             record_candidates = [(ri, rec) for ri, rec in enumerate(records)
                                  if isinstance(rec, dict) and _ref_same(rec.get("ref"), slot_kref)]
             if len(record_candidates) > 1 and any(
@@ -77,6 +99,7 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             source_indices: list[int] = []
             body_groups: list[dict[str, Any]] = []
             chains: list[dict[str, Any]] = []
+            scope_unresolved_candidate = False
             any_source = False
             any_qualified = False
             any_body = False
@@ -104,10 +127,16 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                         if source_index not in source_indices:
                             source_indices.append(source_index)
                         content = source.get("content")
-                        if not _fn3_qualified_owner_source(raw, source_index, source, unusable):
+                        if not _fn3_qualified_owner_source(raw, source, unusable):
                             continue
                         any_qualified = True
-                        if not isinstance(content, dict) or not _binding_same(content.get("binding"), slot_binding):
+                        content_binding = content.get("binding") if isinstance(content, dict) else None
+                        content_binding_same = _binding_same(content_binding, slot_binding)
+                        content_binding_scope_only = (
+                            slot_scope is None
+                            and _fn3_binding_equal_except_template_scope(content_binding, slot_binding))
+                        if (not isinstance(content, dict)
+                                or not (content_binding_same or content_binding_scope_only)):
                             continue
                         groups = content.get("descriptor_facts")
                         if not isinstance(groups, list):
@@ -130,9 +159,16 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                     continue
                                 if not _ref_same(fact.get("source_ref"), source.get("ref")):
                                     continue
-                                if not _binding_same(fact_binding, slot_binding):
-                                    continue
-                                if not _binding_same(inner_fact.get("binding"), slot_binding):
+                                fact_binding_same = _binding_same(fact_binding, slot_binding)
+                                inner_binding = inner_fact.get("binding")
+                                inner_binding_same = _binding_same(inner_binding, slot_binding)
+                                if not fact_binding_same or not inner_binding_same:
+                                    scope_only_bindings = (
+                                        slot_scope is None
+                                        and _fn3_binding_equal_except_template_scope(fact_binding, slot_binding)
+                                        and _fn3_binding_equal_except_template_scope(inner_binding, slot_binding))
+                                    if scope_only_bindings:
+                                        scope_unresolved_candidate = True
                                     continue
                                 if not _ref_same(fact_kref, rec.get("ref")):
                                     continue
@@ -152,19 +188,24 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
             fact_mixed = (isinstance(fact_kref, dict) and isinstance(slot_kref, dict)
                           and all(fact_kref.get(k) is not None and slot_kref.get(k) is not None
                                   and _json_equal(fact_kref.get(k), slot_kref.get(k)) for k in ("identity", "scope", "owner"))
+                          and fact_kref.get("revision") is not None and slot_kref.get("revision") is not None
                           and not _json_equal(fact_kref.get("revision"), slot_kref.get("revision")))
             # Preserve all physically distinct chain rows in source order; repeated Qs remain
             # occurrences, while a shared physical source/root is listed once in its read column.
-            slot_scope = slot_binding.get("template_ref", {}).get("scope") if isinstance(slot_binding.get("template_ref"), dict) else None
             for chain in chains:
-                if not _fn3_scope_same(chain["source"].get("ref", {}).get("scope"), slot_scope):
-                    chain["scope_mismatch"] = True
+                chain["scope_relation"] = _fn3_scope_relation(
+                    chain["source"].get("ref", {}).get("scope"), slot_scope)
             state = "resolved" if chains else "unknown"
             cause = "original_trace_corresponding" if chains else (
                 "knowledge_unresolved" if not record_candidates else
                 "source_unresolved" if not source_ref_joinable or not any_source else "qualification_unresolved" if not any_qualified
                 else "body_unresolved" if not any_body else "knowledge_unresolved")
-            if fact_mixed:
+            if records_presence["presence"] == "absent":
+                cause = "knowledge_unresolved"
+            if not chains and scope_unresolved_candidate:
+                state, cause = "unknown", "scope_unresolved"
+            public_slot_formed = fact_subject_formed and slot_binding_formed
+            if fact_mixed and public_slot_formed:
                 state, cause = "conflict", "mixed_knowledge_revision"
                 mixed_observations = [
                     (locator + "/binding/knowledge_ref", "fact knowledge Ref"),
@@ -174,7 +215,8 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                              "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
                                              _fn3_predicate_finding_reason(raw, "mixed_knowledge_revision",
                                                                            mixed_observations)))
-            if (source_ref_joinable and not any(_ref_same(src.get("ref"), fact_source_ref)
+            if (root_binding_ref_formed and public_slot_formed and source_ref_joinable
+                    and not any(_ref_same(src.get("ref"), fact_source_ref)
                                                 for src in sources if isinstance(src, dict))):
                 source_observations = [("/sources", "source collection presence"),
                                        (locator + "/source_ref", "fact source Ref")]
@@ -184,8 +226,8 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                 findings.append(_fn3_finding("source_missing", binding.get("template_ref"), binding, "source", "missing",
                                              [fact_source_ref],
                                              _fn3_predicate_finding_reason(raw, "source_missing", source_observations)))
-            if isinstance(fact_kref, dict) and isinstance(slot_kref, dict) and not _ref_same(fact_kref, slot_kref):
-                current = binding.get("knowledge_ref")
+            if (public_slot_formed and isinstance(fact_kref, dict)
+                    and isinstance(slot_kref, dict) and not _ref_same(fact_kref, slot_kref)):
                 old_records = [(idx, rec) for idx, rec in record_candidates if _ref_same(rec.get("ref"), slot_kref)]
                 superseded = any(isinstance(rel, dict) and rel.get("kind") == "supersedes"
                                  and any(_ref_same(rel.get("from_ref"), rec.get("ref")) for _, rec in old_records)
@@ -209,8 +251,10 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                                  "descriptor.trace", "conflict", [fact.get("source_ref")] if isinstance(fact.get("source_ref"), dict) else [],
                                                  _fn3_predicate_finding_reason(raw, "silent_supersession",
                                                                                silent_observations)))
-            if any(c.get("scope_mismatch") for c in chains):
+            if any(c.get("scope_relation") == "different" for c in chains):
                 state, cause = "conflict", "scope_differs"
+            elif chains and any(c.get("scope_relation") == "unobserved" for c in chains):
+                state, cause = "unknown", "scope_unresolved"
             # Build the fixed 9-key per-chain trace material.
             chain_material = [{"descriptor_kind": slot.get("descriptor_kind"), "fact_locator": locator,
                                "knowledge_record_index": c["knowledge_record_index"],
@@ -218,9 +262,9 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                                "qualification_index": c["qualification_index"], "root_index": c["root_index"],
                                "slot_identity": slot.get("slot_identity"), "slot_locator": slot_locator,
                                "source_index": c["source_index"]} for c in chains]
-            if len(chain_material) == 1:
+            if state == "resolved" and len(chain_material) == 1:
                 material = chain_material[0]
-            elif chain_material:
+            elif state == "resolved" and chain_material:
                 material = {"trace_occurrences": chain_material}
             else:
                 material = {"cause": cause, "request": {"slot_locator": slot_locator, "fact_locator": locator},
@@ -232,14 +276,16 @@ def _fn3_trace(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any]
                             "source_indices": sorted(source_indices),
                             "body_group_locators": [g["locator"] for g in body_groups]}
             reason_prefix = ("原slot/fact/source/provenance/資格frameの対応を保持する。意味完成又は利用許可ではない。"
-                             if chains else cause)
+                             if state == "resolved" else cause)
             reason = _fn3_diag(reason_prefix, material)
             refs = [fact.get("ref"), fact.get("source_ref"), slot_kref]
             for c in chains:
                 refs.extend([c["record"].get("ref"), c["provenance"], c["source"].get("ref"),
                              c["source"].get("qualification_ref"), c["qualification"].get("ref"), c["root"]])
             axis_refs = [r for r in refs if isinstance(r, dict)]
-            axes.append(_fn3_axis(fact.get("ref"), slot_binding, "descriptor.trace", state, axis_refs, reason, None))
+            if fact_subject_formed and slot_binding_formed:
+                axes.append(_fn3_axis(fact.get("ref"), slot_binding, "descriptor.trace", state,
+                                      axis_refs, reason, None))
             reads.append({"request": {"slot_locator": slot_locator, "fact_locator": locator},
                           "slot_read": {"presence": "supplied", "value": copy.deepcopy(slot)},
                           "fact_read": {"presence": "supplied", "value": copy.deepcopy(fact)},

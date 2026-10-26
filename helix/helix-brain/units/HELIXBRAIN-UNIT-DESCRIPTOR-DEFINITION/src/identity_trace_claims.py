@@ -4,10 +4,10 @@ import copy
 from typing import Any
 from descriptor_definitions import (
     _binding_same,
-    _binding_shape_ok,
     _json_equal,
     _ref_same,
-    _ref_shape_ok,
+    _wire_binding_shape_ok,
+    _wire_ref_shape_ok,
 )
 from identity_trace_support import (
     _FN3_FINDING_PREFIXES,
@@ -29,8 +29,8 @@ def _fn3_identity_claim_candidate(raw: dict[str, Any], source_index: int, source
     source_ref = source.get("ref")
     source_binding = content.get("binding") if isinstance(content, dict) else None
     template_ref = source_binding.get("template_ref") if isinstance(source_binding, dict) else None
-    if (not isinstance(source_ref, dict) or not isinstance(source_binding, dict) or not _binding_shape_ok(source_binding)
-            or not isinstance(template_ref, dict) or not _fn3_valid_source(raw, source, unusable)):
+    if (not _wire_ref_shape_ok(source_ref) or not _wire_binding_shape_ok(source_binding)
+            or not _wire_ref_shape_ok(template_ref) or not _fn3_valid_source(raw, source, unusable)):
         return None
 
     # The same private DescriptorTraceRead must show this body, its record/provenance,
@@ -107,51 +107,78 @@ def _fn3_identity_claim_candidate(raw: dict[str, Any], source_index: int, source
 
 def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], unusable: list[Any],
                                  findings: list[dict[str, Any]], trace_reads: list[dict[str, Any]]) -> None:
-    claims, slots = raw.get("claims"), raw.get("descriptors")
-    if not isinstance(claims, list) or not isinstance(slots, list):
-        return
+    claims = raw.get("claims", [])
+    if not isinstance(claims, list):
+        raise _fn3_stop("unclosed/identity_claim/record_type", "claims is not an array")
+    sources = raw.get("sources", [])
+    if not isinstance(sources, list):
+        sources = []
+    identity_kinds = ("same_template_identity", "template_identity", "template_version")
+    role_kind = {
+        "image_only": "template_identity",
+        "semantic_json": "template_identity",
+        "tool_node_only": "template_version",
+    }
+    role_predicate = {
+        "image_only": ("image_identity_inference", "template.identity"),
+        "tool_node_only": ("tool_node_identity_inference", "template.version"),
+    }
     for ci, claim in enumerate(claims):
         if not isinstance(claim, dict):
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci} is not a decoded Claim")
-        if claim.get("kind") not in {"same_template_identity", "template_identity", "template_version"}:
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/kind is outside the fixed identity-claim branches")
+            raise _fn3_stop("unclosed/identity_claim/record_type", f"/claims/{ci} is not a decoded Claim")
+        kind = claim.get("kind")
+        if kind not in identity_kinds:
+            continue
         claim_subject = claim.get("subject_ref")
         claim_binding = claim.get("binding")
-        if not _ref_shape_ok(claim_subject) or not _binding_shape_ok(claim_binding):
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci} lacks a typed subject Ref or complete original Binding")
+        if not _wire_ref_shape_ok(claim_subject):
+            raise _fn3_stop("unclosed/identity_claim/subject_ref_shape",
+                            f"/claims/{ci}/subject_ref is outside the L4 wire Ref shape")
+        if not _wire_binding_shape_ok(claim_binding):
+            raise _fn3_stop("unclosed/identity_claim/binding_shape",
+                            f"/claims/{ci}/binding is outside the L4 wire Binding shape")
+
         proposed = claim.get("proposed_value")
-        if (claim.get("kind") == "template_version"
+        if (kind == "template_version" and binding.get("version_target") is not None
                 and _json_equal(proposed, binding.get("version_target"))):
             raise _fn3_stop("F04-NEG-10/unclosed/version_target_as_actual",
                             f"F04-NEG-10/unclosed/version_target_as_actual at /claims/{ci}")
         if not isinstance(proposed, dict):
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/proposed_value is not an object")
+            raise _fn3_stop("unclosed/identity_claim/proposed_value_type",
+                            f"/claims/{ci}/proposed_value is not an object for this identity predicate")
 
-        # R66 is a single frozen predicate: a root-A claim uses two original
-        # qualified candidates, one from the root Binding and one from an explicit slot.
-        # Filename is only the raw source locator; candidate identity comes from each
-        # candidate's own Binding.template_ref.
-        basis = claim.get("basis_refs")
-        if claim.get("kind") == "same_template_identity" and proposed.get("same_filename") is not True:
-            continue
-        if (claim.get("kind") == "same_template_identity" and proposed.get("same_filename") is True
-                and isinstance(basis, list) and len(basis) == 2
-                and isinstance(claim_binding, dict)):
+        if kind == "same_template_identity":
+            if proposed.get("same_filename") is not True:
+                continue
+            basis = claim.get("basis_refs")
+            if not isinstance(basis, list):
+                raise _fn3_stop("unclosed/identity_claim/filename_basis_refs_type",
+                                f"/claims/{ci}/basis_refs is not an array")
+            if len(basis) != 2:
+                raise _fn3_stop("unclosed/identity_claim/filename_basis_refs_count",
+                                f"/claims/{ci}/basis_refs must contain exactly two original Refs")
+            if any(not _wire_ref_shape_ok(ref) for ref in basis):
+                raise _fn3_stop("unclosed/identity_claim/filename_basis_ref_shape",
+                                f"/claims/{ci}/basis_refs contains a value outside the L4 wire Ref shape")
+            if "sources" in raw and not isinstance(raw["sources"], list):
+                raise _fn3_stop("unclosed/identity_claim/source_collection_type", "/sources is not an array")
+
             candidates = []
-            complete = True
-            for basis_index, basis_ref in enumerate(basis):
-                matching = _fn3_source_rows(raw, basis_ref)
-                # A nullable digest cannot pick a winning physical source occurrence.
-                if len(matching) != 1:
-                    complete = False
-                    break
-                source_index, source = matching[0]
-                candidate = _fn3_identity_claim_candidate(raw, source_index, source, trace_reads, unusable)
-                if candidate is None or not isinstance(source.get("ref", {}).get("source_locator"), str):
-                    complete = False
-                    break
-                candidate["basis_index"] = basis_index
-                candidates.append(candidate)
+            complete = isinstance(trace_reads, list)
+            if complete:
+                for basis_index, basis_ref in enumerate(basis):
+                    matching = _fn3_source_rows(raw, basis_ref)
+                    # A nullable digest cannot pick a winning physical source occurrence.
+                    if len(matching) != 1:
+                        complete = False
+                        break
+                    source_index, source = matching[0]
+                    candidate = _fn3_identity_claim_candidate(raw, source_index, source, trace_reads, unusable)
+                    if candidate is None or not isinstance(source.get("ref", {}).get("source_locator"), str):
+                        complete = False
+                        break
+                    candidate["basis_index"] = basis_index
+                    candidates.append(candidate)
             if complete and len({c["source_index"] for c in candidates}) == 2:
                 candidates.sort(key=lambda c: c["source_index"])
                 first, second = candidates
@@ -194,35 +221,39 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
                     reason = _fn3_diag(_FN3_FINDING_PREFIXES["filename_identity_join"],
                                        {"code": "filename_identity_join", "rule_ref": rule_ref,
                                         "predicate_observations": observations})
-                    findings.append(_fn3_finding("filename_identity_join", claim["subject_ref"], claim_binding,
+                    findings.append(_fn3_finding("filename_identity_join", claim_subject, claim_binding,
                                                  "identity_claim", "conflict",
                                                  [c["source"]["ref"] for c in candidates], reason))
+            continue
 
-        if claim.get("kind") == "same_template_identity":
-            continue
         basis_role = proposed.get("basis_role")
-        mapping = {"image_only": ("template_identity", "image_identity_inference", "template.identity"),
-                   "tool_node_only": ("template_version", "tool_node_identity_inference", "template.version")}
-        if basis_role == "semantic_json" and claim.get("kind") == "template_identity":
+        if not isinstance(basis_role, str) or basis_role not in role_kind:
+            raise _fn3_stop("unclosed/identity_claim/basis_role",
+                            f"/claims/{ci}/proposed_value/basis_role is outside the fixed identity predicates")
+        if kind != role_kind[basis_role]:
+            raise _fn3_stop("unclosed/identity_claim/kind_role_mismatch",
+                            f"/claims/{ci}/kind and basis_role do not form a fixed identity predicate")
+        if basis_role == "semantic_json":
             continue
-        if basis_role not in mapping:
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/proposed_value/basis_role is outside the fixed identity predicates")
-        if claim.get("kind") != mapping[basis_role][0]:
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/kind and basis_role do not form a fixed identity predicate")
         basis = claim.get("basis_refs")
-        if not isinstance(basis, list) or not basis:
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/basis_refs is absent, null, or empty")
-        if any(not _ref_shape_ok(ref) for ref in basis):
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/basis_refs contains an unformed Ref")
-        participating = []
-        sources = raw.get("sources")
-        if not isinstance(sources, list):
-            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci} source witness collection is not an array")
-        for source in sources:
-            if not isinstance(source, dict) or not _ref_shape_ok(source.get("ref")):
-                continue
-            if any(_ref_same(source["ref"], basis_ref) for basis_ref in basis):
-                participating.append(copy.deepcopy(source["ref"]))
+        if not isinstance(basis, list):
+            raise _fn3_stop("unclosed/identity_claim/basis_refs_type",
+                            f"/claims/{ci}/basis_refs is absent, null, or not an array")
+        if not basis:
+            raise _fn3_stop("unclosed/identity_claim/basis_refs_empty",
+                            f"/claims/{ci}/basis_refs is empty")
+        if any(not _wire_ref_shape_ok(ref) for ref in basis):
+            raise _fn3_stop("unclosed/identity_claim/basis_ref_shape",
+                            f"/claims/{ci}/basis_refs contains a value outside the L4 wire Ref shape")
+        if "sources" in raw and not isinstance(raw["sources"], list):
+            raise _fn3_stop("unclosed/identity_claim/source_collection_type", "/sources is not an array")
+
+        participating = [
+            copy.deepcopy(source["ref"])
+            for source in sources
+            if isinstance(source, dict) and _wire_ref_shape_ok(source.get("ref"))
+            and any(_ref_same(source["ref"], basis_ref) for basis_ref in basis)
+        ]
         predicate_observations = [
             (f"/claims/{ci}/kind", "claim kind"),
             (f"/claims/{ci}/proposed_value/basis_role", "claim basis role"),
@@ -231,11 +262,9 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
         ]
         for basis_index, ref in enumerate(basis):
             predicate_observations.append((f"/claims/{ci}/basis_refs/{basis_index}", "claim basis Ref"))
-            matches = _fn3_source_rows(raw, ref)
-            for source_index, source in matches:
-                if not isinstance(source.get("ref"), dict):
-                    continue
-                predicate_observations.append((f"/sources/{source_index}/ref", "basis source Ref occurrence"))
-        _kind, code, axis = mapping[basis_role]
+            for source_index, source in _fn3_source_rows(raw, ref):
+                if _wire_ref_shape_ok(source.get("ref")):
+                    predicate_observations.append((f"/sources/{source_index}/ref", "basis source Ref occurrence"))
+        code, axis = role_predicate[basis_role]
         reason = _fn3_predicate_finding_reason(raw, code, predicate_observations)
         findings.append(_fn3_finding(code, claim_subject, claim_binding, axis, "unknown", participating, reason))

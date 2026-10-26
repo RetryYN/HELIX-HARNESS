@@ -3,7 +3,6 @@ from __future__ import annotations
 import copy
 from typing import Any
 from descriptor_definitions import (
-    _binding_shape_ok,
     _comparison,
     _json_equal,
 )
@@ -27,7 +26,6 @@ from identity_trace_support import (
     _fn3_finding,
     _fn3_predicate_finding_reason,
     _fn3_qualification_rows,
-    _fn3_r59_binding_shape_ok,
     _fn3_root_rows,
     _fn3_source_rows,
     _fn3_stop,
@@ -42,39 +40,20 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
     validated = context.get("validated")
     if not isinstance(validated, dict) or "input" not in validated:
         raise _fn3_stop("F04/N01/validated_context", "IdentityContext.validated is absent")
-    if "unusable_source_refs" not in validated or not isinstance(validated.get("unusable_source_refs"), list):
+    unusable = validated.get("unusable_source_refs")
+    if not isinstance(unusable, list):
         raise _fn3_stop("F04/N01/unusable_source_refs", "fn0 source disposition is absent or not an array")
     raw = validated.get("input")
     if raw is None:
-        raise _fn3_stop("F04/N01/validated_input_null", "ValidatedSupply.input is explicitly null and the identity read is unexercised")
+        return _comparison([], [], "compare_identity_versions_and_trace", None)
     if not isinstance(raw, dict):
         raise _fn3_stop("F04/N01/validated_input", "ValidatedSupply.input is not an object or null")
     before = copy.deepcopy(raw)
-    binding = raw.get("binding")
-    if not isinstance(binding, dict):
-        raise _fn3_stop("F04/N01/binding_absent", "IdentitySnapshot.binding is absent or null")
-    template_ref = binding.get("template_ref")
-    binding_shape_ok = (_fn3_r59_binding_shape_ok(binding)
-                        if isinstance(binding.get("template_ref"), dict)
-                        and "revision" not in binding["template_ref"]
-                        else _binding_shape_ok(binding))
-    if not binding_shape_ok:
-        raise _fn3_stop("F04/N01/binding_shape", "IdentitySnapshot binding is not a complete typed Binding")
-    dependencies = binding.get("pack_dependency_versions", [])
+    binding_read = raw.get("binding")
+    binding = binding_read if isinstance(binding_read, dict) else {}
+    dependencies = binding.get("pack_dependency_versions")
     if dependencies:
         raise _fn3_stop(f"unclosed/nonempty_dependency/{len(dependencies)}", "pack dependency version observations are outside the fixed branch")
-    slots = raw.get("descriptors")
-    if not isinstance(slots, list):
-        raise _fn3_stop("F04/N01/descriptor_slots", "IdentitySnapshot descriptors are absent or not an array")
-    if any(not isinstance(slot, dict) or not isinstance(slot.get("facts"), list) for slot in slots):
-        raise _fn3_stop("F04/N01/descriptor_facts", "descriptor/fact structure is outside the fixed trace read")
-    for si, slot in enumerate(slots):
-        for fi, fact in enumerate(slot["facts"]):
-            if not isinstance(fact, dict) or not isinstance(fact.get("binding"), dict):
-                raise _fn3_stop(f"unclosed/fact_binding/{si}/{fi}", "fact binding is outside the fixed trace read")
-    unusable = validated.get("unusable_source_refs", [])
-    if not isinstance(unusable, list):
-        raise _fn3_stop("F04/N01/unusable_source_refs", "ValidatedSupply unusable_source_refs is not an array")
     axes: list[dict[str, Any]] = []
     findings: list[dict[str, Any]] = []
     actual_reads = _fn3_actual_axes(raw, binding, unusable, axes, findings)
@@ -146,13 +125,14 @@ def compare_identity_versions_and_trace(context: dict[str, object]) -> dict[str,
             owner_reads.extend(_fn3_endpoint_owner_reads(raw, record, unusable, "left"))
             owner_reads.extend(_fn3_endpoint_owner_reads(raw, record, unusable, "right"))
         private_bilateral_reads.append({
-            "request": {"record_locator": f"/compatibility_records/{index}"},
+            "request": {"record_locator": f"/compatibility_records/{read.get('record_index', index)}"},
             "record_read": {"presence": "supplied", "value": copy.deepcopy(record)},
             "owner_reads": owner_reads, "state": read["state"],
             "cause": ("bilateral_owner_unresolved" if read["cause"] == "owner_decision_unresolved" else read["cause"]),
         })
     private_return = {
-        "comparison": _comparison(axes, findings, "compare_identity_versions_and_trace", binding),
+        "comparison": _comparison(axes, findings, "compare_identity_versions_and_trace",
+                                  binding_read if isinstance(binding_read, dict) else None),
         "source_qualifications": source_qualification_reads, "actual_operands": actual_reads,
         "descriptor_traces": trace_reads, "bilateral_pairs": private_bilateral_reads,
     }

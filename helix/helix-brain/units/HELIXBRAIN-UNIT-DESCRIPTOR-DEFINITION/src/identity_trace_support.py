@@ -143,8 +143,18 @@ def _fn3_predicate_finding_reason(raw: dict[str, Any], code: str,
     return _fn3_diag(_FN3_FINDING_PREFIXES[code],
                      {"code": code, "rule_ref": rule_ref, "predicate_observations": reads})
 
-def _fn3_scope_same(left: Any, right: Any) -> bool:
-    return isinstance(left, dict) and isinstance(right, dict) and _json_equal(left, right)
+def _fn3_scope_relation(left: Any, right: Any) -> str:
+    """Compare observed RawValue scopes without turning absence into known difference."""
+    if left is None or right is None:
+        return "unobserved"
+    return "same" if _json_equal(left, right) else "different"
+
+def _fn3_combine_scope_relations(relations: tuple[str, ...]) -> str:
+    if "different" in relations:
+        return "different"
+    if "unobserved" in relations:
+        return "unobserved"
+    return "same"
 
 def _fn3_wire_full_ref(value: Any) -> bool:
     """L4 Refのwire shapeとfull endpoint tupleが観測済みかを確認する。"""
@@ -239,7 +249,7 @@ def _fn3_presence(root: Any, pointer: str) -> dict[str, Any]:
     present, value = _fn3_resolve_pointer(root, pointer)
     return {"presence": "supplied", "value": copy.deepcopy(value)} if present else {"presence": "absent"}
 
-def _fn3_qualified_owner_source(raw: dict[str, Any], index: int, source: dict[str, Any],
+def _fn3_qualified_owner_source(raw: dict[str, Any], source: dict[str, Any],
                                 unusable: list[Any]) -> bool:
     if not _fn3_valid_source(raw, source, unusable):
         return False
