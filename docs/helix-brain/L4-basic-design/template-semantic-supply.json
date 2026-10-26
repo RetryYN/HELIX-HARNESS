@@ -13806,6 +13806,7 @@
     },
     "unclosed_projection_boundaries": {
       "semantic_owner": "semantic/mixed basisの任意RawValue意味対応自体は未閉。route unresolved/行0を保持しても意味対応成立又はpredicate falseを認定しない。",
+      "semantic_owner_return": "semantic_ownerの限界は、032が意味対応を定めず、unresolved保持のままknowledge_ownerへ返す側に確定する（詳細はrevision 155f23984fc0e6c6736be3fa346ad165243c6471のdocs/helix-brain/L5-detail-design/template-semantic-supply.json /source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/semantic_owner_return）。再入は、knowledge_ownerが原資料を供給又は訂正した後、同Binding・同revision・同scopeの原readから行う。新しいgate・Finding・公開fieldは作らない。",
       "other_domain": "他Claim kind、claims空、追加meaning_origin等又は上記2string-member/null以外のmeaning、製品固有値/採用/義務/receipt carrier、複数KnowledgeRecord、role/key/shape外の入力は本枝外。各原値と既存発火ruleのaxis/stateを保持し、一般reader未閉包を空列へ丸めない。 meaningの同shape別string値も本枝外。",
       "generic_unknown": "枝外の裏付け無しclaimの公開unknown axis/finding全field writer、全発火witnessの複合prefix/sortは閉じない。既存failureを削除/空列へ丸めない。",
       "scope": "実owner/trust/fn0資格/製品runtime/手順7/Issue完了の成立を示さない。"
