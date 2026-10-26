@@ -13491,12 +13491,27 @@
       "id": "HELIXBRAIN-L5-032-F03-CLAIM-PROTOCOL",
       "status": "detail_design_candidate",
       "source_basis": [
-        {"key":"L4","revision":"4c31bdb2273ef888d3af80806d1bc0b9c0d77078","path":"docs/helix-brain/L4-basic-design/template-semantic-supply.json","pointers":["/field_value_applicability_contract/projection_order/claims","/field_value_applicability_contract/projection_order/events"]},
-        {"key":"L5","revision":"4c31bdb2273ef888d3af80806d1bc0b9c0d77078","path":"docs/helix-brain/L5-detail-design/template-semantic-supply.json","pointers":["/type_contract/types/Claim","/claim_intent_detail/decoder_rows/1","/functions/2","/field_value_applicability_detail/legacy_basis_and_difference/old_sources/0","/field_value_applicability_detail/legacy_basis_and_difference/old_sources/1","/legacy_comparison/1/input_structure_rederivation"]},
-        {"key":"L8","revision":"4c31bdb2273ef888d3af80806d1bc0b9c0d77078","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","pointers":["/cases/4/negative_cases/0/typed_mutation/synthetic_value","/cases/4/negative_cases/1/typed_mutation/synthetic_value","/cases/4/negative_cases/3/typed_mutation/synthetic_value","/cases/13/negative_cases/0/typed_mutation/synthetic_value","/cases/13/negative_cases/1/typed_mutation/synthetic_value","/cases/13/negative_cases/2/typed_mutation/synthetic_value"]}
+        {
+          "key": "L4",
+          "revision": "4c31bdb2273ef888d3af80806d1bc0b9c0d77078",
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "pointers": ["/field_value_applicability_contract/projection_order/claims", "/field_value_applicability_contract/projection_order/events"]
+        },
+        {
+          "key": "L5",
+          "revision": "4c31bdb2273ef888d3af80806d1bc0b9c0d77078",
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointers": ["/type_contract/types/Claim", "/claim_intent_detail/decoder_rows/1", "/functions/2", "/field_value_applicability_detail/legacy_basis_and_difference/old_sources/0", "/field_value_applicability_detail/legacy_basis_and_difference/old_sources/1", "/legacy_comparison/1/input_structure_rederivation"]
+        },
+        {
+          "key": "L8",
+          "revision": "4c31bdb2273ef888d3af80806d1bc0b9c0d77078",
+          "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+          "pointers": ["/cases/4/negative_cases/0/typed_mutation/synthetic_value", "/cases/4/negative_cases/1/typed_mutation/synthetic_value", "/cases/4/negative_cases/3/typed_mutation/synthetic_value", "/cases/13/negative_cases/0/typed_mutation/synthetic_value", "/cases/13/negative_cases/1/typed_mutation/synthetic_value", "/cases/13/negative_cases/2/typed_mutation/synthetic_value"]
+        }
       ],
       "source_ref_format_ja": "各参照はsource_basisのkeyにJSON Pointerを続ける。",
-      "scope_ja": "L4 rule54..57で既に参照されるF03 Claim値表現と、同一fieldのClaim出現を一回ずつ扱うfn2局所契約。公開Claim型、公開fn2 Comparison、汎用claim_intent_detailの7-kind decoderは変更しない。全Claim組合せの返却列挙は対象外。",
+      "scope_ja": "L4 rule54..57のF03 Claim値表現・同一field選択と、N03 rule102..104のreference-fixture Claim経路をfn2局所契約として定める。公開Claim型、公開fn2 Comparison、汎用claim_intent_detailの7-kind decoderは変更しない。全Claim組合せ入力と網羅検証は対象外。",
       "claim_shape": {
         "source_ref": "L5#/type_contract/types/Claim",
         "member_order": ["subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs"],
@@ -13507,41 +13522,29 @@
           "json_type": "string",
           "source_ref": "L5#/claim_intent_detail/decoder_rows/1",
           "values_and_rules": [
-            {"proposed_value":"not_applicable","meaning":"肯定N/A literal","candidate_rule_numbers":[56,54],"existing_rule_refs":["HELIXBRAIN-L5-032-R-applicability_unknown_as_na","HELIXBRAIN-L5-032-R-unknown_as_na"],"condition_ja":"既存predicate成立時のみ。rule56→54の順で最初の一致を選ぶ。"},
-            {"proposed_value":"applicable","meaning":"否定N/A literal","candidate_rule_numbers":[],"condition_ja":"肯定N/A検査の対象外。原値を保持し新Findingを作らない。"}
+            {
+              "proposed_value": "not_applicable",
+              "meaning": "肯定N/A literal",
+              "existing_rule_refs": ["HELIXBRAIN-L5-032-R-applicability_unknown_as_na", "HELIXBRAIN-L5-032-R-unknown_as_na"],
+              "condition_ja": "既存predicate成立時のみ。rule56→54の順で最初の一致を選ぶ。既存F03-NEG-01はapplicability knownでvalue unknownの前提によりrule54へ到達し、その具体fixtureの確定はL7。",
+              "candidate_rule_numbers": [56, 54]
+            },
+            {
+              "proposed_value": "applicable",
+              "meaning": "否定N/A literal",
+              "condition_ja": "肯定N/A検査の対象外。原値を保持し新Findingを作らない。",
+              "candidate_rule_numbers": []
+            }
           ]
         },
-        "value_only_gap": {
-          "json_type": "string",
-          "proposed_value": "unknown",
-          "source_ref": "L8#/cases/4/negative_cases/1/typed_mutation/synthetic_value",
-          "source_boundary_ja": "このexisting logical mutationにproposed_value literalはなく、unknownは今回の局所技術選択。",
-          "candidate_rule_number": 55,
-          "existing_rule_ref": "HELIXBRAIN-L5-032-R-definition_as_value_gap",
-          "condition_ja": "field.definition predicate成立時のみ。kind/valueだけでは新Findingを作らない。"
-        },
-        "all_section_fields_not_applicable": {
-          "json_type": "string",
-          "proposed_value": "not_applicable",
-          "source_ref": "L8#/cases/4/negative_cases/3/typed_mutation/synthetic_value",
-          "source_boundary_ja": "このexisting logical mutationにproposed_value literalはなく、not_applicableは今回の局所技術選択。",
-          "candidate_rule_number": 57,
-          "existing_rule_ref": "HELIXBRAIN-L5-032-R-section_na_all_fields",
-          "condition_ja": "field.applicability predicate成立時のみ。section判断を各fieldへ転写しない。"
-        },
+        "value_only_gap": {"json_type":"string","proposed_value":"unknown","source_ref":"L8#/cases/4/negative_cases/1/typed_mutation/synthetic_value","source_boundary_ja":"このexisting logical mutationにproposed_value literalはなく、unknownは今回の局所技術選択。","existing_rule_ref":"HELIXBRAIN-L5-032-R-definition_as_value_gap","condition_ja":"field.definition predicate成立時のみ。kind/valueだけでは新Findingを作らない。","candidate_rule_number":55},
+        "all_section_fields_not_applicable": {"json_type":"string","proposed_value":"not_applicable","source_ref":"L8#/cases/4/negative_cases/3/typed_mutation/synthetic_value","source_boundary_ja":"このexisting logical mutationにproposed_value literalはなく、not_applicableは今回の局所技術選択。","existing_rule_ref":"HELIXBRAIN-L5-032-R-section_na_all_fields","condition_ja":"field.applicability predicate成立時のみ。section判断を各fieldへ転写しない。","candidate_rule_number":57},
         "n03_reference_fixture": {
           "kinds": ["operation_deadline", "resource_capacity"],
           "json_type": "object",
           "member_read_order": ["intended_value", "basis_origin"],
-          "required_member_types": {
-            "intended_value": "string",
-            "basis_origin": "string"
-          },
-          "source_field_mapping": {
-            "typed_mutation.synthetic_value.claim_kind": "Claim.kind",
-            "typed_mutation.synthetic_value.proposed_value": "Claim.proposed_value.intended_value",
-            "typed_mutation.synthetic_value.basis_origin": "Claim.proposed_value.basis_origin"
-          },
+          "required_member_types": {"intended_value":"string","basis_origin":"string"},
+          "source_field_mapping": {"typed_mutation.synthetic_value.claim_kind":"Claim.kind","typed_mutation.synthetic_value.proposed_value":"Claim.proposed_value.intended_value","typed_mutation.synthetic_value.basis_origin":"Claim.proposed_value.basis_origin"},
           "tuples": [
             {"kind":"operation_deadline","intended_value":"90 seconds","basis_origin":"reference_fixture","rule_number":102,"rule_ref":"HELIXBRAIN-L5-032-R-fixture_timeout_default","source_ref":"L8#/cases/13/negative_cases/0/typed_mutation/synthetic_value","axis":"operation_value","state":"unknown","backflow_owner":"core_owner"},
             {"kind":"resource_capacity","intended_value":"1 CPU","basis_origin":"reference_fixture","rule_number":103,"rule_ref":"HELIXBRAIN-L5-032-R-fixture_cpu_default","source_ref":"L8#/cases/13/negative_cases/1/typed_mutation/synthetic_value","axis":"resource_value","state":"unknown","backflow_owner":"infrastructure_owner"},
@@ -13550,7 +13553,7 @@
           "predicate_condition_ja": "各既存rule predicateの成立が必要。kind、文字列又は申告basis_originだけでは成立しない。既存caseの不透明な文字列を保持し、単位換算・閾値・既定値を作らない。basis_originはValueFact.origin又はqualified根拠ではない。",
           "raw_presence_ja": "原RawValue全体を保持し、必要な2 memberだけを読む。余剰memberを削除/正規化しない。必要memberの欠落/null/型違いはcoercionせずpresence/valueとaxisを保ち既存owner/reentryへ戻す。reference_fixtureから稼働値を採用せず既存unknownを保つ。"
         },
-        "unrecognized_or_incomplete_ja": "その他の欠落/null/型違い/未知literalはRawValueとpresenceおよび元axisを保持し、既存owner/reentryへ戻す。この局所契約から新Finding又は資格判定を作らない。"
+        "unrecognized_or_incomplete_ja": "未認識literal、欠落、null、型違い、basis_origin書換えではこのClaim経路のfindingを出さず、原raw value/presenceと元axis/stateを保持する。既存の他diagnosticを抑止しない。これは今回の局所設計選択であり、未認識値の一般回避規則・新Findingは定めない。"
       },
       "claim_occurrence_and_rule_selection": {
         "target_match_ja": "既存ref_same/binding_sameで同一subject/full Bindingを照合し、各原Claim出現を一度ずつ扱う。出現を削除・統合・勝者化しない。",
@@ -13560,18 +13563,22 @@
           {"event":"field.value","rule_number":54,"source_ref":"L4#/field_value_applicability_contract/projection_order/events"},
           {"event":"field.applicability","rule_number":57,"source_ref":"L4#/field_value_applicability_contract/projection_order/events"}
         ],
-        "selection_ja": "同一Claimが複数既存predicateに一致した場合は上記既存event順の最初の一致だけをそのClaimの処理先とし、元axis event全出現を保持する。kind別候補に一致しないpredicateからFindingを作らず、F03値ClaimとN03 reference-fixture経路を混同しない。",
-        "same_field_multiple_claims_ja": "この契約で扱うkind/ruleの局所適用と同一Claim内の排他はここで定める。複数Claimの各出現を一度処理し、Claim間の勝者選択は追加しない。全組合せ入力/網羅検証、無関係kindや他関数を含む公開全域のClaim完了は対象外。"
+        "selection_ja": "同一Claimが複数の既存predicateに一致した場合は既存event順の最初の一致だけをそのClaimの処理先とし、元axis event全出現を保持する。異なるClaimのkind/proposed_valueが同一fieldで矛盾（not_applicableとapplicable等）しても、各原出現を個別に一度処理し、Claim間の勝者選択・dedupはしない。kind別候補に一致しないpredicateからFindingを作らず、F03とN03経路を混同しない。",
+        "same_field_multiple_claims_ja": "同一Claim内のrule排他と局所kind処理は本契約で定める。異なるClaim間の矛盾裁定・勝者選択及び公開全域の競合規則は未定であり、新しく生成しない。全組合せ入力/網羅検証や無関係kind・他関数の完了は対象外。"
       },
       "public_private_boundary_ja": "公開fn2は既存Comparisonを返す。Claim照合はprivate F03評価で行い、公開Claim/Comparison shapeと汎用7-kind decoderを変えない。既存Claims=[] oracleを行使済みとは扱わない。",
       "legacy_rederivation": {
         "source_refs": ["L5#/field_value_applicability_detail/legacy_basis_and_difference/old_sources/0", "L5#/field_value_applicability_detail/legacy_basis_and_difference/old_sources/1", "L5#/legacy_comparison/1/input_structure_rederivation"],
         "asset_ids": ["LEGACY-ASSET-4F5A1F0739EC1111D91D", "LEGACY-ASSET-98372FEE8A3AC8F9C299"],
         "historical_failures": ["UTW014", "UTW020", "UTW021"],
-        "rederivation_ja": "旧資料の意味を再導出し、旧schema/runtimeを移植しない。確認した範囲に現行6-field Claim又はF03専用完全一致decoderはない。欠落の空集合化、部分失敗診断、自己申告完了への偏りを踏まえraw presence・原出現・根拠と未決を保つ。"
+        "rederivation_ja": "旧資料の意味を再導出し、旧schema/runtimeを移植しない。確認した範囲に現行6-field Claim又はF03専用完全一致decoderはない。欠落の空集合化、部分失敗診断、自己申告完了への偏りを踏まえraw presence・原出現・根拠と未決を保つ。",
+        "keep": "旧L4/L5のfield identity・意味owner、理由付きunknown/N/A区別、元出現とsource traceを保持する。旧UTW014/020/021のfailure contextは根拠欠落・部分失敗診断・自己申告完了の問題として参照する。",
+        "change": "旧template/schema/runtimeを移植せず、現行Claim six-field内のF03局所値表現とfn2 rule54..57/N03 rule102..104のmappingを意味再導出する。generic seven-kind readerへN03 kindを追加しない。",
+        "reason": "旧資産に現行6-field Claimとの完全一致decoderを確認できず、承認済みF03と現行L4/L5境界を保つため。"
       },
       "authority_effect": "none",
-      "operation_effect": "none"
+      "operation_effect": "none",
+      "rule_number_basis_ja": "rule_numberおよびcandidate_rule_number(s)は、このL5文書の /failure_rules 配列の0始まりindex（54–57、102–104）を指す。"
     },
     "not_closed_here": [
       "L4/L5 technical candidateの独立reviewと採択",
@@ -13579,7 +13586,7 @@
       "実資格・external source/provider・COREへの実mapping/受渡し/authority",
       "L4/L9の全任意入力閉包、全L8 oracle入力のfreeze、L6/L7実装・新世代CI・実行済み検証",
       "seed全体採用、運用promotion、PO実物L11受入、通常L3/release/deploy",
-      "全Claim組合せの返却・公開全域のClaim適合性と実装は未閉包。今回の局所契約はL4 rule54..57のF03値表現・Claim出現処理の設計候補であり、既存7 goldenのClaims=[]はこの契約を行使しない。"
+      "全Claim組合せの入力/網羅検証、Claim間の矛盾裁定・勝者選択の一般規則、未認識/null/型違い/basis_origin改変の一般回避は未閉包。今回の局所契約はF03 rule54..57とN03 rule102..104の設計候補であり、既存7 goldenのClaims=[]はこれを行使しない。"
     ],
     "execution_status": {
       "design_only": true,
