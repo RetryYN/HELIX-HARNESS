@@ -1,10 +1,11 @@
 """L4のtyped公開row形成不能を、元RawValueを補完せず識別する。"""
 
 import copy
+import json
 import unittest
 
 from descriptor_definitions import compare_identity_versions_and_trace, validate_supply_input
-from identity_input_fixtures import normal_input, trace_input
+from identity_input_fixtures import _write_source_content, bilateral_input, normal_input, trace_input
 
 
 class TestIdentityPublicFormationGuards(unittest.TestCase):
@@ -66,6 +67,73 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
                 self.assertNotIn(bad, row["original_refs"])
             for row in result["findings"]:
                 self.assertNotIn(bad, row["source_refs"])
+        self.assertEqual(raw, before)
+        self.assertEqual(validated, validated_before)
+
+    def test_partial_root_binding_preserves_independently_qualified_slot_chains(self):
+        raw = trace_input("positive")
+        expected = [(fact["ref"], slot["binding"]) for slot in raw["descriptors"] for fact in slot["facts"]]
+        raw["binding"] = {}
+        validated, before = self._validated(raw)
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        traces = [row for row in result["axes"] if row["axis"] == "descriptor.trace"]
+        self.assertEqual([(row["subject_ref"], row["binding"]) for row in traces], expected)
+        self.assertTrue(all(row["state"] == "resolved" for row in traces),
+                        "root Binding shape is not an extra gate on native slot/source/KB chains")
+        self.assertEqual(result["input_binding"], {})
+        self.assertEqual(raw, before)
+        self.assertEqual(validated, validated_before)
+
+    def test_missing_source_predicate_does_not_require_a_knowledge_record(self):
+        raw = normal_input()
+        expected = [fact["source_ref"] for slot in raw["descriptors"] for fact in slot["facts"]]
+        del raw["sources"]
+        del raw["knowledge_records"]
+        validated, before = self._validated(raw)
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        missing = [row for row in result["findings"] if row["code"] == "source_missing"]
+        self.assertEqual([row["source_refs"] for row in missing], [[ref] for ref in expected])
+        self.assertTrue(all(row["state"] == "unknown" for row in result["axes"]
+                            if row["axis"] == "descriptor.trace"))
+        self.assertEqual(raw, before)
+        self.assertEqual(validated, validated_before)
+
+    def test_null_owner_pack_revision_is_unresolved_instead_of_known_difference(self):
+        raw = bilateral_input("outside")
+        record = raw["compatibility_records"][0]
+        right = next(source for source in raw["sources"] if source["ref"] == record["source_ref"])
+        body = copy.deepcopy(right["content"])
+        body["compatibility_range_declaration"]["actual_pack_ref"]["revision"] = None
+        _write_source_content(raw, right, body)
+        # ActualOperand port reads the qualified native source independently. No
+        # explicit CompatibilityRecord is needed for this actual-only observation.
+        raw["compatibility_records"] = []
+        validated, before = self._validated(raw)
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        for axis in ("pack.revision", "pack.identity"):
+            row = next(row for row in result["axes"] if row["axis"] == axis)
+            self.assertEqual(row["state"], "unknown")
+            material = json.loads(row["reason"].partition("\n")[2])
+            self.assertEqual(material["cause"], "actual_owner_body_unresolved")
+            self.assertTrue(material["actual_source_pointers"])
+        self.assertEqual(raw, before)
+        self.assertEqual(validated, validated_before)
+
+    def test_unformed_fact_subject_blocks_mixed_and_silent_public_findings(self):
+        raw = trace_input("positive")
+        fact = raw["descriptors"][0]["facts"][0]
+        fact["ref"] = None
+        fact["binding"]["knowledge_ref"]["revision"] = "synthetic-other-revision"
+        validated, before = self._validated(raw)
+        validated_before = copy.deepcopy(validated)
+        result = compare_identity_versions_and_trace({"validated": validated})
+        self.assertFalse(any(row["code"] in {"mixed_knowledge_revision", "silent_supersession"}
+                             for row in result["findings"]), "an unformed subject cannot form a typed Finding")
+        self.assertTrue(all(row["subject_ref"] is not None for row in result["axes"]))
+        self.assertEqual(sum(row["axis"] == "descriptor.trace" for row in result["axes"]), 14)
         self.assertEqual(raw, before)
         self.assertEqual(validated, validated_before)
 
