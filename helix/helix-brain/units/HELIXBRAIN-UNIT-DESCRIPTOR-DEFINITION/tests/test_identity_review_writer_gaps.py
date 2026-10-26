@@ -249,8 +249,8 @@ class TestIdentityReviewWriterGaps(unittest.TestCase):
                 for row in traces:
                     self.assertEqual(row["state"], "unknown")
                     prefix, separator, material = self._material(row)
-                    self.assertEqual((prefix, separator), ("knowledge_unresolved", "\n"))
-                    self.assertEqual(material["cause"], "knowledge_unresolved")
+                    self.assertEqual((prefix, separator), ("source_unresolved", "\n"))
+                    self.assertEqual(material["cause"], "source_unresolved")
                     self.assertEqual(material["knowledge_record_indices"], [0])
                     self.assertEqual(material["provenance_indices"], [])
                 operational = next(r for r in result["axes"] if r["axis"] == "knowledge.operational_state")
