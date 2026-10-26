@@ -219,9 +219,7 @@ class TestFilenameIdentityClaim(unittest.TestCase):
                        and row["subject_ref"] == raw_before["descriptors"][-1]["facts"][0]["ref"])
         self.assertEqual(trace_a["state"], "resolved")
         self.assertEqual(trace_b["state"], "unknown")
-        for axis in result["axes"]:
-            if axis["axis"] == "identity_claim":
-                self.assertEqual(axis["state"], "unknown")
+        self.assertFalse(any(row["axis"] == "identity_claim" for row in result["axes"]))
 
 
 if __name__ == "__main__":

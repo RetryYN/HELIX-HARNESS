@@ -93,6 +93,18 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
             for row in rows
         ))
 
+    def _assert_mixed_revision_finding(self, result, fact, slot):
+        rows = [row for row in result["findings"] if row["code"] == "mixed_knowledge_revision"]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["rule_ref"], "HELIXBRAIN-L5-032-R-mixed_knowledge_revision")
+        self.assertEqual(rows[0]["subject_ref"], fact["ref"])
+        self.assertEqual(rows[0]["binding"], slot["binding"])
+        self.assertEqual(rows[0]["axis"], TRACE_AXIS)
+        self.assertEqual(rows[0]["state"], "conflict")
+        self.assertEqual(rows[0]["source_refs"], [fact["source_ref"]])
+        self.assertEqual(rows[0]["backflow_owner"], "knowledge_owner")
+        return rows[0]
+
     def _assert_actual_owner_unprovided(self, result, axis_name, original_ref):
         rows = [row for row in result["axes"] if row["axis"] == axis_name]
         self.assertTrue(rows, f"expected actual axis {axis_name}")
@@ -137,6 +149,8 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         self.assertEqual(raw, raw_before)
         # L4 normal inputではactual owner本文とprovenance対応は未解決。
         self._assert_axis_state(result, TRACE_AXIS, "unknown")
+        self._assert_axis_state(result, COMPAT_AXIS, "unknown")
+        self._assert_finding(result, "compatibility_unknown", "unknown", COMPAT_AXIS)
         self.assertTrue(any(
             row["axis"] == "template.identity" and row["state"] == "unknown"
             for row in result["axes"]
@@ -200,11 +214,33 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         bilateral_input, _trace_input = _identity_fixture_api()
         raw = bilateral_input("outside")
         result = self._assert_case_result("HELIXBRAIN-L8-032-F04-NEG-05", raw)
+        rows = [row for row in result["axes"] if row["axis"] == COMPAT_AXIS]
         self.assertTrue(any(
-            row["code"] == "compatibility_mismatch"
-            and row["rule_ref"] == "HELIXBRAIN-L5-032-R-compatibility_mismatch"
-            for row in result["findings"]
+            row["state"] == "conflict" and row["backflow_owner"] == "knowledge_owner"
+            for row in rows
         ))
+        findings = [row for row in result["findings"] if row["code"] == "compatibility_mismatch"]
+        self.assertEqual(len(findings), 1)
+        finding = findings[0]
+        self.assertEqual(finding["rule_ref"], "HELIXBRAIN-L5-032-R-compatibility_mismatch")
+        self.assertEqual(finding["axis"], COMPAT_AXIS)
+        self.assertEqual(finding["state"], "conflict")
+        self.assertEqual(finding["backflow_owner"], "knowledge_owner")
+        record = raw["compatibility_records"][0]
+        left_sources = [
+            source for source in raw["sources"]
+            if isinstance(source.get("content"), dict)
+            and source["content"].get("compatibility_record_ref") == record["ref"]
+            and source["content"].get("counterpart_source_ref") == record["source_ref"]
+        ]
+        right_sources = [source for source in raw["sources"] if source["ref"] == record["source_ref"]]
+        self.assertEqual(len(left_sources), 1)
+        self.assertEqual(len(right_sources), 1)
+        self.assertEqual(len(finding["source_refs"]), 2)
+        participating = [left_sources[0]["ref"], right_sources[0]["ref"]]
+        self.assertEqual(finding["source_refs"], [
+            source["ref"] for source in raw["sources"] if source["ref"] in participating
+        ])
 
     def test_F04_NEG_06_oracle_revision_mismatch_preserves_the_supplied_revision(self):
         raw = self._normal_raw()
@@ -214,10 +250,19 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         self.assertEqual(raw["oracle_bindings"][0]["oracle_ref"]["revision"], "synthetic-other-revision")
         self.assertEqual(result["input_binding"], raw["binding"])
         self.assertNotEqual(original["revision"], raw["oracle_bindings"][0]["oracle_ref"]["revision"])
+        findings = [row for row in result["findings"] if row["code"] == "oracle_revision_mismatch"]
+        self.assertEqual(len(findings), 1)
+        finding = findings[0]
+        self.assertEqual(finding["rule_ref"], "HELIXBRAIN-L5-032-R-oracle_revision_mismatch")
+        self.assertEqual(finding["axis"], "oracle.binding")
+        self.assertEqual(finding["state"], "conflict")
+        self.assertEqual(finding["backflow_owner"], "knowledge_owner")
+        self.assertEqual(finding["subject_ref"], raw["oracle_bindings"][0]["subject_ref"])
+        self.assertEqual(finding["binding"], raw["binding"])
         self.assertTrue(any(
-            row["code"] == "oracle_revision_mismatch"
-            and row["rule_ref"] == "HELIXBRAIN-L5-032-R-oracle_revision_mismatch"
-            for row in result["findings"]
+            row["axis"] == "oracle.binding" and row["state"] == "conflict"
+            and row["backflow_owner"] == "knowledge_owner"
+            for row in result["axes"]
         ))
 
     def _append_claim(self, raw, kind, proposed_value, basis_refs):
@@ -267,20 +312,19 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         # このrawはそのactual evidenceを持たないためL8のconflictを先取りしない。
         self._assert_actual_owner_unprovided(result, "template.identity", original)
         self.assertFalse(any(row["code"] == "filename_identity_join" for row in result["findings"]))
+        self.assertFalse(any(row["axis"] == "identity_claim" for row in result["axes"]))
 
-    def test_F04_NEG_10_version_target_claim_does_not_rewrite_template_version(self):
+    def test_F04_NEG_10_unformed_actual_version_claim_stops_at_the_unclosed_boundary(self):
         raw = self._normal_raw()
-        original = copy.deepcopy(raw["binding"]["template_ref"])
         self._append_claim(
             raw, "template_version", raw["binding"]["version_target"],
             [copy.deepcopy(raw["sources"][0]["ref"])],
         )
-        result = self._assert_case_result("HELIXBRAIN-L8-032-F04-NEG-10", raw)
-        self.assertEqual(result["input_binding"]["template_ref"], original)
-        # L5のpredicateにはqualified template実版との比較が必要。version_target claim
-        # だけではR67 Findingを作らず、L8 conflict所見はこのrawでは未観測とする。
-        self._assert_actual_owner_unprovided(result, "template.version", original)
-        self.assertFalse(any(row["code"] == "version_target_as_actual" for row in result["findings"]))
+        # L5 R67はqualifiedな原template実版との比較を要する。現入力にはそのoperandが
+        # 形成されていないため、推測のunknown/Findingではなく、停止位置をcase IDで保つ。
+        self._assert_fn3_stops_with_case_id(
+            "F04-NEG-10/unclosed/version_target_as_actual", raw
+        )
 
     def test_F04_NEG_11_zero_knowledge_records_keep_unknown_trace(self):
         _bilateral_input, trace_input = _identity_fixture_api()
@@ -312,6 +356,15 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         expected_refs = [fact["ref"], fact["source_ref"], slot["binding"]["knowledge_ref"]] + chain_refs + chain_refs
         rows = [row for row in result["axes"] if row["axis"] == TRACE_AXIS]
         self.assertTrue(any(row["original_refs"] == expected_refs for row in rows))
+        reason = next(row["reason"] for row in rows if row["original_refs"] == expected_refs)
+        _prefix, separator, diagnostic_json = reason.partition("\n")
+        self.assertTrue(separator)
+        occurrences = json.loads(diagnostic_json)["trace_occurrences"]
+        self.assertEqual(len(occurrences), 2)
+        self.assertEqual(
+            [(row["knowledge_record_index"], row["provenance_index"]) for row in occurrences],
+            [(0, 0), (1, 0)],
+        )
 
     def test_I1Q_equal_qualification_occurrences_keep_both_global_indices(self):
         _bilateral_input, trace_input = _identity_fixture_api()
@@ -352,13 +405,14 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         _bilateral_input, trace_input = _identity_fixture_api()
         raw = trace_input("positive")
         slot = raw["descriptors"][0]
-        slot["facts"][0]["binding"]["knowledge_ref"]["revision"] = "synthetic-other-revision"
+        fact = slot["facts"][0]
+        fact["binding"]["knowledge_ref"]["revision"] = "synthetic-other-revision"
         result = self._assert_case_result("HELIXBRAIN-L8-032-N01-NEG-01", raw)
-        self.assertTrue(any(
-            row["code"] == "mixed_knowledge_revision"
-            and row["rule_ref"] == "HELIXBRAIN-L5-032-R-mixed_knowledge_revision"
-            for row in result["findings"]
-        ) or any(row["state"] == "conflict" for row in result["axes"]))
+        # mixed_knowledge_revision is independently asserted; a separate silent_supersession result, if present,
+        # is not used as a fallback for this assertion.
+        findings = [row for row in result["findings"] if row["code"] == "mixed_knowledge_revision"]
+        self.assertTrue(findings)
+        self._assert_mixed_revision_finding(result, fact, slot)
         self._assert_axis_state(result, TRACE_AXIS, "conflict")
 
     def test_N01_NEG_02_missing_supersession_keeps_the_original_binding(self):
@@ -385,6 +439,7 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
             for row in result["axes"]
         ))
         silent = [row for row in result["findings"] if row["code"] == "silent_supersession"]
+        self.assertEqual(len(silent), 1)
         self.assertTrue(any(
             row["subject_ref"] == original_fact_ref
             and row["binding"] == raw["descriptors"][0]["binding"]
@@ -418,20 +473,38 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         _bilateral_input, trace_input = _identity_fixture_api()
         raw = trace_input("positive")
         old_ref = copy.deepcopy(raw["knowledge_records"][0]["ref"])
-        new_ref = copy.deepcopy(old_ref)
-        new_ref["revision"] = "synthetic-next-revision"
+        original_record = copy.deepcopy(raw["knowledge_records"][0])
+        fact = raw["descriptors"][0]["facts"][0]
+        old_fact_ref = copy.deepcopy(fact["binding"]["knowledge_ref"])
+        self.assertEqual(old_fact_ref, old_ref)
+        new_fact_ref = copy.deepcopy(old_fact_ref)
+        new_fact_ref["revision"] = "synthetic-next-revision"
+        fact["binding"]["knowledge_ref"] = copy.deepcopy(new_fact_ref)
+        # N01-NEG-02は同じ旧→新付替えで対応relationがない対照を保持する。
         raw["relations"].append({
             "ref": {**copy.deepcopy(old_ref), "identity": "synthetic-add14-relation"},
             "binding": copy.deepcopy(raw["binding"]),
             "kind": "supersedes",
             "from_ref": old_ref,
-            "to_ref": new_ref,
+            "to_ref": new_fact_ref,
             "direction": "old_to_new",
             "source_ref": copy.deepcopy(raw["sources"][0]["ref"]),
         })
+        self.assertTrue(any(
+            relation["kind"] == "supersedes"
+            and relation["from_ref"] == old_ref
+            and relation["to_ref"] == new_fact_ref
+            and relation["direction"] == "old_to_new"
+            for relation in raw["relations"]
+        ))
         result = self._assert_case_result("HELIXBRAIN-L8-032-ADD-14", raw)
         self.assertEqual(result["input_binding"], raw["binding"])
-        self.assertEqual(raw["knowledge_records"][0]["ref"], old_ref)
+        self.assertEqual(raw["knowledge_records"][0], original_record)
+        self.assertEqual(fact["binding"]["knowledge_ref"], new_fact_ref)
+        self.assertFalse(any(row["code"] == "silent_supersession" for row in result["findings"]))
+        # N01-NEG-02は同じ旧→新付替えでsilent_supersessionを出す対照。明示relationは
+        # その述語だけに作用し、mixed_knowledge_revisionの原predicate/tupleを消さない。
+        self._assert_mixed_revision_finding(result, fact, raw["descriptors"][0])
         self.assertTrue(any(
             row["axis"] == TRACE_AXIS and old_ref in row["original_refs"]
             for row in result["axes"]
@@ -530,13 +603,40 @@ class TestIdentityVersionsAndTrace(unittest.TestCase):
         self.assertIn(FN3_BACKFLOW, str(caught.exception))
         self.assertEqual(raw, raw_before)
 
-    def test_F04_NEG_02_absent_and_null_revision_are_unclosed(self):
-        raw_absent = self._normal_raw()
-        raw_absent["binding"]["template_ref"].pop("revision")
-        self._assert_fn3_stops_with_case_id("F04-NEG-02/revision_absent", raw_absent)
-        raw_null = self._normal_raw()
-        raw_null["binding"]["template_ref"]["revision"] = None
-        self._assert_fn3_stops_with_case_id("F04-NEG-02/revision_null", raw_null)
+    def test_F04_NEG_02_R59_projects_absent_and_null_revision(self):
+        # L4 R59は公開template.versionの原行をmissingへ投影し、同じ原subject/Binding
+        # にFindingを1件対応させる。内部cause/stateはこの公開結果から推定しない。
+        # 配置更新はroot comment 6421804448 の限定適用で、whole期待は複製しない。
+        for case_id, missing in (("revision_absent", "absent"), ("revision_null", "null")):
+            with self.subTest(case_id=case_id):
+                raw = self._normal_raw()
+                template_ref = raw["binding"]["template_ref"]
+                if missing == "absent":
+                    template_ref.pop("revision")
+                else:
+                    template_ref["revision"] = None
+                raw_before = copy.deepcopy(raw)
+                validated, validated_before = self._validate(raw)
+                result = compare_identity_versions_and_trace({"validated": validated})
+                self.assertEqual(raw, raw_before)
+                self.assertEqual(validated, validated_before)
+                self._assert_comparison(result, raw_before["binding"])
+
+                version_rows = [row for row in result["axes"] if row["axis"] == "template.version"]
+                self.assertEqual(len(version_rows), 1)
+                self.assertEqual(version_rows[0]["state"], "missing")
+                self.assertEqual(version_rows[0]["subject_ref"], raw_before["binding"]["template_ref"])
+                self.assertEqual(version_rows[0]["binding"], raw_before["binding"])
+                findings = [row for row in result["findings"] if row["code"] == "version_missing"]
+                self.assertEqual(len(findings), 1)
+                finding = findings[0]
+                self.assertEqual(finding["rule_ref"], "HELIXBRAIN-L5-032-R-version_missing")
+                self.assertEqual(finding["axis"], "template.version")
+                self.assertEqual(finding["state"], "missing")
+                self.assertEqual(finding["backflow_owner"], "knowledge_owner")
+                self.assertEqual(finding["subject_ref"], raw_before["binding"]["template_ref"])
+                self.assertEqual(finding["binding"], raw_before["binding"])
+                self.assertEqual(finding["source_refs"], [])
 
     def test_nonempty_dependency_branch_is_unclosed(self):
         for occurrence_count in (1, 2):
