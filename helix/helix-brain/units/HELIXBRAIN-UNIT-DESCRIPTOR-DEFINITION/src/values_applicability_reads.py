@@ -164,8 +164,8 @@ def _root_occurrences(raw: dict[str, Any], collection: str, requested_ref: Any) 
     rows = raw[collection]
     occurrences: list[dict[str, Any]] = []
     for index, row in enumerate(rows):
-        if not isinstance(row, dict):
-            raise _f03_stop("carrier_or_source_record_shape", f"/{collection}/{index} is not an object")
+        if not isinstance(row, dict) or not _ref_shape_ok(row.get("ref")) or (collection in ("values", "applicability_records") and row.get("source_ref") is not None and not _ref_shape_ok(row.get("source_ref"))):
+            raise _f03_stop("carrier_or_source_record_shape", f"/{collection}/{index} record or Ref shape branch")
         if _ref_same(row.get("ref"), requested_ref):
             occurrences.append({"index": index, "locator": f"/{collection}/{index}", "original_value": copy.deepcopy(row)})
     return occurrences

@@ -125,7 +125,7 @@ def _build_f03_row(
     field_ref = field["ref"]
 
     applicability_ref = field["applicability_ref"]
-    if applicability_ref is not None and not isinstance(applicability_ref, dict):
+    if applicability_ref is not None and not _ref_shape_ok(applicability_ref):
         raise _f03_stop("carrier_or_source_record_shape", "field applicability Ref type branch")
 
     applicability_request_locator = field_locator + "/applicability_ref"
@@ -143,8 +143,11 @@ def _build_f03_row(
     value_refs = field.get("value_fact_refs")
     if not isinstance(value_refs, list):
         raise _f03_stop("carrier_or_source_record_shape", "SectionField.value_fact_refs absence/null/type branch")
+    for row_idx, v_row in enumerate(values):
+        if not isinstance(v_row, dict) or not _ref_shape_ok(v_row.get("ref")) or (v_row.get("source_ref") is not None and not _ref_shape_ok(v_row.get("source_ref"))):
+            raise _f03_stop("carrier_or_source_record_shape", f"/values/{row_idx} record or Ref shape branch")
     for value_index, value_ref in enumerate(value_refs):
-        if not isinstance(value_ref, dict):
+        if not _ref_shape_ok(value_ref):
             raise _f03_stop("carrier_or_source_record_shape", "SectionField.value_fact_refs non-Ref branch")
         matching_values = [row for row in values if _ref_same(row.get("ref"), value_ref)]
         if len(matching_values) > 1:
@@ -168,7 +171,7 @@ def _build_f03_row(
         if matching_values and "applicability_ref" in matching_values[0]:
             value_app_ref = matching_values[0]["applicability_ref"]
             if value_app_ref is not None:
-                if not isinstance(value_app_ref, dict):
+                if not _ref_shape_ok(value_app_ref):
                     raise _f03_stop("carrier_or_source_record_shape", "ValueFact.applicability_ref type branch")
                 val_app_read = _read_f03_field_owner_record(
                     validated,
@@ -186,12 +189,12 @@ def _build_f03_row(
     parent_reads: list[dict[str, Any]] = []
     parent_ref = field.get("parent_section_ref")
     if parent_ref is not None:
-        if not isinstance(parent_ref, dict):
+        if not _ref_shape_ok(parent_ref):
             raise _f03_stop("carrier_or_source_record_shape", "SectionField.parent_section_ref type branch")
         if has_f03_mode:
             for app_idx, app_rec in enumerate(raw["applicability_records"]):
-                if not isinstance(app_rec, dict):
-                    raise _f03_stop("carrier_or_source_record_shape", f"/applicability_records/{app_idx} is not an object")
+                if not isinstance(app_rec, dict) or not _ref_shape_ok(app_rec.get("ref")) or (app_rec.get("source_ref") is not None and not _ref_shape_ok(app_rec.get("source_ref"))):
+                    raise _f03_stop("carrier_or_source_record_shape", f"/applicability_records/{app_idx} record or Ref shape branch")
                 if _ref_same(app_rec.get("subject_ref"), parent_ref):
                     parent_reads.append(
                         _read_f03_field_owner_record(
