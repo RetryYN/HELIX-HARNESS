@@ -10582,7 +10582,7 @@
           "expected_classification": "compatibility_unknown",
           "expected_axis": "compatibility",
           "expected_state": "unknown",
-          "expected": "当該利用を許さない。",
+          "expected": "当該利用を許さない。既存compatibility_unknown / compatibility / unknown分類を保つ。source_refの明示nullについてL4（eada100ebff0bb10006ede2745bebec065a1d0fd、docs/helix-brain/L4-basic-design/template-semantic-supply.json#/identity_version_trace_contract/read_branch_contracts/bilateral/finite_cause_precedence/ordered_cases/0）が定めるcause文字列null（JSON nullではない）を保持し、left_owner_unprovided/right_owner_unprovidedで上書きしない。fixtureの供給済みreason（#/fixture_contract/normal_control/input/compatibility_records/0/reason）は原値を保ち、L4の#/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/compatibility_material/original_record_reasonsに従い原record順で保持する。公開Refは同L4の#/identity_version_trace_contract/public_projection/axis_reason_writer/refs_order/bilateral順とし、nullのsource_refを列へ加えず原recordに保持する。",
           "backflow_owner": "knowledge_owner",
           "expected_side_effect_count": 0,
           "execution_state": "not_executed",
@@ -10599,7 +10599,7 @@
             },
             "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
           },
-          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異に必要な独立根拠だけ差替え。claimを期待結果として評価器へ渡さない。",
+          "preserved_control": "同bindingの元qualified事実と無関係な14descriptor/別候補を保持。変異対象はsource_refとcompatibleのみ。変異した2 member以外の元CompatibilityRecord.reasonと原record/Refを保ち、claimを期待結果として評価器へ渡さない。BRAINの互換根拠sourceと独立両端ownerの原宣言を供給・訂正した後は、同じpair/実版/scopeの原readへ戻り、本source-null条件を外れた結果を本caseの成立へ読み替えない。新gateや複数recordの一般規則を作らない。",
           "predicate_ref": "HELIXBRAIN-L5-032-R-compatibility_unknown"
         },
         {
