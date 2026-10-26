@@ -143,11 +143,13 @@
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
-  "execution_state": "red_verified_pending_impl",
+  "execution_state": "scope_executed_red_then_green",
   "execution_evidence": {
-    "test_commit": "pending_commit",
-    "red_summary": "test_f03_values_and_applicability.py の全7件が NotImplementedError で Red となることを確認（import/setup error・skip 0件）。",
-    "green_summary": "pending_green"
+    "test_commit": "5a4ae7ab23300d92f28242df40287c51ab36e510",
+    "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability",
+    "red_summary": "Ran 8 tests in 0.159s — FAILED (failures=1, errors=7). All 7 positive/contrast/negative F03 tests stopped with NotImplementedError: section_field_records record decode branch: Backflow HELIXBRAIN-L6-032-N03-PATH inside _evaluate_field_values_detail / _build_f03_row, and the tagged out-of-scope stop test failed because F03 record decode stopped before reaching F03 branch guards (0 import/setup errors).",
+    "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f03_values_and_applicability test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
+    "green_summary": "Ran 39 tests — OK (8 in test_f03_values_and_applicability, 4 in test_n03_values_and_applicability, 8 in test_n03_path_boundaries, 14 in test_b02_dependencies_and_handoff, 3 in test_supply_input, 2 in test_source_integrity)."
   },
   "completion_boundary": "fn0→fn1→fn2のF03/N03垂直スライス限定検証であり、F01/F02全域・value_na・meaning_comparisons pair・製品CI・Accepted・releaseを成立させない。"
 }
