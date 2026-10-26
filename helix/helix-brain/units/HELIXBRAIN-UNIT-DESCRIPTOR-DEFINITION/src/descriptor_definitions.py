@@ -2256,7 +2256,15 @@ def _fn3_identity_claim_findings(raw: dict[str, Any], binding: dict[str, Any], u
             raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/basis_refs is absent, null, or empty")
         if any(not _ref_shape_ok(ref) for ref in basis):
             raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci}/basis_refs contains an unformed Ref")
-        participating = [copy.deepcopy(ref) for ref in basis]
+        participating = []
+        sources = raw.get("sources")
+        if not isinstance(sources, list):
+            raise _fn3_stop("unclosed/identity_claim", f"/claims/{ci} source witness collection is not an array")
+        for source in sources:
+            if not isinstance(source, dict) or not _ref_shape_ok(source.get("ref")):
+                continue
+            if any(_ref_same(source["ref"], basis_ref) for basis_ref in basis):
+                participating.append(copy.deepcopy(source["ref"]))
         predicate_observations = [
             (f"/claims/{ci}/kind", "claim kind"),
             (f"/claims/{ci}/proposed_value/basis_role", "claim basis role"),
