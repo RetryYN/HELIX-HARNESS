@@ -16,7 +16,10 @@ issue: #3510 (comment 6386473748 / 6386507513 / 6405275048)
 - 保持する点（意味の再導出）：
   - 対象argvをPOSIX専用process group（setsid）で起動し、無制限（<=0）のbudgetを拒否する。
   - timeout到達時および親プロセスが SIGINT/SIGTERM/SIGHUP を受けた時に、process group全体へ killpg(SIGTERM) を送り、
-    grace期間後に生存していれば killpg(SIGKILL) を送り、ESRCH でgroup消滅を確かめる（呼出元が SIG_IGN にしているシグナルは上書きしない）。
+    grace期間後に生存していれば killpg(SIGKILL) を送り、ESRCH でgroup消滅を確かめる（呼出元が SIG_IGN にしているシグナルや
+    signal.getsignal が None を返す C レベル設定のシグナルは上書きしない）。
+  - シグナル転送を成立させるため、run_bounded はメインスレッドからのみ呼び出せる仕様とする。メインスレッド以外から呼ぶと
+    signal.signal 登録が ValueError となり、子プロセスを起動せず即座に spawn_failed（error に signal_handler_registration_failed を記録）として return する。
   - direct childが期限内に終了した後も子孫プロセスがgroupに残る場合は tree_lingered として回収する。
   - 出力capture上限（max_output_bytes）を強制しつつ実観測byte数（stdout_bytes/stderr_bytes）とtruncatedを保持する。
   - 終了分類（timeout / signal / tree_lingered / reap_unconfirmed / spawn_failed / exit_nonzero / ok）を返し、
@@ -33,6 +36,8 @@ issue: #3510 (comment 6386473748 / 6386507513 / 6405275048)
 - 仮組みとしての構造上の限界（明記）：
   - ラッパー自身が SIGKILL で強制終了された場合、Linux の PR_SET_PDEATHSIG(SIGKILL) により direct child は即座に SIGKILL されるが、
     direct child が既に生んでいた孫プロセスには PR_SET_PDEATHSIG が継承されないためラッパーからの回収は行えない。
+  - Linux の PR_SET_PDEATHSIG は親プロセス全体ではなく direct child を fork した親スレッドが終了した時点で発火するため、
+    仮にワーカースレッド等から fork された場合はそのスレッドの終了時点で child が早期に SIGKILL される限界がある（本実装はメインスレッド実行に限定）。
   - 子孫プロセスが自ら setsid() / setpgid() を呼んで別セッション・別 process group へ逃避した場合は、killpg(pgid) と tree_lingered 検知の対象外となる。
   - RLIMIT_AS / RLIMIT_CPU はカーネルの per-process 制限（子孫へ継承）であり、cgroup のようなプロセスツリー全体の合算上限ではない。
 """
@@ -305,6 +310,14 @@ def run_bounded(
     killpg_fn=os.killpg,
     platform_name=None,
 ):
+    """対象argvを専用process group・実行時間上限・資源上限付きで起動して回収する。
+
+    仕様と限界:
+    - シグナルハンドラ登録を行うためメインスレッドからのみ呼び出せる。メインスレッド以外から呼ぶと
+      子プロセスを起動せず classification="spawn_failed"（error に signal_handler_registration_failed）で早期 return する（n2）。
+    - signal.getsignal が SIG_IGN または None（C拡張等の非Pythonハンドラ）を返すシグナルは上書き・復元しない（m3, n1）。
+    - Linux の PR_SET_PDEATHSIG(SIGKILL) はプロセス全体ではなく child を fork したスレッドの終了時点で発火する限界がある（n3）。
+    """
     validate_bounds(
         argv,
         timeout_ms=timeout_ms,
@@ -377,22 +390,24 @@ def run_bounded(
             except ValueError:
                 interrupted[0] = f"SIG{signum}"
 
-    # m1 / m3: Popenより前にシグナルハンドラを登録してPopen直後の窓を塞ぎ、呼出元のSIG_IGNは上書きしない。
+    # m1 / m3 / n1: Popenより前にシグナルハンドラを登録してPopen直後の窓を塞ぎ、呼出元のSIG_IGNおよびgetsignal()==Noneは上書きしない。
     for sig in FORWARDED_SIGNALS:
         try:
             old_handler = signal.getsignal(sig)
-            if old_handler == signal.SIG_IGN:
+            if old_handler is None or old_handler == signal.SIG_IGN:
                 continue
             signal.signal(sig, _on_signal)
             previous_handlers[sig] = old_handler
-        except (ValueError, OSError) as err:
+        except (ValueError, OSError, TypeError) as err:
             errors.append(f"signal_handler_registration_failed:{sig.name}:{err}")
 
     def _restore_signal_handlers():
         for sig, old_handler in previous_handlers.items():
+            if old_handler is None:
+                continue
             try:
                 signal.signal(sig, old_handler)
-            except (ValueError, OSError) as err:
+            except (ValueError, OSError, TypeError) as err:
                 errors.append(f"signal_handler_restore_failed:{sig.name}:{err}")
         previous_handlers.clear()
 
