@@ -1204,6 +1204,86 @@
         "condition": "_component_key(\"rule_ref\" in finding, finding.get(\"rule_ref\"))",
         "reason": "fn1のFinding生成は (1) slot欠落 descriptor_01_missing..descriptor_15_missing（各kindにつき最大1件・slot_identity不在でsort_source_refs=[]）と (2) cross_pattern_section_substitution / cross_pattern_field_substitution（target slot_identityが存在しsort_source_refsは非空）の2系統のみであり、同一axis（例: required field.definition）上で descriptor_07_missing と cross_pattern_field_substitution が共存しても、前段の _origin_prefix_key の slot_identity 成分（absent=(0,\"\") vs present=(1,slot_id)）および sort_source_refs 成分で必ず順位が確定する。また同一slot上の複数cross_pattern Findingはすべて同一rule_refを持つため、fn1単独の到達可能入力では rule_ref 成分の削除（S1）は出力順序を変えない等価変異である（L5 finding_key 契約の対称性保持のため実装には残す）。"
       }
-    ]
+    ],
+    "r3_test_case_refinements": [
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "target_slot_none (slot_identity=None)",
+        "updated_case": "target_slot_non_str (slot_identity=123)",
+        "target_guard": "T13: not isinstance(slot_id, str) in _resolve_fill_definition_target",
+        "reason": "slot_identity=None では後続の not slot_id（falsy判定）でも弾かれるため T13 単独の削除を検出できなかった。truthy な非 str 値（123）にすることで T13 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_not_dict (replacement_basis_uses=[\"bad\"])",
+        "updated_case": "use_not_dict (replacement_basis_uses=[[\"claim\", \"basis_ref\", \"basis_binding\", \"slot_identity\", \"descriptor_kind\", \"fact\"]])",
+        "target_guard": "E16b: not isinstance(use, dict) in _evaluate_replacement_claims",
+        "reason": "文字列 \"bad\" は set(\"bad\") != {6 keys} で弾かれるため E16b 削除時も通過していた。6 key 名の list にすることで set(use) 検査を通過させ、E16b guard 単独の必要性を固定する。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_basis_binding_diff (mutated use.basis_binding only)",
+        "updated_case": "use_basis_binding_diff (mutated b_source.content.binding only)",
+        "target_guard": "E21: not _binding_same(b_binding, content.get(\"binding\")) in _evaluate_replacement_claims",
+        "reason": "use.basis_binding のみを変えると後続の _binding_same(u_fact.get(\"binding\"), b_binding) でも弾かれるため E21 単独に届かなかった。b_source.content.binding のみを変えることで E21 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_slot_none (use.slot_identity=None only)",
+        "updated_case": "use_slot_non_str (both use.slot_identity=123 and descriptor_facts[0].slot_identity=123)",
+        "target_guard": "E22: not isinstance(use.get(\"slot_identity\"), str) in _evaluate_replacement_claims",
+        "reason": "use 側のみ None にすると not use[\"slot_identity\"] および descriptor_facts group との slot_identity 突合で先に弾かれるため、両側を truthy な非 str 値（123）に揃えて E22 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_slot_empty (use.slot_identity=\"\" only)",
+        "updated_case": "use_slot_empty (both use.slot_identity=\"\" and descriptor_facts[0].slot_identity=\"\")",
+        "target_guard": "E23: not use[\"slot_identity\"] in _evaluate_replacement_claims",
+        "reason": "use 側のみ空文字にすると descriptor_facts group との slot_identity 突合で弾かれるため、group 側も空文字に揃えて E23 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_kind_invalid (use.descriptor_kind=\"invalid_kind\" only)",
+        "updated_case": "use_kind_invalid (both use.descriptor_kind=\"invalid_kind\" and descriptor_facts[0].descriptor_kind=\"invalid_kind\")",
+        "target_guard": "E24: use.get(\"descriptor_kind\") not in _APPROVED_KINDS in _evaluate_replacement_claims",
+        "reason": "use 側のみ invalid_kind にすると descriptor_facts group との descriptor_kind 突合で弾かれ matched_for_source=False になっていたため、group 側も揃えて E24 guard 単独（削除時は supports に入り unresolved_basis が立たなくなる差）に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_fact_binding_diff (mutated use.fact.binding only)",
+        "updated_case": "use_fact_binding_diff (mutated both use.fact.binding and descriptor_facts[0].facts[0].binding)",
+        "target_guard": "E26: not _binding_same(u_fact.get(\"binding\"), b_binding) in _evaluate_replacement_claims",
+        "reason": "use.fact.binding のみを変えると _owner_body_equal(orig, u_fact) の binding 比較で弾かれるため、orig.binding も同じ値に揃えて E26 guard 単独に到達させる。"
+      }
+    ],
+    "r3_mutation_verification": {
+      "target_surviving_mutants_from_r2": 16,
+      "killed_in_r3": 15,
+      "killed_mutant_ids": [
+        "G2",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T13",
+        "E10",
+        "E16b",
+        "E21",
+        "E22",
+        "E23",
+        "E24",
+        "E26",
+        "E40",
+        "E41"
+      ],
+      "surviving_equivalent_mutants": 1,
+      "surviving_equivalent_mutant_ids": [
+        "S1"
+      ],
+      "total_mutants_evaluated": 73,
+      "total_killed": 62,
+      "total_equivalent": 11,
+      "non_equivalent_survivors": 0
+    }
   }
 }
