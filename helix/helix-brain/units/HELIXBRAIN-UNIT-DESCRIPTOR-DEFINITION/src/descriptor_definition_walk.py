@@ -133,14 +133,19 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         return _closed_empty_result(None)
     if not isinstance(raw, dict):
         _stop("input_shape")
-    if raw.get("claims") != []:
+    claims = raw["claims"] if "claims" in raw else []
+    if claims != []:
         _stop("supplied_claim_ports")
     raw_binding = raw.get("binding")
     if not isinstance(raw_binding, dict):
         _stop("input_binding_shape")
     from definition_comparison import _fn1_scope_guard
 
-    _fn1_scope_guard(raw, raw_binding)
+    # L4 shares zero occurrences for absent/[] while keeping the real snapshot
+    # unchanged. The existing structural guard receives only a local view;
+    # every native reader and returned observation still uses the original raw.
+    structural_view = raw if "claims" in raw else {**raw, "claims": []}
+    _fn1_scope_guard(structural_view, raw_binding)
     from supply_validation import _json_equal
 
     # Nullable Ref digests may compare equal while the original frames differ.

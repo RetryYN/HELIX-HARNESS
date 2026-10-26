@@ -76,7 +76,8 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     raw = validated["input"]
     if raw is None:
         return _comparison([], [], "compare_oracle_and_view_boundary", None)
-    if raw["claims"] or frame["target_reads"] or frame["claim_uses"]:
+    claims = raw["claims"] if "claims" in raw else []
+    if claims or frame["target_reads"] or frame["claim_uses"]:
         _stop("oracle_claim_ports")
     binding = raw["binding"]
     evaluation = frame["definition_evaluation"]
@@ -86,6 +87,7 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     retained_indices = {index for index, row in enumerate(original_axes) if row["axis"] in _CARRY}
     new_axes = []
     findings = []
+    oracle_bindings = raw["oracle_bindings"] if "oracle_bindings" in raw else []
     for kind, code, axis_name, predicate in _RULES:
         for slot_index, slot in enumerate(raw["descriptors"]):
             if slot["descriptor_kind"] != kind:
@@ -101,7 +103,7 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                 if not _binding_same(fact["binding"], binding) or not _known_ref(fact["ref"]):
                     _stop("oracle_subject_or_binding")
                 obligation = fact["binding"].get("requirement_ref")
-                for oracle_index, oracle in enumerate(raw["oracle_bindings"]):
+                for oracle_index, oracle in enumerate(oracle_bindings):
                     if not _ref_same(oracle["subject_ref"], fact["ref"]):
                         continue
                     if not _known_ref(obligation) or not _known_ref(oracle["obligation_ref"]):
