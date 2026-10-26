@@ -12440,6 +12440,29 @@
           "not_established_ja": "multi record/Q/root、一般cause競合、実owner/trust/provider、全caller/domain、L5L8詳細は後続。 このcaseは一般cause優先、複数record/Q/root、全caller、実資格、L5/L8詳細を成立させない。 chainのknowledge起点を先に評価する、この有限caseの技術選択であり、一般のtrace cause優先順位ではない。L4 unclosed_projection_boundaries/knowledge_recordsの一般0件/複数件形成は未閉包のまま、本P15 zero-record caseのknowledge_unresolvedだけを追加行使する。L9 finite_branch_coverageは既存7 whole/3 membership対象の列挙であり、本追加caseを含む全域網羅へ読み替えず、既存列挙を保持する。",
           "authority_effect": "none",
           "operation_effect": "none"
+        },
+        "finite_equal_qualification_repetition": {
+          "id": "HELIXBRAIN-L4-I1QR-EQUAL-QUALIFICATIONS",
+          "status": "一つの有限条件に限る公開trace順の技術選択。実reader・実資格・oracleは未実行。",
+          "requirements": [
+            "HELIXBRAIN-L3-032-F04",
+            "HELIXBRAIN-L3-032-N01"
+          ],
+          "scope_ja": "同一IdentitySnapshot内の一KnowledgeRecord、一対応provenance、一物理sourceについて、当該sourceへfull Refで対応するQualification原出現がちょうど二つで全JSON値がexactに等しく、対応root原出現が一つである単一trace。他sourceに属する原Q/root出現は変更しない。read.cause=original_trace_correspondingと既存9-key trace materialの形成は前提であり、この条件から生成しない。",
+          "qualification_occurrences_ja": "同じSourceQualificationReadに属する二つの元Qualificationを原qualification index順で保持する。二occurrenceの全JSON値がexactに等しくても、原indexと出現は別々に残し、Ref値やQualification自体をdeduplicateしない。両chainは同じ物理source index sとroot index rへ対応する。",
+          "trace_refs_ja": "既存trace Ref列の共通先頭3件（fact.ref、fact.source_ref、slot.binding.knowledge_ref）を一度置き、続けてQualification occurrenceごとに既存6件（KnowledgeRecord.ref、対応provenance Ref、source.ref、source.qualification_ref、Qualification.ref、root Ref）を元qualification index順に連結する。公開列は3+6+6=15件で、同値Refも原列の反復として残す。",
+          "physical_occurrences_ja": "公開trace reason materialのtrace_occurrencesは二つの実chainに対応する既存9-key materialを各原qualification indexに結び付けて二要素で保持する。DescriptorTraceReadへ新memberを追加しない。source_indicesは[s]を一度、body_groupsは同一物理groupの原出現を一度、SourceQualificationRead.rootsも対応する一root occurrenceを一度保持する。reason materialと公開Ref列の反復はsource/rootの新しい物理出現を作らない。",
+          "reason_and_read_ja": "複数traceのreasonは既存problem_reason_table.trace prefixと既存diagnostic_json文法を使い、materialのtrace_occurrences配列に二つの実在9-key materialを原qualification index順で保持する。state、cause、private SourceQualificationRead、全原配列順は既存readのまま。",
+          "qualification_boundary_ja": "二つのQualificationが等しいという値だけでfn0の資格成功、source選択、root選択、又はowner解決を生成しない。元SourceQualificationReadに既にある対応とread.causeのみを保持し、missing/unknown/conflictとbackflow ownerを既存契約どおりにする。",
+          "finding_unknown_and_reentry_ja": "等値反復だけからFindingやwitnessを追加しない。原readのpredicateが成立したFindingは保持し、未完/unknownはknowledge_ownerへ戻す。原資料の供給・訂正後は同Binding・同revision・同scopeの原readから再評価し、旧immutable snapshotは書き換えない。",
+          "not_established_ja": "これは二つのexact-equal Qualification occurrenceとroot一つを持つ一traceだけの局所順序選択である。distinct Qualification、3件以上、複数root/source、別traceのinterleave、一般Ref flatten、cause競合、一般資格選択は未閉包のまま。",
+          "legacy_rederivation": {
+            "preserved_ja": "LEGACY-ASSET-98372FEE8A3AC8F9C299のstable identityとunknown/N/A区別、LEGACY-ASSET-A127DEC3EEE6ED63CF17（UTW-014/020/021）のpartial observation保持を照合材料として残す。",
+            "changed_ja": "旧lifecycle/runtimeを移植せず、現行L4の原Qualification occurrence順と既存trace materialをこの有限条件で連結する。",
+            "reason_ja": "旧資料は原値・不明状態の保持を照合する材料であり、複数Qualificationの新資格判定やgateを導かない。"
+          },
+          "authority_effect": "none",
+          "operation_effect": "none"
         }
       }
     },
