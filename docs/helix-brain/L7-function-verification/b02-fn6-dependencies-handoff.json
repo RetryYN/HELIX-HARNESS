@@ -84,7 +84,11 @@
     "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_b02_dependencies_and_handoff.py",
     "implementation_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py",
     "minimal_reexport_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
-    "backflow_id": "HELIXBRAIN-L6-032-B02-FN6-PATH"
+    "backflow_id": "HELIXBRAIN-L6-032-B02-FN6-PATH",
+    "implementation_modules": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_ports.py"
+    ]
   },
   "partial_oracle_and_stop_boundary": {
     "partial_oracle_ja": "各caseが指定する観測（対象AxisResultのsubject_ref/binding/axis/state/original_refs/backflow_owner、Findingのcode/rule_ref/subject_ref/binding/axis/state/source_refs/backflow_owner、DP-1のorigin/OS incoming member保持と非結合・入力不変性）だけをassertし、Comparison全体一致比較は行わない。",
@@ -110,5 +114,54 @@
     "red_summary": "初期test commit（590b9c2d）で全13件Red（ERROR 6 / FAIL 7）、R1追補test commit（3644c9ac）で全14件中11件Red（ERROR 3 / FAIL 8）を観測（import/setup error・skip 0件）。",
     "green_summary": "test_b02_dependencies_and_handoff.py を無変更のまま dependencies_handoff.py の実装により新規14件全件Green、Unit全体（計34件）では既存F02の2件（test_neg02_cross_pattern_field_substitution / test_neg21_required_field_missing_without_substitution）が範囲外Redとして停止し、それ以外の32件がOK。"
   },
-  "completion_boundary": "fn0→fn1→fn6のB02/DP-1垂直スライス限定検証であり、DP-2実供給・条件依存全域・F09全返却・製品CI・Accepted・releaseを成立させない。"
+  "completion_boundary": "fn0→fn1→fn6のB02/DP-1垂直スライス限定検証であり、DP-2実供給・条件依存全域・F09全返却・製品CI・Accepted・releaseを成立させない。",
+  "module_split_verification": {
+    "request_id": "WR-CLAUDE-BRAIN032-FN016-MODULE-SPLIT-3547-20261027-17",
+    "source_main": "a665d21ab452c014d314d954b5edfe9478c11d7c",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn0_fn1_fn6_module_split"
+    },
+    "legacy_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/config/requirements-binding-policy.ts",
+        "lines": [
+          4,
+          5
+        ],
+        "sha256": "94f00da588190939a3a06df2b120731c0b5a6edd30d6ca430a5da4b23e0750ea",
+        "keep": "splitModuleLines: 700, splitModuleExports: 24 の分割候補閾値。",
+        "change": "旧TS state-db runtimeは実行せず、Python unit module分割の非空行上限（700非空行未満）として再利用。",
+        "reason": "959非空行のdescriptor_definitions.pyと1021非空行のdependencies_handoff.pyを700非空行未満の責務別moduleへ分割するため。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+        "lines": [
+          293,
+          294
+        ],
+        "sha256": "1f878c2ae0e96e7a44346579baf7bcb7dede758414a7e947a2dcd4805a9633f3",
+        "keep": "nonBlankLineCount >= policy.thresholds.splitModuleLines（非空行カウントによる700行以上の分割候補判定）。",
+        "change": "旧DB候補登録は行わず、grep -cv '^\\s*$' による非空行数確認とL6/L7設計・検証記録へ適用。",
+        "reason": "非空行700未満の判定基準を旧HELIXの定義と一致させるため。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+        "lines": [
+          29,
+          29
+        ],
+        "sha256": "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e",
+        "keep": "1 behavior contract + 1 responsibility owner の原子sliceと責務分離。",
+        "change": "descriptor_definitions.pyを公開関数委譲中心のfacadeとし、fn0（supply_validation.py）、fn1（definition_comparison.py）、fn6（dependencies_handoff.py）、B02/F09依存意味port reader（dependencies_handoff_ports.py）へ分離し、fn3と同じ関数内遅延委譲方式を採用。",
+        "reason": "関数本体・定数・例外文言・返却の意味を変えずに1責務ownerずつ分離し、並行するfn4/fn7委譲追加との衝突面を最小化するため。"
+      }
+    ],
+    "split_summary": "dependencies_handoff.py（1021非空行）を、fn6本体・B02/F09スライス評価helperを持つ dependencies_handoff.py（485非空行）と、DP-1依存意味port reader 4関数およびRFC6901/trace/frame helperを持つ dependencies_handoff_ports.py（601非空行）へ分割。dependencies_handoff.py には4つのport readerの遅延委譲を残し、既存import経路と関数本体・定数・例外文言・返却の意味を完全保持。",
+    "pre_and_post_test_results": {
+      "pre_split": "Ran 198 tests in 14.654s — FAILED (errors=2: 既知F02 test_neg02 / test_neg21 のみ、B02/DP-1 14件は全件OK)",
+      "post_split": "Ran 198 tests in 15.494s — FAILED (errors=2: 既知F02 test_neg02 / test_neg21 のみ、B02/DP-1 14件は全件OK)",
+      "test_files_modified": 0
+    }
+  }
 }
