@@ -1070,3 +1070,9 @@ def compare_oracle_and_view_boundary(context: dict[str, object]) -> dict[str, ob
     from oracle_view_boundary import compare_oracle_and_view_boundary as _fn4
 
     return _fn4(context)
+
+
+def compare_knowledge_promotion(context: dict[str, object]) -> dict[str, object]:
+    from knowledge_promotion import compare_knowledge_promotion as _fn5
+
+    return _fn5(context)
