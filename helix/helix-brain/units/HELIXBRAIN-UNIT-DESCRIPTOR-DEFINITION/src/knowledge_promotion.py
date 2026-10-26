@@ -107,6 +107,8 @@ def _validate_context_and_input(context: Any) -> tuple[dict[str, Any], dict[str,
         raise _f08_stop("context_or_input_shape", "input.candidates elements must be Ref objects")
     if "claims" in raw and not isinstance(raw["claims"], list):
         raise _f08_stop("context_or_input_shape", "input.claims must be a list when present")
+    if "sources" in raw and not isinstance(raw["sources"], list):
+        raise _f08_stop("context_or_input_shape", "input.sources must be a list when present")
     if "descriptors" in raw and not isinstance(raw["descriptors"], list):
         raise _f08_stop("record_or_descriptor_carrier_shape", "input.descriptors must be a list when present")
     for idx, slot in enumerate(raw.get("descriptors", [])):
@@ -128,7 +130,7 @@ def _validate_context_and_input(context: Any) -> tuple[dict[str, Any], dict[str,
 
 
 def _validate_candidate_empty_domain(raw: dict[str, Any]) -> None:
-    if "dependencies" in raw and raw["dependencies"] is not None:
+    if "dependencies" in raw:
         raise _f08_stop("candidate_empty_outside_finite_domain", "dependencies supplied when candidates is empty")
     for col in _OTHER_EMPTY_COLLECTIONS:
         if col in raw and (not isinstance(raw[col], list) or len(raw[col]) > 0):
@@ -150,6 +152,9 @@ def _validate_candidate_empty_domain(raw: dict[str, Any]) -> None:
         if role == "semantic_json":
             if not set(content.keys()).issubset(_SEMANTIC_JSON_ALLOWLIST):
                 raise _f08_stop("candidate_empty_outside_finite_domain", "semantic_json content key outside allowlist")
+            for c_key in ("descriptor_facts", "definition_meaning_operations", "descriptor_targets"):
+                if c_key in content and not isinstance(content[c_key], list):
+                    raise _f08_stop("candidate_empty_outside_finite_domain", f"{c_key} must be a list when present")
             for grp in content.get("descriptor_facts", []):
                 if not isinstance(grp, dict) or grp.get("descriptor_kind") not in _APPROVED_KINDS:
                     raise _f08_stop("candidate_empty_outside_finite_domain", "descriptor_facts group kind invalid")

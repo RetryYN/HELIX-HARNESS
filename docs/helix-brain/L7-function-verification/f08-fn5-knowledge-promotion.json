@@ -110,22 +110,24 @@
     "backflow_id": "HELIXBRAIN-L6-032-F08-FN5-PATH"
   },
   "partial_oracle_and_stop_boundary": {
-    "partial_oracle_ja": "各caseが指定する観測（Comparison全4field、knowledge_record_traceおよびpromotion/promotion_claimのAxisResult全7field、Finding全9field、reason_writerの6member canonical JSON、candidate-empty/P3a/P3bの選択・順序・presence・入力不変性）だけをassertする。",
+    "partial_oracle_ja": "各caseが指定する観測（Comparison全4field、knowledge_record_traceおよびpromotion/promotion_claimのAxisResult全7field、Finding全9field、reason_writerの6member canonical JSON完全一致、Claim association/basis_reads/rules 80..83の対照境界、複数KnowledgeRecordのrecord_locators/observations 5member全3token、candidate-empty/P3a/P3bの選択・順序・presence・入力不変性）をassertする。",
     "unclosed_stop_branches": [
-      "F08/candidate_empty_outside_finite_domain: candidates==[]においてdependencies供給、other_collections非空、KnowledgeRecordのref/provenance_refs外キー供給、source.role/content allowlist外、未知descriptor_kind、fill_definition外のClaimまたはdescriptor_targets未宣言の経路",
-      "F08/claim_witness_formation: 非空candidatesかつ非空claimsにおいて、Claim非object、kind非string、subject_refのidentity/revision/scope/owner欠落・nullまたはRef wire型外、bindingの9member full Binding wire型外、basis_refs非配列またはRef wire型外の経路",
-      "F08/context_or_input_shape: PromotionContext非objectまたはvalidated以外のキー、validatedまたはvalidated.input/input_issues/unusable_source_refs型不正、root binding不在・wire型外、candidates不在・null・非配列・要素Ref wire型外、またはdescriptors/knowledge_records/claims/sourcesが供給時に非配列の経路",
-      "F08/record_or_descriptor_carrier_shape: descriptors要素非objectまたはslot binding wire型外、knowledge_records要素非object、record.ref不在・null・Ref wire型外、provenance_refs非配列・要素Ref wire型外、または5種の単一工程Refが非null時にRef wire型外の経路"
+      "F08/candidate_empty_outside_finite_domain: candidates==[]においてdependenciesキー存在（null・空dict含む）、other_collections非配列または非空、KnowledgeRecordのref/provenance_refs外キー供給、source非objectまたはsource.role/content allowlist外、semantic_jsonのdescriptor_facts/definition_meaning_operations/descriptor_targets供給時非配列または要素/descriptor_kind不正、fill_definition外のClaimまたはdescriptor_targets未宣言の経路",
+      "F08/claim_witness_formation: 非空candidatesかつ非空claimsにおいて、Claim非object、kind非string、subject_refのidentity/revision/scope/owner欠落・null・空文字またはRef wire型外、bindingの9member full Binding wire型外、basis_refs非配列または要素Ref wire型外の経路",
+      "F08/context_or_input_shape: PromotionContext非objectまたはvalidated以外のキー、validatedまたはvalidated.input/input_issues/unusable_source_refs型不正、root binding不在・wire型外、candidates不在・null・非配列・要素Ref wire型外、またはclaims/sourcesが供給時に非配列の経路",
+      "F08/record_or_descriptor_carrier_shape: descriptorsまたはknowledge_recordsが供給時に非配列、descriptors要素非objectまたはslot binding wire型外、knowledge_records要素非object、record.ref不在・null・Ref wire型外、provenance_refs非配列・要素Ref wire型外、または5種の単一工程Refが非null時にRef wire型外の経路"
     ]
   },
   "red_then_green": "test commitで対象関数の未実装Red（import/setup errorではなくNotImplementedErrorによる失敗）を観測してPRコメントへ記録し、別commit（impl commit）でtestを無変更のままGreenにする。",
   "execution_state": "green_verified",
   "completion_boundary": "fn0→fn5のF08垂直スライス限定検証であり、007/008/025実工程の採否・運用state遷移・製品CI・Accepted・releaseを成立させない。",
   "execution_evidence": {
-    "test_commit": "90bd6f3f75c25c8acf8349edf631e3659e937d89",
+    "initial_test_commit": "90bd6f3f75c25c8acf8349edf631e3659e937d89",
+    "initial_red_result": "Ran 6 tests in 0.295s — FAILED (failures=20, errors=15) (NotImplementedError: F08/fn5_unimplemented: compare_knowledge_promotion is not yet implemented; Backflow HELIXBRAIN-L6-032-F08-FN5-PATH)",
+    "test_commit": "bdcdd92c58b8a091f680bf7231ddf70e62cd6896",
     "red_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion",
-    "red_result": "Ran 6 tests in 0.295s — FAILED (failures=20, errors=15) (NotImplementedError: F08/fn5_unimplemented: compare_knowledge_promotion is not yet implemented; Backflow HELIXBRAIN-L6-032-F08-FN5-PATH)",
+    "red_result": "Ran 6 tests in 1.534s — FAILED (failures=5, errors=6) on 3a131dda68849815c9d2100dc66a0ae793c85343 (R1-M1 sources=None/str/int and candidates=[]+sources=str [4 failures], R1-M3 dependencies=None in candidate-empty [1 failure], R1-M2 descriptor_facts/definition_meaning_operations/descriptor_targets=None/int [6 errors]; R1-M4..M7 and R1-m1..m2 subTests are coverage additions that pass before the Green fix).",
     "green_command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_f08_knowledge_promotion test_n03_values_and_applicability test_n03_path_boundaries test_b02_dependencies_and_handoff test_supply_input test_source_integrity",
-    "green_result": "Ran 37 tests in 1.628s — OK (6 F08 tests + 31 existing unit tests all pass without regression)."
+    "green_result": "Ran 37 tests in 2.279s — OK (6 F08 tests + 31 non-F02 unit tests in test_n03_values_and_applicability, test_n03_path_boundaries, test_b02_dependencies_and_handoff, test_supply_input, test_source_integrity pass; note that test_descriptor_definitions has 2 pre-existing F02 stop errors on main)."
   }
 }
