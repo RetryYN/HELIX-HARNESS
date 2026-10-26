@@ -320,15 +320,11 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
     if "claims" not in raw or not isinstance(raw["claims"], list):
         raise _unsupported("F01", "claim_array_absent_or_wrong_type", "claims is absent or not an array")
     for index, claim in enumerate(raw["claims"]):
-        if (
-            isinstance(claim, dict)
-            and claim.get("kind") != "fill_definition"
-            and _binding_same(claim.get("binding"), binding)
-            and (
-                claim.get("kind") in ("redefine_layer_pair", "redefine_completion")
-                or any(_ref_same(claim.get("subject_ref"), fact_ref) for fact_ref in fact_refs)
-            )
-        ):
+        if not isinstance(claim, dict) or not _binding_same(claim.get("binding"), binding):
+            continue
+        if claim.get("kind") == "harness_layer_pair_override":
+            raise _unsupported("F01", "harness_claim_unimplemented", f"claims[{index}] is a harness_layer_pair_override claim")
+        if claim.get("kind") != "fill_definition" and any(_ref_same(claim.get("subject_ref"), fact_ref) for fact_ref in fact_refs):
             raise _unsupported("F01", "descriptor_claim_unimplemented", f"claims[{index}] participates in descriptor meaning comparison")
 
 
@@ -440,11 +436,15 @@ def _evaluate_replacement_claims(
     for claim in raw["claims"]:
         if not isinstance(claim, dict) or claim.get("kind") != "fill_definition" or not _binding_same(claim.get("binding"), binding):
             continue
-        if claim.get("actor") is not None or not isinstance(claim.get("proposed_value"), str) or claim.get("proposed_value") == "":
+        if "proposed_value" not in claim:
             continue
-        basis_refs = claim.get("basis_refs")
-        if not isinstance(basis_refs, list):
-            continue
+        if "basis_refs" not in claim:
+            basis_refs: list[Any] = []
+        else:
+            basis_refs_raw = claim.get("basis_refs")
+            if not isinstance(basis_refs_raw, list):
+                continue
+            basis_refs = basis_refs_raw
         target_matches = _resolve_fill_definition_target(validated, binding, claim.get("subject_ref"), slots)
         if not target_matches:
             continue
@@ -467,8 +467,6 @@ def _evaluate_replacement_claims(
                 continue
             for b_source in sem_sources:
                 b_ref = b_source.get("ref")
-                if isinstance(b_ref, dict):
-                    special_source_refs.append(b_ref)
                 if not _source_usable(validated, b_ref):
                     unresolved_basis = True
                     continue
@@ -480,6 +478,7 @@ def _evaluate_replacement_claims(
                     continue
                 matched_for_source = False
                 for use in uses:
+                    special_source_refs.append(b_ref)
                     if not isinstance(use, dict) or set(use) != {"claim", "basis_ref", "basis_binding", "slot_identity", "descriptor_kind", "fact"}:
                         continue
                     b_binding = use.get("basis_binding")
@@ -506,7 +505,6 @@ def _evaluate_replacement_claims(
                             isinstance(orig, dict)
                             and _ref_same(orig.get("ref"), u_fact.get("ref"))
                             and _owner_body_equal(orig, u_fact)
-                            and _binding_same(orig.get("binding"), b_binding)
                             for orig in grp["facts"]
                         )
                         for grp in groups
@@ -520,9 +518,6 @@ def _evaluate_replacement_claims(
         emitted_cross = False
         for b_source, use in supports:
             basis_template_id = use["basis_binding"]["template_ref"].get("identity")
-            if not isinstance(cur_template_id, str) or not cur_template_id or not isinstance(basis_template_id, str) or not basis_template_id:
-                unresolved_basis = True
-                continue
             if use["descriptor_kind"] == "required input" and cur_template_id != basis_template_id:
                 emitted_cross = True
                 if target_kind == "required section":
@@ -620,7 +615,6 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
             raise NotImplementedError("definition applicability supplied-ref branch: Backflow HELIXBRAIN-L6-032-N03-PATH")
 
     required_set = set(raw["required_descriptor_kinds"])
-    sources_present = isinstance(raw.get("sources"), list)
     missing_kinds: set[str] = set()
     slot_missing_reason = "必要なdescriptor slotが当該原Bindingに供給されていない。"
     for kind_idx, kind_name in enumerate(_APPROVED_KINDS, start=1):
@@ -636,7 +630,7 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
                 "original_refs": [],
                 "reason": slot_missing_reason,
                 "backflow_owner": "knowledge_owner",
-            }, {}, [], sources_present))
+            }, {}, [], True))
             finding_emissions.append(({
                 "code": code,
                 "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
@@ -647,7 +641,7 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
                 "source_refs": [],
                 "reason": slot_missing_reason,
                 "backflow_owner": "knowledge_owner",
-            }, {}, [], sources_present))
+            }, {}, [], True))
 
     _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
 
