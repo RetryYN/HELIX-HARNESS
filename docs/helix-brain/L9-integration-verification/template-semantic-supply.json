@@ -1363,6 +1363,20 @@
           "backflow_owner": "knowledge_owner",
           "expected_side_effect_count": 0,
           "execution_state": "not_executed"
+        },
+        {
+          "id": "HELIXBRAIN-L9-032-I1B-EQUAL-RECORDS",
+          "change": "同一Bindingへfull Refで対応する全JSON値同一のKnowledgeRecordを原配列へ二出現置く。各実対応provenanceのrelationはcorresponding、各source/Q/rootは既存一経路。 対象traceは既存read.cause=original_trace_correspondingで9-key materialを形成できる範囲。既存positive_fixture_refをこの重複入力の実体とは扱わず、具体fixtureはL7で定義する。",
+          "expected": "既存F04/N01のstate/causeを保持し、operational_stateの左operandはL4 equal_repetitionに従う。actual Refは原subjectの後へ実record/provenance Refを原index順で保持する。trace Refは共通先頭3件を一度、その後に原record/provenance indexごとの既存6件suffixを連結する。trace_occurrencesだけを複数reason materialに使い、既存source/Q/root raw出現を増やさない。実関与した既存source witness以外を加えない。 unknown/未完は既存ownerへ返し、原資料の供給・訂正後、同じBinding/revision/scopeの原readから再入する。",
+          "backflow_owner": "knowledge_owner",
+          "expected_side_effect_count": 0,
+          "execution_state": "not_executed",
+          "system_oracle_ref": "HELIXBRAIN-L10-032-F04",
+          "l4_contract_ref": {
+            "revision": "d5471f140cb2496280e14b267dbadc1178415e06",
+            "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+            "pointer": "/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition"
+          }
         }
       ],
       "execution_state": "not_executed",
