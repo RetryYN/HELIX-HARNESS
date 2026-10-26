@@ -164,14 +164,43 @@
   },
   "n03_path_fn0_fn1_fn2_verification": {
     "id": "HELIXBRAIN-L7-032-N03-PATH",
-    "design_binding_ref": {"revision":"9679f884e94e5a3b6c97cec7cf5a9cd1afe9d95c","path":"docs/helix-brain/L6-function-design/descriptor-definition-first-test.json","pointer":"/n03_path_fn0_fn1_fn2_preparation"},
-    "oracle_source": {"revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","path":"docs/helix-brain/L8-unit-verification/template-semantic-supply.json","pointers":["/function_oracles/0","/function_oracles/1","/function_oracles/2","/cases/13/negative_cases/0","/cases/13/negative_cases/1","/cases/13/negative_cases/2","/additional_unit_cases/36"]},
-    "test_source": {"path":"helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py","class":"TestN03ValuesAndApplicability","methods":["test_normal_path_keeps_only_documented_unknowns","test_n03_neg01_timeout_fixture_is_not_a_runtime_deadline","test_n03_neg02_cpu_fixture_is_not_a_runtime_capacity","test_n03_neg03_memory_fixture_is_not_a_runtime_capacity"]},
+    "design_binding_ref": {
+      "revision": "9679f884e94e5a3b6c97cec7cf5a9cd1afe9d95c",
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/n03_path_fn0_fn1_fn2_preparation"
+    },
+    "oracle_source": {
+      "revision": "0ecb7183c35e1b331cb6383523b30548dc6c208e",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointers": [
+        "/function_oracles/0",
+        "/function_oracles/1",
+        "/function_oracles/2",
+        "/cases/13/negative_cases/0",
+        "/cases/13/negative_cases/1",
+        "/cases/13/negative_cases/2",
+        "/additional_unit_cases/36"
+      ]
+    },
+    "test_source": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_values_and_applicability.py",
+      "class": "TestN03ValuesAndApplicability",
+      "methods": [
+        "test_normal_path_keeps_only_documented_unknowns",
+        "test_n03_neg01_timeout_fixture_is_not_a_runtime_deadline",
+        "test_n03_neg02_cpu_fixture_is_not_a_runtime_capacity",
+        "test_n03_neg03_memory_fixture_is_not_a_runtime_capacity"
+      ]
+    },
     "fixture_boundary": "正常RawValueを元順で独立copy。各NEGは別の合成subject RefとValueFact(null/absent)及び同Bindingの6-field Claimを一件ずつ追加する。既存normal fieldの値を消さず、reference_fixtureの表記を稼働値へ採用しない。具体入力と独立期待はtest codeを正とする。",
     "partial_oracle_boundary": "normalは文書化された部分観測のみ。fn1の15 meaning fact unknown・帰属known・NA要求unknownとfn2のfield/value/applicabilityのunknown保持を確認し、未定義の全Comparison/private全返却は創作しない。case36の各variantは三独立NEGに対応し全組合せは追加しない。",
     "old_binding_boundary": "既存paired_working_bindingのliteralは保持し、今回N03のcurrent証拠にはしない。N03は上記design_binding_refの固定revision＋Pointerで追う。",
     "red_then_green": "rootがtest commit後に同じtestを実行し、正式関数のNotImplemented又は意味不一致のRedを観測する。import/setup error・skipは代替にせず、testを変えない別実装commitでGreenにする。出力はPRへ記録する。",
-    "legacy_basis_ref": {"revision":"0ecb7183c35e1b331cb6383523b30548dc6c208e","path":"docs/helix-brain/L6-function-design/descriptor-definition-first-test.json","pointer":"/legacy_rederivation"},
+    "legacy_basis_ref": {
+      "revision": "0ecb7183c35e1b331cb6383523b30548dc6c208e",
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/legacy_rederivation"
+    },
     "execution_state": "scope_executed_red_then_green",
     "execution_evidence": {
       "test_commit": "9ed30a59ae0fc821be2e07634056847b15f9aecb",
@@ -189,7 +218,10 @@
       "scope": "元4testは不変。追加8testはcarry2軸・F02対象外guard・N03非発火側の未対応と不変性。先行8件中3件Redの後に別実装commitで合計12件Green。",
       "outside_scope_red": {
         "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
-        "methods": ["test_neg02_cross_pattern_field_substitution", "test_neg21_required_field_missing_without_substitution"],
+        "methods": [
+          "test_neg02_cross_pattern_field_substitution",
+          "test_neg21_required_field_missing_without_substitution"
+        ],
         "result": "元testを改変/skipせず、実fn1のF02/required_kind_slot_mismatch・N03PATH付きNotImplementedで2件の範囲外Redを保持。証拠は上記green記録内。"
       },
       "boundary": "追加testは対象外枝の完成を認定しない。診断Ref列の局所writer選択はsrcコメントに開示し、新しい一般式/資格/predicateは作らない。"
@@ -796,6 +828,286 @@
       "boundary": "R67 true carrier未形成、非空dependency/複数range等の既存未閉包、全caller/全L8/全fn3、(a)=0、Issue完了は認定しない。",
       "state": "root_verified_R5_corrections_independent_review_pending",
       "authority_effect": "none"
+    }
+  },
+  "fn0_fn1_fn6_module_split_verification": {
+    "id": "HELIXBRAIN-L7-032-FN0-FN1-FN6-MODULE-SPLIT",
+    "request_id": "WR-CLAUDE-BRAIN032-FN016-MODULE-SPLIT-3547-20261027-17",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn0_fn1_fn6_module_split"
+    },
+    "source_main": "a665d21ab452c014d314d954b5edfe9478c11d7c",
+    "authority_effect": "none",
+    "legacy_sources": [
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/config/requirements-binding-policy.ts",
+        "lines": [
+          4,
+          5
+        ],
+        "sha256": "94f00da588190939a3a06df2b120731c0b5a6edd30d6ca430a5da4b23e0750ea",
+        "keep": "splitModuleLines: 700, splitModuleExports: 24 の分割候補閾値。",
+        "change": "旧TS state-db runtimeは実行せず、Python unit module分割の非空行上限（700非空行未満）として再利用。",
+        "reason": "959非空行のdescriptor_definitions.pyと1021非空行のdependencies_handoff.pyを700非空行未満の責務別moduleへ分割するため。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/src/state-db/refactor-candidates.ts",
+        "lines": [
+          293,
+          294
+        ],
+        "sha256": "1f878c2ae0e96e7a44346579baf7bcb7dede758414a7e947a2dcd4805a9633f3",
+        "keep": "nonBlankLineCount >= policy.thresholds.splitModuleLines（非空行カウントによる700行以上の分割候補判定）。",
+        "change": "旧DB候補登録は行わず、grep -cv '^\\s*$' による非空行数確認とL6/L7設計・検証記録へ適用。",
+        "reason": "非空行700未満の判定基準を旧HELIXの定義と一致させるため。"
+      },
+      {
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+        "lines": [
+          29,
+          29
+        ],
+        "sha256": "4652f8520c4db9069cbfee11e0cb318ee49ec0b6b574eb94a51994fb8dbc215e",
+        "keep": "1 behavior contract + 1 responsibility owner の原子sliceと責務分離。",
+        "change": "descriptor_definitions.pyを公開関数委譲中心のfacadeとし、fn0（supply_validation.py）、fn1（definition_comparison.py）、fn6（dependencies_handoff.py）、B02/F09依存意味port reader（dependencies_handoff_ports.py）へ分離し、fn3と同じ関数内遅延委譲方式を採用。",
+        "reason": "関数本体・定数・例外文言・返却の意味を変えずに1責務ownerずつ分離し、並行するfn4/fn7委譲追加との衝突面を最小化するため。"
+      }
+    ],
+    "module_mapping_table": [
+      {
+        "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+        "role": "公開関数遅延委譲facade・共通helper再export・F03 Comparison変換adapter",
+        "pre_split_nonblank_lines": 959,
+        "post_split_nonblank_lines": 205,
+        "post_split_total_lines": 249,
+        "delegated_public_functions": [
+          {
+            "symbol": "validate_supply_input",
+            "target_module": "supply_validation.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "compare_descriptor_definitions",
+            "target_module": "definition_comparison.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "_evaluate_field_values_detail",
+            "target_module": "values_applicability.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "compare_dependencies_and_handoff",
+            "target_module": "dependencies_handoff.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "compare_identity_versions_and_trace",
+            "target_module": "identity_trace.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "compare_knowledge_promotion",
+            "target_module": "knowledge_promotion.py",
+            "delegation": "lazy_local_import"
+          }
+        ],
+        "retained_symbols": [
+          "_F03_AXIS_MEMBERS",
+          "_F03_FINDING_MEMBERS",
+          "_copy_axis_to_f03",
+          "_copy_finding_to_f03",
+          "_copy_axis_from_f03",
+          "_copy_finding_from_f03",
+          "_write_f03b_comparison_from_existing_comparison",
+          "_invalid_axis",
+          "_invalid_finding",
+          "_write_existing_comparison_from_f03",
+          "_same_claim_target",
+          "_n03_rule",
+          "compare_values_and_applicability"
+        ]
+      },
+      {
+        "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
+        "role": "fn0 validate_supply_input 本体および共通JSON/Ref/Binding/Source/Qualification検証・比較helper",
+        "pre_split_nonblank_lines": 0,
+        "post_split_nonblank_lines": 446,
+        "post_split_total_lines": 507,
+        "moved_from": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+        "moved_symbols": [
+          "_INPUT_ARRAYS",
+          "_BINDING_REFS",
+          "_APPROVED_KINDS",
+          "_SUPPLY_INPUT_MEMBERS",
+          "_BACKFLOW_ID",
+          "_unsupported",
+          "_tag_unsupported",
+          "_json_equal",
+          "_is_json_value",
+          "_ref_shape_ok",
+          "_binding_shape_ok",
+          "_wire_ref_shape_ok",
+          "_wire_binding_shape_ok",
+          "_source_shape_ok",
+          "_qualification_shape_ok",
+          "_auxiliary_array_record_issue",
+          "_ref_same",
+          "_ref_identity_same",
+          "_binding_same",
+          "_ordered",
+          "_reject_non_json_constant",
+          "_unique_object_pairs",
+          "_copy_refs_in_source_order",
+          "_input_issue",
+          "_source_qualification_ok",
+          "validate_supply_input",
+          "_source_usable",
+          "_owner_body_equal",
+          "_comparison",
+          "_presence"
+        ]
+      },
+      {
+        "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py",
+        "role": "fn1 compare_descriptor_definitions 本体およびF01/F02定義・owner帰属・明示NA比較helper",
+        "pre_split_nonblank_lines": 0,
+        "post_split_nonblank_lines": 374,
+        "post_split_total_lines": 403,
+        "moved_from": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+        "moved_symbols": [
+          "_attribution_axis",
+          "_meaning_resolution",
+          "_unknown_axis",
+          "_fn1_scope_guard",
+          "_component_key",
+          "_public_axis_sort_key",
+          "compare_descriptor_definitions"
+        ]
+      },
+      {
+        "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py",
+        "role": "fn6 compare_dependencies_and_handoff 本体・B02/F09スライス評価helper・DP-1 port reader遅延委譲",
+        "pre_split_nonblank_lines": 1021,
+        "post_split_nonblank_lines": 485,
+        "post_split_total_lines": 538,
+        "delegated_port_readers": [
+          {
+            "symbol": "read_claim_intent",
+            "target_module": "dependencies_handoff_ports.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "read_receipt_claim_origin",
+            "target_module": "dependencies_handoff_ports.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "read_os_obligation_incoming",
+            "target_module": "dependencies_handoff_ports.py",
+            "delegation": "lazy_local_import"
+          },
+          {
+            "symbol": "read_canonical_dependency_body",
+            "target_module": "dependencies_handoff_ports.py",
+            "delegation": "lazy_local_import"
+          }
+        ],
+        "retained_symbols": [
+          "_validate_fn6_slice_dependencies",
+          "_is_os_incoming_content",
+          "_is_receipt_carrier_content",
+          "_assess_b02_claim_basis",
+          "_verify_na_claim_subject_applicability_unknown",
+          "compare_dependencies_and_handoff"
+        ]
+      },
+      {
+        "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_ports.py",
+        "role": "B02/F09依存意味port reader（DP-1: read_claim_intent / read_receipt_claim_origin / read_os_obligation_incoming / read_canonical_dependency_body）とRFC6901/trace/frame helper",
+        "pre_split_nonblank_lines": 0,
+        "post_split_nonblank_lines": 601,
+        "post_split_total_lines": 667,
+        "moved_from": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py",
+        "moved_symbols": [
+          "_BACKFLOW_ID",
+          "_REQUIRED_ALWAYS_IDENTITIES",
+          "_TRACE_MEMBER_ORDER",
+          "_RECEIPT_ORIGIN_MEMBERS",
+          "_OS_INCOMING_MEMBERS",
+          "_OS_ORIGINAL_BINDING_MEMBERS",
+          "_OS_ORIGINAL_SCOPE_MEMBERS",
+          "_DP1_ASSESSMENT_MEMBER_ORDER",
+          "_unsupported",
+          "_ref_frame_supplied_ok",
+          "_presence_field",
+          "_port_presence_shape_ok",
+          "_os_original_scope_shape_ok",
+          "_os_original_binding_shape_ok",
+          "_os_incoming_shape_ok",
+          "_copy_refs_in_source_order",
+          "_resolve_rfc6901_pointer",
+          "_serialize_trace",
+          "read_claim_intent",
+          "_binding_frame_supplied_ok",
+          "read_receipt_claim_origin",
+          "_scope_string_same",
+          "read_os_obligation_incoming",
+          "read_canonical_dependency_body"
+        ]
+      }
+    ],
+    "unit_all_modules_nonblank_lines": {
+      "definition_comparison.py": 374,
+      "dependencies_handoff.py": 485,
+      "dependencies_handoff_ports.py": 601,
+      "descriptor_definitions.py": 205,
+      "identity_trace.py": 139,
+      "identity_trace_actual.py": 265,
+      "identity_trace_bilateral.py": 551,
+      "identity_trace_claims.py": 252,
+      "identity_trace_projection.py": 125,
+      "identity_trace_reader.py": 289,
+      "identity_trace_support.py": 216,
+      "knowledge_promotion.py": 512,
+      "supply_validation.py": 446,
+      "values_applicability.py": 492,
+      "values_applicability_reads.py": 646,
+      "values_applicability_rows.py": 601
+    },
+    "ast_and_semantics_preservation": "分割元 a665d21ab452c014d314d954b5edfe9478c11d7c の descriptor_definitions.py（54 top-level定義）と dependencies_handoff.py（30 top-level定義）に対し、移動先・残留の全78定義で ast.dump 完全一致を確認。残り6定義（descriptor_definitions.py の validate_supply_input / compare_descriptor_definitions、dependencies_handoff.py の read_claim_intent / read_receipt_claim_origin / read_os_obligation_incoming / read_canonical_dependency_body）はfn3と同一の関数内遅延import+returnのみ。",
+    "test_immutability": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests 配下の全testファイル無変更（git diff 0行）。",
+    "pre_and_post_test_results": {
+      "command": "python3 -B scaffold/tools/bounded_exec.py --timeout-ms 60000 --max-output-bytes 65536 --cwd /home/tenni/.helix-worktrees/agy-3547-fn016-split -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -v",
+      "pre_split": {
+        "base_sha": "a665d21ab452c014d314d954b5edfe9478c11d7c",
+        "total_tests": 198,
+        "passed": 196,
+        "failures": 0,
+        "errors": 2,
+        "known_f02_errors": [
+          "test_neg02_cross_pattern_field_substitution (test_descriptor_definitions.TestDescriptorDefinitions)",
+          "test_neg21_required_field_missing_without_substitution (test_descriptor_definitions.TestDescriptorDefinitions)"
+        ],
+        "summary": "Ran 198 tests in 14.654s — FAILED (errors=2)",
+        "reaped": true,
+        "timed_out": false
+      },
+      "post_split": {
+        "total_tests": 198,
+        "passed": 196,
+        "failures": 0,
+        "errors": 2,
+        "known_f02_errors": [
+          "test_neg02_cross_pattern_field_substitution (test_descriptor_definitions.TestDescriptorDefinitions)",
+          "test_neg21_required_field_missing_without_substitution (test_descriptor_definitions.TestDescriptorDefinitions)"
+        ],
+        "summary": "Ran 198 tests in 15.494s — FAILED (errors=2)",
+        "reaped": true,
+        "timed_out": false
+      },
+      "result_match": true
     }
   },
   "fn4_oracle_verification": {
