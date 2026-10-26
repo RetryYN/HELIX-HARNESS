@@ -82,6 +82,27 @@ class TestIdentityPublicFormationGuards(unittest.TestCase):
         self.assertEqual(raw, before)
         self.assertEqual(validated["input"], before)
 
+    def test_unresolved_source_scope_is_not_a_known_missing_semantic_source(self):
+        # Ref照合に必要なscopeが不明なら、source objectの不存在を証明できない。
+        # source_unresolved等の局所unknown又は範囲外停止で保持し、missingへ丸めない。
+        raw = trace_input("positive")
+        fact = raw["descriptors"][0]["facts"][0]
+        fact["source_ref"]["scope"] = None
+        validated, before = self._validated(raw)
+        validated_before = copy.deepcopy(validated)
+        try:
+            result = compare_identity_versions_and_trace({"validated": validated})
+        except NotImplementedError as exc:
+            self.assertIn("F04/N01/unclosed/fact_source_ref_unresolved", str(exc))
+            self.assertIn("HELIXBRAIN-L6-032-FN3-IDENTITY", str(exc))
+        else:
+            self.assertFalse(any(r["code"] == "source_missing" for r in result["findings"]))
+            row = next(r for r in result["axes"]
+                       if r["axis"] == "descriptor.trace" and r["subject_ref"] == fact["ref"])
+            self.assertEqual(row["state"], "unknown")
+        self.assertEqual(raw, before)
+        self.assertEqual(validated, validated_before)
+
 
 if __name__ == "__main__":
     unittest.main()
