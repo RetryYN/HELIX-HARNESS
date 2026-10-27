@@ -202,8 +202,8 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
     required = raw["required_descriptor_kinds"]
     if not isinstance(required, list) or any(kind not in _APPROVED_KINDS for kind in required):
         raise _unsupported("F02", "required_kinds_shape_or_value", "required_descriptor_kinds is outside the fixed descriptor domain")
-    if len(required) != len(set(required)) or set(required) != set(_APPROVED_KINDS):
-        raise _unsupported("F02", "required_kinds_outside_frozen_path", "this fn1 path requires one member of each fixed descriptor meaning")
+    if len(required) != len(set(required)):
+        raise _unsupported("F02", "required_kinds_outside_frozen_path", "required_descriptor_kinds contains duplicate descriptor kinds")
     if "descriptors" not in raw or not isinstance(raw["descriptors"], list):
         raise _unsupported("F02", "descriptor_slots_absent_or_wrong_type", "descriptor slots are not supplied as an array")
     slots = raw["descriptors"]
@@ -252,8 +252,6 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
             raise _unsupported("F02", "definition_applicability_ref_shape", f"descriptors[{index}].definition_applicability_ref is not a Ref or null")
         slots_by_kind.setdefault(kind, []).append(slot)
 
-    if set(slots_by_kind) != set(required):
-        raise _unsupported("F02", "required_kind_slot_mismatch", "required descriptor kinds and supplied slot kinds differ")
     duplicated = [kind for kind, kind_slots in slots_by_kind.items() if len(kind_slots) != 1]
     if duplicated:
         raise _unsupported("F02", "descriptor_kind_duplicate_slot", f"multiple slots for fixed kind(s): {', '.join(duplicated)}")
@@ -281,7 +279,7 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
                 raise _unsupported("F01", "relation_endpoint_missing", f"related relations[{index}] lacks an endpoint")
             if relation["direction"] is None or relation["direction"] == "":
                 raise _unsupported("F01", "relation_direction_missing", f"related relations[{index}] lacks direction")
-    if related_relation_count == 0:
+    if "relation" in slots_by_kind and related_relation_count == 0:
         raise _unsupported("F01", "related_relation_unresolved", "the fixed relation descriptor has no same-Binding relation occurrence")
 
     # Foreign record meanings are not evaluated here. fn0 already checks the
@@ -322,9 +320,11 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
     if "claims" not in raw or not isinstance(raw["claims"], list):
         raise _unsupported("F01", "claim_array_absent_or_wrong_type", "claims is absent or not an array")
     for index, claim in enumerate(raw["claims"]):
-        if isinstance(claim, dict) and _binding_same(claim.get("binding"), binding) and any(
-            _ref_same(claim.get("subject_ref"), fact_ref) for fact_ref in fact_refs
-        ):
+        if not isinstance(claim, dict) or not _binding_same(claim.get("binding"), binding):
+            continue
+        if claim.get("kind") == "harness_layer_pair_override":
+            raise _unsupported("F01", "harness_claim_unimplemented", f"claims[{index}] is a harness_layer_pair_override claim")
+        if claim.get("kind") != "fill_definition" and any(_ref_same(claim.get("subject_ref"), fact_ref) for fact_ref in fact_refs):
             raise _unsupported("F01", "descriptor_claim_unimplemented", f"claims[{index}] participates in descriptor meaning comparison")
 
 
@@ -335,27 +335,243 @@ def _component_key(present: bool, value: Any = None) -> tuple[int, str]:
     return (1, _ordered(value)) if present else (0, "")
 
 
-def _public_axis_sort_key(axis: dict[str, Any], slot: dict[str, Any], source_refs: list[Any], source_refs_present: bool, ordinal: int) -> tuple[Any, ...]:
-    binding = axis.get("binding")
-    binding = binding if isinstance(binding, dict) else {}
-    template = binding.get("template_ref")
+def _origin_prefix_key(binding: Any, slot: dict[str, Any], source_refs: list[Any], source_refs_present: bool) -> tuple[Any, ...]:
+    binding_obj = binding if isinstance(binding, dict) else {}
+    template = binding_obj.get("template_ref")
     template = template if isinstance(template, dict) else {}
-    knowledge = binding.get("knowledge_ref")
+    knowledge = binding_obj.get("knowledge_ref")
     knowledge = knowledge if isinstance(knowledge, dict) else {}
     sort_refs = _copy_refs_in_source_order([ref for ref in source_refs if ref is not None])
     sort_refs = sorted(sort_refs, key=_ordered)  # L5 sorted_values retains repeated refs.
     slot_present = "slot_identity" in slot
     return (
-        _component_key(isinstance(binding.get("template_ref"), dict) and "identity" in template, template.get("identity")),
-        _component_key(isinstance(binding.get("template_ref"), dict) and "revision" in template, template.get("revision")),
-        _component_key(isinstance(binding.get("knowledge_ref"), dict) and "identity" in knowledge, knowledge.get("identity")),
-        _component_key(isinstance(binding.get("knowledge_ref"), dict) and "revision" in knowledge, knowledge.get("revision")),
+        _component_key(isinstance(binding_obj.get("template_ref"), dict) and "identity" in template, template.get("identity")),
+        _component_key(isinstance(binding_obj.get("template_ref"), dict) and "revision" in template, template.get("revision")),
+        _component_key(isinstance(binding_obj.get("knowledge_ref"), dict) and "identity" in knowledge, knowledge.get("identity")),
+        _component_key(isinstance(binding_obj.get("knowledge_ref"), dict) and "revision" in knowledge, knowledge.get("revision")),
         _component_key(slot_present, slot.get("slot_identity")),
         _component_key(source_refs_present, sort_refs if source_refs_present else None),
+    )
+
+
+def _public_axis_sort_key(axis: dict[str, Any], slot: dict[str, Any], source_refs: list[Any], source_refs_present: bool, ordinal: int) -> tuple[Any, ...]:
+    return (
+        *_origin_prefix_key(axis.get("binding"), slot, source_refs, source_refs_present),
         _component_key("axis" in axis, axis.get("axis")),
         ordinal,
     )
 
+
+def _public_finding_sort_key(finding: dict[str, Any], slot: dict[str, Any], source_refs: list[Any], source_refs_present: bool, ordinal: int) -> tuple[Any, ...]:
+    return (
+        *_origin_prefix_key(finding.get("binding"), slot, source_refs, source_refs_present),
+        _component_key("axis" in finding, finding.get("axis")),
+        _component_key("rule_ref" in finding, finding.get("rule_ref")),
+        ordinal,
+    )
+
+
+def _resolve_fill_definition_target(
+    validated: dict[str, Any],
+    binding: dict[str, Any],
+    subject_ref: Any,
+    slots: list[dict[str, Any]],
+) -> list[dict[str, Any]] | None:
+    if not _ref_shape_ok(subject_ref):
+        return None
+    raw = validated["input"]
+    knowledge_ref = binding["knowledge_ref"]
+    provenance_refs = [
+        prov_ref
+        for record in raw["knowledge_records"]
+        if isinstance(record, dict) and _ref_same(record.get("ref"), knowledge_ref) and isinstance(record.get("provenance_refs"), list)
+        for prov_ref in record["provenance_refs"]
+        if _ref_shape_ok(prov_ref)
+    ]
+    matches: list[dict[str, Any]] = []
+    for source in raw["sources"]:
+        if not isinstance(source, dict) or source.get("role") != "semantic_json":
+            continue
+        s_ref = source.get("ref")
+        if not _source_usable(validated, s_ref) or not any(_ref_same(p_ref, s_ref) for p_ref in provenance_refs):
+            continue
+        content = source.get("content")
+        if not isinstance(content, dict) or not _binding_same(content.get("binding"), binding):
+            continue
+        targets = content.get("descriptor_targets")
+        if not isinstance(targets, list):
+            continue
+        for target in targets:
+            if not isinstance(target, dict) or not _ref_shape_ok(target.get("target_ref")):
+                continue
+            if not _ref_same(target["target_ref"], subject_ref):
+                continue
+            slot_id = target.get("slot_identity")
+            kind = target.get("descriptor_kind")
+            if not isinstance(slot_id, str) or not slot_id or kind not in _APPROVED_KINDS:
+                return None
+            if any(s.get("slot_identity") == slot_id and s.get("descriptor_kind") != kind for s in slots):
+                return None
+            matches.append({
+                "target_ref": copy.deepcopy(target["target_ref"]),
+                "slot_identity": slot_id,
+                "descriptor_kind": kind,
+                "source_refs": [copy.deepcopy(s_ref)],
+            })
+    if not matches or len({(m["slot_identity"], m["descriptor_kind"]) for m in matches}) != 1:
+        return None
+    return matches
+
+
+def _evaluate_replacement_claims(
+    validated: dict[str, Any],
+    binding: dict[str, Any],
+    missing_kinds: set[str],
+    emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]],
+    finding_emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]],
+) -> None:
+    raw = validated["input"]
+    slots = raw["descriptors"]
+    cur_template_id = binding["template_ref"].get("identity")
+    for claim in raw["claims"]:
+        if not isinstance(claim, dict) or claim.get("kind") != "fill_definition" or not _binding_same(claim.get("binding"), binding):
+            continue
+        if "proposed_value" not in claim:
+            continue
+        if "basis_refs" not in claim:
+            basis_refs: list[Any] = []
+        else:
+            basis_refs_raw = claim.get("basis_refs")
+            if not isinstance(basis_refs_raw, list):
+                continue
+            basis_refs = basis_refs_raw
+        target_matches = _resolve_fill_definition_target(validated, binding, claim.get("subject_ref"), slots)
+        if not target_matches:
+            continue
+        target_slot_id = target_matches[0]["slot_identity"]
+        target_kind = target_matches[0]["descriptor_kind"]
+        if target_kind not in ("required section", "required field") or target_kind not in missing_kinds:
+            continue
+        slot_meta = {"slot_identity": target_slot_id}
+        axis_name = f"{target_kind}.definition"
+        special_source_refs: list[Any] = []
+        supports: list[tuple[dict[str, Any], dict[str, Any]]] = []
+        unresolved_basis = len(basis_refs) == 0
+        for basis_ref in basis_refs:
+            sem_sources = [
+                s for s in raw["sources"]
+                if isinstance(s, dict) and s.get("role") == "semantic_json" and _ref_same(s.get("ref"), basis_ref)
+            ]
+            if not sem_sources:
+                unresolved_basis = True
+                continue
+            for b_source in sem_sources:
+                b_ref = b_source.get("ref")
+                if not _source_usable(validated, b_ref):
+                    unresolved_basis = True
+                    continue
+                content = b_source.get("content")
+                uses = content.get("replacement_basis_uses") if isinstance(content, dict) else None
+                groups = content.get("descriptor_facts") if isinstance(content, dict) else None
+                if not isinstance(uses, list) or not isinstance(groups, list):
+                    unresolved_basis = True
+                    continue
+                matched_for_source = False
+                for use in uses:
+                    special_source_refs.append(b_ref)
+                    if not isinstance(use, dict) or set(use) != {"claim", "basis_ref", "basis_binding", "slot_identity", "descriptor_kind", "fact"}:
+                        continue
+                    b_binding = use.get("basis_binding")
+                    u_fact = use.get("fact")
+                    if (
+                        not _json_equal(use.get("claim"), claim)
+                        or not _ref_same(use.get("basis_ref"), basis_ref)
+                        or not _ref_same(use.get("basis_ref"), b_ref)
+                        or not _binding_shape_ok(b_binding)
+                        or not _binding_same(b_binding, content.get("binding"))
+                        or not isinstance(use.get("slot_identity"), str)
+                        or not use["slot_identity"]
+                        or use.get("descriptor_kind") not in _APPROVED_KINDS
+                        or not isinstance(u_fact, dict)
+                        or not _binding_same(u_fact.get("binding"), b_binding)
+                    ):
+                        continue
+                    fact_matched = any(
+                        isinstance(grp, dict)
+                        and grp.get("slot_identity") == use["slot_identity"]
+                        and grp.get("descriptor_kind") == use["descriptor_kind"]
+                        and isinstance(grp.get("facts"), list)
+                        and any(
+                            isinstance(orig, dict)
+                            and _ref_same(orig.get("ref"), u_fact.get("ref"))
+                            and _owner_body_equal(orig, u_fact)
+                            for orig in grp["facts"]
+                        )
+                        for grp in groups
+                    )
+                    if fact_matched:
+                        supports.append((b_source, use))
+                        matched_for_source = True
+                if not matched_for_source:
+                    unresolved_basis = True
+
+        emitted_cross = False
+        for b_source, use in supports:
+            basis_template_id = use["basis_binding"]["template_ref"].get("identity")
+            if use["descriptor_kind"] == "required input" and cur_template_id != basis_template_id:
+                emitted_cross = True
+                if target_kind == "required section":
+                    code = "cross_pattern_section_substitution"
+                    reason = "当該required sectionの定義不足を別Patternのrequired inputで補うことはできない。"
+                else:
+                    code = "cross_pattern_field_substitution"
+                    reason = "当該required fieldの定義不足を別Patternのrequired inputで補うことはできない。"
+                ref_col: list[Any] = [r for r in basis_refs if isinstance(r, dict)]
+                for m in target_matches:
+                    ref_col.append(m["target_ref"])
+                    ref_col.extend(m["source_refs"])
+                ref_col.extend([
+                    b_source.get("ref"),
+                    use.get("basis_ref"),
+                    use["fact"].get("ref"),
+                    use["fact"].get("source_ref"),
+                ])
+                orig_refs = _copy_refs_in_source_order([r for r in ref_col if isinstance(r, dict)])
+                emissions.append(({
+                    "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "original_refs": orig_refs,
+                    "reason": reason,
+                    "backflow_owner": "knowledge_owner",
+                }, slot_meta, special_source_refs, True))
+                finding_emissions.append(({
+                    "code": code,
+                    "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
+                    "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "source_refs": copy.deepcopy(orig_refs),
+                    "reason": reason,
+                    "backflow_owner": "knowledge_owner",
+                }, slot_meta, special_source_refs, True))
+        if not emitted_cross and unresolved_basis:
+            ref_col = [r for r in basis_refs if isinstance(r, dict)]
+            for m in target_matches:
+                ref_col.append(m["target_ref"])
+                ref_col.extend(m["source_refs"])
+            orig_refs = _copy_refs_in_source_order([r for r in ref_col if isinstance(r, dict)])
+            emissions.append(({
+                "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                "binding": copy.deepcopy(binding),
+                "axis": axis_name,
+                "state": "unknown",
+                "original_refs": orig_refs,
+                "reason": "当該原targetの不足と置換根拠の原分類・template対応を解決できない。",
+                "backflow_owner": "knowledge_owner",
+            }, slot_meta, special_source_refs, True))
 
 
 @_tag_unsupported("F01/F02")
@@ -373,8 +589,11 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
         raise NotImplementedError("descriptor array absent/null/type branch: Backflow HELIXBRAIN-L6-032-N03-PATH")
     _fn1_scope_guard(raw, binding)
     emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
+    finding_emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
     owner = binding["knowledge_ref"]["owner"]
+    supplied_kinds: set[str] = set()
     for slot in descriptors:
+        supplied_kinds.add(slot["descriptor_kind"])
         for fact in slot["facts"]:
             cause, refs, reason, definition_sources = _meaning_resolution(validated, slot, fact)
             definition_axis = _unknown_axis(
@@ -394,10 +613,47 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
             ), slot, [], True))
         else:
             raise NotImplementedError("definition applicability supplied-ref branch: Backflow HELIXBRAIN-L6-032-N03-PATH")
+
+    required_set = set(raw["required_descriptor_kinds"])
+    missing_kinds: set[str] = set()
+    slot_missing_reason = "必要なdescriptor slotが当該原Bindingに供給されていない。"
+    for kind_idx, kind_name in enumerate(_APPROVED_KINDS, start=1):
+        if kind_name in required_set and kind_name not in supplied_kinds:
+            missing_kinds.add(kind_name)
+            code = f"descriptor_{kind_idx:02d}_missing"
+            axis_name = f"{kind_name}.definition"
+            emissions.append(({
+                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
+                "binding": copy.deepcopy(binding),
+                "axis": axis_name,
+                "state": "missing",
+                "original_refs": [],
+                "reason": slot_missing_reason,
+                "backflow_owner": "knowledge_owner",
+            }, {}, [], True))
+            finding_emissions.append(({
+                "code": code,
+                "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
+                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
+                "binding": copy.deepcopy(binding),
+                "axis": axis_name,
+                "state": "missing",
+                "source_refs": [],
+                "reason": slot_missing_reason,
+                "backflow_owner": "knowledge_owner",
+            }, {}, [], True))
+
+    _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
+
     decorated = [
         (axis, _public_axis_sort_key(axis, slot, source_refs, source_refs_present, ordinal))
         for ordinal, (axis, slot, source_refs, source_refs_present) in enumerate(emissions)
     ]
     axes = [axis for axis, _ in sorted(decorated, key=lambda pair: pair[1])]
-    return _comparison(axes, [], "compare_descriptor_definitions", binding)
+    decorated_findings = [
+        (finding, _public_finding_sort_key(finding, slot, source_refs, source_refs_present, ordinal))
+        for ordinal, (finding, slot, source_refs, source_refs_present) in enumerate(finding_emissions)
+    ]
+    findings = [finding for finding, _ in sorted(decorated_findings, key=lambda pair: pair[1])]
+    return _comparison(axes, findings, "compare_descriptor_definitions", binding)
 
