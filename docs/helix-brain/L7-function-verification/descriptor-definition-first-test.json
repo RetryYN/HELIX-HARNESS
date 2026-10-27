@@ -2710,6 +2710,13 @@
           "test_no_slot_assessment_keeps_original_binding_and_routes_by_actual_basis"
         ],
         "sha256": "e92694b64d692409803458534d358eb90b41976954438564289c7c6ab5ff396d"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_use_basis_occurrences.py",
+        "test_revision": "789ca361c",
+        "methods": [
+          "test_repeated_basis_retains_all_equal_physical_sources_in_original_order"
+        ]
       }
     ],
     "independent_expectations": [
@@ -2717,7 +2724,8 @@
       "L5 closed14field、原Claim順、related/primary/missing/undefined partitionと全原index列を保持する。",
       "同owner addressでも入力slot不在で別実slotがある場合はunmatchedとし、他slot状態を借りない。optional Ref差分で2matchでも同原assessment出現indexを増殖しない。",
       "basis省略/空/semantic/reference_only/未join/反復と既存資格不成立を別に保持する。primary missing/meaning_undefined支持が無ければsource_unresolved assessmentがあってもrouteはnone。",
-      "no-slot原assessmentとBindingを保持し、reference_only_only→rule87、明示空→none、semantic又はunresolved→unresolvedを独立期待から照合する。FN6 tuple/prefixの期待は含めない。"
+      "no-slot原assessmentとBindingを保持し、reference_only_only→rule87、明示空→none、semantic又はunresolved→unresolvedを独立期待から照合する。FN6 tuple/prefixの期待は含めない。",
+      "consumer.basis_resolution/join・basis_class_precedence/preservationに従い、一つのbasis Refに対応する全物理source indexを保存する。basis自体が反復した場合も各basis→source順で[1,5,1,5]を保持し、first-match又はdedupをしない。"
     ],
     "tdd_evidence": [
       {
@@ -2755,11 +2763,42 @@
         "old_expected_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
         "reaped": true,
         "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-g2b-unit-green-R1.json",
+        "source_test_revision": "d804ce93c",
+        "methods": 363,
+        "duration_ms": 22216,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-g2b-basis-occurrences-green.json",
+        "test_revision": "789ca361c",
+        "methods": 1,
+        "duration_ms": 143,
+        "result": "PASS;既存正実装に対する追加回帰であり新たなsource Red/修正とは呼ばない。"
+      },
+      {
+        "artifact": "root-wr33-g2b-basis-occurrences-mutation.json",
+        "test_revision": "789ca361c",
+        "duration_ms": 208,
+        "result": "first physical source only変異をassertionKILLED/errors0/importsetup0/sourceSHA不変;temp overlayのみ"
+      },
+      {
+        "artifact": "root-wr33-g2b-unit-green-R2.json",
+        "source_test_revision": "789ca361c",
+        "methods": 364,
+        "duration_ms": 22029,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
       }
     ],
     "transitional_stop_boundary": {
       "prior_g2a_adjustment": "統制comment 6451004949に基づき、既存F05 negativeの暫定stop literalはG2aのdescriptor_claim_usesへ更新済み。元missing/presence/same-call stopのassertionは維持されている。",
-      "g2b_after_implementation": "全363methodsで旧F05二件の停止literal差だけFAIL22647msを観測した。元missing/入力保持/samecall停止assertionは通過、実停止は次のoracle_claim_ports。旧testsは未変更。G3配属の最終更新を維持し、この2件の暫定literal変更だけをG2bへ移す範囲調整を統制へ求める。",
+      "g2b_after_implementation": "初回363methodsで旧F05二件の文字列差だけFAILを観測し、統制6451498792の決定とpre-edit commit後にliteralのみ更新した。元missing/入力保持/samecall停止と既存source guardを保持。",
       "g2b_scope_decision": {
         "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3748#issuecomment-6451498792",
         "response": "root-wr33-g2b-3748-scope-response-R1.json",
@@ -2777,18 +2816,32 @@
         },
         "new_stop": "F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
         "pre_edit_evidence": "root-wr33-g2b-unit-initial.json:363methods361PASS2oldF05stopLiteralFAIL22647ms; tests unchanged at8df06d471",
-        "state": "範囲決定受信inspect/check/ACK済み、旧2tests未変更。このL7記録を先にcommitする。",
-        "authority_effect": "none"
+        "state": "変更前L7commit50097c73b→literal一か所だけ変更commitd804ce93c→363PASS22216ms。旧functions/assertions全値は不変。G3で接続後契約へ再更新する。",
+        "authority_effect": "none",
+        "pre_edit_record_commit": "50097c73b",
+        "test_update_commit": "d804ce93c"
       }
     },
     "pending_evidence": [
-      "G2bの暫定F05停止literal変更は統制決定待ち、旧2tests未変更。",
-      "全unitGreen・独立review・Ready・明示merge・root read-afterは未成立。"
+      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
     ],
     "limits": [
       "現実same-call walkから非fill negative intentとrule93 positiveへは今回到達しない。fake e/read/frame、空成功の代用で埋めない。",
       "初期Redと局所17Greenは全FN1、G3/G5、L8受入、OS登録、WR33完了の証拠ではない。"
     ],
-    "completion_boundary": "G2b局所17methods Green、対象unit363methodsは2旧F05停止期待FAILでGreen未成立。独立review/受入/登録/WR33完了を生成しない。"
+    "completion_boundary": "G2b局所TDDと対象unit364methods Greenを記録する。独立review・merge・L8受入・OS登録・G3/G5/WR33全体完了は未成立。",
+    "static_acceptance": {
+      "artifact": "root-wr33-g2b-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "prior_document_values_preserved": true,
+      "pairhash_matches": true,
+      "frozen_test_files_unchanged": 4,
+      "only_source_change": "descriptor_target_frame.py",
+      "port_or_FN1_qualification_recomputation": false,
+      "use_closed_fields_equal_L5": 14,
+      "F05_only_transitional_literal_changed": true,
+      "source_max_nonblank": 646,
+      "consumer_nonblank": 269
+    }
   }
 }
