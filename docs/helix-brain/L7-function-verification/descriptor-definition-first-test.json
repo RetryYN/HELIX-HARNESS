@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "1d14a55dda92a04cd80675459de8b5c3b4553450a82098e971fe754a2d0ff6e1",
+    "sha256": "4f1a0f22e629faf5acbf321aa350f5437c63851f595c1367a532e8ba19638f7c",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -1910,6 +1910,132 @@
       "duration_ms": 18411,
       "reaped": true,
       "output_truncated": false
+    }
+  },
+  "fn1_fn6_partial_subject_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-FN6-PARTIAL-SUBJECT",
+    "design_ref": "HELIXBRAIN-L6-032-FN1-FN6-PARTIAL-SUBJECT",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "source_revision": "0fc40e685efddeafd7fdb05ab1e94e90636f3195",
+    "test_sources": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_partial_subject_public_pipeline.py",
+        "methods": [
+          "test_actual_slots_with_partial_root_binding_keep_existing_fn1_stop",
+          "test_fn6_rejects_changed_input_binding_in_real_fn1_comparison",
+          "test_no_subject_ref_keeps_fn6_handoff_without_typed_dependency_rows",
+          "test_required_missing_kind_uses_template_subject_or_remains_unformattable",
+          "test_template_ref_fallback_projects_missing_dependencies_and_preserves_handoff"
+        ],
+        "connection": "5 methodsのうちzero profile2件は実FN0→公開FN1→公開FN6、mismatch1件は実FN1返却の複写への故障注入、実slot停止とmissing-kindの2件は実FN0→公開FN1で検証する。"
+      }
+    ],
+    "implementation_revisions": [
+      {
+        "revision": "b092411310c18f2ae09f6309b3f728b038d548a9",
+        "change": "owner/template参照を実評価箇所へ遅延し、dependencies absentの原partial BindingのJSON等値をContext guardへ追加する。"
+      },
+      {
+        "revision": "e445a14131246d8c62c9fbaf3ecfd6806928b784",
+        "change": "元required missing人口を保持し、no-slot診断subjectの既存knowledge→template fallbackを形成する。"
+      }
+    ],
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g4b-public-pipeline-red.json",
+        "phase": "initial frozen public-pipeline Red",
+        "methods": 3,
+        "passed": 1,
+        "errors": 2,
+        "duration_ms": 192,
+        "status": 1,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "初期3methods中1件は既存停止の互換control、2件はFN1の無条件knowledge_ref参照でKeyError。",
+        "sha256": "090e9a8099c5e1557abf03cf580ce5ccf26e9326b7847c3bcc2c0095cf81c15b"
+      },
+      {
+        "revision": "a1ecff1433e0144d18ae26367cd2d9e9a2ed937a",
+        "phase": "added FN6 Comparison input_binding mismatch control",
+        "interpretation": "実FN1返却の複写へrevisionだけを変更し、既存mismatch拒否と元snapshot不変を検査する。"
+      },
+      {
+        "artifact": "root-wr33-g4b-missing-kind-red.json",
+        "phase": "expanded frozen Red before source correction",
+        "methods": 5,
+        "passed": 4,
+        "errors": 2,
+        "duration_ms": 143,
+        "status": 1,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "5methods中4件PASS、追加methodの2subtestでmissing-slot subjectのknowledge_ref参照がKeyError。",
+        "sha256": "978c7df2e001f381e24294d5749b5e4b310d1538d2be6f8156cd20ba4c133856"
+      },
+      {
+        "revision": "e445a14131246d8c62c9fbaf3ecfd6806928b784",
+        "phase": "source correction",
+        "interpretation": "追加missing-slot診断のsource修正。"
+      },
+      {
+        "artifact": "root-wr33-g4b-public-pipeline-green.json",
+        "phase": "targeted frozen test Green",
+        "methods": 5,
+        "duration_ms": 180,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "凍結済み対象5methods PASS。",
+        "sha256": "191ea32f7885afb979c41140fc6589a82680fdaf44d9708c1e7741d1c296e2a8"
+      },
+      {
+        "artifact": "root-wr33-g4b-unit-green-R1.json",
+        "phase": "unit regression",
+        "methods": 303,
+        "duration_ms": 19572,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "source修正後、現行unit303methods PASS。",
+        "sha256": "caa4d19026f14a8a2bec03243bea95e9d7e36232eff2d9534033762be02d8e5c"
+      },
+      {
+        "artifact": "root-wr33-g4b-context-mutation.json",
+        "phase": "strict FN6 guard mutation",
+        "duration_ms": 124,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "一時modern-source overlayで旧strict FN6guardを復元すると、公開positive2件がexact mismatch停止し変異KILLED。tracked sourceは不変。",
+        "sha256": "b50036670c7863c7c14e08af4b0201dc0cebade2f796bc6f907d5039a8962745"
+      },
+      {
+        "artifact": "root-wr33-g4b-unit-main-integration.json",
+        "phase": "post-integration full unit regression",
+        "methods": 303,
+        "duration_ms": 20912,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "最新main75bcd869統合後に現行unit303methods PASS。",
+        "sha256": "0df4c7b849eb0cf08ae1111396eee0e3f64a96352300dbd72105e888ea15a623"
+      }
+    ],
+    "execution_state": "rootが対象5methods Green、全unit303methods Green、旧guard変異KILLED、最新main統合後303methods Greenを実測検収した。L8全域/OS完了ではない。",
+    "completion_boundary": "G4b有限範囲のみ。Claude独立review、Ready/明示merge/read-afterは別段階。全FN1/canonical frame/索引/L3意味、正式L8、OS登録/Accepted、Issue3547、後続分割の完了を生成しない。",
+    "static_checks": {
+      "artifact": "root-wr33-g4b-source-static.json",
+      "sha256": "15a2214758bf6f5420b4552d4bdc7c6f2db2e62b61a2cb72c2a3804d5403329a",
+      "source_AST": "全現行src AST parse/max646非空行<700",
+      "compatibility": "FN6 axes形成からreturnまでのASTはbase75bcd869と同値。",
+      "delta": {
+        "source_files": 2,
+        "source_added": 39,
+        "source_removed": 24,
+        "test_files": 1,
+        "test_added": 241,
+        "test_removed": 0
+      }
     }
   }
 }
