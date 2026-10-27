@@ -927,5 +927,158 @@
       "authority_extension": false
     },
     "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3736#issuecomment-6448243648"
+  },
+  "fn1_owner_target_acquisition_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-OWNER-TARGET-ACQUISITION",
+    "authority_effect": "none",
+    "scope": "同callの既存ValidatedSupplyと原fill_definition Claimから、owner KnowledgeRecord・provenance・全物理sourceの取得材料を原順/原出現で集める内部helper _collect_owner_target_material(validated, claim)。返却はknowledge_record_indices、provenance、sources、boundariesの4 field。source各行はsource_index/source全値/usable、provenance各行はKnowledgeRecord index/provenance index/原Ref/全物理source indexを保持する。usableはphysical role semantic_jsonかつ既存FN0 _source_usable結果が真のときだけ真。qualification失敗は既存FN0結果を使い、Refは既存RefEqで照合する。source role、body、descriptor_targetsのabsent/null/[]/RawValue反復を加工せず保持し、raw・ValidatedSupply・Claimを変更しない。",
+    "contract_basis": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointers": [
+          "/dependency_semantic_ports/descriptor_target_contract/logical_port",
+          "/dependency_semantic_ports/descriptor_target_contract/ordered_branches/1",
+          "/dependency_semantic_ports/descriptor_target_contract/problem_locator",
+          "/dependency_semantic_ports/descriptor_target_contract/return_field_mapping"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/type_contract/reference_comparison",
+          "/functions/0",
+          "/type_contract/types/QualifiedSource",
+          "/type_contract/types/Qualification"
+        ]
+      }
+    ],
+    "implementation_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_target_reader.py::_collect_owner_target_material",
+    "test_and_fixture_paths": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_unresolved_ref.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/descriptor_claim_input_fixtures.py"
+    ],
+    "out_of_scope": [
+      "read_descriptor_replacement_targetの完成・公開",
+      "typed target declaration decode、target relation/state/cohort/match、slot対応",
+      "DefinitionContext walk接続、FN1 Comparison projection、FN4、FN6/FN7 route、その他consumer",
+      "schema/member、資格再計算、public API、providerまたはauthority gate"
+    ],
+    "legacy_rederivation": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          16,
+          92
+        ],
+        "keep": "原identity、source/provenance traceとJSON authority境界。",
+        "change": "現L4のRef/Binding/source qualificationを使うprivate acquisitionに限定し、旧Markdown/SQLite/runtimeは移さない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": [
+          30,
+          167
+        ],
+        "keep": "定義欠落・owner/source不明を黙殺や自動補完でknownにしない。",
+        "change": "G1aは取得結果と局所boundaryのみを運び、FN1 findingやpredicateは生成しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": [
+          80,
+          87
+        ],
+        "keep": "UTW-014/020/021のsource欠落によるabsence blindnessと局所失敗の取りこぼしを防ぐ。",
+        "change": "資格/欠落の根拠は既存FN0とL4境界に限定し、新しいtrust ruleを追加しない。"
+      }
+    ],
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "working_base": "9c95cf7e241d64542c04919534a7351969a22ba8",
+    "source_test_revision": "4d42b854eafd6fb44b08c220c5374898f572d02b",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "split_control": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
+    "preceding_G4b_merge": "9c95cf7e241d64542c04919534a7351969a22ba8",
+    "completion_boundary": "G1a私有取得材料のみ。public reader/state/cohort/target decode/consumer接続はG1b以後。全FN1、L8全域、OS、Issue/WR33全体の完了を主張しない。",
+    "authority_intake": {
+      "approval_revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+      "items": [
+        {
+          "id": "HELIXBRAIN-L3-032-F01",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/0",
+          "equal_approved_item": true,
+          "sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F02",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F09",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/8",
+          "equal_approved_item": true,
+          "sha256": "c3e7d16735c6b3e5772fe61e7ba9c1c8d8607b3e4965b6329e166ca6c754ddf8"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N02",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N03",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/2",
+          "equal_approved_item": true,
+          "sha256": "bf0195b632f9009039cbb1db49476f82a55a36da08de9f26b56e2ca03f55b4b7"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F01",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/0",
+          "equal_approved_item": true,
+          "sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F02",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F09",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/8",
+          "equal_approved_item": true,
+          "sha256": "11ff16c86d9d780c4dccc1f781c4b83a682864e02c0f29100537f3688659fe33"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N02",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N03",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/2",
+          "equal_approved_item": true,
+          "sha256": "c7059fbc9d3167f12b1f1ffc6d22427bc246e7ef3f4e5bf14846df8d86855dba"
+        }
+      ],
+      "authority_extension": false
+    },
+    "source_acquisition_boundary": "KnowledgeRecord/provenance/sourceを取得し局所boundaryを保持する。全原physical sourceは一度ずつ保持し、provenance反復を別原indexで残す。既存FN0 qualificationと既存RefEqを再利用し、source全値やdescriptor_targetsの原presenceを解釈/書換えしない。targetのstateをここで生成しない。"
   }
 }

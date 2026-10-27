@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "4f1a0f22e629faf5acbf321aa350f5437c63851f595c1367a532e8ba19638f7c",
+    "sha256": "5fca1a5f1a42049a7d9155b336ba230f996db7191e96317d2926ab153c65f695",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2036,6 +2036,87 @@
         "test_added": 241,
         "test_removed": 0
       }
+    }
+  },
+  "fn1_owner_target_acquisition_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-OWNER-TARGET-ACQUISITION",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn1_owner_target_acquisition_preparation"
+    },
+    "authority_effect": "none",
+    "test_source": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_unresolved_ref.py"
+    ],
+    "independent_expectations": [
+      "positive入力でBinding.knowledge_refに対応するKnowledgeRecord index、provenance occurrence index/Ref、既存RefEqで対応する全物理source indicesを原順に確認する。全physical sourceは原順・全値を一度ずつ保持し、usableはrole=semantic_jsonと既存FN0 _source_usableの両方が成立するものに限る。",
+      "descriptor_targets absent/null/[]/duplicate raw declarationはsource全値の中で各原presenceと反復を保ち、G1aが型付きtarget解釈を行わないことを確認する。",
+      "provenanceの反復は各原indexを別行で保持する。optional Ref source_locator/sha256欠落はL5 existing Ref comparisonの規則で扱い、Ref全6member一致を新しい条件にしない。",
+      "physical reference_only sourceとFN0 qualification失敗sourceは原source/indexを保持する。semantic_json資格失敗は対応する元/source locatorへowner_source_unresolvedを残す。unknown identity=null RefもFN0 issues/unusable_refsを経由し、原snapshot保持のままusable=falseとなる。",
+      "KnowledgeRecord欠落は/knowledge_recordsのowner_source_unresolved boundaryを返し、source collectionを空成功へ置き換えない。"
+    ],
+    "red_green_evidence": [
+      {
+        "artifact": "root-wr33-g1a-owner-material-red.json",
+        "state": "初期5 test methods、8 conditions。未実装helper固有NotImplementedでRed。224ms、reaped=true、output_truncated=false。",
+        "sha256": "651509704306316902d6af691a1185abfbbf9cf5acbf42c366decb0bb5efcf5c"
+      },
+      {
+        "artifact": "root-wr33-g1a-owner-material-candidate1.json",
+        "state": "候補1のGreen観測。192ms。これは確定source revisionでの証拠ではない。",
+        "sha256": "fbea014fbf24fbcfcada23a458e4dff9a057c8b907c8da3a4b1acf20cc4bdc2d"
+      },
+      {
+        "artifact": "root-wr33-g1a-source-unknown-ref-committed-red.json",
+        "state": "exact committed source replayで6 methods中5 pass、unknown Refのusable assertion 1 fail。229ms、reaped=true、output_truncated=false。意味Redとして区別する。",
+        "sha256": "c95d617abe686f97c7f3d43964deac0f1b25488f0699ffb81458e9996480e0c5"
+      },
+      {
+        "artifact": "root-wr33-g1a-owner-material-green.json",
+        "state": "Ref usability修正後6 methods pass。230ms、reaped=true、output_truncated=false。",
+        "sha256": "1ca2e355f2f5d152b9d9e03e892a9a8575de573d43d1870ca5bd32452791a9cd"
+      },
+      {
+        "artifact": "root-wr33-g1a-owner-material-refactor-green.json",
+        "state": "refactor後6 methods pass。237ms、reaped=true、output_truncated=false。",
+        "sha256": "9e396ac8eff9623e71d288e410d1659b5a66b2ac2b95ec63d5c2d94577f04ac3"
+      },
+      {
+        "artifact": "root-wr33-g1a-unit-main-integration.json",
+        "sha256": "8a2a34031a65f1afbae95b57c59a9bda1ba2ef735e508d9bd4452e2402b701df",
+        "state": "G4bマージ後の最新main9c95cf7e統合HEAD4d42b854で全309methods PASS、20395ms、reaped=true、output_truncated=false。"
+      }
+    ],
+    "limits": [
+      "G1a private acquisitionの有限観測。public reader/target state/cohort/match、walk/uses、FN4/FN6/FN7接続、L8全域、OS/WR33全体の成立を認定しない。",
+      "最新main統合後の全309methods Greenはこのunitの回帰観測であり、保存wholeや新CIの代替にしない。",
+      "G4b merge/read-afterを確認後にG1a独立reviewへ進む。G1a helperはcaller接続前の実取得処理であり成功stubではない。"
+    ],
+    "test_methods": [
+      "TestDescriptorOwnerMaterial.test_positive_reads_original_record_provenance_and_all_sources_once",
+      "TestDescriptorOwnerMaterial.test_source_body_preserves_absent_null_empty_and_repeated_raw_values",
+      "TestDescriptorOwnerMaterial.test_provenance_repetition_and_optional_ref_members_are_preserved",
+      "TestDescriptorOwnerMaterial.test_unqualified_and_nonsemantic_physical_sources_are_retained",
+      "TestDescriptorOwnerMaterial.test_missing_knowledge_record_keeps_raw_sources_and_local_boundary",
+      "TestDescriptorOwnerUnresolvedRef.test_null_identity_source_is_retained_but_not_usable"
+    ],
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "source_revision": "4d42b854eafd6fb44b08c220c5374898f572d02b",
+    "implementation_revisions": [
+      "0e6d1f0211f5842b984838dba58aa35493bc796c",
+      "396b04cc1966cdffc95317c0ac7b091fa3d52a28",
+      "8270e625acbaeeb10d5364cadbd1a472e8978d58"
+    ],
+    "bootstrap_boundary": "初期test commit4ebbec021は私有署名と固有NotImplemented停止を宣言し、import/setup失敗をRedとしなかった。その宣言は実sourceで置換済み。成功返却stub/public readerは導入しない。",
+    "incremental_red_boundary": "初期5methods候補Green後にsource Ref identity=nullを独立追加しusableの誤判定を検出。後付けRedを初期Redと混同せず、exact committed source0e6d1f021で再現した6methods5PASS/1assertFAIL229msを正本証拠とする。",
+    "delta": {
+      "source_files": 1,
+      "source_added": 96,
+      "source_removed": 0,
+      "test_and_fixture_files": 3,
+      "test_and_fixture_added": 342,
+      "test_removed": 0
     }
   }
 }
