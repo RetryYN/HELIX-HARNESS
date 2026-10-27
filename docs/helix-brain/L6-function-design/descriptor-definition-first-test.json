@@ -1851,5 +1851,148 @@
       "basis": "base963df2aの既存B02 guard文言とL5 Claim schema/functions/6。Ref/Bindingガードを変えず実公開FN6から確認する。",
       "source_changes": false
     }
+  },
+  "fn4_empty_meaning_carrier_zero_occurrence_preparation": {
+    "sibling_of": "fn4_finite_fill_claim_connection_preparation",
+    "scope": "qualified semantic_json sourceのdefinition_meaning_operationsが明示[]の場合を原operation occurrence 0件として読む。acquisition_stateはunknownのまま、occurrences/supports/problemsを作らない。member不在はabsentとして区別し、既存container_absent problemを保持する。",
+    "test_source": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_empty_meaning_carrier.py",
+      "methods": [
+        "test_explicit_empty_carrier_is_zero_occurrences_without_problems_or_supports",
+        "test_absent_carrier_keeps_absence_and_one_local_container_problem",
+        "test_empty_and_absent_walks_remain_unknown_source_unresolved",
+        "test_nonempty_typed_carrier_retains_the_current_unclosed_stop"
+      ],
+      "expectation_basis": [
+        "明示[]は0 occurrenceであり、emptyだけを理由にsupportやresolved acquisitionを作らない。",
+        "absentは[]へ既定せず、direct readerで原locator /sources/0/content/definition_meaning_operations のcontainer_absentを保持する。",
+        "同call walkでは全15 kindのmeaning readをunknownのまま保持し、absentと[]のproblem差を保持する。対象assessmentはsource_unresolvedで、meaning_undefinedへ変換しない。",
+        "非空typed carrierの既存unclosed stopとN03 Backflowを維持する。"
+      ]
+    },
+    "source_responsibility": "descriptor_definition_reads.pyのmeaning readerのexplicit [] branchだけ。descriptor_definition_walk.pyの新source変更は計画しない。existing same-call resultを消費し、ClaimUse/FN6/ FN4の意味やFN1 comparisonを作り替えない。",
+    "preserved_boundaries": [
+      "definition_meaning_operations absentはcontainer_absent problemとして維持する。",
+      "null、wrong type、malformed carrier、nonempty typed carrierはこの0-occurrence branchに含めず、既存stopを維持する。",
+      "public FN1 scope/Comparisonとmeaning_undefined producerは変更しない。"
+    ],
+    "authority_effect": "none",
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae",
+        "pointers": [
+          "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/populations",
+          "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/handoff_records",
+          "/oracle_view_boundary_contract/nonfire_read_plan/typed_kind_census",
+          "/definition_meaning_resolution_contract/evaluation_populations"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+        "pointers": [
+          "/logical_input_structure/schema/$defs/SupplyInput/properties/handoff_records",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body/algorithm",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure"
+        ]
+      }
+    ],
+    "legacy_and_failure_basis": {
+      "existing_subtrees_to_preserve": [
+        "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn4_oracle_preparation",
+        "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn4_oracle_verification",
+        "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn6_dependencies_absent_preparation",
+        "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn6_dependencies_absent_verification",
+        "G3 fn4_finite_fill_claim_connection_preparation/verification and fn6_fill_claim_rule87_connection_preparation/verification siblings after G3 merge"
+      ],
+      "legacy_asset_refs": [
+        "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "LEGACY-ASSET-FDBA655B1CFF75DCDC0E"
+      ],
+      "failure_reference": "Existing L6 PR #3503 TDD起点は、契約と実行可能な証拠を結ぶ根拠として既存文脈の範囲で保持する。G5固有failureや新しいrequirement/gateの根拠に転用しない。"
+    },
+    "authority_note": "既承認L3/L10項目の意味・revisionを拡張しない。既存G3と同じ項目を参照する局所的な0 occurrence分岐。",
+    "existing_binding_id": "HELIXBRAIN-L6-032-FN4-ORACLE",
+    "source_revision": "90ccfc3b2",
+    "test_revision": "1019bd343",
+    "additional_boundary_test": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_meaning_carrier_wrong_shapes.py",
+      "test_revision": "a0a96817c",
+      "cases": [
+        "null",
+        "false",
+        "0",
+        "empty string",
+        "object",
+        "nonempty typed array"
+      ],
+      "expected": "実FN0で資格が整合した原sourceをdirect readerへ渡し、[]以外の供給carrierは既存unclosed停止の完全な文言を保つ。publicFN1やnonemptydecodeは開放しない。"
+    }
+  },
+  "fn6_handoff_absent_zero_occurrence_preparation": {
+    "sibling_of": "fn6_fill_claim_rule87_connection_preparation",
+    "scope": "handoff_records absentをraw absenceのまま保持し、原handoff record occurrence 0件として扱う。明示[]も0件。これだけからhandoff成功、axis、findingまたはcompletionを作らない。",
+    "test_source": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_handoff_absent.py",
+      "methods": [
+        "test_absent_handoff_with_supplied_dependencies_has_zero_rows",
+        "test_absent_handoff_with_absent_dependencies_has_zero_rows",
+        "test_empty_handoff_with_supplied_dependencies_has_zero_rows",
+        "test_empty_handoff_with_absent_dependencies_has_zero_rows"
+      ],
+      "expectation_basis": [
+        "実FN0→FN1→FN6経路でhandoff memberのabsenceとsupplied []を区別し、両者でhandoff axisは0件。",
+        "fixtureのprimary supportはsource_unresolvedなのでrule87/rule93のFindingを足さず、same rawからClaimを除いたFN6 controlと返却を比べる。",
+        "dependencies supplied/absentの組合せは既存FN6 prefixの回帰controlであり、G4/G4b dependency semanticsを変更しない。",
+        "raw、ValidatedSupply、FN1 Comparisonは呼出し前後で不変。"
+      ]
+    },
+    "source_responsibility": "dependencies_handoff.pyのhandoff_records absent時の0件読取だけ。handoff_records absentを[]へ書き換えず、existing dependency/selector/B02/F09 prefixとG3 rule87 connectionを保持する。",
+    "preserved_boundaries": [
+      "非空handoff record branchとvalidationを変更しない。",
+      "FN6のdependency absent/supplied意味、G4 selector diagnostics、G4b partial Binding guardとsubject fallbackを変更しない。",
+      "G3同call FN6 connectionや既存ClaimUse predicateを置換しない。"
+    ],
+    "authority_effect": "none",
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae",
+        "pointers": [
+          "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/populations",
+          "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/handoff_records",
+          "/oracle_view_boundary_contract/nonfire_read_plan/typed_kind_census",
+          "/definition_meaning_resolution_contract/evaluation_populations"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+        "pointers": [
+          "/logical_input_structure/schema/$defs/SupplyInput/properties/handoff_records",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body/algorithm",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure"
+        ]
+      }
+    ],
+    "legacy_and_failure_basis": {
+      "existing_subtrees_to_preserve": [
+        "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn4_oracle_preparation",
+        "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn4_oracle_verification",
+        "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn6_dependencies_absent_preparation",
+        "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn6_dependencies_absent_verification",
+        "G3 fn4_finite_fill_claim_connection_preparation/verification and fn6_fill_claim_rule87_connection_preparation/verification siblings after G3 merge"
+      ],
+      "legacy_asset_refs": [
+        "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "LEGACY-ASSET-FDBA655B1CFF75DCDC0E"
+      ],
+      "failure_reference": "Existing L6 PR #3503 TDD起点は、契約と実行可能な証拠を結ぶ根拠として既存文脈の範囲で保持する。G5固有failureや新しいrequirement/gateの根拠に転用しない。"
+    },
+    "authority_note": "既承認L3/L10項目の意味・revisionを拡張しない。既存G3と同じ項目を参照する局所的な0 occurrence分岐。",
+    "existing_binding_id": "HELIXBRAIN-L6-032-FN6-DEPENDENCIES-ABSENT",
+    "source_revision": "90ccfc3b2",
+    "test_revision": "1019bd343"
   }
 }

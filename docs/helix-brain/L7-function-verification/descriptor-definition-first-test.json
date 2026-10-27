@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "1b025a9b1c05533cca850066857e6942aab25a29743ccc03f2ae640a10a2c778",
+    "sha256": "690a49a7282d8e1df1789820019d95986e9d4438e9b870c6c7ad16d68c1f513c",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3256,8 +3256,50 @@
   },
   "fn4_empty_meaning_carrier_zero_occurrence_verification": {
     "sibling_of": "fn4_finite_fill_claim_connection_verification",
+    "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_empty_meaning_carrier.py",
+    "verification_sequence": [
+      "G3実merge/read-after後の最新mainからG5 frozen test 4 methodsを作成する。",
+      "凍結8methodsのRed後、meaning readerのexplicit[] branchとFN6 handoff absent branchだけを変更してGreenを確認した。walk sourceは変更しない。",
+      "direct readerとwalkでraw/V不変、absenceと[]の異なるpresence/problem、unknown/source_unresolved、15 meaning reads、nonempty stopを確認する。"
+    ],
+    "old_test_exception": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_full_contract.py",
+      "method": "TestDescriptorDefinitionWalkFullContract.test_supplied_meaning_operation_carrier_stops_at_reader_id",
+      "required_order": [
+        "G5新8 methodsのGreen後、既存期待を変えずこのmethodだけを実行して旧unclosed assertionのfailを観測する。",
+        "旧期待を変更する前にL7 pre-edit evidenceを記録してcommitする。",
+        "その後、この一methodだけをindependent L4/L5 expectationへ更新し、absent/nonempty stopsと他のfull-contract期待は保持する。"
+      ],
+      "state": "b78579fe9で旧1FAIL114msを先に記録してcommit後、d93137fb2で当該1methodだけを[]のunknown/zero occurrences/supports/problemsへ更新。",
+      "pre_edit_evidence_commit": "b78579fe9",
+      "expectation_update_commit": "d93137fb2"
+    },
     "authority_effect": "none",
-    "scope": "G5 explicit []の原meaning operation 0件とabsent区別だけ。nonempty typed meaning/meaning_undefined producer/D27/FN7は含めない。",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn4_empty_meaning_carrier_zero_occurrence_preparation"
+    },
+    "test_revision": "1019bd343",
+    "source_revision": "90ccfc3b2",
+    "tdd_evidence": {
+      "red": {
+        "artifact": "root-wr33-g5-zero-occurrences-red.json",
+        "methods": 8,
+        "semantic_not_implemented_errors": 4,
+        "negative_control_passes": 4,
+        "duration_ms": 366,
+        "import_setup_errors": 0
+      },
+      "green": {
+        "artifact": "root-wr33-g5-zero-occurrences-green-R1.json",
+        "methods": 8,
+        "duration_ms": 423,
+        "result": "PASS"
+      },
+      "bounded_reaped_not_truncated": true
+    },
+    "completion_boundary": "G5の0 occurrence限定分岐だけ。FN4全7規則/FN6全writer閉包、nonemptymeaning/D27/meaning_undefined肯定producer/FN7、L8受入/OS登録/WR33全体完了は生成しない。",
+    "independent_review": "未実施。exact HEAD独立review→Ready→明示merge→root read-afterはこれから。",
     "pre_edit_old_expectation_evidence": {
       "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447399416",
       "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_full_contract.py",
@@ -3284,6 +3326,112 @@
       },
       "independent_new_expectation": "L4 /oracle_view_boundary_contract/nonfire_read_plan/typed_kind_census はabsentと[]を区別して原出現0件を共有する。L5 definition_meaning_core/basic_reader_bindings/meaning/body/algorithm/1に従い[]からsupport/problemを作らずunknownを保持する。",
       "state_at_this_commit": "旧テストはまだ未変更。新8Greenと旧1FAILを先に記録する。このcommit後に当該1methodだけ期待を更新し、他の公開testを保持する。"
+    },
+    "additional_boundary_test": {
+      "test_revision": "a0a96817c",
+      "artifact": "root-wr33-g5-wrong-shapes-green.json",
+      "methods": 1,
+      "subcases": 6,
+      "duration_ms": 191,
+      "result": "PASS",
+      "scope": "raw/V不変、実source資格/Ref整合、null/型外/非空は既存unclosed停止を保持する。"
+    },
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g5-unit-green-R2.json",
+      "methods": 385,
+      "duration_ms": 25319,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "prior_unit_evidence": {
+      "artifact": "root-wr33-g5-unit-green-R1.json",
+      "methods": 384,
+      "duration_ms": 23622,
+      "result": "PASS"
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g5-latest-main-integration.json",
+      "main": "4d169c9e2d83e871ef1e93469f5378915fae39b5",
+      "unit_tree_and_working_L4_L5_L6_L7_hashes_unchanged": true
+    },
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g5-static-acceptance-current.json",
+      "checks": 65,
+      "result": "PASS",
+      "scope": "source指定2hunk以外byte一致、全module非空行700未満、承認16項目・L4L5pins/pointers一致、既存L6L7値保持・pairhash、新3files凍結、旧test指定1method以外AST不変、旧FAIL事前L7commitを確認。"
+    },
+    "empty_branch_mutation": {
+      "artifact": "root-wr33-g5-empty-branch-mutation.json",
+      "mutation": "explicit == [] をtruthiness検査へ変える",
+      "duration_ms": 213,
+      "result": "KILLED",
+      "assertion_failures": 5,
+      "errors": 0,
+      "tracked_source_unchanged": true,
+      "reaped": true,
+      "output_truncated": false
+    }
+  },
+  "fn6_handoff_absent_zero_occurrence_verification": {
+    "sibling_of": "fn6_fill_claim_rule87_connection_verification",
+    "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_handoff_absent.py",
+    "verification_sequence": [
+      "G3実merge/read-after後の最新mainからfrozen test 4 methodsを作成する。",
+      "public FN0/FN1/FN6 same-callでabsent/[]とdependencies supplied/absentを検証する。",
+      "handoff zero rows、同入力no-Claim controlとのFN6結果、raw/V/FN1 Comparison不変を確認する。",
+      "G4/G4b、G3既存回帰を対象unitで別途保持する。"
+    ],
+    "authority_effect": "none",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn6_handoff_absent_zero_occurrence_preparation"
+    },
+    "test_revision": "1019bd343",
+    "source_revision": "90ccfc3b2",
+    "tdd_evidence": {
+      "red": {
+        "artifact": "root-wr33-g5-zero-occurrences-red.json",
+        "methods": 8,
+        "semantic_not_implemented_errors": 4,
+        "negative_control_passes": 4,
+        "duration_ms": 366,
+        "import_setup_errors": 0
+      },
+      "green": {
+        "artifact": "root-wr33-g5-zero-occurrences-green-R1.json",
+        "methods": 8,
+        "duration_ms": 423,
+        "result": "PASS"
+      },
+      "bounded_reaped_not_truncated": true
+    },
+    "completion_boundary": "G5の0 occurrence限定分岐だけ。FN4全7規則/FN6全writer閉包、nonemptymeaning/D27/meaning_undefined肯定producer/FN7、L8受入/OS登録/WR33全体完了は生成しない。",
+    "independent_review": "未実施。exact HEAD独立review→Ready→明示merge→root read-afterはこれから。",
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g5-unit-green-R2.json",
+      "methods": 385,
+      "duration_ms": 25319,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "prior_unit_evidence": {
+      "artifact": "root-wr33-g5-unit-green-R1.json",
+      "methods": 384,
+      "duration_ms": 23622,
+      "result": "PASS"
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g5-latest-main-integration.json",
+      "main": "4d169c9e2d83e871ef1e93469f5378915fae39b5",
+      "unit_tree_and_working_L4_L5_L6_L7_hashes_unchanged": true
+    },
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g5-static-acceptance-current.json",
+      "checks": 65,
+      "result": "PASS",
+      "scope": "source指定2hunk以外byte一致、全module非空行700未満、承認16項目・L4L5pins/pointers一致、既存L6L7値保持・pairhash、新3files凍結、旧test指定1method以外AST不変、旧FAIL事前L7commitを確認。"
     }
   }
 }
