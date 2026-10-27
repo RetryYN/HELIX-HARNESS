@@ -2043,6 +2043,18 @@
       "each_module_nonblank_lines": "<700; target_reader427, walk520, uses270, fn6 577",
       "L6_L7_scope": "base JSONから自subtreeを除去しpaired_working_bindingを戻すと全値同一",
       "diff_whitespace": "PASS"
+    },
+    "main_integration": {
+      "revision": "0f961ab38cb3c5cfbdd7515d364129c88ac7152f",
+      "origin_main": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+      "external_change": "PR #3733/#3734のL8/L9六文書のみ統合。source/L3/L4/L5に外部差分なし。",
+      "artifact": "root-wr33-unit-main-integration.json",
+      "sha256": "c8e560ca90b1c1dca28c1bbe0e142aea6cd324763e7e8a2d83e4f65d00258638",
+      "methods": 337,
+      "status": 0,
+      "duration_ms": 26705,
+      "reaped": true,
+      "output_truncated": false
     }
   }
 }
