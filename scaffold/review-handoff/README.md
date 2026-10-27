@@ -108,7 +108,7 @@ after待機中も元本文を`untrusted_data`として表示するが、`eligibl
 
 `packet.py build-work --after PREDECESSOR_EVENT_ID`で先行のevent IDを1件指定できる。通常どおり各依頼を個別sendする。`A⇒B⇒C`はBのafter=A、Cのafter=B、`(A⇒B)∥C`はCだけafterなしで表す。先行は実際に送信済みで、同じ依頼側/作業側のruntime/sessionに属する依頼に限る。任意DAG・manifest・一括send・execution receiptは持たない。
 
-後続は先行の最初の`proposal`結果までclaimを待ち、待機TTLを止める。依存状態は最初の終端結果で固定し、後の通知では変えない。afterの先行になる依頼では、PRが必要な作業のproposalは独立review・明示merge・read-after後にだけ返す。途中の報告はPR/Issue commentで行い、work_resultにしない。機構は最初のproposalで後続を解放し、merge完了自体は見ない。作業側は後続着手時にfetchした最新mainと参照SHAを確認して作業baseを定め、ずれやreview findings、blockedでは`incomplete`を返す。依頼の元base/hashやdispatcherを書き換えない。blockedという新result値は追加しない。
+後続は先行の最初の`proposal`結果までclaimを待ち、待機TTLを止める。依存状態は最初の終端結果で固定し、後の通知では変えない。PRを伴う作業のproposalは`packet.py validate_work_result`がローカルrefで返却可能状態を確認する。未反映時は停止案内に従い、fetch後に再送する。途中の報告はPR/Issue commentで行い、work_resultにしない。機構は受理した最初のproposalで後続を解放し、GitHub上のmerge status自体は参照しない。作業側は後続着手時にfetchした最新mainと参照SHAを確認して作業baseを定め、ずれやreview findings、blockedでは`incomplete`を返す。依頼の元base/hashやdispatcherを書き換えない。blockedという新result値は追加しない。
 
 先行が`incomplete`/`declined`、明示release、未ACK期限切れなら、依存する後続だけを連鎖的にcancelledにし枠を外す。取消理由と先行event IDを既存の終了記録へ残す。afterのない独立依頼は維持する。各結果は元のrequest_id/payloadに対応させ、sessionを自動で付け替えない。待機中の後続も未完了5件の枠を使い、長さ5の鎖はその作業側の全枠を使う。旧形式でevent/session情報が無い先行はafterに指定できず、新しい依頼を送る。
 
