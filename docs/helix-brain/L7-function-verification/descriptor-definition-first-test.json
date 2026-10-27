@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "0909073bca0a759e640acf6adbb7785dba14a07c1115bcb020a2b78ea269285c",
+    "sha256": "14a226d6aa148fe7d0516bf6554831d9a6f4a46add8a3d18a3615a039d36e727",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2446,5 +2446,122 @@
         "source_sha256": "deea7a61411f8288d73f6398906c4c691de536cf0e7185dc540800f81a825164"
       }
     }
+  },
+  "fn1_same_call_claim_reads_and_missing_events_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-SAME-CALL-CLAIM-READS-AND-MISSING-EVENTS",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn1_same_call_claim_reads_and_missing_events_preparation",
+      "source_worktree_revision": "bc213a2cf602021857e71116accde335fc87bd7e"
+    },
+    "authority_effect": "none",
+    "test_sources": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_walk.py",
+        "methods": 3
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_missing.py",
+        "methods": 3
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_missing_origins.py",
+        "methods": 1
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_missing_facts_projection.py",
+        "methods": 1,
+        "test_revision": "0dc0172d4"
+      }
+    ],
+    "independent_expectations": [
+      "実FN0→実canonical walkで、各原fill_definition occurrenceに対するtarget/intent readと原Claim/locatorを確認する。等値Claimを別locator出現として保持し、supplied-null intentを未供給へ変換しない。入力raw/ValidatedSupplyの不変性を確認する。",
+      "未知／無関係targetを独立に扱い、既存L4 target readerの原cohort/read結果をoracleにせずraw・L4/L5から期待する。Claimsを加えても同一inputのevaluation/native_materialを再計算・置換しない。",
+      "required slotを除くケースでは固定15 required kindsを保ち、対象kindのrequired_slot_absent assessment/origin/Axis/Findingとempty raw locatorsを観測する。missing Finding ownerはliteral knowledge_owner。owner addressのtarget readがslot_locators=[]でresolvedでもslotを生成しない。",
+      "実slotのfacts=[]、facts absent、facts=nullを別ケースとして扱い、元raw presenceとslot locatorを保つfacts_missing eventを観測する。slot-missing Findingは作らない。Axis/origin backflow_ownerは原Binding.knowledge_ref.owner。",
+      "15種のorigin finding_rule_indicesはL5 failure_rulesのglobal positions 9,12,15,...,51。event順のassessment/origin、公開Comparison sort後のaxis/finding index links、original_axes、および全native-material列の元順を照合する。",
+      "facts absent/null/[]の各公開Axis全7field、Findingなし、assessment link、L5原cause=facts_absent_or_null_or_emptyを別methodで固定。初期7testの期待を変更しない。"
+    ],
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g2a-claim-walk-red.json",
+        "test_revision": "040c20f82",
+        "phase": "凍結済み新規claim-walk testsの初期Red",
+        "methods": 3,
+        "duration_ms": 198,
+        "reaped": true,
+        "output_truncated": false,
+        "observation": "3 methodsは実walkのsupplied_claim_ports未実装NotImplementedへ到達した。import/setup失敗ではない。"
+      },
+      {
+        "artifact": "root-wr33-g2a-missing-events-red.json",
+        "test_revision": "5b80c6718",
+        "phase": "missing events/origin-index frozen testsの初期Red",
+        "methods": 4,
+        "duration_ms": 152,
+        "reaped": true,
+        "output_truncated": false,
+        "observation": "missing-slot/facts/origin-index branchesがwalkの未実装停止へ到達した。setup/import errorではない。"
+      },
+      {
+        "artifact": "root-wr33-g2a-new-seven-candidate-green-R1.json",
+        "source_revision": "8174db7d1",
+        "methods": 7,
+        "duration_ms": 407,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-g2a-facts-projection-red.json",
+        "test_revision": "0dc0172d4",
+        "source_revision": "8174db7d1",
+        "methods": 1,
+        "subcases": 3,
+        "duration_ms": 161,
+        "result": "3 assertion FAIL: facts_missing != facts_absent_or_null_or_empty",
+        "import_or_setup_error": false
+      },
+      {
+        "artifact": "root-wr33-g2a-new-eight-green.json",
+        "source_revision": "d2fb4a072",
+        "methods": 8,
+        "duration_ms": 548,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      }
+    ],
+    "independent_basis_artifact": "root-wr33-g2a-missing-test-basis.json",
+    "old_test_update_exception": {
+      "test_method": "TestDescriptorDefinitionWalkFullContract.test_supplied_typed_claim_stops_at_current_claim_port",
+      "required_sequence": [
+        "7つの凍結済みG2a methodsを現source候補でGreenにする。",
+        "旧stop assertionを保持したまま、この1 methodだけをGreen sourceで実行し、期待されるold-stop assertion FAILとL7 pre-edit記録を残す。",
+        "その証拠の後にだけ、同methodをactual target/intent readとevaluation/native_material不変の契約へ更新する。",
+        "他のold stop expectationsは変更しない。"
+      ],
+      "current_state": "新8methods Green後、旧stop methodを変更せず実行して旧期待assertion FAILを観測。このL7記録を先にcommitし、その後この一件だけactual target/intent期待へ更新する。",
+      "authorization": "Issue #3547 comment6446411406、PR split control6447591725のG2a一件のみ",
+      "pre_edit_evidence": {
+        "artifact": "root-wr33-g2a-old-typed-claim-stop-red.json",
+        "source_revision": "d2fb4a072",
+        "old_test_unchanged_since_base": "bc213a2cf602021857e71116accde335fc87bd7e",
+        "duration_ms": 140,
+        "result": "AssertionError: NotImplementedError not raised",
+        "reaped": true,
+        "output_truncated": false,
+        "import_or_setup_error": false
+      }
+    },
+    "pending_evidence": [
+      "旧typed-claim-stop method一件の許可済み更新と更新後Greenは未実施。",
+      "全unit検証・独立review・Ready・明示merge・read-afterは未実施。"
+    ],
+    "limits": [
+      "Initial Red observations are separate: three claim-walk methods at 040c20f82 and four missing/origin methods at 5b80c6718.",
+      "The evidence does not establish FN1/FN4/FN6/FN7 full scope, G2b/G3/G5, L8 acceptance, OS registration, Issue #3547 completion, or source Green."
+    ],
+    "completion_boundary": "G2aの局所TDD記録。新8methods Greenと旧期待FAILのpre-edit証拠に限る。全unit・独立review・受入・OS登録・WR33完了を成立させない。"
   }
 }
