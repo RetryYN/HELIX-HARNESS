@@ -161,6 +161,9 @@ class TestDescriptorTargetCohorts(unittest.TestCase):
         source0_ref = copy.deepcopy(raw["sources"][0]["ref"])
         source3 = raw["sources"][3]
         content = copy.deepcopy(source3["content"])
+        # The existing source3 body has no Binding. Supply this case's
+        # deliberately different original frame before syncing its bytes.
+        content["binding"] = copy.deepcopy(raw["binding"])
         self.assertIsInstance(content["binding"]["pack_artifact_version"], str)
         content["binding"]["pack_artifact_version"] = (
             content["binding"]["pack_artifact_version"] + "-different"
