@@ -547,6 +547,25 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
     required_claim_members = {"subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs"}
     for index, claim in enumerate(claims):
         if isinstance(claim, dict) and claim.get("kind") == "fill_definition":
+            fill_required_members = {"subject_ref", "binding", "actor", "kind"}
+            if (not fill_required_members <= set(claim)
+                    or not set(claim) <= required_claim_members):
+                raise _unsupported(
+                    "B02/F09", "claim_closed_shape",
+                    f"claims[{index}] is outside the 6-field Claim shape",
+                )
+            if (not _ref_frame_supplied_ok(claim.get("subject_ref"))
+                    or not _binding_shape_ok(claim.get("binding"))
+                    or claim.get("actor") != "BRAIN"):
+                raise _unsupported(
+                    "B02/F09", "claim_frame_or_actor",
+                    f"claims[{index}] has unsupported subject/binding/actor",
+                )
+            if not _binding_same(claim["binding"], binding):
+                raise _unsupported(
+                    "B02", "claim_binding_mismatch",
+                    f"claims[{index}].binding does not match input.binding",
+                )
             if (not isinstance(frame, dict)
                     or len(frame["target_reads"]) != len(claims)
                     or len(frame["claim_uses"]) != len(claims)):
