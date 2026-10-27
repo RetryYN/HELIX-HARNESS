@@ -680,5 +680,116 @@
     "r4_population_detail": "claims absentはlocal structural guard viewだけ[]として既存guardへ渡し、ValidatedSupply/input/native snapshotを変更しない。oracle_bindings absentも0出現。rootとslotのraw異値Binding frameはRefEqの片null一致で集約せずraw_distinct_binding_frames停止。exact root候補/無関係候補の対照を保持。",
     "r4_projection_detail": "既存definition carry3軸および同axis/subject/Bindingの既存軸は全7値と原順を保存。新predicate軸はrule71→72順、同keyは初回だけ追加。Findingは原oracle出現ごとに残す。既知の同subject義務/oracle tuple競合はoracle_binding_competition停止、R72 oracle Ref不明はoracle_oracle_correspondence停止。",
     "finite_carry_detail": "oracle_finite_carry.is_zero_operand_carryはL4 nonfire_read_planの狭い部分域のみ。Claim実出現0、対象3kind実slot0、oracle_bindings/values/handoff_records0。sourcesはsemantic_json/reference_only、content keyはL4 allowlist部分集合。意味carrier descriptor_facts/definition_meaning_operationsはabsent/[]だけ（非空typed decode未実装）。descriptor_targetsは住所宣言としてsnapshot保存し意味censusへ昇格しない。qualification成功や全体完了は作らず、元fn1不足をwriterで全値保存。"
+  },
+  "fn6_dependencies_absent_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN6-DEPENDENCIES-ABSENT",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "working_base": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+    "source_test_cutout_head": "5f81f562e0062f7ff053324934fe32f2147c923e",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_dependencies_and_handoff",
+    "authority_effect": "none",
+    "scope": {
+      "included": "FN6でSupplyInput.dependencies memberがabsentのとき、既存canonical順に必要identityのmissingと3 selectorのunknownを局所投影する有限枝。raw presenceを保持し、missing categoryにRef/Request/Invocationを合成しない。",
+      "excluded": "dependencies明示[]/null/型外の一般化、conditional dependencyの別枝、Claim非空/FN6 fill接続、handoff_records absent、FN4/FN7、D27歴史入力、L8/OS/Issue全体の完了。"
+    },
+    "authority_intake": {
+      "approval_revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+      "authority_extension": false,
+      "selected_items": [
+        {
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/8",
+          "id": "HELIXBRAIN-L3-032-F09",
+          "equal_approved_item": true,
+          "sha256": "c3e7d16735c6b3e5772fe61e7ba9c1c8d8607b3e4965b6329e166ca6c754ddf8"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/1",
+          "id": "HELIXBRAIN-L3-032-B02",
+          "equal_approved_item": true,
+          "sha256": "709caa222ebdd58c367b270150a6b1890956fdcde05120035365cefbb859746e"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/1",
+          "id": "HELIXBRAIN-L3-032-N02",
+          "equal_approved_item": true,
+          "sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+        },
+        {
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/2",
+          "id": "HELIXBRAIN-L3-032-N03",
+          "equal_approved_item": true,
+          "sha256": "bf0195b632f9009039cbb1db49476f82a55a36da08de9f26b56e2ca03f55b4b7"
+        },
+        {
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/8",
+          "id": "HELIXBRAIN-L10-032-F09",
+          "equal_approved_item": true,
+          "sha256": "11ff16c86d9d780c4dccc1f781c4b83a682864e02c0f29100537f3688659fe33"
+        },
+        {
+          "path": "docs/helix-brain/L10-verification/business-verification.json",
+          "pointer": "/cases/1",
+          "id": "HELIXBRAIN-L10-032-B02",
+          "equal_approved_item": true,
+          "sha256": "eae4e49a370b1851b171ccc890d345cbebc5d2e99b5207d02b27fb1b53df3554"
+        },
+        {
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/1",
+          "id": "HELIXBRAIN-L10-032-N02",
+          "equal_approved_item": true,
+          "sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+        },
+        {
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/2",
+          "id": "HELIXBRAIN-L10-032-N03",
+          "equal_approved_item": true,
+          "sha256": "c7059fbc9d3167f12b1f1ffc6d22427bc246e7ef3f4e5bf14846df8d86855dba"
+        }
+      ],
+      "boundary": "既存L3承認値と対応するL10行を参照する。Issue/PR/TDD evidenceから要求意味や新authorityを生成しない。"
+    },
+    "contract_sources": [
+      "L4 /dependency_semantic_ports/canonical_ordered_branches/2..3",
+      "L4 /dependency_semantic_ports/diagnostic_return_contract/canonical_diagnostic_mapping/2..3",
+      "L4 /dependency_semantic_ports/diagnostic_return_contract/common_rules/{branch_order,problem_order,reason_format,origin_fields}",
+      "L4 /dependency_semantic_ports/public_projection/{axis_mapping,axis_reason_writer,order}",
+      "L5 /functions/6/algorithm/0..1 (HELIXBRAIN-L5-032-compare_dependencies_and_handoff)",
+      "L5 /failure_rules/105 and /failure_rules/106",
+      "L5 /canonical_dependency_detail/fn6_integration",
+      "L5 /canonical_dependency_detail/required_dependency_missing_axis_trace_writer",
+      "L5 /conditional_dependency_detail/reason_rules and public_projection_writers"
+    ],
+    "ordered_projection": [
+      "既存fn6 selector判断を先行する。absent selectorはfalseへ既定せず、R106の旧reasonを各selectorに一回保持し、その条件のref集合は評価しない。",
+      "always_refsの既存5 required identity (003,005,007,008,028) はそれぞれ元missing predicate成立時だけ、identity出現順に専用missing-axis projectorを一回呼ぶ。dependency category absentなのでrequest/canonical body readは作らない。",
+      "required missing Axisは同V/category原presenceと当該missing identity occurrenceからTRACE14を作る。TRACE14にidentityを追加せず、同字面でもidentityごとのAxisを保つ。subjectはroot knowledge_ref、なければtemplate_refの原値。双方形成不能ならAxis/Findingを捏造しない。",
+      "R105 Findingは既存failure-rule typed形成条件とidentity別reason/source pathを独立保持し、Axis reasonへ混ぜない。missing FindingはTRACE14とは別の完全identity説明を保つ。",
+      "既存handoff、B02 prefix、他既存所見を元の順とprefixで継続し、新missing投影がそれらを置換しない。"
+    ],
+    "same_call_and_presence": {
+      "public_path": "FN0 validate_supply_input → public FN1 compare_descriptor_definitions → public FN6 compare_dependencies_and_handoff。absent caseはdependencies memberだけを既存normal rawから削除する。",
+      "direct_projector": "partial Binding subject fallback testsはreal FN0 ValidatedSupplyからproject_required_dependency_missing_axisを直接呼ぶ。これらはpublic FN1/FN6 end-to-end testではない。Binding.knowledge_ref absent時template_refをsubjectとして使い、Binding内の欠落はそのまま保持。双方Ref absent時typed Axisなし。",
+      "immutability": "real public pathでraw, ValidatedSupply, fn1 Comparisonは呼出し前後で不変。direct pathでもraw/V不変を個別に確認。",
+      "normal_prefix_control": "dependenciesを除く他の責務は通常同call FN6出力と比較し、既存handoff AxisとB02等の対象外Findingを保持する。handoff_records自体はこの枝でabsent化しない。"
+    },
+    "preserved_boundaries": [
+      "R105 required_dependency_missing Findingは既存identity別predicate/reason/typed formationを保つ。専用TRACE14 Axis writerはFindingを代替しない。",
+      "R106 selector unknownは旧literal reason/orderを保ち、欠落selectorをfalseや空集合へ正規化しない。",
+      "B02/F09既存prefix、handoff記録、normal FN6所見の責務・順序を変えない。",
+      "partial Binding直接projectorのno-subject境界とpublic FN6入力契約を混同しない。"
+    ],
+    "completion_boundary": "G4 dependencies-absent slice only. Public fn6 end-to-end and direct projector checks are separate evidence. Formal L8 acceptance, OS registration/Accepted, Issue #3547 completion, and other G1/G2/G3 branches are not claimed.",
+    "split_unit": "G4",
+    "split_decision": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
+    "source_test_history_ref": "L7 /fn6_dependencies_absent_verification/{test_sources,implementation_revisions}",
+    "legacy_basis_ref": "L5 /functions/6/legacy_comparison（LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5 16–78、LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 16–100の意味再導出を継承。既存missing非補完/原identity保持、旧runtime非実行）。"
   }
 }
