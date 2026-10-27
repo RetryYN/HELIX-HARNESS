@@ -297,6 +297,12 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                 result["problems"].append(_problem("declaration_shape", declaration_locator, source_ref))
             relation, identity_matches = _ref_related(claim_ref, target_ref)
             if relation == "unrelated":
+                if (not _typed_ref_shape(target_ref)
+                        or any(target_ref.get(member) is None
+                               for member in ("identity", "revision", "scope", "owner"))):
+                    result["problems"].append(_problem(
+                        "target_ref_unresolved", f"{declaration_locator}/target_ref", source_ref
+                    ))
                 if not source_binding_ok:
                     result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
                 continue
