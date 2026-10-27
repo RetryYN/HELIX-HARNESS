@@ -98,8 +98,6 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     if raw is None:
         return _comparison([], [], "compare_oracle_and_view_boundary", None)
     claims = raw["claims"] if "claims" in raw else []
-    if claims or frame["target_reads"] or frame["claim_uses"]:
-        _stop("oracle_claim_ports")
     binding = raw["binding"]
     evaluation = frame["definition_evaluation"]
     if not isinstance(evaluation, dict) or set(evaluation) != {"comparison", "assessments"}:
@@ -107,11 +105,13 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     original_axes = context["definitions"]["axes"]
     from oracle_finite_carry import is_zero_operand_carry
 
-    if is_zero_operand_carry(raw):
+    if is_zero_operand_carry(raw, frame["target_reads"]):
         return _comparison(
             write_oracle_axes(original_axes, []), [],
             "compare_oracle_and_view_boundary", binding,
         )
+    if claims or frame["target_reads"] or frame["claim_uses"]:
+        _stop("oracle_claim_ports")
     predicate_axes = []
     findings = []
     oracle_bindings = raw["oracle_bindings"] if "oracle_bindings" in raw else []

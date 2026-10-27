@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "a0fb87ae71915a1dadb404841fe0c9a12ae0e2e9271234c31c89a871b2d386d6",
+    "sha256": "1b025a9b1c05533cca850066857e6942aab25a29743ccc03f2ae640a10a2c778",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2897,6 +2897,361 @@
       "unit": "root-wr33-g2b-r1-unit-green.json:365PASS22331ms",
       "latest_main": "root-wr33-g2b-r1-latest-main-integration.json:main0f9a2ff5 merge前後のunit+全BRAINdoc tree同一、365PASS証拠保持。",
       "review_limit": "上記静的監査を独立reviewの受入/同値認定へ自動昇格しない。R2で再判定する。"
+    }
+  },
+  "fn4_finite_fill_claim_connection_verification": {
+    "sibling_of": "fn4_oracle_verification",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_oracle_connection.py"
+    ],
+    "verification_sequence": [
+      "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
+      "R2でR1のMinor2件解消とtarget-kind反例によるInfo訂正を確認。R2追加Minor1件のテスト対応後、R3独立review待ち。Ready・明示merge・root read-afterは未実施。"
+    ],
+    "legacy_rederivation": "既存fn4_oracle_verificationのlegacy referencesとfailure traceをそのまま参照し、新たなlegacy semanticsを持ち込まない。",
+    "authority_effect": "none",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn4_finite_fill_claim_connection_preparation"
+    },
+    "test_revision": "57e0fe6a44cf603cbb2b63bda22c23733168eca9",
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g3-connections-red.json",
+        "test_revision": "57e0fe6a4",
+        "methods": 6,
+        "semantic_not_implemented_errors": 8,
+        "negative_control_passes": 1,
+        "duration_ms": 472,
+        "scope": "FN4/FN6 combined new6methods; import/setup0; bounded/reaped/notruncated"
+      },
+      {
+        "artifact": "root-wr33-g3-connections-green-R1.json",
+        "source_revision": "d0bb20200",
+        "methods": 7,
+        "duration_ms": 794,
+        "result": "PASS",
+        "scope": "凍結6methodsと追加optional1method全体"
+      }
+    ],
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g3-unit-green-R1.json",
+      "source_revision": "d0bb20200",
+      "methods": 372,
+      "duration_ms": 22735,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g3-latest-main-integration.json",
+      "main": "1e319ad3b91a0f886218ca64938931c9a833f80f",
+      "unit_and_all_BRAIN_document_trees_unchanged": true,
+      "test_evidence": "同source/testと参照文書tree同一のため372PASS証拠を保持する。"
+    },
+    "completion_boundary": "G3有限接続と対象unit372methodsの局所検証だけ。FN4全7規則/FN6全writer閉包、G5、L8受入、OS登録、WR33全体完了は生成しない。",
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g3-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "prior_document_values_preserved": true,
+      "pairhash_matches": true,
+      "FN6_old_body_prefix_guards_B02_AST_preserved": true,
+      "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
+      "new_walk_and_uses_calls_once": true,
+      "frozen_test_files_unchanged": 8,
+      "all_existing_test_files_unchanged": true,
+      "G4_G4b_hunks_preserved": true,
+      "G5_handoff_absent_hunk_excluded": true
+    },
+    "review_r1": {
+      "source_revision": "4d05ed9feb18ad4ee0f314e8f76ba370e8a9601c",
+      "frozen_tests": [
+        {
+          "commit": "003b7acd3",
+          "path": "tests/test_descriptor_fn4_absent_proposal_stop.py"
+        },
+        {
+          "commit": "286acbb04",
+          "path": "tests/test_descriptor_fn4_target_kind_without_slot.py"
+        }
+      ],
+      "verification_evidence": [
+        "root-wr33-g3-r1-guard-red.json",
+        "root-wr33-g3-r1-guards-green.json",
+        "root-wr33-g3-r1-fn4-absence-mutation.json",
+        "root-wr33-g3-r1-fn4-targetkind-mutation.json",
+        "root-wr33-g3-r1-unit-green.json"
+      ],
+      "result_summary": "提案値不在とowner宣言kindの境界を実FN0/walkの入力で固定し、presence guard/target-kind guardの除去変異をassertionで検出した。FN4 sourceのR1変更はない。",
+      "review_status": {
+        "r1": "findingsの指摘範囲をsource fix 4d05ed9feb18ad4ee0f314e8f76ba370e8a9601cと凍結テストで対応済み",
+        "r2": "independent review待ち。R1対応をreview完了やPR完了と扱わない。"
+      },
+      "historical_verification_retention": {
+        "prior_unit_evidence": "既存fn4/fn6 subtreeのd0bb20200・372 methods・22,735 ms PASSを当時の記録として保持し、R1結果で上書きしない。",
+        "r1_unit_evidence": "本R1追補は4d05ed9 source・375 methods・24,738 ms PASSを別記録する。"
+      },
+      "unit_green": {
+        "artifact": "root-wr33-g3-r1-unit-green.json",
+        "methods": 375,
+        "duration_ms": 24738,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false,
+        "timed_out": false
+      },
+      "focused_green": {
+        "artifact": "root-wr33-g3-r1-guards-green.json",
+        "methods": 4,
+        "duration_ms": 592,
+        "result": "PASS"
+      },
+      "latest_main_integration": {
+        "main": "1d6fd2ef208d8bc5e805a33ab47ffcc13829ae92",
+        "merge_revision": "e778e8b9c48b4f55e9aa81bcf0d8f237ab768418",
+        "artifact": "root-wr33-g3-r1-latest-main-integration.json",
+        "unit_and_L4_L5_L6_L7_blobs_unchanged": true
+      },
+      "mutations": [
+        {
+          "artifact": "root-wr33-g3-r1-fn4-absence-mutation.json",
+          "result": "KILLED",
+          "duration_ms": 219
+        },
+        {
+          "artifact": "root-wr33-g3-r1-fn4-targetkind-mutation.json",
+          "result": "KILLED",
+          "duration_ms": 183
+        }
+      ],
+      "info_counterexample": "R1-i1のtarget-kind変異は等価ではない。caller slotなしでもownerのmeasurement住所宣言を実walkでresolvedとして取得できる。新テストはslot_locators=[]とrawにtarget-kind slotなしを確認し、変異の誤carryを検出した。分類訂正をR2へ依頼する。"
+    }
+  },
+  "fn6_fill_claim_rule87_connection_verification": {
+    "sibling_of": "fn6_dependencies_absent_verification",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_dependencies_connection.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fn6_rule87_occurrences.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fn6_optional_claim_members.py"
+    ],
+    "verification_sequence": [
+      "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
+      "R2でR1のMinor2件解消とtarget-kind反例によるInfo訂正を確認。R2追加Minor1件のテスト対応後、R3独立review待ち。Ready・明示merge・root read-afterは未実施。"
+    ],
+    "legacy_rederivation": "既存fn6_dependencies_absent_verificationのlegacy referencesを参照するが、G4 dependency-absent scopeをG3へ取り込まない。",
+    "authority_effect": "none",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn6_fill_claim_rule87_connection_preparation"
+    },
+    "test_revision": "57e0fe6a44cf603cbb2b63bda22c23733168eca9",
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g3-connections-red.json",
+        "test_revision": "57e0fe6a4",
+        "methods": 6,
+        "semantic_not_implemented_errors": 8,
+        "negative_control_passes": 1,
+        "duration_ms": 472,
+        "scope": "FN4/FN6 combined new6methods; import/setup0; bounded/reaped/notruncated"
+      },
+      {
+        "artifact": "root-wr33-g3-connections-green-R1.json",
+        "source_revision": "d0bb20200",
+        "methods": 7,
+        "duration_ms": 794,
+        "result": "PASS",
+        "scope": "凍結6methodsと追加optional1method全体"
+      }
+    ],
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g3-unit-green-R1.json",
+      "source_revision": "d0bb20200",
+      "methods": 372,
+      "duration_ms": 22735,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g3-latest-main-integration.json",
+      "main": "1e319ad3b91a0f886218ca64938931c9a833f80f",
+      "unit_and_all_BRAIN_document_trees_unchanged": true,
+      "test_evidence": "同source/testと参照文書tree同一のため372PASS証拠を保持する。"
+    },
+    "completion_boundary": "G3有限接続と対象unit372methodsの局所検証だけ。FN4全7規則/FN6全writer閉包、G5、L8受入、OS登録、WR33全体完了は生成しない。",
+    "optional_claim_members": {
+      "test_revision": "bc23a0564",
+      "contract_refs": [
+        "/logical_input_structure/schema/$defs/Claim",
+        "/claim_intent_detail/reader",
+        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order",
+        "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn6"
+      ],
+      "expected": "proposed欠落はintent/use unresolved、basis欠落かつprimary source_unresolvedはroute none。どちらも旧B02の6field gateへ入れず、FN6tupleを足さず既存prefixと原presenceを保つ。",
+      "preimplementation_red": "root-wr33-g3-optional-claim-committed-red.json:exact0ba FN6 source blob/temp overlay、1method2claim_closed_shape NotImpl、357ms/reaped/nontruncated、import/setup0。実worktree sourceは変更せず、外側status0は期待Red検証成功であり製品Greenではない。",
+      "green": "root-wr33-g3-connections-green-R1.json:combined7PASS794ms"
+    },
+    "pre_execution_candidate_rejection": "root Readで候補1のpublicFN1とprivatewalk Comparison全値一致gate、旧B02strict6fieldのfillへの流用、L5detail欠落を実行前に却下した。候補1は未実行/未commitでRed/Green証拠にしない。候補2でL5のwalk→uses/frame→detailに直し、旧bodyからnewfillbranchだけを除いたAST一致を確認した。",
+    "old_F05_controls": "既存F05二件のoracle_claim_ports期待はG2bで既に最終境界と同じ。G3ではfileを変更せず全unitで通過。",
+    "R2_future_condition": "G2b R2-i1: 将来nonfill/meaning_undefined producerを開くPRではnegative intent/rule93 reference_onlyの独立test追加。本G3はそれらを開かず、現producer域を維持する。",
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g3-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "prior_document_values_preserved": true,
+      "pairhash_matches": true,
+      "FN6_old_body_prefix_guards_B02_AST_preserved": true,
+      "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
+      "new_walk_and_uses_calls_once": true,
+      "frozen_test_files_unchanged": 8,
+      "all_existing_test_files_unchanged": true,
+      "G4_G4b_hunks_preserved": true,
+      "G5_handoff_absent_hunk_excluded": true
+    },
+    "review_r1": {
+      "source_revision": "4d05ed9feb18ad4ee0f314e8f76ba370e8a9601c",
+      "frozen_tests": [
+        {
+          "commit": "003b7acd3",
+          "path": "tests/test_descriptor_fn6_fill_claim_boundary.py"
+        },
+        {
+          "commit": "003b7acd3",
+          "path": "tests/test_descriptor_fn4_absent_proposal_stop.py"
+        },
+        {
+          "commit": "286acbb04",
+          "path": "tests/test_descriptor_fn4_target_kind_without_slot.py"
+        }
+      ],
+      "verification_evidence": [
+        "root-wr33-g3-r1-guard-red.json",
+        "root-wr33-g3-r1-guards-green.json",
+        "root-wr33-g3-r1-fn6-guard-mutation.json",
+        "root-wr33-g3-r1-unit-green.json",
+        "root-wr33-g3-r1-latest-main-integration.json",
+        "root-wr33-g3-static-acceptance-current.json"
+      ],
+      "result_summary": "fill ClaimのActor/Ref/Binding/閉じた形状を復元し、proposed_value/basis_refs省略だけを維持した。Actor誤値・Actor欠落・未知memberの3assertion Red345msからsource修正後Greenへ進み、3guard除去変異も検出した。",
+      "latest_main_note": "main1d6fd2efをe778e8b9で取り込み、前後のunit/L4/L5/L6/L7 tree/blob一致を確認した。",
+      "review_status": {
+        "r1": "findingsの指摘範囲をsource fix 4d05ed9feb18ad4ee0f314e8f76ba370e8a9601cと凍結テストで対応済み",
+        "r2": "independent review待ち。R1対応をreview完了やPR完了と扱わない。"
+      },
+      "historical_verification_retention": {
+        "prior_unit_evidence": "既存fn4/fn6 subtreeのd0bb20200・372 methods・22,735 ms PASSを当時の記録として保持し、R1結果で上書きしない。",
+        "r1_unit_evidence": "本R1追補は4d05ed9 source・375 methods・24,738 ms PASSを別記録する。"
+      },
+      "unit_green": {
+        "artifact": "root-wr33-g3-r1-unit-green.json",
+        "methods": 375,
+        "duration_ms": 24738,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false,
+        "timed_out": false
+      },
+      "focused_green": {
+        "artifact": "root-wr33-g3-r1-guards-green.json",
+        "methods": 4,
+        "duration_ms": 592,
+        "result": "PASS"
+      },
+      "latest_main_integration": {
+        "main": "1d6fd2ef208d8bc5e805a33ab47ffcc13829ae92",
+        "merge_revision": "e778e8b9c48b4f55e9aa81bcf0d8f237ab768418",
+        "artifact": "root-wr33-g3-r1-latest-main-integration.json",
+        "unit_and_L4_L5_L6_L7_blobs_unchanged": true
+      },
+      "red": {
+        "artifact": "root-wr33-g3-r1-guard-red.json",
+        "methods_run": 2,
+        "duration_ms": 345,
+        "fn6_guard_assertion_failures": 3,
+        "absent_proposal_control": "PASS",
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "FN6 guard bypassをactor誤値・actor欠落・未知memberで観測。FN4 absent-proposal controlは従来stopを通過した。"
+      },
+      "mutations": {
+        "artifact": "root-wr33-g3-r1-fn6-guard-mutation.json",
+        "outer_duration_ms": 697,
+        "result": "3/3 KILLED",
+        "mutants": [
+          {
+            "name": "remove fill actor equality guard",
+            "duration_ms": 214,
+            "result": "KILLED"
+          },
+          {
+            "name": "remove fill required-member subset guard",
+            "duration_ms": 209,
+            "result": "KILLED"
+          },
+          {
+            "name": "remove fill allowed-member subset guard",
+            "duration_ms": 208,
+            "result": "KILLED"
+          }
+        ],
+        "assertion_failures": true,
+        "import_or_setup_errors": false,
+        "tracked_source_unchanged": true,
+        "reaped": true,
+        "output_truncated": false
+      }
+    },
+    "review_r2": {
+      "review_comment": 6452875489,
+      "r1_findings": "m1/m2解消、R1-i1のtargetkind変異の等価判断をreviewerが訂正した。state/matches到達性は有限fixture観測だけで一般化せず、今後はowner宣言経路も確かめる。",
+      "finding": "復元したBinding一致・Ref形状・Binding形状guardを外した変異の生存。実FN0で到達可能。",
+      "test_revision": "88e94ba1a",
+      "methods": 1,
+      "subcases": 3,
+      "focused_green": {
+        "artifact": "root-wr33-g3-r2-ref-binding-green.json",
+        "duration_ms": 202,
+        "result": "PASS"
+      },
+      "mutation_evidence": {
+        "artifact": "root-wr33-g3-r2-fn6-ref-binding-mutation.json",
+        "duration_ms": 645,
+        "result": "ALL_KILLED",
+        "mutants": [
+          {
+            "guard": "Binding equality",
+            "duration_ms": 211
+          },
+          {
+            "guard": "subject Ref frame",
+            "duration_ms": 193
+          },
+          {
+            "guard": "Binding shape",
+            "duration_ms": 191
+          }
+        ],
+        "assertion_failures": true,
+        "import_setup_errors": 0,
+        "source_unchanged": true,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "full_unit": {
+        "artifact": "root-wr33-g3-r2-unit-green.json",
+        "methods": 376,
+        "duration_ms": 23607,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      "latest_main_integration": {
+        "artifact": "root-wr33-g3-r2-latest-main-integration.json",
+        "main": "963df2a10ccffe4ca00455c955cc8f5618346383",
+        "unit_and_all_BRAIN_doc_trees_unchanged": true
+      },
+      "source_changes": false,
+      "completion_boundary": "G3の局所検証だけ。G5、L8受入、OS登録、WR33全体完了は生成しない。"
     }
   }
 }
