@@ -195,6 +195,7 @@ def _unknown_axis(subject: Any, binding: Any, axis: str, refs: list[Any], reason
 def _fn1_scope_guard(
     raw: dict[str, Any],
     binding: dict[str, Any],
+    *,
     allow_missing_facts: bool = False,
 ) -> None:
     """Keep fn1 inside the frozen 15-kind path; do not evaluate F01/F02 failures here."""
