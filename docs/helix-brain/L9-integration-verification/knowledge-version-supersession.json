@@ -102,6 +102,18 @@
       "l4_ref": "HELIXBRAIN-L4-008-F01",
       "requirement_ref": "HELIXBRAIN-L3-008-F01",
       "system_oracle_ref": "HELIXBRAIN-L10-008-F01",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-008-F01",
+        "parent": "HELIXBRAIN-L2-008",
+        "title": "知識identity・版・状態の識別",
+        "requirement_ref": "HELIXBRAIN-L3-008-F01",
+        "positive_input": "同identityの旧/新revision、各状態、版/参照不明を比較する。",
+        "expected_observation": "知識の版/stateと参照対象が一意に辿れ、不明を利用可能にしない。",
+        "negative_input": "filenameを知識identity、version_targetを実版、retired/unknownをcurrent、旧新state混同。",
+        "failure_observation": "知識revision/stateを008へ返し、案件利用状態の不足はOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立知識/旧参照/OS原record→pure比較→旧版保全/再照合/不足返却候補。実resolver未binding。",
       "concrete_cases": [
         {
           "id": "B008-F01-CURRENT-DISTINCT",
@@ -337,13 +349,27 @@
           "execution_state": "not_executed",
           "effect": "none"
         }
-      ]
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
     },
     {
       "id": "HELIXBRAIN-L9-008-F02",
       "l4_ref": "HELIXBRAIN-L4-008-F02",
       "requirement_ref": "HELIXBRAIN-L3-008-F02",
       "system_oracle_ref": "HELIXBRAIN-L10-008-F02",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-008-F02",
+        "parent": "HELIXBRAIN-L2-008",
+        "title": "旧版参照とsupersession",
+        "requirement_ref": "HELIXBRAIN-L3-008-F02",
+        "positive_input": "v旧を使うCORE参照にv新のsupersessionと意味差を与える。",
+        "expected_observation": "旧参照は元revisionへ辿れ、新版候補と未完の再照合が別に示される。",
+        "negative_input": "latestを無言で採用、旧参照削除、supersession edgeのみで案件移行完了。",
+        "failure_observation": "参照の知識差をBRAIN、製品適用をCORE、案件の実使用記録をOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立知識/旧参照/OS原record→pure比較→旧版保全/再照合/不足返却候補。実resolver未binding。",
       "concrete_cases": [
         {
           "id": "B008-F02-OLD-REFERENCE-NEW-CANDIDATE",
@@ -480,13 +506,27 @@
           "execution_state": "not_executed",
           "effect": "none"
         }
-      ]
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
     },
     {
       "id": "HELIXBRAIN-L9-008-B01",
       "l4_ref": "HELIXBRAIN-L4-008-B01",
       "requirement_ref": "HELIXBRAIN-L3-008-B01",
       "system_oracle_ref": "HELIXBRAIN-L10-008-B01",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-008-B01",
+        "parent": "HELIXBRAIN-L2-008",
+        "title": "知識状態とproject利用状態",
+        "requirement_ref": "HELIXBRAIN-L3-008-B01",
+        "positive_input": "同知識候補を未使用案件と使用記録ありの案件へ照合する。",
+        "expected_observation": "知識revision/stateとCORE参照/OS実利用記録を区別する。",
+        "negative_input": "BRAINが実project state正本を持つ、知識currentで全案件移行済み、受領で実使用済み。",
+        "failure_observation": "知識はBRAIN、適用はCORE、実使用記録はOSへ返す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立知識/旧参照/OS原record→pure比較→旧版保全/再照合/不足返却候補。実resolver未binding。",
       "concrete_cases": [
         {
           "id": "B008-B01-UNUSED-AND-USED-PROJECTS",
@@ -664,7 +704,9 @@
           "execution_state": "not_executed",
           "effect": "none"
         }
-      ]
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
     }
   ],
   "completion": "初回合成内容対照のみ。実資格/必要集合/owner binding/詳細/実移行/実使用と設計閉包は未成立。 追加のv2 source-role反例は静的期待を追補しただけで、未実行。",
@@ -678,14 +720,11 @@
     "formal_schema_or_actual_execution": false
   },
   "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
     "git_commit": "7c54705a796fe6ed699455a85df9b2feaed6e4d3",
     "path": "docs/helix-brain/L9-integration-verification/knowledge-version-supersession.json",
-    "removed_paths": [
-      "/verification_obligations/*/concrete_cases/*/source_bindings",
-      "/verification_obligations/*/concrete_cases/*/input_contract_revision",
-      "/verification_obligations/*/concrete_cases/*/independent_source_packet",
-      "/verification_obligations/*/concrete_cases/*/expected_material"
-    ],
-    "reason": "Verification execution materials (raw inputs, typed inputs, source bindings, expected materials, patches, and verification digests) are git-recoverable at git_commit and removed from the verification design definition."
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（independent_source_packet、expected_material、source_bindings、input_contract_revision、hash等）をallowlist方式で撤去した。残したのはverification_obligations（connection_scope、approved_l10、execution_state、effectを含む）とconcrete_casesのcase行・観点（basis）・input_type・oracle ID・state/effect・remaining・境界文・source_pins等の参照。過去本文はrevision 7c54705a796fe6ed699455a85df9b2feaed6e4d3の同pathで辿る。",
+    "removed_key_rule": "allowlist（L9_COMMON_TOP_ALLOWLIST / L9_OBLIGATION_ALLOWLIST / L9_CONCRETE_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
 }

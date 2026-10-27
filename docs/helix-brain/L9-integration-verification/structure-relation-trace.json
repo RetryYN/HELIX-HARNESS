@@ -124,6 +124,18 @@
       "l4_ref": "HELIXBRAIN-L4-005-F01",
       "requirement_ref": "HELIXBRAIN-L3-005-F01",
       "system_oracle_ref": "HELIXBRAIN-L10-005-F01",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-005-F01",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "意味relationの種類・向き・端点",
+        "requirement_ref": "HELIXBRAIN-L3-005-F01",
+        "positive_input": "各relationと方向を持つgraph、名前類似だけのedge、未知endpoint、未確認因果を比較する。",
+        "expected_observation": "種類/向き/両端と根拠が辿れ、未知を確定relationにしない。",
+        "negative_input": "relation名だけ、未知端点成功、名称類似を意味関係、相関を因果、向きを反転して同意味。",
+        "failure_observation": "未決edgeを確定せずBRAIN該当L1/知識ownerへ返す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立知識node/edge/原意味と提出graph→局所関係比較/chain追跡→未決とowner返却候補。実resolver未binding。",
       "concrete_cases": [
         {
           "id": "B005-F01-REQUIRES-MEANING",
@@ -413,13 +425,27 @@
           "execution_state": "not_executed",
           "effect": "none"
         }
-      ]
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
     },
     {
       "id": "HELIXBRAIN-L9-005-F02",
       "l4_ref": "HELIXBRAIN-L4-005-F02",
       "requirement_ref": "HELIXBRAIN-L3-005-F02",
       "system_oracle_ref": "HELIXBRAIN-L10-005-F02",
+      "approved_l10": {
+        "id": "HELIXBRAIN-L10-005-F02",
+        "parent": "HELIXBRAIN-L2-005",
+        "title": "領域横断の関係保持",
+        "requirement_ref": "HELIXBRAIN-L3-005-F02",
+        "positive_input": "例の領域横断chainと端点一つ未確定の同scope chainを比較する。",
+        "expected_observation": "横断関係と途切れた箇所、各relation根拠を追える。",
+        "negative_input": "領域ごとにgraph切断、endpoint不明を自動補完、例を全製品のarchitectureとして選択。",
+        "failure_observation": "未知関係はBRAINへ戻し、製品適用はCOREの判断へ残す。",
+        "execution_state": "not_executed"
+      },
+      "connection_scope": "独立知識node/edge/原意味と提出graph→局所関係比較/chain追跡→未決とowner返却候補。実resolver未binding。",
       "concrete_cases": [
         {
           "id": "B005-F02-TWO-CROSS-DOMAIN-CHAINS",
@@ -628,7 +654,9 @@
           "execution_state": "not_executed",
           "effect": "none"
         }
-      ]
+      ],
+      "execution_state": "not_executed",
+      "effect": "none"
     }
   ],
   "completion": "合成原内容に対する初回対照のみ。実source資格/必要集合/未見組合せ/実binding/詳細/実演算/設計閉包は未成立。",
@@ -641,12 +669,11 @@
     "formal_schema_or_actual_execution": false
   },
   "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
     "git_commit": "7c54705a796fe6ed699455a85df9b2feaed6e4d3",
     "path": "docs/helix-brain/L9-integration-verification/structure-relation-trace.json",
-    "removed_paths": [
-      "/verification_obligations/*/concrete_cases/*/independent_source_packet",
-      "/verification_obligations/*/concrete_cases/*/expected_material"
-    ],
-    "reason": "Verification execution materials (raw inputs, typed inputs, source bindings, expected materials, patches, and verification digests) are git-recoverable at git_commit and removed from the verification design definition."
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（independent_source_packet、expected_material、hash等）をallowlist方式で撤去した。残したのはverification_obligations（connection_scope、approved_l10、execution_state、effectを含む）とconcrete_casesのcase行・観点（basis）・oracle ID・state/effect・remaining・境界文・source_pins等の参照。過去本文はrevision 7c54705a796fe6ed699455a85df9b2feaed6e4d3の同pathで辿る。",
+    "removed_key_rule": "allowlist（L9_COMMON_TOP_ALLOWLIST / L9_OBLIGATION_ALLOWLIST / L9_CONCRETE_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
 }

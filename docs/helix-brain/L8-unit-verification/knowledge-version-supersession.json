@@ -1474,37 +1474,11 @@
     "search_scope": "Git対象L8履歴の導入a07ae6a3/update bd391a17/ad250a9f、596L5、root保存R2/R3、main/worktree localのliteral検索。a52元本文はこれらで未回収。全Git object/全worktree/外部tempの不存在証明ではない。"
   },
   "removed_materials": {
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
     "git_commit": "7c54705a796fe6ed699455a85df9b2feaed6e4d3",
     "path": "docs/helix-brain/L8-unit-verification/knowledge-version-supersession.json",
-    "removed_paths": [
-      "/cases/*/raw_source_ref",
-      "/cases/*/raw_source_sha256",
-      "/cases/*/input_contract_revision",
-      "/cases/*/typed_input",
-      "/cases/*/l4_candidate_binding",
-      "/cases/*/l5_candidate_binding",
-      "/cases/*/independent_expected_ref",
-      "/cases/*/independent_expected_material",
-      "/cases/*/independent_expected_canonical_sha256",
-      "/cases/*/expected_whole",
-      "/cases/*/expected_whole_canonical_sha256",
-      "/cases/*/supplemental_expected",
-      "/local_probes/*/baseline_l9_pointer",
-      "/local_probes/*/base_packet_ref",
-      "/local_probes/*/base_raw_sha256",
-      "/local_probes/*/base_expected_ref",
-      "/local_probes/*/base_expected_canonical_sha256",
-      "/local_probes/*/input_contract_revision",
-      "/local_probes/*/input_patch",
-      "/local_probes/*/typed_input",
-      "/local_probes/*/independent_source_ref",
-      "/local_probes/*/independent_expected_material",
-      "/local_probes/*/independent_expected_canonical_sha256",
-      "/local_probes/*/expected_patch",
-      "/local_probes/*/expected_whole",
-      "/local_probes/*/expected_whole_canonical_sha256",
-      "/local_probes/*/l5_candidate_binding"
-    ],
-    "reason": "Verification execution materials (raw inputs, typed inputs, source bindings, expected materials, patches, and verification digests) are git-recoverable at git_commit and removed from the verification design definition."
+    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（raw_source_ref、typed_input、l4_candidate_binding、l5_candidate_binding、independent_expected_ref、independent_expected_material、expected_whole、supplemental_expected、input_patch、expected_patch、base_packet_ref、base_expected_ref、hash等）をallowlist方式で撤去した。残したのはcase行・観点（source_basis_note / expected_derivation / patch_base_expected_whole_derivation / expected_changed_paths / source_qualification）・oracle/requirement/contract/formal_function参照・trace_refs・state/effect・unclosed/unobserved境界・source_pins等の参照。過去本文はrevision 7c54705a796fe6ed699455a85df9b2feaed6e4d3の同pathで辿る。",
+    "removed_key_rule": "allowlist（L8_008_TOP_ALLOWLIST / L8_008_CASE_ALLOWLIST / L8_008_LOCAL_PROBE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
   }
 }
