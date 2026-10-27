@@ -2472,6 +2472,11 @@
         "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_missing_facts_projection.py",
         "methods": 1,
         "test_revision": "0dc0172d4"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_walk_scope_boundaries.py",
+        "methods": 2,
+        "test_revision": "10cbe8d6c"
       }
     ],
     "independent_expectations": [
@@ -2587,13 +2592,13 @@
       "update_commit": "5ac82c762"
     },
     "pending_evidence": [
-      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
+      "exact HEAD独立R2review・Ready・明示merge・root read-afterは未実施。"
     ],
     "limits": [
       "Initial Red observations are separate: three claim-walk methods at 040c20f82 and four missing/origin methods at 5b80c6718.",
       "The evidence does not establish FN1/FN4/FN6/FN7 full scope, G2b/G3/G5, L8 acceptance, OS registration, Issue #3547 completion, or source Green."
     ],
-    "completion_boundary": "G2aの局所TDDと対象unit350methods Greenを記録する。独立review・merge・L8受入・OS登録・WR33/Issue3547完了を生成しない。G2b/G3/G5とtypedmeaning/D27の未対応を保持する。",
+    "completion_boundary": "G2a局所TDDと対象unit352methods Greenを記録する。R1 Minor testgapを新2methodsで固定し2mutantをassertionで検出。独立R2review・merge・L8受入・OS登録・WR33/Issue3547完了は未成立。G2b/G3/G5の未対応を保持する。",
     "f05_transitional_stop_update": {
       "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3746#issuecomment-6451004949",
       "response_packet": "root-wr33-g2a-3746-scope-response-R1.json",
@@ -2619,13 +2624,49 @@
       "artifact": "root-wr33-g2a-static-acceptance-current.json",
       "approved_items_equal": 16,
       "old_document_values_preserved": true,
-      "frozen_new_test_files_unchanged": 4,
+      "frozen_new_test_files_unchanged": 5,
       "public_FN1_and_G4b_function_AST_unchanged": true,
       "all_other_original_walk_methods_AST_unchanged": true,
       "F05_only_stop_literal_changed": true,
       "pairhash_matches": true,
       "source_max_nonblank": 646,
-      "walk_nonblank": 530
+      "walk_nonblank": 530,
+      "R1_source_bytes_unchanged": true
+    },
+    "R1_minor_response": {
+      "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3746#issuecomment-6451163020",
+      "test_revision": "10cbe8d6c",
+      "scope": "required外kindのslot不在をmissingへ増殖しないことと、実FN0で有効な非fill Claimの元supplied_claim_ports exact stopを新2methodsで固定。source不変。",
+      "independent_citations": [
+        {
+          "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+          "pointer": "/failure_rules/9",
+          "basis": "対象kindが独立required_descriptor_kindsにあり、そのBindingのSlotが不存在の場合だけmissing。原target宣言はrequired集合を増やさない。"
+        },
+        {
+          "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+          "pointer": "/definition_meaning_resolution_contract/evaluation_populations",
+          "basis": "required populationと供給slot populationを独立に保持する。"
+        },
+        {
+          "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+          "pointer": "/fn1_same_call_claim_reads_and_missing_events_preparation/scope",
+          "basis": "G2aはfill_definitionの既読化だけを所有し、非fillの元停止境界を保つ。"
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_walk.py",
+          "revision": "3457abd3d3f4d958605452c7f046f27c356d4e57",
+          "symbol": "evaluate_descriptor_definition_walk",
+          "basis": "既存supplied_claim_portsの停止IDとBackflowをexact比較し、別のNotImplementedErrorを同一視しない。"
+        }
+      ],
+      "pre_freeze_correction": "草案が実在する他14slotsを14missingと誤読していたため、root Readで未実行・未凍結のまま却下し修正。誤草案の実行やRed証拠は作っていない。",
+      "non_object_claim_limit": "non-dict Claimは実FN0がdecode-nullへ落とすため、fake ValidatedSupplyでwalk停止を作らない。既存test_descriptor_definition_walk.test_decode_error_keeps_four_field_empty_walkを保持。",
+      "targeted": "root-wr33-g2a-r1-scope-boundaries-green.json:2PASS120ms",
+      "mutants": "root-wr33-g2a-r1-scope-mutation.json:2assertionKILLED279ms/errors0/importsetup0/sourceSHAunchanged; temp source overlay only",
+      "unit": "root-wr33-g2a-r1-unit-green.json:352PASS20824ms/reaped/notruncation",
+      "latest_main_integration": "root-wr33-g2a-r1-latest-main-integration.json:mainb364475e unit+BRAINdocs tree same before/after merge. 同source/testと全BRAIN文書が同一であるため352PASS証拠を保持し、無変更testを重複実行しない。",
+      "source_body_unchanged_since_review_head": "3457abd3d3f4d958605452c7f046f27c356d4e57"
     }
   }
 }
