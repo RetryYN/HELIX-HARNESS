@@ -3935,7 +3935,7 @@
         },
         "full_unit_green": "root-fn7b-walk-nonfill-unit-green-R3.json:405PASS25161ms、reaped=true/output_truncated=false。sourceと新3/統制旧1/他400のbytesはR1と同じ。",
         "locator_mutation": "root-fn7b-walk-locator-mutation-R1.json:原claim indexをlen(target_reads)へ変える一時overlayをmixed新test単独でKILLED。outer171ms、child118ms、1assertFAIL/errors0/importsetup0、実行前後src/tests tree hash不変。sourceと新凍結testは現在も同bytes。",
-        "root_static_acceptance": "root-fn7b-walk-final-static-check-R3.json:31checks PASS。R1の27項目を保持し、新negative test凍結、R2のunit差分は新fileのみ、negative focusedとdict mutantの4項目を追加。",
+        "root_static_acceptance": "root-fn7b-walk-final-static-check-R4.json:31checks PASS。R1の27項目を保持し、新negative test凍結、R2のunit差分は新fileのみ、negative focusedとdict mutantの4項目を追加。",
         "full_unit_green_R1": "root-fn7b-walk-nonfill-unit-green-R2.json:404PASS25457ms、reaped=true/output_truncated=false。移行前403PASS/1FAILは上記証拠とgitへ保持。",
         "R1_dict_guard_supplement": "6455568577 R1-m1: test_descriptor_walk_claim_elements.pyを9c0883b4b0d8e1bfecf77c4fba1be78f3c8ffc6eで凍結。1method/2subtests、実FN0のraw保持・issues/unusable空→namedstop厳密message・raw/validated finally不変。root-fn7b-walk-claim-elements-green-R2.jsonでPASS96ms。既存guardの検出追加で実装前meaning Redは主張しない。",
         "dict_guard_mutation": "root-fn7b-walk-dict-guard-mutation-R2.json:dict any検査だけを外しlist guardを残すoverlayが、AttributeErrorを厳密型期待で検出する2assertFAIL/errors0でKILLED。outer239ms/child156ms、import/setup0、source/tests前後hash不変。sourceは同じdf5f7386。",
