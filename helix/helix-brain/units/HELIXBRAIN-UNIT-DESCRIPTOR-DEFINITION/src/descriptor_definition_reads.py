@@ -244,6 +244,8 @@ def _meaning_read(
                 ))
                 scopes.append({"problem_index": len(problems) - 1, "relevance": "target"})
                 continue
+            if content["definition_meaning_operations"] == []:
+                continue
             raise _stop(
                 "definition_meaning_operations_unclosed",
                 "a supplied definition_meaning_operations carrier is outside the implemented reader path",

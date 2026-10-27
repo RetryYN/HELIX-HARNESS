@@ -293,8 +293,8 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
         )
         self._assert_stop(raw, "F01/F02/unclosed/applicability_supplied_ref:")
 
-    def test_supplied_meaning_operation_carrier_stops_at_reader_id(self):
-        """A typed carrier array remains an unclosed reader branch, not empty support."""
+    def test_empty_meaning_operation_carrier_keeps_zero_occurrences_and_original_unknown(self):
+        """L4/L5 distinguish an empty carrier from absence without creating meaning support."""
         raw = trace_input()
         source = raw["sources"][0]
         original_ref = copy.deepcopy(source["ref"])
@@ -311,7 +311,30 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
                 copy.deepcopy(updated_ref) if ref == original_ref else ref
                 for ref in record["provenance_refs"]
             ]
-        self._assert_stop(raw, "F01/F02/unclosed/definition_meaning_operations_unclosed:")
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertEqual(validated["input"], raw_before)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["unusable_source_refs"], [])
+        validated_before = copy.deepcopy(validated)
+        walk = evaluate_descriptor_definition_walk({"validated": validated})
+        self.assertEqual(len(walk["native_material"]["meaning_reads"]), 15)
+        for read in walk["native_material"]["meaning_reads"]:
+            self.assertEqual(read["acquisition_state"], "unknown")
+            self.assertEqual(read["occurrences"], [])
+            self.assertEqual(read["supports"], [])
+            self.assertEqual(read["problems"], [])
+        for observation in walk["native_material"]["meaning_read_origins"]:
+            self.assertEqual(observation["problem_scopes"], [])
+            self.assertEqual(observation["support_origins"], [])
+        definitions = [row for row in walk["evaluation"]["assessments"]
+                       if row["axis_name"].endswith(".definition")]
+        self.assertEqual(len(definitions), 15)
+        self.assertTrue(all(row["state"] == "unknown" and row["origin_branch"] == "source_unresolved"
+                            for row in definitions))
+        self.assertEqual(validated["input"]["sources"][0]["content"]["definition_meaning_operations"], [])
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
 
 
 if __name__ == "__main__":
