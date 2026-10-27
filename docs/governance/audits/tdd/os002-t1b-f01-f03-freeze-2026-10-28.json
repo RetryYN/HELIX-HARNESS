@@ -1,0 +1,181 @@
+{
+  "record_id": "OS002-T1B-F01-F03-FUNCTION-PAIR-FREEZE-2026-10-28",
+  "record_kind": "function_pair_l5_l8_freeze_record",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-OS002-T1B-3547-20261028-56",
+  "slice_id": "D-OS002-T1b",
+  "decision_refs": [
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447837744",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447858361",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
+    "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json",
+    "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json"
+  ],
+  "source_main": "a812dc2f369258cc803f71c882e16f5b36f52dbd",
+  "request_base_sha": "4d169c9e2d83e871ef1e93469f5378915fae39b5",
+  "recorded_at_utc": "2026-10-27T22:31:00+00:00",
+  "target": "HELIXOS-L2-002 詳細対 T:298（HELIXOS-L3-002-F01 ↔ HELIXOS-L10-002-F01：要求から運用までの個別追跡、fn3 compare_project_stages）・T:300（HELIXOS-L3-002-F03 ↔ HELIXOS-L10-002-F03：各記録の因果とrevision、fn5 compare_event_obligation_trace）の remaining A/B/C 仕分けと公開関数単位詳細対凍結記録（2行）。全体完了や総合凍結とは呼ばない。",
+  "criterion": "上位L3/L10（HELIXOS-L3-002-F01/F03 ↔ HELIXOS-L10-002-F01/F03）および基本設計L4/L9（HELIXOS-L4-002-F01/F03 ↔ HELIXOS-L9-002-F01/F03）から独立導出した期待（DT-VT-105）に対し、L5公開関数契約（fn3 compare_project_stages, fn5 compare_event_obligation_trace）とL8単体検証case行（U-ID）が1対1に対応し、T:298/T:300に未確定残件（A）が0件であること。L8へ全返却・fixture・hash・COPYは追加しない（#3510）。",
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+    "B1_FREEZE": "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json",
+    "T1A_FREEZE": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json"
+  },
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "10bf6ac45c3bf96a2434692791f8bb671dcf06a4ba3fef9e06f6ace1c982e2eb",
+    "L9_sha256": "78fbb68377c36ee8173e820001db411abd9c8262affe4098c7fcf2bb6c31d62b",
+    "L5_pre_sha256": "d111cd169471c34128a5dd6df802358940c82f349cac001326b654da5f4cc7c8",
+    "L5_post_sha256": "f57c488232b26eb9d8b3387151d67b937be191e36c36b83137bfa4f0a2107ec6",
+    "L8_pre_sha256": "d6e918f32e775da48be656a35a36b3d74e003003e214175a76136593c2df5998",
+    "L8_post_sha256": "03681743b1f9048260fc1778ecf88a5c33c58dfa149b0f80112e0ad93f56373e",
+    "B1_FREEZE_sha256": "448f819234777bcc9e28bb5f4cfa25f26a69b1cfd743c85816966426c8d8d9c5",
+    "T1A_FREEZE_sha256": "da317a1762ac041d65dbffdf3e13802234f8365ae6aed13e665055e1d639b39d"
+  },
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {"asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md", "lines": "24, 36, 58, 86, 91", "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"},
+      {"asset_id": "LEGACY-ASSET-18F7940E7994634D39A1", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md", "lines": "54, 56, 58", "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"},
+      {"asset_id": "UTW-014/020/021", "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md", "lines": "80, 86, 87", "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"}
+    ],
+    "preserve": "projectごとの要求から作業・実装・検証・提供・運用までの独立追跡とrelease kanban原状態の分離（F01）、ならびに各記録の発生event/actor/source/correlation・project/scope/要求revision/template版・unit/connection/composite義務/artifact/pair・nonrelated_basisの因果結合（F03）を保持。",
+    "change": "OSTRACE追補判断（2026-10-10）および #3510 / #3547 統制判断に基づき、L5 contracts/2,4・functions/3,5のalgorithm文言へL3 F01/F03の全工程・全不成立状態・全9記録種別・未解決保持を明記して対応を閉じ、L8へ全返却/fixture/hashを追加せず公開関数単位（fn3 compare_project_stages, fn5 compare_event_obligation_trace）でT:298・T:300詳細対を凍結した。",
+    "failure_refs": ["Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化", "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化"]
+  },
+  "remaining_dispositions": [
+    {"id": "DT1B-01", "class": "B", "targets": ["L5#/contracts/2", "L5#/contracts/4", "L5#/functions/3", "L5#/functions/5", "L5#/failure_rules/5", "L5#/failure_rules/6", "L5#/failure_rules/10", "L5#/failure_rules/28", "L5#/implementation_preparation/remaining/0", "L5#/wire_codec_contract/remaining/0", "L8#/cases/2", "L8#/cases/4", "L8#/function_cases/3", "L8#/function_cases/5", "L8#/normal_fixtures/2", "L8#/normal_fixtures/4", "L8#/completion/remaining", "L8#/wire_codec_verification/completion_limit"], "topic": "T:298（F01: fn3 compare_project_stages）およびT:300（F03: fn5 compare_event_obligation_trace）のL5/L8詳細対充足", "basis_pointers": ["L3F#/requirements/8", "L3F#/requirements/10", "L10F#/cases/8", "L10F#/cases/10", "L4#/contracts/2", "L4#/contracts/4", "L9#/cases/2", "L9#/cases/4"], "reason": "T:298（F01 正常1＋負例2）およびT:300（F03 正常1＋負例19）はL5関数契約（fn3, fn5）・failure_rules（5..6, 10..28）とL8 U-ID行（function_cases/3,5・cases/2,4/negative_cases）で1対1に完全一致し、本D-OS002-T1bに未確定残件（A）はない。"},
+    {"id": "DT1B-02", "class": "A", "targets": ["L5#/implementation_preparation/remaining/0", "L8#/completion/remaining"], "topic": "残る9詳細対 T:299, 301..308（F02, F04..F09, N01, N02；F02 core_proposal_receiving P2・F04 source_projection/original_correspondence P2bを含む）の関数別精査・凍結", "basis_pointers": ["L5#/contracts/3", "L5#/contracts/5", "L5#/contracts/6", "L5#/contracts/7", "L5#/contracts/8", "L5#/contracts/9", "L5#/contracts/10", "L5#/contracts/11", "L5#/contracts/12", "L5#/core_proposal_receiving_detail", "L5#/f04_source_original_correspondence_detail", "L8#/core_proposal_receiving_verification", "L8#/f04_source_original_correspondence_verification"], "reason": "本スライスD-OS002-T1bのスコープ外（T1b内のA残件は0件）。採択済み分割計画（#3547 comment 6447837744 / 6447858361）に従い、後続スライスD-OS002-T1c（T:299）・T2a/T2b（T:301）・T3a/T3b（T:302..305）・T4（T:306..308）で順次解消・凍結する。"},
+    {"id": "DT1B-03", "class": "C", "targets": ["L5#/implementation_preparation/remaining/1", "L5#/implementation_preparation/remaining/2", "L5#/wire_codec_contract/remaining/0", "L5#/wire_codec_contract/remaining/1"], "topic": "正式record schema/codec/source resolver/trust root供給元・実custody・外部owner（BRAIN/CORE/LABO/SECURITY/CONNECT・提供記録owner・元event/record owner）実binding・OS053実保存・023 Backflow実証", "basis_pointers": ["L5#/authority_boundary", "L5#/functions/3/effect", "L5#/functions/5/effect", "L8#/authority_boundary"], "reason": "OS002 L5/L8純粋論理・単体検証仕様（effect=none・authority_generated=false）の範囲外。外部owner契約・実資格基盤・OS053/023・下流統合へ戻す。"},
+    {"id": "DT1B-04", "class": "C", "targets": ["L5#/implementation_preparation/remaining/3", "L5#/implementation_preparation/remaining/4", "L5#/wire_codec_contract/remaining/2", "L8#/completion/remaining", "L8#/wire_codec_verification/completion_limit"], "topic": "下流L6関数設計/L7関数検証、実装前test/oracle凍結→Red→Green→Refactor、製品関数実行（runtime_execution=not_executed）、held-out実input、PO L11実物受入、全92親430対閉包", "basis_pointers": ["L5#/implementation_preparation/state", "L8#/completion/runtime_execution", "L8#/completion/full92_430_completion"], "reason": "L5/L8の下流工程（L6/L7・実装TDD・PO L11受入・リポジトリ全体統制）の責務。"}
+  ],
+  "disposition_counts": {"T1b_A_count": 0, "downstream_slices_A_count": 1, "B_count": 1, "C_count": 2},
+  "independent_expectation_derivation": {
+    "method_ref": "scaffold/verification-test-template-seed-20261001/README.md (DT-VT-105)",
+    "upstream_sources": ["L3F#/requirements/8", "L3F#/requirements/10", "L10F#/cases/8", "L10F#/cases/10", "L4#/contracts/2", "L4#/contracts/4", "L9#/cases/2", "L9#/cases/4"],
+    "derived_expectations": [
+      {"expectation_id": "O1", "source_refs": ["L3F#/requirements/8", "L10F#/cases/8/positive_input", "L10F#/cases/8/expected_observation", "L4#/contracts/2/behavior", "L4#/contracts/2/required_input_meanings", "L9#/cases/2/expected_observation"], "expectation": "F01正常系として、compare_project_stagesは各project_states（要求から作業・実装・検証・提供・運用までの工程状態）を対象project/scope（binding.project_scope）と要求revision（binding.requirement_ref）へ独立に結び、欠落・競合・未接続・未合意・未実装・未検証を区別し、release_kanbanは元owner recordからstate/source_refを解決して既知（例: QのKQ prepared）と未提示（null→not_supplied、例: Pのkanban未提示）を区別し、部分成功で全体完了を生成しない。", "l5_pointers": ["L5#/contracts/2", "L5#/functions/3/algorithm/0", "L5#/functions/3/algorithm/1", "L5#/type_contract/types/F01RecordInput", "L5#/type_contract/types/F01RecordObservation"], "l8_case_ids": ["HELIXOS-L8-002-NORMAL-compare_project_stages", "HELIXOS-L8-002-FIXTURE-F01"], "status": "satisfied"},
+      {"expectation_id": "O2", "source_refs": ["L10F#/cases/8/negative_input", "L10F#/cases/8/failure_observation", "L4#/contracts/2/negative_classifications/0", "L4#/contracts/2/negative_classifications/1", "L9#/cases/2/negative_cases/0", "L9#/cases/2/negative_cases/1"], "expectation": "F01負例として、compare_project_stagesは別project Qの成功で対象project Pを完了とするclaim（other_project_completion → axis=project_scope, state=conflict, backflow_owner=OS002）およびGitHub Issue close/PR mergeをrelease kanban提供状態へ転写するclaim（github_as_release → axis=release_state, state=unknown, backflow_owner=OS002/提供記録owner）を退け、Pの未実装/未検証/kanban未提示とQの原状態（KQ prepared）を副作用0で保存する。", "l5_pointers": ["L5#/failure_rules/5", "L5#/failure_rules/6"], "l8_case_ids": ["HELIXOS-L8-002-F01"], "status": "satisfied"},
+      {"expectation_id": "O3", "source_refs": ["L3F#/requirements/10", "L10F#/cases/10/positive_input", "L10F#/cases/10/expected_observation", "L4#/contracts/4/behavior", "L4#/contracts/4/required_input_meanings", "L9#/cases/4/expected_observation"], "expectation": "F03正常系として、compare_event_obligation_traceは全9種の記録（template適用・義務生成/消込・N/A・Backflow・設計成果・finding・再作業・受入・運用結果）のeventsをevent_refで原sourceへ結び、actor_ref・source_ref・correlation_refおよびbindingのproject・scope・requirement_revision・選択/使用template版を個別照合し、obligation_refからkind_obligationsのunit/connection/compositeとartifact_ref・pair_ref両端identity/revisionを同義務へ照合（単体成功を他kindへ伝播しない）し、非関係項目は有資格nonrelated_basisの対象端と不適用理由または未解決として保持し、completion_generated=falseを維持する。", "l5_pointers": ["L5#/contracts/4", "L5#/functions/5/algorithm/0", "L5#/functions/5/algorithm/1", "L5#/functions/5/algorithm/2", "L5#/type_contract/types/F03RecordInput", "L5#/type_contract/types/F03RecordObservation"], "l8_case_ids": ["HELIXOS-L8-002-NORMAL-compare_event_obligation_trace", "HELIXOS-L8-002-FIXTURE-F03"], "status": "satisfied"},
+      {"expectation_id": "O4", "source_refs": ["L10F#/cases/10/negative_input", "L10F#/cases/10/failure_observation", "L4#/contracts/4/negative_classifications", "L9#/cases/4/negative_cases"], "expectation": "F03負例として、compare_event_obligation_traceは原eventのproject/scope/requirement_revision/template_revision/obligation/artifact/pair各参照の欠落・別対象置換14件（axis=各対象軸, state=missing/conflict, backflow_owner=元record/source owner）、発生元event/actor/source/correlation除去4件（axis=event/actor/source/correlation, state=missing, backflow_owner=元event owner）、非関係項目の架空pair捏造1件（nonrelated_fabrication → axis=applicability, state=conflict, backflow_owner=元record owner）の計19件を具体recordへ返し、他eventの原結合とQ有効記録を副作用0で保存する。", "l5_pointers": ["L5#/failure_rules/10", "L5#/failure_rules/11", "L5#/failure_rules/12", "L5#/failure_rules/13", "L5#/failure_rules/14", "L5#/failure_rules/15", "L5#/failure_rules/16", "L5#/failure_rules/17", "L5#/failure_rules/18", "L5#/failure_rules/19", "L5#/failure_rules/20", "L5#/failure_rules/21", "L5#/failure_rules/22", "L5#/failure_rules/23", "L5#/failure_rules/24", "L5#/failure_rules/25", "L5#/failure_rules/26", "L5#/failure_rules/27", "L5#/failure_rules/28"], "l8_case_ids": ["HELIXOS-L8-002-F03"], "status": "satisfied"}
+    ],
+    "cross_layer_key_mapping": {
+      "L4_L9_L8_to_L5_failure_rules": {
+        "code": "code（L4 negative_classifications[*].code ＝ L9 negative_cases[*].code ＝ L8 negative_cases[*].code ＝ L5 failure_rules[*].code）",
+        "change": "predicate（L4/L9/L8のchangeが示す変異・主張条件をL5 failure_rules[*].predicateで入力candidate/claims上の論理述語として表現）",
+        "axis": "axis（4層すべて同一）",
+        "state": "state（4層すべて同一）",
+        "backflow_owner": "backflow_owner（4層すべて同一）",
+        "expected_and_expected_preserved": "preserved_observation_ref（L4/L9/L8のexpected・expected_preservedをL5 failure_rules[*].preserved_observation_refでHELIXOS-L8-002-FIXTURE-F01/F03.expected_materialへ束縛）",
+        "expected_side_effect_count": "side_effect_count（L4/L9/L8のexpected_side_effect_count=0 ↔ L5 failure_rules[*].side_effect_count=0）",
+        "handler_ref": "handler_ref（L8 negative_cases[*].handler_ref ＝ L5 failure_rules[*].handler_ref）"
+      }
+    }
+  },
+  "l6_l7_plan_table_mapping": {
+    "l6_l7_files_present_in_repo": false,
+    "note": "#3547 comment 6447837744 の計画表で想定列に挙げられた docs/helix-os/L6-function-design/project-template-trace.json および docs/helix-os/L7-function-verification/project-template-trace.json は現行リポジトリに未作成である。WR-56 手順に従い、新しいL6/L7本文は起こさず、T:298（F01: fn3）・T:300（F03: fn5）の既存L5関数設計pointerとL8単体検証pointerの対応のみを以下に記録する（共通入口fn0・共通集約fn13の対応は T1A_FREEZE#/l6_l7_plan_table_mapping に記録済み）。",
+    "correspondences": [
+      {"function_symbol": "compare_project_stages (F01)", "l5_design_pointer": "L5#/functions/3", "l5_contract_pointer": "L5#/contracts/2", "l5_failure_rule_pointers": ["L5#/failure_rules/5", "L5#/failure_rules/6"], "l8_normal_pointer": "L8#/function_cases/3", "l8_negative_and_boundary_pointers": ["L8#/cases/2/negative_cases/0", "L8#/cases/2/negative_cases/1"]},
+      {"function_symbol": "compare_event_obligation_trace (F03)", "l5_design_pointer": "L5#/functions/5", "l5_contract_pointer": "L5#/contracts/4", "l5_failure_rule_pointers": ["L5#/failure_rules/10", "L5#/failure_rules/11", "L5#/failure_rules/12", "L5#/failure_rules/13", "L5#/failure_rules/14", "L5#/failure_rules/15", "L5#/failure_rules/16", "L5#/failure_rules/17", "L5#/failure_rules/18", "L5#/failure_rules/19", "L5#/failure_rules/20", "L5#/failure_rules/21", "L5#/failure_rules/22", "L5#/failure_rules/23", "L5#/failure_rules/24", "L5#/failure_rules/25", "L5#/failure_rules/26", "L5#/failure_rules/27", "L5#/failure_rules/28"], "l8_normal_pointer": "L8#/function_cases/5", "l8_negative_and_boundary_pointers": ["L8#/cases/4/negative_cases/0", "L8#/cases/4/negative_cases/1", "L8#/cases/4/negative_cases/2", "L8#/cases/4/negative_cases/3", "L8#/cases/4/negative_cases/4", "L8#/cases/4/negative_cases/5", "L8#/cases/4/negative_cases/6", "L8#/cases/4/negative_cases/7", "L8#/cases/4/negative_cases/8", "L8#/cases/4/negative_cases/9", "L8#/cases/4/negative_cases/10", "L8#/cases/4/negative_cases/11", "L8#/cases/4/negative_cases/12", "L8#/cases/4/negative_cases/13", "L8#/cases/4/negative_cases/14", "L8#/cases/4/negative_cases/15", "L8#/cases/4/negative_cases/16", "L8#/cases/4/negative_cases/17", "L8#/cases/4/negative_cases/18"]}
+    ]
+  },
+  "function_freeze_rows": [
+    {
+      "function_id": "HELIXOS-L5-002-compare_project_stages",
+      "symbol": "compare_project_stages",
+      "l5_function_pointer": "L5#/functions/3",
+      "l5_contract_pointer": "L5#/contracts/2",
+      "l5_failure_rule_pointers": ["L5#/failure_rules/5", "L5#/failure_rules/6"],
+      "audit_index": 298,
+      "pair_id": "T:298",
+      "scope_in_slice": "T:298（HELIXOS-L3-002-F01 ↔ HELIXOS-L10-002-F01：要求から運用までの個別追跡）の全仕様。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/3/unit_case_refs は ['HELIXOS-L8-002-F01']（L8#/cases/2、負例2件とも handler_ref=HELIXOS-L5-002-compare_project_stages）のみであり他関数のcaseを含まない。L8#/function_cases で function_ref=HELIXOS-L5-002-compare_project_stages を持つのは L8#/function_cases/3（oracle_ref と一致）の1件のみで、L8#/additional_cases に本関数を function_ref に持つ行は0件。なお L5#/contracts/2/function_refs に併記される共通入口 validate_record_trace_input（L5#/functions/0）と共通集約 build_record_trace_analysis（L5#/functions/13）は D-OS002-T1a（T1A_FREEZE#/function_freeze_rows/0,3）で凍結済みであり、fn0 の unit_case_refs に含まれる F04 関連11件（HELIXOS-L8-002-F04 および HELIXOS-L8-002-F04-SOURCE-MEMBER-01..09）は D-OS002-T2a/T2b で照合する（#3754 R1-I1）。",
+      "upstream_requirement_refs": ["L3F#/requirements/8"],
+      "upstream_l10_refs": ["L10F#/cases/8"],
+      "l4_contract_refs": ["L4#/contracts/2"],
+      "l9_case_refs": ["L9#/cases/2"],
+      "input_type": "ValidatedRecordTrace (F01RecordInput: L5#/type_contract/types/F01RecordInput)",
+      "output_type": "TraceSectionResult[] (F01RecordObservation: L5#/type_contract/types/F01RecordObservation)",
+      "l8_normal_oracle": {"id": "HELIXOS-L8-002-NORMAL-compare_project_stages", "pointer": "L8#/function_cases/3", "fixture_ref": "L8#/normal_fixtures/2"},
+      "l8_negative_and_boundary_oracles": [
+        {"id": "HELIXOS-L8-002-F01#other_project_completion", "pointer": "L8#/cases/2/negative_cases/0", "l5_rule_pointer": "L5#/failure_rules/5", "counterexamples_and_expected": "Q成功でPを完了 → axis=project_scope, state=conflict, backflow_owner=OS002, P未実装/未検証を保持しQ状態も原入力どおり返す, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F01#github_as_release", "pointer": "L8#/cases/2/negative_cases/1", "l5_rule_pointer": "L5#/failure_rules/6", "counterexamples_and_expected": "Issue close/PR mergeをkanban提供状態へ転写 → axis=release_state, state=unknown, backflow_owner=OS002/提供記録owner, P kanban未提示を保持しQのKQ preparedを保持, side_effect_count=0"}
+      ],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_for_F01"
+    },
+    {
+      "function_id": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "symbol": "compare_event_obligation_trace",
+      "l5_function_pointer": "L5#/functions/5",
+      "l5_contract_pointer": "L5#/contracts/4",
+      "l5_failure_rule_pointers": [
+        "L5#/failure_rules/10",
+        "L5#/failure_rules/11",
+        "L5#/failure_rules/12",
+        "L5#/failure_rules/13",
+        "L5#/failure_rules/14",
+        "L5#/failure_rules/15",
+        "L5#/failure_rules/16",
+        "L5#/failure_rules/17",
+        "L5#/failure_rules/18",
+        "L5#/failure_rules/19",
+        "L5#/failure_rules/20",
+        "L5#/failure_rules/21",
+        "L5#/failure_rules/22",
+        "L5#/failure_rules/23",
+        "L5#/failure_rules/24",
+        "L5#/failure_rules/25",
+        "L5#/failure_rules/26",
+        "L5#/failure_rules/27",
+        "L5#/failure_rules/28"
+      ],
+      "audit_index": 300,
+      "pair_id": "T:300",
+      "scope_in_slice": "T:300（HELIXOS-L3-002-F03 ↔ HELIXOS-L10-002-F03：各記録の因果とrevision）の全仕様。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/5/unit_case_refs は ['HELIXOS-L8-002-F03']（L8#/cases/4、負例19件すべて handler_ref=HELIXOS-L5-002-compare_event_obligation_trace）のみであり他関数のcaseを含まない。L8#/function_cases で function_ref=HELIXOS-L5-002-compare_event_obligation_trace を持つのは L8#/function_cases/5（oracle_ref と一致）の1件のみで、L8#/additional_cases に本関数を function_ref に持つ行は0件。L5#/contracts/4/function_refs に併記される共通入口 fn0 と共通集約 fn13 は D-OS002-T1a（T1A_FREEZE#/function_freeze_rows/0,3）で凍結済み（fn0 の F04 関連 unit_case_refs 11件は D-OS002-T2a/T2b 担当、#3754 R1-I1）。",
+      "upstream_requirement_refs": ["L3F#/requirements/10"],
+      "upstream_l10_refs": ["L10F#/cases/10"],
+      "l4_contract_refs": ["L4#/contracts/4"],
+      "l9_case_refs": ["L9#/cases/4"],
+      "input_type": "ValidatedRecordTrace (F03RecordInput: L5#/type_contract/types/F03RecordInput)",
+      "output_type": "TraceSectionResult[] (F03RecordObservation: L5#/type_contract/types/F03RecordObservation)",
+      "l8_normal_oracle": {"id": "HELIXOS-L8-002-NORMAL-compare_event_obligation_trace", "pointer": "L8#/function_cases/5", "fixture_ref": "L8#/normal_fixtures/4"},
+      "l8_negative_and_boundary_oracles": [
+        {"id": "HELIXOS-L8-002-F03#record_project_missing", "pointer": "L8#/cases/4/negative_cases/0", "l5_rule_pointer": "L5#/failure_rules/10", "counterexamples_and_expected": "原eventのproject参照だけ欠落 → axis=project, state=missing, backflow_owner=元record/source owner, 当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_project_conflict", "pointer": "L8#/cases/4/negative_cases/1", "l5_rule_pointer": "L5#/failure_rules/11", "counterexamples_and_expected": "原eventのproject参照を別対象へ置換 → axis=project, state=conflict, backflow_owner=元record/source owner, 当該projectの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_scope_missing", "pointer": "L8#/cases/4/negative_cases/2", "l5_rule_pointer": "L5#/failure_rules/12", "counterexamples_and_expected": "原eventのscope参照だけ欠落 → axis=scope, state=missing, backflow_owner=元record/source owner, 当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_scope_conflict", "pointer": "L8#/cases/4/negative_cases/3", "l5_rule_pointer": "L5#/failure_rules/13", "counterexamples_and_expected": "原eventのscope参照を別対象へ置換 → axis=scope, state=conflict, backflow_owner=元record/source owner, 当該scopeの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_requirement_revision_missing", "pointer": "L8#/cases/4/negative_cases/4", "l5_rule_pointer": "L5#/failure_rules/14", "counterexamples_and_expected": "原eventのrequirement_revision参照だけ欠落 → axis=requirement_revision, state=missing, backflow_owner=元record/source owner, 当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_requirement_revision_conflict", "pointer": "L8#/cases/4/negative_cases/5", "l5_rule_pointer": "L5#/failure_rules/15", "counterexamples_and_expected": "原eventのrequirement_revision参照を別対象へ置換 → axis=requirement_revision, state=conflict, backflow_owner=元record/source owner, 当該requirement_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_template_revision_missing", "pointer": "L8#/cases/4/negative_cases/6", "l5_rule_pointer": "L5#/failure_rules/16", "counterexamples_and_expected": "原eventのtemplate_revision参照だけ欠落 → axis=template_revision, state=missing, backflow_owner=元record/source owner, 当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_template_revision_conflict", "pointer": "L8#/cases/4/negative_cases/7", "l5_rule_pointer": "L5#/failure_rules/17", "counterexamples_and_expected": "原eventのtemplate_revision参照を別対象へ置換 → axis=template_revision, state=conflict, backflow_owner=元record/source owner, 当該template_revisionの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_obligation_missing", "pointer": "L8#/cases/4/negative_cases/8", "l5_rule_pointer": "L5#/failure_rules/18", "counterexamples_and_expected": "原eventのobligation参照だけ欠落 → axis=obligation, state=missing, backflow_owner=元record/source owner, 当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_obligation_conflict", "pointer": "L8#/cases/4/negative_cases/9", "l5_rule_pointer": "L5#/failure_rules/19", "counterexamples_and_expected": "原eventのobligation参照を別対象へ置換 → axis=obligation, state=conflict, backflow_owner=元record/source owner, 当該obligationの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_artifact_missing", "pointer": "L8#/cases/4/negative_cases/10", "l5_rule_pointer": "L5#/failure_rules/20", "counterexamples_and_expected": "原eventのartifact参照だけ欠落 → axis=artifact, state=missing, backflow_owner=元record/source owner, 当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_artifact_conflict", "pointer": "L8#/cases/4/negative_cases/11", "l5_rule_pointer": "L5#/failure_rules/21", "counterexamples_and_expected": "原eventのartifact参照を別対象へ置換 → axis=artifact, state=conflict, backflow_owner=元record/source owner, 当該artifactの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_pair_missing", "pointer": "L8#/cases/4/negative_cases/12", "l5_rule_pointer": "L5#/failure_rules/22", "counterexamples_and_expected": "原eventのpair参照だけ欠落 → axis=pair, state=missing, backflow_owner=元record/source owner, 当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#record_pair_conflict", "pointer": "L8#/cases/4/negative_cases/13", "l5_rule_pointer": "L5#/failure_rules/23", "counterexamples_and_expected": "原eventのpair参照を別対象へ置換 → axis=pair, state=conflict, backflow_owner=元record/source owner, 当該pairの不足/取り違えを具体recordへ返す。他eventの原結合とQ有効記録を保存。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#causal_event_missing", "pointer": "L8#/cases/4/negative_cases/14", "l5_rule_pointer": "L5#/failure_rules/24", "counterexamples_and_expected": "発生元eventだけ除去 → axis=event, state=missing, backflow_owner=元event owner, 発生元event不足を元recordへ結び、因果未決を別eventで補わない。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#causal_actor_missing", "pointer": "L8#/cases/4/negative_cases/15", "l5_rule_pointer": "L5#/failure_rules/25", "counterexamples_and_expected": "発生元actorだけ除去 → axis=actor, state=missing, backflow_owner=元event owner, 発生元actor不足を元recordへ結び、因果未決を別eventで補わない。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#causal_source_missing", "pointer": "L8#/cases/4/negative_cases/16", "l5_rule_pointer": "L5#/failure_rules/26", "counterexamples_and_expected": "発生元sourceだけ除去 → axis=source, state=missing, backflow_owner=元event owner, 発生元source不足を元recordへ結び、因果未決を別eventで補わない。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#causal_correlation_missing", "pointer": "L8#/cases/4/negative_cases/17", "l5_rule_pointer": "L5#/failure_rules/27", "counterexamples_and_expected": "発生元correlationだけ除去 → axis=correlation, state=missing, backflow_owner=元event owner, 発生元correlation不足を元recordへ結び、因果未決を別eventで補わない。, side_effect_count=0"},
+        {"id": "HELIXOS-L8-002-F03#nonrelated_fabrication", "pointer": "L8#/cases/4/negative_cases/18", "l5_rule_pointer": "L5#/failure_rules/28", "counterexamples_and_expected": "非関係項目を架空pairで埋める → axis=applicability, state=conflict, backflow_owner=元record owner, 原不適用理由を保持し架空結合を拒否。, side_effect_count=0"}
+      ],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_for_F03"
+    }
+  ],
+  "head_entity_counts": {"L5_contracts": 13, "L5_functions": 23, "L5_failure_rules": 72, "L5_source_pins": 31, "L8_cases": 13, "L8_negative_cases_total": 71, "L8_function_cases": 22, "L8_additional_cases": 37, "L8_normal_fixtures": 14, "L8_wire_codec_cases": 43, "L8_encoder_obligations": 3, "L8_dispatch_boundary_cases": 5, "L8_source_pins": 29},
+  "verification": {"all_pointers_resolved": true, "f01_negative_cases_matched_L4_L9_L8_L5": 2, "f03_negative_cases_matched_L4_L9_L8_L5": 19, "t1b_remaining_A_count": 0, "l8_full_return_or_fixture_or_hash_added": false, "scfctl_stale_count": 0},
+  "not_claimed": ["92親430対の総合凍結やOS002全13組（T:296..308）の全体完了ではない。", "残る9詳細対 T:299, 301..308（D-OS002-T1c〜T4、fn1のN02分およびfn0のF04関連unit_case_refs照合を含む）の関数単位凍結ではない。", "下流L6/L7の作成・実装・Red/Green実行・実provider/OS053/SECURITY接続・PO L11 Acceptedではない。"]
+}
