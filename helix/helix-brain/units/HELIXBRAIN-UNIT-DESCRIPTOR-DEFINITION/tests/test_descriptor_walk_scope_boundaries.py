@@ -17,8 +17,8 @@ from descriptor_definitions import validate_supply_input
 
 PRODUCER = "compare_descriptor_definitions"
 BACKFLOW = "HELIXBRAIN-L6-032-N03-PATH"
-NON_FILL_STOP = (
-    "F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; "
+FN1_NON_FILL_STOP = (
+    "F01/descriptor_claim_unimplemented: claims[0] participates in descriptor meaning comparison; "
     f"Backflow {BACKFLOW}"
 )
 MISSING_KINDS = (
@@ -155,7 +155,7 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         self.assertEqual(validated, validated_before)
 
     def test_valid_non_fill_claim_stops_at_claim_port_after_fn0(self):
-        """A typed non-fill Claim reaches the walk and stops at its exact port boundary."""
+        """A fact-subject non-fill Claim retains the FN1 stop after the walk gate closes."""
         raw = descriptor_claim_input("positive")
         claim = raw["claims"][0]
         claim["kind"] = "project_obligation_discharge"
@@ -170,7 +170,7 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         try:
             with self.assertRaises(NotImplementedError) as caught:
                 evaluate_descriptor_definition_walk({"validated": validated})
-            self.assertEqual(str(caught.exception), NON_FILL_STOP)
+            self.assertEqual(str(caught.exception), FN1_NON_FILL_STOP)
         finally:
             self.assertEqual(raw, raw_before)
             self.assertEqual(validated, validated_before)
