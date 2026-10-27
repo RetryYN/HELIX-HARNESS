@@ -15415,7 +15415,8 @@
           "body_location": {
             "root": "validation_input",
             "pointer": "/sources/1/body/records/23"
-          }
+          },
+          "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
         },
         "kindtrace_origin": {
           "proposal_index": null,
@@ -23854,7 +23855,8 @@
       "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
       "cases_pointer": "/cases",
       "remaining_pointer": "/family_remaining_ja",
-      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
+      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。",
+      "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
     },
     "finite_writer_realizations": {
       "scope_ja": "以下は新source-first有限例へ適用する技術具体化。固定aliasの旧functions/Comparison規範を遡及変更せず、旧normal/NA/全legacywholeを保持する。全関数/複数policy/未到達全枝の唯一既決集約規則と称さない。",
@@ -23864,7 +23866,8 @@
         "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
         "pointer": "/parts",
         "binding": "same_candidate_revision",
-        "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。"
+        "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
+        "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
       }
     },
     "finite_residual_handoff_oracle": {
@@ -23872,7 +23875,8 @@
         "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
         "pointer": "/cases/10",
         "binding": "same_candidate_revision",
-        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
+        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。",
+        "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
       },
       "scope_ja": "以下は既存general_body_writer/root/index/issue規範に対する一代表の対検証対応。新public型/alias/判定条件/完成gateを追加せず、旧functions/Comparison/N/全legacy期待を変更しない。",
       "input_ja": "固定M2 case9のIと条件付き原caller/Nを保持する。operation relation keyは独立I.validation_input.raw.application_policies[1].template_refから読む。元N出力をoperation入力の著述に使わない。右辺は各指定source2の独立native Ref4 locatorでありcast又はscope同一視で生成しない。",

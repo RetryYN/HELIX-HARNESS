@@ -1,0 +1,38 @@
+{
+ "id": "HELIXHARNESS-L9-REMOVED-MATERIALS-INDEX",
+ "authority_effect": "none",
+ "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+ "meaning": "V字右側（L9）へ実装前に書き込まれていた照合の実行材料（全返却・seed・COPY・hash・fixture）をtreeから撤去した記録。過去本文は revision＋path で git から辿り、file_sha256 で同一性を確かめる。これは参照表であり、manifest・proof・gateではない。",
+ "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105 同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。",
+ "removed": [
+  {
+   "path": "docs/helix-harness/L9-integration-verification/product-template-application/basis-read-fixtures.json",
+   "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+   "last_change_commit": "98d1959b8b5aae34829df2cea14da0b73b87f876",
+   "file_sha256": "6611fc4f0a85ad0ec158a05eaaddd838ec12a3a551f95433b4188bc04e3f4ea5",
+   "bytes": 19831913,
+   "top_level_keys": [
+    "status",
+    "design_ref",
+    "requirement_ref",
+    "system_oracle_ref",
+    "new_reader_ref",
+    "candidate_scope",
+    "independent_expected_basis",
+    "input_contract_ref",
+    "resolution_contract_ref",
+    "synthetic_authority_boundary",
+    "cases",
+    "owner_outcome_evidence_rule",
+    "expected_witness_copy_contract",
+    "condition_binding_lookup_cases",
+    "owner_qualification_cases",
+    "call_boundary_control",
+    "conditional_unfulfilled_control",
+    "literal_invocation_materialization_contract",
+    "materialization_batch_provenance",
+    "materialization_batch_provenance_consumer_rebase"
+   ]
+  }
+ ]
+}
