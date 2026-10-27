@@ -12951,8 +12951,7 @@
       "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
       "cases_pointer": "/cases",
       "remaining_pointer": "/family_remaining_ja",
-      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。",
-      "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
+      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
     },
     "finite_writer_scope_ja": "新received branchの有限wholeは公開childへ結ぶ。旧legacy adapter/公開fn4署名/全oldvaluesは保持し、旧source aliasの規範を遡及変更しない。empty/NAではOS-owner独立selected[] variantを明示形成し、COREがselected/usedを導出したことにしない。新catalog通し監査/全8family能力成立は未完。",
     "finite_residual_handoff_oracle": {
@@ -12960,8 +12959,7 @@
         "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
         "pointer": "/cases/10",
         "binding": "same_candidate_revision",
-        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。",
-        "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
+        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
       },
       "scope_ja": "既存R0〜R8/received_unreached/trace_result_leaf_writer.observationへの一代表の対応。旧OwnerRecord/codec/legacy adapter/public署名/既存全期待と判定規範は変更しない。",
       "raw_input_namespace_ja": "record_trace_input.candidate.proposed_refsの元T1/T2全値をinput_capture/comparison context/kernel input/source_basisに保持する。raw candidateのkeyを除去したことにしない。",
