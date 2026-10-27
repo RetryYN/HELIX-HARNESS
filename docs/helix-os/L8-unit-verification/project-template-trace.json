@@ -2911,6 +2911,18 @@
           "controls": [
             {
               "id": "M3-STALE-BEFORE-NONSTRING-POINTER",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/pointer",
+                  "value": 5
+                },
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/snapshot_ref/revision",
+                  "value": "r0"
+                }
+              ],
               "expected_core": {
                 "state": "stale",
                 "candidate_count": 1,
@@ -2922,6 +2934,13 @@
             },
             {
               "id": "OS-STALE-IS-NOT-IGNORED",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/os_endpoint/snapshot_ref/revision",
+                  "value": "r0"
+                }
+              ],
               "expected_os": {
                 "state": "stale",
                 "candidate_count": 1,
@@ -2933,6 +2952,13 @@
             },
             {
               "id": "OS-OWNER-CONFLICT-IS-NOT-IGNORED",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/os_endpoint/snapshot_ref/owner",
+                  "value": "other"
+                }
+              ],
               "expected_os": {
                 "state": "conflict",
                 "candidate_count": 1,
@@ -2944,6 +2970,44 @@
             },
             {
               "id": "OS-AMBIGUOUS-IS-NOT-IGNORED",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/os_snapshots",
+                  "value": [
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    },
+                    {
+                      "ref": {
+                        "identity": "O",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "os-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ],
               "expected_os": {
                 "state": "ambiguous",
                 "candidate_count": 2,
@@ -2955,6 +3019,50 @@
             },
             {
               "id": "UNKNOWN-SELECTOR-PRECEDES-AMBIGUOUS",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/core_snapshots",
+                  "value": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    },
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    },
+                    {
+                      "ref": {
+                        "identity": null
+                      },
+                      "payload": {}
+                    }
+                  ]
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 2,
@@ -2966,6 +3074,30 @@
             },
             {
               "id": "NONOBJECT-SNAPSHOT-IS-NOT-SKIPPED",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/core_snapshots",
+                  "value": [
+                    {
+                      "ref": {
+                        "identity": "C",
+                        "revision": "r1",
+                        "scope": {
+                          "synthetic": "s"
+                        },
+                        "owner": "core-source"
+                      },
+                      "payload": {
+                        "rows": [
+                          1
+                        ]
+                      }
+                    },
+                    7
+                  ]
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 1,
@@ -2977,6 +3109,13 @@
             },
             {
               "id": "NULL-SNAPSHOT-COLLECTION-IS-NOT-EMPTY",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/core_snapshots",
+                  "value": null
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 0,
@@ -2988,6 +3127,13 @@
             },
             {
               "id": "NONSTRING-IDENTITY-IS-UNKNOWN",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/core_snapshots/0/ref/identity",
+                  "value": 7
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 0,
@@ -2999,6 +3145,13 @@
             },
             {
               "id": "SNAPSHOT-REF-NONOBJECT-IS-UNKNOWN",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/snapshot_ref",
+                  "value": 3
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 0,
@@ -3010,6 +3163,17 @@
             },
             {
               "id": "POINTER-KEY-ABSENT-PRECEDES-STALE",
+              "input_patch": [
+                {
+                  "op": "remove",
+                  "path": "/association/core_endpoint/pointer"
+                },
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/snapshot_ref/revision",
+                  "value": "r0"
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 0,
@@ -3021,6 +3185,18 @@
             },
             {
               "id": "OWNER-PRECEDES-SCOPE-CONFLICT",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/snapshot_ref/owner",
+                  "value": "other"
+                },
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/snapshot_ref/scope",
+                  "value": {}
+                }
+              ],
               "expected_core": {
                 "state": "conflict",
                 "candidate_count": 1,
@@ -3032,6 +3208,13 @@
             },
             {
               "id": "NONNUMERIC-ARRAY-INDEX-IS-UNRESOLVED",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/pointer",
+                  "value": "/rows/x"
+                }
+              ],
               "expected_core": {
                 "state": "unresolved",
                 "candidate_count": 1,
@@ -3043,6 +3226,18 @@
             },
             {
               "id": "SCALAR-PAYLOAD-INTERMEDIATE-IS-MISSING",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/core_snapshots/0/payload",
+                  "value": "scalar"
+                },
+                {
+                  "op": "replace",
+                  "path": "/association/core_endpoint/pointer",
+                  "value": "/x"
+                }
+              ],
               "expected_core": {
                 "state": "missing",
                 "candidate_count": 1,
@@ -3132,6 +3327,75 @@
             {
               "id": "REQUEST_OWNER_PRECEDES_SCOPE_CONFLICT",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "requested-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "requested-other-scope"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3139,6 +3403,75 @@
             {
               "id": "CANDIDATE_OWNER_PRECEDES_SCOPE_CONFLICT",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "candidate-other-owner",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "candidate-other-scope"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3146,6 +3479,70 @@
             {
               "id": "SCALAR_TERMINAL_EXPECTED_ABSENT_IS_PRESENT",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": "scalar",
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3153,6 +3550,73 @@
             {
               "id": "NONSTRING_POINTER_IS_NOT_STRINGIFIED",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": 5,
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "5": 1
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3160,6 +3624,74 @@
             {
               "id": "NEGATIVE_ARRAY_INDEX_IS_NOT_ABSENT",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/-1",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3167,6 +3699,75 @@
             {
               "id": "OS_SCOPE_CONFLICT_IS_NOT_IGNORED",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "other-scope"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3174,6 +3775,74 @@
             {
               "id": "OS_INTERMEDIATE_SCALAR_IS_MISSING_NOT_ABSENT",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "absent"
+                    },
+                    "pointer": "/rows/0/x",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3181,6 +3850,81 @@
             {
               "id": "OS_UNKNOWN_SELECTOR_IS_NOT_IGNORED",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "association": {
+                  "core_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "os_endpoint": {
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    },
+                    "pointer": "/rows/0",
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  "relation_ref": "synthetic-relation"
+                },
+                "core_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "C",
+                      "owner": "core-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    },
+                    "ref": {
+                      "identity": "O",
+                      "owner": "os-source",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      }
+                    }
+                  },
+                  {
+                    "payload": {},
+                    "ref": {
+                      "identity": null
+                    }
+                  }
+                ]
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3188,6 +3932,72 @@
             {
               "id": "REQUEST_SCOPE_SHAPE_PRECEDES_OWNER_SHAPE",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": []
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                }
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3195,6 +4005,72 @@
             {
               "id": "CANDIDATE_SCOPE_SHAPE_PRECEDES_OWNER_SHAPE",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": false
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  }
+                }
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -3202,6 +4078,74 @@
             {
               "id": "OS_INTERMEDIATE_OBJECT_KEY_IS_MISSING",
               "input_source_ref": "/cases/5/f04_full_composition/endpoint_rule_controls/base_packet",
+              "raw_input": {
+                "core_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "os_snapshots": [
+                  {
+                    "ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "payload": {
+                      "rows": [
+                        1
+                      ]
+                    }
+                  }
+                ],
+                "association": {
+                  "relation_ref": "synthetic-relation",
+                  "core_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "C",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "core-source"
+                    },
+                    "pointer": "/rows/0",
+                    "expected_value": {
+                      "presence": "present",
+                      "value": 1
+                    }
+                  },
+                  "os_endpoint": {
+                    "snapshot_ref": {
+                      "identity": "O",
+                      "revision": "r1",
+                      "scope": {
+                        "synthetic": "s"
+                      },
+                      "owner": "os-source"
+                    },
+                    "pointer": "/nokey/x",
+                    "expected_value": {
+                      "presence": "absent"
+                    }
+                  }
+                }
+              },
               "expected_rule_ref": "/contracts/5/source_output_association/endpoint_order",
               "projection_rule_ref": "/functions/17/source_output_association_rule/presence_projection",
               "revision": "c5960e04259bed1520fa9072ba84f0f8f1198e14"
@@ -10479,6 +11423,24 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-04",
           "source_control_id": "OBJECT-KEY-ORDER-EQUALITY",
+          "case_input_patch": [
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/reentry",
+              "value": {
+                "when": "revision-change",
+                "minimum": 2
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reentry",
+              "value": {
+                "when": "revision-change",
+                "minimum": 2
+              }
+            }
+          ],
           "expected_new_trace_findings_recipe": [],
           "candidate_carrier_state_binding": "source_projection_join.records[2].candidate_core_row_state",
           "expected_candidate_pair_state": "corresponding",
@@ -10545,6 +11507,18 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-05",
           "source_control_id": "VALUE-CONFLICT-reason",
+          "case_input_patch": [
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/reason",
+              "value": "SYNTHETIC-OTHER-reason"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reason",
+              "value": "SYNTHETIC-OTHER-reason"
+            }
+          ],
           "expected_new_trace_findings_recipe": [
             {
               "code": "core_source_na_reason_conflict",
@@ -10628,6 +11602,18 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-06",
           "source_control_id": "VALUE-CONFLICT-decider",
+          "case_input_patch": [
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/decider",
+              "value": "SYNTHETIC-OTHER-decider"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/decider",
+              "value": "SYNTHETIC-OTHER-decider"
+            }
+          ],
           "expected_new_trace_findings_recipe": [
             {
               "code": "core_source_na_decider_conflict",
@@ -10711,6 +11697,18 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-07",
           "source_control_id": "VALUE-CONFLICT-target_revision",
+          "case_input_patch": [
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/target_revision",
+              "value": "SYNTHETIC-OTHER-target_revision"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/target_revision",
+              "value": "SYNTHETIC-OTHER-target_revision"
+            }
+          ],
           "expected_new_trace_findings_recipe": [
             {
               "code": "core_source_na_target_revision_conflict",
@@ -10794,6 +11792,13 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-08",
           "source_control_id": "PAIR-CONFLICT-SUPPRESSES-NEW-COMPARISON",
+          "case_input_patch": [
+            {
+              "op": "add",
+              "path": "/candidate/unrelated_raw",
+              "value": "SYNTHETIC-RAW-PAIR-DIFFERENCE"
+            }
+          ],
           "expected_new_trace_findings_recipe": [],
           "candidate_carrier_state_binding": "source_projection_join.records[2].candidate_core_row_state",
           "expected_candidate_pair_state": "conflict",
@@ -10848,6 +11853,28 @@
         {
           "id": "HELIXOS-L8-002-F04-MEMBER-UNIT-09",
           "source_control_id": "CARRIER-CONFLICT-INDEPENDENT-ORDINARY-MEMBER",
+          "case_input_patch": [
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/reentry/minimum",
+              "value": 3
+            },
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/source_projection/row/computed_na_attributes/value/reentry_condition/minimum",
+              "value": 3
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reentry/minimum",
+              "value": 3
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/source_projection/row/computed_na_attributes/value/reentry_condition/minimum",
+              "value": 3
+            }
+          ],
           "expected_new_trace_findings_recipe": [
             {
               "code": "core_source_na_reentry_conflict",
@@ -11216,6 +12243,32 @@
       "cases": [
         {
           "id": "CANDIDATE-ABSENT-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/candidate/core_outputs/2/reason"
+            },
+            {
+              "op": "remove",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reason"
+            }
+          ],
           "expected": {
             "native_four_observations": {
               "$copy": {
@@ -11245,6 +12298,34 @@
         },
         {
           "id": "CANDIDATE-DIFFERENT-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/2/reason",
+              "value": "synthetic candidate different reason"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/2/reason",
+              "value": "synthetic candidate different reason"
+            }
+          ],
           "expected": {
             "native_four_observations": {
               "$copy": {
@@ -11274,6 +12355,54 @@
         },
         {
           "id": "CANDIDATE-MULTIPLE",
+          "input_patch_recipe": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "add",
+              "path": "/candidate/core_outputs/4",
+              "value": {
+                "$copy": {
+                  "root": "role_base_case_input",
+                  "pointer": "/candidate/core_outputs/2"
+                }
+              }
+            },
+            {
+              "op": "add",
+              "path": "/validated_record_trace/input/candidate/core_outputs/4",
+              "value": {
+                "$copy": {
+                  "root": "role_base_case_input",
+                  "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/candidate/core_outputs/4/reason",
+              "value": "synthetic second candidate reason"
+            },
+            {
+              "op": "replace",
+              "path": "/validated_record_trace/input/candidate/core_outputs/4/reason",
+              "value": "synthetic second candidate reason"
+            }
+          ],
           "expected": {
             "native_four_observations": {
               "$copy": {
@@ -11342,6 +12471,28 @@
         },
         {
           "id": "PROJECTION-SOURCE-UNQUALIFIED-NATIVE-SOURCE-PRESENT",
+          "input_patch": [
+            {
+              "op": "replace",
+              "path": "/source_projection_selection/output_refs",
+              "value": [
+                {
+                  "identity": "CORE-D3",
+                  "revision": "core-members-r1",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "synthetic-T",
+                    "environment": "synthetic-test"
+                  },
+                  "owner": "CORE"
+                }
+              ]
+            },
+            {
+              "op": "remove",
+              "path": "/validated_record_trace/input/qualifications/2"
+            }
+          ],
           "expected": {
             "native_four_observations": {
               "$copy": {

@@ -1055,6 +1055,7 @@
         "cases": [
           {
             "id": "ENDPOINTS-EXPLICIT",
+            "input_patch": [],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1062,6 +1063,13 @@
           },
           {
             "id": "CORE-SNAPSHOT-MISSING",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots",
+                "value": []
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1076,6 +1084,13 @@
           },
           {
             "id": "CORE-POINTER-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/1"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1083,6 +1098,13 @@
           },
           {
             "id": "CORE-REF-REVISION-STALE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/revision",
+                "value": "synthetic-0"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "stale",
               "os": "content_corresponding"
@@ -1090,6 +1112,13 @@
           },
           {
             "id": "CORE-REF-OWNER-CONFLICT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/owner",
+                "value": "other-owner"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1097,6 +1126,16 @@
           },
           {
             "id": "CORE-EXPECTED-NULL",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": null
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1104,6 +1143,13 @@
           },
           {
             "id": "CORE-REF-UNKNOWN",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/revision",
+                "value": null
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1111,6 +1157,13 @@
           },
           {
             "id": "OS-POINTER-ESCAPE-INVALID",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/os_endpoint/pointer",
+                "value": "/core_outputs/~2"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "unresolved"
@@ -1118,6 +1171,24 @@
           },
           {
             "id": "CORE-PAYLOAD-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots",
+                "value": [
+                  {
+                    "ref": {
+                      "identity": "core-snapshot",
+                      "revision": "synthetic-1",
+                      "scope": {
+                        "fixture": "OS002-association-only"
+                      },
+                      "owner": "synthetic-source-owner"
+                    }
+                  }
+                ]
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1132,6 +1203,15 @@
           },
           {
             "id": "CORE-SCOPE-CONFLICT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/scope",
+                "value": {
+                  "fixture": "other-scope"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1139,6 +1219,25 @@
           },
           {
             "id": "CORE-NULL-PAYLOAD-NESTED-POINTER",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots",
+                "value": [
+                  {
+                    "ref": {
+                      "identity": "core-snapshot",
+                      "revision": "synthetic-1",
+                      "scope": {
+                        "fixture": "OS002-association-only"
+                      },
+                      "owner": "synthetic-source-owner"
+                    },
+                    "payload": null
+                  }
+                ]
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1146,6 +1245,20 @@
           },
           {
             "id": "LOCAL-ABSENT-BOTH",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/9"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1157,6 +1270,20 @@
           },
           {
             "id": "LOCAL-ARRAY-DASH-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/-"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1168,6 +1295,13 @@
           },
           {
             "id": "LOCAL-ARRAY-DASH-PRESENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/-"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1179,6 +1313,13 @@
           },
           {
             "id": "LOCAL-NO-IDENTITY-MATCH",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/ref/identity",
+                "value": "other"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1201,6 +1342,15 @@
           },
           {
             "id": "LOCAL-EXPECTED-PRESENT-NO-VALUE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1212,6 +1362,17 @@
           },
           {
             "id": "LOCAL-EXPECTED-PRESENT-EXTRA",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": null,
+                  "extra": 0
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1223,6 +1384,16 @@
           },
           {
             "id": "LOCAL-EXPECTED-ABSENT-EXTRA",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent",
+                  "value": null
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1234,6 +1405,18 @@
           },
           {
             "id": "LOCAL-OWNER-BEFORE-STALE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/owner",
+                "value": "other"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/revision",
+                "value": "old"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1245,6 +1428,18 @@
           },
           {
             "id": "LOCAL-SCOPE-BEFORE-STALE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/scope",
+                "value": {}
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/revision",
+                "value": "old"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1256,6 +1451,13 @@
           },
           {
             "id": "LOCAL-EMPTY-REQUEST-IDENTITY",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/identity",
+                "value": ""
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1267,6 +1469,13 @@
           },
           {
             "id": "LOCAL-EMPTY-SNAPSHOT-IDENTITY",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/ref/identity",
+                "value": ""
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1278,6 +1487,13 @@
           },
           {
             "id": "LOCAL-REQUEST-SCOPE-NONOBJECT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/scope",
+                "value": []
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1289,6 +1505,13 @@
           },
           {
             "id": "LOCAL-SNAPSHOT-SCOPE-NONOBJECT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/ref/scope",
+                "value": false
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1300,6 +1523,19 @@
           },
           {
             "id": "LOCAL-PAYLOAD-ABSENT-EXPECTED-ABSENT",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/core_snapshots/0/payload"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1311,6 +1547,26 @@
           },
           {
             "id": "LOCAL-NULL-PRESENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": null
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": null
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1322,6 +1578,25 @@
           },
           {
             "id": "LOCAL-NULL-VS-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": null
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1333,6 +1608,26 @@
           },
           {
             "id": "LOCAL-BOOL-VS-NUMBER",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": true
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 1
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1344,6 +1639,26 @@
           },
           {
             "id": "LOCAL-NUMBER-VS-BOOL",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": 1
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": true
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1355,6 +1670,26 @@
           },
           {
             "id": "LOCAL-NUMERIC-EQUIVALENCE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": 1
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 1.0
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1366,6 +1701,32 @@
           },
           {
             "id": "LOCAL-ARRAY-ORDER",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": [
+                  1,
+                  2
+                ]
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": [
+                    2,
+                    1
+                  ]
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1377,6 +1738,31 @@
           },
           {
             "id": "LOCAL-ARRAY-DUPLICATE",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": [
+                  1,
+                  1
+                ]
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": [
+                    1
+                  ]
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1388,6 +1774,32 @@
           },
           {
             "id": "LOCAL-OBJECT-KEY-ORDER",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": {
+                  "a": 1,
+                  "b": 2
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": ""
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": {
+                    "b": 2,
+                    "a": 1
+                  }
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1399,6 +1811,28 @@
           },
           {
             "id": "LOCAL-ARRAY-LEADING-ZERO",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": [
+                  1
+                ]
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/00"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 1
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1410,6 +1844,28 @@
           },
           {
             "id": "LOCAL-OBJECT-DASH",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": {
+                  "-": 7
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/-"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 7
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1421,6 +1877,28 @@
           },
           {
             "id": "LOCAL-OBJECT-LEADING-ZERO",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": {
+                  "00": 7
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/00"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 7
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1432,6 +1910,30 @@
           },
           {
             "id": "LOCAL-ESCAPED-POINTER",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/payload",
+                "value": {
+                  "a/b": {
+                    "~": 7
+                  }
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/a~1b/~0"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "present",
+                  "value": 7
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "content_corresponding",
               "os": "content_corresponding"
@@ -1443,6 +1945,20 @@
           },
           {
             "id": "LOCAL-INTERMEDIATE-OBJECT-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/nokey/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1454,6 +1970,20 @@
           },
           {
             "id": "LOCAL-INTERMEDIATE-ARRAY-ABSENT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/9/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1465,6 +1995,20 @@
           },
           {
             "id": "LOCAL-INTERMEDIATE-ARRAY-DASH",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/pointer",
+                "value": "/rows/-/x"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/expected_value",
+                "value": {
+                  "presence": "absent"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "missing",
               "os": "content_corresponding"
@@ -1476,6 +2020,18 @@
           },
           {
             "id": "LOCAL-OWNER-AND-SCOPE-CONFLICT",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/owner",
+                "value": "other"
+              },
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref/scope",
+                "value": {}
+              }
+            ],
             "expected_endpoint_states": {
               "core": "conflict",
               "os": "content_corresponding"
@@ -1487,6 +2043,13 @@
           },
           {
             "id": "LOCAL-REQUEST-MULTIPLE-AXES-MISSING",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/association/core_endpoint/snapshot_ref",
+                "value": {}
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1498,6 +2061,15 @@
           },
           {
             "id": "LOCAL-CANDIDATE-MULTIPLE-AXES-MISSING",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/core_snapshots/0/ref",
+                "value": {
+                  "identity": "core-snapshot"
+                }
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1509,6 +2081,12 @@
           },
           {
             "id": "LOCAL-SNAPSHOT-MEMBER-ABSENT",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/core_snapshots"
+              }
+            ],
             "expected_endpoint_states": {
               "core": "unresolved",
               "os": "content_corresponding"
@@ -1595,10 +2173,21 @@
         ],
         "cases": [
           {
-            "id": "QUALIFIED-PROJECTION-COMPLETE"
+            "id": "QUALIFIED-PROJECTION-COMPLETE",
+            "input_patch": []
           },
           {
-            "id": "CANDIDATE-PROJECTION-ABSENT-QUALIFIED-SOURCE-PRESENT"
+            "id": "CANDIDATE-PROJECTION-ABSENT-QUALIFIED-SOURCE-PRESENT",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/candidate/core_outputs/0/source_projection"
+              },
+              {
+                "op": "remove",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection"
+              }
+            ]
           },
           {
             "id": "CANDIDATE-PAIR-MUTATED-QUALIFIED-SOURCE-FIXED"
@@ -1645,6 +2234,12 @@
           {
             "id": "SELECTION-MISSING",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "remove",
+                "path": "/source_projection_selection"
+              }
+            ],
             "assertion_scope": "F04拡張projectionのうちsource_projection_join一memberだけを対象とする。妥当な空選択またはselector欠落ではmemberが存在しない。既存F04の他memberや完全F04 returnはこのoracleのassertion対象外。",
             "reason": "選択対象が未指定または明示空集合ならsource_projection_joinを返さない。native wireへ省略wrapper/sentinelを追加せず、対象拡張memberの不在を空のprojectionで明示する。",
             "expected_f04_extension_projection": {}
@@ -1652,6 +2247,13 @@
           {
             "id": "SELECTION-EMPTY",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_projection_selection/output_refs",
+                "value": []
+              }
+            ],
             "assertion_scope": "F04拡張projectionのうちsource_projection_join一memberだけを対象とする。妥当な空選択またはselector欠落ではmemberが存在しない。既存F04の他memberや完全F04 returnはこのoracleのassertion対象外。",
             "reason": "妥当な空選択は内部でvalid emptyと分類するが、source_projection_joinのmember自体を省略し、empty result objectやrecords=[] sentinelを出力しない。既存F04は保持する。",
             "expected_f04_extension_projection": {}
@@ -1659,36 +2261,231 @@
           {
             "id": "SELECTION-INVALID-NULL",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_projection_selection",
+                "value": null
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "present null selectorをinvalidとして原値保持し、record選択を推測しない。"
           },
           {
             "id": "SELECTION-DUPLICATE-OUTPUT-REF",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/source_projection_selection/output_refs",
+                "value": [
+                  {
+                    "identity": "CORE-D1",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  {
+                    "identity": "CORE-D1",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                ]
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "callerのduplicate occurrenceを二件保持し、array先頭だけを選択しない。"
           },
           {
             "id": "CANDIDATE-CARRIER-NULL",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/0/source_projection",
+                "value": null
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection",
+                "value": null
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "nullのcandidate carrierを原値保持しunknownにする。qualified OS carrier/CORE rowは独立比較を続ける。"
           },
           {
             "id": "CANDIDATE-CARRIER-WRONG-KIND",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/0/source_projection",
+                "value": "malformed-carrier"
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection",
+                "value": "malformed-carrier"
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "wrong-kindのcandidate carrierを原値保持しunknownにする。qualified OS carrier/CORE rowは独立比較を続ける。"
           },
           {
             "id": "OS-ASSOCIATION-MISSING",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/sources/1/source_sha256",
+                "value": "1111111111111111111111111111111111111111111111111111111111111111"
+              },
+              {
+                "op": "remove",
+                "path": "/validated_record_trace/qualified_records/1"
+              },
+              {
+                "op": "remove",
+                "path": "/validated_record_trace/qualified_source_refs/1"
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unqualified_source_refs/-",
+                "value": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "source-r1",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unresolved_source_refs/-",
+                "value": {
+                  "identity": "OS-ASSOCIATION-SOURCE",
+                  "revision": "source-r1",
+                  "scope": {
+                    "project": "OS-PROJECT-7",
+                    "tenant": "OS-TENANT",
+                    "environment": "OS-TEST"
+                  },
+                  "owner": "OS-source-owner"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/source_issues/-",
+                "value": {
+                  "axis": "source_bytes",
+                  "state": "conflict",
+                  "path": "sources/1/source_json_utf8",
+                  "source_ref": {
+                    "identity": "OS-ASSOCIATION-SOURCE",
+                    "revision": "source-r1",
+                    "scope": {
+                      "project": "OS-PROJECT-7",
+                      "tenant": "OS-TENANT",
+                      "environment": "OS-TEST"
+                    },
+                    "owner": "OS-source-owner"
+                  },
+                  "related_source_refs": []
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unresolved_sections/-",
+                "value": "OS002.project_template_trace"
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "qualified OS associationがないためprimary locatorを選ばずcandidate値から補完しない。"
           },
           {
             "id": "CORE-SOURCE-UNQUALIFIED",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/sources/0/source_sha256",
+                "value": "0000000000000000000000000000000000000000000000000000000000000000"
+              },
+              {
+                "op": "remove",
+                "path": "/validated_record_trace/qualified_records/0"
+              },
+              {
+                "op": "remove",
+                "path": "/validated_record_trace/qualified_source_refs/0"
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unqualified_source_refs/-",
+                "value": {
+                  "identity": "CORE-PROJECTION-SOURCE",
+                  "revision": "source-r1",
+                  "scope": {
+                    "project": "CORE-PROJECTION-PROJECT",
+                    "tenant": "CORE-PROJECTION-TENANT",
+                    "environment": "CORE-PROJECTION-ENV"
+                  },
+                  "owner": "CORE-source-owner"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unresolved_source_refs/-",
+                "value": {
+                  "identity": "CORE-PROJECTION-SOURCE",
+                  "revision": "source-r1",
+                  "scope": {
+                    "project": "CORE-PROJECTION-PROJECT",
+                    "tenant": "CORE-PROJECTION-TENANT",
+                    "environment": "CORE-PROJECTION-ENV"
+                  },
+                  "owner": "CORE-source-owner"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/source_issues/-",
+                "value": {
+                  "axis": "source_bytes",
+                  "state": "conflict",
+                  "path": "sources/0/source_json_utf8",
+                  "source_ref": {
+                    "identity": "CORE-PROJECTION-SOURCE",
+                    "revision": "source-r1",
+                    "scope": {
+                      "project": "CORE-PROJECTION-PROJECT",
+                      "tenant": "CORE-PROJECTION-TENANT",
+                      "environment": "CORE-PROJECTION-ENV"
+                    },
+                    "owner": "CORE-source-owner"
+                  },
+                  "related_source_refs": []
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/unresolved_sections/-",
+                "value": "CORE009.source_result_reference_projection"
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findings、source_output_associationを含まない。",
             "reason": "OS locatorが示すCORE sourceがqualifiedでない場合はcandidate rowを権威化せずunknownで保持する。"
           },
@@ -1725,6 +2522,13 @@
           {
             "id": "RAW-AND-VALIDATED-CANDIDATE-DISAGREE",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection/row_pointer",
+                "value": "/rows/9"
+              }
+            ],
             "assertion_scope": "このcaseのsource_projection_join全wire結果。既存F04 observation/findingsおよびsource_output_associationは含まない。",
             "reason": "raw candidateとValidatedRecordTrace.input.candidateが不一致ならcandidate_input_state=conflictとし、どちらかを選んで比較を続けない。OS carrierと独立CORE rowはその個別既知状態を保持する。"
           }
@@ -1754,24 +2558,201 @@
           {
             "id": "SINGLE-RAW-ARRAY-IS-ONE-OCCURRENCE",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/0/source_projection",
+                "value": [
+                  {
+                    "tag": "A"
+                  },
+                  {
+                    "tag": "B"
+                  }
+                ]
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection",
+                "value": [
+                  {
+                    "tag": "A"
+                  },
+                  {
+                    "tag": "B"
+                  }
+                ]
+              }
+            ],
             "assertion_scope": "このcaseのSourceProjectionJoinResult全wire期待。通常F04、実codec、実資格の成立は含まない。",
             "reason": "source_projection自体が配列でも一つのitem occurrence。raw配列は単一Fieldの原値であり、occurrence列へ変換しない。"
           },
           {
             "id": "DUPLICATE-RAW-ITEMS-CORRESPONDING",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/0/source_projection",
+                "value": {
+                  "tag": "A"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/candidate/core_outputs/1",
+                "value": {
+                  "output_ref": {
+                    "identity": "NONSELECTED",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                }
+              },
+              {
+                "op": "copy",
+                "from": "/candidate/core_outputs/0",
+                "path": "/candidate/core_outputs/2"
+              },
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/2/source_projection/tag",
+                "value": "B"
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/0/source_projection",
+                "value": {
+                  "tag": "A"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/input/candidate/core_outputs/1",
+                "value": {
+                  "output_ref": {
+                    "identity": "NONSELECTED",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                }
+              },
+              {
+                "op": "copy",
+                "from": "/validated_record_trace/input/candidate/core_outputs/0",
+                "path": "/validated_record_trace/input/candidate/core_outputs/2"
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate/core_outputs/2/source_projection/tag",
+                "value": "B"
+              }
+            ],
             "assertion_scope": "このcaseのSourceProjectionJoinResult全wire期待。通常F04、実codec、実資格の成立は含まない。",
             "reason": "全体candidateは一致しても同selectedRefの二occurrenceから単一carrierを選べない。indexは0/2を保持し、非対象itemを圧縮して0/1にしない。OSとCOREの独立対応はcorrespondingを保持。"
           },
           {
             "id": "DUPLICATE-IDENTICAL-RAW-ITEMS",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/candidate/core_outputs/1",
+                "value": {
+                  "output_ref": {
+                    "identity": "NONSELECTED",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                }
+              },
+              {
+                "op": "copy",
+                "from": "/candidate/core_outputs/0",
+                "path": "/candidate/core_outputs/2"
+              },
+              {
+                "op": "add",
+                "path": "/validated_record_trace/input/candidate/core_outputs/1",
+                "value": {
+                  "output_ref": {
+                    "identity": "NONSELECTED",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  }
+                }
+              },
+              {
+                "op": "copy",
+                "from": "/validated_record_trace/input/candidate/core_outputs/0",
+                "path": "/validated_record_trace/input/candidate/core_outputs/2"
+              }
+            ],
             "assertion_scope": "このcaseのSourceProjectionJoinResult全wire期待。通常F04、実codec、実資格の成立は含まない。",
             "reason": "同値の二occurrenceも二件のまま保持する。deduplicateや先頭carrierの採用で一意へ変えない。"
           },
           {
             "id": "DUPLICATE-RAW-ITEMS-PAIR-CONFLICT",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/0/source_projection",
+                "value": {
+                  "tag": "A"
+                }
+              },
+              {
+                "op": "add",
+                "path": "/candidate/core_outputs/1",
+                "value": {
+                  "output_ref": {
+                    "identity": "NONSELECTED",
+                    "revision": "core1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "synthetic-T",
+                      "environment": "synthetic-test"
+                    },
+                    "owner": "CORE"
+                  },
+                  "unrelated_raw": [
+                    null,
+                    false
+                  ]
+                }
+              },
+              {
+                "op": "copy",
+                "from": "/candidate/core_outputs/0",
+                "path": "/candidate/core_outputs/2"
+              },
+              {
+                "op": "replace",
+                "path": "/candidate/core_outputs/2/source_projection/tag",
+                "value": "B"
+              }
+            ],
             "assertion_scope": "このcaseのSourceProjectionJoinResult全wire期待。通常F04、実codec、実資格の成立は含まない。",
             "reason": "全体保存値の不一致を先に記録する。左二occurrenceと右単一原値を独立保持し、どちらも採用しない。"
           },
@@ -1800,6 +2781,68 @@
           {
             "id": "DUPLICATE-RAW-ITEMS-PAIR-UNKNOWN",
             "input_base": "qualified_source_projection_join_oracles.base_input",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/candidate",
+                "value": {
+                  "core_outputs": [
+                    {
+                      "output_ref": {
+                        "identity": "CORE-D1",
+                        "revision": "core1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      },
+                      "source_projection": {
+                        "tag": "A"
+                      }
+                    },
+                    {
+                      "output_ref": {
+                        "identity": "NONSELECTED",
+                        "revision": "core1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      },
+                      "unrelated_raw": [
+                        null,
+                        false
+                      ]
+                    },
+                    {
+                      "output_ref": {
+                        "identity": "CORE-D1",
+                        "revision": "core1",
+                        "scope": {
+                          "project": "P",
+                          "tenant": "synthetic-T",
+                          "environment": "synthetic-test"
+                        },
+                        "owner": "CORE"
+                      },
+                      "source_projection": {
+                        "tag": "B"
+                      }
+                    }
+                  ],
+                  "unrelated_raw": "retain"
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/validated_record_trace/input/candidate",
+                "value": null
+              }
+            ],
             "assertion_scope": "このcaseのSourceProjectionJoinResult全wire期待。通常F04、実codec、実資格の成立は含まない。",
             "reason": "右candidateがpresent nullでwhole入力対応はunknown。走査可能な左の全occurrenceを保持し、右のitemを捏造しない。OS/COREの既知対応を保持。",
             "execution_boundary": "direct_function_boundary_synthetic_input",
@@ -1833,7 +2876,8 @@
           "cases": [
             {
               "id": "MALFORMED-BOTH-MIRRORS-AND-PRIMARY",
-              "scope": "join record全member/原値保存/native4保持/typed primary取得状態の有限projection。全Analysis/private全返却/業務actualではない。"
+              "scope": "join record全member/原値保存/native4保持/typed primary取得状態の有限projection。全Analysis/private全返却/業務actualではない。",
+              "input_patch": []
             },
             {
               "id": "ONLY-PRIMARY-DOMAIN-FAILS",
@@ -1957,6 +3001,7 @@
         "cases": [
           {
             "id": "HELIXOS-L9-002-F04-MEMBERS-FOUR-DISPOSITIONS-OBJECT-PRESERVED",
+            "input_patch": [],
             "expected_new_findings": []
           },
           {
@@ -2229,6 +3274,32 @@
           "cases": [
             {
               "id": "CANDIDATE-ABSENT-SOURCE-PRESENT",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/source_projection_selection/output_refs",
+                  "value": [
+                    {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ]
+                },
+                {
+                  "op": "remove",
+                  "path": "/candidate/core_outputs/2/reason"
+                },
+                {
+                  "op": "remove",
+                  "path": "/validated_record_trace/input/candidate/core_outputs/2/reason"
+                }
+              ],
               "expected": {
                 "native_four_observations": {
                   "$copy": {
@@ -2258,6 +3329,34 @@
             },
             {
               "id": "CANDIDATE-DIFFERENT-SOURCE-PRESENT",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/source_projection_selection/output_refs",
+                  "value": [
+                    {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ]
+                },
+                {
+                  "op": "replace",
+                  "path": "/candidate/core_outputs/2/reason",
+                  "value": "synthetic candidate different reason"
+                },
+                {
+                  "op": "replace",
+                  "path": "/validated_record_trace/input/candidate/core_outputs/2/reason",
+                  "value": "synthetic candidate different reason"
+                }
+              ],
               "expected": {
                 "native_four_observations": {
                   "$copy": {
@@ -2287,6 +3386,54 @@
             },
             {
               "id": "CANDIDATE-MULTIPLE",
+              "input_patch_recipe": [
+                {
+                  "op": "replace",
+                  "path": "/source_projection_selection/output_refs",
+                  "value": [
+                    {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ]
+                },
+                {
+                  "op": "add",
+                  "path": "/candidate/core_outputs/4",
+                  "value": {
+                    "$copy": {
+                      "root": "role_base_case_input",
+                      "pointer": "/candidate/core_outputs/2"
+                    }
+                  }
+                },
+                {
+                  "op": "add",
+                  "path": "/validated_record_trace/input/candidate/core_outputs/4",
+                  "value": {
+                    "$copy": {
+                      "root": "role_base_case_input",
+                      "pointer": "/validated_record_trace/input/candidate/core_outputs/2"
+                    }
+                  }
+                },
+                {
+                  "op": "replace",
+                  "path": "/candidate/core_outputs/4/reason",
+                  "value": "synthetic second candidate reason"
+                },
+                {
+                  "op": "replace",
+                  "path": "/validated_record_trace/input/candidate/core_outputs/4/reason",
+                  "value": "synthetic second candidate reason"
+                }
+              ],
               "expected": {
                 "native_four_observations": {
                   "$copy": {
@@ -2355,6 +3502,28 @@
             },
             {
               "id": "PROJECTION-SOURCE-UNQUALIFIED-NATIVE-SOURCE-PRESENT",
+              "input_patch": [
+                {
+                  "op": "replace",
+                  "path": "/source_projection_selection/output_refs",
+                  "value": [
+                    {
+                      "identity": "CORE-D3",
+                      "revision": "core-members-r1",
+                      "scope": {
+                        "project": "P",
+                        "tenant": "synthetic-T",
+                        "environment": "synthetic-test"
+                      },
+                      "owner": "CORE"
+                    }
+                  ]
+                },
+                {
+                  "op": "remove",
+                  "path": "/validated_record_trace/input/qualifications/2"
+                }
+              ],
               "expected": {
                 "native_four_observations": {
                   "$copy": {
@@ -2565,6 +3734,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-01",
             "source_control_id": "CONDITION-OWNER-OBJECT-TO-ORIGINAL-FALSE",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_01",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_01",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_01",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "D2の条件source対応だけ。D2 obligation B→OS原stateは未供給で、全義務成立とはしない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2587,6 +3788,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-02",
             "source_control_id": "CONDITION-NO-ORIGINAL-ASSIGNMENT",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_02",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_02",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_02",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "candidate/native falseの一致だけでは原pair→boolean対応を作らない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2614,6 +3847,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-03",
             "source_control_id": "CONDITION-EXPECTED-PAIR-REF-DIFFERS",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_03",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_03",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_03",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "元condition/value pairの独立対応。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2637,6 +3902,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-04",
             "source_control_id": "CONDITION-PRESENT-NULL-NATIVE-UNKNOWN",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_04",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_04",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_04",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "D4既存原pair null/native original_condition null。disposition unresolvedはそのまま。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2659,6 +3956,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-05",
             "source_control_id": "OBLIGATION-DUPLICATE-EXPLICIT-MANY-TO-ONE",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_05",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_05",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_05",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "D1のCORE同Ref2出現を別々にU1原stateへ辿る。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2681,6 +4010,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-06",
             "source_control_id": "OBLIGATION-SECOND-OCCURRENCE-UNMAPPED",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_06",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_06",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_06",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "同値Refの先頭対応で2件目を代償消込しない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2703,6 +4064,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-07",
             "source_control_id": "OBLIGATION-SECOND-REF-MISMATCH",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_07",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_07",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_07",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "indexだけで対応を肯定せず完全CORE Ref6も独立比較。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2725,6 +4118,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-08",
             "source_control_id": "OBLIGATION-OS-NATIVE-ITEM-ABSENT",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_08",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_08",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_08",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "原state pointerが解決できない。CORE/native COREは独立継続。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2747,6 +4172,78 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-09",
             "source_control_id": "OS-MIRROR-AND-CANDIDATE-DIFFER-ONLY-FROM-ORIGINAL",
+            "input_patch": [
+              {
+                "op": "replace",
+                "path": "/record_trace_input/sources/3",
+                "value": {
+                  "$copy": {
+                    "root": "OS_mirror_source_09",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/record_trace_input/qualifications/3",
+                "value": {
+                  "$copy": {
+                    "root": "OS_mirror_source_09",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/record_trace_input/qualification_roots/3",
+                "value": {
+                  "$copy": {
+                    "root": "OS_mirror_source_09",
+                    "pointer": "/root"
+                  }
+                }
+              },
+              {
+                "op": "replace",
+                "path": "/candidate/obligation_original_states/0/state",
+                "value": "completed"
+              },
+              {
+                "op": "replace",
+                "path": "/record_trace_input/candidate/obligation_original_states/0/state",
+                "value": "completed"
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_09",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_09",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_09",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "candidate/OS association mirrorのcompleted一致では独立OS原not_startedを書換えない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2770,6 +4267,42 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-10",
             "source_control_id": "NATIVE-OS-SOURCE-UNQUALIFIED-RELATION-QUALIFIED",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_10",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "remove",
+                "path": "/record_trace_input/qualifications/1"
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_10",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_10",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "資格済み原対応locatorからのみ該当未資格native sourceをunknownへ局所化。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2793,6 +4326,28 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-11",
             "source_control_id": "UNQUALIFIED-RELATION-IS-NOT-A-LOCATOR",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_11",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_11",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "未資格原対応payloadからnative sourceを選ばない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -2816,6 +4371,38 @@
           {
             "id": "HELIXOS-L9-002-F04-ORIGINAL-PARTIAL-12",
             "source_control_id": "UNRELATED-OUTPUT-RELATION-DOES-NOT-POISON",
+            "input_patch": [
+              {
+                "op": "add",
+                "path": "/record_trace_input/sources/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_12",
+                    "pointer": "/source"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualifications/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_12",
+                    "pointer": "/qualification"
+                  }
+                }
+              },
+              {
+                "op": "add",
+                "path": "/record_trace_input/qualification_roots/-",
+                "value": {
+                  "$copy": {
+                    "root": "original_source_12",
+                    "pointer": "/root"
+                  }
+                }
+              }
+            ],
             "scope": "選択output_refへexact一致しないownerrecordは関係候補にしない。",
             "comparison_scope": "typed root/pointerで明示した局所値/Presenceのみ。製品返却へprojection専用fieldや散文sentinelを追加しない。全component/全finding/全RecordTraceAnalysisのwholeではない。",
             "execution_state": "not_executed",
@@ -3933,7 +5520,7 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "c5960e04259bed1520fa9072ba84f0f8f1198e14",
     "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
-    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（cases[*].normal_fixture / expected_material、source_output_association_oraclesのbase_input / input_patch / expected_complete_return_recipe、qualified_source_projection_join_oraclesのbase_input / base_expected_observation / input_patch / expected_complete_source_projection_join / carrier_domain_priority_oraclesのinput_patch・expected、selected_source_member_correspondence_oraclesのinput_patch / fixture_material_recipes / base_input_recipe、source_original_correspondence_oraclesのsource_packets source_recipe/root/qualification / expected_partial_recipe、hash固定等）をallowlist方式で撤去した。残したのはcase行・反例と期待文（negative_casesのchange/expected/expected_preserved、expected_observation、independent_branch_expectations、branch_contrasts/occurrence_and_relevance_contrasts/direct_boundary_contrastsのreason/assertion_scope、selected_source_member_correspondence_oraclesのexpected_new_findings、source_original_correspondence_oraclesのretained_input_checks/preservation_invariants等）・観点・oracle ID・limits・remaining・境界文・source_pins等の参照。撤去対象を指すunpinned pointer objectには撤去前revision c5960e04259bed1520fa9072ba84f0f8f1198e14を付与した。過去本文はrevision c5960e04259bed1520fa9072ba84f0f8f1198e14の同pathで辿る。",
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（cases[*].normal_fixture / expected_material、source_output_association_oraclesのbase_input / 1.5KB以上の大域input_patch / expected_complete_return_recipe、qualified_source_projection_join_oraclesのbase_input / base_expected_observation / 1.5KB以上の大域input_patch / expected_complete_source_projection_join / carrier_domain_priority_oraclesの1.5KB以上の大域input_patch・expected、selected_source_member_correspondence_oraclesの1.5KB以上の大域input_patch / fixture_material_recipes / base_input_recipe、source_original_correspondence_oraclesのsource_packets source_recipe/root/qualification / expected_partial_recipe、hash固定等）をallowlist方式で撤去した。残したのはcase行・小規模反例入力（1.5KB未満のinput_patch / input_patch_recipeを含む）と期待文（negative_casesのchange/expected/expected_preserved、expected_observation、independent_branch_expectations、source_output_association_oraclesの1.5KB未満input_patch/expected_endpoint_states/expected_basis、qualified_source_projection_join_oraclesの1.5KB未満input_patch/reason/assertion_scope/expected_f04_extension_projection、selected_source_member_correspondence_oraclesの1.5KB未満input_patch/input_patch_recipe/expected_new_findings、source_original_correspondence_oraclesのpartial_cases[*].input_patch/retained_input_checks/preservation_invariants等）・観点・oracle ID・limits・remaining・境界文・source_pins等の参照。撤去対象を指すunpinned pointer objectには撤去前revision c5960e04259bed1520fa9072ba84f0f8f1198e14を付与した。過去本文はrevision c5960e04259bed1520fa9072ba84f0f8f1198e14の同pathで辿る。",
     "removed_key_rule": "allowlist（L9_CASE_ALLOWLIST / L9_NEGATIVE_CASE_ALLOWLIST / L9_SOAO_CASE_ALLOWLIST / L9_QSPJO_CASE_ALLOWLIST / L9_QSPJO_CONTRAST_ALLOWLIST / L9_QSPJO_CDPO_CASE_ALLOWLIST / L9_SSMCO_CASE_ALLOWLIST / L9_SOCO_PARTIAL_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
     "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
