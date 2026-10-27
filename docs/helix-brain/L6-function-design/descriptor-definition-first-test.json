@@ -791,5 +791,141 @@
     "split_decision": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
     "source_test_history_ref": "L7 /fn6_dependencies_absent_verification/{test_sources,implementation_revisions}",
     "legacy_basis_ref": "L5 /functions/6/legacy_comparison（LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5 16–78、LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 16–100の意味再導出を継承。既存missing非補完/原identity保持、旧runtime非実行）。"
+  },
+  "fn1_fn6_partial_subject_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-FN6-PARTIAL-SUBJECT",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "working_base": "75bcd8691c1c0d73e826853a1d3d3a71c5715a94",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_descriptor_definitions → compare_dependencies_and_handoff",
+    "authority_effect": "none",
+    "scope": {
+      "included": "部分Bindingの実FN0→公開FN1→公開FN6の到達を固定する。要求kind/slot/Claimが明示空なら既存event foldを通常完了する。要求kindが非空でslotが無い場合は既存missing predicateを保持し、knowledge_ref object→template_ref objectの診断subject順で形成する。両Ref不成立ならtyped行を捏造せず元Binding/required人口を保持する。実slotありの既存停止境界を維持する。",
+      "excluded": "FN1全15意味の成功/完了、canonical walk全体の意味完成、L3全要求の達成、任意のpartial Bindingを補完する一般化、G4 dependency-absent意味の再定義、G1a owner material、G1/G2/G3/G5、L8/OS/Issue全体の完了。"
+    },
+    "contract_sources": [
+      "L4 /definition_meaning_resolution_contract/evaluation_populations",
+      "L4 /dependency_semantic_ports/public_projection/dependency_subject and /order",
+      "L4 /identity_version_trace_contract/schema/$defs/Comparison",
+      "L5 /functions/1",
+      "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract",
+      "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/event_rules/0",
+      "L5 /failure_rules/9 (HELIXBRAIN-L5-032-R-descriptor_01_missing)",
+      "L5 /functions/6 and existing G4 FN6 contract"
+    ],
+    "ordered_cases": [
+      "knowledge_ref欠落・template_refありのzero profile: 公開FN1の原partial input_bindingを公開FN6へ渡し、必要5 identity missing・selector3 unknownと元handoffを保持する。",
+      "両Ref欠落のzero profile: FN1 Comparison4の原Bindingを保持し、FN6ではtyped dependency/selector行を作らず元handoffを保持する。空軸を意味成功の証拠にしない。",
+      "required_descriptor_kinds=[template identity]、slot/Claim空: template Refを診断subjectとする既存descriptor_01_missing Axis/Finding。両Ref無しならtyped行は形成せず、原required人口とBindingを保持する。",
+      "実slotありでroot knowledge_ref欠落又は両Ref欠落: 従来F02/descriptor_slot_binding_unresolvedと既存Backflowで停止する。",
+      "実FN1返却を複写しinput_binding.template_ref.revisionだけ変更する故障注入: FN6は従来B02/F09/definitions_comparison_mismatchで拒否する。元raw/V/FN1返却を変更しない。"
+    ],
+    "same_call_and_presence": {
+      "public_path": "同じ実FN0 ValidatedSupplyと公開FN1 Comparisonを公開FN6へ渡す。missing-kindと実slot停止の単独FN1検証はFN6到達とは区別する。",
+      "immutability": "原raw/V/FN1 Comparisonを保持。故障注入は返却の独立deepcopyだけへ行い、代造前段Comparisonやprivate frameを使用しない。",
+      "context_guard": "dependencies absentかつstrict full Binding shape外の場合にだけinput_bindingのJSON型保持等値を追加する。既存full Binding比較と他shape/producer/clean guardは維持する。"
+    },
+    "legacy_basis_ref": {
+      "references": [
+        "/legacy_rederivation",
+        "/fn6_dependencies_absent_preparation/legacy_basis_ref"
+      ],
+      "retained": "旧sourceの原identity/JSON意味、欠落の非補完、関数と検証の対応を保持する。",
+      "changed": "現行L4/L5が定義済みの診断subjectと原partial Bindingの保持へ意味再導出する。旧runtime/CI/承認gateを実行・移植しない。",
+      "failure_origin": "PR3736 R1-m2と実公開経路probeで、FN0が保持したpartial rootがFN1の無条件lookupとFN6のstrict比較に阻まれた。既存required/slot人口を保持して必要箇所だけ直す。"
+    },
+    "completion_boundary": "G4b local slice only. It does not claim full FN1/canonical reader semantics, L8/OS acceptance, Issue #3547 completion, or completion of later G1/G2/G3/G5 work.",
+    "source_test_revision": "0fc40e685efddeafd7fdb05ab1e94e90636f3195",
+    "authority_intake": {
+      "approval_revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+      "items": [
+        {
+          "id": "HELIXBRAIN-L3-032-F01",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/0",
+          "equal_approved_item": true,
+          "sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F02",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F09",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/8",
+          "equal_approved_item": true,
+          "sha256": "c3e7d16735c6b3e5772fe61e7ba9c1c8d8607b3e4965b6329e166ca6c754ddf8"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-B02",
+          "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "709caa222ebdd58c367b270150a6b1890956fdcde05120035365cefbb859746e"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N02",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N03",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/2",
+          "equal_approved_item": true,
+          "sha256": "bf0195b632f9009039cbb1db49476f82a55a36da08de9f26b56e2ca03f55b4b7"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F01",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/0",
+          "equal_approved_item": true,
+          "sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F02",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F09",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/8",
+          "equal_approved_item": true,
+          "sha256": "11ff16c86d9d780c4dccc1f781c4b83a682864e02c0f29100537f3688659fe33"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-B02",
+          "path": "docs/helix-brain/L10-verification/business-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "eae4e49a370b1851b171ccc890d345cbebc5d2e99b5207d02b27fb1b53df3554"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N02",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N03",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/2",
+          "equal_approved_item": true,
+          "sha256": "c7059fbc9d3167f12b1f1ffc6d22427bc246e7ef3f4e5bf14846df8d86855dba"
+        }
+      ],
+      "authority_extension": false
+    },
+    "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3736#issuecomment-6448243648"
   }
 }
