@@ -1086,7 +1086,7 @@
     "id": "HELIXBRAIN-L6-032-FN1-OWNER-TARGET-READER",
     "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
     "working_base": "c5960e04259bed1520fa9072ba84f0f8f1198e14",
-    "source_test_revision": "26cfbd7d8c16eaaa7d027f065b23d394f0010775",
+    "source_test_revision": "115adf0ec9521842efc92c7ec01dcf3ff42a0185",
     "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
     "function": "read_descriptor_replacement_target(validated, claim, claim_locator)",
     "authority_effect": "none",
@@ -1202,7 +1202,8 @@
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_problem_order.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_qualification_cohort.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_reader.py",
-      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_unresolved_cohort.py"
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_unresolved_cohort.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_cohort_boundaries.py"
     ],
     "acquisition_binding": {
       "source": "/fn1_owner_target_acquisition_preparation",
