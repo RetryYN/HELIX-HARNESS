@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "d9b4f2d1774960fe9b19d4704e46030c7627f9495744c9839641bbd85a59d339",
+    "sha256": "f0b0e73fac3724f6084ce9acc485f21aa42d1635c73f581aa9ca610bd24186f7",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3961,6 +3961,15 @@
         "mutations": "root-wr65-claimuse-mutations-R1.json:compact_locatorは1assertFAIL child106ms、fill件数検査除去は4assertFAIL child108msでKILLED。各errors/setup0、wrapper280ms、src/tests tree不変。",
         "replay": "root-wr65-claimuse-replay-R1.json + observations-R1.json:951ms。17入力hash/FN0-clean/raw不変。11入力がS5からFN4 oracle_claim_ports S6へ進み、残FN1停止6入力は同じ。六Comparison成立0、writer familyは未着手。",
         "limits": "全bounded reaped=true/output_truncated=false。FN0-cleanをClaim意味成立とはせず、非fill Claimのtarget/use/intent/route/意味/rowは生成しない。all6 Comparison成立0、WR13 B未完了、WR28/31手動hold、L8 not_executedのまま。"
+      },
+      "fn1_stop_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-FN1-STOPS-3547-20261028-66",
+        "working_base": "d2b546551e36696b2451646b9e1409b8f06e01d0",
+        "baseline": "root-wr66-fn1-replay-bounded-R2.json:正規bounded_execで1140ms/status0/reaped=true/output_truncated=false。baseline-R2.jsonの17入力はWR65の全観測と一致、FN0clean/raw不変/FN1停止6/FN4停止11。",
+        "raw_inputs": "I02はS2。I04/I06/I08/I10はS4。原17raw SHA/母集団と既存stop matrixはこの判定で変更しない。",
+        "design_review": "root-wr66-s4-design-audit-R2.jsonとrootのL4 branch8/L5 special4直接照合。S2はL4 evaluation_populationsとL5 single_walk/1,/2の対象域を直接照合。FN7一般writer未閉をFN1停止根拠へ拡張せず、両停止を設計済みの実装差分と判定。",
+        "verification_boundary": "文書revision・pointer・ID対応・責務境界の静的判定。source/testはこの記録段階で未変更、source完了証拠ではない。",
+        "evidence_correction": "worker intakeR1のrequest ID誤記はintakeR2で訂正。独自subprocess wrapper結果のR1は正規bounded_exec証拠に使わず、rootのR2再実行を採用。"
       }
     }
   }

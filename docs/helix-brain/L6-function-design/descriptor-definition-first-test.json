@@ -2214,6 +2214,44 @@
         "test_freeze": "59e9f31d5e935537a0dfd3ddf8a88efa9e8677da",
         "test_scope": "新4methods: 保存I05原SHA、nonfill-only、混在原indices1/3、fill-only対照、件数不足/過剰と両locator破損6条件。実FN0→walk→builderを使い、raw/validated/walk不変を検査。",
         "boundary": "既存405testsの期待とbytesは不変。手製Comparison/正のread/frame/資格は補作しない。不正protocol試験だけ実readのcloneを破損させる。"
+      },
+      "fn1_stop_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-FN1-STOPS-3547-20261028-66",
+        "request_base": "0404af048458b32600c43190d8d05519bafecfed",
+        "working_base": "d2b546551e36696b2451646b9e1409b8f06e01d0",
+        "authority": "既存B01/F07/N02の承認6項目とL4/L5 pinを再照合。新要求・gate・row意味は追加しない。",
+        "S4": {
+          "classification": "設計済み。現FN1実装の広域停止が設計より狭い。",
+          "L4_pointers": [
+            "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+            "/definition_meaning_resolution_contract/consumer_branch_table/8"
+          ],
+          "L5_pointers": [
+            "/functions/1/algorithm/0",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_nonfailure_branches/4",
+            "/source_return_contract/descriptor_target_dataflow/consumer/reads"
+          ],
+          "behavior": "非fill Claimのfact subject一致を理由に全descriptor比較を停止しない。原Claimと同snapshotを保持して原定義の比較を継続する。fill対象外のtarget/use/intentを生成しない。",
+          "boundary": "FN7 finite writer other_domainはFN1の母集団制限ではない。FN7 rule76等のfact-subject意味対応・row/routeは別責務で未閉。既存HARNESS special・source資格・意味判定を変更しない。",
+          "implementation": "S4のみ別PR/test-first。旧停止期待の移行は事前FAIL/旧SHA/L7理由と統制確認後。"
+        },
+        "S2": {
+          "classification": "設計済み。root同一Bindingだけの現FN1/walkより評価域が広い。",
+          "L4_pointers": [
+            "/definition_meaning_resolution_contract/evaluation_populations"
+          ],
+          "L5_pointers": [
+            "/functions/1/algorithm/0",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2"
+          ],
+          "behavior": "root要求契約を必ず保持し、原candidate Refが実slot.template_refへ対応する追加frameを原順で評価する。全slotのBinding/locator/read問題を保持し、未要求frameへ15義務を増殖しない。",
+          "boundary": "凍結I02はcandidate Bとdescriptor15の原Bindingが対応する補助入力。元L8 baselineの全材料化とはしない。guard除去だけではwalk raw_distinct_binding_frames/単frame集計が残り閉包しない。",
+          "implementation": "S4とは別PR/test-first。full Binding単位の母集団・元root/state/原順とnative/private索引を既存設計どおりに実装する。未規定の追加意味が必要なら設計ownerへ返す。"
+        },
+        "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)。JSON正本/原source/owner/不足と証拠の分離を継承し、現L4/L5の評価域へ意味再導出。ClaimContext/同名guardの旧consumerは検索で不在、旧runtime/test/CIは実行・移植しない。",
+        "completion": "判定段階で両停止の実装閉包を主張しない。既存matrix・WR60/65証拠は保持、all6成立0/WR13 B未完了/WR28・31hold/L8not_executed。"
       }
     }
   }
