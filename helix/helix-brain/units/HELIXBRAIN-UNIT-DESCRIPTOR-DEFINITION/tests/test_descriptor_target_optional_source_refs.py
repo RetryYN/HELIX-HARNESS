@@ -73,6 +73,54 @@ class TestDescriptorTargetOptionalSourceRefs(unittest.TestCase):
             "value": original_source_ref,
         })
 
+    def test_partial_owner_source_binding_is_supplied_and_unresolved(self):
+        from test_descriptor_target_cohorts import _rewrite_source_body_and_links
+
+        raw = descriptor_claim_input("positive")
+        source = raw["sources"][0]
+        source_index = next(
+            index for index, candidate in enumerate(raw["sources"])
+            if candidate is source
+        )
+        content = copy.deepcopy(source["content"])
+        partial_binding = content["binding"]
+        partial_binding.pop("knowledge_ref")
+        source_ref = _rewrite_source_body_and_links(raw, source_index, content)
+        raw_before = copy.deepcopy(raw)
+        declaration = copy.deepcopy(source["content"]["descriptor_targets"][0])
+
+        validated = validate_supply_input(raw)
+        self.assertIsInstance(
+            validated["input"], dict,
+            "setup: FN0 must qualify the synchronized source with its supplied partial Binding",
+        )
+        self.assertEqual(validated["input"], raw_before)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["unusable_source_refs"], [])
+        validated_before = copy.deepcopy(validated)
+
+        actual = read_descriptor_replacement_target(
+            validated, raw["claims"][0], "/claims/0"
+        )
+
+        self.assertEqual(raw, raw_before, "target reading must not mutate the raw snapshot")
+        self.assertEqual(validated, validated_before, "target reading must not mutate FN0 output")
+        self.assertEqual(actual["state"], "unknown")
+        self.assertEqual(actual["matches"], [])
+        self.assertEqual(actual["occurrences"], [{
+            "source_ref": {"presence": "supplied", "value": source_ref},
+            "source_locator": f"/sources/{source_index}",
+            "declaration_locator": f"/sources/{source_index}/content/descriptor_targets/0",
+            "declaration": declaration,
+            "source_binding": {"presence": "supplied", "value": partial_binding},
+        }])
+        self.assertEqual(actual["problems"], [{
+            "kind": "binding_unresolved",
+            "locator": f"/sources/{source_index}/content/binding",
+            "reason": "owner原target宣言のfull Bindingを原Claim.bindingへ比較できない。原値を保持する。",
+            "source_ref": {"presence": "supplied", "value": source_ref},
+        }])
+
 
 if __name__ == "__main__":
     unittest.main()
