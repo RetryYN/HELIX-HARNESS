@@ -4587,7 +4587,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "11正常期待出力/24追加入力/106原負例/21pinsの静的整合を確認した。分類と影響根拠の強度を独立reviewで確かめ、指摘修正後HEADを再確認する。実trust/実行oracle凍結/Red/Green/全限定範囲の実装準備完了は未成立。",
+    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み。T:39–42のA残件と関数別pair凍結はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.jsonへ記録し次slice（D-H009-T1a〜T1d-2）へ渡す（T:43–49はD-H009-DISP-2）。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各ownerへ戻し、候補記載から生成しない。",
     "source_result_reference_projection": {
       "state": "logical_pure_design_only",
       "function_ref": "HARNESS-L5-009-project_source_result_references",
@@ -4596,12 +4596,12 @@
     }
   },
   "remaining": [
-    "L5/L8でlogical型/各axis判定/集合/適用/N/A/trace/gap/影響pure関数と単体oracleへ降ろす。",
-    "正式schema/operator/registry/instance digest/言語依存/入力資格resolver/具体fixtureと採用知識の未完照合は未成立。",
-    "全92親430対の設計/実装準備、配置4論点、toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deploy未成立。",
-    "106typed変異/判定条件と保持観測を候補として著述。正常fixture/追加単体分岐/normal oracle/独立reviewは未完。",
-    "正式schema/codec/実source resolver/意味比較provider/資源/言語依存/配置、実fixture凍結/実装前Red/Green/CI/実受入は未成立。",
-    "追加F03 source/result projectionは固定packetの純粋内容比較のみ。condition pair両側member欠落の判定はL4 shape由来のL5 refinementで識別する。混合conditionに対する元non_applicable_basis_refの真理値表が供給されない範囲はN/A判定未閉包。正式codec、実source/owner資格、実provider/caller実装、OS正式記録consumer接続、全domainは未成立。"
+    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み。候補の記載と独立review/関数別pair凍結を分け、T:39–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（T:43–49は後続D-H009-DISP-2）へ別記し、独立reviewは作成／review側へ戻す。",
+    "正式wire schema/operator/registry/instance digest/言語依存/入力資格resolverの採用・稼働と実seed採用知識の最終照合は、下流L6関数設計/L7対検証・runtime codecおよび知識/資格owner（BRAIN030/032・SECURITY・OS002/053）の担当へ戻す。",
+    "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・release等は既存authorityへ戻す。",
+    "failure_rules 107件（原L9負例106件＋HARNESS-L5-009-R-condition_meaning_unresolved 1件）との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
+    "正式runtime schema/codec、実source resolver、外部意味比較provider、資源/言語/配置と実fixture/実行oracle凍結→実装前Red→Green→CI→実受入は、各ownerと後続L6/L7・既存authorityへ戻す。",
+    "追加F03 source/result projectionとcondition pair両側member欠落のL5 refinement、lookup miss writerは固定packet上の有限候補規則として記載済み。混合conditionに対する元non_applicable_basis_ref真理値表が未供給の範囲はunknown/unresolvedを保持し（T:43詳細照合はD-H009-DISP-2/T2a）、正式codec・実source/owner資格・実provider/caller実装・OS正式記録consumer接続・全domain閉包は各ownerと下流L6/L7へ戻す。"
   ],
   "state_semantics": {
     "original_axes": "原qualified事実の値/定義/適用条件/版/知識state/OS使用/未観測/未受領を別axisで保存。Finding分類で原事実を書き換えない。",
@@ -7779,10 +7779,10 @@
     "application_boundary": "codecは必要axis/候補母集合/trace端集合を現供給値から創作しない。same_meaning=falseは元不一致、nullは未知、conditional未充足は未完のまま。cacheされたComparison decodeは評価器producer根拠でなく、ApplicationAnalysisの候補/義務/不足/影響はOS selected/used/消込/実受領/POAcceptedを構成しない。",
     "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。 BRAIN032同様carrierとRawValueの責務を分けるが、COREの列挙memberはCORE自身の原型に従う。BRAINのcontent/semantic_json/qualification_bodyや型名をコピーしない。初稿のCORE carrier拡張受理に現行根拠があったとは扱わない。",
     "remaining": [
-      "全Context/Result/opaque body record契約の全量凍結、独立review及び具体parser/host/資源の実成立は未成立。CORE private exact number/encodeのlogical domain/分岐/writerはnumeric_encode_profileで具体化し、schema静的照合を実codec成立にしない。",
-      "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式bindingとCONNECT版/receiptは未閉包。",
-      "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは未成立。",
-      "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定し、対L8へ有限literal期待を収載した。独立review、未行使分岐、実装/実行・全資源挙動は未成立。既存整数成功や新条件数だけで数値/encode全域実証とはしない。"
+      "論理JSON/RawValue carrier schemaとCORE private exact number/encodeのlogical domain・分岐・writer（numeric_encode_profile）および対L8の36 codec case・21変異/9述語・6 projection field case＋7 pointer shape caseを有限候補として記載済み。全callerにわたるContext/Result/opaque bodyの全量実行凍結や具体parser/host/資源の実成立は下流L6/L7へ戻し、schema静的照合を実codec成立にしない。",
+      "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式transport bindingとCONNECT版/receiptは、各外部owner（BRAIN030/032・OS002/053・CONNECT・SECURITY）の担当へ戻す。",
+      "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは下流L6/L7・実行環境・既存authorityへ戻す。",
+      "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定し、対L8へ有限期待と反例を収載済み。独立reviewはreview側へ、任意token/未行使host型/資源・実行挙動は下流L6/L7へ戻し、有限条件数を数値/encode全域実証とはしない。"
     ],
     "numeric_encode_profile": {
       "id": "HARNESS-L5-009-CORE-EXACT-NUMERIC-ENCODE",
@@ -8103,9 +8103,9 @@
         "brain032_comparison": "PR3325/3327は厳密number/int共存、token/value相反、bool分離、内外source帰属を見落とさない比較材料だけ。本節はCORE自身の6entry/RawValue/body/型/段階から再導出し、BRAINのABI/型名/QualifiedSource/content/semantic_json/算法を共通APIとして採用しない。 旧L4 §1〜4と旧L5 §2〜5のtemplate field/value_type/traceとcandidate/canonical分離は保持するが、そこに任意JSON payloadのexact数値carrier/lexeme保持/encode方式の具体規則は見つからなかった。旧検索範囲は上記二文書のnumber/integer/数値/exact/原lexeme/boolと全文の該当節で、template_version等のinteger記述をpayload数値規則へ転用しない。変更点はCORE所有のexact表現と全段階writerを新たに具体化することであり、変更理由は現6802 L5の丸め禁止・原lexeme保持とL4のJSON数値同値/bool分離を、有限幅host任せにせず一貫して成立させるためである。旧source未完成だけを理由にせず、この既存技術契約と21有限対照に対応する。"
       },
       "remaining": [
-        "本節のlogical host表現/全分岐writerは設計上選定した。実host class/factory/library/parser/strict writer/資源時の実挙動、具体adapter/実資格/実接続の実装は未成立。閾値/依存を勝手に追加しない。 Unicodeの通常文字/DEL/各control/nonBMP/lone surrogateを含む全域の独立oracle・実挙動も未完であり、writer規則の記載だけで成立にしない。",
-        "対L8には候補実行より先に別担当が著述した有限原入力/全返却期待を収載した。既存36codec case/全旧期待と固定履歴source pinは保持し、このL8と同じL5を指すcurrent content bindingだけを更新する。21変異/9述語の有限範囲であり、未行使理由・資源/循環/Unicode等の分岐と独立reviewは別途残る。新domain/host表現で全旧logical値を実行再検証した又は全入力域を実証したとは主張しない。",
-        "全B019/030責務projection、CORE009 F05のstatewriter/元field対応、意味比較provider、OS/CONNECT receiver/原source custody、canonical-sort/digest方式は本profileから閉じない。全92親430義務/L6L7/製品CI/実受入/Readyは未成立。"
+        "本節のlogical host表現と全分岐writerは有限設計候補として記載済み。実host class/factory/library/parser/strict writer/資源枯渇時の実挙動、具体adapter/実資格/実接続の実装、およびUnicode全域の実行挙動は下流L6/L7とruntime実装側へ戻し、閾値/依存を勝手に追加しない。",
+        "対L8には36 codec caseとnumeric_encode_independent_oracle（21変異/9述語）の有限反例・期待を収載済み。独立reviewはreview側へ、資源/循環/任意Unicode等の実行分岐と全入力域の実証は下流L6/L7へ戻す。",
+        "B019/030責務projection、CORE009 F05のstate writer/元field対応（D-H009-DISP-2/T2cで扱う）、外部意味比較provider、OS/CONNECT receiver/原source custody、canonical-sort/digest実運用方式は各担当節・他ownerへ戻し、全92親430義務/L6L7/製品CI/実受入/Readyは既存authorityと下流へ戻す。"
       ],
       "authority_effect": "none",
       "operation_effect": "none",
@@ -8884,10 +8884,10 @@
         }
       },
       "limits": [
-        "固定41件の合成入力に対するprojection設計。実BRAIN producerの出力とsource qualificationは未観測。",
-        "CORE既存19 axisの比較/判定/consumer結線を置換しない。",
-        "digest実装はL4に定めるJSON fixture互換範囲だけ。",
-        "runtime/wire codec、L6関数設計の実証、L7対関数検証、TDD/CI、実資格は未成立。"
+        "固定41件の合成入力と4 local probeに対する有限projection設計として記載済み。実BRAIN032 producer実行出力と実source qualificationはBRAIN030/032・SECURITYと下流結合へ戻す。",
+        "CORE既存19 axisの比較/判定/consumer結線はcompare_required_axes（functions/1）側が担い、本projectionで置換しない。",
+        "digest比較はL4が定めるJSON fixture論理互換範囲として記載済み。実runtime digest計算器は下流L6/L7へ戻す。",
+        "runtime/wire codec実装、L6関数設計の実証、L7対関数検証、TDD/CI、実資格は下流L6/L7と各ownerへ戻す。"
       ],
       "local_types": {
         "CollectionSlot": {
@@ -18338,10 +18338,10 @@
       "paired_normal_oracle": "L8は同じMのL9 source-occurrence replace/append caseをそのまま参照し、入力/期待JSONを再収載しない。",
       "receiver_boundary": "CORE fn0は渡されたCORE raw inputのdecode、source body/bytes等、CORE qualificationを検査する。BRAIN origin selection/lineage・選択権限・配送を検証する機能ではない。",
       "not_closed_here": [
-        "source acquisition/選択producer/caller bindingと実delivery",
-        "BRAIN→CORE qualificationの意味対応・authority",
-        "template/query/requirement relationと全ApplicationInput assembly",
-        "formal codec/schema実装・実行・CI・PO L11 acceptance"
+        "source acquisition/選択producer/callerの実bindingと実delivery（BRAIN030/032・CONNECT・caller側ownerへ戻す）",
+        "BRAIN→CORE qualificationの実authority発行・受領成立（BRAIN030/SECURITY/OS側ownerへ戻す）",
+        "template/query/requirement relationと全ApplicationInputの外部caller assembly（上位caller設計と下流L6/L7へ戻す）",
+        "formal codec/schema実装・実行・CI・PO L11 acceptance（下流L6/L7・実行環境・PO受入へ戻す。なおexact範囲確認より前のnarrowingを識別する単体probe追加はAとしてD-H009-T1cへ渡す）"
       ]
     },
     "legacy_noncopy_note": "LEGACY-ASSET-603D0E8D8193914F4AC0の責務比較を起点にするが、旧domain modelやold runtime/gateを移植しない。",
@@ -20285,9 +20285,9 @@
       "identity_locator_digest": "identity比較とsource_locator/digest保存を区別する。ref全6 memberの原供給状況を維持する。"
     },
     "bounded_unexercised_cases_ja": [
-      "N/A四属性のうち個別欠落として固定するのはreasonだけ。他の三属性の個別欠落は未行使。",
-      "boolean/負値/out-of-range policy index、一般source row型外、任意の数値/host object型、全Cause種別と全組合せは未行使。",
-      "N/A属性のnull/型外の一般意味、複数policy合成規則、producer資格、実caller実行は本詳細で確定しない。"
+      "L9の固定4caseに合わせ、N/A四属性欠落の代表反例としてreason欠落の単体oracleを記載済み。四属性すべての必須検査規則はguards/formation_and_failure_semanticsに定義済みであり、他三属性の個別欠落・詳細pair凍結の扱いはD-H009-T1d-1へ渡す。",
+      "boolean/負値/out-of-range policy index・source row型外の論理拒否規則は本節に定義済み。任意host object型・全Cause種別と全組合せの網羅実行は下流L6/L7へ戻す。",
+      "N/A属性のnull/型外を新N/Aへ丸めない保持規則は本詳細で固定済み。未供給の複数policy合成意味、実producer資格、実caller実行は上流知識/適用契約ownerと下流runtimeへ戻す。"
     ],
     "nonclaims_ja": [
       "実製品実装、実producer資格、実caller実行、runtime Red/Green、OSRef4、三集合、配送、record、権限昇格、受入、Releaseは成立を主張しない。",
@@ -21132,13 +21132,10 @@
       "typed_input_failure": "既存closed ProposalTemplateResultに従う。member_indexはNatural必須であり、欠落/型外は今回のsignature内にない。",
       "local_failure_behavior": "欠損/未観測/形不成立を[]・knownempty・N/Aへ潰さず、原Read/captureを保持する。valid siblingを他occurrenceのresidualで消さない。",
       "bounded_unexercised": [
-        "valid N/A exclusion",
-        "known-empty source arrayとempty results",
-        "duplicate/out-of-range result member_index",
-        "member_read absent/unreachedまたはknown mismatch",
-        "source material unavailable_shape",
-        "typed inputの欠落/型外index（既存入口codec境界・signature外）",
-        "producer資格、OS接続、実wrapper実行"
+        "valid N/A exclusion及びknown-empty source arrayは本詳細の17分岐表（coverage_branch_table）で規則定義済みであり、F02全体の有限caseとしては後続general_proposal_exchange（F02-qualified-empty / F03-valid-NA-only）で対検証を持つ（T1d-1/T1d-2で照合）。",
+        "duplicate/out-of-range result member_index、member_read absent/unreached/known mismatch、source material unavailable_shapeの論理分岐はcoverage_branch_tableに定義済み（L9固定4caseとの対照と関数別凍結はD-H009-T1d-1へ渡す）。",
+        "typed inputの欠落/型外indexは既存入口codec境界（signature外）へ戻し、本関数へ新raw gateを作らない。",
+        "実producer資格、OS002/053実接続、実wrapper実行は他ownerと下流L6/L7へ戻す。"
       ],
       "nonclaims": [
         "製品実装、L8実行、CI/Green、実producer/資格、OS Ref4/project scope、OS053 port binding、OS002 receipt、selected/used集合、配送、identity、永続化、受入、Releaseを主張しない。"
@@ -22116,10 +22113,10 @@
       "source_first": "独立期待は固定Git sourceと標準JSONPointer/Patchで著述する。既存3provider whole、binding[] native全期待、成功5body及び前段反例の凍結は各対oracleで別途照合し、設計candidate評価結果から期待を逆生成しない。",
       "preserved_old_values": "旧codec六entry、CoreDecodeResult、旧RawProviderRequest/ProviderReturn/CallerInputs/OriginRoot/Read/native wrapper/旧3wholeは変更しない。",
       "unclosed": [
-        "全relation重複・未観測locator・複合資格flags・NA/residual一般形からOS bodyを形成するwriterはnative_capture_onlyに残す。",
-        "same_decode_successの実decode whole取得対応、外側codec型外及び任意host例外の総実行契約は別境界。",
-        "元母集合exactness、source identity/persist、OS proposed受理/selected/used、CONNECT/実資格/実runtime/CI/受入の成立は主張しない。",
-        "この追補をHARNESS-L3-009-F02/F03全体又はIssueの完了へ読み替えない。"
+        "既存3 published whole、前段8失敗case、binding[] domain失敗1caseの論理規則と対L8/L9参照は記載済み（関数別照合・凍結はD-H009-T1d-1）。全relation重複・未観測locator・複合資格flags・NA/residual一般形からOS bodyを形成する詳細writerは後続general_proposal_exchange_detail（D-H009-T1d-2）で扱う。",
+        "same_decode_successの実decode whole取得対応、外側codec型外及び任意host例外の総実行契約は入口codecおよび下流L6/L7の境界へ戻す。",
+        "元母集合exactnessの実運用保証、source identity/persist、OS proposed受理/selected/used登録、CONNECT/実資格/実runtime/CI/受入はOS002/053・CONNECT・下流L6/L7・既存authorityへ戻す。",
+        "本追補はHARNESS-L3-009-F02/F03の候補設計であり、Issue全体や実装完了へ読み替えない。"
       ]
     }
   },
@@ -23196,7 +23193,7 @@
       ],
       "conclusion_writer_ja": "対象の決定に必要なcontext/universe/source/boundaryが到達し、全対象memberと全candidate逆対応の必要stepがequal又は既存規範で真にnot_applicableで閉じた時だけexact_for_context。basis_stepsは上記必要stepの実observation所在を原順に全列挙。そうでなければincomplete.obstructionsへ到達した阻害stepの実所在を原順で全列挙する。空findings/空axesだけの判定、無関係finding全面拒否、not_recomputed全面拒否はしない。",
       "comparison_projection_ja": "comparison.producer_symbol/input_binding/original_axes/findings/materialは旧関数の同実判断による全値。新detail stepから旧normal空axes/findingsを埋め直さない。",
-      "unclosed_oracle_ja": "各rowの具体positive/empty/NA全step・全left/right pointer期待は新L8の独立著述対象。旧normalに詳細wholeが無いことは要求意味不足でなく新fixture著述の残作業。"
+      "unclosed_oracle_ja": "f02_step_writerの比較順序とUniverseEvidenceStep出力規則は本節に定義済みであり、公開11 finite_casesのうち対応caseの期待はL8側に記載済み。L9 general_proposal_exchange_oracles 15基本branch・8 familyのうち未収載branch（F06等）のL8 U-ID行追補と凍結範囲の確定はA（Q-H009-1）としてD-H009-T1d-2へ渡す。"
     },
     "general_body_writer": {
       "stages": [
@@ -23469,7 +23466,7 @@
         ],
         "bytes_ja": "objectは{key:value,...}、arrayは[value,...]、区切り余白無し、UTF8・BOM無し・末尾改行無し。stringはJSON標準escape（制御文字/quote/backslash、非ASCIIはUTF8）。numberの字句選択/非有限拒否は既存numeric profileだけを使い新等値規範を追加しない。digestはこの完成bytesのSHA256 lowerhex。",
         "inverse_reader_ja": "OS新profileは同旧CORE numeric/Field表現へ型付き再decodeし、raw body/typed evidence/元valueの全対応を確認する。hash一致をsamecall/意味同値へ置換しない。",
-        "unfrozen_ja": "公開childの有限caseにsource-first全leaf/UTF8/witnessを著述した。新catalog通し監査/全union・特殊numberの未行使枝・runtime codec成功は別に未成立として保持する。"
+        "unfrozen_ja": "公開11 finite_casesに対する論理writer規則とU-ID検証契約を記載済み。L9 15基本branch・8 familyの未収載U-ID行追補と関数別pair凍結はA（Q-H009-1、D-H009-T1d-2）として残し、全返却fixture/hash/COPY材料の展開は#3510方針により下流L6/L7へ、全union・特殊numberの任意組合せとruntime codec実行は下流L6/L7へ戻す。"
       },
       "finite_port_issue_writer": {
         "scope_ja": "新private publish_general_proposal_exchangeのP2/P5局所技術writer。既存LocalIssue型/旧publiccodec/旧wholeを変更せず、この新返却へだけ適用する。portがreturnedの場合のshape/端差等を未供給と同一化しない。",
@@ -23843,9 +23840,9 @@
       "old_values_ja": "旧publictype/functions/codec6entry/Comparison/caller全7producer/proposal/N/旧provider3whole/旧totalwholeを変更しない。新.valueの元全値投影とmember順を新L8で検証する。",
       "legacy_source_ja": "L4 source_basisのLEGACY/FAILURE固定原文を起点に、候補受領を使用済みと混同しない、同件数補償・別source救済・unknown empty化を防ぐ既決要求を詳細化する。旧runtimeを移植/実行しない。",
       "remaining_ja": [
-        "公開childへF01/F02/F03singleton/F05/F07/knowncandidate control/F08四portの有限wholeを著述。各caseの独立素材監査状態を区別し、全8familyのmixed/residual/negative/全wire枝は同child.family_remaining_jaの通り未完。",
-        "実owner登録/qualification trust/CONNECT実配送/OS保存・受入は本pure設計だけで成立しない。",
-        "新詳細pair未検収、HARNESS F02/F03/全92/430完成は称さない。"
+        "L8 general_proposal_exchange_verificationへ11有限case（F01/F02/F03singleton/F04/F05/F07/known-candidate-control/F08四port）を記載済み。L9 15基本branch・8 familyに対する未収載branch（F06等）のU-ID行追補と詳細pair凍結範囲はA（Q-H009-1）としてD-H009-T1d-2へ渡す（全返却fixture/hashはL8に足さない）。",
+        "実owner登録、qualification trust、CONNECT実配送、OS002/053での保存・selected/used登録・受入は他ownerと下流実行層の担当（C）へ戻す。",
+        "本詳細pairの関数別凍結はD-H009-T1d-2で行い、全92親430対の完成は称さない。"
       ]
     },
     "finite_repository_oracle_binding": {
