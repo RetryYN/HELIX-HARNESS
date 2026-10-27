@@ -521,18 +521,45 @@
         {
           "id": "H004-B01-NORMAL-MEANING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-NORMAL-MEANING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-B01-NORMAL-IMPLEMENTATION",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-NORMAL-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-B01-NORMAL-ENVIRONMENT",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-NORMAL-ENVIRONMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -541,6 +568,15 @@
         {
           "id": "H004-B01-SOURCE-MISSING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-SOURCE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -574,6 +610,15 @@
         {
           "id": "H004-B01-SOURCE-STALE",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-SOURCE-STALE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -604,6 +649,15 @@
         {
           "id": "H004-B01-SOURCE-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-SOURCE-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -634,6 +688,15 @@
         {
           "id": "H004-B01-BEFORE-SIGNATURE-MISSING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-BEFORE-SIGNATURE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -670,6 +733,15 @@
         {
           "id": "H004-B01-PROPOSED-SIGNATURE-MISSING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-PROPOSED-SIGNATURE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -706,6 +778,15 @@
         {
           "id": "H004-B01-OWNER-MISSING-MEANING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-MEANING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "original",
           "mutation": {
@@ -738,6 +819,15 @@
         {
           "id": "H004-B01-OWNER-MISSING-IMPLEMENTATION",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
           "mutation_lane": "original",
           "mutation": {
@@ -768,6 +858,15 @@
         {
           "id": "H004-B01-OWNER-MISSING-ENVIRONMENT",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OWNER-MISSING-ENVIRONMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
           "mutation_lane": "original",
           "mutation": {
@@ -798,6 +897,15 @@
         {
           "id": "H004-B01-ALL-REFACTOR-MEANING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-MEANING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -831,6 +939,15 @@
         {
           "id": "H004-B01-ALL-REFACTOR-IMPLEMENTATION",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-IMPLEMENTATION",
           "mutation_lane": "candidate",
           "mutation": {
@@ -862,6 +979,15 @@
         {
           "id": "H004-B01-ALL-REFACTOR-ENVIRONMENT",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-ALL-REFACTOR-ENVIRONMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-ENVIRONMENT",
           "mutation_lane": "candidate",
           "mutation": {
@@ -893,6 +1019,15 @@
         {
           "id": "H004-B01-HARNESS-TICKET",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-HARNESS-TICKET",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -926,6 +1061,15 @@
         {
           "id": "H004-B01-HARNESS-SAVE",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-HARNESS-SAVE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -959,6 +1103,15 @@
         {
           "id": "H004-B01-HARNESS-STATE",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-HARNESS-STATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -992,6 +1145,15 @@
         {
           "id": "H004-B01-PROJECT-AS-MEANING",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-PROJECT-AS-MEANING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1025,6 +1187,15 @@
         {
           "id": "H004-B01-ISSUE-AS-APPROVAL",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-ISSUE-AS-APPROVAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1058,6 +1229,15 @@
         {
           "id": "H004-B01-CI-AS-COMPLETION",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-CI-AS-COMPLETION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1091,6 +1271,15 @@
         {
           "id": "H004-B01-OLD-TRIGGER-AS-CURRENT",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OLD-TRIGGER-AS-CURRENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1124,6 +1313,15 @@
         {
           "id": "H004-B01-OLD-RUNTIME-AS-CURRENT",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OLD-RUNTIME-AS-CURRENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1157,6 +1355,15 @@
         {
           "id": "H004-B01-OS-AS-MEANING-OWNER",
           "contract_ref": "HARNESS-L9-004-B01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-B01-OS-AS-MEANING-OWNER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-evidence-owner"
+            },
+            "read_rule": "報告文のlabelではなく原signature/behavior/environmentの内容を比較する。"
+          },
           "base_case_ref": "H004-B01-NORMAL-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1227,6 +1434,15 @@
         {
           "id": "H004-F01-NORMAL",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -1235,6 +1451,15 @@
         {
           "id": "H004-F01-DESIGN-CONDITION-UNCOVERED",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-DESIGN-CONDITION-UNCOVERED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1330,6 +1555,15 @@
         {
           "id": "H004-F01-TEST-CONDITION-UNCOVERED",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-TEST-CONDITION-UNCOVERED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1429,6 +1663,15 @@
         {
           "id": "H004-F01-ORACLE-CONTENT-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-ORACLE-CONTENT-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1462,6 +1705,15 @@
         {
           "id": "H004-F01-DESIGN-CONTENT-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-DESIGN-CONTENT-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1495,6 +1747,15 @@
         {
           "id": "H004-F01-FOREIGN-DESIGN-REVISION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-FOREIGN-DESIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1526,6 +1787,15 @@
         {
           "id": "H004-F01-SOURCE-DIGEST-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-SOURCE-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1557,6 +1827,15 @@
         {
           "id": "H004-F01-ONE-WAY-REQUIREMENT-TRACE",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-ONE-WAY-REQUIREMENT-TRACE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1628,6 +1907,15 @@
         {
           "id": "H004-F01-ONE-WAY-PAIR",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-ONE-WAY-PAIR",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1699,6 +1987,15 @@
         {
           "id": "H004-F01-OWNER-MISSING",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-OWNER-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1732,6 +2029,15 @@
         {
           "id": "H004-F01-DOUBLE-OWNER",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-DOUBLE-OWNER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1768,6 +2074,15 @@
         {
           "id": "H004-F01-UNASSIGNED-MEMBERSHIP",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-UNASSIGNED-MEMBERSHIP",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1801,6 +2116,15 @@
         {
           "id": "H004-F01-IMPLEMENTATION-MISSING",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-IMPLEMENTATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1841,6 +2165,15 @@
         {
           "id": "H004-F01-CONNECTION-MISSING",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-CONNECTION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -1883,6 +2216,15 @@
         {
           "id": "H004-F01-COUNT-AS-ALL-VERIFIED",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-COUNT-AS-ALL-VERIFIED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1911,6 +2253,15 @@
         {
           "id": "H004-F01-TRACE-AS-IMPLEMENTATION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-TRACE-AS-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1939,6 +2290,15 @@
         {
           "id": "H004-F01-TRACE-AS-CONNECTION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-TRACE-AS-CONNECTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1967,6 +2327,15 @@
         {
           "id": "H004-F01-REGISTRATION-AS-APPROVAL",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-REGISTRATION-AS-APPROVAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -1995,6 +2364,15 @@
         {
           "id": "H004-F01-LINK-AS-COMPLETION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-LINK-AS-COMPLETION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2023,6 +2401,15 @@
         {
           "id": "H004-F01-ORACLE-MISSING",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-ORACLE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2061,6 +2448,15 @@
         {
           "id": "H004-F01-FOREIGN-VERIFICATION-REVISION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-FOREIGN-VERIFICATION-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2091,6 +2487,15 @@
         {
           "id": "H004-F01-ORPHAN-EDGE-ENDPOINT",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-ORPHAN-EDGE-ENDPOINT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2121,6 +2526,15 @@
         {
           "id": "H004-F01-IMPLEMENTATION-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-IMPLEMENTATION-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2152,6 +2566,15 @@
         {
           "id": "H004-F01-CONNECTION-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-CONNECTION-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2183,6 +2606,15 @@
         {
           "id": "H004-F01-MEMBERSHIP-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-MEMBERSHIP-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2217,6 +2649,15 @@
         {
           "id": "H004-F01-LEGACY-GRAPH-FILLS-MISSING-PAIR",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-LEGACY-GRAPH-FILLS-MISSING-PAIR",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-ONE-WAY-PAIR",
           "mutation_lane": "original",
           "mutation": {
@@ -2295,6 +2736,15 @@
         {
           "id": "H004-F01-LEGACY-CI-FILLS-MISSING-VERIFICATION",
           "contract_ref": "HARNESS-L9-004-F01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "SOURCE-H004-F01-LEGACY-CI-FILLS-MISSING-VERIFICATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F01-TEST-CONDITION-UNCOVERED",
           "mutation_lane": "original",
           "mutation": {
@@ -2443,18 +2893,45 @@
         {
           "id": "H004-F02-NORMAL",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F02-NORMAL-SYSTEM-pass",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-pass",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F02-NORMAL-SYSTEM-fail",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-NORMAL-SYSTEM-fail",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -2463,6 +2940,15 @@
         {
           "id": "H004-F02-MEMBERSHIP-UNKNOWN",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-MEMBERSHIP-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2494,6 +2980,15 @@
         {
           "id": "H004-F02-RELATION-MISSING",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2561,6 +3056,15 @@
         {
           "id": "H004-F02-RELATION-FOREIGN-REVISION",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-RELATION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2592,6 +3096,15 @@
         {
           "id": "H004-F02-UNIT-FAILED",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-FAILED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2620,6 +3133,15 @@
         {
           "id": "H004-F02-UNIT-UNKNOWN",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNIT-UNKNOWN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -2648,6 +3170,15 @@
         {
           "id": "H004-F02-AFFECTED-AS-UPPER-PASS",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-PASS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2675,6 +3206,15 @@
         {
           "id": "H004-F02-AFFECTED-AS-UPPER-FAIL",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-AFFECTED-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2702,6 +3242,15 @@
         {
           "id": "H004-F02-IMPACT-AS-STATE-UPDATE",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-IMPACT-AS-STATE-UPDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2729,6 +3278,15 @@
         {
           "id": "H004-F02-OLD-PROOF-AS-REEXECUTION",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-OLD-PROOF-AS-REEXECUTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2756,6 +3314,15 @@
         {
           "id": "H004-F02-LOWER-PASS-AS-COMPLETION",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-PASS-AS-COMPLETION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2783,6 +3350,15 @@
         {
           "id": "H004-F02-ERASE-UPPER-OBLIGATIONS",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-ERASE-UPPER-OBLIGATIONS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2866,6 +3442,15 @@
         {
           "id": "H004-F02-UNAFFECTED-AS-AFFECTED",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNAFFECTED-AS-AFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2903,6 +3488,15 @@
         {
           "id": "H004-F02-UNKNOWN-AS-UNAFFECTED",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-UNKNOWN-AS-UNAFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-MEMBERSHIP-UNKNOWN",
           "mutation_lane": "candidate",
           "mutation": {
@@ -2944,6 +3538,15 @@
         {
           "id": "H004-F02-LOWER-FAIL-AS-UPPER-FAIL",
           "contract_ref": "HARNESS-L9-004-F02",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F02-LOWER-FAIL-AS-UPPER-FAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8をJSON論理materialとして読む。"
+          },
           "base_case_ref": "H004-F02-UNIT-FAILED",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3085,114 +3688,285 @@
         {
           "id": "H004-F03-NORMAL-ROUTINE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-ROUTINE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-PARITY",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-PARITY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-MEANING-VALUE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-MEANING-VALUE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-MEANING-REQUIREMENT_ACCEPTANCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-MEANING-REQUIREMENT_ACCEPTANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-MEANING-ARCHITECTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-MEANING-ARCHITECTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-MEANING-DETAIL",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-MEANING-DETAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-CLEAR_DRIFT",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-CLEAR_DRIFT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-MISSING_PROVENANCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-MISSING_PROVENANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-RECURRENCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-RECURRENCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-PERFORMANCE_REGRESSION",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-PERFORMANCE_REGRESSION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-POST_INCIDENT_REMEDY",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-POST_INCIDENT_REMEDY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-SCRUM_REVERSE_CHECKPOINT",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-SCRUM_REVERSE_CHECKPOINT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRIGGER-LARGE_DESIGN_REGRESSION",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRIGGER-LARGE_DESIGN_REGRESSION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-INDEPENDENT-STRUCTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-INDEPENDENT-STRUCTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-INDEPENDENT-ARCHITECTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-INDEPENDENT-ARCHITECTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-INDEPENDENT-PERFORMANCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-INDEPENDENT-PERFORMANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-PUBLIC-CONTRACT",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-PUBLIC-CONTRACT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-TRACE-MISSING",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-TRACE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F03-NORMAL-SCRUM-MERGE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-NORMAL-SCRUM-MERGE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -3201,6 +3975,15 @@
         {
           "id": "H004-F03-ALL-WORK-INVALIDATED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-ALL-WORK-INVALIDATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3245,6 +4028,15 @@
         {
           "id": "H004-F03-Q-INVALIDATED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-Q-INVALIDATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3289,6 +4081,15 @@
         {
           "id": "H004-F03-SCRUM-WITHOUT-RECONFIRM",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-SCRUM-WITHOUT-RECONFIRM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-SCRUM-MERGE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3334,6 +4135,15 @@
         {
           "id": "H004-F03-PAIR-FREEZE-INFERRED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-PAIR-FREEZE-INFERRED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-PUBLIC-CONTRACT",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3379,6 +4189,15 @@
         {
           "id": "H004-F03-RECONFIRMATION-INFERRED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-RECONFIRMATION-INFERRED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-PUBLIC-CONTRACT",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3424,6 +4243,15 @@
         {
           "id": "H004-F03-AUTHORITY-ON-RIGHT",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-AUTHORITY-ON-RIGHT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-REQUIREMENT_ACCEPTANCE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3468,6 +4296,15 @@
         {
           "id": "H004-F03-ROUTINE-NEW-TICKET",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-ROUTINE-NEW-TICKET",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-ROUTINE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3503,6 +4340,15 @@
         {
           "id": "H004-F03-RECURRENCE-IGNORED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-RECURRENCE-IGNORED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-TRIGGER-RECURRENCE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3542,6 +4388,15 @@
         {
           "id": "H004-F03-PERFORMANCE-IGNORED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-PERFORMANCE-IGNORED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-TRIGGER-PERFORMANCE_REGRESSION",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3581,6 +4436,15 @@
         {
           "id": "H004-F03-HARNESS-ACTUAL-TICKET",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-HARNESS-ACTUAL-TICKET",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-INDEPENDENT-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3618,6 +4482,15 @@
         {
           "id": "H004-F03-TICKET-OWNER-SWAP",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-TICKET-OWNER-SWAP",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-INDEPENDENT-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3655,6 +4528,15 @@
         {
           "id": "H004-F03-PAIR-REFS-OMITTED",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-PAIR-REFS-OMITTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-PUBLIC-CONTRACT",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3702,6 +4584,15 @@
         {
           "id": "H004-F03-TRACE-UNKNOWN-AS-LOCAL",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-TRACE-UNKNOWN-AS-LOCAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-TRACE-MISSING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3746,6 +4637,15 @@
         {
           "id": "H004-F03-DISCOVERY-AS-BACKFLOW-VALUE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-DISCOVERY-AS-BACKFLOW-VALUE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-VALUE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3790,6 +4690,15 @@
         {
           "id": "H004-F03-DISCOVERY-AS-BACKFLOW-REQUIREMENT_ACCEPTANCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-DISCOVERY-AS-BACKFLOW-REQUIREMENT_ACCEPTANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-REQUIREMENT_ACCEPTANCE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3834,6 +4743,15 @@
         {
           "id": "H004-F03-DISCOVERY-AS-BACKFLOW-ARCHITECTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-DISCOVERY-AS-BACKFLOW-ARCHITECTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3878,6 +4796,15 @@
         {
           "id": "H004-F03-DISCOVERY-AS-BACKFLOW-DETAIL",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-DISCOVERY-AS-BACKFLOW-DETAIL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-MEANING-DETAIL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3922,6 +4849,15 @@
         {
           "id": "H004-F03-INDEPENDENT-AS-LOCAL-STRUCTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-INDEPENDENT-AS-LOCAL-STRUCTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-INDEPENDENT-STRUCTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3959,6 +4895,15 @@
         {
           "id": "H004-F03-INDEPENDENT-AS-LOCAL-ARCHITECTURE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-INDEPENDENT-AS-LOCAL-ARCHITECTURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-INDEPENDENT-ARCHITECTURE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -3996,6 +4941,15 @@
         {
           "id": "H004-F03-INDEPENDENT-AS-LOCAL-PERFORMANCE",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-INDEPENDENT-AS-LOCAL-PERFORMANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-INDEPENDENT-PERFORMANCE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4033,6 +4987,15 @@
         {
           "id": "H004-F03-PAIR-MATERIAL-MISSING",
           "contract_ref": "HARNESS-L9-004-F03",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F03-PAIR-MATERIAL-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-reconfirmation-material-owner"
+            },
+            "read_rule": "signature/graph/対/各trigger根拠を個別に読み、内容と選択範囲を比較する。"
+          },
           "base_case_ref": "H004-F03-NORMAL-PUBLIC-CONTRACT",
           "mutation_lane": "original",
           "mutation": {
@@ -4106,12 +5069,30 @@
         {
           "id": "H004-F04-NORMAL",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F04-NORMAL-RETIRE-REFERENCE",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-NORMAL-RETIRE-REFERENCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -4120,6 +5101,15 @@
         {
           "id": "H004-F04-UNACCOUNTED",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNACCOUNTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4167,6 +5157,15 @@
         {
           "id": "H004-F04-DUPLICATE",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DUPLICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4229,6 +5228,15 @@
         {
           "id": "H004-F04-DEAD-CANDIDATE",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DEAD-CANDIDATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4260,6 +5268,15 @@
         {
           "id": "H004-F04-DECISION-MISSING",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4316,6 +5333,15 @@
         {
           "id": "H004-F04-AI-AS-DECISION",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-AI-AS-DECISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4348,6 +5374,15 @@
         {
           "id": "H004-F04-DECISION-FOREIGN-REVISION",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DECISION-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4380,6 +5415,15 @@
         {
           "id": "H004-F04-SOURCE-DIGEST-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4412,6 +5456,15 @@
         {
           "id": "H004-F04-DESTINATION-CONTENT-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-DESTINATION-CONTENT-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4443,6 +5496,15 @@
         {
           "id": "H004-F04-RECEIPT-OMITS-ATOM",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-OMITS-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4478,6 +5540,15 @@
         {
           "id": "H004-F04-RECEIPT-FOREIGN-SOURCE",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-RECEIPT-FOREIGN-SOURCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4507,6 +5578,15 @@
         {
           "id": "H004-F04-UNKNOWN-ATOM",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-UNKNOWN-ATOM",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4569,6 +5649,15 @@
         {
           "id": "H004-F04-SOURCE-POPULATION-TRUNCATED",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-SOURCE-POPULATION-TRUNCATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4621,6 +5710,15 @@
         {
           "id": "H004-F04-PENDING-AS-ADOPTED",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-PENDING-AS-ADOPTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4652,6 +5750,15 @@
         {
           "id": "H004-F04-LIMITED-AS-ALL-MIGRATION",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-LIMITED-AS-ALL-MIGRATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4680,6 +5787,15 @@
         {
           "id": "H004-F04-REGISTRATION-AS-ADOPTION",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-ADOPTION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4708,6 +5824,15 @@
         {
           "id": "H004-F04-REGISTRATION-AS-IMPLEMENTATION",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REGISTRATION-AS-IMPLEMENTATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4736,6 +5861,15 @@
         {
           "id": "H004-F04-CONDITION-AS-NO-LOSS-CERTIFICATE",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-CONDITION-AS-NO-LOSS-CERTIFICATE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4764,6 +5898,15 @@
         {
           "id": "H004-F04-REFERENCE-AS-RETIREMENT",
           "contract_ref": "HARNESS-L9-004-F04",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F04-REFERENCE-AS-RETIREMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "independent-fixture-owner"
+            },
+            "read_rule": "exact source packet raw_utf8のJSON論理materialを読む。"
+          },
           "base_case_ref": "H004-F04-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -4825,12 +5968,30 @@
         {
           "id": "H004-F05-NORMAL",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-F05-NORMAL-REFERENCE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-NORMAL-REFERENCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -4839,6 +6000,15 @@
         {
           "id": "H004-F05-UNKNOWN-PRODUCT_RESPONSIBILITY",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-PRODUCT_RESPONSIBILITY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4862,6 +6032,15 @@
         {
           "id": "H004-F05-UNKNOWN-REQUIREMENT_REVISION",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-REQUIREMENT_REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4885,6 +6064,15 @@
         {
           "id": "H004-F05-UNKNOWN-MEANING",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-MEANING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4910,6 +6098,15 @@
         {
           "id": "H004-F05-UNKNOWN-INTERFACE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-INTERFACE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4936,6 +6133,15 @@
         {
           "id": "H004-F05-UNKNOWN-RIGHTS",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-RIGHTS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4961,6 +6167,15 @@
         {
           "id": "H004-F05-UNKNOWN-SECURITY",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-SECURITY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -4987,6 +6202,15 @@
         {
           "id": "H004-F05-UNKNOWN-CONSUMERS",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-CONSUMERS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5012,6 +6236,15 @@
         {
           "id": "H004-F05-UNKNOWN-EXECUTION_BOUNDARY",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-EXECUTION_BOUNDARY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5035,6 +6268,15 @@
         {
           "id": "H004-F05-MISSING-REQUIREMENT",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-REQUIREMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5062,6 +6304,15 @@
         {
           "id": "H004-F05-MISSING-BEHAVIOR",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-BEHAVIOR",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5089,6 +6340,15 @@
         {
           "id": "H004-F05-MISSING-DESIGN",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-DESIGN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5116,6 +6376,15 @@
         {
           "id": "H004-F05-MISSING-VERIFICATION",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-VERIFICATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5143,6 +6412,15 @@
         {
           "id": "H004-F05-MISSING-SUCCESSOR_UPSTREAM_IDS",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-SUCCESSOR_UPSTREAM_IDS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5167,6 +6445,15 @@
         {
           "id": "H004-F05-MISSING-PAIR",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-PAIR",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5193,6 +6480,15 @@
         {
           "id": "H004-F05-MISSING-ORACLE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-ORACLE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5222,6 +6518,15 @@
         {
           "id": "H004-F05-MISSING-EXPECTED_FAILURE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-EXPECTED_FAILURE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5244,6 +6549,15 @@
         {
           "id": "H004-F05-MISSING-ACCEPTANCE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-ACCEPTANCE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5271,6 +6585,15 @@
         {
           "id": "H004-F05-MISSING-BACKFLOW",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-BACKFLOW",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5298,6 +6621,15 @@
         {
           "id": "H004-F05-MISSING-CONSUMERS",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-MISSING-CONSUMERS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5330,6 +6662,15 @@
         {
           "id": "H004-F05-TARGET-BYTES-DIGEST-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-TARGET-BYTES-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5352,6 +6693,15 @@
         {
           "id": "H004-F05-SOURCE-DIGEST-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-SOURCE-DIGEST-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5374,6 +6724,15 @@
         {
           "id": "H004-F05-UNCLASSIFIED-CONTENT",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNCLASSIFIED-CONTENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5396,6 +6755,15 @@
         {
           "id": "H004-F05-LEGACY-TEST-EXCLUDED",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-LEGACY-TEST-EXCLUDED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5418,6 +6786,15 @@
         {
           "id": "H004-F05-CONSUMER-PAIR-MISMATCH",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-CONSUMER-PAIR-MISMATCH",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5443,6 +6820,15 @@
         {
           "id": "H004-F05-PAIR-FOREIGN-REVISION",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-PAIR-FOREIGN-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5466,6 +6852,15 @@
         {
           "id": "H004-F05-OLD-GREEN",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-OLD-GREEN",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5488,6 +6883,15 @@
         {
           "id": "H004-F05-OLD-PATH-DELETED",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-OLD-PATH-DELETED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5510,6 +6914,15 @@
         {
           "id": "H004-F05-UNKNOWN-AS-TRANSFER",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-UNKNOWN-AS-TRANSFER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-UNKNOWN-MEANING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5538,6 +6951,15 @@
         {
           "id": "H004-F05-CANDIDATE-AS-COPY",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-CANDIDATE-AS-COPY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5565,6 +6987,15 @@
         {
           "id": "H004-F05-OLD-GREEN-AS-CURRENT",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-OLD-GREEN-AS-CURRENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-OLD-GREEN",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5593,6 +7024,15 @@
         {
           "id": "H004-F05-OLD-DELETE-AS-RETIRE",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-OLD-DELETE-AS-RETIRE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-OLD-PATH-DELETED",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5621,6 +7061,15 @@
         {
           "id": "H004-F05-REGISTRATION-AS-APPROVAL",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-REGISTRATION-AS-APPROVAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5648,6 +7097,15 @@
         {
           "id": "H004-F05-ELIGIBLE-ALWAYS-REIMPLEMENT",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-ELIGIBLE-ALWAYS-REIMPLEMENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5675,6 +7133,15 @@
         {
           "id": "H004-F05-REDERIVE-AS-BYTE-COPY",
           "contract_ref": "HARNESS-L9-004-F05",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-F05-REDERIVE-AS-BYTE-COPY",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-asset-material-owner"
+            },
+            "read_rule": "raw_utf8の論理入力から内容・個別不変条件・consumer/pairを比較する。"
+          },
           "base_case_ref": "H004-F05-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -5735,12 +7202,30 @@
         {
           "id": "H004-N01-NORMAL",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-NORMAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         },
         {
           "id": "H004-N01-NORMAL-CHANGED-CONTENT",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-NORMAL-CHANGED-CONTENT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "execution_state": "not_executed",
           "effect": "none"
         }
@@ -5749,6 +7234,15 @@
         {
           "id": "H004-N01-RELATION-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-RELATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5785,6 +7279,15 @@
         {
           "id": "H004-N01-AUTHORITY-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-AUTHORITY-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5821,6 +7324,15 @@
         {
           "id": "H004-N01-AUTHORITY-STALE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-AUTHORITY-STALE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5853,6 +7365,15 @@
         {
           "id": "H004-N01-AUTHORITY-CONFLICT",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-AUTHORITY-CONFLICT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5885,6 +7406,15 @@
         {
           "id": "H004-N01-REVISION-STALE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-REVISION-STALE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5916,6 +7446,15 @@
         {
           "id": "H004-N01-CONSUMER-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-CONSUMER-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5947,6 +7486,15 @@
         {
           "id": "H004-N01-DESIGN-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-DESIGN-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -5986,6 +7534,15 @@
         {
           "id": "H004-N01-VERIFICATION-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-VERIFICATION-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6029,6 +7586,15 @@
         {
           "id": "H004-N01-DESIGN-CONTENT-CONFLICT",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-DESIGN-CONTENT-CONFLICT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6062,6 +7628,15 @@
         {
           "id": "H004-N01-ORACLE-CONTENT-CONFLICT",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-ORACLE-CONTENT-CONFLICT",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6096,6 +7671,15 @@
         {
           "id": "H004-N01-OPERATION-TRACE-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-OPERATION-TRACE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6133,6 +7717,15 @@
         {
           "id": "H004-N01-REREQUIREMENT-TRACE-MISSING",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-REREQUIREMENT-TRACE-MISSING",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6170,6 +7763,15 @@
         {
           "id": "H004-N01-OPERATION-TRACE-FOREIGN-SCOPE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-OPERATION-TRACE-FOREIGN-SCOPE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6202,6 +7804,15 @@
         {
           "id": "H004-N01-OPERATION-TRACE-OLD-REVISION",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-OPERATION-TRACE-OLD-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6234,6 +7845,15 @@
         {
           "id": "H004-N01-REREQUIREMENT-TRACE-OLD-REVISION",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-REREQUIREMENT-TRACE-OLD-REVISION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6266,6 +7886,15 @@
         {
           "id": "H004-N01-OPERATION-TRACE-WRONG-OWNER",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-OPERATION-TRACE-WRONG-OWNER",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6298,6 +7927,15 @@
         {
           "id": "H004-N01-REREQUIREMENT-AS-APPROVAL",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-REREQUIREMENT-AS-APPROVAL",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "original",
           "mutation": {
@@ -6330,6 +7968,15 @@
         {
           "id": "H004-N01-UNSEEN-AS-UNAFFECTED",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-UNSEEN-AS-UNAFFECTED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-RELATION-MISSING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6367,6 +8014,15 @@
         {
           "id": "H004-N01-OLD-GRAPH-FILLS-TRACE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-OLD-GRAPH-FILLS-TRACE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-OPERATION-TRACE-MISSING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6404,6 +8060,15 @@
         {
           "id": "H004-N01-FOREIGN-SCOPE-FILLS-TRACE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-FOREIGN-SCOPE-FILLS-TRACE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-OPERATION-TRACE-FOREIGN-SCOPE",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6441,6 +8106,15 @@
         {
           "id": "H004-N01-UNOBSERVED-AS-PASS",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-UNOBSERVED-AS-PASS",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-RELATION-MISSING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6478,6 +8152,15 @@
         {
           "id": "H004-N01-ALL-SCOPE-INVALIDATED",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-ALL-SCOPE-INVALIDATED",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-RELATION-MISSING",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6515,6 +8198,15 @@
         {
           "id": "H004-N01-GENERAL-GUARANTEE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-GENERAL-GUARANTEE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6545,6 +8237,15 @@
         {
           "id": "H004-N01-REREQUIREMENT-AS-ACTUAL-CHANGE",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-REREQUIREMENT-AS-ACTUAL-CHANGE",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6579,6 +8280,15 @@
         {
           "id": "H004-N01-TRACE-AS-ACTUAL-OPERATION",
           "contract_ref": "HARNESS-L9-004-N01",
+          "original_material": {
+            "source_packet_ref": {
+              "identity": "CASE-SOURCE-H004-N01-TRACE-AS-ACTUAL-OPERATION",
+              "revision": "fixture-r1",
+              "scope": "PRODUCT-P",
+              "owner": "synthetic-independent-probe-owner"
+            },
+            "read_rule": "previous_knownとは別のreleased_probeと全selected consumer原資料を比較する。"
+          },
           "base_case_ref": "H004-N01-NORMAL",
           "mutation_lane": "candidate",
           "mutation": {
@@ -6670,7 +8380,7 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "7ebc6b60593a582c0d9cbd2e7f39e8027a62db3a",
     "path": "docs/helix-harness/L9-integration-verification/trace-impact-reconfirmation.json",
-    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（verification_obligations[*].normal_cases 32件およびnegative_cases 158件のindependent_source_packet・original_material、normal_casesのexpected_material全量、negative_casesのexpected_material内の大域record/node/asset/consumerマップ（condition_results・establishment_by_node・asset_results・consumer_results等）およびsubmitted_candidate・reference_preparation・1.5KB以上のmutation.before複製）をallowlist方式で撤去した。残したのはverification_obligations 7件（approved_l10・connection_oracle・approved_connection_dependency・fixture_state・original_material_storageを含む）、normal_cases 32件・negative_cases 158件の全case要素（index pointer・ID・contract_ref・execution_state・effectを保持）およびnegative_cases全158件の1.5KB未満の反例定義（base_case_ref・mutation_lane・mutation）と期待差分（expected_materialのreason・candidate_disposition・source_condition・impact_condition・partition_condition・unresolved_conditions・unknown_relation_nodes・unaccounted_atom_ids・unresolved_consumers・retain_unaffected_material等）、remaining、境界文、source_pins等の参照。過去本文はrevision 7ebc6b60593a582c0d9cbd2e7f39e8027a62db3aの同pathで辿る。",
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（verification_obligations[*].normal_cases 32件およびnegative_cases 158件のindependent_source_packet、normal_casesのexpected_material全量、negative_casesのexpected_material内の大域record/node/asset/consumerマップ（condition_results・establishment_by_node・asset_results・consumer_results等）およびsubmitted_candidate・reference_preparation・1.5KB以上のmutation.before複製）をallowlist方式で撤去した。残したのはverification_obligations 7件（approved_l10・connection_oracle・approved_connection_dependency・fixture_state・original_material_storageを含む）、normal_cases 32件・negative_cases 158件の全case要素（index pointer・ID・contract_ref・original_material［source_packet_ref識別子とread_rule］・execution_state・effectを保持）およびnegative_cases全158件の1.5KB未満の反例定義（base_case_ref・mutation_lane・mutation）と期待差分（expected_materialのreason・candidate_disposition・source_condition・impact_condition・partition_condition・unresolved_conditions・unknown_relation_nodes・unaccounted_atom_ids・unresolved_consumers・retain_unaffected_material等）、remaining、境界文、source_pins等の参照。過去本文はrevision 7ebc6b60593a582c0d9cbd2e7f39e8027a62db3aの同pathで辿る。",
     "removed_key_rule": "allowlist（L9_TOP_ALLOWLIST / L9_OBLIGATION_ALLOWLIST / L9_NORMAL_CASE_ALLOWLIST / L9_NEGATIVE_CASE_ALLOWLIST / L9_NEGATIVE_EXPECTED_MATERIAL_ALLOWLIST、および1,500 UTF-8 bytes未満のmutation保持）にない材料key全部、および固定source参照（pathを持つsource pin）以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
     "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
