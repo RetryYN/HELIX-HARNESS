@@ -21,7 +21,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -38,7 +39,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/1/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -55,7 +57,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/2/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -72,7 +75,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -89,7 +93,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/4/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -106,7 +111,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/5/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -123,7 +129,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/6/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -140,7 +147,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/7/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -157,7 +165,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/8/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -174,7 +183,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/0/concrete_cases/9/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -191,7 +201,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -208,7 +219,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/1/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -225,7 +237,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/2/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -242,7 +255,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -259,7 +273,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -276,7 +291,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -293,7 +309,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/6/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -310,7 +327,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/7/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -327,7 +345,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/8/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -344,7 +363,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/9/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -361,7 +381,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/10/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -378,7 +399,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/1/concrete_cases/11/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -395,7 +417,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -412,7 +435,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/1/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -429,7 +453,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/2/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -446,7 +471,8 @@
       "independent_oracle": {
         "path": "docs/helix-brain/L9-integration-verification/domain-identity-evolution.json",
         "expected_pointer": "/verification_obligations/2/concrete_cases/3/expected_material",
-        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。"
+        "comparison": "検証器はtyped_call.argument_value.payloadから返却値を再計算し、期待値のJSON構造と値を完全照合する。期待値を計算の入力や答えの検索表には使わない。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     },
     {
@@ -572,7 +598,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-SPLIT-PROPOSAL",
@@ -587,7 +614,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-MERGE-PROPOSAL",
@@ -602,7 +630,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-RETIRE-PROPOSAL",
@@ -617,7 +646,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-RELATION-ERASED",
@@ -632,7 +662,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-CONSUMER-ERASED",
@@ -647,7 +678,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-RELATION-MAP-MISSING",
@@ -662,7 +694,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-CONSUMER-MAP-MISSING",
@@ -677,7 +710,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-MEANING-UNKNOWN",
@@ -692,7 +726,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-MEANING-OVERLAPPING",
@@ -707,7 +742,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-FIXED-ENUM-REJECTED",
@@ -722,7 +758,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "case_id": "B001-F02-UNSELECTED-OPERATION-CLAIM",
@@ -737,7 +774,8 @@
           "CONSUMER-P",
           "CONSUMER-R"
         ],
-        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。"
+        "inverse_rule": "reference_results.relationsとreference_results.consumersを旧形式の平坦なreference_resultsへ再結合する。他の期待値fieldは値を変えない。独立照合で、復元したwholeがsource objectおよびcanonical SHA-256と一致することを確認する。",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     ]
   },
@@ -750,17 +788,20 @@
       {
         "l8_case_id": "CROSS-ROLE-RELATION-MISSING",
         "l9_case_id": "B001-F02-CROSS-ROLE-RELATION-MISSING",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "l8_case_id": "CROSS-ROLE-CONSUMER-MISSING",
         "l9_case_id": "B001-F02-CROSS-ROLE-CONSUMER-MISSING",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       },
       {
         "l8_case_id": "CROSS-ROLE-BOTH-MAPPED",
         "l9_case_id": "B001-F02-CROSS-ROLE-BOTH-MAPPED",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material",
+        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
       }
     ]
   },
@@ -768,7 +809,7 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
     "git_commit": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
     "path": "docs/helix-brain/L8-unit-verification/domain-identity-evolution.json",
-    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（typed_call、expected_return_projection、source内のsynthetic fixture値、approved_whole_hashes、hash等）をallowlist方式で撤去した。残したのはcase行・観点（operation / independent_oracle）・sourceのL9 case引用・oracle/requirement/l4参照・expected_projection_migration・current_l9_candidate_binding・state/effect・境界文等の参照。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
+    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（typed_call、expected_return_projection、source内のsynthetic fixture値、approved_whole_hashes、hash等）をallowlist方式で撤去した。残したのはcase行・観点（operation / independent_oracle）・sourceのL9 case引用・oracle/requirement/l4参照・expected_projection_migration・current_l9_candidate_binding・state/effect・境界文等の参照。撤去したL9 expected_materialを指すpointer objectには撤去前revision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を付与した。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
     "removed_key_rule": "allowlist（L8_001_TOP_ALLOWLIST / L8_001_CASE_ALLOWLIST / L8_001_SOURCE_ALLOWLIST）にない材料key全部、400字以上のquote、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
     "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
   }
