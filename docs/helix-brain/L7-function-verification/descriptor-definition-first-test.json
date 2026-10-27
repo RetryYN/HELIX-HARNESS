@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "4e009d2ca3bd85fa2971b9c7d9b7d4be5a77613106b1f1bd8e7dd33846463c7f",
+    "sha256": "3f9e6020ae4f2de7ac69027ae554745975bd1176e93880440be493bf1d9c475f",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3729,7 +3729,7 @@
       "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
     },
     "B_prerequisite": {
-      "execution_state": "walk_nonfill_focused_green_unit_one_old_stop_expectation_pending",
+      "execution_state": "walk_nonfill_full_unit_green_independent_review_pending",
       "rows": [
         {
           "rule": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
@@ -3906,7 +3906,7 @@
         "families_ready_for_writer": [],
         "L8_children": "not_executedのまま",
         "source_tests_changed": true,
-        "pair_scope": "既存B_prerequisiteを現firststopへ更新。過去matrixはcommitとL7bytes SHAで参照。source一file/新test一fileだけを変更し、旧停止testは未編集。"
+        "pair_scope": "walk一file＋新凍結3testと統制済み旧停止期待1testを変更。B外のL6/L7値と上流契約を保持し、全404Greenを確認。all6 Comparison成立は0のまま。"
       },
       "prior_matrix_snapshot": {
         "commit": "170cd801f9b5c1658491b81aeb8cb1012da05266",
@@ -3924,7 +3924,17 @@
         "old_test_file_sha256": "42cc8bbb8b9332e0bf3d0d1f1342e21ad4e14bf16528ad42b065cd7b9eb062af",
         "old_test_expected": "F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; Backflow HELIXBRAIN-L6-032-N03-PATH",
         "actual_retained_guard": "F01/descriptor_claim_unimplemented: claims[0] participates in descriptor meaning comparison; Backflow HELIXBRAIN-L6-032-N03-PATH",
-        "status": "old停止期待遷移の統制解釈待ち、Ready未実施。新テストは変更しない。"
+        "status": "controlled_old_stop_transition_done_full_unit_green_independent_review_pending",
+        "controlled_transition": {
+          "comment": 6455422083,
+          "commit": "2ab180fc3605617183dd7511a965ba00ae7f5ad1",
+          "scope": "同1testのNON_FILL_STOP→FN1_NON_FILL_STOP、厳密message、docstringだけ。元inputとraw/validated finally assert不変。",
+          "old_file_sha256": "42cc8bbb8b9332e0bf3d0d1f1342e21ad4e14bf16528ad42b065cd7b9eb062af",
+          "new_file_sha256": "5105347f617edb022f4c9fc1ac5d2d88694dbc21483da7914fc9356c6e9a2bf0",
+          "reason": "L5 step4の非fill target不要に従うwalk閉包で旧未閉包stopが消え、元からあるFN1 S4へ進む。FN1 guard自体は変更しない。"
+        },
+        "full_unit_green": "root-fn7b-walk-nonfill-unit-green-R2.json:404PASS25457ms、reaped=true/output_truncated=false。移行前403PASS/1FAILは上記証拠とgitへ保持。",
+        "locator_mutation": "root-fn7b-walk-locator-mutation-R1.json:原claim indexをlen(target_reads)へ変える一時overlayをmixed新test単独でKILLED。outer171ms、child118ms、1assertFAIL/errors0/importsetup0、実行前後src/tests tree hash不変。sourceと新凍結testは現在も同bytes。"
       }
     }
   }

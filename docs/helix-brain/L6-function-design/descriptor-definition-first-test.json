@@ -2202,7 +2202,7 @@
         "change_size": "src一file +3/-4、二箇所。raw Claimの原値/原locatorは同ValidatedSupply.inputへ保持する。",
         "test_freeze": "08205dc30ecbba345feb189915697f7d7621d352",
         "new_tests": "test_descriptor_walk_nonfill_claims.pyの3methods。保存I05のcanonicalSHA由来を確認し、nonfill-only、mixed原indices1/3、既存fill-onlyを検証。",
-        "old_test_boundary": "401件保全のうち旧walk-stop期待1件だけに遷移が必要。未変更のFN1 fact-subject guardへ先行停止が移り、別behaviorのFN1 guard自体は保持。具体unit差分をL7へ固定して統制の解釈を確認する。"
+        "old_test_boundary": "統制6455422083の条件に従い、旧walk-stop期待1件だけを残置FN1 descriptor_claim_unimplementedの厳密messageへ移行。定数名/説明以外のoracle、raw/validated不変assert、他400旧methods、新3凍結methodsは保持。"
       }
     }
   }
