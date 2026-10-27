@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "f75709cb8a41fb1691c05ac825a8bc8d15acaa9bf00f93a0068069c45402dc1f",
+    "sha256": "b34a91693c314009f4a7b77f0e66f87aa84eb4e194b2542f619f8340f9139691",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2550,6 +2550,16 @@
         "failure_scope": "既存F05-NEG-01/02旧停止期待はsupplied_claim_ports。G2a後の実停止は次のdescriptor_claim_uses。分割決定6447591725でこの2methodの更新はG3に配属されているため、無断で変更せず統制へ分割調整を求める。",
         "reaped": true,
         "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-g2a-unit-green-R2.json",
+        "source_test_revision": "4ef0e71e2",
+        "methods": 350,
+        "duration_ms": 20858,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false,
+        "scope": "対象unitのみ。旧F05二件は統制6451004949の停止literal変更のみ、元missing/入力保持/同call停止を保持。"
       }
     ],
     "independent_basis_artifact": "root-wr33-g2a-missing-test-basis.json",
@@ -2577,14 +2587,13 @@
       "update_commit": "5ac82c762"
     },
     "pending_evidence": [
-      "既存F05境界2件の過去停止期待とG2a後実停止の差を統制へ確認。旧2methods未変更。",
-      "全unit Green・独立review・Ready・明示merge・read-afterは未成立。"
+      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
     ],
     "limits": [
       "Initial Red observations are separate: three claim-walk methods at 040c20f82 and four missing/origin methods at 5b80c6718.",
       "The evidence does not establish FN1/FN4/FN6/FN7 full scope, G2b/G3/G5, L8 acceptance, OS registration, Issue #3547 completion, or source Green."
     ],
-    "completion_boundary": "G2aの局所TDD記録。新8methodsと既存walk17methodsはGreen、全unit350methodsは2旧停止期待FAIL。統制の分割調整待ちであり、全unit・独立review・受入・OS登録・WR33完了を成立させない。",
+    "completion_boundary": "G2aの局所TDDと対象unit350methods Greenを記録する。独立review・merge・L8受入・OS登録・WR33/Issue3547完了を生成しない。G2b/G3/G5とtypedmeaning/D27の未対応を保持する。",
     "f05_transitional_stop_update": {
       "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3746#issuecomment-6451004949",
       "response_packet": "root-wr33-g2a-3746-scope-response-R1.json",
@@ -2601,8 +2610,22 @@
         "base_revision": "5fdda01acebf42efbb8b0d73bc061bebb8aabaeb",
         "existing_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
       },
-      "state": "範囲決定を受信・inspect/check/ACK済み。旧2testsは未変更、このL7記録を先にcommitする。",
-      "authority_effect": "none"
+      "state": "L7変更前記録commit36c8ed378→停止literalのみ更新commit4ef0e71e2→全unit350PASS20858ms。全関数AST/他assertions不変をroot静的検証。G3で接続後契約へ再更新する。",
+      "authority_effect": "none",
+      "pre_edit_record_commit": "36c8ed378",
+      "update_commit": "4ef0e71e2"
+    },
+    "static_acceptance": {
+      "artifact": "root-wr33-g2a-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "old_document_values_preserved": true,
+      "frozen_new_test_files_unchanged": 4,
+      "public_FN1_and_G4b_function_AST_unchanged": true,
+      "all_other_original_walk_methods_AST_unchanged": true,
+      "F05_only_stop_literal_changed": true,
+      "pairhash_matches": true,
+      "source_max_nonblank": 646,
+      "walk_nonblank": 530
     }
   }
 }

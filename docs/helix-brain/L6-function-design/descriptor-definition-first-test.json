@@ -1423,7 +1423,9 @@
         "HELIXBRAIN-L3-032-F09",
         "HELIXBRAIN-L10-032-F01",
         "HELIXBRAIN-L10-032-F02",
-        "HELIXBRAIN-L10-032-F09"
+        "HELIXBRAIN-L10-032-F09",
+        "HELIXBRAIN-L3-032-F05",
+        "HELIXBRAIN-L10-032-F05"
       ],
       "l4_pointers": [
         "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
@@ -1441,6 +1443,13 @@
         "/failure_rules"
       ]
     },
-    "refactor_decision": "同callを所有する既存walkとprivate guardに限定した。530 nonblank行で全source最大646行、700未満。意味や凍結期待を変えないkeyword-only opt-inだけを明確化し、行数だけを理由とするmodule抽出は行わない。"
+    "refactor_decision": "同callを所有する既存walkとprivate guardに限定した。530 nonblank行で全source最大646行、700未満。意味や凍結期待を変えないkeyword-only opt-inだけを明確化し、行数だけを理由とするmodule抽出は行わない。",
+    "f05_transitional_stop_boundary": {
+      "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3746#issuecomment-6451004949",
+      "scope": "G2a後にFN4 wrapperが到達する既存build_descriptor_claim_uses未実装停止へ、旧F05-NEG-01/02の停止文字列だけ更新する。元missing/入力保持/同call停止assertionsとG3のpositive tuple/FN4FN6接続責務を保持。",
+      "l6_boundary_pointer": "/fn4_oracle_preparation/id",
+      "existing_source_symbol": "descriptor_target_frame.build_descriptor_claim_uses",
+      "existing_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
+    }
   }
 }
