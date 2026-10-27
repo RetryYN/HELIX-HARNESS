@@ -1289,7 +1289,7 @@
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",
-    "source_revision": "ce57f018290cfac70f4efca997bd05cac9f62f0c",
+    "source_revision": "4fb60d9b8b602f5ae99080b686ef97d004e4d036",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "test_sources": [
       {
@@ -1316,7 +1316,7 @@
       "L4 /oracle_view_boundary_contract/same_call/invalid_context",
       "L4 /oracle_view_boundary_contract/limits/1"
     ],
-    "observations": "R4新規41methods（population4＋canonical reason2＋absent2＋frame6＋full native8＋rule9＋writer3＋revision4＋protocol3）を追加。うち直近37methodsをまとめてroot実行しPASS。初期29を含む全unit268件で既知F02 errors2以外266PASS。保存whole/hash、実装helperから期待を逆算しない。",
+    "observations": "R4新規41methods（population4＋canonical reason2＋absent2＋frame6＋full native8＋rule9＋writer3＋revision4＋protocol3）を追加。うち直近37methodsをまとめてroot実行しPASS。初期29を含む全unit268件で既知F02 errors2以外266PASS。保存whole/hash、実装helperから期待を逆算しない。 WR18後にfinitecarry8methods＋F05停止境界2methodsを追加。最終全unit結果はfinal_root_verification参照。",
     "red_evidence": {
       "test_revision": "6fcc75c99320f092baeed3cb06e63f17fd4aff52",
       "source_state": "既存署名facade+固定NotImplementedErrorだけの宣言bootstrap、意味処理無し。",
@@ -1344,8 +1344,8 @@
       ],
       "state": "R71/R72のtyped局所反例と誤発火controlはroot Green。残るrule/carrier/非null有限carryと正式L8全受入は別途未閉包。L8保存whole/期待hashを使わず、元normalの未対応IDを保つ。"
     },
-    "prerequisite_tracking": "Issue3547 comments6427761585/6428183181に従い、walk/frameはWR12、fn1固定kind/slot guardと非nullfinitecarry前提は別WR18。fn1/fn6公開wrapperを変更しない。",
-    "completion_boundary": "R71/R72発火時はR71/R72の局所投影だけで、derived_viewのR68/69/70、handoff共存R73等の他ruleは未評価。全7rule、全caller、L8全受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。独立reviewへ戻し、Ready/mergeはexact contentのno_findings後。",
+    "prerequisite_tracking": "#3721/WR18統合後、F05 NEG01/02と非nullfinitecarryを再実行。Claim0 finitecarryは閉包、F05はwalk/supplied_claim_portsの実ID停止。",
+    "completion_boundary": "Claim0/meaning carrier0のfinitecarry、およびR71/R72の局所投影をroot検証。R71/R72発火時の他ruleは未評価。F05 NEG01/02は実未対応ID観測でありpredicate未実装。全7rule、全caller、L8全受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。Ready/mergeはexact content独立review後。",
     "execution_state": "R4_root_verified_independent_review_pending",
     "authority_effect": "none",
     "main_integration": {
@@ -1389,8 +1389,8 @@
     },
     "finite_carry_reachability": {
       "contract": "L4 nonfire_read_plan/raw_domain/descriptorsは対象3kind実slot0件（facts=[]も枝外）。",
-      "actual_guard": "現fn1は承認15kind各1slot/nonempty facts必須。対象slot除去はF02/required_kind_slot_mismatch、empty factsはF02/descriptor_facts_absent_empty_or_wrong_type。",
-      "state": "非null finite nonfireと現fn1の成功条件は両立しない。F05 NEG01/02と同様の別前提待ち。null pathと同一視せず、手作りComparisonを置かない。",
+      "actual_guard": "#3721はrequired-kindと供給slotの一致必須を除去し、未供給required kindをdescriptor_XX_missingとして返す。供給slot自身のfacts=[]停止は維持。",
+      "state": "旧guard時の交差不能は歴史記録。WR18統合後はslot除去を受理し、今回Claim0の有限carryを実fn0/fn1/fn3で検証。nonnull Claimの住所再利用はwalk/frame未対応で別境界。",
       "carry_source": "carry全値はcontext.definitions.axes。複写自体はframe不要だが公開wrapper全体のsame-call/frame成立を別途要する。"
     },
     "review_R2": {
@@ -1429,7 +1429,7 @@
       "test_freeze": "0eda5f0ecでR71/R72 Red2（実fn0/fn1/fn3後のformed_context NotImpl）、62b31e2e1で非発火guard5＋prefix/診断positive2を追加。後者は候補Green対照、初期Redとは呼ばない。 62b31の初期観測はowner文言差のRedであり、過剰発火のsemantic Redとはしない。R4 direct revision predicate4件は実装候補Green対照。assertRaisesはComparison/Finding/empty成功の全返却を拒否する。"
     },
     "unclosed_current": {
-      "F05_NEG01_NEG02_and_nonnull_finite_carry": "WR18待ち。root-fn4-fn1-prerequisite-probes.jsonでmeasurement/completion/3対象kind除去を実fn0→fn1へ投入し、全てF02/required_kind_slot_mismatch、fn4非callを確認。fill_definition同fact ClaimはF01/descriptor_claim_unimplemented。全raw不変。",
+      "F05_NEG01_NEG02_and_nonnull_finite_carry": "WR18待ちは解消。root-fn4-f05-wr18-boundary.jsonでF05実fn0/fn1/fn3→fn4 Claim port ID停止2PASS。root-fn4-finite-green.jsonでClaim0非nullfinitecarry8PASS。nonnull Claimと非空typed carrierは未閉包のまま。",
       "R70_R73_R74": "現在のwalkでは供給Claim portがF01/F02/unclosed/definition_meaning_walk/supplied_claim_ports停止。transport ClaimIntentRead.proposed_value/Source.contentはRawValueで、表示変更だけ・生成成功・generic defaultの独立typed carrierを新造しない。既存L5に型がないcarrierをID停止/L7記録にする6428183181の境界。全predicate未行使を非発火又は成功に読み替えない。",
       "typed_meaning_NA_pair": "供給operation carrier、非null NA Ref、多factpair、special支持の形成は未閉包。空source/根拠からsupports/knownを作らない。 display/必要relationの未実装special request検出はspecial_discovery_boundaryでRed→ID stop Greenを確認。",
       "declared_shape_stops": "新private reader/request/frameの一般shape/Binding/locator不正停止は静的宣言を含み、全guardのmutation網羅や全caller成立を主張しない。"
@@ -1454,21 +1454,22 @@
       "method": "temporary module overlay、tracked source/test不変。新private全guardのmutation網羅は主張しない。"
     },
     "final_root_verification": {
-      "source_revision": "ce57f018290cfac70f4efca997bd05cac9f62f0c",
-      "unit_evidence": "root-fn4-r4-unit.json",
-      "result": "268件266PASS、既知F02 NEG02/NEG21 errors2のみ、failures0、19894ms/reaped=true/output_truncated=false/timed_out=false。",
-      "targeted": "root-fn4-r3-targeted-green.json:新37methods PASS/3016ms/reaped/nontruncated。population4は先行root-fn4-population-green.jsonでPASS。",
+      "source_revision": "4fb60d9b8",
+      "unit_evidence": "root-fn4-r4-final-unit.json",
+      "result": "288件全PASS、errors0/failures0、21382ms/reaped=true/output_truncated=false/timed_out=false。",
+      "targeted": "R4追加37PASS、population4PASS、WR18後finite8PASS/F05実停止2PASS。",
       "modules_nonblank": {
         "descriptor_definition_walk.py": 377,
         "descriptor_definition_normative.py": 123,
         "descriptor_definition_reads.py": 298,
         "descriptor_definition_pairs.py": 33,
         "descriptor_target_frame.py": 23,
-        "oracle_binding_rules.py": 171,
+        "oracle_binding_rules.py": 177,
         "oracle_projection_writer.py": 35,
-        "oracle_view_boundary.py": 69
+        "oracle_view_boundary.py": 69,
+        "oracle_finite_carry.py": 40
       },
-      "boundary": "全8module各700非空行未満。fn1/fn6公開wrapperはmain値を保持。既知2errorsを全成功に読み替えない。"
+      "boundary": "全9module各700非空行未満。fn1/fn6 facade ASTは統合mainと同一。F05停止を実predicate完成としない。"
     },
     "review_R3": {
       "head": "c77c6c8add710535c3152fd3d1997c943f8b46c9",
@@ -1554,6 +1555,14 @@
       {
         "path": "test_oracle_protocol_negatives.py",
         "revision": "ea85900d9"
+      },
+      {
+        "path": "test_oracle_finite_carry.py",
+        "revision": "87ee64b95"
+      },
+      {
+        "path": "test_oracle_view_boundary_f05_negatives.py",
+        "revision": "4fb60d9b8"
       }
     ],
     "r4_stop_coverage": {
@@ -1588,6 +1597,36 @@
       "revision": "4a5829817",
       "protocol": "ea85900d9",
       "boundary": "4数学predicate/nullable OB control＋3private protocol negativesは候補に追加したGreen対照、初期Redではない。protocol違反snapshotは不変検証するがvalid同callとは呼ばない。"
+    },
+    "main_integration_R4": {
+      "control_comment": 6430287382,
+      "base": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
+      "merge_commit": "f6c2ff094",
+      "resolution": "L6/L7競合はstage3(main)の全subtreeとstage2自FN4 subtreeを全値保持。runtime conflictなし。fn1/fn6 facade ASTは統合mainと同一。",
+      "unit": "root-fn4-r4-post-wr18-unit.json:278PASS/20307ms/reaped=true/output_truncated=false/timed_out=false。旧NEG02/NEG21も解消。",
+      "boundary": "ce57の268件266PASS/errors2は統合前の歴史証拠、現baseでの既知失敗とはしない。F05/finitecarry後続検証を別記する。"
+    },
+    "r4_focused_mutations": {
+      "source_revision": "ce57f018290cfac70f4efca997bd05cac9f62f0c",
+      "evidence": "root-fn4-r4-focused-mutations.json",
+      "result": "選択14件中13behavioral kill、original_refs dictfilter除去1candidate equivalent、syntax/import/collection失敗0。baseline21PASS。全141網羅ではない。",
+      "execution": "単一bounded driver全体6956ms/reaped=true/output_truncated=false/timed_out=false。個別pytest subprocessの診断metadataは未保持。tracked source/test不変、固定git snapshot temporary module overlay。"
+    },
+    "post_WR18_finite_carry": {
+      "control_comment": 6430287382,
+      "test_revision": "87ee64b95",
+      "source_revision": "59c1481ce",
+      "red": "root-fn4-finite-red.json:8methods、3 positiveが実fn0/fn1/fn3＋walk通過後formed_context NotImpl errors、5枝外controls PASS。503ms/reaped/nontruncated。",
+      "green": "root-fn4-finite-green.json:8PASS/557ms/reaped/nontruncated。",
+      "freeze_note": "pre-freeze probeでCARRY literal順とfn1原sort順を混同したsetup assertionを発見。凍結前に母集合はCountEqual、fn4順序は実fn1原carry配列と全値比較へ訂正した。probeはsemantic Redに数えない。枝外assertも凍結前にformed_context exactIDへ強化。",
+      "scope": "Claim0＋meaning carrier absent/[]のみ。absent/[]のOB/values/handoff snapshot保持、reference_only許容key対照、targetslot/role/unknownkey/typed target census/非空3record禁止を固定。元3missing axes全7member原順、他前段axes/findings非転載。実fn1 carry自体は入力材料として参照し、whole出力goldを使わない。",
+      "unclosed": "L4のnonnull Claim target reuse、非空source meaning carriers、その他供給domainは未実装。これらからunknown operand不存在を推定しない。"
+    },
+    "post_WR18_F05_boundary": {
+      "test_revision": "4fb60d9b8",
+      "evidence": "root-fn4-f05-wr18-boundary.json",
+      "result": "2PASS/161ms/reaped/nontruncated。既存L8由来fn1入力builderをfixture生成だけに再利用。実FN0で追加source利用可を確認、実FN1がdescriptor_12_missing/13_missing、実FN3後、FN4はF01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; Backflow HELIXBRAIN-L6-032-N03-PATH。全raw/context不変。",
+      "boundary": "候補Green境界観測。rule68/69の実装Red→Green又は正式L8期待達成ではない。Claim/target read/frameが未実装なので個別IDと本L7へ残す。"
     }
   }
 }
