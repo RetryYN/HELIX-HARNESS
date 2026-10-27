@@ -309,7 +309,7 @@ def _verify_na_claim_subject_applicability_unknown(
         )
 
 
-def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
+def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> dict[str, object]:
     """fn6: B02/DP-1垂直スライス（常時参照unknown、未選択unobserved、handoff保持、受領≠消込/NA）。"""
     if not isinstance(context, dict) or set(context) != {"validated", "definitions"}:
         raise _unsupported("B02/F09", "dependency_context_shape", "DependencyContext requires validated and definitions")
@@ -492,6 +492,46 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
         raise _unsupported("B02/F09", "claims_container_shape", "claims must be an array")
     required_claim_members = {"subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs"}
     for index, claim in enumerate(claims):
+        if isinstance(claim, dict) and claim.get("kind") == "fill_definition" and frame is not None:
+            uses = [(use_index, use) for use_index, use in enumerate(frame["claim_uses"])
+                    if use["claim_locator"] == f"/claims/{index}" and _json_equal(use["claim"], claim)]
+            if len(uses) != 1:
+                raise _unsupported("F09", "descriptor_claim_use_missing", "same-call Claim use is not unique")
+            use_index, use = uses[0]
+            route = use["route"]
+            if route == "rule87":
+                basis = claim.get("basis_refs")
+                if (not isinstance(claim.get("subject_ref"), dict)
+                        or not isinstance(claim.get("binding"), dict)
+                        or not isinstance(basis, list)
+                        or any(not isinstance(ref, dict) for ref in basis)):
+                    # The original frame keeps the unformattable Claim and
+                    # route. Do not synthesize public Ref/Binding values.
+                    continue
+                reason = (
+                    f"Claim /claims/{index} は、元targetの意味定義missingをreference_only資料で置換する主張である。"
+                    f"原missingを保持し、全支持記録は同呼出し観測/frame/claim_uses/{use_index}に残す。"
+                )
+                axes.append({
+                    "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                    "binding": copy.deepcopy(claim["binding"]),
+                    "axis": "descriptor.definition", "state": "missing",
+                    "original_refs": copy.deepcopy(basis), "reason": reason,
+                    "backflow_owner": "knowledge_owner",
+                })
+                findings.append({
+                    "code": "reference_as_required_definition",
+                    "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
+                    "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                    "binding": copy.deepcopy(claim["binding"]),
+                    "axis": "descriptor.definition", "state": "missing",
+                    "source_refs": copy.deepcopy(basis), "reason": reason,
+                    "backflow_owner": "knowledge_owner",
+                })
+                continue
+            if route not in {"none", "unresolved", "rule93"}:
+                raise _unsupported("F09", "descriptor_claim_route", "same-call Claim route is not defined")
+            continue
         if not isinstance(claim, dict) or set(claim) != required_claim_members:
             raise _unsupported("B02/F09", "claim_closed_shape", f"claims[{index}] is outside the 6-field Claim shape")
         if not _ref_frame_supplied_ok(claim.get("subject_ref")) or not _binding_shape_ok(claim.get("binding")) or claim.get("actor") != "BRAIN":
@@ -561,3 +601,36 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
         "producer_symbol": "compare_dependencies_and_handoff",
         "input_binding": copy.deepcopy(binding),
     }
+
+
+def compare_dependencies_and_handoff_detail(context, frame):
+    """Consume the original walk frame without re-reading target or intent ports."""
+    if (not isinstance(context, dict) or not isinstance(frame, dict)
+            or set(frame) != {"validated", "definition_evaluation", "target_reads", "claim_uses"}
+            or frame["validated"] is not context.get("validated")
+            or not isinstance(frame["claim_uses"], list)):
+        raise _unsupported("F09", "descriptor_target_frame", "same-call descriptor frame is required")
+    return _compare_dependencies_and_claims(context, frame)
+
+
+def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
+    """Connect descriptor-fill claims once; preserve the existing B02 entry."""
+    validated = context.get("validated") if isinstance(context, dict) else None
+    raw = validated.get("input") if isinstance(validated, dict) else None
+    claims = raw.get("claims") if isinstance(raw, dict) else None
+    if not isinstance(claims, list) or not any(
+        isinstance(claim, dict) and claim.get("kind") == "fill_definition" for claim in claims
+    ):
+        return _compare_dependencies_and_claims(context)
+    from descriptor_definition_walk import evaluate_descriptor_definition_walk
+    from descriptor_target_frame import build_descriptor_claim_uses
+
+    walk = evaluate_descriptor_definition_walk({"validated": validated})
+    uses = build_descriptor_claim_uses(
+        validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
+    )
+    frame = {
+        "validated": validated, "definition_evaluation": walk["evaluation"],
+        "target_reads": walk["target_reads"], "claim_uses": uses,
+    }
+    return compare_dependencies_and_handoff_detail(context, frame)
