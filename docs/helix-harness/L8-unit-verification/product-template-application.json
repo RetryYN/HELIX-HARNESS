@@ -3453,7 +3453,7 @@
   "runtime_execution": "not_executed",
   "semantic_review": "not_requested",
   "meaning_coverage": "not_proven",
-  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01：公開2関数 compare_required_axes・project_cross_design_candidate_refs の関数別pair凍結＋selected_source_occurrence_array_builder_detail のprivate builder契約対照・D15解消）はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）で記録済み。残るT:42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1d-1〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3・関数別pair凍結、およびnormal_function_oracles/11 project_source_result_references に対応する completion.normal_function_oracles=11→12 の数値同期［D-H009-T2a / DISP2 D12］）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
+  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01：公開2関数 compare_required_axes・project_cross_design_candidate_refs の関数別pair凍結＋selected_source_occurrence_array_builder_detail のprivate builder契約対照・D15解消）はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）、T:42前半（F02：公開関数 compare_candidate_universe の関数別pair凍結＋proposal_material 3副節のprivate detail契約対照・D16解消）はdocs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json（D-H009-T1d-1）で記録済み。残るT:42後半（general_proposal_exchange）のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3・関数別pair凍結、およびnormal_function_oracles/11 project_source_result_references に対応する completion.normal_function_oracles=11→12 の数値同期［D-H009-T2a / DISP2 D12］）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
   "additional_unit_cases": 24,
   "normal_function_oracles": 11,
   "normal_fixture_variants": 6,
@@ -4223,7 +4223,7 @@
    "function_ref": "HARNESS-L5-009-compare_candidate_universe",
    "input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
    "context_type": "CompareCandidateUniverseContext",
-   "expected_observation": "有資格の母集合/境界と各template memberを原identity/版/scopeで返す。候補集合とOS usedを分離しmember差分を観測。",
+   "expected_observation": "適用条件と入力axisを比較し、有資格の検討対象exact set・各要素の適用/不適用/未解決理由・比較境界・要求/製品scope・知識/適用契約版を原identity/版/scopeで結果候補へ返す。candidate/proposed setとOS selected/used setを分離しmember差分を観測。",
    "execution_state": "not_executed",
    "expected_output_rule": "Exact material/ref/state/set observations. Human explanation reason strings may differ if nonempty and bound to the stated original grounds; absent or unrelated grounds fail."
   },
@@ -12043,6 +12043,16 @@
     "id": "existing_allskip_unavailable",
     "kind": "existing_exact_whole_reconstruction",
     "premise": "元allskip caller全体を旧oracleから標準patchで復元しproposalだけunavailableとする。"
+   },
+   {
+    "id": "na_missing_decider_target_revision_reentry",
+    "kind": "malformed_material_control",
+    "premise": "Malformed na material boundary for remaining three required N/A keys (decider, target_revision, reentry_condition): each missing key is individually rejected from N/A exclusion candidate without repairing from other records, while preserving supplied attributes and missing-key Read."
+   },
+   {
+    "id": "policy_index_and_row_shape_invalid",
+    "kind": "malformed_material_control",
+    "premise": "Malformed policy_occurrence_index (bool/negative/out-of-range) and non-object source projection row boundary: do not coerce bool/negative/out-of-range index to Natural or non-object row to object; preserve raw value in local Read/Cause and valid siblings."
    }
   ],
   "preservation_and_limits_ja": {
@@ -12051,7 +12061,7 @@
    "whole_oracle": "normal seed、RFC6902 patch、各case局所patch、既存allskip seed/88 copy opsで全入力・全期待を再構成する。49MB級のcaller wholeは展開して格納せず、期待を候補実装から再生成しない。",
    "source_row_boundary_ja": "source_projection_rowsの順序とbranchは既存/source_result_reference_projection/producer_row_materializationを正本にする。first-match/dedupe、aggregate disposition/original_condition_valuesとのzip、別policy属性からの補完を行わない。",
    "conditional_premises": "producer qualification、source usability、同一caller invocationであることは条件付き静的premiseであり、実観測・資格・承認ではない。malformed/raw-observation/association controlsはfn3で再現可能なtraceを主張しない。",
-   "scope": "N/A missing-keyのreason代表以外の三属性個別欠落、index bool/負値/out-of-range、全source-row型外、任意host numeric、全Causeと全組合せ、複数policyの合成一般規則は未行使。NA null/型外の一般意味は確定しない。",
+   "scope": "N/A四属性欠落（na_missing_reason＋na_missing_decider_target_revision_reentry）およびpolicy_index bool/負値/out-of-range・source-row型外（policy_index_and_row_shape_invalid）はU-ID単体probeとして収載済み（B、D-H009-T1d-1）。任意host numeric、全Causeと全組合せ、複数policyの合成一般規則は下流L6/L7・上流知識owner（C）へ戻す。NA null/型外の一般意味は確定しない。",
    "nonclaims": "OSRef4、proposal集合の登録、selected/used/record、配送、owner資格、実装、製品Red/Green、実producer/wrapper、実行CI、受入や完了の成立を主張しない。"
   }
  },
@@ -12290,11 +12300,23 @@
    {
     "case_id": "missing_result_preserves_known_sibling",
     "checks": "counterfactualでsource member0のresult欠落をcoverage incompleteとし、有効siblingを保持する。residual空だけから完了を推定しない。"
+   },
+   {
+    "case_id": "na_exclusion_and_unformed_residual_partition",
+    "checks": "observed resultのna_exclusion_candidateをna_exclusion_entriesへ（N/A 4属性無補完）、unformedをresidual_entriesへ（causes/member_read保持）それぞれ安定分割する（coverage_branch_table/2,3）。"
+   },
+   {
+    "case_id": "source_empty_and_unavailable_shape",
+    "checks": "known candidate_member_refs=[]かつtemplate_results=[]でcovered_as_captured/resolved_for_captured_membersとし、F02 comparison材料またはcandidate_member_refs非array/不在ではunavailable_shape/residual_for_captured_membersとして原result位置を保持する（coverage_branch_table/5,6,16）。"
+   },
+   {
+    "case_id": "member_index_duplicate_out_of_range_and_read_mismatch",
+    "checks": "同一source index kへの複数resultで全result_index原順保持・unreadable、member_read absent/unreachedでunreadable、present値不一致でdifferent（両原値保持）、member_index>=len(source)でunmatched_result_indicesへ原順保存する（coverage_branch_table/8,9,11,12）。"
    }
   ],
   "unexercised_ja": [
-   "valid N/A exclusionとknown-empty source/member集合はL5 coverage_branch_tableに規則定義済みであり、F02全体の有限caseとしてはgeneral_proposal_exchange_verification（F02-qualified-empty / F03-valid-NA-only）で対検証を持つ（B、T1d-1/T1d-2で照合）。",
-   "L9固定4caseに対応する4単体caseは記載済み（B）。duplicate/out-of-range member_index、member_read absent/unreached、known mismatch、source-shape unavailableのL5分岐対照と関数別凍結はD-H009-T1d-1へ渡す。",
+   "valid N/A exclusion・unformed residualとknown-empty source/member集合・unavailable_shapeはL5 coverage_branch_table、本節case_discriminators_ja/4,5、およびgeneral_proposal_exchange_verification（F02-qualified-empty / F03-valid-NA-only）で対照・凍結済み（B、D-H009-T1d-1：docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json）。",
+   "L9固定4caseに対応する4単体caseに加え、duplicate/out-of-range member_index、member_read absent/unreached、known mismatchのL5分岐もcase_discriminators_ja/6でU-ID対照・private detail契約凍結済み（B、D-H009-T1d-1）。",
    "typed inputのmember_index欠落/型外は既存入口codecの境界（C）へ戻し、このpairへ新raw inputやgateを追加しない。",
    "実wrapper、実producer、資格、OS port binding、OS Ref4/project scope、配送、保存、selected/used集合、受入、runtime、CIはOS002/053・CONNECT・下流L6/L7・既存authority（C）へ戻す。"
   ],
@@ -12384,7 +12406,7 @@
    "binding_array_total_attempt_caseは同じ候補child内のbinding_array_domain_native_oracle/frozen_specのsource_mounts/workspace_seed/standard_json_patch_prelude/completion_opsからIとNを再構成する。結果を/binding/inputと/binding/native_expectedへcopyし、inline front case6 input seedからstrict parseしたsource bodyへIをcopy、primitive rawとsource/Qualification/Root digestを整合させてからexpected_completion_opsを順適用する。whole input/expected、N、raw primitiveのhash・ordered bytesを照合する。"
   ],
   "not_yet_included_ja": [
-   "L9 published 3 whole・front 8失敗・binding[] 1失敗に対応するU-ID検証契約は記載済み（B、関数別照合・凍結はD-H009-T1d-1）。一般提案交換の15基本branch・8 familyの残branch追補はgeneral_proposal_exchange_verification（D-H009-T1d-2）へ渡し、任意入力の全組合せ網羅は下流L6/L7（C）へ戻す。",
+   "L9 published 3 whole・front 8失敗・binding[] 1失敗・duplicate_prefix_native0_whole_caseに対応するU-ID検証契約はD-H009-T1d-1（docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json）でprivate detail契約対照として照合・凍結済み（B）。一般提案交換の15基本branch・8 familyの残branch追補はgeneral_proposal_exchange_verification（D-H009-T1d-2）へ渡し、任意入力の全組合せ網羅は下流L6/L7（C）へ戻す。",
    "実装前Red/Green、実source資格・producer・wrapper実行、OS受領/配送、CI、PO受入は他owner・下流L6/L7・既存authority（C）へ戻す。"
   ],
   "current_l5_candidate_ref": {
