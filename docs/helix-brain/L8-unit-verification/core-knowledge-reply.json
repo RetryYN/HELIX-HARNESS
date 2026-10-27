@@ -1507,7 +1507,20 @@
   "primitive_probes": [
     {
       "id": "NUMBER-INTEGER-DECIMAL",
+      "left": 1,
+      "right": 1.0,
       "expected": true,
+      "expression": {
+        "op": "json_equal",
+        "left": {
+          "op": "literal",
+          "value": 1
+        },
+        "right": {
+          "op": "literal",
+          "value": 1.0
+        }
+      },
       "output_type": {
         "type": "boolean"
       },
@@ -1515,7 +1528,20 @@
     },
     {
       "id": "BOOLEAN-NUMBER",
+      "left": true,
+      "right": 1,
       "expected": false,
+      "expression": {
+        "op": "json_equal",
+        "left": {
+          "op": "literal",
+          "value": true
+        },
+        "right": {
+          "op": "literal",
+          "value": 1
+        }
+      },
       "output_type": {
         "type": "boolean"
       },
@@ -1523,7 +1549,36 @@
     },
     {
       "id": "NESTED-NUMBER",
+      "left": {
+        "x": [
+          1
+        ]
+      },
+      "right": {
+        "x": [
+          1.0
+        ]
+      },
       "expected": true,
+      "expression": {
+        "op": "json_equal",
+        "left": {
+          "op": "literal",
+          "value": {
+            "x": [
+              1
+            ]
+          }
+        },
+        "right": {
+          "op": "literal",
+          "value": {
+            "x": [
+              1.0
+            ]
+          }
+        }
+      },
       "output_type": {
         "type": "boolean"
       },
@@ -1531,7 +1586,36 @@
     },
     {
       "id": "NESTED-BOOLEAN-NUMBER",
+      "left": {
+        "x": [
+          false
+        ]
+      },
+      "right": {
+        "x": [
+          0
+        ]
+      },
       "expected": false,
+      "expression": {
+        "op": "json_equal",
+        "left": {
+          "op": "literal",
+          "value": {
+            "x": [
+              false
+            ]
+          }
+        },
+        "right": {
+          "op": "literal",
+          "value": {
+            "x": [
+              0
+            ]
+          }
+        }
+      },
       "output_type": {
         "type": "boolean"
       },
@@ -2239,7 +2323,7 @@
   },
   "removed_materials": {
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
-    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（source_packet、typed_arguments、expected_output、raw_utf8、patch、expected_patch、expression、left、right、hash等）をallowlist方式で撤去した。残したのはcase行・観点・oracle ID・rule/axis/state/owner・上限・境界文・source_pins等の参照。過去本文はrevision 4abee6df089cbbb9654edf38c80d116ecaeca708の同pathで辿る。",
+    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（source_packet、typed_arguments、expected_output、raw_utf8、patch、expected_patch、hash等）をallowlist方式で撤去した。残したのはcase行・観点・oracle ID・rule/axis/state/owner・primitive_probesの対象と反例（left/right/expression/expected）・上限・境界文・source_pins等の参照。過去本文はrevision 4abee6df089cbbb9654edf38c80d116ecaeca708の同pathで辿る。",
     "removed_key_rule": "allowlist（L8_019_TOP_ALLOWLIST / L8_019_CASE_ALLOWLIST / L8_019_LOCAL_PROBE_ALLOWLIST / L8_019_PROBE_ALLOWLIST / L8_019_PRIMITIVE_PROBE_ALLOWLIST）にない材料key全部、MATERIAL_DEFINITION_KEYS、400字以上のquote、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
     "use_boundary": "旧材料は照合用の参考に限る。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
   }
