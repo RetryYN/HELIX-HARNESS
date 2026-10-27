@@ -158,6 +158,37 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated, validated_before)
 
+    def test_fn6_rejects_changed_input_binding_in_real_fn1_comparison(self) -> None:
+        raw = _zero_profile(remove_template_ref=False)
+        raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
+        self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+        self.assertEqual(definitions["input_binding"], raw_before["binding"])
+
+        definitions_before = copy.deepcopy(definitions)
+        mismatched_definitions = copy.deepcopy(definitions)
+        mismatched_definitions["input_binding"]["template_ref"]["revision"] = (
+            "failure-injection-different-revision"
+        )
+        expected_mismatch = copy.deepcopy(definitions)
+        expected_mismatch["input_binding"]["template_ref"]["revision"] = (
+            "failure-injection-different-revision"
+        )
+        self.assertEqual(mismatched_definitions, expected_mismatch)
+
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_dependencies_and_handoff({
+                "validated": validated,
+                "definitions": mismatched_definitions,
+            })
+        self.assertEqual(
+            str(caught.exception),
+            "B02/F09/definitions_comparison_mismatch: definitions must be the same-snapshot "
+            "fn1 Comparison; Backflow HELIXBRAIN-L6-032-B02-FN6-PATH",
+        )
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
+        self.assertEqual(definitions, definitions_before)
+
 
 if __name__ == "__main__":
     unittest.main()
