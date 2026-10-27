@@ -209,7 +209,12 @@ def build_descriptor_claim_uses(validated, evaluation, reads, intents):
         if reads == [] and intents == []:
             return []
         _stop("zero_claim_has_read_material")
-    if len(reads) != len(claims) or len(intents) != len(claims):
+    if any(not isinstance(claim, dict) for claim in claims):
+        _stop("unsupported_claim_kind")
+    fill_claim_count = sum(
+        claim.get("kind") == "fill_definition" for claim in claims
+    )
+    if len(reads) != fill_claim_count or len(intents) != fill_claim_count:
         _stop("same_walk_claim_count")
 
     assessments = evaluation["assessments"]
@@ -221,12 +226,13 @@ def build_descriptor_claim_uses(validated, evaluation, reads, intents):
                 or any(not isinstance(locator, str) for locator in row["slot_locators"])):
             _stop("assessment_shape")
     uses: list[dict[str, Any]] = []
+    fill_read_index = 0
     for claim_index, claim in enumerate(claims):
+        if claim.get("kind") != "fill_definition":
+            continue
         locator = f"/claims/{claim_index}"
-        target = reads[claim_index]
-        intent = intents[claim_index]
-        if not isinstance(claim, dict) or claim.get("kind") != "fill_definition":
-            _stop("unsupported_claim_kind")
+        target = reads[fill_read_index]
+        intent = intents[fill_read_index]
         if (not isinstance(target, dict) or set(target) != _TARGET_READ_FIELDS
                 or not isinstance(intent, dict) or set(intent) != _INTENT_READ_FIELDS
                 or target.get("claim_locator") != locator or intent.get("claim_locator") != locator
@@ -291,4 +297,5 @@ def build_descriptor_claim_uses(validated, evaluation, reads, intents):
             "route_reason": _ROUTE_REASONS[route],
             "primary_definition_assessment_indices": primary,
         })
+        fill_read_index += 1
     return uses

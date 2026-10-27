@@ -2175,10 +2175,10 @@
       ],
       "materialization": "既存完全Claimをnative operand Refと原Bindingへ束縛する新素材。L8 logical mutationは完全rawではなく、既存templateの追加member/presenceを明示した。元L8 childの期待やnot_executedを変更しない。",
       "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)を再読。JSON/原source/ownerと未解決保持を継承し、旧runtime/CI/testを実行・移植しない。",
-      "source_closure": "step_2のwalk非fill限定だけを閉じた。Claim列のlist/object検査を保ち、原raw配列を加工せずfill出現だけを元locatorでtarget/intentへ渡す。FN1 guard・target reader・frame builder・FN4 detail・FN5/FN7は変更しない。非fillの意味/intent/rowを生成しない。",
+      "source_closure": "step_2のwalk非fill限定に続き、WR65でClaimUse consumerのfill出現数と同call target/intent readsを対応させる。原Claim配列を加工せずfillだけを元index/locatorで消費し、件数とlocator不一致は既存停止へ返す。FN1 guard・複数Binding・FN4 detail・FN5/FN7は変更せず、非fillのtarget/use/intent/route/意味/rowを生成しない。",
       "owner_boundaries": {
         "FN1": "fact Ref subjectはdescriptor_claim_unimplemented、二Binding入力はdescriptor_slot_binding_unresolved。",
-        "FN4": "walk非fill限定は今回閉じ、現在の実first stopはClaimUse builderのsame_walk_claim_count。fill-only reads案の後にdetail oracle_claim_ports/finite carryも残る点は静的確認で、実到達済みとはしない。",
+        "FN4": "walk非fill限定とfill-only ClaimUse対応は閉じた。17raw replayの11入力は現在oracle_claim_portsで停止する。detail/finite carryは未閉包で、six Comparisonはまだ形成されない。",
         "FN5": "L4 knowledge_promotion_contract/finite_domain/claimsはfillのみ。candidate-empty nonfill停止は条件付き静的境界で今回未行使。",
         "FN7": "finite writerはfill専用。16規則writerは本slice外。",
         "fixture": "hash/countとqualified比較のtyped selector、ADD20の原known definition素材。"
@@ -2204,6 +2204,16 @@
         "new_tests": "test_descriptor_walk_nonfill_claims.pyの3methods。保存I05のcanonicalSHA由来を確認し、nonfill-only、mixed原indices1/3、既存fill-onlyを検証。",
         "old_test_boundary": "統制6455422083の条件に従い、旧walk-stop期待1件だけを残置FN1 descriptor_claim_unimplementedの厳密messageへ移行。定数名/説明以外のoracle、raw/validated不変assert、他400旧methods、新3凍結methodsは保持。",
         "R2_guard_coverage": "R1-m1(6455568577)に対し、実FN0が保持したclaims=[1]/[None]の不正protocol要素を、残したlist/dict guardが固有supplied_claim_ports停止へ返すことを別testで固定。FN0-cleanをClaim schema適合とせず、source処理は変更しない。"
+      },
+      "claim_use_nonfill_change": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-CLAIMUSE-3547-20261028-65",
+        "base": "0404af048458b32600c43190d8d05519bafecfed",
+        "source_revision": "0f8f343e1257336f102ade79d417fcc3c94e3fcc",
+        "source_sha256": "398319e01020424967fbb339dc365de33a03747bcc87aa72426f5c306a467b21",
+        "change_size": "descriptor_target_frame.build_descriptor_claim_usesのみ +12/-5。fill順のread indexと原Claim locatorを分離し、全Claim件数検査をfill出現数検査へ対応。",
+        "test_freeze": "59e9f31d5e935537a0dfd3ddf8a88efa9e8677da",
+        "test_scope": "新4methods: 保存I05原SHA、nonfill-only、混在原indices1/3、fill-only対照、件数不足/過剰と両locator破損6条件。実FN0→walk→builderを使い、raw/validated/walk不変を検査。",
+        "boundary": "既存405testsの期待とbytesは不変。手製Comparison/正のread/frame/資格は補作しない。不正protocol試験だけ実readのcloneを破損させる。"
       }
     }
   }
