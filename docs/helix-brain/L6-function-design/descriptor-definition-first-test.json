@@ -591,5 +591,94 @@
       "mixed_basis_refs_resolution": "basis_refsに複数要素が供給され、いずれの要素でもcross_pattern_section_substitution / cross_pattern_field_substitutionが発火せず（emitted_cross=False）、かつ少なくとも1要素が未解決（unresolved_basis=True）の場合は、未解決の代替根拠を黙殺しないfail-close原則（UTW-014/020/021）に従い constructors/3 第3枝 replacement_basis_unresolved（state=unknown）を出力する。",
       "special_sort_source_refs": "L5 serialization_completion/sort_source_ref_column/special に従い、special event（cross_pattern_*_substitution / replacement_basis_unresolved）のsort_source_refsはusableなbasis semantic_json source内のreplacement_basis_uses要素（occurrence）ごとにそのsource.refを積む（unusable sourceは含めない）。"
     }
+  },
+  "fn4_oracle_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN4-ORACLE",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_oracle_and_view_boundary",
+    "input": "OracleContext",
+    "output": "Comparison",
+    "effect": "none",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "working_base": "398fa185db40ba9baf340aaff44c3ded39f09663",
+    "request": "WR-CLAUDE-BRAIN032-FN4-ORACLE-TDD-3547-20261027-12",
+    "contract_sources": [
+      "L4 template-semantic-supply.json /oracle_view_boundary_contract/same_call",
+      "L4 /oracle_view_boundary_contract/partial_context_projection",
+      "L5 template-semantic-supply.json /functions/4",
+      "L5 /source_return_contract/descriptor_target_dataflow/index_types",
+      "L5 /source_return_contract/descriptor_target_dataflow/transport_types",
+      "L5 /source_return_contract/descriptor_target_dataflow/private_imports",
+      "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core"
+    ],
+    "implemented_scope": "decode-null、Claim原出現0件（absent又は[]）/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影。発火時も他ruleは未評価であり、7rule全域の閉包ではない。 WR18統合後、Claim0/meaning carrier実出現0の非nullfinitecarryを追加。source role/key・対象slot・実OB/値/handoff0件を全観測し、context.definitionsの原3軸だけを保持する。",
+    "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
+    "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。 claims absentの新walkテストは実fn0から実walk evaluation.comparisonと実fn3を同callで構成する宣言済raw runner経路。public fn1はclaims配列必須のままで、fn1成功出力とは呼ばない。人工の前段Comparisonは置かない。",
+    "projection": "nullのみempty Comparison。別producer/Bindingは固有partial ID/knowledge_owner Backflow。definition carryはcontext.definitions.axesの対象3軸を全値・原順保存。R71/R72は同subject/義務の独立typed対応後の明示相違だけを投影し、source witnessを元source順で保持。元Comparisonとnew walk Comparisonの全値同一性をgateにしない。",
+    "current_unclosed": "通常controlのOB subjectはdescriptor fact Refに対応せずformed_context停止。F05 NEG01/02は供給Claimのwalk/supplied_claim_ports停止。nonnull Claim target-read再利用は未実装。供給operation carrier、非nullNA、multi-factpairは個別ID停止。発火時のR71/R72以外は未評価。",
+    "prerequisite_gap": "WR18 #3721を含むmain dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を統合。F05 NEG01/02は実fn0→fn1/fn3 Context後、walk/supplied_claim_ports停止を固定。Claim0の有限carryは実前段Comparisonで閉じた。Claim/target frame、非空meaning carrierの有限枝は未閉包。fn1/fn6公開wrapper変更なし。",
+    "authority_items": [
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/4",
+        "id": "HELIXBRAIN-L3-032-F05",
+        "canonical_json_sha256": "8031f597a4a329d36a8d011f817ff9415e41d7a1d4da14c572b82e128711eeb7"
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/5",
+        "id": "HELIXBRAIN-L3-032-F06",
+        "canonical_json_sha256": "9721a41851277293e285543b3afa3676f455ac7c9a14a2624e127d9326ad01d8"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/4",
+        "id": "HELIXBRAIN-L10-032-F05",
+        "canonical_json_sha256": "cfa8fc2a5e9a23bdc55890925d6b8a20e33b16afd8c897f3a2e7f3191cc0522f"
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/5",
+        "id": "HELIXBRAIN-L10-032-F06",
+        "canonical_json_sha256": "50a001af2e6bb9a3267a0c3a890e931071e0cdffb67e3e3345c36e7d0786f178"
+      }
+    ],
+    "authority_boundary": "47354be8c1ef225dd7eacffe390d268c0dfee784のF05/F06 L3/L10対象4項目と現行entryは同値、decision admission f28f1c9cd8f725758f8904d92dfa8c851f1ddb60はworking baseの祖先。文書全体へ旧承認を拡張しない。",
+    "legacy_rederivation": {
+      "mode": "L4で既定の意味再導出を継承し、旧registry/projector/runtimeをcopy/実行しない。",
+      "sources": [
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 design-template-json-authority.md:16–92",
+        "LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5同名:30–148",
+        "LEGACY-ASSET-F280A8697E2AA4E7D18E:旧tests/requirement-generated-view.test.ts:13–57（本文読取りのみ）"
+      ],
+      "failure": "旧predecessor-harness-full-weakness-audit:65–101 UTW-014/020/021",
+      "preserved": "JSON→view一方向、説明と意味分離、unknown非成功、原局所不足/矛盾・義務とoracle traceの保持。",
+      "changed": "旧lifecycle/整数版/式木を採らず既存Context3/Comparison4へ局所返却する。finite carryはL4自身が新AI技術選択と明記し、今回まだ成立させたとはしない。"
+    },
+    "execution_state": "R5_root_verified_independent_review_pending",
+    "authority_effect": "none",
+    "runtime_modules": [
+      "descriptor_definition_walk.py",
+      "descriptor_definition_normative.py",
+      "descriptor_definition_reads.py",
+      "descriptor_definition_pairs.py",
+      "descriptor_target_frame.py",
+      "oracle_binding_rules.py",
+      "oracle_view_boundary.py",
+      "oracle_projection_writer.py",
+      "oracle_finite_carry.py"
+    ],
+    "same_walk_detail": "判定点でassessmentとoriginを同時生成しevent handle→sort後indexへ一度対応付ける。全meaning readとsidecar、NA readとjudgment batch、single-fact pair返却をnative_material全7列へ保持。帰属/NAをdefinition支持へ混ぜない。Claim0に限るtarget/intent/uses空列は実出現0件によるもので未実装portの成功defaultではない。 root→固定kind順→原slot index順の訪問を保ち、input slotの順変更で原event順を変えない。semantic_jsonのdescriptor_display_groups供給又は非空/不正required_relations供給は未実装special port ID停止、required_relations=[]は原entry0件の実読取として保持。",
+    "normative_source": "L4 normative_basis_snapshot/acquisitionが許す固定15catalog private constructor。規範pinはRefへcastせず全DefinitionNormativeFrameに保存し、clock/fs/network/registry/latest/caller frameを使わない。",
+    "comparison_choices": {
+      "oracle_version": "R72はcompletion MeaningFact.oracle_ref（実際に対になった版）とOracleBinding.oracle_ref（当該義務で要求された版）を比較する。Binding.oracle_refは同call契約metadataであり、このpredicateの比較先に置換しない。",
+      "obligation": "fact.binding.requirement_refとOracleBinding.obligation_refを対応させる。既存fn3 src/identity_trace_actual.py:241–243の同義務対応を先例とする。OS incoming alias由来ではない。",
+      "empty_special_ports": "display_groupsは供給request自体の未対応なので[]でも停止。required_relationsは原entryを読むportで[]は0 entry。RawValueから支持を創作しない。"
+    },
+    "r4_native_detail": "native7列/assessment9項目/origin23項目を独立期待で固定。1意味readに複数のtarget problemがある場合はread/sidecarを一度保存し、原problem indexごとにeventを作る。origin causeはL5 required_source_or_interpretation_unresolved、native problem causeはsource_unresolved/container_absentを保持。sort sourceはfact.source_ref→read occurrence source、original_refsとは別。NA subjectはslot Bindingのknowledge_refを先に取りtemplate_refへfallbackし、knowledge ownerだけを採る。",
+    "r4_population_detail": "claims absentはlocal structural guard viewだけ[]として既存guardへ渡し、ValidatedSupply/input/native snapshotを変更しない。oracle_bindings absentも0出現。rootとslotのraw異値Binding frameはRefEqの片null一致で集約せずraw_distinct_binding_frames停止。exact root候補/無関係候補の対照を保持。",
+    "r4_projection_detail": "既存definition carry3軸および同axis/subject/Bindingの既存軸は全7値と原順を保存。新predicate軸はrule71→72順、同keyは初回だけ追加。Findingは原oracle出現ごとに残す。既知の同subject義務/oracle tuple競合はoracle_binding_competition停止、R72 oracle Ref不明はoracle_oracle_correspondence停止。",
+    "finite_carry_detail": "oracle_finite_carry.is_zero_operand_carryはL4 nonfire_read_planの狭い部分域のみ。Claim実出現0、対象3kind実slot0、oracle_bindings/values/handoff_records0。sourcesはsemantic_json/reference_only、content keyはL4 allowlist部分集合。意味carrier descriptor_facts/definition_meaning_operationsはabsent/[]だけ（非空typed decode未実装）。descriptor_targetsは住所宣言としてsnapshot保存し意味censusへ昇格しない。qualification成功や全体完了は作らず、元fn1不足をwriterで全値保存。"
   }
 }
