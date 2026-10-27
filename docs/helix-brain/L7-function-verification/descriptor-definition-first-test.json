@@ -2584,6 +2584,25 @@
       "Initial Red observations are separate: three claim-walk methods at 040c20f82 and four missing/origin methods at 5b80c6718.",
       "The evidence does not establish FN1/FN4/FN6/FN7 full scope, G2b/G3/G5, L8 acceptance, OS registration, Issue #3547 completion, or source Green."
     ],
-    "completion_boundary": "G2aの局所TDD記録。新8methodsと既存walk17methodsはGreen、全unit350methodsは2旧停止期待FAIL。統制の分割調整待ちであり、全unit・独立review・受入・OS登録・WR33完了を成立させない。"
+    "completion_boundary": "G2aの局所TDD記録。新8methodsと既存walk17methodsはGreen、全unit350methodsは2旧停止期待FAIL。統制の分割調整待ちであり、全unit・独立review・受入・OS登録・WR33完了を成立させない。",
+    "f05_transitional_stop_update": {
+      "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3746#issuecomment-6451004949",
+      "response_packet": "root-wr33-g2a-3746-scope-response-R1.json",
+      "scope": "F05-NEG-01/02の暫定停止文字列のみ。元fn1 missing・入力保持・同call停止assertionsは不変。predicate肯定tuple/FN4FN6接続を加えずG3へ保持。G3で接続後契約に再更新する。",
+      "pre_edit_evidence": "root-wr33-g2a-unit-pre-scope-fail-R1.json:350methods348PASS2assertFAIL24187ms; tests unchanged at d73cc6546",
+      "l6_boundary_ref": {
+        "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+        "pointer": "/fn4_oracle_preparation/id",
+        "value": "HELIXBRAIN-L6-032-FN4-ORACLE"
+      },
+      "existing_source_boundary_ref": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_target_frame.py",
+        "symbol": "build_descriptor_claim_uses",
+        "base_revision": "5fdda01acebf42efbb8b0d73bc061bebb8aabaeb",
+        "existing_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
+      },
+      "state": "範囲決定を受信・inspect/check/ACK済み。旧2testsは未変更、このL7記録を先にcommitする。",
+      "authority_effect": "none"
+    }
   }
 }
