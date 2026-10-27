@@ -209,37 +209,45 @@ def _typed_binding_shape(value: Any) -> bool:
 
 def _binding_relation(left: Any, right: Any) -> str:
     """Compare full Bindings without turning missing required Ref data into conflict."""
-    if not _typed_binding_shape(left) or not _typed_binding_shape(right):
+    if not _wire_binding_shape_ok(left) or not _wire_binding_shape_ok(right):
         return "unresolved"
     ref_fields = ("template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref")
     known_mismatch = False
     unresolved = False
     for name in ref_fields:
+        if name not in left or name not in right:
+            unresolved = True
+            continue
         relation, _ = _ref_related(left[name], right[name])
         if relation == "unresolved":
             unresolved = True
         elif relation in {"unrelated", "conflict"}:
             known_mismatch = True
     for name in ("pack_contract_version", "pack_artifact_version", "version_target"):
-        if not _json_equal(left[name], right[name]):
+        if name not in left or name not in right:
+            unresolved = True
+        elif not _json_equal(left[name], right[name]):
             known_mismatch = True
-    left_dependencies = left["pack_dependency_versions"]
-    right_dependencies = right["pack_dependency_versions"]
-    dependency_frames_complete = all(
-        all(ref.get(name) is not None for name in ("identity", "revision", "scope", "owner"))
-        for ref in left_dependencies + right_dependencies
-    )
-    if dependency_frames_complete:
-        dependency_sets_same = (
-            all(any(_ref_same(left_ref, right_ref) for right_ref in right_dependencies)
-                for left_ref in left_dependencies)
-            and all(any(_ref_same(right_ref, left_ref) for left_ref in left_dependencies)
-                    for right_ref in right_dependencies)
-        )
-        if not dependency_sets_same:
-            known_mismatch = True
-    else:
+    if "pack_dependency_versions" not in left or "pack_dependency_versions" not in right:
         unresolved = True
+    else:
+        left_dependencies = left["pack_dependency_versions"]
+        right_dependencies = right["pack_dependency_versions"]
+        dependency_frames_complete = all(
+            all(ref.get(name) is not None for name in ("identity", "revision", "scope", "owner"))
+            for ref in left_dependencies + right_dependencies
+        )
+        if dependency_frames_complete:
+            dependency_sets_same = (
+                all(any(_ref_same(left_ref, right_ref) for right_ref in right_dependencies)
+                    for left_ref in left_dependencies)
+                and all(any(_ref_same(right_ref, left_ref) for left_ref in left_dependencies)
+                        for right_ref in right_dependencies)
+            )
+            if not dependency_sets_same:
+                known_mismatch = True
+        else:
+            unresolved = True
     if known_mismatch:
         return "different"
     if unresolved:
@@ -318,6 +326,7 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
     claim_ref = claim.get("subject_ref")
     candidate_template = binding.get("template_ref") if isinstance(binding, dict) else None
     matching_decls: list[dict[str, Any]] = []
+    caller_conflict_origins: dict[int, tuple[int, int]] = {}
     current_unknown = False
     current_conflict = False
     independent_frame_conflict = False
@@ -398,10 +407,11 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
             if relation == "unresolved":
                 result["problems"].append(_problem("target_ref_unresolved", f"{declaration_locator}/target_ref", source_ref))
                 if identity_matches:
-                    if source_binding_ok and _binding_relation(source_binding_raw, binding) == "different":
+                    binding_relation = _binding_relation(source_binding_raw, binding)
+                    if binding_relation == "different":
                         result["problems"].append(_problem("binding_conflict", f"{source_locator}/content/binding", source_ref))
                         independent_frame_conflict = True
-                    elif not source_binding_ok or _binding_relation(source_binding_raw, binding) == "unresolved":
+                    elif binding_relation == "unresolved":
                         result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
                         current_unknown = True
                     else:
@@ -414,10 +424,6 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                 independent_frame_conflict = True
                 continue
 
-            if not source_binding_ok:
-                result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
-                current_unknown = True
-                continue
             binding_relation = _binding_relation(source_binding_raw, binding)
             if binding_relation == "unresolved":
                 result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
@@ -466,14 +472,19 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
             group.append(row)
     conflicting_owner_groups = [group for group in conflict_groups
                                 if len({row["descriptor_kind"] for row in group}) > 1]
+    grouped_problem_origins: dict[int, tuple[int, int]] = {}
     for group in conflicting_owner_groups:
         first = group[0]
         current_conflict = True
-        result["problems"].append(_problem(
+        problem = _problem(
             "target_mapping_conflict",
             f"/sources/{first['source_index']}/content/descriptor_targets",
             first["source_ref"],
-        ))
+        )
+        result["problems"].append(problem)
+        grouped_problem_origins[id(problem)] = (
+            first["source_index"], first["declaration_index"]
+        )
 
     # A malformed/unknown declaration on another target is local. Only same-frame exact declarations join this cohort.
     for row in matching_decls:
@@ -491,7 +502,11 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                     for group in conflicting_owner_groups
                 )
                 if not owner_group_already_reports:
-                    result["problems"].append(_problem("target_mapping_conflict", f"/descriptors/{slot_index}/descriptor_kind", row["source_ref"]))
+                    problem = _problem("target_mapping_conflict", f"/descriptors/{slot_index}/descriptor_kind", row["source_ref"])
+                    result["problems"].append(problem)
+                    caller_conflict_origins[id(problem)] = (
+                        row["source_index"], row["declaration_index"]
+                    )
 
     unique_slots: list[Any] = []
     for row in matching_decls:
@@ -499,7 +514,11 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
             unique_slots.append(row["slot_identity"])
     if len(unique_slots) > 1:
         first = matching_decls[0]
-        result["problems"].append(_problem("target_ambiguous", f"/sources/{first['source_index']}/content/descriptor_targets", first["source_ref"]))
+        problem = _problem("target_ambiguous", f"/sources/{first['source_index']}/content/descriptor_targets", first["source_ref"])
+        result["problems"].append(problem)
+        grouped_problem_origins[id(problem)] = (
+            first["source_index"], first["declaration_index"]
+        )
         current_unknown = True
 
     # Same-target/current-frame unresolved members must suppress a partial match.
@@ -548,7 +567,7 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                 "candidate_refs": [copy.deepcopy(ref) for _, ref in candidate_pairs],
             })
 
-    # Deduplicate group-level issues while preserving source/declaration traversal order.
+    # Deduplicate while preserving each public problem's original four fields.
     compact: list[dict[str, Any]] = []
     seen: set[tuple[Any, ...]] = set()
     for problem in result["problems"]:
@@ -556,5 +575,30 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
         if key not in seen:
             compact.append(problem)
             seen.add(key)
-    result["problems"] = compact
+
+    def problem_order(item):
+        sequence, problem = item
+        locator = problem["locator"]
+        origin = grouped_problem_origins.get(id(problem)) or caller_conflict_origins.get(id(problem))
+        if origin is not None:
+            source_index, declaration_index = origin
+        elif locator.startswith("/sources/"):
+            parts = locator.split("/")[2:]
+            try:
+                source_index = int(parts[0])
+            except (IndexError, ValueError):
+                return (0, sequence)
+            declaration_index = -1
+            if len(parts) >= 4 and parts[1:3] == ["content", "descriptor_targets"]:
+                declaration_index = int(parts[3])
+        else:
+            # KB/provenance acquisition diagnostics retain their original order.
+            return (0, sequence)
+
+        tie_rank = 0 if problem["kind"] == "target_mapping_conflict" else 1 if problem["kind"] == "target_ambiguous" else 0
+        # Preserve the existing field traversal inside one declaration. Only
+        # the explicitly specified mapping/ambiguity group tie changes priority.
+        return (1, source_index, declaration_index, tie_rank, sequence)
+
+    result["problems"] = [problem for _sequence, problem in sorted(enumerate(compact), key=problem_order)]
     return result
