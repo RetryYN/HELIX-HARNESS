@@ -94,3 +94,11 @@ def _collect_owner_target_material(validated, claim):
                     failed_source_boundaries.add(source_index)
 
     return material
+
+
+def read_descriptor_replacement_target(validated: dict, claim: dict, claim_locator: str) -> dict:
+    """L5 private target port declaration; implementation follows frozen tests."""
+    raise NotImplementedError(
+        "F01/F02/descriptor_target_read_unimplemented: target address reader is not implemented; "
+        "Backflow HELIXBRAIN-L6-032-N03-PATH"
+    )
