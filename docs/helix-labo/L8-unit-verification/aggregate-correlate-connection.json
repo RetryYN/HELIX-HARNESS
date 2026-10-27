@@ -121578,6 +121578,7 @@
   "scope_content_correction": {
     "candidate_l5_binding": {
       "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+      "revision": "63038ec98b7dfb3a99ecced81def3714835c38ff",
       "sha256": "1fa63174b0cf9fa22b555be761ed249df1280d70f9b4c0881e5c63109ebb9805"
     },
     "case_id": "LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING",

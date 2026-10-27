@@ -23,7 +23,8 @@
     "L9_sha256": "099fcf090933555d3ccf2ef29f077765517b3ab0336e8b81a3817d8023325cb0",
     "L5_pre_child_bind_sha256": "1fa63174b0cf9fa22b555be761ed249df1280d70f9b4c0881e5c63109ebb9805",
     "L5_current_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
-    "L8_sha256": "04423e8aa8f7a667f87f24580a0f63678067e0e2a0126dd2b1ef475c816fa8c0"
+    "L8_sha256": "a5e9aadd41fd7ae2e26d26f45a3965d563f5f6965dfce800753b45a02a39e532",
+    "L8_pre_pin_revision_sha256": "04423e8aa8f7a667f87f24580a0f63678067e0e2a0126dd2b1ef475c816fa8c0"
   },
   "legacy_and_failure_basis": [
     {
@@ -182,6 +183,6 @@
   ],
   "not_claimed": [
     "本記録はHELIXLABO-L2-011（B/T:271、HELIXLABO-L3-011-F01）の4関数（FN-LABO011-01〜04）の関数別L5/L8対設計凍結記録であり、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
-    "L8の/scope_content_correction/candidate_l5_bindingが保持するsha256（1fa63174...）はchild ref構造化追記前のL5 bytesを指す既存pinとして変更せず、L8へ新たな材料（全返却・fixture・hash）を追加していない。"
+    "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json への材料（全返却・fixture・hash）追加（/scope_content_correction/candidate_l5_binding への履歴 revision 固定のみ実施、検証ケース本体は不変）"
   ]
 }
