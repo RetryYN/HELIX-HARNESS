@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "a0fb87ae71915a1dadb404841fe0c9a12ae0e2e9271234c31c89a871b2d386d6",
+    "sha256": "8d67b1122484e27d2f2c383aa91d7cde1455cbaf25cd582647bd431d5751633f",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2897,6 +2897,153 @@
       "unit": "root-wr33-g2b-r1-unit-green.json:365PASS22331ms",
       "latest_main": "root-wr33-g2b-r1-latest-main-integration.json:main0f9a2ff5 merge前後のunit+全BRAINdoc tree同一、365PASS証拠保持。",
       "review_limit": "上記静的監査を独立reviewの受入/同値認定へ自動昇格しない。R2で再判定する。"
+    }
+  },
+  "fn4_finite_fill_claim_connection_verification": {
+    "sibling_of": "fn4_oracle_verification",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_oracle_connection.py"
+    ],
+    "verification_sequence": [
+      "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
+      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
+    ],
+    "legacy_rederivation": "既存fn4_oracle_verificationのlegacy referencesとfailure traceをそのまま参照し、新たなlegacy semanticsを持ち込まない。",
+    "authority_effect": "none",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn4_finite_fill_claim_connection_preparation"
+    },
+    "test_revision": "57e0fe6a44cf603cbb2b63bda22c23733168eca9",
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g3-connections-red.json",
+        "test_revision": "57e0fe6a4",
+        "methods": 6,
+        "semantic_not_implemented_errors": 8,
+        "negative_control_passes": 1,
+        "duration_ms": 472,
+        "scope": "FN4/FN6 combined new6methods; import/setup0; bounded/reaped/notruncated"
+      },
+      {
+        "artifact": "root-wr33-g3-connections-green-R1.json",
+        "source_revision": "d0bb20200",
+        "methods": 7,
+        "duration_ms": 794,
+        "result": "PASS",
+        "scope": "凍結6methodsと追加optional1method全体"
+      }
+    ],
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g3-unit-green-R1.json",
+      "source_revision": "d0bb20200",
+      "methods": 372,
+      "duration_ms": 22735,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g3-latest-main-integration.json",
+      "main": "1e319ad3b91a0f886218ca64938931c9a833f80f",
+      "unit_and_all_BRAIN_document_trees_unchanged": true,
+      "test_evidence": "同source/testと参照文書tree同一のため372PASS証拠を保持する。"
+    },
+    "completion_boundary": "G3有限接続と対象unit372methodsの局所検証だけ。FN4全7規則/FN6全writer閉包、G5、L8受入、OS登録、WR33全体完了は生成しない。",
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g3-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "prior_document_values_preserved": true,
+      "pairhash_matches": true,
+      "FN6_old_body_prefix_guards_B02_AST_preserved": true,
+      "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
+      "new_walk_and_uses_calls_once": true,
+      "frozen_test_files_unchanged": 4,
+      "all_existing_test_files_unchanged": true,
+      "G4_G4b_hunks_preserved": true,
+      "G5_handoff_absent_hunk_excluded": true
+    }
+  },
+  "fn6_fill_claim_rule87_connection_verification": {
+    "sibling_of": "fn6_dependencies_absent_verification",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fill_dependencies_connection.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fn6_rule87_occurrences.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fn6_optional_claim_members.py"
+    ],
+    "verification_sequence": [
+      "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
+      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
+    ],
+    "legacy_rederivation": "既存fn6_dependencies_absent_verificationのlegacy referencesを参照するが、G4 dependency-absent scopeをG3へ取り込まない。",
+    "authority_effect": "none",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn6_fill_claim_rule87_connection_preparation"
+    },
+    "test_revision": "57e0fe6a44cf603cbb2b63bda22c23733168eca9",
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g3-connections-red.json",
+        "test_revision": "57e0fe6a4",
+        "methods": 6,
+        "semantic_not_implemented_errors": 8,
+        "negative_control_passes": 1,
+        "duration_ms": 472,
+        "scope": "FN4/FN6 combined new6methods; import/setup0; bounded/reaped/notruncated"
+      },
+      {
+        "artifact": "root-wr33-g3-connections-green-R1.json",
+        "source_revision": "d0bb20200",
+        "methods": 7,
+        "duration_ms": 794,
+        "result": "PASS",
+        "scope": "凍結6methodsと追加optional1method全体"
+      }
+    ],
+    "full_unit_evidence": {
+      "artifact": "root-wr33-g3-unit-green-R1.json",
+      "source_revision": "d0bb20200",
+      "methods": 372,
+      "duration_ms": 22735,
+      "result": "PASS",
+      "reaped": true,
+      "output_truncated": false
+    },
+    "latest_main_integration": {
+      "artifact": "root-wr33-g3-latest-main-integration.json",
+      "main": "1e319ad3b91a0f886218ca64938931c9a833f80f",
+      "unit_and_all_BRAIN_document_trees_unchanged": true,
+      "test_evidence": "同source/testと参照文書tree同一のため372PASS証拠を保持する。"
+    },
+    "completion_boundary": "G3有限接続と対象unit372methodsの局所検証だけ。FN4全7規則/FN6全writer閉包、G5、L8受入、OS登録、WR33全体完了は生成しない。",
+    "optional_claim_members": {
+      "test_revision": "bc23a0564",
+      "contract_refs": [
+        "/logical_input_structure/schema/$defs/Claim",
+        "/claim_intent_detail/reader",
+        "/source_return_contract/descriptor_target_dataflow/consumer/support_sets/route_order",
+        "/source_return_contract/descriptor_target_dataflow/direct_wrappers/fn6"
+      ],
+      "expected": "proposed欠落はintent/use unresolved、basis欠落かつprimary source_unresolvedはroute none。どちらも旧B02の6field gateへ入れず、FN6tupleを足さず既存prefixと原presenceを保つ。",
+      "preimplementation_red": "root-wr33-g3-optional-claim-committed-red.json:exact0ba FN6 source blob/temp overlay、1method2claim_closed_shape NotImpl、357ms/reaped/nontruncated、import/setup0。実worktree sourceは変更せず、外側status0は期待Red検証成功であり製品Greenではない。",
+      "green": "root-wr33-g3-connections-green-R1.json:combined7PASS794ms"
+    },
+    "pre_execution_candidate_rejection": "root Readで候補1のpublicFN1とprivatewalk Comparison全値一致gate、旧B02strict6fieldのfillへの流用、L5detail欠落を実行前に却下した。候補1は未実行/未commitでRed/Green証拠にしない。候補2でL5のwalk→uses/frame→detailに直し、旧bodyからnewfillbranchだけを除いたAST一致を確認した。",
+    "old_F05_controls": "既存F05二件のoracle_claim_ports期待はG2bで既に最終境界と同じ。G3ではfileを変更せず全unitで通過。",
+    "R2_future_condition": "G2b R2-i1: 将来nonfill/meaning_undefined producerを開くPRではnegative intent/rule93 reference_onlyの独立test追加。本G3はそれらを開かず、現producer域を維持する。",
+    "root_static_acceptance": {
+      "artifact": "root-wr33-g3-static-acceptance-current.json",
+      "approved_items_equal": 16,
+      "prior_document_values_preserved": true,
+      "pairhash_matches": true,
+      "FN6_old_body_prefix_guards_B02_AST_preserved": true,
+      "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
+      "new_walk_and_uses_calls_once": true,
+      "frozen_test_files_unchanged": 4,
+      "all_existing_test_files_unchanged": true,
+      "G4_G4b_hunks_preserved": true,
+      "G5_handoff_absent_hunk_excluded": true
     }
   }
 }
