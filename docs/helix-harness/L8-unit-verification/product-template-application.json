@@ -3453,7 +3453,7 @@
   "runtime_execution": "not_executed",
   "semantic_review": "not_requested",
   "meaning_coverage": "not_proven",
-  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）で関数別pair凍結済み。残るT:40–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1b〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3および関数別pair凍結）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
+  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）で関数別pair凍結済み。残るT:41–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1c-1〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3および関数別pair凍結）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
   "additional_unit_cases": 24,
   "normal_function_oracles": 11,
   "normal_fixture_variants": 6,

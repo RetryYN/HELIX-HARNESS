@@ -1,0 +1,147 @@
+{
+  "record_id": "HARNESS009-B02-FUNCTION-PAIR-FREEZE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "evidence_kind": "audit",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-H009-T1B-3547-20261028-55",
+  "slice_id": "D-H009-T1b",
+  "resolves_disposition_ref": "DISP1#/dispositions/13",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447511779",
+  "source_main": "ecd64bb4ed7e84d9d7fe5677041d289afcfbdf42",
+  "request_base_sha": "963df2a10ccffe4ca00455c955cc8f5618346383",
+  "recorded_at_utc": "2026-10-27T22:08:00+00:00",
+  "target": "HARNESS-L2-009 T:40（HARNESS-L3-009-B02：同意味入力の論点保持）を担う公開関数 compare_semantic_equivalence（L5#/functions/8）＋対のL8 case行（L8#/cases/1 原負例4件・L8#/normal_function_oracles/8・L8#/additional_unit_cases/19 ADD-20）＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（1行）。DISP-1 D14（A）を解消する。",
+  "criterion": "公開関数 compare_semantic_equivalence についてL3/L10とL4/L9から独立に期待を導き（DT-VT-105）、L5関数契約とL8のU-ID行（対象・反例と期待・oracle ID）が1対1で一致し、unknown/conflict/未完の戻し先（ownerとreentry）および層間のキー名対応（L8/L9 change・expected_classification ↔ L5 condition・code）が明示され、T:40 B02範囲で009 L5設計自身へ戻す空白（A）が0件であること。F05/F06詳細caller/writer経路（CoreCompareSemanticEquivalenceContext）および全体統合関数 build_application_analysis は戻し先付き未完（D-H009-T2c-1/T2d/T3b）として分離し、L8へ新たな実行材料（全返却・fixture・hash・COPY）は追加しない（#3510）。",
+  "path_aliases": {
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json",
+    "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+    "T1A": "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json"
+  },
+  "pins": {
+    "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "L10B_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "L4_sha256": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8",
+    "L9_sha256": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498",
+    "L5_pre_t1b_sha256": "c5c488b305bba66b651d438c81cc1363cae04432eff79d1463d8ca8e8b7c2b22",
+    "L5_current_sha256": "843217383dc2ec4a217e822ed0f1d463703a7efa23de468610f90c0852f9ffa8",
+    "L8_pre_t1b_sha256": "cff248cbdc47531c6971fd74e8849eee143f773e623cf830734fffbc8ac27d4d",
+    "L8_current_sha256": "cf711e2eb3529db816fc5057336d682abd1f9af901e620015d616b3307fdd428",
+    "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b",
+    "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb",
+    "T1A_sha256": "d907f76095e0bc061b9997c53442125b35e5f8403154651dc756d16fb2a2f072"
+  },
+  "legacy_and_failure_basis": [
+    {
+      "asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60,81–92",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "keep": "候補templateのexact set・適用unknown・理由/再評価条件付きN/A・不足のBackflow返却を保持し、AI/言語差で論点を増減させない",
+      "change": "BRAIN(032)・HARNESS-CORE(009)・HELIX-OS(002)の3機構へ責務を分離し、異domain/risk/scopeの比較境界を個別に残して同一set強制を拒否する"
+    },
+    {
+      "asset": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "keep": "I/O・副作用none・failure・consumer/oracleを保持し、出力件数一致だけで意味同等とみなさずmissing/extra義務と未評価範囲を返す",
+      "change": "L8にはU-ID行（対象・反例と期待・oracle ID）のみを置き具体fixture展開はL6/L7へ分離（UTW-014/020/021/033防止）"
+    }
+  ],
+  "independent_expectation_derivation": {
+    "method": "DT-VT-105（L3B#/requirements/5・L10B#/cases/5・L4#/contracts/1・L9#/cases/1からL5候補文面と独立に期待を導出）",
+    "derived_obligations": [
+      "O1（同意味・同scope入力でのAI/言語差に対する必要論点・義務の不変性）：同じ意味の要求分類・適用契約・候補集合・製品scopeでは、nonsemantic_metadata（AI名・言語名）だけの差異で必要論点・義務を増減・省略させず、AI名/言語名による増減・省略claimはconflict（obligation_equivalence、backflow_owner=core_owner）として期待義務と返却義務の具体差分および元根拠を示し、原必要論点と未完義務を保存する（NEG-01、NEG-02、ADD-20、normal oracle 8）。",
+      "O2（異domain/risk/scopeでの比較境界保存と同一set強制拒否）：異なるdomain/risk/scopeや未観測知識に対して等価根拠なしの同一set強制を拒否し（NEG-03→conflict、comparison_boundary、backflow_owner=core_owner）、比較境界・適用根拠・未評価範囲を個別に残して同一setへ丸めない。",
+      "O3（件数・文字列・digest一致のみによる意味同等化禁止）：義務内容や根拠が異なるのに出力件数一致だけで意味同等とするclaimを成立させず（NEG-04→unknown、equivalence_claim、backflow_owner=oracle_owner）、期待義務と実義務のidentity/意味/根拠の具体差分および元の不足・未評価範囲を保存する。",
+      "O4（原binding保存と副作用0）：同immutable入力の指定producer比較結果（compare_candidate_universe・compare_applicability・compare_kind_obligation_trace）のみを読み、要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持し、原記録・採択・権限・使用set・未完義務への実write/実消込を行わない（effect=none、expected_side_effect_count=0）。"
+    ],
+    "cross_layer_key_mapping": {
+      "L9_and_L8_negative_case_keys_to_L5_failure_rule_keys": {
+        "change": "condition",
+        "expected_classification": "code",
+        "expected_axis": "expected_axis",
+        "expected_state": "expected_state",
+        "expected": "expected",
+        "expected_preserved": "expected_preserved",
+        "backflow_owner": "backflow_owner"
+      },
+      "reference_links": "L8 negative_cases[*].integration_case_ref → L9 negative_cases[*].id、L8 negative_cases[*].rule_ref → L5 failure_rules[*].id、L5 failure_rules[*].oracle_ref → L8 negative_cases[*].id、L5 functions/8.unit_case_refs → L8 [B02-NEG-01..04, ADD-20]、L5 functions/8.oracle_ref → L8 normal_function_oracles/8.id"
+    }
+  },
+  "function_freeze_rows": [
+    {
+      "coverage_index": 40,
+      "parent": "HARNESS-L2-009",
+      "l3_obligation": "L3B#/requirements/5 (HARNESS-L3-009-B02)",
+      "l10_oracle": "L10B#/cases/5 (HARNESS-L10-009-B02)",
+      "l4_contract": "L4#/contracts/1 (HARNESS-L4-009-B02)",
+      "l9_case": "L9#/cases/1 (HARNESS-L9-009-B02)",
+      "public_function": {
+        "id": "HARNESS-L5-009-compare_semantic_equivalence",
+        "symbol": "compare_semantic_equivalence",
+        "l5_pointer": "L5#/functions/8",
+        "contract_pointer": "L5#/contracts/1 (HARNESS-L5-009-B02)",
+        "context_type_pointer": "L5#/type_contract/types/CompareSemanticEquivalenceContext",
+        "failure_rule_pointers": [
+          "L5#/failure_rules/8 (HARNESS-L5-009-R-ai_name_changes_obligations)",
+          "L5#/failure_rules/9 (HARNESS-L5-009-R-language_changes_obligations)",
+          "L5#/failure_rules/10 (HARNESS-L5-009-R-different_domain_forced_equal)",
+          "L5#/failure_rules/11 (HARNESS-L5-009-R-count_as_semantic_equivalence)"
+        ]
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-B02",
+        "l8_pointer": "L8#/cases/1",
+        "normal_oracle_pointer": "L8#/normal_function_oracles/8 (HARNESS-L8-009-NORMAL-compare_semantic_equivalence)",
+        "negative_case_pointers": [
+          "L8#/cases/1/negative_cases/0 (HARNESS-L8-009-B02-NEG-01)",
+          "L8#/cases/1/negative_cases/1 (HARNESS-L8-009-B02-NEG-02)",
+          "L8#/cases/1/negative_cases/2 (HARNESS-L8-009-B02-NEG-03)",
+          "L8#/cases/1/negative_cases/3 (HARNESS-L8-009-B02-NEG-04)"
+        ],
+        "additional_unit_case_pointers": [
+          "L8#/additional_unit_cases/19 (HARNESS-L8-009-ADD-20: metadata-only-ai-language)"
+        ]
+      },
+      "obligation_and_oracle_summary": "O1〜O4を充足：L9#/cases/1/negative_cases 4件とL8#/cases/1/negative_cases 4件・L5#/failure_rules/8〜11が7属性（L8/L9 change・expected_classification ↔ L5 condition・code、およびexpected_axis・expected_state・expected・expected_preserved・backflow_owner）と双方向参照（integration_case_ref/rule_ref/oracle_ref/function_ref）まで全4件完全一致し、ADD-20（nonsemantic_metadataのみAI/言語変化で必要義務不変）およびnormal oracle 8（expected_side_effect_count=0）とともにB02同意味入力の論点保持と異domain境界保持を検証する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "already_frozen_shared_entry": "L5#/contracts/1/function_refs に含まれる validate_application_input（L5#/functions/0）は D-H009-T1a（T1A#/function_freeze_rows/0）で関数別pair凍結済み。",
+        "separated_A_other_slices": "L5#/f05_detail_contract/types/CoreCompareSemanticEquivalenceContext・native_context_crosswalk/compare_semantic_equivalence・caller_return_writer_contract/call_rows/7 のF05詳細caller/writer結線はDISP2 D14（D-H009-T2c-1）、L5#/contracts/1/function_refs に含まれる全体統合関数 build_application_analysis（L5#/functions/10）はDISP2 D19（D-H009-T3b）へ戻し先付きで分離済みであり、B02単体関数 compare_semantic_equivalence の凍結を止めない。",
+        "C_downstream_and_other_owner": "knowledge定義/版はBRAIN030/032、製品要求値はHARNESS008、使用記録はHELIX-OS 002/053、実未見入力の具体fixture展開・L6/L7実行oracle凍結・Red/Greenは下流L6/L7（DISP1 D03）へ戻す。"
+      },
+      "freeze_status": "frozen_for_tdd_red_green",
+      "execution_state_at_freeze": "not_executed"
+    }
+  ],
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 13,
+    "L5_failure_rules": 107,
+    "L5_source_pins": 21,
+    "L8_cases": 11,
+    "L8_total_negative_cases": 106,
+    "L8_normal_function_oracles": 12,
+    "L8_additional_unit_cases": 24,
+    "note": "L8#/completion/normal_function_oracles の数値表記は11だが、L8#/normal_function_oracles 配列実体は index 0..11 の12件（L8#/completion/remaining の『12正常function oracle』と一致）。"
+  },
+  "verification": {
+    "kind": "static_only",
+    "b02_negative_cases_matched_L9_L8_L5": 4,
+    "fn8_additional_unit_cases_verified": 1,
+    "fn8_normal_function_oracles_verified": 1,
+    "materials_added_to_L8": 0,
+    "blocking_a_count_in_b02_scope": 0
+  },
+  "not_claimed": [
+    "本記録はHARNESS-L2-009 T:40（HARNESS-L3-009-B02）の公開関数 compare_semantic_equivalence（L5#/functions/8）と対L8 case行（L8#/cases/1・normal_function_oracles/8・additional_unit_cases/19）の関数別L5/L8対設計凍結記録であり、T:41–49（D-H009-T1c-1〜T3b）の凍結、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
+    "L8へ新たな材料（全返却・fixture・hash・COPY）を追加していない（#3510）。"
+  ]
+}
