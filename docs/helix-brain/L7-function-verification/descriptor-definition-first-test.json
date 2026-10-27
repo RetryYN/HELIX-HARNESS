@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "4ca1a55a3e4b7f3ffa40aa30b885ad8e3f6affbda831deefe19c23be09d9c83e",
+    "sha256": "2dbc7d06b049c3b2b61631687ca2327ece5658bd5e3e7e54a08b744a0ed27f71",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3729,7 +3729,7 @@
       "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
     },
     "B_prerequisite": {
-      "execution_state": "claimuse_full_unit_mutations_replay_green_independent_review_pending",
+      "execution_state": "fn1_S4_focused_green_old_stop_transition_control_pending",
       "rows": [
         {
           "rule": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
@@ -3881,7 +3881,7 @@
       },
       "input_manifest": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-fn7b-inputs-frozen-R2/manifest.json",
       "input_manifest_sha256": "8f30502065f22be7f29dd4d3416175145665f6684e4e9842d98e89b8190907e4",
-      "input_matching": "同じ17凍結raw SHAを維持してWR65後に再実行。11入力の現firststopはS6。旧S1/S5は過去観測用に保持し、旧matrixはcommitとL7 SHAで参照。",
+      "input_matching": "同じ17凍結raw SHAを維持してWR66 S4後に再実行。15入力の現firststopはS6、残2はS2/S3。旧S1/S4/S5は過去観測用に保持し、旧matrixはcommitとL7 SHAで参照。",
       "evidence": {
         "B01_F07": "root-fn7b-b01-f07-probe-R2.json:524ms、FN0-clean/原raw不変。二候補・一候補補助を区別。",
         "N02_missing": "root-fn7b-n02-add20-probe-bounded-R1.json + result-R1.json:184ms、N02-01/05 FN0-clean/FN4停止/raw不変。",
@@ -3909,7 +3909,7 @@
         "families_ready_for_writer": [],
         "L8_children": "not_executedのまま",
         "source_tests_changed": true,
-        "pair_scope": "WR65はClaimUse builder一file +12/-5と新凍結4methods、既存405tests bytes不変。全409PASS。L6/L7はB_prerequisiteとpair hashのみ更新し、all6 Comparison成立は0のまま。"
+        "pair_scope": "WR66 S4はFN1広域停止2行削除＋新凍結4methods。旧409methods中407PASS、停止期待2件は事前FAIL/旧SHA/理由を記録し統制確認待ち。新4PASS、全413はまだ未Green。S2は設計判定だけで別PR、all6成立0。"
       },
       "prior_matrix_snapshot": {
         "commit": "170cd801f9b5c1658491b81aeb8cb1012da05266",
