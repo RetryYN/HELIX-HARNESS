@@ -122,19 +122,37 @@ def _binding_relation(left: Any, right: Any) -> str:
     if not _typed_binding_shape(left) or not _typed_binding_shape(right):
         return "unresolved"
     ref_fields = ("template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref")
+    known_mismatch = False
+    unresolved = False
     for name in ref_fields:
         relation, _ = _ref_related(left[name], right[name])
-        if relation in {"unresolved"}:
-            return "unresolved"
-        if relation in {"unrelated", "conflict"}:
-            return "different"
+        if relation == "unresolved":
+            unresolved = True
+        elif relation in {"unrelated", "conflict"}:
+            known_mismatch = True
     for name in ("pack_contract_version", "pack_artifact_version", "version_target"):
         if not _json_equal(left[name], right[name]):
-            return "different"
+            known_mismatch = True
     left_dependencies = left["pack_dependency_versions"]
     right_dependencies = right["pack_dependency_versions"]
-    if any(not all(ref.get(name) is not None for name in ("identity", "revision", "scope", "owner"))
-           for ref in left_dependencies + right_dependencies):
+    dependency_frames_complete = all(
+        all(ref.get(name) is not None for name in ("identity", "revision", "scope", "owner"))
+        for ref in left_dependencies + right_dependencies
+    )
+    if dependency_frames_complete:
+        dependency_sets_same = (
+            all(any(_ref_same(left_ref, right_ref) for right_ref in right_dependencies)
+                for left_ref in left_dependencies)
+            and all(any(_ref_same(right_ref, left_ref) for left_ref in left_dependencies)
+                    for right_ref in right_dependencies)
+        )
+        if not dependency_sets_same:
+            known_mismatch = True
+    else:
+        unresolved = True
+    if known_mismatch:
+        return "different"
+    if unresolved:
         return "unresolved"
     return "same" if _binding_same(left, right) else "different"
 
@@ -290,6 +308,7 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                         independent_frame_conflict = True
                     elif not source_binding_ok or _binding_relation(source_binding_raw, binding) == "unresolved":
                         result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
+                        current_unknown = True
                     else:
                         current_unknown = True
                 else:
