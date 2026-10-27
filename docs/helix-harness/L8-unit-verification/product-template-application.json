@@ -3453,7 +3453,7 @@
   "runtime_execution": "not_executed",
   "semantic_review": "not_requested",
   "meaning_coverage": "not_proven",
-  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）で関数別pair凍結済み。残るT:41–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1c〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3・関数別pair凍結、およびnormal_function_oracles/11 project_source_result_references に対応する completion.normal_function_oracles=11→12 の数値同期［D-H009-T2a / DISP2 D12］）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
+  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01：公開2関数 compare_required_axes・project_cross_design_candidate_refs の関数別pair凍結＋selected_source_occurrence_array_builder_detail のprivate builder契約対照・D15解消）はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）で記録済み。残るT:42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1d-1〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3・関数別pair凍結、およびnormal_function_oracles/11 project_source_result_references に対応する completion.normal_function_oracles=11→12 の数値同期［D-H009-T2a / DISP2 D12］）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
   "additional_unit_cases": 24,
   "normal_function_oracles": 11,
   "normal_fixture_variants": 6,
@@ -10744,11 +10744,45 @@
      "qualification_synthesized_or_resolved": false,
      "existing_fn0_owns_existing_consistency_and_qualification_result": true
     }
+   },
+   {
+    "id": "CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING",
+    "inherits_exact_l9": [
+     "SRC-OCC-NEG-02"
+    ],
+    "base_case_id": "HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT",
+    "input_delta": [
+     {
+      "variant": "i_large_exponent",
+      "path": "/input/source_index",
+      "operation": "replace",
+      "value_token": "1e400",
+      "carrier": "CoreNumber{original_token:\"1e400\",exact_value:CoreDecimalValue{negative:false,coefficient_digits:\"1\",power_negative:false,power_digits:\"400\"}}"
+     },
+     {
+      "variant": "j_large_exponent",
+      "path": "/input/destination_index",
+      "operation": "replace",
+      "value_token": "1e400",
+      "carrier": "CoreNumber{original_token:\"1e400\",exact_value:CoreDecimalValue{negative:false,coefficient_digits:\"1\",power_negative:false,power_digits:\"400\"}}"
+     }
+    ],
+    "expected_verification_facts": {
+     "each_variant_result": "unformed",
+     "core_json_integer_predicate": true,
+     "exact_range_comparison_precedes_host_index_conversion": true,
+     "index_narrowed_before_exact_range_check": false,
+     "host_float_overflow_or_native_int_materialization_attempted": false,
+     "original_presence_and_values_retained": true,
+     "fallback_or_default_used": false,
+     "input_sources_mutated": false,
+     "success_pair_returned": false
+    }
    }
   ],
   "not_proven": [
    "CoreNumber/CoreJsonValueから選択source bytesを保ったwire JSONへ渡す実cross-runtime codec/adapter実装は下流L6/L7へ戻す（C）。host carrierはwire plain objectと異なる既存private表現のまま扱い、adapter成立を仮定しない。",
-   "巨大指数等を使いexact範囲確認より前のnarrowingを識別する個別U-ID probe（index_narrowed_before_exact_range_check=falseの単体検証）は未収載のためAとして次slice（D-H009-T1c）へ渡す。1.0/1e0の有限case実行、任意noninteger token全域、duplicate JSON object memberの製品reader実行挙動は下流L6/L7とruntime実装（C）へ戻す。",
+   "巨大指数（1e400）等を使いexact範囲確認より前のnarrowingを識別する個別U-ID probe（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING：compact_boundary_probes/6、index_narrowed_before_exact_range_check=falseの単体検証）はD-H009-T1cで収載・解消済み（B）。1.0/1e0の有限case実行、任意noninteger token全域、duplicate JSON object memberの製品reader実行挙動は下流L6/L7とruntime実装（C）へ戻す。",
    "実source acquisition/selection producer/caller、BRAIN-origin lineage、CORE qualification authority、template/query/requirement relation、全ApplicationInput assembly、実deliveryはBRAIN030/032・OS002・CONNECT・上位caller側（C）へ戻す。",
    "runtime実行、実装、CI/L9実行、owner受入又はPO L11 acceptanceは下流L6/L7・実行環境・既存authority（C）へ戻す。"
   ],
