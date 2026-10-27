@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "600ecb33c79fa95d0469ba662242d741fb1914ed914bcfd68b0bcd1610924e2b",
+    "sha256": "517f051bfc3ce304c908cc77faf0aaf7f7867cb9bc2087881436c0d3051d70a6",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2026,7 +2026,7 @@
     },
     "oracle_independence": "具体rawを既存normal/trace入力から構成し、source bodyは元bytes/digest/独立Q/provenance/fact sourceリンクを同期。型/原locators/route/固定理由と既存failure tupleをL4/L5から導出する。手作り前段Comparison/private frame、reader patch、saved whole expected/hash一致を製品判定oracleへしない。元helper又は既存prefixの意味保存はその局所責務だけを実対照と照合。",
     "root_acceptance": "rootが全新test/sourceと候補差分をReadしbounded実行/終了回収/失敗根拠を検収。Luna Workerの静的成功を実Greenへ読み替えない。",
-    "remaining": "D27歴史原入力の4fieldslot、typed意味operation carrier、meaning_undefined肯定producer、handoff absent等の残る正規到達を全て実装済みとはしない。fn7全16rule、L8/OS、Issue #3547完成は主張しない。WR13 #3732はDraft保持。",
+    "remaining": "Claude comment6447399416で非空typed meaning reader/meaning_undefined producer/D27歴史4fieldslotはWR33範囲外と確定。元正確stopを維持する。現在はWR33内の局所Greenとsource/test行数付き分割判断を独立reviewへ結び、WR13 #3732はDraft hold。fn7全16rule/L8/OS/Issue完了を生成しない。",
     "final_unit": {
       "artifact": "root-wr33-unit-final-green.json",
       "sha256": "ee19576b2073c8ce7f475807d8e200f847293cca03d0c09c97435d15a289a95c",
@@ -2055,6 +2055,128 @@
       "duration_ms": 26705,
       "reaped": true,
       "output_truncated": false
+    },
+    "empty_carrier_old_stop_transition": {
+      "control_comment": 6447399416,
+      "allowed_scope": "definition_meaning_operations=[]のみ。非空typed reader、meaning_undefined producer、D27歴史4fieldslotはWR33外の元stop維持。",
+      "old_method": "test_supplied_meaning_operation_carrier_stops_at_reader_id",
+      "old_expectation": "供給empty []をdefinition_meaning_operations_unclosed停止と固定",
+      "before_test_edit": {
+        "artifact": "root-wr33-empty-carrier-old-expectation-failure.json",
+        "sha256": "9bdb6e460a58750d57dbb53067cdb76435032e8c67582f2a790bc0704b1c02c7",
+        "methods": 12,
+        "failures": 1,
+        "other_methods_passed": 11,
+        "setup_errors": 0,
+        "duration_ms": 1046,
+        "reaped": true,
+        "output_truncated": false,
+        "failure": "旧期待NotImplementedError not raised。新4methodsの空/不在読取り・非空stop対照はPASS。"
+      },
+      "normative_pointers": [
+        "L4 /oracle_view_boundary_contract/nonfire_read_plan/typed_kind_census",
+        "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/basic_reader_bindings/meaning/body/algorithm/1"
+      ],
+      "new_expectation": "原Vにmember supplied []を保持し、readerはoperation0出現/support0/problem0のunknown。walkはsource_unresolved unknownを保持しknown又は限定meaning_undefinedを生成しない。absentは原absence/container_absentと区別。",
+      "test_edit_state": "旧期待の実FAIL記録後、原0出現/unknown保持の独立期待へ更新。非空typed carrierはnew control testで元固有ID停止を維持。"
+    },
+    "scope_control": {
+      "comment": 6447399416,
+      "response": "root-wr33-3735-wip-scope-response-R1.json",
+      "scope_only": "独立source review/Ready/merge承認ではない。",
+      "out_of_scope": [
+        "非空typed definition_meaning_operations reader",
+        "meaning_undefined肯定producer",
+        "D27歴史rawの4fieldslot"
+      ],
+      "allowed_old_test_update": "空operation carrier []の旧未実装停止期待。旧期待FAILを先に記録しL4/L5独立期待へ更新する。",
+      "facts_missing_oracle_correction": "元Binding.knowledge_ref.ownerの期待訂正は認められた。誤期待revision/実FAILはL7へ保持。",
+      "S1_m1": "Ready前にsource/test行数付きsplit案。PR3735 comment6447570975へ提出。"
+    },
+    "post_scope_tdd": [
+      {
+        "artifact": "root-wr33-handoff-absent-red.json",
+        "sha256": "36e9fa2696271686fae7957b70c45fe9d052856f766e1859cf76a52158ffb10e",
+        "status": 1,
+        "duration_ms": 272,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-handoff-absent-green.json",
+        "sha256": "b0c28cdc50fe0b690b11612493635e29070e7b4397d8ffa70d8ea4c44a10c64d",
+        "status": 0,
+        "duration_ms": 1461,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-empty-meaning-carrier-red.json",
+        "sha256": "38a120fdd55a36cc7a7b33eb3240efc9f636484161cbabb0eab8415ee7eba5af",
+        "status": 1,
+        "duration_ms": 206,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-empty-carrier-old-expectation-failure.json",
+        "sha256": "9bdb6e460a58750d57dbb53067cdb76435032e8c67582f2a790bc0704b1c02c7",
+        "status": 1,
+        "duration_ms": 1046,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-empty-carrier-green.json",
+        "sha256": "d8c799f31eb7c73a4e3dc5b17cf7da7bd5a6663677262c1fa562ef435379b926",
+        "status": 0,
+        "duration_ms": 1387,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-local-ref-red.json",
+        "sha256": "94539f998ef2d8002b923dece99793a1e873da637d292010aee485180848b8ae",
+        "status": 1,
+        "duration_ms": 88,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-local-ref-green.json",
+        "sha256": "b68ccdcc2681f2e5ee6dfa82020009688102b7039ddc5b8ec51af398d117a340",
+        "status": 0,
+        "duration_ms": 762,
+        "reaped": true,
+        "output_truncated": false
+      }
+    ],
+    "handoff_absent": "131907733の4testsはabsent2error/empty2PASSを272msで観測。d0d3c87e4でabsent原0出現のみ実装、既存B02等を含む22tests PASS/1461ms。",
+    "target_local_ref_problem": "667661d61のunrelated identity+Ref型外owner/revisionの2条件は原exact対応を保つが局所problem未返却のため2FAIL/88ms。型問題を局所保存し他target成功を相殺しないL4 relevance契約へ修正。",
+    "scope_final_unit": {
+      "artifact": "root-wr33-scope-final-unit-green.json",
+      "sha256": "f11241c470ec7a29c1c3b591b6c7b9a89b771d7f47e90ada16831d517140065c",
+      "methods": 346,
+      "status": 0,
+      "duration_ms": 27600,
+      "reaped": true,
+      "output_truncated": false
+    },
+    "split_decision": {
+      "comment": 6447591725,
+      "response": "root-wr33-3735-split-response-R1.json",
+      "ACKed": true,
+      "ordered_units": [
+        "G4",
+        "G1a",
+        "G1b",
+        "G2a",
+        "G2b",
+        "G3",
+        "G5"
+      ],
+      "conditions": "各PR最新main/単独全unit Green。証拠は対象単位のみ。成功stub/偽Comparison/frame/行数だけの新module禁止。source/test行数を本文に示せば約300行超を認める。一件merge後に次review。#3735はG5merge後close、#3732はhold。",
+      "acceptance": "分割決定のみ、source review/Ready/merge承認ではない。"
     }
   }
 }

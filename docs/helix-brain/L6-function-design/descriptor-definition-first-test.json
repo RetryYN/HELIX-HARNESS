@@ -685,7 +685,7 @@
     "id": "HELIXBRAIN-L6-032-WALK-CLAIM-USES",
     "request": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
     "working_base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
-    "state": "実装中・独立review前",
+    "state": "WR33確定範囲の局所実装検収中・分割単位の統制判断前",
     "effect": "none",
     "authority_effect": "none",
     "contract_sources": [
@@ -827,15 +827,29 @@
       "canonical root/kind訪問に元required_slot_absentとfacts_missingを追加。no-slot keyはslot identity absent/current Binding supplied。全23field originとglobal failure rule index、sort後axis/finding indexを同eventから保持。facts absent/null/[]で元snapshotを補完せずactual slotのpair/NA readを一回保持。",
       "ClaimUse14fields、原assessment順/全原出現、primary軸の分離、元basis/source全indexと反復、資格とroleの分離、既存4route/4literal。",
       "fn6 descriptor-fillのrule87を同uses経由で各原Claim一件。元dependency/handoff prefix全値・原順、B02責務を保持。dependencies absentは既存missing5+selector3へ投影し、required missing TRACE14をL5専用writerに束縛。",
-      "fn4有限carryは元definitionsの対象3軸だけ。null提案はtarget未決を保持し、nonnull提案は既読resolved/非空/全対象外kindを要求するL4枝だけ。derived_view等の枝外predicateは固有ID停止。"
+      "fn4有限carryは元definitionsの対象3軸だけ。null提案はtarget未決を保持し、nonnull提案は既読resolved/非空/全対象外kindを要求するL4枝だけ。derived_view等の枝外predicateは固有ID停止。",
+      "definition_meaning_operations=[]は原0要素の読取りとして継続し、native readはsupports/occurrences/problems=[]のunknown。absentはcontainer_absentと原presenceを保持。非空typed carrierは元固有ID停止。"
     ],
     "preserved_boundaries": [
       "public fn1 wrapperの全面接続はWR31。private guardのallow_missing_factsはcanonical walkだけTrue、既存public経路はFalseのまま。",
       "非fill Claimのwalk、typed意味operation carrier、nonnull NA、multifactpair、special carrierは既存固有ID停止。D27歴史入力の全到達は未成立。",
       "fn7 writerはWR13の担当で、PR #3732 Draft保持。route93肯定のmeaning_undefined producerを実行済みとはしない。",
-      "fn6 handoff member absentの零出現共有等、D27入力に必要な残る型付き境界は統制へ具体pointerで返す。"
+      "fn6 handoff_records absentはL4 finite_domain/other_carriersの零出現範囲だけ扱い、原absence/[]をsnapshotに保持。supplied null/nonarrayを[]へ補完しない。"
     ],
     "legacy_rederivation": "L4/L5に既に記録された意味再導出と本L6のlegacy_rederivation/fn4_oracle_preparationの旧資産対応を継承。LEGACY-ASSET-4F5A1F0739EC1111D91D（旧L4 JSON authority）、LEGACY-ASSET-98372FEE8A3AC8F9C299（旧L5）、LEGACY-ASSET-4674004EAE02B2811AE0（旧Vmodel trace）。元Ref/owner/unknownと先行test責務を保持し、旧runtime/CI/資格/承認gateをcopy又は実行しない。既存#3503/#3547の実到達不足を起点とする。",
-    "completion_boundary": "このsubtreeは局所実装/TDDの記録。WR33全受入、D27全到達、fn7全16rule、正式L8/OS実行、Issue #3547完了を生成しない。"
+    "completion_boundary": "このsubtreeは局所実装/TDDの記録。WR33全受入、D27全到達、fn7全16rule、正式L8/OS実行、Issue #3547完了を生成しない。",
+    "scope_control": {
+      "comment": 6447399416,
+      "response": "root-wr33-3735-wip-scope-response-R1.json",
+      "scope_only": "独立source review/Ready/merge承認ではない。",
+      "out_of_scope": [
+        "非空typed definition_meaning_operations reader",
+        "meaning_undefined肯定producer",
+        "D27歴史rawの4fieldslot"
+      ],
+      "allowed_old_test_update": "空operation carrier []の旧未実装停止期待。旧期待FAILを先に記録しL4/L5独立期待へ更新する。",
+      "facts_missing_oracle_correction": "元Binding.knowledge_ref.ownerの期待訂正は認められた。誤期待revision/実FAILはL7へ保持。",
+      "S1_m1": "Ready前にsource/test行数付きsplit案。PR3735 comment6447570975へ提出。"
+    }
   }
 }
