@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import copy
 
-from supply_validation import _ref_same
+from supply_validation import _ref_same, _source_usable
 
 
 def _collect_owner_target_material(validated, claim):
@@ -19,17 +19,13 @@ def _collect_owner_target_material(validated, claim):
     if not isinstance(sources, list):
         sources = []
 
-    unusable_refs = validated.get("unusable_source_refs") if isinstance(validated, dict) else None
-    if not isinstance(unusable_refs, list):
-        unusable_refs = []
-
     material = {
         "knowledge_record_indices": [],
         "provenance": [],
         "sources": [],
         "boundaries": [],
     }
-    qualification_failed_by_index = {}
+    semantic_source_unresolved_by_index = {}
     failed_source_boundaries = set()
 
     def boundary(locator):
@@ -40,19 +36,13 @@ def _collect_owner_target_material(validated, claim):
 
     for source_index, source in enumerate(sources):
         source_ref = source.get("ref") if isinstance(source, dict) else None
-        qualification_failed = any(
-            _ref_same(unusable_ref, source_ref)
-            for unusable_ref in unusable_refs
-        )
-        qualification_failed_by_index[source_index] = qualification_failed
+        semantic_source = isinstance(source, dict) and source.get("role") == "semantic_json"
+        source_usable = semantic_source and _source_usable(validated, source_ref)
+        semantic_source_unresolved_by_index[source_index] = semantic_source and not source_usable
         material["sources"].append({
             "source_index": source_index,
             "source": copy.deepcopy(source),
-            "usable": (
-                isinstance(source, dict)
-                and source.get("role") == "semantic_json"
-                and not qualification_failed
-            ),
+            "usable": source_usable,
         })
 
     binding = claim.get("binding") if isinstance(claim, dict) else None
@@ -99,7 +89,7 @@ def _collect_owner_target_material(validated, claim):
                     boundary(f"{locator}/{provenance_index}")
             for source_index in source_indices:
                 if (
-                    qualification_failed_by_index.get(source_index, False)
+                    semantic_source_unresolved_by_index.get(source_index, False)
                     and source_index not in failed_source_boundaries
                 ):
                     boundary(f"/sources/{source_index}")
