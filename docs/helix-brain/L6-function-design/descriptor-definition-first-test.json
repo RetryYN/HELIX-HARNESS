@@ -1451,5 +1451,117 @@
       "existing_source_symbol": "descriptor_target_frame.build_descriptor_claim_uses",
       "existing_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
     }
+  },
+  "fn1_descriptor_claim_uses_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-DESCRIPTOR-CLAIM-USES",
+    "parent_subtree": "/fn1_same_call_claim_reads_and_missing_events_preparation",
+    "authority_effect": "none",
+    "function": "build_descriptor_claim_uses(validated, evaluation, reads, intents)",
+    "implementation_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_target_frame.py",
+    "source_ownership": "既存descriptor_target_frame.pyのconsumer関数と直接helperだけ。実装294行/269nonblankで、新source moduleは作らない。",
+    "scope": {
+      "included": "G2a same-call walkから受け取った既読target/intentとevaluationをClaim occurrenceごとに結び、L5 closed DescriptorClaimUseを原Claim順で構成する。",
+      "excluded": "FN0再実行、G2a walk/assessment再構成、G1b owner/provenance/qualification再走査、target/intent port再呼出し、FN4 frame/context/detail、FN6/FN7 Comparison/Finding/tuple、public API変更、qualification gate、meaning bodyの意味判定。"
+    },
+    "contract_application": [
+      "L5 transport_types/DescriptorClaimUseの14 closed fieldsだけを出力する。原Claim occurrenceは/claims/{i} locatorで区別し、同値Claimでも各出現を保持する。target_readとintent_readは同callの原返却全値をそのまま保持する。",
+      "L5 consumerのassessment lookupを使い、resolved target matchを同一full Binding・slot identity・kind・原slot locatorで結ぶ。全related assessment indexを元evaluation順で保持し、distinct assessment occurrenceを削らない。複数matchが同一のassessment occurrenceを指す場合、そのoccurrenceをmatch数に増殖させない。",
+      "slot_locators=[]の場合は同Binding/kindの元required_slot_absent、slot_identity absent assessmentだけを結ぶ。他slotのstateを借りず、該当matchをunmatched_match_indicesに保持する。",
+      "primary definition assessmentはaxis_name == descriptor_kind + '.definition'だけ。missing supportはprimary state=missing。undefined supportはprimary state=unknownかつorigin_branch=meaning_undefined。source_unresolved、NA、他の補助axisをsupportへ読み替えない。",
+      "basis classは元Claim.basis_refsのpresence/順序/反復、既存RefEqで対応する全source index、既存ValidatedSupply.unusable_source_refs、元source roleから求める。資格はFN0結果を消費し、roleから資格を作らない。basis_source_indicesとunresolved_basis_ref_indicesは元順・反復を保つ。",
+      "route/route_reasonはL5既存rule87/rule93 predicate、優先順、serialization_completion/use_route_reason_literalsの4 literalに従う。route enumは内部ClaimUse projectionであり、FN6/FN7 FindingやComparison tupleを出力しない。"
+    ],
+    "route_boundary": {
+      "rule87": "fill_definition、既読intent positive、既読target resolved、unmatched matchesなし、primary missing supportあり、basis_class reference_only_onlyのときのClaimUse route。",
+      "rule93": "fill_definition、既読intent positive、target resolved、全match対応、primary meaning_undefined supportあり、basis_class nonsemantic_or_empty又はreference_only_only、かつrule87不成立のときのClaimUse route。元FN1のmeaning_undefined/独立定義根拠なし判定を消費する。",
+      "none": "intent/target/assessment対応が既知でprimary missing/meaning_undefined supportが無いときはbasis分類に依存せずnone。明示negativeはnoneだが、現G2a walkのfill_definition以外negative Claimをこの作業範囲の正常入力として補わない。",
+      "unresolved": "intent/target/cohort/assessment対応又はbasis分類が必要なのに未確定ならunresolvedを保つ。semantic/mixed basisの内容と任意proposed_valueの意味対応を作り足さず、新しい一致gateやpredicateを追加しない。"
+    },
+    "unreached_paths": {
+      "nonfill_negative_intent": "現実のG2a canonical walkからこのconsumerへ渡るfill_definition外negative Claim経路は今回の新test入力に無い。空uses/none成功を作らず、既存の未完了/停止境界を保つ。",
+      "rule93_positive": "現在のG2a owned walkはmeaning_undefined producerを所有しないため、rule93 positive supportを作る正規same-call fixtureがない。fake evaluation/assessmentで肯定を主張せず、当該経路の完成は未確認として残す。"
+    },
+    "legacy_rederivation": [
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "lines": [
+          138,
+          154,
+          168,
+          173
+        ],
+        "keep": "L6の bounded function responsibility を独立test/TDD証拠へつなぐ。",
+        "change": "現L4/L5 same-call consumer契約に限定し、旧binding番号/実行runtimeを移さない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+        "lines": [
+          102,
+          120,
+          152,
+          159
+        ],
+        "keep": "対応するfunction sourceとtestを同unitへ置く。",
+        "change": "同unitの既存descriptor_target_frame.pyを使い、行数だけを理由とするsource分割をしない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": [
+          30,
+          167
+        ],
+        "keep": "元資料欠落・unknownを黙ってknown/successへ変換しない。",
+        "change": "既存basis classification/route unresolved境界を維持し、新qualificationや意味一致gateを追加しない。"
+      }
+    ],
+    "failure_origin": {
+      "existing_l6_record": "L6/L7 descriptor-definition-first-test.jsonの既存legacy_rederivationは#3503を静的設計だけで実testへ届かなかった事例として記録する。",
+      "application": "G2bでは具体的なconsumer assertionsとTDD証拠を結ぶ理由としてだけ保持する。#3503を特定のG2b defectの証明、新要求、route意味変更の根拠へ広げない。"
+    },
+    "g3_excluded": [
+      "FN4 OracleContext/DescriptorTargetCallFrame connection",
+      "FN6 compare_dependencies_and_handoff rule87 tuple, unchanged prefix and original-Claim tuple multiplicity",
+      "FN7 unknown_fallback output, public claim Comparison, or any Finding emission"
+    ],
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae",
+        "pointers": [
+          "/dependency_semantic_ports/descriptor_target_contract/ordered_branches",
+          "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+          "/dependency_semantic_ports/claim_intent_protocol/rules"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/consumer",
+          "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse",
+          "/source_return_contract/descriptor_target_dataflow/functions",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals",
+          "/claim_intent_detail/reader",
+          "/failure_rules/87",
+          "/failure_rules/93"
+        ]
+      }
+    ],
+    "requirement_and_contract_refs": {
+      "existing_approved_requirement_ids": [
+        "HELIXBRAIN-L3-032-F01",
+        "HELIXBRAIN-L3-032-F02",
+        "HELIXBRAIN-L3-032-F09",
+        "HELIXBRAIN-L10-032-F01",
+        "HELIXBRAIN-L10-032-F02",
+        "HELIXBRAIN-L10-032-F09"
+      ],
+      "l6_parent_subtree": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json#/fn1_same_call_claim_reads_and_missing_events_preparation",
+      "l7_parent_subtree": "docs/helix-brain/L7-function-verification/descriptor-definition-first-test.json#/fn1_same_call_claim_reads_and_missing_events_verification"
+    },
+    "refactor_decision": "同callの既読値を消費する単一責務を既存moduleへ置く。269nonblank、全source最大646で700未満。意味・凍結期待を変えるrefactorや行数だけのmodule分割は不要と判断した。"
   }
 }
