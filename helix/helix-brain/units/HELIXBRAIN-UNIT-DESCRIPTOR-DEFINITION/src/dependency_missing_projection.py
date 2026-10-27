@@ -6,7 +6,6 @@ import copy
 from typing import Any
 
 from dependencies_handoff_ports import _serialize_trace
-from descriptor_definitions import _binding_shape_ok, _ref_shape_ok
 
 
 _MISSING_AXIS_PREFIX = "必要identityに対応する原Refは当該categoryに未供給。他bodyで補償しない。"
@@ -22,12 +21,12 @@ _SELECTORS = (
 def _root_binding_and_subject(validated: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]] | None:
     raw = validated.get("input")
     binding = raw.get("binding") if isinstance(raw, dict) else None
-    if not _binding_shape_ok(binding):
+    if not isinstance(binding, dict):
         return None
     subject = binding.get("knowledge_ref")
-    if not _ref_shape_ok(subject):
+    if not isinstance(subject, dict):
         subject = binding.get("template_ref")
-    if not _ref_shape_ok(subject):
+    if not isinstance(subject, dict):
         return None
     return binding, subject
 
