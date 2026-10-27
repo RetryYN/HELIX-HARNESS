@@ -1,0 +1,229 @@
+{
+  "record_id": "H009-F02A-FUNCTION-PAIR-FREEZE-2026-10-28",
+  "record_kind": "function_pair_l5_l8_freeze_record",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-H009-T1D1-3547-20261028-62",
+  "slice_id": "D-H009-T1d-1",
+  "resolves_disposition_ref": "DISP1#/dispositions/15 (D16)",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447511779",
+  "source_main": "62ee78a053537ff03768eb3ad4cda419e94c2916",
+  "request_base_sha": "a812dc2f369258cc803f71c882e16f5b36f52dbd",
+  "recorded_at_utc": "2026-10-27T23:28:30+00:00",
+  "target": "HARNESS-L2-009 対42 前半（HARNESS-L3-009-F02 ↔ HARNESS-L10-009-F02：適用候補のexact set）における公開関数 compare_candidate_universe（L5#/functions/2）の関数単位L5/L8対凍結（1行）、および既存 proposal material 3副節（proposal_material_formation_detail・proposal_native_record_material_detail・original_operation_proposal_provider_detail）の未行使分岐U-ID単体probe追補とprivate detail契約対照（3行）。general_proposal_exchange（D-H009-T1d-2）や全体完了・総合凍結とは呼ばない。",
+  "criterion": "上位L3/L10（HARNESS-L3-009-F02 ↔ HARNESS-L10-009-F02）および基本設計L4/L9（HARNESS-L4-009-F02 ↔ HARNESS-L9-009-F02）から独立に導出した期待（DT-VT-105）とL3義務要素分解（O1〜O6）に対し、公開関数 compare_candidate_universe と対のL8 case行（原負例6件＋ADD-09,10＋正常oracle）が1対1に一致し、既存proposal material 3副節の未行使論理分岐にもコンパクトなU-ID単体probeが備わり（全返却・fixture・hash・COPY追加なし、#3510）、DISP-1 D16（A）が解消していること。",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json",
+    "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+    "T1A": "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json",
+    "T1B": "docs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json",
+    "T1C": "docs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json"
+  },
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8",
+    "L9_sha256": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498",
+    "L5_pre_sha256": "15fc0f31a6ab032c4cb649477c18b8ca2f42ecd8176310ff78fec46848b6383c",
+    "L5_post_sha256": "31cecaa63b51937f950223bb5de38fc27c338069edcf8af3b26ebc15f95b67a6",
+    "L8_pre_sha256": "77697112e77585c357483a6ac7a014206bcbdc7225abf15b1259c1efa38baec3",
+    "L8_post_sha256": "4f39bf2919fb2fed9336f9050ba49675f86212074ebd653e08c1b4afccace049",
+    "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b",
+    "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb",
+    "T1A_sha256": "d907f76095e0bc061b9997c53442125b35e5f8403154651dc756d16fb2a2f072",
+    "T1B_sha256": "91592b0a2f2e8653a884dad8dde79c3f56241e92ff29e8fdecec7d7780806b5c",
+    "T1C_sha256": "d1d8a02455d7280946cf3d3226c849914d8c2e18e9bfb1be93c71f1da845e62b"
+  },
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {"asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md", "lines": "36-60, 81-92", "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"},
+      {"asset_id": "LEGACY-ASSET-18F7940E7994634D39A1", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md", "lines": "54-58", "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"},
+      {"asset_id": "UTW-014/020/021", "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md", "lines": "80, 86, 87", "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"}
+    ],
+    "preserve": "適用条件と入力axisの比較による検討対象exact set、各要素の適用/不適用/未解決理由、比較境界、要求/製品scope、知識/適用契約版の結合、およびcandidate/proposed setとOS selected/used setの非混同を保持。",
+    "change": "#3510 / #3547 統制決定および #3759 R1-m1 / #3763 R1-m1 の教訓に基づき、L3 HARNESS-L3-009-F02 の義務文を6要素（O1〜O6）へ分解して compare_candidate_universe のL5 algorithm・L8 normal oracleへ全要素を明記し、proposal_material_formation / proposal_native_record_material の未行使分岐へL8 U-ID単体probe 5件（全返却・fixture・hash・COPYなし）を追補した上で、公開関数1行とprivate detail 3行を分離記録して DISP-1 D16 を解消した。",
+    "failure_refs": ["Issue #3510: L8検証層への全文返却・巨大fixture・hash・COPY追加による肥大化", "Issue #3547 / PR #3759 R1-m1: L3義務文の要素分解不足による下流契約の文言漏れ", "Issue #3547 / PR #3763 R1-m1: L5#/functions外のprivate detailを公開関数凍結と混同することの防止"]
+  },
+  "independent_expectation_derivation": {
+    "requirement_id": "HARNESS-L3-009-F02",
+    "l3_pointer": "L3F#/requirements/24",
+    "l10_pointer": "L10F#/cases/24",
+    "l4_pointers": ["L4#/contracts/3", "L4#/contracts/3/proposal_material_formation", "L4#/contracts/3/proposal_native_record_material", "L4#/contracts/3/original_operation_proposal_provider"],
+    "l9_pointers": ["L9#/cases/3", "L9#/cases/3/proposal_material_formation_cases", "L9#/cases/3/proposal_native_record_material_cases", "L9#/cases/3/original_operation_proposal_provider_oracles"],
+    "l3_obligation_decomposition": [
+      {"element_id": "O1", "l3_clause": "適用条件と入力axisを比較し、検討対象のexact setを結果候補へ結ぶ（件数一致だけでは合格にならず、duplicate identityや異member混入を検出し、有資格empty母集合と母集合missingを区別する）", "l5_pointers": ["L5#/contracts/3/behavior", "L5#/functions/2/algorithm/0", "L5#/functions/2/algorithm/1", "L5#/functions/2/algorithm/2", "L5#/failure_rules/54", "L5#/failure_rules/55", "L5#/failure_rules/59"], "l8_pointers": ["L8#/normal_function_oracles/2", "L8#/cases/3/negative_cases/0", "L8#/cases/3/negative_cases/1", "L8#/cases/3/negative_cases/5", "L8#/additional_unit_cases/8", "L8#/additional_unit_cases/9"]},
+      {"element_id": "O2", "l3_clause": "各要素の適用/不適用/未解決理由（required/conditional/N/A 4属性/unresolved/unformed）を結果候補へ結ぶ", "l5_pointers": ["L5#/functions/2/algorithm/1", "L5#/proposal_material_formation_detail/guards", "L5#/proposal_material_formation_detail/formation_and_failure_semantics", "L5#/proposal_native_record_material_detail/coverage_branch_table"], "l8_pointers": ["L8#/normal_function_oracles/2", "L8#/proposal_material_formation_native_oracle/case_order_and_names", "L8#/proposal_native_record_material_verification/case_discriminators_ja"]},
+      {"element_id": "O3", "l3_clause": "比較境界（母集合の未供給・未評価境界・空集合境界・source配列被覆境界）を結果候補へ結ぶ", "l5_pointers": ["L5#/functions/2/algorithm/0", "L5#/failure_rules/55", "L5#/proposal_native_record_material_detail/coverage_branch_table/5", "L5#/proposal_native_record_material_detail/coverage_branch_table/6"], "l8_pointers": ["L8#/cases/3/negative_cases/1", "L8#/additional_unit_cases/8", "L8#/proposal_native_record_material_verification/case_discriminators_ja/3", "L8#/proposal_native_record_material_verification/case_discriminators_ja/5"]},
+      {"element_id": "O4", "l3_clause": "要求/製品scopeを結果候補へ結び、別製品scopeの混入（foreign_product_in_set）をconflict（backflow_owner=core_owner）として分離する", "l5_pointers": ["L5#/functions/2/algorithm/0", "L5#/functions/2/algorithm/1", "L5#/failure_rules/57"], "l8_pointers": ["L8#/normal_function_oracles/2", "L8#/cases/3/negative_cases/3"]},
+      {"element_id": "O5", "l3_clause": "知識/適用契約版（template/policy/knowledge revision）を結果候補へ結び、当該binding外のrevision混入（foreign_revision_in_set）やpolicy_ref revision不一致をconflictとして分離する", "l5_pointers": ["L5#/functions/2/algorithm/0", "L5#/functions/2/algorithm/1", "L5#/failure_rules/56", "L5#/proposal_material_formation_detail/guards/policy_ref"], "l8_pointers": ["L8#/normal_function_oracles/2", "L8#/cases/3/negative_cases/2", "L8#/proposal_material_formation_native_oracle/case_order_and_names/5"]},
+      {"element_id": "O6", "l3_clause": "candidate/proposed setとOSが登録するselected/used setを混同しない（proposed_as_usedをconflict、backflow_owner=os_ownerとして拒否し、proposal材料形成・providerでもOS登録/使用成立を生成しない）", "l5_pointers": ["L5#/functions/2/algorithm/1", "L5#/failure_rules/58", "L5#/proposal_material_formation_detail/authority_and_operation_boundary_ja", "L5#/proposal_native_record_material_detail/authority_and_operation_boundary_ja", "L5#/original_operation_proposal_provider_detail/owner_and_effect"], "l8_pointers": ["L8#/normal_function_oracles/2", "L8#/cases/3/negative_cases/4", "L8#/proposal_material_formation_native_oracle/preservation_and_limits_ja/nonclaims", "L8#/proposal_native_record_material_verification/nonclaims_ja", "L8#/original_operation_proposal_provider_verification/expected_component_checks"]}
+    ],
+    "key_name_mapping_across_layers": {
+      "L9_and_L8_negative_case_keys": {"expected_classification": "L5#/failure_rules/54/code", "expected_axis": "L5#/failure_rules/54/expected_axis", "expected_state": "L5#/failure_rules/54/expected_state", "backflow_owner": "L5#/failure_rules/54/backflow_owner", "change": "L5#/failure_rules/54/condition", "expected": "L5#/failure_rules/54/expected", "expected_preserved": "L5#/failure_rules/54/expected_preserved", "rule_ref": "L5#/failure_rules/54/id", "function_ref": "L5#/functions/2/id"},
+      "matched_negative_case_count": 6
+    }
+  },
+  "function_freeze_rows": [
+    {
+      "coverage_index": 42,
+      "parent": "HARNESS-L2-009",
+      "entry_kind": "public_function",
+      "frozen_scope": "public_function_compare_candidate_universe",
+      "l3_obligation": "L3F#/requirements/24 (HARNESS-L3-009-F02)",
+      "l10_oracle": "L10F#/cases/24 (HARNESS-L10-009-F02)",
+      "l4_contract": "L4#/contracts/3 (HARNESS-L4-009-F02)",
+      "l9_case": "L9#/cases/3 (HARNESS-L9-009-F02)",
+      "function": {
+        "id": "HARNESS-L5-009-compare_candidate_universe",
+        "symbol": "compare_candidate_universe",
+        "l5_contract_pointer": "L5#/contracts/3",
+        "l5_pointer": "L5#/functions/2",
+        "input_type": "CompareCandidateUniverseContext",
+        "output_type": "Comparison",
+        "effect": "none",
+        "failure_rule_pointers": ["L5#/failure_rules/54", "L5#/failure_rules/55", "L5#/failure_rules/56", "L5#/failure_rules/57", "L5#/failure_rules/58", "L5#/failure_rules/59"],
+        "unit_case_refs_pointer": "L5#/functions/2/unit_case_refs",
+        "oracle_ref_pointer": "L5#/functions/2/oracle_ref"
+      },
+      "paired_l8_cases": {
+        "normal_oracle_pointer": "L8#/normal_function_oracles/2 (HARNESS-L8-009-NORMAL-compare_candidate_universe)",
+        "negative_case_pointers": ["L8#/cases/3/negative_cases/0 (HARNESS-L8-009-F02-NEG-01: duplicate_template_identity, axis=candidate_set, state=conflict, owner=core_owner)", "L8#/cases/3/negative_cases/1 (HARNESS-L8-009-F02-NEG-02: universe_missing, axis=candidate_universe, state=missing, owner=core_owner)", "L8#/cases/3/negative_cases/2 (HARNESS-L8-009-F02-NEG-03: foreign_revision_in_set, axis=candidate_set, state=conflict, owner=core_owner)", "L8#/cases/3/negative_cases/3 (HARNESS-L8-009-F02-NEG-04: foreign_product_in_set, axis=candidate_set, state=conflict, owner=core_owner)", "L8#/cases/3/negative_cases/4 (HARNESS-L8-009-F02-NEG-05: proposed_as_used, axis=used_set_claim, state=conflict, owner=os_owner)", "L8#/cases/3/negative_cases/5 (HARNESS-L8-009-F02-NEG-06: same_count_wrong_member, axis=candidate_set_equivalence, state=conflict, owner=oracle_owner)"],
+        "additional_unit_case_pointers": ["L8#/additional_unit_cases/8 (HARNESS-L8-009-ADD-09: explicit-empty-with-boundary)", "L8#/additional_unit_cases/9 (HARNESS-L8-009-ADD-10: missing-extra-equal-count)"]
+      },
+      "obligation_and_oracle_summary": "O1〜O6の全てを公開関数 compare_candidate_universe 単位で充足：L5#/functions/2/unit_case_refs 全8件（F02-NEG-01..06＋ADD-09,10）と oracle_ref（HARNESS-L8-009-NORMAL-compare_candidate_universe）は他関数のcaseを一切混在させず1対1に解決され、6負例の code/axis/state/backflow_owner/change/expected/expected_preserved は L9・L8・L5 failure_rules/54..59 で完全一致する。なお L5#/contracts/3/function_refs に併記される共通入口 validate_application_input（L5#/functions/0）は D-H009-T1a（T1A#/function_freeze_rows/0）で凍結済みであり、共通集約 build_application_analysis（L5#/functions/10）および compare_candidate_universe_detail は D-H009-T3b（DISP2#/dispositions/18 D19）で凍結する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {"resolved_A_in_this_slice": "DISP1#/dispositions/15（D16）のうち公開関数 compare_candidate_universe のL3義務要素対照（O1〜O6）とL5/L8関数別pair凍結を完了。", "deferred_A_to_subsequent_slices": "全体組立関数 build_application_analysis（L5#/functions/10）および compare_candidate_universe_detail（L5#/f05_detail_contract）は D-H009-T3b（DISP2#/dispositions/18 D19：owner=HARNESS-CORE、reentry=L5#/functions/10）で凍結する。", "C_downstream_and_other_owner": "DISP1#/dispositions/1,2,9（D02/D03/D10）の通り、独立reviewはreview側、L6/L7実装・Red/Green・CIは下流層、OS002/053のselected/used登録はOS ownerへ戻す。"},
+      "freeze_status": "frozen",
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 42,
+      "parent": "HARNESS-L2-009",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_proposal_material_formation_contract_only",
+      "l3_obligation": "L3F#/requirements/24 (HARNESS-L3-009-F02)",
+      "l10_oracle": "L10F#/cases/24 (HARNESS-L10-009-F02)",
+      "l4_contract": "L4#/contracts/3/proposal_material_formation",
+      "l9_case": "L9#/cases/3/proposal_material_formation_cases",
+      "private_detail": {
+        "id": "HARNESS-L5-009-proposal_material_formation_detail",
+        "planned_private_symbols": ["build_proposal_material_detail", "form_proposal_material_detail", "read_proposal_native_material"],
+        "visibility": "private_detail_not_in_L5_functions",
+        "l5_contract_pointer": "L5#/proposal_material_formation_detail",
+        "entry_points_pointer": "L5#/proposal_material_formation_detail/entry_points",
+        "guards_pointer": "L5#/proposal_material_formation_detail/guards",
+        "semantics_pointer": "L5#/proposal_material_formation_detail/formation_and_failure_semantics",
+        "input_type": "CallerInputs (wrapper) / ProposalActualCallerCapture (former)",
+        "output_type": "CoreProposalDetailedReturn",
+        "effect": "none",
+        "failure_rule_pointers": []
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-proposal_material_formation_native_oracle",
+        "l8_pointer": "L8#/proposal_material_formation_native_oracle",
+        "case_pointers": [
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/0 (required_raw_condition_absent)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/1 (raw_condition_null)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/2 (decisions_absent)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/3 (decisions_null)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/4 (decisions_typeoutside)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/5 (policy_ref_revision_mismatch)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/6 (same_template_multiple_policy)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/7 (conditional_unfinished)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/8 (na_missing_reason)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/9 (unresolved_with_valid_sibling)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/10 (existing_allskip_unavailable)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/11 (na_missing_decider_target_revision_reentry)",
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names/12 (policy_index_and_row_shape_invalid)"
+        ]
+      },
+      "obligation_and_oracle_summary": "O2・O5・O6のprivate候補材料形成範囲を充足：既存11 case（0..10）に加え、本sliceで追補した index 11（na_missing_decider_target_revision_reentry）と index 12（policy_index_and_row_shape_invalid）により L5#/proposal_material_formation_detail/guards の全7 guard（producer_unavailable / decision_collection / policy_index / policy_ref / multiple_policy / na_attribute全4属性 / row_shape）がL8 U-ID行と1対1に対応する。本節はL5#/functions外のprivate detailのため公開関数凍結と区別し private_proposal_material_formation_contract_only として記録する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {"resolved_A_in_this_slice": "DISP1#/dispositions/15（D16）が求めていた proposal_material_formation_detail の未行使分岐U-ID単体probe追補（case_order_and_names/11,12）とprivate detail契約対照を完了。", "unspecified_public_caller_and_binding_slices": "本private wrapper/former（build_proposal_material_detail / form_proposal_material_detail）は下流private wrapper build_native_proposal_record_detail（Row 2）および attempt_original_operation_proposal_provider（Row 3）から順次呼ばれ、OS向け提案交換の一般分岐は次slice D-H009-T1d-2（DISP1#/dispositions/16 D17：owner=HARNESS-CORE、reentry=L5#/general_proposal_exchange_detail）、内部caller build_application_analysis_detail と公開関数 build_application_analysis（L5#/functions/10）の結合は D-H009-T3b（DISP2#/dispositions/18 D19：owner=HARNESS-CORE、reentry=L5#/functions/10）で扱う。", "C_downstream_and_other_owner": "DISP1#/dispositions/9（D10）の通り、実wrapper/producer実行、未供給の複数policy合成意味、OS002/053受領、下流L6/L7実行検証は上流知識owner・OS002/053・下流L6/L7へ戻す。"},
+      "freeze_status": "private_detail_contract_paired_exchange_in_T1d2_caller_in_T3b",
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 42,
+      "parent": "HARNESS-L2-009",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_proposal_native_record_material_contract_only",
+      "l3_obligation": "L3F#/requirements/24 (HARNESS-L3-009-F02)",
+      "l10_oracle": "L10F#/cases/24 (HARNESS-L10-009-F02)",
+      "l4_contract": "L4#/contracts/3/proposal_native_record_material",
+      "l9_case": "L9#/cases/3/proposal_native_record_material_cases",
+      "private_detail": {
+        "id": "HARNESS-L5-009-proposal_native_record_material_detail",
+        "planned_private_symbols": ["build_native_proposal_record_detail", "form_native_proposal_record_detail"],
+        "visibility": "private_detail_not_in_L5_functions",
+        "l5_contract_pointer": "L5#/proposal_native_record_material_detail",
+        "entry_points_pointer": "L5#/proposal_native_record_material_detail/entry_points",
+        "coverage_branch_table_pointer": "L5#/proposal_native_record_material_detail/coverage_branch_table",
+        "input_type": "CallerInputs (wrapper) / CoreProposalDetailedReturn (former)",
+        "output_type": "NativeProposalRecordDetailedReturn",
+        "effect": "none",
+        "failure_rule_pointers": []
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-proposal_native_record_material_verification",
+        "l8_pointer": "L8#/proposal_native_record_material_verification",
+        "case_pointers": ["L8#/proposal_native_record_material_verification/case_discriminators_ja/0 (required_raw_condition_absent)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/1 (unresolved_with_valid_sibling)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/2 (existing_allskip_unavailable)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/3 (missing_result_preserves_known_sibling)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/4 (na_exclusion_and_unformed_residual_partition)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/5 (source_empty_and_unavailable_shape)", "L8#/proposal_native_record_material_verification/case_discriminators_ja/6 (member_index_duplicate_out_of_range_and_read_mismatch)"]
+      },
+      "obligation_and_oracle_summary": "O1・O2・O3・O6のprivate提案record材料範囲を充足：L9固定4 caseに対応する case_discriminators_ja/0..3 に加え、本sliceで追補した case_discriminators_ja/4..6（na_exclusion_and_unformed_residual_partition / source_empty_and_unavailable_shape / member_index_duplicate_out_of_range_and_read_mismatch）により、L5#/proposal_native_record_material_detail/coverage_branch_table 全18分岐（0..17）すべてがL8 U-ID行と1対1に対応する（unexercised=0件）。本節もL5#/functions外のprivate detailとして記録する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {"resolved_A_in_this_slice": "DISP1#/dispositions/15（D16）が求めていた proposal_native_record_material_detail の coverage_branch_table 全18分岐に対するU-ID単体probe追補（case_discriminators_ja/4..6）とprivate detail契約対照を完了。", "unspecified_public_caller_and_binding_slices": "本private wrapper/former（build_native_proposal_record_detail / form_native_proposal_record_detail）は attempt_original_operation_proposal_provider（Row 3、L5#/original_operation_proposal_provider_detail/entry_points/native_callee）から呼ばれ、一般提案交換15基本branch・8 familyは次slice D-H009-T1d-2（DISP1#/dispositions/16 D17：owner=HARNESS-CORE、reentry=L5#/general_proposal_exchange_detail）で扱う。", "C_downstream_and_other_owner": "DISP1#/dispositions/9（D10）の通り、typed input外のmember_index欠落/型外は入口codec境界へ、実wrapper/producer実行・OS002/053接続・下流L6/L7実行検証は各owner・下流層へ戻す。"},
+      "freeze_status": "private_detail_contract_paired_exchange_in_T1d2",
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 42,
+      "parent": "HARNESS-L2-009",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_original_operation_proposal_provider_contract_only",
+      "l3_obligation": "L3F#/requirements/24 (HARNESS-L3-009-F02)",
+      "l10_oracle": "L10F#/cases/24 (HARNESS-L10-009-F02)",
+      "l4_contract": "L4#/contracts/3/original_operation_proposal_provider",
+      "l9_case": "L9#/cases/3/original_operation_proposal_provider_oracles",
+      "private_detail": {
+        "id": "HARNESS-L5-009-F02-OPP-TOTAL",
+        "planned_private_symbols": ["attempt_original_operation_proposal_provider", "read_provider_source_body", "qualify_provider_source_attempts", "read_provider_operation_role", "form_provider_attempt_native_view"],
+        "visibility": "private_detail_not_in_L5_functions",
+        "l5_contract_pointer": "L5#/original_operation_proposal_provider_detail",
+        "entry_points_pointer": "L5#/original_operation_proposal_provider_detail/entry_points",
+        "stage_contracts_pointer": "L5#/original_operation_proposal_provider_detail/stage_contracts",
+        "input_type": "RawProviderRequest",
+        "output_type": "CoreF02ProviderAttempt",
+        "effect": "none",
+        "failure_rule_pointers": []
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-F02-original_operation_proposal_provider_verification",
+        "l8_pointer": "L8#/original_operation_proposal_provider_verification",
+        "component_check_pointers": [
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/0 (duplicate_prefix_native0_whole_case)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/1 (existing_provider_wholes_retained_without_projection: 3 cases)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/2 (source_body_materialization: 5 literals / 8 occurrences)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/3 (binding_array_domain_native_oracle)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/4 (published_three_total_attempt_whole_cases: HARNESS-L9-009-F02-OPP-01..03)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/5 (front_eight_total_attempt_failure_cases: 8 cases)",
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks/6 (binding_array_total_attempt_case: TYPED_BINDING_ARRAY_DOMAIN_FAILURE_NATIVE1_PROPOSAL_UNAVAILABLE)"
+        ]
+      },
+      "obligation_and_oracle_summary": "O1〜O6の原operation source total attempt範囲（S0_capture〜S5_native_view）を充足：L9のpublished 3 whole（OPP-01..03）、front 8失敗case、binding[] domain失敗1 case、duplicate_prefix_native0_whole_caseに対し、L8 expected_component_checks/0..6 が1対1に対応し、operation source未parse/未資格/相反/role不成立でのnative0停止と無関係source失敗時のnative1保持を漏れなく検証する。本節もL5#/functions外のprivate detailとして記録する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {"resolved_A_in_this_slice": "DISP1#/dispositions/15（D16）が求めていた original_operation_proposal_provider_detail（3 whole＋8 front＋1 binding[]＋1 duplicate prefix）の独立期待照合とprivate detail契約対照を完了。", "unspecified_public_caller_and_binding_slices": "一般提案交換15基本branch・8 familyの残branch追補とOS向けbody形成writer（f02_step_writer）は次slice D-H009-T1d-2（DISP1#/dispositions/16 D17：owner=HARNESS-CORE、reentry=L5#/general_proposal_exchange_detail・L8#/general_proposal_exchange_verification）で扱い、OS002側の受領検証は D-OS002-T1c（owner=HELIX-OS OS002、reentry=docs/helix-os/L5-detail-design/project-template-trace.json#/core_proposal_receiving_detail）で扱う。", "C_downstream_and_other_owner": "DISP1#/dispositions/9,11（D10/D12）の通り、実provider/wrapper実行、外側codec型外・任意host例外、OS002/053実受領・selected/used登録、CONNECT配送、下流L6/L7実装・Red/Greenは各owner・下流層へ戻す。"},
+      "freeze_status": "private_detail_contract_paired_exchange_in_T1d2",
+      "execution_state_at_freeze": "not_executed"
+    }
+  ],
+  "head_entity_counts": {"L5_contracts": 11, "L5_functions": 13, "L5_failure_rules": 107, "L8_cases": 11, "L8_negative_cases_total": 106, "L8_normal_function_oracles": 12, "L8_additional_unit_cases": 24, "L8_proposal_formation_cases": 13, "L8_proposal_native_record_cases": 7, "L8_opp_component_checks": 7},
+  "verification": {"all_pointers_resolved": true, "f02_negative_cases_matched_L9_L8_L5": 6, "proposal_formation_guards_covered": 7, "proposal_native_record_coverage_branches_covered": 18, "opp_component_checks_covered": 7, "t1d1_blocking_a_count": 0, "l8_full_return_or_fixture_or_hash_added": false, "scfctl_stale_count": 0},
+  "not_claimed": ["92親430対の総合凍結やHARNESS-L2-009全11組（T:39..49）の全体完了ではない。", "T:42後半（general_proposal_exchange_detail / D-H009-T1d-2、DISP-1 D17）およびT:43..49（D-H009-T2a〜T3b）の関数別pair凍結ではない。", "proposal_material 3副節のprivate symbolを公開関数（L5#/functions）として凍結したものではなく、private detail契約対照として記録し後続slice（D-H009-T1d-2 / D-H009-T3b）と下流L6/L7へ結線を引き渡す。", "下流L6/L7の作成・実装・Red/Green実行・OS002/053実接続・PO L11 Acceptedではない。"]
+}

@@ -1595,9 +1595,9 @@
         "HARNESS-L5-009-F02"
       ],
       "algorithm": [
-        "母集合の境界/source/版/scopeを先に照合。nullはmissing、未評価境界はunknownで返しempty成功にしない。",
-        "qualified同scopeのmemberを各条件へ解決し、duplicate/別版/別製品を個別に返す。candidate materialからOS used集合を生成しない。",
-        "同意味期待memberとのmissing/extraはqualified根拠から比較し件数一致では同等にしない。衝突しない有効memberを保存。"
+        "適用条件と入力axisおよび母集合の比較境界/source/知識・適用契約版/要求・製品scopeを先に照合。nullはmissing、未評価境界はunknownで返しempty成功にしない（有資格理由付きempty母集合はmissingと区別して保存）。",
+        "qualified同scopeのmemberを各適用条件へ解決し、各要素の適用/不適用/未解決理由、比較境界、要求/製品scope、知識/適用契約版を検討対象のexact set候補へ結び、duplicate identity/別revision/別製品scopeを個別に返す。candidate/proposed setとOSが登録するselected/used setを混同しない。",
+        "同意味期待memberとのmissing/extraはqualified根拠から比較し件数一致だけでは同等にしない。衝突しない有効memberを保存。"
       ],
       "effect": "none",
       "failure_rules": [
@@ -4587,7 +4587,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01：公開2関数 compare_required_axes・project_cross_design_candidate_refs の関数別pair凍結＋selected_source_occurrence_array_builder_detail のprivate builder契約対照・D15解消）はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）で記録済み。残るT:42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1d-1〜T1d-2）、T:43–49のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡す。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各owner（C）へ戻し、候補記載から生成しない。",
+    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01：公開2関数 compare_required_axes・project_cross_design_candidate_refs の関数別pair凍結＋selected_source_occurrence_array_builder_detail のprivate builder契約対照・D15解消）はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）、T:42前半（F02：公開関数 compare_candidate_universe の関数別pair凍結＋proposal_material 3副節のprivate detail契約対照・D16解消）はdocs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json（D-H009-T1d-1）で記録済み。残るT:42後半（general_proposal_exchange）のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1d-2）、T:43–49のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡す。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各owner（C）へ戻し、候補記載から生成しない。",
     "source_result_reference_projection": {
       "state": "logical_pure_design_only",
       "function_ref": "HARNESS-L5-009-project_source_result_references",
@@ -4596,7 +4596,7 @@
     }
   },
   "remaining": [
-    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み（B）。T:39（B01）の2関数はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02）のcompare_semantic_equivalenceはdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01）の公開2関数（compare_required_axes・project_cross_design_candidate_refs）の関数別pair凍結およびselected_source_occurrence_array_builder_detailのprivate builder契約対照はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）で記録済み。残るT:42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（D-H009-T1d-1〜T1d-2）、T:43–49のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（D-H009-T2a〜T3b）へ別記し、独立reviewは作成／review側（C）へ戻す。",
+    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み（B）。T:39（B01）の2関数はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02）のcompare_semantic_equivalenceはdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）、T:41（F01）の公開2関数（compare_required_axes・project_cross_design_candidate_refs）の関数別pair凍結およびselected_source_occurrence_array_builder_detailのprivate builder契約対照はdocs/governance/audits/tdd/h009-f01-function-pair-freeze-2026-10-28.json（D-H009-T1c）、T:42前半（F02）の公開関数compare_candidate_universeの関数別pair凍結およびproposal_material 3副節のprivate detail契約対照はdocs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json（D-H009-T1d-1）で記録済み。残るT:42後半のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（D-H009-T1d-2）、T:43–49のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（D-H009-T2a〜T3b）へ別記し、独立reviewは作成／review側（C）へ戻す。",
     "正式wire schema/operator/registry/instance digest/言語依存/入力資格resolverの採用・稼働と実seed採用知識の最終照合は、下流L6関数設計/L7対検証・runtime codecおよび知識/資格owner（BRAIN030/032・SECURITY・OS002/053）の担当へ戻す。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・release等は既存authorityへ戻す。",
     "failure_rules 107件（原L9負例106件＋HARNESS-L5-009-R-condition_meaning_unresolved 1件）との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
@@ -20285,9 +20285,9 @@
       "identity_locator_digest": "identity比較とsource_locator/digest保存を区別する。ref全6 memberの原供給状況を維持する。"
     },
     "bounded_unexercised_cases_ja": [
-      "L9の固定4caseに合わせ、N/A四属性欠落の代表反例としてreason欠落の単体oracleを記載済み。四属性すべての必須検査規則はguards/formation_and_failure_semanticsに定義済みであり、他三属性の個別欠落・詳細pair凍結の扱いはD-H009-T1d-1へ渡す。",
-      "boolean/負値/out-of-range policy index・source row型外の論理拒否規則は本節に定義済み。任意host object型・全Cause種別と全組合せの網羅実行は下流L6/L7へ戻す。",
-      "N/A属性のnull/型外を新N/Aへ丸めない保持規則は本詳細で固定済み。未供給の複数policy合成意味、実producer資格、実caller実行は上流知識/適用契約ownerと下流runtimeへ戻す。"
+      "L9の固定4caseに合わせN/A四属性欠落の代表反例（na_missing_reason）を記載し、残る三属性（decider/target_revision/reentry_condition）個別欠落もL8 case_order_and_names/11（na_missing_decider_target_revision_reentry）のU-ID単体probeとして追補し、D-H009-T1d-1（docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json）でprivate detail契約対照を凍結済み（B）。",
+      "boolean/負値/out-of-range policy index・source row型外の論理拒否規則は本節およびL8 case_order_and_names/12（policy_index_and_row_shape_invalid）のU-ID単体probeで対照・凍結済み（B）。任意host object型・全Cause種別と全組合せの網羅実行は下流L6/L7（C）へ戻す。",
+      "N/A属性のnull/型外を新N/Aへ丸めない保持規則は本詳細で固定済み（B）。未供給の複数policy合成意味、実producer資格、実caller実行は上流知識/適用契約ownerと下流runtime（C）へ戻す。"
     ],
     "nonclaims_ja": [
       "実製品実装、実producer資格、実caller実行、runtime Red/Green、OSRef4、三集合、配送、record、権限昇格、受入、Releaseは成立を主張しない。",
@@ -20991,13 +20991,13 @@
         "id": "na_exclusion",
         "condition": "observed result.membership.tag=candidate and kind=na_exclusion_candidate",
         "partition": "na_exclusion_entriesへ1件。N/A原判断/4属性を再判定又は補完せず、原result全値はcapture/locatorへ保持。",
-        "oracle": "unexercised"
+        "oracle": "na_exclusion_and_unformed_residual_partition（case_discriminators_ja/4、およびgeneral_proposal_exchange F03-valid-NA-only）"
       },
       {
         "id": "residual",
         "condition": "observed result.membership.tag=unresolved|unformed",
         "partition": "residual_entriesへ1件。元membership全値/causesとmember_read保持。",
-        "oracle": "unresolved_with_valid_sibling（unresolvedを行使。unformed variantはこの4ケースで未行使）"
+        "oracle": "unresolved_with_valid_sibling（unresolved） / na_exclusion_and_unformed_residual_partition（unformed、case_discriminators_ja/4）"
       },
       {
         "id": "observed_source_array_known",
@@ -21010,14 +21010,14 @@
         "condition": "observed proposalだが元F02 comparison材料又はcandidate_member_refsの取得/array shapeが不成立 (Absent/null/非array/unreached)",
         "coverage": "unavailable_shape; source_material_location=/proposal/considered_read; result_indicesは全原result positions。元Readと実producer観測を補完しない。",
         "membership_completion": "residual_for_captured_members (candidate兄弟は保持)",
-        "oracle": "unexercised"
+        "oracle": "source_empty_and_unavailable_shape（case_discriminators_ja/5）"
       },
       {
         "id": "source_empty_and_result_empty",
         "condition": "known candidate_member_refs=[] and template_results=[]",
         "coverage": "enumerated; member_coverage/unmatched/unreadable=[]; covered_as_captured",
         "membership_completion": "resolved_for_captured_members (source exactness/OS提案set完成は認定しない)",
-        "oracle": "unexercised"
+        "oracle": "source_empty_and_unavailable_shape（case_discriminators_ja/5、およびgeneral_proposal_exchange F02-qualified-empty）"
       },
       {
         "id": "source_member_no_result",
@@ -21030,13 +21030,13 @@
         "id": "source_member_duplicate_results",
         "condition": "same kを主張するresultが2件以上",
         "coverage": "全result indicesを原順保持、row.correspondence=unreadable。先頭/最後を選ばず、entry分割は全occurrence保持。",
-        "oracle": "unexercised"
+        "oracle": "member_index_duplicate_out_of_range_and_read_mismatch（case_discriminators_ja/6）"
       },
       {
         "id": "one_result_read_unavailable",
         "condition": "resultがちょうど1件でmember_read.tag=absent|unreached",
         "coverage": "row.correspondence=unreadable; 原Read wholeはcapture/entryに保存",
-        "oracle": "unexercised"
+        "oracle": "member_index_duplicate_out_of_range_and_read_mismatch（case_discriminators_ja/6）"
       },
       {
         "id": "one_result_known_equal",
@@ -21048,13 +21048,13 @@
         "id": "one_result_known_mismatch",
         "condition": "same one-result present-read branchで既存typed_core_json_equal=false",
         "coverage": "different; 値差をunreadableへ丸めず、原両値保持。",
-        "oracle": "unexercised"
+        "oracle": "member_index_duplicate_out_of_range_and_read_mismatch（case_discriminators_ja/6）"
       },
       {
         "id": "result_out_of_range",
         "condition": "typed Natural result.member_index >= len(known source array)",
         "coverage": "当該resultの原result_indexをunmatched_result_indicesへ原順保存。source []にnonempty resultsなら全件unmatched。",
-        "oracle": "unexercised"
+        "oracle": "member_index_duplicate_out_of_range_and_read_mismatch（case_discriminators_ja/6）"
       },
       {
         "id": "enumeration_complete",
@@ -21078,7 +21078,7 @@
         "id": "membership_residual_or_coverage_unavailable",
         "condition": "observed proposal AND (residual_entries非空 OR coverage incomplete/unavailable_shape)",
         "membership_completion": "residual_for_captured_members",
-        "oracle": "second and fourth; unavailable_shape unexercised"
+        "oracle": "second and fourth; source_empty_and_unavailable_shape（case_discriminators_ja/5）"
       },
       {
         "id": "source_exactness_always_independent",
@@ -21132,10 +21132,10 @@
       "typed_input_failure": "既存closed ProposalTemplateResultに従う。member_indexはNatural必須であり、欠落/型外は今回のsignature内にない。",
       "local_failure_behavior": "欠損/未観測/形不成立を[]・knownempty・N/Aへ潰さず、原Read/captureを保持する。valid siblingを他occurrenceのresidualで消さない。",
       "bounded_unexercised": [
-        "valid N/A exclusion及びknown-empty source arrayは本詳細の17分岐表（coverage_branch_table）で規則定義済みであり、F02全体の有限caseとしては後続general_proposal_exchange（F02-qualified-empty / F03-valid-NA-only）で対検証を持つ（T1d-1/T1d-2で照合）。",
-        "duplicate/out-of-range result member_index、member_read absent/unreached/known mismatch、source material unavailable_shapeの論理分岐はcoverage_branch_tableに定義済み（L9固定4caseとの対照と関数別凍結はD-H009-T1d-1へ渡す）。",
-        "typed inputの欠落/型外indexは既存入口codec境界（signature外）へ戻し、本関数へ新raw gateを作らない。",
-        "実producer資格、OS002/053実接続、実wrapper実行は他ownerと下流L6/L7へ戻す。"
+        "valid N/A exclusion・unformed residual及びknown-empty source array・unavailable_shapeは本詳細の18分岐表（coverage_branch_table）とL8 case_discriminators_ja/4,5（na_exclusion_and_unformed_residual_partition / source_empty_and_unavailable_shape）およびgeneral_proposal_exchange（F02-qualified-empty / F03-valid-NA-only）で対照・凍結済み（B、D-H009-T1d-1：docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json）。",
+        "duplicate/out-of-range result member_index、member_read absent/unreached/known mismatchの論理分岐もcoverage_branch_tableとL8 case_discriminators_ja/6（member_index_duplicate_out_of_range_and_read_mismatch）で対照・private detail契約凍結済み（B、D-H009-T1d-1）。",
+        "typed inputの欠落/型外indexは既存入口codec境界（signature外、C）へ戻し、本関数へ新raw gateを作らない。",
+        "実producer資格、OS002/053実接続、実wrapper実行は他ownerと下流L6/L7（C）へ戻す。"
       ],
       "nonclaims": [
         "製品実装、L8実行、CI/Green、実producer/資格、OS Ref4/project scope、OS053 port binding、OS002 receipt、selected/used集合、配送、identity、永続化、受入、Releaseを主張しない。"
@@ -22113,7 +22113,7 @@
       "source_first": "独立期待は固定Git sourceと標準JSONPointer/Patchで著述する。既存3provider whole、binding[] native全期待、成功5body及び前段反例の凍結は各対oracleで別途照合し、設計candidate評価結果から期待を逆生成しない。",
       "preserved_old_values": "旧codec六entry、CoreDecodeResult、旧RawProviderRequest/ProviderReturn/CallerInputs/OriginRoot/Read/native wrapper/旧3wholeは変更しない。",
       "unclosed": [
-        "既存3 published whole、前段8失敗case、binding[] domain失敗1caseの論理規則と対L8/L9参照は記載済み（関数別照合・凍結はD-H009-T1d-1）。全relation重複・未観測locator・複合資格flags・NA/residual一般形からOS bodyを形成する詳細writerは後続general_proposal_exchange_detail（D-H009-T1d-2）で扱う。",
+        "既存3 published whole、前段8失敗case、binding[] domain失敗1case、duplicate_prefix_native0_whole_caseの論理規則と対L8/L9参照はD-H009-T1d-1（docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json）でprivate detail契約対照として照合・凍結済み（B）。全relation重複・未観測locator・複合資格flags・NA/residual一般形からOS bodyを形成する詳細writerは後続general_proposal_exchange_detail（D-H009-T1d-2）で扱う。",
         "same_decode_successの実decode whole取得対応、外側codec型外及び任意host例外の総実行契約は入口codecおよび下流L6/L7の境界へ戻す。",
         "元母集合exactnessの実運用保証、source identity/persist、OS proposed受理/selected/used登録、CONNECT/実資格/実runtime/CI/受入はOS002/053・CONNECT・下流L6/L7・既存authorityへ戻す。",
         "本追補はHARNESS-L3-009-F02/F03の候補設計であり、Issue全体や実装完了へ読み替えない。"
