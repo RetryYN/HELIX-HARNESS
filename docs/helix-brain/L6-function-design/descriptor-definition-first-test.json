@@ -956,7 +956,8 @@
     "test_and_fixture_paths": [
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_unresolved_ref.py",
-      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/descriptor_claim_input_fixtures.py"
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/descriptor_claim_input_fixtures.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material_boundaries.py"
     ],
     "out_of_scope": [
       "read_descriptor_replacement_targetの完成・公開",

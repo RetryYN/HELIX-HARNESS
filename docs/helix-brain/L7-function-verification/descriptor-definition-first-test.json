@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "5fca1a5f1a42049a7d9155b336ba230f996db7191e96317d2926ab153c65f695",
+    "sha256": "277627c01dd4ad8787758a193cab31b853a42bb0fdae48abbc1a8dbc4604e210",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2047,7 +2047,8 @@
     "authority_effect": "none",
     "test_source": [
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material.py",
-      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_unresolved_ref.py"
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_unresolved_ref.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_owner_material_boundaries.py"
     ],
     "independent_expectations": [
       "positive入力でBinding.knowledge_refに対応するKnowledgeRecord index、provenance occurrence index/Ref、既存RefEqで対応する全物理source indicesを原順に確認する。全physical sourceは原順・全値を一度ずつ保持し、usableはrole=semantic_jsonと既存FN0 _source_usableの両方が成立するものに限る。",
@@ -2099,7 +2100,10 @@
       "TestDescriptorOwnerMaterial.test_provenance_repetition_and_optional_ref_members_are_preserved",
       "TestDescriptorOwnerMaterial.test_unqualified_and_nonsemantic_physical_sources_are_retained",
       "TestDescriptorOwnerMaterial.test_missing_knowledge_record_keeps_raw_sources_and_local_boundary",
-      "TestDescriptorOwnerUnresolvedRef.test_null_identity_source_is_retained_but_not_usable"
+      "TestDescriptorOwnerUnresolvedRef.test_null_identity_source_is_retained_but_not_usable",
+      "TestDescriptorOwnerMaterialBoundaries.test_missing_claim_knowledge_ref_uses_binding_locator",
+      "TestDescriptorOwnerMaterialBoundaries.test_ambiguous_matching_records_keep_every_record_index",
+      "TestDescriptorOwnerMaterialBoundaries.test_unjoined_and_empty_provenance_use_their_original_locators"
     ],
     "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
     "source_revision": "4d42b854eafd6fb44b08c220c5374898f572d02b",
@@ -2114,9 +2118,46 @@
       "source_files": 1,
       "source_added": 96,
       "source_removed": 0,
-      "test_and_fixture_files": 3,
-      "test_and_fixture_added": 342,
+      "test_and_fixture_files": 4,
+      "test_and_fixture_added": 457,
       "test_removed": 0
+    },
+    "R1_locator_boundary_verification": {
+      "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3741#issuecomment-6449393723",
+      "finding": "R1-m1: 実装のowner_source_unresolved locator分岐に独立testが不足。sourceの正当性と原材料保持はR1-i1で確認された。",
+      "test_revision": "f6ff6dfe70de13d1cd51818e2d46c8837984d12a",
+      "independent_basis": "L4 /dependency_semantic_ports/descriptor_target_contract/problem_locator/owner_source_unresolvedから、knowledge_ref不足/曖昧record/原provenance不足/資格不足の原locatorを導く。record曖昧は全原index、原provenanceは未joinの要素locatorと空/非配列の親locatorを保持する。",
+      "real_FN0": "新3methods/5conditionsは全て実FN0を通した。非配列provenanceもinput保持・input_issues=[]を実測し、ValidatedSupplyを合成しない。raw/V/Claimと全physical source原値を保持する。",
+      "source_change": "なし。descriptor_target_reader.py SHA-256=732b191a3fcb2113b96eb26a691f7c0cf9f5c5345d706d1c40a43d375d7e5da0。",
+      "evidence": [
+        {
+          "artifact": "root-wr33-g1a-r1-locator-green.json",
+          "sha256": "08135ddfdecabded20d5d5f0f5a150e42b92f01344e789e41bb9f4040f194dde",
+          "status": 0,
+          "duration_ms": 134,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "新3methods PASS、134ms。"
+        },
+        {
+          "artifact": "root-wr33-g1a-r1-locator-mutation.json",
+          "sha256": "cf64efa0e7cb3b938e78d49779e40b515efdc89efd99617b477fc67abf51f954",
+          "status": 0,
+          "duration_ms": 439,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "一時modern-source overlayの4独立変異を全てassertionでKILLED、439ms。各needle1件、import/setup error0、trackedsource hash前後同一。"
+        },
+        {
+          "artifact": "root-wr33-g1a-r1-unit-green.json",
+          "sha256": "b6178b9feef97c259a0bda2df127bd351563d0b628637bd30dfa4a3fc4ae46ad",
+          "status": 0,
+          "duration_ms": 21810,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "既存6methodsと新3methodsを含む現行unit312methods PASS、21810ms。"
+        }
+      ]
     }
   }
 }
