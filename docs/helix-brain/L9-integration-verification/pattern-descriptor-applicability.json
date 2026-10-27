@@ -12,35 +12,43 @@
   "source_pins": [
     {
       "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
     },
     {
       "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
     },
     {
       "path": "docs/helix-brain/L1-planning/brain-intent.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
     },
     {
       "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
     },
     {
       "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
     }
   ],
   "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
@@ -404,7 +412,11 @@
     "formal_schema_or_actual_execution": false
   },
   "removed_materials": {
-    "purpose": "実装前にL9へ書き込まれていたindependent_source_packet・expected_material・hash固定を撤去し、obligation/case ID・観点・境界を残す（#3510 Stage 3）。",
-    "recovery_revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+    "git_commit": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
+    "path": "docs/helix-brain/L9-integration-verification/pattern-descriptor-applicability.json",
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（independent_source_packet、expected_material、hash等）をallowlist方式で撤去した。残したのはverification_obligations（connection_scope、approved_l10、execution_state、effectを含む）とconcrete_casesのcase行・観点（basis）・oracle ID・state/effect・remaining・境界文・source_pins等の参照。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
+    "removed_key_rule": "allowlist（L9_COMMON_TOP_ALLOWLIST / L9_OBLIGATION_ALLOWLIST / L9_CONCRETE_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
 }

@@ -9,67 +9,99 @@
   "source_pins": [
     {
       "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 48699,
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
     },
     {
       "path": "docs/helix-brain/L3-requirements/business-requirements.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 28431,
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
     },
     {
       "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 55987,
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
     },
     {
       "path": "docs/helix-brain/L10-verification/business-verification.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 31508,
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
     },
     {
       "path": "docs/helix-brain/L4-basic-design/pattern-comparison.json",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 13282,
+      "sha256": "c1bea8ac416b4239abf0e7d1a42fc3f4d82663da406e307cfadaed6ed359fc01"
     },
     {
       "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 194199,
+      "sha256": "ea0091daf804437a5ba8e02e97e25d05e82d2bb8e2f4a5e26efa005a4908c6cf"
     },
     {
       "path": "docs/helix-brain/L5-detail-design/pattern-descriptor-applicability.json",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 48861,
+      "sha256": "2143942945cb018bd39198e220aca1c6516a6b0aa48bdb0f57b0fd6078ca6c92"
     },
     {
       "path": "docs/helix-brain/L8-unit-verification/pattern-descriptor-applicability.json",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 293831,
+      "sha256": "926361648445964587bbd475593a9bd51222bef3f72e89f7cd18a6b71965cca5"
     },
     {
       "path": "docs/helix-brain/L1-planning/brain-intent.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 13336,
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 78839,
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "bytes": 27596,
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
     },
     {
       "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 5490,
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
     },
     {
       "path": "docs/governance/decisions/helix-brain-requirements-po-decision-2026-09-28.md",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 11307,
+      "sha256": "fe6f8aa065cbb7a305d7e93aee81b9d954eb97cb09da845cdd7e5c935d73745a"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 6104,
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
     },
     {
       "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 18373797,
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
-      "revision": "a90b30f590ef380aead53088c9beed3fa043d488"
+      "revision": "a90b30f590ef380aead53088c9beed3fa043d488",
+      "bytes": 4857919,
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     }
   ],
   "case_scope": {
@@ -1048,25 +1080,12 @@
       "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
     }
   ],
-  "candidate_l9_materialization_binding": {
-    "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
-    "recipe_pointer": "/materialization_contract",
-    "raw_file_binding_pointer": "/candidate_l9_owner_return_binding/file_sha256",
-    "logical_binding_pointers": [
-      "/candidate_l9_owner_return_binding/object_canonical_sha256",
-      "/owner_return_symbolic_cases/*/l9_symbolic_condition_canonical_sha256"
-    ],
-    "order_ja": [
-      "先にraw_file_binding_pointerの現行L9 raw SHA-256を照合する。fixed source_pins/過去凍結snapshotは書き換えない。",
-      "同じraw candidateのrecipe_pointerにある14個の標準RFC6902 copyをfixture構築時に原順で適用し、conditions1〜7のmapping2項目をcondition0から復元する。condition8・native_call・個別入力source・独立expectedは変更しない。",
-      "上記logical_binding_pointersの既存canonical hashは展開後の同じowner_return subtree/各conditionに対する凍結値である。全9conditionの元hashを維持し、物理placeholderのhashで代用しない。",
-      "展開後の全値と原順を元のL8 frozen_symbolic_expected/既存typed入力・照合へ渡す。recipe自体を製品引数にせず、新しい実行時resolverやauthorityを作らない。"
-    ],
-    "boundary_ja": "L8の現行L9 metadata/論理fixture構築の接続説明。F01の別bindingと歴史pinを保持し、実reader・製品実行・全consumer閉包の成立は含まない。",
-    "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-  },
   "removed_materials": {
-    "purpose": "実装前にL8へ書き込まれていたtyped_arguments・expected_return・symbolic_assertions・frozen_symbolic_expected・raw_utf8・hash固定を撤去し、case ID・観点・契約対応・境界を残す（#3510 Stage 3）。",
-    "recovery_revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+    "git_commit": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
+    "path": "docs/helix-brain/L8-unit-verification/pattern-comparison.json",
+    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（typed_arguments、expected_return、source_binding内のraw_utf8/packet_ref、independent_whole_oracle_basisのexpected_delta、symbolic_assertions、frozen_symbolic_expected、invocation_observations_input、supplemental_source_freeze、candidate_l9_materialization_binding、approved_whole_hashes、hash等）をallowlist方式で撤去した。残したのはcase行・観点（independent_whole_oracle_basisのindependence / authoring_copy_rule / scope）・source_bindingのL9 case参照・symbolic caseの対応参照・state/effect・境界文・source_pins等の参照。撤去したL9 expected_material / expected_projectionを指すpointer objectには撤去前revision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を付与した。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
+    "removed_key_rule": "allowlist（L8_004_TOP_ALLOWLIST / L8_004_CASE_ALLOWLIST / L8_004_SOURCE_BINDING_ALLOWLIST / L8_004_SYMBOLIC_CASE_ALLOWLIST / L8_004_F01_SYMBOLIC_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
   }
 }

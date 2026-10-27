@@ -12,43 +12,53 @@
   "source_pins": [
     {
       "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
     },
     {
       "path": "docs/helix-brain/L3-requirements/business-requirements.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
     },
     {
       "path": "docs/helix-brain/L10-verification/business-verification.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
     },
     {
       "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
     },
     {
       "path": "docs/helix-brain/L1-planning/brain-intent.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
     },
     {
       "path": "docs/helix-brain/sources/brain-l1-idea-po-original-2026-09-26.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "d2b9f970fe40253c865b1ae52b1b0657da6f9668611c1b17e54723b69b6101e0"
     },
     {
       "path": "docs/governance/decisions/helix-brain-core-return-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "b10dc01f72e3e83e894a2391dda9b47374672a36b587319b0218ca1b826a3e6e"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d"
+      "revision": "d5afd6f36eb4341573aedaeaf242fc0a06bd330d",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
     }
   ],
   "source_pin_limit": "bytes固定は全文精読/全意味被覆ではない。",
@@ -540,6 +550,7 @@
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-owner-return-symbolic-prefreeze-at-969b33b30/symbolic-freeze.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
+                "sha256": "4221a49f6f561df70f9e0fde734e62cb20c2640ff98569b293c36b19c1dbf440",
                 "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
@@ -674,6 +685,7 @@
               "source_condition_authoring_freeze": {
                 "path": "scaffold/review-handoff/local/brain004-f02-parent-observation-S09-prefreeze/S09.input.json",
                 "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
+                "sha256": "f0166ab423d32557e9aec0d1c2cf16a6c46b223dd2889bce73cc05d548bf8040",
                 "authority_effect": "著述時の条件source freezeを示す。埋込み値を保持し、local pathは著述来歴として扱う。"
               }
             },
@@ -682,6 +694,7 @@
             "fixed_native_return_basis": {
               "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
               "revision": "969b33b30d846e6ba36e6cc5c6d07fa19e22d9e4",
+              "file_sha256": "ea0091daf804437a5ba8e02e97e25d05e82d2bb8e2f4a5e26efa005a4908c6cf",
               "pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
               "role": "S09のnative_returnはbase 969の既存L9 expected_materialを参照する。凍結expected内のnative_return.source_file_sha256は著述来歴として保持し、current pinにしない。"
             }
@@ -799,103 +812,12 @@
     "synthetic_only": true,
     "formal_schema_or_actual_execution": false
   },
-  "materialization_contract": {
-    "kind": "local_materialization_recipe",
-    "authority_effect": "none",
-    "note": "conditions 1-7のmapping_basis(904B)とpaired_symbolic_expected/wrapper_return_field_mapping(790B)をcondition0 anchorから標準RFC6902 copyで復元する提案。condition8は異値のため除外。null placeholderをcopyで置換しfixture構築の全値hash照合の前に適用。typed引数渡し・遅延resolverではない",
-    "restoration_order": "copy適用→既存fixture構築の全値pointer/hash照合",
-    "consumer_connections": "condition個別のnative_call/input_original_sources/独立expected/conditionIDは原値・原順のまま。recipeをtyped引数へ渡さない",
-    "source_condition_authoring_freeze": "local pathは著述来歴として保持し公開取得可能な証拠と偽らない",
-    "operations": [
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/1/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/1/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/2/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/2/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/3/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/3/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/4/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/4/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/5/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/5/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/6/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/6/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/mapping_basis",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/7/mapping_basis",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      },
-      {
-        "op": "copy",
-        "from": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/0/paired_symbolic_expected/wrapper_return_field_mapping",
-        "path": "/verification_obligations/1/owner_return_symbolic_oracles/conditions/7/paired_symbolic_expected/wrapper_return_field_mapping",
-        "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-      }
-    ],
-    "revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
-  },
   "removed_materials": {
-    "purpose": "実装前にL9へ書き込まれていたindependent_source_packet・expected_material・input_construction・expected_projection・paired/frozen_symbolic_expected・hash固定を撤去し、obligation/case ID・観点・境界を残す（#3510 Stage 3）。",
-    "recovery_revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+    "git_commit": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
+    "path": "docs/helix-brain/L9-integration-verification/pattern-comparison.json",
+    "meaning": "V字右側（L9、L4との照合）に実装前に書き込まれていた照合の実行材料（independent_source_packet、expected_material、owner_return_symbolic_conditionsのinput_construction/expected_projection、owner_return_symbolic_oraclesのinput_original_sources/paired_symbolic_expected/frozen_symbolic_expected/invocation_observations_input/supplemental_source_freeze/supplemental_source_freezes/retained_source_value_gloss_ja、materialization_contractのRFC6902 copy手順、hash等）をallowlist方式で撤去した。残したのはverification_obligations（connection_scope、approved_l10、execution_state、effect、owner_return_symbolic_*のcondition ID・basis・limitsを含む）とconcrete_casesのcase行・観点（basis）・oracle ID・state/effect・remaining・境界文・source_pins等の参照。撤去したexpected_material / independent_source_packetを指すnative_callには撤去前revision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を付与した。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
+    "removed_key_rule": "allowlist（L9_COMMON_TOP_ALLOWLIST / L9_OBLIGATION_ALLOWLIST / L9_CONCRETE_CASE_ALLOWLIST / L9_004_SYMBOLIC_CONDITIONS_TOP_ALLOWLIST / L9_004_SYMBOLIC_ORACLES_TOP_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。実装後のL9照合結果は、対象caseごとに結果と証拠参照で追記する。"
   }
 }

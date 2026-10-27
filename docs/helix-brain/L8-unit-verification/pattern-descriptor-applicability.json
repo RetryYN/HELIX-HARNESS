@@ -8,83 +8,103 @@
   "source_pins": [
     {
       "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
     },
     {
       "path": "docs/helix-brain/L10-verification/functional-verification.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
     },
     {
       "path": "docs/helix-brain/L1-planning/brain-intent.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "2674b2e1a770a038b2d53a93ca635a0cbbfca42af463a562f22e1c51d5ebb5f0"
     },
     {
       "path": "docs/helix-brain/L2-requirements/brain-requirements.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "ef41de572d35912a0345dad2960a3ae7015ca5434d67247503785b9f65e8346c"
     },
     {
       "path": "docs/helix-brain/L11-acceptance/brain-acceptance.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "b48433e20139daa2f6cd7da7bac1b35e1634fd802d68ada87a93a7d3d7b44c87"
     },
     {
       "path": "docs/concept/helix-concept.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715"
     },
     {
       "path": "docs/concept/helix-principles.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "5b3d1d42b38a6e09d5c4da45760036e5234f5a316b3a02e7c48fb88a48a4c441"
     },
     {
       "path": "docs/governance/decisions/helix-brain-pattern-connection-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1f3475dd13bac30f47a8921ff44fdcb90bbb024ab0a1fff7ba3e436971aefb33"
     },
     {
       "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b"
     },
     {
       "path": "docs/helix-brain/L4-basic-design/pattern-descriptor-applicability.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "00afec5b061dad0002076a7d3048d8f7aa1a90b6a482659f45a7cde68633ba45"
     },
     {
       "path": "docs/helix-brain/L9-integration-verification/pattern-descriptor-applicability.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "de6a391889255eadbf8ce7d45b4ffe2a53483aba780767aa7b74bc0737e54b94"
     },
     {
       "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d"
     },
     {
       "path": "docs/governance/legacy-asset-disposition.jsonl",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "cd73ac407937ad86c6be2c0b27d70863b1873fe39c2d6c0f89620e648dccad8c"
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
     },
     {
       "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392"
     },
     {
       "path": "docs/governance/requirements-first-roadmap.md",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1e82221b76f875fc2bea4addd3a2d6c5a820308de7de6ba081cebe1de9a6b1aa"
     },
     {
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
-      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a"
+      "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a"
     }
   ],
   "approval_binding": {
@@ -695,21 +715,25 @@
     {
       "path": "docs/governance/audits/limited-v12-design-gap-audit-2026-10-15.json",
       "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "91aecb27169582e5ced3cefb6bf2eace0a6b1fe7066da4695be6314f3cb8640d",
       "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
     },
     {
       "path": "docs/governance/audits/requirements-stage/legacy-regression-brain-labo-intelligence-sources-2026-09-28.json",
       "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "1f454d0dcb7e96fc5d3c2c8ae3ed237429bc4b12f8b2459958b626ba4a34abbe",
       "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
     },
     {
       "path": "docs/governance/audits/failure-requirement-crosswalk-2026-10-09.md",
       "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "eaf6468393b3c8565f05b53e38d22172ce2cc64ae114c1583b6da34be50b3392",
       "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
     },
     {
       "path": "docs/governance/audits/prerequisite-l3-l10-definition-audit-2026-10-12.json",
       "revision": "d46c33804ca9641436e14948677bf0fc9188a72a",
+      "sha256": "6ae8be6b586679e5ea9a79b80e95679bf9473ea37a89bb2dc028133e79b0396a",
       "use": "批准record/admission・旧失敗/consumerまたは92親430対の原資料照合。配置/形式一致を全体意味閉包や実装Readyにしない。"
     }
   ],
@@ -720,7 +744,11 @@
     "source bindingの片側だけの差、各11項目のsource単独差は局所problem共変例で網羅したとはしない。"
   ],
   "removed_materials": {
-    "purpose": "実装前にL8へ書き込まれていたtyped_input・expected_result・expected_l5_result・source_packet_ref・hash固定を撤去し、case ID・観点・契約対応・境界を残す（#3510 Stage 3）。",
-    "recovery_revision": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0"
+    "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+    "git_commit": "dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0",
+    "path": "docs/helix-brain/L8-unit-verification/pattern-descriptor-applicability.json",
+    "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（typed_input、expected_result、expected_l5_result、source_packet_ref、derived_local_probesのchanges_only/expected_selected_fields、approved_object_hashes、hash等）をallowlist方式で撤去した。残したのはcase行・観点（expected_basis / expected_l5_result_basis / purpose / retains / whole_expected_basis）・source_pointer・contracts・state/effect・境界文・source_pins・audit_basis等の参照。撤去したL9 independent_source_packetを指すpointer objectには撤去前revision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を付与した。過去本文はrevision dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0の同pathで辿る。",
+    "removed_key_rule": "allowlist（L8_003_TOP_ALLOWLIST / L8_003_TYPED_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
+    "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
   }
 }
