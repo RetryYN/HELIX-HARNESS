@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "277627c01dd4ad8787758a193cab31b853a42bb0fdae48abbc1a8dbc4604e210",
+    "sha256": "5d82e84c9aa4e317c7a4ddc78ac5caf91faad5393e5e17cb4a48d76bdcf897b8",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2106,7 +2106,7 @@
       "TestDescriptorOwnerMaterialBoundaries.test_unjoined_and_empty_provenance_use_their_original_locators"
     ],
     "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
-    "source_revision": "4d42b854eafd6fb44b08c220c5374898f572d02b",
+    "source_revision": "bc23f88133aad737f82a9bbf4488cb2ce731e99b",
     "implementation_revisions": [
       "0e6d1f0211f5842b984838dba58aa35493bc796c",
       "396b04cc1966cdffc95317c0ac7b091fa3d52a28",
@@ -2156,6 +2156,15 @@
           "reaped": true,
           "output_truncated": false,
           "interpretation": "既存6methodsと新3methodsを含む現行unit312methods PASS、21810ms。"
+        },
+        {
+          "artifact": "root-wr33-g1a-r1-latest-main-unit-green.json",
+          "sha256": "9eb5ee4712bfe3d77c4e1576fa7115aa552e4a844d001b6169fee6c74e6d7bf0",
+          "status": 0,
+          "duration_ms": 22446,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "最新main bdc831196（他unit PR3740）統合HEADbc23f88133で現行unit312methods PASS、22446ms。G1a source本体はR1から不変。"
         }
       ]
     }
