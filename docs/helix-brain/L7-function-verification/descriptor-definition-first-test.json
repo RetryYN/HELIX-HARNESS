@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "690a49a7282d8e1df1789820019d95986e9d4438e9b870c6c7ad16d68c1f513c",
+    "sha256": "1bd90fd874cdf66f4387056b8b2e188d0cf3e19cd683bca73baa4c86f5c5b81b",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3432,6 +3432,301 @@
       "checks": 65,
       "result": "PASS",
       "scope": "source指定2hunk以外byte一致、全module非空行700未満、承認16項目・L4L5pins/pointers一致、既存L6L7値保持・pairhash、新3files凍結、旧test指定1method以外AST不変、旧FAIL事前L7commitを確認。"
+    }
+  },
+  "fn7_claim_boundaries_verification": {
+    "id": "HELIXBRAIN-L7-032-FN7-CLAIM",
+    "design_ref": "HELIXBRAIN-L6-032-FN7-CLAIM",
+    "source_revision": "b506dd032b5b9c6a0a822f61b8e41789dab977cf",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_context_shape.py",
+    "expectation_basis": [
+      "L5 /type_contract/types/ClaimContext",
+      "L5 /type_contract/types/ValidatedSupply",
+      "L4 /claim_boundary_projection_contract/same_call",
+      "WR13:経路外/未行使の分岐は分岐ID付きNotImplementedError"
+    ],
+    "bootstrap": {
+      "revision": "48e5eb110",
+      "description": "L5既存公開署名のlazy facadeとFN7/unimplemented宣言だけをtest commitへ置き、import/attribute errorではなく分岐IDの未実装を観測。意味処理・success fallbackなし。"
+    },
+    "red": {
+      "evidence": "root-fn7-context-red.json",
+      "result": "3methods、10subtestの停止ID期待が宣言stub IDと違ってFAIL。49ms/reaped=true/output_truncated=false、import/attribute error0。",
+      "boundary": "Context分類の期待不一致であり、16rule predicateのsemantic Redではない。"
+    },
+    "green": {
+      "revision": "db7a724b7c7507653a5fbad0c2055a2decd2658c",
+      "evidence": "root-fn7-context-green.json",
+      "result": "3methods/10条件PASS、41ms/reaped/nontruncated。",
+      "observations": [
+        "非object/missing/extraのContextをclaim_context_shapeで停止。",
+        "ValidatedSupply非object/missing/extra/input_issues非array/unusable_source_refs非arrayをvalidated_supply_shapeで停止。",
+        "scalar input又はdecode-null domainをvalidated_input_unclosedで停止。",
+        "渡した不正Context原値を不変比較。"
+      ],
+      "fixture_nature": "6つのComparison placeholder Noneは不正protocolのshape isolationだけ。実fn0出力/実producer/正規ClaimContextではない。nullはfn0のdecode不能で表れる値だが、この試験のContext全体は正規成功ContextではなくFN7 domain未閉包として扱う。"
+    },
+    "unit": {
+      "evidence": "root-fn7-context-unit.json",
+      "result": "295件全PASS、21273ms/reaped=true/output_truncated=false/timed_out=false。既存292件を含む。"
+    },
+    "prerequisite_evidence": {
+      "file": "root-fn7-prerequisite-probes.json",
+      "driver": "root-fn7-prerequisite-probe.py",
+      "result": "bounded202ms/reaped/nontruncated。normal claims0はfn4 formed_context、L7 typed fill1はfn4 walk supplied_claim_ports、dependencies absentはfn6 dependencies_container_shape。いずれも実前段だけを使いraw/v.input不変。",
+      "static_conflicts": "L4 fn7 finite_domain.dependencies absentと現fn6 dependencies object要求が交差しない。現fn5 candidate-emptyもdependencies供給を枝外とする。これは新schema/gateでなく現在の部分実装domainの相反。"
+    },
+    "unclosed_current": [
+      "rule93肯定producerとFN7 tuple/Findingは未開放。現FN1/FN7 fact shapeのdomain非交差と先行停止によりAの実経路からrule93_positive_unimplementedは未行使。r2_reachabilityに実測を記録する。",
+      "非fill B01/F07/N02既存16rule projectionと必要な前段producer domainはB別WR。",
+      "非空typed meaning operationの意味decode、D27歴史的rawの全consumer受入は未実装。pure rawguard分類をその成功証拠にしない。",
+      "L8 normal/全case受入、OS登録、Issue3547/3510、WR13全体の完了は認定しない。"
+    ],
+    "L8_boundary": "function_oracles/7はclaims=[]の文章観測で全Comparisonではない。B01/F07/N02/ADD20はnot_executedのmutation計画。期待や意味を入替えずwhole/prose/test doubleを答えへ転用しない。",
+    "completion_boundary": "Aの有限writerを局所検証した。独立review・Ready・明示merge・root read-afterはこれから。A完了をWR13全体完了とせず、Bと後続WR28の意味上の順序を保持する。",
+    "execution_state": "finite_writer_local_green_independent_review_pending",
+    "authority_effect": "none",
+    "main_integration": {
+      "base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
+      "merge_commit": "7d19fa7018d55465887fb3c9c5dab83016f1ae0d",
+      "scope": "別unitのL8/L9文書7件のみ。対象unit source/testsおよびtemplate-semantic-supply L8は295件検証revisionと同値。"
+    },
+    "finite_writer_verification": {
+      "current_revision": "b506dd032b5b9c6a0a822f61b8e41789dab977cf",
+      "context_integration": {
+        "revision": "305139d914d8145cfffe388650a71764e463ea5c",
+        "evidence": "root-fn7-post-wr33-merged-unit.json",
+        "result": "WR33の8統合後unit 388件PASS、23132ms、reaped/nontruncated。",
+        "interpretation": "G2a/G2b/G3などFN7前段を含む統合contextの証拠。FN7有限writerのGreenではない。"
+      },
+      "actual_context_probes": [
+        {
+          "artifact": "root-fn7-finite-claim-input-probe-R2.json",
+          "duration_ms": 143,
+          "result": "FN0 input_issues=0/unusable_source_refs=0。実FN1..FN6の六Comparisonから7-member contextを形成し、raw/ValidatedSupply/context不変。FN7はformed_context stop。",
+          "boundary": "descriptors=[]、15 required kinds維持、元source owner declarationとempty operation carrier。これはfinite context到達証拠であり、FN7成功ではない。"
+        },
+        {
+          "artifact": "root-fn7-finite-route-probe-R3.json",
+          "duration_ms": 167,
+          "result": "none/resolved、unresolved/conflict、rule87/resolved の3 routeを実FN0..FN6と同call walk/usesで観測。各FN7 callはformed_context stop。",
+          "boundary": "rule87はFN6 finding一件。各probeはraw/ValidatedSupply/context不変。"
+        }
+      ],
+      "raw_fixture_probe": {
+        "artifact": "root-fn7-rawguard-fixture-probe.json",
+        "duration_ms": 162,
+        "result": "root/source/operation-body のliteral/null 6 variantすべてFN0-cleanでraw保持。",
+        "boundary": "raw guard 入力shape確認のみ。非空meaning producerやFN7 context成功の証拠ではない。"
+      },
+      "test_first_evidence": [
+        {
+          "frozen_revision": "dd6907c69",
+          "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundaries_finite.py",
+          "evidence": "root-fn7-finite-routes-red.json",
+          "result": "3 methods が formed_context NotImplementedErrorでRed、214ms、reaped/nontruncated。",
+          "interpretation": "実contextと各routeの意味Red。import/setup失敗ではない。",
+          "fixture_helper_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/claim_boundary_input_fixtures.py"
+        },
+        {
+          "frozen_revision": "b70442df0aed06e988b5843d93ad6340ce7d6a0b",
+          "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_finite_domain.py",
+          "evidence": "root-fn7-finite-rawguard-red.json",
+          "result": "3 methods: 2 NotImplementedError、1 stop-ID assertion mismatch。97ms、reaped/nontruncated、import/setup error 0。",
+          "interpretation": "L4 literal/raw finite-domain guardの実装前Red。Claim route writerのGreenとは別。"
+        },
+        {
+          "frozen_revision": "64ba21869",
+          "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_comparison_context.py",
+          "evidence": "root-fn7-context-committed-red.json",
+          "result": "固定b704 source overlayで3methods/48停止ID assertion FAIL、504ms/import_setup0。外側status0は期待Red確認成功で製品Greenではない。",
+          "scope": "実Contextの1memberだけを壊す否定protocolで、正規Comparison成功とは呼ばない。"
+        },
+        {
+          "frozen_revision": "14ddd5d9a",
+          "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_finite_presences.py",
+          "evidence": "root-fn7-presences-committed-red.json",
+          "result": "固定b704 source overlayで3methods/10停止ID assertion FAIL+4固有NotImpl、389ms/import_setup0。外側status0は期待Red確認成功。",
+          "scope": "L5 Slot metadata presence・各Claim住所宣言・L4 closed typed Operationのpure rawguard分類。"
+        }
+      ],
+      "source_scope": {
+        "state": "R1レビュー後の追加凍結テストを含む16methods Green・全401unit Green・定数3変異と空claims拒否変異KILLEDを観測。",
+        "revision": "b506dd032b5b9c6a0a822f61b8e41789dab977cf",
+        "sha256": "760b68334c779f1866738cc050778b3a0ad0073d5dbee981e5bf45b3e0d005d4",
+        "physical_lines": 413,
+        "nonblank_lines": 368,
+        "extra_source_lines_reason": "L4 closed typed Operation/Arguments/Decision/NormativeFrameと原presenceの構造検査を明示し、当初見積り350を19非空行超えた。新moduleへの行数逃がしはない。"
+      },
+      "verification_sequence": [
+        "凍結public route3methodsのRed→pure guard宣言+3methodsのRed→Context否定3methodsとpresence3methodsの固定実装前source overlay Redを記録。",
+        "候補1はrootReadで仕様差分を発見し、実行/commit前に却下。修正source04e481f2cで全凍結15methods Greenを確認。",
+        "全unit400PASSとL4契約定数の3緩和変異KILLEDを別記録。既存main testsと既存他producer sourceは不変。",
+        "R1独立reviewはfindings（6454466410）。R2の独立review・Ready・明示merge・root read-afterはこれから。L6/L7 pairhashを最終bytesで更新し静的照合する。",
+        "R1所見を受け、canonical detail名と未使用importを修正。第7凍結fileの空claims検査を追加し、対象16・全401 Greenと4変異KILLEDを再確認。R1の結果はR1_verification_historyへ保持。"
+      ],
+      "focused_green": {
+        "artifact": "root-fn7-a-focused-green-R2.json",
+        "methods": 16,
+        "duration_ms": 1210,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      "full_unit_green": {
+        "artifact": "root-fn7-a-unit-green-R2.json",
+        "methods": 401,
+        "duration_ms": 24958,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      "literal_mutations": {
+        "artifact": "root-fn7-literal-mutation-R2.json",
+        "outer_duration_ms": 306,
+        "mutants": [
+          {
+            "kind": "identity prefix/suffix緩和",
+            "result": "KILLED",
+            "duration_ms": 84
+          },
+          {
+            "kind": "片memberのみ照合",
+            "result": "KILLED",
+            "duration_ms": 78
+          },
+          {
+            "kind": "key集合を無視",
+            "result": "KILLED",
+            "duration_ms": 101
+          }
+        ],
+        "assertion_failures_only": true,
+        "import_setup_errors": 0,
+        "tracked_source_and_test_unchanged": true,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "latest_main_integration": {
+        "artifact": "root-fn7-a-latest-main-integration.json",
+        "main": "7ebc6b60593a582c0d9cbd2e7f39e8027a62db3a",
+        "unit_and_all_BRAIN_doc_trees_unchanged": true
+      },
+      "root_static_acceptance": {
+        "artifact": "root-fn7-a-static-acceptance-R2.json",
+        "checks": 25,
+        "result": "PASS",
+        "scope": "他L6/L7 node保持、pairhash、承認6項目/pins、7凍結files、他旧tests/source不変、facadeAST、L5 canonical detail symbol、閉4field frame、walk1/use1、他producer再呼出し0、source最大646非空行。"
+      },
+      "R1_verification_history": {
+        "current_revision": "04e481f2c382af5289b0eaf3b537ad898d31d7f0",
+        "source_scope": {
+          "state": "rootRead修正後のsourceで凍結15methods Green・全400unit Green・3必須変異KILLEDを観測。",
+          "revision": "04e481f2c382af5289b0eaf3b537ad898d31d7f0",
+          "sha256": "9ad099bb3dd75a82e17b509f001e893fa377806a494fdec687477f8aef600d00",
+          "physical_lines": 414,
+          "nonblank_lines": 369,
+          "extra_source_lines_reason": "L4 closed typed Operation/Arguments/Decision/NormativeFrameと原presenceの構造検査を明示し、当初見積り350を19非空行超えた。新moduleへの行数逃がしはない。"
+        },
+        "focused_green": {
+          "artifact": "root-fn7-a-focused-green-R1.json",
+          "methods": 15,
+          "duration_ms": 1091,
+          "result": "PASS",
+          "reaped": true,
+          "output_truncated": false
+        },
+        "full_unit_green": {
+          "artifact": "root-fn7-a-unit-green-R1.json",
+          "methods": 400,
+          "duration_ms": 24162,
+          "result": "PASS",
+          "reaped": true,
+          "output_truncated": false
+        },
+        "literal_mutations": {
+          "artifact": "root-fn7-literal-mutation.json",
+          "outer_duration_ms": 290,
+          "mutants": [
+            {
+              "kind": "identity prefix/suffix緩和",
+              "result": "KILLED",
+              "duration_ms": 72
+            },
+            {
+              "kind": "片memberのみ照合",
+              "result": "KILLED",
+              "duration_ms": 75
+            },
+            {
+              "kind": "key集合を無視",
+              "result": "KILLED",
+              "duration_ms": 78
+            }
+          ],
+          "assertion_failures_only": true,
+          "import_setup_errors": 0,
+          "tracked_source_and_test_unchanged": true,
+          "reaped": true,
+          "output_truncated": false
+        },
+        "root_static_acceptance": {
+          "artifact": "root-fn7-a-static-acceptance-current.json",
+          "checks": 24,
+          "result": "PASS",
+          "scope": "他のL6/L7 node値保持、pairhash、承認6項目/pin、frozen6files、全既存main tests不変、非FN7 source不変、facadeAST、閉4field frame、walk1/usebuilder1、他producer再呼出し0、source最大646非空行。"
+        }
+      },
+      "r2_empty_claims": {
+        "review_comment": 6454466410,
+        "test_revision": "f41c35b0e97c6487e89ca5d17d58bf31565f8e26",
+        "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_empty_claims.py",
+        "expectation_basis": "L4 /claim_boundary_projection_contract/unclosed_projection_boundaries/other_domain",
+        "exact_message": "FN7/unclosed/finite_domain; Backflow HELIXBRAIN-L6-032-FN7-CLAIM",
+        "actual_context": "FN0-cleanのclaims=[]原入力から実FN1-FN6/walk/usesを形成。FN7停止後のraw/validated/六Comparison/context/walk/uses不変を検査。",
+        "mutation_artifact": "root-fn7-empty-claims-mutation-R1.json",
+        "mutation_result": "not claimsだけを外す一時overlay変異が新testのassertRaises一件でKILLED。233ms、errors0、reaped/nontruncated、src/tests全Python hash不変。",
+        "test_evidence_boundary": "既存拒否条件の追加検出。実装前semantic Redを新たに主張しない。driverの前項AST期待誤りは実行前rootReadで修正した。"
+      }
+    },
+    "finite_route_scope": {
+      "reason_literals": "L5の既存4 route_reasonを観測し、rule87/93/none/unresolvedの原因を新設・再解釈しない。",
+      "expected_public_comparison": {
+        "fields": [
+          "axes",
+          "findings",
+          "producer_symbol",
+          "input_binding"
+        ],
+        "finite_prefix_axes": [],
+        "finite_prefix_findings": [],
+        "producer_symbol": "compare_claim_boundaries",
+        "input_binding": "同じvalidated.input.bindingの原値"
+      },
+      "preserved_values": [
+        "同callのFN1..FN6 Comparison全値。",
+        "FN1の原15 required-kind missing definition axes/findings。",
+        "原SupplyInput/ValidatedSupplyと同call walk・ClaimUse出現/index。"
+      ],
+      "withheld_claims": [
+        "過去probeのformed_context Redをwriter成功と読み替えない。",
+        "rawguard成功やFN0-cleanを非空meaning producer/正規Contextの成立に読み替えない。",
+        "rule93 positive・非fill16rule・全consumer受入・WR13全体完了は未成立/範囲外。"
+      ],
+      "same_call_wiring": "実6Comparisonと同ValidatedSupplyからFN7内部のwalk1回/uses1回/閉4field frame/detailへ接続。fn7の元6Comparison・原input非変更は凍結テストで確認した。"
+    },
+    "historical_fields_note": "bootstrap/red/green/unit/prerequisite_evidence/main_integrationは初期Context型境界の当時記録として保持する。現在の有限writerの結果はfinite_writer_verificationに別記する。",
+    "B_handoff_boundary": "A merge/read-after後に、到達する実入力・各producer前提差分・slice単位のB案をwork_resultへ添える。元WR13 A proposalがtransportで後続をreadyにしても、WR28はBを含むWR13意味上の完了まで手動holdする。",
+    "r2_reachability": {
+      "review_comment": 6454466410,
+      "artifact": "root-fn7-a-r1-m2-i2-reachability-probe-R1.json",
+      "duration_ms": 154,
+      "reaped": true,
+      "output_truncated": false,
+      "raw_unchanged_all": true,
+      "rule93": "rule93は同call primary assessmentのunknownかつorigin_branch=meaning_undefinedを必要とする。L4 finite fact_recordはoracle_refを許容せず、現FN1 exact fact shapeはoracle_refを必要とするため、非空factのdomainに交差がない。L4形のnull factは実FN0-clean後FN1 F02/meaning_fact_closed_shape停止。oracle_refを加えたnull factも実FN1 F01/F02/meaning_body_null停止。空root descriptorsのfinite経路はprimary意味未定義を作らない。rule93_positive_unimplementedはsource上の保留guardであり、実producer到達時の停止を検証したとは記載しない。",
+      "binding_fallback": "partial root Bindingのoracle_refを除いた実FN0-clean入力はFN1を返すがFN2 fn2_requires_the_same-snapshot_public_fn1_Comparison_shape/Binding停止。現FN2は同じ_binding_sameを要求するため、six-producer ContextからFN7のnot strict shape+exact JSON fallbackへは到達しない。G4bの原値保持条件を変えず分岐は保留する。",
+      "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
     }
   }
 }

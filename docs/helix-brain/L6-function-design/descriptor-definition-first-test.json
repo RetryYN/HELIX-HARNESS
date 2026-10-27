@@ -1994,5 +1994,170 @@
     "existing_binding_id": "HELIXBRAIN-L6-032-FN6-DEPENDENCIES-ABSENT",
     "source_revision": "90ccfc3b2",
     "test_revision": "1019bd343"
+  },
+  "fn7_claim_boundaries_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN7-CLAIM",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_claim_boundaries",
+    "input": "ClaimContext",
+    "output": "Comparison",
+    "effect": "none",
+    "request": "WR-CLAUDE-BRAIN032-FN7-CLAIM-TDD-3547-20261027-13",
+    "request_base": "54f1b196f530b4fa66cf440c097492f14e2dd202",
+    "working_base": "7ebc6b60593a582c0d9cbd2e7f39e8027a62db3a",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/claim_boundaries.py",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "contract_sources": [
+      "L4 /claim_boundary_projection_contract",
+      "L4 /claim_boundary_projection_contract/supported_claim_rule_projection",
+      "L5 /type_contract/types/ClaimContext",
+      "L5 /functions/7",
+      "L5 /source_return_contract/descriptor_target_dataflow/direct_wrappers/fn7"
+    ],
+    "authority_items": [
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/0",
+        "id": "HELIXBRAIN-L3-032-B01",
+        "canonical_json_sha256": "f40d88606a3d1373a447e4067b93d82c9c7754867348dc4694e345b88812d7a2",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/6",
+        "id": "HELIXBRAIN-L3-032-F07",
+        "canonical_json_sha256": "7dce3a2032a47efb9e1f84c405490dab93da3a4fdb07f216c92a84a3b7c6c17c",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/1",
+        "id": "HELIXBRAIN-L3-032-N02",
+        "canonical_json_sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "pointer": "/cases/0",
+        "id": "HELIXBRAIN-L10-032-B01",
+        "canonical_json_sha256": "396415ca46e2480b26904724646a3502de4903d7190eb9cdda17f92feca16906",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/6",
+        "id": "HELIXBRAIN-L10-032-F07",
+        "canonical_json_sha256": "5f50afa77e347bfae8e3cd628236ca399e15ac5314bc50bf06edd3280f672732",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "pointer": "/cases/1",
+        "id": "HELIXBRAIN-L10-032-N02",
+        "canonical_json_sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae",
+        "equal_to_approved_item": true
+      }
+    ],
+    "authority_boundary": "対象B01/F07/N02 L3/L10の6項目だけが47354be8c1ef225dd7eacffe390d268c0dfee784と全値一致。承認decisionのmain admission f28f1c9cd8f725758f8904d92dfa8c851f1ddb60はworking baseの祖先。current JSON全体bytesを当時の承認pinへ読み替えない。",
+    "CL2": "#3712 merge6fa6b752106cb0254c8d3f870b4ffefa56d4b9d7。既存16ruleの決定表/field_sources/emission_order/unresolved_returnの下流設計、authority_effect none。predicateやownerを新設しない。",
+    "implemented_scope": "A: 既存Context/ValidatedSupply型境界、6実Comparisonのshape/producer/Binding検査、L4全finite raw条件のpure guard、一回のwalk→ClaimUse/DescriptorTargetCallFrame→detailを実装。none/unresolved/rule87でFN7 tupleを足さず、元6Comparisonと15 required missingを保持する。rule93 positiveの固有unclosed guardはあるがA実producerでの到達は未検証、非fill既存16ruleは後続B。",
+    "context_members": [
+      "validated",
+      "definitions",
+      "values_applicability",
+      "identity_trace",
+      "oracle_view",
+      "promotion",
+      "dependencies_handoff"
+    ],
+    "same_call_boundary": "既存L4/L5は同vの実fn1〜fn6全Comparisonと同walk frameを要求する。手作り前段Comparison/別call cached値/空成功で接続不足を補わない。fn7から他producer所見をcarry又は上書きしない。",
+    "prerequisite_probe": "root-fn7-finite-claim-input-probe-R2.json143msとroute-probe-R3.json167msで全finite raw→実FN0/FN1..FN6を形成。原required15 missingと全比較を保持し、FN7の実装前formed_context Redを観測した。",
+    "scope_coordination": {
+      "comment": 6453403929,
+      "state": "scope Aを有限Claim writerとして継続。BはAの統合後に別WRで扱う。FN7 Aの完了はWR13全体の完了を意味しない。",
+      "authorized_A": "実FN0→FN1..FN6が形成する同call ClaimContext、既読walk/ClaimUseと既存L4 routeを消費して、finite_domainのnone/unresolved/rule87境界を既存Comparisonへ接続する。元のFN1..FN6 Comparisonと15 required-kind missing状態を保持する。",
+      "later_B": "CL2既存16 nonfill rulesの詳細writerは別WR。今回rule93 positive producerやnonfill Claim意味を開かない。"
+    },
+    "legacy_rederivation": {
+      "mode": "既存L4の意味再導出を継承。旧runtime/schema/test/CIをcopy又は実行しない。",
+      "sources": [
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 design-template-json-authority.md:16–45/61–101",
+        "LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5同名:16–99/110–166",
+        "LEGACY-ASSET-A127DEC3EEE6ED63CF17:旧predecessor-harness-full-weakness-audit:80–89 UTW014/020/021"
+      ],
+      "preserved": "JSON正本・派生viewと原意味分離、source/owner/traceと明示unknown、不足を空集合やprose自己申告で消さない。",
+      "changed": "旧registry/planner/lifecycleを移植せず現ClaimContext7/Comparison4とCORE/BRAIN/OS責務へ再導出。今回の実装はその型境界のみ。",
+      "failure_history": "既存L4のPR3597/3598 Claim2先決め失敗と#3635 unresolved公開非形成の閉包を区別し、古い未決判断へ戻さない。"
+    },
+    "execution_state": "finite_writer_local_green_independent_review_pending",
+    "authority_effect": "none",
+    "finite_writer_scope": {
+      "scope": "既存ClaimContext7を入力し、同callで形成された6 Comparisonを保持して、有限Claim routeの公開FN7 prefixを返す部分。",
+      "routes": [
+        {
+          "route": "none",
+          "input_boundary": "同targetの実readがresolved、positive intent、null/string提案を含む原Claim occurrenceを原順で保持し、既存rule87/rule93へ該当しない。",
+          "output_boundary": "FN7 axes/findingsを追加しない。ClaimUse route_reasonは既存L5 literalを保つ。"
+        },
+        {
+          "route": "unresolved",
+          "input_boundary": "同target/Binding/slotで異なるdescriptor_kind宣言がconflictとなり、必要なtarget対応が未確定。",
+          "output_boundary": "FN7 axes/findingsを追加しない。conflictと原Claim occurrenceを保持する。"
+        },
+        {
+          "route": "rule87",
+          "input_boundary": "resolved target、primary definition missing、reference_only basisによる既存rule87。basis Ref反復は原順で保持。",
+          "output_boundary": "担当FN6のrule87 finding一件を重ねない。FN7 axes/findingsは空の有限prefixのまま。"
+        }
+      ],
+      "upstream_prefix": "FN1の15 required descriptor kindsに対応するmissing definition axes/findingsを含む既存Comparison群と、他producerのComparison全値を上書きしない。",
+      "finite_constant": {
+        "interpretation_comment": 6453521166,
+        "l4_pointer": "/claim_boundary_projection_contract/finite_domain/meaning_carrier_predicate/meaning_object_literals/0",
+        "rule": "L4固定契約定数をsrc一箇所に置き、key集合2個・両string・全原値で完全一致照合する。runtime L4読込やprefix判定をせず、意味known/資格/採用の根拠にしない。testはL4 JSONから独立に読み比べる。"
+      },
+      "same_call": "同じ実ValidatedSupply＋FN1..FN6全Comparisonを保持。FN7 wrapperでwalk一回、ClaimUse builder一回、L5閉4field(validated/definition_evaluation/target_reads/claim_uses)を構成しdetailへ渡す。意味portや他public producerを再呼出しせず、wholeComparison一致gateを置かない。",
+      "excluded": [
+        "rule93 positive producerとそのtuple/Finding",
+        "16 nonfill rulesと任意Claim意味",
+        "nonempty typed meaning operations/D27のreader意味を新たに開くこと",
+        "FN7全体またはWR13全体の完了認定"
+      ],
+      "pure_guard_boundary": "raw guardはL4適用条件だけのpure分類であり、非空root/source/operationの意味decoderや正規ClaimContextの成立は証明しない。source groupのexact3keyやSlot任意metadataの存在要求を新設せず、L4/L5にある条件だけを検査する。"
+    },
+    "initial_working_base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
+    "initial_prerequisite_probe": "root-fn7-prerequisite-probes.json: normalは実fn0/fn1/fn3後fn4 formed_context。typed fill_definitionはfn4 walk supplied_claim_ports。dependencies absentは実fn0/fn1後fn6 dependencies_container_shape。raw/v.input不変。",
+    "source_verification": {
+      "revision": "b506dd032b5b9c6a0a822f61b8e41789dab977cf",
+      "sha256": "760b68334c779f1866738cc050778b3a0ad0073d5dbee981e5bf45b3e0d005d4",
+      "nonblank_lines": 368,
+      "same_call_calls": "walk1/usebuilder1、元6producer再呼出し0、frame keyはL5のdefinition_evaluationを使用",
+      "scope_correction_before_execution": "最初の未実行候補でdeclared-target対応漏れ、Slot任意metadata過剰要求、typed Operation閉型の不足をrootReadで指摘し修正。source group exact3keyの根拠もなく削除。候補1のRed/Greenは主張しない。"
+    },
+    "source_verification_R1": {
+      "revision": "04e481f2c382af5289b0eaf3b537ad898d31d7f0",
+      "sha256": "9ad099bb3dd75a82e17b509f001e893fa377806a494fdec687477f8aef600d00",
+      "nonblank_lines": 369,
+      "same_call_calls": "walk1/usebuilder1、元6producer再呼出し0、frame keyはL5のdefinition_evaluationを使用",
+      "scope_correction_before_execution": "最初の未実行候補でdeclared-target対応漏れ、Slot任意metadata過剰要求、typed Operation閉型の不足をrootReadで指摘し修正。source group exact3keyの根拠もなく削除。候補1のRed/Greenは主張しない。"
+    },
+    "r2_review_corrections": {
+      "review_comment": 6454466410,
+      "canonical_detail_symbol": "rootが見落としたL5 compare_claim_boundaries_detailのdef/call名をf430352528d9aecd1ac39a9ccb3a99acdb97af12で一致させた。制御ロジックは不変。",
+      "unused_import": "未使用copyをb506dd032で削除。",
+      "empty_claims": "L4 unclosed_projection_boundaries/other_domainに従い、claims=[]の実FN0-FN6経路とFN7厳密停止・原値不変を新規凍結テストで固定。sourceの拒否条件は変更していない。",
+      "test_revision": "f41c35b0e97c6487e89ca5d17d58bf31565f8e26",
+      "rule93_and_binding_fallback": {
+        "review_comment": 6454466410,
+        "artifact": "root-fn7-a-r1-m2-i2-reachability-probe-R1.json",
+        "duration_ms": 154,
+        "reaped": true,
+        "output_truncated": false,
+        "raw_unchanged_all": true,
+        "rule93": "rule93は同call primary assessmentのunknownかつorigin_branch=meaning_undefinedを必要とする。L4 finite fact_recordはoracle_refを許容せず、現FN1 exact fact shapeはoracle_refを必要とするため、非空factのdomainに交差がない。L4形のnull factは実FN0-clean後FN1 F02/meaning_fact_closed_shape停止。oracle_refを加えたnull factも実FN1 F01/F02/meaning_body_null停止。空root descriptorsのfinite経路はprimary意味未定義を作らない。rule93_positive_unimplementedはsource上の保留guardであり、実producer到達時の停止を検証したとは記載しない。",
+        "binding_fallback": "partial root Bindingのoracle_refを除いた実FN0-clean入力はFN1を返すがFN2 fn2_requires_the_same-snapshot_public_fn1_Comparison_shape/Binding停止。現FN2は同じ_binding_sameを要求するため、six-producer ContextからFN7のnot strict shape+exact JSON fallbackへは到達しない。G4bの原値保持条件を変えず分岐は保留する。",
+        "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
+      }
+    }
   }
 }

@@ -253,3 +253,9 @@ def compare_knowledge_promotion(context: dict[str, object]) -> dict[str, object]
     from knowledge_promotion import compare_knowledge_promotion as _fn5
 
     return _fn5(context)
+
+
+def compare_claim_boundaries(context: dict[str, object]) -> dict[str, object]:
+    from claim_boundaries import compare_claim_boundaries as _fn7
+
+    return _fn7(context)
