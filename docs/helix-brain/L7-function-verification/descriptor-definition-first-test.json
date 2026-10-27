@@ -3253,5 +3253,37 @@
       "source_changes": false,
       "completion_boundary": "G3の局所検証だけ。G5、L8受入、OS登録、WR33全体完了は生成しない。"
     }
+  },
+  "fn4_empty_meaning_carrier_zero_occurrence_verification": {
+    "sibling_of": "fn4_finite_fill_claim_connection_verification",
+    "authority_effect": "none",
+    "scope": "G5 explicit []の原meaning operation 0件とabsent区別だけ。nonempty typed meaning/meaning_undefined producer/D27/FN7は含めない。",
+    "pre_edit_old_expectation_evidence": {
+      "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447399416",
+      "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_full_contract.py",
+      "method": "TestDescriptorDefinitionWalkFullContract.test_supplied_meaning_operation_carrier_stops_at_reader_id",
+      "pre_edit_file_sha256": "4c2f1e453b57352c9289b2847305464ca5465572d0ad13b06ae4d3ca4edda227",
+      "old_file_equals_base": true,
+      "source_revision": "90ccfc3b225082a991cfca44fbe6e769c5f38a73",
+      "new_test_freeze": "1019bd343",
+      "new_test_green": {
+        "artifact": "root-wr33-g5-zero-occurrences-green-R1.json",
+        "methods": 8,
+        "duration_ms": 423,
+        "result": "PASS"
+      },
+      "unchanged_old_test_failure": {
+        "artifact": "root-wr33-g5-old-meaning-expectation-fail.json",
+        "methods": 1,
+        "duration_ms": 114,
+        "assertion": "NotImplementedError not raised",
+        "failures": 1,
+        "errors": 0,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "independent_new_expectation": "L4 /oracle_view_boundary_contract/nonfire_read_plan/typed_kind_census はabsentと[]を区別して原出現0件を共有する。L5 definition_meaning_core/basic_reader_bindings/meaning/body/algorithm/1に従い[]からsupport/problemを作らずunknownを保持する。",
+      "state_at_this_commit": "旧テストはまだ未変更。新8Greenと旧1FAILを先に記録する。このcommit後に当該1methodだけ期待を更新し、他の公開testを保持する。"
+    }
   }
 }
