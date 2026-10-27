@@ -1,0 +1,124 @@
+{
+  "record_id": "OS002-B1-F04-BASIC-PAIR-FREEZE-2026-10-28",
+  "record_kind": "basic_pair_l4_l9_freeze_record",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-OS002-B1-3547-20261028-46",
+  "slice_id": "D-OS002-B1",
+  "decision_refs": [
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447837744",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447858361",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+    "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md"
+  ],
+  "source_main": "11c9cd2acc4c7167e8f603b02879fad826cfcb4e",
+  "recorded_at_utc": "2026-10-27T19:16:00+00:00",
+  "target": "HELIXOS-L2-002 基本対 B:301（HELIXOS-L3-002-F04 ↔ HELIXOS-L10-002-F04 ／ HELIXOS-L4-002-F04 ↔ HELIXOS-L9-002-F04）の L4/L9 remaining 仕分け（A/B/C）と基本pair（L4 contract＋L9 case＋L3/L10義務）凍結記録。公開関数単位の詳細L5/L8凍結（D-OS002-T2a / D-OS002-T2b）や総合凍結とは呼ばない。",
+  "criterion": "上位期待（L3/L10 HELIXOS-L3-002-F04 ↔ HELIXOS-L10-002-F04）のすべての義務と正負検証観点に対し、L4基本契約（/contracts/5および4副契約）とL9結合検証case（/cases/5および4 *_oracles）が対応し、unknown・N/A・conditional未充足・義務未実施/不合格/未評価の保持と戻し先（owner・reentry）が明示され、基本対L4/L9自身へ戻す未確定残件（A）が0件であること。L9へ新たな実行材料（全返却・fixture・hash）は追加しない。",
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+    "H009_L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "H009_L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "H009_L9": "docs/helix-harness/L9-integration-verification/product-template-application.json"
+  },
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_pre_sha256": "5e6dc6e7825d533b3ac35d6174329ea7eb52e146ca43efbbd5197fedf7e573e2",
+    "L4_post_sha256": "10bf6ac45c3bf96a2434692791f8bb671dcf06a4ba3fef9e06f6ace1c982e2eb",
+    "L9_pre_sha256": "a09f09c9d4d30887fad20e4f4f53d47249c0b7408ca2ac955efcd9865ed51ec7",
+    "L9_post_sha256": "78fbb68377c36ee8173e820001db411abd9c8262affe4098c7fcf2bb6c31d62b",
+    "L5_sha256": "d48ee18a9049d012b56bd164d76932f162a62be27d90c0e22c3ebd2203eb0ecf",
+    "L8_sha256": "056493ee6f549d49f381f2fbf4f85cbdb99d0b4ea192cf01f881217e29aa6652",
+    "H009_L4_sha256": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8",
+    "H009_L5_sha256": "4e1b5d5c6b88775552ed8eb1d1d6216f4c3f691007db95baf4a0127a1ad3e7e1",
+    "H009_L9_sha256": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498"
+  },
+  "h009_connection_edges": {
+    "established_contract_edges": [
+      {"from_pointer": "L4#/contracts/5/source_output_association/source_basis/0", "to_pointer": "H009_L4#/contracts/4/source_result_reference_projection", "role": "CORE009 F03 source_result_reference_projection と OS output_ref の基本結合参照"},
+      {"from_pointer": "L4#/contracts/5/source_output_association/source_basis/4", "to_pointer": "H009_L9#/cases/4/source_result_reference_cases/cases/0", "role": "CORE009 F03 L9 期待行との参照結合"},
+      {"from_pointer": "L4#/contracts/5/qualified_source_projection_join/source_refs/2", "to_pointer": "H009_L4#/contracts/4/source_result_reference_projection", "role": "qualified OS association から CORE SourceResultProjectionRow を引く基本 join 契約"},
+      {"from_pointer": "L4#/contracts/5/selected_source_member_correspondence/source_basis/2", "to_pointer": "H009_L4#/contracts/4/source_result_reference_projection/calculation_rules/na_required_attributes", "role": "CORE computed_disposition / computed_na_attributes 4必須属性の参照結合"},
+      {"from_pointer": "L4#/contracts/5/source_original_correspondence/source_basis/4", "to_pointer": "H009_L4#/contracts/4/source_result_reference_projection", "role": "CORE computed_condition_pairs / computed_obligation_refs raw列と Presence の参照結合"},
+      {"from_pointer": "L4#/contracts/5/source_original_correspondence/source_basis/5", "to_pointer": "H009_L5#/type_contract/types/SourceResultProjectionRow", "role": "CORE 21-field SourceResultProjectionRow 型を外部正本として参照（OS側で再定義しない）"}
+    ],
+    "non_established_boundaries": "実provider/caller実装、実原operation binding、CONNECT実配送、OS053実保存、実SECURITY資格/trust rootは未接合（C）として保持し、成立扱いにしない。"
+  },
+  "upper_expectation_mapping": [
+    {"aspect": "四判定（required/conditional/N/A/unresolved）とN/A4属性（reason/decider/target_revision/reentry）を出力参照へ結ぶ", "upper_refs": ["L3F#/requirements/11/obligation", "L10F#/cases/11/positive_input", "L10F#/cases/11/expected_observation"], "l4_pointers": ["L4#/contracts/5/behavior", "L4#/contracts/5/required_input_meanings/0", "L4#/contracts/5/source_output_association", "L4#/contracts/5/qualified_source_projection_join", "L4#/contracts/5/selected_source_member_correspondence"], "l9_pointers": ["L9#/cases/5/expected_observation", "L9#/cases/5/source_output_association_oracles/cases", "L9#/cases/5/qualified_source_projection_join_oracles/cases", "L9#/cases/5/qualified_source_projection_join_oracles/branch_contrasts", "L9#/cases/5/qualified_source_projection_join_oracles/occurrence_and_relevance_contrasts", "L9#/cases/5/selected_source_member_correspondence_oracles/cases"]},
+    {"aspect": "理由/判定者/対象revision/再評価条件欠落・判断不能のN/A化・OS独自判定の拒否と不足属性保持", "upper_refs": ["L3F#/requirements/11/obligation", "L10F#/cases/11/negative_input", "L10F#/cases/11/failure_observation"], "l4_pointers": ["L4#/contracts/5/negative_classifications/0", "L4#/contracts/5/negative_classifications/1", "L4#/contracts/5/negative_classifications/2", "L4#/contracts/5/negative_classifications/3", "L4#/contracts/5/negative_classifications/4", "L4#/contracts/5/negative_classifications/5", "L4#/contracts/5/selected_source_member_correspondence/na_presence_rules", "L4#/contracts/5/source_original_correspondence/condition_semantics"], "l9_pointers": ["L9#/cases/5/negative_cases/0", "L9#/cases/5/negative_cases/1", "L9#/cases/5/negative_cases/2", "L9#/cases/5/negative_cases/3", "L9#/cases/5/negative_cases/4", "L9#/cases/5/negative_cases/5", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/2", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/3", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/4", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/5", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/6", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/7", "L9#/cases/5/selected_source_member_correspondence_oracles/cases/8", "L9#/cases/5/source_original_correspondence_oracles/partial_cases/1", "L9#/cases/5/source_original_correspondence_oracles/partial_cases/3"]},
+    {"aspect": "conditional未充足、義務の未実施（not_started）/不合格（failed）/未評価（not_evaluated）の識別と、単体成功による適用/完了変換の禁止", "upper_refs": ["L3F#/requirements/11/obligation", "L10F#/cases/11/positive_input", "L10F#/cases/11/negative_input", "L10F#/cases/11/failure_observation"], "l4_pointers": ["L4#/contracts/5/required_input_meanings/1", "L4#/contracts/5/required_input_meanings/2", "L4#/contracts/5/negative_classifications/6", "L4#/contracts/5/negative_classifications/7", "L4#/contracts/5/source_original_correspondence/condition_semantics", "L4#/contracts/5/source_original_correspondence/obligation_semantics", "L4#/contracts/5/source_original_correspondence/activation", "L4#/contracts/5/source_original_correspondence/resolution_and_decode", "L4#/contracts/5/source_original_correspondence/independent_qualification_and_locality", "L4#/contracts/5/source_original_correspondence/diagnostics", "L4#/contracts/5/source_original_correspondence/logical_return"], "l9_pointers": ["L9#/cases/5/negative_cases/6", "L9#/cases/5/negative_cases/7", "L9#/cases/5/source_original_correspondence_oracles/partial_cases", "L9#/cases/5/source_original_correspondence_oracles/D2_component_case"]}
+  ],
+  "remaining_dispositions": [
+    {"id": "DB01", "class": "C", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/0", "L4#/contracts/5/source_output_association/remaining/0", "L9#/cases/5/source_original_correspondence_oracles/remaining/0", "L9#/cases/5/source_original_correspondence_oracles/remaining/2"], "topic": "正式provider/caller/実原operation binding・実source資格・transport・custody・runtime/CI実行", "basis_pointers": ["L4#/authority_boundary", "L4#/contracts/5/source_original_correspondence/provider_contract/binding_state", "L9#/cases/5/source_original_correspondence_oracles/authority_effect"], "reason": "基本L4/L9純粋論理契約の範囲外。実provider/資格/保存/配送は各外部owner（CORE009・OS053・SECURITY・CONNECT）へ、実行検証は下流L6/L7・実行環境へ戻す。"},
+    {"id": "DB02", "class": "C", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/1", "L4#/contracts/5/source_original_correspondence/detailed_rederivation/status", "L4#/contracts/5/source_output_association/remaining/1", "L4#/contracts/5/source_output_association/remaining/2", "L4#/contracts/5/selected_source_member_correspondence/detail_rederivation_remaining/1", "L4#/contracts/5/selected_source_member_correspondence/detail_rederivation_remaining/2", "L9#/cases/5/source_original_correspondence_oracles/remaining/0"], "topic": "新kind（OS002.CoreOutputOriginalCorrespondence）およびfn0/14/17/18・private fn19..22の下流L5/L8詳細対精査と関数別凍結", "basis_pointers": ["L5#/f04_source_original_correspondence_detail", "L5#/functions/19", "L5#/functions/20", "L5#/functions/21", "L5#/functions/22", "L8#/f04_source_original_correspondence_verification"], "reason": "L5/L8側の候補（fn19..22、component 12件・branch 17件・origin 4件・whole 9件・private_return_whole 3件）は既に記載されており、その詳細対A/B/C仕分けと関数別pair凍結は下流スライス D-OS002-T2a / D-OS002-T2b の責務である。基本L4/L9の未確定残件（A）ではない。"},
+    {"id": "DB03", "class": "B", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/2", "L9#/cases/5/source_original_correspondence_oracles/remaining/1", "L9#/cases/5/source_original_correspondence_oracles/remaining/3"], "topic": "上位L3/L10（HELIXOS-L3-002-F04 ↔ HELIXOS-L10-002-F04）に対する基本L4/L9対設計と12局所対照＋D2部分列・3state区別による充足", "basis_pointers": ["L4#/contracts/5", "L4#/contracts/5/source_original_correspondence/logical_return/Field_wire_rule", "L9#/cases/5/expected_observation", "L9#/cases/5/negative_cases", "L9#/cases/5/source_output_association_oracles/cases", "L9#/cases/5/qualified_source_projection_join_oracles/cases", "L9#/cases/5/qualified_source_projection_join_oracles/branch_contrasts", "L9#/cases/5/qualified_source_projection_join_oracles/occurrence_and_relevance_contrasts", "L9#/cases/5/selected_source_member_correspondence_oracles/cases", "L9#/cases/5/source_original_correspondence_oracles/partial_cases", "L9#/cases/5/source_original_correspondence_oracles/D2_component_case"], "reason": "上位L3/L10が要求する四判定・N/A4属性・conditional未充足・義務3未完状態の識別、OS独自判定の禁止、および原source 3stateと到達edge値範囲の区別は既存基本対（expected_observation 1件、negative 8件、association 47件、join基本25件［cases 4＋branch_contrasts 14＋occurrence_and_relevance_contrasts 7］＋direct_boundary 1件＋carrier_domain_priority 4件、member 9件、original partial 12件、D2 component 1件［14 member＋2診断部分列］）で充足済み。"},
+    {"id": "DB04", "class": "C", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/2", "L9#/cases/5/source_original_correspondence_oracles/remaining/1"], "topic": "残11 component全値・最終F04観測全値・全TraceFinding[]/全RecordTraceAnalysisの新whole列挙", "basis_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases"], "reason": "#3510（comment 6447665479）および #3547（comments 6447675258 / 6447858361）により、L9へ全返却・fixture・hashを追加することは禁止されており、全返却whole列挙は基本対凍結の条件ではない。単体レベルのcomponent/whole照合は下流L5/L8（D-OS002-T2b）とL6/L7へ戻す。"},
+    {"id": "DB05", "class": "C", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/3", "L9#/cases/5/source_original_correspondence_oracles/remaining/2"], "topic": "原条件実評価演算子・CORE全RawValue適用意味・全mutation零条件の不新設", "basis_pointers": ["L3F#/requirements/11/obligation", "L4#/contracts/5/behavior", "H009_L4#/contracts/4/source_result_reference_projection"], "reason": "OSは適用規則やN/A判断を新設しない（HELIXOS-L3-002-F04）。条件評価演算子とCORE RawValueの適用意味はCORE009/BRAIN032へ戻し、全mutation零の新gateは設けない。"},
+    {"id": "DB06", "class": "B", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/4/unobserved_L9_branches", "L4#/contracts/5/source_original_correspondence/remaining/4/limit"], "topic": "9分岐（ambiguous header、full domain decode失敗、trusted locator相反、obligations present null、CORE collection 4分岐、empty condition＋unknown disposition、native endpoint不成立、混在state_reduction順位、closed_record_tuple_rules）のL4基本規範定義", "basis_pointers": ["L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/2", "L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/5", "L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/6", "L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/7", "L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/0", "L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/1", "L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/2", "L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/5", "L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/7", "L4#/contracts/5/source_original_correspondence/activation/relationship_role_presence_table/4", "L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/correspondence_resolution_state/1", "L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state", "L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/closed_record_tuple_rules"], "reason": "9分岐すべての入力条件・状態遷移・診断code・戻し先ownerはL4基本契約の各表に明示定義済みであり、L4基本設計の未固定（A）はない。"},
+    {"id": "DB07", "class": "C", "targets": ["L4#/contracts/5/source_original_correspondence/remaining/4/unobserved_L9_branches", "L9#/cases/5/source_original_correspondence_oracles/remaining/4/unobserved_branches", "L9#/cases/5/source_original_correspondence_oracles/remaining/4/coverage_limit"], "topic": "上記9分岐の単体検証case対照と詳細対凍結", "basis_pointers": ["L8#/f04_source_original_correspondence_verification/branch_cases", "L5#/f04_source_original_correspondence_detail/state_tables", "L5#/f04_source_original_correspondence_detail/state_reduction", "L5#/f04_source_original_correspondence_detail/remaining/4"], "reason": "内部単体分岐（0..5のL8 branch_cases 17件、および6..8のstate_reduction/closed_tuple詳細対照）の検証と凍結は下流L5/L8単体検証スライス（D-OS002-T2b）およびL6/L7の責務であり、基本結合検証L9へ新規fixture/全返却を追加しない（#3510 / #3547）。"},
+    {"id": "DB08", "class": "C", "targets": ["L4#/implementation_preparation/remaining", "L9#/completion/remaining"], "topic": "文書全体のL5/L8詳細対（D-OS002-T1a〜T4）・独立review・正式schema/codec・OS053保存・LABO接続・Red/Green・CI・PO L11受入", "basis_pointers": ["L4#/implementation_preparation", "L9#/completion"], "reason": "基本対12組（③維持）とB:301（本D-OS002-B1凍結）の完了後、詳細対T:296..308はD-OS002-T1a〜T4へ、実装・実行・外部接続・受入は下流L6/L7・各owner・POへ戻す。"}
+  ],
+  "disposition_counts": {
+    "A_count": 0,
+    "B_count": 2,
+    "C_count": 6
+  },
+  "basic_pair_freeze_row": {
+    "audit_index": 301,
+    "pair_id": "B:301",
+    "requirement_ref": "L3F#/requirements/11",
+    "requirement_id": "HELIXOS-L3-002-F04",
+    "system_oracle_ref": "L10F#/cases/11",
+    "system_oracle_id": "HELIXOS-L10-002-F04",
+    "l4_contract_pointer": "L4#/contracts/5",
+    "l4_contract_id": "HELIXOS-L4-002-F04",
+    "l4_subcontracts": [
+      {"pointer": "L4#/contracts/5/source_output_association", "name": "source_output_association"},
+      {"pointer": "L4#/contracts/5/qualified_source_projection_join", "name": "qualified_source_projection_join"},
+      {"pointer": "L4#/contracts/5/selected_source_member_correspondence", "id": "HELIXOS-L4-002-F04-SOURCE-MEMBER-CORRESPONDENCE"},
+      {"pointer": "L4#/contracts/5/source_original_correspondence", "id": "HELIXOS-L4-002-F04-SOURCE-ORIGINAL-CORRESPONDENCE"}
+    ],
+    "l9_case_pointer": "L9#/cases/5",
+    "l9_case_id": "HELIXOS-L9-002-F04",
+    "l9_sub_oracles": [
+      {"pointer": "L9#/cases/5/expected_observation", "kind": "expected_observation", "count": 1},
+      {"pointer": "L9#/cases/5/negative_cases", "kind": "negative_cases", "count": 8},
+      {"pointer": "L9#/cases/5/source_output_association_oracles", "name": "source_output_association_oracles", "case_count": 47},
+      {"pointer": "L9#/cases/5/qualified_source_projection_join_oracles", "name": "qualified_source_projection_join_oracles", "cases_count": 4, "branch_contrasts_count": 14, "occurrence_and_relevance_contrasts_count": 7, "direct_boundary_contrasts_count": 1, "carrier_domain_priority_cases_count": 4},
+      {"pointer": "L9#/cases/5/selected_source_member_correspondence_oracles", "id": "HELIXOS-L9-002-F04-SOURCE-MEMBER-CORRESPONDENCE", "case_count": 9},
+      {"pointer": "L9#/cases/5/source_original_correspondence_oracles", "id": "HELIXOS-L9-002-F04-SOURCE-ORIGINAL-CORRESPONDENCE", "partial_case_count": 12, "d2_component_case_count": 1, "source_packet_count": 13}
+    ],
+    "return_owners_and_reentry": {"na_attribute_missing_or_unknown": "CORE009 / CORE-source-owner（L4#/contracts/5/negative_classifications/0..4、L4#/contracts/5/selected_source_member_correspondence/return_contract）", "os_invented_disposition_or_na": "OS caller / candidate owner（L4#/contracts/5/negative_classifications/5）", "unit_success_or_conditional_discharge_as_completed": "CORE009 / OS obligation owner / native source owner / relationship provider owner（L4#/contracts/5/negative_classifications/6..7、L4#/contracts/5/source_original_correspondence/diagnostics/code_families）"},
+    "remaining_A_count": 0,
+    "freeze_state": "basic_pair_frozen",
+    "downstream_detail_slices": [
+      "D-OS002-T2a",
+      "D-OS002-T2b"
+    ]
+  },
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {"asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md", "lines": "24, 36, 58, 86, 91", "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"},
+      {"asset_id": "LEGACY-ASSET-18F7940E7994634D39A1", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md", "lines": "54, 56, 58", "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"},
+      {"asset_id": "UTW-014/020/021", "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md", "lines": "80, 86, 87", "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"}
+    ],
+    "preserve": "選択instance/原source/義務trace、scope分離、unknown/未完をfalse/empty/完了へ丸めない原則、局所原因とowner返却を保持。",
+    "change": "OSTRACE追補判断（2026-10-10）および #3510 / #3547 統制判断に基づき、基本対（L4 contract＋L9 case＋L3/L10義務）のremainingをA/B/Cへ根拠pointer付きで仕分け、L9へ全返却/fixture/hashを追加せずに基本pair B:301を凍結し、詳細L5/L8の関数別凍結（D-OS002-T2a / D-OS002-T2b）と分離した。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・未確定残件（A）混在による凍結境界不明確化"
+    ]
+  },
+  "not_claimed": [
+    "92親430対の総合凍結ではない。",
+    "L5/L8詳細対（T:301 = D-OS002-T2a / D-OS002-T2b）の関数単位凍結ではない。",
+    "L6/L7実装・Red/Green・CI合格・実provider/OS053/SECURITY接続・PO L11 Acceptedではない。"
+  ]
+}
