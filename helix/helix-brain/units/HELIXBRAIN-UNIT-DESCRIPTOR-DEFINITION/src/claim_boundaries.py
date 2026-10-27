@@ -9,6 +9,22 @@ def _stop(branch: str) -> None:
     )
 
 
+# L4 /claim_boundary_projection_contract/finite_domain/meaning_carrier_predicate/meaning_object_literals/0
+# 固定契約定数。PR3732 comment6453521166の解釈に従い、有限適用条件だけに使う。
+_FINITE_MEANING_LITERAL = {'template_identity': 'SYNTHETIC-D26-TEMPLATE-A',
+ 'functional_role': '設計原子の同一性を担う汎用テンプレートA。所在filenameをidentityにしない。'}
+
+
+def _meaning_value_in_finite_domain(value: object) -> bool:
+    """L4意味値predicateの宣言。実装前は固有IDで停止する。"""
+    _stop("meaning_value_unimplemented")
+
+
+def _validate_finite_domain(raw: dict[str, object]) -> None:
+    """L4有限raw条件の宣言。実装前は固有IDで停止する。"""
+    _stop("finite_domain_unimplemented")
+
+
 def compare_claim_boundaries(context: dict[str, object]) -> dict[str, object]:
     """L5のClaimContext→Comparison公開署名を保つFN7入口。"""
     members = {
