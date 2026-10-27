@@ -19,7 +19,7 @@ from descriptor_definitions import (
 
 
 EXPECTED_WALK_STOP = (
-    "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; "
+    "F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; "
     "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
 )
 
