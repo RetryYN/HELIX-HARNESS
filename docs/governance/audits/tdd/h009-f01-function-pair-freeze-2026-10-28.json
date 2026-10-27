@@ -1,0 +1,248 @@
+{
+  "record_id": "HARNESS009-F01-FUNCTION-PAIR-FREEZE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "evidence_kind": "audit",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-H009-T1C-3547-20261028-58",
+  "slice_id": "D-H009-T1c",
+  "resolves_disposition_ref": "DISP1#/dispositions/14",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447511779",
+  "source_main": "cb4e1c780e1ba2cddab73bce6d7b6ed58b42640a",
+  "request_base_sha": "7ebc6b60593a582c0d9cbd2e7f39e8027a62db3a",
+  "recorded_at_utc": "2026-10-27T22:47:00+00:00",
+  "target": "HARNESS-L2-009 T:41（HARNESS-L3-009-F01：入力axisと版）を担う3関数（compare_required_axes［L5#/functions/1］、project_cross_design_candidate_refs［L5#/functions/11・L5#/cross_design_candidate_ref_projection］、_build_source_occurrence_array［L5#/selected_source_occurrence_array_builder_detail］）＋対のL8 case行＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（3行）。DISP-1 D15（A）を解消する。",
+  "criterion": "各関数についてL3/L10とL4/L9（およびBRAIN032側の読取り専用契約）から独立に期待を導き（DT-VT-105）、L5関数契約とL8のU-ID行（対象・反例と期待・oracle ID）が一致し、unknown/conflict/未完の戻し先および層間のキー名対応が明示され、T:41 F01範囲で009 L5設計自身へ戻す空白（A）が0件であること。selected_source_occurrence_array_builder_verification/not_proven/1のindex_narrowed_before_exact_range_check=false識別用U-ID probeを1件追補して本slice内で解消し、L8へ新たな実行材料（全返却・fixture・hash・COPY）は追加しない（#3510）。",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json", "L10F": "docs/helix-harness/L10-verification/functional-verification.json", "L4": "docs/helix-harness/L4-basic-design/product-template-application.json", "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json", "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json", "BRAIN_L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json", "BRAIN_L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json", "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json", "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+    "T1A": "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json", "T1B": "docs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json"
+  },
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be", "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2", "L4_sha256": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8", "L9_sha256": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498", "L5_pre_t1c_sha256": "5f5eb663ddc04600bdb95f215440760d1aec7bb201c10860e9a20accd802b56a",
+    "L5_current_sha256": "2d8e8d6d53d2f72b166efebe4831fa7319aff31328c87f39b6e998298583798f", "L8_pre_t1c_sha256": "2d9807a13e45e75e9dbadf745a33c7a6823cd5a8b626fd8193cf04e9a9b994d0", "L8_current_sha256": "cfcc78f87f46e71c5a212a4f83d4d9e32cc4fc0fd0e4cd292e2ed7f922175e7b", "BRAIN_L4_sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae", "BRAIN_L5_sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+    "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b", "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb", "T1A_sha256": "d907f76095e0bc061b9997c53442125b35e5f8403154651dc756d16fb2a2f072", "T1B_sha256": "91592b0a2f2e8653a884dad8dde79c3f56241e92ff29e8fdecec7d7780806b5c"
+  },
+  "legacy_and_failure_basis": [
+    {
+      "asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60,81–92",
+      "file_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "keep": "要求/製品scope/工程・適用契約と候補templateの版・source・利用状態・選択根拠を分離照合し、不足は推定補完せずBackflowへ返す",
+      "change": "BRAIN(030/032)・HARNESS-CORE(009/023/026)・HELIX-OS(002)へ責務を分離し、非選択操作の入力や未選択知識を常時必須gateへ昇格させない"
+    },
+    {
+      "asset": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "file_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "keep": "I/O・副作用none・failure・consumer/oracleを保持し、欠落/null/空/相反を丸めず各occurrence単位で保持する",
+      "change": "L8にはU-ID行（対象・反例と期待・oracle ID）のみを置き、全返却・fixture・hash・COPYを追加しない（#3510、UTW-014/020/021防止）"
+    },
+    {
+      "asset": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–58",
+      "file_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+      "keep": "I/O・副作用・失敗・状態・consumer/oracleの意味を境界として照合し、語句や型名の類似だけで責務を統合しない",
+      "change": "旧DomainGraph/registry/gate/runtimeは移植せず、ApplicationInputBinding内の純DTO投影・配列組立て契約と重複期待の局所参照規則として具体化する"
+    }
+  ],
+  "independent_expectation_derivation": {
+    "method": "DT-VT-105（L3F#/requirements/23・L10F#/cases/23・L4#/contracts/2・L9#/cases/2・L4#/cross_design_candidate_ref_projection・L9#/cross_design_candidate_ref_projection・L4#/selected_brain_source_occurrence_contract・L9#/selected_brain_source_occurrence_verification、および読取り専用のBRAIN_L4#/contracts/2［HELIXBRAIN-L4-032-F01］・BRAIN_L5#/functions/2・BRAIN_L5#/source_return_contractから独立に期待を導出）",
+    "derived_obligations": [
+      "O1（19入力axisと版の個別照合・欠落/矛盾の未解決保持）：要求identity/revision・kind・subject・relation・structure・risk・domain・layer/pair・製品scope・工程/適用契約identity/revision（axis 01〜13）と、候補templateのidentity/version/意味契約revision/source/利用状態・選択根拠（axis 14〜19）を照合し、missing/conflict時は元source/対象版/scopeを保持したまま当該axisの不足のみを未解決として返し、他axisの供給済み原値/根拠を壊さない（F01-NEG-01..26, 31..42）。",
+      "O2（知識提供/受領と製品適用選択の分離・常時必須と対象操作時必須の境界）：知識提供/受領（BRAIN030/032）と製品適用選択（HARNESS009/023/026）を分け、常時必須は要求/製品scopeと工程・適用契約のidentity/revisionとし、選択/差戻し/影響比較の各入力は対象操作時のみ照合する。別revision/別製品の知識混入（F01-NEG-27）を拒否し、非選択操作で差戻し入力・影響比較入力・未選択知識を常時必須gateへ昇格させない（F01-NEG-28..30、ADD-08）。",
+      "O3（BRAIN032候補RefとCORE候補母集合/TemplateSnapshotの内容対応投影）：BRAIN SupplyAnalysis.candidate_refsとCORE ApplicationInput.universes/templatesの3経路をRawValueとして読み、absent/null/empty/value/invalid_typeと全occurrence順・重複・数値/真偽値型差を保持してidentity/revision/scope/ownerの4 fieldを比較投影する。qualification/selectionはnot_established_by_this_ref_projectionに固定し、compare_required_axesの19 axis判定を置換しない（PROJ-01..41、local_probes 0..3）。",
+      "O4（選択BRAIN source occurrenceの1-slot置換/末尾append配列構築とexact境界検査）：同一callのSupplyInput.sources[i]をdestination_before_sources[j]（0<=j<lenは1slot置換、j==lenは末尾append）へ純DTOとして投影し、origin/before配列をimmutableに保ち、配列変更時のbefore/after snapshot identity+revision tuple同一やcontent→body衝突はunformedにする。i/jはCORE numeric_encode_profile/numeric_predicates/integerで数学的整数と有限配列境界をexact比較してからhost indexへ変換し、巨大指数（1e400等）を先にnarrowing/native int化しない（L9 positive 2件、SRC-OCC-NEG-01..04,06,07、compact_boundary_probes 0..6）。",
+      "O5（副作用0とowner別Backflow）：全3関数ともeffect=none（expected_side_effect_count=0）であり、原記録・採択・権限・使用set・未完義務への実write/実消込を行わず、不足はrequirement_or_contract_owner・brain_or_core_owner・product_or_contract_owner・unknown等へ戻す。"
+    ],
+    "cross_layer_key_mapping": {
+      "f01_negative_cases_L9_L8_to_L5": {
+        "L9_pointer": "L9#/cases/2/negative_cases/0..41 (HARNESS-L9-009-F01-NEG-01..42)",
+        "L8_pointer": "L8#/cases/2/negative_cases/0..41 (HARNESS-L8-009-F01-NEG-01..42)",
+        "L5_pointer": "L5#/failure_rules/12..53",
+        "key_correspondence": {
+          "L9_and_L8.change": "L5.condition", "L9_and_L8.expected_classification": "L5.code",
+          "L9_and_L8.expected_axis": "L5.expected_axis", "L9_and_L8.expected_state": "L5.expected_state",
+          "L9_and_L8.expected": "L5.expected", "L9_and_L8.expected_preserved": "L5.expected_preserved",
+          "L9_and_L8.backflow_owner": "L5.backflow_owner", "L8.integration_case_ref": "L9.id",
+          "L8.rule_ref": "L5.id", "L5.oracle_ref": "L8.id",
+          "L8_and_L5.function_ref": "HARNESS-L5-009-compare_required_axes"
+        }
+      },
+      "cross_design_candidate_ref_projection_L4_L9_L5_L8": {
+        "L4_pointer": "L4#/cross_design_candidate_ref_projection (HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION)",
+        "L9_pointer": "L9#/cross_design_candidate_ref_projection/cases/0..40 (CORE009-F01-PROJ-*-01..41)",
+        "L5_function_pointer": "L5#/functions/11 (HARNESS-L5-009-project_cross_design_candidate_refs)",
+        "L5_detail_pointer": "L5#/cross_design_candidate_ref_projection (HARNESS-L5-009-F01-XBD-CANDIDATE-REF-PROJECTION, program HARNESS-L5-009-PROGRAM-XBD-CANDIDATE-REF-PROJECTION)",
+        "L8_pointer": "L8#/cross_design_candidate_ref_projection (HARNESS-L8-009-F01-XBD-CANDIDATE-REF-PROJECTION: cases/0..40 + local_probes/0..3)",
+        "key_correspondence": {
+          "L9.cases[k].id": "CORE009-F01-PROJ-*-NN（L8.cases[k].id は接頭辞 HARNESS-L8-009-XBD- を付した HARNESS-L8-009-XBD-CORE009-F01-PROJ-*-NN、L8.case_order[k] と1対1一致）", "L5.functions[11].reference_program_ref": "L5#/cross_design_candidate_ref_projection/program/id (HARNESS-L5-009-PROGRAM-XBD-CANDIDATE-REF-PROJECTION)",
+          "L5.cross_design_candidate_ref_projection.oracle_ref": "L8#/cross_design_candidate_ref_projection/id (HARNESS-L8-009-F01-XBD-CANDIDATE-REF-PROJECTION)"
+        }
+      },
+      "selected_source_occurrence_array_builder_L4_L9_L5_L8": {
+        "L4_pointer": "L4#/selected_brain_source_occurrence_contract (HARNESS-L4-009-BRAIN-SOURCE-OCCURRENCE)",
+        "L9_pointer": "L9#/selected_brain_source_occurrence_verification (cases/0..1 + independent_negative_probes/0..7)",
+        "L5_pointer": "L5#/selected_source_occurrence_array_builder_detail (id: HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER, owner_and_effect.planned_private_symbol: _build_source_occurrence_array)",
+        "L8_pointer": "L8#/selected_source_occurrence_array_builder_verification (id: HARNESS-L8-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER, compact_boundary_probes/0..6)",
+        "key_correspondence": {
+          "L5.selected_source_occurrence_array_builder_detail.id": "L8.selected_source_occurrence_array_builder_verification.function_ref", "L8.source_basis[0].positive_cases": "L9#/selected_brain_source_occurrence_verification/cases/0..1",
+          "L8.compact_boundary_probes[*].inherits_exact_l9": "L9#/selected_brain_source_occurrence_verification/independent_negative_probes[*].id (SRC-OCC-NEG-01,02,04,06,07)"
+        }
+      }
+    }
+  },
+  "function_freeze_rows": [
+    {
+      "coverage_index": 41,
+      "parent": "HARNESS-L2-009",
+      "l3_obligation": "L3F#/requirements/23 (HARNESS-L3-009-F01)",
+      "l10_oracle": "L10F#/cases/23 (HARNESS-L10-009-F01)",
+      "l4_contract": "L4#/contracts/2 (HARNESS-L4-009-F01)",
+      "l9_case": "L9#/cases/2 (HARNESS-L9-009-F01)",
+      "public_function": {
+        "id": "HARNESS-L5-009-compare_required_axes",
+        "symbol": "compare_required_axes",
+        "l5_contract_pointer": "L5#/contracts/2 (HARNESS-L5-009-F01)",
+        "l5_pointer": "L5#/functions/1",
+        "input_type": "CompareRequiredAxesContext (L5#/type_contract/types/CompareRequiredAxesContext)",
+        "output_type": "Comparison (L5#/type_contract/types/Comparison)",
+        "effect": "none",
+        "failure_rule_pointers": [
+          "L5#/failure_rules/12 (HARNESS-L5-009-R-axis_01_missing)", "L5#/failure_rules/13 (HARNESS-L5-009-R-axis_01_conflict)", "L5#/failure_rules/14 (HARNESS-L5-009-R-axis_02_missing)", "L5#/failure_rules/15 (HARNESS-L5-009-R-axis_02_conflict)", "L5#/failure_rules/16 (HARNESS-L5-009-R-axis_03_missing)", "L5#/failure_rules/17 (HARNESS-L5-009-R-axis_03_conflict)", "L5#/failure_rules/18 (HARNESS-L5-009-R-axis_04_missing)", "L5#/failure_rules/19 (HARNESS-L5-009-R-axis_04_conflict)", "L5#/failure_rules/20 (HARNESS-L5-009-R-axis_05_missing)", "L5#/failure_rules/21 (HARNESS-L5-009-R-axis_05_conflict)",
+          "L5#/failure_rules/22 (HARNESS-L5-009-R-axis_06_missing)", "L5#/failure_rules/23 (HARNESS-L5-009-R-axis_06_conflict)", "L5#/failure_rules/24 (HARNESS-L5-009-R-axis_07_missing)", "L5#/failure_rules/25 (HARNESS-L5-009-R-axis_07_conflict)", "L5#/failure_rules/26 (HARNESS-L5-009-R-axis_08_missing)", "L5#/failure_rules/27 (HARNESS-L5-009-R-axis_08_conflict)", "L5#/failure_rules/28 (HARNESS-L5-009-R-axis_09_missing)", "L5#/failure_rules/29 (HARNESS-L5-009-R-axis_09_conflict)", "L5#/failure_rules/30 (HARNESS-L5-009-R-axis_10_missing)", "L5#/failure_rules/31 (HARNESS-L5-009-R-axis_10_conflict)",
+          "L5#/failure_rules/32 (HARNESS-L5-009-R-axis_11_missing)", "L5#/failure_rules/33 (HARNESS-L5-009-R-axis_11_conflict)", "L5#/failure_rules/34 (HARNESS-L5-009-R-axis_12_missing)", "L5#/failure_rules/35 (HARNESS-L5-009-R-axis_12_conflict)", "L5#/failure_rules/36 (HARNESS-L5-009-R-axis_13_missing)", "L5#/failure_rules/37 (HARNESS-L5-009-R-axis_13_conflict)", "L5#/failure_rules/38 (HARNESS-L5-009-R-knowledge_wrong_revision)", "L5#/failure_rules/39 (HARNESS-L5-009-R-unused_backflow_required)", "L5#/failure_rules/40 (HARNESS-L5-009-R-unused_impact_required)", "L5#/failure_rules/41 (HARNESS-L5-009-R-unselected_knowledge_required)",
+          "L5#/failure_rules/42 (HARNESS-L5-009-R-axis_14_missing)", "L5#/failure_rules/43 (HARNESS-L5-009-R-axis_14_conflict)", "L5#/failure_rules/44 (HARNESS-L5-009-R-axis_15_missing)", "L5#/failure_rules/45 (HARNESS-L5-009-R-axis_15_conflict)", "L5#/failure_rules/46 (HARNESS-L5-009-R-axis_16_missing)", "L5#/failure_rules/47 (HARNESS-L5-009-R-axis_16_conflict)", "L5#/failure_rules/48 (HARNESS-L5-009-R-axis_17_missing)", "L5#/failure_rules/49 (HARNESS-L5-009-R-axis_17_conflict)", "L5#/failure_rules/50 (HARNESS-L5-009-R-axis_18_missing)", "L5#/failure_rules/51 (HARNESS-L5-009-R-axis_18_conflict)",
+          "L5#/failure_rules/52 (HARNESS-L5-009-R-axis_19_missing)", "L5#/failure_rules/53 (HARNESS-L5-009-R-axis_19_conflict)"
+        ]
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-F01",
+        "l8_pointer": "L8#/cases/2",
+        "normal_oracle_pointer": "L8#/normal_function_oracles/1 (HARNESS-L8-009-NORMAL-compare_required_axes)",
+        "normal_expectation_storage_pointer": "L8#/normal_required_axes_expectation_storage",
+        "negative_case_pointers": [
+          "L8#/cases/2/negative_cases/0 (HARNESS-L8-009-F01-NEG-01)", "L8#/cases/2/negative_cases/1 (HARNESS-L8-009-F01-NEG-02)", "L8#/cases/2/negative_cases/2 (HARNESS-L8-009-F01-NEG-03)", "L8#/cases/2/negative_cases/3 (HARNESS-L8-009-F01-NEG-04)", "L8#/cases/2/negative_cases/4 (HARNESS-L8-009-F01-NEG-05)", "L8#/cases/2/negative_cases/5 (HARNESS-L8-009-F01-NEG-06)", "L8#/cases/2/negative_cases/6 (HARNESS-L8-009-F01-NEG-07)", "L8#/cases/2/negative_cases/7 (HARNESS-L8-009-F01-NEG-08)", "L8#/cases/2/negative_cases/8 (HARNESS-L8-009-F01-NEG-09)", "L8#/cases/2/negative_cases/9 (HARNESS-L8-009-F01-NEG-10)",
+          "L8#/cases/2/negative_cases/10 (HARNESS-L8-009-F01-NEG-11)", "L8#/cases/2/negative_cases/11 (HARNESS-L8-009-F01-NEG-12)", "L8#/cases/2/negative_cases/12 (HARNESS-L8-009-F01-NEG-13)", "L8#/cases/2/negative_cases/13 (HARNESS-L8-009-F01-NEG-14)", "L8#/cases/2/negative_cases/14 (HARNESS-L8-009-F01-NEG-15)", "L8#/cases/2/negative_cases/15 (HARNESS-L8-009-F01-NEG-16)", "L8#/cases/2/negative_cases/16 (HARNESS-L8-009-F01-NEG-17)", "L8#/cases/2/negative_cases/17 (HARNESS-L8-009-F01-NEG-18)", "L8#/cases/2/negative_cases/18 (HARNESS-L8-009-F01-NEG-19)", "L8#/cases/2/negative_cases/19 (HARNESS-L8-009-F01-NEG-20)",
+          "L8#/cases/2/negative_cases/20 (HARNESS-L8-009-F01-NEG-21)", "L8#/cases/2/negative_cases/21 (HARNESS-L8-009-F01-NEG-22)", "L8#/cases/2/negative_cases/22 (HARNESS-L8-009-F01-NEG-23)", "L8#/cases/2/negative_cases/23 (HARNESS-L8-009-F01-NEG-24)", "L8#/cases/2/negative_cases/24 (HARNESS-L8-009-F01-NEG-25)", "L8#/cases/2/negative_cases/25 (HARNESS-L8-009-F01-NEG-26)", "L8#/cases/2/negative_cases/26 (HARNESS-L8-009-F01-NEG-27)", "L8#/cases/2/negative_cases/27 (HARNESS-L8-009-F01-NEG-28)", "L8#/cases/2/negative_cases/28 (HARNESS-L8-009-F01-NEG-29)", "L8#/cases/2/negative_cases/29 (HARNESS-L8-009-F01-NEG-30)",
+          "L8#/cases/2/negative_cases/30 (HARNESS-L8-009-F01-NEG-31)", "L8#/cases/2/negative_cases/31 (HARNESS-L8-009-F01-NEG-32)", "L8#/cases/2/negative_cases/32 (HARNESS-L8-009-F01-NEG-33)", "L8#/cases/2/negative_cases/33 (HARNESS-L8-009-F01-NEG-34)", "L8#/cases/2/negative_cases/34 (HARNESS-L8-009-F01-NEG-35)", "L8#/cases/2/negative_cases/35 (HARNESS-L8-009-F01-NEG-36)", "L8#/cases/2/negative_cases/36 (HARNESS-L8-009-F01-NEG-37)", "L8#/cases/2/negative_cases/37 (HARNESS-L8-009-F01-NEG-38)", "L8#/cases/2/negative_cases/38 (HARNESS-L8-009-F01-NEG-39)", "L8#/cases/2/negative_cases/39 (HARNESS-L8-009-F01-NEG-40)",
+          "L8#/cases/2/negative_cases/40 (HARNESS-L8-009-F01-NEG-41)", "L8#/cases/2/negative_cases/41 (HARNESS-L8-009-F01-NEG-42)"
+        ],
+        "additional_unit_case_pointers": ["L8#/additional_unit_cases/7 (HARNESS-L8-009-ADD-08: operation-specific-axes-not-promoted)"]
+      },
+      "obligation_and_oracle_summary": "O1・O2・O5を充足：L9#/cases/2/negative_cases 42件とL8#/cases/2/negative_cases 42件・L5#/failure_rules/12〜53が7属性（change/condition・expected_classification/code・expected_axis・expected_state・expected・expected_preserved・backflow_owner）と双方向参照まで全42件完全一致し、normal_function_oracles/1（およびnormal_required_axes_expectation_storageの同一L8内参照規則）とADD-08（非選択操作のaxisを常時必須に昇格させない）により19入力axisと版の個別照合・副作用0が漏れなく検証される。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "already_frozen_shared_entry": "L5#/contracts/2/function_refs に含まれる validate_application_input（L5#/functions/0）は D-H009-T1a（T1A#/function_freeze_rows/0）で関数別pair凍結済み。", "separated_A_other_slices": "L5#/f05_detail_contract/types/CoreCompareRequiredAxesContext・native_context_crosswalk/compare_required_axes・caller_return_writer_contract/call_rows/0 のF05詳細caller/writer結線はDISP2#/dispositions/13（D14、次slice D-H009-T2c-1）、L5#/contracts/2/function_refs に含まれる全体統合関数 build_application_analysis（L5#/functions/10）はDISP2#/dispositions/18（D19、次slice D-H009-T3b）へそれぞれ戻し先付きで分離済みであり、compare_required_axes 単体関数の凍結を止めない。",
+        "C_downstream_and_other_owner": "knowledge定義/版はBRAIN030/032、製品要求値はHARNESS008、適用契約はHARNESS009/023/026、使用記録はHELIX-OS 002/053、具体fixture展開・L6/L7実行oracle凍結・Red/Greenは下流L6/L7（DISP1 D03/D07）へ戻す。"
+      },
+      "freeze_status": "frozen_for_tdd_red_green",
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 41,
+      "parent": "HARNESS-L2-009",
+      "l3_obligation": "L3F#/requirements/23 (HARNESS-L3-009-F01)",
+      "l10_oracle": "L10F#/cases/23 (HARNESS-L10-009-F01)",
+      "l4_contract": "L4#/cross_design_candidate_ref_projection (HARNESS-L4-009-F01-XBD-CANDIDATE-REF-PROJECTION; supplemental to L4#/contracts/2)",
+      "l9_case": "L9#/cross_design_candidate_ref_projection (HARNESS-L9-009-F01-XBD-CANDIDATE-REF-PROJECTION)",
+      "upstream_readonly_refs": [
+        "BRAIN_L4#/contracts/2 (HELIXBRAIN-L4-032-F01)", "BRAIN_L5#/type_contract/types/SupplyAnalysis/fields/candidate_refs"
+      ],
+      "public_function": {
+        "id": "HARNESS-L5-009-project_cross_design_candidate_refs",
+        "symbol": "project_cross_design_candidate_refs",
+        "l5_contract_pointer": "L5#/cross_design_candidate_ref_projection (HARNESS-L5-009-F01-XBD-CANDIDATE-REF-PROJECTION)",
+        "l5_pointer": "L5#/functions/11",
+        "reference_program_pointer": "L5#/cross_design_candidate_ref_projection/program (HARNESS-L5-009-PROGRAM-XBD-CANDIDATE-REF-PROJECTION)",
+        "input_type": "RawValue",
+        "output_type": "CandidateRefProjectionOutput",
+        "effect": "none",
+        "failure_rule_pointers": []
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-F01-XBD-CANDIDATE-REF-PROJECTION",
+        "l8_pointer": "L8#/cross_design_candidate_ref_projection",
+        "unit_case_pointers": [
+          "L8#/cross_design_candidate_ref_projection/cases/0 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-EXACT-01)", "L8#/cross_design_candidate_ref_projection/cases/1 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-REVISION-02)", "L8#/cross_design_candidate_ref_projection/cases/2 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SCOPE-03)", "L8#/cross_design_candidate_ref_projection/cases/3 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-OWNER-04)", "L8#/cross_design_candidate_ref_projection/cases/4 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-BRAIN-SCOPE-SHAPE-05)", "L8#/cross_design_candidate_ref_projection/cases/5 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-DUPLICATE-ORDER-06)", "L8#/cross_design_candidate_ref_projection/cases/6 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-CANDIDATES-ABSENT-07)", "L8#/cross_design_candidate_ref_projection/cases/7 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-CANDIDATES-NULL-08)", "L8#/cross_design_candidate_ref_projection/cases/8 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-ABSENT-09)", "L8#/cross_design_candidate_ref_projection/cases/9 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-NULL-10)",
+          "L8#/cross_design_candidate_ref_projection/cases/10 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-EMPTY-11)", "L8#/cross_design_candidate_ref_projection/cases/11 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-ABSENT-12)", "L8#/cross_design_candidate_ref_projection/cases/12 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-NULL-13)", "L8#/cross_design_candidate_ref_projection/cases/13 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-QUALIFICATION-UNESTABLISHED-14)", "L8#/cross_design_candidate_ref_projection/cases/14 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-CONTEXT-MISMATCH-15)", "L8#/cross_design_candidate_ref_projection/cases/15 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBERS-NULL-16)", "L8#/cross_design_candidate_ref_projection/cases/16 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBERS-ABSENT-17)", "L8#/cross_design_candidate_ref_projection/cases/17 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-IDENTITY-NULL-18)", "L8#/cross_design_candidate_ref_projection/cases/18 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-IDENTITY-ABSENT-19)", "L8#/cross_design_candidate_ref_projection/cases/19 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSES-EMPTY-20)",
+          "L8#/cross_design_candidate_ref_projection/cases/20 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-DUPLICATE-21)", "L8#/cross_design_candidate_ref_projection/cases/21 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-ORDER-22)", "L8#/cross_design_candidate_ref_projection/cases/22 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBER-IDENTITY-NULL-23)", "L8#/cross_design_candidate_ref_projection/cases/23 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBER-IDENTITY-ABSENT-24)", "L8#/cross_design_candidate_ref_projection/cases/24 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBER-UNKNOWN-PLUS-KNOWN-DIFFERENCE-25)", "L8#/cross_design_candidate_ref_projection/cases/25 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-IDENTITY-NULL-26)", "L8#/cross_design_candidate_ref_projection/cases/26 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-IDENTITY-ABSENT-27)", "L8#/cross_design_candidate_ref_projection/cases/27 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-UNKNOWN-PLUS-KNOWN-DIFFERENCE-28)", "L8#/cross_design_candidate_ref_projection/cases/28 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-EXACT-WITH-UNRELATED-UNKNOWN-TARGETS-29)", "L8#/cross_design_candidate_ref_projection/cases/29 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-NULL-CANDIDATE-ELEMENT-30)",
+          "L8#/cross_design_candidate_ref_projection/cases/30 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-NULL-UNIVERSE-ELEMENT-31)", "L8#/cross_design_candidate_ref_projection/cases/31 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-NULL-MEMBER-ELEMENT-32)", "L8#/cross_design_candidate_ref_projection/cases/32 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-NULL-SNAPSHOT-ELEMENT-33)", "L8#/cross_design_candidate_ref_projection/cases/33 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-BOOL-NUMBER-SCOPE-DISTINCTION-34)", "L8#/cross_design_candidate_ref_projection/cases/34 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-REF-ABSENT-35)", "L8#/cross_design_candidate_ref_projection/cases/35 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-SNAPSHOT-REF-NULL-36)", "L8#/cross_design_candidate_ref_projection/cases/36 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-REF-ABSENT-37)", "L8#/cross_design_candidate_ref_projection/cases/37 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-CANDIDATE-REFS-NONARRAY-38)", "L8#/cross_design_candidate_ref_projection/cases/38 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSES-NONARRAY-39)", "L8#/cross_design_candidate_ref_projection/cases/39 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-MEMBERS-NONARRAY-40)",
+          "L8#/cross_design_candidate_ref_projection/cases/40 (HARNESS-L8-009-XBD-CORE009-F01-PROJ-TEMPLATES-NONARRAY-41)"
+        ],
+        "local_probe_pointers": [
+          "L8#/cross_design_candidate_ref_projection/local_probes/0 (HARNESS-L8-009-R1-CE-A-UNKNOWN-MEMBER-FIELD-IN-OTHER-UNIVERSE)", "L8#/cross_design_candidate_ref_projection/local_probes/1 (HARNESS-L8-009-R1-CE-B-EMPTY-MEMBER-PLUS-REVISION-DIFFERENCE)", "L8#/cross_design_candidate_ref_projection/local_probes/2 (HARNESS-L8-009-R1-CE-C-NULL-MEMBER-PLUS-REVISION-DIFFERENCE)", "L8#/cross_design_candidate_ref_projection/local_probes/3 (HARNESS-L8-009-R1-UNIVERSE-NONOBJECT-RAW-PRESERVED)"
+        ]
+      },
+      "obligation_and_oracle_summary": "O3・O5を充足：L9#/cross_design_candidate_ref_projection/cases 41件とL8#/cross_design_candidate_ref_projection/cases 41件（HARNESS-L8-009-XBD-CORE009-F01-PROJ-*-01..41）およびL5#/functions/11/unit_case_refs 41件が1対1で対応し、さらにL8 local_probes 4件（R1-CE-A/B/C、R1-UNIVERSE-NONOBJECT-RAW-PRESERVED）が複数Universe間のunknown/empty/null保持とnon-object raw保持を検証する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_finite_contract_retained": "DISP1#/dispositions/6（D07）の通り、41 case＋4 local probeの有限投影契約はL4/L9と対応して記載済み。", "C_downstream_and_other_owner": "DISP1#/dispositions/7（D08）の通り、BRAIN030/032の実source資格発行、CORE/OSの選択成立、wire/runtime実行は各外部ownerと下流L6/L7へ戻す。"
+      },
+      "freeze_status": "frozen_for_tdd_red_green",
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 41,
+      "parent": "HARNESS-L2-009",
+      "l3_obligation": "L3F#/requirements/23 (HARNESS-L3-009-F01)",
+      "l10_oracle": "L10F#/cases/23 (HARNESS-L10-009-F01)",
+      "l4_contract": "L4#/selected_brain_source_occurrence_contract (HARNESS-L4-009-BRAIN-SOURCE-OCCURRENCE)",
+      "l9_case": "L9#/selected_brain_source_occurrence_verification",
+      "upstream_readonly_refs": [
+        "BRAIN_L4#/contracts/2 (HELIXBRAIN-L4-032-F01)", "BRAIN_L5#/functions/2 (HELIXBRAIN-L5-032-compare_values_and_applicability)", "BRAIN_L5#/source_return_contract (HELIXBRAIN-L5-032-SOURCE-RETURN-CONTRACT)", "BRAIN_L5#/type_contract/types/SupplyInput/fields/sources"
+      ],
+      "public_function": {
+        "id": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
+        "symbol": "_build_source_occurrence_array",
+        "l5_contract_pointer": "L5#/selected_source_occurrence_array_builder_detail",
+        "l5_pointer": "L5#/selected_source_occurrence_array_builder_detail/owner_and_effect",
+        "algorithm_pointer": "L5#/selected_source_occurrence_array_builder_detail/projection_algorithm",
+        "input_type": "(origin_snapshot: PresenceJsonValue, origin_sources: PresenceJsonValue, i: PresenceJsonValue, destination_before_snapshot: PresenceJsonValue, destination_before_sources: PresenceJsonValue, destination_after_snapshot: PresenceJsonValue, j: PresenceJsonValue)",
+        "output_type": "PrivateSourceOccurrenceBuildResult",
+        "effect": "none",
+        "failure_rule_pointers": []
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
+        "l8_pointer": "L8#/selected_source_occurrence_array_builder_verification",
+        "positive_oracle_pointers": [
+          "L9#/selected_brain_source_occurrence_verification/cases/0 (HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-REPLACE-ONE-SLOT)", "L9#/selected_brain_source_occurrence_verification/cases/1 (HARNESS-L9-009-BRAIN-SOURCE-OCCURRENCE-APPEND-AT-END)"
+        ],
+        "compact_boundary_probe_pointers": [
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/0 (CORE-L8-SOURCE-OCC-INDEX-COLLECTION-BOUNDARIES)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/1 (CORE-L8-SOURCE-OCC-INVALID-RAW-HANDOFF)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/2 (CORE-L8-SOURCE-OCC-UNREPRESENTABLE-MEMBER-COLLISION)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/3 (CORE-L8-SOURCE-OCC-SNAPSHOT-UNCHANGED-WITH-ARRAY-CHANGE)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/4 (CORE-L8-SOURCE-OCC-BEFORE-ARRAY-NULL)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/5 (CORE-L8-SOURCE-OCC-BYTES-AND-QUALIFICATION-KEEPER)",
+          "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/6 (CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING)"
+        ]
+      },
+      "obligation_and_oracle_summary": "O4・O5を充足：L9正例2件（REPLACE-ONE-SLOT、APPEND-AT-END）とL9負例probe（SRC-OCC-NEG-01,02,04,06,07）に対し、L8 compact_boundary_probes 7件（既存0..5＋本sliceで追補した index 6 CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）が1-slot置換/末尾append・collection null・snapshot tuple不変・content→body衝突・raw不正値のfn0引き渡し・巨大指数1e400でのnarrowing非発生（index_narrowed_before_exact_range_check=false）を漏れなく検証し、DISP-1 D15（A）を解消する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "resolved_A_in_this_slice": "DISP1#/dispositions/14（D15）が指摘していた L8#/selected_source_occurrence_array_builder_verification/not_proven/1 の index_narrowed_before_exact_range_check=false 識別用U-ID単体probeは、L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/6（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）を追補し、L5 not_closed_here/3 と L8 not_proven/1 を更新して解消済み。", "separated_A_other_slices": "本契約がrequirement_refsに併記する HARNESS-L3-009-F05 側のsource materialization/field definition適用は DISP2#/dispositions/13,15（D14/D16、次slice D-H009-T2c-1/T2c-3）、上位callerの _build_source_occurrence_array 呼出し結線（L5#/selected_source_caller_detail）は DISP2#/dispositions/16（D17、次slice D-H009-T2d）、受信側 validate_application_input（L5#/functions/0）は D-H009-T1a（凍結済み）でそれぞれ扱っており、本builder関数の単体pair凍結を止めない。",
+        "C_downstream_and_other_owner": "DISP1#/dispositions/7（D08）の通り、CoreNumber/CoreJsonValueのcross-runtime wire adapter実装、1.0/1e0やduplicate memberの製品reader実行挙動、実source獲得/delivery、BRAIN→CORE qualification認可、runtime/CI実行、PO L11受入はBRAIN030/032・SECURITY・OS002・CONNECT・下流L6/L7へ戻す。"
+      },
+      "freeze_status": "frozen_for_tdd_red_green",
+      "execution_state_at_freeze": "not_executed"
+    }
+  ],
+  "head_entity_counts": {
+    "L5_contracts": 11, "L5_functions": 13, "L5_failure_rules": 107, "L5_source_pins": 21, "L8_cases": 11,
+    "L8_f01_negative_cases": 42, "L8_xbd_candidate_ref_cases": 41, "L8_xbd_candidate_ref_local_probes": 4, "L8_source_occurrence_compact_boundary_probes": 7, "L8_total_negative_cases": 106,
+    "L8_normal_function_oracles": 12, "L8_additional_unit_cases": 24, "note": "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes は 6件→7件（index 6: CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING 追補）。L8#/completion/normal_function_oracles=11→12 の数値同期は DISP2#/dispositions/11（D12、次slice D-H009-T2a）で実施する。"
+  },
+  "verification": {
+    "kind": "static_only", "f01_negative_cases_matched_L9_L8_L5": 42, "fn1_additional_unit_cases_verified": 1, "fn1_normal_function_oracles_verified": 1, "fn11_xbd_unit_cases_matched_L9_L8_L5": 41,
+    "fn11_xbd_local_probes_verified": 4, "source_occurrence_positive_oracles_referenced": 2, "source_occurrence_compact_boundary_probes_verified": 7, "u_id_probes_added_to_L8": 1, "materials_added_to_L8": 0,
+    "blocking_a_count_in_f01_scope": 0
+  },
+  "not_claimed": [
+    "本記録はHARNESS-L2-009 T:41（HARNESS-L3-009-F01）を担う3関数（compare_required_axes、project_cross_design_candidate_refs、_build_source_occurrence_array）と対L8 case行の関数別L5/L8対設計凍結記録であり、T:42–49（D-H009-T1d-1〜T1d-2、D-H009-T2a〜T3b）の凍結、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
+    "L8にはD15解消のためのU-ID単体probe行（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）1件のみを追補し、新たな実行材料（全返却・fixture・hash・COPY）は追加していない（#3510）。"
+  ]
+}
