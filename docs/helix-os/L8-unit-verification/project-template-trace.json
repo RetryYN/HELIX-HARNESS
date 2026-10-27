@@ -7038,7 +7038,7 @@
     "contract_count": 13,
     "negative_case_count": 71,
     "full92_430_completion": "unproven",
-    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存71変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）でA=0を確認し凍結済み。残るT:298..308（F01..F09, N01, N02；F04 source-projection 25例・P2/P2bを含む）はD-OS002-T1b〜T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
+    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存71変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）でA=0を確認し凍結済み。残るT:299, 301..308（F02, F04..F09, N01, N02；F04 source-projection 25例・P2/P2bを含む）はD-OS002-T1c〜T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
     "F04_source_projection_cases": {
       "total": 25,
       "join_result": 23,
@@ -9722,7 +9722,7 @@
       "shape/UTF8/構文/出力required失敗は所在と元rawを保存。source意味不足をglobal raw形不正や補完正常へ変更しない。",
       "定義外宣言memberは削除/aliasで成功にせずpointerへ失敗。opaque map正常と宣言carrier失敗を分離し、選択section解決後のshapeも同じclosed集合へ照合する。"
     ],
-    "completion_limit": "【B:L8純粋単体検証境界】旧source hash/quotes/承認objects/既存member/固定raw/schema/declared presenceおよびwire_codec 43例（cases/0..42）・encoder_obligations 3項目の静的単体検証仕様はD-OS002-T1aで整理・凍結済み（各section固有の意味比較はT:296/297がD-OS002-T1aで凍結、T:298..308がD-OS002-T1b〜T4で順次凍結）。【C:下流L6/L7・外部接続・全体閉包境界】CaseInput/Observation各sectionとselector実binding/root供給元/custody、小数/指数/1e400/encode非JSON値の具体float/resource実行時幅、実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは本L8純粋単体検証仕様の外。",
+    "completion_limit": "【B:L8純粋単体検証境界】旧source hash/quotes/承認objects/既存member/固定raw/schema/declared presenceおよびwire_codec 43例（cases/0..42）・encoder_obligations 3項目の静的単体検証仕様はD-OS002-T1aで整理・凍結済み（各section固有の意味比較はT:296/297がD-OS002-T1a、T:298/300がD-OS002-T1bで凍結、T:299/301..308がD-OS002-T1c〜T4で順次凍結）。【C:下流L6/L7・外部接続・全体閉包境界】CaseInput/Observation各sectionとselector実binding/root供給元/custody、小数/指数/1e400/encode非JSON値の具体float/resource実行時幅、実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは本L8純粋単体検証仕様の外。",
     "association_wire_connection": {
       "design_ref": "HELIXOS-L5-002-compare_core_dispositions_typed/source_output_association_rule",
       "scope": "追加済みlogical型のschema結線。全F04/builderや実codecの検証とは分離。",
