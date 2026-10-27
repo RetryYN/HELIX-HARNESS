@@ -1,0 +1,187 @@
+{
+  "record_id": "LABO011-AGGREGATE-CORRELATE-CONNECTION-FUNCTION-PAIR-FREEZE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-LABO011-CHILD-BIND-3547-20261028-44",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6448360950",
+  "source_main": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+  "recorded_at_utc": "2026-10-27T17:18:00+00:00",
+  "target": "HELIXLABO-L2-011（B:271 / T:271、単一子HELIXLABO-L3-011-F01 ↔ HELIXLABO-L10-011-F01）の公開関数1つ＋対のL8 case行＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（4行）。4関数（FN-LABO011-01〜04）の直列合成全体でF01を担う。92親430対の総合凍結とは呼ばない。",
+  "criterion": "公開関数ごとに担うL3/L10義務・L4/L9基本契約・L5関数契約・対のL8 case invocation行が揃い、unknown・欠測・未完の戻し先（ownerとreentry）が明示され、011 L5設計自身へ戻す空白（A）が0件であること。L8へ新たな材料（全返却・fixture・hash）は追加しない。",
+  "path_aliases": {
+    "L3F": "docs/helix-labo/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-labo/L10-verification/functional-verification.json",
+    "L4": "docs/helix-labo/L4-basic-design/aggregate-correlate-connection.json",
+    "L9": "docs/helix-labo/L9-integration-verification/aggregate-correlate-connection.json",
+    "L5": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+    "L8": "docs/helix-labo/L8-unit-verification/aggregate-correlate-connection.json"
+  },
+  "pins": {
+    "L3F_sha256": "ced2950082c984579c46a5a0c9d8f71f7522c56b9cf2b70e1f9174e4aadefca9",
+    "L10F_sha256": "07541a49eea2db360fddfe3b8c615047e4bc3499dc52165c20c2d84a423cf496",
+    "L4_sha256": "7ad7548fd27e4e894bb3d2da9e9df721d841905a299fa12e609f982259db2177",
+    "L9_sha256": "099fcf090933555d3ccf2ef29f077765517b3ab0336e8b81a3817d8023325cb0",
+    "L5_pre_child_bind_sha256": "1fa63174b0cf9fa22b555be761ed249df1280d70f9b4c0881e5c63109ebb9805",
+    "L5_current_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
+    "L8_sha256": "04423e8aa8f7a667f87f24580a0f63678067e0e2a0126dd2b1ef475c816fa8c0"
+  },
+  "legacy_and_failure_basis": [
+    {
+      "asset": "LEGACY-ASSET-719D5EC9C06FC4AAD0FF",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/infinity-loop-platform-requirements.md",
+      "lines": "67–67",
+      "file_sha256": "db31f424cc89cc4cc31058b2d03059e794ab2d63fa0b1f431dd38eced8f4c8fb",
+      "keep": "source由来・鮮度・schema・authorityを保持しjoin切れを未完として保つ。",
+      "change": "旧product-data connector/DBを移植せず、Aggregate→Correlate固有接続と両端receipt・episode往復参照へ意味再導出。"
+    },
+    {
+      "asset": "LEGACY-ASSET-C35E93F2D36777CD7462",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail-design/infinity-loop-data-platform.md",
+      "lines": "262–315",
+      "file_sha256": "2a757a52082f823c4e52ae1e04887b62b8ac5f5df0d833d2b1c00516d6572357",
+      "keep": "元recordとmapping参照・欠測保全・片側成功の拒否（UTW-005/014/021/024/029防止）。",
+      "change": "旧単一DB table群を移さずFN-LABO011-01〜04の純粋比較・組立て契約へ再導出。"
+    }
+  ],
+  "function_freeze_rows": [
+    {
+      "coverage_index": 271,
+      "parent": "HELIXLABO-L2-011",
+      "l3_obligation": "L3F#/requirements/4 (HELIXLABO-L3-011-F01)",
+      "l10_oracle": "L10F#/verifications/4 (HELIXLABO-L10-011-F01)",
+      "l4_contract": "L4#/contracts/0 (HELIXLABO-L4-011-F01)",
+      "l4_basis_pointers": [
+        "L4#/architecture/flow/0",
+        "L4#/contracts/0/content_rules/0",
+        "L4#/contracts/0/content_rules/1",
+        "L4#/contracts/0/content_rules/4"
+      ],
+      "l9_case": "L9#/verification_obligations/0 (HELIXLABO-L9-011-F01, cases 0..46)",
+      "public_function": {
+        "id": "FN-LABO011-01",
+        "name": "接続必須値と観測受渡しの比較",
+        "l5_pointer": "L5#/logical_contract/functions/0",
+        "binding_pointers": [
+          "L5#/logical_contract/source_and_consumer_bindings/0",
+          "L5#/logical_contract/source_and_consumer_bindings/1"
+        ]
+      },
+      "paired_l8_case": {
+        "case_range": "L8#/cases/0..46 (LABO011-F01-BOTH-ENDPOINTS-SAME-OBSERVATION .. LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING, 47 cases)",
+        "invocation_pointer_pattern": "L8#/cases/*/function_invocations/0 (function_ref=FN-LABO011-01)"
+      },
+      "f01_role_ja": "接続固有identity/endpoint/connector・契約版/要求revision・scope必須13項目のpresenceと、元observation・受領observationのidentity/revision/source/scope/fields・欠測保持を比較する。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0..2: 形式schema/codec・L6/L7実装・実検証・L11受入（owner: LABO011後続層）。",
+        "C_other_owner": "L4#/remaining/0: 001 observation / 002 correlation・HARNESS010/011共通pack契約のowner-qualified exact binding（owner: HELIXLABO-L2-001/002・HARNESS-L2-010/011）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 271,
+      "parent": "HELIXLABO-L2-011",
+      "l3_obligation": "L3F#/requirements/4 (HELIXLABO-L3-011-F01)",
+      "l10_oracle": "L10F#/verifications/4 (HELIXLABO-L10-011-F01)",
+      "l4_contract": "L4#/contracts/0 (HELIXLABO-L4-011-F01)",
+      "l4_basis_pointers": [
+        "L4#/architecture/flow/1",
+        "L4#/contracts/0/content_rules/2"
+      ],
+      "l9_case": "L9#/verification_obligations/0 (HELIXLABO-L9-011-F01, cases 0..46)",
+      "public_function": {
+        "id": "FN-LABO011-02",
+        "name": "両端receiptの参照比較",
+        "l5_pointer": "L5#/logical_contract/functions/1",
+        "binding_pointers": [
+          "L5#/logical_contract/source_and_consumer_bindings/0",
+          "L5#/logical_contract/source_and_consumer_bindings/2"
+        ]
+      },
+      "paired_l8_case": {
+        "case_range": "L8#/cases/0..46 (47 cases)",
+        "invocation_pointer_pattern": "L8#/cases/*/function_invocations/1 (function_ref=FN-LABO011-02)"
+      },
+      "f01_role_ja": "送信receiptと受領receiptの双方が同一接続・observation identity/revision・source・scopeおよび受渡しfieldを参照しているかを突合し、片側receiptや不一致を接続成功としない。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0..2: 実receipt issuer/root・形式schema/codec・後続実装と検証（owner: LABO011後続層）。",
+        "C_other_owner": "L4#/remaining/0: 001/002 endpointおよびHARNESS010/011 connector契約（owner: HELIXLABO-L2-001/002・HARNESS-L2-010/011）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 271,
+      "parent": "HELIXLABO-L2-011",
+      "l3_obligation": "L3F#/requirements/4 (HELIXLABO-L3-011-F01)",
+      "l10_oracle": "L10F#/verifications/4 (HELIXLABO-L10-011-F01)",
+      "l4_contract": "L4#/contracts/0 (HELIXLABO-L4-011-F01)",
+      "l4_basis_pointers": [
+        "L4#/architecture/flow/2",
+        "L4#/contracts/0/content_rules/3"
+      ],
+      "l9_case": "L9#/verification_obligations/0 (HELIXLABO-L9-011-F01, cases 0..46)",
+      "public_function": {
+        "id": "FN-LABO011-03",
+        "name": "episodeと元観測backlinkの照合",
+        "l5_pointer": "L5#/logical_contract/functions/2",
+        "binding_pointers": [
+          "L5#/logical_contract/source_and_consumer_bindings/1",
+          "L5#/logical_contract/source_and_consumer_bindings/3",
+          "L5#/logical_contract/source_and_consumer_bindings/4"
+        ]
+      },
+      "paired_l8_case": {
+        "case_range": "L8#/cases/0..46 (47 cases)",
+        "invocation_pointer_pattern": "L8#/cases/*/function_invocations/2 (function_ref=FN-LABO011-03)"
+      },
+      "f01_role_ja": "Correlateのepisode候補relationと元observation側backlinkが同じidentity/revision/scopeを往復参照しているかを比較し、相関から因果確定（causal_state）を生成しない。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/3およびL5#/logical_contract/unresolved_boundaries/2: 固定素材外の複数relation・追加raw shapeの検証展開（owner: LABO011後続検証author）。",
+        "C_other_owner": "L4#/remaining/0: 002 episode correlation側の正式anchor/原因owner判定（owner: HELIXLABO-L2-002）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 271,
+      "parent": "HELIXLABO-L2-011",
+      "l3_obligation": "L3F#/requirements/4 (HELIXLABO-L3-011-F01)",
+      "l10_oracle": "L10F#/verifications/4 (HELIXLABO-L10-011-F01)",
+      "l4_contract": "L4#/contracts/0 (HELIXLABO-L4-011-F01)",
+      "l4_basis_pointers": [
+        "L4#/architecture/flow/3",
+        "L4#/contracts/0/content_rules/1",
+        "L4#/contracts/0/content_rules/2",
+        "L4#/contracts/0/content_rules/3",
+        "L4#/contracts/0/content_rules/4"
+      ],
+      "l9_case": "L9#/verification_obligations/0 (HELIXLABO-L9-011-F01, cases 0..46)",
+      "public_function": {
+        "id": "FN-LABO011-04",
+        "name": "保持と戻し先を含む比較結果の組立て",
+        "l5_pointer": "L5#/logical_contract/functions/3",
+        "binding_pointers": [
+          "L5#/logical_contract/source_and_consumer_bindings/1",
+          "L5#/logical_contract/source_and_consumer_bindings/3",
+          "L5#/logical_contract/source_and_consumer_bindings/4"
+        ]
+      },
+      "paired_l8_case": {
+        "case_range": "L8#/cases/0..46 (47 cases)",
+        "invocation_pointer_pattern": "L8#/cases/*/function_invocations/3 (function_ref=FN-LABO011-04) and L8#/cases/*/case_oracle"
+      },
+      "f01_role_ja": "FN01〜FN03の比較結果と原入力を保持したまま、欠落・不一致・片側成功・非object scope不足をLABO-connection-ownerまたはLABO-correlation-ownerへのfindingsとoverall_stateへ組み立てる。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0..2: L6/L7実装・Red→Green→Refactor・実L8/L9/L10検証・PO L11受入（owner: LABO011後続層）。",
+        "C_other_owner": "L4#/architecture/flow/3: 返却されたconnection/correlation不成立findingの実解決（owner: LABO-connection-owner / LABO-correlation-owner）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    }
+  ],
+  "not_claimed": [
+    "本記録はHELIXLABO-L2-011（B/T:271、HELIXLABO-L3-011-F01）の4関数（FN-LABO011-01〜04）の関数別L5/L8対設計凍結記録であり、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
+    "L8の/scope_content_correction/candidate_l5_bindingが保持するsha256（1fa63174...）はchild ref構造化追記前のL5 bytesを指す既存pinとして変更せず、L8へ新たな材料（全返却・fixture・hash）を追加していない。"
+  ]
+}

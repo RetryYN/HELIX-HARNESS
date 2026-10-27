@@ -529,7 +529,17 @@
           "connectionのidentity,revision,from_endpoint,to_endpoint,connector_identity,connector_revision,contract_identity,contract_revision,scopeをこの順にConnectionFieldPresenceへ写す。scope直後にscope.requirement_revision,ticket,product,mechanismをこの順に追加する。key欠落はabsent/raw_value=null、明示nullはnull/raw_value=null、それ以外はvalue/原値。all_required_connection_values_presentは13個が全てvalueの時だけtrue。 connection.scope自体がabsent/null/object外なら配下にkeyは存在しないため、scope配下4memberはabsent/raw_value=nullとする。親scope自身のnull状態は別のConnectionFieldPresenceと原rawへ保持する。",
           "観測比較順はidentity,revision,source,scope,fields。各get原値をleft/right_value、値nullならpresence=null、それ以外valueとして出力する。JSON deep-equalならequal、異なる場合left null→left_null、次にright null→right_null、それ以外different。これらの観測presenceはnull-coalescedであり元raw presence判定の代用にしない。",
           "元fieldsの各recordでstate=not_observedのmemberだけを元key/原値でmissing_fieldsへ保持する。field_transfer_stateは元観測と受信観測のdeep-equalならcorresponding_in_fixture_only、異なればreceived_content_conflict。original_observation_preservedは元値がobjectならtrue。preserved_original_observation/received_observation_valueは原値をそのまま返す。"
-        ]
+        ],
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointers": [
+          "/architecture/flow/0",
+          "/contracts/0/content_rules/0",
+          "/contracts/0/content_rules/1",
+          "/contracts/0/content_rules/4"
+        ],
+        "f01_role_ja": "接続固有identity/endpoint/connector・契約版/要求revision・scope必須13項目のpresenceと、元observation・受領observationのidentity/revision/source/scope/fields・欠測保持を比較する。"
       },
       {
         "id": "FN-LABO011-02",
@@ -549,7 +559,15 @@
           "checksはconnection,observation_identity,observation_revision,source,scopeの順。期待はconnection原全体、元観測identity,revision,source,scope原値。実値はreceiptがobjectなら同名get、その他はreceipt自身。比較はFN01と同じequal/left_null/right_null/different。",
           "最後にstate checkを追加。sendはsent_in_fixture_only、receiveはreceived_in_fixture_onlyがexpected_value。actual_valueはreceipt.stateのget値、等しければequal、その他not_observed。matched_fixture_referencesは全6checkがequalの時だけtrue。",
           "both_endpoint_receipts_match_fixture_valuesは両matchedのAND、connection_fields_presentはtransfer_assessment.all_required_connection_values_presentをそのまま引き継ぐ。実接続/実receipt資格を生成しない。"
-        ]
+        ],
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointers": [
+          "/architecture/flow/1",
+          "/contracts/0/content_rules/2"
+        ],
+        "f01_role_ja": "送信receiptと受領receiptの双方が同一接続・observation identity/revision・source・scopeおよび受渡しfieldを参照しているかを突合し、片側receiptや不一致を接続成功としない。"
       },
       {
         "id": "FN-LABO011-03",
@@ -570,7 +588,15 @@
           "各fieldにcandidate_value/backlink_value/anchor_valueと3比較boolean（candidate_matches_anchor/backlink_matches_anchor/pair_equal）を出す。episode/observation/source/scope/causal anchorが異なるときは、backlink相違ならobservation_backlinks.<field>、それ以外はepisode_candidate.relations.<field>。identity/revisionのpair相違はcandidateがanchorと異なればepisode_candidate.relations.<field>、それ以外はobservation_backlinks.<field>。各result=relation_mismatch/owner=LABO-correlation-ownerを順保持。",
           "比較failureなし、両listが非空、claimsにcorrelation_is_causeなしの全条件ならrelation_state=corresponding_in_fixture_only、その他unqualified。causal_stateは常にnot_established。",
           "identity/revisionのanchorは固定fixture内のpair差を表示する比較基準で、実authorityや責任帰属を認定しない。identityはcandidate、revisionはbacklinkを基準とするため所見pathは非対称。反対側の変更を含む未観測組合せで原因ownerを特定できるとはせず、正式な独立anchor/source bindingは未閉包として残す。"
-        ]
+        ],
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointers": [
+          "/architecture/flow/2",
+          "/contracts/0/content_rules/3"
+        ],
+        "f01_role_ja": "Correlateのepisode候補relationと元observation側backlinkが同じidentity/revision/scopeを往復参照しているかを比較し、相関から因果確定（causal_state）を生成しない。"
       },
       {
         "id": "FN-LABO011-04",
@@ -591,34 +617,65 @@
           "接続・receipt段の所見に続き、元/受信観測がobjectなら、identity,revision,source,scopeの順に受信値nullをmissing/LABO-Aggregate-ownerとして調べ、最初の1件を保持する。このnull検査はraw走査順とは別の先行段階である。null所見がなければ、sourceが両方objectでrevisionが異なる場合はreceived_observation.source.revision/foreign_revisionを保持する。これらspecific所見がなければ、同じmetadata群をidentity,revision,source,scopeの順に比較し、元値・受信値がともに非nullでJSON不一致の最初の1件をreceived_observation.<field>/received_content_conflict/LABO-Aggregate-ownerで返す。元値がabsent/nullで受信値が非nullの場合、この一般metadata比較だけでは新しいconflictを生成せず、raw両値とFN01の観測比較を保持する。metadata群は最大1件で、specific mismatchをgeneric conflictで重ねない。したがってreceived_observation.scope=nullとsource.revision相違が同時にある場合、scopeのmissingを優先しsource.revision/foreign_revisionは併記しない。その後、received fieldsを原順に走査し、元not_observedからreceived observed_in_fixture_onlyかつ非nullへの変化があれば最初の1件をreceived_observation.fields.<key>/missing_not_success/LABO-Aggregate-ownerで保持する。これがなければ、元fields mapと受信fields mapをpresence・nullを含むJSON deep-equal全体として比較し、異なればreceived_observation.fields/received_content_conflict/LABO-Aggregate-ownerを1件返す。fields群は最大1件で、null、key欠落、observed/not_observed等の状態差もこの全体比較から除外しない。値を補完・成功扱いしない。metadata群とfields群は独立であり、両方の所見をこの順で保持できる。この観測段階は先行する接続/receipt所見で短絡しない。",
           "ここまで所見なしの場合だけrelation_assessment.failure_reasonsを原順に追加する。findingsは重複除去・sortしない。return_ownersだけ初出順一意化、rejected_claimsはraw claims原列。",
           "findingsなしならinformation_state=connection_content_requires_actual_qualification、その他held_connection_unqualified。receipt_stateはfindingsなし・両receipt fixture一致・接続必須値presentのANDでboth_receipts_require_actual_qualification、その他unqualified。retained_inputs=原raw、transferの原保持/field_transfer/missing_fieldsとrelation_stateをそのまま複写。causal_state=not_established、EffectVector全8member=false。"
-        ]
+        ],
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointers": [
+          "/architecture/flow/3",
+          "/contracts/0/content_rules/1",
+          "/contracts/0/content_rules/2",
+          "/contracts/0/content_rules/3",
+          "/contracts/0/content_rules/4"
+        ],
+        "f01_role_ja": "FN01〜FN03の比較結果と原入力を保持したまま、欠落・不一致・片側成功・非object scope不足をLABO-connection-ownerまたはLABO-correlation-ownerへのfindingsとoverall_stateへ組み立てる。"
       }
     ],
     "source_and_consumer_bindings": [
       {
         "source": "L4 contracts connection identity/revision/endpoints/connector+pack identity/revision/scope",
         "consumer": "FN01 TransferAssessment.connection_field_presence; FN02 receipt comparison",
-        "meaning": "9 connection membersを保持し、present-only source factsを照合する。"
+        "meaning": "9 connection membersを保持し、present-only source factsを照合する。",
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointer": "/contracts/0/content_rules/0"
       },
       {
         "source": "L4 source observation identity/revision/source/scope/fields and missingness",
         "consumer": "FN01 observation comparisons; FN03 relation anchors; FN04 retained_inputs",
-        "meaning": "元観測と欠測を保存し、未観測を推測値にしない。"
+        "meaning": "元観測と欠測を保存し、未観測を推測値にしない。",
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointer": "/contracts/0/content_rules/1"
       },
       {
         "source": "L4 send/receive receipts bind same connection/content/scope",
         "consumer": "FN02 EndpointReceiptAssessment",
-        "meaning": "両端各receiptを同じpacket値へ突合。receiptの存在やengine greenは実資格ではない。"
+        "meaning": "両端各receiptを同じpacket値へ突合。receiptの存在やengine greenは実資格ではない。",
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointer": "/contracts/0/content_rules/2"
       },
       {
         "source": "L4 episode relation and observation backlink are bidirectional for same identity/revision/scope",
         "consumer": "FN03 EpisodeRelationAssessment; FN04 failure/return owner",
-        "meaning": "相互参照不一致はcorrelation ownerへ戻す。"
+        "meaning": "相互参照不一致はcorrelation ownerへ戻す。",
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointer": "/contracts/0/content_rules/3"
       },
       {
         "source": "L4 no cause inference",
         "consumer": "FN03 causal_state; FN04 rejected_claims",
-        "meaning": "因果はnot_establishedを保つ。"
+        "meaning": "因果はnot_establishedを保つ。",
+        "requirement_ref": "HELIXLABO-L3-011-F01",
+        "oracle_ref": "HELIXLABO-L10-011-F01",
+        "l4_contract_ref": "HELIXLABO-L4-011-F01",
+        "l4_basis_pointer": "/contracts/0/content_rules/3"
       }
     ],
     "unresolved_boundaries": [
