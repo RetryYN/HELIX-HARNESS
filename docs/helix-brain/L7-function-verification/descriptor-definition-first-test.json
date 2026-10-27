@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "5d82e84c9aa4e317c7a4ddc78ac5caf91faad5393e5e17cb4a48d76bdcf897b8",
+    "sha256": "0909073bca0a759e640acf6adbb7785dba14a07c1115bcb020a2b78ea269285c",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2167,6 +2167,284 @@
           "interpretation": "最新main bdc831196（他unit PR3740）統合HEADbc23f88133で現行unit312methods PASS、22446ms。G1a source本体はR1から不変。"
         }
       ]
+    }
+  },
+  "fn1_descriptor_target_reader_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-OWNER-TARGET-READER",
+    "design_ref": "HELIXBRAIN-L6-032-FN1-OWNER-TARGET-READER",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "source_revision": "115adf0ec9521842efc92c7ec01dcf3ff42a0185",
+    "authority_effect": "none",
+    "independent_expectations": [
+      "L4のschema/return mappingから8/5/9/4のshape、raw presenceと全原Ref/Binding/出現/locatorを固定する。reason/locatorは既存13語と固定literalから独立に導く。",
+      "fixtureは原入力のsource/Claim/slot/candidateを特定するためだけに使い、reader/G1ahelper/保存whole/hashをgoldにせず実FN0を通す。",
+      "現行caller接続を代造せずport単体を直接検証する。資格不成立のsource problemと独立qualified matchの同時保持を検査し、Ref型の存在とfull frame比較可否を分離する。"
+    ],
+    "test_sources": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_arguments.py",
+        "methods": [
+          "TestDescriptorTargetArguments.test_nonobject_or_other_kind_is_not_an_empty_unknown_read"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_cohorts.py",
+        "methods": [
+          "TestDescriptorTargetCohorts.test_out_of_type_target_owner_is_local_unknown_not_known_conflict",
+          "TestDescriptorTargetCohorts.test_null_source_binding_revision_is_unresolved_not_binding_conflict",
+          "TestDescriptorTargetCohorts.test_omitted_optional_ref_location_and_digest_keep_exact_binding_match",
+          "TestDescriptorTargetCohorts.test_exact_target_survives_other_known_binding_and_unresolved_target_frame",
+          "TestDescriptorTargetCohorts.test_physical_reference_only_duplicate_does_not_add_owner_witness"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_local_ref_problems.py",
+        "methods": [
+          "TestDescriptorTargetLocalRefProblems.test_unrelated_invalid_ref_is_retained_without_blocking_exact_match"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_optional_source_refs.py",
+        "methods": [
+          "TestDescriptorTargetOptionalSourceRefs.test_partial_claim_knowledge_ref_still_joins_original_qualified_owner",
+          "TestDescriptorTargetOptionalSourceRefs.test_partial_owner_source_binding_is_supplied_and_unresolved",
+          "TestDescriptorTargetOptionalSourceRefs.test_partial_binding_with_known_difference_does_not_block_exact_cohort"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_problem_order.py",
+        "methods": [
+          "TestDescriptorTargetProblemOrder.test_source_and_declaration_order_with_unqualified_later_source",
+          "TestDescriptorTargetProblemOrder.test_group_problem_precedes_later_source_local_problem"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_qualification_cohort.py",
+        "methods": [
+          "TestDescriptorTargetQualificationCohort.test_unqualified_exact_declaration_is_retained_but_qualified_copy_resolves",
+          "TestDescriptorTargetQualificationCohort.test_single_unqualified_exact_declaration_remains_unknown"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_reader.py",
+        "methods": [
+          "TestDescriptorTargetReader.test_qualified_single_target_has_closed_read_occurrence_and_match",
+          "TestDescriptorTargetReader.test_target_container_presence_branches_remain_distinct",
+          "TestDescriptorTargetReader.test_missing_knowledge_record_is_local_owner_source_unresolved",
+          "TestDescriptorTargetReader.test_malformed_declaration_is_preserved_as_one_local_problem",
+          "TestDescriptorTargetReader.test_same_slot_kind_conflict_and_distinct_slot_are_not_first_match",
+          "TestDescriptorTargetReader.test_unrelated_target_problem_does_not_block_exact_target",
+          "TestDescriptorTargetReader.test_exact_duplicate_target_keeps_each_source_and_locator_occurrence",
+          "TestDescriptorTargetReader.test_all_candidates_are_preserved_but_match_indices_select_all_equal_root_refs"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_unresolved_cohort.py",
+        "methods": [
+          "TestDescriptorTargetUnresolvedCohort.test_unresolved_same_identity_frame_and_binding_do_not_disappear",
+          "TestDescriptorTargetUnresolvedCohort.test_later_known_binding_difference_separates_unresolved_ref_member"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_cohort_boundaries.py",
+        "methods": [
+          "TestDescriptorTargetCohortBoundaries.test_same_identity_unresolved_frame_suppresses_exact_match",
+          "TestDescriptorTargetCohortBoundaries.test_unassociated_identity_problem_does_not_cancel_exact_match",
+          "TestDescriptorTargetCohortBoundaries.test_untyped_kind_or_slot_does_not_become_a_partial_match",
+          "TestDescriptorTargetCohortBoundaries.test_caller_slot_known_kind_difference_is_a_conflict",
+          "TestDescriptorTargetCohortBoundaries.test_only_known_different_target_frame_is_conflict",
+          "TestDescriptorTargetCohortBoundaries.test_partial_binding_problem_on_unrelated_target_is_local"
+        ]
+      }
+    ],
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-g1b-target-reader-red.json",
+        "sha256": "d3eacd167e56d53e468ec008d333ec47eb88b19d495156cea0558eb21dda20d3",
+        "test_or_source_revision": "6e541512085aff0e2ce316ae004b45a5411f0685",
+        "status": 1,
+        "duration_ms": 273,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "初期8methods/12固有NotImplemented停止、273ms。L5署名の未実装宣言を到達点としimport/setup失敗をRedにしない。"
+      },
+      {
+        "artifact": "root-wr33-g1b-unqualified-cohort-existing-source-red.json",
+        "sha256": "0d3138186a16b0c38e3daa71f946d2a7daa7509e01086de8e29af4ce9d78b4a5",
+        "test_or_source_revision": "977b69a752cde2cd8c22393f684be5e640872685",
+        "status": 1,
+        "duration_ms": 96,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "既存aggregate fec4f5580 readerでmixed2methods中1PASS/1assertFAIL unknown!=resolved、96ms。初期宣言Redとは別。"
+      },
+      {
+        "artifact": "root-wr33-g1b-existing-cohort-regression-baseline.json",
+        "sha256": "e6070d89d520c704b1715077a2bb3e1d7b7866cbab210c0e019a0467b5e048cf",
+        "test_or_source_revision": "8d12283fda83ab2e5ae48d07e692c5b9b3d99e21",
+        "status": 0,
+        "duration_ms": 258,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "既存aggregate readerでcohort/引数等9methods PASS258ms。新候補のGreenではなく移行元の回帰baseline。"
+      },
+      {
+        "artifact": "root-wr33-g1b-optional-claim-ref-existing-source-red.json",
+        "sha256": "0cd6ac318f96ce0050fe89b45049c4aa36eb9e0612aab23214efb47774a141ba",
+        "test_or_source_revision": "51ac98e5ea7953abbf8d89d4304d310c85410fe8",
+        "status": 1,
+        "duration_ms": 90,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "既存aggregate readerでoptional Claim Refの1assertFAIL unknown!=resolved90ms。実FN0正常到達。"
+      },
+      {
+        "artifact": "root-wr33-g1b-partial-binding-presence-existing-source-red.json",
+        "sha256": "8e267f494c92fc36c1bbaafcb88da6b5f12f7bb2113c7a20a4b5e4414529d834",
+        "test_or_source_revision": "fde7ef49fc916a97f8572f4b4aaab0644147a8c7",
+        "status": 1,
+        "duration_ms": 111,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "既存aggregate readerで原型内partial Bindingをabsentへ丸める1assertFAIL111ms。"
+      },
+      {
+        "artifact": "root-wr33-g1b-port-candidate1.json",
+        "sha256": "afacc28cb2d5fbae57d346164ca913d4691a3b28f58deae81a31fa515a419f2c",
+        "test_or_source_revision": "9a1f93bd085dd39d8b3110364bcd51d115f11e2f",
+        "status": 0,
+        "duration_ms": 758,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "G1a material消費の候補1で対象21methods PASS758ms。rootが未定義local bindingを実行前のstatic検収で直した後の観測。"
+      },
+      {
+        "artifact": "root-wr33-g1b-problem-order-red.json",
+        "sha256": "b81e841de0865bc388b2160cff19456799f923586540e3b8c7329dfa47c1cb23",
+        "test_or_source_revision": "94d2ef15bf9c96bc18e7d0ecd449a73ab94fba5d",
+        "status": 1,
+        "duration_ms": 103,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "候補1の問題source/group順について新2methods/2assertFAIL103ms。"
+      },
+      {
+        "artifact": "root-wr33-g1b-partial-binding-known-difference-committed-red.json",
+        "sha256": "25664a894799b3f35f11e2a0d4d8c79da15db49004cb50151b01ebe6fea17b69",
+        "test_or_source_revision": "9e0983ad271da02019b3e83b6e18338ca5fd9d37",
+        "status": 1,
+        "duration_ms": 196,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "候補source9a1f93bd0のexact blobを一時overlayで実行し、known different partial Bindingの1assertFAIL unknown!=resolved196ms。source編集中のworking bytesは使わない。"
+      },
+      {
+        "artifact": "root-wr33-g1b-port-candidate2-green.json",
+        "sha256": "4e01099f58e308b2e6c524516a85df4bca228c1b88e5f50ea3fc02a54deb0be3",
+        "test_or_source_revision": "9e0983ad271da02019b3e83b6e18338ca5fd9d37",
+        "status": 0,
+        "duration_ms": 616,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "問題originとknown partial Binding差の修正候補で対象24methods PASS616ms。source未commit段階の候補Green。"
+      },
+      {
+        "artifact": "root-wr33-g1b-port-refactor-green.json",
+        "sha256": "03057f7094d25331a1d8dea00d7783d205c27faed42a1444a1e2fc35322fa0e3",
+        "test_or_source_revision": "cfd6b83728486ad3c0e2db36ed64c7f7aa1bdb3d",
+        "status": 0,
+        "duration_ms": 649,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "source/declaration整数indexと明示group順だけで安定整列し、余分なlexical field再整列を除いた後、対象24methods PASS649ms。"
+      },
+      {
+        "artifact": "root-wr33-g1b-unit-green-R1.json",
+        "sha256": "63c46190beab4f91f84dace2ed8e39b94bdc9b56d586871210f83139f5fed28b",
+        "test_or_source_revision": "cfd6b83728486ad3c0e2db36ed64c7f7aa1bdb3d",
+        "status": 0,
+        "duration_ms": 24024,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "最新main217196dc統合後、現行unit336methods PASS24024ms。"
+      },
+      {
+        "artifact": "root-wr33-g1b-unit-latest-main-green-R1.json",
+        "sha256": "0c1e2326d0f25e161a3f81c4113109a4762fa9266d82c8205fd626b7f8d27049",
+        "test_or_source_revision": "26cfbd7d8c16eaaa7d027f065b23d394f0010775",
+        "status": 0,
+        "duration_ms": 22535,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "他unit PR3742の最新main c5960e042を統合後、現行unit336methods PASS22535ms。G1b source/test bytesは統合前と同一。"
+      }
+    ],
+    "legacy_rederivation_ref": "/fn1_descriptor_target_reader_preparation/legacy_rederivation",
+    "completion_boundary": "局所port/TDD/unitの観測。全FN1/walk/frame/uses/FN4/FN6/FN7、L8全域、OS登録/Accepted、Issue/WR33全体の完了は主張しない。",
+    "preexisting_source_pin": {
+      "revision": "fec4f5580539439411d3478177357af930feb77b",
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_target_reader.py",
+      "meaning": "mixed/optional既存source Redと旧回帰baselineのsource。tracked bytes一致確認済み。",
+      "sha256": "79a9b687597cf05337a3f79305bf1bc88f0605250e743c0b19af5fd7a02e82ff"
+    },
+    "existing_FN0_boundary": {
+      "artifact": "root-wr33-g1b-optional-source-ref-reachability.json",
+      "sha256": "0bbf82974c6acc0aab05eb5d38e1bef4c700fdc2414aff425305bc63f79ee625",
+      "observation": "physical source.ref.source_locatorだけを省くとFN0 input=null、/sources/0 invalid closed shapeで資格未到達。この枝を有効入力として主張せず、FN0変更/代造Vをせず既存停止限界として保持する。",
+      "scope": "Claim.binding.knowledge_refのoptional項目省略は別の実FN0正常入力で、portからresolvedとなることを固定した。"
+    },
+    "execution_state": "rootが新旧30port methodsと現行unit342methodsのGreen、追加8変異のassertion KILLEDを実測検収した。legacy/archive runtime/test/CIは実行していない。",
+    "R1_m1_cohort_boundary_verification": {
+      "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3743#issuecomment-6450374612",
+      "test_revision": "115adf0ec9521842efc92c7ec01dcf3ff42a0185",
+      "scope": "R1-m1の6種類/7条件をL4 relevance/cohort/return mappingから独立に固定。source本体はR1 HEAD35faf8764からbyte同一。",
+      "cases": [
+        "exactと同identity/current Bindingの比較不能frameの併存はunknown/matches空。",
+        "identity未帰属の局所問題は独立exact対応を相殺しない。",
+        "exact Ref/Bindingでも型外kind又はnon-string slotをmatchへ入れず、同cohortをunknownとする。",
+        "owner宣言一件でもcaller slotの既知kind差はconflict。",
+        "同identityの既知別frame資料しか無ければconflict/matches空。",
+        "別targetの原partial Bindingはsuppliedを保ち、局所binding_unresolvedを消さず独立exactを相殺しない。"
+      ],
+      "binding_shape_roles": {
+        "wire_type": "_wire_binding_shape_okはL4 Binding schemaの型内原objectかを検査し、型内partial objectもoccurrence.source_bindingをsupplied原値として保持する。",
+        "local_full_carrier": "別targetは当該ClaimとのBinding対応を断定しない。_typed_binding_shapeのcomplete carrier member不足は原source/full Bindingに局所化したbinding_unresolvedとして保持し、wire型のabsenceへ丸めずcurrent cohort blockerへしない。",
+        "current_relation": "当該targetの_binding_relationは型内の供給memberを比較する。比較不能はunknown、既知差がcurrent frameを否定する場合はdifferentを優先する。これを別targetの反対対応へ流用しない。"
+      },
+      "evidence": [
+        {
+          "artifact": "root-wr33-g1b-r1-cohort-boundaries-green.json",
+          "sha256": "d0c472d323bff801f9e7dfd26ec8dc5eddb1a06fed69fd268ef67e3e19ccab71",
+          "status": 0,
+          "duration_ms": 228,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "新6methods/7conditions PASS228ms。すべて実FN0同期入力/rawV不変。"
+        },
+        {
+          "artifact": "root-wr33-g1b-r1-cohort-mutation.json",
+          "sha256": "f9d6fa27442f290959efec057a0fb91f8dac294716498305337a762b953db1a5",
+          "status": 0,
+          "duration_ms": 722,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "8独立temp-source変異をすべてassertionでKILLED722ms。errors/import/setup failure0、source hash前後同一。kind/slotとknown frameの二つの変異を別々に観測。"
+        },
+        {
+          "artifact": "root-wr33-g1b-r1-unit-green.json",
+          "sha256": "a3a9f75833663d383b5182f383597935e5e1d927766fe0b1a5df3de8940451b8",
+          "status": 0,
+          "duration_ms": 23170,
+          "reaped": true,
+          "output_truncated": false,
+          "interpretation": "現行unit全342methods PASS23170ms。source本体はR1から不変。"
+        }
+      ],
+      "static_basis": {
+        "artifact": "root-wr33-g1b-r1-static-basis.json",
+        "sha256": "8d22f4f6749152ee2bd46d900b40944d88adbf16ce20be9771d8757485bcd625",
+        "source_sha256": "deea7a61411f8288d73f6398906c4c691de536cf0e7185dc540800f81a825164"
+      }
     }
   }
 }
