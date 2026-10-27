@@ -16,8 +16,6 @@ def _collect_owner_target_material(validated, claim):
     sources = raw_sources if sources_present else []
     if not isinstance(records, list):
         records = []
-    if not isinstance(sources, list):
-        sources = []
 
     material = {
         "knowledge_record_indices": [],
