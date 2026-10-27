@@ -848,6 +848,12 @@
       ]
     }
   ],
+  "shared_values_contract": {
+    "objects": "objectsはcontent-addressedな共有dict/list/primitive。pointer先を再帰展開して初めてsignatureの完全値となる。保存nodeに再びpointerがあれば展開し、expanded canonical hashがkey/canonical_sha256と一致することを検証する。循環は禁止。",
+    "hash_scope": "hashは展開後のfixture論理JSONをUTF8 sort_keys/compact/ensure_ascii=false/allow_nan=falseで表した値。正式wire/codec/source資格ではない。",
+    "intermediates": "全8関数の引数/返却中間辞書をobjectsへ保持する。hashだけの期待やID→完成答えlookupは使わない。",
+    "oracle": "case IDは追跡専用で、関数計算へは使わない。各original_expected_refは原L9 wholeの不変基準として保持する。通常のcurrent期待はfunction_callsとcasesの有効参照を使う。legacy_expectation_correctionsに明示されたcall/caseでは、そのeffective_dataflowにあるcurrent refを優先し、対象caseの中間metadata参照もF02002 current returnへ結ぶ。上書き前のcall期待・metadata入力・case中間参照と原L9 original_expected_refは訂正表のsuperseded/history参照へ保全する。rawから再計算したF02002→F02008の返却を有効なcurrent refsへ照合する。"
+  },
   "function_calls": [
     {
       "id": "project-e2805d8cb5c2ebdfe1369350240ba3110bd1885267b43b3034336e35da02664f",
@@ -24336,8 +24342,8 @@
     "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
     "git_commit": "6090fcfbb5a58bf1457cb64417208d2cc252b431",
     "path": "docs/helix-os/L8-unit-verification/ci-profile-execution-recovery.json",
-    "meaning": "実装前L8軽量化（#3510）により、content-addressed共有オブジェクトプール（objects）、shared_values_contract、各case/function_callのオブジェクト参照・再構成手順・RFC6902 recipe・全返却fixture・非source-pin SHA-256を撤去し、ID・要件参照・関数呼出し鎖・境界条件・反例差分・期待ステータスと所見を保持した。",
-    "removed_key_rule": "objects、shared_values_contract、hash_serialization_note_ja、approved_whole_objects[*].object、cases[*].(given_input_ref/original_expected_ref/typed_input_ref/projection_ref/selected_phase_ref/intermediate_expected_refs/reconstruction)、function_calls[*].(input_refs/expected_output_ref)、source_bound_selection_pipeline.cases[*].calls[*].typed_arguments等の大fixture・全返却・RFC6902 recipe・固定source参照以外のsha256/digestを撤去。",
+    "meaning": "実装前L8軽量化（#3510）により、content-addressed共有オブジェクトプール（objects）、hash直列化注記（hash_serialization_note_ja）、各case/function_callのオブジェクト参照・再構成手順・RFC6902 recipe・全返却fixture・非source-pin SHA-256を撤去し、shared_values_contract（独立照合規則）、ID・要件参照・関数呼出し鎖・境界条件・反例差分・期待ステータスと所見を保持した。",
+    "removed_key_rule": "objects、hash_serialization_note_ja、approved_whole_objects[*].object、cases[*].(given_input_ref/original_expected_ref/typed_input_ref/projection_ref/selected_phase_ref/intermediate_expected_refs/reconstruction)、function_calls[*].(input_refs/expected_output_ref)、source_bound_selection_pipeline.cases[*].calls[*].typed_arguments等の大fixture・全返却・RFC6902 recipe・固定source参照以外のsha256/digestを撤去。",
     "use_boundary": "撤去した過去版fixture・全返却・hashを新世代の実装入力・テスト期待・完了証拠にそのまま使わない。実装・テスト時は保持されたL3/L4/L5/L8/L9の規則・条件・反例・所見から導出する。"
   }
 }
