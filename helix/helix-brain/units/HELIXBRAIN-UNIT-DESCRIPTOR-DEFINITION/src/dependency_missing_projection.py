@@ -39,6 +39,11 @@ def _category_refs_and_locator(raw: dict[str, Any], category: str) -> tuple[list
     return [], None
 
 
+def write_required_dependency_missing_axis_reason(material: dict[str, Any]) -> str:
+    """L5の専用missing grammarを同callの閉じたTRACE14へ適用する。"""
+    return f"{_MISSING_AXIS_PREFIX}\nTRACE={_serialize_trace(material)}"
+
+
 def project_required_dependency_missing_axis(
     validated: dict[str, Any],
     category: str,
@@ -69,7 +74,7 @@ def project_required_dependency_missing_axis(
         "handoff_record": None,
         "selection_observation": None,
     }
-    reason = f"{_MISSING_AXIS_PREFIX}\nTRACE={_serialize_trace(material)}"
+    reason = write_required_dependency_missing_axis_reason(material)
     return [{
         "subject_ref": copy.deepcopy(subject),
         "binding": copy.deepcopy(binding),
