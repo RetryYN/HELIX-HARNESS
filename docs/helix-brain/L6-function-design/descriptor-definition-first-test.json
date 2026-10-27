@@ -680,5 +680,101 @@
     "r4_population_detail": "claims absentはlocal structural guard viewだけ[]として既存guardへ渡し、ValidatedSupply/input/native snapshotを変更しない。oracle_bindings absentも0出現。rootとslotのraw異値Binding frameはRefEqの片null一致で集約せずraw_distinct_binding_frames停止。exact root候補/無関係候補の対照を保持。",
     "r4_projection_detail": "既存definition carry3軸および同axis/subject/Bindingの既存軸は全7値と原順を保存。新predicate軸はrule71→72順、同keyは初回だけ追加。Findingは原oracle出現ごとに残す。既知の同subject義務/oracle tuple競合はoracle_binding_competition停止、R72 oracle Ref不明はoracle_oracle_correspondence停止。",
     "finite_carry_detail": "oracle_finite_carry.is_zero_operand_carryはL4 nonfire_read_planの狭い部分域のみ。Claim実出現0、対象3kind実slot0、oracle_bindings/values/handoff_records0。sourcesはsemantic_json/reference_only、content keyはL4 allowlist部分集合。意味carrier descriptor_facts/definition_meaning_operationsはabsent/[]だけ（非空typed decode未実装）。descriptor_targetsは住所宣言としてsnapshot保存し意味censusへ昇格しない。qualification成功や全体完了は作らず、元fn1不足をwriterで全値保存。"
+  },
+  "fn7_claim_boundaries_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN7-CLAIM",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "compare_claim_boundaries",
+    "input": "ClaimContext",
+    "output": "Comparison",
+    "effect": "none",
+    "request": "WR-CLAUDE-BRAIN032-FN7-CLAIM-TDD-3547-20261027-13",
+    "request_base": "54f1b196f530b4fa66cf440c097492f14e2dd202",
+    "working_base": "57da9ffc1874282f1aa74d13cdf6dee6017a5372",
+    "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/claim_boundaries.py",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "contract_sources": [
+      "L4 /claim_boundary_projection_contract",
+      "L4 /claim_boundary_projection_contract/supported_claim_rule_projection",
+      "L5 /type_contract/types/ClaimContext",
+      "L5 /functions/7",
+      "L5 /source_return_contract/descriptor_target_dataflow/direct_wrappers/fn7"
+    ],
+    "authority_items": [
+      {
+        "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+        "pointer": "/requirements/0",
+        "id": "HELIXBRAIN-L3-032-B01",
+        "canonical_json_sha256": "f40d88606a3d1373a447e4067b93d82c9c7754867348dc4694e345b88812d7a2",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+        "pointer": "/requirements/6",
+        "id": "HELIXBRAIN-L3-032-F07",
+        "canonical_json_sha256": "7dce3a2032a47efb9e1f84c405490dab93da3a4fdb07f216c92a84a3b7c6c17c",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+        "pointer": "/requirements/1",
+        "id": "HELIXBRAIN-L3-032-N02",
+        "canonical_json_sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/business-verification.json",
+        "pointer": "/cases/0",
+        "id": "HELIXBRAIN-L10-032-B01",
+        "canonical_json_sha256": "396415ca46e2480b26904724646a3502de4903d7190eb9cdda17f92feca16906",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/functional-verification.json",
+        "pointer": "/cases/6",
+        "id": "HELIXBRAIN-L10-032-F07",
+        "canonical_json_sha256": "5f50afa77e347bfae8e3cd628236ca399e15ac5314bc50bf06edd3280f672732",
+        "equal_to_approved_item": true
+      },
+      {
+        "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+        "pointer": "/cases/1",
+        "id": "HELIXBRAIN-L10-032-N02",
+        "canonical_json_sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae",
+        "equal_to_approved_item": true
+      }
+    ],
+    "authority_boundary": "対象B01/F07/N02 L3/L10の6項目だけが47354be8c1ef225dd7eacffe390d268c0dfee784と全値一致。承認decisionのmain admission f28f1c9cd8f725758f8904d92dfa8c851f1ddb60はworking baseの祖先。current JSON全体bytesを当時の承認pinへ読み替えない。",
+    "CL2": "#3712 merge6fa6b752106cb0254c8d3f870b4ffefa56d4b9d7。既存16ruleの決定表/field_sources/emission_order/unresolved_returnの下流設計、authority_effect none。predicateやownerを新設しない。",
+    "implemented_scope": "公開署名の宣言bootstrapとContext/ValidatedSupply envelopeの不正型停止だけ。前段Comparisonの成立、walk/frame/ClaimUse、16rule predicate/Axis/Finding writerは未実装。通常入力はformed_context ID付き停止。",
+    "context_members": [
+      "validated",
+      "definitions",
+      "values_applicability",
+      "identity_trace",
+      "oracle_view",
+      "promotion",
+      "dependencies_handoff"
+    ],
+    "same_call_boundary": "既存L4/L5は同vの実fn1〜fn6全Comparisonと同walk frameを要求する。手作り前段Comparison/別call cached値/空成功で接続不足を補わない。fn7から他producer所見をcarry又は上書きしない。",
+    "prerequisite_probe": "root-fn7-prerequisite-probes.json: normalは実fn0/fn1/fn3後fn4 formed_context。typed fill_definitionはfn4 walk supplied_claim_ports。dependencies absentは実fn0/fn1後fn6 dependencies_container_shape。raw/v.input不変。",
+    "scope_coordination": {
+      "comment": 6431299490,
+      "proposal": "(A) canonical walk/target/intent/usesとfn4/fn6 descriptor-fill接続、(B) fn7既存16rule writer。WR13内か前提別WRか統制へ確認中。",
+      "state": "WR13保持、work_result未返却。型境界の独立作業を継続し、前提なしにsemantic Contextを形成しない。"
+    },
+    "legacy_rederivation": {
+      "mode": "既存L4の意味再導出を継承。旧runtime/schema/test/CIをcopy又は実行しない。",
+      "sources": [
+        "LEGACY-ASSET-4F5A1F0739EC1111D91D:旧L4 design-template-json-authority.md:16–45/61–101",
+        "LEGACY-ASSET-98372FEE8A3AC8F9C299:旧L5同名:16–99/110–166",
+        "LEGACY-ASSET-A127DEC3EEE6ED63CF17:旧predecessor-harness-full-weakness-audit:80–89 UTW014/020/021"
+      ],
+      "preserved": "JSON正本・派生viewと原意味分離、source/owner/traceと明示unknown、不足を空集合やprose自己申告で消さない。",
+      "changed": "旧registry/planner/lifecycleを移植せず現ClaimContext7/Comparison4とCORE/BRAIN/OS責務へ再導出。今回の実装はその型境界のみ。",
+      "failure_history": "既存L4のPR3597/3598 Claim2先決め失敗と#3635 unresolved公開非形成の閉包を区別し、古い未決判断へ戻さない。"
+    },
+    "execution_state": "context_boundary_verified_semantic_prerequisite_scope_pending",
+    "authority_effect": "none"
   }
 }

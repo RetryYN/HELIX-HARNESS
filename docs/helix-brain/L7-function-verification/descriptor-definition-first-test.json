@@ -1722,5 +1722,59 @@
       "merge_commit": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
       "scope": "別unitのL8/L9文書4件とWR29 mailbox guardを統合。FN4 source変更なし、非FN4 L6/L7はmain全値保持。"
     }
+  },
+  "fn7_claim_boundaries_verification": {
+    "id": "HELIXBRAIN-L7-032-FN7-CLAIM",
+    "design_ref": "HELIXBRAIN-L6-032-FN7-CLAIM",
+    "source_revision": "db7a724b7c7507653a5fbad0c2055a2decd2658c",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_claim_boundary_context_shape.py",
+    "expectation_basis": [
+      "L5 /type_contract/types/ClaimContext",
+      "L5 /type_contract/types/ValidatedSupply",
+      "L4 /claim_boundary_projection_contract/same_call",
+      "WR13:経路外/未行使の分岐は分岐ID付きNotImplementedError"
+    ],
+    "bootstrap": {
+      "revision": "48e5eb110",
+      "description": "L5既存公開署名のlazy facadeとFN7/unimplemented宣言だけをtest commitへ置き、import/attribute errorではなく分岐IDの未実装を観測。意味処理・success fallbackなし。"
+    },
+    "red": {
+      "evidence": "root-fn7-context-red.json",
+      "result": "3methods、10subtestの停止ID期待が宣言stub IDと違ってFAIL。49ms/reaped=true/output_truncated=false、import/attribute error0。",
+      "boundary": "Context分類の期待不一致であり、16rule predicateのsemantic Redではない。"
+    },
+    "green": {
+      "revision": "db7a724b7c7507653a5fbad0c2055a2decd2658c",
+      "evidence": "root-fn7-context-green.json",
+      "result": "3methods/10条件PASS、41ms/reaped/nontruncated。",
+      "observations": [
+        "非object/missing/extraのContextをclaim_context_shapeで停止。",
+        "ValidatedSupply非object/missing/extra/input_issues非array/unusable_source_refs非arrayをvalidated_supply_shapeで停止。",
+        "scalar input又はdecode-null domainをvalidated_input_unclosedで停止。",
+        "渡した不正Context原値を不変比較。"
+      ],
+      "fixture_nature": "6つのComparison placeholder Noneは不正protocolのshape isolationだけ。実fn0出力/実producer/正規ClaimContextではない。nullはfn0のdecode不能で表れる値だが、この試験のContext全体は正規成功ContextではなくFN7 domain未閉包として扱う。"
+    },
+    "unit": {
+      "evidence": "root-fn7-context-unit.json",
+      "result": "295件全PASS、21273ms/reaped=true/output_truncated=false/timed_out=false。既存292件を含む。"
+    },
+    "prerequisite_evidence": {
+      "file": "root-fn7-prerequisite-probes.json",
+      "driver": "root-fn7-prerequisite-probe.py",
+      "result": "bounded202ms/reaped/nontruncated。normal claims0はfn4 formed_context、L7 typed fill1はfn4 walk supplied_claim_ports、dependencies absentはfn6 dependencies_container_shape。いずれも実前段だけを使いraw/v.input不変。",
+      "static_conflicts": "L4 fn7 finite_domain.dependencies absentと現fn6 dependencies object要求が交差しない。現fn5 candidate-emptyもdependencies供給を枝外とする。これは新schema/gateでなく現在の部分実装domainの相反。"
+    },
+    "unclosed_current": [
+      "実fn0〜fn6からの同call ClaimContext7形成。",
+      "canonical walk/target/intent/ClaimUseの非空Claim接続。",
+      "CL2の既存16rule predicate/公開Axis/Findingの投影。",
+      "D27 A/B finite writer、rule87/93 routingと原前段保持の実測。",
+      "claims=[]のL8 normal prose、B01/F07/N02負例とADD20を全Comparison期待へ具体化する作業。"
+    ],
+    "L8_boundary": "function_oracles/7はclaims=[]の文章観測で全Comparisonではない。B01/F07/N02/ADD20はnot_executedのmutation計画。期待や意味を入替えずwhole/prose/test doubleを答えへ転用しない。",
+    "completion_boundary": "型境界だけをroot検証。FN7完成、16rule成立、正常Context/資格、全caller/L8全受入、OS Accepted、Issue3547完了は認定しない。scope確認comment6431299490へ具体的前提分割を提示中。",
+    "execution_state": "context_boundary_verified_semantic_prerequisite_scope_pending",
+    "authority_effect": "none"
   }
 }
