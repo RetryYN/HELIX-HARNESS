@@ -1,0 +1,441 @@
+{
+  "authority_effect": "none",
+  "scope": "PR #3595（HARNESS-L2-091／HARNESS-L11-091 追補候補）および PR #3596（HELIXOS-L2-133／HELIXOS-L11-133 追補候補）統合後の現行参照の再照合",
+  "rule": "upstream SHAのみ更新。role・scope・obligations・verification・replacement・固定research本文・authorityを保持。旧sourceの意味変更は対象decisionで限定。",
+  "changes": [
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "title": "PHCAP-17 incident research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "title": "PHCAP-17 incident research premise candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "title": "PHCAP-17 incident research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0014.json",
+      "title": "PHCAP-17 incident research premise candidate",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "title": "PHCAP-19 Learning／改善 research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "title": "PHCAP-19 Learning／改善 research premise candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "title": "PHCAP-19 Learning／改善 research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0016.json",
+      "title": "PHCAP-19 Learning／改善 research premise candidate",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "title": "PHCAP-20 Memory／継続 research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "title": "PHCAP-20 Memory／継続 research premise candidate",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "title": "PHCAP-20 Memory／継続 research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0020.json",
+      "title": "PHCAP-20 Memory／継続 research premise candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0024.json",
+      "title": "PHCAP-18 Refactor research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0024.json",
+      "title": "PHCAP-18 Refactor research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0025.json",
+      "title": "PHCAP-14 Release product evidence research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0025.json",
+      "title": "PHCAP-14 Release product evidence research premise candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0025.json",
+      "title": "PHCAP-14 Release product evidence research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0028.json",
+      "title": "PHCAP-16 Operations／Monitoring research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "title": "PHCAP-06 Design／L3 product evidence research premise candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "title": "PHCAP-06 Design／L3 product evidence research premise candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "title": "PHCAP-06 Design／L3 product evidence research premise candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0030.json",
+      "title": "PHCAP-06 Design／L3 product evidence research premise candidate",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0031.json",
+      "title": "PHCAP-07 Web／Web-OS Verification／L10 evidence gap candidate",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0037.json",
+      "title": "PHCAP-15 Deploy 四製品／phase／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0037.json",
+      "title": "PHCAP-15 Deploy 四製品／phase／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0037.json",
+      "title": "PHCAP-15 Deploy 四製品／phase／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "title": "PHCAP-04/05 要求採否L2・L11受入 四製品／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "title": "PHCAP-04/05 要求採否L2・L11受入 四製品／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "title": "PHCAP-04/05 要求採否L2・L11受入 四製品／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0039.json",
+      "title": "PHCAP-04/05 要求採否L2・L11受入 四製品／旧asset evidence research premise候補",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "title": "PHCAP-08/09 WBS・Ticket生成の四製品境界と旧資産静的証拠",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "title": "PHCAP-08/09 WBS・Ticket生成の四製品境界と旧資産静的証拠",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "title": "PHCAP-08/09 WBS・Ticket生成の四製品境界と旧資産静的証拠",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0041.json",
+      "title": "PHCAP-08/09 WBS・Ticket生成の四製品境界と旧資産静的証拠",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0042.json",
+      "title": "PHCAP-10／11 Worker実行・CI／Testの四製品静的gap research candidate",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0042.json",
+      "title": "PHCAP-10／11 Worker実行・CI／Testの四製品静的gap research candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "title": "PHCAP-12／13 Review convergence・Merge admission 四製品静的research premise",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "title": "PHCAP-12／13 Review convergence・Merge admission 四製品静的research premise",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "title": "PHCAP-12／13 Review convergence・Merge admission 四製品静的research premise",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0046.json",
+      "title": "PHCAP-12／13 Review convergence・Merge admission 四製品静的research premise",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0054.json",
+      "title": "PHCAP-15 Deploy implementation／failure／consumer classification-gap research candidate",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0054.json",
+      "title": "PHCAP-15 Deploy implementation／failure／consumer classification-gap research candidate",
+      "upstream_path": "scaffold/bindings/SCF-B-0037.json",
+      "before": "292911c034278633edceb077adee2c517972d83af3f424a0498f51822cf99ac7",
+      "after": "ae766ca32ad880f212ce857592243b46ed728711808f9853afedddd4ab4866e4"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "title": "outside67 L2/L11 source-chain follow-up research 002/005/013/031/061",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0074.json",
+      "title": "outside67 L2/L11 source-chain follow-up research 002/005/013/031/061",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "title": "RDP-001 outside67 PATH-001..005 lossless source-line atomization research",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0095.json",
+      "title": "RDP-001 outside67 PATH-001..005 lossless source-line atomization research",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "title": "HIL-BR-01〜05 7 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "title": "HIL-BR-01〜05 7 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "title": "HIL-BR-01〜05 7 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0102.json",
+      "title": "HIL-BR-01〜05 7 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "title": "HIL-BR-06〜20 23 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "title": "HIL-BR-06〜20 23 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "title": "HIL-BR-06〜20 23 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0104.json",
+      "title": "HIL-BR-06〜20 23 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "title": "HIL-BR-21〜33 19 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+      "before": "05c5f5a3071f46e3b8904f51a73749b31b9681d69a3a6c3655e532a11eaaa1cd",
+      "after": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "title": "HIL-BR-21〜33 19 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+      "before": "c5a2eb180f260534174abbf031121f49122791621f7728c4e1be6348a93dab2d",
+      "after": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "title": "HIL-BR-21〜33 19 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0106.json",
+      "title": "HIL-BR-21〜33 19 unit 旧／現行実装証拠crosswalk研究",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0147.json",
+      "title": "Execution Ticket候補8資産の四製品責務境界研究",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0147.json",
+      "title": "Execution Ticket候補8資産の四製品責務境界研究",
+      "upstream_path": "docs/helix-os/L11-acceptance/governance-acceptance.md",
+      "before": "c206f8024cc67e3390e8a0986be6f2c165347599b95bcc3ee4df72edd87528b9",
+      "after": "bdc2eab702ff3d54733add5ffa9e2b63354c8238a0d81b356b351ad3a9293bc5"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0158.json",
+      "title": "last-touch worktree reclaim helper",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    },
+    {
+      "binding": "scaffold/bindings/SCF-B-0164.json",
+      "title": "時間・資源上限付きsubprocess実行ラッパーとGUI statusの資源・孤児プロセス読取診断",
+      "upstream_path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "before": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "after": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84"
+    }
+  ]
+}

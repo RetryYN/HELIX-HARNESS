@@ -1,0 +1,63 @@
+{
+  "evidence_kind": "source_retention_receipt",
+  "authority_effect": "none",
+  "base_revision": "5afce0789481881fc304e22177b4160ab8171feb",
+  "requirement_identity": "HARNESS-L2-091",
+  "candidate_section_digest_rule": "追記chunkの先頭LFを除いたUTF-8 bytes全体（末尾LFを含む）。L2／対L11を別々に固定する。",
+  "candidate": {
+    "path": "docs/helix-harness/L2-requirements/product-requirements.md#harness-l2-091",
+    "sha256": "sha256:0bc1a34ff5a8a4b659b7d1171c4673b5ccca3813ded2614816d70075a654a7c0",
+    "paired_path": "docs/helix-harness/L11-acceptance/product-acceptance.md#harness-l11-091",
+    "paired_sha256": "sha256:b34ca0ce5399c934ffa508fd583cd9e38c533d840ee8a62c7081df57be731286"
+  },
+  "source_atom_set_ref": "docs/governance/audits/requirement-registration/clean-deploy-source-atoms-2026-10-23.jsonl",
+  "source_atom_set_digest": "sha256:710c909948aad15971ce12b191ee9ec99b5fb3d327b88512e1e366328501985a",
+  "source_atom_set_digest_rule": "JSONL fileのraw UTF-8 bytes（各行LF終端）のSHA-256。",
+  "source_atom_count": 26,
+  "source_collection_scope": "旧3文書の明示範囲の非空行と、PO発言記録2文。line/statement保全単位であり要求数ではない。旧source全体の網羅集合ではない。 既存inventoryとの重複はsource path・line・raw hashで辿る参照集合であり、他namespaceの件数と加算しない。既存holdingを置換しない。",
+  "pre_isolation_pair_check": {
+    "inventory": "docs/governance/legacy-migration/pre-isolation/pre-isolation-revision-delta-source-holding.jsonl",
+    "inventory_revision": "5afce0789481881fc304e22177b4160ab8171feb",
+    "matched_selected_sources": [],
+    "method": "選択source path・archive pathに含まれる相対path・raw SHA-256を各recordの全fieldと照合。該当sourceなし。"
+  },
+  "coverage_result": "no_loss",
+  "coverage_meaning": "限定入力の原文を全件生存holdingに保留する保全被覆。候補への意味の全面移管、正式successor、要求採択、旧sourceのretireではない。",
+  "carried_atom_refs": [],
+  "preserved_pending": {
+    "registration_id": "MPR-SH-CLEAN-DEPLOY-001",
+    "atom_refs": [
+      "CLEAN-DIST-L024",
+      "CLEAN-DIST-L025",
+      "CLEAN-DIST-L026",
+      "CLEAN-DIST-L027",
+      "CLEAN-DIST-L028",
+      "CLEAN-DIST-L029",
+      "CLEAN-DIST-L050",
+      "CLEAN-DIST-L051",
+      "CLEAN-DIST-L052",
+      "CLEAN-DIST-L053",
+      "CLEAN-DIST-L055",
+      "CLEAN-DIST-L056",
+      "CLEAN-DIST-L083",
+      "CLEAN-DIST-L084",
+      "CLEAN-DIST-L085",
+      "CLEAN-DIST-L087",
+      "CLEAN-DIST-L089",
+      "CLEAN-DIST-L090",
+      "CLEAN-DIST-L091",
+      "CLEAN-OPS-L170",
+      "CLEAN-OPS-L171",
+      "CLEAN-FRS-L043",
+      "CLEAN-FRS-L045",
+      "CLEAN-FRS-L046",
+      "CLEAN-PO-01",
+      "CLEAN-PO-02"
+    ]
+  },
+  "human_decision_disposition_refs": [],
+  "unaccounted_atom_refs": [],
+  "candidate_derivation": "新PO原文に基づく限定した意味の再導出。旧consumer分類・再現・非破壊・復旧等は既存条項とOS030保留へのtraceに残し、091の採否対象に含めない。旧原文の保全は固定済みのまま維持する。",
+  "supersedes_receipt_ref": "docs/governance/audits/requirement-registration/clean-deploy-source-retention-receipt-2026-10-23.json",
+  "correction_reason": "PR3595 R1 F1–F6。091の採否対象を内部固有情報の切出し・元情報保持・意味所有利用条件の区別へ限定。既存とOS030保留条件をtraceへ戻し、出所・失敗対応・反例を訂正。原文26保全単位とpending保全は変更しない。"
+}

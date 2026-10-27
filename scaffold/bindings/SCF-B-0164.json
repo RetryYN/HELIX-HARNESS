@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/helix-os/L2-requirements/governance-requirements.md",
-      "sha256": "5cdd207a0a09a73c20c71fb76b83bfd480f22bcb07fb45f82d31c941e84589ea",
+      "sha256": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84",
       "note": "HELIXOS-L2-004 / L2-018のWorker予算・期限・lease・停止・回収統制。"
     },
     {
