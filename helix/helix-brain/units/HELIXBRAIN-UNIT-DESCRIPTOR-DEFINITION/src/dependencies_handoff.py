@@ -334,84 +334,109 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
     ):
         raise _unsupported("B02/F09", "definitions_comparison_mismatch", "definitions must be the same-snapshot fn1 Comparison")
 
-    _validate_fn6_slice_dependencies(raw, binding)
-    subject_ref = binding["knowledge_ref"]
     axes: list[dict[str, Any]] = []
     findings: list[dict[str, Any]] = []
+    if "dependencies" not in raw:
+        from dependency_missing_projection import (
+            project_absent_dependency_selector,
+            project_required_dependency_missing_axis,
+            project_required_dependency_missing_finding,
+        )
 
-    always_refs = raw["dependencies"]["always_refs"]
-    for index in range(len(always_refs)):
-        req = {
-            "request_ref_locator": f"/dependencies/always_refs/{index}",
-            "category_locator": "/dependencies/always_refs",
-        }
-        body_read = read_canonical_dependency_body(validated, req)
-        problems = body_read["problems"]
-        cause_value: Any
-        if not problems:
-            cause_value = None
-        elif len(problems) == 1:
-            cause_value = copy.deepcopy(problems[0])
-        else:
-            cause_value = copy.deepcopy(problems)
-        prefix = problems[0]["reason"]
-        trace_material = {
-            "format": "BRAIN032-F09-axis-reason-trace-v1",
-            "producer_symbol": "compare_dependencies_and_handoff",
-            "axis": "dependency_reference",
-            "state": body_read["state"],
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "original_refs": copy.deepcopy(body_read["category_refs"]),
-            "backflow_owner": "knowledge_owner",
-            "request_locator": req["request_ref_locator"],
-            "source_category_locator": req["category_locator"],
-            "cause": cause_value,
-            "canonical_body_support": [],
-            "handoff_record": None,
-            "selection_observation": None,
-        }
-        axes.append({
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "axis": "dependency_reference",
-            "state": body_read["state"],
-            "original_refs": copy.deepcopy(body_read["category_refs"]),
-            "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
-            "backflow_owner": "knowledge_owner",
-        })
+        for required_identity in _REQUIRED_ALWAYS_IDENTITIES:
+            axes.extend(project_required_dependency_missing_axis(
+                validated, "always_refs", required_identity
+            ))
+            findings.extend(project_required_dependency_missing_finding(
+                validated, "always_refs", required_identity
+            ))
+        for selector in (
+            "core_return_requested",
+            "core_source_selected",
+            "labo_evaluation_selected",
+        ):
+            selector_axes, selector_findings = project_absent_dependency_selector(
+                validated, selector
+            )
+            axes.extend(selector_axes)
+            findings.extend(selector_findings)
+    else:
+        _validate_fn6_slice_dependencies(raw, binding)
+        subject_ref = binding["knowledge_ref"]
 
-    unselected_refs = raw["dependencies"]["unselected_refs"]
-    for index, unselected_ref in enumerate(unselected_refs):
-        trace_material = {
-            "format": "BRAIN032-F09-axis-reason-trace-v1",
-            "producer_symbol": "compare_dependencies_and_handoff",
-            "axis": "unselected_source",
-            "state": "unobserved",
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "original_refs": [copy.deepcopy(unselected_ref)],
-            "backflow_owner": None,
-            "request_locator": f"/dependencies/unselected_refs/{index}",
-            "source_category_locator": "/dependencies/unselected_refs",
-            "cause": None,
-            "canonical_body_support": [],
-            "handoff_record": None,
-            "selection_observation": {
-                "core_source_selected": False,
-                "labo_evaluation_selected": False,
-                "port_call": "not_called_for_unselected_ref",
-            },
-        }
-        axes.append({
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "axis": "unselected_source",
-            "state": "unobserved",
-            "original_refs": [copy.deepcopy(unselected_ref)],
-            "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
-            "backflow_owner": None,
-        })
+        always_refs = raw["dependencies"]["always_refs"]
+        for index in range(len(always_refs)):
+            req = {
+                "request_ref_locator": f"/dependencies/always_refs/{index}",
+                "category_locator": "/dependencies/always_refs",
+            }
+            body_read = read_canonical_dependency_body(validated, req)
+            problems = body_read["problems"]
+            cause_value: Any
+            if not problems:
+                cause_value = None
+            elif len(problems) == 1:
+                cause_value = copy.deepcopy(problems[0])
+            else:
+                cause_value = copy.deepcopy(problems)
+            prefix = problems[0]["reason"]
+            trace_material = {
+                "format": "BRAIN032-F09-axis-reason-trace-v1",
+                "producer_symbol": "compare_dependencies_and_handoff",
+                "axis": "dependency_reference",
+                "state": body_read["state"],
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "original_refs": copy.deepcopy(body_read["category_refs"]),
+                "backflow_owner": "knowledge_owner",
+                "request_locator": req["request_ref_locator"],
+                "source_category_locator": req["category_locator"],
+                "cause": cause_value,
+                "canonical_body_support": [],
+                "handoff_record": None,
+                "selection_observation": None,
+            }
+            axes.append({
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "axis": "dependency_reference",
+                "state": body_read["state"],
+                "original_refs": copy.deepcopy(body_read["category_refs"]),
+                "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
+                "backflow_owner": "knowledge_owner",
+            })
+
+        unselected_refs = raw["dependencies"]["unselected_refs"]
+        for index, unselected_ref in enumerate(unselected_refs):
+            trace_material = {
+                "format": "BRAIN032-F09-axis-reason-trace-v1",
+                "producer_symbol": "compare_dependencies_and_handoff",
+                "axis": "unselected_source",
+                "state": "unobserved",
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "original_refs": [copy.deepcopy(unselected_ref)],
+                "backflow_owner": None,
+                "request_locator": f"/dependencies/unselected_refs/{index}",
+                "source_category_locator": "/dependencies/unselected_refs",
+                "cause": None,
+                "canonical_body_support": [],
+                "handoff_record": None,
+                "selection_observation": {
+                    "core_source_selected": False,
+                    "labo_evaluation_selected": False,
+                    "port_call": "not_called_for_unselected_ref",
+                },
+            }
+            axes.append({
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "axis": "unselected_source",
+                "state": "unobserved",
+                "original_refs": [copy.deepcopy(unselected_ref)],
+                "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
+                "backflow_owner": None,
+            })
 
     handoff_records = raw.get("handoff_records")
     if not isinstance(handoff_records, list):

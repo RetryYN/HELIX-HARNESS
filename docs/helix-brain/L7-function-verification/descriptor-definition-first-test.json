@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "adec4540e075371ad2f7f10d5a9a63aa01790a4844c666befbf418561a115589",
+    "sha256": "1d14a55dda92a04cd80675459de8b5c3b4553450a82098e971fe754a2d0ff6e1",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -1721,6 +1721,195 @@
       "base": "398fa185db40ba9baf340aaff44c3ded39f09663",
       "merge_commit": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
       "scope": "別unitのL8/L9文書4件とWR29 mailbox guardを統合。FN4 source変更なし、非FN4 L6/L7はmain全値保持。"
+    }
+  },
+  "fn6_dependencies_absent_verification": {
+    "id": "HELIXBRAIN-L7-032-FN6-DEPENDENCIES-ABSENT",
+    "design_ref": "HELIXBRAIN-L6-032-FN6-DEPENDENCIES-ABSENT",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "source_revision": "5f81f562e0062f7ff053324934fe32f2147c923e",
+    "test_sources": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_dependencies_absent.py",
+        "original_commit": "33a100b2956ebca4b0c10de04e37ac9e75a7c84f",
+        "cutout_commit": "903f057ffc2ea1539aeb1de822d459a320949c07",
+        "methods": [
+          "test_absent_dependencies_preserves_missing_selectors_handoff_and_empty_claim_scope"
+        ],
+        "connection": "real fn0→public fn1→public fn6; removes only raw dependencies; checks original raw/V/FN1 invariant, five missing axes+R105 Findings, three R106 selector pairs, handoff and remaining FN6 prefix preservation."
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_dependency_missing_projection.py",
+        "original_commit": "484ca494c3208426c6499567d541562b1108a3a2",
+        "cutout_commit": "0cc51a41fb228fc03fd178a222354239ee385a23",
+        "methods": [
+          "test_missing_root_knowledge_ref_uses_original_template_ref_and_keeps_presence",
+          "test_absent_root_subject_refs_do_not_form_a_typed_axis",
+          "test_category_refs_keep_occurrences_and_absence_has_no_locator"
+        ],
+        "connection": "real fn0 followed by direct required-dependency missing projector; not public fn1/fn6 end-to-end."
+      }
+    ],
+    "implementation_revisions": [
+      {
+        "original_commit": "b1d20475dd653bf304a731b8d80d2909f47cbbc4",
+        "cutout_commit": "5abbcc79e55d68a022444caecde216da1775efe8",
+        "paths": [
+          "src/dependencies_handoff.py",
+          "src/dependency_missing_projection.py"
+        ],
+        "change": "absent dependencies path and dedicated no-call missing projections"
+      },
+      {
+        "original_commit": "9d65db3f1874b37aac2dee3ec83fd185cfc82086",
+        "cutout_commit": "34035bef8eb6e026aea4cbb62e0282f464c8aaa0",
+        "path": "src/dependency_missing_projection.py",
+        "change": "retain partial Binding and original subject fallback"
+      },
+      {
+        "original_commit": "28a46d349c753e547f6213e9260fe22841bfe151",
+        "cutout_commit": "5f81f562e0062f7ff053324934fe32f2147c923e",
+        "path": "src/dependency_missing_projection.py",
+        "change": "bind fixed missing reason to L5 axis reason writer"
+      }
+    ],
+    "tdd_evidence": [
+      {
+        "artifact": "root-wr33-dependencies-absent-red.json",
+        "sha256": "78496ed109aeb7c18f3b2e0b412b817180e7ede9dd9905ce22e64d418c7d75a6",
+        "methods": 1,
+        "duration_ms": 146,
+        "status": 1,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "G4 absent-dependency test fails on the pre-source behavior; this is local TDD evidence, not an L8 oracle."
+      },
+      {
+        "artifact": "root-wr33-dependencies-absent-green.json",
+        "sha256": "b638dd3904deb6b35e08cc3c9112d10f32ac5d12773f1d5e3297f50776fee045",
+        "methods": 15,
+        "duration_ms": 687,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "bounded G4 dependency-absent plus B02/FN6 regression slice."
+      },
+      {
+        "artifact": "root-wr33-dependency-subject-red.json",
+        "sha256": "e0d8ae430ec3aac64bc4d27ce7e09930954d47d29b87fba079a9aa8958fd9db6",
+        "methods": 3,
+        "duration_ms": 165,
+        "status": 1,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "partial-binding subject/raw-presence projection controls before its source correction."
+      },
+      {
+        "artifact": "root-wr33-dependency-subject-green.json",
+        "sha256": "e7820e43fe9ffeb5c1ee70430fe8afc57da5eec03c20b983b64e3ba320170918",
+        "methods": 18,
+        "duration_ms": 788,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "partial-binding direct projector checks plus FN6 regression slice."
+      },
+      {
+        "artifact": "root-wr33-dependency-writer-refactor.json",
+        "sha256": "639f13245befa9de48fcf5d0a4c35a6189eee0f8f8045c9d5766f5a6a9a790bf",
+        "methods": 18,
+        "duration_ms": 756,
+        "status": 0,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "post-refactor regression evidence; same dedicated writer and FN6 slice."
+      }
+    ],
+    "execution_state": "G4 scope after R1-m1: root verified 298 tests Green and targeted mutant KILLED; independent Claude R2 pending. R1-m2 assigned to separate G4b.",
+    "completion_boundary": "No formal L8 completion, OS registration/Accepted, Issue #3547 completion, PR readiness, or G1/G2/G3/handoff-absent/empty-operation-carrier completion is claimed.",
+    "split_unit": "G4",
+    "split_decision": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
+    "authority_items_ref": "L6 /fn6_dependencies_absent_preparation/authority_intake/selected_items（8項目のみ。文書全体への承認拡張なし）。",
+    "current_unit": {
+      "artifact": "root-wr33-g4-unit-green-R1.json",
+      "sha256": "c914f204a35bde966099710d8b1293e7793e1d5abb2a5166e7db2c5a0154f8cc",
+      "source_revision": "5f81f562e0062f7ff053324934fe32f2147c923e",
+      "methods": 296,
+      "status": 0,
+      "duration_ms": 22090,
+      "reaped": true,
+      "output_truncated": false,
+      "command": "env PYTHONPATH=src:tests python3 -B -m unittest discover -s tests -v（unit cwd、bounded_exec 120000ms/300000bytes）"
+    },
+    "review_R1": {
+      "comment": 6447969724,
+      "reviewed_head": "fd5c1f59f371a02b4079a8f5ac4d414d92f1640c",
+      "result": "Minor2/Info1、Ready不可",
+      "R1_m1": {
+        "test_revision": "6be96a17f",
+        "test": "test_dependencies_absent_boundaries.py",
+        "scope": "null/arrayは実FN0→FN1後の故障注入Context copyの公開fn6 guard検証。前段Comparisonは実返却を不変保存し、FN0正規受理を主張しない。{}はL5 optional objectとして実FN0→FN1→FN6で従来conditional_selector ID。{}を新container不正へ変えない。",
+        "mutation": "raw.get(dependencies) is Noneへ変える一時module overlayでnull条件がNotImplementedError not raisedのFAILとなりKILLED。tracked source/test不変。"
+      },
+      "R1_m2": {
+        "state": "統制comment6448243648でG4から外し、同WR33のG4bへ移管。G4はR1-m1まででR2依頼可。",
+        "observation": "real FN0は4casesすべてinput非null/issues0/unusable0。不足root bindingのみ変更した通常profileはpublicFN1 descriptor_slot_binding_unresolved。5配列zero profileはpublicFN1 KeyError knowledge_ref。元raw/V不変。手作り前段Comparison/private frameで迂回しない。",
+        "bounded_root_rerun": "4casesの結果がworker probeと全値同一。F09への到達前のF01未対応をG4成功へ読み替えない。",
+        "next_scope": "G4b: FN1 subject欠落KeyError経路をL5から閉じ、未規定は正確stopとBackflow、FN6 partial input_binding guard、real FN0→FN1→FN6公開経路を固定。通常profileの既存slot_binding_unresolvedは意味を先に確認する。"
+      },
+      "artifacts": [
+        {
+          "artifact": "root-wr33-g4-r1-m1-tests-green.json",
+          "sha256": "3e4aca7e96555cabc21f1550e0474b5416afa9f951feb66bd718c61434b06343",
+          "status": 0,
+          "duration_ms": 206,
+          "reaped": true,
+          "output_truncated": false
+        },
+        {
+          "artifact": "root-wr33-g4-r1-m1-mutation.json",
+          "sha256": "fb44b616e559af78c33a69b26d12420aab19b197699d74bbea846f7212b0a49e",
+          "status": 1,
+          "duration_ms": 89,
+          "reaped": true,
+          "output_truncated": false
+        },
+        {
+          "artifact": "root-wr33-g4-r1-m2-probe-bounded.json",
+          "sha256": "3c0220c5569edfd4bdafc88636af6fa091b227e4ad8416d3fe8eca2895f36244",
+          "status": 0,
+          "duration_ms": 90,
+          "reaped": true,
+          "output_truncated": false
+        }
+      ],
+      "scope_decision": {
+        "comment": 6448243648,
+        "response": "root-wr33-g4-r1-reachability-response-R1.json",
+        "ACKed": true,
+        "order": [
+          "G4",
+          "G4b",
+          "G1a",
+          "G1b",
+          "G2a",
+          "G2b",
+          "G3",
+          "G5"
+        ],
+        "m1_empty_object": "L5 object required member無しのため従来conditional_selector停止でよい。新container不正gateを加えない判断を統制が了承。",
+        "m2": "G4bへ移管。G4受入/Ready/merge承認ではない。"
+      }
+    },
+    "current_unit_after_R1_m1": {
+      "artifact": "root-wr33-g4-r1-m1-unit-green.json",
+      "sha256": "0606ba6a0a8889f3f57179c8843174d6c932241ec7ae469d6059cc17e17a206d",
+      "source_revision": "6ab6eec7ac29617a17845884a243ac85b1192cb9",
+      "methods": 298,
+      "status": 0,
+      "duration_ms": 18411,
+      "reaped": true,
+      "output_truncated": false
     }
   }
 }
