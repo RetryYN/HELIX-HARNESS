@@ -22179,6 +22179,7 @@
   },
   "candidate_l5_binding": {
     "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+    "revision": "d9a038f18e982551c2b9523ebf0fff95840afb1d",
     "document_id": "HELIXOS-L5-007",
     "sha256": "3b385f3995f8c1710d24d5f0e369d1f1755b40e4adf069df9fc7dd25d0dd6b66",
     "binding_role": "独立照合する正式候補L5のexact bytes。検証器の成功を製品の証拠にしない。"
