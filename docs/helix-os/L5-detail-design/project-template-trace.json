@@ -2494,8 +2494,8 @@
       ],
       "effect": "none",
       "algorithm": [
-        "CORE output_refごとにdisposition/reason/decider/target_revision/reentry/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性を個別に失敗させる。 reentryだけField<JsonValue>として同じ原値をcore_disposition_recordsへ保持し、元有資格native F04 sourceとの比較にはf04_source_member_detail/field_algorithm/5のJSON型付き等値を使用する。通常string/Absent/nullの既存結果を保持する。selected CORE row対応は関数18の別手順であり、この通常比較のsourceを置換しない。",
-        "conditional false/unknownとNAを分け、obligation_original_statesは各義務refのnot_started/failed/not_evaluatedを保持。OS新裁定と他義務の代償消込を認めない。",
+        "CORE009の4判定（required/conditional/N/A/unresolved）ごとにoutput_refを介してdisposition/reason（根拠）/decider（判定者）/target_revision（対象revision）/reentry（再評価条件）/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性（reason/decider/target_revision/reentry）を個別に失敗させる。 reentryだけField<JsonValue>として同じ原値をcore_disposition_recordsへ保持し、元有資格native F04 sourceとの比較にはf04_source_member_detail/field_algorithm/5のJSON型付き等値を使用する。通常string/Absent/nullの既存結果を保持する。selected CORE row対応は関数18の別手順であり、この通常比較のsourceを置換しない。",
+        "conditional未充足（original_condition=false/unknown）とNAを分け、obligation_original_statesは各義務ref（unit/connection/composite）の未実施（not_started）/不合格（failed）/未評価（not_evaluated）を保持し、未完を適用/完了へ変換しない。OSによる適用規則やN/A判断の新設（OS新裁定）および他義務の代償消込を認めない。",
         "F04選択時だけValidatedRecordTrace.inputのcandidate.variant.source_output_associationを読む。Fieldがmissingなら観測へField.missingを返し、他sectionやsource未供給に新しい必須条件を課さない。present(null)をmissingへ畳まずraw JsonValueとして評価する。",
         "presentの値はL4 F04 source_output_association.input_rolesのcore_snapshots/os_snapshots/associationとして扱う。各値のAbsent/null/wrong-kindを修正・castせず保持し、L4 endpoint_orderを左右独立に適用してAssociationEndpointResultを作る。snapshot RefはL4の4軸のみで比較し、CORE内部RefをOS Refへcastしない。",
         "各endpointはL4 endpoint_orderの先行終了順、RFC6901 pointer解決、Presence比較、JSON型付き等値（object key順無視、array順序/重複保持）を適用する。候補・診断path・終端resolved_valueはL4 diagnostic_path_rulesだけで組み立てる。",
@@ -3104,8 +3104,8 @@
         "HELIXOS-L5-002-run_f04_source_projection_operation"
       ],
       "algorithm": [
-        "CORE output_refごとにdisposition/reason/decider/target_revision/reentry/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性を個別に失敗させる。",
-        "conditional false/unknownとNAを分け、obligation_original_statesは各義務refのnot_started/failed/not_evaluatedを保持。OS新裁定と他義務の代償消込を認めない。",
+        "CORE009の4判定（required/conditional/N/A/unresolved）ごとにoutput_refを介してdisposition/reason（根拠）/decider（判定者）/target_revision（対象revision）/reentry（再評価条件）/original_condition/template/対象義務を有資格元出力へ比較。N/A4属性（reason/decider/target_revision/reentry）を個別に失敗させる。",
+        "conditional未充足（original_condition=false/unknown）とN/Aを分け、obligation_original_statesは各義務ref（unit/connection/composite）の未実施（not_started）/不合格（failed）/未評価（not_evaluated）を保持し、未完を適用/完了へ変換しない。OSによる適用規則やN/A判断の新設（OS新裁定）および単体成功等による他義務kindの代償消込を認めない。",
         "associationのraw fieldはvalidatorがwire欠落/null/valueをFieldとして保ち、既存sources/qualificationの結果を変更しない。F04選択時にcompare_core_dispositionsが既存4観測を維持しながらAssociationResult fieldを追加し、build_record_trace_analysisが返却section全体をsectionsへ運ぶ。",
         "明示source-projection profileでは既存F04比較とsource_projection_joinを同じRecordTraceAnalysisに保持する。通常F04、既存source_output_association、既存四観測は置換しない。"
       ],
@@ -3335,7 +3335,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "【B:スライス別L5/L8詳細対凍結】本L5/L8詳細対13組（T:296..308）のうち、共通入口/集約（fn0 validate_record_trace_input・fn13 build_record_trace_analysis）・wire_codec純粋境界およびT:296（B01: fn1 check_record_claims B01分）・T:297（B02: fn2 compare_operation_dependencies）はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3 compare_project_stages）・T:300（F03: fn5 compare_event_obligation_trace）はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）でA=0を確認し関数単位で凍結済み。残る詳細対T:299, 301..308（F02, F04..F09, N01, N02）は後続スライスD-OS002-T1c〜T4で順次精査・凍結する。",
+      "【B:スライス別L5/L8詳細対凍結】本L5/L8詳細対13組（T:296..308）のうち、共通入口/集約（fn0 validate_record_trace_input・fn13 build_record_trace_analysis）・wire_codec純粋境界およびT:296（B01: fn1 check_record_claims B01分）・T:297（B02: fn2 compare_operation_dependencies）はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3 compare_project_stages）・T:300（F03: fn5 compare_event_obligation_trace）はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:301前半（F04前半: fn6 compare_core_dispositions・fn14 decode_f04_source_projection_profile・fn15 compare_f04_source_projection_join・fn16 run_f04_source_projection_operation・fn17 compare_core_dispositions_typed・fn18 compare_core_dispositions_with_source_projection_profile、およびf04_source_projection_profile_detail・f04_source_member_detail）はD-OS002-T2a（os002-t2a-f04-projection-member-freeze-2026-10-28.json）でA=0を確認し関数単位で凍結済み。残る詳細対T:299, T:301後半（F04後半: f04_source_original_correspondence・fn19..22 / D-OS002-T2b）, 302..308（F02, F05..F09, N01, N02）は後続スライスD-OS002-T1c, D-OS002-T2b〜T4で順次精査・凍結する。",
       "【C:外部owner・実基盤境界】正式record schema/codec/source resolver/trust root供給元・実custodyと各外部owner（BRAIN/CORE/LABO/SECURITY/CONNECT・他OS機構）の実binding（本L5純粋論理契約の外）",
       "【C:OS053実保存・接続実証境界】OS053実保存/authority/隔離/資源閾値と実接続の証拠（本L5はeffect=none・authority_generated=falseの純粋比較材料に限定）",
       "【C:下流L6/L7・実装TDD境界】下流L6関数設計/L7関数検証、および実装前test/oracle凍結→Red実観測→最小実装→Green→Refactor",
@@ -10642,7 +10642,7 @@
       }
     ],
     "remaining": [
-      "【B/C整理】B（L5/L8純粋規則）：13sectionのcarrier/子型schema対応と、carrier root受理を全section意味decode完了にしない境界は固定済み（T:296/297はD-OS002-T1a、T:298/300はD-OS002-T1bで凍結、T:299/301..308はD-OS002-T1c〜T4で順次凍結）。C（外部owner・実resolver境界）：CaseInput/CaseObservation各実context/selector/原owner bodyの実契約接続と正式実resolver閉包は外部owner・下流統合へ戻す。",
+      "【B/C整理】B（L5/L8純粋規則）：13sectionのcarrier/子型schema対応と、carrier root受理を全section意味decode完了にしない境界は固定済み（T:296/297はD-OS002-T1a、T:298/300はD-OS002-T1b、T:301前半［fn6,14..18］はD-OS002-T2aで凍結、T:299/T:301後半/302..308はD-OS002-T1c, D-OS002-T2b〜T4で順次凍結）。C（外部owner・実resolver境界）：CaseInput/CaseObservation各実context/selector/原owner bodyの実契約接続と正式実resolver閉包は外部owner・下流統合へ戻す。",
       "【C:外部owner・実custody・保存境界】実資格root供給元/実source custody/原source許容集合の実運用契約、BRAIN/CORE/OS/CONNECT両端実通信schema/互換/receipt、OS053実保存/023Backflow実証は本L5純粋設計の外。新署名/truststore/承認gate/資源閾値/実ライブラリを新設しない。",
       "【B/C整理】B（L5/L8純粋規則）：小数/指数/1e400/encode非JSON値の純粋保持・不丸め・失敗分離規則はunfixed_numeric_and_encode_range/0..2のとおり固定済み。C（下流L6/L7・実装・全体閉包境界）：具体float/Unicode/resource実行時挙動、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、独立review/実受入、全92親430対閉包と実装Readyは下流層・全体統制へ戻す。"
     ],
