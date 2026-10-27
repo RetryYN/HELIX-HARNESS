@@ -2717,6 +2717,13 @@
         "methods": [
           "test_repeated_basis_retains_all_equal_physical_sources_in_original_order"
         ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_use_mixed_qualification.py",
+        "test_revision": "b34f7aeaa",
+        "methods": [
+          "test_unusable_join_does_not_turn_mixed_nonsemantic_basis_into_empty"
+        ]
       }
     ],
     "independent_expectations": [
@@ -2823,25 +2830,73 @@
       }
     },
     "pending_evidence": [
-      "exact HEAD独立review・Ready・明示merge・root read-afterは未実施。"
+      "exact HEAD独立R2review（残6指摘のproducer-domain再判定を含む）・Ready・明示merge・root read-afterは未成立。"
     ],
     "limits": [
       "現実same-call walkから非fill negative intentとrule93 positiveへは今回到達しない。fake e/read/frame、空成功の代用で埋めない。",
       "初期Redと局所17Greenは全FN1、G3/G5、L8受入、OS登録、WR33完了の証拠ではない。"
     ],
-    "completion_boundary": "G2b局所TDDと対象unit364methods Greenを記録する。独立review・merge・L8受入・OS登録・G3/G5/WR33全体完了は未成立。",
+    "completion_boundary": "G2bの局所TDDと対象unit365methods Greenを記録する。R1-m1/4は実入力追加testと変異検出、残6枝はproducer域の未到達/含意として再reviewを求める。R2review/merge/L8受入/OS登録/G3G5/WR33全体完了は未成立。",
     "static_acceptance": {
       "artifact": "root-wr33-g2b-static-acceptance-current.json",
       "approved_items_equal": 16,
       "prior_document_values_preserved": true,
       "pairhash_matches": true,
-      "frozen_test_files_unchanged": 4,
+      "frozen_test_files_unchanged": 5,
       "only_source_change": "descriptor_target_frame.py",
       "port_or_FN1_qualification_recomputation": false,
       "use_closed_fields_equal_L5": 14,
       "F05_only_transitional_literal_changed": true,
       "source_max_nonblank": 646,
-      "consumer_nonblank": 269
+      "consumer_nonblank": 269,
+      "R1_source_bytes_unchanged": true
+    },
+    "R1_response": {
+      "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3748#issuecomment-6451751171",
+      "source_body_unchanged_since": "dedc4832a3f00bacd782dec5f6deda3a98c89e81",
+      "case4_real_reachability": {
+        "contract_pointer": "/source_return_contract/descriptor_target_dataflow/consumer/basis_resolution/basis_class_precedence/known_unusable_mixed",
+        "test_freeze": "b34f7aeaa",
+        "construction": "basis Refのsha=nullにより異digestの同identity/revision/scope/owner二sourceへjoin。derived_viewの片方だけdigest不整合として実FN0がunusableにする。owner source0/もう片方はusable、targetresolvedを保持。fake ValidatedSupplyは作らない。",
+        "expected": "全sourceindices保持・unresolved_basis_ref_indices=[0]・basis_class=unresolved",
+        "green": "root-wr33-g2b-r1-mixed-qualification-green.json:1PASS120ms",
+        "mutation": "root-wr33-g2b-r1-mixed-qualification-mutation.json:all_joined_sources_usable除去をassertionKILLED138ms/errors0/importsetup0/sourceSHA不変"
+      },
+      "producer_domain_audit": {
+        "artifact": "root-wr33-g2b-r1-reachability-audit.json",
+        "source_SHA_pins_verified": 6,
+        "all_contract_pointers_verified": true,
+        "state": "次の6枝は現producer域で独立反例を作れず、同値/未到達としての再判定を独立reviewへ求める。fake e/read/frameで肯定経路を作ってkillや製品閉包を主張しない。",
+        "cases": [
+          {
+            "id": 1,
+            "reason": "walkはfill_definitionだけを受理（descriptor_definition_walk.py159-164）。実read_claim_intentのfill枝はproposed存在ならnull/falseもpositive、欠落ならunresolved（dependencies_handoff_ports.py273-279）。negativeはこのreal経路に無い。"
+          },
+          {
+            "id": 2,
+            "reason": "実slotはfacts欠落時primary missing、各fact時primary source_unresolvedを必ず生成（walk229-322,346-445）。no-slotはrequiredmissing primary又はassessment自体無し。related非空かつprimary0の正常出力は無い。"
+          },
+          {
+            "id": 3,
+            "reason": "undefined支持はprimary meaning_undefined限定。現walkはunknown/no-support意味readだけを受理しsource_unresolved eventを形成（walk346-445）。meaning_undefined producerと非empty typed readerは既決scope外6447399416。reference_only単独で支持を捏造しない。"
+          },
+          {
+            "id": 5,
+            "reason": "no-slot eventはkey.slot_identity absent、slot_locators=[]、branch=required_slot_absentを同時に形成（walk229-284）。origin_branch条件だけ除去しても他のabsence/locator条件により実slotを借りない。既存owner-target-other-slot testでunmatchedを検証済み。"
+          },
+          {
+            "id": 6,
+            "reason": "required_slot_absent constructor自身がabsent slot_identityを作り、実slotはguardで非空unique identity必須（definition_comparison.py219-235）。not slot_presentだけ除去してもrequired_slot_absent条件からabsenceが含意される。"
+          },
+          {
+            "id": 7,
+            "reason": "reader._slot_locatorsは同rawのBinding/slot_identity/kindで原indexを列挙（descriptor_target_reader.py258-270）。walkは同rawslotの同key/locatorを作り、identity重複をguardで拒否。同keyだがdisjoint locatorの正常同call出力は無い。"
+          }
+        ]
+      },
+      "unit": "root-wr33-g2b-r1-unit-green.json:365PASS22331ms",
+      "latest_main": "root-wr33-g2b-r1-latest-main-integration.json:main0f9a2ff5 merge前後のunit+全BRAINdoc tree同一、365PASS証拠保持。",
+      "review_limit": "上記静的監査を独立reviewの受入/同値認定へ自動昇格しない。R2で再判定する。"
     }
   }
 }
