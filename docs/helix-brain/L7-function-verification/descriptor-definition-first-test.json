@@ -2759,7 +2759,27 @@
     ],
     "transitional_stop_boundary": {
       "prior_g2a_adjustment": "統制comment 6451004949に基づき、既存F05 negativeの暫定stop literalはG2aのdescriptor_claim_usesへ更新済み。元missing/presence/same-call stopのassertionは維持されている。",
-      "g2b_after_implementation": "全363methodsで旧F05二件の停止literal差だけFAIL22647msを観測した。元missing/入力保持/samecall停止assertionは通過、実停止は次のoracle_claim_ports。旧testsは未変更。G3配属の最終更新を維持し、この2件の暫定literal変更だけをG2bへ移す範囲調整を統制へ求める。"
+      "g2b_after_implementation": "全363methodsで旧F05二件の停止literal差だけFAIL22647msを観測した。元missing/入力保持/samecall停止assertionは通過、実停止は次のoracle_claim_ports。旧testsは未変更。G3配属の最終更新を維持し、この2件の暫定literal変更だけをG2bへ移す範囲調整を統制へ求める。",
+      "g2b_scope_decision": {
+        "control_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3748#issuecomment-6451498792",
+        "response": "root-wr33-g2b-3748-scope-response-R1.json",
+        "decision": "F05-NEG-01/02の停止期待文字列だけをoracle_claim_portsへ更新可。元missing/入力保持/同call停止assertionsと既存source guardは不変。G3で接続後契約へ再更新。",
+        "l6_boundary_ref": {
+          "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+          "pointer": "/fn4_oracle_preparation/id",
+          "value": "HELIXBRAIN-L6-032-FN4-ORACLE"
+        },
+        "source_boundary_ref": {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_binding_rules.py",
+          "revision": "11c9cd2acc4c7167e8f603b02879fad826cfcb4e",
+          "symbol": "compare_oracle_and_view_boundary_detail",
+          "existing_guard": "claims or frame.target_reads or frame.claim_uses → _stop(oracle_claim_ports)"
+        },
+        "new_stop": "F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
+        "pre_edit_evidence": "root-wr33-g2b-unit-initial.json:363methods361PASS2oldF05stopLiteralFAIL22647ms; tests unchanged at8df06d471",
+        "state": "範囲決定受信inspect/check/ACK済み、旧2tests未変更。このL7記録を先にcommitする。",
+        "authority_effect": "none"
+      }
     },
     "pending_evidence": [
       "G2bの暫定F05停止literal変更は統制決定待ち、旧2tests未変更。",
