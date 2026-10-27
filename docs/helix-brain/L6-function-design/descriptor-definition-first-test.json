@@ -1081,5 +1081,201 @@
       "authority_extension": false
     },
     "source_acquisition_boundary": "KnowledgeRecord/provenance/sourceを取得し局所boundaryを保持する。全原physical sourceは一度ずつ保持し、provenance反復を別原indexで残す。既存FN0 qualificationと既存RefEqを再利用し、source全値やdescriptor_targetsの原presenceを解釈/書換えしない。targetのstateをここで生成しない。"
+  },
+  "fn1_descriptor_target_reader_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-OWNER-TARGET-READER",
+    "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "working_base": "217196dc48bfb244eb268231016c920a4f5c071f",
+    "source_test_revision": "cfd6b83728486ad3c0e2db36ed64c7f7aa1bdb3d",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "function": "read_descriptor_replacement_target(validated, claim, claim_locator)",
+    "authority_effect": "none",
+    "scope": {
+      "included": "L5 private pure portの住所対応読取。元fill_definition Claimと原candidateを保持し、既存G1a取得材料から全raw宣言出現、局所問題、既存Ref/Binding比較によるcohort stateとresolved時の全matchを形成する。",
+      "excluded": "walk/frame/ClaimUse、meaning bodyの評価、FN4/FN6/FN7接続、公開Comparisonや新API/資格gate、全FN1/正式L8/OS/Issue/WR33全体の完了。"
+    },
+    "authority_intake": {
+      "approval_revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
+      "items": [
+        {
+          "id": "HELIXBRAIN-L3-032-F01",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/0",
+          "equal_approved_item": true,
+          "sha256": "ebc2da3936a606c23ff1c2e08eefd549eb99d2cb51e45cc17e4cd003663cda35"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F02",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "e1c325353009052758b9707e509f652fa63def733c3c4c5a82d3fc4d2a640a3e"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-F09",
+          "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/8",
+          "equal_approved_item": true,
+          "sha256": "c3e7d16735c6b3e5772fe61e7ba9c1c8d8607b3e4965b6329e166ca6c754ddf8"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N02",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/1",
+          "equal_approved_item": true,
+          "sha256": "f0d6f9144bf520ab710d4e8123a518245d404e5d697ed4d9a6599b400c8716fb"
+        },
+        {
+          "id": "HELIXBRAIN-L3-032-N03",
+          "path": "docs/helix-brain/L3-requirements/nfr-grade.json",
+          "pointer": "/requirements/2",
+          "equal_approved_item": true,
+          "sha256": "bf0195b632f9009039cbb1db49476f82a55a36da08de9f26b56e2ca03f55b4b7"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F01",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/0",
+          "equal_approved_item": true,
+          "sha256": "ee86fd3f61e9252dbc07b2d92b6dbb571820e7cf3cf4fcfefe2941333cedffd2"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F02",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "19a2fbf38750ddddfd9ff26b6f8f564bd3860ab513fa4dc0a9a8b44293caf739"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-F09",
+          "path": "docs/helix-brain/L10-verification/functional-verification.json",
+          "pointer": "/cases/8",
+          "equal_approved_item": true,
+          "sha256": "11ff16c86d9d780c4dccc1f781c4b83a682864e02c0f29100537f3688659fe33"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N02",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/1",
+          "equal_approved_item": true,
+          "sha256": "38231e93eae445b7a4327fd4c6ecd431eb35b36701544fcfa4fce456b13851ae"
+        },
+        {
+          "id": "HELIXBRAIN-L10-032-N03",
+          "path": "docs/helix-brain/L10-verification/nfr-verification.json",
+          "pointer": "/cases/2",
+          "equal_approved_item": true,
+          "sha256": "c7059fbc9d3167f12b1f1ffc6d22427bc246e7ef3f4e5bf14846df8d86855dba"
+        }
+      ],
+      "authority_extension": false
+    },
+    "contract_sources": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointers": [
+          "/dependency_semantic_ports/descriptor_target_contract",
+          "/dependency_semantic_ports/schema/new_defs/DescriptorTargetRead",
+          "/dependency_semantic_ports/schema/new_defs/DescriptorTargetOccurrence",
+          "/dependency_semantic_ports/schema/new_defs/DescriptorTargetMatch",
+          "/dependency_semantic_ports/schema/new_defs/DescriptorTargetProblem",
+          "/identity_version_trace_contract/schema/$defs/Binding",
+          "/identity_version_trace_contract/schema/$defs/Ref"
+        ],
+        "sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae"
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/functions/7",
+          "/type_contract/reference_comparison"
+        ],
+        "sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920"
+      }
+    ],
+    "module_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_target_reader.py",
+    "test_paths": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_arguments.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_cohorts.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_local_ref_problems.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_optional_source_refs.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_problem_order.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_qualification_cohort.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_reader.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_target_unresolved_cohort.py"
+    ],
+    "acquisition_binding": {
+      "source": "/fn1_owner_target_acquisition_preparation",
+      "reuse": "既存_collect_owner_target_material本文のASTを完全一致再利用し、一callで返るrecord/provenance/source indices、raw全source、usable、boundariesを消費する。KB/provenanceのRef joinや資格を再計算しない。",
+      "same_call": "実FN0 ValidatedSupplyと直接引数Claim/locatorを使用。raw/V/Claimを変更しない。locatorをClaim値の代用にしない。"
+    },
+    "return_contract": "DescriptorTargetRead8 / occurrence5 / match9 / problem4の既存closed fieldを保持。原Ref、Binding、RawValue、indices、locator、反復を保存し、unknown/conflictでmatchesは空にする。",
+    "cohort_contract": [
+      "既知同slot kind差のconflict、当該frameを否定できない比較不能のunknown、単一住所へのresolvedを区別し、別target/frame/Binding問題を当該cohortへ無条件に混ぜない。",
+      "資格不成立sourceの全occurrenceと局所owner_source_unresolvedを保持し、資格成立の独立exact sourceが住所を確定できる場合はresolvedとする。資格不成立sourceはmatchへ入れず、その資格問題だけで当該cohortのunknownを生成しない。",
+      "型内の原partial Bindingはoccurrenceでsupplied全値を保持する。比較に必要なmember不足はunknown、当該frameを否定できる既知member差はdifferentとして局所binding_conflictへ結ぶ。Claimのoptional Ref member欠落をliteral6member必須条件にしない。",
+      "問題はprivate originの元source/declaration indexで安定整列する。group同起点はmapping_conflict→ambiguous、その他fieldは既存走査順を保つ。public problemにprivate索引を追加しない。"
+    ],
+    "interpretation_control": {
+      "comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6449535827",
+      "kind": "既存L4の解釈確認のみ。要求/資格意味/Ready/mergeを生成しない。"
+    },
+    "legacy_rederivation": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          16,
+          92
+        ],
+        "keep": "原identity/source/provenance traceとJSON authority境界。",
+        "change": "現行L4の型付きtarget readとRef/Binding規則を使うpure private readerに限定し、旧Markdown/SQLite/runtimeは移さない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": [
+          30,
+          167
+        ],
+        "keep": "原定義欠落・owner/source不明を黙殺や補完でknownにしない。",
+        "change": "G1a materialとL4の局所問題/cohort契約を分け、target stateとmatchを規定どおり返す。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": [
+          80,
+          87
+        ],
+        "keep": "UTW-014/020/021の欠落隠蔽・部分失敗の取りこぼし・自己申告完了との照合。",
+        "change": "既存FN0資格とL4 local problemsを保ち、別のtrust ruleを設けない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "lines": [
+          138,
+          154,
+          168,
+          173
+        ],
+        "keep": "L6設計と独立test/TDD証拠の対応。",
+        "change": "現行L6/L7 sibling subtreeとして限定し、旧gate/runtimeを移植しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+        "lines": [
+          102,
+          120,
+          152,
+          159
+        ],
+        "keep": "機能と対応するtestの配置。",
+        "change": "既決の同unit src/tests homeのみを参照し、旧実行構成は移植しない。"
+      }
+    ],
+    "completion_boundary": "G1a helperと実source材料を使うG1b port単体だけ。caller接続はG2以後。新要求/承認/実提供を生成しない。"
   }
 }
