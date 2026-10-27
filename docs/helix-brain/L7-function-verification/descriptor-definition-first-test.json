@@ -1289,7 +1289,7 @@
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",
-    "source_revision": "4fb60d9b8b602f5ae99080b686ef97d004e4d036",
+    "source_revision": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "test_sources": [
       {
@@ -1346,7 +1346,7 @@
     },
     "prerequisite_tracking": "#3721/WR18統合後、F05 NEG01/02と非nullfinitecarryを再実行。Claim0 finitecarryは閉包、F05はwalk/supplied_claim_portsの実ID停止。",
     "completion_boundary": "Claim0/meaning carrier0のfinitecarry、およびR71/R72の局所投影をroot検証。R71/R72発火時の他ruleは未評価。F05 NEG01/02は実未対応ID観測でありpredicate未実装。全7rule、全caller、L8全受入、OS登録/Accepted、CI、(a)=0、Issue完了は未認定。Ready/mergeはexact content独立review後。",
-    "execution_state": "R4_root_verified_independent_review_pending",
+    "execution_state": "R5_root_verified_independent_review_pending",
     "authority_effect": "none",
     "main_integration": {
       "base": "4abee6df089cbbb9654edf38c80d116ecaeca708",
@@ -1454,10 +1454,10 @@
       "method": "temporary module overlay、tracked source/test不変。新private全guardのmutation網羅は主張しない。"
     },
     "final_root_verification": {
-      "source_revision": "4fb60d9b8",
-      "unit_evidence": "root-fn4-r4-final-unit.json",
-      "result": "288件全PASS、errors0/failures0、21382ms/reaped=true/output_truncated=false/timed_out=false。",
-      "targeted": "R4追加37PASS、population4PASS、WR18後finite8PASS/F05実停止2PASS。",
+      "source_revision": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
+      "unit_evidence": "root-fn4-r5-unit.json",
+      "result": "292件全PASS、errors0/failures0、21526ms/reaped=true/output_truncated=false/timed_out=false。",
+      "targeted": "新境界4methods PASS/669ms。対応選択7変異を7検出。",
       "modules_nonblank": {
         "descriptor_definition_walk.py": 377,
         "descriptor_definition_normative.py": 123,
@@ -1469,7 +1469,7 @@
         "oracle_view_boundary.py": 69,
         "oracle_finite_carry.py": 40
       },
-      "boundary": "全9module各700非空行未満。fn1/fn6 facade ASTは統合mainと同一。F05停止を実predicate完成としない。"
+      "boundary": "runtime source変更なし。candidate Green controlsと到達不能/等価の根拠を分けて記録。全9 FN4 module各700非空行未満。fn1/fn6公開wrapperは統合mainと同値。"
     },
     "review_R3": {
       "head": "c77c6c8add710535c3152fd3d1997c943f8b46c9",
@@ -1563,6 +1563,14 @@
       {
         "path": "test_oracle_view_boundary_f05_negatives.py",
         "revision": "4fb60d9b8"
+      },
+      {
+        "path": "test_descriptor_read_boundaries.py",
+        "revision": "369487ac6"
+      },
+      {
+        "path": "test_oracle_reference_boundaries.py",
+        "revision": "369487ac6"
       }
     ],
     "r4_stop_coverage": {
@@ -1627,6 +1635,92 @@
       "evidence": "root-fn4-f05-wr18-boundary.json",
       "result": "2PASS/161ms/reaped/nontruncated。既存L8由来fn1入力builderをfixture生成だけに再利用。実FN0で追加source利用可を確認、実FN1がdescriptor_12_missing/13_missing、実FN3後、FN4はF01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; Backflow HELIXBRAIN-L6-032-N03-PATH。全raw/context不変。",
       "boundary": "候補Green境界観測。rule68/69の実装Red→Green又は正式L8期待達成ではない。Claim/target read/frameが未実装なので個別IDと本L7へ残す。"
+    },
+    "review_R4": {
+      "head": "09ccddc7f3b9d6278a519f8237078c5c25731757",
+      "base": "1ef1bcd0dff4512c9a782547b1fb6fa72ecaebe9",
+      "review_comment": 6431062357,
+      "response": "root-fn4-3719-review-response-R4.json: originalrequest/inspect/check/ACK済み。",
+      "result": "R3 Major4解消、Minor4/Info1。reviewer全288PASS、78有効変異の61検出/17生存。全域網羅とはしない。",
+      "m1": "test_oracle_reference_boundaries.py:義務owner/scope/revision単独差のR71発火3subcase。digest gateのkey欠落へ丸めない。",
+      "m2": "test_descriptor_read_boundaries.py:fn0受理後、既存private readerの全6fieldとabsent/not_requestedを固定。fn1 closed slot guardは当該member必須なのでwhole walk経由の受入とはしない。",
+      "m3": "下記静的到達性記録target_reads参照。",
+      "m4": "(d)実walkへの無関係provenance追加でnative meaning_reads不変。(e)fact/OB subjectの片sha null両方向でFinding/Axisのsubject全値が原fact Ref。(a)(b)(c)は下記静的到達性/等価記録。"
+    },
+    "r5_boundary_controls": {
+      "test_revision": "369487ac6",
+      "test_sources": [
+        "test_descriptor_read_boundaries.py",
+        "test_oracle_reference_boundaries.py"
+      ],
+      "evidence": "root-fn4-r5-boundary-controls.json",
+      "result": "4methods PASS、669ms/reaped/nontruncated。R71義務3subcaseと片sha2subcaseを含む。",
+      "history": "正しい既存sourceに追加したcandidate Green controls。実装前Redへ改称せず、runtime source変更なし。test docstringのrule array pointerを凍結前に/3（rule71）へ訂正。",
+      "mutations": "root-fn4-r5-focused-mutations.json＋root-fn4-r5-mutation-driver.json:義務digest gateからowner/scope/revision各除去、NA absent→unknown、provenance照合→True、Axis/Finding subjectをOBへ各置換の選択7変異を7検出。import/syntax失敗0。whole driver2652ms/reaped/nontruncated、各subprocess timeout30s、一時module overlayのみ。"
+    },
+    "r5_static_reachability": {
+      "target_reads_nonempty": {
+        "classification": "静的宣言のみ（適合公開FN4経路では未到達）。",
+        "basis": [
+          "L5 /source_return_contract/descriptor_target_dataflow/direct_wrappers/fn4",
+          "L5 /source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+          "src/descriptor_definition_walk.py:136–138、閉じた返却のtarget_reads=[]"
+        ],
+        "reason": "非空Claimはwalkのsupplied_claim_portsで停止し、Claim0だけがtarget_reads=[]を返す。wrapperもraw runnerも同walk結果を渡す。caller人工frame注入を正規経路の到達証明にしない。"
+      },
+      "owner_nonstring": {
+        "classification": "適合入力では非str非null未到達。条件除去はstr/null domain上で等価。",
+        "basis": [
+          "src/supply_validation.py:124–152（Ref/Binding owner string又はnull）",
+          "src/supply_validation.py:405–423（root binding decode）",
+          "src/definition_comparison.py:226–227（slot strict Binding）",
+          "src/descriptor_definition_walk.py:268–278（ownerはslot.binding.knowledge_ref.owner）"
+        ],
+        "reason": "非str非nullは上流shapeで停止。nullの場合は条件を除いてもnull、strなら原strを保持する。fact.ownerは当該backflowの取得元ではない。"
+      },
+      "attribution_sort_nondict_source_ref": {
+        "classification": "nullは到達可能だが該当filter除去は最終sort列に関して等価。非null型外は上流停止。",
+        "basis": [
+          "src/definition_comparison.py:238–239（source_refはRef/null）",
+          "src/descriptor_definition_walk.py:53–56、79（_object_refsがdictだけ保持）",
+          "src/descriptor_definition_walk.py:222（attribution sort source列）"
+        ],
+        "reason": "source_ref=nullの[]を[null]へ変えても_axis_eventの_object_refsで同じ[]となる。意味readerの原null/source_unresolvedは別に保持される。"
+      },
+      "origins_only_pair": {
+        "classification": "静的宣言のみ。現producerから未到達。",
+        "basis": [
+          "L5 /source_return_contract/descriptor_target_dataflow/index_types/MeaningPairAnnotatedRead",
+          "src/definition_comparison.py:228–230（facts非空）",
+          "src/descriptor_definition_walk.py:326–335（multi-factはhelper前停止）",
+          "src/descriptor_definition_pairs.py:25–38（single-factはaxes/origins共に[]）"
+        ],
+        "reason": "originsだけ非空というtyped返却を現helperは生成しない。人工readerへ差し替えて到達を作らない。"
+      },
+      "claims_inequality_to_truthiness": {
+        "classification": "guard自体は到達可能。変異!=[]→truthinessは現在のfn0成功array domainでは等価。",
+        "basis": [
+          "src/supply_validation.py:13–28、405–423（claims array又はabsent）",
+          "src/descriptor_definition_walk.py:136–138（absentをlocal0件として保持）",
+          "tests/test_oracle_view_boundary_f05_negatives.py（非空Claimの実停止）"
+        ],
+        "reason": "[]/absentは両式false、非空arrayは両式true。null/型外はfn0がdecodeせず通常walkには届かない。非空Claim停止そのものをdead codeとはしない。"
+      },
+      "noncanonical_index_01": {
+        "classification": "静的宣言のみ（同walk requestでは未到達の防御）。",
+        "basis": [
+          "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/schema/new_defs/DefinitionMeaningRequest",
+          "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate",
+          "src/descriptor_definition_walk.py:194–212、229–235（enumerate整数からlocator構成）",
+          "src/descriptor_definition_reads.py:47–59（正準index拒否）"
+        ],
+        "reason": "公開Contextはprivate requestを受け取らず、実walkは整数indexを十進正準形で作る。01は外部private caller向けの防御。"
+      }
+    },
+    "main_integration_R5": {
+      "base": "398fa185db40ba9baf340aaff44c3ded39f09663",
+      "merge_commit": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
+      "scope": "別unitのL8/L9文書4件とWR29 mailbox guardを統合。FN4 source変更なし、非FN4 L6/L7はmain全値保持。"
     }
   }
 }
