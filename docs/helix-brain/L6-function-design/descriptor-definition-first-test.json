@@ -998,8 +998,8 @@
       }
     ],
     "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
-    "working_base": "9c95cf7e241d64542c04919534a7351969a22ba8",
-    "source_test_revision": "4d42b854eafd6fb44b08c220c5374898f572d02b",
+    "working_base": "bdc83119643033c62cd78bc6f1b4e858c6adecec",
+    "source_test_revision": "bc23f88133aad737f82a9bbf4488cb2ce731e99b",
     "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
     "split_control": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
     "preceding_G4b_merge": "9c95cf7e241d64542c04919534a7351969a22ba8",
