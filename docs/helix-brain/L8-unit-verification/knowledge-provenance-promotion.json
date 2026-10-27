@@ -26,7 +26,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/0",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/0/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -51,7 +52,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/1",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/1/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/1/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -76,7 +78,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/2",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/2/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/2/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -101,7 +104,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/3",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/3/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/3/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -126,7 +130,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/4",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/4/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/4/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -151,7 +156,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/5",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/5/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/5/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -176,7 +182,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/6",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/6/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/6/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -201,7 +208,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/7",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/7/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/7/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -226,7 +234,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/8",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/8/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/8/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -251,7 +260,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/9",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/9/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/9/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -276,7 +286,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/10",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/10/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/10/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -301,7 +312,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/11",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/11/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/11/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -326,7 +338,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/12",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/12/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/12/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -351,7 +364,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/13",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/13/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/13/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -376,7 +390,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/14",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/14/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/14/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -401,7 +416,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/15",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/15/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/15/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -426,7 +442,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/16",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/16/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/16/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -451,7 +468,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/17",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/17/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/17/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -476,7 +494,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F01",
         "case_pointer": "/verification_obligations/0/concrete_cases/18",
-        "expected_pointer": "/verification_obligations/0/concrete_cases/18/expected_material"
+        "expected_pointer": "/verification_obligations/0/concrete_cases/18/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -501,7 +520,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/0",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/0/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -526,7 +546,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/1",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/1/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/1/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -551,7 +572,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/2",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/2/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/2/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -576,7 +598,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/3",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/3/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/3/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -601,7 +624,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/4",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/4/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/4/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -626,7 +650,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/5",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/5/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/5/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -651,7 +676,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/6",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/6/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/6/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -676,7 +702,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/7",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/7/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/7/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -701,7 +728,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/8",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/8/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/8/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -726,7 +754,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/9",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/9/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/9/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -751,7 +780,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/10",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/10/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/10/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -776,7 +806,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/11",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/11/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/11/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -801,7 +832,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/12",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/12/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -826,7 +858,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/13",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/13/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -851,7 +884,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/14",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/14/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -876,7 +910,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/15",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/15/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/15/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -901,7 +936,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/16",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/16/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/16/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -926,7 +962,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/17",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/17/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/17/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -951,7 +988,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/18",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/18/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/18/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -976,7 +1014,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/19",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/19/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/19/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1001,7 +1040,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/20",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/20/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/20/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1026,7 +1066,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/21",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/21/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/21/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1051,7 +1092,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/22",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/22/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/22/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1076,7 +1118,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/23",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/23/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/23/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1101,7 +1144,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/24",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/24/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/24/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1126,7 +1170,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/25",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/25/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/25/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1151,7 +1196,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-F02",
         "case_pointer": "/verification_obligations/1/concrete_cases/26",
-        "expected_pointer": "/verification_obligations/1/concrete_cases/26/expected_material"
+        "expected_pointer": "/verification_obligations/1/concrete_cases/26/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1176,7 +1222,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/0",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/0/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/0/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1201,7 +1248,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/1",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/1/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/1/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1226,7 +1274,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/2",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/2/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/2/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1251,7 +1300,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/3",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/3/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/3/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1276,7 +1326,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/4",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/4/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/4/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1301,7 +1352,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/5",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/5/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/5/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1326,7 +1378,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/6",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/6/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/6/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1351,7 +1404,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/7",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/7/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/7/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1376,7 +1430,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/8",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/8/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/8/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1401,7 +1456,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/9",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/9/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/9/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1426,7 +1482,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/10",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/10/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/10/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1451,7 +1508,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/11",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/11/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/11/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1476,7 +1534,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/12",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/12/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/12/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1501,7 +1560,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/13",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/13/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/13/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1526,7 +1586,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/14",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/14/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/14/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1551,7 +1612,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/15",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/15/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/15/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1576,7 +1638,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/16",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/16/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/16/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
@@ -1601,7 +1664,8 @@
         "l9_revision": "b017639e7c2adf0e5b510f12f97e40bb965eb09c",
         "obligation_ref": "HELIXBRAIN-L9-007-B01",
         "case_pointer": "/verification_obligations/2/concrete_cases/17",
-        "expected_pointer": "/verification_obligations/2/concrete_cases/17/expected_material"
+        "expected_pointer": "/verification_obligations/2/concrete_cases/17/expected_material",
+        "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
       },
       "l5_binding": {
         "path": "docs/helix-brain/L5-detail-design/knowledge-provenance-promotion.json",
