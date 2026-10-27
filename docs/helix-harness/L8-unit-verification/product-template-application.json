@@ -3453,7 +3453,7 @@
   "runtime_execution": "not_executed",
   "semantic_review": "not_requested",
   "meaning_coverage": "not_proven",
-  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）で関数別pair凍結済み。残るT:40–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1b〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3および関数別pair凍結）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
+  "remaining": "11 child case（原負例106件：T1 60件＋T2/T3 46件）・12正常function oracle・24 additional_unit_casesのU-ID検証契約を候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）で関数別pair凍結済み。残るT:41–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1c〜T1d-2）、T:43–49のA残件（F03〜F08,N01の分岐/U-ID対照・Q-H009-2/Q-H009-3・関数別pair凍結、およびnormal_function_oracles/11 project_source_result_references に対応する completion.normal_function_oracles=11→12 の数値同期［D-H009-T2a / DISP2 D12］）はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡し、独立reviewはreview側（C）へ、実trust/実行test-oracle凍結/Red-Greenは下流L6/L7と各owner（C）へ戻す。",
   "additional_unit_cases": 24,
   "normal_function_oracles": 11,
   "normal_fixture_variants": 6,
@@ -3997,8 +3997,8 @@
    "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
    "name": "metadata-only-ai-language",
    "input_fixture_ref": "CORE-ADD-INPUT-20",
-   "typed_mutation_plan": "nonsemantic_metadataだけAI/言語変化",
-   "expected_observation": "同意味bindingの必要義務不変。domain/risk/scopeは除外しない",
+   "typed_mutation_plan": "nonsemantic_metadataだけAI/言語/project表示名変化",
+   "expected_observation": "同意味bindingの必要義務不変。AI/言語/project表示名（nonsemantic_metadata）の差だけで義務を増減せず、domain/risk/scopeは除外しない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
    "fixture_refinement": "explicit concrete input overrides and final raw changes supplied; not executed"
@@ -4311,7 +4311,7 @@
    "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
    "input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
    "context_type": "CompareSemanticEquivalenceContext",
-   "expected_observation": "AI/言語metadataのみ変化は義務意味に影響しない。原domain/risk/scope差は意味比較境界へ残す。件数/hashで同等にしない。",
+   "expected_observation": "AI/言語/project表示名（nonsemantic_metadata）のみ変化は義務意味に影響しない。原domain/risk/scope差は意味比較境界へ残す。件数/hashで同等にしない。",
    "execution_state": "not_executed",
    "expected_output_rule": "Exact material/ref/state/set observations. Human explanation reason strings may differ if nonempty and bound to the stated original grounds; absent or unrelated grounds fail."
   },

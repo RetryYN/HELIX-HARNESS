@@ -1978,7 +1978,7 @@
         "HARNESS-L5-009-B02"
       ],
       "algorithm": [
-        "同要求分類/母集合/適用契約/製品scopeのqualified意味比較へ結果の必要論点/義務を対応させる。AI/言語名だけで増減させない。",
+        "同要求分類/母集合/適用契約/製品scopeのqualified意味比較へ結果の必要論点/義務を対応させる。AI/言語/project表示名（nonsemantic_metadata）の差だけで増減させない。",
         "異domain/risk/scopeは比較境界と根拠の相違を保存し同setを強制しない。文字列/件数/hash一致で意味同等にしない。",
         "具体missing/extra義務と未評価範囲を返す。実未見入力/oracle凍結はL6/L7の別系統準備へ残す。"
       ],
@@ -4587,7 +4587,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）で独立期待照合・関数別pair凍結済み。残るT:40–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1b〜T1d-2）、T:43–49のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡す。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各owner（C）へ戻し、候補記載から生成しない。",
+    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み（B）。T:39（B01：validate_application_input・check_application_claims B01範囲）はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02：compare_semantic_equivalence）はdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）で独立期待照合・関数別pair凍結済み。残るT:41–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1c〜T1d-2）、T:43–49のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡す。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各owner（C）へ戻し、候補記載から生成しない。",
     "source_result_reference_projection": {
       "state": "logical_pure_design_only",
       "function_ref": "HARNESS-L5-009-project_source_result_references",
@@ -4596,7 +4596,7 @@
     }
   },
   "remaining": [
-    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み（B）。T:39（B01）の2関数はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）で関数別pair凍結済み。残るT:40–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（D-H009-T1b〜T1d-2）、T:43–49のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（D-H009-T2a〜T3b）へ別記し、独立reviewは作成／review側（C）へ戻す。",
+    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み（B）。T:39（B01）の2関数はdocs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json（D-H009-T1a）、T:40（B02）のcompare_semantic_equivalenceはdocs/governance/audits/tdd/h009-b02-function-pair-freeze-2026-10-28.json（D-H009-T1b）で関数別pair凍結済み。残るT:41–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（D-H009-T1c〜T1d-2）、T:43–49のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（D-H009-T2a〜T3b）へ別記し、独立reviewは作成／review側（C）へ戻す。",
     "正式wire schema/operator/registry/instance digest/言語依存/入力資格resolverの採用・稼働と実seed採用知識の最終照合は、下流L6関数設計/L7対検証・runtime codecおよび知識/資格owner（BRAIN030/032・SECURITY・OS002/053）の担当へ戻す。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・release等は既存authorityへ戻す。",
     "failure_rules 107件（原L9負例106件＋HARNESS-L5-009-R-condition_meaning_unresolved 1件）との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
