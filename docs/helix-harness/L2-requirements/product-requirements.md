@@ -1640,3 +1640,143 @@ revision 002は直前のHARNESS-L2-087 identity sectionを変更せず保持し�
 - **出力と失敗**：適用した規律のidentity、対象revision/scope、oracle／実結果、違反・不足箇所、未評価範囲と戻し先を既存005の証拠条件へ結ぶ。適用規律のidentity欠落／unknownを別の規律へfallbackせず、不足findingとして返す。違反を0件やunknownをN/Aへ変換しない。境界／oracleの意味はHARNESSの設計・検証owner、要求の不足は008へ戻し、OSは元ticket／記録／未完義務を維持する。この検証条件だけで工程合格・受入・Releaseを生成しない。
 
 この案は旧FR-L1-50の5規律に対応する限定追補である。旧doctor／PLAN／DB／lint実装を移植しない。旧rule SSoT全体、workflow anchor配置、GreenDefinition/history、FR-L1-02のRedと本体実装の順序差分、formal successor、L3再開・実装・受入成功は別に保持する。005の既決版指定を保持し、版指定を追加しない。
+
+<a id="harness-l2-091"></a>
+
+### HARNESS-L2-091 内部開発情報を分離したマルチプロジェクト提供物（単体、採択済み）
+
+#### 位置・親・対象revision
+
+本節は一要求identityの採択済みL2であり、他の採択済み本文を変更しない。
+種別は`unit`、対象はHELIX-HARNESS、`version_target: 1.0`。
+状態は採択済み。採否は[判断記録](../../governance/decisions/clean-deploy-adoption-po-decision-2026-10-23.md)と対象revisionへ束縛する。管理登録の管理状態は`registered_proposal`のままとし、`authority_effect: none`は仮登録の性質を示す。実装・配布・利用者受入は未実施。
+対は[HARNESS-L11-091](../L11-acceptance/product-acceptance.md#harness-l11-091)。
+管理登録は`MPR-RC-HARNESS-L2-091-003`。登録・PR・Issueから採択を生成せず、判断記録と対象revisionの対応を採否根拠とする。
+
+親Conceptは`docs/concept/helix-concept.md@5afce0789481881fc304e22177b4160ab8171feb`、
+SHA-256は`bbc787c5dc17de9eded156285ad82ef768788cfa31822dfffa477db073a5e715`。
+親L1はHARNESS-L1-005（内部管理機構を暗黙の依存にしない外部利用）。
+対象は`docs/helix-harness/L1-planning/product-intent.md@f6dad2a33e24f000b87d7f09b8d40288257e74cc`、
+SHA-256は`238ae0590f43c10c0a59a0cea4a9907328752a81388891e1a115d4278db00e1f`。
+L1の確定根拠は[9/28判断](../../governance/decisions/helix-harness-requirements-po-decision-2026-09-28.md):25–29。
+親の確定を、この新しい091の採択へ継承しない。
+
+#### PO原文と新規の採否対象
+
+[Issue #3563の追記2](https://github.com/RetryYN/HELIX-HARNESS/issues/3563#issuecomment-6329583348)に保存されたPO原文：
+
+> 内部デプロイは内部の開発主体のバージョンを上げる話な。クリーンデプロイの内部適応版に近い。機構が完成してるのにいつまでも古い仕様を引き継がないための仕組み。
+
+> クリーンデプロイはHELIX内部開発の固有の情報を切り出して、マルチプロジェクトへの導入が可能な状態とする。
+
+以下は原文と既存責務境界に照らした採択対象本文であり、Issue comment自体を採択記録にしない。
+利用者は、HELIX内部開発の固有情報を切り出し、マルチプロジェクトへ導入可能な状態にする提供物側の能力を利用できる。
+採択対象は、内部固有情報の切出し、元の管理責務での保持、意味・所有・利用条件による区別に限る。
+「クリーン」は段階を差し替えて組み直すことの別名ではない。
+提供物から分離したことを、元情報の削除や所有移転へ読み替えない。
+
+#### 責務・入力・出力
+
+primary ownerはHARNESSの提供物側である。
+OS021は対象projectへの配布・更新・復旧と運転状態を扱う接続先であり、091の内部へ統合しない。
+根拠は[製品責務境界](../../concept/product-boundary.md):82の「配布物はHARNESS、配布運転はHELIX-OS」。
+OS021の読取基準は親Conceptと同じcommitの`docs/helix-os/L2-requirements/governance-requirements.md:711–719`。
+091の切出し、OS021への受渡し、実際の導入・運転を別に扱う。
+新しい製品・機構、manifest schema、配置、CLI、build方式はこのL2で決めない。
+
+受け取るもの：
+
+- 対象HARNESSの要求revisionと、切出し対象のsource・情報の範囲。
+- 内部固有情報と、consumerへ提供する汎用情報を区別する根拠。
+- 各情報の意味・所有・利用条件、元情報を保持する管理責務。
+- 提供・導入先に関する既存契約への参照。対応区分・環境・運転条件はその契約に残す。
+
+提供するもの：
+
+- 内部固有情報から分離した提供物側の情報、切り出した範囲・根拠。
+- 切り出した情報が元の管理責務で保持されていることへの参照。
+- 区別できない情報、その理由、source・所有責務への戻し先。
+- 既存の提供構成・配布運転の契約へ渡す、この切出し結果への参照。
+
+新しい台帳形式・必須の物理列を追加しない。
+切出しの結果は、提供構成の成立やOSで実際に導入した結果を代替しない。
+
+#### 091が保証する境界
+
+HELIX内部開発に固有の情報を、consumerへ提供する情報から分離する。
+作業履歴・案件data・内部台帳・memory・runtime state・秘密情報・資格情報は、内部固有情報として確認する例示である。
+この列挙はPO原文外であり、旧distribution source:50–53とOS014の既決条件に由来する。
+列挙を閉じた除外集合やOS030のpackage拒否条件として採択するものではない。
+
+情報の名前・pathだけでなく、意味・所有・利用条件に照らして区別する。
+内部開発でも使う汎用情報を、その利用場所だけで内部固有と同一視しない。
+逆に、一般的な名前や移動後のpathだけを理由に、内部固有情報を提供可能としない。
+区別が不明な情報は、切出し済み・提供可能とせず、sourceと所有の確認へ返す。
+切り出した情報は元の管理責務に保持し、提供物に含まれないことを原情報の消去にしない。
+
+#### 既存条項へのtraceと、採否対象から外す重なり
+
+以下の行番号は親Conceptと同じ読取commit。HARNESSの既存条件を091の保証として言い直さない。
+
+| 所在 | 091との関係 |
+|---|---|
+| HARNESS006:168–174 | 外部利用・暗黙の内部依存を避ける既存条件へのtrace。再採否しない |
+| HARNESS010:343以降 | パックの収載・依存・版・再現の既存条件へのtrace。同じ保証を091へ置かない |
+| HARNESS011／017 | 呼出し・隔離、Release Port契約へのtrace。091で変更しない |
+| HARNESS提供構成:277以降 | 収載／除外・再現・復旧等の意味候補へのtrace。その節自身の再採否待ち状態も変えない |
+| OS030:896の保証2 | dogfood情報の除外、公開asset列挙、doctor／gateの強度というpackage具体条件と重なる。091の採択対象に含めず保留経路に残す |
+| OS030:897の保証3 | clean／既存／monorepo、managed marker、consumer所有物の非破壊。091へ移さず保留経路に残す |
+| OS030:893,901–902 | package再現・同一artifact・更新復旧の具体条件。091へ移さず保留経路に残す |
+| OS014の通常consumer・段階・実利用 | 自己適用の既決へのtrace。091の成功から実利用を生成しない |
+
+内部固有情報を切り出す価値はOS030保証2にも現れるが、091の出所は新しいPO原文である。
+それを理由に、OS030の具体的な除外集合・公開asset・生成・検証・運転条件を先に採択したとはしない。
+clean／既存／monorepoという区分の出所は旧distribution source:27と保留中OS030:897であり、PO原文の区分ではない。
+091ではこの区分を必須consumer分類・対応環境・setupの受入集合として採択範囲に含めない。
+自己適用のtraceもPO原文外で、旧`LEGACY-ASSET-17C4BF78919578FEBB18`:170–171とOS014の既決に由来する。
+通常consumer・自己開発専用例外なしを091の追加保証として再掲せず、既存の意味に残す。
+
+#### 不足・失敗の戻し先
+
+情報の由来・意味・所有・利用条件が不明なら、当該sourceと管理責務へ返す。
+切出し結果と元情報の保持を確認できなければ、その範囲を成功として扱わない。
+既存の提供・運転条件に関する不足は、該当するHARNESS要求・OS021等の責務へtraceする。
+途中まで区別できた情報と未完の範囲を保ち、別対象の成功や暗黙fallbackで埋めない。
+
+#### 旧source・同種失敗・意味差
+
+旧sourceのrootは`archive/legacy-generation-2026-09-14/root/`。
+[限定source集合](../../governance/audits/requirement-registration/clean-deploy-source-atoms-2026-10-23.jsonl)は固定済みの原文を保持する。
+下表の行範囲は空行を除く。
+
+| 旧asset・rootからのpath | 行 | 保持する意味と、091へ継承しないもの |
+|---|---|---|
+| `LEGACY-ASSET-9B7682EBDEA171005D45`、`docs/design/helix/L3-requirements/distribution-package-release-requirements.md` | 24–29、50–56、83–91 | 内部情報の除外・consumer境界を照合。再現・所有物保護は別条件へのtraceに残し、旧runtime・profile・channel・standing authorizationを継承しない |
+| `LEGACY-ASSET-17C4BF78919578FEBB18`、`docs/design/helix/L3-requirements/product-lifecycle-operations-requirements.md` | 170–171 | 通常consumer・自己適用の例外なしはOS014へのtrace。旧Module構成や新しい091の保証にしない |
+| `LEGACY-ASSET-201EED9C5D6D2FF4D41B`、`docs/governance/candidates/functional-release-slice-requests.md` | 43–46 | 再現・clean consumer確認・復旧は既存の提供構成等へのtrace。旧Sliceを現行単位名にしない |
+
+再利用区分は**意味の再導出**。完全一致移植や、旧要求全体の正式successor認定ではない。
+変更理由はPO原文と、HARNESS提供物／OS配布運転の現行責務境界である。
+全入力原文は`MPR-SH-CLEAN-DEPLOY-001`へ保留し、全面移管や旧sourceのretireをしない。
+
+同種失敗は[失敗対応監査](../../governance/audits/failure-requirement-crosswalk-2026-10-09.md):68のT23と:82のT37を照合する。
+直接の旧記録はroot配下`docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md`。
+同`:78`のUTW-012はsource／evidence／generated stateの境界、`:82`のUTW-016はrelease provenance、
+`:95`のUTW-029はconsumer setup／source／clean distributionの検証分岐の失敗である。
+過去の数値を現在の観測値とせず、失敗から新しい数値条件やgateを導かない。
+OS030保留やHARNESS064の現行版不承認を、失敗の存在を理由に解除しない。
+
+#### 未決・既知の重なりと採否
+
+| 状態 | 論点・影響 | 戻し先と再評価条件 |
+|---|---|---|
+| decided | 091と対L11の採択 | [判断記録](../../governance/decisions/clean-deploy-adoption-po-decision-2026-10-23.md)（対象revision `86d90e986cd645e452b7920491e899e0beadc329`）。下流実装はL3／L10の後続条件による |
+| unknown | 切出し対象の具体的な意味・所有・利用条件 | 採択後、対象sourceと所有責務をL3／L10で具体化するとき |
+| assumption | 汎用情報と内部固有情報をsourceから区別できること | 区別不能が判明した時点で当該source／HARNESS要求へ戻す |
+| known overlap／採否保留 | OS030保証2・3、package再現、更新復旧との重なりは上表のとおり | 091に含めずOS030の保留経路へ残す。具体的package条件を扱うときに対象revisionの採否へ戻す |
+
+「既存L2の要件として扱う」案は、L2の採否とOS030保留を迂回するためAIは選ばない。
+HELIX-Web／HELIX-WEB-OSは対象外。OS014の既決や単独部品内部デプロイ可否の保留を変えない。
+本要求の`version_target: 1.0`から、収載段階・公開番号・tag・release・cutoverの許可は出ない。
+採否は判断記録と対象revisionの対応で読む。Draft・仮登録・原文保全の`no_loss`・reviewは採択を生成しない。
+新しい承認者・承認手続・実作用の許可を追加しない。

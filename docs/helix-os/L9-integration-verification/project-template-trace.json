@@ -4647,24 +4647,24 @@
         },
         "preservation": "元normal/negative/旧source association/旧join25/既存member9wholeの入力・期待・prefix関係を変更しない。新kind/新fieldを既存codecが受理するとは主張しない。",
         "remaining": [
-          "正式provider/caller/実原operation binding、新kindのL5/L8型/codec/fn0/14/17/18/返却への追随は未成立。",
-          "残11component全値、他selected output、最終F04観測全値、既存native prefixの詳細code/path/全配列、全TraceFinding[]/全RecordTraceAnalysisの新wholeは未固定。D2新2診断は全呼出しsuffixでなく部分列。",
-          "現source資格/意味evaluator/codec/runtime/CIの実行結果、全Presence/全型/全mutationの網羅を示さない。",
-          "原sourceの3state保持は入力rawと到達したedge値の範囲を区別する。新component全3state返却としない。",
+          "【C：外部owner・下流L5/L8詳細対（D-OS002-T2a / D-OS002-T2b）】正式provider/caller/実原operation bindingは各ownerと下流L6/L7へ、新kindのL5/L8型/codec/fn0/14/17/18およびprivate関数fn19..22（L5#/f04_source_original_correspondence_detail、L8#/f04_source_original_correspondence_verification）の詳細精査・関数別pair凍結は下流L5/L8スライス（D-OS002-T2a / D-OS002-T2b）へ戻す。",
+          "【B：上位L10結合検証充足 ／ C：全返却whole列挙不要】上位L10（HELIXOS-L10-002-F04）に対する基本結合検証は、/cases/5（expected_observation 1件、negative_cases 8件、source_output_association_oracles 47件、qualified_source_projection_join_oracles［基本25件：cases 4件＋branch_contrasts 14件＋occurrence_and_relevance_contrasts 7件、およびdirect_boundary_contrasts 1件＋carrier_domain_priority_oracles 4件］、selected_source_member_correspondence_oracles 9件、本節partial_cases 12件＋D2_component_case 1件［14 member期待＋D2新診断2件の部分列］）で充足済み（B）。残11 component全値・最終F04観測全値・全TraceFinding[]/全RecordTraceAnalysisの新whole列挙は基本L4/L9凍結の条件とせず（#3510 / #3547：L9へ全返却・fixture・hashを追加しない）、単体component/branch/origin/whole検証は下流L5/L8（D-OS002-T2b）へ戻す（C）。",
+          "【C：実行環境・範囲外】実source資格・意味evaluator・codec・L6/L7・runtime/CIの実行結果、および全Presence/全型/全mutation網羅は本L9基本結合検証の範囲外であり、各ownerと下流L6/L7・実行環境へ戻す。",
+          "【B：L4/L9規範境界】原sourceの3state保持は入力rawと到達したedge値の範囲を区別し（L4#/contracts/5/source_original_correspondence/logical_return/Field_wire_rule・/state_derivation）、新component全3state返却とはしない。",
           {
             "unobserved_branches": [
-              "qualified exact header複数（valid/invalid domain混在を含む）によるambiguous/全候補保持/比較not_compared。",
-              "qualified raw header exactは1件だがfull domain closed decode失敗。unknown/local decode保持・semantic findingなし。fn0 dropとは区別。",
-              "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立。",
-              "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別。",
-              "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐。",
-              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐。",
-              "conditionのnative endpoint所在/Refが不成立の場合の親stateと原値/診断保持。親をmirrorだけで決める誤りは既存12局所期待/D2では識別しない。",
-              "mirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在（conflict＋unknown、conflict＋missing、unknown＋missing等）のsame_relation_state_reduction順位。順位を入れ替える誤りは既存対照では識別しない。",
-              "両roleが既知not_requestedのcorrespondence_resolution_state=not_requested、及びclosed_record_tuple_rulesのnot_requested/not_compared_before_raw_row/shared_relation_semantic_suppression/invalid_core_ref_occurrenceの各返却表現。旧12局所対照の当該tuple全値成立を主張しない。"
+              "qualified exact header複数（valid/invalid domain混在を含む）によるambiguous/全候補保持/比較not_compared（L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/6、下流L8#/f04_source_original_correspondence_verification/branch_cases/0..1）。",
+              "qualified raw header exactは1件だがfull domain closed decode失敗。unknown/local decode保持・semantic findingなし。fn0 dropとは区別（L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/2,5、下流L8#/f04_source_original_correspondence_verification/branch_cases/14..15）。",
+              "core_row_locatorと既存unique qualified OS associationのtrusted locator相反。新原対応conflict・旧lookup/native独立（L4#/contracts/5/source_original_correspondence/resolution_and_decode/table/7、下流L8#/f04_source_original_correspondence_verification/branch_cases/16）。",
+              "obligations memberがpresent null。assignment collection unknownと未供給/emptyの区別（L4#/contracts/5/source_original_correspondence/activation/relationship_role_presence_table/4、下流L8#/f04_source_original_correspondence_verification/branch_cases/13）。",
+              "CORE computed_condition_pairs/computed_obligation_refsのAbsent、present null、不正Presence/非array/不正itemという各collection分岐（L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/0..2,7、下流L8#/f04_source_original_correspondence_verification/branch_cases/2..11）。",
+              "conditionがpresent []かつcomputed_disposition不明の場合のactivation unresolved/not_requestedの規範分岐（L4#/contracts/5/source_original_correspondence/activation/CORE_collection_table/5、下流L8#/f04_source_original_correspondence_verification/branch_cases/12）。",
+              "conditionのnative endpoint所在/Refが不成立の場合の親stateと原値/診断保持（L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/internal_operands/native_endpoint_binding_state・/independent_native_value、下流L5#/f04_source_original_correspondence_detail/state_tables・D-OS002-T2b）。",
+              "mirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在（conflict＋unknown、conflict＋missing、unknown＋missing等）のsame_relation_state_reduction順位（L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/condition_correspondence_state/same_relation_state_reduction、下流L5#/f04_source_original_correspondence_detail/state_reduction・D-OS002-T2b）。",
+              "両roleが既知not_requestedのcorrespondence_resolution_state=not_requested、及びclosed_record_tuple_rulesのnot_requested/not_compared_before_raw_row/shared_relation_semantic_suppression/invalid_core_ref_occurrenceの各返却表現（L4#/contracts/5/source_original_correspondence/logical_return/state_derivation/correspondence_resolution_state/1・/closed_record_tuple_rules、下流L5#/f04_source_original_correspondence_detail/state_tables・D-OS002-T2b）。"
             ],
             "execution_state": "not_executed",
-            "coverage_limit": "新caller/期待/actualは追加していない。既存12の局所値/PresenceとD2部分列の範囲に限定する。"
+            "coverage_limit": "【B：基本L9範囲確定 ／ C：単体分岐対照は下流L5/L8（D-OS002-T2b）】L9へ新規材料（全返却・fixture・hash）は追加せず、既存12の局所値/Presence（partial_cases/0..11）とD2部分列（D2_component_case）の範囲で上位L10結合期待を閉じる（B）。上記9件の内部単体分岐対照・凍結は下流L5/L8（L8#/f04_source_original_correspondence_verification/branch_cases/0..16およびD-OS002-T2b）へ戻す（C）。"
           }
         ],
         "execution_state": "not_executed",
@@ -5329,7 +5329,7 @@
     "global92_430_completion": "unproven",
     "contract_count": 13,
     "negative_case_count": 71,
-    "remaining": "正常合成input/expected materialを具体化。原根拠の意味/未知保持と各負例の分類精度、独立review、実input/output/副作用観測は未完。"
+    "remaining": "基本対13組（B:296..300,302..308の③維持およびB:301のD-OS002-B1基本pair凍結）のL4/L9対設計と正負caseは構成済み（B）。下流L5/L8詳細対（T:296..308：D-OS002-T1a〜T4）の関数別精査・独立review・pair凍結、およびL6/L7実装・実input/output/副作用の実行観測は各下流責務へ戻す（C）。"
   },
   "legacy_facet_dispositions": [
     {
