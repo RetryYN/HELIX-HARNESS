@@ -9,9 +9,9 @@
   "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447511779",
   "source_main": "cb4e1c780e1ba2cddab73bce6d7b6ed58b42640a",
   "request_base_sha": "7ebc6b60593a582c0d9cbd2e7f39e8027a62db3a",
-  "recorded_at_utc": "2026-10-27T22:47:00+00:00",
-  "target": "HARNESS-L2-009 T:41（HARNESS-L3-009-F01：入力axisと版）を担う3関数（compare_required_axes［L5#/functions/1］、project_cross_design_candidate_refs［L5#/functions/11・L5#/cross_design_candidate_ref_projection］、_build_source_occurrence_array［L5#/selected_source_occurrence_array_builder_detail］）＋対のL8 case行＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（3行）。DISP-1 D15（A）を解消する。",
-  "criterion": "各関数についてL3/L10とL4/L9（およびBRAIN032側の読取り専用契約）から独立に期待を導き（DT-VT-105）、L5関数契約とL8のU-ID行（対象・反例と期待・oracle ID）が一致し、unknown/conflict/未完の戻し先および層間のキー名対応が明示され、T:41 F01範囲で009 L5設計自身へ戻す空白（A）が0件であること。selected_source_occurrence_array_builder_verification/not_proven/1のindex_narrowed_before_exact_range_check=false識別用U-ID probeを1件追補して本slice内で解消し、L8へ新たな実行材料（全返却・fixture・hash・COPY）は追加しない（#3510）。",
+  "recorded_at_utc": "2026-10-27T22:56:00+00:00",
+  "target": "HARNESS-L2-009 T:41（HARNESS-L3-009-F01：入力axisと版）を担う公開2関数（compare_required_axes［L5#/functions/1］、project_cross_design_candidate_refs［L5#/functions/11・L5#/cross_design_candidate_ref_projection］）＋対のL8 case行＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（2行）、およびprivate builder詳細契約（_build_source_occurrence_array［L5#/selected_source_occurrence_array_builder_detail］↔ L8#/selected_source_occurrence_array_builder_verification）の対照・DISP-1 D15（A）解消記録（1行）。",
+  "criterion": "公開2関数（compare_required_axes、project_cross_design_candidate_refs）およびprivate builder詳細契約（_build_source_occurrence_array）についてL3/L10とL4/L9（およびBRAIN032側の読取り専用契約）から独立に期待を導き（DT-VT-105）、L5契約とL8のU-ID行（対象・反例と期待・oracle ID）が一致し、unknown/conflict/未完の戻し先および層間のキー名対応が明示され、T:41 F01範囲で009 L5設計自身へ戻す空白（A）が0件であること。selected_source_occurrence_array_builder_verification/not_proven/1のindex_narrowed_before_exact_range_check=false識別用U-ID probeを1件追補して本slice内で解消し、_build_source_occurrence_arrayは呼出し元公開関数が本節で未特定のprivate builder詳細契約として記録し（#3510 comment 6408252809）、呼出し元結線を戻し先付き残件（D-H009-T2d/T3bおよび外部caller/L6/L7）として明記する。L8へ新たな実行材料（全返却・fixture・hash・COPY）は追加しない（#3510）。",
   "path_aliases": {
     "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json", "L10F": "docs/helix-harness/L10-verification/functional-verification.json", "L4": "docs/helix-harness/L4-basic-design/product-template-application.json", "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json", "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
     "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json", "BRAIN_L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json", "BRAIN_L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json", "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json", "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
@@ -19,7 +19,7 @@
   },
   "pins": {
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be", "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2", "L4_sha256": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8", "L9_sha256": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498", "L5_pre_t1c_sha256": "5f5eb663ddc04600bdb95f215440760d1aec7bb201c10860e9a20accd802b56a",
-    "L5_current_sha256": "2d8e8d6d53d2f72b166efebe4831fa7319aff31328c87f39b6e998298583798f", "L8_pre_t1c_sha256": "2d9807a13e45e75e9dbadf745a33c7a6823cd5a8b626fd8193cf04e9a9b994d0", "L8_current_sha256": "cfcc78f87f46e71c5a212a4f83d4d9e32cc4fc0fd0e4cd292e2ed7f922175e7b", "BRAIN_L4_sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae", "BRAIN_L5_sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+    "L5_current_sha256": "15fc0f31a6ab032c4cb649477c18b8ca2f42ecd8176310ff78fec46848b6383c", "L8_pre_t1c_sha256": "2d9807a13e45e75e9dbadf745a33c7a6823cd5a8b626fd8193cf04e9a9b994d0", "L8_current_sha256": "77697112e77585c357483a6ac7a014206bcbdc7225abf15b1259c1efa38baec3", "BRAIN_L4_sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae", "BRAIN_L5_sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
     "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b", "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb", "T1A_sha256": "d907f76095e0bc061b9997c53442125b35e5f8403154651dc756d16fb2a2f072", "T1B_sha256": "91592b0a2f2e8653a884dad8dde79c3f56241e92ff29e8fdecec7d7780806b5c"
   },
   "legacy_and_failure_basis": [
@@ -187,6 +187,8 @@
     {
       "coverage_index": 41,
       "parent": "HARNESS-L2-009",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_builder_contract_only",
       "l3_obligation": "L3F#/requirements/23 (HARNESS-L3-009-F01)",
       "l10_oracle": "L10F#/cases/23 (HARNESS-L10-009-F01)",
       "l4_contract": "L4#/selected_brain_source_occurrence_contract (HARNESS-L4-009-BRAIN-SOURCE-OCCURRENCE)",
@@ -194,11 +196,13 @@
       "upstream_readonly_refs": [
         "BRAIN_L4#/contracts/2 (HELIXBRAIN-L4-032-F01)", "BRAIN_L5#/functions/2 (HELIXBRAIN-L5-032-compare_values_and_applicability)", "BRAIN_L5#/source_return_contract (HELIXBRAIN-L5-032-SOURCE-RETURN-CONTRACT)", "BRAIN_L5#/type_contract/types/SupplyInput/fields/sources"
       ],
-      "public_function": {
+      "private_detail": {
         "id": "HARNESS-L5-009-F01-SOURCE-OCCURRENCE-ARRAY-BUILDER",
-        "symbol": "_build_source_occurrence_array",
+        "planned_private_symbol": "_build_source_occurrence_array",
+        "visibility": "private_builder_detail_not_in_L5_functions",
         "l5_contract_pointer": "L5#/selected_source_occurrence_array_builder_detail",
         "l5_pointer": "L5#/selected_source_occurrence_array_builder_detail/owner_and_effect",
+        "call_boundary_pointer": "L5#/selected_source_occurrence_array_builder_detail/call_boundary",
         "algorithm_pointer": "L5#/selected_source_occurrence_array_builder_detail/projection_algorithm",
         "input_type": "(origin_snapshot: PresenceJsonValue, origin_sources: PresenceJsonValue, i: PresenceJsonValue, destination_before_snapshot: PresenceJsonValue, destination_before_sources: PresenceJsonValue, destination_after_snapshot: PresenceJsonValue, j: PresenceJsonValue)",
         "output_type": "PrivateSourceOccurrenceBuildResult",
@@ -221,13 +225,13 @@
           "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/6 (CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING)"
         ]
       },
-      "obligation_and_oracle_summary": "O4・O5を充足：L9正例2件（REPLACE-ONE-SLOT、APPEND-AT-END）とL9負例probe（SRC-OCC-NEG-01,02,04,06,07）に対し、L8 compact_boundary_probes 7件（既存0..5＋本sliceで追補した index 6 CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）が1-slot置換/末尾append・collection null・snapshot tuple不変・content→body衝突・raw不正値のfn0引き渡し・巨大指数1e400でのnarrowing非発生（index_narrowed_before_exact_range_check=false）を漏れなく検証し、DISP-1 D15（A）を解消する。",
+      "obligation_and_oracle_summary": "O4・O5を充足（private builder契約範囲）：L9正例2件（REPLACE-ONE-SLOT、APPEND-AT-END）とL9負例probe（SRC-OCC-NEG-01,02,04,06,07）に対し、L8 compact_boundary_probes 7件（既存0..5＋本sliceで追補した index 6 CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）が1-slot置換/末尾append・collection null・snapshot tuple不変・content→body衝突・raw不正値のfn0引き渡し・巨大指数1e400でのnarrowing非発生（index_narrowed_before_exact_range_check=false）を漏れなく検証し、DISP-1 D15（A）を解消する。なお _build_source_occurrence_array は L5#/functions 外の planned_private_symbol であり呼出し側が本節で未特定（L5#/selected_source_occurrence_array_builder_detail/call_boundary）のため、公開関数単位の凍結ではなく private_builder_contract_only として記録し、呼出し元公開関数への結線は remaining_disposition に戻し先付きで明記する。",
       "blocking_a_count": 0,
       "remaining_disposition": {
-        "resolved_A_in_this_slice": "DISP1#/dispositions/14（D15）が指摘していた L8#/selected_source_occurrence_array_builder_verification/not_proven/1 の index_narrowed_before_exact_range_check=false 識別用U-ID単体probeは、L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/6（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）を追補し、L5 not_closed_here/3 と L8 not_proven/1 を更新して解消済み。", "separated_A_other_slices": "本契約がrequirement_refsに併記する HARNESS-L3-009-F05 側のsource materialization/field definition適用は DISP2#/dispositions/13,15（D14/D16、次slice D-H009-T2c-1/T2c-3）、上位callerの _build_source_occurrence_array 呼出し結線（L5#/selected_source_caller_detail）は DISP2#/dispositions/16（D17、次slice D-H009-T2d）、受信側 validate_application_input（L5#/functions/0）は D-H009-T1a（凍結済み）でそれぞれ扱っており、本builder関数の単体pair凍結を止めない。",
+        "resolved_A_in_this_slice": "DISP1#/dispositions/14（D15）が指摘していた L8#/selected_source_occurrence_array_builder_verification/not_proven/1 の index_narrowed_before_exact_range_check=false 識別用U-ID単体probeは、L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes/6（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）を追補し、L5 not_closed_here/3 と L8 not_proven/1 を更新して解消済み。", "unspecified_public_caller_and_binding_slices": "L5#/selected_source_occurrence_array_builder_detail/call_boundary が明記する通り、本private builder（_build_source_occurrence_array）の呼出し側は本節では未特定であり公開関数単位（#3510 comment 6408252809）には該当しない。呼出し元の結合は、(1) 単一明示source-edge wrapper _build_application_analysis_for_selected_source（L5#/selected_source_caller_detail ↔ L8#/selected_source_caller_detail_verification）から既存_build_source_occurrence_arrayを一回呼び、形成されたafter rawを全体統合公開関数 build_application_analysis_from_detail（L5#/functions/10）および compare_selected_knowledge（L5#/functions/6）へ渡す経路を DISP2#/dispositions/16（D17、次slice D-H009-T2d：owner=HARNESS-CORE ApplicationInputBinding、reentry=L5#/selected_source_caller_detail・L5#/functions/6）と DISP2#/dispositions/18（D19、次slice D-H009-T3b：owner=HARNESS-CORE、reentry=L5#/functions/10 build_application_analysis）で扱い、(2) HARNESS-L3-009-F05 側のsource materialization/field definition適用は DISP2#/dispositions/13,15（D14/D16、次slice D-H009-T2c-1/T2c-3：owner=HARNESS-CORE、reentry=L5#/f05_detail_contract・L5#/selected_brain_field_definition_application_detail）で扱い、(3) 受信側公開関数 validate_application_input（L5#/functions/0）は D-H009-T1a（T1A#/function_freeze_rows/0）で関数別pair凍結済み、(4) 外部producer/callerによる実source選択・ApplicationInput全体assembly・実deliveryとの結合は DISP1#/dispositions/7（D08、C：owner=BRAIN030/032・CONNECT・上位caller・下流L6/L7、reentry=L4#/selected_brain_source_occurrence_contract・L5#/selected_source_occurrence_array_builder_detail/call_boundary）へ戻す。",
         "C_downstream_and_other_owner": "DISP1#/dispositions/7（D08）の通り、CoreNumber/CoreJsonValueのcross-runtime wire adapter実装、1.0/1e0やduplicate memberの製品reader実行挙動、実source獲得/delivery、BRAIN→CORE qualification認可、runtime/CI実行、PO L11受入はBRAIN030/032・SECURITY・OS002・CONNECT・下流L6/L7へ戻す。"
       },
-      "freeze_status": "frozen_for_tdd_red_green",
+      "freeze_status": "private_builder_contract_paired_caller_in_T2d_T3b",
       "execution_state_at_freeze": "not_executed"
     }
   ],
@@ -237,12 +241,12 @@
     "L8_normal_function_oracles": 12, "L8_additional_unit_cases": 24, "note": "L8#/selected_source_occurrence_array_builder_verification/compact_boundary_probes は 6件→7件（index 6: CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING 追補）。L8#/completion/normal_function_oracles=11→12 の数値同期は DISP2#/dispositions/11（D12、次slice D-H009-T2a）で実施する。"
   },
   "verification": {
-    "kind": "static_only", "f01_negative_cases_matched_L9_L8_L5": 42, "fn1_additional_unit_cases_verified": 1, "fn1_normal_function_oracles_verified": 1, "fn11_xbd_unit_cases_matched_L9_L8_L5": 41,
-    "fn11_xbd_local_probes_verified": 4, "source_occurrence_positive_oracles_referenced": 2, "source_occurrence_compact_boundary_probes_verified": 7, "u_id_probes_added_to_L8": 1, "materials_added_to_L8": 0,
-    "blocking_a_count_in_f01_scope": 0
+    "kind": "static_only", "public_functions_frozen_in_f01_scope": 2, "private_builder_contracts_paired_in_f01_scope": 1, "f01_negative_cases_matched_L9_L8_L5": 42, "fn1_additional_unit_cases_verified": 1,
+    "fn1_normal_function_oracles_verified": 1, "fn11_xbd_unit_cases_matched_L9_L8_L5": 41, "fn11_xbd_local_probes_verified": 4, "source_occurrence_positive_oracles_referenced": 2, "source_occurrence_compact_boundary_probes_verified": 7,
+    "u_id_probes_added_to_L8": 1, "materials_added_to_L8": 0, "blocking_a_count_in_f01_scope": 0
   },
   "not_claimed": [
-    "本記録はHARNESS-L2-009 T:41（HARNESS-L3-009-F01）を担う3関数（compare_required_axes、project_cross_design_candidate_refs、_build_source_occurrence_array）と対L8 case行の関数別L5/L8対設計凍結記録であり、T:42–49（D-H009-T1d-1〜T1d-2、D-H009-T2a〜T3b）の凍結、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
+    "本記録はHARNESS-L2-009 T:41（HARNESS-L3-009-F01）を担う公開2関数（compare_required_axes、project_cross_design_candidate_refs）と対L8 case行の関数別L5/L8対設計凍結、およびprivate builder詳細契約（_build_source_occurrence_array：L5#/selected_source_occurrence_array_builder_detail ↔ L8#/selected_source_occurrence_array_builder_verification）の対照・D15解消記録であり、_build_source_occurrence_arrayの呼出し元公開関数結線（D-H009-T2d/T3bおよび外部caller/L6/L7）やT:42–49（D-H009-T1d-1〜T1d-2、D-H009-T2a〜T3b）の凍結、92親430対の総合凍結、L6/L7凍結、実装・実検証完了、PO L11受入を主張しない。",
     "L8にはD15解消のためのU-ID単体probe行（CORE-L8-SOURCE-OCC-LARGE-EXPONENT-NO-NARROWING）1件のみを追補し、新たな実行材料（全返却・fixture・hash・COPY）は追加していない（#3510）。"
   ]
 }
