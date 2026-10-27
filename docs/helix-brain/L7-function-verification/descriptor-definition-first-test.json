@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "540830a7042480169cbb2688bc036c18980e524611bb4ea1e0eede3793e2b5e1",
+    "sha256": "d9b4f2d1774960fe9b19d4704e46030c7627f9495744c9839641bbd85a59d339",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3729,7 +3729,7 @@
       "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
     },
     "B_prerequisite": {
-      "execution_state": "walk_nonfill_full_unit_green_independent_review_pending",
+      "execution_state": "claimuse_full_unit_mutations_replay_green_independent_review_pending",
       "rows": [
         {
           "rule": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
@@ -3737,10 +3737,10 @@
           "l5_predicate": "/failure_rules/0/predicate",
           "input_recipe": "normalの候補Aだけの補助入力と、既存_filename_identity_claim_inputの候補A/Bを使う二Binding補助入力。元same_template_identity Claimを保持しabsolute_product_choiceをappend。source/Qは未変更。両者を元L8 baselineの完全材料化とは扱わない。",
           "first_stop_by_input": {
-            "I01": "S5",
+            "I01": "S6",
             "I02": "S2"
           },
-          "remaining_owner": "FN1 multi-Binding / FN4 walk"
+          "remaining_owner": "FN1 multi-Binding / FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-brain_selects_template",
@@ -3749,9 +3749,9 @@
           "input_recipe": "descriptor_claim_input(positive)の原fact Refとbinding.template_refを各々subjectへ束縛。actor BRAIN/product_template_adoption、実候補A Refをproposed_valueにする。",
           "first_stop_by_input": {
             "I04": "S4",
-            "I05": "S5"
+            "I05": "S6"
           },
-          "remaining_owner": "FN1 claim guard / FN4 ClaimUse builder"
+          "remaining_owner": "FN1 claim guard / FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
@@ -3760,9 +3760,9 @@
           "input_recipe": "同じ二subject variantでrequirements_agreement/true。source/Qと原descriptorを維持。",
           "first_stop_by_input": {
             "I06": "S4",
-            "I07": "S5"
+            "I07": "S6"
           },
-          "remaining_owner": "FN1 claim guard / FN4 ClaimUse builder"
+          "remaining_owner": "FN1 claim guard / FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-brain_finishes_design",
@@ -3771,9 +3771,9 @@
           "input_recipe": "同じ二subject variantでdesign_completion/true。source/Qと原descriptorを維持。",
           "first_stop_by_input": {
             "I08": "S4",
-            "I09": "S5"
+            "I09": "S6"
           },
-          "remaining_owner": "FN1 claim guard / FN4 ClaimUse builder"
+          "remaining_owner": "FN1 claim guard / FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-missing_as_empty",
@@ -3781,9 +3781,9 @@
           "l5_predicate": "/failure_rules/92/predicate",
           "input_recipe": "normalのrequired inputを一意選択してslotだけ削除。削除前fact Refをsubject、原Bindingへ既存完全Claimを束縛しno_gaps/[]をappend。required kind宣言は維持。",
           "first_stop_by_input": {
-            "I12": "S5"
+            "I12": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-hash_as_complete",
@@ -3799,9 +3799,9 @@
           "l5_predicate": "/failure_rules/96/predicate",
           "input_recipe": "同じrequired input削除と元fact Ref。return_definition_knownへkindのみ変更し、他Claim値は既存templateの原値を保持。",
           "first_stop_by_input": {
-            "I13": "S5"
+            "I13": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
@@ -3809,9 +3809,9 @@
           "l5_predicate": "/failure_rules/97/predicate",
           "input_recipe": "normalのValueFact.valueと対応CORE source bodyをnull化、既存source/Q digestを同期。ValueFact.refへreturn_value_supplied Claimをappend。",
           "first_stop_by_input": {
-            "I14": "S5"
+            "I14": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
@@ -3827,9 +3827,9 @@
           "l5_predicate": "/failure_rules/99/predicate",
           "input_recipe": "既存ApplicabilityRecordとCORE bodyをN/A化。owner/reason/reentryは既存F03-L9-JUSTIFIED-FIELD-NA素材を再利用し既存source/Qを同期。原app Refへreturn_field_applicableをappend。",
           "first_stop_by_input": {
-            "I15": "S5"
+            "I15": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
@@ -3837,9 +3837,9 @@
           "l5_predicate": "/failure_rules/100/predicate",
           "input_recipe": "normalのlabo_evaluation_selected=falseとunselected_refs[0]を保持し、そのRefへreturn_source_observedをappend。",
           "first_stop_by_input": {
-            "I16": "S5"
+            "I16": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
@@ -3847,9 +3847,9 @@
           "l5_predicate": "/failure_rules/101/predicate",
           "input_recipe": "normalのhandoff not_receivedを保持し、原handoff.subject_refへreturn_receivedをappend。",
           "first_stop_by_input": {
-            "I17": "S5"
+            "I17": "S6"
           },
-          "remaining_owner": "FN4 ClaimUse builder"
+          "remaining_owner": "FN4 oracle detail"
         }
       ],
       "stop_messages": {
@@ -3857,7 +3857,8 @@
         "S2": "FN1: F02/descriptor_slot_binding_unresolved: descriptors[15] does not have the current full Binding; Backflow HELIXBRAIN-L6-032-N03-PATH",
         "S3": "FN1: F02/meaning_fact_closed_shape: descriptors[6].facts[1] is outside the fixed MeaningFact shape; Backflow HELIXBRAIN-L6-032-N03-PATH",
         "S4": "FN1: F01/descriptor_claim_unimplemented: claims[0] participates in descriptor meaning comparison; Backflow HELIXBRAIN-L6-032-N03-PATH",
-        "S5": "FN4: F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; same_walk_claim_count; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
+        "S5": "FN4: F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; same_walk_claim_count; Backflow HELIXBRAIN-L6-032-FN4-ORACLE",
+        "S6": "FN4: F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
       },
       "input_sha256": {
         "I01": "c1e97f877df623e1ef465b3ea3c4d4f06eeaa143e226326a9af93b74aa724bdb",
@@ -3880,7 +3881,7 @@
       },
       "input_manifest": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-fn7b-inputs-frozen-R2/manifest.json",
       "input_manifest_sha256": "8f30502065f22be7f29dd4d3416175145665f6684e4e9842d98e89b8190907e4",
-      "input_matching": "同じ17凍結raw SHAを維持してsource更新後に再実行。各入力の現firststopへ更新し、旧S1は過去観測用に保持。",
+      "input_matching": "同じ17凍結raw SHAを維持してWR65後に再実行。11入力の現firststopはS6。旧S1/S5は過去観測用に保持し、旧matrixはcommitとL7 SHAで参照。",
       "evidence": {
         "B01_F07": "root-fn7b-b01-f07-probe-R2.json:524ms、FN0-clean/原raw不変。二候補・一候補補助を区別。",
         "N02_missing": "root-fn7b-n02-add20-probe-bounded-R1.json + result-R1.json:184ms、N02-01/05 FN0-clean/FN4停止/raw不変。",
@@ -3889,11 +3890,12 @@
         "input_freeze": "root-fn7b-input-manifest-bounded-R2.json:447ms。17入力保存、source/tests不変。",
         "limits": "全bounded記録reaped=true/output_truncated=false。LOCAL probeのimport/driver setup失敗は別保存し、意味Red/producer停止として数えない。",
         "frozen_input_replay": "root-fn7b-frozen-input-replay-R1.json:598ms。保存済み17 rawをhash確認後に実FN0/public producerへ再投入し、全first stopが元probeと一致。FN0-clean/raw不変/source-tests tree不変。",
-        "walk_replay": "root-fn7b-walkguard-replay-bounded-R1.json + result-R1.json:1008ms。17入力hash/FN0-clean/raw不変。11入力がwalk旧S1からFN4 descriptor_claim_uses same_walk_claim_countへ進む。残FN1停止6入力は原IDのまま。六Comparison成立はまだ0。"
+        "walk_replay": "root-fn7b-walkguard-replay-bounded-R1.json + result-R1.json:1008ms。17入力hash/FN0-clean/raw不変。11入力がwalk旧S1からFN4 descriptor_claim_uses same_walk_claim_countへ進む。残FN1停止6入力は原IDのまま。六Comparison成立はまだ0。",
+        "claim_use_replay": "root-wr65-claimuse-replay-R1.json + observations-R1.json:951ms。17入力hash/FN0-clean/raw不変。11入力がS5からFN4 oracle_claim_ports S6へ進み、残FN1停止6入力は同じ。六Comparison成立0、writer familyは未着手。"
       },
       "context_only": {
         "F07-NEG-01": "FN1 meaning_fact_closed_shape。追加fieldsをmeaningへ移さない。",
-        "F07-NEG-05": "fact subjectは従来FN1、template subjectはwalk通過後FN4 ClaimUse builder件数検査。",
+        "F07-NEG-05": "fact subjectは従来FN1、template subjectはwalk/ClaimUse consumer通過後FN4 oracle_claim_ports。",
         "N02-NEG-02": "未材料化: 原null意味とarbitrary_fallbackのtyped basis。",
         "N02-NEG-04": "未材料化: lower-pair-green typed Ref selector。"
       },
@@ -3906,7 +3908,7 @@
         "families_ready_for_writer": [],
         "L8_children": "not_executedのまま",
         "source_tests_changed": true,
-        "pair_scope": "walk一file＋新凍結3testと統制済み旧停止期待1testを変更。B外のL6/L7値と上流契約を保持し、全404Greenを確認。all6 Comparison成立は0のまま。"
+        "pair_scope": "WR65はClaimUse builder一file +12/-5と新凍結4methods、既存405tests bytes不変。全409PASS。L6/L7はB_prerequisiteとpair hashのみ更新し、all6 Comparison成立は0のまま。"
       },
       "prior_matrix_snapshot": {
         "commit": "170cd801f9b5c1658491b81aeb8cb1012da05266",
@@ -3940,6 +3942,25 @@
         "R1_dict_guard_supplement": "6455568577 R1-m1: test_descriptor_walk_claim_elements.pyを9c0883b4b0d8e1bfecf77c4fba1be78f3c8ffc6eで凍結。1method/2subtests、実FN0のraw保持・issues/unusable空→namedstop厳密message・raw/validated finally不変。root-fn7b-walk-claim-elements-green-R2.jsonでPASS96ms。既存guardの検出追加で実装前meaning Redは主張しない。",
         "dict_guard_mutation": "root-fn7b-walk-dict-guard-mutation-R2.json:dict any検査だけを外しlist guardを残すoverlayが、AttributeErrorを厳密型期待で検出する2assertFAIL/errors0でKILLED。outer239ms/child156ms、import/setup0、source/tests前後hash不変。sourceは同じdf5f7386。",
         "root_static_acceptance_R1": "root-fn7b-walk-final-static-check-R2.json:27checks PASS。5paths、source二hunk候補SHA、新3freeze、統制旧1oracle差分だけ、他400旧test/他source/B外node/承認6/pins/pairhash、17raw replayと現matrix、L8not_executedを照合。"
+      },
+      "pre_claim_use_matrix_snapshot": {
+        "commit": "0404af048458b32600c43190d8d05519bafecfed",
+        "L7_sha256": "a023415ccead5321d5ae7a765657512eb717917c874076c880889d8563e1c3cf",
+        "boundary": "このrevisionの17入力firststopは11件S5/6件FN1。先行prior_matrix_snapshotとwalk_nonfill_tddは当時の記録として保持する。"
+      },
+      "claim_use_nonfill_tdd": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-CLAIMUSE-3547-20261028-65",
+        "test_freeze": "59e9f31d5e935537a0dfd3ddf8a88efa9e8677da",
+        "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_use_nonfill.py",
+        "test_sha256": "9c6a7e6424d4dca33a43a9d36ae0720dd1971bb086e0ccceaa22127e04951837",
+        "source_revision": "0f8f343e1257336f102ade79d417fcc3c94e3fcc",
+        "source_sha256": "398319e01020424967fbb339dc365de33a03747bcc87aa72426f5c306a467b21",
+        "red": "root-wr65-claimuse-red-R1.json:4methods、subtest含む4assert FAIL/errors0、223ms。I05とmixedはsame_walk_claim_count、locator破損2条件は同count停止とread_mismatch期待の不一致。fill-only対照はPASS、import/setup失敗ではない。",
+        "focused_green": "root-wr65-claimuse-green-R1.json:4PASS225ms。凍結test bytes不変。",
+        "full_unit": "root-wr65-claimuse-unit-R1.json:409PASS27507ms。既存405件全bytes/期待不変、旧test移行なし。",
+        "mutations": "root-wr65-claimuse-mutations-R1.json:compact_locatorは1assertFAIL child106ms、fill件数検査除去は4assertFAIL child108msでKILLED。各errors/setup0、wrapper280ms、src/tests tree不変。",
+        "replay": "root-wr65-claimuse-replay-R1.json + observations-R1.json:951ms。17入力hash/FN0-clean/raw不変。11入力がS5からFN4 oracle_claim_ports S6へ進み、残FN1停止6入力は同じ。六Comparison成立0、writer familyは未着手。",
+        "limits": "全bounded reaped=true/output_truncated=false。FN0-cleanをClaim意味成立とはせず、非fill Claimのtarget/use/intent/route/意味/rowは生成しない。all6 Comparison成立0、WR13 B未完了、WR28/31手動hold、L8 not_executedのまま。"
       }
     }
   }
