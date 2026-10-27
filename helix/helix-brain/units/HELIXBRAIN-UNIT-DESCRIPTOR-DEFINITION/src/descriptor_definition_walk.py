@@ -222,7 +222,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 sort_source_refs=[fact["source_ref"]] if isinstance(fact.get("source_ref"), dict) else [],
             ))
 
-        # The current native path is intentionally limited to the frozen source-unresolved cases.
+        # The current native path retains unknown reads and their target-scoped
+        # problems. A read is still acquired only once per raw fact; each
+        # unattached target problem becomes its own origin/event handle below.
         for fact_index, fact in enumerate(facts):
             fact_locator = f"{slot_locator}/facts/{fact_index}"
             frame = definition_meaning_normative_frame(kind)
@@ -240,18 +242,25 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "occurrences", "supports", "problems",
             }:
                 _stop("meaning_read_shape")
-            if read["acquisition_state"] != "unknown" or read["supports"] or len(read["problems"]) != 1:
+            problem_scopes = bundle["problem_scopes"]
+            support_origins = bundle["support_origins"]
+            if (read["acquisition_state"] != "unknown"
+                    or read["supports"]
+                    or not isinstance(read["problems"], list)
+                    or not isinstance(problem_scopes, list)
+                    or not isinstance(support_origins, list)
+                    or support_origins):
                 _stop("meaning_read_branch")
-            problem = read["problems"][0]
-            cause = problem.get("cause") if isinstance(problem, dict) else None
-            if cause not in {"source_unresolved", "container_absent"}:
-                _stop("meaning_problem_branch")
+            for problem in read["problems"]:
+                cause = problem.get("cause") if isinstance(problem, dict) else None
+                if cause not in {"source_unresolved", "container_absent"}:
+                    _stop("meaning_problem_branch")
             meaning_index = len(native["meaning_reads"])
             native["meaning_reads"].append(copy.deepcopy(read))
             native["meaning_read_origins"].append({
                 "meaning_read_index": meaning_index,
-                "problem_scopes": copy.deepcopy(bundle["problem_scopes"]),
-                "support_origins": copy.deepcopy(bundle["support_origins"]),
+                "problem_scopes": copy.deepcopy(problem_scopes),
+                "support_origins": copy.deepcopy(support_origins),
             })
             original_refs = _object_refs([fact.get("ref"), fact.get("source_ref")])
             reason = _UNRESOLVED_REASON
@@ -268,30 +277,51 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "reason": reason,
                 "backflow_owner": owner if isinstance(owner, str) else None,
             }
-            linked_problems = [
-                {"meaning_read_index": meaning_index, "problem_index": scope["problem_index"]}
-                for scope in bundle["problem_scopes"]
-                if isinstance(scope, dict) and scope.get("relevance") == "target"
-            ]
             sort_sources = _object_refs([fact.get("source_ref")])
             sort_sources.extend(
                 copy.deepcopy(occurrence["source_ref"])
                 for occurrence in read["occurrences"]
                 if isinstance(occurrence, dict) and isinstance(occurrence.get("source_ref"), dict)
             )
-            events.append(_axis_event(
-                axis=axis,
-                slot=slot,
-                slot_locator=slot_locator,
-                fact_locators=[fact_locator],
-                cause=cause,
-                branch="source_unresolved",
-                subject_ref=fact.get("ref"),
-                binding=binding,
-                meaning_read_indices=[meaning_index],
-                meaning_problem_links=linked_problems,
-                sort_source_refs=sort_sources,
-            ))
+            target_problem_indices = sorted([
+                scope["problem_index"]
+                for scope in problem_scopes
+                if isinstance(scope, dict) and scope.get("relevance") == "target"
+            ])
+            if target_problem_indices:
+                for problem_index in target_problem_indices:
+                    events.append(_axis_event(
+                        axis=axis,
+                        slot=slot,
+                        slot_locator=slot_locator,
+                        fact_locators=[fact_locator],
+                        cause="required_source_or_interpretation_unresolved",
+                        branch="source_unresolved",
+                        subject_ref=fact.get("ref"),
+                        binding=binding,
+                        meaning_read_indices=[meaning_index],
+                        meaning_problem_links=[{
+                            "meaning_read_index": meaning_index,
+                            "problem_index": problem_index,
+                        }],
+                        sort_source_refs=sort_sources,
+                    ))
+            else:
+                # No supports and no target problem is the existing unresolved
+                # read fallback. Unattributed source problems remain only in
+                # the same native read and are not promoted to this target.
+                events.append(_axis_event(
+                    axis=axis,
+                    slot=slot,
+                    slot_locator=slot_locator,
+                    fact_locators=[fact_locator],
+                    cause="required_source_or_interpretation_unresolved",
+                    branch="source_unresolved",
+                    subject_ref=fact.get("ref"),
+                    binding=binding,
+                    meaning_read_indices=[meaning_index],
+                    sort_source_refs=sort_sources,
+                ))
 
         # A single-fact slot has no pair candidates; retain the annotated producer result.
         if len(facts) != 1:

@@ -318,6 +318,17 @@ def project_definition_applicability(
     template_ref = binding.get("template_ref") if isinstance(binding, dict) else None
     knowledge_ref = binding.get("knowledge_ref") if isinstance(binding, dict) else None
     knowledge_owner = knowledge_ref.get("owner") if isinstance(knowledge_ref, dict) else None
+    if isinstance(knowledge_ref, dict):
+        subject_member = "knowledge_ref"
+    elif isinstance(template_ref, dict):
+        subject_member = "template_ref"
+    else:
+        subject_member = None
+    subject_ref = (
+        _presence(binding, subject_member)
+        if subject_member is not None
+        else {"presence": "absent"}
+    )
     return [{
         "state": "unknown",
         "origin_branch": "source_unresolved",
@@ -325,7 +336,7 @@ def project_definition_applicability(
         "axis": f"{slot.get('descriptor_kind')}.definition_applicability",
         "reason": "定義非適用の原参照が明示nullであり、当該原判断を解決できない。",
         "source_refs": [],
-        "subject_ref": _presence(binding, "template_ref"),
+        "subject_ref": subject_ref,
         "binding": _presence(slot, "binding"),
         "backflow_owner": knowledge_owner if isinstance(knowledge_owner, str) else None,
         "slot_locator": slot_locator,

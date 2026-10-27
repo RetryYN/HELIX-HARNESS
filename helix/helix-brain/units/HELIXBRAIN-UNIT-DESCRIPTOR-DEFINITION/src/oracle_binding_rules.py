@@ -11,9 +11,6 @@ _RULES = (
     ("completion", "completion_oracle_revision", "completion.binding",
      "completionの対oracle版が当該義務の要求されたoracle binding版と異なる。"),
 )
-_CARRY = {"measurement.definition", "completion.definition", "negative oracle.definition"}
-
-
 def _stop(branch):
     raise NotImplementedError(
         f"F05/F06/unclosed/{branch}; owner=knowledge_owner; "
@@ -60,6 +57,29 @@ def _revision_differs(left, right):
     )
 
 
+def _oracle_tuples_compete(rows):
+    """Known same-subject obligation/oracle tuples must not select one another."""
+    for index, left in enumerate(rows):
+        for right in rows[index + 1:]:
+            left_obligation = left.get("obligation_ref")
+            right_obligation = right.get("obligation_ref")
+            left_oracle = left.get("oracle_ref")
+            right_oracle = right.get("oracle_ref")
+            if (_known_ref(left_obligation) and _known_ref(right_obligation)
+                    and not _ref_equal(left_obligation, right_obligation)):
+                return True
+            if (_known_ref(left_oracle) and _known_ref(right_oracle)
+                    and not _ref_equal(left_oracle, right_oracle)):
+                return True
+    return False
+
+
+def _ref_equal(left, right):
+    from descriptor_definitions import _ref_same
+
+    return _ref_same(left, right)
+
+
 def compare_oracle_and_view_boundary_detail(context, frame):
     """同walk frameだけを消費し、既存definition行はcontextから全値保持する。
 
@@ -67,6 +87,7 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     非発火一般入力を成功emptyへ置き換えない。Claim portの読取は行わない。
     """
     from descriptor_definitions import _binding_same, _comparison, _ref_same
+    from oracle_projection_writer import write_oracle_axes
 
     if (not isinstance(frame, dict)
             or set(frame) != {"validated", "definition_evaluation", "target_reads", "claim_uses"}
@@ -84,8 +105,7 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     if not isinstance(evaluation, dict) or set(evaluation) != {"comparison", "assessments"}:
         _stop("oracle_evaluation")
     original_axes = context["definitions"]["axes"]
-    retained_indices = {index for index, row in enumerate(original_axes) if row["axis"] in _CARRY}
-    new_axes = []
+    predicate_axes = []
     findings = []
     oracle_bindings = raw["oracle_bindings"] if "oracle_bindings" in raw else []
     for kind, code, axis_name, predicate in _RULES:
@@ -103,9 +123,13 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                 if not _binding_same(fact["binding"], binding) or not _known_ref(fact["ref"]):
                     _stop("oracle_subject_or_binding")
                 obligation = fact["binding"].get("requirement_ref")
-                for oracle_index, oracle in enumerate(oracle_bindings):
-                    if not _ref_same(oracle["subject_ref"], fact["ref"]):
-                        continue
+                subject_rows = [
+                    (oracle_index, oracle) for oracle_index, oracle in enumerate(oracle_bindings)
+                    if _ref_same(oracle.get("subject_ref"), fact["ref"])
+                ]
+                if _oracle_tuples_compete([oracle for _, oracle in subject_rows]):
+                    _stop("oracle_binding_competition")
+                for oracle_index, oracle in subject_rows:
                     if not _known_ref(obligation) or not _known_ref(oracle["obligation_ref"]):
                         _stop("oracle_obligation_correspondence")
                     same_obligation = _ref_same(obligation, oracle["obligation_ref"])
@@ -114,8 +138,13 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                         for key in ("identity", "revision", "scope", "owner")
                     ):
                         _stop("oracle_obligation_digest")
+                    if kind == "completion" and same_obligation:
+                        if not _known_ref(fact.get("oracle_ref")) or not _known_ref(oracle.get("oracle_ref")):
+                            _stop("oracle_oracle_correspondence")
                     fires = not same_obligation if kind == "measurement" else (
-                        same_obligation and _revision_differs(fact["oracle_ref"], oracle["oracle_ref"])
+                        same_obligation and _revision_differs(
+                            fact.get("oracle_ref"), oracle.get("oracle_ref")
+                        )
                     )
                     if not fires:
                         continue
@@ -149,17 +178,10 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                         original_refs.append(copy.deepcopy(fact["oracle_ref"]))
                     original_refs += [copy.deepcopy(oracle[key]) for key in oracle_members]
                     original_refs = [ref for ref in original_refs if isinstance(ref, dict)]
-                    def same_row(row):
-                        return (row["axis"] == axis_name
-                                and _ref_same(row["subject_ref"], fact["ref"])
-                                and _binding_same(row["binding"], binding))
-                    existing_indices = {index for index, row in enumerate(original_axes) if same_row(row)}
-                    retained_indices.update(existing_indices)
-                    if not existing_indices and not any(same_row(row) for row in new_axes):
-                        new_axes.append({"subject_ref": copy.deepcopy(fact["ref"]),
-                                     "binding": copy.deepcopy(binding), "axis": axis_name,
-                                     "state": "conflict", "original_refs": original_refs,
-                                     "reason": reason, "backflow_owner": "knowledge_owner"})
+                    predicate_axes.append({"subject_ref": copy.deepcopy(fact["ref"]),
+                                           "binding": copy.deepcopy(binding), "axis": axis_name,
+                                           "state": "conflict", "original_refs": original_refs,
+                                           "reason": reason, "backflow_owner": "knowledge_owner"})
                     findings.append({"code": code, "rule_ref": rule_ref,
                                      "subject_ref": copy.deepcopy(fact["ref"]),
                                      "binding": copy.deepcopy(binding), "axis": axis_name,
@@ -167,6 +189,5 @@ def compare_oracle_and_view_boundary_detail(context, frame):
                                      "reason": reason, "backflow_owner": "knowledge_owner"})
     if not findings:
         _stop("formed_context")
-    axes = [copy.deepcopy(row) for index, row in enumerate(original_axes)
-            if index in retained_indices] + new_axes
+    axes = write_oracle_axes(original_axes, predicate_axes)
     return _comparison(axes, findings, "compare_oracle_and_view_boundary", binding)
