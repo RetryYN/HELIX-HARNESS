@@ -4599,7 +4599,7 @@
     "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み。候補の記載と独立review/関数別pair凍結を分け、T:39–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（T:43–49は後続D-H009-DISP-2）へ別記し、独立reviewは作成／review側へ戻す。",
     "正式wire schema/operator/registry/instance digest/言語依存/入力資格resolverの採用・稼働と実seed採用知識の最終照合は、下流L6関数設計/L7対検証・runtime codecおよび知識/資格owner（BRAIN030/032・SECURITY・OS002/053）の担当へ戻す。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・release等は既存authorityへ戻す。",
-    "failure_rules 106件、原L9負例106件との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
+    "failure_rules 107件（原L9負例106件＋HARNESS-L5-009-R-condition_meaning_unresolved 1件）との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
     "正式runtime schema/codec、実source resolver、外部意味比較provider、資源/言語/配置と実fixture/実行oracle凍結→実装前Red→Green→CI→実受入は、各ownerと後続L6/L7・既存authorityへ戻す。",
     "追加F03 source/result projectionとcondition pair両側member欠落のL5 refinement、lookup miss writerは固定packet上の有限候補規則として記載済み。混合conditionに対する元non_applicable_basis_ref真理値表が未供給の範囲はunknown/unresolvedを保持し（T:43詳細照合はD-H009-DISP-2/T2a）、正式codec・実source/owner資格・実provider/caller実装・OS正式記録consumer接続・全domain閉包は各ownerと下流L6/L7へ戻す。"
   ],
@@ -7779,7 +7779,7 @@
     "application_boundary": "codecは必要axis/候補母集合/trace端集合を現供給値から創作しない。same_meaning=falseは元不一致、nullは未知、conditional未充足は未完のまま。cacheされたComparison decodeは評価器producer根拠でなく、ApplicationAnalysisの候補/義務/不足/影響はOS selected/used/消込/実受領/POAcceptedを構成しない。",
     "owner_boundary": "同名Refが似ていてもBRAIN/OS型を共有APIへコピーしない。CORE SourceEnvelope/bodyとQualification/owner/scope/body、CORE Comparison.original_axes/materialを原型に対応。正式両端schema/codec/互換/receiptはBRAIN/OS/CONNECTへ残し、毎回承認gate/閾値/実ライブラリ採用/権限変更を追加しない。 BRAIN032同様carrierとRawValueの責務を分けるが、COREの列挙memberはCORE自身の原型に従う。BRAINのcontent/semantic_json/qualification_bodyや型名をコピーしない。初稿のCORE carrier拡張受理に現行根拠があったとは扱わない。",
     "remaining": [
-      "論理JSON/RawValue carrier schemaとCORE private exact number/encodeのlogical domain・分岐・writer（numeric_encode_profile）および対L8の36 codec case・21変異/9述語・4 projection field caseを有限候補として記載済み。全callerにわたるContext/Result/opaque bodyの全量実行凍結や具体parser/host/資源の実成立は下流L6/L7へ戻し、schema静的照合を実codec成立にしない。",
+      "論理JSON/RawValue carrier schemaとCORE private exact number/encodeのlogical domain・分岐・writer（numeric_encode_profile）および対L8の36 codec case・21変異/9述語・6 projection field case＋7 pointer shape caseを有限候補として記載済み。全callerにわたるContext/Result/opaque bodyの全量実行凍結や具体parser/host/資源の実成立は下流L6/L7へ戻し、schema静的照合を実codec成立にしない。",
       "正式root/資格供給元/実source custody/意味比較provider/原owner契約、BRAIN→CORE/CORE→OSの正式transport bindingとCONNECT版/receiptは、各外部owner（BRAIN030/032・OS002/053・CONNECT・SECURITY）の担当へ戻す。",
       "L6は関数設計、L7は関数検証、実装成果は層外。実装前test/oracle凍結→Red→Green→Refactor、実接続/保存/受入、全92親430対閉包と実装Readyは下流L6/L7・実行環境・既存authorityへ戻す。",
       "小数/指数(1.0/1e0/0.1)/1e400及びencode未検査hostのlogical型/条件/返却はnumeric_encode_profileで指定し、対L8へ有限期待と反例を収載済み。独立reviewはreview側へ、任意token/未行使host型/資源・実行挙動は下流L6/L7へ戻し、有限条件数を数値/encode全域実証とはしない。"
@@ -8884,7 +8884,7 @@
         }
       },
       "limits": [
-        "固定41件の合成入力と12 local probeに対する有限projection設計として記載済み。実BRAIN032 producer実行出力と実source qualificationはBRAIN030/032・SECURITYと下流結合へ戻す。",
+        "固定41件の合成入力と4 local probeに対する有限projection設計として記載済み。実BRAIN032 producer実行出力と実source qualificationはBRAIN030/032・SECURITYと下流結合へ戻す。",
         "CORE既存19 axisの比較/判定/consumer結線はcompare_required_axes（functions/1）側が担い、本projectionで置換しない。",
         "digest比較はL4が定めるJSON fixture論理互換範囲として記載済み。実runtime digest計算器は下流L6/L7へ戻す。",
         "runtime/wire codec実装、L6関数設計の実証、L7対関数検証、TDD/CI、実資格は下流L6/L7と各ownerへ戻す。"
