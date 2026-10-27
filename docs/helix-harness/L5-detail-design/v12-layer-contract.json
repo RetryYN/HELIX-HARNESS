@@ -417,8 +417,8 @@
     "verification_unobserved": "incomplete"
   },
   "remaining": [
-    "L6/L7でmodule/symbol/test実物とoracle凍結を準備。実装前Red実観測とGreen/実検証/PO受入は未成立。",
-    "040 catalog、056 pair結果、003/008要求二次形成、OS実保存/実運転、CONNECT wireの対設計へscope付き不足を戻す。全92親/430義務の残りをこの001対で充足したとしない。"
+    "[B: 後続L6/L7・実装・実検証・受入層（A=0件：001 L5論理契約の空白なし）] L6/L7でmodule/symbol/test実物と実装前Red→最小Green→Refactor、実L8/L9/L10検証、PO実物L11受入を順に閉じる。本L5/L8の静的契約・局所oracleは実検証・受入完了を代替しない。",
+    "[C: 他親owner境界（A=0件：001内部への逆流なし）] HARNESS-L2-040 catalog契約、HARNESS-L2-056 pair結果意味、HARNESS-L2-003/008 要求二次形成・Backflow受領側、HELIX-OS実保存/実運転、HELIX-CONNECT wire schemaの対設計へscope付き不足を戻す。全92親/430義務の残りをこの001対で充足したとしない。"
   ],
   "f02_return_construction": {
     "scope": "既存F02比較の後段を具体化する。公開symbol/入力10field/返却6fieldは保持し、第2引数だけF02Contextと明示する。L6はこの呼出しと内部段階を関数設計へ結ぶ。実装は層外、実行していない。",
