@@ -192,7 +192,9 @@ def _unknown_axis(subject: Any, binding: Any, axis: str, refs: list[Any], reason
 
 
 
-def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
+def _fn1_scope_guard(
+    raw: dict[str, Any], binding: dict[str, Any], *, allow_missing_facts: bool = False
+) -> None:
     """Keep fn1 inside the frozen 15-kind path; do not evaluate F01/F02 failures here."""
     for member in ("sources", "knowledge_records"):
         if member not in raw or not isinstance(raw[member], list):
@@ -214,7 +216,11 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
     slot_members = {"slot_identity", "descriptor_kind", "binding", "facts", "comparison_refs", "definition_applicability_ref"}
     fact_members = {"source_ref", "owner", "binding", "meaning", "condition", "reason", "oracle_ref", "ref"}
     for index, slot in enumerate(slots):
-        if not isinstance(slot, dict) or set(slot) != slot_members:
+        slot_keys = set(slot) if isinstance(slot, dict) else set()
+        valid_slot_shape = slot_keys == slot_members or (
+            allow_missing_facts and slot_keys == slot_members - {"facts"}
+        )
+        if not isinstance(slot, dict) or not valid_slot_shape:
             raise _unsupported("F02", "descriptor_slot_closed_shape", f"descriptors[{index}] is outside the fixed DescriptorSlot shape")
         kind = slot["descriptor_kind"]
         identity = slot["slot_identity"]
@@ -225,9 +231,14 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
         slot_identities.add(identity)
         if not _binding_shape_ok(slot["binding"]) or not _binding_same(slot["binding"], binding):
             raise _unsupported("F02", "descriptor_slot_binding_unresolved", f"descriptors[{index}] does not have the current full Binding")
-        facts = slot["facts"]
-        if not isinstance(facts, list) or not facts:
-            raise _unsupported("F02", "descriptor_facts_absent_empty_or_wrong_type", f"descriptors[{index}].facts is outside the frozen path")
+        if "facts" not in slot or slot["facts"] is None or slot["facts"] == []:
+            if not allow_missing_facts:
+                raise _unsupported("F02", "descriptor_facts_absent_empty_or_wrong_type", f"descriptors[{index}].facts is outside the frozen path")
+            facts = []
+        else:
+            facts = slot["facts"]
+            if not isinstance(facts, list):
+                raise _unsupported("F02", "descriptor_facts_absent_empty_or_wrong_type", f"descriptors[{index}].facts is outside the frozen path")
         for fact_index, fact in enumerate(facts):
             if not isinstance(fact, dict) or set(fact) != fact_members:
                 raise _unsupported("F02", "meaning_fact_closed_shape", f"descriptors[{index}].facts[{fact_index}] is outside the fixed MeaningFact shape")
