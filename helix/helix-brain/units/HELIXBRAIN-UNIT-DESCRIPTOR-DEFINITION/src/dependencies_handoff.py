@@ -324,13 +324,22 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
     binding = raw.get("binding")
     if not isinstance(binding, dict):
         raise _unsupported("B02/F09", "binding_absent_or_wrong_type", "input.binding must be an object")
+    comparison_binding = definitions.get("input_binding") if isinstance(definitions, dict) else None
+    comparison_binding_matches = _binding_same(comparison_binding, binding)
+    if (
+        not comparison_binding_matches
+        and "dependencies" not in raw
+        and not _binding_shape_ok(binding)
+        and _json_equal(comparison_binding, binding)
+    ):
+        comparison_binding_matches = True
     if (
         not isinstance(definitions, dict)
         or set(definitions) != {"axes", "findings", "producer_symbol", "input_binding"}
         or definitions.get("producer_symbol") != "compare_descriptor_definitions"
         or not isinstance(definitions.get("axes"), list)
         or not isinstance(definitions.get("findings"), list)
-        or not _binding_same(definitions.get("input_binding"), binding)
+        or not comparison_binding_matches
     ):
         raise _unsupported("B02/F09", "definitions_comparison_mismatch", "definitions must be the same-snapshot fn1 Comparison")
 

@@ -432,7 +432,6 @@ def _evaluate_replacement_claims(
 ) -> None:
     raw = validated["input"]
     slots = raw["descriptors"]
-    cur_template_id = binding["template_ref"].get("identity")
     for claim in raw["claims"]:
         if not isinstance(claim, dict) or claim.get("kind") != "fill_definition" or not _binding_same(claim.get("binding"), binding):
             continue
@@ -518,7 +517,10 @@ def _evaluate_replacement_claims(
         emitted_cross = False
         for b_source, use in supports:
             basis_template_id = use["basis_binding"]["template_ref"].get("identity")
-            if use["descriptor_kind"] == "required input" and cur_template_id != basis_template_id:
+            if (
+                use["descriptor_kind"] == "required input"
+                and binding["template_ref"].get("identity") != basis_template_id
+            ):
                 emitted_cross = True
                 if target_kind == "required section":
                     code = "cross_pattern_section_substitution"
@@ -590,9 +592,9 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
     _fn1_scope_guard(raw, binding)
     emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
     finding_emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
-    owner = binding["knowledge_ref"]["owner"]
     supplied_kinds: set[str] = set()
     for slot in descriptors:
+        owner = binding["knowledge_ref"]["owner"]
         supplied_kinds.add(slot["descriptor_kind"])
         for fact in slot["facts"]:
             cause, refs, reason, definition_sources = _meaning_resolution(validated, slot, fact)
