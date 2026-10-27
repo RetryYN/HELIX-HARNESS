@@ -1722,5 +1722,32 @@
       "merge_commit": "ab69feb8d60c4841fb3cc7cdeac851ba29f4c1f5",
       "scope": "別unitのL8/L9文書4件とWR29 mailbox guardを統合。FN4 source変更なし、非FN4 L6/L7はmain全値保持。"
     }
+  },
+  "walk_claim_uses_verification": {
+    "request": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
+    "state": "TDD進行中・未完成",
+    "old_stop_expectation_transition": {
+      "permission": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6446411406",
+      "scope": "旧supplied_claim_ports期待の3methodsのみ。新規凍結testの期待変更は含まない。",
+      "before_change_observation": {
+        "artifact": "root-wr33-unit-before-stop-exception.json",
+        "sha256": "926a1d90dedafaa8798cda47873475e5f9fa5679390e397274e3774f804636bf",
+        "methods": 314,
+        "passed": 311,
+        "failures": 3,
+        "errors": 0,
+        "duration_ms": 26185,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "old_expectation": "F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; Backflow HELIXBRAIN-L6-032-N03-PATH",
+      "observed": [
+        "test_descriptor_definition_walk_full_contract.test_supplied_typed_claim_stops_at_current_claim_port: NotImplementedError not raised。非空fillの正規target/intent読取を形成。",
+        "test_oracle_view_boundary_f05_negativesのNEG01/02: 元停止を通過しF05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLEに到達。"
+      ],
+      "reason": "WR33が正規型付きtarget/intent口を実装したため、旧全Claim一律停止期待が適用されなくなった。L4/L5から原target/intent全値を独立観測し、後段未実装境界は実際の固有IDで追跡する。",
+      "test_edit_state": "この記録時点では旧3methods未変更。後段実装後の最終期待を同subtreeへ記録する。"
+    },
+    "authority_intake": "root-wr33-authority-item-intake.json: L3/L10対象16項目は47354be8c1ef225dd7eacffe390d268c0dfee784と同値。文書全体の承認へ拡張しない。"
   }
 }

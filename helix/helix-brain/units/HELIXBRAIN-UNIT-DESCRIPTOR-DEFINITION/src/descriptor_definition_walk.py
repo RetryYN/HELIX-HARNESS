@@ -134,7 +134,9 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     if not isinstance(raw, dict):
         _stop("input_shape")
     claims = raw["claims"] if "claims" in raw else []
-    if claims != []:
+    if not isinstance(claims, list):
+        _stop("supplied_claim_ports")
+    if any(not isinstance(claim, dict) or claim.get("kind") != "fill_definition" for claim in claims):
         _stop("supplied_claim_ports")
     raw_binding = raw.get("binding")
     if not isinstance(raw_binding, dict):
@@ -397,12 +399,25 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         assessments.append(event["assessment"])
         native["judgment_origins"].append(event["origin"])
 
+    target_reads: list[dict[str, Any]] = []
+    intent_reads: list[dict[str, Any]] = []
+    if claims:
+        from dependencies_handoff_ports import read_claim_intent
+        from descriptor_target_reader import read_descriptor_replacement_target
+
+        for claim_index, claim in enumerate(claims):
+            claim_locator = f"/claims/{claim_index}"
+            target_reads.append(
+                read_descriptor_replacement_target(validated, claim, claim_locator)
+            )
+            intent_reads.append(read_claim_intent(claim, claim_locator))
+
     return {
         "evaluation": {
             "comparison": _comparison(axes, [], _PRODUCER, raw_binding),
             "assessments": assessments,
         },
         "native_material": native,
-        "target_reads": [],
-        "intent_reads": [],
+        "target_reads": target_reads,
+        "intent_reads": intent_reads,
     }
