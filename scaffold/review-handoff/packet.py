@@ -130,6 +130,22 @@ def validate_work_result(result, request):
         require(subprocess.run(["git", "-C", str(ROOT), "merge-base", "--is-ancestor", request["base_sha"], result["result_sha"]]).returncode == 0,
                 "proposalが依頼baseから派生していない")
         require(result["result_sha"] != request["base_sha"], "proposalに変更がない")
+        pushed_branch = subprocess.run(
+            ["git", "-C", str(ROOT), "show-ref", "--verify", "--quiet",
+             "refs/remotes/origin/" + result["branch"]],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        require(pushed_branch.returncode in (0, 1), "origin branch refを確認できない")
+        if pushed_branch.returncode == 0:
+            merged = subprocess.run(
+                ["git", "-C", str(ROOT), "merge-base", "--is-ancestor", result["result_sha"],
+                 "refs/remotes/origin/main"],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            ).returncode == 0
+            require(
+                merged,
+                "pushしたbranchのproposalは明示merge・read-after後に返す（git fetch後に再送）",
+            )
     else:
         require(result["result_sha"] is None and result["branch"] is None, "提案なしの結果にcommitを付けない")
 
