@@ -142,7 +142,7 @@ class TestDescriptorClaimMissing(unittest.TestCase):
             "state": "missing",
             "original_refs": [],
             "reason": FACTS_MISSING_REASON,
-            "backflow_owner": "knowledge_owner",
+            "backflow_owner": binding["knowledge_ref"]["owner"],
         })
         self.assertFalse(any(row["rule_ref"] == MISSING_RULE for row in comparison["findings"]))
 
