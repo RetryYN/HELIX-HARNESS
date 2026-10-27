@@ -2060,7 +2060,7 @@
     ],
     "authority_boundary": "対象B01/F07/N02 L3/L10の6項目だけが47354be8c1ef225dd7eacffe390d268c0dfee784と全値一致。承認decisionのmain admission f28f1c9cd8f725758f8904d92dfa8c851f1ddb60はworking baseの祖先。current JSON全体bytesを当時の承認pinへ読み替えない。",
     "CL2": "#3712 merge6fa6b752106cb0254c8d3f870b4ffefa56d4b9d7。既存16ruleの決定表/field_sources/emission_order/unresolved_returnの下流設計、authority_effect none。predicateやownerを新設しない。",
-    "implemented_scope": "A: 既存Context/ValidatedSupply型境界、6実Comparisonのshape/producer/Binding検査、L4全finite raw条件のpure guard、一回のwalk→ClaimUse/DescriptorTargetCallFrame→detailを実装。none/unresolved/rule87でFN7 tupleを足さず、元6Comparisonと15 required missingを保持する。rule93 positiveは固有unclosed停止、非fill既存16ruleは後続B。",
+    "implemented_scope": "A: 既存Context/ValidatedSupply型境界、6実Comparisonのshape/producer/Binding検査、L4全finite raw条件のpure guard、一回のwalk→ClaimUse/DescriptorTargetCallFrame→detailを実装。none/unresolved/rule87でFN7 tupleを足さず、元6Comparisonと15 required missingを保持する。rule93 positiveの固有unclosed guardはあるがA実producerでの到達は未検証、非fill既存16ruleは後続B。",
     "context_members": [
       "validated",
       "definitions",
@@ -2128,11 +2128,36 @@
     "initial_working_base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
     "initial_prerequisite_probe": "root-fn7-prerequisite-probes.json: normalは実fn0/fn1/fn3後fn4 formed_context。typed fill_definitionはfn4 walk supplied_claim_ports。dependencies absentは実fn0/fn1後fn6 dependencies_container_shape。raw/v.input不変。",
     "source_verification": {
+      "revision": "b506dd032b5b9c6a0a822f61b8e41789dab977cf",
+      "sha256": "760b68334c779f1866738cc050778b3a0ad0073d5dbee981e5bf45b3e0d005d4",
+      "nonblank_lines": 368,
+      "same_call_calls": "walk1/usebuilder1、元6producer再呼出し0、frame keyはL5のdefinition_evaluationを使用",
+      "scope_correction_before_execution": "最初の未実行候補でdeclared-target対応漏れ、Slot任意metadata過剰要求、typed Operation閉型の不足をrootReadで指摘し修正。source group exact3keyの根拠もなく削除。候補1のRed/Greenは主張しない。"
+    },
+    "source_verification_R1": {
       "revision": "04e481f2c382af5289b0eaf3b537ad898d31d7f0",
       "sha256": "9ad099bb3dd75a82e17b509f001e893fa377806a494fdec687477f8aef600d00",
       "nonblank_lines": 369,
       "same_call_calls": "walk1/usebuilder1、元6producer再呼出し0、frame keyはL5のdefinition_evaluationを使用",
       "scope_correction_before_execution": "最初の未実行候補でdeclared-target対応漏れ、Slot任意metadata過剰要求、typed Operation閉型の不足をrootReadで指摘し修正。source group exact3keyの根拠もなく削除。候補1のRed/Greenは主張しない。"
+    },
+    "r2_review_corrections": {
+      "review_comment": 6454466410,
+      "canonical_detail_symbol": "rootが見落としたL5 compare_claim_boundaries_detailのdef/call名をf430352528d9aecd1ac39a9ccb3a99acdb97af12で一致させた。制御ロジックは不変。",
+      "unused_import": "未使用copyをb506dd032で削除。",
+      "empty_claims": "L4 unclosed_projection_boundaries/other_domainに従い、claims=[]の実FN0-FN6経路とFN7厳密停止・原値不変を新規凍結テストで固定。sourceの拒否条件は変更していない。",
+      "test_revision": "f41c35b0e97c6487e89ca5d17d58bf31565f8e26",
+      "rule93_and_binding_fallback": {
+        "review_comment": 6454466410,
+        "artifact": "root-fn7-a-r1-m2-i2-reachability-probe-R1.json",
+        "duration_ms": 154,
+        "reaped": true,
+        "output_truncated": false,
+        "raw_unchanged_all": true,
+        "rule93": "rule93は同call primary assessmentのunknownかつorigin_branch=meaning_undefinedを必要とする。L4 finite fact_recordはoracle_refを許容せず、現FN1 exact fact shapeはoracle_refを必要とするため、非空factのdomainに交差がない。L4形のnull factは実FN0-clean後FN1 F02/meaning_fact_closed_shape停止。oracle_refを加えたnull factも実FN1 F01/F02/meaning_body_null停止。空root descriptorsのfinite経路はprimary意味未定義を作らない。rule93_positive_unimplementedはsource上の保留guardであり、実producer到達時の停止を検証したとは記載しない。",
+        "binding_fallback": "partial root Bindingのoracle_refを除いた実FN0-clean入力はFN1を返すがFN2 fn2_requires_the_same-snapshot_public_fn1_Comparison_shape/Binding停止。現FN2は同じ_binding_sameを要求するため、six-producer ContextからFN7のnot strict shape+exact JSON fallbackへは到達しない。G4bの原値保持条件を変えず分岐は保留する。",
+        "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
+      }
     }
   }
 }
