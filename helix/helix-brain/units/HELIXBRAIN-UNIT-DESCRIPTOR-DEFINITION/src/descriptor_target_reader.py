@@ -108,7 +108,8 @@ def _slot_locators(raw: dict[str, Any], binding: Any, slot_identity: Any, kind: 
 def read_descriptor_replacement_target(validated, claim, claim_locator):
     """Read ownerの供給target住所を、slot/fact補完なしで返す。"""
     raw = validated.get("input") if isinstance(validated, dict) else None
-    if not isinstance(raw, dict) or not isinstance(claim_locator, str):
+    if (not isinstance(raw, dict) or not isinstance(claim_locator, str)
+            or not isinstance(claim, dict) or claim.get("kind") != "fill_definition"):
         raise NotImplementedError("F01/F02/unclosed/descriptor_target_reader; Backflow HELIXBRAIN-L6-032-N03-PATH")
     claim_copy = copy.deepcopy(claim)
     raw_candidates = raw.get("candidates")
@@ -123,9 +124,6 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
         "state": "unknown",
         "problems": [],
     }
-    if not isinstance(claim, dict) or claim.get("kind") != "fill_definition":
-        return result
-
     binding = claim.get("binding")
     knowledge_ref = binding.get("knowledge_ref") if isinstance(binding, dict) else None
     records = raw.get("knowledge_records")
