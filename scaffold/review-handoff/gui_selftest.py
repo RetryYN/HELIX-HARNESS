@@ -768,6 +768,78 @@ class GuiChecks(unittest.TestCase):
                     base_sha=work["base_sha"], dispatcher=work["dispatcher"], worker=work["worker"], result=kind,
                     result_sha=None, branch=None, summary=["合成入力。提案なし"])
 
+    def _proposal_repo_case(self, root, *, pushed, merged):
+        def git(*args):
+            return subprocess.check_output(["git", "-C", str(root), *args], stderr=subprocess.DEVNULL).decode().strip()
+
+        subprocess.run(["git", "init", "--quiet", str(root)], check=True)
+        git("config", "user.name", "Mailbox Selftest")
+        git("config", "user.email", "mailbox-selftest@example.invalid")
+        (root / "state.txt").write_text("base\n", encoding="utf-8")
+        git("add", "state.txt")
+        git("commit", "--quiet", "-m", "base")
+        git("branch", "-M", "main")
+        base_sha = git("rev-parse", "HEAD")
+
+        branch = "proposal/WR29"
+        git("checkout", "--quiet", "-b", branch)
+        (root / "state.txt").write_text("proposal\n", encoding="utf-8")
+        git("commit", "--quiet", "-am", "proposal")
+        result_sha = git("rev-parse", "HEAD")
+        git("update-ref", "refs/remotes/origin/main", result_sha if merged else base_sha)
+        if pushed:
+            git("update-ref", "refs/remotes/origin/" + branch, result_sha)
+
+        request = {
+            "request_id": "WR29-TEMP",
+            "payload_sha256": "synthetic-request-payload",
+            "issue": 3510,
+            "base_sha": base_sha,
+            "dispatcher": "claude",
+            "worker": "devin",
+        }
+        result = {
+            "schema": "scaffold-work-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "request_id": request["request_id"],
+            "request_payload_sha256": request["payload_sha256"],
+            "issue": request["issue"],
+            "base_sha": request["base_sha"],
+            "dispatcher": request["dispatcher"],
+            "worker": request["worker"],
+            "result": "proposal",
+            "result_sha": result_sha,
+            "branch": branch,
+            "summary": ["一時repositoryの提案"]
+        }
+        return request, result
+
+    def test_pushed_unmerged_proposal_is_rejected_until_main_read_after(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            request, result = self._proposal_repo_case(root, pushed=True, merged=False)
+            with patch.object(p, "ROOT", root):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "pushしたbranchのproposalは明示merge・read-after後に返す",
+                ):
+                    p.validate_work_result(result, request)
+
+    def test_pushed_merged_proposal_is_accepted_after_local_main_read_after(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            request, result = self._proposal_repo_case(root, pushed=True, merged=True)
+            with patch.object(p, "ROOT", root):
+                p.validate_work_result(result, request)
+
+    def test_unpushed_proposal_is_accepted_without_a_remote_branch(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            request, result = self._proposal_repo_case(root, pushed=False, merged=False)
+            with patch.object(p, "ROOT", root):
+                p.validate_work_result(result, request)
+
     def test_four_runtime_lanes(self):
         # Claude・Codex・Antigravityはexecution/review_mergeの排他レーン、Devinはworkerレーン。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
