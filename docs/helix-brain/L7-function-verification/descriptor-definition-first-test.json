@@ -1775,6 +1775,11 @@
     "L8_boundary": "function_oracles/7はclaims=[]の文章観測で全Comparisonではない。B01/F07/N02/ADD20はnot_executedのmutation計画。期待や意味を入替えずwhole/prose/test doubleを答えへ転用しない。",
     "completion_boundary": "型境界だけをroot検証。FN7完成、16rule成立、正常Context/資格、全caller/L8全受入、OS Accepted、Issue3547完了は認定しない。scope確認comment6431299490へ具体的前提分割を提示中。",
     "execution_state": "context_boundary_verified_semantic_prerequisite_scope_pending",
-    "authority_effect": "none"
+    "authority_effect": "none",
+    "main_integration": {
+      "base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
+      "merge_commit": "7d19fa7018d55465887fb3c9c5dab83016f1ae0d",
+      "scope": "別unitのL8/L9文書7件のみ。対象unit source/testsおよびtemplate-semantic-supply L8は295件検証revisionと同値。"
+    }
   }
 }

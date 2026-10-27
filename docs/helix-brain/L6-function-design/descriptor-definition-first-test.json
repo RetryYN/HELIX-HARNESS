@@ -690,7 +690,7 @@
     "effect": "none",
     "request": "WR-CLAUDE-BRAIN032-FN7-CLAIM-TDD-3547-20261027-13",
     "request_base": "54f1b196f530b4fa66cf440c097492f14e2dd202",
-    "working_base": "57da9ffc1874282f1aa74d13cdf6dee6017a5372",
+    "working_base": "aaebb5ca94b28ed8a2f0388d61812f9ed74b6e8d",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/claim_boundaries.py",
     "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
     "contract_sources": [
