@@ -470,10 +470,10 @@ class TestDescriptorDefinitions(unittest.TestCase):
             "proposed_value": "synthetic descriptor claim on fact_ref",
             "basis_refs": [],
         })
-        validated_claim = validate_supply_input(raw_f01_claim)
-        with self.assertRaises(NotImplementedError) as caught_claim:
-            compare_descriptor_definitions({"validated": validated_claim})
-        self.assertIn("F01/descriptor_claim_unimplemented", str(caught_claim.exception))
+        # L4 consumer_branch_table/8: 対象外Claimは原definition結果を変えない。
+        control_raw = copy.deepcopy(raw_f01_claim)
+        control_raw["claims"].pop()
+        self.assertEqual(self._compare(raw_f01_claim), self._compare(control_raw))
 
         # fill_definition Claimはsubject_refがfact_refと一致してもF01停止にしない。
         raw_fill_on_fact = copy.deepcopy(self.base)

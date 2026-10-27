@@ -2175,9 +2175,9 @@
       ],
       "materialization": "既存完全Claimをnative operand Refと原Bindingへ束縛する新素材。L8 logical mutationは完全rawではなく、既存templateの追加member/presenceを明示した。元L8 childの期待やnot_executedを変更しない。",
       "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)を再読。JSON/原source/ownerと未解決保持を継承し、旧runtime/CI/testを実行・移植しない。",
-      "source_closure": "step_2のwalk非fill限定に続き、WR65でClaimUse consumerのfill出現数と同call target/intent readsを対応させる。原Claim配列を加工せずfillだけを元index/locatorで消費し、件数とlocator不一致は既存停止へ返す。FN1 guard・複数Binding・FN4 detail・FN5/FN7は変更せず、非fillのtarget/use/intent/route/意味/rowを生成しない。",
+      "source_closure": "WR60でwalk非fill、WR65でfill-only ClaimUse対応を閉じ、WR66 S4ではFN1対象外nonfill Claimのfact subject一致を全体停止にする2行だけを除いた。原Claim/Binding/全definition結果とfillだけの原locator/read対応を保持する。件数・locator停止/HARNESS special/意味decoder/資格/FN4 detail/FN5/FN7は変更しない。S2 multi-frameは別PR。",
       "owner_boundaries": {
-        "FN1": "fact Ref subjectはdescriptor_claim_unimplemented、二Binding入力はdescriptor_slot_binding_unresolved。",
+        "FN1": "S4非fill fact-subject広域停止だけを局所閉包。二Binding S2と追加top-level MeaningFact閉型S3は残る。",
         "FN4": "walk非fill限定とfill-only ClaimUse対応は閉じた。17raw replayの11入力は現在oracle_claim_portsで停止する。detail/finite carryは未閉包で、six Comparisonはまだ形成されない。",
         "FN5": "L4 knowledge_promotion_contract/finite_domain/claimsはfillのみ。candidate-empty nonfill停止は条件付き静的境界で今回未行使。",
         "FN7": "finite writerはfill専用。16規則writerは本slice外。",
@@ -2214,6 +2214,54 @@
         "test_freeze": "59e9f31d5e935537a0dfd3ddf8a88efa9e8677da",
         "test_scope": "新4methods: 保存I05原SHA、nonfill-only、混在原indices1/3、fill-only対照、件数不足/過剰と両locator破損6条件。実FN0→walk→builderを使い、raw/validated/walk不変を検査。",
         "boundary": "既存405testsの期待とbytesは不変。手製Comparison/正のread/frame/資格は補作しない。不正protocol試験だけ実readのcloneを破損させる。"
+      },
+      "fn1_stop_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-FN1-STOPS-3547-20261028-66",
+        "request_base": "0404af048458b32600c43190d8d05519bafecfed",
+        "working_base": "d2b546551e36696b2451646b9e1409b8f06e01d0",
+        "authority": "既存B01/F07/N02の承認6項目とL4/L5 pinを再照合。新要求・gate・row意味は追加しない。",
+        "S4": {
+          "classification": "設計済み。現FN1実装の広域停止が設計より狭い。",
+          "L4_pointers": [
+            "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+            "/definition_meaning_resolution_contract/consumer_branch_table/8"
+          ],
+          "L5_pointers": [
+            "/functions/1/algorithm/0",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_nonfailure_branches/4",
+            "/source_return_contract/descriptor_target_dataflow/consumer/reads"
+          ],
+          "behavior": "非fill Claimのfact subject一致を理由に全descriptor比較を停止しない。原Claimと同snapshotを保持して原定義の比較を継続する。fill対象外のtarget/use/intentを生成しない。",
+          "boundary": "FN7 finite writer other_domainはFN1の母集団制限ではない。FN7 rule76等のfact-subject意味対応・row/routeは別責務で未閉。既存HARNESS special・source資格・意味判定を変更しない。",
+          "implementation": "S4のみ別PR/test-first。旧停止期待の移行は事前FAIL/旧SHA/L7理由と統制確認後。"
+        },
+        "S2": {
+          "classification": "設計済み。root同一Bindingだけの現FN1/walkより評価域が広い。",
+          "L4_pointers": [
+            "/definition_meaning_resolution_contract/evaluation_populations"
+          ],
+          "L5_pointers": [
+            "/functions/1/algorithm/0",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1",
+            "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/2"
+          ],
+          "behavior": "root要求契約を必ず保持し、原candidate Refが実slot.template_refへ対応する追加frameを原順で評価する。全slotのBinding/locator/read問題を保持し、未要求frameへ15義務を増殖しない。",
+          "boundary": "凍結I02はcandidate Bとdescriptor15の原Bindingが対応する補助入力。元L8 baselineの全材料化とはしない。guard除去だけではwalk raw_distinct_binding_frames/単frame集計が残り閉包しない。",
+          "implementation": "S4とは別PR/test-first。full Binding単位の母集団・元root/state/原順とnative/private索引を既存設計どおりに実装する。未規定の追加意味が必要なら設計ownerへ返す。"
+        },
+        "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)。JSON正本/原source/owner/不足と証拠の分離を継承し、現L4/L5の評価域へ意味再導出。ClaimContext/同名guardの旧consumerは検索で不在、旧runtime/test/CIは実行・移植しない。",
+        "completion": "判定段階で両停止の実装閉包を主張しない。既存matrix・WR60/65証拠は保持、all6成立0/WR13 B未完了/WR28・31hold/L8not_executed。"
+      },
+      "fn1_S4_nonfill_change": {
+        "scope": "S4だけ。_fn1_scope_guardのnonfill subject=fact Ref広域停止2行を削除。原Claim保持/全descriptor比較継続。既存HARNESS namedstop/source資格/意味decoder/row形成/S2は不変。",
+        "source_revision": "0b4bfde77323f9336f0a9ff2447af00ed7338ae2",
+        "source_sha256": "c62b821eb75c029b28054ead5d47f1765b6237254e19f15f89e76e8fc78b1a6c",
+        "test_freeze": "e4028275a6ca6812566974485be369b97053528f",
+        "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_nonfill_fact_subject.py",
+        "test_scope": "新4methods146行。保存I04/I06/I08/I10の各rawSHA実照合、実FN0からpublicFN1/walkを独立検証、独立controlに対して原全比較/native保持、nonfillreads0、混在fillread保持、同BindingHARNESS固有停止。別call比較は差分対照専用でContextへ借用しない。",
+        "status": "full_unit_green_independent_review_pending",
+        "controlled_old_tests": "統制6456385866に従い旧S4停止期待2件だけを原definition/walk保持対照へ移行。旧入力/原値finally/HARNESS/他407methods、新凍結4/source不変。"
       }
     }
   }

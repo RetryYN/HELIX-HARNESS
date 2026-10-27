@@ -334,8 +334,6 @@ def _fn1_scope_guard(
             continue
         if claim.get("kind") == "harness_layer_pair_override":
             raise _unsupported("F01", "harness_claim_unimplemented", f"claims[{index}] is a harness_layer_pair_override claim")
-        if claim.get("kind") != "fill_definition" and any(_ref_same(claim.get("subject_ref"), fact_ref) for fact_ref in fact_refs):
-            raise _unsupported("F01", "descriptor_claim_unimplemented", f"claims[{index}] participates in descriptor meaning comparison")
 
 
 
