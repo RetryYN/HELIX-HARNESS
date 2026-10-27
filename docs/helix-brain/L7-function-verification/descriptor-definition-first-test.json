@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "42df88db5b1b33108a3e571af6d81cbca5fc1789f87290b883bc96d7e1bda5e2",
+    "sha256": "c14bff9e14fc734728d1a0c5f11a03b9bf81d3e70c1e973c2da59e133f16a1de",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2173,7 +2173,7 @@
     "id": "HELIXBRAIN-L7-032-FN1-OWNER-TARGET-READER",
     "design_ref": "HELIXBRAIN-L6-032-FN1-OWNER-TARGET-READER",
     "request_id": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
-    "source_revision": "cfd6b83728486ad3c0e2db36ed64c7f7aa1bdb3d",
+    "source_revision": "26cfbd7d8c16eaaa7d027f065b23d394f0010775",
     "authority_effect": "none",
     "independent_expectations": [
       "L4のschema/return mappingから8/5/9/4のshape、raw presenceと全原Ref/Binding/出現/locatorを固定する。reason/locatorは既存13語と固定literalから独立に導く。",
@@ -2356,6 +2356,16 @@
         "reaped": true,
         "output_truncated": false,
         "interpretation": "最新main217196dc統合後、現行unit336methods PASS24024ms。"
+      },
+      {
+        "artifact": "root-wr33-g1b-unit-latest-main-green-R1.json",
+        "sha256": "0c1e2326d0f25e161a3f81c4113109a4762fa9266d82c8205fd626b7f8d27049",
+        "test_or_source_revision": "26cfbd7d8c16eaaa7d027f065b23d394f0010775",
+        "status": 0,
+        "duration_ms": 22535,
+        "reaped": true,
+        "output_truncated": false,
+        "interpretation": "他unit PR3742の最新main c5960e042を統合後、現行unit336methods PASS22535ms。G1b source/test bytesは統合前と同一。"
       }
     ],
     "legacy_rederivation_ref": "/fn1_descriptor_target_reader_preparation/legacy_rederivation",
