@@ -7,7 +7,7 @@ from typing import Any
 
 from supply_validation import (
     _binding_same,
-    _binding_shape_ok,
+    _is_json_value,
     _json_equal,
     _ref_same,
     _ref_shape_ok,
@@ -81,13 +81,62 @@ def _ref_related(claim_ref: Any, target_ref: Any) -> tuple[str, bool]:
         return "unresolved", False
     if identity != claim_identity:
         return "unrelated", False
-    if _ref_same(claim_ref, target_ref):
-        return "exact", True
-    required = ("revision", "scope", "owner")
-    if all(k in claim_ref and k in target_ref and claim_ref[k] is not None and target_ref[k] is not None for k in required):
-        # Existing ref comparison treats a supplied digest disagreement as a known frame conflict.
-        return "conflict", True
-    return "unresolved", True
+    if not _typed_ref_shape(target_ref) or not _typed_ref_shape(claim_ref):
+        return "unresolved", True
+    required = ("identity", "revision", "scope", "owner")
+    if any(k not in claim_ref or k not in target_ref or claim_ref[k] is None or target_ref[k] is None for k in required):
+        return "unresolved", True
+    return ("exact", True) if _ref_same(claim_ref, target_ref) else ("conflict", True)
+
+
+def _typed_ref_shape(value: Any) -> bool:
+    if not isinstance(value, dict) or not set(value).issubset(
+        {"identity", "revision", "scope", "owner", "source_locator", "sha256"}
+    ):
+        return False
+    if any(key in value and not isinstance(value[key], (str, type(None)))
+           for key in ("identity", "revision", "owner", "source_locator", "sha256")):
+        return False
+    return "scope" not in value or _is_json_value(value["scope"])
+
+
+def _typed_binding_shape(value: Any) -> bool:
+    members = {
+        "template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref",
+        "pack_contract_version", "pack_artifact_version", "pack_dependency_versions", "version_target",
+    }
+    if not isinstance(value, dict) or set(value) != members:
+        return False
+    for name in ("template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref"):
+        if not _typed_ref_shape(value[name]):
+            return False
+    for name in ("pack_contract_version", "pack_artifact_version", "version_target"):
+        if not isinstance(value[name], (str, type(None))):
+            return False
+    dependencies = value["pack_dependency_versions"]
+    return isinstance(dependencies, list) and all(_typed_ref_shape(ref) for ref in dependencies)
+
+
+def _binding_relation(left: Any, right: Any) -> str:
+    """Compare full Bindings without turning missing required Ref data into conflict."""
+    if not _typed_binding_shape(left) or not _typed_binding_shape(right):
+        return "unresolved"
+    ref_fields = ("template_ref", "knowledge_ref", "requirement_ref", "oracle_ref", "pack_ref")
+    for name in ref_fields:
+        relation, _ = _ref_related(left[name], right[name])
+        if relation in {"unresolved"}:
+            return "unresolved"
+        if relation in {"unrelated", "conflict"}:
+            return "different"
+    for name in ("pack_contract_version", "pack_artifact_version", "version_target"):
+        if not _json_equal(left[name], right[name]):
+            return "different"
+    left_dependencies = left["pack_dependency_versions"]
+    right_dependencies = right["pack_dependency_versions"]
+    if any(not all(ref.get(name) is not None for name in ("identity", "revision", "scope", "owner"))
+           for ref in left_dependencies + right_dependencies):
+        return "unresolved"
+    return "same" if _binding_same(left, right) else "different"
 
 
 def _slot_locators(raw: dict[str, Any], binding: Any, slot_identity: Any, kind: Any) -> list[str]:
@@ -178,8 +227,9 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
         source = sources[source_index]
         source_ref = source.get("ref") if isinstance(source, dict) else None
         source_locator = f"/sources/{source_index}"
-        source_usable = _source_usable(validated, source_ref)
-        if not source_usable:
+        owner_role = isinstance(source, dict) and source.get("role") == "semantic_json"
+        source_usable = owner_role and _source_usable(validated, source_ref)
+        if owner_role and not source_usable:
             result["problems"].append(_problem("owner_source_unresolved", source_locator, source_ref))
         content = source.get("content")
         if not isinstance(content, dict):
@@ -199,7 +249,7 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
         if not declarations:
             saw_empty_array = True
         source_binding_raw = content.get("binding")
-        source_binding_ok = _binding_shape_ok(source_binding_raw)
+        source_binding_ok = _typed_binding_shape(source_binding_raw)
         source_binding = copy.deepcopy(source_binding_raw) if source_binding_ok else None
         for declaration_index, declaration in enumerate(declarations):
             declaration_locator = f"{container_locator}/{declaration_index}"
@@ -211,6 +261,8 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                 "source_binding": ({"presence": "supplied", "value": source_binding}
                                    if source_binding_ok else {"presence": "absent"}),
             })
+            if not owner_role:
+                continue
             if not _valid_decl(declaration):
                 result["problems"].append(_problem("declaration_shape", declaration_locator, source_ref))
                 has_unassociated_issue = True
@@ -233,7 +285,13 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
             if relation == "unresolved":
                 result["problems"].append(_problem("target_ref_unresolved", f"{declaration_locator}/target_ref", source_ref))
                 if identity_matches:
-                    current_unknown = True
+                    if source_binding_ok and _binding_relation(source_binding_raw, binding) == "different":
+                        result["problems"].append(_problem("binding_conflict", f"{source_locator}/content/binding", source_ref))
+                        independent_frame_conflict = True
+                    elif not source_binding_ok or _binding_relation(source_binding_raw, binding) == "unresolved":
+                        result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
+                    else:
+                        current_unknown = True
                 else:
                     has_unassociated_issue = True
                 continue
@@ -251,7 +309,12 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
                 result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
                 current_unknown = True
                 continue
-            if not _binding_same(source_binding_raw, binding):
+            binding_relation = _binding_relation(source_binding_raw, binding)
+            if binding_relation == "unresolved":
+                result["problems"].append(_problem("binding_unresolved", f"{source_locator}/content/binding", source_ref))
+                current_unknown = True
+                continue
+            if binding_relation == "different":
                 result["problems"].append(_problem("binding_conflict", f"{source_locator}/content/binding", source_ref))
                 independent_frame_conflict = True
                 continue
@@ -272,6 +335,7 @@ def read_descriptor_replacement_target(validated, claim, claim_locator):
 
     if saw_empty_array and not matching_decls and any(
         isinstance(sources[i], dict)
+        and sources[i].get("role") == "semantic_json"
         and _source_usable(validated, sources[i].get("ref"))
         and isinstance(sources[i].get("content"), dict)
         and sources[i]["content"].get("descriptor_targets") == []
