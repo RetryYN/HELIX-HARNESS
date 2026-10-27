@@ -2202,7 +2202,8 @@
         "change_size": "src一file +3/-4、二箇所。raw Claimの原値/原locatorは同ValidatedSupply.inputへ保持する。",
         "test_freeze": "08205dc30ecbba345feb189915697f7d7621d352",
         "new_tests": "test_descriptor_walk_nonfill_claims.pyの3methods。保存I05のcanonicalSHA由来を確認し、nonfill-only、mixed原indices1/3、既存fill-onlyを検証。",
-        "old_test_boundary": "統制6455422083の条件に従い、旧walk-stop期待1件だけを残置FN1 descriptor_claim_unimplementedの厳密messageへ移行。定数名/説明以外のoracle、raw/validated不変assert、他400旧methods、新3凍結methodsは保持。"
+        "old_test_boundary": "統制6455422083の条件に従い、旧walk-stop期待1件だけを残置FN1 descriptor_claim_unimplementedの厳密messageへ移行。定数名/説明以外のoracle、raw/validated不変assert、他400旧methods、新3凍結methodsは保持。",
+        "R2_guard_coverage": "R1-m1(6455568577)に対し、実FN0が保持したclaims=[1]/[None]の不正protocol要素を、残したlist/dict guardが固有supplied_claim_ports停止へ返すことを別testで固定。FN0-cleanをClaim schema適合とせず、source処理は変更しない。"
       }
     }
   }

@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "3f9e6020ae4f2de7ac69027ae554745975bd1176e93880440be493bf1d9c475f",
+    "sha256": "540830a7042480169cbb2688bc036c18980e524611bb4ea1e0eede3793e2b5e1",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3933,9 +3933,13 @@
           "new_file_sha256": "5105347f617edb022f4c9fc1ac5d2d88694dbc21483da7914fc9356c6e9a2bf0",
           "reason": "L5 step4の非fill target不要に従うwalk閉包で旧未閉包stopが消え、元からあるFN1 S4へ進む。FN1 guard自体は変更しない。"
         },
-        "full_unit_green": "root-fn7b-walk-nonfill-unit-green-R2.json:404PASS25457ms、reaped=true/output_truncated=false。移行前403PASS/1FAILは上記証拠とgitへ保持。",
+        "full_unit_green": "root-fn7b-walk-nonfill-unit-green-R3.json:405PASS25161ms、reaped=true/output_truncated=false。sourceと新3/統制旧1/他400のbytesはR1と同じ。",
         "locator_mutation": "root-fn7b-walk-locator-mutation-R1.json:原claim indexをlen(target_reads)へ変える一時overlayをmixed新test単独でKILLED。outer171ms、child118ms、1assertFAIL/errors0/importsetup0、実行前後src/tests tree hash不変。sourceと新凍結testは現在も同bytes。",
-        "root_static_acceptance": "root-fn7b-walk-final-static-check-R2.json:27checks PASS。5paths、source二hunk候補SHA、新3freeze、統制旧1oracle差分だけ、他400旧test/他source/B外node/承認6/pins/pairhash、17raw replayと現matrix、L8not_executedを照合。"
+        "root_static_acceptance": "root-fn7b-walk-final-static-check-R3.json:31checks PASS。R1の27項目を保持し、新negative test凍結、R2のunit差分は新fileのみ、negative focusedとdict mutantの4項目を追加。",
+        "full_unit_green_R1": "root-fn7b-walk-nonfill-unit-green-R2.json:404PASS25457ms、reaped=true/output_truncated=false。移行前403PASS/1FAILは上記証拠とgitへ保持。",
+        "R1_dict_guard_supplement": "6455568577 R1-m1: test_descriptor_walk_claim_elements.pyを9c0883b4b0d8e1bfecf77c4fba1be78f3c8ffc6eで凍結。1method/2subtests、実FN0のraw保持・issues/unusable空→namedstop厳密message・raw/validated finally不変。root-fn7b-walk-claim-elements-green-R2.jsonでPASS96ms。既存guardの検出追加で実装前meaning Redは主張しない。",
+        "dict_guard_mutation": "root-fn7b-walk-dict-guard-mutation-R2.json:dict any検査だけを外しlist guardを残すoverlayが、AttributeErrorを厳密型期待で検出する2assertFAIL/errors0でKILLED。outer239ms/child156ms、import/setup0、source/tests前後hash不変。sourceは同じdf5f7386。",
+        "root_static_acceptance_R1": "root-fn7b-walk-final-static-check-R2.json:27checks PASS。5paths、source二hunk候補SHA、新3freeze、統制旧1oracle差分だけ、他400旧test/他source/B外node/承認6/pins/pairhash、17raw replayと現matrix、L8not_executedを照合。"
       }
     }
   }
