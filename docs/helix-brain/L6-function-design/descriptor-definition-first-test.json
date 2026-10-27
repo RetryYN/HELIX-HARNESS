@@ -2252,6 +2252,15 @@
         },
         "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)。JSON正本/原source/owner/不足と証拠の分離を継承し、現L4/L5の評価域へ意味再導出。ClaimContext/同名guardの旧consumerは検索で不在、旧runtime/test/CIは実行・移植しない。",
         "completion": "判定段階で両停止の実装閉包を主張しない。既存matrix・WR60/65証拠は保持、all6成立0/WR13 B未完了/WR28・31hold/L8not_executed。"
+      },
+      "fn1_S4_nonfill_change": {
+        "scope": "S4だけ。_fn1_scope_guardのnonfill subject=fact Ref広域停止2行を削除。原Claim保持/全descriptor比較継続。既存HARNESS namedstop/source資格/意味decoder/row形成/S2は不変。",
+        "source_revision": "0b4bfde77323f9336f0a9ff2447af00ed7338ae2",
+        "source_sha256": "c62b821eb75c029b28054ead5d47f1765b6237254e19f15f89e76e8fc78b1a6c",
+        "test_freeze": "e4028275a6ca6812566974485be369b97053528f",
+        "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_nonfill_fact_subject.py",
+        "test_scope": "新4methods146行。保存I04/I06/I08/I10の各rawSHA実照合、実FN0からpublicFN1/walkを独立検証、独立controlに対して原全比較/native保持、nonfillreads0、混在fillread保持、同BindingHARNESS固有停止。別call比較は差分対照専用でContextへ借用しない。",
+        "status": "focused_green_old_stop_test_transition_control_pending"
       }
     }
   }
