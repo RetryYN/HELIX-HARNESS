@@ -16,11 +16,6 @@ from descriptor_definitions import validate_supply_input
 
 
 PRODUCER = "compare_descriptor_definitions"
-BACKFLOW = "HELIXBRAIN-L6-032-N03-PATH"
-FN1_NON_FILL_STOP = (
-    "F01/descriptor_claim_unimplemented: claims[0] participates in descriptor meaning comparison; "
-    f"Backflow {BACKFLOW}"
-)
 MISSING_KINDS = (
     ("template identity", "descriptor_01_missing", 9),
     ("version", "descriptor_02_missing", 12),
@@ -154,8 +149,8 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
-    def test_valid_non_fill_claim_stops_at_claim_port_after_fn0(self):
-        """A fact-subject non-fill Claim retains the FN1 stop after the walk gate closes."""
+    def test_valid_non_fill_claim_preserves_definition_after_fn0(self):
+        """A fact-subject non-fill Claim preserves the original definition walk."""
         raw = descriptor_claim_input("positive")
         claim = raw["claims"][0]
         claim["kind"] = "project_obligation_discharge"
@@ -167,10 +162,14 @@ class TestDescriptorWalkScopeBoundaries(unittest.TestCase):
         validated = _validate(raw)
         validated_before = copy.deepcopy(validated)
 
+        control_raw = copy.deepcopy(raw)
+        control_raw["claims"] = []
+        control_walk = evaluate_descriptor_definition_walk({"validated": _validate(control_raw)})
         try:
-            with self.assertRaises(NotImplementedError) as caught:
-                evaluate_descriptor_definition_walk({"validated": validated})
-            self.assertEqual(str(caught.exception), FN1_NON_FILL_STOP)
+            walk = evaluate_descriptor_definition_walk({"validated": validated})
+            self.assertEqual(walk, control_walk)
+            self.assertEqual(walk["target_reads"], [])
+            self.assertEqual(walk["intent_reads"], [])
         finally:
             self.assertEqual(raw, raw_before)
             self.assertEqual(validated, validated_before)
