@@ -2175,7 +2175,7 @@
       ],
       "materialization": "既存完全Claimをnative operand Refと原Bindingへ束縛する新素材。L8 logical mutationは完全rawではなく、既存templateの追加member/presenceを明示した。元L8 childの期待やnot_executedを変更しない。",
       "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)を再読。JSON/原source/ownerと未解決保持を継承し、旧runtime/CI/testを実行・移植しない。",
-      "source_closure": "未実施。fill-only read/useを原locatorで保持する狭い案を照合したが、FN1 guard・FN4 detail・FN5 domainが別に残る。単一guard除去やnonfill target/use合成で全producer形成を装わず、個別ownerへ返す。",
+      "source_closure": "step_2のwalk非fill限定だけを閉じた。Claim列のlist/object検査を保ち、原raw配列を加工せずfill出現だけを元locatorでtarget/intentへ渡す。FN1 guard・target reader・frame builder・FN4 detail・FN5/FN7は変更しない。非fillの意味/intent/rowを生成しない。",
       "owner_boundaries": {
         "FN1": "fact Ref subjectはdescriptor_claim_unimplemented、二Binding入力はdescriptor_slot_binding_unresolved。",
         "FN4": "walkのsupplied_claim_portsが今回の実最初停止。fill-only reads案の後にもdetail oracle_claim_ports/finite carryが残る点は静的確認で、実到達済みとはしない。",
@@ -2193,7 +2193,17 @@
         "unknown_fallback1": "保留: 原meaning-nullとfallback basis素材を未材料化。"
       },
       "completion_boundary": "WR13 B全体は未完了。WR28/WR31は手動hold。L8受入・OS・Issue3547/3510完了を生成しない。",
-      "authority_effect": "none"
+      "authority_effect": "none",
+      "walk_nonfill_change": {
+        "control_comment": 6455204253,
+        "basis": "L5 single_walk_algorithm_candidate/4とconsumer/reads: 非fillにtarget口を常時必須にしない。L4 dependency_semantic_ports/descriptor_target_contract/ordered_branches/0はfillだけを対象。",
+        "source_revision": "bb2e31335852bbabbbb887705d52d85f3c3d219c",
+        "source_sha256": "df5f738695dba32acf586d63acefd3e6a048143eff50bf17aba94328bab27eef",
+        "change_size": "src一file +3/-4、二箇所。raw Claimの原値/原locatorは同ValidatedSupply.inputへ保持する。",
+        "test_freeze": "08205dc30ecbba345feb189915697f7d7621d352",
+        "new_tests": "test_descriptor_walk_nonfill_claims.pyの3methods。保存I05のcanonicalSHA由来を確認し、nonfill-only、mixed原indices1/3、既存fill-onlyを検証。",
+        "old_test_boundary": "401件保全のうち旧walk-stop期待1件だけに遷移が必要。未変更のFN1 fact-subject guardへ先行停止が移り、別behaviorのFN1 guard自体は保持。具体unit差分をL7へ固定して統制の解釈を確認する。"
+      }
     }
   }
 }
