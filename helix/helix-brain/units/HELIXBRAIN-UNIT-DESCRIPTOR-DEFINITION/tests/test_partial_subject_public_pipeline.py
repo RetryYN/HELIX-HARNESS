@@ -189,6 +189,53 @@ class TestPartialSubjectPublicPipeline(unittest.TestCase):
         self.assertEqual(validated, validated_before)
         self.assertEqual(definitions, definitions_before)
 
+    def test_required_missing_kind_uses_template_subject_or_remains_unformattable(self) -> None:
+        # L4 /descriptor_meanings/0 and the L4/L5 descriptor_01_missing rule
+        # identify the first approved literal and its existing missing predicate.
+        required_kind = "template identity"
+        axis_name = "template identity.definition"
+        expected_reason = "必要なdescriptor slotが当該原Bindingに供給されていない。"
+
+        for remove_template_ref in (False, True):
+            with self.subTest(remove_template_ref=remove_template_ref):
+                raw = _zero_profile(remove_template_ref=remove_template_ref)
+                raw["required_descriptor_kinds"] = [required_kind]
+                raw_before, validated, validated_before, definitions = _run_fn0_fn1(raw)
+
+                self.assertEqual(definitions["producer_symbol"], "compare_descriptor_definitions")
+                self.assertEqual(definitions["input_binding"], raw_before["binding"])
+                if remove_template_ref:
+                    # No-fact subject resolution has neither knowledge_ref nor
+                    # template_ref. Keep the original required population and
+                    # Binding, but form no typed Axis/Finding with a fabricated Ref.
+                    self.assertEqual(definitions["axes"], [])
+                    self.assertEqual(definitions["findings"], [])
+                else:
+                    template_subject = raw_before["binding"]["template_ref"]
+                    self.assertEqual(definitions["axes"], [{
+                        "subject_ref": template_subject,
+                        "binding": raw_before["binding"],
+                        "axis": axis_name,
+                        "state": "missing",
+                        "original_refs": [],
+                        "reason": expected_reason,
+                        "backflow_owner": "knowledge_owner",
+                    }])
+                    self.assertEqual(definitions["findings"], [{
+                        "code": "descriptor_01_missing",
+                        "rule_ref": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
+                        "subject_ref": template_subject,
+                        "binding": raw_before["binding"],
+                        "axis": axis_name,
+                        "state": "missing",
+                        "source_refs": [],
+                        "reason": expected_reason,
+                        "backflow_owner": "knowledge_owner",
+                    }])
+
+                self.assertEqual(raw, raw_before)
+                self.assertEqual(validated, validated_before)
+
 
 if __name__ == "__main__":
     unittest.main()
