@@ -60,7 +60,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/0/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-DESIGN_INPUT-MISSING",
@@ -77,7 +78,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/1/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-PREMISE-MISSING",
@@ -94,7 +96,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/2/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-CONSTRAINT-MISSING",
@@ -111,7 +114,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/3/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-RELATED_PATTERN-MISSING",
@@ -128,7 +132,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/4/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-EVIDENCE-MISSING",
@@ -145,7 +150,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/5/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-KNOWLEDGE_REF-MISSING",
@@ -162,7 +168,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/6/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-DEPENDENCIES-MISSING",
@@ -179,7 +186,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/7/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-UNKNOWN-PART-ENDPOINT",
@@ -196,7 +204,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/8/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F01-NAME-SIMILARITY-AS-DEPENDENCY",
@@ -213,7 +222,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/9/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-BIDIRECTIONAL-VALUE-UNSET",
@@ -230,7 +240,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/10/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-PROVIDED_FORWARD-INPUT-A-MISSING",
@@ -247,7 +258,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/11/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-PROVIDED_REVERSE-OBLIGATION-INPUT-MISSING",
@@ -264,7 +276,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/12/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-PROVIDED_FORWARD-DEP-1-MISSING",
@@ -281,7 +294,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/13/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-PROVIDED_REVERSE-OBLIGATION-DEPENDENCY-MISSING",
@@ -298,7 +312,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/14/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-KNOWLEDGE_REVISION-FOREIGN-JOIN",
@@ -315,7 +330,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/15/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-SCOPE-FOREIGN-JOIN",
@@ -332,7 +348,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/16/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-INPUT-UNFULFILLED-DISTINCT-FROM-VALUE-UNSET",
@@ -349,7 +366,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/17/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-VALUE_NA_CLAIM",
@@ -366,7 +384,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/18/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F02-COMPLETE_CLAIM",
@@ -383,7 +402,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/19/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-THREE-DERIVATION-INPUTS-OWNER",
@@ -400,7 +420,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/20/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-SCHEDULE-BRAIN-DECIDED",
@@ -417,7 +438,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/21/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-STATE_TRANSITION-BRAIN-DECIDED",
@@ -434,7 +456,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/22/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-IMPLEMENTATION_PRIORITY-BRAIN-DECIDED",
@@ -451,7 +474,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/23/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-ARRIVAL_COMPLETE",
@@ -468,7 +492,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/24/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F03-PRODUCT_VALUE_INVENTED",
@@ -485,7 +510,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/25/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-SELECTED-MEANING-RECEIVER-CONTRACTS",
@@ -502,7 +528,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/26/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN003-MISSING",
@@ -519,7 +546,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/27/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN003-UNKNOWN",
@@ -536,7 +564,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/28/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN005-MISSING",
@@ -553,7 +582,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/29/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN005-UNKNOWN",
@@ -570,7 +600,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/30/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN008-MISSING",
@@ -587,7 +618,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/31/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-BRAIN008-UNKNOWN",
@@ -604,7 +636,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/32/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-HARNESS009-MISSING",
@@ -621,7 +654,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/33/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-HARNESS009-UNKNOWN",
@@ -638,7 +672,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/34/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-UNKNOWN-MEANING-AS-CONFIRMED",
@@ -655,7 +690,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/35/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-F04-RECEIVER-METHOD-INVENTED-AS-COMPLETE",
@@ -672,7 +708,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/36/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-JSON-STRUCTURE-CORE-DERIVATION-OS-RECORD",
@@ -689,7 +726,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/37/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-BRAIN-PRODUCT-DESIGN",
@@ -706,7 +744,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/38/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-OS-KNOWLEDGE-AUTHORITY",
@@ -723,7 +762,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/39/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-CLAIMS_ACTUAL_PYTHON",
@@ -740,7 +780,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/40/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-CLAIMS_FORMAL_SCHEMA",
@@ -757,7 +798,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/41/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-CLAIMS_IMPLEMENTATION",
@@ -774,7 +816,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/42/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-CLAIMS_SUPPLY_AUTHORIZES_IMPLEMENTATION",
@@ -791,7 +834,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/43/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     },
     {
       "case_id": "B022-B01-VIEW-AS-JSON-MEANING",
@@ -808,7 +852,8 @@
         "revision": "90ba0939ac18eeda0a3469794c0db9828221afbd",
         "pointer": "/supplemental_correction_history/44/final_assessment",
         "role": "補助比較値の根拠。"
-      }
+      },
+      "revision": "7c54705a796fe6ed699455a85df9b2feaed6e4d3"
     }
   ],
   "local_probes": [
