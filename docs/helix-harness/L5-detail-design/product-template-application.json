@@ -2055,7 +2055,7 @@
         "legacy_l8_pointer": "/normal_function_oracles/9",
         "legacy_context_type": "CheckApplicationClaimsContext",
         "legacy_output_type": "Comparison",
-        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/9）と原負例6件（/cases/10/negative_cases）・追加単体4件（ADD-21〜24）およびfn9 original_axes helper oracleはBとして保持する。CheckApplicationClaimsDetailedContext->CoreComparisonの詳細引数（F05DetailedReturn・F06 correspondence_issues連携）のL5/L8対照とfn9の関数別pair凍結はA（D-H009-T3b）へ渡し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/9）と原負例6件（/cases/10/negative_cases）・追加単体1件（ADD-21）およびfn9 original_axes helper oracleはBとして保持する。CheckApplicationClaimsDetailedContext->CoreComparisonの詳細引数（F05DetailedReturn・F06 correspondence_issues連携）のL5/L8対照とfn9の関数別pair凍結はA（D-H009-T3b）へ渡し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
       },
       "knowledge_correspondence_consumer_binding": {
         "reads": "native_context.compare_selected_knowledgeの同operation実Comparison.materialを、更新されたKnowledgeUseMaterialとして読む。correspondence_issuesがpresentなら原列を保持し、absentなら旧入力の意味を維持する。fn0 input_issues又はF05 private Causeだと称さない。",
