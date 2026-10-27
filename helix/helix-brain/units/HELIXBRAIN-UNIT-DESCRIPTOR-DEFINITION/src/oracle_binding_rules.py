@@ -105,6 +105,13 @@ def compare_oracle_and_view_boundary_detail(context, frame):
     if not isinstance(evaluation, dict) or set(evaluation) != {"comparison", "assessments"}:
         _stop("oracle_evaluation")
     original_axes = context["definitions"]["axes"]
+    from oracle_finite_carry import is_zero_operand_carry
+
+    if is_zero_operand_carry(raw):
+        return _comparison(
+            write_oracle_axes(original_axes, []), [],
+            "compare_oracle_and_view_boundary", binding,
+        )
     predicate_axes = []
     findings = []
     oracle_bindings = raw["oracle_bindings"] if "oracle_bindings" in raw else []
