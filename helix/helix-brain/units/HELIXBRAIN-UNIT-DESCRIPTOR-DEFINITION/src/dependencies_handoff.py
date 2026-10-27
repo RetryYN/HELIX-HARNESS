@@ -492,7 +492,7 @@ def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> 
                 "backflow_owner": None,
             })
 
-    handoff_records = raw.get("handoff_records")
+    handoff_records = raw["handoff_records"] if "handoff_records" in raw else []
     if not isinstance(handoff_records, list):
         raise _unsupported("F09/B02", "handoff_records_shape", "handoff_records must be an array")
     for index, record in enumerate(handoff_records):
