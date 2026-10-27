@@ -294,7 +294,7 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
         self._assert_stop(raw, "F01/F02/unclosed/applicability_supplied_ref:")
 
     def test_supplied_meaning_operation_carrier_stops_at_reader_id(self):
-        """A typed carrier array remains an unclosed reader branch, not empty support."""
+        """An explicit empty carrier has zero occurrences and preserves unknown meaning."""
         raw = trace_input()
         source = raw["sources"][0]
         original_ref = copy.deepcopy(source["ref"])
@@ -311,7 +311,23 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
                 copy.deepcopy(updated_ref) if ref == original_ref else ref
                 for ref in record["provenance_refs"]
             ]
-        self._assert_stop(raw, "F01/F02/unclosed/definition_meaning_operations_unclosed:")
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["unusable_source_refs"], [])
+        validated_before = copy.deepcopy(validated)
+        walk = evaluate_descriptor_definition_walk({"validated": validated})
+        reads = walk["native_material"]["meaning_reads"]
+        self.assertEqual(len(reads), 15)
+        for read in reads:
+            self.assertEqual(read["acquisition_state"], "unknown")
+            self.assertEqual(read["occurrences"], [])
+            self.assertEqual(read["supports"], [])
+            self.assertEqual(read["problems"], [])
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
+        self.assertIn("definition_meaning_operations", raw["sources"][0]["content"])
+        self.assertEqual(raw["sources"][0]["content"]["definition_meaning_operations"], [])
 
 
 if __name__ == "__main__":
