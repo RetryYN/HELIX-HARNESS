@@ -316,6 +316,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "各代替と反例/限界を保持し採用0。",
      "expected_classification": "candidate_as_absolute_choice",
      "expected_axis": "product_selection_claim",
      "expected_state": "conflict",
@@ -357,6 +358,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "知識受領/適用/記録を独立軸。",
      "expected_classification": "receipt_as_product_discharge",
      "expected_axis": "obligation_discharge_claim",
      "expected_state": "unknown",
@@ -382,6 +384,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "案件N/A理由/判定者/revision/再評価条件を推定しない。",
      "expected_classification": "receipt_as_na",
      "expected_axis": "applicability_claim",
      "expected_state": "unknown",
@@ -422,6 +425,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "label一致で意味同一にしない。両sourceを保持。",
      "expected_classification": "descriptor_meaning_collision",
      "expected_axis": "descriptor.definition",
      "expected_state": "conflict",
@@ -442,6 +446,7 @@
       "synthetic_value": null,
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "kind/方向/残る端を保持し、関係完全としない。",
      "expected_classification": "relation_endpoint_missing",
      "expected_axis": "relation.definition",
      "expected_state": "missing",
@@ -462,6 +467,7 @@
       "synthetic_value": null,
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "端の名前類似から方向を生成しない。",
      "expected_classification": "relation_direction_missing",
      "expected_axis": "relation.definition",
      "expected_state": "missing",
@@ -489,6 +495,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "原HARNESS参照を保持し、BRAINの再定義を成立結果にしない。",
      "expected_classification": "harness_contract_redefined",
      "expected_axis": "harness_contract",
      "expected_state": "conflict",
@@ -528,6 +535,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元項目missing、別Pattern成功を相殺にしない。",
      "expected_classification": "cross_pattern_section_substitution",
      "expected_axis": "required section.definition",
      "expected_state": "missing",
@@ -552,6 +560,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元項目missing、field単位の不足を保持。",
      "expected_classification": "cross_pattern_field_substitution",
      "expected_axis": "required field.definition",
      "expected_state": "missing",
@@ -570,6 +579,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "template identity"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_01_missing",
      "expected_axis": "template identity.definition",
      "expected_state": "missing",
@@ -589,6 +599,7 @@
       "target_descriptor_kind": "template identity",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_01_undefined",
      "expected_axis": "template identity.definition",
      "expected_state": "unknown",
@@ -609,6 +620,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_01_contradictory",
      "expected_axis": "template identity.definition",
      "expected_state": "conflict",
@@ -627,6 +639,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "version"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_02_missing",
      "expected_axis": "version.definition",
      "expected_state": "missing",
@@ -646,6 +659,7 @@
       "target_descriptor_kind": "version",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_02_undefined",
      "expected_axis": "version.definition",
      "expected_state": "unknown",
@@ -666,6 +680,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_02_contradictory",
      "expected_axis": "version.definition",
      "expected_state": "conflict",
@@ -684,6 +699,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "layer/pair"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_03_missing",
      "expected_axis": "layer/pair.definition",
      "expected_state": "missing",
@@ -703,6 +719,7 @@
       "target_descriptor_kind": "layer/pair",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_03_undefined",
      "expected_axis": "layer/pair.definition",
      "expected_state": "unknown",
@@ -723,6 +740,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_03_contradictory",
      "expected_axis": "layer/pair.definition",
      "expected_state": "conflict",
@@ -741,6 +759,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "applicability"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_04_missing",
      "expected_axis": "applicability.definition",
      "expected_state": "missing",
@@ -760,6 +779,7 @@
       "target_descriptor_kind": "applicability",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_04_undefined",
      "expected_axis": "applicability.definition",
      "expected_state": "unknown",
@@ -780,6 +800,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_04_contradictory",
      "expected_axis": "applicability.definition",
      "expected_state": "conflict",
@@ -798,6 +819,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "required input"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_05_missing",
      "expected_axis": "required input.definition",
      "expected_state": "missing",
@@ -817,6 +839,7 @@
       "target_descriptor_kind": "required input",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_05_undefined",
      "expected_axis": "required input.definition",
      "expected_state": "unknown",
@@ -837,6 +860,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_05_contradictory",
      "expected_axis": "required input.definition",
      "expected_state": "conflict",
@@ -855,6 +879,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "required section"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_06_missing",
      "expected_axis": "required section.definition",
      "expected_state": "missing",
@@ -874,6 +899,7 @@
       "target_descriptor_kind": "required section",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_06_undefined",
      "expected_axis": "required section.definition",
      "expected_state": "unknown",
@@ -894,6 +920,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_06_contradictory",
      "expected_axis": "required section.definition",
      "expected_state": "conflict",
@@ -912,6 +939,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "required field"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_07_missing",
      "expected_axis": "required field.definition",
      "expected_state": "missing",
@@ -931,6 +959,7 @@
       "target_descriptor_kind": "required field",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_07_undefined",
      "expected_axis": "required field.definition",
      "expected_state": "unknown",
@@ -951,6 +980,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_07_contradictory",
      "expected_axis": "required field.definition",
      "expected_state": "conflict",
@@ -969,6 +999,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "relation"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_08_missing",
      "expected_axis": "relation.definition",
      "expected_state": "missing",
@@ -988,6 +1019,7 @@
       "target_descriptor_kind": "relation",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_08_undefined",
      "expected_axis": "relation.definition",
      "expected_state": "unknown",
@@ -1008,6 +1040,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_08_contradictory",
      "expected_axis": "relation.definition",
      "expected_state": "conflict",
@@ -1026,6 +1059,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "意味owner"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_09_missing",
      "expected_axis": "意味owner.definition",
      "expected_state": "missing",
@@ -1045,6 +1079,7 @@
       "target_descriptor_kind": "意味owner",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_09_undefined",
      "expected_axis": "意味owner.definition",
      "expected_state": "unknown",
@@ -1065,6 +1100,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_09_contradictory",
      "expected_axis": "意味owner.definition",
      "expected_state": "conflict",
@@ -1083,6 +1119,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "trace"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_10_missing",
      "expected_axis": "trace.definition",
      "expected_state": "missing",
@@ -1102,6 +1139,7 @@
       "target_descriptor_kind": "trace",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_10_undefined",
      "expected_axis": "trace.definition",
      "expected_state": "unknown",
@@ -1122,6 +1160,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_10_contradictory",
      "expected_axis": "trace.definition",
      "expected_state": "conflict",
@@ -1140,6 +1179,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "negative oracle"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_11_missing",
      "expected_axis": "negative oracle.definition",
      "expected_state": "missing",
@@ -1159,6 +1199,7 @@
       "target_descriptor_kind": "negative oracle",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_11_undefined",
      "expected_axis": "negative oracle.definition",
      "expected_state": "unknown",
@@ -1179,6 +1220,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_11_contradictory",
      "expected_axis": "negative oracle.definition",
      "expected_state": "conflict",
@@ -1197,6 +1239,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "measurement"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_12_missing",
      "expected_axis": "measurement.definition",
      "expected_state": "missing",
@@ -1216,6 +1259,7 @@
       "target_descriptor_kind": "measurement",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_12_undefined",
      "expected_axis": "measurement.definition",
      "expected_state": "unknown",
@@ -1236,6 +1280,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_12_contradictory",
      "expected_axis": "measurement.definition",
      "expected_state": "conflict",
@@ -1254,6 +1299,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "completion"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_13_missing",
      "expected_axis": "completion.definition",
      "expected_state": "missing",
@@ -1273,6 +1319,7 @@
       "target_descriptor_kind": "completion",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_13_undefined",
      "expected_axis": "completion.definition",
      "expected_state": "unknown",
@@ -1293,6 +1340,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_13_contradictory",
      "expected_axis": "completion.definition",
      "expected_state": "conflict",
@@ -1311,6 +1359,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "downstream kind"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_14_missing",
      "expected_axis": "downstream kind.definition",
      "expected_state": "missing",
@@ -1330,6 +1379,7 @@
       "target_descriptor_kind": "downstream kind",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_14_undefined",
      "expected_axis": "downstream kind.definition",
      "expected_state": "unknown",
@@ -1350,6 +1400,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_14_contradictory",
      "expected_axis": "downstream kind.definition",
      "expected_state": "conflict",
@@ -1368,6 +1419,7 @@
       "operation": "remove_slot",
       "target_descriptor_kind": "supersession"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_15_missing",
      "expected_axis": "supersession.definition",
      "expected_state": "missing",
@@ -1387,6 +1439,7 @@
       "target_descriptor_kind": "supersession",
       "retain": "qualified source/binding/owner/slot"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_15_undefined",
      "expected_axis": "supersession.definition",
      "expected_state": "unknown",
@@ -1407,6 +1460,7 @@
       "retain": "same subject/revision/scope; two qualified owner facts",
       "comparison": "qualified independent MeaningComparison.equivalent=false"
      },
+     "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。",
      "expected_classification": "descriptor_15_contradictory",
      "expected_axis": "supersession.definition",
      "expected_state": "conflict",
@@ -1446,6 +1500,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "definitionと元value不足を保全。",
      "expected_classification": "unknown_as_na",
      "expected_axis": "field.value",
      "expected_state": "unknown",
@@ -1469,6 +1524,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "定義missingの戻し先をCORE値不足へ付替えない。",
      "expected_classification": "definition_as_value_gap",
      "expected_axis": "field.definition",
      "expected_state": "missing",
@@ -1492,6 +1548,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "N/A理由を創作しない。",
      "expected_classification": "applicability_unknown_as_na",
      "expected_axis": "applicability.evaluation",
      "expected_state": "unknown",
@@ -1516,6 +1573,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "各fieldの原適用条件/根拠を個別保持。",
      "expected_classification": "section_na_all_fields",
      "expected_axis": "field.applicability",
      "expected_state": "unknown",
@@ -1553,6 +1611,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "未評価、同名source/latest補完0。",
      "expected_classification": "source_missing",
      "expected_axis": "source",
      "expected_state": "missing",
@@ -1573,6 +1632,7 @@
       "synthetic_value": null,
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "knowledge/pack版を代替しない。",
      "expected_classification": "version_missing",
      "expected_axis": "template.version",
      "expected_state": "missing",
@@ -1593,6 +1653,7 @@
       "synthetic_value": null,
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "他scopeへ補完せず未評価。",
      "expected_classification": "scope_missing",
      "expected_axis": "scope",
      "expected_state": "missing",
@@ -1616,6 +1677,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "当該利用を許さない。既存compatibility_unknown / compatibility / unknown分類を保つ。source_refの明示nullについてL4（eada100ebff0bb10006ede2745bebec065a1d0fd、docs/helix-brain/L4-basic-design/template-semantic-supply.json#/identity_version_trace_contract/read_branch_contracts/bilateral/finite_cause_precedence/ordered_cases/0）が定めるcause文字列null（JSON nullではない）を保持し、left_owner_unprovided/right_owner_unprovidedで上書きしない。fixtureの供給済みreason（#/fixture_contract/normal_control/input/compatibility_records/0/reason）は原値を保ち、L4の#/identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/compatibility_material/original_record_reasonsに従い原record順で保持する。公開Refは同L4の#/identity_version_trace_contract/public_projection/axis_reason_writer/refs_order/bilateral順とし、nullのsource_refを列へ加えず原recordに保持する。",
      "expected_classification": "compatibility_unknown",
      "expected_axis": "compatibility",
      "expected_state": "unknown",
@@ -1639,6 +1701,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "最新や別candidate成功で補わない。",
      "expected_classification": "compatibility_mismatch",
      "expected_axis": "compatibility",
      "expected_state": "conflict",
@@ -1659,6 +1722,7 @@
       "synthetic_value": "synthetic-other-revision",
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元oracleと期待revisionを残す。",
      "expected_classification": "oracle_revision_mismatch",
      "expected_axis": "oracle.binding",
      "expected_state": "conflict",
@@ -1683,6 +1747,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "画像からidentity/版を採番しない。",
      "expected_classification": "image_identity_inference",
      "expected_axis": "template.identity",
      "expected_state": "unknown",
@@ -1707,6 +1772,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "tool nodeを意味revisionへ変換しない。",
      "expected_classification": "tool_node_identity_inference",
      "expected_axis": "template.version",
      "expected_state": "unknown",
@@ -1733,6 +1799,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "原別identity保持。",
      "expected_classification": "filename_identity_join",
      "expected_axis": "identity_claim",
      "expected_state": "conflict",
@@ -1759,6 +1826,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "能力版印と実artifact版を分ける。",
      "expected_classification": "version_target_as_actual",
      "expected_axis": "template.version_claim",
      "expected_state": "conflict",
@@ -1770,6 +1838,7 @@
      "id": "HELIXBRAIN-L8-032-F04-NEG-11",
      "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
      "change": "L4有限I1a P15 caseのsupplied empty KnowledgeRecord collectionをfn3 Comparisonへ追随",
+     "expected": "L4（16e7728005ed02e2e9c03038ac2ce948f1f9024e、docs/helix-brain/L4-basic-design/template-semantic-supply.json#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_zero_knowledge_record）の原条件を使う。fn3はComparisonだけを返しIdentityTraceReturn wrapperは対象外。actual_owner_body_unprovidedを既存順序で先行して保持し、knowledge.operational_stateを含むactual側とdescriptor.trace側を混同せず、後者はknowledge_unresolved、両方unknown。supplied []はabsent/null/N/Aではなく、original refs/orderを保つ。record/provenance chain・資格成立・source_missing・新Findingを生成しない。",
      "backflow_owner": "knowledge_owner",
      "expected_side_effect_count": 0,
      "execution_state": "not_executed"
@@ -1779,6 +1848,7 @@
      "integration_case_ref": "HELIXBRAIN-L9-032-I1B-EQUAL-RECORDS",
      "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
      "change": "L4有限I1bの同一KnowledgeRecord二出現をfn3 Comparisonへ追随",
+     "expected": "先頭選択や原出現消失を落とす反例としてnegative_casesに置く。L4（ef0e0ddf5d18acbb28c036e0eb63c4bb1f4e5a48、docs/helix-brain/L4-basic-design/template-semantic-supply.json#/identity_version_trace_contract/public_projection/axis_reason_writer/finite_equal_knowledge_record_repetition）の条件に限る。KnowledgeRecordはちょうど2件でfull Refが同じBindingへ対応し、全値一致する。各traceは両record indexを保持し、各record一つのcorresponding pairは同じsource/Q/rootの原indexを共有する。fn3の公開結果はComparisonのみ。actual Refは既存subjectを先頭に保持し、identity/revisionでは各実record Refを原record順、operational_state refsは各provenance Refをrecord/provenance順に保ち、trace refsは共通3 Refを一度と各chain既存6 Refを原順に連結し計15 Ref。公開descriptor.traceのreason material.trace_occurrencesは原index対を保持した2要素で、先頭へ丸めない。非対応provenanceを含む内部readの原出現は切り詰めない不変条件を保ち、private配列全体が公開返却されることは期待しない。同値複写から新Finding/witnessを作らない。これは複数axis/stateにまたがる性質のため単一enum欄を持たない。",
      "backflow_owner": "knowledge_owner",
      "expected_side_effect_count": 0,
      "execution_state": "not_executed"
@@ -1815,6 +1885,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "表示生成成功でも原missing保持。",
      "expected_classification": "view_measurement_repair",
      "expected_axis": "measurement.definition",
      "expected_state": "missing",
@@ -1839,6 +1910,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "JSONの項目をviewから更新しない。",
      "expected_classification": "view_completion_repair",
      "expected_axis": "completion.definition",
      "expected_state": "missing",
@@ -1865,6 +1937,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元JSONと原stateを保持、write0。",
      "expected_classification": "view_as_semantic_update",
      "expected_axis": "meaning_update_claim",
      "expected_state": "conflict",
@@ -1900,6 +1973,7 @@
       "synthetic_value": "synthetic-unrelated-obligation",
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "義務/oracleの相違を返す。",
      "expected_classification": "unrelated_measurement",
      "expected_axis": "measurement.binding",
      "expected_state": "conflict",
@@ -1920,6 +1994,7 @@
       "synthetic_value": "synthetic-other-revision",
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "当該成立条件未成立、project消込0。",
      "expected_classification": "completion_oracle_revision",
      "expected_axis": "completion.binding",
      "expected_state": "conflict",
@@ -1945,6 +2020,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "対oracleによる成立を推定しない。",
      "expected_classification": "generation_as_completion",
      "expected_axis": "completion.definition",
      "expected_state": "unknown",
@@ -1969,6 +2045,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "定義knownと案件値unknownを別に返す。",
      "expected_classification": "threshold_fabricated",
      "expected_axis": "measurement.value",
      "expected_state": "unknown",
@@ -2010,6 +2087,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元製品値はCORE材料へ残し、汎用化成立にしない。",
      "expected_classification": "product_values_as_generic",
      "expected_axis": "generic_definition",
      "expected_state": "conflict",
@@ -2034,6 +2112,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "候補提供とCORE採用を分離。",
      "expected_classification": "brain_selects_template",
      "expected_axis": "product_selection_claim",
      "expected_state": "conflict",
@@ -2058,6 +2137,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "既存要求authorityを代行しない。",
      "expected_classification": "brain_agrees_requirements",
      "expected_axis": "requirements_agreement_claim",
      "expected_state": "conflict",
@@ -2082,6 +2162,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "completion定義と案件完成を区別。",
      "expected_classification": "brain_finishes_design",
      "expected_axis": "design_completion_claim",
      "expected_state": "conflict",
@@ -2106,6 +2187,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "OS記録write/消込0。",
      "expected_classification": "brain_closes_obligation",
      "expected_axis": "obligation_discharge_claim",
      "expected_state": "conflict",
@@ -2149,6 +2231,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "候補生成と運用採否を別軸。",
      "expected_classification": "generation_as_promotion",
      "expected_axis": "promotion",
      "expected_state": "unknown",
@@ -2172,6 +2255,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "不足scopeと既存採否ownerを返す。",
      "expected_classification": "evaluation_scope_missing",
      "expected_axis": "promotion",
      "expected_state": "unknown",
@@ -2195,6 +2279,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元運用stateを保持。",
      "expected_classification": "independent_verification_missing",
      "expected_axis": "promotion",
      "expected_state": "unknown",
@@ -2220,6 +2305,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "内容採否と運用stateは別。",
      "expected_classification": "limited_content_as_promotion",
      "expected_axis": "promotion_claim",
      "expected_state": "conflict",
@@ -2258,6 +2344,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "definition保持、未受領と定義不足を分離。",
      "expected_classification": "receipt_as_definition",
      "expected_axis": "handoff",
      "expected_state": "not_received",
@@ -2282,6 +2369,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "選択scope/sourceの元欠落を残す。",
      "expected_classification": "selected_source_substitution",
      "expected_axis": "selected_source",
      "expected_state": "missing",
@@ -2305,6 +2393,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "限定内容採択と参考資料を分ける。",
      "expected_classification": "reference_as_authority",
      "expected_axis": "authority_claim",
      "expected_state": "conflict",
@@ -2329,6 +2418,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元required欠落を保持。",
      "expected_classification": "reference_as_required_definition",
      "expected_axis": "descriptor.definition",
      "expected_state": "missing",
@@ -2352,6 +2442,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "未受領でも局所候補提供を継続。",
      "expected_classification": "future_receipt_as_precondition",
      "expected_axis": "precondition_claim",
      "expected_state": "conflict",
@@ -2378,6 +2469,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "未観測保持、評価成功0。",
      "expected_classification": "unselected_source_success",
      "expected_axis": "unselected_source",
      "expected_state": "unobserved",
@@ -2440,6 +2532,7 @@
       "synthetic_value": "synthetic-other-knowledge-revision",
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "template/knowledge/sourceの原組を保持。",
      "expected_classification": "mixed_knowledge_revision",
      "expected_axis": "descriptor.trace",
      "expected_state": "conflict",
@@ -2463,6 +2556,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "原旧revision/sourceと明示supersession不足を保全し、latestで同一意味にしない。",
      "expected_classification": "silent_supersession",
      "expected_axis": "descriptor.trace",
      "expected_state": "conflict",
@@ -2502,6 +2596,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "不足identity/理由を保持。",
      "expected_classification": "missing_as_empty",
      "expected_axis": "descriptor.definition",
      "expected_state": "missing",
@@ -2526,6 +2621,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元revision/sourceを返す。",
      "expected_classification": "unknown_fallback",
      "expected_axis": "descriptor.definition",
      "expected_state": "unknown",
@@ -2552,6 +2648,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "意味不足を相殺しない。",
      "expected_classification": "hash_as_complete",
      "expected_axis": "completion_claim",
      "expected_state": "unknown",
@@ -2579,6 +2676,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元各状態を維持。",
      "expected_classification": "lower_green_as_complete",
      "expected_axis": "completion_claim",
      "expected_state": "unknown",
@@ -2602,6 +2700,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_missing",
      "expected_axis": "descriptor.definition",
      "expected_state": "missing",
@@ -2625,6 +2724,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_unknown",
      "expected_axis": "field.value",
      "expected_state": "unknown",
@@ -2649,6 +2749,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_conflict",
      "expected_axis": "descriptor.definition",
      "expected_state": "conflict",
@@ -2673,6 +2774,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_not_applicable",
      "expected_axis": "field.applicability",
      "expected_state": "not_applicable",
@@ -2696,6 +2798,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_unobserved",
      "expected_axis": "unselected_source",
      "expected_state": "unobserved",
@@ -2719,6 +2822,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。",
      "expected_classification": "state_preservation_not_received",
      "expected_axis": "handoff",
      "expected_state": "not_received",
@@ -2759,6 +2863,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "値/根拠/operation owner未決保持。",
      "expected_classification": "fixture_timeout_default",
      "expected_axis": "operation_value",
      "expected_state": "unknown",
@@ -2784,6 +2889,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "実資源未供給を維持。",
      "expected_classification": "fixture_cpu_default",
      "expected_axis": "resource_value",
      "expected_state": "unknown",
@@ -2809,6 +2915,7 @@
       },
       "notation": "logical fixture construction plan; selectors resolve fixture refs, not runtime field-path operators"
      },
+     "expected": "fixtureと実計測を区別。",
      "expected_classification": "fixture_memory_default",
      "expected_axis": "resource_value",
      "expected_state": "unknown",
@@ -2859,6 +2966,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-01",
    "name": "raw-input-shape-invalid",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "SupplyInputを文字列へ置換",
    "expected_observation": "input=null; raw所在InputIssue保存; 意味成功なし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2867,6 +2975,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-02",
    "name": "semantic-null-through",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "decode可能slotのmeaningをnullへ置換",
    "expected_observation": "input保持。descriptor definition unknownまで到達しshapeエラーで隠さない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2875,6 +2984,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-03",
    "name": "descriptor-array-missing",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "descriptors keyを除き独立15 required kinds保持",
    "expected_observation": "当該15slot不足が可視。[]default/completeなし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2883,6 +2993,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-04",
    "name": "source-bytes-mismatch",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "source.ref.sha256を別digestへ置換し元bytes保持",
    "expected_observation": "原source unusable。関連meaningはunknown。無関係sourceは保持",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2891,6 +3002,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-05",
    "name": "source-body-mismatch",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "contentを変えcontent_bytes/digestはそのまま保持",
    "expected_observation": "元bytesdecodeとbody不一致InputIssue。改竄bodyでknownなし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2899,6 +3011,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-06",
    "name": "qualification-unresolved",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "qualification_refだけ未供給rootへ置換",
    "expected_observation": "digest一致でも意味資格なし。原facts保存し関連axis unknown",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2907,6 +3020,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-07",
    "name": "qualification-wrong-scope",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "qualification適用scopeだけ別tenantへ置換",
    "expected_observation": "別scope資格を当該meaningへ使わない。資格不足保持",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2915,6 +3029,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-08",
    "name": "conflicting-sources-preserved",
    "function_ref": "HELIXBRAIN-L5-032-validate_supply_input",
+   "typed_mutation_plan": "同項目/版の異source意味factsと独立相反比較を追加",
    "expected_observation": "入力duplicateで削除せず相反比較へ渡す",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2923,6 +3038,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-09",
    "name": "missing-facts-versus-empty",
    "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+   "typed_mutation_plan": "slot.facts=nullと[]を別fixtureで確認",
    "expected_observation": "両方の不足所在を保持。slot carrierだけでknownなし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2931,6 +3047,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-10",
    "name": "unqualified-conflict-not-proven",
    "function_ref": "HELIXBRAIN-L5-032-compare_descriptor_definitions",
+   "typed_mutation_plan": "第二意味source資格を未供給にし相反比較は保持",
    "expected_observation": "未資格の推測を確定conflictへ昇格しない。原knownと未評価根拠を分離",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2939,6 +3056,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-11",
    "name": "field-na-grounded",
    "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+   "typed_mutation_plan": "同field/revision/scopeのCORE理由/再評価付きN/Aを供給",
    "expected_observation": "固定normal入力とこの構築計画は、現F03の原owner/field定義・適用性carrierを具体化していない。根拠付きN/Aとdefinition knownを成立させず、各fieldのdefinition_unknown、案件値unknown、適用性unknownを元field・knowledge版・不足理由と分離して保持する。CORE理由/再評価を供給するという計画文だけでは原source支持にならない。これは未形成sourceの局所期待であり、実入力・全返却を凍結した根拠付きN/Aの正例ではない。案件採用の実作用なし。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2947,6 +3065,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-12",
    "name": "unknown-value-locality",
    "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+   "typed_mutation_plan": "field値をnullへ変え定義原facts保持",
    "expected_observation": "固定normal入力は現F03の原field定義/値/適用性carrierを供給していない。計画上の値null化でその不足を解消せず、definition_unknown、field.value unknown、適用性unknownを別に保持する。旧source内の定義factや他field値を現carrierのknown/suppliedへ読み替えない。nullと未供給の原値は区別して保存する。これは未形成sourceの局所期待で、値だけ未決という単独欠陥や他field供給済みを証明しない。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2955,6 +3074,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-13",
    "name": "pack-version-independent",
    "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+   "typed_mutation_plan": "pack_artifact_versionだけ変更しqualified互換根拠供給",
    "expected_observation": "template/knowledge版と計画version_targetは不変。互換原根拠ごとの結果",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2963,6 +3083,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-14",
    "name": "explicit-supersession-history",
    "function_ref": "HELIXBRAIN-L5-032-compare_identity_versions_and_trace",
+   "typed_mutation_plan": "明示old/new relationを追加し旧traceも保持",
    "expected_observation": "旧新relationは返すがold refsをlatestへ更新しない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2971,6 +3092,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-15",
    "name": "display-only-change",
    "function_ref": "HELIXBRAIN-L5-032-compare_oracle_and_view_boundary",
+   "typed_mutation_plan": "derived viewだけ追加してsemantic source不変",
    "expected_observation": "原意味/版/knowledge state不変。viewは表示材料のみ",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2979,6 +3101,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-16",
    "name": "limited-adoption-no-operational-claim",
    "function_ref": "HELIXBRAIN-L5-032-compare_knowledge_promotion",
+   "typed_mutation_plan": "限定意味採択refを追加し運用stateはcandidateのまま",
    "expected_observation": "限定内容採否とoperational state分離。昇格実行なし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2987,6 +3110,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-17",
    "name": "local-without-receipt",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": "core_return_requested=false; handoff not_received",
    "expected_observation": "局所意味供給を可能としnot_received保持。定義missingにしない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -2995,6 +3119,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-18",
    "name": "core-return-condition",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": "core_return_requested=true; 019/022/030 exact refs供給",
    "expected_observation": "CORE返却材料を比較。相手完了receipt/OS義務成立を要求しない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3003,6 +3128,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-19",
    "name": "labo-selected-source-gap",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": "labo_evaluation_selected=true; 選択evaluation scope/source欠落",
    "expected_observation": "当該選択evaluationの不足を返し非選択sourceで代替なし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3011,6 +3137,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-20",
    "name": "claim-original-axis-separation",
    "function_ref": "HELIXBRAIN-L5-032-compare_claim_boundaries",
+   "typed_mutation_plan": "原definition knownに根拠なし設計完了claim追加",
    "expected_observation": "claim conflict、原definition known。claimで原axis更新なし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3019,6 +3146,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-21",
    "name": "partial-candidate-locality",
    "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+   "typed_mutation_plan": "別qualified candidateを追加しcandidate-Aのみsource不足",
    "expected_observation": "Aの不足とBの局所比較結果が別bindingで可視。全体成功/全体停止の代理なし",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3027,6 +3155,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-22",
    "name": "input-order-invariance",
    "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+   "typed_mutation_plan": "全配列入力を逆順にし同snapshot維持",
    "expected_observation": "原refsの意味集合/分類/返却owner/候補集合が一致。入力位置はauthorityでない",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3035,6 +3164,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-23",
    "name": "effect-free-output",
    "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+   "typed_mutation_plan": "正常controlを評価し入力を前後比較",
    "expected_observation": "入力不変、DB/fs/network/clockアクセスなし、side_effect_count=0。実観測未実施",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3043,6 +3173,7 @@
    "id": "HELIXBRAIN-L8-032-ADD-24",
    "name": "wrong-comparison-binding",
    "function_ref": "HELIXBRAIN-L5-032-build_supply_analysis",
+   "typed_mutation_plan": "依存Comparison.input_bindingだけ別scopeにする",
    "expected_observation": "別scope結果を統合せずinput_issue/関連未評価を残す。他局所結果保持",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3051,6 +3182,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-07",
    "name": "f09-always-member-omitted",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3059,6 +3193,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-08",
    "name": "f09-always-list-absent",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3067,6 +3204,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-09",
    "name": "f09-core-return-list-absent",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3075,6 +3215,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-10",
    "name": "f09-selector-absent-core_return_requested",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3083,6 +3226,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-11",
    "name": "f09-selector-absent-core_source_selected",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3091,6 +3237,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-12",
    "name": "f09-selector-absent-labo_evaluation_selected",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3099,6 +3248,9 @@
    "id": "HELIXBRAIN-L8-032-ADD-25",
    "name": "known-false-selectors-preserve-unobserved",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 patchを正確なinput_base_pointer値へ適用し、得た同一immutable RawValueをvalidate_supply_inputへ一度渡してValidatedSupplyを得る。その同じValidatedSupplyをDefinitionContext.validatedとしてcompare_descriptor_definitionsへ渡し、返るComparisonをDependencyContext.definitionsへ、同じValidatedSupplyをDependencyContext.validatedへ設定してcompare_dependencies_and_handoffへ渡す。runtime field-path operatorは含意しない。"
+   },
    "expected_observation": "凍結したF09局所結果projectionと一致する。handoffは一致する原recordのliteral state not_receivedを保持する。無関係comparison、handoff、元bindingは保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3107,6 +3259,9 @@
    "id": "HELIXBRAIN-L8-032-ADD-26",
    "name": "core-return-member-missing-does-not-stop-independent-always-or-other-selector",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。"
+   },
    "expected_observation": "CORE返却identity HELIXBRAIN-L2-022の局所missingと、別selector labo_evaluation_selectedの局所unknownを同時に返す。常時5 identityは供給済みで不足なし、CORE返却019/030は残り、未選択sourceはunobserved、handoffはnot_receivedを保つ。",
    "expected_basis": [
     "常時必須5 identityはすべて入力に残る。",
@@ -3122,6 +3277,9 @@
    "id": "HELIXBRAIN-L8-032-F09-NEG-13",
    "name": "knowledge-ref-absent-and-always-member-missing-use-existing-template-diagnostic",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。"
+   },
    "expected_observation": "常時必須identity HELIXBRAIN-L2-005の不足をmissingとして保持する。binding.knowledge_refは欠落のままにし、diagnostic subject_refだけに同じbindingの既存template_refを用いる。既存constructor fallbackはsource_return_verification/cases/18で別の原caseとして検証対象に残り、この最小F09局所入力へ合成しない。",
    "expected_basis": [
     "L3-F09の常時必須identity HELIXBRAIN-L2-005の欠落をmissingとして保持する。",
@@ -3136,6 +3294,9 @@
    "id": "HELIXBRAIN-L8-032-ADD-27",
    "name": "always-required-member-missing-and-independent-selector-unknown",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。"
+   },
    "expected_observation": "常時必須HELIXBRAIN-L2-005のmissingとcore_source_selectedのunknownを別所見として返す。両者を相殺せず、他の明示selectorとhandoff/未選択sourceを保持する。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -3144,6 +3305,9 @@
    "id": "HELIXBRAIN-L8-032-ADD-28",
    "name": "required-member-missing-without-either-binding-subject-ref",
    "function_ref": "HELIXBRAIN-L5-032-compare_dependencies_and_handoff",
+   "typed_mutation_plan": {
+    "notation": "RFC 6902 operationsをinput_base_pointerの原値へ配列順に適用した同一immutable RawValueをvalidate_supply_inputへ一度渡す。得た同じValidatedSupplyをDependencyContext.validatedへ設定し、同じsnapshotからcompare_descriptor_definitionsのComparisonを計算してDependencyContext.definitionsへ渡す。runtime field-path operatorを含意しない。"
+   },
    "expected_observation": "HELIXBRAIN-L2-005は入力always_refsから欠落したまま保持する。binding.template_refとbinding.knowledge_refの両方がobject RefでないためF09 Comparisonのsubject_ref:Ref必須のdependency AxisResult/Findingは形成せず、Refを捏造しない。別の既存constructor経路は同じ入力root bindingの両Ref欠落をlocator=/binding、source_ref=nullのInputIssueとして返し、build_supply_analysisのinput_issuesへ保持する。これはF09 missing AxisResult/Findingではなく、空のF09 dependency projectionも不足解消や成功を意味しない。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed"
@@ -6292,136 +6456,190 @@
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-NORMAL",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-ABSENT",
     "entry_type": "Ref",
+    "raw_utf8": "{}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-NULL",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\":null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-OPAQUE",
     "entry_type": "Ref",
+    "raw_utf8": "{\"scope\":{\"unseen\":{\"state\":\"unknown\",\"n\":9007199254740993}}}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-TYPE",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\":17}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-EXTRA",
     "entry_type": "Ref",
+    "raw_utf8": "{\"accepted\":true}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-DUPLICATE",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\":\"A\",\"identity\":\"B\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-REF-ESCAPED-DUPLICATE",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\":\"A\",\"\\u0069dentity\":\"B\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-UTF8",
     "entry_type": "Ref",
+    "raw_utf8": null,
+    "raw_octets_hex": "7b226964656e74697479223a22ff227d",
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-JSON-TRAILING",
     "entry_type": "Ref",
+    "raw_utf8": "{} {}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-JSON-INCOMPLETE",
     "entry_type": "Ref",
+    "raw_utf8": "{\"identity\":",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-JSON-NAN",
     "entry_type": "Ref",
+    "raw_utf8": "{\"scope\":NaN}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-NORMAL",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\"}, \"content\": {\"meaning\": null, \"opaque\": {\"unseen\": [\"unknown\", null]}}, \"content_bytes\": \"{ \\\"meaning\\\": null, \\\"opaque\\\": {\\\"unseen\\\": [\\\"unknown\\\", null]} }\\n\", \"qualification_ref\": null, \"role\": \"semantic_json\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-BODY",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\"}, \"content\": {\"meaning\": \"conflicting\", \"opaque\": {\"unseen\": [\"unknown\", null]}}, \"content_bytes\": \"{ \\\"meaning\\\": null, \\\"opaque\\\": {\\\"unseen\\\": [\\\"unknown\\\", null]} }\\n\", \"qualification_ref\": null, \"role\": \"semantic_json\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-BYTES",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\"}, \"content\": {\"meaning\": null, \"opaque\": {\"unseen\": [\"unknown\", null]}}, \"content_bytes\": \"{\\\"meaning\\\": null, \\\"opaque\\\": {\\\"unseen\\\": [\\\"unknown\\\", null]}}\", \"qualification_ref\": null, \"role\": \"semantic_json\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-ABSENT",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"role\":\"semantic_json\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-NULL",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"content\":null,\"qualification_ref\":null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-SOURCE-ROLE",
     "entry_type": "QualifiedSource",
+    "raw_utf8": "{\"role\":\"canonical\"}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-QUALIFICATION-NORMAL",
     "entry_type": "Qualification",
+    "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}, \"subject_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\"}, \"subject_sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\", \"applicable_scope\": {\"project\": \"synthetic-only\"}, \"qualification_body\": {\"authority_effect\": \"synthetic fixture only\"}, \"root_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-QUALIFICATION-ROOT-ABSENT",
     "entry_type": "Qualification",
+    "raw_utf8": "{\"ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}, \"subject_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\"}, \"subject_sha256\": \"4bb153ffa05f7959e24a55e69a25747d678679accaf16b2a31befed0f7d8a7d1\", \"applicable_scope\": {\"project\": \"synthetic-only\"}, \"qualification_body\": {\"authority_effect\": \"synthetic fixture only\"}}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-QUALIFICATION-ROOT-NULL",
     "entry_type": "Qualification",
+    "raw_utf8": "{\"root_ref\":null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-INPUT-PRESENCE",
     "entry_type": "SupplyInput",
+    "raw_utf8": "{\"qualification_roots\":[],\"descriptors\":null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-INPUT-ROOTS-NULL",
     "entry_type": "SupplyInput",
+    "raw_utf8": "{\"qualification_roots\":null}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-ANALYSIS-NORMAL",
     "entry_type": "SupplyAnalysis",
+    "raw_utf8": "{\"binding\": {}, \"candidate_refs\": [], \"comparisons\": [{\"axes\": [{\"subject_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"definition\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成wire対照：原定義未決\", \"backflow_owner\": null}], \"findings\": [], \"producer_symbol\": \"compare_descriptor_definitions\", \"input_binding\": {}}], \"input_issues\": [{\"locator\": \"/required_descriptor_kinds\", \"reason\": \"合成wire対照：原必要集合未供給\", \"source_ref\": null}], \"source_refs\": [], \"required_inputs\": [], \"counterexamples\": null, \"limits\": {\"scope\": \"synthetic wire only\"}, \"side_effect_count\": 0}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-ANALYSIS-MISSING",
     "entry_type": "SupplyAnalysis",
+    "raw_utf8": "{\"binding\": {}, \"candidate_refs\": [], \"input_issues\": [{\"locator\": \"/required_descriptor_kinds\", \"reason\": \"合成wire対照：原必要集合未供給\", \"source_ref\": null}], \"source_refs\": [], \"required_inputs\": [], \"counterexamples\": null, \"limits\": {\"scope\": \"synthetic wire only\"}, \"side_effect_count\": 0}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-ANALYSIS-AUTHORITY",
     "entry_type": "SupplyAnalysis",
+    "raw_utf8": "{\"binding\": {}, \"candidate_refs\": [], \"comparisons\": [{\"axes\": [{\"subject_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"definition\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成wire対照：原定義未決\", \"backflow_owner\": null}], \"findings\": [], \"producer_symbol\": \"compare_descriptor_definitions\", \"input_binding\": {}}], \"input_issues\": [{\"locator\": \"/required_descriptor_kinds\", \"reason\": \"合成wire対照：原必要集合未供給\", \"source_ref\": null}], \"source_refs\": [], \"required_inputs\": [], \"counterexamples\": null, \"limits\": {\"scope\": \"synthetic wire only\"}, \"side_effect_count\": 0, \"selected\": true}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    },
    {
     "id": "HELIXBRAIN-L8-032-WIRE-ANALYSIS-BOOL",
     "entry_type": "SupplyAnalysis",
+    "raw_utf8": "{\"binding\": {}, \"candidate_refs\": [], \"comparisons\": [{\"axes\": [{\"subject_ref\": {\"identity\": \"synthetic-source-wire\", \"revision\": \"synthetic-rev-wire\", \"scope\": {\"project\": \"synthetic-only\"}, \"owner\": \"synthetic-brain-owner\", \"source_locator\": null, \"sha256\": null}, \"binding\": {}, \"axis\": \"definition\", \"state\": \"unknown\", \"original_refs\": [], \"reason\": \"合成wire対照：原定義未決\", \"backflow_owner\": null}], \"findings\": [], \"producer_symbol\": \"compare_descriptor_definitions\", \"input_binding\": {}}], \"input_issues\": [{\"locator\": \"/required_descriptor_kinds\", \"reason\": \"合成wire対照：原必要集合未供給\", \"source_ref\": null}], \"source_refs\": [], \"required_inputs\": [], \"counterexamples\": null, \"limits\": {\"scope\": \"synthetic wire only\"}, \"side_effect_count\": true}",
+    "raw_octets_hex": null,
     "execution_state": "not_executed"
    }
   ],
@@ -10074,17 +10292,20 @@
       "root_bindingはobjectでないため、knowledge_ref/template_ref両Ref欠落の別分岐には入らない。"
      ],
      "comparison_test_double_note": "合成AnalysisContext input。producer_symbolはL5宣言関数と一致し、axes/findingsは実計算ではない。",
+     "expected": "返却bindingはnull。root objectは保持し、construction_issuesが元binding memberの未供給を記録する。入力bodyに残るsource/required/materialと7 comparison operandを切り捨てない。",
      "execution_state": "not_executed"
     },
     {
      "id": "HELIXBRAIN-L8-032-BUILDER-BINDING-EMPTY-OBJECT",
      "comparison_test_double_note": "合成AnalysisContext input。producer_symbolはL5宣言関数と一致し、axes/findingsは実計算ではない。",
+     "expected": "binding={}は供給済みempty objectとして原値保持。既存/binding Issueは別に保持し、代替Bindingを作らない。",
      "execution_state": "not_executed"
     },
     {
      "id": "HELIXBRAIN-L8-032-BUILDER-VALID-EMPTY-CANDIDATES",
      "name": "明示空候補配列",
      "reference_case": "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-EMPTY-CANDIDATES",
+     "expected": "candidate_refs=[]は有効なempty-array入力。input=nullによる未評価[]とはIssue/input状態で区別する。",
      "execution_state": "not_executed"
     }
    ],
@@ -10135,6 +10356,7 @@
      "base_case_ref": "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-NORMAL-A",
      "invalid_context_member": "definitions",
      "test_double_note": "AnalysisContext合成入力。実producer呼出し/実資格の証拠ではない。",
+     "expected_invalid_raw_retention": "input_context snapshotの元値は呼出し後も変更せず保持し、builderは供給値を置き換えない。",
      "scope": "comparisonsとinput_issuesの投影だけを対象とする。その他の返却memberは既存base wholeを参照し、この対照では再評価しない。"
     },
     {
@@ -10142,6 +10364,7 @@
      "base_case_ref": "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-NORMAL-A",
      "invalid_context_member": "definitions",
      "test_double_note": "AnalysisContext合成入力。実producer呼出し/実資格の証拠ではない。",
+     "expected_invalid_raw_retention": "input_context snapshotの元値は呼出し後も変更せず保持し、builderは供給値を置き換えない。",
      "scope": "comparisonsとinput_issuesの投影だけを対象とする。その他の返却memberは既存base wholeを参照し、この対照では再評価しない。"
     },
     {
@@ -10149,12 +10372,14 @@
      "base_case_ref": "HELIXBRAIN-L8-032-BUILDER-ASSEMBLY-NORMAL-A",
      "invalid_context_member": "definitions",
      "test_double_note": "AnalysisContext合成入力。実producer呼出し/実資格の証拠ではない。",
+     "expected_invalid_raw_retention": "input_context snapshotの元値は呼出し後も変更せず保持し、builderは供給値を置き換えない。",
      "scope": "comparisonsとinput_issuesの投影だけを対象とする。その他の返却memberは既存base wholeを参照し、この対照では再評価しない。"
     },
     {
      "id": "HELIXBRAIN-L8-032-BUILDER-COMPOSITION-INPUT-NULL-PRODUCER-MISMATCH",
      "invalid_context_member": "definitions",
      "test_double_note": "同じimmutable入力から指定関数が返す比較値を表す有限test double。実producer実行の証拠ではない。",
+     "expected_invalid_raw_retention": "元のtyped_input_context snapshotは変更せず保持し、不適合値を出力比較列へ転載しない。",
      "scope": "comparisonとinput_issuesの局所投影のみ。全return再評価や実producer実行は主張しない。"
     }
    ],
@@ -16863,7 +17088,7 @@
   "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
   "git_commit": "0079c9de00c7f9a8eacbb4613a5c4e7b9ff0d9cd",
   "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
-  "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（conditional_dependency_verificationのexpected_base/copy_patch、builder_assembly_verificationのinput_materialization/expected_complete_return/comparison_inputs、source_return_verificationのexpected_output/expected_descriptor_attribution_axes、additional_unit_casesのexpected_local_result_projection、input_structure_verificationのmutation/base_fixture_ref、fixture_contractのowner_attribution_fixture_migration、副ファイルmaterialization_contract、final_sort_indexの展開表、oracle_provenance、hash等）をallowlist方式で撤去した。残したのはcase行・小さな反例（typed_mutation）・観点・oracle ID・rule/axis/state/owner・reentry・境界文・source_pins等の参照。撤去対象を指すunpinned pointer objectには撤去前revision 0079c9de00c7f9a8eacbb4613a5c4e7b9ff0d9cdを付与した。過去本文はrevision 0079c9de00c7f9a8eacbb4613a5c4e7b9ff0d9cd（および段階2前の3d6639764238adae19ff323396b76b8f0aa952a7）の同pathで辿る。",
+  "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（conditional_dependency_verificationのexpected_base/copy_patch、builder_assembly_verificationのinput_materialization/expected_complete_return/comparison_inputs、source_return_verificationのexpected_output/expected_descriptor_attribution_axes、additional_unit_casesのexpected_local_result_projection、input_structure_verificationのmutation/base_fixture_ref、fixture_contractのowner_attribution_fixture_migration、副ファイルmaterialization_contract、final_sort_indexの展開表、oracle_provenance、hash等）をallowlist方式で撤去した。残したのはcase行・小さな反例（typed_mutation / typed_mutation_plan / wire_codecのraw_utf8・raw_octets_hex）と反例に対する期待文（negative_cases/error_boundary_controlsのexpected、comparison_composition_controlsのexpected_invalid_raw_retention）・観点・oracle ID・rule/axis/state/owner・reentry・境界文・source_pins等の参照。撤去対象を指すunpinned pointer objectには撤去前revision 0079c9de00c7f9a8eacbb4613a5c4e7b9ff0d9cdを付与した。過去本文はrevision 0079c9de00c7f9a8eacbb4613a5c4e7b9ff0d9cd（および段階2前の3d6639764238adae19ff323396b76b8f0aa952a7）の同pathで辿る。",
   "removed_key_rule": "allowlist（L8_FIXTURE_CONTRACT_ALLOWLIST / L8_NEGATIVE_CASE_ALLOWLIST / L8_ADDITIONAL_UNIT_CASE_ALLOWLIST / L8_FUNCTION_ORACLE_ALLOWLIST / L8_INPUT_STRUCTURE_CASE_ALLOWLIST / L8_WIRE_CODEC_CASE_ALLOWLIST / L8_SOURCE_RETURN_TOP_ALLOWLIST / L8_SOURCE_RETURN_CASE_ALLOWLIST / L8_REF_OP_PROBE_ALLOWLIST / L8_DAC_CASE_ALLOWLIST / L8_BUILDER_ASSEMBLY_TOP_ALLOWLIST / L8_BUILDER_ASSEMBLY_CASE_ALLOWLIST / L8_EBC_CASE_ALLOWLIST / L8_IIO_CONTROL_ALLOWLIST / L8_CCC_CASE_ALLOWLIST / L8_COND_DEP_TOP_ALLOWLIST / L8_PRIVATE_WHOLE_CASE_ALLOWLIST / L8_PUBLIC_PROJ_CASE_ALLOWLIST / L8_NUMERIC_CASE_ALLOWLIST / L8_CANONICAL_DEP_CASE_ALLOWLIST / L8_ARTIFACT_SECTION_ALLOWLIST / L8_FINAL_SORT_INDEX_ALLOWLIST / L8_M2B_CASE_ALLOWLIST / L8_M2C_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
   "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、U-IDごとに1行（passed/failed/unknownと証拠参照）で追記する。"
  }
