@@ -1,0 +1,1079 @@
+{
+  "record_kind": "h009_l5_l8_remaining_disposition_t2_t3",
+  "evidence_kind": "audit",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-H009-DISP2-3547-20261028-49",
+  "slice_id": "D-H009-DISP-2",
+  "issue": 3547,
+  "base_sha": "1e319ad3b91a0f886218ca64938931c9a833f80f",
+  "request_base_sha": "a3ce782ec15576a2bb6ae2b5b4d1978fba9551aa",
+  "scope": "H009 T:43–49（F03,F04,F05,F06,F07,F08,N01）の詳細対（L5/L8）残件および関連節（source_result_reference_projection, f05_detail_contract, selected_brain_field_definition_application_detail, selected_source_caller_detail, functions/3..10,12）を上位期待（L3/L10・L4/L9）に照らして A/B/C に仕分け、B/C の文言を更新する。A は件数と内容を列挙して次 slice（D-H009-T2a〜T3b）へ渡し、本 PR では解消しない。Q-H009-2・Q-H009-3 の分類案を根拠付きで含める。",
+  "path_aliases": {
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L3N": "docs/helix-harness/L3-requirements/nfr-grade.json",
+    "L10N": "docs/helix-harness/L10-verification/nfr-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json"
+  },
+  "input_sha256_at_base": {
+    "L3B": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "L10B": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "L3F": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L3N": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486",
+    "L10N": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0",
+    "L4": "f0d191c464bad55281d5b9e9cfbc6955ed912f662f0d92abad763884b7f5c6e8",
+    "L9": "31d14d816d6588b650b3fccc15733106dbad2e15181c7aff11f70881bd5de498",
+    "L5": "4e1b5d5c6b88775552ed8eb1d1d6216f4c3f691007db95baf4a0127a1ad3e7e1",
+    "L8": "73d874b6c46444f475767c2b36a86f44b488994c1436c9e62328754fc9260e80"
+  },
+  "pointer_notation": "ALIAS#/pointer は path_aliases の文書内 JSON Pointer（軽量化後も行位置に依存しない）。upper_children の期待は upper_expectations の L3/L10/L4/L9 を参照。",
+  "classification_boundary": "A はこの L5/L8 pair（T:43–49）で閉じるべき具体空白および関数別 pair 凍結未実施（次 slice D-H009-T2a〜T3b へ渡す）、B は上位期待との対応を確認した有限 L5/L8 契約・U-ID 検証仕様の既記載、C は根拠のある下流層（L6/L7・実装・CI）・他 owner（BRAIN030/032・HARNESS008・OS002/053・CONNECT・SECURITY）・独立 review レーン・PO 受入。上位期待は緩めず、L8 へ材料（全返却・fixture・hash・COPY）を足さない。",
+  "upper_expectations": {
+    "F03": {
+      "index": 43,
+      "L3": "L3F#/requirements/25",
+      "L10": "L10F#/cases/25",
+      "L4": "L4#/contracts/4",
+      "L9": "L9#/cases/4",
+      "extra_L4": [
+        "L4#/contracts/4/source_result_reference_projection",
+        "L4#/contracts/4/non_applicability_basis_read_contract"
+      ],
+      "extra_L9": [
+        "L9#/cases/4/source_result_reference_cases",
+        "L9#/cases/4/basis_read_contract_cases"
+      ],
+      "meaning": "templateごとのrequired/conditional/N/A/unresolvedを根拠・判定者・対象revision/scope・条件・再評価条件とともに区別する。N/Aの4属性（理由/判定者/対象revision/再評価条件）を欠かさず、判定不能をN/Aにしない。003や限定文脈のN/Aを他templateへ転用せず、source_result_reference_projectionでsource envelopeと計算結果の内容対応を純粋投影する。"
+    },
+    "F04": {
+      "index": 44,
+      "L3": "L3F#/requirements/26",
+      "L10": "L10F#/cases/26",
+      "L4": "L4#/contracts/5",
+      "L9": "L9#/cases/5",
+      "meaning": "選択template版へunit/connection/composite固有義務とrequirement→obligation→design→pairの双方向traceを結び、041のatom/proposal/gap抽出や025/026の具体設計/oracle構成は別能力として分離する。"
+    },
+    "F05": {
+      "index": 45,
+      "L3": "L3F#/requirements/27",
+      "L10": "L10F#/cases/27",
+      "L4": "L4#/contracts/6",
+      "L9": "L9#/cases/6",
+      "extra_L4": [
+        "L4#/field_source_materialization_contract",
+        "L4#/field_semantic_evidence_contract",
+        "L4#/f05_validation_material_call_contract",
+        "L4#/field_obligation_scope_contract",
+        "L4#/input_scope_knowledge_gap_contract",
+        "L4#/selected_brain_field_definition_application_contract"
+      ],
+      "extra_L9": [
+        "L9#/field_source_materialization_verification",
+        "L9#/field_semantic_evidence_verification",
+        "L9#/f05_validation_material_call_verification",
+        "L9#/field_obligation_scope_verification",
+        "L9#/input_scope_knowledge_gap_verification",
+        "L9#/input_scope_post_return_projection_verification",
+        "L9#/selected_brain_field_definition_application_verification"
+      ],
+      "meaning": "不足を質問/矛盾/derived requirement candidate/N/A判断候補へ区別し、source/template/requirement revision、field/obligation identity、定義欠落/値未決、根拠、影響scope、未完義務、返却先（定義/knowledge版不足→BRAIN、製品要求値未決→HARNESS008、適用contract不整合→HARNESS）を保持する。ticket発行はOSへ残す。"
+    },
+    "F06": {
+      "index": 46,
+      "L3": "L3F#/requirements/28",
+      "L10": "L10F#/cases/28",
+      "L4": "L4#/contracts/7",
+      "L9": "L9#/cases/7",
+      "extra_L4": [
+        "L4#/selected_source_caller_contract",
+        "L4#/selected_brain_definition_source_contract"
+      ],
+      "extra_L9": [
+        "L9#/selected_source_caller_verification",
+        "L9#/selected_brain_definition_source_verification"
+      ],
+      "meaning": "合意要求に適用template/義務を導き、未承認候補/stale版/別product版/該当なし/未提示知識へ任意fallbackせず不足を返す。選択知識は全required fields/版/適用条件を照合し、非選択知識・旧例は参照資料にとどめ適用authorityや必須入力へ変換しない。"
+    },
+    "F07": {
+      "index": 47,
+      "L3": "L3F#/requirements/29",
+      "L10": "L10F#/cases/29",
+      "L4": "L4#/contracts/8",
+      "L9": "L9#/cases/8",
+      "meaning": "旧新template identity/revisionと4 facet意味差分を、使用する要求/義務/設計artifact/対検証のidentity/revision/scopeへ結び、影響あり/なし/Unknownの根拠と再評価対象を返す。旧版参照と移管状態を識別する。"
+    },
+    "F08": {
+      "index": 48,
+      "L3": "L3F#/requirements/30",
+      "L10": "L10F#/cases/30",
+      "L4": "L4#/contracts/9",
+      "L9": "L9#/cases/9",
+      "meaning": "HARNESS004の局所影響を守り、無関係な有効scopeの作業を保持する。案件の実使用版/state/event/stale記録と未完義務消込はOSへ残し、COREが直接更新しない。"
+    },
+    "N01": {
+      "index": 49,
+      "L3": "L3N#/requirements/4",
+      "L10": "L10N#/cases/4",
+      "L4": "L4#/contracts/10",
+      "L9": "L9#/cases/10",
+      "meaning": "適用集合・根拠・義務・不足/返却先・影響のoracleは意味を照合し、fieldの存在や件数だけで合格にしない。scope外/oracle未定を未評価と残し、全seed/全知識観測済みや実適用済みにしない。"
+    }
+  },
+  "dispositions": [
+    {
+      "id": "D01",
+      "category": "B",
+      "upper_children": [
+        "F03"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/4",
+        "L5#/functions/3",
+        "L5#/functions/12",
+        "L5#/source_result_reference_projection",
+        "L5#/remaining/5"
+      ],
+      "l8_pointers": [
+        "L8#/cases/4",
+        "L8#/normal_function_oracles/3",
+        "L8#/normal_function_oracles/11",
+        "L8#/source_result_reference_projection",
+        "L8#/condition_meaning_lookup_miss_oracle"
+      ],
+      "summary": "F03（required/conditional/N/A/unresolved・N/A 4属性・source_result_reference_projection）の有限L5関数（fn3 failure_rules 9件・unit_case_refs 12件、fn12 8 step program）とL8検証仕様（原負例8件、73 packet/85 row/4 group/6 probe、lookup_miss 3 case_matrix）の既記載",
+      "rationale": "L5#/functions/3（compare_applicability）とL5#/functions/12（project_source_result_references）がL3F#/requirements/25・L4#/contracts/4の4分類・N/A 4属性・限定文脈N/A転用禁止・source/result内容比較投影を規定し、L8#/cases/4/negative_cases（8件＝L9#/cases/4/negative_cases 8件と1対1一致）、L8#/source_result_reference_projection（73 case / 85 row）、L8#/condition_meaning_lookup_miss_oracle（3 case_matrix）が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D02",
+      "category": "B",
+      "upper_children": [
+        "F04"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/5",
+        "L5#/functions/4"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5",
+        "L8#/normal_function_oracles/4",
+        "L8#/additional_unit_cases/13"
+      ],
+      "summary": "F04（unit/connection/composite固有義務とrequirement→obligation→design→pair双方向trace）の有限L5関数（fn4 failure_rules 7件・unit_case_refs 8件）とL8検証仕様（原負例7件＋ADD-14＋normal oracle）の既記載",
+      "rationale": "L5#/functions/4（compare_kind_obligation_trace）がL3F#/requirements/26・L4#/contracts/5のkind固有義務・双方向trace・041/025/026境界を規定し、L8#/cases/5/negative_cases（7件＝L9#/cases/5/negative_cases 7件と1対1一致）およびADD-14、L8#/normal_function_oracles/4が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D03",
+      "category": "B",
+      "upper_children": [
+        "F05"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/6",
+        "L5#/functions/5",
+        "L5#/f05_detail_contract",
+        "L5#/selected_brain_field_definition_application_detail"
+      ],
+      "l8_pointers": [
+        "L8#/cases/6",
+        "L8#/normal_function_oracles/5",
+        "L8#/f05_explicit_skip_binding_absent_full_return_oracle",
+        "L8#/f05_g1_g2_collection_read_partial_oracle",
+        "L8#/f05_native_normal_full_return_oracle",
+        "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "L8#/input_scope_knowledge_gap_native_oracle",
+        "L8#/f05_native_seven_member_caller_full_return_oracle",
+        "L8#/f05_same_scan_argument_binding_verification",
+        "L8#/f13_knowledge_recipient_leaf_verification",
+        "L8#/selected_brain_field_definition_application_detail_verification"
+      ],
+      "summary": "F05（不足4候補・返却先・f05_detail_contract 152型/28 leaf writer・selected_brain_field_definition_application_detail）の有限L5契約（fn5 failure_rules 7件・unit_case_refs 9件）とL8検証仕様（原負例7件・input_scope_knowledge_gap 19件・f13_leaf 2件・selected_brain_field_definition 8件＋direct_reader 2件等）の既記載",
+      "rationale": "L5#/functions/5とL5#/f05_detail_contract（152型・28 leaf writer）、L5#/selected_brain_field_definition_application_detailがL3F#/requirements/27・L4#/contracts/6およびL4追加6節を具体化し、L8#/cases/6/negative_cases（7件＝L9#/cases/6/negative_cases 7件と1対1一致）とF05詳細oracle群が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D04",
+      "category": "B",
+      "upper_children": [
+        "F06"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/7",
+        "L5#/functions/6",
+        "L5#/functions/6/brain_definition_source_read_binding",
+        "L5#/functions/6/brain_definition_source_return_writer",
+        "L5#/selected_source_caller_detail"
+      ],
+      "l8_pointers": [
+        "L8#/cases/7",
+        "L8#/normal_function_oracles/6",
+        "L8#/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "L8#/normal_function_oracles/6/brain_definition_source_return_oracle",
+        "L8#/selected_source_caller_detail_verification"
+      ],
+      "summary": "F06（Forward・選択知識の必須field/版/条件照合・BRAIN定義source取得/correspondence_issues返却・selected_source_caller_detail）の有限L5契約（fn6 failure_rules 7件・unit_case_refs 8件）とL8検証仕様（原負例7件・read/return oracle・connection_expectations 8件）の既記載",
+      "rationale": "L5#/functions/6（compare_selected_knowledge）とbrain_definition_source_read_binding/return_writer、L5#/selected_source_caller_detailがL3F#/requirements/28・L4#/contracts/7・L4追加2節を具体化し、L8#/cases/7/negative_cases（7件＝L9#/cases/7/negative_cases 7件と1対1一致）、L8#/normal_function_oracles/6、L8#/selected_source_caller_detail_verification（8件）が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D05",
+      "category": "B",
+      "upper_children": [
+        "F07",
+        "F08"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/8",
+        "L5#/contracts/9",
+        "L5#/functions/7"
+      ],
+      "l8_pointers": [
+        "L8#/cases/8",
+        "L8#/cases/9",
+        "L8#/normal_function_oracles/7",
+        "L8#/additional_unit_cases/17",
+        "L8#/additional_unit_cases/18"
+      ],
+      "summary": "F07（template意味変更の4 facet影響・Unknown保持）およびF08（局所影響・無関係scope保持・OS記録非更新）の有限L5関数（fn7 failure_rules 11件・unit_case_refs 13件）とL8検証仕様（原負例7件＋4件・ADD-18,19・normal oracle）の既記載",
+      "rationale": "L5#/functions/7（compare_meaning_impacts）がL3F#/requirements/29,30・L4#/contracts/8,9の意味変更影響と局所影響保全・OS非更新を規定し、L8#/cases/8/negative_cases（7件＝L9#/cases/8/negative_cases 7件）とL8#/cases/9/negative_cases（4件＝L9#/cases/9/negative_cases 4件）、ADD-18/19、L8#/normal_function_oracles/7が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D06",
+      "category": "B",
+      "upper_children": [
+        "N01"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/10",
+        "L5#/functions/9",
+        "L5#/functions/10"
+      ],
+      "l8_pointers": [
+        "L8#/cases/10",
+        "L8#/normal_function_oracles/9",
+        "L8#/normal_function_oracles/10",
+        "L8#/additional_unit_cases/20",
+        "L8#/additional_unit_cases/21",
+        "L8#/additional_unit_cases/22",
+        "L8#/additional_unit_cases/23"
+      ],
+      "summary": "N01（実証と候補の分離・件数/存在のみ合格禁止・全体組立）の有限L5関数（fn9 failure_rules 14件・unit_case_refs 15件、fn10 unit_case_refs 3件）とL8検証仕様（原負例6件・ADD-21〜24・normal oracles 9,10）の既記載",
+      "rationale": "L5#/functions/9（check_application_claims_detail）とL5#/functions/10（build_application_analysis_from_detail）がL3N#/requirements/4・L4#/contracts/10の実証と候補の分離・副作用0全体組立を規定し、L8#/cases/10/negative_cases（6件＝L9#/cases/10/negative_cases 6件と1対1一致）およびADD-21〜24、L8#/normal_function_oracles/9,10が対の検証仕様を持つ。"
+    },
+    {
+      "id": "D07",
+      "category": "C",
+      "upper_children": [
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "N01"
+      ],
+      "l5_pointers": [
+        "L5#/implementation_preparation/next",
+        "L5#/remaining/0",
+        "L5#/f05_detail_contract/status",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/0",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/1",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/6"
+      ],
+      "l8_pointers": [
+        "L8#/completion/remaining",
+        "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle/limitations_ja/1",
+        "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle/limitations_ja/3"
+      ],
+      "return_to": "下流 L6（関数設計）/ L7（具体的な単体テスト仕様）・実装・新世代CI・CONNECT・SECURITY（Qualification root認証/custody）・独立 review レーン・PO 受入",
+      "summary": "正式wire codec・cross-runtime数値変換・実source/qualification root供給元認証/custody・実reader/writer/evaluator実行・L6/L7具体fixture展開・Red-Green・CI・独立review・PO受入の戻し先明記",
+      "rationale": "L5/L8は論理詳細設計とU-ID検証契約の層であり、具体fixture展開・実行ハーネス・Red-GreenはL6/L7へ、wire/transportはCONNECT、実trust/root認証はSECURITY、独立reviewはreviewレーンへ属する。"
+    },
+    {
+      "id": "D08",
+      "category": "C",
+      "upper_children": [
+        "F03"
+      ],
+      "l5_pointers": [
+        "L5#/remaining/5",
+        "L5#/source_result_reference_projection/program/execution_limit_ja",
+        "L5#/functions/12/caller_binding/qualification_limit"
+      ],
+      "l8_pointers": [
+        "L8#/source_result_reference_projection/scope_limit_ja",
+        "L8#/condition_meaning_lookup_miss_oracle/nonclaims/0"
+      ],
+      "return_to": "BRAIN032 / HARNESS008（混合conditionに対するnon_applicable_basis_refの真理値表・owner outcome供給）、CONNECT / SECURITY（実source-envelope provider・実資格）、HELIX-OS 002/053（OS正式記録consumer受入）",
+      "summary": "F03の混合conditionに対する上流non_applicable_basis_ref真理値表供給、実source-envelope provider/資格、OS記録受入の戻し先明記",
+      "rationale": "L4#/contracts/4/non_applicability_basis_read_contract/boundariesおよびsource_result_reference_projection/unclosed_boundaryが定めるとおり、COREはoperator木や真理値表を捏造せず上流ownerの結果として読み、実envelope供給・資格・OS記録は外部ownerの責務である。"
+    },
+    {
+      "id": "D09",
+      "category": "C",
+      "upper_children": [
+        "F05"
+      ],
+      "l5_pointers": [
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/consumer",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/knowledge_revision_gap_boundary/unclosed_operands_and_writer",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/obligation_scope_boundary/profile_connection_candidate",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/application_contract_recipient_boundary/remaining",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/3",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/4",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/8",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/9",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/10",
+        "L5#/selected_brain_field_definition_application_detail/preservation_and_limits/not_closed_here/0",
+        "L5#/selected_brain_field_definition_application_detail/preservation_and_limits/not_closed_here/2",
+        "L5#/selected_brain_field_definition_application_detail/preservation_and_limits/not_closed_here/3"
+      ],
+      "l8_pointers": [
+        "L8#/input_scope_knowledge_gap_native_oracle/repair_whole_case_scope/limits",
+        "L8#/f05_same_scan_argument_binding_verification/not_proven/2",
+        "L8#/f05_same_scan_argument_binding_verification/not_proven/3",
+        "L8#/f13_knowledge_recipient_leaf_verification/not_proven/2",
+        "L8#/f13_knowledge_recipient_leaf_verification/not_proven/3",
+        "L8#/selected_brain_field_definition_application_detail_verification/unmaterialized_and_limits/scope_ja",
+        "L8#/selected_brain_field_definition_application_detail_verification/reader_probe_gap/remaining_work"
+      ],
+      "return_to": "BRAIN032 / BRAIN030（知識版不足の独立原命題source・B030 query/knowledge typed input・BRAIN F03実供給）、HARNESS008 / HARNESS上流owner（field必要集合・局所obligation scope profile・適用contract不整合の原根拠・実owner application statement）、HELIX-OS 002/053（Backflow ticket発行・案件記録）、下流 L6/L7（P1/N1–N6等の全carrier具体fixture物質化・実行、#3510方針）",
+      "summary": "Q-H009-2 の C 側：F05 3境界の上流owner原資料/profile供給、B019/B030配送、およびselected_brain_field_definition_application_detail_verification未物質化行のL6/L7具体fixture展開の戻し先明記",
+      "rationale": "#3510方針によりL8へ巨大fixture/全返却/hash/COPYを追加せず、具体fixture物質化と実行はL6/L7へ、知識版不足・局所scope profile・適用contract不整合・実owner statementの原source供給はBRAIN032/030・HARNESS008等の各ownerへ戻す（L5/L8の契約・U-ID行対照はAとしてD15/D16へ分離）。"
+    },
+    {
+      "id": "D10",
+      "category": "C",
+      "upper_children": [
+        "F06"
+      ],
+      "l5_pointers": [
+        "L5#/functions/6/brain_definition_source_read_binding/call_boundary",
+        "L5#/functions/6/brain_definition_source_read_binding/remaining",
+        "L5#/functions/6/brain_definition_source_return_writer/scope",
+        "L5#/functions/6/brain_definition_source_return_writer/nonclaims",
+        "L5#/selected_source_caller_detail/counterfactual_scope/not_closed_here",
+        "L5#/selected_source_caller_detail/completion_boundary"
+      ],
+      "l8_pointers": [
+        "L8#/normal_function_oracles/6/brain_definition_source_read_oracle/scope",
+        "L8#/normal_function_oracles/6/brain_definition_source_return_oracle/evidence_scope",
+        "L8#/selected_source_caller_detail_verification/not_proven/2",
+        "L8#/selected_source_caller_detail_verification/not_proven/4",
+        "L8#/selected_source_caller_detail_verification/not_proven/5"
+      ],
+      "return_to": "BRAIN032 / BRAIN030・CONNECT（外部ownerの原public call capture提供形式・実source配送）、SECURITY（BRAIN/CORE Qualification実認証）、HELIX-OS 002（OS used-set登録）、下流 L6/L7（native全入力/全返却fixture展開・実行・複数edge連鎖の実装検証）",
+      "summary": "Q-H009-3 の C 側：F06外部ownerの原call対応capture提供形式、実source custody/資格/配送、複数edge連鎖・ApplicationInput全体組立て・L6/L7実行の戻し先明記",
+      "rationale": "L4#/selected_brain_definition_source_contract/limits_jaおよびL4#/selected_source_caller_contract/not_closed_hereが定めるとおり、外部owner capture提供形式・実資格・配送・全体assemblyは外部ownerと下流層の責務である（現carrier上のread/return契約とU-ID対照はAとしてD17へ分離）。"
+    },
+    {
+      "id": "D11",
+      "category": "C",
+      "upper_children": [
+        "F07",
+        "F08",
+        "N01"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/8/backflow",
+        "L5#/contracts/9/behavior",
+        "L5#/functions/5/oracle_binding_boundary/detail_full_oracle_status",
+        "L5#/functions/9/oracle_binding_boundary/detail_full_oracle_status",
+        "L5#/functions/9/knowledge_correspondence_consumer_binding/boundary",
+        "L5#/functions/10/oracle_binding_boundary/detail_full_oracle_status",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/5",
+        "L5#/f05_detail_contract/remaining_and_nonclaims/11"
+      ],
+      "l8_pointers": [
+        "L8#/normal_function_oracles/7/expected_observation",
+        "L8#/normal_function_oracles/9/expected_observation",
+        "L8#/normal_function_oracles/10/expected_observation"
+      ],
+      "return_to": "HELIX-OS 002/053（案件実使用版/state/event/stale登録・未完義務消込）、下流 L6/L7（fn9/fn10詳細署名の全入力fixture展開・実行）",
+      "summary": "F07/F08のOS実使用版/state/event/stale記録・義務消込、およびN01（fn9/fn10）の全claim入力fixture展開・実行の戻し先明記",
+      "rationale": "F08は案件の実使用版/state/event/stale記録と未完義務消込をOSへ残しCOREが直接更新しないことを要求意味とし、fn9/fn10の具体fixture展開・実行は下流L6/L7の責務である（L5/L8の契約・U-ID対照と関数別凍結はAとしてD18/D19へ分離）。"
+    },
+    {
+      "id": "D12",
+      "category": "A",
+      "upper_children": [
+        "F03"
+      ],
+      "next_slice": "D-H009-T2a",
+      "l5_pointers": [
+        "L5#/contracts/4",
+        "L5#/functions/3",
+        "L5#/functions/3/condition_meaning_lookup_miss_writer",
+        "L5#/functions/12",
+        "L5#/source_result_reference_projection"
+      ],
+      "l8_pointers": [
+        "L8#/cases/4",
+        "L8#/normal_function_oracles/3",
+        "L8#/normal_function_oracles/11",
+        "L8#/source_result_reference_projection",
+        "L8#/condition_meaning_lookup_miss_oracle",
+        "L8#/condition_meaning_lookup_miss_oracle/coverage/unexercised"
+      ],
+      "summary": "T:43（F03）compare_applicability（fn3）およびproject_source_result_references（fn12）のL4/L9対照（basis_read_contract_cases・lookup_miss unexercised 5分類の境界照合を含む）と関数別pair凍結",
+      "rationale": "fn3（failure_rules 9件・unit_case_refs 12件）とfn12（73 packet/85 row）は記載済みだが、L9#/cases/4/basis_read_contract_casesおよびL8#/condition_meaning_lookup_miss_oracle/coverage/unexercised（5項目）とL5 guard/failure_rulesの対応照合およびfn3・fn12の関数別pair凍結記録が未実施であり、D-H009-T2aで閉じる。"
+    },
+    {
+      "id": "D13",
+      "category": "A",
+      "upper_children": [
+        "F04"
+      ],
+      "next_slice": "D-H009-T2b",
+      "l5_pointers": [
+        "L5#/contracts/5",
+        "L5#/functions/4"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5",
+        "L8#/normal_function_oracles/4",
+        "L8#/additional_unit_cases/13"
+      ],
+      "summary": "T:44（F04）compare_kind_obligation_trace（fn4）のunit/connection/composite固有義務・双方向trace・041/025/026境界の独立期待照合と関数別pair凍結",
+      "rationale": "fn4（failure_rules 7件・unit_case_refs 8件）とL8#/cases/5（原負例7件＋ADD-14）の記載は揃っているが、各分岐の独立期待照合とfn4の関数別pair凍結記録が未実施であり、D-H009-T2bで閉じる。"
+    },
+    {
+      "id": "D14",
+      "category": "A",
+      "upper_children": [
+        "F05"
+      ],
+      "next_slice": "D-H009-T2c-1",
+      "l5_pointers": [
+        "L5#/contracts/6",
+        "L5#/functions/5",
+        "L5#/functions/5/oracle_binding_boundary",
+        "L5#/f05_detail_contract/types",
+        "L5#/f05_detail_contract/entry_points",
+        "L5#/f05_detail_contract/source_observation_contract",
+        "L5#/f05_detail_contract/owner_binding_contract",
+        "L5#/f05_detail_contract/projection_contract",
+        "L5#/f05_detail_contract/definition_and_value_summary",
+        "L5#/f05_detail_contract/gap_contract",
+        "L5#/f05_detail_contract/native_comparison_projection",
+        "L5#/f05_detail_contract/caller_return_writer_contract"
+      ],
+      "l8_pointers": [
+        "L8#/cases/6",
+        "L8#/normal_function_oracles/5",
+        "L8#/f05_explicit_skip_binding_absent_full_return_oracle",
+        "L8#/f05_g1_g2_collection_read_partial_oracle",
+        "L8#/f05_native_normal_full_return_oracle",
+        "L8#/f05_native_seven_member_caller_full_return_oracle",
+        "L8#/f05_same_scan_argument_binding_verification"
+      ],
+      "summary": "T:45（F05 前半1）compare_requirement_gaps_detail（fn5）基本契約・f05_detail_contract前半（source materialization / semantic evidence / validation_material_call / caller_return_writer）とL9（7+9+5 case）・L8 F05基本oracle群の対照",
+      "rationale": "L4#/field_source_materialization_contract（L9 7件）・L4#/field_semantic_evidence_contract（L9 9件）・L4#/f05_validation_material_call_contract（L9 5件）に対するL5 f05_detail_contract前半とL8 F05基本oracle群・fn5 oracle_binding_boundaryの整合照合をD-H009-T2c-1で行う。"
+    },
+    {
+      "id": "D15",
+      "category": "A",
+      "upper_children": [
+        "F05"
+      ],
+      "next_slice": "D-H009-T2c-2",
+      "question_ref": "Q-H009-2",
+      "l5_pointers": [
+        "L5#/f05_detail_contract/recipient_and_obligation_contract",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/knowledge_revision_gap_boundary",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/obligation_scope_boundary",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/application_contract_recipient_boundary",
+        "L5#/f05_detail_contract/leaf_writer_ledger",
+        "L5#/f05_detail_contract/field_obligation_scope_writer_contract",
+        "L5#/f05_detail_contract/input_scope_knowledge_gap_realization",
+        "L5#/f05_detail_contract/recipient_leaf_writer_contract"
+      ],
+      "l8_pointers": [
+        "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "L8#/input_scope_knowledge_gap_native_oracle",
+        "L8#/f13_knowledge_recipient_leaf_verification"
+      ],
+      "summary": "T:45（F05 前半2・Q-H009-2）recipient_and_obligation_contract 3境界（knowledge_revision_gap / obligation_scope / application_contract_recipient）・28 leaf writer ledger・input_scope_knowledge_gap_realizationとL9（21+5+1 case）・L8（1+19+2 case）のU-ID対照",
+      "rationale": "Q-H009-2の前半：3境界のうち外部ownerの原資料供給はC（D09）へ分離した上で、現L4/L9（field_obligation_scope 21件、input_scope_knowledge_gap 5件、post_return 1件、knowledge_revision_recipient_input_verification）に対するL5 writer契約とL8 U-ID検証仕様（nine_source 1件、input_scope_knowledge_gap 19件、f13_leaf 2件）の網羅照合をD-H009-T2c-2で行う。"
+    },
+    {
+      "id": "D16",
+      "category": "A",
+      "upper_children": [
+        "F05"
+      ],
+      "next_slice": "D-H009-T2c-3",
+      "question_ref": "Q-H009-2",
+      "l5_pointers": [
+        "L5#/selected_brain_field_definition_application_detail",
+        "L5#/selected_brain_field_definition_application_detail/writer_and_call_contract",
+        "L5#/selected_brain_field_definition_application_detail/definition_writer_rules",
+        "L5#/selected_brain_field_definition_application_detail/statement_selector_contract",
+        "L5#/selected_brain_field_definition_application_detail/l4_to_l5_refinement_table"
+      ],
+      "l8_pointers": [
+        "L8#/selected_brain_field_definition_application_detail_verification",
+        "L8#/selected_brain_field_definition_application_detail_verification/cases",
+        "L8#/selected_brain_field_definition_application_detail_verification/unmaterialized_and_limits",
+        "L8#/selected_brain_field_definition_application_detail_verification/reader_probe_gap/direct_reader_finite_cases"
+      ],
+      "summary": "T:45（F05 後半・Q-H009-2）selected_brain_field_definition_application_detailとL8未物質化5行（P1, N1–N4）＋N5/N6＋FN9 helper＋direct_reader 2件・L9 10件のU-ID検証契約対照およびfn5の関数別pair凍結",
+      "rationale": "Q-H009-2の後半：#3510方針により全返却/巨大fixture/hash/COPYの物質化はL6/L7（C、D09）へ分離しつつ、L8 cases 0..4（P1, N1–N4）とcases 5..7（N5, N6, FN9 helper）およびdirect_reader 2件がL9 10件とL5 refinement tableの全分岐に対するU-ID検証契約（対象・反例と期待・oracle ID・test citation）を満たすかの確認とfn5の関数別pair凍結をD-H009-T2c-3で閉じる。"
+    },
+    {
+      "id": "D17",
+      "category": "A",
+      "upper_children": [
+        "F06"
+      ],
+      "next_slice": "D-H009-T2d",
+      "question_ref": "Q-H009-3",
+      "l5_pointers": [
+        "L5#/contracts/7",
+        "L5#/functions/6",
+        "L5#/functions/6/brain_definition_source_read_binding",
+        "L5#/functions/6/brain_definition_source_return_writer",
+        "L5#/selected_source_caller_detail"
+      ],
+      "l8_pointers": [
+        "L8#/cases/7",
+        "L8#/normal_function_oracles/6",
+        "L8#/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "L8#/normal_function_oracles/6/brain_definition_source_return_oracle",
+        "L8#/selected_source_caller_detail_verification"
+      ],
+      "summary": "T:46（F06・Q-H009-3）compare_selected_knowledge（fn6）のbrain_definition_source_read_binding/return_writer（L9 6件対照）とselected_source_caller_detail（L9 2 case＋7 probe vs L8 8 expectation、SSC-BOUNDARY-06対照を含む）の確認およびfn6の関数別pair凍結",
+      "rationale": "Q-H009-3：外部capture供給や複数edge連鎖はC（D10）へ分離した上で、現carrier上のbrain_definition_source_read_binding/return_writerとL9 selected_brain_definition_source_verification（6件）の対応、およびL9 selected_source_caller_verification（negative_or_boundary_probes 7件のうちSSC-BOUNDARY-06を含む）とL8 connection_expectations（8件）の対応照合・fn6の関数別pair凍結をD-H009-T2dで閉じる。"
+    },
+    {
+      "id": "D18",
+      "category": "A",
+      "upper_children": [
+        "F07",
+        "F08"
+      ],
+      "next_slice": "D-H009-T3a",
+      "l5_pointers": [
+        "L5#/contracts/8",
+        "L5#/contracts/9",
+        "L5#/functions/7"
+      ],
+      "l8_pointers": [
+        "L8#/cases/8",
+        "L8#/cases/9",
+        "L8#/normal_function_oracles/7",
+        "L8#/additional_unit_cases/17",
+        "L8#/additional_unit_cases/18"
+      ],
+      "summary": "T:47–48（F07, F08）compare_meaning_impacts（fn7）の4 facet意味差分・Unknown保持・局所影響保全・OS非更新の独立期待照合とfn7の関数別pair凍結",
+      "rationale": "fn7（failure_rules 11件・unit_case_refs 13件）がF07（原負例7件＋ADD-18）とF08（原負例4件＋ADD-19）を共に担っており、両方の上位期待に対する分岐照合とfn7の関数別pair凍結をD-H009-T3aで閉じる。"
+    },
+    {
+      "id": "D19",
+      "category": "A",
+      "upper_children": [
+        "N01"
+      ],
+      "next_slice": "D-H009-T3b",
+      "l5_pointers": [
+        "L5#/contracts/10",
+        "L5#/functions/9",
+        "L5#/functions/9/oracle_binding_boundary",
+        "L5#/functions/9/knowledge_correspondence_consumer_binding",
+        "L5#/functions/10",
+        "L5#/functions/10/oracle_binding_boundary",
+        "L5#/functions/10/knowledge_correspondence_preservation"
+      ],
+      "l8_pointers": [
+        "L8#/cases/10",
+        "L8#/normal_function_oracles/9",
+        "L8#/normal_function_oracles/10",
+        "L8#/additional_unit_cases/20",
+        "L8#/additional_unit_cases/21",
+        "L8#/additional_unit_cases/22",
+        "L8#/additional_unit_cases/23",
+        "L8#/selected_brain_field_definition_application_detail_verification/cases/7",
+        "L8#/f05_native_seven_member_caller_full_return_oracle"
+      ],
+      "summary": "T:49（N01）check_application_claims_detail（fn9）およびbuild_application_analysis_from_detail（fn10）の詳細署名境界・F05DetailedReturn/F06 correspondence_issues/F03 projection引き渡し対照とfn9・fn10の関数別pair凍結",
+      "rationale": "fn9（failure_rules 14件・unit_case_refs 15件）とfn10（unit_case_refs 3件）の論理oracleと詳細署名境界（oracle_binding_boundary・knowledge_correspondence_consumer_binding/preservation）をL8（原負例6件・ADD-21〜24・FN9 helper・seven_member_caller）と照合し、fn9・fn10の関数別pair凍結をD-H009-T3bで閉じる。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-H009-2",
+      "topic": "F05 recipient_and_obligation_contract の 3 境界（knowledge_revision_gap_boundary, obligation_scope_boundary, application_contract_recipient_boundary）と selected_brain_field_definition_application_detail_verification の未物質化 5 行（P1, N1–N4）は、この L5/L8 pair（A）でどこまで閉じ、どこからが他 owner / L6-L7（C）か",
+      "proposed_classification": "B + A（D15, D16：D-H009-T2c-2 / D-H009-T2c-3 で L5/L8 契約・U-ID 検証仕様の対照と fn5 関数別凍結を実施）+ C（D09：上流 owner の独立原資料/profile 供給は BRAIN032/030・HARNESS008 等へ、全返却/巨大 fixture の物質化と実行は #3510 方針に従い下流 L6/L7 へ分離）",
+      "l5_pointers": [
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/knowledge_revision_gap_boundary",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/obligation_scope_boundary",
+        "L5#/f05_detail_contract/recipient_and_obligation_contract/application_contract_recipient_boundary",
+        "L5#/f05_detail_contract/field_obligation_scope_writer_contract",
+        "L5#/f05_detail_contract/input_scope_knowledge_gap_realization",
+        "L5#/selected_brain_field_definition_application_detail"
+      ],
+      "l8_pointers": [
+        "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "L8#/input_scope_knowledge_gap_native_oracle",
+        "L8#/f13_knowledge_recipient_leaf_verification",
+        "L8#/selected_brain_field_definition_application_detail_verification/cases",
+        "L8#/selected_brain_field_definition_application_detail_verification/unmaterialized_and_limits",
+        "L8#/selected_brain_field_definition_application_detail_verification/reader_probe_gap/direct_reader_finite_cases"
+      ],
+      "upper_pointers": [
+        "L3F#/requirements/27",
+        "L10F#/cases/27",
+        "L4#/contracts/6",
+        "L4#/field_obligation_scope_contract",
+        "L4#/input_scope_knowledge_gap_contract",
+        "L4#/selected_brain_field_definition_application_contract",
+        "L9#/field_obligation_scope_verification",
+        "L9#/input_scope_knowledge_gap_verification",
+        "L9#/input_scope_post_return_projection_verification",
+        "L9#/selected_brain_field_definition_application_verification"
+      ],
+      "basis": [
+        "1. 3境界のB/A/C分離：L5は既にfield_obligation_scope_writer_contract・input_scope_knowledge_gap_realization・recipient_leaf_writer_contractを持ち、L8はnine_source_known_known_scope（1件）・input_scope_knowledge_gap_native_oracle（19件）・f13_knowledge_recipient_leaf_verification（2件）を持つ（B）。これらは供給された明示profile/recordに対するCORE内のpure writerと未形成保持を規定している。一方、上流ownerがどのfield/knowledge版を不足と宣言するかの原資料供給や局所obligation scope profile自体の生成はBRAIN032/030・HARNESS008等の他owner責務（C、D09）であり、COREがkey名や単一revision差から捏造してはならない。したがってA（D15、D-H009-T2c-2）で閉じるべき範囲は、L9（field_obligation_scope 21件、input_scope_knowledge_gap 5件、post_return 1件、knowledge_revision_recipient_input_verification）の全期待分岐に対するL5 writer契約とL8 U-ID検証仕様の対応確認である。",
+        "2. 未物質化5行（P1, N1–N4）のB/A/C分離：L8 selected_brain_field_definition_application_detail_verification/casesには8行（0:P1, 1:N1, 2:N2, 3:N3, 4:N4, 5:N5, 6:N6, 7:FN9 helper）とdirect_reader_finite_cases 2件が記載済みである（B）。#3510の軽量化原則により、L8にはU-ID検証仕様（検証対象・反例と期待・oracle ID・test citation）を置き、複数source snapshotを結合した巨大golden carrierやhash/COPYはL8へ足さずL6/L7の具体テストデータ展開（C、D09）へ委ねる。したがってA（D16、D-H009-T2c-3）では、未物質化5行（P1, N1–N4）とN5/N6がL9 selected_brain_field_definition_application_verification（10件）およびL5 l4_to_l5_refinement_tableの全分岐に対して欠落のないU-ID検証仕様を持つかを照合し、fn5の関数別pair凍結を行う。"
+      ]
+    },
+    {
+      "id": "Q-H009-3",
+      "topic": "F06 /functions/6/brain_definition_source_read_binding/remaining の未完範囲は、この L5/L8 pair（A）でどこまで閉じ、どこからが外部 owner / 下流 L6-L7（C）か",
+      "proposed_classification": "B + A（D17：D-H009-T2d で brain_definition_source_read_binding / return_writer と L9 6 case、および selected_source_caller_detail と L9 2 case + 7 probe の U-ID 対照・fn6 関数別凍結を実施）+ C（D10：外部 owner の原 public call capture 提供形式・実資格・配送・複数 edge 連鎖・L6/L7 全入力 fixture 実行を BRAIN032/030・CONNECT・SECURITY・下流 L6/L7 へ分離）",
+      "l5_pointers": [
+        "L5#/functions/6",
+        "L5#/functions/6/brain_definition_source_read_binding",
+        "L5#/functions/6/brain_definition_source_return_writer",
+        "L5#/selected_source_caller_detail"
+      ],
+      "l8_pointers": [
+        "L8#/cases/7",
+        "L8#/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "L8#/normal_function_oracles/6/brain_definition_source_return_oracle",
+        "L8#/selected_source_caller_detail_verification"
+      ],
+      "upper_pointers": [
+        "L3F#/requirements/28",
+        "L10F#/cases/28",
+        "L4#/contracts/7",
+        "L4#/selected_brain_definition_source_contract",
+        "L4#/selected_source_caller_contract",
+        "L9#/cases/7",
+        "L9#/selected_brain_definition_source_verification",
+        "L9#/selected_source_caller_verification"
+      ],
+      "basis": [
+        "1. brain_definition_source_read_binding/remainingが挙げていた「対象別KnowledgeUseMaterial/Comparisonの全writer」のうち、COREのF06公開Comparison（5 member）とKnowledgeUseMaterial（必須4 member＋optional correspondence_issues）への返却仕様は隣接するL5#/functions/6/brain_definition_source_return_writerとL8#/normal_function_oracles/6/brain_definition_source_return_oracle、およびconsumer側（fn9 knowledge_correspondence_consumer_binding、fn10 knowledge_correspondence_preservation）に具体化済みである（B）。",
+        "2. 一方、「原call対応の提供形式」「実資格・配送」はL4#/selected_brain_definition_source_contract/limits_jaが明記するとおり外部owner（BRAIN032/030）とCONNECT/SECURITYの境界（C、D10）であり、COREが公開Comparisonに存在しないcall入力対応memberを捏造してはならない。またnative全入力/全返却fixtureの実行と設計Red/Green/Refactorは下流L6/L7（C、D10）の責務である。",
+        "3. したがってA（D17、D-H009-T2d）で閉じるべき範囲は、(a) L9#/selected_brain_definition_source_verification（6件）とL5 read_binding/return_writer・L8 read_oracle/return_oracleの分岐対照、および (b) L9#/selected_source_caller_verification（cases 2件＋negative_or_boundary_probes 7件、特にSSC-BOUNDARY-06を含む）とL5#/selected_source_caller_detail・L8#/selected_source_caller_detail_verification（connection_expectations 8件）のU-ID対照を完了し、fn6（compare_selected_knowledge）の関数別pair凍結を記録することである。"
+      ]
+    }
+  ],
+  "a_items_handoff_summary": [
+    {
+      "slice_id": "D-H009-T2a",
+      "disposition_ids": [
+        "D12"
+      ],
+      "target_children": [
+        "43:F03"
+      ],
+      "target_functions": [
+        "L5#/functions/3 (compare_applicability)",
+        "L5#/functions/12 (project_source_result_references)"
+      ],
+      "work": "F03（required/conditional/N/A/unresolved・N/A 4属性・lookup_miss writer・source_result_reference_projection 73 packet/85 row）とL9（negative 8件・source_result_reference_cases 24件・basis_read_contract_cases）の分岐対照を確認し、fn3・fn12の関数別pair凍結を記録する。"
+    },
+    {
+      "slice_id": "D-H009-T2b",
+      "disposition_ids": [
+        "D13"
+      ],
+      "target_children": [
+        "44:F04"
+      ],
+      "target_functions": [
+        "L5#/functions/4 (compare_kind_obligation_trace)"
+      ],
+      "work": "F04（unit/connection/composite固有義務・requirement→obligation→design→pair双方向trace・041/025/026境界）とL8（原負例7件・ADD-14・normal oracle 4）の独立期待照合を確認し、fn4の関数別pair凍結を記録する。"
+    },
+    {
+      "slice_id": "D-H009-T2c-1",
+      "disposition_ids": [
+        "D14"
+      ],
+      "target_children": [
+        "45:F05 (part 1)"
+      ],
+      "target_functions": [
+        "L5#/functions/5 (compare_requirement_gaps_detail — core & validation/materialization/semantic_evidence)"
+      ],
+      "work": "F05前半1：compare_requirement_gaps_detail基本契約・f05_detail_contract前半（source_observation / owner_binding / projection / definition_and_value_summary / gap_contract / caller_return_writer）とL9（field_source_materialization 7件・field_semantic_evidence 9件・f05_validation_material_call 5件）・L8 F05基本oracle群の対照を確認する。"
+    },
+    {
+      "slice_id": "D-H009-T2c-2",
+      "disposition_ids": [
+        "D15"
+      ],
+      "target_children": [
+        "45:F05 (part 2)"
+      ],
+      "target_functions": [
+        "L5#/functions/5 (compare_requirement_gaps_detail — recipient_and_obligation_contract & input_scope_knowledge_gap)"
+      ],
+      "work": "F05前半2（Q-H009-2）：recipient_and_obligation_contract 3境界・28 leaf writer ledger・field_obligation_scope_writer_contract・input_scope_knowledge_gap_realizationとL9（21+5+1件）・L8（nine_source 1件・input_scope_knowledge_gap 19件・f13_leaf 2件）のU-ID対照を確認する。"
+    },
+    {
+      "slice_id": "D-H009-T2c-3",
+      "disposition_ids": [
+        "D16"
+      ],
+      "target_children": [
+        "45:F05 (part 3)"
+      ],
+      "target_functions": [
+        "L5#/functions/5 (compare_requirement_gaps_detail — selected_brain_field_definition_application_detail & pair freeze)"
+      ],
+      "work": "F05後半（Q-H009-2）：selected_brain_field_definition_application_detailとL8（cases 8件：未物質化5行 P1,N1–N4＋N5,N6,FN9 helper＋direct_reader 2件）・L9（10件）のU-ID検証契約対照（L8へfixture/hash/COPY追加なし）を確認し、fn5の関数別pair凍結を記録する。"
+    },
+    {
+      "slice_id": "D-H009-T2d",
+      "disposition_ids": [
+        "D17"
+      ],
+      "target_children": [
+        "46:F06"
+      ],
+      "target_functions": [
+        "L5#/functions/6 (compare_selected_knowledge)"
+      ],
+      "work": "F06（Q-H009-3）：compare_selected_knowledge（原負例7件・ADD-17）、brain_definition_source_read_binding/return_writer（L9 6件対照）、selected_source_caller_detail（L9 2 case＋7 probe vs L8 8 expectation、SSC-BOUNDARY-06対照を含む）を確認し、fn6の関数別pair凍結を記録する。"
+    },
+    {
+      "slice_id": "D-H009-T3a",
+      "disposition_ids": [
+        "D18"
+      ],
+      "target_children": [
+        "47:F07",
+        "48:F08"
+      ],
+      "target_functions": [
+        "L5#/functions/7 (compare_meaning_impacts)"
+      ],
+      "work": "F07（4 facet意味差分・Unknown保持・原負例7件＋ADD-18）およびF08（局所影響保全・OS非更新・原負例4件＋ADD-19）とfn7の独立期待照合を確認し、fn7の関数別pair凍結を記録する。"
+    },
+    {
+      "slice_id": "D-H009-T3b",
+      "disposition_ids": [
+        "D19"
+      ],
+      "target_children": [
+        "49:N01"
+      ],
+      "target_functions": [
+        "L5#/functions/9 (check_application_claims_detail)",
+        "L5#/functions/10 (build_application_analysis_from_detail)"
+      ],
+      "work": "N01（実証と候補の分離・原負例6件＋ADD-21〜24）およびfn9・fn10の詳細署名境界（F05DetailedReturn・F06 correspondence_issues・F03 projection引き渡し）の対照を確認し、fn9・fn10の関数別pair凍結を記録する。"
+    }
+  ],
+  "upstream_followup_reverse_index": [
+    {
+      "source": "L3F#/requirements/25",
+      "items": [
+        "D01",
+        "D08",
+        "D12"
+      ]
+    },
+    {
+      "source": "L3F#/requirements/26",
+      "items": [
+        "D02",
+        "D13"
+      ]
+    },
+    {
+      "source": "L3F#/requirements/27",
+      "items": [
+        "D03",
+        "D09",
+        "D14",
+        "D15",
+        "D16"
+      ]
+    },
+    {
+      "source": "L3F#/requirements/28",
+      "items": [
+        "D04",
+        "D10",
+        "D17"
+      ]
+    },
+    {
+      "source": "L3F#/requirements/29",
+      "items": [
+        "D05",
+        "D11",
+        "D18"
+      ]
+    },
+    {
+      "source": "L3F#/requirements/30",
+      "items": [
+        "D05",
+        "D11",
+        "D18"
+      ]
+    },
+    {
+      "source": "L3N#/requirements/4",
+      "items": [
+        "D06",
+        "D07",
+        "D11",
+        "D19"
+      ]
+    },
+    {
+      "source": "L4#/contracts/4/source_result_reference_projection/unclosed_boundary",
+      "items": [
+        "D01",
+        "D08",
+        "D12"
+      ]
+    },
+    {
+      "source": "L4#/contracts/4/non_applicability_basis_read_contract/boundaries",
+      "items": [
+        "D01",
+        "D08",
+        "D12"
+      ]
+    },
+    {
+      "source": "L4#/field_source_materialization_contract/failure_and_consumer_boundary",
+      "items": [
+        "D03",
+        "D09",
+        "D14"
+      ]
+    },
+    {
+      "source": "L4#/field_semantic_evidence_contract/detail_and_consumer_boundary",
+      "items": [
+        "D03",
+        "D09",
+        "D14",
+        "D15"
+      ]
+    },
+    {
+      "source": "L4#/f05_validation_material_call_contract",
+      "items": [
+        "D03",
+        "D07",
+        "D14"
+      ]
+    },
+    {
+      "source": "L4#/field_obligation_scope_contract",
+      "items": [
+        "D03",
+        "D09",
+        "D15"
+      ]
+    },
+    {
+      "source": "L4#/input_scope_knowledge_gap_contract",
+      "items": [
+        "D03",
+        "D09",
+        "D15"
+      ]
+    },
+    {
+      "source": "L4#/selected_brain_field_definition_application_contract/not_closed_here",
+      "items": [
+        "D03",
+        "D09",
+        "D16"
+      ]
+    },
+    {
+      "source": "L4#/selected_source_caller_contract/not_closed_here",
+      "items": [
+        "D04",
+        "D10",
+        "D17"
+      ]
+    },
+    {
+      "source": "L4#/selected_brain_definition_source_contract/limits_ja",
+      "items": [
+        "D04",
+        "D10",
+        "D17"
+      ]
+    },
+    {
+      "source": "L9#/cases/4/source_result_reference_cases/qualification_boundary",
+      "items": [
+        "D01",
+        "D08",
+        "D12"
+      ]
+    },
+    {
+      "source": "L9#/cases/4/basis_read_contract_cases",
+      "items": [
+        "D01",
+        "D12"
+      ]
+    },
+    {
+      "source": "L9#/field_source_materialization_verification/completion_boundary_ja",
+      "items": [
+        "D03",
+        "D09",
+        "D14"
+      ]
+    },
+    {
+      "source": "L9#/field_semantic_evidence_verification/unexercised_and_unverified",
+      "items": [
+        "D03",
+        "D09",
+        "D14"
+      ]
+    },
+    {
+      "source": "L9#/f05_validation_material_call_verification/completion_boundary_ja",
+      "items": [
+        "D03",
+        "D07",
+        "D14",
+        "D15"
+      ]
+    },
+    {
+      "source": "L9#/field_obligation_scope_verification/oracle_boundary",
+      "items": [
+        "D03",
+        "D09",
+        "D15"
+      ]
+    },
+    {
+      "source": "L9#/input_scope_knowledge_gap_verification/unexercised",
+      "items": [
+        "D03",
+        "D09",
+        "D15"
+      ]
+    },
+    {
+      "source": "L9#/input_scope_post_return_projection_verification/limits",
+      "items": [
+        "D03",
+        "D09",
+        "D15"
+      ]
+    },
+    {
+      "source": "L9#/selected_brain_field_definition_application_verification/not_exercised_and_limits",
+      "items": [
+        "D03",
+        "D09",
+        "D16"
+      ]
+    },
+    {
+      "source": "L9#/selected_source_caller_verification/not_proven",
+      "items": [
+        "D04",
+        "D10",
+        "D17"
+      ]
+    },
+    {
+      "source": "L9#/selected_brain_definition_source_verification/unexercised",
+      "items": [
+        "D04",
+        "D10",
+        "D17"
+      ]
+    }
+  ],
+  "legacy_and_failure": [
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md:16–60,81–92",
+      "asset": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+      "keep": "候補templateのexact set・適用unknown・理由/再評価条件付きN/A・不足のBackflow返却・requirement→obligation→design→pairのtraceを保持",
+      "change": "旧単一DesignTemplateRegistry/ApplicabilityEvaluator/PairGraphBinderからBRAIN(032)・HARNESS-CORE(009)・HELIX-OS(002)の3機構へ責務を分離し、T:43–49のA/B/C dispositionと関数単位のpair凍結で検収する",
+      "reuse": "semantic_rederivation"
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md:33–108",
+      "asset": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+      "keep": "I/O・副作用none・failure・consumer/oracleを保持しunknownをN/Aや空集合へ丸めない",
+      "change": "旧TPL文法・operator・runtime・CIを移植せず、L8にはU-ID行（対象・反例と期待・oracle ID・test citation）のみを置き具体fixture展開はL6/L7へ分離",
+      "reuse": "semantic_rederivation"
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md:34–55",
+      "asset": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "sha256": "e3fd59e8344924c8b136c13ef938983eb00ab9b59d6d04f47047eb5ff01655bd",
+      "keep": "異なるbehaviorを束ねず原子的sliceと不変条件単位で分割・検収する",
+      "change": "11組一括FREEZEを廃止し、各slice（D-H009-T2a〜T3b）の終わりに公開関数1つ＋対のL8 case行＋担うL3義務を単位として凍結を記録する（#3547 comment 6447675258）",
+      "reuse": "semantic_rederivation"
+    },
+    {
+      "source": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md:65–101",
+      "failure": "UTW-014/020/021/033: 欠損の空集合縮退、巨大aggregateへの集中による部分不足不可視、件数/hashのみによる自己申告完了、freezeとreopen境界の未分離",
+      "response": "T:43–49の残件をA/B/Cに仕分けてA 8件を次slice（D-H009-T2a〜T3b）へ明示引き渡しし、経路外の未完は戻し先（C）を付けて保持し、旧runtime/test/CIは実行しない"
+    }
+  ],
+  "verification": {
+    "kind": "static_only",
+    "t2_t3_children_covered": [
+      "43:F03",
+      "44:F04",
+      "45:F05",
+      "46:F06",
+      "47:F07",
+      "48:F08",
+      "49:N01"
+    ],
+    "negative_cases_matched_L8_L9": 46,
+    "materials_added_to_L8": 0,
+    "contract_meaning_changed": false,
+    "upper_expectations_relaxed": false,
+    "not_claimed": [
+      "pair freeze",
+      "A項目の解消（D-H009-T2a〜T3bで実施）",
+      "実行Green",
+      "L6/L7完成",
+      "実provider/資格/OS記録",
+      "Accepted",
+      "release/deploy"
+    ]
+  },
+  "result": {
+    "A": 8,
+    "B": 6,
+    "C": 5,
+    "questions_proposed": 2,
+    "meaning_units": 19,
+    "A_changes": "設計本体/期待は変更せず、A 8件（D12〜D19）の件数・内容・対象pointerを列挙して次slice（D-H009-T2a〜T3b）へ引き渡した。",
+    "B_C_changes": "L5/L8の共通残件欄とT:43–49関連節（F03〜F08, N01）のB/C文言を更新し、既記載の有限候補（B）と他owner/下流L6-L7/reviewレーンへの戻し先（C）および次sliceで扱うA残件を明確に分離した。status/not_executedは不変。"
+  }
+}

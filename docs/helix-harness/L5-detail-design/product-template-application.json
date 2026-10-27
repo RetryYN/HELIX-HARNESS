@@ -1796,7 +1796,7 @@
         "legacy_l8_pointer": "/normal_function_oracles/5",
         "legacy_context_type": "CompareRequirementGapsContext",
         "legacy_output_type": "Comparison",
-        "detail_full_oracle_status": "旧logical oracleは歴史的Comparison範囲のまま保持する。新L8 candidateのHARNESS-L8-009-F05-NINE-SOURCE-KNOWN-KNOWN-SCOPE-FULL-FIVE-RETURNは本候補L5 union下の一件positive finite全5member設計期待を束縛する。全F05全分岐/全owner結果のoracle、実同call/qualification/runtimeの証拠ではなく、旧logical expected_outputを新返却へcastしない。",
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/5）と原負例7件（/cases/6/negative_cases）・追加単体2件（ADD-15,16）はBとして保持し、新L8 candidateのHARNESS-L8-009-F05-NINE-SOURCE-KNOWN-KNOWN-SCOPE-FULL-FIVE-RETURN（1件positive 5member期待）やinput_scope_knowledge_gap_native_oracle（19件）等の有限詳細oracleも記載済み（B）。F05DetailedRequest->F05DetailedReturnの分岐・3境界・BRAIN field定義適用とのU-ID対照およびfn5の関数別pair凍結はA（Q-H009-2、D-H009-T2c-1〜T2c-3）へ渡し、実同call/qualification/runtime・全入力fixture展開は他owner・下流L6/L7（C）へ戻し、旧logical expected_outputを新返却へcastしない。",
         "limited_detail_oracle": {
           "id": "HARNESS-L8-009-F05-EXPLICIT-SKIP-BINDING-ABSENT-FULL-RETURN",
           "l8_pointer": "/f05_explicit_skip_binding_absent_full_return_oracle",
@@ -1855,7 +1855,7 @@
         "call_boundary": "原公開Comparisonにはcall入力との対応memberがない。pointer到達・producer_symbol・Binding一致だけで同call captureを成立させない。外部ownerの原captureにその対応が明示された根拠を取得できない経路は未形成のまま保持する。ここで新capture型/receipt/実呼出しの成功記録を生成しない。",
         "preservation": "原Comparison全memberと全axis/findingを原値/順/反復で原sourceに保持する。CORE側の取得結果は原record/sourceへ遡れる材料であり、BRAIN missingからCORE state/Finding codeを転記しない。record不在の元入力は既存F06経路を維持する。",
         "paired_read_oracle": "docs/helix-harness/L8-unit-verification/product-template-application.json#/normal_function_oracles/6/brain_definition_source_read_oracle",
-        "remaining": "対象別KnowledgeUseMaterial/Comparisonの全writer、原call対応の提供形式、実資格・配送、全複合枝は未完。取得規範の追補を設計Red/Green/Refactor完了としない。",
+        "remaining": "selected_brain_definition_correspondenceの取得規範（brain_definition_source_read_binding）とKnowledgeUseMaterialの4必須＋optional correspondence_issues返却（brain_definition_source_return_writer）は記載済み（B）。L9 selected_brain_definition_source_verification（6件）との対L8 U-ID対照およびfn6の関数別pair凍結はA（Q-H009-3、D-H009-T2d）へ渡し、外部ownerの原call対応capture提供形式・実資格・配送・実装Red/GreenはBRAIN032/030・CONNECT・SECURITY・下流L6/L7（C）へ戻す。",
         "legacy_basis": {
           "source": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md §0–§1 (LEGACY-ASSET-603D0E8D8193914F4AC0)",
           "keep": "I/O・failure・consumer/oracleを保ち原根拠を照合する。",
@@ -1864,7 +1864,7 @@
         }
       },
       "brain_definition_source_return_writer": {
-        "scope": "L4/L9の条件付き接続を既存F06 Comparisonへ返す下位技術具体化。公開Comparisonは5memberのまま。KnowledgeUseMaterialは既存必須4memberにoptional correspondence_issuesを追加する公開logical出力変更であり、純意味保存Refactorとはしない。原call capture形式・native全返却は未成立。",
+        "scope": "L4/L9の条件付き接続を既存F06 Comparisonへ返す下位技術具体化（B）。公開Comparisonは5memberのまま。KnowledgeUseMaterialは既存必須4memberにoptional correspondence_issuesを追加する公開logical出力変更であり、純意味保存Refactorとはしない。対L8 brain_definition_source_return_oracleとのU-ID対照・関数別pair凍結はA（Q-H009-3、D-H009-T2d）へ渡し、外部原call capture提供形式・native全入力/全返却fixture実行はBRAIN032/CONNECT・下流L6/L7（C）へ戻す。",
         "upstream": "L4 /selected_brain_definition_source_contract と対L9 /selected_brain_definition_source_verification。取得は同functions/6/brain_definition_source_read_binding。資格・原call対応を値形から成立させない。",
         "dispatch": "既存F06の選択knowledge原順に通常照合を進め、同snapshotのcorrespondence全出現を原record順に評価する。条件が成立していない原材料を成立枝のgivenへ偽装しない。新接続だけで旧F06の未成立を成功へ変更しない。",
         "no_record_or_unselected": "追加kind recordが無い、又は対象が正しく非選択knowledgeだけと確認できた場合は既存F06全返却をそのまま返す。非選択の原record/sourceはimmutable入力と既存caller.validationに保持し、選択Kの根拠へ混ぜない。対象未形成を非選択確定へ分類しない。",
@@ -2055,12 +2055,12 @@
         "legacy_l8_pointer": "/normal_function_oracles/9",
         "legacy_context_type": "CheckApplicationClaimsContext",
         "legacy_output_type": "Comparison",
-        "detail_full_oracle_status": "同F05DetailedReturn全値を追加引数とする詳細署名の全返却oracleは未形成。旧L8 expected_outputと旧Contextは元logical producerの資料として保持し、新署名oracle又は同native引数取得の証拠へcastしない。"
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/9）と原負例6件（/cases/10/negative_cases）・追加単体4件（ADD-21〜24）およびfn9 original_axes helper oracleはBとして保持する。CheckApplicationClaimsDetailedContext->CoreComparisonの詳細引数（F05DetailedReturn・F06 correspondence_issues連携）のL5/L8対照とfn9の関数別pair凍結はA（D-H009-T3b）へ渡し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
       },
       "knowledge_correspondence_consumer_binding": {
         "reads": "native_context.compare_selected_knowledgeの同operation実Comparison.materialを、更新されたKnowledgeUseMaterialとして読む。correspondence_issuesがpresentなら原列を保持し、absentなら旧入力の意味を維持する。fn0 input_issues又はF05 private Causeだと称さない。",
         "interpretation": "当該原recordへ依存するclaimについて原source/subject/scopeと未形成理由を照合し、裏付け未形成を成功にしない。診断列の存在だけで全claim/独立有資格範囲を不成立にせず、診断の不在も全BRAIN知識の観測・成立証拠にしない。既存各predicateの条件は保持し、unselected限定predicateへ選択record不足を流用しない。",
-        "boundary": "原7comparisonを使うaxes連結helperは変更しない。診断は実F06 material wholeに保持し、疑似AxisResult/Findingを合成しない。全claim consumerのnative返却oracle/実行は未成立。"
+        "boundary": "原7comparisonを使うaxes連結helperは変更せず、診断は実F06 material wholeに保持し疑似AxisResult/Findingを合成しない（B）。fn9/fn10におけるF06 correspondence_issuesおよびF05詳細返却のconsumer対照・関数別pair凍結はA（D-H009-T2d/T3b）へ渡し、全claim consumerの具体fixture展開・実行は下流L6/L7（C）へ戻す。"
       }
     },
     {
@@ -2110,7 +2110,7 @@
         "legacy_l8_pointer": "/normal_function_oracles/10",
         "legacy_context_type": "BuildApplicationAnalysisContext",
         "legacy_output_type": "ApplicationAnalysis",
-        "detail_full_oracle_status": "同F05DetailedReturn全値を追加引数とする詳細署名の全返却oracleは未形成。旧L8 expected_outputと旧Contextは元logical producerの資料として保持し、新署名oracle又は同native引数取得の証拠へcastしない。"
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/10）と追加単体3件（ADD-22〜24）およびseven_member_caller oracleはBとして保持する。BuildApplicationAnalysisDetailedContext->CoreApplicationAnalysisの詳細引数（F05DetailedReturn・source_result_reference_projection・F06 correspondence_issues保持）のL5/L8対照とfn10の関数別pair凍結はA（D-H009-T3b）へ渡し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
       },
       "knowledge_correspondence_preservation": "同operationの実F06 Comparison wholeを元comparison列へ無加工で保持する。material.correspondence_issuesのpresence/全3member/順/反復を保存し、Analysis.input_issuesへ転記しない。旧optional不在は不在のまま。"
     },
@@ -4587,7 +4587,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "runtime_execution": "not_executed",
-    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み。T:39–42のA残件と関数別pair凍結はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.jsonへ記録し次slice（D-H009-T1a〜T1d-2）へ渡す（T:43–49はD-H009-DISP-2）。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各ownerへ戻し、候補記載から生成しない。",
+    "next": "11 child契約・13論理関数・12正常oracle・24追加単体入力・106原負例・21pinsを候補として記載済み（B）。T:39–42のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（次slice D-H009-T1a〜T1d-2）、T:43–49のA残件はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（次slice D-H009-T2a〜T3b）へ記録して引き渡す。独立意味reviewとexact HEAD admissionは作成／独立review側へ、実trust/実行oracle凍結/Red-Green/L6関数設計・L7対検証と実装Readyは下流・各owner（C）へ戻し、候補記載から生成しない。",
     "source_result_reference_projection": {
       "state": "logical_pure_design_only",
       "function_ref": "HARNESS-L5-009-project_source_result_references",
@@ -4596,12 +4596,12 @@
     }
   },
   "remaining": [
-    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み。候補の記載と独立review/関数別pair凍結を分け、T:39–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（T:43–49は後続D-H009-DISP-2）へ別記し、独立reviewは作成／review側へ戻す。",
+    "L5/L8候補で13論理関数（各axis判定/集合/適用/N/A/trace/gap/影響/全体組立）と11 child契約、単体oracleを具体化済み（B）。候補の記載と独立review/関数別pair凍結を分け、T:39–42のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json（D-H009-T1a〜T1d-2）、T:43–49のA未達はdocs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json（D-H009-T2a〜T3b）へ別記し、独立reviewは作成／review側（C）へ戻す。",
     "正式wire schema/operator/registry/instance digest/言語依存/入力資格resolverの採用・稼働と実seed採用知識の最終照合は、下流L6関数設計/L7対検証・runtime codecおよび知識/資格owner（BRAIN030/032・SECURITY・OS002/053）の担当へ戻す。",
     "全92親430対の他基本/詳細と配置4論点、開発toolchain、L6/L7凍結/実装前Red/Green、CI、PO実物受入、通常L3/release/内部deployは本L5/L8有限契約の未達と混ぜず、他親の対設計は各機構、配置は対象L4、toolchain/実装・検証・CIはL6/L7と実行環境、実物受入・release等は既存authorityへ戻す。",
     "failure_rules 107件（原L9負例106件＋HARNESS-L5-009-R-condition_meaning_unresolved 1件）との対応、正常function oracle 12件、additional_unit_cases 24件を候補として記載済み。件数を意味識別力や全任意入力閉包の証拠にせず、各sliceの独立意味reviewはreview側へ、関数別pair凍結と個別A残件は各slice（D-H009-T1a〜T3b）へ渡す。",
     "正式runtime schema/codec、実source resolver、外部意味比較provider、資源/言語/配置と実fixture/実行oracle凍結→実装前Red→Green→CI→実受入は、各ownerと後続L6/L7・既存authorityへ戻す。",
-    "追加F03 source/result projectionとcondition pair両側member欠落のL5 refinement、lookup miss writerは固定packet上の有限候補規則として記載済み。混合conditionに対する元non_applicable_basis_ref真理値表が未供給の範囲はunknown/unresolvedを保持し（T:43詳細照合はD-H009-DISP-2/T2a）、正式codec・実source/owner資格・実provider/caller実装・OS正式記録consumer接続・全domain閉包は各ownerと下流L6/L7へ戻す。"
+    "追加F03 source/result projection（8 step）とcondition pair両側member欠落のL5 refinement、lookup miss writer（9 member）は固定packet上の有限候補規則として記載済み（B）。fn3/fn12の分岐対照・lookup miss未行使境界のU-ID対照と関数別pair凍結はAとしてD-H009-T2aへ渡す。混合conditionに対する元non_applicable_basis_ref真理値表の供給はBRAIN032/HARNESS008等のbasis owner（C）へ、正式codec・実source/owner資格・実provider/caller実装・OS正式記録consumer接続・全domain閉包はCONNECT/SECURITY/OS002/053・下流L6/L7（C）へ戻す。"
   ],
   "state_semantics": {
     "original_axes": "原qualified事実の値/定義/適用条件/版/知識state/OS使用/未観測/未受領を別axisで保存。Finding分類で原事実を書き換えない。",
@@ -9996,7 +9996,7 @@
         "L4 raw_mirror_fieldsはcomputed_rowのPresence/valueをそのまま返す。logical_backflow_ownerはL4 owner_route_rulesとsegment-boundary mappingから選び、実資格not_established、decision_impact=noneを保つ。"
       ],
       "effects": "none",
-      "execution_limit_ja": "正式codec、実source/owner資格、認可、OS record作成を成立させない。",
+      "execution_limit_ja": "admitted L4 F03 source_result_reference_projectionを8 stepの有限pure reference programとして記載済み（B、fn3/fn12の分岐照合と関数別pair凍結はD-H009-T2a）。正式codec、実source/owner資格、認可、OS record作成はCONNECT/SECURITY/OS002/053・下流L6/L7（C）へ戻し、本節で成立させない。",
       "local_reference_root": "#/source_result_reference_projection/program/l4_rule_snapshot",
       "derived_rules": {
         "condition_pair_member_validation": {
@@ -10310,7 +10310,7 @@
   },
   "f05_detail_contract": {
     "id": "HARNESS-L5-009-F05-DETAIL",
-    "status": "設計候補。採用L4から降ろす私有詳細契約。L8独立oracle照合・review・実装は未完。",
+    "status": "設計候補（152型・28 leaf writer ledgerを記載済み、B）。L8との対照・3境界（Q-H009-2）およびfn5の関数別pair凍結はAとしてD-H009-T2c-1〜T2c-3へ渡し、独立reviewはreviewレーン（C）、実装・実行は下流L6/L7（C）へ戻す。",
     "requirement_ref": "HARNESS-L3-009-F05",
     "system_oracle_ref": "HARNESS-L10-009-F05",
     "authority_effect": "none",
@@ -13235,18 +13235,18 @@
       "reason": "UTW014の未取得→空、UTW020のaggregateで部分原因消失、UTW021の自己申告完成を避ける。失敗から新要求を作らず、既承認F05意味を原sourceと全返却で実現する。"
     },
     "remaining_and_nonclaims": [
-      "本節は詳細設計候補の著述であり、実reader/writer/codec/validator/算法/製品test/CIを実装実行していない。実装準備完了又は全F05閉包を認定しない。",
-      "同fn0 root/qualificationの実供給元/custody/原owner根拠resolver、宣言/原命題profileの実producer/取得口と独立原source資格成立は未成立。未定義oracle boolへ委ねず未観測原端/条件を全返却へ保持する。",
-      "全native型/writer及び全枝の対L8 oracleは未閉包。本L5候補に対するL8追加は固定9-source known/known scope positive一件だけで、139/147型又は全writer/branchの閉包を証明しない。独立意味review、数値/codec実成立、既存他producerの全leaf writerと全claim枝の実証は残務。本節のnative Context対応表だけで既存全9producerのpartial input挙動が完成したとはしない。",
-      "selected scope/対象操作と元適用結果が実対応しないfield/proposalは対象不成立を局所に返す。取得成功から対象必要集合を作らない。実必要field集合の上流owner資料を本節で発明しない。",
-      "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務は別残務。",
-      "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約で、全claim種類の新native式木/任意自然言語意味classifierは本差分で作らない。既存claim条件の原operand対応が元資料で一意に形成できない枝を実Finding成功へ補完しない。全claim入力語彙の詳細原producer契約と全branch oracleの閉包は独立検収が必要。",
-      "source観測のusableは供給独立root責務前提の局所原資料照合成立だけ。原source/qual/root必要端が未提示の局所未形成と、実root供給元/custody/原owner認証の取得口未閉包は別である。既存ApplicationInput/ValidationInputに後者の実trace引数が無いため、外部実trust成立は本詳細から導けない。新arg/bool/provider/一律全資料拒否gateは追加しない。",
-      "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定した文書であり、実call/return観測、既存他producer全意味writer又は選択owner typed port完成を証明しない。L4outer_return_boundaryのstep6/7全返却/未接続は別追補対象。",
-      "knowledge版不足→BRAINは承認済F05の保持義務。recipient_and_obligation_contract/knowledge_revision_gap_boundaryに挙げた原必要版/供給版/不足原命題/owner-source-body対応のtyped形成と返却writerは未閉包であり、unresolved又は局所未形成を返せたことを要求の意味変更/完了根拠にしない。",
-      "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。obligation_scope_boundaryの原scope/状態対応は未閉包であり、全列保存から当該未完の新selector又は消込を生成しない。",
-      "HARNESS返却先は原適用contract不整合の根拠に対応する範囲。元process資料一般の返却先を新規にHARNESSとせず、原材料を全保持したままapplication_contract_recipient_boundaryの局所形成不足を残す。",
-      "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影。任意nonnull source_result_reference_projectionの既存logical-native型対応/同call由来のtyped形成基準はprojection_native_correspondence_frontierの具体残務で、fn10全caller閉包又は常時拒否gateとはしない。"
+      "本節は152型・28 leaf writerの詳細設計候補を記載済み（B）であり、関数別pair凍結はD-H009-T2c-1〜T2c-3（A）、実reader/writer/codec/validator/算法/製品test/CIの実装実行は下流L6/L7（C）へ戻す。実装準備完了又は全F05閉包を認定しない。",
+      "同fn0 root/qualificationの実供給元/custody/原owner根拠resolver、宣言/原命題profileの実producer/取得口と独立原source資格成立はBRAIN032/030・HARNESS008・SECURITY・CONNECT（C）へ戻す。未定義oracle boolへ委ねず未観測原端/条件を全返却へ保持する（B/A、D-H009-T2c-1）。",
+      "L8には原負例7件・追加単体2件・F05 native oracle群（explicit_skip/g1_g2/native_normal/nine_source 1件/input_scope_knowledge_gap 19件/seven_member_caller/same_scan/f13_leaf 2件）を記載済み（B）。152型・28 leaf writerとL9（field_source_materialization 7件・field_semantic_evidence 9件・validation_material_call 5件・field_obligation_scope 21件・input_scope_knowledge_gap 5件・post_return 1件）のU-ID対照と関数別凍結はA（D-H009-T2c-1〜T2c-2）へ渡し、全組合せfixture展開や数値/codec実成立は下流L6/L7・CONNECT（C）、独立意味reviewはreviewレーン（C）へ戻す。",
+      "selected scope/対象操作と元適用結果が実対応しないfield/proposalは対象不成立を局所に返す（B）。取得成功から対象必要集合を作らず、実必要field集合の上流owner資料供給はBRAIN032/HARNESS008（C）へ戻す。",
+      "B019/030の同query/knowledge/独立field関係及び数値表現を含むtyped projection・選択call全入力/全返却・実配送/受領/OS記録・実受入、全92親430義務はBRAIN030/CONNECT/OS002/053・下流L6/L7・PO受入（C）へ戻す。",
+      "現failure_rulesのF05 claim predicatesは原条件文章とClaim.kind:string/原proposed_valueを持つ既存契約（B）であり、全claim種類の新native式木/任意自然言語意味classifierは作らない。fn9/fn10のF05詳細返却連携とU-ID対照はA（D-H009-T3b）へ渡し、原producer実契約は各owner（C）へ戻す。",
+      "source観測のusableは供給独立root責務前提の局所原資料照合成立だけ（B）。原source/qual/root必要端が未提示の局所未形成と、実root供給元/custody/原owner認証の取得口未閉包（SECURITY/CONNECT、C）は分離し、新arg/bool/provider/一律全資料拒否gateは追加しない。",
+      "caller_return_writer_contractは7個Comparison-only観測とF05/claims/analysis専用返却の全leaf/原所在/Cause順を技術選定済み（B）。L8 caller/post-return oracleとの対照はA（D-H009-T2c-1/T2c-2）へ渡し、実call/return観測・他producer実接続・選択owner typed port稼働は他owner・下流L6/L7（C）へ戻す。",
+      "knowledge版不足→BRAINは承認済F05の保持義務。f13_knowledge_recipient_leaf_verification（2件）とinput_scope_knowledge_gap_native_oracle（19件）を記載済み（B）であり、knowledge_revision_gap_boundaryのL5/L8契約対照はA（Q-H009-2、D-H009-T2c-2）、上流ownerの独立版不足命題source供給はBRAIN032/030（C）へ分離する。unresolved又は局所未形成を返せたことを要求の意味変更/完了根拠にしない。",
+      "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。field_obligation_scope_writer_contractとnine_source_known_known_scope oracle（1件）を記載済み（B）であり、L9 field_obligation_scope_verification（21件）とのU-ID対照はA（Q-H009-2、D-H009-T2c-2）、外部ownerの局所scope profile実供給は各owner（C）へ分離し、全列保存から当該未完の新selector又は消込を生成しない。",
+      "HARNESS返却先は原適用contract不整合の根拠に対応する範囲（B）。application_contract_recipient_boundaryのL5/L8対照はA（Q-H009-2、D-H009-T2c-2）へ渡し、元process資料が適用contract不整合へ対応する外部owner根拠の供給はHARNESS上流owner（C）へ戻す。",
+      "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影（B）。source_result_reference_projectionのfn10 optional引き渡しとF05詳細返却連携はA（D-H009-T2a/T3b）へ渡し、実caller統合や外部runtimeは下流L6/L7（C）へ戻す。"
     ],
     "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
     "type_dependencies": {
@@ -18743,11 +18743,11 @@
       "reuse": "L9 /selected_brain_source_occurrence_verification/cases/0,1およびL8 /selected_source_occurrence_array_builder_verificationをsource-array部分の固定期待として参照し、新たな巨大ApplicationInput fixtureを複製しない。",
       "wrapper_additional_expected": "独立L8/L9 counterpartで、template_sourceとknowledge_use_sourceの各explicit edgeからafter native callerへの一回経路を小規模に固定する。新oracleはcaller signature、builder一回呼出し、after raw.sources置換、after Readの別供給、C01の実返却全値、local not_called casesを識別する。",
       "not_closed_here": [
-        "複数edge/複数source sequential chain",
-        "実source provider/custody/authority",
-        "ApplicationInput全体の組立て",
-        "外部codec/runtimeと実配送",
-        "実際のvalidation又はSECURITY資格の成立"
+        "複数edge/複数source sequential chain（下流・別拡張Cへ分離；単一明示edgeのL5/L8対照はB/A、D-H009-T2d）",
+        "実source provider/custody/authority（BRAIN032/030・SECURITY・CONNECT、C）",
+        "ApplicationInput全体の組立て（他owner・下流L6/L7、C）",
+        "外部codec/runtimeと実配送（CONNECT・下流L6/L7、C）",
+        "実際のvalidation又はSECURITY資格の成立（SECURITY・下流L6/L7、C）"
       ]
     },
     "legacy_comparison": {
@@ -18768,7 +18768,7 @@
       "changed": "現行ownerのclosed CallerInputs/ValidationInput/C01へ、新しいprivate wrapperからraw接続する一責務。既存型や公開APIを拡張しない。",
       "reason": "missingをemptyにしない、部分原因をaggregateで隠さない、hash/candidate count/self-reportで完了を作らない。"
     },
-    "completion_boundary": "詳細設計候補として入力・分岐・既存consumerを具体化する。実装/実行・L8/L9 proof・実source custody/delivery/qualification/OS記録・L11 acceptanceは主張しない。",
+    "completion_boundary": "単一明示source-edge依頼のprivate caller詳細設計候補として入力・分岐・既存consumerを具体化済み（B）。対L8 selected_source_caller_detail_verification（8 connection_expectations）とL9（2 case＋7 probe）の対照・関数別凍結はA（D-H009-T2d）へ渡し、実装/実行・実source custody/delivery/qualification/OS記録・L11 acceptanceは他owner・下流L6/L7・PO受入（C）へ戻す。",
     "authority_basis": {
       "decision_record_id": "HDEC-HARNESS-CORE009-PREREQUISITE-L3L10-2026-10-12",
       "decision_record_path": "docs/governance/decisions/helix-harness-core009-prerequisite-l3-l10-delegated-decision-2026-10-12.md",
@@ -19696,12 +19696,12 @@
       "raw_and_presence": "原FieldInput、各definition_refs、CORE/BRAIN Ref/Binding/source、SemanticRecord meaning RawValue、source bytes、Qualification、F03Evaluation/whole、既存native returnはpresence/null/absent、root、index、raw bytes、原順序・重複を保つ。source body再生成・型正規化・修復・重複排除なし。",
       "domain_boundary": "BRAIN F03 state/causeをCORE domain stateへcastしない。CORE owner statementの形式読取と意味適用のsource-backed構造対応は区別する。設計はownerが記録した適用内容を受け渡すもので、意味的真偽・外部資格・配達を自動認証しない。",
       "not_closed_here": [
-        "現行CORE normal SemanticRecord[9]はindex/position/bodyだけで製品fieldへの実適用statementを示さず、現素材からsuccess goldenを作らない。実operation owner sourceが無ければprivate applied resultは未形成。",
-        "全fieldの対応、全ApplicationInput assembly、source occurrenceの複数段chain、別入力提供元からのprojection、全descriptor/未選択support、application selection producer全体。",
-        "wire codec、cross-runtime numeric conversion、CORE/BRAIN qualification bridge、RPC/process/transport、外部配達、実運用。",
-        "Claims rule 54–57、applicability/NA、製品valueの新判断、OS案件記録、template採用判断、全要求/全support閉包。"
+        "現行CORE normal SemanticRecord[9]はindex/position/bodyだけで製品fieldへの実適用statementを示さず、現素材からsuccess goldenを作らない（B）。実operation owner sourceの供給はBRAIN032/HARNESS008等の実owner（C）へ戻す。",
+        "1 field適用経路のprivate型・writer・statement_selector_contractは記載済み（B）。対L8の8 case（P1, N1–N6, FN9 helper）＋direct_reader 2 caseとL9 10 caseのU-ID対照・未物質化5行（P1, N1–N4）の契約充足確認はA（Q-H009-2、D-H009-T2c-3）へ渡し、全field/全ApplicationInput assembly/複数段chainは他slice・下流L6/L7（C）へ戻す。",
+        "wire codec、cross-runtime numeric conversion、CORE/BRAIN qualification bridge、RPC/process/transport、外部配達、実運用はCONNECT/SECURITY/BRAIN030・下流L6/L7（C）へ戻す。",
+        "Claims rule 54–57、applicability/NA、製品valueの新判断、OS案件記録、template採用判断、全要求/全support閉包は対応child（F03/N01）・HARNESS008・OS002/053（C）へ戻す。"
       ],
-      "verification_limit": "この節は既存L4契約をL5 private型・writer・consumerへ具体化する候補で、実装・実行・独立review・受入の証拠ではない。対L8の独立反例と全返却比較で検証する。"
+      "verification_limit": "この節は既存L4契約をL5 private型・writer・consumerへ具体化する候補（B）であり、対L8（selected_brain_field_definition_application_detail_verification）とのU-ID対照とfn5/fn9/fn10連携確認はA（Q-H009-2、D-H009-T2c-3）へ渡す。実装・実行・L6/L7具体fixture展開・独立review・受入は下流L6/L7・reviewレーン・PO受入（C）へ戻す。"
     },
     "statement_selector_contract": {
       "status_ja": "このreader向けの限定private技術選択。public schema/API、L4 input、既存native型/意味を変更しない。",
