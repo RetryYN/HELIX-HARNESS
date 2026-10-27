@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "adec4540e075371ad2f7f10d5a9a63aa01790a4844c666befbf418561a115589",
+    "sha256": "600ecb33c79fa95d0469ba662242d741fb1914ed914bcfd68b0bcd1610924e2b",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -1725,7 +1725,7 @@
   },
   "walk_claim_uses_verification": {
     "request": "WR-CLAUDE-BRAIN032-WALK-CLAIM-USES-PREREQ-3547-20261027-33",
-    "state": "TDD進行中・未完成",
+    "state": "局所Green・独立reviewとWR33残る到達境界のscope確認前",
     "old_stop_expectation_transition": {
       "permission": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6446411406",
       "scope": "旧supplied_claim_ports期待の3methodsのみ。新規凍結testの期待変更は含まない。",
@@ -1746,8 +1746,303 @@
         "test_oracle_view_boundary_f05_negativesのNEG01/02: 元停止を通過しF05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLEに到達。"
       ],
       "reason": "WR33が正規型付きtarget/intent口を実装したため、旧全Claim一律停止期待が適用されなくなった。L4/L5から原target/intent全値を独立観測し、後段未実装境界は実際の固有IDで追跡する。",
-      "test_edit_state": "この記録時点では旧3methods未変更。後段実装後の最終期待を同subtreeへ記録する。"
+      "test_edit_state": "許可された3methodsのみ期待更新。元target未解決/intent positiveの全値と原evaluation/native保持、F05 NEG01/02はderived_view枝外のFN4 oracle_claim_ports固有IDを検収。新規frozen expectationsへ一般例外は広げない。",
+      "new_expectations": {
+        "walk": "同fixtureのKB provenance digestはsource0と既知相違のためowner_source_unresolved。null提案intentはpositive、元Claim/locator/候補/原snapshotを保持。",
+        "fn4_NEG01_NEG02": "F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE。derived_view実sourceがあり、L4 nonfire_read_plan有限枝外。predicate全閉包とはしない。"
+      }
     },
-    "authority_intake": "root-wr33-authority-item-intake.json: L3/L10対象16項目は47354be8c1ef225dd7eacffe390d268c0dfee784と同値。文書全体の承認へ拡張しない。"
+    "authority_intake": "root-wr33-authority-item-intake.json: L3/L10対象16項目は47354be8c1ef225dd7eacffe390d268c0dfee784と同値。文書全体の承認へ拡張しない。",
+    "facts_missing_oracle_correction": {
+      "test_revision": "412798f8d",
+      "method": "test_existing_slot_with_empty_facts_is_missing_without_slot_finding",
+      "wrong_expectation": "backflow_owner=knowledge_owner（既存ruleが無い通常eventへlogical roleを誤適用）",
+      "normative_pointer": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/reason_and_subject_contract/AxisResult/backflow_owner",
+      "normative_text": "既存ruleに定義済みならそのlogical責務role。通常eventは元Binding.knowledge_ref.ownerを候補文字列として保持し、未決はnull。実recipient資格/送信にはしない。",
+      "correct_expectation": "facts_missingはFindingなしの通常eventのため、原binding.knowledge_ref.owner全値。required_slot_absentは既存missing ruleがあるためknowledge_ownerを保持。",
+      "observation_before_correction": {
+        "artifact": "root-wr33-connections-candidate1.json",
+        "sha256": "da3f51ef1efc66d65cfa2eea594b27ecc78eae0575a287dcd74ebe7c9ff33800",
+        "failure": "facts_missing Axisでsynthetic-knowledge-owner != knowledge_owner。源コードはL5どおりで変更しない。",
+        "setup_errors": 0,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "reason": "独立oracleの誤読を訂正する。成功に合わせた期待生成・state/route変更・弱化はしない。凍結前のroot検収漏れとして誤期待revisionと実FAILを残す。",
+      "authority_effect": "none"
+    },
+    "tdd_execution": [
+      {
+        "artifact": "root-wr33-dependencies-absent-red.json",
+        "sha256": "78496ed109aeb7c18f3b2e0b412b817180e7ede9dd9905ce22e64d418c7d75a6",
+        "status": 1,
+        "duration_ms": 146,
+        "methods": 1,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-dependencies-absent-green.json",
+        "sha256": "b638dd3904deb6b35e08cc3c9112d10f32ac5d12773f1d5e3297f50776fee045",
+        "status": 0,
+        "duration_ms": 687,
+        "methods": 15,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-dependency-subject-red.json",
+        "sha256": "e0d8ae430ec3aac64bc4d27ce7e09930954d47d29b87fba079a9aa8958fd9db6",
+        "status": 1,
+        "duration_ms": 165,
+        "methods": 3,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-dependency-subject-green.json",
+        "sha256": "e7820e43fe9ffeb5c1ee70430fe8afc57da5eec03c20b983b64e3ba320170918",
+        "status": 0,
+        "duration_ms": 788,
+        "methods": 18,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-dependency-writer-refactor.json",
+        "sha256": "639f13245befa9de48fcf5d0a4c35a6189eee0f8f8045c9d5766f5a6a9a790bf",
+        "status": 0,
+        "duration_ms": 756,
+        "methods": 18,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-reader-red.json",
+        "sha256": "fc4ff3416757ccb71167bfc5f8b3abe7de47131cf18311f92a24c050d7f5aac8",
+        "status": 1,
+        "duration_ms": 336,
+        "methods": 8,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-reader-green.json",
+        "sha256": "3023320fc3745a93c23f487382957008210a2638b76184c33e8a93bbb60b9556",
+        "status": 0,
+        "duration_ms": 379,
+        "methods": 8,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-arguments-red.json",
+        "sha256": "364f8edf7b3cce0f81b7d0aa51e6ca480e9ff2b0ef491960a695de18624d9ced",
+        "status": 1,
+        "duration_ms": 89,
+        "methods": 1,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-arguments-green.json",
+        "sha256": "ddc0491f81915fce8b400df25f00f53b0588f5bca4defa5e7863aa77a006b350",
+        "status": 0,
+        "duration_ms": 378,
+        "methods": 9,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-claim-walk-red.json",
+        "sha256": "0a890cdaff096778d5e84e3d3706d6e6a9540483f160b45870557885e7bf01b9",
+        "status": 1,
+        "duration_ms": 172,
+        "methods": 4,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-cohorts-red.json",
+        "sha256": "342c504521260012e1bba5c9dc881d1ff9cdcd2e00f5c589a4acc14abaae032f",
+        "status": 1,
+        "duration_ms": 194,
+        "methods": 5,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-cohorts-red-R2.json",
+        "sha256": "1080cb4ebf9c9266f2fdf2b3bd30e62167b189e28620a9945e9c8da63f6b1958",
+        "status": 1,
+        "duration_ms": 257,
+        "methods": 5,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-target-walk-green-R1.json",
+        "sha256": "cb545b866ca4837311150fa32c62897c87ec0d73033471bde0e2c62b61bac39d",
+        "status": 0,
+        "duration_ms": 752,
+        "methods": 18,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-uses-cohort-red.json",
+        "sha256": "1f40f8845c577d5e188129a9c3a617cbbc928d2cb8ab1baaca92c6dda2b7aeac",
+        "status": 1,
+        "duration_ms": 748,
+        "methods": 7,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-fn6-fill-red.json",
+        "sha256": "54df8f5a3f0ec862ed270f8f3aa49d5e619740eb34ecdc41e1aa26c28621bee3",
+        "status": 1,
+        "duration_ms": 278,
+        "methods": 1,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-definition-missing-red.json",
+        "sha256": "6ed41c31f0f7b88abd37fe12ff5168636b4e16f078d923e1c97f83c8bcec5f74",
+        "status": 1,
+        "duration_ms": 189,
+        "methods": 3,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-connections-candidate1.json",
+        "sha256": "da3f51ef1efc66d65cfa2eea594b27ecc78eae0575a287dcd74ebe7c9ff33800",
+        "status": 1,
+        "duration_ms": 2610,
+        "methods": 21,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-connections-candidate2.json",
+        "sha256": "3b192d908c096482d628a2b9993b5178b23902601eaab47575a068bc8df30ee7",
+        "status": 1,
+        "duration_ms": 2799,
+        "methods": 26,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-missing-claim-route-red.json",
+        "sha256": "b73f4d69c5caff245a012898ed715ede0250960c0377544518aa290e6a783ff5",
+        "status": 1,
+        "duration_ms": 332,
+        "methods": 2,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-missing-origins-red.json",
+        "sha256": "b7b10076701a69c819fdb971ca64ac607ea5191e28d31ed603f10ecfed820eb4",
+        "status": 1,
+        "duration_ms": 98,
+        "methods": 1,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-rule87-writer-red.json",
+        "sha256": "30c32a5a702c00aea0adfc7da44e07ddaefdefa41816b7d50a87b0f887f6587d",
+        "status": 1,
+        "duration_ms": 1395,
+        "methods": 13,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-connections-green-R1.json",
+        "sha256": "1fb38d4bbeb5de489f89c67ecfd9a8f1338e044d41cb3236b2bdec92054b044e",
+        "status": 0,
+        "duration_ms": 3621,
+        "methods": 45,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-unit-green-R1.json",
+        "sha256": "974d75bfae5d8921eac9af64575cbd3c5d766c40cdc7f082dca1e5beb98a2c17",
+        "status": 0,
+        "duration_ms": 30585,
+        "methods": 337,
+        "reaped": true,
+        "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-event-refactor-green.json",
+        "sha256": "82bc867abaccee3dacc3e908590cc11ab845b170c01cff1903b4d62ddfbbee1b",
+        "status": 0,
+        "duration_ms": 889,
+        "methods": 10,
+        "reaped": true,
+        "output_truncated": false
+      }
+    ],
+    "fixed_test_revisions": {
+      "dependencies_absent": "33a100b29",
+      "reader_declaration_and_targets": "94155b855",
+      "claim_walk": "f328e318e",
+      "dependency_subject": "484ca494c",
+      "target_arguments": "a9f9dda87",
+      "target_cohorts": "8c2604585",
+      "target_cohort_setup_correction": "f0ab0a909",
+      "uses_and_unresolved_cohorts": "15ab2851b",
+      "fn6_connection": "d98184bac",
+      "canonical_missing": "412798f8d",
+      "fn4_connection": "e949632ce",
+      "claim_use_occurrences": "296a2457e",
+      "missing_claim_routes": "a9afdc096",
+      "global_rule_origins": "7026106fb",
+      "facts_missing_owner_oracle_correction": "2d65b3025"
+    },
+    "implementation_revisions": {
+      "dependency_absent": "b1d20475d",
+      "dependency_subject": "9d65db3f1",
+      "target_reader": "508c3a954",
+      "target_argument": "78ec5aa74",
+      "typed_cohort": "a4cb89643",
+      "nonempty_claim_walk": "fad4516d5",
+      "unresolved_current_cohort": "1f55754f1",
+      "canonical_missing": "629590808",
+      "claim_uses": "fcdbfb107",
+      "fn6_rule87": "d77bdb393",
+      "fn4_finite_carry": "bf165e453"
+    },
+    "refactor": {
+      "revision": "95fa4b766",
+      "change": "required-slot missing Finding.reasonは同判定点Axis.reasonから保持しliteral二重管理を除去。event/state/Ref/順序は不変。",
+      "verification": "root-wr33-event-refactor-green.json:10methods PASS/889ms。先行全337methods Greenはroot-wr33-unit-green-R1.json（30585ms）。dependencies専用reason writerのrefactorは28a46d349と専用18methods Green。"
+    },
+    "oracle_independence": "具体rawを既存normal/trace入力から構成し、source bodyは元bytes/digest/独立Q/provenance/fact sourceリンクを同期。型/原locators/route/固定理由と既存failure tupleをL4/L5から導出する。手作り前段Comparison/private frame、reader patch、saved whole expected/hash一致を製品判定oracleへしない。元helper又は既存prefixの意味保存はその局所責務だけを実対照と照合。",
+    "root_acceptance": "rootが全新test/sourceと候補差分をReadしbounded実行/終了回収/失敗根拠を検収。Luna Workerの静的成功を実Greenへ読み替えない。",
+    "remaining": "D27歴史原入力の4fieldslot、typed意味operation carrier、meaning_undefined肯定producer、handoff absent等の残る正規到達を全て実装済みとはしない。fn7全16rule、L8/OS、Issue #3547完成は主張しない。WR13 #3732はDraft保持。",
+    "final_unit": {
+      "artifact": "root-wr33-unit-final-green.json",
+      "sha256": "ee19576b2073c8ce7f475807d8e200f847293cca03d0c09c97435d15a289a95c",
+      "source_revision": "95fa4b766",
+      "methods": 337,
+      "status": 0,
+      "duration_ms": 29876,
+      "reaped": true,
+      "output_truncated": false,
+      "scope": "現行unitのみ。archive test/CI/runtime実行なし。L8/OS完了ではない。"
+    },
+    "static_checks": {
+      "all_unit_source_AST": "PASS",
+      "each_module_nonblank_lines": "<700; target_reader427, walk520, uses270, fn6 577",
+      "L6_L7_scope": "base JSONから自subtreeを除去しpaired_working_bindingを戻すと全値同一",
+      "diff_whitespace": "PASS"
+    }
   }
 }

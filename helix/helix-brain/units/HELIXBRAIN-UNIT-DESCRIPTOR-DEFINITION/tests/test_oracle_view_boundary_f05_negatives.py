@@ -1,7 +1,7 @@
-"""F05-NEG-01/02の同call未対応claim境界を固定する。
+"""F05-NEG-01/02の同call未対応FN4 predicate境界を固定する。
 
 これらはpredicate実装のRed/Greenではない。L8で定義された実入力から
-現canonical FN1 walkが返す未対応IDを観測し、fn1のmissingと入力保持を
+非空Claim読取後のFN4が返す未対応IDを観測し、fn1のmissingと入力保持を
 確かめる境界テストである。
 """
 
@@ -18,14 +18,14 @@ from descriptor_definitions import (
 )
 
 
-EXPECTED_WALK_STOP = (
-    "F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; "
-    "Backflow HELIXBRAIN-L6-032-N03-PATH"
+EXPECTED_FN4_STOP = (
+    "F05/F06/unclosed/oracle_claim_ports; owner=knowledge_owner; "
+    "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
 )
 
 
 class TestOracleViewBoundaryF05Negatives(unittest.TestCase):
-    def _assert_f05_negative_stops_at_unimplemented_claim_walk(
+    def _assert_f05_negative_stops_at_unimplemented_fn4_claim_predicate(
         self, slot_index, kind, expected_missing_code, target_identity
     ):
         # Reuse the existing L8-derived input builder. Its setUp only loads
@@ -67,21 +67,21 @@ class TestOracleViewBoundaryF05Negatives(unittest.TestCase):
 
         with self.assertRaises(NotImplementedError) as caught:
             compare_oracle_and_view_boundary(context)
-        self.assertEqual(str(caught.exception), EXPECTED_WALK_STOP)
+        self.assertEqual(str(caught.exception), EXPECTED_FN4_STOP)
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
         self.assertEqual(context, context_before)
 
-    def test_f05_neg01_view_measurement_repair_keeps_fn1_missing_and_stops_at_walk_id(self):
-        self._assert_f05_negative_stops_at_unimplemented_claim_walk(
+    def test_f05_neg01_view_measurement_repair_keeps_fn1_missing_and_stops_at_fn4_id(self):
+        self._assert_f05_negative_stops_at_unimplemented_fn4_claim_predicate(
             11,
             "measurement",
             "descriptor_12_missing",
             "SYNTHETIC-OWNER-MEASUREMENT-TARGET-A",
         )
 
-    def test_f05_neg02_view_completion_repair_keeps_fn1_missing_and_stops_at_walk_id(self):
-        self._assert_f05_negative_stops_at_unimplemented_claim_walk(
+    def test_f05_neg02_view_completion_repair_keeps_fn1_missing_and_stops_at_fn4_id(self):
+        self._assert_f05_negative_stops_at_unimplemented_fn4_claim_predicate(
             12,
             "completion",
             "descriptor_13_missing",

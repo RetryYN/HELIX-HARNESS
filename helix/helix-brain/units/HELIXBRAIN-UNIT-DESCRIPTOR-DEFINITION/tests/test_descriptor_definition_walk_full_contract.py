@@ -227,8 +227,8 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 
-    def test_supplied_typed_claim_stops_at_current_claim_port(self):
-        """A closed Claim whose subject is template_ref reaches the current supplied-claim boundary."""
+    def test_supplied_typed_claim_preserves_unresolved_target_and_positive_null_intent(self):
+        """L4/L5 retain unresolved provenance and a supplied-null replacement separately."""
         raw = base_input(load_document())
         raw["claims"] = [{
             "subject_ref": copy.deepcopy(raw["binding"]["template_ref"]),
@@ -238,7 +238,45 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
             "proposed_value": None,
             "basis_refs": [],
         }]
-        self._assert_stop(raw, WALK_STOP_PREFIX + "supplied_claim_ports;")
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertEqual(validated["input"], raw_before)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["unusable_source_refs"], [])
+        validated_before = copy.deepcopy(validated)
+        # This original fixture keeps a stale provenance digest. Ref comparison
+        # therefore cannot select source0 as an owner target carrier.
+        self.assertNotEqual(
+            raw["knowledge_records"][0]["provenance_refs"][0]["sha256"],
+            raw["sources"][0]["ref"]["sha256"],
+        )
+        walk = evaluate_descriptor_definition_walk({"validated": validated})
+        claim = raw["claims"][0]
+        self.assertEqual(walk["target_reads"], [{
+            "claim_locator": "/claims/0", "claim": claim,
+            "candidate_indices": [0], "candidate_refs": raw["candidates"],
+            "occurrences": [], "matches": [], "state": "unknown",
+            "problems": [{
+                "kind": "owner_source_unresolved",
+                "locator": "/knowledge_records/0/provenance_refs/0",
+                "reason": "同knowledge原record/provenanceから既存資格を満たすowner sourceへ解決できない。原所在と不足を保持する。",
+                "source_ref": {"presence": "absent"},
+            }],
+        }])
+        self.assertEqual(walk["intent_reads"], [{
+            "claim_locator": "/claims/0", "claim": claim,
+            "kind": {"presence": "supplied", "value": "fill_definition"},
+            "proposed_value": {"presence": "supplied", "value": None},
+            "intent": "positive",
+            "reason": "供給済みRawValueをnullも含めreplacement内容として保持する。",
+        }])
+        baseline = copy.deepcopy(raw)
+        baseline["claims"] = []
+        baseline_walk = evaluate_descriptor_definition_walk({"validated": validate_supply_input(baseline)})
+        self.assertEqual(walk["evaluation"], baseline_walk["evaluation"])
+        self.assertEqual(walk["native_material"], baseline_walk["native_material"])
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
 
     def test_multifact_slot_stops_at_current_pair_scope(self):
         """A second closed fact occurrence reaches the bounded one-fact pair path guard."""
