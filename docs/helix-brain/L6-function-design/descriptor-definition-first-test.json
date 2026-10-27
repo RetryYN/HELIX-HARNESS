@@ -1666,9 +1666,31 @@
     "function_symbol": "compare_oracle_and_view_boundary",
     "source_size_observation": {
       "all_source_max_nonblank": 646,
-      "FN6_nonblank": 591,
-      "FN6_physical_lines": 652,
+      "FN6_nonblank": 610,
+      "FN6_physical_lines": 671,
       "new_module_for_line_count": false
+    },
+    "review_r1": {
+      "source_fix_commit": "4d05ed9feb18ad4ee0f314e8f76ba370e8a9601c",
+      "m2_absent_proposed_value": {
+        "behavior": "absentをnullと区別する。targetがresolved/unknownの両方で既存oracle_claim_portsへ停止し、欠落memberを直接参照したりnullへ既定化しない。",
+        "test": "tests/test_descriptor_fn4_absent_proposal_stop.py::test_absent_proposed_value_stays_unresolved_for_resolved_and_unknown_targets",
+        "frozen_at": "003b7acd3"
+      },
+      "owner_kind_without_caller_slot": {
+        "behavior": "owner住所宣言のkindで有限domainを判定する。measurementかつslot_locators=[]でも対象外のためoracle_claim_ports停止を保持する。",
+        "test": "tests/test_descriptor_fn4_target_kind_without_slot.py::test_resolved_measurement_owner_target_without_caller_slot_keeps_fn4_boundary",
+        "frozen_at": "286acbb04"
+      },
+      "verification_refs": [
+        "root-wr33-g3-r1-guard-red.json",
+        "root-wr33-g3-r1-guards-green.json",
+        "root-wr33-g3-r1-fn4-absence-mutation.json",
+        "root-wr33-g3-r1-fn4-targetkind-mutation.json",
+        "root-wr33-g3-r1-unit-green.json"
+      ],
+      "boundary": "既存FN4のtarget解決と有限carry契約を保持する。caller slotなしのmeasurement反例から新gateや資格判定の拡張を作らない。",
+      "source_fix_scope": "4d05ed9feのsource変更はFN6のみ。FN4は既存guardを維持し、独立テストを追加した。"
     }
   },
   "fn6_fill_claim_rule87_connection_preparation": {
@@ -1784,9 +1806,42 @@
     "function_symbol": "compare_dependencies_and_handoff",
     "source_size_observation": {
       "all_source_max_nonblank": 646,
-      "FN6_nonblank": 591,
-      "FN6_physical_lines": 652,
+      "FN6_nonblank": 610,
+      "FN6_physical_lines": 671,
       "new_module_for_line_count": false
+    },
+    "review_r1": {
+      "source_fix_commit": "4d05ed9feb18ad4ee0f314e8f76ba370e8a9601c",
+      "m1_fill_claim_guards": {
+        "required_members": [
+          "subject_ref",
+          "binding",
+          "actor",
+          "kind"
+        ],
+        "optional_members": [
+          "proposed_value",
+          "basis_refs"
+        ],
+        "only_allowed_members": [
+          "subject_ref",
+          "binding",
+          "actor",
+          "kind",
+          "proposed_value",
+          "basis_refs"
+        ],
+        "behavior": "fill Claimにも既存Actor一致、Ref/Binding形状とroot Binding一致、必須member・閉じた許可member集合のguardを適用する。proposed_value/basis_refsだけ省略可能とし、actor誤値・欠落・未知memberは既存の完全な停止文を保持する。",
+        "test": "tests/test_descriptor_fn6_fill_claim_boundary.py::test_fill_claim_keeps_old_actor_and_closed_shape_stops",
+        "frozen_at": "003b7acd3"
+      },
+      "verification_refs": [
+        "root-wr33-g3-r1-guard-red.json",
+        "root-wr33-g3-r1-guards-green.json",
+        "root-wr33-g3-r1-fn6-guard-mutation.json",
+        "root-wr33-g3-r1-unit-green.json"
+      ],
+      "boundary": "省略可能memberの解釈をfill Claim経路に限定し、他kindの既存6項目境界は変更しない。"
     }
   }
 }
