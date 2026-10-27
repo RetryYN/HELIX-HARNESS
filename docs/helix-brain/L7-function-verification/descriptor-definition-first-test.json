@@ -1825,7 +1825,7 @@
         "interpretation": "post-refactor regression evidence; same dedicated writer and FN6 slice."
       }
     ],
-    "execution_state": "root verified current G4-only unit Green; independent Claude review pending",
+    "execution_state": "G4 scope after R1-m1: root verified 298 tests Green and targeted mutant KILLED; independent Claude R2 pending. R1-m2 assigned to separate G4b.",
     "completion_boundary": "No formal L8 completion, OS registration/Accepted, Issue #3547 completion, PR readiness, or G1/G2/G3/handoff-absent/empty-operation-carrier completion is claimed.",
     "split_unit": "G4",
     "split_decision": "https://github.com/RetryYN/HELIX-HARNESS/pull/3735#issuecomment-6447591725",
@@ -1852,9 +1852,10 @@
         "mutation": "raw.get(dependencies) is Noneへ変える一時module overlayでnull条件がNotImplementedError not raisedのFAILとなりKILLED。tracked source/test不変。"
       },
       "R1_m2": {
-        "state": "real public prerequisite reachability question returned to control; not passed",
+        "state": "統制comment6448243648でG4から外し、同WR33のG4bへ移管。G4はR1-m1まででR2依頼可。",
         "observation": "real FN0は4casesすべてinput非null/issues0/unusable0。不足root bindingのみ変更した通常profileはpublicFN1 descriptor_slot_binding_unresolved。5配列zero profileはpublicFN1 KeyError knowledge_ref。元raw/V不変。手作り前段Comparison/private frameで迂回しない。",
-        "bounded_root_rerun": "4casesの結果がworker probeと全値同一。F09への到達前のF01未対応をG4成功へ読み替えない。"
+        "bounded_root_rerun": "4casesの結果がworker probeと全値同一。F09への到達前のF01未対応をG4成功へ読み替えない。",
+        "next_scope": "G4b: FN1 subject欠落KeyError経路をL5から閉じ、未規定は正確stopとBackflow、FN6 partial input_binding guard、real FN0→FN1→FN6公開経路を固定。通常profileの既存slot_binding_unresolvedは意味を先に確認する。"
       },
       "artifacts": [
         {
@@ -1881,7 +1882,34 @@
           "reaped": true,
           "output_truncated": false
         }
-      ]
+      ],
+      "scope_decision": {
+        "comment": 6448243648,
+        "response": "root-wr33-g4-r1-reachability-response-R1.json",
+        "ACKed": true,
+        "order": [
+          "G4",
+          "G4b",
+          "G1a",
+          "G1b",
+          "G2a",
+          "G2b",
+          "G3",
+          "G5"
+        ],
+        "m1_empty_object": "L5 object required member無しのため従来conditional_selector停止でよい。新container不正gateを加えない判断を統制が了承。",
+        "m2": "G4bへ移管。G4受入/Ready/merge承認ではない。"
+      }
+    },
+    "current_unit_after_R1_m1": {
+      "artifact": "root-wr33-g4-r1-m1-unit-green.json",
+      "sha256": "0606ba6a0a8889f3f57179c8843174d6c932241ec7ae469d6059cc17e17a206d",
+      "source_revision": "6ab6eec7ac29617a17845884a243ac85b1192cb9",
+      "methods": 298,
+      "status": 0,
+      "duration_ms": 18411,
+      "reaped": true,
+      "output_truncated": false
     }
   }
 }
