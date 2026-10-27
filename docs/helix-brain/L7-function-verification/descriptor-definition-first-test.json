@@ -3934,7 +3934,8 @@
           "reason": "L5 step4の非fill target不要に従うwalk閉包で旧未閉包stopが消え、元からあるFN1 S4へ進む。FN1 guard自体は変更しない。"
         },
         "full_unit_green": "root-fn7b-walk-nonfill-unit-green-R2.json:404PASS25457ms、reaped=true/output_truncated=false。移行前403PASS/1FAILは上記証拠とgitへ保持。",
-        "locator_mutation": "root-fn7b-walk-locator-mutation-R1.json:原claim indexをlen(target_reads)へ変える一時overlayをmixed新test単独でKILLED。outer171ms、child118ms、1assertFAIL/errors0/importsetup0、実行前後src/tests tree hash不変。sourceと新凍結testは現在も同bytes。"
+        "locator_mutation": "root-fn7b-walk-locator-mutation-R1.json:原claim indexをlen(target_reads)へ変える一時overlayをmixed新test単独でKILLED。outer171ms、child118ms、1assertFAIL/errors0/importsetup0、実行前後src/tests tree hash不変。sourceと新凍結testは現在も同bytes。",
+        "root_static_acceptance": "root-fn7b-walk-final-static-check-R2.json:27checks PASS。5paths、source二hunk候補SHA、新3freeze、統制旧1oracle差分だけ、他400旧test/他source/B外node/承認6/pins/pairhash、17raw replayと現matrix、L8not_executedを照合。"
       }
     }
   }
