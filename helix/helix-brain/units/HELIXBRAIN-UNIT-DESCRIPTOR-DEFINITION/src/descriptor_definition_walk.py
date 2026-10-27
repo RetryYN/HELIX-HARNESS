@@ -157,10 +157,7 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     if not isinstance(raw, dict):
         _stop("input_shape")
     claims = raw["claims"] if "claims" in raw else []
-    if not isinstance(claims, list) or any(
-        not isinstance(claim, dict) or claim.get("kind") != "fill_definition"
-        for claim in claims
-    ):
+    if not isinstance(claims, list) or any(not isinstance(claim, dict) for claim in claims):
         _stop("supplied_claim_ports")
     raw_binding = raw.get("binding")
     if not isinstance(raw_binding, dict):
@@ -548,6 +545,8 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         from descriptor_target_reader import read_descriptor_replacement_target
 
         for claim_index, claim in enumerate(claims):
+            if claim.get("kind") != "fill_definition":
+                continue
             claim_locator = f"/claims/{claim_index}"
             target_reads.append(
                 read_descriptor_replacement_target(validated, claim, claim_locator)
