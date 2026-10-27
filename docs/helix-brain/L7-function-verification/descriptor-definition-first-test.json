@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "6fc396bfbfac4683d0b3fa2abd8d4a37174119d81574d0aa15f72172f4758678",
+    "sha256": "1b025a9b1c05533cca850066857e6942aab25a29743ccc03f2ae640a10a2c778",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2906,7 +2906,7 @@
     ],
     "verification_sequence": [
       "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
-      "初期R1独立reviewでMinor2件を受領し、対応後のR2独立review待ち。Ready・明示merge・root read-afterは未実施。"
+      "R2でR1のMinor2件解消とtarget-kind反例によるInfo訂正を確認。R2追加Minor1件のテスト対応後、R3独立review待ち。Ready・明示merge・root read-afterは未実施。"
     ],
     "legacy_rederivation": "既存fn4_oracle_verificationのlegacy referencesとfailure traceをそのまま参照し、新たなlegacy semanticsを持ち込まない。",
     "authority_effect": "none",
@@ -2958,7 +2958,7 @@
       "FN6_old_body_prefix_guards_B02_AST_preserved": true,
       "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
       "new_walk_and_uses_calls_once": true,
-      "frozen_test_files_unchanged": 7,
+      "frozen_test_files_unchanged": 8,
       "all_existing_test_files_unchanged": true,
       "G4_G4b_hunks_preserved": true,
       "G5_handoff_absent_hunk_excluded": true
@@ -3036,7 +3036,7 @@
     ],
     "verification_sequence": [
       "凍結した期待を変えずsource未実装停止Red→source実装Green→対象unit全体の回帰を別々に記録した。",
-      "初期R1独立reviewでMinor2件を受領し、対応後のR2独立review待ち。Ready・明示merge・root read-afterは未実施。"
+      "R2でR1のMinor2件解消とtarget-kind反例によるInfo訂正を確認。R2追加Minor1件のテスト対応後、R3独立review待ち。Ready・明示merge・root read-afterは未実施。"
     ],
     "legacy_rederivation": "既存fn6_dependencies_absent_verificationのlegacy referencesを参照するが、G4 dependency-absent scopeをG3へ取り込まない。",
     "authority_effect": "none",
@@ -3103,7 +3103,7 @@
       "FN6_old_body_prefix_guards_B02_AST_preserved": true,
       "oracle_original_raw_census_and_nonclaim_constraints_AST_preserved": true,
       "new_walk_and_uses_calls_once": true,
-      "frozen_test_files_unchanged": 7,
+      "frozen_test_files_unchanged": 8,
       "all_existing_test_files_unchanged": true,
       "G4_G4b_hunks_preserved": true,
       "G5_handoff_absent_hunk_excluded": true
@@ -3200,6 +3200,58 @@
         "reaped": true,
         "output_truncated": false
       }
+    },
+    "review_r2": {
+      "review_comment": 6452875489,
+      "r1_findings": "m1/m2解消、R1-i1のtargetkind変異の等価判断をreviewerが訂正した。state/matches到達性は有限fixture観測だけで一般化せず、今後はowner宣言経路も確かめる。",
+      "finding": "復元したBinding一致・Ref形状・Binding形状guardを外した変異の生存。実FN0で到達可能。",
+      "test_revision": "88e94ba1a",
+      "methods": 1,
+      "subcases": 3,
+      "focused_green": {
+        "artifact": "root-wr33-g3-r2-ref-binding-green.json",
+        "duration_ms": 202,
+        "result": "PASS"
+      },
+      "mutation_evidence": {
+        "artifact": "root-wr33-g3-r2-fn6-ref-binding-mutation.json",
+        "duration_ms": 645,
+        "result": "ALL_KILLED",
+        "mutants": [
+          {
+            "guard": "Binding equality",
+            "duration_ms": 211
+          },
+          {
+            "guard": "subject Ref frame",
+            "duration_ms": 193
+          },
+          {
+            "guard": "Binding shape",
+            "duration_ms": 191
+          }
+        ],
+        "assertion_failures": true,
+        "import_setup_errors": 0,
+        "source_unchanged": true,
+        "reaped": true,
+        "output_truncated": false
+      },
+      "full_unit": {
+        "artifact": "root-wr33-g3-r2-unit-green.json",
+        "methods": 376,
+        "duration_ms": 23607,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false
+      },
+      "latest_main_integration": {
+        "artifact": "root-wr33-g3-r2-latest-main-integration.json",
+        "main": "963df2a10ccffe4ca00455c955cc8f5618346383",
+        "unit_and_all_BRAIN_doc_trees_unchanged": true
+      },
+      "source_changes": false,
+      "completion_boundary": "G3の局所検証だけ。G5、L8受入、OS登録、WR33全体完了は生成しない。"
     }
   }
 }

@@ -1842,6 +1842,14 @@
         "root-wr33-g3-r1-unit-green.json"
       ],
       "boundary": "省略可能memberの解釈をfill Claim経路に限定し、他kindの既存6項目境界は変更しない。"
+    },
+    "review_r2": {
+      "finding_comment": 6452875489,
+      "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_fn6_fill_ref_binding_boundary.py",
+      "test_revision": "88e94ba1a",
+      "expected": "Claimのtemplate_ref.identityだけを変えたBinding不一致はB02/claim_binding_mismatch、subject_ref文字列とbinding文字列はB02/F09/claim_frame_or_actorの既存完全停止文を保つ。FN0 cleanと原raw/context不変を確認する。",
+      "basis": "base963df2aの既存B02 guard文言とL5 Claim schema/functions/6。Ref/Bindingガードを変えず実公開FN6から確認する。",
+      "source_changes": false
     }
   }
 }
