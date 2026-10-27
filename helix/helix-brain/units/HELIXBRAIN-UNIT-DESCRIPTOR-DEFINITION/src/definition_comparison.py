@@ -624,26 +624,30 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
             missing_kinds.add(kind_name)
             code = f"descriptor_{kind_idx:02d}_missing"
             axis_name = f"{kind_name}.definition"
-            emissions.append(({
-                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
-                "binding": copy.deepcopy(binding),
-                "axis": axis_name,
-                "state": "missing",
-                "original_refs": [],
-                "reason": slot_missing_reason,
-                "backflow_owner": "knowledge_owner",
-            }, {}, [], True))
-            finding_emissions.append(({
-                "code": code,
-                "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
-                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
-                "binding": copy.deepcopy(binding),
-                "axis": axis_name,
-                "state": "missing",
-                "source_refs": [],
-                "reason": slot_missing_reason,
-                "backflow_owner": "knowledge_owner",
-            }, {}, [], True))
+            subject_ref = binding.get("knowledge_ref")
+            if not isinstance(subject_ref, dict):
+                subject_ref = binding.get("template_ref")
+            if isinstance(subject_ref, dict):
+                emissions.append(({
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "original_refs": [],
+                    "reason": slot_missing_reason,
+                    "backflow_owner": "knowledge_owner",
+                }, {}, [], True))
+                finding_emissions.append(({
+                    "code": code,
+                    "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "source_refs": [],
+                    "reason": slot_missing_reason,
+                    "backflow_owner": "knowledge_owner",
+                }, {}, [], True))
 
     _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
 
