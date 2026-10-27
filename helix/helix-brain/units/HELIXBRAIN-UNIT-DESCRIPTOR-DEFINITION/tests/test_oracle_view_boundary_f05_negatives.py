@@ -19,8 +19,8 @@ from descriptor_definitions import (
 
 
 EXPECTED_WALK_STOP = (
-    "F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; "
-    "Backflow HELIXBRAIN-L6-032-N03-PATH"
+    "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; "
+    "Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
 )
 
 
