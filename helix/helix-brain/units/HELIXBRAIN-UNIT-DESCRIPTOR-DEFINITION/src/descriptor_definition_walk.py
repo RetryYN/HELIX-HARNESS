@@ -269,7 +269,7 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "axis": axis_name,
                 "state": "missing",
                 "source_refs": [],
-                "reason": "必要なdescriptor slotが当該原Bindingに供給されていない。",
+                "reason": axis["reason"],
                 "backflow_owner": "knowledge_owner",
             }]
             event["origin"]["finding_rule_indices"] = [
