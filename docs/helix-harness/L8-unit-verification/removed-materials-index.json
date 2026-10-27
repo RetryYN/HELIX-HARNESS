@@ -1,0 +1,30 @@
+{
+ "id": "HELIXHARNESS-L8-REMOVED-MATERIALS-INDEX",
+ "authority_effect": "none",
+ "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+ "meaning": "V字右側（L8）へ実装前に書き込まれていた照合の実行材料（全返却・seed・COPY・hash・fixture）をtreeから撤去した記録。過去本文は revision＋path で git から辿り、file_sha256 で同一性を確かめる。これは参照表であり、manifest・proof・gateではない。",
+ "use_boundary": "旧材料は照合用の参考に限る。L7の期待値は L5 契約から独立に導き、旧材料からコピーしない（DT-VT-105 同源化禁止）。",
+ "removed": [
+  {
+   "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
+   "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+   "last_change_commit": "60dc75645fc250e74ab1f3d74097f04dbe8db3eb",
+   "file_sha256": "bc38675105788e14fe99b0af544d0738374c51104c999ec564f230ea51499a3f",
+   "bytes": 748990,
+   "top_level_keys": [
+    "document_id",
+    "status",
+    "authority_effect",
+    "scope_ja",
+    "pointer_namespaces",
+    "import_contract_ja",
+    "connection_execution_order_ja",
+    "parts",
+    "cases",
+    "normative_consumers",
+    "family_remaining_ja",
+    "completion_boundary_ja"
+   ]
+  }
+ ]
+}
