@@ -477,7 +477,7 @@
     "effect": "none",
     "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/oracle_view_boundary.py",
     "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
-    "working_base": "21d3f72066f84fbade2f0ac085cd37eb121a7ef8",
+    "working_base": "4abee6df089cbbb9654edf38c80d116ecaeca708",
     "request": "WR-CLAUDE-BRAIN032-FN4-ORACLE-TDD-3547-20261027-12",
     "contract_sources": [
       "L4 template-semantic-supply.json /oracle_view_boundary_contract/same_call",
@@ -488,9 +488,9 @@
       "L5 /source_return_contract/descriptor_target_dataflow/private_imports",
       "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core"
     ],
-    "implemented_scope": "decode-null、4条件のpartial Context停止、Claim0/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影を閉じる。7rule全域や通常oracle全入力の成立ではない。",
+    "implemented_scope": "decode-null、Claim原出現0件（absent又は[]）/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影。発火時も他ruleは未評価であり、7rule全域の閉包ではない。",
     "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
-    "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。",
+    "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。 claims absentの新walkテストは実fn0から実walk evaluation.comparisonと実fn3を同callで構成する宣言済raw runner経路。public fn1はclaims配列必須のままで、fn1成功出力とは呼ばない。人工の前段Comparisonは置かない。",
     "projection": "nullのみempty Comparison。別producer/Bindingは固有partial ID/knowledge_owner Backflow。definition carryはcontext.definitions.axesの対象3軸を全値・原順保存。R71/R72は同subject/義務の独立typed対応後の明示相違だけを投影し、source witnessを元source順で保持。元Comparisonとnew walk Comparisonの全値同一性をgateにしない。",
     "current_unclosed": "通常controlのOB subjectはdescriptor fact Refに対応せず、F05/F06/unclosed/formed_contextで停止。供給Claimはwalk/supplied_claim_ports、typed operation carrierはdefinition_meaning_operations_unclosed、非null NAとmulti-fact/pairは個別ID停止。R70/R73/R74のdisplay-only/generation-success/generic-defaultをRawValue key又はlogical selectorから型生成しない。",
     "prerequisite_gap": "Issue3547 comment6428183181によりcanonical walk/evaluation/target_reads/intent_reads/frame runtime接続はWR12に含む。新module各700非空行未満で実装し、fn1/fn6公開wrapperのwalk経由への付替えは後続別WR。fn1 Comparison逆算assessment、別call再read、局所B02型代用は禁止。kind/slotはWR18、F05 NEG01/02と非nullfinitecarryはWR18後の追補。",
@@ -532,7 +532,7 @@
       "preserved": "JSON→view一方向、説明と意味分離、unknown非成功、原局所不足/矛盾・義務とoracle traceの保持。",
       "changed": "旧lifecycle/整数版/式木を採らず既存Context3/Comparison4へ局所返却する。finite carryはL4自身が新AI技術選択と明記し、今回まだ成立させたとはしない。"
     },
-    "execution_state": "root_verified_reachable_FN4_review_pending",
+    "execution_state": "R4_root_verified_independent_review_pending",
     "authority_effect": "none",
     "runtime_modules": [
       "descriptor_definition_walk.py",
@@ -541,9 +541,18 @@
       "descriptor_definition_pairs.py",
       "descriptor_target_frame.py",
       "oracle_binding_rules.py",
-      "oracle_view_boundary.py"
+      "oracle_view_boundary.py",
+      "oracle_projection_writer.py"
     ],
     "same_walk_detail": "判定点でassessmentとoriginを同時生成しevent handle→sort後indexへ一度対応付ける。全meaning readとsidecar、NA readとjudgment batch、single-fact pair返却をnative_material全7列へ保持。帰属/NAをdefinition支持へ混ぜない。Claim0に限るtarget/intent/uses空列は実出現0件によるもので未実装portの成功defaultではない。 root→固定kind順→原slot index順の訪問を保ち、input slotの順変更で原event順を変えない。semantic_jsonのdescriptor_display_groups供給又は非空/不正required_relations供給は未実装special port ID停止、required_relations=[]は原entry0件の実読取として保持。",
-    "normative_source": "L4 normative_basis_snapshot/acquisitionが許す固定15catalog private constructor。規範pinはRefへcastせず全DefinitionNormativeFrameに保存し、clock/fs/network/registry/latest/caller frameを使わない。"
+    "normative_source": "L4 normative_basis_snapshot/acquisitionが許す固定15catalog private constructor。規範pinはRefへcastせず全DefinitionNormativeFrameに保存し、clock/fs/network/registry/latest/caller frameを使わない。",
+    "comparison_choices": {
+      "oracle_version": "R72はcompletion MeaningFact.oracle_ref（実際に対になった版）とOracleBinding.oracle_ref（当該義務で要求された版）を比較する。Binding.oracle_refは同call契約metadataであり、このpredicateの比較先に置換しない。",
+      "obligation": "fact.binding.requirement_refとOracleBinding.obligation_refを対応させる。既存fn3 src/identity_trace_actual.py:241–243の同義務対応を先例とする。OS incoming alias由来ではない。",
+      "empty_special_ports": "display_groupsは供給request自体の未対応なので[]でも停止。required_relationsは原entryを読むportで[]は0 entry。RawValueから支持を創作しない。"
+    },
+    "r4_native_detail": "native7列/assessment9項目/origin23項目を独立期待で固定。1意味readに複数のtarget problemがある場合はread/sidecarを一度保存し、原problem indexごとにeventを作る。origin causeはL5 required_source_or_interpretation_unresolved、native problem causeはsource_unresolved/container_absentを保持。sort sourceはfact.source_ref→read occurrence source、original_refsとは別。NA subjectはslot Bindingのknowledge_refを先に取りtemplate_refへfallbackし、knowledge ownerだけを採る。",
+    "r4_population_detail": "claims absentはlocal structural guard viewだけ[]として既存guardへ渡し、ValidatedSupply/input/native snapshotを変更しない。oracle_bindings absentも0出現。rootとslotのraw異値Binding frameはRefEqの片null一致で集約せずraw_distinct_binding_frames停止。exact root候補/無関係候補の対照を保持。",
+    "r4_projection_detail": "既存definition carry3軸および同axis/subject/Bindingの既存軸は全7値と原順を保存。新predicate軸はrule71→72順、同keyは初回だけ追加。Findingは原oracle出現ごとに残す。既知の同subject義務/oracle tuple競合はoracle_binding_competition停止、R72 oracle Ref不明はoracle_oracle_correspondence停止。"
   }
 }
