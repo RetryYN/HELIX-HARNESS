@@ -1840,6 +1840,48 @@
       "reaped": true,
       "output_truncated": false,
       "command": "env PYTHONPATH=src:tests python3 -B -m unittest discover -s tests -v（unit cwd、bounded_exec 120000ms/300000bytes）"
+    },
+    "review_R1": {
+      "comment": 6447969724,
+      "reviewed_head": "fd5c1f59f371a02b4079a8f5ac4d414d92f1640c",
+      "result": "Minor2/Info1、Ready不可",
+      "R1_m1": {
+        "test_revision": "6be96a17f",
+        "test": "test_dependencies_absent_boundaries.py",
+        "scope": "null/arrayは実FN0→FN1後の故障注入Context copyの公開fn6 guard検証。前段Comparisonは実返却を不変保存し、FN0正規受理を主張しない。{}はL5 optional objectとして実FN0→FN1→FN6で従来conditional_selector ID。{}を新container不正へ変えない。",
+        "mutation": "raw.get(dependencies) is Noneへ変える一時module overlayでnull条件がNotImplementedError not raisedのFAILとなりKILLED。tracked source/test不変。"
+      },
+      "R1_m2": {
+        "state": "real public prerequisite reachability question returned to control; not passed",
+        "observation": "real FN0は4casesすべてinput非null/issues0/unusable0。不足root bindingのみ変更した通常profileはpublicFN1 descriptor_slot_binding_unresolved。5配列zero profileはpublicFN1 KeyError knowledge_ref。元raw/V不変。手作り前段Comparison/private frameで迂回しない。",
+        "bounded_root_rerun": "4casesの結果がworker probeと全値同一。F09への到達前のF01未対応をG4成功へ読み替えない。"
+      },
+      "artifacts": [
+        {
+          "artifact": "root-wr33-g4-r1-m1-tests-green.json",
+          "sha256": "3e4aca7e96555cabc21f1550e0474b5416afa9f951feb66bd718c61434b06343",
+          "status": 0,
+          "duration_ms": 206,
+          "reaped": true,
+          "output_truncated": false
+        },
+        {
+          "artifact": "root-wr33-g4-r1-m1-mutation.json",
+          "sha256": "fb44b616e559af78c33a69b26d12420aab19b197699d74bbea846f7212b0a49e",
+          "status": 1,
+          "duration_ms": 89,
+          "reaped": true,
+          "output_truncated": false
+        },
+        {
+          "artifact": "root-wr33-g4-r1-m2-probe-bounded.json",
+          "sha256": "3c0220c5569edfd4bdafc88636af6fa091b227e4ad8416d3fe8eca2895f36244",
+          "status": 0,
+          "duration_ms": 90,
+          "reaped": true,
+          "output_truncated": false
+        }
+      ]
     }
   }
 }
