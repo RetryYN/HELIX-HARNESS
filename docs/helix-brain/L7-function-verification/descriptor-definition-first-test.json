@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "14a226d6aa148fe7d0516bf6554831d9a6f4a46add8a3d18a3615a039d36e727",
+    "sha256": "f75709cb8a41fb1691c05ac825a8bc8d15acaa9bf00f93a0068069c45402dc1f",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2476,7 +2476,7 @@
     ],
     "independent_expectations": [
       "実FN0→実canonical walkで、各原fill_definition occurrenceに対するtarget/intent readと原Claim/locatorを確認する。等値Claimを別locator出現として保持し、supplied-null intentを未供給へ変換しない。入力raw/ValidatedSupplyの不変性を確認する。",
-      "未知／無関係targetを独立に扱い、既存L4 target readerの原cohort/read結果をoracleにせずraw・L4/L5から期待する。Claimsを加えても同一inputのevaluation/native_materialを再計算・置換しない。",
+      "未知／無関係targetを独立に扱い、既存L4 target readerの原cohort/read結果をoracleにせずraw・L4/L5から期待する。Claimsを加えても同一inputのevaluation/native_materialを結果を変えない。",
       "required slotを除くケースでは固定15 required kindsを保ち、対象kindのrequired_slot_absent assessment/origin/Axis/Findingとempty raw locatorsを観測する。missing Finding ownerはliteral knowledge_owner。owner addressのtarget readがslot_locators=[]でresolvedでもslotを生成しない。",
       "実slotのfacts=[]、facts absent、facts=nullを別ケースとして扱い、元raw presenceとslot locatorを保つfacts_missing eventを観測する。slot-missing Findingは作らない。Axis/origin backflow_ownerは原Binding.knowledge_ref.owner。",
       "15種のorigin finding_rule_indicesはL5 failure_rulesのglobal positions 9,12,15,...,51。event順のassessment/origin、公開Comparison sort後のaxis/finding index links、original_axes、および全native-material列の元順を照合する。",
@@ -2530,6 +2530,26 @@
         "result": "PASS",
         "reaped": true,
         "output_truncated": false
+      },
+      {
+        "artifact": "root-wr33-g2a-existing-walk-green.json",
+        "test_revision": "5ac82c762",
+        "methods": 17,
+        "duration_ms": 1610,
+        "result": "PASS",
+        "reaped": true,
+        "output_truncated": false,
+        "scope": "許可された1旧method更新後の既存walk5files。multifact/applicability/typedcarrier/special等の旧stopを維持。"
+      },
+      {
+        "artifact": "root-wr33-g2a-unit-pre-scope-fail-R1.json",
+        "source_test_revision": "5ac82c762",
+        "methods": 350,
+        "duration_ms": 24187,
+        "result": "348 PASS / 2 assertion FAIL",
+        "failure_scope": "既存F05-NEG-01/02旧停止期待はsupplied_claim_ports。G2a後の実停止は次のdescriptor_claim_uses。分割決定6447591725でこの2methodの更新はG3に配属されているため、無断で変更せず統制へ分割調整を求める。",
+        "reaped": true,
+        "output_truncated": false
       }
     ],
     "independent_basis_artifact": "root-wr33-g2a-missing-test-basis.json",
@@ -2541,7 +2561,7 @@
         "その証拠の後にだけ、同methodをactual target/intent readとevaluation/native_material不変の契約へ更新する。",
         "他のold stop expectationsは変更しない。"
       ],
-      "current_state": "新8methods Green後、旧stop methodを変更せず実行して旧期待assertion FAILを観測。このL7記録を先にcommitし、その後この一件だけactual target/intent期待へ更新する。",
+      "current_state": "旧stop assertion FAIL140ms→L7 pre-edit record commit c627da51f→許可された1methodだけ更新commit5ac82c762→既存walk17methods PASS1610ms。他の旧methodはAST同一。",
       "authorization": "Issue #3547 comment6446411406、PR split control6447591725のG2a一件のみ",
       "pre_edit_evidence": {
         "artifact": "root-wr33-g2a-old-typed-claim-stop-red.json",
@@ -2552,16 +2572,18 @@
         "reaped": true,
         "output_truncated": false,
         "import_or_setup_error": false
-      }
+      },
+      "pre_edit_record_commit": "c627da51f",
+      "update_commit": "5ac82c762"
     },
     "pending_evidence": [
-      "旧typed-claim-stop method一件の許可済み更新と更新後Greenは未実施。",
-      "全unit検証・独立review・Ready・明示merge・read-afterは未実施。"
+      "既存F05境界2件の過去停止期待とG2a後実停止の差を統制へ確認。旧2methods未変更。",
+      "全unit Green・独立review・Ready・明示merge・read-afterは未成立。"
     ],
     "limits": [
       "Initial Red observations are separate: three claim-walk methods at 040c20f82 and four missing/origin methods at 5b80c6718.",
       "The evidence does not establish FN1/FN4/FN6/FN7 full scope, G2b/G3/G5, L8 acceptance, OS registration, Issue #3547 completion, or source Green."
     ],
-    "completion_boundary": "G2aの局所TDD記録。新8methods Greenと旧期待FAILのpre-edit証拠に限る。全unit・独立review・受入・OS登録・WR33完了を成立させない。"
+    "completion_boundary": "G2aの局所TDD記録。新8methodsと既存walk17methodsはGreen、全unit350methodsは2旧停止期待FAIL。統制の分割調整待ちであり、全unit・独立review・受入・OS登録・WR33完了を成立させない。"
   }
 }

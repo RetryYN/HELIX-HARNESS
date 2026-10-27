@@ -1389,6 +1389,58 @@
     "authority_intake": {
       "approval_revision": "47354be8c1ef225dd7eacffe390d268c0dfee784",
       "scope": "既存承認項目の不変性を直接照合する。L6/L7や有限testから新要求・承認・受入を生成しない。"
-    }
+    },
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "144de01a72d5363d09b32ca12fa70177f0a179ce0b2a2574361a5081ab15fdae",
+        "pointers": [
+          "/definition_meaning_resolution_contract/evaluation_populations",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order",
+          "/dependency_semantic_ports/descriptor_target_contract/ordered_branches",
+          "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+          "/dependency_semantic_ports/claim_intent_protocol/rules"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "14df87975d6692aa04208eb3d937bd42a5ca86910780e51c839481fb5b25d920",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure",
+          "/source_return_contract/descriptor_target_dataflow/functions/7",
+          "/claim_intent_detail/reader",
+          "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+          "/failure_rules"
+        ]
+      }
+    ],
+    "requirement_and_contract_refs": {
+      "existing_approved_requirement_ids": [
+        "HELIXBRAIN-L3-032-F01",
+        "HELIXBRAIN-L3-032-F02",
+        "HELIXBRAIN-L3-032-F09",
+        "HELIXBRAIN-L10-032-F01",
+        "HELIXBRAIN-L10-032-F02",
+        "HELIXBRAIN-L10-032-F09"
+      ],
+      "l4_pointers": [
+        "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+        "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order",
+        "/dependency_semantic_ports/descriptor_target_contract/ordered_branches",
+        "/dependency_semantic_ports/descriptor_target_contract/cohort_result_contract",
+        "/dependency_semantic_ports/claim_intent_protocol/rules"
+      ],
+      "l5_pointers": [
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/target_read_schedule",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract",
+        "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure",
+        "/source_return_contract/descriptor_target_dataflow/index_types/DefinitionMeaningWalkResult",
+        "/claim_intent_detail/reader",
+        "/failure_rules"
+      ]
+    },
+    "refactor_decision": "同callを所有する既存walkとprivate guardに限定した。530 nonblank行で全source最大646行、700未満。意味や凍結期待を変えないkeyword-only opt-inだけを明確化し、行数だけを理由とするmodule抽出は行わない。"
   }
 }
