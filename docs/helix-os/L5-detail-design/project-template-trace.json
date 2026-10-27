@@ -3335,11 +3335,11 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "本L5/L8の独立reviewと文書pair確定",
-      "正式record schema/codec/source resolver/trust rootと各外部owner binding",
-      "OS053実保存/authority/隔離/資源と接続の証拠",
-      "実装前test/oracle凍結→Red実観測→最小実装→Green",
-      "未観測/held-outの独立実input、PO L11実物受入、通常L3再開"
+      "【B:スライス別L5/L8詳細対凍結】本L5/L8詳細対13組（T:296..308）のうち、共通入口/集約（fn0 validate_record_trace_input・fn13 build_record_trace_analysis）・wire_codec純粋境界およびT:296（B01: fn1 check_record_claims B01分）・T:297（B02: fn2 compare_operation_dependencies）はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）でA=0を確認し関数単位で凍結済み。残る詳細対T:298..308（F01..F09, N01, N02）は後続スライスD-OS002-T1b〜T4で順次精査・凍結する。",
+      "【C:外部owner・実基盤境界】正式record schema/codec/source resolver/trust root供給元・実custodyと各外部owner（BRAIN/CORE/LABO/SECURITY/CONNECT・他OS機構）の実binding（本L5純粋論理契約の外）",
+      "【C:OS053実保存・接続実証境界】OS053実保存/authority/隔離/資源閾値と実接続の証拠（本L5はeffect=none・authority_generated=falseの純粋比較材料に限定）",
+      "【C:下流L6/L7・実装TDD境界】下流L6関数設計/L7関数検証、および実装前test/oracle凍結→Red実観測→最小実装→Green→Refactor",
+      "【C:実運用・PO受入・全体閉包境界】未観測/held-outの独立実input、PO L11実物受入、全92親430対閉包、通常L3再開"
     ]
   },
   "fixture_source_construction": {
@@ -10624,7 +10624,7 @@
           "{\"payload\":{\"future\":0.1}}"
         ],
         "expected_stage": "not_fixed",
-        "reason": "exact number/lexeme保存規則は保持。具体parser/host数値carrier未選定。"
+        "reason": "【B/C整理】B（L5/L8純粋規則）：exact number/lexeme保存規則はcodec_operationsおよびencoder_obligationsで固定済み。C（下流L6/L7・実行基盤）：具体parser実装とhost数値carrierの選定はL6/L7・実装層へ戻す。"
       },
       {
         "range": "large_exponent",
@@ -10632,19 +10632,19 @@
           "{\"payload\":{\"future\":1e400}}"
         ],
         "expected_stage": "not_fixed",
-        "reason": "JSON syntaxとhost表現幅を分離。infinity/nullへ丸めないが具体成功/表現不能失敗の条件は未固定。"
+        "reason": "【B/C整理】B（L5/L8純粋規則）：JSON syntaxとhost表現幅を分離し、1e400等をInfinity/nullへ丸めない規則は固定済み。C（下流L6/L7・実行基盤）：具体host表現幅における成功/表現不能失敗の実行時閾値はL6/L7・実装層へ戻す。"
       },
       {
         "range": "encode_non_json_value",
         "input_description": "JSON carrier外の値/非表現可能数値・文字列",
         "expected_stage": "not_fixed",
-        "reason": "具体host値型/encode入口/失敗分岐未凍結。decode/shape反例でencode固有分岐を検証済みにしない。"
+        "reason": "【B/C整理】B（L5/L8純粋規則）：非JSON値/表現不能値/出力plain required欠落を所在付きInputIssue材料へ返し、decode/shape反例でencode固有分岐を検証済みにしない規則はcodec_operations/1およびencoder_obligationsで固定済み。C（下流L6/L7・実行基盤）：具体host値型と実encode入口の実行検証はL6/L7・実装層へ戻す。"
       }
     ],
     "remaining": [
-      "13sectionのcarrier/子型はschemaへ対応したが、CaseInput/CaseObservation各実context/selector/原owner body契約と正式実resolverの閉包は未成立。carrier root受理を全section意味decode完了にしない。",
-      "実資格root供給元/実source custody/原source許容集合契約、BRAIN/CORE/OS/CONNECT両端schema/互換/receipt、OS053保存/023Backflow実証は未閉包。新署名/truststore/承認gate/資源閾値/実ライブラリを新設しない。",
-      "小数/指数/1e400/encode非JSON値と具体float/Unicode/resource挙動は範囲未固定。L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、独立review/実受入、全92親430対閉包と実装Readyは未成立。"
+      "【B/C整理】B（L5/L8純粋規則）：13sectionのcarrier/子型schema対応と、carrier root受理を全section意味decode完了にしない境界は固定済み（T:296/297はD-OS002-T1aで凍結、T:298..308はD-OS002-T1b〜T4で順次凍結）。C（外部owner・実resolver境界）：CaseInput/CaseObservation各実context/selector/原owner bodyの実契約接続と正式実resolver閉包は外部owner・下流統合へ戻す。",
+      "【C:外部owner・実custody・保存境界】実資格root供給元/実source custody/原source許容集合の実運用契約、BRAIN/CORE/OS/CONNECT両端実通信schema/互換/receipt、OS053実保存/023Backflow実証は本L5純粋設計の外。新署名/truststore/承認gate/資源閾値/実ライブラリを新設しない。",
+      "【B/C整理】B（L5/L8純粋規則）：小数/指数/1e400/encode非JSON値の純粋保持・不丸め・失敗分離規則はunfixed_numeric_and_encode_range/0..2のとおり固定済み。C（下流L6/L7・実装・全体閉包境界）：具体float/Unicode/resource実行時挙動、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、独立review/実受入、全92親430対閉包と実装Readyは下流層・全体統制へ戻す。"
     ],
     "source_shape_locality": "RecordTraceInputのroot/candidateが構造decode不能ならvalue=nullの構造失敗。root/candidateが読めてもsources/qualifications/qualification_roots配列内の個別source member型だけが不正なら、原root raw carrierと失敗source原内容/所在を保持してsource_shape_issues材料へ局所化する。これはdecode可能だがsource未解決の診断であり、有資格 typed sourceや意味比較の成功ではない。source型を修復せず、無関係なsource原資料を捨てず、source資格/依存section比較は既存validate_record_trace_inputへ返す。wire fixture stage decoded_with_source_issuesはこの診断段階だけを表し新しいowner stateではない。",
     "object_closure_contract": {
@@ -12951,7 +12951,8 @@
       "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
       "cases_pointer": "/cases",
       "remaining_pointer": "/family_remaining_ja",
-      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。"
+      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。",
+      "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
     },
     "finite_writer_scope_ja": "新received branchの有限wholeは公開childへ結ぶ。旧legacy adapter/公開fn4署名/全oldvaluesは保持し、旧source aliasの規範を遡及変更しない。empty/NAではOS-owner独立selected[] variantを明示形成し、COREがselected/usedを導出したことにしない。新catalog通し監査/全8family能力成立は未完。",
     "finite_residual_handoff_oracle": {
@@ -12959,7 +12960,8 @@
         "path": "docs/helix-harness/L8-unit-verification/product-template-application/general-proposal-exchange-fixtures.json",
         "pointer": "/cases/10",
         "binding": "same_candidate_revision",
-        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。"
+        "role": "F04 residual handoff一代表の有限全whole。自己rawhashを持たない。",
+        "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
       },
       "scope_ja": "既存R0〜R8/received_unreached/trace_result_leaf_writer.observationへの一代表の対応。旧OwnerRecord/codec/legacy adapter/public署名/既存全期待と判定規範は変更しない。",
       "raw_input_namespace_ja": "record_trace_input.candidate.proposed_refsの元T1/T2全値をinput_capture/comparison context/kernel input/source_basisに保持する。raw candidateのkeyを除去したことにしない。",

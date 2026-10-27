@@ -755,7 +755,21 @@
         "actual_logs": "EvidenceInput.logs",
         "context_logs": "EvidenceInput.context.logs"
       },
-      "formal_program_ref": "/formal_program/functions/assess_log_material"
+      "formal_program_ref": "/formal_program/functions/assess_log_material",
+      "source_obligations": {
+        "requirement_ref": "HELIXOS-L3-007-F01",
+        "oracle_ref": "HELIXOS-L10-007-F01",
+        "l4_contract_ref": "HELIXOS-L4-007-F01",
+        "l4_basis_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/0",
+        "l4_rule_pointers": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0..2",
+        "shared_rule_refs": [
+          "R01"
+        ],
+        "specific_rule_refs": [
+          "R02",
+          "R03"
+        ]
+      }
     },
     {
       "id": "assess_feedback_material",
@@ -775,7 +789,23 @@
         "actual_feedback": "EvidenceInput.feedback",
         "context_feedback": "EvidenceInput.context.feedback"
       },
-      "formal_program_ref": "/formal_program/functions/assess_feedback_material"
+      "formal_program_ref": "/formal_program/functions/assess_feedback_material",
+      "source_obligations": {
+        "requirement_ref": "HELIXOS-L3-007-F02",
+        "oracle_ref": "HELIXOS-L10-007-F02",
+        "l4_contract_ref": "HELIXOS-L4-007-F02",
+        "l4_basis_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/1",
+        "l4_rule_pointers": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0,3..6",
+        "shared_rule_refs": [
+          "R01"
+        ],
+        "specific_rule_refs": [
+          "R04",
+          "R05",
+          "R06",
+          "R07"
+        ]
+      }
     },
     {
       "id": "assess_memory_material",
@@ -795,7 +825,23 @@
         "actual_memory": "EvidenceInput.memory",
         "context_memory": "EvidenceInput.context.memory"
       },
-      "formal_program_ref": "/formal_program/functions/assess_memory_material"
+      "formal_program_ref": "/formal_program/functions/assess_memory_material",
+      "source_obligations": {
+        "requirement_ref": "HELIXOS-L3-007-F03",
+        "oracle_ref": "HELIXOS-L10-007-F03",
+        "l4_contract_ref": "HELIXOS-L4-007-F03",
+        "l4_basis_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/2",
+        "l4_rule_pointers": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/0,7..10",
+        "shared_rule_refs": [
+          "R01"
+        ],
+        "specific_rule_refs": [
+          "R08",
+          "R09",
+          "R10",
+          "R11"
+        ]
+      }
     },
     {
       "id": "assemble_evidence_record",
@@ -815,7 +861,30 @@
         "memory": "result(assess_memory_material)",
         "whole_completion_claim": "EvidenceInput.whole_completion_claim"
       },
-      "formal_program_ref": "/formal_program/assembly/output_expression"
+      "formal_program_ref": "/formal_program/assembly/output_expression",
+      "source_obligations": {
+        "requirement_refs": [
+          "HELIXOS-L3-007-F01",
+          "HELIXOS-L3-007-F02",
+          "HELIXOS-L3-007-F03"
+        ],
+        "oracle_refs": [
+          "HELIXOS-L10-007-F01",
+          "HELIXOS-L10-007-F02",
+          "HELIXOS-L10-007-F03"
+        ],
+        "l4_contract_refs": [
+          "HELIXOS-L4-007-F01",
+          "HELIXOS-L4-007-F02",
+          "HELIXOS-L4-007-F03"
+        ],
+        "l4_basis_pointer": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/contracts/0..2",
+        "l4_rule_pointers": "docs/helix-os/L4-basic-design/log-feedback-memory-lineage.json#/diagnostic_contract/rules/11",
+        "shared_rule_refs": [],
+        "specific_rule_refs": [
+          "R12"
+        ]
+      }
     }
   ],
   "algorithm": {

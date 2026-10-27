@@ -1412,9 +1412,17 @@
       "return_type": "MaterialAssessment",
       "source_obligations": [
         "HELIXOS-L4-015-B01",
+        "HELIXOS-L3-015-B01",
+        "HELIXOS-L10-015-B01",
         "HELIXOS-L4-015-F01",
+        "HELIXOS-L3-015-F01",
+        "HELIXOS-L10-015-F01",
         "HELIXOS-L4-015-F02",
-        "HELIXOS-L4-015-F03"
+        "HELIXOS-L3-015-F02",
+        "HELIXOS-L10-015-F02",
+        "HELIXOS-L4-015-F03",
+        "HELIXOS-L3-015-F03",
+        "HELIXOS-L10-015-F03"
       ],
       "reads": "source全20field、原event全9fieldとwhole、原分類whole、authority起源/状態、phase選択された分類field/履歴、current/生成claim。contextは別引数memberに保持。projectionは材料判定に未読。",
       "effects": "none",
@@ -1449,7 +1457,15 @@
         "material.findings以外のmaterial member",
         "source三参照以外のraw memberの意味"
       ],
-      "precondition": "materialは同一inputへFN-OS015-01を適用した返却値。独立の所見集合を任意の別sourceへ結び替えない。L8はproducer_call_index=0と全値hashで同一inputを照合する。"
+      "precondition": "materialは同一inputへFN-OS015-01を適用した返却値。独立の所見集合を任意の別sourceへ結び替えない。L8はproducer_call_index=0と全値hashで同一inputを照合する。",
+      "source_obligations": [
+        "HELIXOS-L4-015-F01",
+        "HELIXOS-L3-015-F01",
+        "HELIXOS-L10-015-F01",
+        "HELIXOS-L4-015-F03",
+        "HELIXOS-L3-015-F03",
+        "HELIXOS-L10-015-F03"
+      ]
     },
     {
       "id": "FN-OS015-03",
@@ -1462,7 +1478,21 @@
       ],
       "return_type": "PublicAssessment",
       "reads": "FN01全返却・FN02候補値・FN04分類保持3root。既存16root/返却先候補を上書きせず互いに別rootとして合成。",
-      "effects": "none"
+      "effects": "none",
+      "source_obligations": [
+        "HELIXOS-L4-015-B01",
+        "HELIXOS-L3-015-B01",
+        "HELIXOS-L10-015-B01",
+        "HELIXOS-L4-015-F01",
+        "HELIXOS-L3-015-F01",
+        "HELIXOS-L10-015-F01",
+        "HELIXOS-L4-015-F02",
+        "HELIXOS-L3-015-F02",
+        "HELIXOS-L10-015-F02",
+        "HELIXOS-L4-015-F03",
+        "HELIXOS-L3-015-F03",
+        "HELIXOS-L10-015-F03"
+      ]
     },
     {
       "id": "FN-OS015-04",
@@ -12507,7 +12537,30 @@
         "whole_registry_verified",
         "operation_effect"
       ],
-      "source": "L4 diagnostic_contract.result_fieldsおよび原583 expected_proposalの同名root。whole型比較はmutation_ruleへ整合。"
+      "source": "L4 diagnostic_contract.result_fieldsおよび原583 expected_proposalの同名root。whole型比較はmutation_ruleへ整合。",
+      "return_root_child_contract": {
+        "basis_pointer": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/contracts/0..3",
+        "child_bound_roots": {
+          "condition": "HELIXOS-L4-015-B01, HELIXOS-L4-015-F01, HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "selected_phase": "HELIXOS-L4-015-F01, HELIXOS-L4-015-F02",
+          "target_correspondence": "HELIXOS-L4-015-B01, HELIXOS-L4-015-F01, HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "current_source_material": "HELIXOS-L4-015-B01, HELIXOS-L4-015-F01, HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "original_classification_state": "HELIXOS-L4-015-F01, HELIXOS-L4-015-F02",
+          "original_authority_state": "HELIXOS-L4-015-B01, HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "retained_original_events": "HELIXOS-L4-015-F01, HELIXOS-L4-015-F02",
+          "retained_original_classifications": "HELIXOS-L4-015-F02",
+          "retained_unresolved_history": "HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "retained_classification_lineage": "HELIXOS-L4-015-F02",
+          "findings": "HELIXOS-L4-015-B01, HELIXOS-L4-015-F01, HELIXOS-L4-015-F02, HELIXOS-L4-015-F03",
+          "actual_event_rewritten": "HELIXOS-L4-015-F01, HELIXOS-L4-015-F02",
+          "actual_authority_generated": "HELIXOS-L4-015-B01"
+        },
+        "unassigned_pair_boundary_roots": {
+          "actual_management_record_written": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/raw_retention（実writer非実行のpair共通境界guardでありS13#/contracts/0..3の個別子契約文には現れない）",
+          "whole_registry_verified": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/diagnostic_contract/codes/22..23および#/contracts/0..3/remaining（whole_registry_claim_unproven/unresolvedのpair全体境界guard）",
+          "operation_effect": "docs/helix-os/L4-basic-design/management-authority-source-record.json#/operation_effectおよび#/diagnostic_contract/current_material_limit（pair共通の非作用境界none固定）"
+        }
+      }
     },
     "FN-OS015-02": {
       "value_type": "array<ResolutionCandidate>",

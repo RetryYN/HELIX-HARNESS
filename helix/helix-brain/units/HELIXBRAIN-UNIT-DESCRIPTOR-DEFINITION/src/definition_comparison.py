@@ -192,7 +192,12 @@ def _unknown_axis(subject: Any, binding: Any, axis: str, refs: list[Any], reason
 
 
 
-def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
+def _fn1_scope_guard(
+    raw: dict[str, Any],
+    binding: dict[str, Any],
+    *,
+    allow_missing_facts: bool = False,
+) -> None:
     """Keep fn1 inside the frozen 15-kind path; do not evaluate F01/F02 failures here."""
     for member in ("sources", "knowledge_records"):
         if member not in raw or not isinstance(raw[member], list):
@@ -214,7 +219,10 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
     slot_members = {"slot_identity", "descriptor_kind", "binding", "facts", "comparison_refs", "definition_applicability_ref"}
     fact_members = {"source_ref", "owner", "binding", "meaning", "condition", "reason", "oracle_ref", "ref"}
     for index, slot in enumerate(slots):
-        if not isinstance(slot, dict) or set(slot) != slot_members:
+        expected_slot_members = slot_members
+        if allow_missing_facts and isinstance(slot, dict) and "facts" not in slot:
+            expected_slot_members = slot_members - {"facts"}
+        if not isinstance(slot, dict) or set(slot) != expected_slot_members:
             raise _unsupported("F02", "descriptor_slot_closed_shape", f"descriptors[{index}] is outside the fixed DescriptorSlot shape")
         kind = slot["descriptor_kind"]
         identity = slot["slot_identity"]
@@ -225,8 +233,10 @@ def _fn1_scope_guard(raw: dict[str, Any], binding: dict[str, Any]) -> None:
         slot_identities.add(identity)
         if not _binding_shape_ok(slot["binding"]) or not _binding_same(slot["binding"], binding):
             raise _unsupported("F02", "descriptor_slot_binding_unresolved", f"descriptors[{index}] does not have the current full Binding")
-        facts = slot["facts"]
-        if not isinstance(facts, list) or not facts:
+        facts = slot.get("facts")
+        if allow_missing_facts and ("facts" not in slot or facts is None or facts == []):
+            facts = []
+        elif not isinstance(facts, list) or not facts:
             raise _unsupported("F02", "descriptor_facts_absent_empty_or_wrong_type", f"descriptors[{index}].facts is outside the frozen path")
         for fact_index, fact in enumerate(facts):
             if not isinstance(fact, dict) or set(fact) != fact_members:
@@ -432,7 +442,6 @@ def _evaluate_replacement_claims(
 ) -> None:
     raw = validated["input"]
     slots = raw["descriptors"]
-    cur_template_id = binding["template_ref"].get("identity")
     for claim in raw["claims"]:
         if not isinstance(claim, dict) or claim.get("kind") != "fill_definition" or not _binding_same(claim.get("binding"), binding):
             continue
@@ -518,7 +527,10 @@ def _evaluate_replacement_claims(
         emitted_cross = False
         for b_source, use in supports:
             basis_template_id = use["basis_binding"]["template_ref"].get("identity")
-            if use["descriptor_kind"] == "required input" and cur_template_id != basis_template_id:
+            if (
+                use["descriptor_kind"] == "required input"
+                and binding["template_ref"].get("identity") != basis_template_id
+            ):
                 emitted_cross = True
                 if target_kind == "required section":
                     code = "cross_pattern_section_substitution"
@@ -590,9 +602,9 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
     _fn1_scope_guard(raw, binding)
     emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
     finding_emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
-    owner = binding["knowledge_ref"]["owner"]
     supplied_kinds: set[str] = set()
     for slot in descriptors:
+        owner = binding["knowledge_ref"]["owner"]
         supplied_kinds.add(slot["descriptor_kind"])
         for fact in slot["facts"]:
             cause, refs, reason, definition_sources = _meaning_resolution(validated, slot, fact)
@@ -622,26 +634,30 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
             missing_kinds.add(kind_name)
             code = f"descriptor_{kind_idx:02d}_missing"
             axis_name = f"{kind_name}.definition"
-            emissions.append(({
-                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
-                "binding": copy.deepcopy(binding),
-                "axis": axis_name,
-                "state": "missing",
-                "original_refs": [],
-                "reason": slot_missing_reason,
-                "backflow_owner": "knowledge_owner",
-            }, {}, [], True))
-            finding_emissions.append(({
-                "code": code,
-                "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
-                "subject_ref": copy.deepcopy(binding["knowledge_ref"]),
-                "binding": copy.deepcopy(binding),
-                "axis": axis_name,
-                "state": "missing",
-                "source_refs": [],
-                "reason": slot_missing_reason,
-                "backflow_owner": "knowledge_owner",
-            }, {}, [], True))
+            subject_ref = binding.get("knowledge_ref")
+            if not isinstance(subject_ref, dict):
+                subject_ref = binding.get("template_ref")
+            if isinstance(subject_ref, dict):
+                emissions.append(({
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "original_refs": [],
+                    "reason": slot_missing_reason,
+                    "backflow_owner": "knowledge_owner",
+                }, {}, [], True))
+                finding_emissions.append(({
+                    "code": code,
+                    "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
+                    "subject_ref": copy.deepcopy(subject_ref),
+                    "binding": copy.deepcopy(binding),
+                    "axis": axis_name,
+                    "state": "missing",
+                    "source_refs": [],
+                    "reason": slot_missing_reason,
+                    "backflow_owner": "knowledge_owner",
+                }, {}, [], True))
 
     _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
 

@@ -1,0 +1,152 @@
+{
+  "record_id": "HARNESS001-V12-LAYER-CONTRACT-FUNCTION-PAIR-FREEZE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-H001-CORR-AND-FREEZE-3547-20261028-42",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6448042614",
+  "source_main": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+  "recorded_at_utc": "2026-10-27T17:15:00+00:00",
+  "target": "HARNESS-L2-001（B:0–2 / T:0–2）の公開関数1つ＋対のL8 case行＋担うL3義務を単位とする関数別L5/L8対設計凍結記録（3行）。92親430対の総合凍結や実装・実検証完了とは呼ばない。",
+  "criterion": "公開関数ごとに担うL3/L10義務・L4/L9基本契約・L5関数契約・対のL8 case行（oracle ID付き）が揃い、unknown・N/A・未完の戻し先（ownerとreentry）が明示され、001 L5設計自身へ戻す空白（A）が0件であること。L8へ新たな実行材料（全返却・fixture・hash）は追加しない。",
+  "path_aliases": {
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/v12-layer-contract.json",
+    "L9": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json",
+    "L5": "docs/helix-harness/L5-detail-design/v12-layer-contract.json",
+    "L8": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+    "UPPER_AUDIT": "docs/governance/audits/h001-f02-constructor-upper-expectation-2026-10-21.json"
+  },
+  "pins": {
+    "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10B_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "7331a825d2f68801cd8f25a99cc5be97ca5f2c2cebf607793f4a4c7ab153b257",
+    "L9_sha256": "9b3770fa842f24c550bd6a0b96aff26ca63a5ede24368a3cd95e3d7d8b27172a",
+    "L5_pre_remaining_clarification_sha256": "cd6cf912891f6a2d897d46d83c8fa3320a47c1260c10eef1ebb80c839d6903b6",
+    "L5_current_sha256": "07377a038a2d5c4200110e39712c55df70d4be06308b02b72c2b7a9e66c58811",
+    "L8_sha256": "ad4b6ec1e8cfc6193bd4b8f86651c552c3070d84a4bc6a0f2eef6639c054cc00",
+    "UPPER_AUDIT_sha256": "abe26bf5116e8ea7df0e20e32358389ed1ebe79414d41c04ea2d1464b9b5b84f"
+  },
+  "legacy_and_failure_basis": [
+    {
+      "asset": "LEGACY-ASSET-02319C2481B9E01698D5",
+      "path": "docs/governance/requirements-source/helix-requirements_v1.3.md",
+      "lines": "43–63,580–596",
+      "file_sha256": "788636a30b5950b8d8d5f663018786e7071e4a06c4bb77688c5c9100e80a7406",
+      "keep": "12層と6pair、要求/要件/設計/検証/受入/運用の工程意味を区別。",
+      "change": "L0を層外anchorとして独立参照し、旧L6実装/L7 closureラベルから現行層を推定しない。"
+    },
+    {
+      "asset": "LEGACY-ASSET-10B9D687A0B5A530B578",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+      "lines": "16–35,45–66,75–82,86–100",
+      "file_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+      "keep": "untrusted strict入力、pure結果、stable Finding、unknown非丸め、owner付き戻し先。",
+      "change": "旧TS module/registry writeを移さず001の3純粋domain関数契約へ意味再導出（UTW-005/014/021/024/029防止）。"
+    }
+  ],
+  "function_freeze_rows": [
+    {
+      "coverage_index": 0,
+      "parent": "HARNESS-L2-001",
+      "l3_obligation": "L3B#/requirements/12 (HARNESS-L3-001-B01)",
+      "l10_oracle": "L10B#/cases/12 (HARNESS-L10-001-B01)",
+      "l4_contract": "L4#/contracts/2 (HARNESS-L4-001-B01)",
+      "l9_case": "L9#/cases/2 (HARNESS-L9-001-B01)",
+      "public_function": {
+        "id": "HARNESS-L5-001-B01",
+        "symbol": "project_layer_authority_boundary",
+        "l5_pointer": "L5#/functions/2",
+        "detail_subcontract_pointer": "L5#/functions/2/logical_backflow_binding"
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-001-B01",
+        "l8_pointer": "L8#/cases/2",
+        "extra_case_pointers": [
+          "L8#/extra_cases/0 (HARNESS-L8-001-X01)",
+          "L8#/extra_cases/1 (HARNESS-L8-001-X02)",
+          "L8#/extra_cases/4 (HARNESS-L8-001-X05)"
+        ]
+      },
+      "obligation_and_oracle_summary": "層/pairの意味対応とauthority/合意/承認/操作/実検証の5根拠を独立に照合し、層やcatalogの存在で他ownerのauthority/操作成立を生成しない。不足signalの論理戻し候補（backflow_owner=HARNESS-L2-001）をauthority担当ownerや実配送完了へ読み替えない。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0: L6/L7でのmodule/test実物化・Red→Green→Refactor・実L8/L9/L10検証・PO L11受入（owner: H001 L6/L7・検証author）。",
+        "C_other_owner": "L5#/remaining/1: 040 catalog、056 pair結果、003/008要求二次形成、OS実保存/実運転、CONNECT wireの実authority/配送閉包（owner: 各親対設計owner）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 1,
+      "parent": "HARNESS-L2-001",
+      "l3_obligation": "L3F#/requirements/58 (HARNESS-L3-001-F01)",
+      "l10_oracle": "L10F#/cases/58 (HARNESS-L10-001-F01)",
+      "l4_contract": "L4#/contracts/0 (HARNESS-L4-001-F01)",
+      "l9_case": "L9#/cases/0 (HARNESS-L9-001-F01)",
+      "public_function": {
+        "id": "HARNESS-L5-001-F01",
+        "symbol": "check_artifact_layer_correspondence",
+        "l5_pointer": "L5#/functions/0"
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-001-F01",
+        "l8_pointer": "L8#/cases/0",
+        "extra_case_pointers": [
+          "L8#/extra_cases/0 (HARNESS-L8-001-X01)",
+          "L8#/extra_cases/1 (HARNESS-L8-001-X02)",
+          "L8#/extra_cases/2 (HARNESS-L8-001-X03)"
+        ]
+      },
+      "obligation_and_oracle_summary": "12層集合と6pair集合の双方向照合、Concept/charter/implementationの層外分離、L6設計・L7検証exact Refへの実装trace照合、path_label非依存、meaning source unknownのunresolved保持とL2/L3同一identity重複拒否（artifact_identity_conflict）。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0: L6/L7でのmodule/test実物化・Red→Green→Refactor・実L8/L9/L10検証・PO L11受入（owner: H001 L6/L7・検証author）。",
+        "C_other_owner": "L5#/remaining/1: 040 catalog実台帳・056結果契約等の他親owner対設計（owner: HARNESS-L2-040/056等）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    },
+    {
+      "coverage_index": 2,
+      "parent": "HARNESS-L2-001",
+      "l3_obligation": "L3F#/requirements/59 (HARNESS-L3-001-F02)",
+      "l10_oracle": "L10F#/cases/59 (HARNESS-L10-001-F02)",
+      "l4_contract": "L4#/contracts/1 (HARNESS-L4-001-F02)",
+      "l9_case": "L9#/cases/1 (HARNESS-L9-001-F02)",
+      "public_function": {
+        "id": "HARNESS-L5-001-F02",
+        "symbol": "check_prototype_poc_applicability",
+        "l5_pointer": "L5#/functions/1",
+        "detail_subcontract_pointer": "L5#/f02_return_construction"
+      },
+      "paired_l8_case": {
+        "id": "HARNESS-L8-001-F02",
+        "l8_pointer": "L8#/cases/1",
+        "constructor_oracle_pointers": [
+          "L8#/f02_constructor_oracles/cases/0..7",
+          "L8#/f02_constructor_oracles/additional_constructor_cases/0..25",
+          "UPPER_AUDIT#/case_rows/0..7"
+        ],
+        "extra_case_pointers": [
+          "L8#/extra_cases/0 (HARNESS-L8-001-X01)",
+          "L8#/extra_cases/1 (HARNESS-L8-001-X02)",
+          "L8#/extra_cases/3 (HARNESS-L8-001-X04)"
+        ]
+      },
+      "obligation_and_oracle_summary": "画面有無からPrototype、技術的不確実性からPoCを別々に適用判定し、両方not_applicableかつN/A 5属性完全時のみL2.5 skipped、unknownは非適用へ丸めない。後段f02_return_constructionで003/008戻し先targetとL2要求Refを束縛し、上位期待とL5固有規則の分離はUPPER_AUDITで対照済み。",
+      "blocking_a_count": 0,
+      "remaining_disposition": {
+        "B_downstream_layer": "L5#/remaining/0: L6/L7でのmodule/test実物化・Red→Green→Refactor・実L8/L9/L10検証・PO L11受入（owner: H001 L6/L7・検証author）。",
+        "C_other_owner": "L5#/remaining/1およびL5#/f02_return_construction/limits/0: 003/008要求二次形成・Backflow受領側の完全入力record構成と実source資格供給（owner: HARNESS-L2-003/008等）。"
+      },
+      "execution_state_at_freeze": "not_executed"
+    }
+  ],
+  "not_claimed": [
+    "本記録はHARNESS-L2-001（B:0–2 / T:0–2）の公開3関数と対L8 case行のL5/L8対設計凍結記録であり、92親430対の総合凍結、L6/L7凍結、実装前Red実観測、Green実装、実CI、L9/L10実検証、PO L11受入を主張しない。",
+    "L8の/f02_constructor_oracles/candidate_L5_bytes_bindingが保持するsha256（cd6cf912...）は/remaining文言整理前のL5 bytesを指す既存pinとして変更せず、L8へ新たな材料（全返却・fixture・hash）を追加していない。"
+  ]
+}

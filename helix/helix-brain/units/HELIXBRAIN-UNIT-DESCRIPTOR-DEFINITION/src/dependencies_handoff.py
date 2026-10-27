@@ -309,8 +309,53 @@ def _verify_na_claim_subject_applicability_unknown(
         )
 
 
+def _build_claim_call_frame(validated):
+    from descriptor_definition_walk import evaluate_descriptor_definition_walk
+    from descriptor_target_frame import build_descriptor_claim_uses
+
+    walk = evaluate_descriptor_definition_walk({"validated": validated})
+    uses = build_descriptor_claim_uses(
+        validated, walk["evaluation"], walk["target_reads"], walk["intent_reads"]
+    )
+    return {
+        "validated": validated,
+        "definition_evaluation": walk["evaluation"],
+        "target_reads": walk["target_reads"],
+        "claim_uses": uses,
+    }
+
+
 def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
-    """fn6: B02/DP-1垂直スライス（常時参照unknown、未選択unobserved、handoff保持、受領≠消込/NA）。"""
+    """FN6 public wrapper; supplied fill_definition Claims use one same-call frame."""
+    if (isinstance(context, dict) and set(context) == {"validated", "definitions"}
+            and isinstance(context.get("validated"), dict)
+            and isinstance(context["validated"].get("input"), dict)):
+        claims = context["validated"]["input"].get("claims")
+        if (isinstance(claims, list)
+                and any(isinstance(claim, dict)
+                        and claim.get("kind") == "fill_definition" for claim in claims)):
+            frame = _build_claim_call_frame(context["validated"])
+            return compare_dependencies_and_handoff_detail(context, frame)
+    return _compare_dependencies_and_claims(context)
+
+
+def compare_dependencies_and_handoff_detail(context, frame):
+    """L5 same-call FN6 consumer for the existing closed DescriptorTargetCallFrame."""
+    validated = context.get("validated") if isinstance(context, dict) else None
+    if (not isinstance(context, dict) or set(context) != {"validated", "definitions"}
+            or not isinstance(frame, dict)
+            or set(frame) != {"validated", "definition_evaluation", "target_reads", "claim_uses"}
+            or frame.get("validated") is not validated
+            or not isinstance(frame.get("definition_evaluation"), dict)
+            or set(frame["definition_evaluation"]) != {"comparison", "assessments"}
+            or not isinstance(frame.get("target_reads"), list)
+            or not isinstance(frame.get("claim_uses"), list)):
+        raise _unsupported("B02/F09", "claim_call_frame_shape", "FN6 requires its same-call DescriptorTargetCallFrame")
+    return _compare_dependencies_and_claims(context, frame)
+
+
+def _compare_dependencies_and_claims(context: dict[str, object], frame=None) -> dict[str, object]:
+    """Same-call detail with the existing B02 prefix and FN4 ClaimUse frame."""
     if not isinstance(context, dict) or set(context) != {"validated", "definitions"}:
         raise _unsupported("B02/F09", "dependency_context_shape", "DependencyContext requires validated and definitions")
     validated = context.get("validated")
@@ -324,96 +369,130 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
     binding = raw.get("binding")
     if not isinstance(binding, dict):
         raise _unsupported("B02/F09", "binding_absent_or_wrong_type", "input.binding must be an object")
+    comparison_binding = definitions.get("input_binding") if isinstance(definitions, dict) else None
+    comparison_binding_matches = _binding_same(comparison_binding, binding)
+    if (
+        not comparison_binding_matches
+        and "dependencies" not in raw
+        and not _binding_shape_ok(binding)
+        and _json_equal(comparison_binding, binding)
+    ):
+        comparison_binding_matches = True
     if (
         not isinstance(definitions, dict)
         or set(definitions) != {"axes", "findings", "producer_symbol", "input_binding"}
         or definitions.get("producer_symbol") != "compare_descriptor_definitions"
         or not isinstance(definitions.get("axes"), list)
         or not isinstance(definitions.get("findings"), list)
-        or not _binding_same(definitions.get("input_binding"), binding)
+        or not comparison_binding_matches
     ):
         raise _unsupported("B02/F09", "definitions_comparison_mismatch", "definitions must be the same-snapshot fn1 Comparison")
 
-    _validate_fn6_slice_dependencies(raw, binding)
-    subject_ref = binding["knowledge_ref"]
     axes: list[dict[str, Any]] = []
     findings: list[dict[str, Any]] = []
+    if "dependencies" not in raw:
+        from dependency_missing_projection import (
+            project_absent_dependency_selector,
+            project_required_dependency_missing_axis,
+            project_required_dependency_missing_finding,
+        )
 
-    always_refs = raw["dependencies"]["always_refs"]
-    for index in range(len(always_refs)):
-        req = {
-            "request_ref_locator": f"/dependencies/always_refs/{index}",
-            "category_locator": "/dependencies/always_refs",
-        }
-        body_read = read_canonical_dependency_body(validated, req)
-        problems = body_read["problems"]
-        cause_value: Any
-        if not problems:
-            cause_value = None
-        elif len(problems) == 1:
-            cause_value = copy.deepcopy(problems[0])
-        else:
-            cause_value = copy.deepcopy(problems)
-        prefix = problems[0]["reason"]
-        trace_material = {
-            "format": "BRAIN032-F09-axis-reason-trace-v1",
-            "producer_symbol": "compare_dependencies_and_handoff",
-            "axis": "dependency_reference",
-            "state": body_read["state"],
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "original_refs": copy.deepcopy(body_read["category_refs"]),
-            "backflow_owner": "knowledge_owner",
-            "request_locator": req["request_ref_locator"],
-            "source_category_locator": req["category_locator"],
-            "cause": cause_value,
-            "canonical_body_support": [],
-            "handoff_record": None,
-            "selection_observation": None,
-        }
-        axes.append({
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "axis": "dependency_reference",
-            "state": body_read["state"],
-            "original_refs": copy.deepcopy(body_read["category_refs"]),
-            "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
-            "backflow_owner": "knowledge_owner",
-        })
+        for required_identity in _REQUIRED_ALWAYS_IDENTITIES:
+            axes.extend(project_required_dependency_missing_axis(
+                validated, "always_refs", required_identity
+            ))
+            findings.extend(project_required_dependency_missing_finding(
+                validated, "always_refs", required_identity
+            ))
+        for selector in (
+            "core_return_requested",
+            "core_source_selected",
+            "labo_evaluation_selected",
+        ):
+            selector_axes, selector_findings = project_absent_dependency_selector(
+                validated, selector
+            )
+            axes.extend(selector_axes)
+            findings.extend(selector_findings)
+    else:
+        _validate_fn6_slice_dependencies(raw, binding)
+        subject_ref = binding["knowledge_ref"]
 
-    unselected_refs = raw["dependencies"]["unselected_refs"]
-    for index, unselected_ref in enumerate(unselected_refs):
-        trace_material = {
-            "format": "BRAIN032-F09-axis-reason-trace-v1",
-            "producer_symbol": "compare_dependencies_and_handoff",
-            "axis": "unselected_source",
-            "state": "unobserved",
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "original_refs": [copy.deepcopy(unselected_ref)],
-            "backflow_owner": None,
-            "request_locator": f"/dependencies/unselected_refs/{index}",
-            "source_category_locator": "/dependencies/unselected_refs",
-            "cause": None,
-            "canonical_body_support": [],
-            "handoff_record": None,
-            "selection_observation": {
-                "core_source_selected": False,
-                "labo_evaluation_selected": False,
-                "port_call": "not_called_for_unselected_ref",
-            },
-        }
-        axes.append({
-            "subject_ref": copy.deepcopy(subject_ref),
-            "binding": copy.deepcopy(binding),
-            "axis": "unselected_source",
-            "state": "unobserved",
-            "original_refs": [copy.deepcopy(unselected_ref)],
-            "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
-            "backflow_owner": None,
-        })
+        always_refs = raw["dependencies"]["always_refs"]
+        for index in range(len(always_refs)):
+            req = {
+                "request_ref_locator": f"/dependencies/always_refs/{index}",
+                "category_locator": "/dependencies/always_refs",
+            }
+            body_read = read_canonical_dependency_body(validated, req)
+            problems = body_read["problems"]
+            cause_value: Any
+            if not problems:
+                cause_value = None
+            elif len(problems) == 1:
+                cause_value = copy.deepcopy(problems[0])
+            else:
+                cause_value = copy.deepcopy(problems)
+            prefix = problems[0]["reason"]
+            trace_material = {
+                "format": "BRAIN032-F09-axis-reason-trace-v1",
+                "producer_symbol": "compare_dependencies_and_handoff",
+                "axis": "dependency_reference",
+                "state": body_read["state"],
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "original_refs": copy.deepcopy(body_read["category_refs"]),
+                "backflow_owner": "knowledge_owner",
+                "request_locator": req["request_ref_locator"],
+                "source_category_locator": req["category_locator"],
+                "cause": cause_value,
+                "canonical_body_support": [],
+                "handoff_record": None,
+                "selection_observation": None,
+            }
+            axes.append({
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "axis": "dependency_reference",
+                "state": body_read["state"],
+                "original_refs": copy.deepcopy(body_read["category_refs"]),
+                "reason": f"{prefix}\nTRACE={_serialize_trace(trace_material)}",
+                "backflow_owner": "knowledge_owner",
+            })
 
-    handoff_records = raw.get("handoff_records")
+        unselected_refs = raw["dependencies"]["unselected_refs"]
+        for index, unselected_ref in enumerate(unselected_refs):
+            trace_material = {
+                "format": "BRAIN032-F09-axis-reason-trace-v1",
+                "producer_symbol": "compare_dependencies_and_handoff",
+                "axis": "unselected_source",
+                "state": "unobserved",
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "original_refs": [copy.deepcopy(unselected_ref)],
+                "backflow_owner": None,
+                "request_locator": f"/dependencies/unselected_refs/{index}",
+                "source_category_locator": "/dependencies/unselected_refs",
+                "cause": None,
+                "canonical_body_support": [],
+                "handoff_record": None,
+                "selection_observation": {
+                    "core_source_selected": False,
+                    "labo_evaluation_selected": False,
+                    "port_call": "not_called_for_unselected_ref",
+                },
+            }
+            axes.append({
+                "subject_ref": copy.deepcopy(subject_ref),
+                "binding": copy.deepcopy(binding),
+                "axis": "unselected_source",
+                "state": "unobserved",
+                "original_refs": [copy.deepcopy(unselected_ref)],
+                "reason": f"未選択sourceは未観測。\nTRACE={_serialize_trace(trace_material)}",
+                "backflow_owner": None,
+            })
+
+    handoff_records = raw["handoff_records"] if "handoff_records" in raw else []
     if not isinstance(handoff_records, list):
         raise _unsupported("F09/B02", "handoff_records_shape", "handoff_records must be an array")
     for index, record in enumerate(handoff_records):
@@ -467,6 +546,60 @@ def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, ob
         raise _unsupported("B02/F09", "claims_container_shape", "claims must be an array")
     required_claim_members = {"subject_ref", "binding", "actor", "kind", "proposed_value", "basis_refs"}
     for index, claim in enumerate(claims):
+        if isinstance(claim, dict) and claim.get("kind") == "fill_definition":
+            fill_required_members = {"subject_ref", "binding", "actor", "kind"}
+            if (not fill_required_members <= set(claim)
+                    or not set(claim) <= required_claim_members):
+                raise _unsupported(
+                    "B02/F09", "claim_closed_shape",
+                    f"claims[{index}] is outside the 6-field Claim shape",
+                )
+            if (not _ref_frame_supplied_ok(claim.get("subject_ref"))
+                    or not _binding_shape_ok(claim.get("binding"))
+                    or claim.get("actor") != "BRAIN"):
+                raise _unsupported(
+                    "B02/F09", "claim_frame_or_actor",
+                    f"claims[{index}] has unsupported subject/binding/actor",
+                )
+            if not _binding_same(claim["binding"], binding):
+                raise _unsupported(
+                    "B02", "claim_binding_mismatch",
+                    f"claims[{index}].binding does not match input.binding",
+                )
+            if (not isinstance(frame, dict)
+                    or len(frame["target_reads"]) != len(claims)
+                    or len(frame["claim_uses"]) != len(claims)):
+                raise _unsupported("B02/F09", "claim_call_frame_shape", "FN6 requires original fill ClaimUse occurrences")
+            use = frame["claim_uses"][index]
+            if (not isinstance(use, dict)
+                    or use.get("claim_locator") != f"/claims/{index}"
+                    or not _json_equal(use.get("claim"), claim)):
+                raise _unsupported("B02/F09", "claim_call_frame_shape", f"ClaimUse does not match /claims/{index}")
+            route = use.get("route")
+            if route == "rule87":
+                reason = (
+                    f"Claim /claims/{index} は、元targetの意味定義missingをreference_only資料で置換する主張である。"
+                    f"原missingを保持し、全支持記録は同呼出し観測/frame/claim_uses/{index}に残す。"
+                )
+                common = {
+                    "subject_ref": copy.deepcopy(claim["subject_ref"]),
+                    "binding": copy.deepcopy(claim["binding"]),
+                    "axis": "descriptor.definition",
+                    "state": "missing",
+                    "reason": reason,
+                    "backflow_owner": "knowledge_owner",
+                }
+                basis_refs = _copy_refs_in_source_order(claim["basis_refs"])
+                axes.append({**common, "original_refs": basis_refs})
+                findings.append({
+                    "code": "reference_as_required_definition",
+                    "rule_ref": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
+                    **common,
+                    "source_refs": copy.deepcopy(basis_refs),
+                })
+            elif route not in {"none", "unresolved", "rule93"}:
+                raise _unsupported("B02", "unsupported_claim_kind", f"unsupported ClaimUse route {route!r}")
+            continue
         if not isinstance(claim, dict) or set(claim) != required_claim_members:
             raise _unsupported("B02/F09", "claim_closed_shape", f"claims[{index}] is outside the 6-field Claim shape")
         if not _ref_frame_supplied_ok(claim.get("subject_ref")) or not _binding_shape_ok(claim.get("binding")) or claim.get("actor") != "BRAIN":
