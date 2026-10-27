@@ -2178,7 +2178,7 @@
       "source_closure": "step_2のwalk非fill限定だけを閉じた。Claim列のlist/object検査を保ち、原raw配列を加工せずfill出現だけを元locatorでtarget/intentへ渡す。FN1 guard・target reader・frame builder・FN4 detail・FN5/FN7は変更しない。非fillの意味/intent/rowを生成しない。",
       "owner_boundaries": {
         "FN1": "fact Ref subjectはdescriptor_claim_unimplemented、二Binding入力はdescriptor_slot_binding_unresolved。",
-        "FN4": "walkのsupplied_claim_portsが今回の実最初停止。fill-only reads案の後にもdetail oracle_claim_ports/finite carryが残る点は静的確認で、実到達済みとはしない。",
+        "FN4": "walk非fill限定は今回閉じ、現在の実first stopはClaimUse builderのsame_walk_claim_count。fill-only reads案の後にdetail oracle_claim_ports/finite carryも残る点は静的確認で、実到達済みとはしない。",
         "FN5": "L4 knowledge_promotion_contract/finite_domain/claimsはfillのみ。candidate-empty nonfill停止は条件付き静的境界で今回未行使。",
         "FN7": "finite writerはfill専用。16規則writerは本slice外。",
         "fixture": "hash/countとqualified比較のtyped selector、ADD20の原known definition素材。"
