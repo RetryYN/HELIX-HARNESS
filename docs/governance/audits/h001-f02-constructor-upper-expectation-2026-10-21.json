@@ -1,0 +1,112 @@
+{
+  "document_id": "h001-f02-constructor-upper-expectation-2026-10-21",
+  "kind": "fixed_audit",
+  "authority_effect": "none",
+  "date": "2026-10-21",
+  "base_sha": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+  "prior_proposal_revision": "5e944e6d54a1953ecf60ca28e19affbecba29b63",
+  "request_id": "WR-CLAUDE-H001-CORR-AND-FREEZE-3547-20261028-42",
+  "purpose": "H001 F02返却後段constructor（L5#/f02_return_construction・L8#/f02_constructor_oracles/cases 8件）の期待が上位V-pair（L3/L10・L4/L9）由来かL5固有規則・内部prior素材由来かを分離して対照する。",
+  "method": "docs/helix-harness の L3/L10・L4/L9・L5/L8 と #3530固定計算記録を直接読み、上位層（L3/L10・L4/L9）の直接期待とL5#/f02_return_construction固有のoutcome/code/state/pointer規則を分離して記録した。L5限定規則を上位の直接期待へ昇格しない。",
+  "sources": {
+    "L3": "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/59 (HARNESS-L3-001-F02)",
+    "L10": "docs/helix-harness/L10-verification/functional-verification.json#/cases/59 (HARNESS-L10-001-F02)",
+    "L4": "docs/helix-harness/L4-basic-design/v12-layer-contract.json#/contracts/1 (HARNESS-L4-001-F02)",
+    "L9": "docs/helix-harness/L9-integration-verification/v12-layer-contract.json#/cases/1 (HARNESS-L9-001-F02)",
+    "L5": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction",
+    "L8_cases": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json#/f02_constructor_oracles/cases",
+    "L8_additional_cases": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json#/f02_constructor_oracles/additional_constructor_cases",
+    "prior_calc_record": "docs/governance/audits/h001-f02-constructor-calculation-2026-10-21.json"
+  },
+  "legacy_basis": {
+    "asset_id": "LEGACY-ASSET-10B9D687A0B5A530B578",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/design-template-json-authority.md",
+    "lines": "16–35,45–66,75–82,86–100",
+    "file_sha256": "2c715a69126dd18cbd9023e1c2a19716c8b149a75a0d33a34673e0d4ab4bbad9",
+    "reuse": "semantic_rederivation",
+    "keep": "untrusted strict入力、pure結果、stable Finding、unknownを非適用や成功へ丸めない判定、戻し先境界の分離。",
+    "change": "旧TS module名やregistry writeは移さず、001 F02のL3/L10・L4/L9上位義務とL5返却後段constructor規則の層境界を分離して照合する。"
+  },
+  "upper_expectations": {
+    "L3_obligation": "Prototype/PoCをL2.5で別々に適用判定し、両方非適用のときだけL2.5を飛ばす。非適用は理由/判定者/対象HEAD/要求影響/再評価条件へ結ぶ。結果は003/008のBackflowと要求二次形成/合意へ結び、L2.5成功を要求合意へ読み替えない。",
+    "L4_behavior": "Prototypeは画面有無、PoCは画面非依存の技術不確実性から別々に適用判定。不明は非適用へ丸めない。結果は003/008の要求二次形成/Backflowへ返し、要求合意の意味と独立に保持する。",
+    "L9_expected": "画面有無×技術成立性の4組合せごとの適用期待、画面有無/技術成立性がunknownの組では該当適用自体がunknownのまま、合意不足時は003/008戻し先が残りL3凍結可能を返さない。"
+  },
+  "l5_constructor_rules": {
+    "source_pointer": "docs/helix-harness/L5-detail-design/v12-layer-contract.json#/f02_return_construction/binding_rules",
+    "note": "以下はL5返却後段（f02_return_construction）固有の型・状態・finding形成規則であり、L3/L10・L4/L9が直接指定するoutcome/code/state/pointer期待ではない。",
+    "rules": "前段prior_stageの適用判定（prototype/poc/l25_applicability）を保持したまま、Contextのbackflow_target_bindings（003/008）とl2_requirement_refを照合する。未供給targetはnull/incomplete＋reference_missing（Contextのみの不足はpointer=\"\"）、Context target state=unknownはoutcome=unknown＋reference_unknown、同一consumer内の複数異なる候補は先頭選択せずreference_conflict（LOCAL-DIFFERENT-CANDIDATE-ROWS）、subject不一致はreference_conflict、L2要求Ref欠落時は適用値をnullへ落とさず後段でagreement_state=missing＋outcome=incomplete（pointer=\"/l2_requirement_ref\"）、未知property等の入力型不正はoutcome=invalid, value=null＋input_invalid。"
+  },
+  "case_rows": [
+    {
+      "case_id": "RET-TARGETS-NOT-SUPPLIED",
+      "l8_pointer": "/f02_constructor_oracles/cases/0",
+      "expected": "outcome=incomplete + backflow_refs=[] + finding reference_missing (pointer=\"\")",
+      "upper_correspondence": "L3/L10・L4/L9が求める「003/008要求二次形成・Backflowへの返却が必要であり、戻し先未供給のまま完了（satisfied）にしない」意味境界に整合。",
+      "l5_rule_correspondence": "outcome=incomplete、backflow_refs=[]、finding reference_missing、およびContext側のみの未供給を空pointer（pointer=\"\"）で表す形式はL5#/f02_return_construction/binding_rules固有の規則。",
+      "internal_prior_dependence": "prior_stageの前段satisfied 5field値（prototype=applicable, poc=applicable, l25=required, agreement_state=current）およびsubject FX-001-Q2等のliteralは#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-TARGETS-EXPLICIT-UNKNOWN",
+      "l8_pointer": "/f02_constructor_oracles/cases/1",
+      "expected": "outcome=unknown + backflow_refs=[] + finding reference_unknown (pointer=\"\")",
+      "upper_correspondence": "L4/L9の「画面有無/技術成立性がunknownのとき該当適用がunknownのまま」とは対象段階が異なる。本caseは前段の画面有無/技術不確実性からprototype/pocともapplicable（l25=required）と判定済みであり、後段Contextの003/008戻し先target state=unknownを非適用やsatisfied/incompleteへ丸めずunknownとして保持する点で上位の「不明を丸めない」原則に整合。",
+      "l5_rule_correspondence": "Context backflow_target_bindingsのstate=unknownからoutcome=unknown＋finding reference_unknown（pointer=\"\"）を返し前段applicableを維持する規則はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "target未知entryと前段applicable 5fieldの具体literalは#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-TWO-LOGICAL-CONTRACT-TARGETS",
+      "l8_pointer": "/f02_constructor_oracles/cases/2",
+      "expected": "outcome=satisfied + backflow_refs 2件 (HARNESS-L3-003-F02, HARNESS-L3-008-F01)",
+      "upper_correspondence": "L3/L4/L9が結果をHARNESS-L2-003（要求二次形成）とHARNESS-L2-008（Backflow）の双方へ結ぶことに対応。本caseは003用target 1件と008用target 1件（各consumer 1 target）がともにcurrentで供給された正常束縛（outcome=satisfied）であり、同一consumer内に複数候補が競合するreference_conflict（additional_constructor_cases/13 LOCAL-DIFFERENT-CANDIDATE-ROWSで別検証）とは明確に区別される。",
+      "l5_rule_correspondence": "003/008各consumerのcurrent target Ref 2件をcanonical順のbackflow_refsタプルへ束ねfindings=()とする構成はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "HARNESS-L3-003-F02 / HARNESS-L3-008-F01の具体revision/content_sha256は#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-ONE-TARGET-UNKNOWN",
+      "l8_pointer": "/f02_constructor_oracles/cases/3",
+      "expected": "outcome=unknown + backflow_refs 1件 (003) + finding reference_unknown (008)",
+      "upper_correspondence": "cases/1と同じく、L4/L9の「適用自体がunknown」ではなく前段prototype/poc=applicableの下で003 targetがcurrent・008 targetがstate=unknownの片側戻し先不明状態。解決済み003を保持しつつ008の不明を消さず全体satisfiedにしない点が上位原則に整合。",
+      "l5_rule_correspondence": "解決済み003 Refをbackflow_refsへ残しつつ008のreference_unknownでoutcome=unknownとする部分保持規則はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "003/008各targetの具体literalは#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-OTHER-SUBJECT-TARGET",
+      "l8_pointer": "/f02_constructor_oracles/cases/4",
+      "expected": "outcome=conflict + backflow_refs=[] + finding reference_conflict",
+      "upper_correspondence": "上位の「別subject/別scopeの根拠を当該要求の戻し先として流用しない」境界に整合（L3/L10・L4/L9はconflict code名を直接規定しない）。",
+      "l5_rule_correspondence": "binding.subjectと入力l2_requirement_refのidentity/owner/scope不一致をoutcome=conflict＋finding reference_conflict（pointer=\"\"）とする規則はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "別subject FX-001-OTHERの具体Ref値は#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-ONE-TARGET-MISSING",
+      "l8_pointer": "/f02_constructor_oracles/cases/5",
+      "expected": "outcome=incomplete + backflow_refs 1件 (003) + finding reference_missing (008)",
+      "upper_correspondence": "003/008の片側（008）でも戻し先が欠落していれば完了（satisfied）としない上位の戻し先境界に整合。",
+      "l5_rule_correspondence": "003の1件をbackflow_refsに保持しつつ008未供給をoutcome=incomplete＋reference_missing（pointer=\"\"）とする規則はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "片側targetの具体Ref値は#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-L2-SUBJECT-MISSING",
+      "l8_pointer": "/f02_constructor_oracles/cases/6",
+      "expected": "outcome=incomplete, agreement_state=missing + finding reference_missing (pointer=\"/l2_requirement_ref\")",
+      "upper_correspondence": "L3/L10・L4/L9の「Prototype/PoC適用判定とL2要求合意を混同せず、要求参照・合意不足時はL3凍結可能を返さない」意味境界に整合。",
+      "l5_rule_correspondence": "l2_requirement_ref欠落時に前段のprototype/poc適用値をnullへ落とさず保持したまま、後段でagreement_state=missingへ確定しoutcome=incomplete＋reference_missing（pointer=\"/l2_requirement_ref\"）を返す規則はL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "前段構成とsubject refの具体literalは#3530内部prior素材由来。"
+    },
+    {
+      "case_id": "RET-CLOSED-INPUT-EXTRA",
+      "l8_pointer": "/f02_constructor_oracles/cases/7",
+      "expected": "outcome=invalid, value=null + finding input_invalid (pointer=\"/extra\")",
+      "upper_correspondence": "上位の「未定義フィールドや不正入力から適用・合意の成立を生成しない」境界に整合（L3/L10・L4/L9は/extraやvalue=nullを直接規定しない）。",
+      "l5_rule_correspondence": "closed input外の未知property（/extra）をoutcome=invalid、value=null、finding input_invalid（pointer=\"/extra\"）として拒否する厳格入力規則はL5#/common_contractおよびL5#/f02_return_construction固有。",
+      "internal_prior_dependence": "/extra注入patchと基準入力literalは#3530内部prior素材由来。"
+    }
+  ],
+  "limits": [
+    "上位層（L3/L10・L4/L9）は適用判定の独立性・不明の非丸め・要求合意との分離・003/008への返却意味を供給するが、L5固有のoutcome/code/state/pointer語彙や各caseの具体literal値（FX-001-*等）は供給しない。",
+    "L8 cases 1/3のunknownはContext戻し先targetのstate=unknownによるものであり、L4/L9の画面有無/技術成立性unknownによる適用unknown（L8#/cases/1 HARNESS-L8-001-F02やX04で検証）と混同しない。",
+    "L8 case 2の2件は003と008の各consumer 1 target正常束縛であり、同一consumer内複数候補のreference_conflict（additional_constructor_cases/13 LOCAL-DIFFERENT-CANDIDATE-ROWS）と混同しない。",
+    "旧runtime/test/CI・製品実行による検証は実施していない。公開新世代設計sourceの静的対照のみ。"
+  ]
+}
