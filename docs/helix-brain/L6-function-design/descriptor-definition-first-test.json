@@ -2158,6 +2158,42 @@
         "binding_fallback": "partial root Bindingのoracle_refを除いた実FN0-clean入力はFN1を返すがFN2 fn2_requires_the_same-snapshot_public_fn1_Comparison_shape/Binding停止。現FN2は同じ_binding_sameを要求するため、six-producer ContextからFN7のnot strict shape+exact JSON fallbackへは到達しない。G4bの原値保持条件を変えず分岐は保留する。",
         "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
       }
+    },
+    "B_prerequisite": {
+      "request": "WR-CLAUDE-BRAIN032-FN7B-PREREQ-3547-20261028-60",
+      "base": "a8c544b2e049ab756d622289b71333ee8cb2570b",
+      "adopted_plan_sha256": "198c0d3989469556927038887dfc52dbd0f120cd810881a7f79ab00ff34ce565",
+      "scope": "step_1:12規則の入力別前提matrix。残る4規則はcontextのみ、ADD-20は別件。FN7 row writer/sourceは変更しない。",
+      "authority": "親nodeと同じ承認済みB01/F07/N02のL3/L10六項目だけ。root-fn7b-authority-intake-R1.jsonで47354との一致とL4/L5 pinsを再照合。",
+      "contract_basis": [
+        "L4 /claim_boundary_projection_contract/supported_claim_rule_projection",
+        "L4 /dependency_semantic_ports/descriptor_target_contract/ordered_branches/0",
+        "L4 /dependency_semantic_ports/claim_intent_protocol",
+        "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/4",
+        "L5 /source_return_contract/descriptor_target_dataflow/consumer/reads",
+        "L5 /logical_input_structure/schema/$defs/Claim"
+      ],
+      "materialization": "既存完全Claimをnative operand Refと原Bindingへ束縛する新素材。L8 logical mutationは完全rawではなく、既存templateの追加member/presenceを明示した。元L8 childの期待やnot_executedを変更しない。",
+      "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)を再読。JSON/原source/ownerと未解決保持を継承し、旧runtime/CI/testを実行・移植しない。",
+      "source_closure": "未実施。fill-only read/useを原locatorで保持する狭い案を照合したが、FN1 guard・FN4 detail・FN5 domainが別に残る。単一guard除去やnonfill target/use合成で全producer形成を装わず、個別ownerへ返す。",
+      "owner_boundaries": {
+        "FN1": "fact Ref subjectはdescriptor_claim_unimplemented、二Binding入力はdescriptor_slot_binding_unresolved。",
+        "FN4": "walkのsupplied_claim_portsが今回の実最初停止。fill-only reads案の後にもdetail oracle_claim_ports/finite carryが残る点は静的確認で、実到達済みとはしない。",
+        "FN5": "L4 knowledge_promotion_contract/finite_domain/claimsはfillのみ。candidate-empty nonfill停止は条件付き静的境界で今回未行使。",
+        "FN7": "finite writerはfill専用。16規則writerは本slice外。",
+        "fixture": "hash/countとqualified比較のtyped selector、ADD20の原known definition素材。"
+      },
+      "family_readiness": {
+        "authority4": "保留: FN1/FN4、B01は補助二Binding入力のみ。",
+        "obligation_handoff5": "保留: FN1/FN4とhash/lower-green根拠selector。",
+        "descriptor_missing2": "保留: FN4で停止。",
+        "values_applicability2": "保留: FN4で停止。",
+        "qualified_conflict1": "保留: typed比較素材未材料化。",
+        "product_generic1": "保留: L8追加top-level MeaningFact形と現閉型の食い違いを意味移動で補わない。",
+        "unknown_fallback1": "保留: 原meaning-nullとfallback basis素材を未材料化。"
+      },
+      "completion_boundary": "WR13 B全体は未完了。WR28/WR31は手動hold。L8受入・OS・Issue3547/3510完了を生成しない。",
+      "authority_effect": "none"
     }
   }
 }

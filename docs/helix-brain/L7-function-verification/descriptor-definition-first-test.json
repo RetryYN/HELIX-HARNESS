@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "1bd90fd874cdf66f4387056b8b2e188d0cf3e19cd683bca73baa4c86f5c5b81b",
+    "sha256": "f08489dc6db024ccde270ad038ee5e129b29183f0731088afd1e1c69d4f7d2a4",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3727,6 +3727,185 @@
       "rule93": "rule93は同call primary assessmentのunknownかつorigin_branch=meaning_undefinedを必要とする。L4 finite fact_recordはoracle_refを許容せず、現FN1 exact fact shapeはoracle_refを必要とするため、非空factのdomainに交差がない。L4形のnull factは実FN0-clean後FN1 F02/meaning_fact_closed_shape停止。oracle_refを加えたnull factも実FN1 F01/F02/meaning_body_null停止。空root descriptorsのfinite経路はprimary意味未定義を作らない。rule93_positive_unimplementedはsource上の保留guardであり、実producer到達時の停止を検証したとは記載しない。",
       "binding_fallback": "partial root Bindingのoracle_refを除いた実FN0-clean入力はFN1を返すがFN2 fn2_requires_the_same-snapshot_public_fn1_Comparison_shape/Binding停止。現FN2は同じ_binding_sameを要求するため、six-producer ContextからFN7のnot strict shape+exact JSON fallbackへは到達しない。G4bの原値保持条件を変えず分岐は保留する。",
       "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
+    },
+    "B_prerequisite": {
+      "execution_state": "prerequisite_matrix_first_stops_observed",
+      "rows": [
+        {
+          "rule": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
+          "child": "/cases/0/negative_cases/0",
+          "l5_predicate": "/failure_rules/0/predicate",
+          "input_recipe": "normalの候補Aだけの補助入力と、既存_filename_identity_claim_inputの候補A/Bを使う二Binding補助入力。元same_template_identity Claimを保持しabsolute_product_choiceをappend。source/Qは未変更。両者を元L8 baselineの完全材料化とは扱わない。",
+          "first_stop_by_input": {
+            "I01": "S1",
+            "I02": "S2"
+          },
+          "remaining_owner": "FN1 multi-Binding / FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-brain_selects_template",
+          "child": "/cases/8/negative_cases/1",
+          "l5_predicate": "/failure_rules/76/predicate",
+          "input_recipe": "descriptor_claim_input(positive)の原fact Refとbinding.template_refを各々subjectへ束縛。actor BRAIN/product_template_adoption、実候補A Refをproposed_valueにする。",
+          "first_stop_by_input": {
+            "I04": "S4",
+            "I05": "S1"
+          },
+          "remaining_owner": "FN1 claim guard / FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
+          "child": "/cases/8/negative_cases/2",
+          "l5_predicate": "/failure_rules/77/predicate",
+          "input_recipe": "同じ二subject variantでrequirements_agreement/true。source/Qと原descriptorを維持。",
+          "first_stop_by_input": {
+            "I06": "S4",
+            "I07": "S1"
+          },
+          "remaining_owner": "FN1 claim guard / FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-brain_finishes_design",
+          "child": "/cases/8/negative_cases/3",
+          "l5_predicate": "/failure_rules/78/predicate",
+          "input_recipe": "同じ二subject variantでdesign_completion/true。source/Qと原descriptorを維持。",
+          "first_stop_by_input": {
+            "I08": "S4",
+            "I09": "S1"
+          },
+          "remaining_owner": "FN1 claim guard / FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-missing_as_empty",
+          "child": "/cases/12/negative_cases/0",
+          "l5_predicate": "/failure_rules/92/predicate",
+          "input_recipe": "normalのrequired inputを一意選択してslotだけ削除。削除前fact Refをsubject、原Bindingへ既存完全Claimを束縛しno_gaps/[]をappend。required kind宣言は維持。",
+          "first_stop_by_input": {
+            "I12": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-hash_as_complete",
+          "child": "/cases/12/negative_cases/2",
+          "l5_predicate": "/failure_rules/94/predicate",
+          "input_recipe": "matching-hash/countラベルに対応するtyped根拠Refを既存fixtureから未解決。任意Refへ置換せず未材料化。",
+          "first_stop_by_input": {},
+          "remaining_owner": "fixture/qualified pair reader"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_missing",
+          "child": "/cases/12/negative_cases/4",
+          "l5_predicate": "/failure_rules/96/predicate",
+          "input_recipe": "同じrequired input削除と元fact Ref。return_definition_knownへkindのみ変更し、他Claim値は既存templateの原値を保持。",
+          "first_stop_by_input": {
+            "I13": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
+          "child": "/cases/12/negative_cases/5",
+          "l5_predicate": "/failure_rules/97/predicate",
+          "input_recipe": "normalのValueFact.valueと対応CORE source bodyをnull化、既存source/Q digestを同期。ValueFact.refへreturn_value_supplied Claimをappend。",
+          "first_stop_by_input": {
+            "I14": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
+          "child": "/cases/12/negative_cases/6",
+          "l5_predicate": "/failure_rules/98/predicate",
+          "input_recipe": "qualified-owner-comparisonに対応するtyped pair/source selectorが未解決。既存tests全体のequivalent参照もF03の不正形試験だけで、qualified pairを補作しない。",
+          "first_stop_by_input": {},
+          "remaining_owner": "fixture/qualified pair reader"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
+          "child": "/cases/12/negative_cases/7",
+          "l5_predicate": "/failure_rules/99/predicate",
+          "input_recipe": "既存ApplicabilityRecordとCORE bodyをN/A化。owner/reason/reentryは既存F03-L9-JUSTIFIED-FIELD-NA素材を再利用し既存source/Qを同期。原app Refへreturn_field_applicableをappend。",
+          "first_stop_by_input": {
+            "I15": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
+          "child": "/cases/12/negative_cases/8",
+          "l5_predicate": "/failure_rules/100/predicate",
+          "input_recipe": "normalのlabo_evaluation_selected=falseとunselected_refs[0]を保持し、そのRefへreturn_source_observedをappend。",
+          "first_stop_by_input": {
+            "I16": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        },
+        {
+          "rule": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
+          "child": "/cases/12/negative_cases/9",
+          "l5_predicate": "/failure_rules/101/predicate",
+          "input_recipe": "normalのhandoff not_receivedを保持し、原handoff.subject_refへreturn_receivedをappend。",
+          "first_stop_by_input": {
+            "I17": "S1"
+          },
+          "remaining_owner": "FN4 walk"
+        }
+      ],
+      "stop_messages": {
+        "S1": "FN4: F01/F02/unclosed/definition_meaning_walk/supplied_claim_ports; Backflow HELIXBRAIN-L6-032-N03-PATH",
+        "S2": "FN1: F02/descriptor_slot_binding_unresolved: descriptors[15] does not have the current full Binding; Backflow HELIXBRAIN-L6-032-N03-PATH",
+        "S3": "FN1: F02/meaning_fact_closed_shape: descriptors[6].facts[1] is outside the fixed MeaningFact shape; Backflow HELIXBRAIN-L6-032-N03-PATH",
+        "S4": "FN1: F01/descriptor_claim_unimplemented: claims[0] participates in descriptor meaning comparison; Backflow HELIXBRAIN-L6-032-N03-PATH"
+      },
+      "input_sha256": {
+        "I01": "c1e97f877df623e1ef465b3ea3c4d4f06eeaa143e226326a9af93b74aa724bdb",
+        "I02": "f2b90f1049f5d8b13ff76dc5850c30e6437df6da5384961fcbe1d36ab64a7ae5",
+        "I03": "c9a58ba1d66075ac91de484e441792cae19d784182bd00ad877c5cc063f7cf94",
+        "I04": "3c9c91ff6f9bf3859b872f25dc2d587679750020054db0fef1f57281f5bf0700",
+        "I05": "bcfcec04ae67e55dc87df2f24742d582e2f40e8b1254516c76438643aa15583a",
+        "I06": "68d0aa824c01a8bd203fd206c896e07f8c97b5c2f73ed93a61a2ffef615dc7d4",
+        "I07": "d5372f187cf0e3459977357fb300a3e8a1d438f6fa8fd59f7f7bd7690082b7cd",
+        "I08": "02b27a6bba24e2003ab199af6f6dad013e36b8babfc342d4630b711e0f4e7016",
+        "I09": "a04a19f97bd3b976ab3f982d5e75d05f35c6980060a952b2b9a036ab5f332edd",
+        "I10": "c864b1a6940ad9516eaead4a00afdccc715708b551eda1dd7517584e33426ed1",
+        "I11": "62f99776b5479c2ac86380b9f172038f5be8cb9b1f9fbcc9d04b9e027116c79d",
+        "I12": "f043707587773c7f45feebb6ca92543f1266a26f62b793e489804c48bca69f27",
+        "I13": "e8edb09adc2ca998a24a8fbd3749e2fd881d4655de95f73dcb0a693dba55ae11",
+        "I14": "b6a59588b8b25a477deece8339470450975af2e6e38c1d314e9f8e41a6f98aa1",
+        "I15": "d29388380fa6c21395e9921c334e91599bc30c2440efa0e94bb59410c3b1b9fe",
+        "I16": "990929bb47a17b1fd4a444e629ce134d8abfda92db87fafe55e7e1c739e5f296",
+        "I17": "f5d1505f4635f3b9e503e1639d6b05b6d6a9d7c431422f10f0820743c09f3dfd"
+      },
+      "input_manifest": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-fn7b-inputs-frozen-R2/manifest.json",
+      "input_manifest_sha256": "8f30502065f22be7f29dd4d3416175145665f6684e4e9842d98e89b8190907e4",
+      "input_matching": "17 raw入力をcanonical JSON hashで保存。manifestにcase/variant/元fixture/mutation/原locatorを結ぶ。source/tests tree前後hash一致。入力出現をfixtureと同じ原順で保持。",
+      "evidence": {
+        "B01_F07": "root-fn7b-b01-f07-probe-R2.json:524ms、FN0-clean/原raw不変。二候補・一候補補助を区別。",
+        "N02_missing": "root-fn7b-n02-add20-probe-bounded-R1.json + result-R1.json:184ms、N02-01/05 FN0-clean/FN4停止/raw不変。",
+        "N02_native": "root-fn7b-native-state-probe-bounded-R1.json + result-R1.json:324ms、N02-06/08/09/10 FN0-clean/FN4停止/raw不変。",
+        "ADD20": "root-fn7b-add20-known-axis-probe-bounded-R3.json + result-R3.json:149ms。normal/traceはdefinition unknown、typed operationはFN1 typed_definition_meaning_operation停止。三controlともknown無し、Claimをappendしない。",
+        "input_freeze": "root-fn7b-input-manifest-bounded-R2.json:447ms。17入力保存、source/tests不変。",
+        "limits": "全bounded記録reaped=true/output_truncated=false。LOCAL probeのimport/driver setup失敗は別保存し、意味Red/producer停止として数えない。",
+        "frozen_input_replay": "root-fn7b-frozen-input-replay-R1.json:598ms。保存済み17 rawをhash確認後に実FN0/public producerへ再投入し、全first stopが元probeと一致。FN0-clean/raw不変/source-tests tree不変。"
+      },
+      "context_only": {
+        "F07-NEG-01": "FN1 meaning_fact_closed_shape。追加fieldsをmeaningへ移さない。",
+        "F07-NEG-05": "fact subjectはFN1、template subjectはFN4。",
+        "N02-NEG-02": "未材料化: 原null意味とarbitrary_fallbackのtyped basis。",
+        "N02-NEG-04": "未材料化: lower-pair-green typed Ref selector。"
+      },
+      "ADD20": "原known definition controlが未成立。別axisのknownや手製Comparisonを使わない。",
+      "summary": {
+        "in_scope_rules": 12,
+        "context_only_rules": 4,
+        "raw_inputs_frozen": 17,
+        "all_six_comparisons_formed": 0,
+        "families_ready_for_writer": [],
+        "L8_children": "not_executedのまま",
+        "source_tests_changed": false,
+        "pair_scope": "既存FN7 L6/L7 nodeへ前提matrixだけを追加。旧node値/承認/pinsを変更しない。"
+      }
     }
   }
 }
