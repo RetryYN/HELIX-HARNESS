@@ -773,6 +773,8 @@ class GuiChecks(unittest.TestCase):
             return subprocess.check_output(["git", "-C", str(root), *args], stderr=subprocess.DEVNULL).decode().strip()
 
         subprocess.run(["git", "init", "--quiet", str(root)], check=True)
+        git("config", "core.hooksPath", "/dev/null")
+        git("config", "gc.auto", "0")
         git("config", "user.name", "Mailbox Selftest")
         git("config", "user.email", "mailbox-selftest@example.invalid")
         (root / "state.txt").write_text("base\n", encoding="utf-8")
