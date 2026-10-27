@@ -1110,6 +1110,182 @@
       "result_match": true
     }
   },
+  "fn1_kind_slot_and_substitution_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-KIND-SLOT-TDD",
+    "design_ref": "HELIXBRAIN-L6-032-FN1-KIND-SLOT-TDD",
+    "request_id": "WR-CLAUDE-BRAIN032-FN1-KIND-SLOT-TDD-3547-20261027-18",
+    "governance_decision": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6427761585",
+    "source_main": "4abee6df089cbbb9654edf38c80d116ecaeca708",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "authority_effect": "none",
+    "test_commit": "49cda14af1c2cf75e3fa958d1fea8c4e36662bc6",
+    "test_immutability_after_red": "R1 test commit 49cda14af1c2cf75e3fa958d1fea8c4e36662bc6 に対するR1実装commit eb980821e5253a050c61179ddeffb26146e8acaf、およびR2 test commit 6bc86a71496c7ada3908090c6d14868411e8311d に対するR2実装commitでは、いずれもtest commit以降の実装commitで tests/ 配下を一切変更していない（git diff 0行）。",
+    "red_observation": {
+      "commit": "49cda14af1c2cf75e3fa958d1fea8c4e36662bc6",
+      "command": "python3 -B scaffold/tools/bounded_exec.py --cwd /home/tenni/.helix-worktrees/agy-3547-fn1-kind-slot --timeout-ms 60000 -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py",
+      "classification": "exit_nonzero",
+      "status": 1,
+      "ran_tests": 17,
+      "subtest_errors": 24,
+      "observed_exception": "NotImplementedError: F02/required_kind_slot_mismatch (and F02/required_kinds_outside_frozen_path on kind surplus); Backflow HELIXBRAIN-L6-032-N03-PATH",
+      "reaped": true,
+      "timed_out": false
+    },
+    "green_observation": {
+      "command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src python3 -B scaffold/tools/bounded_exec.py --cwd /home/tenni/.helix-worktrees/agy-3547-fn1-kind-slot -- python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -p 'test_*.py'",
+      "classification": "ok",
+      "status": 0,
+      "total_tests": 208,
+      "passed": 208,
+      "failures": 0,
+      "errors": 0,
+      "resolved_known_f02_errors": [
+        "test_neg02_cross_pattern_field_substitution (test_descriptor_definitions.TestDescriptorDefinitions)",
+        "test_neg21_required_field_missing_without_substitution (test_descriptor_definitions.TestDescriptorDefinitions)"
+      ],
+      "summary": "Ran 208 tests in 16.870s — OK (including R3 mutation regression cases for R2-m1..m4)",
+      "reaped": true,
+      "timed_out": false
+    },
+    "unit_all_modules_nonblank_lines": {
+      "definition_comparison.py": 619,
+      "dependencies_handoff.py": 485,
+      "dependencies_handoff_ports.py": 601,
+      "descriptor_definitions.py": 205,
+      "identity_trace.py": 139,
+      "identity_trace_actual.py": 265,
+      "identity_trace_bilateral.py": 551,
+      "identity_trace_claims.py": 252,
+      "identity_trace_projection.py": 125,
+      "identity_trace_reader.py": 289,
+      "identity_trace_support.py": 216,
+      "knowledge_promotion.py": 512,
+      "supply_validation.py": 446,
+      "values_applicability.py": 492,
+      "values_applicability_reads.py": 646,
+      "values_applicability_rows.py": 601
+    },
+    "r2_test_commit": "6bc86a71496c7ada3908090c6d14868411e8311d",
+    "n03_boundary_test_updates": [
+      {
+        "file": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py",
+        "previous_name": "test_missing_required_field_slot_stops_as_f02_n03_path",
+        "updated_name": "test_missing_required_field_slot_emits_descriptor_07_missing_and_carries_to_fn2",
+        "reason": "N03経路固定時に範囲外としていた F02/required_kind_slot_mismatch（required slot欠落）を本作業でL4/L5契約に従い実装したため、旧NotImplementedError停止確認から、fn1が descriptor_07_missing（missing AxisResult + Finding）を返しfn2 carry_definition_findings へそのまま引き継がれる契約検証へ更新した。"
+      },
+      {
+        "file": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py",
+        "previous_name": "test_required_descriptor_kinds_mismatch_stops_as_f02_n03_path",
+        "updated_name": "test_required_descriptor_kinds_surplus_slot_is_read_and_duplicate_required_stops",
+        "reason": "L4 all_slot_read_domain と fixed_kinds の分離契約に従い、required_descriptor_kinds外の余剰DescriptorSlotは停止せず原評価母集団として読まれ（対応するmissingは出さない）、一方でrequired_descriptor_kinds自体の重複は引き続き F02/required_kinds_outside_frozen_path でfail-close停止することを検証するよう更新した。"
+      }
+    ],
+    "r2_red_observation": {
+      "commit": "6bc86a71496c7ada3908090c6d14868411e8311d",
+      "command": "PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src python3 -B scaffold/tools/bounded_exec.py --cwd /home/tenni/.helix-worktrees/agy-3547-fn1-kind-slot -- python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -p 'test_*.py'",
+      "classification": "exit_nonzero",
+      "status": 1,
+      "ran_tests": 208,
+      "failures": 9,
+      "observed_failures": [
+        "test_out_of_scope_branches_preserve_not_implemented_ids (harness_layer_pair_override F01/harness_claim_unimplemented)",
+        "test_r1_m1_fill_definition_positive_intent_values_and_actor (6 subTests: null/false/0/empty_string/empty_list/non_null_actor)",
+        "test_r1_m2_basis_refs_member_absent_emits_replacement_basis_unresolved",
+        "test_r1_m2_special_sort_source_refs_per_usable_occurrence_and_finding_sort"
+      ],
+      "reaped": true,
+      "timed_out": false
+    },
+    "r3_test_commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+    "equivalent_mutants_recorded": [
+      {
+        "id": "S1",
+        "location": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py:_public_finding_sort_key",
+        "condition": "_component_key(\"rule_ref\" in finding, finding.get(\"rule_ref\"))",
+        "reason": "fn1のFinding生成は (1) slot欠落 descriptor_01_missing..descriptor_15_missing（各kindにつき最大1件・slot_identity不在でsort_source_refs=[]）と (2) cross_pattern_section_substitution / cross_pattern_field_substitution（target slot_identityが存在しsort_source_refsは非空）の2系統のみであり、同一axis（例: required field.definition）上で descriptor_07_missing と cross_pattern_field_substitution が共存しても、前段の _origin_prefix_key の slot_identity 成分（absent=(0,\"\") vs present=(1,slot_id)）および sort_source_refs 成分で必ず順位が確定する。また同一slot上の複数cross_pattern Findingはすべて同一rule_refを持つため、fn1単独の到達可能入力では rule_ref 成分の削除（S1）は出力順序を変えない等価変異である（L5 finding_key 契約の対称性保持のため実装には残す）。"
+      }
+    ],
+    "r3_test_case_refinements": [
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "target_slot_none (slot_identity=None)",
+        "updated_case": "target_slot_non_str (slot_identity=123)",
+        "target_guard": "T13: not isinstance(slot_id, str) in _resolve_fill_definition_target",
+        "reason": "slot_identity=None では後続の not slot_id（falsy判定）でも弾かれるため T13 単独の削除を検出できなかった。truthy な非 str 値（123）にすることで T13 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_not_dict (replacement_basis_uses=[\"bad\"])",
+        "updated_case": "use_not_dict (replacement_basis_uses=[[\"claim\", \"basis_ref\", \"basis_binding\", \"slot_identity\", \"descriptor_kind\", \"fact\"]])",
+        "target_guard": "E16b: not isinstance(use, dict) in _evaluate_replacement_claims",
+        "reason": "文字列 \"bad\" は set(\"bad\") != {6 keys} で弾かれるため E16b 削除時も通過していた。6 key 名の list にすることで set(use) 検査を通過させ、E16b guard 単独の必要性を固定する。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_basis_binding_diff (mutated use.basis_binding only)",
+        "updated_case": "use_basis_binding_diff (mutated b_source.content.binding only)",
+        "target_guard": "E21: not _binding_same(b_binding, content.get(\"binding\")) in _evaluate_replacement_claims",
+        "reason": "use.basis_binding のみを変えると後続の _binding_same(u_fact.get(\"binding\"), b_binding) でも弾かれるため E21 単独に届かなかった。b_source.content.binding のみを変えることで E21 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_slot_none (use.slot_identity=None only)",
+        "updated_case": "use_slot_non_str (both use.slot_identity=123 and descriptor_facts[0].slot_identity=123)",
+        "target_guard": "E22: not isinstance(use.get(\"slot_identity\"), str) in _evaluate_replacement_claims",
+        "reason": "use 側のみ None にすると not use[\"slot_identity\"] および descriptor_facts group との slot_identity 突合で先に弾かれるため、両側を truthy な非 str 値（123）に揃えて E22 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_slot_empty (use.slot_identity=\"\" only)",
+        "updated_case": "use_slot_empty (both use.slot_identity=\"\" and descriptor_facts[0].slot_identity=\"\")",
+        "target_guard": "E23: not use[\"slot_identity\"] in _evaluate_replacement_claims",
+        "reason": "use 側のみ空文字にすると descriptor_facts group との slot_identity 突合で弾かれるため、group 側も空文字に揃えて E23 guard 単独に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_kind_invalid (use.descriptor_kind=\"invalid_kind\" only)",
+        "updated_case": "use_kind_invalid (both use.descriptor_kind=\"invalid_kind\" and descriptor_facts[0].descriptor_kind=\"invalid_kind\")",
+        "target_guard": "E24: use.get(\"descriptor_kind\") not in _APPROVED_KINDS in _evaluate_replacement_claims",
+        "reason": "use 側のみ invalid_kind にすると descriptor_facts group との descriptor_kind 突合で弾かれ matched_for_source=False になっていたため、group 側も揃えて E24 guard 単独（削除時は supports に入り unresolved_basis が立たなくなる差）に到達させる。"
+      },
+      {
+        "commit": "2b59a76104566361865821e7448b1a76ed28be1e",
+        "previous_case": "use_fact_binding_diff (mutated use.fact.binding only)",
+        "updated_case": "use_fact_binding_diff (mutated both use.fact.binding and descriptor_facts[0].facts[0].binding)",
+        "target_guard": "E26: not _binding_same(u_fact.get(\"binding\"), b_binding) in _evaluate_replacement_claims",
+        "reason": "use.fact.binding のみを変えると _owner_body_equal(orig, u_fact) の binding 比較で弾かれるため、orig.binding も同じ値に揃えて E26 guard 単独に到達させる。"
+      }
+    ],
+    "r3_mutation_verification": {
+      "target_surviving_mutants_from_r2": 16,
+      "killed_in_r3": 15,
+      "killed_mutant_ids": [
+        "G2",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "T13",
+        "E10",
+        "E16b",
+        "E21",
+        "E22",
+        "E23",
+        "E24",
+        "E26",
+        "E40",
+        "E41"
+      ],
+      "surviving_equivalent_mutants": 1,
+      "surviving_equivalent_mutant_ids": [
+        "S1"
+      ],
+      "total_mutants_evaluated": 73,
+      "total_killed": 62,
+      "total_equivalent": 11,
+      "non_equivalent_survivors": 0
+    }
+  },
   "fn4_oracle_verification": {
     "id": "HELIXBRAIN-L7-032-FN4-ORACLE",
     "design_ref": "HELIXBRAIN-L6-032-FN4-ORACLE",

@@ -468,6 +468,130 @@
       }
     ]
   },
+  "fn1_kind_slot_and_substitution_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-KIND-SLOT-TDD",
+    "request_id": "WR-CLAUDE-BRAIN032-FN1-KIND-SLOT-TDD-3547-20261027-18",
+    "governance_decision": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6427761585",
+    "source_main": "4abee6df089cbbb9654edf38c80d116ecaeca708",
+    "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+    "authority_effect": "none",
+    "facade_source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+    "implementation_module": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py",
+    "test_sources": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_n03_path_boundaries.py"
+    ],
+    "scope": "fn1 compare_descriptor_definitions の F02/required_kind_slot_mismatch（固定15kind guard）経路と、同経路で到達する required_slot_absent（descriptor_01_missing..descriptor_15_missing）・kind余剰（all_slot_read_domain と fixed_kinds の分離）・fill_definition 代替Claim（rule7 cross_pattern_section_substitution / rule8 cross_pattern_field_substitution / constructors/3 第3枝 replacement_basis_unresolved / 第4枝及kind限定外の非発火）をL4/L5契約に沿って実装する。既知の範囲外Red 2件（test_neg02/test_neg21）の解消と fn4 F05-NEG-01/02（measurement/completion slot欠落＋derived_view fill_definition Claim）の共通前提を閉じる。経路外の実分岐は分岐ID付きNotImplementedErrorで保持する。",
+    "contract_basis": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "pointers": [
+          "/descriptor_meanings",
+          "/definition_meaning_resolution_contract/evaluation_populations/all_slot_read_domain",
+          "/definition_meaning_resolution_contract/evaluation_populations/fixed_kinds",
+          "/dependency_semantic_ports/descriptor_target_contract",
+          "/dependency_semantic_ports/claim_intent_protocol/rules/4",
+          "/oracle_view_boundary_contract"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/1",
+          "/failure_rules/7",
+          "/failure_rules/8",
+          "/failure_rules/9",
+          "/failure_rules/12",
+          "/failure_rules/15",
+          "/failure_rules/18",
+          "/failure_rules/21",
+          "/failure_rules/24",
+          "/failure_rules/27",
+          "/failure_rules/30",
+          "/failure_rules/33",
+          "/failure_rules/36",
+          "/failure_rules/39",
+          "/failure_rules/42",
+          "/failure_rules/45",
+          "/failure_rules/48",
+          "/failure_rules/51",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/exact_sort_contract",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointers": [
+          "/cases/3/negative_cases/0",
+          "/cases/3/negative_cases/1",
+          "/cases/3/negative_cases/20",
+          "/cases/3/negative_cases/35",
+          "/cases/3/negative_cases/38",
+          "/cases/6/negative_cases/0",
+          "/cases/6/negative_cases/1",
+          "/function_oracles/1"
+        ]
+      }
+    ],
+    "legacy_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": [
+          16,
+          92
+        ],
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "keep": "固定15種のテンプレート構造意味（template identity..意味owner）を欠落させずに保持する契約と、missing/unknown と明示的N/Aを混同せず独立軸として分離する原則。",
+        "change": "新世代L4/L5 JSON契約のAxisResult/Finding表現、all_slot_read_domain（供給された全DescriptorSlotの原評価）とfixed_kinds（独立required_descriptor_kindsへの照合・候補からの必要集合非合成）の分離として実装し、旧Markdown/SQLite前提は持ち込まない。",
+        "reason": "L4 /descriptor_meanings と /definition_meaning_resolution_contract の15種descriptor slot欠落診断（descriptor_01_missing..descriptor_15_missing）およびkind余剰評価を旧L4資産の根拠と接続するため。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": [
+          30,
+          167
+        ],
+        "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "keep": "テンプレート必須項目（required section / required field 等）の欠落とowner/trace不整合をfail-closeで個別診断し、欠落時に自動補完や黙殺を行わない詳細設計規律。",
+        "change": "cross_pattern_section_substitution（rule7）および cross_pattern_field_substitution（rule8）における descriptor_targets + replacement_basis_uses の明示対応は、旧資産の直接コピーではなく新世代L4（docs/helix-brain/L4-basic-design/template-semantic-supply.json /dependency_semantic_ports/descriptor_target_contract/legacy_rederivation）およびDT-MSG（scaffold/research/design-template-seed-minimum-gap-20261004/README.md lines 53-57, 89-99）で再導出された契約に従う。F05-NEG-01/02（measurement/completion欠落＋derived_view fill_definition Claim）ではfn1がdescriptor_12_missing / descriptor_13_missingを返し、rule68/69の判定はfn4へ委ねる。",
+        "reason": "既知の範囲外Red 2件（NEG02/NEG21）とfn4 F05-NEG-01/02のfn1前提を、実在する旧L5資産と新世代L4/L5の再導出契約に沿って閉じるため。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": [
+          80,
+          87
+        ],
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "keep": "UTW-014/020/021が記録する、必須記述・根拠sourceの不在時に比較母集団から外れて黙って素通りする（absence blindness）失敗の防止。",
+        "change": "fill_definition Claimのpositive intent（proposed_valueキー供給すべて）に対し、basis_refs欠落・空配列・unusable source・replacement_basis_uses未解決をconstructors/3 第3枝 replacement_basis_unresolved（unknown）として必ず表面化させる。",
+        "reason": "代替根拠未解決のまま欠落補完要求が黙殺される失敗をL4/L5契約どおり防ぐため。"
+      }
+    ],
+    "preserved_not_implemented_branches": [
+      "F02/required_kinds_absent",
+      "F02/required_kinds_shape_or_value",
+      "F02/required_kinds_outside_frozen_path (duplicate required_descriptor_kinds)",
+      "F02/descriptor_kind_duplicate_slot",
+      "F01/related_relation_unresolved (when relation slot is supplied without same-Binding RelationRecord)",
+      "F01/harness_claim_unimplemented (same-Binding harness_layer_pair_override claim)",
+      "F01/descriptor_claim_unimplemented (same-Binding non-fill_definition claim targeting a descriptor fact)"
+    ],
+    "module_nonblank_lines": {
+      "definition_comparison.py": 619,
+      "limit_nonblank_lines": 700
+    },
+    "design_notes": {
+      "mixed_basis_refs_resolution": "basis_refsに複数要素が供給され、いずれの要素でもcross_pattern_section_substitution / cross_pattern_field_substitutionが発火せず（emitted_cross=False）、かつ少なくとも1要素が未解決（unresolved_basis=True）の場合は、未解決の代替根拠を黙殺しないfail-close原則（UTW-014/020/021）に従い constructors/3 第3枝 replacement_basis_unresolved（state=unknown）を出力する。",
+      "special_sort_source_refs": "L5 serialization_completion/sort_source_ref_column/special に従い、special event（cross_pattern_*_substitution / replacement_basis_unresolved）のsort_source_refsはusableなbasis semantic_json source内のreplacement_basis_uses要素（occurrence）ごとにそのsource.refを積む（unusable sourceは含めない）。"
+    }
+  },
   "fn4_oracle_preparation": {
     "id": "HELIXBRAIN-L6-032-FN4-ORACLE",
     "unit_identity": "HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
