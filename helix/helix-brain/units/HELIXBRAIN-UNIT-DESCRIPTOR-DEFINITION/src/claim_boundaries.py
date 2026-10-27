@@ -338,7 +338,7 @@ def _comparison_input_binding_matches(value: Any, binding: dict[str, Any], raw: 
     )
 
 
-def _compare_claim_boundaries_detail(
+def compare_claim_boundaries_detail(
     context: dict[str, object], frame: dict[str, object]
 ) -> dict[str, object]:
     validated = context["validated"]
@@ -411,4 +411,4 @@ def compare_claim_boundaries(context: dict[str, object]) -> dict[str, object]:
         "target_reads": walk["target_reads"],
         "claim_uses": uses,
     }
-    return _compare_claim_boundaries_detail(context, frame)
+    return compare_claim_boundaries_detail(context, frame)
