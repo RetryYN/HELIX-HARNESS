@@ -15294,6 +15294,35 @@
             "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2"
           },
           "storage_ja": "Comparison.unformed.causesでは、対象field順にfield_check.unformed.causesの原順を保持した後N0を一件置く。Comparison rootをCause.leftへ置かず、field checkの原因を重ねてflattenしない。"
+        },
+        {
+          "id": "D-Axis-0",
+          "guard_ja": "原definition_refs[j]が既存F03で実AxisFact content RecordOccurrenceへ解決している。実field_material_projection_declarationによる同field・同binding・同material_ref・material_role=definition・material_carrier=AxisFact・payload_form=axis_valueの適用宣言も、同一source/body上でこれらの全memberを実証する独立role sourceも成立していない。Ref lookup miss/未取得とは別条件。AxisFact.valueの形・kind/key・axis名・別role宣言からdefinition roleを推定しない。",
+          "judgment": "実ProjectionAttemptを作らない。projection_attempts=[]。DefinitionAssessmentは本patternの原因を受けず、個別DefinitionEvidenceInterpretationの不在時はD0の独立guardだけを適用する。",
+          "cause": {
+            "kind": "declaration_unresolved",
+            "target": {
+              "root": "validation_input",
+              "pointer": "/field_inputs/i/definition_refs/j"
+            },
+            "left": {
+              "tag": "original",
+              "read": {
+                "tag": "present",
+                "location": {
+                  "root": "validation_input",
+                  "pointer": "/axis_facts/k/value"
+                }
+              }
+            },
+            "right": {
+              "tag": "normative_literal",
+              "value": "original definition role/form basis",
+              "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3/cause/right/value"
+            },
+            "rule_pointer": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3"
+          },
+          "storage_ja": "kは当該definition_refs[j]にF03が結んだAxisFact RecordOccurrenceの実origin.index。leftはaxis_facts[k].valueのwhole Readであり、child/value内部へunwrapしない。CauseはOperandMaterial.causesの既存selection/raw/source/body原因の後へ一度置き、RoleMaterial(definition).aggregateをunformedとし、同CauseをRoleMaterial.causesおよびFieldOwnerResult.causesのprojection生成原因段へ原順copyする。DefinitionAssessment.causes/judgment、FieldCheck原因、D0へ混入しない。"
         }
       ],
       "cause_template_binding_ja": {
@@ -15338,7 +15367,8 @@
         "RecipientMaterialの各Formationは出典が選定できるかの状態で、BRAIN/HARNESS008/HARNESSの実資格、送達、Backflow/ticket又は受理を成立させない。元owner/reason/unfinished参照を作れない枝はunformedとその実basis causeを残す。",
         "field/proposal当該未完義務scope、knowledge版不足の独立原命題→BRAIN、application contract不整合のtyped根拠、非null reentry参照先/consumer、B019/030の実typed接続/数値全返却、実root/custody/qualification取得口は未閉包のまま。global Ref保全から局所scopeを割当てない。",
         "source/body/root準備が未閉包なだけで既存有効missing/unknown/conflict又はformed positiveを常にunformedへしない。N0は既存comparisonが要求するtargeted FieldCheckProjectionの未形成に限る。"
-      ]
+      ],
+      "definition_axis_declaration_failure_boundary_ja": "適用宣言が存在し、実AxisFactとのmaterial_role/material_carrier/payload_form等required memberの差がprojection_contract/failureで既知となる場合は、実ProjectionAttempt.resultをunformedとし、宣言member Readと実content Readを全値保持する。CauseKind=projection_unformed、target=不一致宣言member Read.location、left=同宣言member Read、right=対応AxisFact content record Read、rule_pointer=/f05_detail_contract/projection_contract/failure。DefinitionAssessment/D0へCauseを混入しない。AxisFactをnative_definition_wholeへ扱う代替もしない。"
     },
     "source_material_leaf_writer_contract": {
       "id": "HARNESS-L5-009-F05-SOURCE-MATERIAL-LEAF-WRITER",
@@ -15421,7 +15451,8 @@
         "no_reason_read": "semantic_wholeのProjectedValue.reasonは原meaning内reasonのpresenceを観測する。原meaningがobjectならrequested=/semantic_records/k/meaning/reason、parent=/semantic_records/k/meaning、parent_value=meaning wholeとしてpresent(null含む)又はabsentを返す。meaningがnon-objectでchild pathへ進めない場合は同requested pathと到達した原meaning whole/valueのunreachedを返す。reason_role=no_reasonに従って、いずれも意味理由へ解釈しない。新required reason/Causeは追加しない。",
         "no_projection_basis": "product_value Refに実適用declaration又は独立role source basisが存在しない場合、実ProjectionAttemptを作らずprojection_attempts=[]。V0は既存OperandMaterial/RoleMaterial/ValueAssessment guardへ一回ずつ既定cause orderで伝える。definition native wholeの存在でproduct role/value basisを補わない。",
         "aggregation": "各実投影attemptの結果は既存projection_contract.forms/failureに従い形成又はunformedを保持する。definitionに実native whole attemptが形成される場合、RoleMaterial.aggregateはD0のDefinitionAssessmentとは独立して形成し、そのformed ProjectionLinkSetには実formed attempt.result.valueへの全linkを置く。attemptが無い/unformedなら存在しないvalueへlinkせず、既存aggregate causeを保持する。product basis未成立は空attempt列とV0によるaggregate未形成であり、実attemptを省略して成功扱いしない。",
-        "recipient_scope_boundary": "F13 U0はfield_summary_and_custody_writer_contract及びrecipient_leaf_writer_contractの同field/proposal scope単位規則へ従い、一scopeにつき生成一回、同scopeの各RecipientMaterialへcopy、FieldOwnerResult/OwnerMaterialへ親段階一回。D0/V0/U0とN0の既定順・形成条件を混同しない。"
+        "recipient_scope_boundary": "F13 U0はfield_summary_and_custody_writer_contract及びrecipient_leaf_writer_contractの同field/proposal scope単位規則へ従い、一scopeにつき生成一回、同scopeの各RecipientMaterialへcopy、FieldOwnerResult/OwnerMaterialへ親段階一回。D0/V0/U0とN0の既定順・形成条件を混同しない。",
+        "definition_axis_no_projection_basis": "definition_refs[j]が実F03 AxisFact RecordOccurrenceへ解決し、同field/role/form declaration又は同一source/body上の全必要memberを実証するindependent role sourceが無い場合は、field_summary_and_custody_writer_contract/patterns/3 (D-Axis-0) を一度生成する。projection_attempts=[]のままにし、CauseをOperandMaterial.causes、RoleMaterial(definition).aggregate=unformed/causes、FieldOwnerResult.causesのprojection生成段へ規定順で移す。D0はDefinitionEvidenceInterpretation不在の独立guardであり、このCauseをDefinitionAssessmentへ移さない。SemanticRecordのnative_definition_wholeは別branchのまま。"
       },
       "return_link_leaf": {
         "record_link": "ProjectionAttempt.record_linkは当該operandに格納された実RecordOccurrenceへ向ける。",
@@ -18567,6 +18598,596 @@
         {
           "pointer": "/f05_detail_contract/types/CoreJsonValue",
           "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2"
+        }
+      ]
+    },
+    "definition_axis_projection_cause_writer_contract": {
+      "id": "HARNESS-L5-009-F05-DEFINITION-AXIS-FACT-CAUSE-WRITER",
+      "scope_ja": "実definition_refs[j]がAxisFact contentへ対応する場合のno-basis branchおよび実宣言のrequired-member known-difference branchについて、原因と保存先を閉じる。semantic record native whole、product_value/V0、DefinitionEvidenceInterpretation/D0は別契約のまま。",
+      "writer_ref": "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3",
+      "source_basis_ref": [
+        "L4:/field_semantic_evidence_contract/field_definition_evidence_body/present_guard",
+        "L4:/field_semantic_evidence_contract/role_owner_binding/definition",
+        "L9:/field_semantic_evidence_verification/cases/0",
+        "L9:/field_semantic_evidence_verification/cases/4",
+        "L9:/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+        "L9:/field_semantic_evidence_verification/cause_kind_extension_cases/1",
+        "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0",
+        "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
+      ],
+      "declaration_failure_limit_ja": "実宣言のmaterial_role/material_carrier/payload_form等required memberと実AxisFact contentの既知差はprojection_contract/failureに従い当該ProjectionAttempt.result=unformedと全Readを保持する。CauseKind=projection_unformed。targetは実不一致宣言member Read.location、leftはそのmember Read全値、rightは対応AxisFact content record Read全値、rule_pointer=/f05_detail_contract/projection_contract/failure。Causeを当該unformed resultに保持し、DefinitionAssessment/D0へ混入しない。",
+      "nonclaims_ja": [
+        "L3 requirement意味やnative/public Finding code/stateにCauseKindを追加しない。",
+        "AxisFact.valueだけからrole/value_role/reason_role/meaningを導かない。",
+        "実全返却・資格・runtime実行を主張しない。",
+        "declaration_unresolved/projection_unformedはL4 basic local Cause vocabularyにも明示されるが、native/public Finding/stateを追加しない。"
+      ],
+      "declaration_failure_cause": {
+        "guard": "実AxisFact definition contentに適用宣言が存在し、宣言のrequired member material_role/material_carrier/payload_form等と対応contentの間に既知差がある。単なるabsence/unknown/Ref lookup missは含めない。",
+        "cause": {
+          "kind": "projection_unformed",
+          "target": "実不一致宣言member Read.present.location",
+          "left": "CheckOperand.original(実宣言member Read全値)",
+          "right": "CheckOperand.original(対応AxisFact content record whole Read)",
+          "rule_pointer": "/f05_detail_contract/projection_contract/failure"
+        },
+        "storage": "実ProjectionAttempt.result=unformed{causes:[Cause]}。当該投影以外へ原因を広げず、DefinitionAssessment/D0へ混入しない。ProjectionAttempt.causesの別途flatten/重複はしない。"
+      },
+      "declaration_failure_ref": "/f05_detail_contract/projection_contract/failure"
+    },
+    "owner_relation_cause_writer_contract": {
+      "id": "HARNESS-L5-009-F05-OWNER-RELATION-CAUSE-WRITER",
+      "scope_ja": "OwnerBinding.source_wrapper_relationおよび適用RoleOwnerPair.relationに対して、L4で既に定めたrelation outcomeをCauseへ写す有限writer。owner文字列からdelegation/authority/trust root/meaningを作らない。未対応scopeを停止IDとして分離し、この設計是正をruntime実装完了としない。",
+      "source_basis": [
+        {
+          "l4_objects": [
+            "L4:/field_semantic_evidence_contract/role_owner_binding/common",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/definition",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/product_value_basis",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/question",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/contradiction",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/derived_requirement_candidate",
+            "L4:/field_semantic_evidence_contract/role_owner_binding/na_candidate",
+            "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+            "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+          ],
+          "use": "各既存意味roleで比較対象となる実原Ref ownerを示し、既知不一致/必要関係未供給の局所outcomeを定める。新delegationや全field owner一致を作らない。"
+        },
+        {
+          "l5_objects": [
+            "/f05_detail_contract/types/Cause",
+            "/f05_detail_contract/types/RoleOwnerPair",
+            "/f05_detail_contract/types/OwnerBinding",
+            "/f05_detail_contract/types/Relation",
+            "/f05_detail_contract/owner_binding_contract/source_wrapper",
+            "/f05_detail_contract/owner_binding_contract/role_pairs",
+            "/f05_detail_contract/owner_binding_contract/aggregate",
+            "/f05_detail_contract/source_material_leaf_writer_contract/owner_binding_leaf",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order"
+          ],
+          "use": "RoleOwnerPair/OwnerBindingの閉shape、relation algebra、順序/保持境界、validation cause writerの既存leaf規則との違いを示す。"
+        },
+        {
+          "l9_objects": [
+            "L9:/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7",
+            "L9:/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8",
+            "L9:/field_semantic_evidence_verification/owner_relation_cause_cases/0",
+            "L9:/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+          ],
+          "use": "owner relation未供給と既知不一致がL9有限oracleで未行使と明記された境界。L4のrole別規則を独立期待のauthorityとし、L9記述を成功観測やsource literalとしない。"
+        },
+        {
+          "legacy_failure_ids": [
+            "UTW-014",
+            "UTW-020",
+            "UTW-021"
+          ],
+          "source": "/f05_detail_contract/legacy_and_failure_binding/sources/2",
+          "use": "未取得を空へ縮退しない、部分原因をaggregateで消さない、design U-IDを実行済みとしない。"
+        }
+      ],
+      "relation_kind_table": [
+        {
+          "relation": "different",
+          "kind": "owner_mismatch"
+        },
+        {
+          "relation": "unestablished",
+          "kind": "owner_binding_unestablished"
+        },
+        {
+          "relation": "corresponding",
+          "causes": []
+        },
+        {
+          "relation": "not applicable",
+          "representation": "Relation enumにnot_applicableは無い。L5 role_pairsで適用されないoperandはpair自体を生成しないためcauseも生成しない。"
+        }
+      ],
+      "source_wrapper_cause": {
+        "projection_type_path": "/types/ValidationDetailedReturn/members/source_observations",
+        "projection_root": "validation_source_observations",
+        "projection_path": "/source_occurrences/{source_observation_index}/qualification_occurrences/{qualification_occurrence_index}/checks/{check_index} or /source_occurrences/{source_observation_index}/qualification_occurrences/{qualification_occurrence_index}/root_occurrences/{root_occurrence_index}/checks/{check_index}",
+        "link_order_ref": "/qualification_check_link_writer/traversal",
+        "check_kind_refs": [
+          "/validation_cause_diagnostic_contract/check_kind_table/6",
+          "/validation_cause_diagnostic_contract/check_kind_table/9"
+        ],
+        "S1_read_endpoint_absent_or_unreached": {
+          "guard": "wrapper_owner及source_ownerのうち実Readがabsent/unreachedの各端。missing端を個別に処理する。",
+          "count": "missing Read一端につきowner_binding_unestablishedを一件。両端missingならwrapper端→source端の二件。",
+          "target": "当該Readのrequested Location。",
+          "left": "CheckOperand.original(wrapper_owner full Read)",
+          "right": "CheckOperand.original(source_owner full Read)",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper"
+        },
+        "S2_both_owner_reads_present_and_owner_check_different_or_unestablished": {
+          "guard": "wrapper_owner/source_ownerはともにpresent。qualification_check_linksをqualification_check_link_writer/traversalのflatten順に辿り、kind=qualification_owner又はroot_ownerかつresult=different又はunestablishedの実SourceCheckだけを処理する。",
+          "count": "該当実CheckLinkごとに一件。",
+          "kind": "対応するcheck_kind_table/6又は/9のdifferent_kind/unestablished_kindをそのまま使う。",
+          "target": "validation_cause_diagnostic_contract/check_cause_leaf_writer/targetと同一の左右Read規則をその実SourceCheck.left/rightに適用する。",
+          "left": "実SourceCheck.left全値のcopy。",
+          "right": "実SourceCheck.right全値のcopy。",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper。SourceCheck.rule_pointerではない。",
+          "source_check_causes": "SourceCheck.causesはOwnerBinding.causesへcopyしない。元Observationに保ち、既存CheckLinkから辿る。SourceCheckを再評価しない。"
+        },
+        "S3_both_reads_present_but_no_qualification_owner_or_root_owner_link": {
+          "guard": "wrapper_owner/source_ownerはともにpresentで、qualification_check_linksにqualification_owner/root_ownerの実linkが一件もない。",
+          "count": "一件 owner_binding_unestablished。",
+          "target": {
+            "root": "validation_source_observations",
+            "pointer": "/source_occurrences/{source_observation_index}/qualification_occurrences"
+          },
+          "left": "CheckOperand.original(wrapper_owner full Read)",
+          "right": "CheckOperand.original(source_owner full Read)",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper",
+          "absence": "架空CheckLink/indexを作らない。親未到達の原Causeはsource observation側に残しOwnerBinding.causesへcopyしない。"
+        },
+        "qualification_link_present_but_source_wrapper_still_unestablished": "S1-S3のどれにも合わずsource_wrapper_relation=unestablishedが残る形は未閉包。Causeを生成しない。STOP-OWNER-CAUSE-WRAPPER-RELATION-01。",
+        "direct_wrapper_source_different_without_different_owner_check": "S4は両Read presentかつ既知の直接差だけで成立し、check linkの数・結果に依存しない。linkが0件なら独立に成立するS3も併記する。",
+        "S4_both_owner_reads_present_direct_known_difference": {
+          "guard": "wrapper_owner/source_owner Readが両方presentで、両Readの原値がCoreJsonValueとして既知に異なる。check linkの有無・結果には依存しない。S1〜S3は各guardが独立に成立すれば併記する。",
+          "kind": "owner_mismatch",
+          "target": "wrapper_owner Read.present.location",
+          "left": "CheckOperand.original(wrapper_owner full Read)",
+          "right": "CheckOperand.original(source_owner full Read)",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper",
+          "relation": "source_wrapper_relation=different。これは照合済み既知差の記録であり、owner名からdelegation/authority/trust relationを生成しない。",
+          "rationale": "L4 source_wrapperはwrapper owner・source owner・qualification checkのAND要件を要求する。既知の直接差というfalseが一つでもあれば、他の条件がunestablishedでも全体はdifferentとなる。S2のdifferentも同様にdifferentを確定し、unestablishedは別Causeとして保持する。"
+        }
+      },
+      "role_pair_cause": {
+        "comparison": "source_wrapper_relation=correspondingのとき、operand_ownerをwrapper_ownerへ比較する。source wrapperの原因は上段の独立Causeでありrole pair Causeと重複させない。relation値を再計算しない。",
+        "different": {
+          "count": "一件",
+          "guard": "operand_owner及びwrapper_ownerがともにpresentで、既存RoleOwnerPair.relation=different",
+          "kind": "owner_mismatch",
+          "target": "operand_owner Read.present.location",
+          "left": "CheckOperand.original(operand_owner full Read)",
+          "right": "CheckOperand.original(wrapper_owner full Read)",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/role_pairs"
+        },
+        "unestablished_with_missing_owner_read": {
+          "count": "一件",
+          "guard": "既存RoleOwnerPair.relation=unestablishedで、operand_owner又はwrapper_owner Readがabsent/unreached",
+          "kind": "owner_binding_unestablished",
+          "target": "left operand_owner Readがabsent/unreachedならそのrequested、そうでなければwrapper_owner Readのrequested",
+          "left": "CheckOperand.original(operand_owner full Read)",
+          "right": "CheckOperand.original(wrapper_owner full Read)",
+          "rule_pointer": "/f05_detail_contract/owner_binding_contract/role_pairs"
+        },
+        "corresponding": {
+          "causes": []
+        },
+        "unestablished_with_both_reads_present": "relation=unestablishedの原因が比較端Readの欠落ではなくsource wrapper qualification relation未成立又は別の未閉包入力の場合、その原因CauseのRead anchorは未定義。STOP-OWNER-CAUSE-QUAL-READ-01。"
+      },
+      "owner_binding_aggregate_and_propagation": {
+        "owner_binding_causes": "OwnerBinding.causesはsource_wrapper由来Causeを先にS1（Read不在。複数ならwrapper端→source端）、S4（両Read present・既知直接差。check linkの数/結果によらない）、S2（qualification_check_linksの原traversal順）、S3（両Read presentでowner check link不在）の順で形成する。各guardは独立に評価するため、S4とS3は同時成立しlinkが0件ならこの順で両Causeを保持する。その後RoleOwnerPairを原配列順に歩き各pair.causesを無変換連結する。S4成立、またはS2のいずれかがdifferentならsource_wrapper_relation=different。それ以外でS1、S2のunestablished、S3のいずれかが成立すればunestablished。それ以外はcorresponding。positive RoleOwnerPairでsource-wrapper既知差を相殺しない。これはAND条件の三値集約であり、既知falseが未確定より優先する。一方RoleOwnerPair aggregateは候補内ORのため、positiveがなく未取得があればunestablished。新aggregate Causeを作らずvalue-dedupしない。",
+        "parent_storage": "作成した同一Cause出現を既存OwnerBinding.causesへ置き、各対応OperandMaterial.causesへselection/raw/source/body原因後のowner-generation segmentとしてcopyする。FieldOwnerResult.causesにも同fieldのraw operand/OwnerBinding原順で当該生成Causeを一回ずつcopyし、OwnerMaterial.evaluated.causesは既存cause_propagation_orderによりfield順で親へ一度だけ伝える。子列を再flatten/再生成/値dedupしない。RoleOwnerPair.causesはrelation単位、OwnerBinding.causesはsource-wrapper→role-pairの親順を保つ。",
+        "not_applicable": "Relation enumにはnot_applicableが無い。適用外role operandはOwnerBinding.role_pairsへ追加せず0件causeとする。"
+      },
+      "difference_from_validation_writer_ja": "validation_cause_diagnostic_contract/check_cause_leaf_writerは実SourceCheckのkind/result/left/right/rule_pointerを無変換でCauseへ写す。owner writerはSourceCheckではなく既に形成済みのOwnerBinding/RoleOwnerPair relationを消費し、CauseKindだけL4 role_owner_bindingのdifferent/unestablished outcomeへ対応させる。Qualification checksは既存CheckLinkを通じて実checkを保持し、本writerで再評価しない。Cause型のclosed memberは同じだが出力契機/対応rule pointer/格納先が異なる。",
+      "stop_ids": [
+        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01"
+      ],
+      "remaining_and_nonclaims_ja": [
+        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01に該当する、qualification/root owner check linkは存在するがそのkind/resultでsource_wrapper_relationが説明されない形はCause未閉包。Causeを作らない。",
+        "実validator/qualification/source/bodyの再実行、異なるscope/owner間の意味関係推定、全role/root全組合せの実行証明はしない。",
+        "L8 U-IDのexecution_state=not_executedを維持し、設計caseをruntime evidenceと扱わない。",
+        "S4は両Read presentかつ既知の直接差で成立し、linkが0件なら独立条件のS3も併記する。S4 zero-linkケースをL8 ADD-37で追加し、未実行として保持する。"
+      ],
+      "closed_cause_rules": {
+        "relation_cases": [
+          "S1 missing wrapper/source owner Read",
+          "S4 both owner Reads present with known direct difference, independent of links",
+          "S2 linked qualification_owner/root_owner check different or unestablished",
+          "S3 no qualification_owner/root_owner link with both owner Reads present; coexists with S4 when direct difference is known"
+        ],
+        "role_pair_cases": [
+          "different with both operand_owner/wrapper_owner present",
+          "unestablished where operand_owner or wrapper_owner is absent/unreached",
+          "corresponding has no causes"
+        ],
+        "aggregation_pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
+        "limitations": [
+          "STOP-OWNER-CAUSE-WRAPPER-RELATION-01"
+        ]
+      }
+    },
+    "cause_kind_crosswalk": {
+      "l4_binding_kind_enum": [
+        "basic_view_vocabulary",
+        "detail_port_unclosed_cause",
+        "none_found"
+      ],
+      "l4_binding_kind_rule": "basic_view_vocabularyはL4の閉じたbasic Cause vocabulary/typeを指す。detail_port_unclosed_causeはL4に対応するlogical port/原返却境界はあるがCauseKind閉集合がない場合。none_foundは対応L4 cause binding pointerを特定できない場合であり、類似語から推測しない。各値のL5 kind memberと実storage memberは別に列挙する。",
+      "l5_kind_member_pointer": "/f05_detail_contract/types/Cause/members/kind",
+      "value_count": 22,
+      "values": [
+        {
+          "kind": "input_unobserved",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/input_unobserved_pattern",
+            "/f05_detail_contract/caller_return_writer_contract/context_patterns/4"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "target_unformed",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/4",
+            "/proposal_material_formation_detail/native_reader_and_leaf_writer/leaf_output_binding/fixed_cause_leaf_mapping/3"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "source_unresolved",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/lookup_patterns/0",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/1"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "source_unusable",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/1"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "source_body_mismatch",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/0"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "body_unformed",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/0",
+            "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/body_ref_column_unformed"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "target_mismatch",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/3",
+            "/f05_detail_contract/context_header_cause_contract/context_patterns/1"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "owner_binding_unestablished",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/OwnerBinding/members/causes",
+            "/f05_detail_contract/types/RoleOwnerPair/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S1_read_endpoint_absent_or_unreached"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "owner_mismatch",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/OwnerBinding/members/causes",
+            "/f05_detail_contract/types/RoleOwnerPair/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "statement_source_conflict",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/FieldOwnerResult/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/same_statement_conflict"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "content_unresolved",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [],
+          "l5_writer_or_mapping_pointers": [],
+          "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "proposition_operand_unresolved",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [],
+          "l5_writer_or_mapping_pointers": [],
+          "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "constraint_mismatch",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [],
+          "l5_writer_or_mapping_pointers": [],
+          "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "aggregation_unestablished",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/FieldOwnerResult/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/0/cause",
+            "/f05_detail_contract/field_obligation_scope_writer_contract/cause_patterns/different_scope_columns"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic closed vocabulary contains the same CauseKind value; current L5 writer/storage pointer list records the observed usage or none_found."
+        },
+        {
+          "kind": "declaration_unresolved",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/OperandMaterial/members/causes",
+            "/f05_detail_contract/types/RoleMaterial/members/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/1/cause",
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3/cause"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 basic candidate local cause: mapped content exists but required role/form basis does not."
+        },
+        {
+          "kind": "projection_unformed",
+          "l4_binding_kind": "basic_view_vocabulary",
+          "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/ProjectionAttempt/members/result",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/definition_axis_projection_cause_writer_contract/declaration_failure_cause",
+            "/f05_detail_contract/types/ProjectionAttempt/members/result"
+          ],
+          "l5_writer_state": "new_axis_declaration_failure_writer_in_this_design_slice",
+          "boundary_ja": "L4 basic candidate local cause: an explicit projection declaration has a known required-member/content mismatch."
+        },
+        {
+          "kind": "context_unformed",
+          "l4_binding_kind": "detail_port_unclosed_cause",
+          "l4_pointer": "L4:/field_source_materialization_contract/ordered_source_materialization/0",
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/ContextFormation/members/result",
+            "/f05_detail_contract/types/HeaderFormation/members/result",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/context_header_cause_contract/context_patterns/0",
+            "/f05_detail_contract/caller_return_writer_contract/context_patterns/0"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 source-materialization port separates original Context/header formation from semantic evaluation."
+        },
+        {
+          "kind": "header_unformed",
+          "l4_binding_kind": "detail_port_unclosed_cause",
+          "l4_pointer": "L4:/field_source_materialization_contract/ordered_source_materialization/0",
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/ContextFormation/members/result",
+            "/f05_detail_contract/types/HeaderFormation/members/result",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/context_header_cause_contract/header_read_and_patterns/0",
+            "/f05_detail_contract/caller_return_writer_contract/header_patterns/0"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 source-materialization port separates original Context/header formation from semantic evaluation."
+        },
+        {
+          "kind": "return_unobserved",
+          "l4_binding_kind": "detail_port_unclosed_cause",
+          "l4_pointer": "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/F05DetailedReturn/members/comparison",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/return_unobserved"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 F05 predecessor boundary distinguishes called-without-return from explicit not_called."
+        },
+        {
+          "kind": "call_unobserved",
+          "l4_binding_kind": "detail_port_unclosed_cause",
+          "l4_pointer": "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/predecessor_boundary",
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/F05DetailedReturn/members/comparison",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/caller_return_writer_contract/call_rows/0/observation_rules/call_unobserved"
+          ],
+          "l5_writer_state": "writer_or_mapping_pointer_listed",
+          "boundary_ja": "L4 F05 predecessor boundary distinguishes unobserved call/return from explicit not_called."
+        },
+        {
+          "kind": "native_leaf_unformed",
+          "l4_binding_kind": "detail_port_unclosed_cause",
+          "l4_pointer": "L4:/f05_validation_material_call_contract/logical_ports/f05_detail/output/comparison",
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/F05DetailedReturn/members/comparison",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/2/cause",
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order/comparison",
+            "/f05_detail_contract/types/F05DetailedReturn/members/comparison"
+          ],
+          "l5_writer_state": "stored_in_native_F05_comparison_failure_not_L4_basic_view",
+          "boundary_ja": "L4 basic cause boundary excludes native Comparison/FieldCheck formation causes; L4 binding is its separately unclosed F05 comparison output port."
+        },
+        {
+          "kind": "selection_unestablished",
+          "l4_binding_kind": "none_found",
+          "l4_pointer": null,
+          "l4_closed_type_pointer": null,
+          "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/Selection/variants/unestablished/causes",
+            "/f05_detail_contract/types/Cause/members/kind"
+          ],
+          "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/types/Selection/variants/unestablished/causes",
+            "/f05_detail_contract/selection_contract/branches"
+          ],
+          "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
+          "boundary_ja": "L5 declares Selection.unestablished and a Cause[] member, but no L5 CauseKind literal writer occurrence or corresponding L4 Cause binding was found."
         }
       ]
     }

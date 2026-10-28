@@ -4235,6 +4235,533 @@
      "pointer": "/resolves_disposition_ref"
     }
    ]
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-26",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "definition-axisfact-without-role-basis",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/0"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/4"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/definition_axis_projection_cause_writer_contract"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cause_kind_extension_cases/0"
+    }
+   ],
+   "typed_mutation_plan": "実F03 mapping済みdefinition_refs[j] content carrierをAxisFactとし、同field/role/form declarationも全memberを実証するindependent role sourceも与えない。semantic wholeやaxis valueの形からroleを推定しない。",
+   "expected_observation": "ProjectionAttemptは作らずprojection_attempts=[]。D-Axis-0としてCauseKind=declaration_unresolvedをOperandMaterial.causesへ一度、definition RoleMaterial aggregateをunformedにし、同CauseをRoleMaterial/FieldOwnerResultのprojection生成段へ原順copyする。DefinitionAssessmentへの伝播なし。D0は個別Interpretation不在の場合のみ別発生。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補writer/reader/runtime/test未実行."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-27",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "definition-axisfact-declaration-carrier-mismatch",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/0"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/4"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/projection_contract/forms/axis_value"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/projection_contract/failure"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+    }
+   ],
+   "typed_mutation_plan": "definition declarationのmaterial_carrierをSemanticRecordと明示し、対象の実対応content carrierはAxisFactとする単一memberの既知差。",
+   "expected_observation": "実ProjectionAttempt.result=unformedでprojection_unformed Causeを一件保持。targetは実不一致宣言member Read.location、leftは同宣言member全値、rightは対応AxisFact content record whole Read、rule_pointer=/f05_detail_contract/projection_contract/failure。実宣言/content Read全値を保持し、native_definition_whole/V0/D0へ置換しない。DefinitionAssessmentへCauseを伝えない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-IDのみ。CauseKindのauthority整合未閉包。具体fixture/full return/hashなし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-28",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "definition-axisfact-with-explicit-role-form-positive",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/0"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/cases/4"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/projection_contract/declaration_reader"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/projection_contract/forms/axis_value"
+    }
+   ],
+   "typed_mutation_plan": "同field/binding/material Refの実field_material_projection_declarationがmaterial_role=definition, material_carrier=AxisFact, payload_form=axis_valueを明示し、source/body/owner/basisの全対応を満たす。",
+   "expected_observation": "ProjectionBasis.declarationを介したformed definition projectionは実AxisFact.value Read wholeをpayloadとして保持し、内部値へunwrapしない。Causeなし。DefinitionAssessment known/missing/unknownは同宣言だけから生成しない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。正例fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-29",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "semantic-record-definition-native-whole-remains-separate",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/projection_contract/native_definition_whole"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/source_material_leaf_writer_contract/projection_leaf/native_definition_whole"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/present_guard"
+    }
+   ],
+   "typed_mutation_plan": "同じdefinition operandの実対応content carrierをSemanticRecordとし、対応declarationが無い有限対照。",
+   "expected_observation": "native_definition_whole branchはSemanticRecord.meaning wholeを保持する。AxisFact no-basis Causeは生成しない。meaning取得だけでDefinitionAssessment knownにしない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。別fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-30",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-s2-qualification-owner-unestablished",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/qualification_check_link_writer/traversal"
+    }
+   ],
+   "typed_mutation_plan": "wrapper_owner/source_owner Readはともにpresent。同じ実CheckLinkが指すQualificationObservation.checksのqualification_owner SourceCheckはunestablished。その他のrelation/causeを入力から再生成しない。",
+   "expected_observation": "S2で実SourceCheck一件にowner_binding_unestablished一件。targetはcheck_cause_leaf_writer/target規則による実left/right Read、left/rightはSourceCheck全値を無変換copy、rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper。SourceCheck.causesは重複copyしない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-31",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-s2-root-owner-different-not-cancelled-by-role-positive",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/qualification_check_link_writer/traversal"
+    }
+   ],
+   "typed_mutation_plan": "wrapper/source owner Readsはpresent。同じ実CheckLinkが指すRootObservation.checksのroot_owner SourceCheckはdifferent、RoleOwnerPairはpositive correspondingとする。",
+   "expected_observation": "S2のlinkからowner_mismatch一件（Cause operandsはSourceCheck.left/right全値、targetはcheck_cause_leaf_writerと同規則、rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper）。RoleOwnerPair.causes=[]でもsource_wrapperのknown differenceは相殺されずOwnerBinding.result=different。OwnerBinding.causesのcause順はsource wrapperを先に保持。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-32",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-s3-owner-check-link-absent",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/qualification_check_link_writer/absence"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/types/OriginRoot"
+    }
+   ],
+   "typed_mutation_plan": "wrapper_owner/source_owner Readはともにpresentで原CoreJsonValueがcorresponding。qualification_owner/root_owner CheckLinkは存在しない。",
+   "expected_observation": "S3でowner_binding_unestablished一件。target root=validation_source_observations, pointer=/source_occurrences/{source_observation_index}/qualification_occurrences。left/rightはwrapper/source owner全Read。架空CheckLink/indexなし、原parent-causeはsource observationに残す。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-33",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-s1-owner-read-absent",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S1_read_endpoint_absent_or_unreached"
+    }
+   ],
+   "typed_mutation_plan": "wrapper_owner Readはpresent、source_owner Readはabsent。qualification linkから新規Readを補完しない。",
+   "expected_observation": "S1でowner_binding_unestablished一件。target=source_owner.requested。left/rightは両owner Read全値をoriginalで保持。wrapper/source両端欠落なら別件ずつwrapper→source順だが、本caseはsourceのみ。rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-34",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "role-owner-different-cause-with-corresponding-source-wrapper",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    }
+   ],
+   "typed_mutation_plan": "source_wrapper_relationはcorresponding。適用definition RoleOwnerPairのoperand_ownerだけがwrapper ownerとknown differentである同一walk。",
+   "expected_observation": "RoleOwnerPair.causesにowner_mismatch一件。target=operand_owner Read.present.location、left/rightはoperand_owner/wrapper_owner全Read、rule_pointer=/f05_detail_contract/owner_binding_contract/role_pairs。source_wrapper causeなし。OwnerBinding.causesへcopyし親causesはowner-generation segmentで原順保持。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-35",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "role-owner-unestablished-absent-operand-read",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract"
+    }
+   ],
+   "typed_mutation_plan": "source_wrapper_relationはcorresponding。適用definition RoleOwnerPair.operand_ownerはabsent、wrapper_ownerはpresent。",
+   "expected_observation": "RoleOwnerPair.causesにowner_binding_unestablished一件。target=operand_owner.requested、left/rightは各全Read、rule_pointer=/f05_detail_contract/owner_binding_contract/role_pairs。SourceCheckの再実行、架空Read、別Scope補完なし。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。候補実行なし."
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-36",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-s4-direct-known-owner-difference-with-all-owner-check-links-corresponding",
+   "input_fixture_ref": "case-authored typed condition; no input fixture materialized",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/owner_relation_cause_cases/0"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6"
+    }
+   ],
+   "typed_mutation_plan": "wrapper_owner/source_ownerの両Readをpresentにし、CoreJsonValueとして既知に異なる原値を与える。qualification_owner CheckLinkを一つ用意し、その既存resultをcorrespondingとする。新しいdelegation/memberは合成しない。",
+   "expected_observation": "source_wrapper_relation=different。source_wrapper由来Causeを一件 owner_mismatch としてOwnerBinding.causesのS4位置へ置く。target=wrapper_owner Read.present.location、left/rightはwrapper/source owner全Read、rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper。positive RoleOwnerPair.causesで相殺しない。原因は観測済みowner値差の報告でありdelegation/authority relationを作らない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture/full return/hashなし。runtime candidate未実行。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-37",
+   "name": "source-wrapper-direct-owner-difference-with-no-owner-check-links",
+   "execution_state": "not_executed",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S3_both_reads_present_but_no_qualification_owner_or_root_owner_link"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
+    }
+   ],
+   "input_condition": "wrapper_owner/source_owner Readが両方presentで原値は既知に異なる。qualification_owner/root_owner check linkは0件。",
+   "expected_observation": "OwnerBinding.causesはsource-wrapper segmentで[S4,S3]の順。S4はowner_mismatch一件（target=wrapper_owner Read.present.location、left/rightは両full original Read、rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper）。S3はowner_binding_unestablished一件（target=validation_source_observations/source_occurrences/{source_observation_index}/qualification_occurrences、left/right同じfull original Read、同rule_pointer）。source_wrapper_relation=different。架空CheckLink/indexやdelegation/authority関係は生成しない。",
+   "expected_preserved": "両Read全値と順序を保持し、S4の既知差がS3の未成立を上書きせず両Causeを順序付きで記録する。",
+   "expected_side_effect_count": 0,
+   "result": "not_executed"
   }
  ],
  "normal_function_oracles": [
