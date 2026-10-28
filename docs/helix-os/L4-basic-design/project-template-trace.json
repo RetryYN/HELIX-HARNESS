@@ -303,7 +303,9 @@
         "常時project/scope/source/要求revision/契約ref",
         "選択/実使用操作の原set/版/CORE出力",
         "評価共有を選択した場合のLABOscope/必要入力/利用許可",
-        "まだ発生しない結果と非選択sourceの原状態"
+        "まだ発生しない結果と非選択sourceの原状態",
+        "template選択/使用operationに限り、H009 Bindingのprocess_contract_refとapplication_contract_refをB02 operation入力の別memberとしてそのまま保持する。共有B02RecordInputbinding.HARNESS_contract_refは変更せず従来役割を保ち、三者間の対応は推定しない（owner依存で未形成）。",
+        "template selection/use operationではB02のselected_set_record_ref/used_set_record_refでOS F02原recordを指す。record selectorはOwnerRecord.subject_refであり、F02 payloadのselected_source/used_sourceとは別Ref。F02のselected_refs/used_refsがmembershipの正本で、B02に配列を複写しない。"
       ],
       "output": "原結合・集合・欠落・局所不成立と戻し先の比較材料。登録/裁定/評価/受入の実成立なし。",
       "negative_classifications": [
@@ -376,12 +378,139 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_process_contract_ref_missing",
+          "change": "template選択/使用operationでapplication contract Refと既存共有HARNESS_contract_refだけを供給し、process contract Refの欠落を充足扱いする。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "process contract refの欠落をapplication refや共通Refで補完せず、process側を未解決として返す。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと供給済みapplication contract Ref、共通HARNESS_contract_refの原値",
+            "observable": "process contract Refの欠落を局所化し、application側の供給値を保持する。",
+            "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_application_contract_ref_missing",
+          "change": "template選択/使用operationでprocess contract Refと既存共有HARNESS_contract_refだけを供給し、application contract Refの欠落を充足扱いする。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "application contract refの欠落をprocess refや共通Refで補完せず、application側を未解決として返す。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと供給済みprocess contract Ref、共通HARNESS_contract_refの原値",
+            "observable": "application contract Refの欠落を局所化し、process側の供給値を保持する。",
+            "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_missing",
+          "change": "template-selection operationのselected_set_record_refが欠落し、used_set_record_refだけが存在する。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "OS002",
+          "expected": "qualified F02原recordからselected_refs/selected_sourceだけを解決し、selected record refの欠落をused側から補完しない。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingとqualified F02 used record、selected record ref欠落の原状態",
+            "observable": "selected membershipはmissing/未解決として局所化し、used membershipと全source originを保持する。",
+            "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "used_template_set_record_missing",
+          "change": "template-use operationのused_set_record_refが欠落し、selected_set_record_refだけが存在する。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "OS002",
+          "expected": "qualified F02原recordからused_refs/used_source/used_empty_basisだけを解決し、used record refの欠落をselected側から補完しない。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingとqualified F02 selected record、used record ref欠落の原状態",
+            "observable": "used membershipはmissing/未解決として局所化し、selected membershipと全source originを保持する。",
+            "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_used_membership_conflated",
+          "change": "qualified F02 recordのselected_refsとused_refsが異なるのに、used membershipをselected_refsと同じとして主張する。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "F02 selected_refsとused_refsを別々に照合し、selected setからused setを補完しない。",
+          "expected_preserved": {
+            "original_binding": "B02 binding、qualified F02 recordのselected_refs/used_refs、selected_source/used_source各原値",
+            "observable": "selected/useの役割取り違えをconflictとして返し、両集合と各provenanceを保持する。",
+            "effects": "F02原record・各集合の原順と他scopeを保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_unqualified",
+          "change": "selected_set_record_refに一致するF02 recordが未資格sourceにだけ存在する。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "OS002",
+          "expected": "未資格recordをselected setの原入力として採らず、既存資格結果とmissing/unresolved状態を保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 binding、selected_set_record_ref、未資格sourceとQualificationの原値",
+            "observable": "selected membershipは未解決のまま、未資格原因を元sourceへ結び、qualified siblingを保持する。",
+            "effects": "qualified records/source refs、他scope、未資格sourceの診断を保持。authority/使用成立なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_conflict",
+          "change": "同じselected_set_record_ref/section_keyに結ぶ複数のqualified F02原recordが相反するmembershipを持つ。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "相反F02 recordを一方選択せずconflictとして返し、両原recordとsourceを保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと相反するqualified F02 records、両selected membership/各source",
+            "observable": "selected membershipの一意解決なしをconflictとして保持し、どちらも採用しない。",
+            "effects": "全相反record、qualification/ref分類、他scopeを保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_process_application_contract_refs_swapped",
+          "change": "template選択/使用operationにおいて、互いに異なるprocess/application contract Refを役割と逆のmemberへ割り当てる。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "process/application各memberを役割別の原Ref/sourceに照合し、逆割当をconflictとして局所化する。",
+          "expected_preserved": {
+            "original_binding": "B02 binding、異なるprocess/application原Refと各供給元の全値",
+            "observable": "process/applicationの役割不一致をconflictとして返し、両原Ref/source/presenceを保持する。",
+            "effects": "各原source/qualification、他の有効scope、owner未解決を保持。authority/適用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_shared_contract_ref_cannot_substitute",
+          "change": "template選択operationでprocess_contract_refが欠落しているのに、既存共有HARNESS_contract_refを代わりに充足扱いする。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "process_contract_refの欠落をmissingのまま返し、共有HARNESS_contract_refやapplication_contract_refで補完しない。",
+          "expected_preserved": {
+            "original_binding": "template選択/使用operation、共有HARNESS_contract_refの供給値、欠落したprocess/application memberの原状態",
+            "observable": "operation memberの欠落を個別に保持し、共有Refを代替として採用しない。",
+            "effects": "共有型とowner原値、他の有効scopeを保持。authority/適用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "comparison_order": [
         "選択操作の原契約から必要入力を確認し、未発生/非選択と欠落を分ける。",
         "各参照を原内容/版/scope/ownerへ解決し、各集合・状態・因果と個別不足を比較。",
-        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。"
+        "当該不成立と戻し先を返し、原event/未完と非対象有効記録を保存。",
+        "B02 contract Refはprocess/applicationを別々に照合し、template selection/useではqualified F02 recordをそのsubject_refとsection_key=F02から解決する。selected/used source memberとrecord selectorをaliasしない。"
       ],
       "output_observation_ref": "HELIXOS-L9-002-B02.expected_observation"
     },
