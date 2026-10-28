@@ -4197,6 +4197,18 @@
     },
     "preserve_other_original_comparisons": true
    }
+  },
+  {
+   "id": "HARNESS-L8-009-F02-PUBLIC-PROPOSAL-PUBLICATION-ENDPOINT",
+   "function_ref": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+   "function_oracle_ref": "HARNESS-L8-009-NORMAL-publish_general_proposal_exchange_public",
+   "name": "public-proposal-publication-endpoint-contract-boundary",
+   "input_fixture_ref": "HARNESS-L8-009-GENERAL-PROPOSAL-EXCHANGE",
+   "typed_mutation_plan": "単一入力request:RawProviderRequestからpublish_general_proposal_exchange_publicを呼び出し、公開契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）の4 carrier構造（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）と全Ref4/Ref6・不成立理由・未知状態が保持され、外部機構（HELIX-OS OS002等）がCORE private_typesへのsame_candidate_cross_mechanism_private_type_bindingなしで受領可能であることを検証",
+   "expected_observation": "publish_general_proposal_exchangeへ1回だけ委譲し（P0〜P6）、general_view・header_port・header_decode・authority_port・source_candidate・publication_issuesを欠落なく返し、CORE内部private_typesを外部機構へ直接束縛させない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "bound to general_proposal_exchange_verification cases without adding raw/whole fixtures to L8; not executed"
   }
  ],
  "normal_function_oracles": [
@@ -4341,6 +4353,15 @@
    "expected_observation": "全73 packet/85 rowについてrawからL5規則でProjectionResultを導出しL9 expected whole全体へ照合する。資格/OS受理はnot_established。",
    "execution_state": "not_executed",
    "expected_output_rule": "source_result_reference_projection.casesのraw/expected pointerとhashを解決し、計算結果を全field比較する。"
+  },
+  {
+   "id": "HARNESS-L8-009-NORMAL-publish_general_proposal_exchange_public",
+   "function_ref": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+   "input_fixture_ref": "HARNESS-L8-009-GENERAL-PROPOSAL-EXCHANGE",
+   "context_type": "RawProviderRequest",
+   "expected_observation": "単一入力request:RawProviderRequestから内部builder publish_general_proposal_exchange（P0〜P6）へ1回委譲し、公開契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）に適合するCoreProposalPublication全値（general_view・header_port・header_decode・authority_port・source_candidate・publication_issues）を返す。副作用0、OS状態変更・authority実生成なし。",
+   "execution_state": "not_executed",
+   "expected_output_rule": "general_proposal_exchange_detail/public_proposal_publication_endpointのresponse_contract.carrier_schemasに従い、4 carrier構造と全Ref4/Ref6・不成立理由・未知状態を無変換で保持する。"
   }
  ],
  "wire_codec_verification": {
@@ -13183,7 +13204,20 @@
     "old_material_check_status": "corrective_static_semantic_checked_only",
     "published_recipe_check_status": "not_yet_independently_reconstructed"
    }
-  ]
+  ],
+  "public_proposal_publication_endpoint_oracle": {
+   "id": "HARNESS-L8-009-F02-PUBLIC-PROPOSAL-PUBLICATION-ENDPOINT",
+   "function_ref": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+   "function_oracle_ref": "HARNESS-L8-009-NORMAL-publish_general_proposal_exchange_public",
+   "additional_unit_case_pointer": "/additional_unit_cases/24",
+   "normal_oracle_pointer": "/normal_function_oracles/12",
+   "l5_endpoint_pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint",
+   "l4_endpoint_pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint",
+   "schema_id": "helix.harness.product_template_application.general_proposal_publication_endpoint",
+   "schema_version": "1.0.0",
+   "expected_boundary_ja": "publish_general_proposal_exchange_public(request:RawProviderRequest)->CoreProposalPublicationが内部builder publish_general_proposal_exchangeへ1回委譲し、4 carrier構造（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）を公開契約として返し、外部機構（HELIX-OS OS002等）がCORE private_typesへのsame_candidate_cross_mechanism_private_type_bindingなしで受領できることを検証する（effect_count=0）。",
+   "execution_state": "not_executed"
+  }
  },
  "f05_same_scan_argument_binding_verification": {
   "id": "HARNESS-L8-009-F05-SAME-SCAN-PRIVATE-ARGUMENT",

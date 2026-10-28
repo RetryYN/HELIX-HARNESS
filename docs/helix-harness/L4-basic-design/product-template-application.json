@@ -2395,6 +2395,7 @@
           },
           "GeneralProposalView": {
             "kind": "closed_record",
+            "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
             "ordered_members": {
               "attempt_capture": "GeneralOwnerAttempt",
               "membership_capture": "GeneralMembershipCapture",
@@ -2403,7 +2404,7 @@
               "proposed_body": "GeneralProposalBody",
               "body_issues": "LocalIssue[]"
             },
-            "meaning_ja": "旧source/role観測と同call旧N全値、新F02詳細、全relation局所観測を保持する新私有一般形。旧attempt全返却又は旧absence enumへ偽装しない。旧3view/旧routeは別に無変更保存する。"
+            "meaning_ja": "旧source/role観測と同call旧N全値、新F02詳細、全relation局所観測を保持するCORE owner内部専用型。旧attempt全返却又は旧absence enumへ偽装しない。旧3view/旧routeは別に無変更保存する。外部機構（HELIX-OS OS002等）からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、機構間受渡しはpublication.public_proposal_publication_endpoint公開契約と受領側自身の型で行う。"
           },
           "PublicationHeaderRequest": {
             "kind": "closed_record",
@@ -2438,6 +2439,7 @@
           },
           "PublicationRecord": {
             "kind": "closed_record",
+            "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
             "ordered_members": {
               "subject_ref": "OSRef4",
               "section_key": "literal F02",
@@ -2445,7 +2447,7 @@
               "payload": "PublicationRolePayload",
               "owner": "string"
             },
-            "meaning_ja": "新private raw carrier。原owner供給headerと内部生成した同call body/evidenceだけから形成する。"
+            "meaning_ja": "CORE owner内部専用raw carrier。原owner供給headerと内部生成した同call body/evidenceだけから形成する。外部機構からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、受領側はpublication.public_proposal_publication_endpoint公開契約と受領側自身の型で検証する。"
           },
           "PublicationAuthorityRequest": {
             "kind": "closed_record",
@@ -2459,6 +2461,7 @@
           },
           "CoreProposalPublication": {
             "kind": "closed_record",
+            "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
             "ordered_members": {
               "general_view": "GeneralProposalView",
               "header_port": "PublicationHeaderPortCapture",
@@ -2467,7 +2470,7 @@
               "source_candidate": "PublicationSourceStage",
               "publication_issues": "LocalIssue[]"
             },
-            "meaning_ja": "source candidateの生成と資格供給観測を保持。port returnedだけで信頼/配送/OS受領を成立させない。"
+            "meaning_ja": "source candidateの生成と資格供給観測を保持するCORE内部構築結果。port returnedだけで信頼/配送/OS受領を成立させない。外部機構からprivate_typesへsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、機構間受渡しはpublication.public_proposal_publication_endpoint公開契約を介する。"
           },
           "UniverseEvidenceRef": {
             "kind": "closed_record",
@@ -2553,6 +2556,7 @@
           },
           "PublicationSourceCarrier": {
             "kind": "closed_record",
+            "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
             "ordered_members": {
               "source_ref": "OSRef4",
               "owner": "string",
@@ -2563,7 +2567,7 @@
               "qualifications": "OSQualification[]",
               "qualification_roots": "OSQualificationRoot[]"
             },
-            "meaning_ja": "供給headerと実body/evidenceを含む新raw source/独立claim/rootの配送単位。decoded_raw_recordsは旧OwnerRecord[]でなく新raw profileである。資格binding既知差も型成立なら全原値を配送してOS同walkで比較し、不整合を自動修復しない。"
+            "meaning_ja": "供給headerと実body/evidenceを含む新raw source/独立claim/rootのCORE内部形成単位。decoded_raw_recordsは旧OwnerRecord[]でなく新raw profileである。資格binding既知差も型成立なら全原値を配送してOS同walkで比較し、不整合を自動修復しない。外部機構からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、publication.public_proposal_publication_endpoint公開契約を介して受渡す。"
           },
           "PublicationHeaderDecode": {
             "kind": "closed_tagged_union",
@@ -2929,6 +2933,87 @@
               "authorityの実raw返却を閉型へdecodeし、同sourceのtyped claim/rootをsource_candidateへ保持する。既知資格差/unknownも原材料としてOS同walkへ渡し、producer側でrootを修復/採番しない。",
               "source_candidate/全port capture/局所issueを返す。CONNECTへの実配送/外部writeは当関数のeffectに含めず、配送側がこの全結果の形成されたsourceを受領profileへ渡す。"
             ]
+          },
+          "public_proposal_publication_endpoint": {
+            "schema_id": "helix.harness.product_template_application.general_proposal_publication_endpoint",
+            "schema_version": "1.0.0",
+            "visibility": "public_cross_mechanism_contract",
+            "id": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+            "symbol": "publish_general_proposal_exchange_public",
+            "signature": "(request:RawProviderRequest)->CoreProposalPublication",
+            "l5_function_ref": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+            "l5_function_pointer": "/functions/13",
+            "internal_builder_ref": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/entry_point",
+            "upstream_connection_basis": {
+              "producer_l2_unit": "HARNESS-L2-009 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/48; docs/helix-harness/L2-requirements/product-requirements.md#L60,L116,L385-L414)",
+              "consumer_l2_unit": "HELIXOS-L2-002 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/187; delegated to HXT-FLOW-01 and HXT-SYS-01 in docs/helix-os/L2-requirements/governance-requirements.md#L610)",
+              "hxt_core_02_comparison_ja": "G7 /identities/63（HXT-CORE-02：docs/helix-harness/L2-requirements/product-requirements.md#L317［680dcaa #L314］）はHARNESS-L2-002/008（Vモデル検証義務・証拠・接続契約・差分波及規則）からHXT-SYS-01（OS起票・受入）への明示connectionであり、本境界（HARNESS-L2-009 -> HELIXOS-L2-002）とHARNESS (CORE) -> HELIX-OSの方向およびCOREが直接起票・OS状態確定を行わない権威境界は同一である一方、source L2 unitはHARNESS-L2-009（製品別テンプレート適用とギャップ返却）とHARNESS-L2-002/008で異なる。OS側HELIXOS-L2-002（G7 /identities/187）は機構間接続条件をHXT-FLOW-01/HXT-SYS-01へ委譲しており、両者とも既存G7採択済みHELIXCONNECT契約群（HELIXCONNECT-L3-001-F01/F02, 002-F01/F02, 003-F01, 006-F01）の範囲内で収まり、新規L2接続要求の追加は不要である。",
+              "connector_requirement_refs": [
+                "HELIXCONNECT-L3-001-F01",
+                "HELIXCONNECT-L3-001-F02",
+                "HELIXCONNECT-L3-002-F01",
+                "HELIXCONNECT-L3-002-F02",
+                "HELIXCONNECT-L3-003-F01",
+                "HELIXCONNECT-L3-006-F01"
+              ],
+              "po_decision_ref": "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md#L62-L70",
+              "legacy_adr_ref": "LEGACY-ASSET-BD13CC67526B48D461F9 (archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md#L8-L45)"
+            },
+            "request_contract": {
+              "input_type": "RawProviderRequest",
+              "single_input_rule_ja": "単一入力型request:RawProviderRequestのみを受け取り、内部builder publish_general_proposal_exchangeへ1回委譲する。外部expected・cache・資格bool・内部walk添字を引数に取らない。"
+            },
+            "response_contract": {
+              "output_type": "CoreProposalPublication",
+              "carrier_schemas": {
+                "CoreProposalPublication": {
+                  "ordered_members": [
+                    "general_view",
+                    "header_port",
+                    "header_decode",
+                    "authority_port",
+                    "source_candidate",
+                    "publication_issues"
+                  ],
+                  "preservation_rule_ja": "general_view・header_port・header_decode・authority_port・source_candidate・publication_issuesの6 memberと全Ref4/Ref6・不成立理由・未知状態を欠落なく公開契約として返す。"
+                },
+                "PublicationSourceCarrier": {
+                  "ordered_members": [
+                    "source_ref",
+                    "owner",
+                    "source_json_utf8",
+                    "source_sha256",
+                    "decoded_raw_records",
+                    "qualification_ref",
+                    "qualifications",
+                    "qualification_roots"
+                  ],
+                  "preservation_rule_ja": "source_ref・owner・source_json_utf8・source_sha256・decoded_raw_records・qualification_ref・qualifications・qualification_rootsの8 memberを保持し、資格既知差やunknownを自動修復しない。"
+                },
+                "PublicationRecord": {
+                  "ordered_members": [
+                    "subject_ref",
+                    "section_key",
+                    "record_kind",
+                    "payload",
+                    "owner"
+                  ],
+                  "preservation_rule_ja": "subject_ref・section_key=F02・record_kind=core_proposal_exchange・payload={original_trace_section,evidence}・ownerの5 memberを保持し、旧OwnerRecordへcastしない。"
+                },
+                "GeneralProposalView": {
+                  "ordered_members": [
+                    "attempt_capture",
+                    "membership_capture",
+                    "universe_observation",
+                    "relation_observations",
+                    "proposed_body",
+                    "body_issues"
+                  ],
+                  "preservation_rule_ja": "attempt_capture・membership_capture・universe_observation・relation_observations・proposed_body・body_issuesの6 memberと同一call F02比較証拠を保持する。"
+                }
+              },
+              "cross_mechanism_boundary_rule_ja": "外部機構（HELIX-OS OS002等）はH5#/general_proposal_exchange_detail/private_types/*をsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、本公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）に対して受領側自身の受領型（OsReceivedProposalPublication等）とadapter/schema検証で受領する。"
+            }
           }
         },
         "consumer_boundary_table": [
