@@ -3069,17 +3069,53 @@ def check_neg_4way_match(
             member_declares_case = (
                 isinstance(member_ids, list) and case_id in member_ids
             )
+            case_owner_functions = (
+                [
+                    row
+                    for row in l5_functions
+                    if isinstance(row, dict)
+                    and isinstance(row.get("unit_case_refs"), list)
+                    and case_id in row["unit_case_refs"]
+                ]
+                if isinstance(l5_functions, list)
+                else []
+            )
 
             # Candidate counterparts are scoped through the L5 function's
             # declared contracts, then through L4/L9 parent links and the L5
             # handler.  Code equality alone is insufficient to join rows.
             scoped: dict[str, list[dict[str, Any]]] = {"L4": [], "L9": [], "L5": []}
             scope_link_failures: list[dict[str, Any]] = []
-            if function:
-                contract_refs = function.get("contract_refs", [])
-                if isinstance(contract_refs, list):
+            if len(case_owner_functions) > 1:
+                scope_link_failures.append(
+                    {
+                        "attribute": "additional_case_owner_ambiguity",
+                        "function_ids": [row.get("id") for row in case_owner_functions],
+                    }
+                )
+            scope_function = (
+                case_owner_functions[0] if len(case_owner_functions) == 1 else function
+            )
+            if scope_function:
+                contract_refs = scope_function.get("contract_refs", [])
+                if not isinstance(contract_refs, list):
+                    scope_link_failures.append(
+                        {
+                            "attribute": "invalid_l5_function_contract_refs",
+                            "function_ref": scope_function.get("id"),
+                            "actual_type": type(contract_refs).__name__,
+                        }
+                    )
+                else:
                     for contract_ref in contract_refs:
                         if not isinstance(contract_ref, str):
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "invalid_l5_contract_ref_type",
+                                    "function_ref": scope_function.get("id"),
+                                    "actual_type": type(contract_ref).__name__,
+                                }
+                            )
                             continue
                         contract5_rows = l5_contracts_by_id.get(contract_ref, [])
                         if len(contract5_rows) != 1:
@@ -3094,6 +3130,15 @@ def check_neg_4way_match(
                             continue
                         contract5 = contract5_rows[0]
                         design_ref = contract5.get("basic_design_ref")
+                        if not isinstance(design_ref, str) or not design_ref:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "invalid_l5_basic_design_ref",
+                                    "contract_ref": contract_ref,
+                                    "actual_type": type(design_ref).__name__,
+                                }
+                            )
+                            continue
                         l4_rows = l4_contracts_by_id.get(design_ref, [])
                         l9_rows = l9_cases_by_design.get(design_ref, [])
                         if len(l4_rows) > 1:
@@ -3114,9 +3159,7 @@ def check_neg_4way_match(
                             )
                         l4_contract = l4_rows[0] if len(l4_rows) == 1 else None
                         l9_case = l9_rows[0] if len(l9_rows) == 1 else None
-                        # L9's integration case is paired by its explicit
-                        # design_ref to the selected L4 contract.
-                        handler_ref = function_ref
+                        handler_ref = scope_function.get("id")
                         rules = [
                             row
                             for row in l5_rules_all
@@ -3126,57 +3169,65 @@ def check_neg_4way_match(
                             and _extract_neg_key(row) == code
                         ]
                         if l4_contract:
-                            scoped["L4"].extend(
-                                row
-                                for row in l4_contract.get(
-                                    "negative_classifications", []
+                            l4_rows_for_code = l4_contract.get(
+                                "negative_classifications", []
+                            )
+                            if isinstance(l4_rows_for_code, list):
+                                scoped["L4"].extend(
+                                    row
+                                    for row in l4_rows_for_code
+                                    if isinstance(row, dict)
+                                    and _extract_neg_key(row) == code
                                 )
-                                if isinstance(row, dict)
-                                and _extract_neg_key(row) == code
-                            )
+                            else:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "invalid_l4_negative_classifications",
+                                        "design_ref": design_ref,
+                                        "actual_type": type(l4_rows_for_code).__name__,
+                                    }
+                                )
                         if l9_case:
-                            scoped["L9"].extend(
-                                row
-                                for row in l9_case.get("negative_cases", [])
-                                if isinstance(row, dict)
-                                and _extract_neg_key(row) == code
-                            )
+                            l9_rows_for_code = l9_case.get("negative_cases", [])
+                            if isinstance(l9_rows_for_code, list):
+                                scoped["L9"].extend(
+                                    row
+                                    for row in l9_rows_for_code
+                                    if isinstance(row, dict)
+                                    and _extract_neg_key(row) == code
+                                )
+                            else:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "invalid_l9_negative_cases",
+                                        "design_ref": design_ref,
+                                        "actual_type": type(l9_rows_for_code).__name__,
+                                    }
+                                )
                         scoped["L5"].extend(rules)
 
             any_scoped_counterpart = any(scoped[layer] for layer in scoped)
-            unscoped_rows: list[Any] = (
-                list(l4_top_fc) if isinstance(l4_top_fc, list) else []
+            # Code equality outside the case owner's declared contract chain
+            # is not scope evidence. A private/positive row can reuse a code
+            # without becoming part of this negative population.
+            any_case_owner_code_counterpart = bool(
+                scoped["L5"] or scoped["L4"] or scoped["L9"]
             )
-            if isinstance(l4_contracts, list):
-                for contract in l4_contracts:
-                    if isinstance(contract, dict) and isinstance(
-                        contract.get("negative_classifications"), list
-                    ):
-                        unscoped_rows.extend(contract["negative_classifications"])
-            if isinstance(l9_cases, list):
-                for case in l9_cases:
-                    if isinstance(case, dict) and isinstance(
-                        case.get("negative_cases"), list
-                    ):
-                        unscoped_rows.extend(case["negative_cases"])
-            if isinstance(l5_rules_all, list):
-                unscoped_rows.extend(l5_rules_all)
-            any_unscoped_code_counterpart = any(
-                _extract_neg_key(row) == code
-                for row in unscoped_rows
-                if isinstance(row, dict)
-            )
+            state_is_negative = isinstance(state, str) and state in {
+                "missing",
+                "unknown",
+                "conflict",
+                "invalid_shape",
+            }
             # Fully out-of-scope rows (for example ADD-50's non-template
             # operation with state=absent) were filtered above. A negative row
             # with neither declared function membership nor a counterpart is
             # also outside this legacy four-layer population.
             in_scope = (
                 any_scoped_counterpart
-                or any_unscoped_code_counterpart
-                or (
-                    member_declares_case
-                    and state in {"missing", "unknown", "conflict", "invalid_shape"}
-                )
+                or any_case_owner_code_counterpart
+                or (member_declares_case and bool(scope_link_failures))
+                or (member_declares_case and state_is_negative)
             )
             if not in_scope:
                 continue

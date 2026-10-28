@@ -2960,6 +2960,30 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     for failure in result["failures"]
                 )
             )
+        # Container-valued states used to reach set membership and raise
+        # TypeError. They must be reported as structured invalid states.
+        for bad_state in ([], {}):
+            invalid_state = copy.deepcopy(layers["L8"])
+            invalid_state["additional_cases"][40]["expected_state"] = bad_state
+            result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=invalid_state,
+                l5_data=layers["L5"],
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "expected_state"
+                    and failure.get("error") == "missing_or_invalid_negative_state"
+                    for failure in result["failures"]
+                )
+            )
         deleted_state = copy.deepcopy(layers["L8"])
         del deleted_state["additional_cases"][40]["expected_state"]
         deleted_state_result = dvc.check_neg_4way_match(
@@ -3038,6 +3062,69 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
         )
 
+        # Malformed owner references are reported as failures instead of
+        # escaping through dict lookup/hash operations.
+        owner_function = next(
+            row
+            for row in layers["L5"]["functions"]
+            if "HELIXOS-L8-002-ADD-41" in row["unit_case_refs"]
+        )
+        for malformed_refs, expected_attribute in (
+            ({"bad": "shape"}, "invalid_l5_function_contract_refs"),
+            ([{}], "invalid_l5_contract_ref_type"),
+        ):
+            malformed_l5 = copy.deepcopy(layers["L5"])
+            next(
+                row
+                for row in malformed_l5["functions"]
+                if row["id"] == owner_function["id"]
+            )["contract_refs"] = malformed_refs
+            malformed_result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=layers["L8"],
+                l5_data=malformed_l5,
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == expected_attribute
+                    for failure in malformed_result["failures"]
+                )
+            )
+
+        for malformed_design_ref in ([], {}):
+            malformed_l5 = copy.deepcopy(layers["L5"])
+            owner_contract_id = owner_function["contract_refs"][0]
+            next(
+                row
+                for row in malformed_l5["contracts"]
+                if row["id"] == owner_contract_id
+            )["basic_design_ref"] = malformed_design_ref
+            malformed_result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=layers["L8"],
+                l5_data=malformed_l5,
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "invalid_l5_basic_design_ref"
+                    for failure in malformed_result["failures"]
+                )
+            )
+
         # An identical code in a different L4 parent cannot replace or add a
         # counterpart for ADD-41's L5 function/contract scope.
         unrelated_code = copy.deepcopy(layers["L4"])
@@ -3062,6 +3149,33 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 and failure.get("layer") == "L4"
                 and failure.get("actual_count") != 1
                 for failure in unrelated_result["failures"]
+            )
+        )
+
+        # ADD-50 is a nonnegative private operation. Reusing an unrelated
+        # negative code must not make its row part of the four-layer scope.
+        private_code_collision = copy.deepcopy(layers["L8"])
+        collision_code = "private_scope_collision"
+        private_code_collision["additional_cases"][49]["code"] = collision_code
+        private_collision_l4 = copy.deepcopy(layers["L4"])
+        private_collision_l4["contracts"][0]["negative_classifications"].append(
+            {"code": collision_code, "state": "missing"}
+        )
+        collision_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=private_collision_l4,
+            l9_data=layers["L9"],
+            l8_data=private_code_collision,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in collision_result["failures"]
             )
         )
 
