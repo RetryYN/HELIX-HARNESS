@@ -1597,7 +1597,7 @@
       "algorithm": [
         "適用条件と入力axisおよび母集合の比較境界/source/知識・適用契約版/要求・製品scopeを先に照合。nullはmissing、未評価境界はunknownで返しempty成功にしない（有資格理由付きempty母集合はmissingと区別して保存）。",
         "qualified同scopeのmemberを各適用条件へ解決し、各要素の適用/不適用/未解決理由、比較境界、要求/製品scope、知識/適用契約版を検討対象のexact set候補へ結び、duplicate identity/別revision/別製品scopeを個別に返す。candidate/proposed setとOSが登録するselected/used setを混同しない。",
-        "同意味期待memberとのmissing/extraはqualified根拠から比較し件数一致だけでは同等にしない。衝突しない有効memberを保存。"
+        "同意味期待memberとの差分はqualified根拠からmissing_member_refs/extra_member_refsへ保持し、件数一致だけでは同等にしない。既存rule59は同件数でmemberが異なる場合に限り、件数が異なる場合へ広げない。L4/L9に異件数単独の分岐/findingはないため、新しいfinding義務やcodeをこの規則から生成せず、その必要性は上流branch決定まで未決として残す。衝突しない有効memberを保存。"
       ],
       "effect": "none",
       "failure_rules": [
@@ -4000,7 +4000,7 @@
       "function_ref": "HARNESS-L5-009-compare_kind_obligation_trace",
       "oracle_ref": "HARNESS-L8-009-F04-NEG-06",
       "condition": "041抽出成功だけで具体設計完成を主張",
-      "predicate": "041抽出のみが根拠で025/026具体設計/対oracleの成立根拠が無い。",
+      "predicate": "validated inputがあり、compare_applicability producerの結果が同じinput_bindingを持つ場合に限り、kind=design_completeのClaimを判定する。basis_refsが配列でない、または、有効なunit/connection/composite obligation（source_refが存在しunusable_source_refsに該当しない）のrefをfrom_refとする、有効なdirection=forward TraceRequirement（source_refが存在しunusable_source_refsに該当しない）のto_refに一致するRefと、入力binding.oracle_refに一致するRefの双方をbasis_refsから照合できないとfindingにする。空composite（membersが空配列、またはmeaningがnull/空object/空配列/空文字列）はsource_reasonの有無にかかわらずdesign endpoint候補から除外する。Ref一致はidentity/revision/scope/ownerを用い、sha256は比較しない。判定はClaim.kindと参照関係で行い、proposed_valueの文言や041の成功receipt文字列には依存しない。両参照が存在しても、この規則はfindingを抑止するだけで、具体設計の意味充足、oracle妥当性、設計完成/承認を生成しない。",
       "predicate_status": "defined_candidate",
       "expected_axis": "design_completion_claim",
       "expected_state": "unknown",
