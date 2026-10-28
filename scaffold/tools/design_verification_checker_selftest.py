@@ -2938,6 +2938,49 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             {key: state_failure[key] for key in ("L4", "L8", "L9", "L5")},
             {"L4": "missing", "L8": "unknown", "L9": "missing", "L5": "missing"},
         )
+        for bad_state in ("absent", "not-a-state", None):
+            invalid_state = copy.deepcopy(layers["L8"])
+            invalid_state["additional_cases"][40]["expected_state"] = bad_state
+            result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=invalid_state,
+                l5_data=layers["L5"],
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "expected_state"
+                    and failure.get("error") == "missing_or_invalid_negative_state"
+                    for failure in result["failures"]
+                )
+            )
+        deleted_state = copy.deepcopy(layers["L8"])
+        del deleted_state["additional_cases"][40]["expected_state"]
+        deleted_state_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=deleted_state,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "expected_state"
+                and failure.get("error") == "missing_or_invalid_negative_state"
+                for failure in deleted_state_result["failures"]
+            )
+        )
         self.assertFalse(
             any(
                 failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
@@ -3022,6 +3065,75 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
         )
 
+        duplicate_l5_contract = copy.deepcopy(layers["L5"])
+        duplicate_l5_contract["contracts"].append(
+            copy.deepcopy(duplicate_l5_contract["contracts"][1])
+        )
+        duplicate_l5_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=duplicate_l5_contract,
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l5_contract_ref_ambiguity"
+                for failure in duplicate_l5_result["failures"]
+            )
+        )
+
+        duplicate_l4_parent = copy.deepcopy(layers["L4"])
+        duplicate_l4_parent["contracts"].append(
+            copy.deepcopy(duplicate_l4_parent["contracts"][1])
+        )
+        duplicate_l4_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=duplicate_l4_parent,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l4_parent_ref_ambiguity"
+                for failure in duplicate_l4_result["failures"]
+            )
+        )
+
+        duplicate_l9_parent = copy.deepcopy(layers["L9"])
+        duplicate_l9_parent["cases"].append(
+            copy.deepcopy(duplicate_l9_parent["cases"][1])
+        )
+        duplicate_l9_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=duplicate_l9_parent,
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l9_design_ref_ambiguity"
+                for failure in duplicate_l9_result["failures"]
+            )
+        )
+
         # A partial counterpart must fail closed, not silently reclassify the
         # additional row as out of scope. ADD-50 remains explicitly nonnegative
         # and is therefore outside this negative four-layer comparison.
@@ -3099,6 +3211,64 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             any(
                 failure.get("error") == "child_count_mismatch"
                 for failure in mutated_result["failures"]
+            )
+        )
+
+        empty_child_refs = copy.deepcopy(repaired_copy)
+        empty_child_refs["basic_pair_freeze_row"]["l4_subcontracts"] = []
+        empty_child_refs["basic_pair_freeze_row"]["l9_sub_oracles"] = []
+        empty_result = dvc._check_basic_pair_freeze_row(
+            empty_child_refs, aliases, loaded
+        )
+        self.assertEqual(
+            sum(
+                failure.get("error") == "empty_required_array"
+                for failure in empty_result["failures"]
+            ),
+            2,
+        )
+
+        invalid_parent = copy.deepcopy(repaired_copy)
+        invalid_parent["basic_pair_freeze_row"]["l4_contract_pointer"] = (
+            "L4#/contracts/999"
+        )
+        invalid_parent_result = dvc._check_basic_pair_freeze_row(
+            invalid_parent, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "unresolved_or_non_object_pair_pointer"
+                for failure in invalid_parent_result["failures"]
+            )
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "child_pointer_outside_selected_parent"
+                for failure in invalid_parent_result["failures"]
+            )
+        )
+
+        unknown_state = copy.deepcopy(repaired_copy)
+        unknown_state["basic_pair_freeze_row"]["freeze_state"] = "frozen-ish"
+        unknown_state_result = dvc._check_basic_pair_freeze_row(
+            unknown_state, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "missing_or_unknown_freeze_state"
+                for failure in unknown_state_result["failures"]
+            )
+        )
+
+        unknown_class = copy.deepcopy(repaired_copy)
+        unknown_class["remaining_dispositions"][0]["class"] = "D"
+        unknown_class_result = dvc._check_basic_pair_freeze_row(
+            unknown_class, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "invalid_disposition_class_or_row"
+                for failure in unknown_class_result["failures"]
             )
         )
 

@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "1f4e5e1161b8565957ca400c5af8236d0397b6636bbe75b11f98712436b1990a",
+      "sha256": "37b5c92cdd72969c4e3b5c72f46791756bfface955fc16167c01b64fa96e4bad",
       "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeを含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。 WR170追補: record_kind=basic_pair_l4_l9_freeze_recordの機械照合と、legacy CHK-NEGのL8 additional_cases負状態照合を含む。"
     },
     {
@@ -139,7 +139,9 @@
       "CHK-NEG-4WAY-MATCH explicit mode: present case projection disagrees with any of the six class-key components or zero-side-effect invariant (FAIL); explicit null/partial projection also fails, while an omitted optional projection passes.",
       "CHK-NEG-4WAY-MATCH explicit mode: unresolved or invalid negative_class_ref fails closed; it is not rescued by another reference.",
       "CHK-NEG-4WAY-MATCH legacy mode: L8 additional_cases ADD-41/42のstate不一致、部分counterpart欠落、function scope欠落、別parentの同codeは誤結合しない。ADD-50はfunction_refがあってもstate=absent・unit_case_refs/four-layer negative counterpartなしのため比較対象外。",
-      "CHK-PAIR-BIDIR-ID basic-pair record:実L3/L10とL4/L9 pointers/ID/links、child ID/name/count、remaining disposition集計の再計算、および凍結recordの不一致を修復せずFAILとして出す。"
+      "CHK-PAIR-BIDIR-ID basic-pair record:実L3/L10とL4/L9 pointers/ID/links、child ID/name/count、remaining disposition集計の再計算、および凍結recordの不一致を修復せずFAILとして出す。",
+      "WR170 fail-closed extension: applicable L8 additional expected_state set to absent, unknown string, null, or deleted is detected via code/typed four-layer counterpart; duplicate L5 contract ID, L4 parent ID, and L9 design_ref cannot be silently last-write-wins.",
+      "WR170 basic-pair fail-closed extension: malformed selected-parent pointer, empty L4/L9 child array, unknown freeze_state, and non-object/unknown disposition class fail structurally rather than crash or disappear from counts."
     ]
   },
   "replacement": {

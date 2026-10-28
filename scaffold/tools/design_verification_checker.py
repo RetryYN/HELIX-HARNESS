@@ -3032,31 +3032,25 @@ def check_neg_4way_match(
     l8_additional = l8_data.get("additional_cases", [])
     if isinstance(l8_additional, list):
         l5_functions = l5_data.get("functions", [])
-        l5_contracts_by_id = {
-            row.get("id"): row
-            for row in l5_contracts
-            if isinstance(row, dict) and isinstance(row.get("id"), str)
-        }
-        l4_contracts_by_id = {
-            row.get("id"): row
-            for row in l4_contracts
-            if isinstance(row, dict) and isinstance(row.get("id"), str)
-        }
-        l9_cases_by_design = {
-            row.get("design_ref"): row
-            for row in l9_cases
-            if isinstance(row, dict) and isinstance(row.get("design_ref"), str)
-        }
+
+        def _rows_by_key(rows: Any, key: str) -> dict[str, list[dict[str, Any]]]:
+            result: dict[str, list[dict[str, Any]]] = {}
+            if isinstance(rows, list):
+                for candidate in rows:
+                    value = candidate.get(key) if isinstance(candidate, dict) else None
+                    if isinstance(value, str):
+                        result.setdefault(value, []).append(candidate)
+            return result
+
+        l5_contracts_by_id = _rows_by_key(l5_contracts, "id")
+        l4_contracts_by_id = _rows_by_key(l4_contracts, "id")
+        l9_cases_by_design = _rows_by_key(l9_cases, "design_ref")
         for additional in l8_additional:
             if not isinstance(additional, dict):
                 continue
             code = additional.get("code")
             state = additional.get("expected_state")
-            if (
-                not isinstance(code, str)
-                or not code
-                or state not in {"missing", "unknown", "conflict", "invalid_shape"}
-            ):
+            if not isinstance(code, str) or not code:
                 continue
 
             case_id = additional.get("id") or code
@@ -3080,18 +3074,46 @@ def check_neg_4way_match(
             # declared contracts, then through L4/L9 parent links and the L5
             # handler.  Code equality alone is insufficient to join rows.
             scoped: dict[str, list[dict[str, Any]]] = {"L4": [], "L9": [], "L5": []}
+            scope_link_failures: list[dict[str, Any]] = []
             if function:
                 contract_refs = function.get("contract_refs", [])
                 if isinstance(contract_refs, list):
                     for contract_ref in contract_refs:
                         if not isinstance(contract_ref, str):
                             continue
-                        contract5 = l5_contracts_by_id.get(contract_ref)
-                        if not contract5:
+                        contract5_rows = l5_contracts_by_id.get(contract_ref, [])
+                        if len(contract5_rows) != 1:
+                            if contract5_rows:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "l5_contract_ref_ambiguity",
+                                        "contract_ref": contract_ref,
+                                        "match_count": len(contract5_rows),
+                                    }
+                                )
                             continue
+                        contract5 = contract5_rows[0]
                         design_ref = contract5.get("basic_design_ref")
-                        l4_contract = l4_contracts_by_id.get(design_ref)
-                        l9_case = l9_cases_by_design.get(design_ref)
+                        l4_rows = l4_contracts_by_id.get(design_ref, [])
+                        l9_rows = l9_cases_by_design.get(design_ref, [])
+                        if len(l4_rows) > 1:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "l4_parent_ref_ambiguity",
+                                    "design_ref": design_ref,
+                                    "match_count": len(l4_rows),
+                                }
+                            )
+                        if len(l9_rows) > 1:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "l9_design_ref_ambiguity",
+                                    "design_ref": design_ref,
+                                    "match_count": len(l9_rows),
+                                }
+                            )
+                        l4_contract = l4_rows[0] if len(l4_rows) == 1 else None
+                        l9_case = l9_rows[0] if len(l9_rows) == 1 else None
                         # L9's integration case is paired by its explicit
                         # design_ref to the selected L4 contract.
                         handler_ref = function_ref
@@ -3149,12 +3171,26 @@ def check_neg_4way_match(
             # with neither declared function membership nor a counterpart is
             # also outside this legacy four-layer population.
             in_scope = (
-                member_declares_case
-                or any_scoped_counterpart
+                any_scoped_counterpart
                 or any_unscoped_code_counterpart
+                or (
+                    member_declares_case
+                    and state in {"missing", "unknown", "conflict", "invalid_shape"}
+                )
             )
             if not in_scope:
                 continue
+
+            if scope_link_failures:
+                for link_failure in scope_link_failures:
+                    failures.append(
+                        {
+                            "check": "CHK-NEG-4WAY-MATCH",
+                            "case_id": case_id,
+                            "attribute": link_failure.pop("attribute"),
+                            **link_failure,
+                        }
+                    )
 
             for layer, rows in scoped.items():
                 if len(rows) != 1:
@@ -3179,6 +3215,21 @@ def check_neg_4way_match(
                         "function_ref": function_ref,
                         "resolved_function_count": len(function_matches),
                         "member_declares_case": member_declares_case,
+                    }
+                )
+            if not isinstance(state, str) or state not in {
+                "missing",
+                "unknown",
+                "conflict",
+                "invalid_shape",
+            }:
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": case_id,
+                        "attribute": "expected_state",
+                        "L8": state,
+                        "error": "missing_or_invalid_negative_state",
                     }
                 )
             states = {
@@ -4072,6 +4123,9 @@ def _check_basic_pair_freeze_row(
         if not isinstance(entries, list):
             failures.append({"field": list_key, "error": "expected_array"})
             continue
+        if not entries:
+            failures.append({"field": list_key, "error": "empty_required_array"})
+            continue
         for i, entry in enumerate(entries):
             if not isinstance(entry, dict):
                 failures.append(
@@ -4093,13 +4147,15 @@ def _check_basic_pair_freeze_row(
             parent_ptr = row.get(
                 "l4_contract_pointer" if label == "L4" else "l9_case_pointer"
             )
-            parent_alias, parent_path = (
-                parent_ptr.split("#", 1)
-                if isinstance(parent_ptr, str) and "#" in parent_ptr
-                else (None, None)
-            )
+            parent_alias: str | None = None
+            parent_path: str | None = None
+            if isinstance(parent_ptr, str) and "#" in parent_ptr:
+                parent_alias, parent_path = parent_ptr.split("#", 1)
             if (
-                target_alias != parent_alias
+                parent_alias != label
+                or not isinstance(parent_path, str)
+                or not parent_path
+                or target_alias != parent_alias
                 or not isinstance(pointer, str)
                 or not pointer.startswith(parent_path.rstrip("/") + "/")
             ):
@@ -4264,6 +4320,16 @@ def _check_basic_pair_freeze_row(
             }
         )
     else:
+        for index, item in enumerate(dispositions):
+            if not isinstance(item, dict) or item.get("class") not in {"A", "B", "C"}:
+                failures.append(
+                    {
+                        "field": "remaining_dispositions",
+                        "index": index,
+                        "actual": item.get("class") if isinstance(item, dict) else None,
+                        "error": "invalid_disposition_class_or_row",
+                    }
+                )
         computed = {
             cls: sum(
                 1
@@ -4302,6 +4368,15 @@ def _check_basic_pair_freeze_row(
                     "expected_remaining_A_count": 0,
                     "actual": computed["A"],
                     "error": "frozen_with_unresolved_A",
+                }
+            )
+        if row.get("freeze_state") != "basic_pair_frozen":
+            failures.append(
+                {
+                    "field": "basic_pair_freeze_row/freeze_state",
+                    "expected": "basic_pair_frozen",
+                    "actual": row.get("freeze_state"),
+                    "error": "missing_or_unknown_freeze_state",
                 }
             )
 
