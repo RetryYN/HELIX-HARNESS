@@ -290,6 +290,116 @@ Refs #3510
         self.assertIn("HARNESS-E-TEMPLATE-APPLICABILITY-001", c3["missing_ids"])
         self.assertIn("HARNESS-L8-009-NORM-04", c3["missing_ids"])
 
+    def test_pr_3833_body_and_full_path_json_pointers_and_l7_alias(self) -> None:
+        """Verify full-path docs/...json#/... pointers, L6/L7 real directory names, and #3833 body pass."""
+        unit_path = Path(
+            "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION"
+        )
+        pr_3833_body = (
+            "## Summary\n"
+            "Refs #3510\n"
+            "- Red commit (`096236d9a305c659094fea4fe08ec45b9cbe0248`)\n"
+            "- Green commit (`ae62c56abf2e4872bff65aad1d0c4cfc7c7a259b`)\n"
+            "- R2 Red commit (`4d0715da52b9fa2e108fc78f58dfd08d39080de2`)\n"
+            "- R2 Green commit (`98ec841cc6f5519e19d3db41dd77289a12e359de`)\n"
+            "- L3/L10: `docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/26`, "
+            "`docs/helix-harness/L10-verification/functional-verification.json#/cases/26`\n"
+            "- L4/L9: `docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/5`, "
+            "`docs/helix-harness/L9-integration-verification/product-template-application.json#/cases/5`, "
+            "`L9#/cases/5/negative_cases/0..6`\n"
+            "- L5/L8: `docs/helix-harness/L5-detail-design/product-template-application.json#/contracts/5`, "
+            "`L5#/functions/4`, `L5#/failure_rules/68..74`, `L5#/type_contract/types/Claim`, "
+            "`docs/helix-harness/L8-unit-verification/product-template-application.json#/cases/5`, "
+            "`L8#/cases/5/negative_cases/0..6`, `L8#/normal_function_oracles/4`, `L8#/additional_unit_cases/13`\n"
+            "- L6/L7: `L6#/reconstruction`, `L7#/reconstruction`, "
+            "`docs/helix-harness/L7-function-verification/product-template-application.json#/reconstruction`\n"
+        )
+        commits = [
+            {
+                "sha": "096236d9a305c659094fea4fe08ec45b9cbe0248",
+                "subject": "test(h009): add Red unit tests for fn4 compare_kind_obligation_trace (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_kind_obligation_trace.py"
+                ],
+            },
+            {
+                "sha": "ae62c56abf2e4872bff65aad1d0c4cfc7c7a259b",
+                "subject": "feat(h009): implement fn4 compare_kind_obligation_trace (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_kind_obligation_trace.py"
+                ],
+            },
+            {
+                "sha": "4d0715da52b9fa2e108fc78f58dfd08d39080de2",
+                "subject": "test(h009): add Red tests for structural design endpoint and completion claim (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_kind_obligation_trace.py"
+                ],
+            },
+            {
+                "sha": "98ec841cc6f5519e19d3db41dd77289a12e359de",
+                "subject": "fix(h009): resolve design endpoint and completion claim structurally (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_kind_obligation_trace.py"
+                ],
+            },
+            {
+                "sha": "f1472cab1a7be560ca6a802c9077bc4ffcb9906e",
+                "subject": "test(h009): compact recipes[15]/[16] fixture overrides to base ref + diff (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json"
+                ],
+            },
+            {
+                "sha": "4856a2682e89102c9c178b0bb640df319cdc92be",
+                "subject": "test(h009): preserve recipe rebuild order in _resolve_recipe_raw (Refs #3510)",
+                "files": [
+                    "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_kind_obligation_trace.py"
+                ],
+            },
+        ]
+        report = run_all_checks(
+            pr_body=pr_3833_body,
+            base_sha="97bfea3462bf53ab96994d9135336ba265424570",
+            head_sha="4856a2682e89102c9c178b0bb640df319cdc92be",
+            unit_path=unit_path,
+            commits=commits,
+            commit_exists_fn=lambda s: True,
+            tooling_runner=lambda cmd, cwd: subprocess.CompletedProcess(
+                cmd, 0, stdout="stale=0\nfail=0", stderr=""
+            ),
+        )
+        self.assertEqual(
+            report["overall_status"],
+            "pass",
+            json.dumps(report["checks"], ensure_ascii=False, indent=2),
+        )
+        self.assertEqual(
+            report["checks"]["2_json_pointers_resolve"]["resolved_count"], 16
+        )
+
+    def test_5_feat_with_required_substring_fails_when_touching_fixtures(self) -> None:
+        """Verify 'feat: add required axes check' is NOT treated as a Red commit despite containing 'red'."""
+        commits = [
+            {
+                "sha": "aaaa111",
+                "subject": "test(h009): add Red tests",
+                "files": ["helix/unit/tests/test_fn.py"],
+            },
+            {
+                "sha": "bbbb222",
+                "subject": "feat: add required axes check",
+                "files": [
+                    "helix/unit/src/fn.py",
+                    "helix/unit/tests/fixtures/application_input.json",
+                ],
+            },
+        ]
+        res = check_tests_and_fixtures_unchanged_after_red(commits)
+        self.assertFalse(res["passed"])
+        self.assertEqual(len(res["violations"]), 1)
+        self.assertEqual(res["violations"][0]["sha"], "bbbb222")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -41,8 +41,8 @@ DEFAULT_REMOVED_MATERIAL_KEYS: tuple[str, ...] = (
 LAYER_DIR_BY_PREFIX: dict[str, str] = {
     "L4": "L4-basic-design",
     "L5": "L5-detail-design",
-    "L6": "L6-component-design",
-    "L7": "L7-implementation-design",
+    "L6": "L6-function-design",
+    "L7": "L7-function-verification",
     "L8": "L8-unit-verification",
     "L9": "L9-integration-verification",
 }
@@ -61,7 +61,9 @@ GREEN_SHA_RE = re.compile(
     r"Green(?:\s+commit)?[^`\n0-9a-f]{0,40}`?([0-9a-f]{7,40})`?",
     re.IGNORECASE,
 )
-JSON_POINTER_RE = re.compile(r"\b([A-Za-z0-9_]+)#(/[A-Za-z0-9_./~-]+)")
+JSON_POINTER_RE = re.compile(
+    r"(?<![A-Za-z0-9_./-])((?:docs/[A-Za-z0-9_./-]+\.json)|(?:[A-Za-z0-9_]+))#(/[A-Za-z0-9_./~-]+)"
+)
 DOC_ID_RE = re.compile(
     r"\b((?:HARNESS|HELIXOS|HELIXBRAIN|HELIXWEB|HELIXLABO|HELIXSECURITY|HELIXINFRA)"
     r"-(?:L(?:10|11|[1-9])|E)-[A-Za-z0-9_.-]+)\b"
@@ -177,7 +179,7 @@ def check_commit_sha_and_red_green(
             idx, c = found[0]
             resolved_reds.append((idx, c))
             subj = c.get("subject", "")
-            if subj and not (subj.startswith("test") or "red" in subj.lower()):
+            if subj and not subj.startswith(("test(", "test:")):
                 red_green_errors.append(
                     f"Red commit '{r_sha}' subject '{subj}' does not match test/Red commit convention"
                 )
@@ -196,9 +198,7 @@ def check_commit_sha_and_red_green(
             idx, c = found[0]
             resolved_greens.append((idx, c))
             subj = c.get("subject", "")
-            if subj and not (
-                subj.startswith(("feat", "fix")) or "green" in subj.lower()
-            ):
+            if subj and not subj.startswith(("feat(", "feat:", "fix(", "fix:")):
                 red_green_errors.append(
                     f"Green commit '{g_sha}' subject '{subj}' does not match feat/fix/Green commit convention"
                 )
@@ -288,7 +288,11 @@ def check_json_pointers_resolve(
     for prefix, ptr in raw_matches:
         clean_ptr = ptr.rstrip(".,;:)")
         full_expr = f"{prefix}#{clean_ptr}"
-        rel_path = pointer_map.get(prefix)
+        rel_path = (
+            prefix
+            if prefix.endswith(".json") and "/" in prefix
+            else pointer_map.get(prefix)
+        )
         if not rel_path:
             unresolved.append(
                 {
@@ -405,6 +409,7 @@ def _is_test_or_fixture_path(path_str: str) -> bool:
 def check_tests_and_fixtures_unchanged_after_red(
     commits: list[dict[str, Any]],
     explicit_red_sha: str | None = None,
+    declared_red_shas: list[str] | None = None,
 ) -> dict[str, Any]:
     """(5) Verify tests/ and fixtures are not modified in non-Red commits after Red commit."""
     if not commits:
@@ -415,19 +420,21 @@ def check_tests_and_fixtures_unchanged_after_red(
             "violations": [],
         }
 
+    declared = list(declared_red_shas or [])
+    if explicit_red_sha:
+        declared.append(explicit_red_sha)
+
     red_indices: list[int] = []
     for idx, c in enumerate(commits):
         sha = c.get("sha", "")
         subj = c.get("subject", "")
-        if explicit_red_sha and (
-            sha == explicit_red_sha or sha.startswith(explicit_red_sha)
-        ):
-            red_indices.append(idx)
-        elif not explicit_red_sha and (
-            subj.startswith("test(")
-            or subj.startswith("test:")
-            or "red" in subj.lower()
-        ):
+        is_declared = any(
+            sha == r_sha or sha.startswith(r_sha) for r_sha in declared if r_sha
+        )
+        if explicit_red_sha:
+            if is_declared:
+                red_indices.append(idx)
+        elif is_declared or subj.startswith(("test(", "test:")):
             red_indices.append(idx)
 
     if not red_indices:
@@ -724,7 +731,9 @@ def run_all_checks(
     )
     c3 = check_doc_ids_exist(pr_body, repo_root=repo_root, id_exists_fn=id_exists_fn)
     c4 = check_no_closing_keyword_3510(pr_body)
-    c5 = check_tests_and_fixtures_unchanged_after_red(resolved_commits)
+    c5 = check_tests_and_fixtures_unchanged_after_red(
+        resolved_commits, declared_red_shas=c1.get("declared_red_shas")
+    )
     c6 = check_no_removed_materials_keys(unit_path, l8_doc=l8_doc)
     c7 = check_tooling_summary(
         unit_path=unit_path, repo_root=repo_root, runner=tooling_runner
