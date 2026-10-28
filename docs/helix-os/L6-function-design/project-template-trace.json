@@ -235,7 +235,7 @@
       "oracle_ref": "HELIXOS-L7-002-FN18-compare_core_dispositions_with_source_projection_profile",
       "l8_oracle_ref": {
         "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
-        "pointer": "/function_cases/20"
+        "pointer": "/function_cases/14"
       },
       "pair_freeze_binding_ref": {
         "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
