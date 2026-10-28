@@ -5,7 +5,8 @@
   "parent": "HARNESS-L2-009",
   "status": "candidate_design_only",
   "authority_effect": "none",
-  "scope_ja": "WR89で凍結済みの公開関数5件だけをL5契約・L8 oracle・L7対へ結ぶ。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "scope_ja": "WR89で凍結済みの公開関数5件と、FN03〜FN06の履歴freeze bindingに対応する4公開関数をL5契約・L8 oracle・L7対へ結ぶ。FN04の10-29機械照合candidateは意味review pendingのまま参照する。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "pair_freeze_reference_scope_ja": "FN03/FN05/FN06のpair_freeze_binding_refとFN04のhistorical_pair_freeze_binding_refsは2026-10-28記録を履歴として保持する。FN03/FN05/FN06の10-28記録は当該HEAD 71cb9db86c2c2e7e0d9bfacaa01b5c1af14f9ddcでのfreeze成立を示さず、L5/L8全file pinは当該HEADと不一致（旧L5 e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740→現L5 a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、旧L8 e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa→現L8 3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。FN04のpair_freeze_binding_refは2026-10-29のWR139 record（revision 23ac2a9f32361c056952dce699f9015bd7799038、file SHA-256 ad2bec271261d6b2b2a74e900662176b07f0d65f5805df109b5f8785a9ec2c9b、/target_bindings/public_functions/0）を現行の機械照合candidateとして指す。同recordのsource_mainは75f51309e0b391604427fedcbdda0a2743aa690aで、L5/L8の全file SHAは当該source_mainおよびこの文書のbase HEAD 71cb9db86で同一（L5 a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、L8 3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。ただしcandidate recordのsemantic_review_statusはpending_independent_semantic_reviewであり、機械pointer照合のみを記録する。これはL5/L8の意味承認、正例・境界testの実行合格、またはこのHEADに対するfreeze成立を示さない。L7のexecution_state not_executedは維持する。",
   "source_pins": [
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
@@ -76,6 +77,116 @@
       "path": "docs/governance/audits/tdd/h009-f02a-checker-reconcile-2026-10-28.json",
       "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
       "sha256": "9b5eccc9b3c963672ccb2d15e462a72ab67f5844d2f9ac1b1afd078d8ce41b94"
+    },
+    {
+      "revision": "75f51309e0b391604427fedcbdda0a2743aa690a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "file_sha256": "a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503",
+      "selected_pointers": [
+        "/f05_detail_contract",
+        "/functions/3",
+        "/functions/3/condition_meaning_lookup_miss_writer",
+        "/functions/4",
+        "/functions/5",
+        "/functions/6",
+        "/functions/6/brain_definition_source_read_binding",
+        "/functions/6/brain_definition_source_return_writer",
+        "/selected_brain_field_definition_application_detail",
+        "/selected_source_caller_detail"
+      ]
+    },
+    {
+      "revision": "75f51309e0b391604427fedcbdda0a2743aa690a",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "file_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+      "selected_pointers": [
+        "/additional_unit_cases/10",
+        "/additional_unit_cases/11",
+        "/additional_unit_cases/12",
+        "/additional_unit_cases/13",
+        "/additional_unit_cases/14",
+        "/additional_unit_cases/15",
+        "/additional_unit_cases/16",
+        "/cases/4",
+        "/cases/5",
+        "/cases/6",
+        "/cases/7",
+        "/condition_meaning_lookup_miss_oracle",
+        "/condition_meaning_lookup_miss_oracle/coverage/unexercised",
+        "/condition_meaning_lookup_miss_oracle/nonclaims/0",
+        "/f05_explicit_skip_binding_absent_full_return_oracle",
+        "/f05_g1_g2_collection_read_partial_oracle",
+        "/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "/f05_native_normal_full_return_oracle",
+        "/f05_native_seven_member_caller_full_return_oracle",
+        "/f05_same_scan_argument_binding_verification",
+        "/f13_knowledge_recipient_leaf_verification",
+        "/input_scope_knowledge_gap_native_oracle",
+        "/normal_function_oracles/3",
+        "/normal_function_oracles/4",
+        "/normal_function_oracles/5",
+        "/normal_function_oracles/6",
+        "/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "/normal_function_oracles/6/brain_definition_source_return_oracle",
+        "/selected_brain_field_definition_application_detail_verification",
+        "/selected_brain_field_definition_application_detail_verification/cases",
+        "/selected_brain_field_definition_application_detail_verification/reader_probe_gap/direct_reader_finite_cases",
+        "/selected_brain_field_definition_application_detail_verification/unmaterialized_and_limits",
+        "/selected_source_caller_detail_verification",
+        "/selected_source_caller_detail_verification/connection_expectations",
+        "/selected_source_caller_detail_verification/expected_return_binding"
+      ]
+    },
+    {
+      "revision": "3c5eb00dec02494cf863b0847875b19f77527dbd",
+      "path": "docs/governance/audits/tdd/h009-fn3-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "e98837d37b420b75d4036bfe64537dbdbfaccf885c80e5f31255e769614cdc5c",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "3c32df7b1e4736403ba428907455002b4199a173",
+      "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "3c3817dd975ee927ea67e3acac49d69c1e00a56ba9aa19fdfc2810b662c81c06",
+      "selected_pointers": [
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "8551cff59615b5529e00729d4026ca07f8b34375",
+      "path": "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "32cb97b3a121fd149712e9c435efb5b93e77fc99cde94b6b581c954e5f7acb61",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/private_detail_contract_pairs/1",
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "6d145f481ed28e2579cbb6bab7aaec07c3386417",
+      "path": "docs/governance/audits/tdd/h009-fn6-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "462493417a3ce7159c5e86bfa93852c8f568b356b3a522567fdc25232b5b58f2",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/private_detail_contract_pairs/1",
+        "/target_bindings/private_detail_contract_pairs/2",
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "23ac2a9f32361c056952dce699f9015bd7799038",
+      "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
+      "file_sha256": "ad2bec271261d6b2b2a74e900662176b07f0d65f5805df109b5f8785a9ec2c9b",
+      "selected_pointers": [
+        "/record_id",
+        "/source_main",
+        "/target_bindings/public_functions/0",
+        "/semantic_review_status",
+        "/pins/L5_pre_sha256",
+        "/pins/L8_pre_sha256"
+      ]
     }
   ],
   "legacy_rederivation": {
@@ -210,11 +321,131 @@
         "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
         "pointer": "/cases/4"
       }
+    },
+    {
+      "id": "HARNESS-L6-009-FN03-compare_applicability",
+      "symbol": "compare_applicability",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/3"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN03-compare_applicability",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/3"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn3-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "各application policyのrequired/conditional/N/A/unresolvedを原条件・scope・版の状態として分け、候補dispositionをOS使用やN/A承認へ昇格しない。副作用なし。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/5"
+      },
+      "source_pin_refs": [
+        "#/source_pins/14",
+        "#/source_pins/15",
+        "#/source_pins/16"
+      ]
+    },
+    {
+      "id": "HARNESS-L6-009-FN04-compare_kind_obligation_trace",
+      "symbol": "compare_kind_obligation_trace",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/4"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN04-compare_kind_obligation_trace",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/4"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "unit/connection/composite固有義務とrequirement→obligation→design→pair traceの不足・異版を個別に保ち、041抽出と025/026具体設計・対oracleを別能力として扱う。副作用なし。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/6"
+      },
+      "source_pin_refs": [
+        "#/source_pins/14",
+        "#/source_pins/15",
+        "#/source_pins/17",
+        "#/source_pins/20"
+      ],
+      "historical_pair_freeze_binding_refs": [
+        {
+          "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+          "pointer": "/target_bindings/public_functions/0",
+          "revision": "3c32df7b1e4736403ba428907455002b4199a173",
+          "file_sha256": "3c3817dd975ee927ea67e3acac49d69c1e00a56ba9aa19fdfc2810b662c81c06",
+          "role": "historical_2026-10-28_record"
+        }
+      ],
+      "pair_freeze_binding_status": "current_mechanical_candidate_semantic_review_pending"
+    },
+    {
+      "id": "HARNESS-L6-009-FN05-compare_requirement_gaps_detail",
+      "symbol": "compare_requirement_gaps_detail",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/5"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN05-compare_requirement_gaps_detail",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/5"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "定義欠落・値未決・矛盾・N/A候補を区別し、原field/source/revision/scope/ownerと未完義務を保つ。候補を要求合意やOS ticket発行へ昇格しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/7"
+      },
+      "source_pin_refs": [
+        "#/source_pins/14",
+        "#/source_pins/15",
+        "#/source_pins/18"
+      ]
+    },
+    {
+      "id": "HARNESS-L6-009-FN06-compare_selected_knowledge",
+      "symbol": "compare_selected_knowledge",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/6"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN06-compare_selected_knowledge",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/6"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn6-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "選択knowledgeの版・適用scope・必須field・source状態を分け、非選択/reference_onlyを適用authorityや要求合意へ昇格しない。副作用なし。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/8"
+      },
+      "source_pin_refs": [
+        "#/source_pins/14",
+        "#/source_pins/15",
+        "#/source_pins/19"
+      ]
     }
   ],
   "out_of_scope_ja": [
     "B01 O3-O5はD-H009-T1aでretained_not_frozenのまま維持し、本対で凍結・実装しない。",
     "reentry D-H009-T3bは対象外。",
     "runtime、正式wire schema、実source資格、OS登録/使用、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
-  ]
+  ],
+  "source_pin_ref_rule_ja": "FN03〜FN06の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。既存source_pins/0..13は既存5行の履歴pinのまま維持する。"
 }
