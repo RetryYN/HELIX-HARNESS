@@ -25,7 +25,10 @@ def _call_fn11(testcase, packet):
         testcase.fail(
             "FN11 public project_cross_design_candidate_refs is not implemented"
         )
-    return function(packet)
+    before = copy.deepcopy(packet)
+    result = function(packet)
+    testcase.assertEqual(packet, before, "FN11 must preserve its RawValue input")
+    return result
 
 
 def _behavior_signature(result):

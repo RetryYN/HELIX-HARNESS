@@ -552,9 +552,7 @@ class TestCompareKindObligationTrace(unittest.TestCase):
 
         self.assertEqual(validated["input"], raw)
         self.assertEqual(res["input_binding"], raw["binding"])
-        self.assertEqual(
-            applicability["producer_symbol"], "compare_applicability"
-        )
+        self.assertEqual(applicability["producer_symbol"], "compare_applicability")
         self.assertEqual(applicability["input_binding"], raw["binding"])
         material = res["material"]
         self.assertIn(raw["obligations"][0], material["obligations"])
