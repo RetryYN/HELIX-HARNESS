@@ -227,7 +227,39 @@
         }
       ],
       "l8_refinement_return_ja": "4 subassertionのtyped_mutation具体化は、WR138 SYNTHETIC-T-EXTRAと同じくL8設計の後続作業へ戻す。今回はL5/L8の意味を変更せず、材料のないNEG findingを生成しない。",
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
+      "tdd_history_refs": [
+        {
+          "red_commit": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53",
+          "green_commit": "f4df86a6c241bc981df24a4019c7bc38344c9278",
+          "test_names": [
+            "test_single_snapshot_preserves_original_obligations_as_not_evaluated",
+            "test_metadata_only_change_and_bulk_identifier_rename_do_not_change_result_state",
+            "test_different_template_or_scope_producer_material_does_not_cross_bind",
+            "test_obligation_ref_order_and_duplicate_occurrences_are_preserved",
+            "test_validator_input_issue_locators_are_retained_in_fn8_stop"
+          ]
+        }
+      ],
+      "source_pin_refs": [
+        "#/source_pins/10",
+        "#/source_pins/11",
+        "#/source_pins/12",
+        "#/source_pins/13",
+        "#/source_pins/14",
+        "#/source_pins/15"
+      ],
+      "review_r1_resolution_ja": "M1/M2: unit外L8文書をimport時に読むtest_fn8_b02_negative_claim_refinement.pyを再構築branchへ含めず、B02-NEG-01..04はstopped_semantic_subassertionsの停止記録に留める。locator保持はvalidatorでinput=nullとなる入力を使うtest_validator_input_issue_locators_are_retained_in_fn8_stopを、FN8未実装の最新main起点でRedに含めた。Red時は公開FN8関数がなく5件すべて失敗し、source-only Greenで5件が通る。",
+      "locator_intermediate_observation": {
+        "revision": "75ed6bfdcf10a3134c512a4d61f9cdd4f51cfc28",
+        "source_pin_ref": "#/source_pins/15",
+        "test": "test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop",
+        "result": "FN8 core/exportあり・locator保持修正前にvalidator経由の単独testを実行し、1 test failure。例外reasonはvalidated input binding unavailableで、/obligations/0/ref/identityを含まず、locator欠落を検出した。",
+        "bounded_command": "python3 scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd <worktree-at-revision> -- env PYTHONPATH=helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src:helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests python3 -B -m unittest test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop -v",
+        "artifact_path": "/tmp/wr143-3851-prelocator-locator-test-20261029.json",
+        "artifact_sha256": "b48e93d2a0700a2ff89715cadc4af1b1a67aa0b9298901561078a932eb5f4a3a"
+      }
     },
     {
       "id": "HARNESS-L7-009-FN11-project_cross_design_candidate_refs",
@@ -1108,7 +1140,47 @@
       "selected_pointers": [
         "/target_bindings/public_functions/0"
       ]
+    },
+    {
+      "revision": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
+      "file_sha256": "6583a3baab2b7dd92aeb5ff85f832f89cc4b7ea4c2cfc58ca6cc32847dcf8bfc",
+      "selected_pointers": []
+    },
+    {
+      "revision": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "f290418075c7d6cf8949f9239b69b3b5581211b3a83e264aa5cbd4a0ae9a7499",
+      "selected_pointers": [
+        "/source_provenance/fn8_add20_case_reference",
+        "/source_provenance/fn8_add20_recipe_reference",
+        "/recipes/27"
+      ]
+    },
+    {
+      "revision": "471dc07796e5245943c2e45264c1f4f16ad154d0",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "98f700b0c5fdeaa0a49dfd50294d173f10634da1cb3844cd7f366bf0e2d61ec3",
+      "selected_pointers": []
+    },
+    {
+      "revision": "f4df86a6c241bc981df24a4019c7bc38344c9278",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py",
+      "file_sha256": "89d9b32fbeb118f931bfcdc0629327e9f0f2d2ad3a35e3406136c47660dc4473",
+      "selected_pointers": []
+    },
+    {
+      "revision": "f4df86a6c241bc981df24a4019c7bc38344c9278",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "b2f0ff6524a4b76463ba86b8819b29064cb745cdb7ff2bf2408dec62721b3e7d",
+      "selected_pointers": []
+    },
+    {
+      "revision": "75ed6bfdcf10a3134c512a4d61f9cdd4f51cfc28",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py",
+      "file_sha256": "0756ee45c2fc6fff6fdef24c69903ea31372114f148babb04ed7eb402abc315d",
+      "selected_pointers": []
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAIL結果artifactと、同revisionのsource whole-file SHAを結ぶ。"
 }
