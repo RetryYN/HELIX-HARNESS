@@ -1147,6 +1147,14 @@ def _extract_neg_key(item: dict[str, Any]) -> str:
     return ""
 
 
+def _negative_case_identity(item: dict[str, Any]) -> str | None:
+    for key in ("integration_case_ref", "basic_case_ref"):
+        value = item.get(key)
+        if isinstance(value, str) and value.strip():
+            return value
+    return None
+
+
 def _normalize_neg_item(item: dict[str, Any], layer: str) -> dict[str, Any]:
     return {
         "id": item.get("id"),
@@ -1239,6 +1247,38 @@ def check_neg_4way_match(
         n9_list = c9.get("negative_cases", []) if isinstance(c9, dict) else []
         n8_list = c8.get("negative_cases", []) if isinstance(c8, dict) else []
 
+        referenced_rule_ids = {
+            row.get("rule_ref")
+            for row in n8_list
+            if isinstance(row, dict) and isinstance(row.get("rule_ref"), str)
+        }
+        relevant_l5_rules = [
+            rule
+            for rule in l5_rules_all
+            if isinstance(rule, dict)
+            and (
+                rule.get("contract_ref") == c5_id
+                or rule.get("integration_case_ref") == c9_id
+                or rule.get("id") in referenced_rule_ids
+            )
+        ]
+        layer_rows = {
+            "L4": [row for row in n4_list if isinstance(row, dict)],
+            "L9": [row for row in n9_list if isinstance(row, dict)],
+            "L8": [row for row in n8_list if isinstance(row, dict)],
+            "L5": relevant_l5_rules,
+        }
+        repeated_codes: set[str] = set()
+        for rows in layer_rows.values():
+            code_counts: dict[str, int] = {}
+            for row in rows:
+                code = _extract_neg_key(row)
+                if code:
+                    code_counts[code] = code_counts.get(code, 0) + 1
+            repeated_codes.update(
+                code for code, count in code_counts.items() if count > 1
+            )
+
         # Collect corresponding L5 failure_rules for this contract/case
         n5_list: list[dict[str, Any]] = []
         for n8 in n8_list:
@@ -1249,6 +1289,18 @@ def check_neg_4way_match(
                 n5_list.append(l5_rules_by_id[rref])
                 continue
             code = _extract_neg_key(n8)
+            if code in repeated_codes:
+                identity = _negative_case_identity(n8)
+                matches = [
+                    rule
+                    for rule in relevant_l5_rules
+                    if _extract_neg_key(rule) == code
+                    and identity is not None
+                    and _negative_case_identity(rule) == identity
+                ]
+                if len(matches) == 1:
+                    n5_list.append(matches[0])
+                continue
             if (c5_id, code) in l5_rules_by_code:
                 n5_list.append(l5_rules_by_code[(c5_id, code)])
         if not n5_list:
@@ -1279,10 +1331,73 @@ def check_neg_4way_match(
                 }
             )
 
-        map4 = {_extract_neg_key(x): x for x in n4_list if isinstance(x, dict)}
-        map9 = {_extract_neg_key(x): x for x in n9_list if isinstance(x, dict)}
-        map8 = {_extract_neg_key(x): x for x in n8_list if isinstance(x, dict)}
-        map5 = {_extract_neg_key(x): x for x in n5_list if isinstance(x, dict)}
+        invalid_case_keys: dict[str, set[tuple[str, str]]] = {}
+        for layer_name, rows in (
+            ("L4", layer_rows["L4"]),
+            ("L9", layer_rows["L9"]),
+            ("L8", layer_rows["L8"]),
+            ("L5", relevant_l5_rules),
+        ):
+            identities_by_code: dict[str, list[str]] = {}
+            for row in rows:
+                code = _extract_neg_key(row)
+                if code not in repeated_codes:
+                    continue
+                identity = _negative_case_identity(row)
+                if identity is None:
+                    failures.append(
+                        {
+                            "check": "CHK-NEG-4WAY-MATCH",
+                            "case_id": row.get("id") or code,
+                            "attribute": "case_identity",
+                            "layer": layer_name,
+                            "code": code,
+                            "reason": "missing_or_invalid",
+                        }
+                    )
+                    continue
+                identities_by_code.setdefault(code, []).append(identity)
+            invalid: set[tuple[str, str]] = set()
+            for code, identities in identities_by_code.items():
+                identity_counts: dict[str, int] = {}
+                for identity in identities:
+                    identity_counts[identity] = identity_counts.get(identity, 0) + 1
+                for identity, count in identity_counts.items():
+                    if count > 1:
+                        invalid.add((code, identity))
+                        failures.append(
+                            {
+                                "check": "CHK-NEG-4WAY-MATCH",
+                                "case_id": identity,
+                                "attribute": "duplicate_case_identity",
+                                "layer": layer_name,
+                                "code": code,
+                            }
+                        )
+            invalid_case_keys[layer_name] = invalid
+
+        def build_case_map(
+            layer_name: str, rows: list[dict[str, Any]]
+        ) -> dict[Any, dict[str, Any]]:
+            result: dict[Any, dict[str, Any]] = {}
+            for row in rows:
+                code = _extract_neg_key(row)
+                if code in repeated_codes:
+                    identity = _negative_case_identity(row)
+                    if identity is None or (code, identity) in invalid_case_keys.get(
+                        layer_name, set()
+                    ):
+                        continue
+                    key: Any = (code, identity)
+                else:
+                    key = code
+                result[key] = row
+            return result
+
+        map4 = build_case_map("L4", layer_rows["L4"])
+        map9 = build_case_map("L9", layer_rows["L9"])
+        map8 = build_case_map("L8", layer_rows["L8"])
+        map5 = build_case_map("L5", [row for row in n5_list if isinstance(row, dict)])
 
         all_keys = list(
             dict.fromkeys(

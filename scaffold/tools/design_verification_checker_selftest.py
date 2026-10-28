@@ -45,7 +45,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         return layer["cases"][0].get("negative_cases", [])
 
     @staticmethod
-    def _repeated_code_layers(order_by_layer: dict[str, list[str]]) -> tuple[
+    def _repeated_code_layers(
+        order_by_layer: dict[str, list[str]],
+    ) -> tuple[
         dict[str, object], dict[str, object], dict[str, object], dict[str, object]
     ]:
         cases = {
@@ -103,11 +105,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 }
             )
         return (
-            {
-                "contracts": [
-                    {"id": "L4-01", "negative_classifications": l4_rows}
-                ]
-            },
+            {"contracts": [{"id": "L4-01", "negative_classifications": l4_rows}]},
             {"cases": [{"id": "L9-01", "negative_cases": l9_rows}]},
             {"cases": [{"id": "L8-01", "negative_cases": l8_rows}]},
             {"contracts": [{"id": "L5-01"}], "failure_rules": l5_rows},
@@ -117,17 +115,13 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         layers = self._repeated_code_layers(
             {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
         )
-        baseline = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        baseline = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
 
         mutated = copy.deepcopy(layers)
         mutated[2]["cases"][0]["negative_cases"][0]["expected"] = (
             "mutated expectation for case A"
         )
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *mutated
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *mutated)
         with self.subTest(observation="baseline"):
             self.assertTrue(baseline["passed"], msg=baseline["failures"])
             self.assertEqual(baseline["matched_case_count"], 2)
@@ -137,7 +131,32 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
             self.assertTrue(result["failures"])
 
-    def test_chk_neg_4way_repeated_code_requires_unambiguous_case_identity(self) -> None:
+        fallback_layers = copy.deepcopy(layers)
+        for row in fallback_layers[2]["cases"][0]["negative_cases"]:
+            row.pop("rule_ref", None)
+        fallback_baseline = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *fallback_layers
+        )
+        fallback_mutation = copy.deepcopy(fallback_layers)
+        fallback_mutation[2]["cases"][0]["negative_cases"][0]["expected"] = (
+            "mutated fallback expectation for case A"
+        )
+        fallback_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *fallback_mutation
+        )
+        with self.subTest(observation="identity_fallback"):
+            self.assertTrue(
+                fallback_baseline["passed"], msg=fallback_baseline["failures"]
+            )
+            self.assertEqual(fallback_baseline["matched_case_count"], 2)
+            self.assertFalse(
+                fallback_result["passed"],
+                msg="identity fallback must retain each repeated-code case",
+            )
+
+    def test_chk_neg_4way_repeated_code_requires_unambiguous_case_identity(
+        self,
+    ) -> None:
         layers = self._repeated_code_layers(
             {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
         )
@@ -160,6 +179,18 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 )
                 self.assertTrue(result["failures"])
 
+        ambiguous_l5 = copy.deepcopy(layers)
+        extra_rule = copy.deepcopy(ambiguous_l5[3]["failure_rules"][0])
+        extra_rule["id"] = "L5-R-A-duplicate-identity"
+        ambiguous_l5[3]["failure_rules"].append(extra_rule)
+        selected_ref_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *ambiguous_l5
+        )
+        self.assertFalse(
+            selected_ref_result["passed"],
+            msg="an unselected duplicate L5 identity must fail closed",
+        )
+
         # The existing single-code contract remains valid without an explicit identity.
         unique = copy.deepcopy(layers)
         for layer in unique:
@@ -169,9 +200,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             for row in rows:
                 row.pop("integration_case_ref", None)
         # Select only the first row in each layer to exercise the established unique-code case.
-        unique[0]["contracts"][0]["negative_classifications"] = unique[0][
-            "contracts"
-        ][0]["negative_classifications"][:1]
+        unique[0]["contracts"][0]["negative_classifications"] = unique[0]["contracts"][
+            0
+        ]["negative_classifications"][:1]
         unique[1]["cases"][0]["negative_cases"] = unique[1]["cases"][0][
             "negative_cases"
         ][:1]
@@ -179,9 +210,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             "negative_cases"
         ][:1]
         unique[3]["failure_rules"] = unique[3]["failure_rules"][:1]
-        control = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *unique
-        )
+        control = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *unique)
         self.assertTrue(control["passed"], msg=control["failures"])
         self.assertEqual(control["matched_case_count"], 1)
 
@@ -194,9 +223,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "L5": ["B", "A"],
             }
         )
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        l9_case_b = layers[1]["cases"][0]["negative_cases"][0]
+        l9_case_b["basic_case_ref"] = l9_case_b.pop("integration_case_ref")
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertTrue(result["passed"], msg=result["failures"])
         self.assertEqual(result["matched_case_count"], 2)
 
