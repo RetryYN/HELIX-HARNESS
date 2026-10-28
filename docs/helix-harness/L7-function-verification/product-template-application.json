@@ -1,5 +1,5 @@
 {
-  "id": "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01",
+  "id": "HARNESS-L7-009-F03-SOURCE-UNRESOLVED-MATERIALS",
   "layer": "L7",
   "authority_effect": "none",
   "status": "not_executed",
@@ -32,5 +32,6 @@
     "local_paths": "contrast.provenance等のlocal pathは著述訂正の来歴だけ。全3caseはこのsectionの埋込patchと固定git seedで再構成でき、local driver又はignored fileを要しない。",
     "canonical_hash": "input/expected及びselected objectはensure_ascii=False,sort_keys=True,separators=(comma,colon)のUTF8 SHA256。",
     "source_hash": "source.content_bytesは固定原文字列literalのUTF8 bytesをhashする。body parse値のcanonical hashへ置換しない。"
-  }
+  },
+  "unit_oracle_ref": "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01"
 }
