@@ -721,6 +721,49 @@ class TestOracleNonfillClaimDispatch(unittest.TestCase):
         self.assertIn(BACKFLOW, str(caught.exception))
         self.assertEqual(raw_dup_dfact, raw_before)
 
+        # (d) R2-F3: rule74 basis_refs with unregistered/unresolved source ref -> unknown_reentry (core_owner)
+        raw_r74_unregistered = _f06_neg04_input()
+        unreg_ref = copy.deepcopy(raw_r74_unregistered["sources"][0]["ref"])
+        unreg_ref["identity"] = "not-registered"
+        raw_r74_unregistered["claims"][0]["basis_refs"] = [unreg_ref]
+        raw_before, _v, context = _public_context(raw_r74_unregistered, self)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        self.assertIn("F05/F06/unknown_reentry/witness", str(caught.exception))
+        self.assertIn("owner=core_owner", str(caught.exception))
+        self.assertIn(BACKFLOW, str(caught.exception))
+        self.assertEqual(raw_r74_unregistered, raw_before)
+
+        # (e) R2-F3: rule74 basis_refs with qualified non-owner derived_view source -> fires threshold_fabricated and preserves basis witness
+        raw_r74_view_basis = _f06_neg04_input()
+        view_basis_ref = _add_qualified_source(
+            raw_r74_view_basis,
+            identity="synthetic-non-owner-view-basis",
+            revision="synthetic-rev-B",
+            role="derived_view",
+            content={
+                "binding": copy.deepcopy(raw_r74_view_basis["binding"]),
+                "rendered_view": "表示用の既定閾値ラベル（owner意味資料ではない）",
+            },
+        )
+        raw_r74_view_basis["claims"][0]["basis_refs"] = [copy.deepcopy(view_basis_ref)]
+        raw_before, _v, context = _public_context(raw_r74_view_basis, self)
+        result_view_basis = compare_oracle_and_view_boundary(context)
+        self.assertEqual(raw_r74_view_basis, raw_before)
+        self.assertEqual(len(result_view_basis["findings"]), 1)
+        self.assertEqual(result_view_basis["findings"][0]["code"], RULE74_CODE)
+        self.assertEqual(result_view_basis["findings"][0]["state"], "unknown")
+        self.assertEqual(
+            result_view_basis["findings"][0]["backflow_owner"], "core_owner"
+        )
+        self.assertEqual(
+            result_view_basis["findings"][0]["source_refs"],
+            [
+                copy.deepcopy(raw_before["sources"][1]["ref"]),
+                copy.deepcopy(view_basis_ref),
+            ],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

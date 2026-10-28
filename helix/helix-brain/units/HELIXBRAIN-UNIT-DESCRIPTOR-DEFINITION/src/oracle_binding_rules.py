@@ -61,7 +61,7 @@ def _observation(parent, member, locator):
     return {"locator": locator + "/" + member, "original_read": original}
 
 
-def _usable_source_matches(validated, ref, *, required_role):
+def _usable_source_matches(validated, ref, *, required_role=None):
     from descriptor_definitions import _ref_same, _source_qualification_ok
 
     raw = validated["input"]
@@ -71,7 +71,7 @@ def _usable_source_matches(validated, ref, *, required_role):
         if _ref_same(source.get("ref"), ref)
     ]
     if not matches or any(
-        source.get("role") != required_role
+        (required_role is not None and source.get("role") != required_role)
         or not _source_qualification_ok(raw, source)
         or any(
             _ref_same(source["ref"], bad) for bad in validated["unusable_source_refs"]
@@ -305,11 +305,18 @@ def _project_rule74_claim(validated, evaluation, claim_index, claim, binding):
     if not isinstance(basis_refs, list):
         _unknown_reentry("witness", "core_owner")
     raw = validated["input"]
+    basis_witnesses = []
     for basis_ref in basis_refs:
         if not _known_ref(basis_ref):
             _unknown_reentry("witness", "core_owner")
+        resolved_basis = _usable_source_matches(validated, basis_ref)
+        if not resolved_basis or len(resolved_basis) != 1:
+            _unknown_reentry("witness", "core_owner")
         if _usable_source_matches(validated, basis_ref, required_role="semantic_json"):
             _unknown_reentry("witness", "core_owner")
+        for item in resolved_basis:
+            if item not in basis_witnesses:
+                basis_witnesses.append(item)
 
     fact_matches = _matching_descriptor_facts(
         raw, evaluation, claim["subject_ref"], binding, kind_filter="measurement"
@@ -341,7 +348,7 @@ def _project_rule74_claim(validated, evaluation, claim_index, claim, binding):
     if not value_sources:
         _unknown_reentry("witness", "core_owner")
 
-    witness_indices = {index for index, _ in value_sources}
+    witness_indices = {index for index, _ in value_sources + basis_witnesses}
     source_refs = [
         copy.deepcopy(source["ref"])
         for index, source in enumerate(raw["sources"])
