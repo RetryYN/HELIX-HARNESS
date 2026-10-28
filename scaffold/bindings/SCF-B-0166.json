@@ -1,0 +1,148 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0166",
+  "kind": "scaffold",
+  "title": "L3〜L10設計検証checker・関数単位凍結記録機械生成ツール",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS 設計検証・ペア凍結・品質保証機構（HARNESS-L3-001/003/004/005/015/040/041/056、HELIXOS-L3-020）",
+  "state": "registered",
+  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『いつまで手書きを増やすのか』『品質保証どうやってるのか謎』への対応順序決定）およびPR #3774でmergeされた docs/governance/design-verification-quality-assurance.md のSection 2〜6に基づき、Section 4の機械検査（CHK-PIN-SHA256、CHK-JSON-POINTER、CHK-PAIR-BIDIR-ID、CHK-OWNERSHIP-CAP-L8L9/L3L6、CHK-NEG-4WAY-MATCH、およびCHK-PUBLIC-FN-FREEZE・CHK-L3-OBLIGATION-MAPの機械出力部分と判断待ち出力）とSection 5の凍結記録の機械生成・既存凍結記録4件の照合監査をscaffold/tools/に実装する。正式な新世代CI（HARNESS005/OS020 L4〜L7）が構築されるまでの仮設checkerとしてScaffold Binding下で管理する。",
+  "upstream": [
+    {
+      "path": "docs/governance/design-verification-quality-assurance.md",
+      "sha256": "d4204c0db76ea037dee07b7322e89b3533dc6ed668bb92ff32edabdcce029e08",
+      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+      "note": "導出元L3要件: #/requirements/58 (HARNESS-L3-001-F01), #/requirements/51..52 (056-F01..02), #/requirements/54..57 (040-F01..04), #/requirements/69 (004-F01), #/requirements/44..46 (041-F01..03), #/requirements/31..33,36..39 (005-F01..03,06..09), #/requirements/40..43 (015-F01..04), #/requirements/64,66 (003-F01,03)。"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+      "note": "対の導出元L10検証: #/cases/58 (HARNESS-L10-001-F01), #/cases/51..52 (056-F01..02), #/cases/54..57 (040-F01..04), #/cases/69 (004-F01), #/cases/44..46 (041-F01..03), #/cases/31..33,36..39 (005-F01..03,06..09), #/cases/40..43 (015-F01..04), #/cases/64,66 (003-F01,03)。"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+      "note": "導出元HELIX-OS L3要件: #/requirements/37..39 (HELIXOS-L3-020-F01..F03)。"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+      "note": "対の導出元HELIX-OS L10検証: #/cases/37..39 (HELIXOS-L10-020-F01..F03)。"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "再構築の原則・scaffold境界・旧archive静的参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+      "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+      "note": "LEGACY-ASSET-DA012A9B04D5BE9419CE (27-90行 §0, CIS-R-04..08): verification obligation導出と欠落fail-close。静的read-only参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+      "sha256": "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
+      "note": "LEGACY-ASSET-79B70809D0A1EE2D5392 (14-35行 GH-NFR-009..011): 変更L・上下隣接・対応Vペア・trace consumerの影響検査。静的read-only参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
+      "sha256": "0c5dd33f48710ae692c5ae71b63996f0ba2f8aab1af417cf33d5c02260c76c73",
+      "note": "LEGACY-ASSET-08BD701EF2577835D9F7 (19-40行 SRV-FR-001..014): pair_freeze_passと再発findingのdetector化。静的read-only参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+      "sha256": "7c18b3f208886c443957f4cdbf919de77da233e6759007b8501624c054e7d099",
+      "note": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6 (1-39行): 旧GitHub Actions集約check。静的read-only参照のみ。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md",
+      "sha256": "459b0454d97a6d991be963703f20238e38f0eba6684b8035f067d54458032b83",
+      "note": "LEGACY-ASSET-68D46138F1FA40748C52 (1-50行): 右側Reverseが作る最小契約。静的read-only参照のみ。"
+    }
+  ],
+  "role": "design-verification-checker-and-freeze-generator-scaffold",
+  "obligations": [
+    "docs/governance/design-verification-quality-assurance.md Section 6.1の承認済みL3/L10契約とSection 2.1の旧HELIX asset（行番号付き）を導出元として記録し、同書に無い検査・gate・容量上限（byte/KB長の一律FAIL）を追加しない。",
+    "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCH（L4↔L9↔L8↔L5の負例件数・7属性・副作用0一致）をSection 4のJSON形式で出力する。",
+    "CHK-PUBLIC-FN-FREEZEおよびCHK-L3-OBLIGATION-MAPは、機械で判定できる部分（公開関数/private detailの対象列挙、L5#/functions/*とvisibility検査、L8 unit_case_refs/oracle_ref解決、private detailの戻し先/結線先有無、O1..OnのL5/L8 pointer非空、blocking_a_count==0、未参照branch一覧）を出力し、人の意味判断が要る部分はhuman_judgment_pendingとして明示出力する。",
+    "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、4層負例一致、head_entity_counts、verification）の一致・差分を出力できること。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。"
+  ],
+  "connections": {
+    "consumers": [
+      "#3510 設計検証品質保証と手書き凍結記録の廃止",
+      "#3547 HARNESS009・BRAIN032・OS002 関数単位ペア凍結と接続確認",
+      "後続のHARNESS005 / OS020 正式設計検証CI機構"
+    ],
+    "dependencies": [
+      "Python標準ライブラリ（argparse, datetime, hashlib, json, pathlib, re, subprocess, sys, typing）",
+      "git CLI（git show / git log / git rev-parse）"
+    ],
+    "boundary": "scaffold/tools/配下の仮設checkerとgeneratorのみ。.github/workflows/やbranch protectionは変更せず、要求意味・承認・完了・authorityを生成しない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/tools/design_verification_checker.py check-freeze <freeze_json...>",
+      "python3 -B scaffold/tools/design_verification_checker.py generate-freeze --input <decl_json> [--output <out_json>]",
+      "python3 -B scaffold/tools/design_verification_checker.py check-pair --left <left_json> --right <right_json>",
+      "python3 -B scaffold/tools/design_verification_checker.py check-child --l4 <l4> --l9 <l9> --l5 <l5> --l8 <l8>",
+      "python3 -B scaffold/tools/design_verification_checker_selftest.py"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "byte/KB長による一律FAIL判定の追加",
+      ".github/workflows/やbranch protectionの変更",
+      "既存の手書き凍結記録の書き換え",
+      "要求・承認・完了・authorityの生成"
+    ]
+  },
+  "artifacts": [
+    "scaffold/tools/design_verification_checker.py",
+    "scaffold/tools/design_verification_checker_selftest.py",
+    "scaffold/bindings/SCF-B-0166.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/tools/design_verification_checker_selftest.py",
+      "python3 -B scaffold/tools/design_verification_checker.py check-freeze docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "CHK-PIN-SHA256: corrupt raw SHA-256 and canonical_json_sha256",
+      "CHK-JSON-POINTER: out-of-range 0..N index and unpinned removed material reference",
+      "CHK-PAIR-BIDIR-ID: asymmetric reverse link and /completion/negative_case_count mismatch",
+      "CHK-OWNERSHIP-CAP-L8L9 / L3L6: forbidden key in L8 and L3, plus scope_pointer filtering",
+      "CHK-NEG-4WAY-MATCH: 4-layer count mismatch, 7-attribute mismatch, and missing 0-side-effect proof",
+      "CHK-PUBLIC-FN-FREEZE: private function frozen as public, unresolved unit_case_refs, missing reentry owner, and unparsed_record_shape vs design violation (F3)",
+      "CHK-L3-OBLIGATION-MAP: empty l8_pointers in string/dict obligation (F1), self-reported status override (F1), non-zero blocking_a_count, and unreferenced L9 branch",
+      "Zero-count fail-close (F2): 0 checked items or missing layer documents yield status=not_evaluated (with reason) and passed=False across PIN, PTR, PAIR, NEG, FN, OBL, and head_entity_counts",
+      "TICKET-CI-PROFILE-DEFERRAL: missing ci_profile_deferral_ticket and missing required subfield"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-HARNESS（HARNESS005/015/040/041/056）およびHELIX-OS（OS020）の正式な設計検証・ペア凍結CI機構",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-28",
+  "updated": "2026-10-28"
+}
