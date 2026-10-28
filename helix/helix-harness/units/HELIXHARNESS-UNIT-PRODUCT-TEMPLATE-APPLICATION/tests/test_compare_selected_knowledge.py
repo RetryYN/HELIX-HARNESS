@@ -1,7 +1,6 @@
 """Unit tests for compare_selected_knowledge (HARNESS-L5-009-compare_selected_knowledge / FN6)."""
 
 import copy
-import hashlib
 import json
 from pathlib import Path
 import sys
@@ -11,6 +10,11 @@ UNIT_DIR = Path(__file__).resolve().parents[1]
 SRC_DIR = UNIT_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
+from _selected_knowledge_test_helpers import (
+    _rename_all_identifiers,
+    _rename_id,
+    _same_ref_core,
+)  # noqa: E402
 
 from application_required_axes import compare_required_axes  # noqa: E402
 from application_validation import validate_application_input  # noqa: E402
@@ -39,44 +43,6 @@ def _resolve_recipe_raw(recipe_id):
     if recipe.get("source_preparation") == "CORE-FIXTURE-SOURCE-REBUILD-01":
         _rebuild_source_graph(raw)
     return raw
-
-
-def _rename_id(val):
-    return "id-" + hashlib.sha256(val.encode("utf-8")).hexdigest()[:12]
-
-
-def _rename_all_identifiers(obj):
-    """Recursively obfuscate all synthetic/fixture identifiers so no literal substring survives."""
-    if isinstance(obj, dict):
-        out = {}
-        for k, v in obj.items():
-            if k in ("identity", "owner", "actor", "decider"):
-                out[k] = _rename_id(v) if isinstance(v, str) else v
-            elif k in (
-                "field",
-                "template",
-                "application_contract",
-                "subject",
-            ) and isinstance(v, str):
-                out[k] = _rename_id(v)
-            else:
-                out[k] = _rename_all_identifiers(v)
-        return out
-    if isinstance(obj, list):
-        return [_rename_all_identifiers(x) for x in obj]
-    return obj
-
-
-def _same_ref_core(left, right):
-    if not isinstance(left, dict) or not isinstance(right, dict):
-        return False
-    return (
-        left.get("identity") == right.get("identity")
-        and left.get("revision") == right.get("revision")
-        and left.get("scope") == right.get("scope")
-        and left.get("owner") == right.get("owner")
-        and left.get("source_locator") == right.get("source_locator")
-    )
 
 
 class TestCompareSelectedKnowledge(unittest.TestCase):
