@@ -216,7 +216,6 @@ DERIVATION_MAP: dict[str, dict[str, Any]] = {
 
 FORBIDDEN_MATERIAL_KEYS_COMMON: set[str] = {
     "fixture_patch",
-    "same_invocation",
     "rfc6902_copy_ops",
     "rfc6902_patch",
     "literal_materialization_contract",
@@ -226,7 +225,10 @@ FORBIDDEN_MATERIAL_KEYS_COMMON: set[str] = {
     "full_return",
 }
 
-FORBIDDEN_MATERIAL_KEYS_L8L9: set[str] = FORBIDDEN_MATERIAL_KEYS_COMMON | {"seed"}
+FORBIDDEN_MATERIAL_KEYS_L8L9: set[str] = FORBIDDEN_MATERIAL_KEYS_COMMON | {
+    "seed",
+    "same_invocation",
+}
 
 ALLOWED_SHA256_ANCESTOR_KEYS: set[str] = {
     "source_pins",
@@ -903,6 +905,33 @@ def check_pair_bidir_id(
             }
         )
 
+    reverse_ref_keys: tuple[str, ...] = (
+        (
+            "requirement_ref",
+            "design_ref",
+            "contract_ref",
+            "detail_design_ref",
+            "function_design_ref",
+        )
+        if left_key == "requirements"
+        else (
+            "design_ref",
+            "contract_ref",
+            "l4_contract_ref",
+            "l5_contract_ref",
+            "detail_design_ref",
+            "function_design_ref",
+            "requirement_ref",
+        )
+    )
+
+    def _pick_reverse_ref(ritem: dict[str, Any]) -> Any:
+        for rk in reverse_ref_keys:
+            val = ritem.get(rk)
+            if val:
+                return val
+        return None
+
     for iid, (i, item) in l_by_id.items():
         forward_ref = (
             item.get("oracle_ref")
@@ -924,13 +953,7 @@ def check_pair_bidir_id(
             )
             continue
         ri, ritem = r_by_id[forward_ref]
-        back_ref = (
-            ritem.get("requirement_ref")
-            or ritem.get("design_ref")
-            or ritem.get("contract_ref")
-            or ritem.get("detail_design_ref")
-            or ritem.get("function_design_ref")
-        )
+        back_ref = _pick_reverse_ref(ritem)
         if back_ref != iid:
             failures.append(
                 {
@@ -945,13 +968,7 @@ def check_pair_bidir_id(
             )
 
     for rid, (ri, ritem) in r_by_id.items():
-        back_ref = (
-            ritem.get("requirement_ref")
-            or ritem.get("design_ref")
-            or ritem.get("contract_ref")
-            or ritem.get("detail_design_ref")
-            or ritem.get("function_design_ref")
-        )
+        back_ref = _pick_reverse_ref(ritem)
         if not isinstance(back_ref, str) or back_ref not in l_by_id:
             failures.append(
                 {
