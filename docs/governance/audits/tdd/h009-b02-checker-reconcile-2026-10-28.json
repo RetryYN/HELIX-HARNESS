@@ -10,67 +10,91 @@
     "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
     "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
     "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "L7": "docs/helix-harness/L7-function-verification/product-template-application.json",
     "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json",
     "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json"
   },
   "record_id": "HARNESS009-B02-CHECKER-RECONCILE-20261028",
   "record_kind": "function_scoped_l5_l8_pair_freeze_record",
   "slice_id": "D-H009-T1b",
-  "request_id": "WR-CLAUDE-H009-T1B-3547-20261028-55",
+  "request_id": "WR119-H009-B02-RECONCILE",
   "resolves_disposition_ref": "DISP1#/dispositions/13",
   "legacy_and_failure_basis": [
     {
       "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
       "lines": "16–60, 81–92",
-      "keep_ja": "適用条件、exact set、未確定理由、N/Aと不足返却を保持する。",
-      "change_ja": "CORE/BRAIN/OSの役割を現L3/L4の境界へ割り当てる。"
+      "keep_ja": "候補templateのexact set・適用unknown・理由/再評価条件付きN/A・不足のBackflow返却を保持し、AI/言語/project差で論点を増減させない。",
+      "change_ja": "BRAIN(032)・HARNESS-CORE(009)・HELIX-OS(002)の3機構へ責務を分離し、異domain/risk/scopeの比較境界を個別に残して同一set強制を拒否する。"
     },
     {
       "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
       "lines": "33–108",
-      "keep_ja": "I/O、副作用、failure、consumer/oracle境界を意味比較する。",
-      "change_ja": "現在の層ごとに対象と参照を分けて宣言する。"
+      "keep_ja": "I/O・副作用none・failure・consumer/oracleを保持し、出力件数一致だけで意味同等とみなさずmissing/extra義務と未評価範囲を返す。",
+      "change_ja": "L8にはU-ID行（対象・反例と期待・oracle ID）のみを置き具体fixture展開はL6/L7へ分離（UTW-014/020/021/033防止）。"
     }
   ],
   "l3_obligation_decomposition": [
     {
       "element_id": "O1",
-      "obligation_ja": "同じ要求分類・適用契約・候補集合・製品scopeで、AI名・言語・project表示名だけを理由に必要論点や義務を増減させない。",
+      "obligation_ja": "同じ意味の要求分類・適用契約・候補集合・製品scopeでは、AI/言語/projectの差だけで必要な論点を恣意的に増減させない。",
       "l5_pointers": [
+        "L5#/contracts/1",
         "L5#/functions/8",
+        "L5#/functions/8/algorithm/0",
+        "L5#/type_contract/types/CompareSemanticEquivalenceContext",
+        "L5#/type_contract/types/ApplicationInput/meaning",
+        "L5#/comparison_material_contract/rules/3",
         "L5#/failure_rules/8",
         "L5#/failure_rules/9"
       ],
       "l8_pointers": [
-        "L8#/normal_function_oracles/8",
+        "L8#/cases/1",
+        "L8#/cases/1/negative_cases",
         "L8#/cases/1/negative_cases/0",
         "L8#/cases/1/negative_cases/1",
+        "L8#/normal_function_oracles/8",
         "L8#/additional_unit_cases/19"
       ],
       "basis_pointers": [
         "L3B#/requirements/5",
         "L10B#/cases/5",
-        "L4#/contracts/1"
+        "L4#/contracts/1",
+        "L9#/cases/1",
+        "L9#/cases/1/negative_cases",
+        "L9#/cases/1/negative_cases/0",
+        "L9#/cases/1/negative_cases/1"
       ]
     },
     {
       "element_id": "O2",
-      "obligation_ja": "domain/risk/scopeが異なる場合や知識が未観測の場合に、同一の候補setへ固定せず、差異と未評価範囲を保つ。",
+      "obligation_ja": "異なるdomain/risk/scopeや未観測知識まで同一setへ固定しない。",
       "l5_pointers": [
+        "L5#/contracts/1",
         "L5#/functions/8",
+        "L5#/type_contract/types/CompareSemanticEquivalenceContext",
+        "L5#/type_contract/types/ApplicationInput/meaning",
+        "L5#/comparison_material_contract/rules/3",
         "L5#/failure_rules/10",
         "L5#/failure_rules/11"
       ],
       "l8_pointers": [
+        "L8#/cases/1",
+        "L8#/cases/1/negative_cases",
         "L8#/cases/1/negative_cases/2",
-        "L8#/cases/1/negative_cases/3"
+        "L8#/cases/1/negative_cases/3",
+        "L8#/normal_function_oracles/8",
+        "L8#/additional_unit_cases/19"
       ],
       "basis_pointers": [
         "L3B#/requirements/5",
         "L10B#/cases/5",
-        "L4#/contracts/1"
+        "L4#/contracts/1",
+        "L9#/cases/1",
+        "L9#/cases/1/negative_cases",
+        "L9#/cases/1/negative_cases/2",
+        "L9#/cases/1/negative_cases/3"
       ]
     }
   ],
@@ -91,9 +115,9 @@
   },
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
-  "source_main": "730e46c955def9d3b27cf280a62b886568028aa3",
-  "request_base_sha": "730e46c955def9d3b27cf280a62b886568028aa3",
-  "recorded_at_utc": "2026-10-28T03:59:19+00:00",
+  "source_main": "1c8bebcf5d39a69b1f15a3903ac9858ac70fc217",
+  "request_base_sha": "1c8bebcf5d39a69b1f15a3903ac9858ac70fc217",
+  "recorded_at_utc": "2026-10-28T10:41:27+00:00",
   "pins": {
     "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
@@ -101,10 +125,11 @@
     "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
     "L4_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L9_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L5_pre_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
-    "L5_post_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
-    "L8_pre_sha256": "39196e34b55106befc020563a0511e35624195d7af1402f2b8f988c0e0366df0",
-    "L8_post_sha256": "39196e34b55106befc020563a0511e35624195d7af1402f2b8f988c0e0366df0",
+    "L5_pre_sha256": "e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740",
+    "L5_post_sha256": "e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740",
+    "L8_pre_sha256": "e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa",
+    "L8_post_sha256": "e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa",
+    "L7_sha256": "da3359bba2815a95fd3362395f2271faffe71bc27156474c0de2cba24868e56d",
     "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b",
     "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb"
   },
@@ -124,11 +149,12 @@
     "L8_proposal_native_record_cases": 7,
     "L8_opp_component_checks": 7,
     "L8_general_proposal_exchange_family_contracts": 8,
-    "L8_general_proposal_exchange_finite_cases": 11
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 23,
-    "expanded_target_count": 23,
+    "checked_count": 46,
+    "expanded_target_count": 46,
     "unresolved_count": 0,
     "passed": true
   },
