@@ -1056,6 +1056,78 @@
   },
   "cases": [
     {
+      "id": "HARNESS-L8-015-B01",
+      "l5_contract_ref": "HARNESS-L5-015-B01",
+      "root_id": "HARNESS-L9-015-B01",
+      "unit_case_ids": [
+        "HARNESS-L9-015-B01-NORMAL",
+        "HARNESS-L9-015-B01-OS-CI",
+        "HARNESS-L9-015-B01-os_only",
+        "HARNESS-L9-015-B01-cheap_quality_failure",
+        "HARNESS-L9-015-B01-omission_erased",
+        "HARNESS-L9-015-B01-metric_as_accepted"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-015-F01",
+      "l5_contract_ref": "HARNESS-L5-015-F01",
+      "root_id": "HARNESS-L9-015-F01",
+      "unit_case_ids": [
+        "HARNESS-L9-015-F01-NORMAL",
+        "HARNESS-L9-015-F01-freeze_missing",
+        "HARNESS-L9-015-F01-test_after_body",
+        "HARNESS-L9-015-F01-foreign_oracle_revision",
+        "HARNESS-L9-015-F01-freeze_as_red",
+        "HARNESS-L9-015-F01-freeze_timestamp_only"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-015-F02",
+      "l5_contract_ref": "HARNESS-L5-015-F02",
+      "root_id": "HARNESS-L9-015-F02",
+      "unit_case_ids": [
+        "HARNESS-L9-015-F02-NORMAL",
+        "HARNESS-L9-015-F02-NEW-IMPLEMENTATION",
+        "HARNESS-L9-015-F02-after_body_red",
+        "HARNESS-L9-015-F02-foreign_pre_body_head",
+        "HARNESS-L9-015-F02-environment_error",
+        "HARNESS-L9-015-F02-unexecuted_red",
+        "HARNESS-L9-015-F02-mutation_substitute"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-015-F03",
+      "l5_contract_ref": "HARNESS-L5-015-F03",
+      "root_id": "HARNESS-L9-015-F03",
+      "unit_case_ids": [
+        "HARNESS-L9-015-F03-NORMAL",
+        "HARNESS-L9-015-F03-oracle_relaxed",
+        "HARNESS-L9-015-F03-body_before_red",
+        "HARNESS-L9-015-F03-public_change",
+        "HARNESS-L9-015-F03-architecture_change",
+        "HARNESS-L9-015-F03-state_change",
+        "HARNESS-L9-015-F03-ci_as_quality",
+        "HARNESS-L9-015-F03-requirement_change",
+        "HARNESS-L9-015-F03-minimal_body_scope_expansion",
+        "HARNESS-L9-015-F03-green_wrong_behavior"
+      ]
+    },
+    {
+      "id": "HARNESS-L8-015-F04",
+      "l5_contract_ref": "HARNESS-L5-015-F04",
+      "root_id": "HARNESS-L9-015-F04",
+      "unit_case_ids": [
+        "HARNESS-L9-015-F04-NORMAL",
+        "HARNESS-L9-015-F04-reverse_trace_missing",
+        "HARNESS-L9-015-F04-foreign_trace_revision",
+        "HARNESS-L9-015-F04-development_as_integrated",
+        "HARNESS-L9-015-F04-ci_as_accepted",
+        "HARNESS-L9-015-F04-ci_as_release"
+      ]
+    }
+  ],
+  "unit_cases": [
+    {
       "id": "HARNESS-L9-015-B01-NORMAL",
       "root_id": "HARNESS-L9-015-B01",
       "requirement_ref": "HARNESS-L3-015-B01",

@@ -177,7 +177,7 @@
   "cases": [
     {
       "id": "HARNESS-L8-052-F01",
-      "detail_ref": "HARNESS-L5-052-F01",
+      "l5_contract_ref": "HARNESS-L5-052-F01",
       "design_ref": "HARNESS-L4-052-F01",
       "integration_oracle_ref": "HARNESS-L9-052-F01",
       "requirement_ref": "HARNESS-L3-052-F01",
@@ -277,7 +277,7 @@
     },
     {
       "id": "HARNESS-L8-052-F02",
-      "detail_ref": "HARNESS-L5-052-F02",
+      "l5_contract_ref": "HARNESS-L5-052-F02",
       "design_ref": "HARNESS-L4-052-F02",
       "integration_oracle_ref": "HARNESS-L9-052-F02",
       "requirement_ref": "HARNESS-L3-052-F02",
@@ -365,7 +365,7 @@
     },
     {
       "id": "HARNESS-L8-052-F03",
-      "detail_ref": "HARNESS-L5-052-F03",
+      "l5_contract_ref": "HARNESS-L5-052-F03",
       "design_ref": "HARNESS-L4-052-F03",
       "integration_oracle_ref": "HARNESS-L9-052-F03",
       "requirement_ref": "HARNESS-L3-052-F03",
@@ -459,7 +459,7 @@
     },
     {
       "id": "HARNESS-L8-052-F04",
-      "detail_ref": "HARNESS-L5-052-F04",
+      "l5_contract_ref": "HARNESS-L5-052-F04",
       "design_ref": "HARNESS-L4-052-F04",
       "integration_oracle_ref": "HARNESS-L9-052-F04",
       "requirement_ref": "HARNESS-L3-052-F04",
@@ -540,7 +540,7 @@
     },
     {
       "id": "HARNESS-L8-052-F05",
-      "detail_ref": "HARNESS-L5-052-F05",
+      "l5_contract_ref": "HARNESS-L5-052-F05",
       "design_ref": "HARNESS-L4-052-F05",
       "integration_oracle_ref": "HARNESS-L9-052-F05",
       "requirement_ref": "HARNESS-L3-052-F05",
@@ -623,7 +623,7 @@
     },
     {
       "id": "HARNESS-L8-052-F06",
-      "detail_ref": "HARNESS-L5-052-F06",
+      "l5_contract_ref": "HARNESS-L5-052-F06",
       "design_ref": "HARNESS-L4-052-F06",
       "integration_oracle_ref": "HARNESS-L9-052-F06",
       "requirement_ref": "HARNESS-L3-052-F06",
@@ -721,7 +721,7 @@
     },
     {
       "id": "HARNESS-L8-052-N01",
-      "detail_ref": "HARNESS-L5-052-N01",
+      "l5_contract_ref": "HARNESS-L5-052-N01",
       "design_ref": "HARNESS-L4-052-N01",
       "integration_oracle_ref": "HARNESS-L9-052-N01",
       "requirement_ref": "HARNESS-L3-052-N01",
@@ -798,7 +798,7 @@
     },
     {
       "id": "HARNESS-L8-052-B01",
-      "detail_ref": "HARNESS-L5-052-B01",
+      "l5_contract_ref": "HARNESS-L5-052-B01",
       "design_ref": "HARNESS-L4-052-B01",
       "integration_oracle_ref": "HARNESS-L9-052-B01",
       "requirement_ref": "HARNESS-L3-052-B01",
