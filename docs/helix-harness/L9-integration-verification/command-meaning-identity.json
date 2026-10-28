@@ -74,7 +74,7 @@
         "base集合の並びだけB,Aへ変えて別identityにする",
         "同asset Aのbaseを異revisionで重複させる"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "command IDだけ比較してscope差を隠す",
           "expected": "conflict(scope)、先行M1/REC1不変。"
@@ -133,7 +133,7 @@
         "array順序を勝手にsort",
         "OS側だけでpayload正規化"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "rule revisionを欠落",
           "expected": "unknown(rule revision)、default採用0。"
@@ -182,7 +182,7 @@
         "receiptからcomparison basisへの結合snapshotを欠落",
         "receiptのcommand bindingが別identity result M2へ結ぶ"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "全一致再送をnewとする",
           "expected": "same O1/M1だけ、新意味変更0。"
@@ -232,7 +232,7 @@
         "異rule revisionを同digestでsameとする",
         "conflict後に別command IDを捏造して再受理"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "異payloadを同ID冪等でsameにする",
           "expected": "conflict(payload)。"
@@ -275,7 +275,7 @@
         "未観測OS結果をcommittedにする",
         "current G2を先行O1/G1成功として表示"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "payload D一致でOS staleを消す",
           "expected": "semantic same＋OS stale保持、新保存成功0。"
@@ -323,7 +323,7 @@
         "他scope oracleで不足を埋める",
         "別revision prior identityで補完"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "command ID欠落を到着時刻から補完",
           "expected": "unknown(command ID)、捏造ID0。"
@@ -373,7 +373,7 @@
         "先行receiptを他scope Refへ変更",
         "count/hashだけでcomparison trace成功"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "同名fixtureだけで実retry成功とする",
           "expected": "局所fixtureだけ、実retry not_proven。"
@@ -415,7 +415,7 @@
         "FR53 rename/split/mergeを追加",
         "旧DB/CLI/runtimeへfallback"
       ],
-      "negative_expectations": [
+      "negative_cases": [
         {
           "change": "意味sameからdurability成功を生成",
           "expected": "運転未観測を保持、durability成立主張0。"
