@@ -7000,6 +7000,6 @@
   },
   "l7_verification_material_ref": {
     "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
-    "pointer": "/"
+    "pointer": "/cases"
   }
 }

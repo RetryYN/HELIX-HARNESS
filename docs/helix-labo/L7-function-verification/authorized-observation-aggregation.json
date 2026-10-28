@@ -41795,5 +41795,22 @@
       "revision": "dece8766659c5a46c9bd50480b1bee0b15703fca",
       "sha256": "052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab"
     }
+  ],
+  "fixed_source_binding_rule_ja": "本L7のcases内に移管されたvalue_ref（document=\"candidate_L8\"、計415件）のjson_pointer（/resolved_values/<sha256> および /cases/<N>/function_invocations/<M>/expected_return_projection）は、source_provenance / source_basis に記録した移管元固定L8（docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json @ dece8766659c5a46c9bd50480b1bee0b15703fca、file_sha256=052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab）と同値で本L7自身の /resolved_values および /cases へ無損失移管されているため、展開時は本L7自身（docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json）の同一json_pointer（および同一内容を保持するsource_basis固定L8 @ dece8766659c5a46c9bd50480b1bee0b15703fca の同一json_pointer）へ束縛して解決する。移管後の軽量化L8へは解決しない。cases・resolved_values・value_reference_contract・shared_observation_materializationの原値は変更しない。",
+  "source_basis": [
+    {
+      "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+      "revision": "dece8766659c5a46c9bd50480b1bee0b15703fca",
+      "file_sha256": "052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab",
+      "sha256": "052c0fef8eaa9b82387d5e03aca7f3b2b40d90b68b772f9425c88b44fe69eeab",
+      "bound_document_alias": "candidate_L8",
+      "resolved_in_current_l7_path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
+      "source_pointers": [
+        "/cases",
+        "/resolved_values",
+        "/value_reference_contract",
+        "/shared_observation_materialization"
+      ]
+    }
   ]
 }
