@@ -144,6 +144,61 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 )
             )
 
+    def test_chk_json_pointer_large_real_ranges_resolve(self) -> None:
+        doc = {
+            "path_aliases": {
+                "OS007": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+                "OS015": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
+            },
+            "refs": [
+                "OS007#/case_bindings/0..944",
+                "OS015#/cases/0..582/calls/0",
+            ],
+        }
+
+        result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", doc)
+
+        self.assertTrue(result["passed"], msg=result["failures"][:3])
+        self.assertEqual(result["checked_count"], 2)
+        self.assertEqual(result["expanded_target_count"], 945 + 583)
+
+    def test_chk_json_pointer_large_range_still_rejects_missing_end(self) -> None:
+        doc = {
+            "path_aliases": {
+                "OS007": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
+            },
+            "refs": ["OS007#/case_bindings/0..945"],
+        }
+
+        result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", doc)
+
+        self.assertFalse(result["passed"])
+        self.assertEqual(result["expanded_target_count"], 946)
+        self.assertEqual(len(result["failures"]), 1)
+        self.assertEqual(result["failures"][0]["target_pointer"], "/case_bindings/945")
+
+    def test_chk_json_pointer_small_and_reverse_range_behavior(self) -> None:
+        path = "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
+        small = {
+            "path_aliases": {"OS007": path},
+            "refs": ["OS007#/case_bindings/0..2"],
+        }
+        small_result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", small)
+        self.assertTrue(small_result["passed"], msg=small_result["failures"])
+        self.assertEqual(small_result["expanded_target_count"], 3)
+
+        reverse = {
+            "path_aliases": {"OS007": path},
+            "refs": ["OS007#/case_bindings/2..0"],
+        }
+        reverse_result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", reverse)
+        self.assertFalse(reverse_result["passed"])
+        self.assertEqual(len(reverse_result["failures"]), 1)
+        self.assertEqual(
+            reverse_result["failures"][0]["target_pointer"],
+            "/case_bindings/2..0",
+        )
+
     def test_chk_pair_bidir_id_pass_and_mutation_fail(self) -> None:
         left = {
             "contracts": [

@@ -328,7 +328,7 @@ def expand_pointer_ranges(ptr: str) -> list[str]:
         m = RANGE_SEG_RE.match(s)
         if m:
             lo, hi = int(m.group(1)), int(m.group(2))
-            if hi >= lo and (hi - lo) <= 500:
+            if hi >= lo:
                 paths = [p + [str(i)] for p in paths for i in range(lo, hi + 1)]
                 continue
         if "," in s and all(part.isdigit() for part in s.split(",")):
