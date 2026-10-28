@@ -4813,33 +4813,31 @@
         "failure_rule_ref": "HARNESS-L5-009-R-ai_name_changes_obligations",
         "l8_case_ref": "HARNESS-L8-009-B02-NEG-01",
         "observation_members": [
-          "baseline_snapshot.input.nonsemantic_metadata",
-          "variant_snapshot.input.nonsemantic_metadata",
-          "各snapshot.input.semantic_comparisons/qualified sources",
-          "各snapshot.input.obligations",
-          "baseline_return.material",
-          "variant_return.material"
+          "両snapshot.input.ai_name と language_name (presence/null/value)",
+          "両snapshot.input.binding、operations、axis_facts、universes、templates、application_policies、obligations",
+          "両snapshot.input.semantic_comparisons、semantic_records、sources、qualifications、qualification_roots、opaque nonsemantic_metadata",
+          "baseline_return.input_binding と material.obligation_refs/missing_obligation_refs/extra_obligation_refs/not_evaluated_refs",
+          "variant_return.input_binding と material.obligation_refs/missing_obligation_refs/extra_obligation_refs/not_evaluated_refs"
         ],
-        "observable_condition": "B02はAI名だけで義務を増減しない意味を承認している。L5設計候補ではai_name:string|nullを独立optional ApplicationInput memberとするが、現source producer/validatorはこのmemberを供給・保持せず、fixture内nonsemantic_metadata:RawValueの任意key差ではAI名差を特定できない。実typed memberが両snapshotに供給されるまではcase inputを識別できない。fixture keyを型承認・意味分類へ昇格しない。",
+        "observable_condition": "B02のAI名NEGを識別するのは両実snapshotのai_nameが非null文字列で互いに異なる場合だけ。両snapshotのlanguage_nameはpresence/null/valueが完全一致し、nonsemantic_metadataの原RawValueも完全一致し、bindingの全identity/revision/scope/owner、operations、product/requirement scope、axis facts、candidate universes、template/knowledge/application contract、qualification roots、その他meaning-bearing source/recordも同一内容で保たれる。qualified SemanticComparisonはbasis_kind=semantic_meaningかつsame_meaning=trueで、左右端とsource_refがowner-qualified sources/qualificationsを通じて当該同scope入力へ解決する。各実FN8 returnのinput_bindingは対応snapshotへ一致し、baseline/variantのqualified ApplicationPolicy.obligation_refsが同一の原期待Ref列（原順/重複を保持）であることを確認し、各実return.material.obligation_refsをその集合および対応snapshotのKindObligation refsと照合する。各returnごとのmissing/extra/not_evaluated Ref差と、両返却間の具体差をmeaning/source付きで列挙し、期待集合をテスト入力としてFN8へ注入しない。ai_name/language_nameのabsence、null、値不明は差分と確定しない。現source producer/validator接続が無く、既存fixtureのRawValue keyだけではこの入力・関係を立証できないため現在は停止。",
         "result": "実producer/validator/consumer接続まではHARNESS-L8-009-B02-NEG-01をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-01",
-        "stop_if": "ai_nameを表すtyped memberが実snapshotへ供給され、同一call producer/validatorで保持されるまで停止する。設計候補の型宣言だけでは再開しない。実装時はAI名の単軸差と他の意味入力不変をtyped carrierから観測する。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "設計候補の型宣言だけでは再開しない。実producer/validator/consumer接続後も、両ai_nameが非null文字列で異ならない、他方のlanguage_nameのpresence/null/valueまたは他の意味入力が一致しない、qualified semantic_meaning/same_meaning=true basis・binding/endpoints/source qualificationが欠ける、または各actual returnとqualified policy/obligation refs間の具体差が結び付かない場合はcase-level stop/unresolvedを維持する。fixture任意key、missing/null/unknown値、RawValue hash、FN8 comparison_basis_refs=[]は差分やbasisの代替根拠にならない。L3/L10 B02の意味を変える提案がない限り追加の人手承認gateを意味しない。"
       },
       "neg_02": {
         "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
         "l8_case_ref": "HARNESS-L8-009-B02-NEG-02",
         "observation_members": [
-          "baseline_snapshot.input.nonsemantic_metadata",
-          "variant_snapshot.input.nonsemantic_metadata",
-          "各snapshot.input.semantic_comparisons/qualified sources",
-          "各snapshot.input.obligations",
-          "baseline_return.material",
-          "variant_return.material"
+          "両snapshot.input.language_name と ai_name (presence/null/value)",
+          "両snapshot.input.binding、operations、axis_facts、universes、templates、application_policies、obligations",
+          "両snapshot.input.semantic_comparisons、semantic_records、sources、qualifications、qualification_roots、opaque nonsemantic_metadata",
+          "baseline_return.input_binding と material.obligation_refs/missing_obligation_refs/extra_obligation_refs/not_evaluated_refs",
+          "variant_return.input_binding と material.obligation_refs/missing_obligation_refs/extra_obligation_refs/not_evaluated_refs"
         ],
-        "observable_condition": "B02は言語差だけで論点を増減しない意味を承認している。L5設計候補ではlanguage_name:string|nullを独立optional ApplicationInput memberとするが、現source producer/validatorはこのmemberを供給・保持せず、fixture内nonsemantic_metadata:RawValueの任意key差では言語名差を特定できない。実typed memberが両snapshotに供給されるまではcase inputを識別できない。fixture keyを型承認・意味分類へ昇格しない。",
+        "observable_condition": "B02の言語名NEGを識別するのは両実snapshotのlanguage_nameが非null文字列で互いに異なる場合だけ。両snapshotのai_nameはpresence/null/valueが完全一致し、nonsemantic_metadataの原RawValueも完全一致し、bindingの全identity/revision/scope/owner、operations、product/requirement scope、axis facts、candidate universes、template/knowledge/application contract、qualification roots、その他meaning-bearing source/recordも同一内容で保たれる。qualified SemanticComparisonはbasis_kind=semantic_meaningかつsame_meaning=trueで、左右端とsource_refがowner-qualified sources/qualificationsを通じて当該同scope入力へ解決する。各実FN8 returnのinput_bindingは対応snapshotへ一致し、baseline/variantのqualified ApplicationPolicy.obligation_refsが同一の原期待Ref列（原順/重複を保持）であることを確認し、各実return.material.obligation_refsをその集合および対応snapshotのKindObligation refsと照合する。言語変更側returnごとのmissing/extra/not_evaluated Ref差と、両返却間の具体省略差をmeaning/source付きで列挙し、期待集合をテスト入力としてFN8へ注入しない。language_name/ai_nameのabsence、null、値不明は差分と確定しない。現source producer/validator接続が無く、既存fixtureのRawValue keyだけではこの入力・関係を立証できないため現在は停止。",
         "result": "実producer/validator/consumer接続まではHARNESS-L8-009-B02-NEG-02をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-02",
-        "stop_if": "language_nameを表すtyped memberが実snapshotへ供給され、同一call producer/validatorで保持されるまで停止する。設計候補の型宣言だけでは再開しない。実装時は言語名の単軸差と他の意味入力不変をtyped carrierから観測する。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "設計候補の型宣言だけでは再開しない。実producer/validator/consumer接続後も、両language_nameが非null文字列で異ならない、他方のai_nameのpresence/null/valueまたは他の意味入力が一致しない、qualified semantic_meaning/same_meaning=true basis・binding/endpoints/source qualificationが欠ける、または各actual returnとqualified policy/obligation refs間の具体差が結び付かない場合はcase-level stop/unresolvedを維持する。fixture任意key、missing/null/unknown値、RawValue hash、FN8 comparison_basis_refs=[]は差分やbasisの代替根拠にならない。L3/L10 B02の意味を変える提案がない限り追加の人手承認gateを意味しない。"
       },
       "neg_03": {
         "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
