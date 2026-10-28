@@ -494,163 +494,7 @@
         "consumer受入原状態と欠落を保持。保存・実行・検証・受入を別結果へ。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-B01.expected_material",
-      "negative_classifications": [
-        {
-          "code": "saved_as_verified",
-          "change": "OS保存receiptだけで検証成功を主張",
-          "axis": "owner",
-          "state": "conflict",
-          "backflow_owner": "HARNESS005/OS検収",
-          "expected": "保存は保存。実oracle不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "保存は保存。実oracle不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "test_deleted_green",
-          "change": "修復で必要testを削除してgreen化",
-          "axis": "repair",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "削除で失った義務を保持し修復成立にしない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "削除で失った義務を保持し修復成立にしない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "threshold_relaxed_green",
-          "change": "修復で凍結した期待閾値を緩める",
-          "axis": "repair",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "元oracleの期待と緩和差分を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元oracleの期待と緩和差分を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "repair_scope_expansion",
-          "change": "修復scopeを原対象外へ広げる",
-          "axis": "scope",
-          "state": "conflict",
-          "backflow_owner": "設計owner/OS",
-          "expected": "元scopeと未許可差分を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元scopeと未許可差分を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unchecked_digest_update",
-          "change": "意味digestを独立照合なしで更新",
-          "axis": "revision",
-          "state": "unknown",
-          "backflow_owner": "意味owner",
-          "expected": "新digestは検証成立を示さない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "新digestは検証成立を示さない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "self_report_independent",
-          "change": "作成Worker自身の自己報告を独立検証とする",
-          "axis": "independence",
-          "state": "conflict",
-          "backflow_owner": "review-owner",
-          "expected": "identity/context/authority/routeの不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "identity/context/authority/routeの不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unexecuted_as_complete",
-          "change": "未実行oracleを完了とする",
-          "axis": "execution",
-          "state": "missing",
-          "backflow_owner": "execution-owner",
-          "expected": "実観測欠落を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "実観測欠落を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "digest_mismatch_accepted",
-          "change": "実結果の意味digestを別値へ変更",
-          "axis": "revision",
-          "state": "stale",
-          "backflow_owner": "意味owner/execution-owner",
-          "expected": "当該結果を元対象の証拠へ数えない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該結果を元対象の証拠へ数えない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "other_head_review",
-          "change": "独立reviewが別HEADを対象にする",
-          "axis": "revision",
-          "state": "stale",
-          "backflow_owner": "review-owner",
-          "expected": "review対象不一致を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "review対象不一致を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "projection_as_complete",
-          "change": "表示projectionだけで工程完了を主張",
-          "axis": "evidence",
-          "state": "unknown",
-          "backflow_owner": "OS/検証owner",
-          "expected": "原実結果未供給を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "原実結果未供給を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "runtime_exchange_skip",
-          "change": "runtime交代を理由に元証拠条件を省略",
-          "axis": "continuity",
-          "state": "missing",
-          "backflow_owner": "OS/実行環境",
-          "expected": "同じ義務を保持し再開不足理由を示す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "同じ義務を保持し再開不足理由を示す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-B01.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F01",
@@ -687,163 +531,7 @@
         "条件falseと未実行は義務消込へ変換せず、未知rule・未解決refを元scopeへ残す。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F01.expected_material",
-      "negative_classifications": [
-        {
-          "code": "duty_missing_requirement_revision",
-          "change": "検証義務のrequirement_revisionを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のrequirement_revision不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のrequirement_revision不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_artifact",
-          "change": "検証義務のartifactを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のartifact不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のartifact不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_input",
-          "change": "検証義務のinputを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のinput不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のinput不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_oracle",
-          "change": "検証義務のoracleを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のoracle不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のoracle不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_expected_failure",
-          "change": "検証義務のexpected_failureを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のexpected_failure不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のexpected_failure不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_evidence_validity",
-          "change": "検証義務のevidence_validityを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のevidence_validity不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のevidence_validity不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "duty_missing_backflow_owner",
-          "change": "検証義務のbackflow_ownerを除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "検証契約owner",
-          "expected": "当該義務のbackflow_owner不足を特定して成立させない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該義務のbackflow_owner不足を特定して成立させない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unknown_as_skip",
-          "change": "適用unknownをskipへ変換",
-          "axis": "applicability",
-          "state": "unknown",
-          "backflow_owner": "CORE/005",
-          "expected": "不明義務を未評価として保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "不明義務を未評価として保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "worker_as_duty",
-          "change": "Worker名だけで必要義務を決める",
-          "axis": "derivation",
-          "state": "conflict",
-          "backflow_owner": "005契約owner",
-          "expected": "元変更/layer/risk/pair根拠不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元変更/layer/risk/pair根拠不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "conditional_as_discharged",
-          "change": "未充足conditionalを合格消込",
-          "axis": "applicability",
-          "state": "conflict",
-          "backflow_owner": "CORE/005",
-          "expected": "条件falseと未充足義務を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "条件falseと未充足義務を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "informational_as_required",
-          "change": "理由なくinformationalをrequiredへ変更",
-          "axis": "applicability",
-          "state": "conflict",
-          "backflow_owner": "CORE/005",
-          "expected": "元分類を保持し余分な必須化を拒否。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元分類を保持し余分な必須化を拒否。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F01.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F02",
@@ -878,93 +566,7 @@
         "下位と組合せが有効で、固有未解決なしを契約が示す場合だけ機械導出候補。固有ありなら別証明不足を保持し端から端の一律再実行を足さない。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F02.expected_material",
-      "negative_classifications": [
-        {
-          "code": "units_as_connection",
-          "change": "全単体proofで接続完了を主張",
-          "axis": "composition",
-          "state": "missing",
-          "backflow_owner": "接続設計/検証owner",
-          "expected": "接続固有oracle不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "接続固有oracle不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "lower_as_composite",
-          "change": "下位proofで未証明上位固有UX1を相殺",
-          "axis": "composition",
-          "state": "missing",
-          "backflow_owner": "構成体検証owner",
-          "expected": "UX1の別証明不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "UX1の別証明不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "combination_missing",
-          "change": "組合せ契約を欠く",
-          "axis": "composition",
-          "state": "missing",
-          "backflow_owner": "構成体設計owner",
-          "expected": "原下位proofを保持し合成根拠不足を示す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "原下位proofを保持し合成根拠不足を示す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unique_nfr_cancelled",
-          "change": "固有非機能を単体proofで充足扱い",
-          "axis": "composition",
-          "state": "conflict",
-          "backflow_owner": "構成体検証owner",
-          "expected": "固有非機能の独立oracleを維持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "固有非機能の独立oracleを維持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unconditional_e2e",
-          "change": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
-          "axis": "composition",
-          "state": "conflict",
-          "backflow_owner": "005/構成体設計owner",
-          "expected": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "count_as_composition",
-          "change": "proof件数一致だけで必要subject充足",
-          "axis": "composition",
-          "state": "conflict",
-          "backflow_owner": "構成体検証owner",
-          "expected": "subject/oracle/revisionごとの不足を特定。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "subject/oracle/revisionごとの不足を特定。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F02.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F03",
@@ -1006,107 +608,7 @@
         "省略itemを小→中/大、中→大の合流先ticketと回収原結果へ結び、未回収をPort材料へ残す。merge直後full/nightlyを既定にしない。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F03.expected_material",
-      "negative_classifications": [
-        {
-          "code": "fixed_full_default",
-          "change": "ticket関係を無視して全件CIを既定化",
-          "axis": "selection",
-          "state": "conflict",
-          "backflow_owner": "005/OS検収",
-          "expected": "ticket/risk由来の集合と必要上位義務を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "ticket/risk由来の集合と必要上位義務を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "omission_lost",
-          "change": "省略した検査の集合を記録しない",
-          "axis": "omission",
-          "state": "missing",
-          "backflow_owner": "OS検収/005",
-          "expected": "省略itemと回収先を未完として保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "省略itemと回収先を未完として保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "outside_ticket_change",
-          "change": "実差分にticket scope外Bを追加",
-          "axis": "scope",
-          "state": "conflict",
-          "backflow_owner": "OS/設計owner",
-          "expected": "scope外Bを特定し当該合流未成立。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "scope外Bを特定し当該合流未成立。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "high_risk_unit_only",
-          "change": "小ticketだから高riskのC1/X1を省略",
-          "axis": "risk",
-          "state": "missing",
-          "backflow_owner": "OS検収/005",
-          "expected": "C1/X1のPR前証明不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "C1/X1のPR前証明不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unrecovered_release",
-          "change": "未回収省略C1を残してPort通過を主張",
-          "axis": "omission",
-          "state": "missing",
-          "backflow_owner": "OS/Release Port owner",
-          "expected": "未回収C1とPort未成立を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "未回収C1とPort未成立を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "wrong_join_ticket",
-          "change": "小から小へ省略を渡して回収済み扱い",
-          "axis": "omission",
-          "state": "conflict",
-          "backflow_owner": "OS推進/検収",
-          "expected": "小→中/大、中→大の元関係と不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "小→中/大、中→大の元関係と不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "nightly_recovery_default",
-          "change": "省略回収先を夜間全件へ黙って変更",
-          "axis": "omission",
-          "state": "conflict",
-          "backflow_owner": "005/OS",
-          "expected": "採択した合流先ticket回収を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "採択した合流先ticket回収を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F03.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F04",
@@ -1141,107 +643,7 @@
         "後日失敗の原record/証拠付きrelation/元closure/追補assessmentを別identityで保持し、時間/pathだけの因果は未決。LABOへ原材料だけ渡す。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F04.expected_material",
-      "negative_classifications": [
-        {
-          "code": "coupling_unit_only",
-          "change": "AB/Xへ影響するのに小の単体だけで合流",
-          "axis": "impact",
-          "state": "missing",
-          "backflow_owner": "OS検収/接続構成体owner",
-          "expected": "当該PRのAB/X実証不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該PRのAB/X実証不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "refactor_as_proof",
-          "change": "Design-refactor発行だけで当該PR検査成立",
-          "axis": "impact",
-          "state": "conflict",
-          "backflow_owner": "OS/設計owner",
-          "expected": "発行材料と現PR検査の成立を分離。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "発行材料と現PR検査の成立を分離。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "permanent_full_as_fix",
-          "change": "恒常全件CIで密結合設計不足を完了扱い",
-          "axis": "impact",
-          "state": "conflict",
-          "backflow_owner": "設計owner",
-          "expected": "結合解消の別設計材料を残す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "結合解消の別設計材料を残す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "path_as_cause",
-          "change": "同じpathだけで後日失敗の原因ticket確定",
-          "axis": "causality",
-          "state": "unknown",
-          "backflow_owner": "assessment-owner/LABO",
-          "expected": "因果根拠未決を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "因果根拠未決を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "time_as_cause",
-          "change": "時刻近接だけで原因ticket確定",
-          "axis": "causality",
-          "state": "unknown",
-          "backflow_owner": "assessment-owner/LABO",
-          "expected": "証拠付きrelation不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "証拠付きrelation不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "overwrite_old_closure",
-          "change": "後日失敗で元closedをfailedへ上書き",
-          "axis": "history",
-          "state": "conflict",
-          "backflow_owner": "OS管理",
-          "expected": "元closureと追補assessmentを別に保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元closureと追補assessmentを別に保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "material_as_labo_success",
-          "change": "LABO入力供給だけで評価成功を主張",
-          "axis": "owner",
-          "state": "unknown",
-          "backflow_owner": "LABO",
-          "expected": "原記録集合は保持し評価結果不足を残す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "原記録集合は保持し評価結果不足を残す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F04.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F05",
@@ -1275,94 +677,7 @@
         "違反edge/cycleと戻し先を特定し、表・境界の意味変更は設計ownerへ返す。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F05.expected_material",
-      "negative_classifications": [
-        {
-          "code": "forbidden_edge",
-          "change": "domain→application禁止edgeを追加",
-          "axis": "dependency",
-          "state": "conflict",
-          "backflow_owner": "設計owner",
-          "expected": "禁止edgeを特定し元方向表を保存。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "禁止edgeを特定し元方向表を保存。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "forbidden_cycle",
-          "change": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
-          "axis": "dependency",
-          "state": "conflict",
-          "backflow_owner": "設計owner",
-          "expected": "cycleの辺を特定し無関係edgeを保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "cycleの辺を特定し無関係edgeを保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0,
-          "fixture_ref": "HARNESS-L9-005-F05-CYCLE-ISOLATED-BASIS"
-        },
-        {
-          "code": "direction_table_missing",
-          "change": "宣言方向表を除去",
-          "axis": "input",
-          "state": "missing",
-          "backflow_owner": "設計owner",
-          "expected": "表不足をunknownへ保持し旧表fallbackしない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "表不足をunknownへ保持し旧表fallbackしない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "foreign_scope_table",
-          "change": "PへQの方向表を転用",
-          "axis": "scope",
-          "state": "conflict",
-          "backflow_owner": "設計owner",
-          "expected": "別scope表を被覆に数えない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "別scope表を被覆に数えない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "old_direction_auto_apply",
-          "change": "旧src/lint/runtime/schema表を全製品へ自動適用",
-          "axis": "owner",
-          "state": "conflict",
-          "backflow_owner": "設計owner",
-          "expected": "旧表の原意味は保持し今回の宣言表を置換しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "旧表の原意味は保持し今回の宣言表を置換しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "direction_authority_unknown",
-          "change": "表の設計authority状態を不明化",
-          "axis": "authority",
-          "state": "unknown",
-          "backflow_owner": "設計authority-owner",
-          "expected": "当該表で合格を生成しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該表で合格を生成しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F05.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F06",
@@ -1394,79 +709,7 @@
         "未被覆条件を局所化し、trace成立と未実行実結果を分離。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F06.expected_material",
-      "negative_classifications": [
-        {
-          "code": "invariant_oracle_missing",
-          "change": "INV2に対応するoracleを除去",
-          "axis": "trace",
-          "state": "missing",
-          "backflow_owner": "検証設計owner",
-          "expected": "INV2不足とINV1有効対応を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "INV2不足とINV1有効対応を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "invariant_oracle_unresolved",
-          "change": "INV2 oracle参照を未解決にする",
-          "axis": "trace",
-          "state": "unknown",
-          "backflow_owner": "検証設計owner",
-          "expected": "参照存在を被覆へ数えない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "参照存在を被覆へ数えない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "invariant_wrong_revision",
-          "change": "INV2 oracleの対象revisionをr0へ変更",
-          "axis": "revision",
-          "state": "stale",
-          "backflow_owner": "検証設計owner",
-          "expected": "当該旧oracleはr1被覆にならない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "当該旧oracleはr1被覆にならない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "invariant_wrong_behavior",
-          "change": "INV2 oracleを残高非負だけへ変更",
-          "axis": "behavior",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "件数/linkが同じでも重複event義務未被覆。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "件数/linkが同じでも重複event義務未被覆。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "trace_as_execution",
-          "change": "traceのみで振る舞い実成功を主張",
-          "axis": "execution",
-          "state": "missing",
-          "backflow_owner": "execution-owner",
-          "expected": "trace成立と未実行を分離。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "trace成立と未実行を分離。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F06.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F07",
@@ -1501,121 +744,7 @@
         "実装後mutationは強度の別証拠として保持し実装前Redへ転用しない。静的reviewや人の受入へRedを拡張しない。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F07.expected_material",
-      "negative_classifications": [
-        {
-          "code": "red_missing",
-          "change": "Red原結果を除去",
-          "axis": "execution",
-          "state": "missing",
-          "backflow_owner": "execution-owner/015",
-          "expected": "実装前Red不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "実装前Red不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "red_after_green",
-          "change": "RedをGreen後sequence5へ変更",
-          "axis": "ordering",
-          "state": "conflict",
-          "backflow_owner": "execution-owner/015",
-          "expected": "同oracleでも逆順を不成立。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "同oracleでも逆順を不成立。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "red_after_body",
-          "change": "Redを本体変更後かつGreen前sequence3.5へ変更",
-          "axis": "ordering",
-          "state": "conflict",
-          "backflow_owner": "execution-owner/015",
-          "expected": "Green前だけでは実装前Red保証を満たさない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "Green前だけでは実装前Red保証を満たさない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "red_not_executed",
-          "change": "Redをtest記述時刻だけへ置換",
-          "axis": "execution",
-          "state": "missing",
-          "backflow_owner": "execution-owner/015",
-          "expected": "実観測と記述を区別。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "実観測と記述を区別。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "ordering_unknown",
-          "change": "sequence/因果orderの根拠を除去",
-          "axis": "ordering",
-          "state": "unknown",
-          "backflow_owner": "execution-owner/015",
-          "expected": "壁時計文字列だけで順序を推測しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "壁時計文字列だけで順序を推測しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "mutation_as_pre_red",
-          "change": "実装後mutationを実装前Redの代替にする",
-          "axis": "ordering",
-          "state": "conflict",
-          "backflow_owner": "execution-owner/015",
-          "expected": "別の強度証拠を保持し実装前欠落を残す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "別の強度証拠を保持し実装前欠落を残す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "green_oracle_changed",
-          "change": "Green oracleを凍結時と別revisionへ変更",
-          "axis": "oracle",
-          "state": "stale",
-          "backflow_owner": "検証設計owner/015",
-          "expected": "元凍結oracleのGreen不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "元凍結oracleのGreen不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "red_wrong_failure",
-          "change": "Red実失敗を起動エラーへ変更",
-          "axis": "behavior",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner/015",
-          "expected": "意図した欠陥検出の不足を特定。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "意図した欠陥検出の不足を特定。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F07.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F08",
@@ -1648,65 +777,7 @@
         "oracle弱化の対象期待と戻し先を示し、合成例比較を実製品runや汎用意味証明へ昇格しない。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F08.expected_material",
-      "negative_classifications": [
-        {
-          "code": "oracle_no_assertion",
-          "change": "oracleの判定内容を除去",
-          "axis": "oracle",
-          "state": "missing",
-          "backflow_owner": "検証設計owner",
-          "expected": "実行欄だけでは具体期待を判定しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "実行欄だけでは具体期待を判定しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "oracle_truthiness",
-          "change": "equal5を結果truthinessだけへ変更",
-          "axis": "oracle",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "expected_from_implementation",
-          "change": "実装が返す6を期待値の正本とする",
-          "axis": "owner",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "独立期待5と不一致を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "独立期待5と不一致を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "same_pass_defect",
-          "change": "違反6と正解5へ同じ成功を返す",
-          "axis": "oracle",
-          "state": "conflict",
-          "backflow_owner": "検証設計owner",
-          "expected": "欠陥非識別を対象behaviorへ結ぶ。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "欠陥非識別を対象behaviorへ結ぶ。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F08.expected_material"
     },
     {
       "id": "HARNESS-L4-005-F09",
@@ -1737,79 +808,7 @@
         "空のlabel/Then欠落/別scope/旧番号だけの対応を未成立として元期待を保持。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-F09.expected_material",
-      "negative_classifications": [
-        {
-          "code": "gwt_then_missing",
-          "change": "Then期待を除去",
-          "axis": "oracle",
-          "state": "missing",
-          "backflow_owner": "結合検証設計owner",
-          "expected": "前提/操作を保持し期待観測不足を示す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "前提/操作を保持し期待観測不足を示す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "gwt_labels_only",
-          "change": "Given/When/Thenを空の名前だけへ変更",
-          "axis": "oracle",
-          "state": "missing",
-          "backflow_owner": "結合検証設計owner",
-          "expected": "名前で被覆を生成しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "名前で被覆を生成しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "gwt_foreign_scope",
-          "change": "結合oracleにQ結果を転用",
-          "axis": "scope",
-          "state": "conflict",
-          "backflow_owner": "結合検証設計owner",
-          "expected": "Pの同pair不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "Pの同pair不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "old_layer_label_only",
-          "change": "旧L8/L9番号だけでcurrent pairを適用",
-          "axis": "pair",
-          "state": "unknown",
-          "backflow_owner": "設計/検証owner",
-          "expected": "意味/種類/対応根拠不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "意味/種類/対応根拠不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "gwt_failure_missing",
-          "change": "失敗経路の期待を除去",
-          "axis": "oracle",
-          "state": "missing",
-          "backflow_owner": "結合検証設計owner",
-          "expected": "再送重複eventの失敗経路を未被覆へ。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "再送重複eventの失敗経路を未被覆へ。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-F09.expected_material"
     },
     {
       "id": "HARNESS-L4-005-N01",
@@ -1841,135 +840,7 @@
         "独立未公開caseは固定意味oracleへ束縛して実行前に定めるが、未実行を合格へ写さない。要求不足は008、境界/oracle不足は設計検証ownerへ。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-N01.expected_material",
-      "negative_classifications": [
-        {
-          "code": "unknown_as_na",
-          "change": "integration unknownをN/Aへ変更",
-          "axis": "applicability",
-          "state": "unknown",
-          "backflow_owner": "CORE/005",
-          "expected": "入力不明と正当非適用を分離。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "入力不明と正当非適用を分離。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unknown_as_zero",
-          "change": "規律未評価を0違反へ変更",
-          "axis": "applicability",
-          "state": "unknown",
-          "backflow_owner": "005/検証owner",
-          "expected": "未評価scopeと戻し先を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "未評価scopeと戻し先を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unknown_rule_fallback",
-          "change": "identity不明ruleを既知directionへ置換",
-          "axis": "identity",
-          "state": "unknown",
-          "backflow_owner": "005契約owner",
-          "expected": "原identity不明をそのまま不足とする。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "原identity不明をそのまま不足とする。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "other_rule_cancels",
-          "change": "direction成功でintegration不足を相殺",
-          "axis": "applicability",
-          "state": "conflict",
-          "backflow_owner": "005/検証owner",
-          "expected": "規律ごとの未完義務を独立保存。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "規律ごとの未完義務を独立保存。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "na_reason_missing",
-          "change": "TDD N/A理由を除去",
-          "axis": "applicability",
-          "state": "missing",
-          "backflow_owner": "CORE009",
-          "expected": "判定者/revision/再評価条件も既存009へ結ぶ。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "判定者/revision/再評価条件も既存009へ結ぶ。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "na_decider_missing",
-          "change": "TDD N/A判定者を除去",
-          "axis": "applicability",
-          "state": "missing",
-          "backflow_owner": "CORE009",
-          "expected": "N/Aの原判断不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "N/Aの原判断不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "na_revision_wrong",
-          "change": "TDD N/A対象revisionをr0へ変更",
-          "axis": "revision",
-          "state": "stale",
-          "backflow_owner": "CORE009",
-          "expected": "r1へN/A継承しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "r1へN/A継承しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "na_reevaluation_missing",
-          "change": "TDD N/A再評価条件を除去",
-          "axis": "applicability",
-          "state": "missing",
-          "backflow_owner": "CORE009",
-          "expected": "N/A消込にせず不足を残す。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "N/A消込にせず不足を残す。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "unseen_as_proven",
-          "change": "未公開検証未実行を成功へ変更",
-          "axis": "execution",
-          "state": "missing",
-          "backflow_owner": "independent-verification-owner",
-          "expected": "未観測/未実行を維持し新一律gateを追加しない。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "未観測/未実行を維持し新一律gateを追加しない。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-N01.expected_material"
     },
     {
       "id": "HARNESS-L4-005-N02",
@@ -2002,79 +873,7 @@
         "一結果から他結果/consumer受入を生成せずRTO/RPO/保持期間は当該製品ownerへ。"
       ],
       "output": "同対象の検証義務/比較材料、個別不足と戻し先。実CI/状態遷移/受入/Releaseなし。",
-      "output_observation_ref": "HARNESS-L9-005-N02.expected_material",
-      "negative_classifications": [
-        {
-          "code": "backup_as_restore",
-          "change": "backup/snapshot存在でrestore成功を主張",
-          "axis": "recovery",
-          "state": "missing",
-          "backflow_owner": "product-verification-owner",
-          "expected": "restore未実行を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "restore未実行を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "rollback_as_permanent",
-          "change": "rollback成功で恒久修復完了を主張",
-          "axis": "recovery",
-          "state": "unknown",
-          "backflow_owner": "product-verification-owner",
-          "expected": "恒久修復の別結果不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "恒久修復の別結果不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "rollback_as_prevention",
-          "change": "rollback成功で再発防止完了を主張",
-          "axis": "recovery",
-          "state": "missing",
-          "backflow_owner": "product-verification-owner",
-          "expected": "再発防止未実行を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "再発防止未実行を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "foreign_environment_recovery",
-          "change": "別環境restore結果を今回へ転用",
-          "axis": "scope",
-          "state": "conflict",
-          "backflow_owner": "product-verification-owner",
-          "expected": "対象環境のrestore不足を保持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "対象環境のrestore不足を保持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        },
-        {
-          "code": "fixed_global_rto",
-          "change": "規範から全製品同じRTO/RPOを生成",
-          "axis": "owner",
-          "state": "conflict",
-          "backflow_owner": "product-requirement-owner",
-          "expected": "個別製品値未供給と元結果を維持。",
-          "expected_preserved": {
-            "binding": "同じ対象要求revision/scope/元owner snapshot",
-            "observable": "個別製品値未供給と元結果を維持。",
-            "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
-          },
-          "expected_side_effect_count": 0
-        }
-      ]
+      "output_observation_ref": "HARNESS-L9-005-N02.expected_material"
     }
   ],
   "cross_owner_boundary": {
@@ -2099,5 +898,2201 @@
     "独立source/資格/元expectationと全正常・単独負例の意味照合",
     "負例局所化の具体data差分と全元期待の保持をL5/L8へ",
     "旧facet保留とsource-limitのexact対応再確認"
-  ]
+  ],
+  "failure_classifications": [
+    {
+      "code": "saved_as_verified",
+      "change": "OS保存receiptだけで検証成功を主張",
+      "backflow_owner": "HARNESS005/OS検収",
+      "expected": {
+        "finding_codes": [
+          "saved_as_verified"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "保存は保存。実oracle不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "saved_as_verified",
+      "expected_classification": "saved_as_verified",
+      "expected_observation": "保存は保存。実oracle不足を保持。",
+      "expected_axis": "owner",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "test_deleted_green",
+      "change": "修復で必要testを削除してgreen化",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "test_deleted_green"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "削除で失った義務を保持し修復成立にしない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "test_deleted_green",
+      "expected_classification": "test_deleted_green",
+      "expected_observation": "削除で失った義務を保持し修復成立にしない。",
+      "expected_axis": "repair",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "threshold_relaxed_green",
+      "change": "修復で凍結した期待閾値を緩める",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "threshold_relaxed_green"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元oracleの期待と緩和差分を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "threshold_relaxed_green",
+      "expected_classification": "threshold_relaxed_green",
+      "expected_observation": "元oracleの期待と緩和差分を保持。",
+      "expected_axis": "repair",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "repair_scope_expansion",
+      "change": "修復scopeを原対象外へ広げる",
+      "backflow_owner": "設計owner/OS",
+      "expected": {
+        "finding_codes": [
+          "repair_scope_expansion"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元scopeと未許可差分を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "repair_scope_expansion",
+      "expected_classification": "repair_scope_expansion",
+      "expected_observation": "元scopeと未許可差分を保持。",
+      "expected_axis": "scope",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unchecked_digest_update",
+      "change": "意味digestを独立照合なしで更新",
+      "backflow_owner": "意味owner",
+      "expected": {
+        "finding_codes": [
+          "unchecked_digest_update"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "新digestは検証成立を示さない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unchecked_digest_update",
+      "expected_classification": "unchecked_digest_update",
+      "expected_observation": "新digestは検証成立を示さない。",
+      "expected_axis": "revision",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "self_report_independent",
+      "change": "作成Worker自身の自己報告を独立検証とする",
+      "backflow_owner": "review-owner",
+      "expected": {
+        "finding_codes": [
+          "self_report_independent"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "identity/context/authority/routeの不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "self_report_independent",
+      "expected_classification": "self_report_independent",
+      "expected_observation": "identity/context/authority/routeの不足を保持。",
+      "expected_axis": "independence",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unexecuted_as_complete",
+      "change": "未実行oracleを完了とする",
+      "backflow_owner": "execution-owner",
+      "expected": {
+        "finding_codes": [
+          "unexecuted_as_complete"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "実観測欠落を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unexecuted_as_complete",
+      "expected_classification": "unexecuted_as_complete",
+      "expected_observation": "実観測欠落を保持。",
+      "expected_axis": "execution",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "digest_mismatch_accepted",
+      "change": "実結果の意味digestを別値へ変更",
+      "backflow_owner": "意味owner/execution-owner",
+      "expected": {
+        "finding_codes": [
+          "digest_mismatch_accepted"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該結果を元対象の証拠へ数えない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "digest_mismatch_accepted",
+      "expected_classification": "digest_mismatch_accepted",
+      "expected_observation": "当該結果を元対象の証拠へ数えない。",
+      "expected_axis": "revision",
+      "expected_state": "stale",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/7",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "other_head_review",
+      "change": "独立reviewが別HEADを対象にする",
+      "backflow_owner": "review-owner",
+      "expected": {
+        "finding_codes": [
+          "other_head_review"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "review対象不一致を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "other_head_review",
+      "expected_classification": "other_head_review",
+      "expected_observation": "review対象不一致を保持。",
+      "expected_axis": "revision",
+      "expected_state": "stale",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/8",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "projection_as_complete",
+      "change": "表示projectionだけで工程完了を主張",
+      "backflow_owner": "OS/検証owner",
+      "expected": {
+        "finding_codes": [
+          "projection_as_complete"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "原実結果未供給を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "projection_as_complete",
+      "expected_classification": "projection_as_complete",
+      "expected_observation": "原実結果未供給を保持。",
+      "expected_axis": "evidence",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/9",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "runtime_exchange_skip",
+      "change": "runtime交代を理由に元証拠条件を省略",
+      "backflow_owner": "OS/実行環境",
+      "expected": {
+        "finding_codes": [
+          "runtime_exchange_skip"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "同じ義務を保持し再開不足理由を示す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "runtime_exchange_skip",
+      "expected_classification": "runtime_exchange_skip",
+      "expected_observation": "同じ義務を保持し再開不足理由を示す。",
+      "expected_axis": "continuity",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/0/negative_classifications/10",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_requirement_revision",
+      "change": "検証義務のrequirement_revisionを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_requirement_revision"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のrequirement_revision不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_requirement_revision",
+      "expected_classification": "duty_missing_requirement_revision",
+      "expected_observation": "当該義務のrequirement_revision不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_artifact",
+      "change": "検証義務のartifactを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_artifact"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のartifact不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_artifact",
+      "expected_classification": "duty_missing_artifact",
+      "expected_observation": "当該義務のartifact不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_input",
+      "change": "検証義務のinputを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_input"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のinput不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_input",
+      "expected_classification": "duty_missing_input",
+      "expected_observation": "当該義務のinput不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_oracle",
+      "change": "検証義務のoracleを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_oracle"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のoracle不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_oracle",
+      "expected_classification": "duty_missing_oracle",
+      "expected_observation": "当該義務のoracle不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_expected_failure",
+      "change": "検証義務のexpected_failureを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_expected_failure"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のexpected_failure不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_expected_failure",
+      "expected_classification": "duty_missing_expected_failure",
+      "expected_observation": "当該義務のexpected_failure不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_evidence_validity",
+      "change": "検証義務のevidence_validityを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_evidence_validity"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のevidence_validity不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_evidence_validity",
+      "expected_classification": "duty_missing_evidence_validity",
+      "expected_observation": "当該義務のevidence_validity不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "duty_missing_backflow_owner",
+      "change": "検証義務のbackflow_ownerを除去",
+      "backflow_owner": "検証契約owner",
+      "expected": {
+        "finding_codes": [
+          "duty_missing_backflow_owner"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該義務のbackflow_owner不足を特定して成立させない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "duty_missing_backflow_owner",
+      "expected_classification": "duty_missing_backflow_owner",
+      "expected_observation": "当該義務のbackflow_owner不足を特定して成立させない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unknown_as_skip",
+      "change": "適用unknownをskipへ変換",
+      "backflow_owner": "CORE/005",
+      "expected": {
+        "finding_codes": [
+          "unknown_as_skip"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "不明義務を未評価として保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unknown_as_skip",
+      "expected_classification": "unknown_as_skip",
+      "expected_observation": "不明義務を未評価として保持。",
+      "expected_axis": "applicability",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/7",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "worker_as_duty",
+      "change": "Worker名だけで必要義務を決める",
+      "backflow_owner": "005契約owner",
+      "expected": {
+        "finding_codes": [
+          "worker_as_duty"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元変更/layer/risk/pair根拠不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "worker_as_duty",
+      "expected_classification": "worker_as_duty",
+      "expected_observation": "元変更/layer/risk/pair根拠不足を保持。",
+      "expected_axis": "derivation",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/8",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "conditional_as_discharged",
+      "change": "未充足conditionalを合格消込",
+      "backflow_owner": "CORE/005",
+      "expected": {
+        "finding_codes": [
+          "conditional_as_discharged"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "条件falseと未充足義務を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "conditional_as_discharged",
+      "expected_classification": "conditional_as_discharged",
+      "expected_observation": "条件falseと未充足義務を保持。",
+      "expected_axis": "applicability",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/9",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "informational_as_required",
+      "change": "理由なくinformationalをrequiredへ変更",
+      "backflow_owner": "CORE/005",
+      "expected": {
+        "finding_codes": [
+          "informational_as_required"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元分類を保持し余分な必須化を拒否。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "informational_as_required",
+      "expected_classification": "informational_as_required",
+      "expected_observation": "元分類を保持し余分な必須化を拒否。",
+      "expected_axis": "applicability",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/1/negative_classifications/10",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "units_as_connection",
+      "change": "全単体proofで接続完了を主張",
+      "backflow_owner": "接続設計/検証owner",
+      "expected": {
+        "finding_codes": [
+          "units_as_connection"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "接続固有oracle不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "units_as_connection",
+      "expected_classification": "units_as_connection",
+      "expected_observation": "接続固有oracle不足を保持。",
+      "expected_axis": "composition",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "lower_as_composite",
+      "change": "下位proofで未証明上位固有UX1を相殺",
+      "backflow_owner": "構成体検証owner",
+      "expected": {
+        "finding_codes": [
+          "lower_as_composite"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "UX1の別証明不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "lower_as_composite",
+      "expected_classification": "lower_as_composite",
+      "expected_observation": "UX1の別証明不足を保持。",
+      "expected_axis": "composition",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "combination_missing",
+      "change": "組合せ契約を欠く",
+      "backflow_owner": "構成体設計owner",
+      "expected": {
+        "finding_codes": [
+          "combination_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "原下位proofを保持し合成根拠不足を示す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "combination_missing",
+      "expected_classification": "combination_missing",
+      "expected_observation": "原下位proofを保持し合成根拠不足を示す。",
+      "expected_axis": "composition",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unique_nfr_cancelled",
+      "change": "固有非機能を単体proofで充足扱い",
+      "backflow_owner": "構成体検証owner",
+      "expected": {
+        "finding_codes": [
+          "unique_nfr_cancelled"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "固有非機能の独立oracleを維持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unique_nfr_cancelled",
+      "expected_classification": "unique_nfr_cancelled",
+      "expected_observation": "固有非機能の独立oracleを維持。",
+      "expected_axis": "composition",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unconditional_e2e",
+      "change": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
+      "backflow_owner": "005/構成体設計owner",
+      "expected": {
+        "finding_codes": [
+          "unconditional_e2e"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unconditional_e2e",
+      "expected_classification": "unconditional_e2e",
+      "expected_observation": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+      "expected_axis": "composition",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "count_as_composition",
+      "change": "proof件数一致だけで必要subject充足",
+      "backflow_owner": "構成体検証owner",
+      "expected": {
+        "finding_codes": [
+          "count_as_composition"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "subject/oracle/revisionごとの不足を特定。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "count_as_composition",
+      "expected_classification": "count_as_composition",
+      "expected_observation": "subject/oracle/revisionごとの不足を特定。",
+      "expected_axis": "composition",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/2/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "fixed_full_default",
+      "change": "ticket関係を無視して全件CIを既定化",
+      "backflow_owner": "005/OS検収",
+      "expected": {
+        "finding_codes": [
+          "fixed_full_default"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "ticket/risk由来の集合と必要上位義務を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "fixed_full_default",
+      "expected_classification": "fixed_full_default",
+      "expected_observation": "ticket/risk由来の集合と必要上位義務を保持。",
+      "expected_axis": "selection",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "omission_lost",
+      "change": "省略した検査の集合を記録しない",
+      "backflow_owner": "OS検収/005",
+      "expected": {
+        "finding_codes": [
+          "omission_lost"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "省略itemと回収先を未完として保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "omission_lost",
+      "expected_classification": "omission_lost",
+      "expected_observation": "省略itemと回収先を未完として保持。",
+      "expected_axis": "omission",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "outside_ticket_change",
+      "change": "実差分にticket scope外Bを追加",
+      "backflow_owner": "OS/設計owner",
+      "expected": {
+        "finding_codes": [
+          "outside_ticket_change"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "scope外Bを特定し当該合流未成立。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "outside_ticket_change",
+      "expected_classification": "outside_ticket_change",
+      "expected_observation": "scope外Bを特定し当該合流未成立。",
+      "expected_axis": "scope",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "high_risk_unit_only",
+      "change": "小ticketだから高riskのC1/X1を省略",
+      "backflow_owner": "OS検収/005",
+      "expected": {
+        "finding_codes": [
+          "high_risk_unit_only"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "C1/X1のPR前証明不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "high_risk_unit_only",
+      "expected_classification": "high_risk_unit_only",
+      "expected_observation": "C1/X1のPR前証明不足を保持。",
+      "expected_axis": "risk",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unrecovered_release",
+      "change": "未回収省略C1を残してPort通過を主張",
+      "backflow_owner": "OS/Release Port owner",
+      "expected": {
+        "finding_codes": [
+          "unrecovered_release"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "未回収C1とPort未成立を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unrecovered_release",
+      "expected_classification": "unrecovered_release",
+      "expected_observation": "未回収C1とPort未成立を保持。",
+      "expected_axis": "omission",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "wrong_join_ticket",
+      "change": "小から小へ省略を渡して回収済み扱い",
+      "backflow_owner": "OS推進/検収",
+      "expected": {
+        "finding_codes": [
+          "wrong_join_ticket"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "小→中/大、中→大の元関係と不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "wrong_join_ticket",
+      "expected_classification": "wrong_join_ticket",
+      "expected_observation": "小→中/大、中→大の元関係と不足を保持。",
+      "expected_axis": "omission",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "nightly_recovery_default",
+      "change": "省略回収先を夜間全件へ黙って変更",
+      "backflow_owner": "005/OS",
+      "expected": {
+        "finding_codes": [
+          "nightly_recovery_default"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "採択した合流先ticket回収を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "nightly_recovery_default",
+      "expected_classification": "nightly_recovery_default",
+      "expected_observation": "採択した合流先ticket回収を保持。",
+      "expected_axis": "omission",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/3/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "coupling_unit_only",
+      "change": "AB/Xへ影響するのに小の単体だけで合流",
+      "backflow_owner": "OS検収/接続構成体owner",
+      "expected": {
+        "finding_codes": [
+          "coupling_unit_only"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該PRのAB/X実証不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "coupling_unit_only",
+      "expected_classification": "coupling_unit_only",
+      "expected_observation": "当該PRのAB/X実証不足を保持。",
+      "expected_axis": "impact",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "refactor_as_proof",
+      "change": "Design-refactor発行だけで当該PR検査成立",
+      "backflow_owner": "OS/設計owner",
+      "expected": {
+        "finding_codes": [
+          "refactor_as_proof"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "発行材料と現PR検査の成立を分離。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "refactor_as_proof",
+      "expected_classification": "refactor_as_proof",
+      "expected_observation": "発行材料と現PR検査の成立を分離。",
+      "expected_axis": "impact",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "permanent_full_as_fix",
+      "change": "恒常全件CIで密結合設計不足を完了扱い",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "permanent_full_as_fix"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "結合解消の別設計材料を残す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "permanent_full_as_fix",
+      "expected_classification": "permanent_full_as_fix",
+      "expected_observation": "結合解消の別設計材料を残す。",
+      "expected_axis": "impact",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "path_as_cause",
+      "change": "同じpathだけで後日失敗の原因ticket確定",
+      "backflow_owner": "assessment-owner/LABO",
+      "expected": {
+        "finding_codes": [
+          "path_as_cause"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "因果根拠未決を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "path_as_cause",
+      "expected_classification": "path_as_cause",
+      "expected_observation": "因果根拠未決を保持。",
+      "expected_axis": "causality",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "time_as_cause",
+      "change": "時刻近接だけで原因ticket確定",
+      "backflow_owner": "assessment-owner/LABO",
+      "expected": {
+        "finding_codes": [
+          "time_as_cause"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "証拠付きrelation不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "time_as_cause",
+      "expected_classification": "time_as_cause",
+      "expected_observation": "証拠付きrelation不足を保持。",
+      "expected_axis": "causality",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "overwrite_old_closure",
+      "change": "後日失敗で元closedをfailedへ上書き",
+      "backflow_owner": "OS管理",
+      "expected": {
+        "finding_codes": [
+          "overwrite_old_closure"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元closureと追補assessmentを別に保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "overwrite_old_closure",
+      "expected_classification": "overwrite_old_closure",
+      "expected_observation": "元closureと追補assessmentを別に保持。",
+      "expected_axis": "history",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "material_as_labo_success",
+      "change": "LABO入力供給だけで評価成功を主張",
+      "backflow_owner": "LABO",
+      "expected": {
+        "finding_codes": [
+          "material_as_labo_success"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "原記録集合は保持し評価結果不足を残す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "material_as_labo_success",
+      "expected_classification": "material_as_labo_success",
+      "expected_observation": "原記録集合は保持し評価結果不足を残す。",
+      "expected_axis": "owner",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/4/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "forbidden_edge",
+      "change": "domain→application禁止edgeを追加",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "forbidden_edge"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "禁止edgeを特定し元方向表を保存。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "forbidden_edge",
+      "expected_classification": "forbidden_edge",
+      "expected_observation": "禁止edgeを特定し元方向表を保存。",
+      "expected_axis": "dependency",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "forbidden_cycle",
+      "change": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "forbidden_cycle"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "cycleの辺を特定し無関係edgeを保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "fixture_ref": "HARNESS-L9-005-F05-CYCLE-ISOLATED-BASIS",
+      "class_id": "forbidden_cycle",
+      "expected_classification": "forbidden_cycle",
+      "expected_observation": "cycleの辺を特定し無関係edgeを保持。",
+      "expected_axis": "dependency",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "direction_table_missing",
+      "change": "宣言方向表を除去",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "direction_table_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "表不足をunknownへ保持し旧表fallbackしない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "direction_table_missing",
+      "expected_classification": "direction_table_missing",
+      "expected_observation": "表不足をunknownへ保持し旧表fallbackしない。",
+      "expected_axis": "input",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "foreign_scope_table",
+      "change": "PへQの方向表を転用",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "foreign_scope_table"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "別scope表を被覆に数えない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "foreign_scope_table",
+      "expected_classification": "foreign_scope_table",
+      "expected_observation": "別scope表を被覆に数えない。",
+      "expected_axis": "scope",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "old_direction_auto_apply",
+      "change": "旧src/lint/runtime/schema表を全製品へ自動適用",
+      "backflow_owner": "設計owner",
+      "expected": {
+        "finding_codes": [
+          "old_direction_auto_apply"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "旧表の原意味は保持し今回の宣言表を置換しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "old_direction_auto_apply",
+      "expected_classification": "old_direction_auto_apply",
+      "expected_observation": "旧表の原意味は保持し今回の宣言表を置換しない。",
+      "expected_axis": "owner",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "direction_authority_unknown",
+      "change": "表の設計authority状態を不明化",
+      "backflow_owner": "設計authority-owner",
+      "expected": {
+        "finding_codes": [
+          "direction_authority_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該表で合格を生成しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "direction_authority_unknown",
+      "expected_classification": "direction_authority_unknown",
+      "expected_observation": "当該表で合格を生成しない。",
+      "expected_axis": "authority",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/5/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "invariant_oracle_missing",
+      "change": "INV2に対応するoracleを除去",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "invariant_oracle_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "INV2不足とINV1有効対応を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "invariant_oracle_missing",
+      "expected_classification": "invariant_oracle_missing",
+      "expected_observation": "INV2不足とINV1有効対応を保持。",
+      "expected_axis": "trace",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/6/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "invariant_oracle_unresolved",
+      "change": "INV2 oracle参照を未解決にする",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "invariant_oracle_unresolved"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "参照存在を被覆へ数えない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "invariant_oracle_unresolved",
+      "expected_classification": "invariant_oracle_unresolved",
+      "expected_observation": "参照存在を被覆へ数えない。",
+      "expected_axis": "trace",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/6/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "invariant_wrong_revision",
+      "change": "INV2 oracleの対象revisionをr0へ変更",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "invariant_wrong_revision"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "当該旧oracleはr1被覆にならない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "invariant_wrong_revision",
+      "expected_classification": "invariant_wrong_revision",
+      "expected_observation": "当該旧oracleはr1被覆にならない。",
+      "expected_axis": "revision",
+      "expected_state": "stale",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/6/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "invariant_wrong_behavior",
+      "change": "INV2 oracleを残高非負だけへ変更",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "invariant_wrong_behavior"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "件数/linkが同じでも重複event義務未被覆。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "invariant_wrong_behavior",
+      "expected_classification": "invariant_wrong_behavior",
+      "expected_observation": "件数/linkが同じでも重複event義務未被覆。",
+      "expected_axis": "behavior",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/6/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "trace_as_execution",
+      "change": "traceのみで振る舞い実成功を主張",
+      "backflow_owner": "execution-owner",
+      "expected": {
+        "finding_codes": [
+          "trace_as_execution"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "trace成立と未実行を分離。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "trace_as_execution",
+      "expected_classification": "trace_as_execution",
+      "expected_observation": "trace成立と未実行を分離。",
+      "expected_axis": "execution",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/6/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "red_missing",
+      "change": "Red原結果を除去",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "red_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "実装前Red不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "red_missing",
+      "expected_classification": "red_missing",
+      "expected_observation": "実装前Red不足を保持。",
+      "expected_axis": "execution",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "red_after_green",
+      "change": "RedをGreen後sequence5へ変更",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "red_after_green"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "同oracleでも逆順を不成立。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "red_after_green",
+      "expected_classification": "red_after_green",
+      "expected_observation": "同oracleでも逆順を不成立。",
+      "expected_axis": "ordering",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "red_after_body",
+      "change": "Redを本体変更後かつGreen前sequence3.5へ変更",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "red_after_body"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "Green前だけでは実装前Red保証を満たさない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "red_after_body",
+      "expected_classification": "red_after_body",
+      "expected_observation": "Green前だけでは実装前Red保証を満たさない。",
+      "expected_axis": "ordering",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "red_not_executed",
+      "change": "Redをtest記述時刻だけへ置換",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "red_not_executed"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "実観測と記述を区別。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "red_not_executed",
+      "expected_classification": "red_not_executed",
+      "expected_observation": "実観測と記述を区別。",
+      "expected_axis": "execution",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "ordering_unknown",
+      "change": "sequence/因果orderの根拠を除去",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "ordering_unknown"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "壁時計文字列だけで順序を推測しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "ordering_unknown",
+      "expected_classification": "ordering_unknown",
+      "expected_observation": "壁時計文字列だけで順序を推測しない。",
+      "expected_axis": "ordering",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "mutation_as_pre_red",
+      "change": "実装後mutationを実装前Redの代替にする",
+      "backflow_owner": "execution-owner/015",
+      "expected": {
+        "finding_codes": [
+          "mutation_as_pre_red"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "別の強度証拠を保持し実装前欠落を残す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "mutation_as_pre_red",
+      "expected_classification": "mutation_as_pre_red",
+      "expected_observation": "別の強度証拠を保持し実装前欠落を残す。",
+      "expected_axis": "ordering",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "green_oracle_changed",
+      "change": "Green oracleを凍結時と別revisionへ変更",
+      "backflow_owner": "検証設計owner/015",
+      "expected": {
+        "finding_codes": [
+          "green_oracle_changed"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "元凍結oracleのGreen不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "green_oracle_changed",
+      "expected_classification": "green_oracle_changed",
+      "expected_observation": "元凍結oracleのGreen不足を保持。",
+      "expected_axis": "oracle",
+      "expected_state": "stale",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "red_wrong_failure",
+      "change": "Red実失敗を起動エラーへ変更",
+      "backflow_owner": "検証設計owner/015",
+      "expected": {
+        "finding_codes": [
+          "red_wrong_failure"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "意図した欠陥検出の不足を特定。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "red_wrong_failure",
+      "expected_classification": "red_wrong_failure",
+      "expected_observation": "意図した欠陥検出の不足を特定。",
+      "expected_axis": "behavior",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/7/negative_classifications/7",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "oracle_no_assertion",
+      "change": "oracleの判定内容を除去",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "oracle_no_assertion"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "実行欄だけでは具体期待を判定しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "oracle_no_assertion",
+      "expected_classification": "oracle_no_assertion",
+      "expected_observation": "実行欄だけでは具体期待を判定しない。",
+      "expected_axis": "oracle",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/8/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "oracle_truthiness",
+      "change": "equal5を結果truthinessだけへ変更",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "oracle_truthiness"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "oracle_truthiness",
+      "expected_classification": "oracle_truthiness",
+      "expected_observation": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+      "expected_axis": "oracle",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/8/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "expected_from_implementation",
+      "change": "実装が返す6を期待値の正本とする",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "expected_from_implementation"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "独立期待5と不一致を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "expected_from_implementation",
+      "expected_classification": "expected_from_implementation",
+      "expected_observation": "独立期待5と不一致を保持。",
+      "expected_axis": "owner",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/8/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "same_pass_defect",
+      "change": "違反6と正解5へ同じ成功を返す",
+      "backflow_owner": "検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "same_pass_defect"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "欠陥非識別を対象behaviorへ結ぶ。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "same_pass_defect",
+      "expected_classification": "same_pass_defect",
+      "expected_observation": "欠陥非識別を対象behaviorへ結ぶ。",
+      "expected_axis": "oracle",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/8/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "gwt_then_missing",
+      "change": "Then期待を除去",
+      "backflow_owner": "結合検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "gwt_then_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "前提/操作を保持し期待観測不足を示す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "gwt_then_missing",
+      "expected_classification": "gwt_then_missing",
+      "expected_observation": "前提/操作を保持し期待観測不足を示す。",
+      "expected_axis": "oracle",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/9/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "gwt_labels_only",
+      "change": "Given/When/Thenを空の名前だけへ変更",
+      "backflow_owner": "結合検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "gwt_labels_only"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "名前で被覆を生成しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "gwt_labels_only",
+      "expected_classification": "gwt_labels_only",
+      "expected_observation": "名前で被覆を生成しない。",
+      "expected_axis": "oracle",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/9/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "gwt_foreign_scope",
+      "change": "結合oracleにQ結果を転用",
+      "backflow_owner": "結合検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "gwt_foreign_scope"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "Pの同pair不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "gwt_foreign_scope",
+      "expected_classification": "gwt_foreign_scope",
+      "expected_observation": "Pの同pair不足を保持。",
+      "expected_axis": "scope",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/9/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "old_layer_label_only",
+      "change": "旧L8/L9番号だけでcurrent pairを適用",
+      "backflow_owner": "設計/検証owner",
+      "expected": {
+        "finding_codes": [
+          "old_layer_label_only"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "意味/種類/対応根拠不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "old_layer_label_only",
+      "expected_classification": "old_layer_label_only",
+      "expected_observation": "意味/種類/対応根拠不足を保持。",
+      "expected_axis": "pair",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/9/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "gwt_failure_missing",
+      "change": "失敗経路の期待を除去",
+      "backflow_owner": "結合検証設計owner",
+      "expected": {
+        "finding_codes": [
+          "gwt_failure_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "再送重複eventの失敗経路を未被覆へ。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "gwt_failure_missing",
+      "expected_classification": "gwt_failure_missing",
+      "expected_observation": "再送重複eventの失敗経路を未被覆へ。",
+      "expected_axis": "oracle",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/9/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unknown_as_na",
+      "change": "integration unknownをN/Aへ変更",
+      "backflow_owner": "CORE/005",
+      "expected": {
+        "finding_codes": [
+          "unknown_as_na"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "入力不明と正当非適用を分離。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unknown_as_na",
+      "expected_classification": "unknown_as_na",
+      "expected_observation": "入力不明と正当非適用を分離。",
+      "expected_axis": "applicability",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unknown_as_zero",
+      "change": "規律未評価を0違反へ変更",
+      "backflow_owner": "005/検証owner",
+      "expected": {
+        "finding_codes": [
+          "unknown_as_zero"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "未評価scopeと戻し先を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unknown_as_zero",
+      "expected_classification": "unknown_as_zero",
+      "expected_observation": "未評価scopeと戻し先を保持。",
+      "expected_axis": "applicability",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unknown_rule_fallback",
+      "change": "identity不明ruleを既知directionへ置換",
+      "backflow_owner": "005契約owner",
+      "expected": {
+        "finding_codes": [
+          "unknown_rule_fallback"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "原identity不明をそのまま不足とする。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unknown_rule_fallback",
+      "expected_classification": "unknown_rule_fallback",
+      "expected_observation": "原identity不明をそのまま不足とする。",
+      "expected_axis": "identity",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "other_rule_cancels",
+      "change": "direction成功でintegration不足を相殺",
+      "backflow_owner": "005/検証owner",
+      "expected": {
+        "finding_codes": [
+          "other_rule_cancels"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "規律ごとの未完義務を独立保存。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "other_rule_cancels",
+      "expected_classification": "other_rule_cancels",
+      "expected_observation": "規律ごとの未完義務を独立保存。",
+      "expected_axis": "applicability",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "na_reason_missing",
+      "change": "TDD N/A理由を除去",
+      "backflow_owner": "CORE009",
+      "expected": {
+        "finding_codes": [
+          "na_reason_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "判定者/revision/再評価条件も既存009へ結ぶ。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "na_reason_missing",
+      "expected_classification": "na_reason_missing",
+      "expected_observation": "判定者/revision/再評価条件も既存009へ結ぶ。",
+      "expected_axis": "applicability",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "na_decider_missing",
+      "change": "TDD N/A判定者を除去",
+      "backflow_owner": "CORE009",
+      "expected": {
+        "finding_codes": [
+          "na_decider_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "N/Aの原判断不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "na_decider_missing",
+      "expected_classification": "na_decider_missing",
+      "expected_observation": "N/Aの原判断不足を保持。",
+      "expected_axis": "applicability",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/5",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "na_revision_wrong",
+      "change": "TDD N/A対象revisionをr0へ変更",
+      "backflow_owner": "CORE009",
+      "expected": {
+        "finding_codes": [
+          "na_revision_wrong"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "r1へN/A継承しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "na_revision_wrong",
+      "expected_classification": "na_revision_wrong",
+      "expected_observation": "r1へN/A継承しない。",
+      "expected_axis": "revision",
+      "expected_state": "stale",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/6",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "na_reevaluation_missing",
+      "change": "TDD N/A再評価条件を除去",
+      "backflow_owner": "CORE009",
+      "expected": {
+        "finding_codes": [
+          "na_reevaluation_missing"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "N/A消込にせず不足を残す。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "na_reevaluation_missing",
+      "expected_classification": "na_reevaluation_missing",
+      "expected_observation": "N/A消込にせず不足を残す。",
+      "expected_axis": "applicability",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/7",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "unseen_as_proven",
+      "change": "未公開検証未実行を成功へ変更",
+      "backflow_owner": "independent-verification-owner",
+      "expected": {
+        "finding_codes": [
+          "unseen_as_proven"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "未観測/未実行を維持し新一律gateを追加しない。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "unseen_as_proven",
+      "expected_classification": "unseen_as_proven",
+      "expected_observation": "未観測/未実行を維持し新一律gateを追加しない。",
+      "expected_axis": "execution",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/10/negative_classifications/8",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "backup_as_restore",
+      "change": "backup/snapshot存在でrestore成功を主張",
+      "backflow_owner": "product-verification-owner",
+      "expected": {
+        "finding_codes": [
+          "backup_as_restore"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "restore未実行を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "backup_as_restore",
+      "expected_classification": "backup_as_restore",
+      "expected_observation": "restore未実行を保持。",
+      "expected_axis": "recovery",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/11/negative_classifications/0",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "rollback_as_permanent",
+      "change": "rollback成功で恒久修復完了を主張",
+      "backflow_owner": "product-verification-owner",
+      "expected": {
+        "finding_codes": [
+          "rollback_as_permanent"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "恒久修復の別結果不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "rollback_as_permanent",
+      "expected_classification": "rollback_as_permanent",
+      "expected_observation": "恒久修復の別結果不足を保持。",
+      "expected_axis": "recovery",
+      "expected_state": "unknown",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/11/negative_classifications/1",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "rollback_as_prevention",
+      "change": "rollback成功で再発防止完了を主張",
+      "backflow_owner": "product-verification-owner",
+      "expected": {
+        "finding_codes": [
+          "rollback_as_prevention"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "再発防止未実行を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "rollback_as_prevention",
+      "expected_classification": "rollback_as_prevention",
+      "expected_observation": "再発防止未実行を保持。",
+      "expected_axis": "recovery",
+      "expected_state": "missing",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/11/negative_classifications/2",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "foreign_environment_recovery",
+      "change": "別環境restore結果を今回へ転用",
+      "backflow_owner": "product-verification-owner",
+      "expected": {
+        "finding_codes": [
+          "foreign_environment_recovery"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "対象環境のrestore不足を保持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "foreign_environment_recovery",
+      "expected_classification": "foreign_environment_recovery",
+      "expected_observation": "対象環境のrestore不足を保持。",
+      "expected_axis": "scope",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/11/negative_classifications/3",
+        "binding_ref": "#/historical_source_binding"
+      }
+    },
+    {
+      "code": "fixed_global_rto",
+      "change": "規範から全製品同じRTO/RPOを生成",
+      "backflow_owner": "product-requirement-owner",
+      "expected": {
+        "finding_codes": [
+          "fixed_global_rto"
+        ]
+      },
+      "expected_preserved": {
+        "binding": "同じ対象要求revision/scope/元owner snapshot",
+        "observable": "個別製品値未供給と元結果を維持。",
+        "non_target": "無関係Qの有効作業/元closure/未完義務は保持。規範から実行/受入/Releaseを生成しない。"
+      },
+      "class_id": "fixed_global_rto",
+      "expected_classification": "fixed_global_rto",
+      "expected_observation": "個別製品値未供給と元結果を維持。",
+      "expected_axis": "owner",
+      "expected_state": "conflict",
+      "side_effect_count": 0,
+      "source_reference": {
+        "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+        "pointer": "/contracts/11/negative_classifications/4",
+        "binding_ref": "#/historical_source_binding"
+      }
+    }
+  ],
+  "negative_equivalence_classes": {
+    "source_rows": "failure_classifications"
+  },
+  "historical_source_binding": {
+    "id": "WR133-L4-PRE-MIGRATION",
+    "revision": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+    "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+    "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb"
+  }
 }
