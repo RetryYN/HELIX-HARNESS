@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "b814069f2f79a71081da61f6b57d4193d040910efe3ec3e68b3ce17653281e7c",
+    "sha256": "67b101ea6ec109c8a92ba3449722d02b26e7548ad66cee486351da5a89bfdfe8",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -4062,6 +4062,31 @@
         },
         "full_unit_green": "root-wr66-s2-unit-green-R2.json:417PASS26171ms、reaped=true/output_truncated=false。旧415PASS/2FAIL、旧fileSHA/理由は上記履歴に保持。",
         "qualification_selection_probe": "root-wr66-s2-qualification-selection-probe-R2.json:215ms、source/tests/raw/V不変。qualifiedとqualificationだけ変更したinputはraw候補/Binding/required_kind不変でB14missing、帰属はknown/unknown。raw B候補除去ではmissing0/帰属known。観測であり期待根拠はL4 required_contract_domain/fixed_kinds。R1の帰属axis filter名誤りは訂正しR2を用いる。"
+      },
+      "consumer_alignment_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-ORACLE-CLAIM-PORTS-3547-20261028-68",
+        "working_base": "19738407c1606f462ecf9fb47ef46740045184fb",
+        "evidence": "root-wr68-consumer-design-audit-R2.jsonをrootが現sourceと各JSON pointerで直接照合。FN6の全nonfillがuse参照するという初稿誤記を訂正し、fill分岐内だけのmixed count/index gapとした。",
+        "baseline": "先行WR65/d2は11FN4、S4/2b28は15FN4、S2/19738407は16FN4/残1FN1 S3。各17raw同SHAの段階観測を区別。現baselineでもpipelineのFN6後続結果は未観測、all6成立0。",
+        "auxiliary_probe": "root-wr68-fn6-mixed-input-probe-R1.json:正規bounded_exec326ms/reaped/nontruncated。原17rawとは別の既存finite rule87＋B02 receipt型補助5raw。全FN0clean/real public FN1形成、nonfill-onlyは既存receipt所見、fill-onlyは既存rule87所見、N-F/F-N/N-F-Nは既存FN6 claim_call_frame_shapeで停止。FN4を通さない公開FN6直接callであり、FN4解除やTDD Redとは扱わない。",
+        "probe_integrity": "同Bindingを確認した既存raw依存入力、receipt source/資格helper、原Claimを再利用。Comparison/frame/ClaimUseは補作せずraw/V/definitions/src/testsは不変。",
+        "verification": "文書revision/pointer/ID/責務の静的照合だけ。FN6source修正と新test凍結/Redは次段、旧test変更なし。"
+      },
+      "fn6_mixed_alignment_tdd": {
+        "working_base": "8f4b85c4bce7e5f0a67faa6c184069abf97e2e84",
+        "test_freeze": "372cc66a33c1bea52dc89c119cfe0aaabb4394cd",
+        "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn6_fill_use_alignment.py",
+        "test_sha256": "6b2869de3056e19af6f88250c773c0b1ce663be92c4f67c6a812ab798c7df401",
+        "source_revision": "004beb5e35819f4117d7c9a2c19ec6cfc6cb7235",
+        "source_sha256": "3fc9e4163ba20c92c1f622252da8a19db0c9d9a6b5c91618e8d17f9719132e02",
+        "baseline": "root-wr68-current-unit-before-R1.json:417PASS28096ms。既存testは一切変更しない。",
+        "red": "root-wr68-current-fn6-red-R1.json:4methods中controls/malformed PASS、mixed3subcase+raw/packed reasonの4assertFAIL、errors0、388ms。正規FN0/publicFN1を通過しpublicFN6の既存claim_call_frame_shapeで停止。",
+        "green": "root-wr68-current-fn6-green-R1.json:同じ凍結bytesの4PASS447ms。full unit root-wr68-current-unit-after-R1.json:421PASS26314ms。旧期待移行なし。",
+        "verification": "raw/V/definitions/context/frameの全値不変をfinallyで確認。実frameのvalidatedは同一objectを保ちtarget_reads/claim_usesだけcloneして各malformed要素を破損させ、外側identity guardでのfalse positiveを避ける。prefix保持、全Claim原順、重複fillの別出現、raw /claims/iとpacked /frame/claim_uses/jを検証。",
+        "pointer_expansion": "test先頭のtransport_types/DescriptorTargetCallFrameなどの短縮表記はL5 /source_return_contract/descriptor_target_dataflow 配下を指す。絶対pointerは /source_return_contract/descriptor_target_dataflow/transport_types/DescriptorTargetCallFrame。test期待/bytesを結果に合わせて改訂しない。",
+        "replay": "root-wr68-current-replay-bounded-R1.json + observations-R1.json:1497ms、保存17raw canonicalSHA/FN0clean/raw全値を保持。16FN4 oracle_claim_ports /1FN1 S3のまま、6Comparison全成立0。FN6補助rawの公開直接callとは分ける。",
+        "tooling": "Ruff0.17.1 changed2py lintPASS27ms/formatter既整形。stale=0 1760ms。全bounded記録reaped=true/output_truncated=false。",
+        "owner_reentry": "FN4一般枝はconsumer_alignment_design_audit.FN4_oracle_claim_portsのowner/reentry/必要設計へ返す。本FN6閉包からnonfire/carry成功を推定しない。"
       }
     }
   }
