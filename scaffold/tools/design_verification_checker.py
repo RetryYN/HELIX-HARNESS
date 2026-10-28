@@ -1319,14 +1319,28 @@ def check_neg_4way_match(
                 "backflow_owner",
             ):
                 v4, v9, v8, v5 = u4[attr], u9[attr], u8[attr], u5[attr]
-                # In OS002 L5, failure_rules reference preserved_observation_ref/predicate
-                # rather than repeating change/expected/expected_preserved prose on L5.
+                # In OS002 L5, reference-backed expected_preserved still requires a
+                # non-null matching value in L4/L9/L8. Predicate-only rules may omit
+                # it when all four layers agree on the absent value.
                 if (
-                    attr in ("change_or_condition", "expected", "expected_preserved")
+                    attr in ("change_or_condition", "expected")
                     and v5 is None
                     and (x5.get("predicate") or x5.get("preserved_observation_ref"))
                 ):
                     cmp_ok = (v4 == v9 == v8) and (v4 is not None)
+                elif (
+                    attr == "expected_preserved"
+                    and v5 is None
+                    and x5.get("preserved_observation_ref")
+                ):
+                    cmp_ok = (v4 == v9 == v8) and (v4 is not None)
+                elif (
+                    attr == "expected_preserved"
+                    and all(value is None for value in (v4, v9, v8, v5))
+                    and x5.get("predicate")
+                    and not x5.get("preserved_observation_ref")
+                ):
+                    cmp_ok = True
                 else:
                     cmp_ok = v4 == v9 == v8 == v5
                 if not cmp_ok:
