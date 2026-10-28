@@ -515,16 +515,16 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         mutations = (
             (
                 "classification",
-                lambda layers: layers[2]["unit_cases"][0]["expected_property"].__setitem__(
-                    "condition", "different-classification"
-                ),
+                lambda layers: layers[2]["unit_cases"][0][
+                    "expected_property"
+                ].__setitem__("condition", "different-classification"),
                 "equivalence_key",
             ),
             (
                 "finding_codes",
-                lambda layers: layers[2]["unit_cases"][0]["expected_property"].__setitem__(
-                    "finding_codes", ["different-finding"]
-                ),
+                lambda layers: layers[2]["unit_cases"][0][
+                    "expected_property"
+                ].__setitem__("finding_codes", ["different-finding"]),
                 "equivalence_key",
             ),
             (
@@ -626,7 +626,8 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(
             any(
                 failure.get("attribute") == "negative_class_ref"
-                and failure.get("reason") == "negative_case_class_ref_missing_or_unresolved"
+                and failure.get("reason")
+                == "negative_case_class_ref_missing_or_unresolved"
                 for failure in result["failures"]
             ),
             msg=result,
