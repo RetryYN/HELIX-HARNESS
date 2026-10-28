@@ -223,6 +223,38 @@ class TestCompareSemanticEquivalence(unittest.TestCase):
             "the renamed snapshot must retain its own refs instead of matching fixture IDs",
         )
 
+    def test_ai_name_only_change_does_not_change_obligation_material(self):
+        baseline = _fixture_normal_input()
+        variant = copy.deepcopy(baseline)
+        variant["nonsemantic_metadata"]["ai_name"] = "single-field-ai-variant"
+
+        baseline_result, _ = _compare(baseline)
+        variant_result, _ = _compare(variant)
+
+        self.assertEqual(baseline_result["findings"], [])
+        self.assertEqual(variant_result["findings"], [])
+        self.assertEqual(
+            variant_result["input_binding"], baseline_result["input_binding"]
+        )
+        self.assertEqual(variant_result["material"], baseline_result["material"])
+
+    def test_language_only_change_does_not_change_obligation_material(self):
+        baseline = _fixture_normal_input()
+        variant = copy.deepcopy(baseline)
+        variant["nonsemantic_metadata"]["language_name"] = (
+            "single-field-language-variant"
+        )
+
+        baseline_result, _ = _compare(baseline)
+        variant_result, _ = _compare(variant)
+
+        self.assertEqual(baseline_result["findings"], [])
+        self.assertEqual(variant_result["findings"], [])
+        self.assertEqual(
+            variant_result["input_binding"], baseline_result["input_binding"]
+        )
+        self.assertEqual(variant_result["material"], baseline_result["material"])
+
     def test_different_template_or_scope_producer_material_does_not_cross_bind(self):
         first = _fixture_normal_input()
         template_variant = _different_binding_snapshot(
