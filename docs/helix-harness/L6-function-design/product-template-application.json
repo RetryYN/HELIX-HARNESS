@@ -215,6 +215,41 @@
       "selected_pointers": [
         "/target_bindings/public_functions/0"
       ]
+    },
+    {
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "file_sha256": "a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503",
+      "selected_pointers": [
+        "/f05_detail_contract/entry_points/validation_detail",
+        "/f05_detail_contract/leaf_writer_ledger/0",
+        "/f05_detail_contract/leaf_writer_ledger/1",
+        "/f05_detail_contract/leaf_writer_ledger/2",
+        "/f05_detail_contract/leaf_writer_ledger/3",
+        "/f05_detail_contract/leaf_writer_ledger/4",
+        "/f05_detail_contract/leaf_writer_ledger/5",
+        "/f05_detail_contract/leaf_writer_ledger/6",
+        "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table",
+        "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer",
+        "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/primitive_preservation",
+        "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
+        "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation"
+      ],
+      "role": "validation_detail_contract"
+    },
+    {
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "file_sha256": "9deeb8c15c4b549c6d588de82c1481f476a61036b253725418df5dbdd027f943",
+      "selected_pointers": [
+        "/validation_detail_native_full_return_oracle",
+        "/validation_detail_native_one_source_full_return_oracle",
+        "/validation_detail_native_one_source_owner_mismatch_full_return_oracle",
+        "/validation_detail_native_source_role_only_full_return_oracle",
+        "/validation_detail_native_six_source_full_return_oracle",
+        "/validation_detail_native_eight_source_full_return_oracle"
+      ],
+      "role": "validation_detail_oracles"
     }
   ],
   "legacy_rederivation": {
@@ -260,6 +295,23 @@
       "l7_test_ref": {
         "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
         "pointer": "/cases/0"
+      },
+      "private_detail_extension": {
+        "symbol": "validate_application_input_detail",
+        "l5_entry_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "pointer": "/f05_detail_contract/entry_points/validation_detail"
+        },
+        "input": "ValidationInput",
+        "output": "ValidationDetailedReturn",
+        "scope_ja": "同一validation walkから詳細観測と既存validated projectionを返すprivate writer。今回の実装/検証はnative ValidationInputだけ。既存public validate_application_inputの公開契約・pair freeze・FN00 IDは増やさない。",
+        "single_call_projection_ja": "public fn0は同一detail返却のvalidatedを射影する。raw whole、presence、source/qualification/root occurrenceと原順を保持する。source roleはprivate意味観測であり、role-only差からpublic InputIssueを追加しない。",
+        "diagnostic_ja": "L5 check_kind_tableとvalidated_input_issue_writerの固定reasonを使う。公開reason文言はL5の現在literalに従うため、旧FN0 literalと異なるreason差はあり得る。観測した355比較ではIssue件数/順序/locator/source_ref/unusable_source_refsは一致し、reason差42件だけだった。既存primitive preservationは既存primitiveがInputIssueを返す場合だけ適用し、現実装にはそのinner content JSON/numeric InputIssue producerを確認できなかった。",
+        "not_implemented_ja": "same_decode_successはWR153-SD-01で未実装。decode_core009_wireの実producer/承認型がなく、owner codec入口及びreentry codec merge後に再開する。decoder/codec型はこの範囲で新設しない。",
+        "l7_tdd_ref": {
+          "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+          "pointer": "/validate_application_input_detail_tdd"
+        }
       }
     },
     {
@@ -538,5 +590,5 @@
     "reentry D-H009-T3bは対象外。",
     "runtime、正式wire schema、実source資格、OS登録/使用、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。既存source_pins/0..13は既存5行の履歴pinのまま維持する。FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。既存source_pins/0..13は既存5行の履歴pinのまま維持する。FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN00のprivate_detail_extensionはL5 entry_pointとV01–V07、固定cause writer/public projectionを束縛し、L8の空/1-source/owner-difference/role-only/6-source/8-source oracleを同確認HEADの全file SHAとpointer集合で束縛する。"
 }
