@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "23f2ff8488092d62e848298f7e0114ab8f26c602855884e7ad99a2283b0abc3e",
+    "sha256": "b814069f2f79a71081da61f6b57d4193d040910efe3ec3e68b3ce17653281e7c",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -3729,7 +3729,7 @@
       "probe_boundary": "三候補の最初停止を観測したもので、rule93/FN7 fallbackの成功や全域探索ではない。結論は上記のsource guard/predicate照合と合わせたもの。scriptの主worktree誤参照はrootReadで実行前に対象WTへ修正。"
     },
     "B_prerequisite": {
-      "execution_state": "fn1_S4_full_unit_green_independent_review_pending",
+      "execution_state": "fn1_S2_full_unit_green_independent_review_pending",
       "rows": [
         {
           "rule": "HELIXBRAIN-L5-032-R-candidate_as_absolute_choice",
@@ -3738,9 +3738,9 @@
           "input_recipe": "normalの候補Aだけの補助入力と、既存_filename_identity_claim_inputの候補A/Bを使う二Binding補助入力。元same_template_identity Claimを保持しabsolute_product_choiceをappend。source/Qは未変更。両者を元L8 baselineの完全材料化とは扱わない。",
           "first_stop_by_input": {
             "I01": "S6",
-            "I02": "S2"
+            "I02": "S6"
           },
-          "remaining_owner": "FN1 multi-Binding / FN4 oracle detail"
+          "remaining_owner": "FN4 oracle detail"
         },
         {
           "rule": "HELIXBRAIN-L5-032-R-brain_selects_template",
@@ -3881,7 +3881,7 @@
       },
       "input_manifest": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-fn7b-inputs-frozen-R2/manifest.json",
       "input_manifest_sha256": "8f30502065f22be7f29dd4d3416175145665f6684e4e9842d98e89b8190907e4",
-      "input_matching": "同じ17凍結raw SHAを維持してWR66 S4後に再実行。15入力の現firststopはS6、残2はS2/S3。旧S1/S4/S5は過去観測用に保持し、旧matrixはcommitとL7 SHAで参照。",
+      "input_matching": "同じ17凍結raw SHAを維持してWR66 S2後に再実行。16入力の現firststopはS6、残1はS3。旧S1/S2/S4/S5は過去観測用に保持し、旧matrixはcommitとL7 SHAで参照。",
       "evidence": {
         "B01_F07": "root-fn7b-b01-f07-probe-R2.json:524ms、FN0-clean/原raw不変。二候補・一候補補助を区別。",
         "N02_missing": "root-fn7b-n02-add20-probe-bounded-R1.json + result-R1.json:184ms、N02-01/05 FN0-clean/FN4停止/raw不変。",
@@ -3892,7 +3892,8 @@
         "frozen_input_replay": "root-fn7b-frozen-input-replay-R1.json:598ms。保存済み17 rawをhash確認後に実FN0/public producerへ再投入し、全first stopが元probeと一致。FN0-clean/raw不変/source-tests tree不変。",
         "walk_replay": "root-fn7b-walkguard-replay-bounded-R1.json + result-R1.json:1008ms。17入力hash/FN0-clean/raw不変。11入力がwalk旧S1からFN4 descriptor_claim_uses same_walk_claim_countへ進む。残FN1停止6入力は原IDのまま。六Comparison成立はまだ0。",
         "claim_use_replay": "root-wr65-claimuse-replay-R1.json + observations-R1.json:951ms。17入力hash/FN0-clean/raw不変。11入力がS5からFN4 oracle_claim_ports S6へ進み、残FN1停止6入力は同じ。六Comparison成立0、writer familyは未着手。",
-        "fn1_S4_replay": "root-wr66-s4-replay-bounded-R1.json + observations-R1.json:1321ms。原17raw/FN0clean/raw不変。S4のI04/I06/I08/I10だけがFN1旧S4から既存S6へ進行、計15入力FN4 oracle_claim_ports/残2FN1(S2とS3)。全6Comparison成立0。"
+        "fn1_S4_replay": "root-wr66-s4-replay-bounded-R1.json + observations-R1.json:1321ms。原17raw/FN0clean/raw不変。S4のI04/I06/I08/I10だけがFN1旧S4から既存S6へ進行、計15入力FN4 oracle_claim_ports/残2FN1(S2とS3)。全6Comparison成立0。",
+        "fn1_S2_replay": "root-wr66-s2-replay-bounded-R1.json + observations-R1.json:1309ms。原17raw/FN0clean/raw不変。I02だけがS2から既存FN4 oracle_claim_ports S6へ進行、計16FN4/残1FN1 S3。全6Comparison成立0。"
       },
       "context_only": {
         "F07-NEG-01": "FN1 meaning_fact_closed_shape。追加fieldsをmeaningへ移さない。",
@@ -3909,7 +3910,7 @@
         "families_ready_for_writer": [],
         "L8_children": "not_executedのまま",
         "source_tests_changed": true,
-        "pair_scope": "WR66 S4はFN1広域停止2行削除＋新凍結4methodsと統制済み旧停止期待2件の移行だけ。原入力/原値finally/他407旧methods/新test/sourceを保持し全413PASS。S2は設計判定のみで別PR、all6成立0。"
+        "pair_scope": "WR66 S2は共有private population/public-walk評価域の2source、新凍結4methodsと統制済み旧停止期待2件の移行だけ。旧fixture/資格/独立FN3/他411methods/新freezeを保持して全417PASS。S4は先行3767で統合済、WR68は別責務、all6成立0。"
       },
       "prior_matrix_snapshot": {
         "commit": "170cd801f9b5c1658491b81aeb8cb1012da05266",
@@ -4014,6 +4015,53 @@
           }
         },
         "full_unit_green": "root-wr66-s4-unit-green-R2.json:413PASS26296ms、reaped=true/output_truncated=false。事前411PASS/2FAILと旧SHA/理由は上記履歴に保持。新4凍結とsource2行差分は不変。"
+      },
+      "fn1_S2_candidate_tdd": {
+        "test_freeze": "f2900047be6941d07572c07c740d3104af300b14",
+        "test_sha256": "e04ed55b36f1c83928ff8b042f0e89499a62a850e2b6a39f00791b18e0b09cc1",
+        "source_revision": "625b494a83379ca6969f08237e9baf84b6ea4d62",
+        "source_sha256": {
+          "definition_comparison.py": "84ca61c573f6fa6158243645b8ba48d5de72d98006139db5f6cf33874b768422",
+          "descriptor_definition_walk.py": "075b40d1def387f864b3519809c15e58d85d39b0c848fbad86da929c4b3aaa39"
+        },
+        "red": "root-wr66-s2-red-R1.json:4methods/5assertFAIL/errors0、268ms。public/walkとcandidate除去2条件が既存F02/descriptor_slot_binding_unresolvedで停止。canonicalSHA/FN0準備は通過、import/setup失敗なし。",
+        "focused_green": "root-wr66-s2-green-R1.json:4PASS367ms、凍結test全bytes不変。原raw/V全値は停止もfinallyで保持。",
+        "unit_before_old_test_edit": "root-wr66-s2-unit-before-old-test-R1.json:417methods中415PASS/旧2FAIL26448ms。既存filename fixtureのFN1別Binding停止期待2件がNotImplementedError not raised。全Greenとはしない。",
+        "old_file": {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_filename_claim.py",
+          "sha256": "1df3304e955e55c0749c10ad8ca087cc16a71e83f079df06faef907cb642b4d3",
+          "methods": [
+            "test_qualified_distinct_identity_candidates_make_R66_claim_conflict",
+            "test_unqualified_candidate_cannot_support_R66_and_fn1_unfrozen_binding_remains_stopped"
+          ],
+          "old_expectation": "qualified/unqualifiedの実candidateB rawはFN1でF02/descriptor_slot_binding_unresolved停止。",
+          "actual": "両inputとも原definition比較を返す。資格不成立は原InputIssue/unusable sourceと当該Bの既存unknownへ保持し、別のFN3 R66比較に混ぜない。"
+        },
+        "reason": "L4 evaluation_populationsとL5 single_walk/1,/2が定めるroot＋実candidate frameに対応した結果、旧global rootBinding停止が失効。旧raw/qualification/独立FN3 R66所見と診断/不変assertを保持し、FN1は原frame保持・資格のlocal unknownを確かめる期待へ移行が必要。",
+        "status": "controlled_old_stop_transition_done_full_unit_green_independent_review_pending",
+        "replay": "root-wr66-s2-replay-bounded-R1.json + observations-R1.json:1309ms。原17raw/FN0clean/raw不変。I02だけがS2から既存FN4 oracle_claim_ports S6へ進行、計16FN4/残1FN1 S3。全6Comparison成立0。",
+        "bounded": "全記録reaped=true/output_truncated=false。旧testはこの記録時点で未変更。",
+        "prior_matrix": {
+          "commit": "2b28fc1a2dbfe5fa3f03309fea40a6ad5baa368e",
+          "L7_sha256": "662ca3147985412a49ac26dbaaf0c069b14ad391960e0194d3eb233ac709ecac"
+        },
+        "current_source_revision": "ca3cd2701bab6d32e9425ec27275e4a8a08ca698",
+        "current_source_sha256": {
+          "definition_comparison.py": "59609dbc03116962a363f6cb3182bd62c90772b931fb67da456026435f33aca1",
+          "descriptor_definition_walk.py": "075b40d1def387f864b3519809c15e58d85d39b0c848fbad86da929c4b3aaa39"
+        },
+        "controlled_transition": {
+          "comments": [
+            6456950754,
+            6457024900
+          ],
+          "commit": "d3a7936d76e3058e90ada46eeb3a5dd74af9df33",
+          "new_file_sha256": "af3e680996a3fe08aba0a702629da5881e13954ed20b9bf51a2f6ce2c5c52726",
+          "scope": "旧2methodのFN1 S2停止assertだけをraw B要求frame/14missing/qualified帰属known・資格不成立の局所unknownへ移行。negative method名を更新。fixture/helper/qualification/独立FN3 R66の全所見・診断/元assertを保持し、他411methods/新freezeを変更しない。",
+          "qualification_correction": "6457024900: qualifiedとunqualifiedをcandidate選択へ使わない。raw candidate Bを除いた場合だけ非対象でrequired missing0。"
+        },
+        "full_unit_green": "root-wr66-s2-unit-green-R2.json:417PASS26171ms、reaped=true/output_truncated=false。旧415PASS/2FAIL、旧fileSHA/理由は上記履歴に保持。",
+        "qualification_selection_probe": "root-wr66-s2-qualification-selection-probe-R2.json:215ms、source/tests/raw/V不変。qualifiedとqualificationだけ変更したinputはraw候補/Binding/required_kind不変でB14missing、帰属はknown/unknown。raw B候補除去ではmissing0/帰属known。観測であり期待根拠はL4 required_contract_domain/fixed_kinds。R1の帰属axis filter名誤りは訂正しR2を用いる。"
       }
     }
   }
