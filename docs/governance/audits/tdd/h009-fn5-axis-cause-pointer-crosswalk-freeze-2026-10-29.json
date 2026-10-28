@@ -1,0 +1,620 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6483521707",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json"
+  },
+  "record_id": "HARNESS009-FN5-AXIS-CAUSE-POINTER-CROSSWALK-20261029",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-FN5-AXIS-CAUSE-POINTER-CROSSWALK",
+  "request_id": "WR154-R2-D-AXIS-0-POINTER-CROSSWALK",
+  "record_path": "docs/governance/audits/tdd/h009-fn5-axis-cause-pointer-crosswalk-freeze-2026-10-29.json",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "field意味・義務・source/traceとfailureの原資料を構造的に結び、missing/unknownを保持する。",
+      "change_ja": "旧TPL文法、registry/runtime、pointerの自動変換を移植しない。L4 basic view pointerとL5 native writer pointerを独立の参照として明示する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80,86–87",
+      "keep_ja": "UTW-014の欠損を空へ潰す失敗、UTW-020のaggregateによる診断単位の粗さをfailure basisとして維持する。",
+      "change_ja": "このpointer crosswalkは失敗を照らす参照整理であり、新しいCause意味、判定、runtime gateを追加しない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O2-definition-axis-projection",
+      "obligation_ja": "definition AxisFact payloadは元全体を保持する一方、definition role/formには実宣言又は同一source/bodyの独立根拠を要し、projection-basis不成立のCauseをDefinitionAssessment missing/unknownへ変換しない。",
+      "l3_pointers": [
+        "L3F#/requirements/27",
+        "L10F#/cases/27"
+      ],
+      "l5_pointers": [
+        "L5#/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3",
+        "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract/declaration_failure_cause",
+        "L5#/f05_detail_contract/projection_contract/failure",
+        "L5#/f05_detail_contract/cause_kind_crosswalk/values/14",
+        "L5#/f05_detail_contract/cause_kind_crosswalk/values/15"
+      ],
+      "l8_pointers": [
+        "L8#/additional_unit_cases/26",
+        "L8#/additional_unit_cases/27"
+      ],
+      "l4_pointers": [
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0",
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
+      ],
+      "l9_pointers": [
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+        "symbol": "f05_definition_axis_projection_cause_writer_contract",
+        "visibility": "private_detail_contract_for_fn5",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "D-H009-T3b",
+        "bound_public_function": "HARNESS-L5-009-compare_requirement_gaps",
+        "l8_oracle_pointer": "L8#/additional_unit_cases/26",
+        "unit_case_pointers": [
+          "L8#/additional_unit_cases/26",
+          "L8#/additional_unit_cases/27"
+        ],
+        "basis_pointers": [
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0",
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1",
+          "L5#/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3",
+          "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract/declaration_failure_cause",
+          "L5#/f05_detail_contract/projection_contract/failure"
+        ]
+      }
+    ],
+    "basic_pair_bindings": [
+      {
+        "binding_id": "L4-L9-FN5-axis-cause-semantic-cases",
+        "left_pointer": "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules",
+        "right_pointer": "L9#/field_semantic_evidence_verification/cause_kind_extension_cases",
+        "obligation_ids": [
+          "O2-definition-axis-projection"
+        ],
+        "case_pointers": [
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+        ],
+        "note_ja": "L4/L9はbasic viewの意味、期待、rule_pointerを保持する。L5/L8のnative技術shape/rule_pointerとは同一値比較せず、L5 source_pointersとADD-26/27のl5_technical_expectationで対応を辿る。"
+      }
+    ]
+  },
+  "source_main": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+  "request_base_sha": "ed3981e7b9419d796adf1981f8990c6b626ecabe",
+  "modified_aliases": [
+    "L5",
+    "L8"
+  ],
+  "remaining_scope_ja": "D-Axis-0 declaration_unresolvedとprojection_unformedについて、L4/L9のbasic view意味・expected rule_pointerを保持したまま、L5 native writerのsource_pointersとL8 ADD-26/27のl5_technical_expectationを追補する。producer実装、具体fixture、実行の未了は実在する後続slice D-H009-T3bへ戻す。L4/L9は不変。両U-IDはnot_executed、fixture未作成。独立意味reviewとcase executionは未了であり、generate-freezeはこれらを完了にしない。",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "target": "FN5 D-Axis-0とprojection_unformedのL4/L9意味pointer対L5/L8技術pointerを対応付け、未了producer workのreentryを既存後続D-H009-T3bへ送る。",
+  "criterion": "origin/mainをbaseとしてL5/L8のpre/post pin、L4/L9のunchanged pinsをgenerate-freezeで記録する。check-pair/check-child/check-freezeでpointer、pair、ownership、staleが一致する。L4/L9意味期待とL5/L8技術期待は別々に保持する。独立reviewとU-ID実行状態はpending/not_executedのまま記録する。",
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+    "L9_sha256": "2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94",
+    "L5_pre_sha256": "c91d90bb018b86889e951739e6860187f7d45422676b863db8510137ddac45bf",
+    "L5_post_sha256": "010395ecc67291c77496a7f5688e0ddf4961ab86a4afa9f029ef33fbdcb3645c",
+    "L8_pre_sha256": "5bd6786b06ec804f43080c5999544b101774751f82464c9a42a775443a6a1768",
+    "L8_post_sha256": "ff8a248a0e955f587ea96380c0ecf88ed3c617372f51340a960abb80c1bf2cdb"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 108,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 107,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 48,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 94,
+    "expanded_target_count": 200,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 107,
+      "L9": 107,
+      "L8": 107,
+      "L5": 107
+    },
+    "matched_case_count": 107,
+    "failure_count": 0,
+    "passed": true,
+    "parent_link_mode": "legacy",
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "f05_definition_axis_projection_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+      "visibility": "private_detail_contract_for_fn5",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "f05_definition_axis_projection_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2-definition-axis-projection",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 107,
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows",
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0,
+    "L4_L9_check_pair": {
+      "schema": "design-verification-pair-report.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "passed": true,
+      "pair_bidir": {
+        "check": "CHK-PAIR-BIDIR-ID",
+        "status": "evaluated",
+        "not_evaluated_reason": null,
+        "passed": true,
+        "left_count": 11,
+        "right_count": 11,
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/58 (HARNESS-L3-001-F01)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51..52 (HARNESS-L3-056-F01..F02)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/58 (HARNESS-L10-001-F01)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/51..52 (HARNESS-L10-056-F01..F02)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2946)",
+            "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)"
+          ]
+        }
+      },
+      "left_ownership_cap": {
+        "check": "CHK-OWNERSHIP-CAP-L3L6",
+        "passed": true,
+        "layer": "L4",
+        "file": "docs/helix-harness/L4-basic-design/product-template-application.json",
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+            "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+            "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+            "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+          ]
+        }
+      },
+      "right_ownership_cap": {
+        "check": "CHK-OWNERSHIP-CAP-L8L9",
+        "passed": true,
+        "layer": "L9",
+        "file": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/36..39 (HARNESS-L3-005-F06..F09)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/64,66 (HARNESS-L3-003-F01,F03)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/36..39 (HARNESS-L10-005-F06..F09)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/64,66 (HARNESS-L10-003-F01,F03)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+            "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)",
+            "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+            "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+          ]
+        }
+      }
+    },
+    "L5_L8_check_child": {
+      "schema": "design-verification-child-report.v1",
+      "evidence_kind": "scaffold",
+      "authority_effect": "none",
+      "passed": true,
+      "L4_L9_pair": {
+        "check": "CHK-PAIR-BIDIR-ID",
+        "status": "evaluated",
+        "not_evaluated_reason": null,
+        "passed": true,
+        "left_count": 11,
+        "right_count": 11,
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/58 (HARNESS-L3-001-F01)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51..52 (HARNESS-L3-056-F01..F02)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/58 (HARNESS-L10-001-F01)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/51..52 (HARNESS-L10-056-F01..F02)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2946)",
+            "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)"
+          ]
+        }
+      },
+      "L5_L8_pair": {
+        "check": "CHK-PAIR-BIDIR-ID",
+        "status": "evaluated",
+        "not_evaluated_reason": null,
+        "passed": true,
+        "left_count": 11,
+        "right_count": 11,
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/58 (HARNESS-L3-001-F01)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/51..52 (HARNESS-L3-056-F01..F02)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/58 (HARNESS-L10-001-F01)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/51..52 (HARNESS-L10-056-F01..F02)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-layer-acceptance-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2946)",
+            "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)"
+          ]
+        }
+      },
+      "negative_4way": {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "comparison_mode": "legacy_casewise_four_layer",
+        "parent_link_mode": "legacy",
+        "comparison_scope": {
+          "case_rows": [
+            "L4.contracts[].negative_classifications",
+            "L9.cases[].negative_cases",
+            "L8.cases[].negative_cases",
+            "L5.failure_rules"
+          ],
+          "case_attributes": [
+            "change_or_condition",
+            "classification_or_code",
+            "expected_axis",
+            "expected_state",
+            "expected",
+            "expected_preserved",
+            "backflow_owner"
+          ],
+          "side_effect_count": "zero_across_L4_L9_L8_L5",
+          "case_identity": "existing_casewise_identity_rules"
+        },
+        "count_unit": "negative_case_rows_per_layer",
+        "matched_case_count_unit": "matched_negative_case_rows",
+        "status": "evaluated",
+        "not_evaluated_reason": null,
+        "zero_count_rationale": null,
+        "passed": true,
+        "counts": {
+          "L4": 106,
+          "L9": 106,
+          "L8": 106,
+          "L5": 106
+        },
+        "matched_case_count": 106,
+        "failures": [],
+        "derived_from": {
+          "l3_pointers": [
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/44..46 (HARNESS-L3-041-F01..F03)",
+            "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/36,38,39 (HARNESS-L3-005-F06,F08,F09)"
+          ],
+          "l10_pointers": [
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/44..46 (HARNESS-L10-041-F01..F03)",
+            "docs/helix-harness/L10-verification/functional-verification.json#/cases/36,38,39 (HARNESS-L10-005-F06,F08,F09)"
+          ],
+          "decision_records": [
+            "docs/governance/decisions/helix-harness-extraction-naming-pair-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2944)",
+            "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)"
+          ]
+        }
+      },
+      "ownership_caps": [
+        {
+          "check": "CHK-OWNERSHIP-CAP-L3L6",
+          "passed": true,
+          "layer": "L4",
+          "file": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+            ]
+          }
+        },
+        {
+          "check": "CHK-OWNERSHIP-CAP-L8L9",
+          "passed": true,
+          "layer": "L9",
+          "file": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/36..39 (HARNESS-L3-005-F06..F09)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/64,66 (HARNESS-L3-003-F01,F03)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/36..39 (HARNESS-L10-005-F06..F09)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/64,66 (HARNESS-L10-003-F01,F03)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+            ]
+          }
+        },
+        {
+          "check": "CHK-OWNERSHIP-CAP-L3L6",
+          "passed": true,
+          "layer": "L5",
+          "file": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+            ]
+          }
+        },
+        {
+          "check": "CHK-OWNERSHIP-CAP-L8L9",
+          "passed": true,
+          "layer": "L8",
+          "file": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/40..43 (HARNESS-L3-015-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/36..39 (HARNESS-L3-005-F06..F09)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/64,66 (HARNESS-L3-003-F01,F03)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/40..43 (HARNESS-L10-015-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/36..39 (HARNESS-L10-005-F06..F09)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/64,66 (HARNESS-L10-003-F01,F03)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-verification-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2943)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809",
+              "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479"
+            ]
+          }
+        }
+      ],
+      "pins": [
+        {
+          "check": "CHK-PIN-SHA256",
+          "status": "evaluated",
+          "not_evaluated_reason": null,
+          "passed": true,
+          "checked_count": 19,
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/69 (HARNESS-L3-004-F01)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/69 (HARNESS-L10-004-F01)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)"
+            ]
+          }
+        },
+        {
+          "check": "CHK-PIN-SHA256",
+          "status": "evaluated",
+          "not_evaluated_reason": null,
+          "passed": true,
+          "checked_count": 19,
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/69 (HARNESS-L3-004-F01)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/69 (HARNESS-L10-004-F01)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)"
+            ]
+          }
+        },
+        {
+          "check": "CHK-PIN-SHA256",
+          "status": "evaluated",
+          "not_evaluated_reason": null,
+          "passed": true,
+          "checked_count": 21,
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/69 (HARNESS-L3-004-F01)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/69 (HARNESS-L10-004-F01)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)"
+            ]
+          }
+        },
+        {
+          "check": "CHK-PIN-SHA256",
+          "status": "evaluated",
+          "not_evaluated_reason": null,
+          "passed": true,
+          "checked_count": 21,
+          "failures": [],
+          "derived_from": {
+            "l3_pointers": [
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+              "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/69 (HARNESS-L3-004-F01)"
+            ],
+            "l10_pointers": [
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+              "docs/helix-harness/L10-verification/functional-verification.json#/cases/69 (HARNESS-L10-004-F01)"
+            ],
+            "decision_records": [
+              "docs/governance/decisions/helix-harness-layer040-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2945)",
+              "docs/governance/decisions/helix-harness-process-trace-prerequisite-l3-l10-delegated-decision-2026-10-12.md (PR #2947)"
+            ]
+          }
+        }
+      ]
+    },
+    "negative_4way_parent_link_mode": "legacy"
+  },
+  "basic_pair_bindings": [],
+  "scope": {
+    "included": [
+      "D-Axis-0 declaration_unresolved semantic-to-native pointer crosswalk",
+      "projection_unformed semantic-to-native pointer crosswalk"
+    ],
+    "excluded": [
+      "L4/L9 meaning, expected values, and pointers",
+      "producer implementation and runtime/test execution",
+      "other F05 causes"
+    ]
+  },
+  "review_response_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3887#issuecomment-6483690977",
+  "recorded_at_utc": "2026-10-28T23:46:38+00:00"
+}
