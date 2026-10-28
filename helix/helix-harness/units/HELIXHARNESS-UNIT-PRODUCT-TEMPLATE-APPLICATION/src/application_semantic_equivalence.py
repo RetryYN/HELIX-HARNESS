@@ -3,12 +3,32 @@
 from __future__ import annotations
 
 import copy
+import json
 import math
 from typing import Any
 
 
 _REF_FIELDS = {"identity", "revision", "scope", "owner", "source_locator", "sha256"}
 _REF_TEXT_FIELDS = {"identity", "revision", "owner", "source_locator", "sha256"}
+
+
+def _validated_input_stop_reason(validated: Any) -> str:
+    if isinstance(validated, dict):
+        issues = validated.get("input_issues")
+        if isinstance(issues, list):
+            locators = []
+            for index, issue in enumerate(issues):
+                if not isinstance(issue, dict):
+                    return f"/input_issues/{index} is not an InputIssue object"
+                locator = issue.get("locator")
+                if not isinstance(locator, str):
+                    return f"/input_issues/{index}/locator is missing or invalid"
+                locators.append(locator)
+            if locators:
+                return "validated input unavailable; InputIssue.locator=" + json.dumps(
+                    locators, ensure_ascii=False
+                )
+    return "validated input binding unavailable"
 
 
 def _is_raw_value(value: Any) -> bool:
@@ -54,7 +74,8 @@ def compare_semantic_equivalence(context: Any) -> dict[str, Any]:
     raw = validated.get("input") if isinstance(validated, dict) else None
     if not isinstance(raw, dict) or not isinstance(raw.get("binding"), dict):
         raise NotImplementedError(
-            "HARNESS-L5-009-compare_semantic_equivalence: validated input binding unavailable"
+            "HARNESS-L5-009-compare_semantic_equivalence: "
+            + _validated_input_stop_reason(validated)
         )
 
     binding = copy.deepcopy(raw["binding"])
