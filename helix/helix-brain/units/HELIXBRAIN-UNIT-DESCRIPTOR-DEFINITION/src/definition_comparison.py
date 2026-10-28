@@ -251,6 +251,8 @@ def _fn1_scope_guard(
     comparison_refs: list[dict[str, Any]] = []
     slot_members = {"slot_identity", "descriptor_kind", "binding", "facts", "comparison_refs", "definition_applicability_ref"}
     fact_members = {"source_ref", "owner", "binding", "meaning", "condition", "reason", "oracle_ref", "ref"}
+    # Self-comparison preserves the existing Ref-comparability admission.
+    root_binding_comparable = _binding_same(binding, binding)
     for index, slot in enumerate(slots):
         expected_slot_members = slot_members
         if allow_missing_facts and isinstance(slot, dict) and "facts" not in slot:
@@ -269,7 +271,7 @@ def _fn1_scope_guard(
             raise _unsupported("F02", "slot_identity_missing_or_duplicate", f"descriptors[{index}].slot_identity is missing or duplicated")
         if (not _binding_shape_ok(slot["binding"])
                 or not _binding_same(slot["binding"], slot["binding"])
-                or not _binding_same(binding, binding)):
+                or not root_binding_comparable):
             raise _unsupported("F02", "descriptor_slot_binding_unresolved", f"descriptors[{index}] does not have the current full Binding")
         facts = slot.get("facts")
         if allow_missing_facts and ("facts" not in slot or facts is None or facts == []):
