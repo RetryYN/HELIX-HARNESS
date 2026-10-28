@@ -36,6 +36,207 @@ def ownership_cap_test_material() -> dict[str, object]:
 
 
 class DesignVerificationCheckerSelfTest(unittest.TestCase):
+    @staticmethod
+    def _negative_rows(layer: dict[str, object]) -> list[dict[str, object]]:
+        if "failure_rules" in layer:
+            return layer["failure_rules"]
+        if "contracts" in layer:
+            return layer["contracts"][0].get("negative_classifications", [])
+        return layer["cases"][0].get("negative_cases", [])
+
+    @staticmethod
+    def _repeated_code_layers(
+        order_by_layer: dict[str, list[str]],
+    ) -> tuple[
+        dict[str, object], dict[str, object], dict[str, object], dict[str, object]
+    ]:
+        cases = {
+            identity: {
+                "integration_case_ref": f"CASE-{identity}",
+                "code": "missing",
+                "change": f"independent condition {identity}",
+                "axis": "input",
+                "state": "incomplete",
+                "expected": f"reject {identity}",
+                "expected_preserved": {"original": identity},
+                "backflow_owner": "CORE",
+            }
+            for identity in ("A", "B")
+        }
+        l4_rows = []
+        l9_rows = []
+        l8_rows = []
+        l5_rows = []
+        for identity in order_by_layer["L4"]:
+            l4_rows.append({"id": f"L4-{identity}", **cases[identity]})
+        for identity in order_by_layer["L9"]:
+            l9_rows.append(
+                {
+                    "id": f"L9-{identity}",
+                    **cases[identity],
+                    "expected_side_effect_count": 0,
+                }
+            )
+        for identity in order_by_layer["L8"]:
+            l8_rows.append(
+                {
+                    "id": f"L8-{identity}",
+                    "rule_ref": f"L5-R-{identity}",
+                    "function_ref": "L5-fn1",
+                    **cases[identity],
+                    "expected_side_effect_count": 0,
+                }
+            )
+        for identity in order_by_layer["L5"]:
+            l5_rows.append(
+                {
+                    "id": f"L5-R-{identity}",
+                    "contract_ref": "L5-01",
+                    "function_ref": "L5-fn1",
+                    "condition": cases[identity]["change"],
+                    "expected_axis": cases[identity]["axis"],
+                    "expected_state": cases[identity]["state"],
+                    **{
+                        key: value
+                        for key, value in cases[identity].items()
+                        if key not in ("change", "axis", "state")
+                    },
+                    "side_effect_count": 0,
+                }
+            )
+        return (
+            {"contracts": [{"id": "L4-01", "negative_classifications": l4_rows}]},
+            {"cases": [{"id": "L9-01", "negative_cases": l9_rows}]},
+            {"cases": [{"id": "L8-01", "negative_cases": l8_rows}]},
+            {"contracts": [{"id": "L5-01"}], "failure_rules": l5_rows},
+        )
+
+    def test_chk_neg_4way_repeated_code_matches_each_explicit_case(self) -> None:
+        layers = self._repeated_code_layers(
+            {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
+        )
+        baseline = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+
+        mutated = copy.deepcopy(layers)
+        mutated[2]["cases"][0]["negative_cases"][0]["expected"] = (
+            "mutated expectation for case A"
+        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *mutated)
+        with self.subTest(observation="baseline"):
+            self.assertTrue(baseline["passed"], msg=baseline["failures"])
+            self.assertEqual(baseline["matched_case_count"], 2)
+        with self.subTest(observation="changed_first_case"):
+            self.assertFalse(
+                result["passed"], msg="a changed first case must be detected"
+            )
+            self.assertTrue(result["failures"])
+
+        fallback_layers = copy.deepcopy(layers)
+        for row in fallback_layers[2]["cases"][0]["negative_cases"]:
+            row.pop("rule_ref", None)
+        fallback_baseline = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *fallback_layers
+        )
+        fallback_mutation = copy.deepcopy(fallback_layers)
+        fallback_mutation[2]["cases"][0]["negative_cases"][0]["expected"] = (
+            "mutated fallback expectation for case A"
+        )
+        fallback_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *fallback_mutation
+        )
+        with self.subTest(observation="identity_fallback"):
+            self.assertTrue(
+                fallback_baseline["passed"], msg=fallback_baseline["failures"]
+            )
+            self.assertEqual(fallback_baseline["matched_case_count"], 2)
+            self.assertFalse(
+                fallback_result["passed"],
+                msg="identity fallback must retain each repeated-code case",
+            )
+
+    def test_chk_neg_4way_repeated_code_requires_unambiguous_case_identity(
+        self,
+    ) -> None:
+        layers = self._repeated_code_layers(
+            {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
+        )
+        for identity_mode in ("missing", "duplicate"):
+            with self.subTest(identity_mode=identity_mode):
+                ambiguous = copy.deepcopy(layers)
+                for layer in ambiguous:
+                    rows = self._negative_rows(layer)
+                    for row in rows:
+                        if identity_mode == "missing":
+                            row.pop("integration_case_ref", None)
+                        else:
+                            row["integration_case_ref"] = "CASE-DUPLICATE"
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT, "L4", "L9", "L8", "L5", *ambiguous
+                )
+                self.assertFalse(
+                    result["passed"],
+                    msg=f"repeated code with {identity_mode} identity must fail closed",
+                )
+                self.assertTrue(result["failures"])
+                if identity_mode == "missing":
+                    missing_identity_layers = {
+                        failure.get("layer")
+                        for failure in result["failures"]
+                        if failure.get("attribute") == "case_identity"
+                        and failure.get("reason") == "missing_or_invalid"
+                    }
+                    self.assertEqual(missing_identity_layers, {"L4", "L9", "L8", "L5"})
+
+        ambiguous_l5 = copy.deepcopy(layers)
+        extra_rule = copy.deepcopy(ambiguous_l5[3]["failure_rules"][0])
+        extra_rule["id"] = "L5-R-A-duplicate-identity"
+        ambiguous_l5[3]["failure_rules"].append(extra_rule)
+        selected_ref_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *ambiguous_l5
+        )
+        self.assertFalse(
+            selected_ref_result["passed"],
+            msg="an unselected duplicate L5 identity must fail closed",
+        )
+
+        # The existing single-code contract remains valid without an explicit identity.
+        unique = copy.deepcopy(layers)
+        for layer in unique:
+            rows = self._negative_rows(layer)
+            for row in rows[1:]:
+                row["code"] = "other"
+            for row in rows:
+                row.pop("integration_case_ref", None)
+        # Select only the first row in each layer to exercise the established unique-code case.
+        unique[0]["contracts"][0]["negative_classifications"] = unique[0]["contracts"][
+            0
+        ]["negative_classifications"][:1]
+        unique[1]["cases"][0]["negative_cases"] = unique[1]["cases"][0][
+            "negative_cases"
+        ][:1]
+        unique[2]["cases"][0]["negative_cases"] = unique[2]["cases"][0][
+            "negative_cases"
+        ][:1]
+        unique[3]["failure_rules"] = unique[3]["failure_rules"][:1]
+        control = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *unique)
+        self.assertTrue(control["passed"], msg=control["failures"])
+        self.assertEqual(control["matched_case_count"], 1)
+
+    def test_chk_neg_4way_repeated_code_uses_identity_across_layer_order(self) -> None:
+        layers = self._repeated_code_layers(
+            {
+                "L4": ["A", "B"],
+                "L9": ["B", "A"],
+                "L8": ["A", "B"],
+                "L5": ["B", "A"],
+            }
+        )
+        l9_case_b = layers[1]["cases"][0]["negative_cases"][0]
+        l9_case_b["basic_case_ref"] = l9_case_b.pop("integration_case_ref")
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertTrue(result["passed"], msg=result["failures"])
+        self.assertEqual(result["matched_case_count"], 2)
+
     def test_derivation_map_and_legacy_basis_recorded(self) -> None:
         for check_id in (
             "CHK-PIN-SHA256",
