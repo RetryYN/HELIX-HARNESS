@@ -16,7 +16,31 @@
       "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json": "09a0dc98ca0aa73b4e1bfd2091b71d03cfe367f379661119e595a239b32885ab",
       "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json": "3b385f3995f8c1710d24d5f0e369d1f1755b40e4adf069df9fc7dd25d0dd6b66"
     },
-    "review_base": "d24cd6dcb4770126abdea6b15e5ca38b5f166e95"
+    "review_base": "d24cd6dcb4770126abdea6b15e5ca38b5f166e95",
+    "implementation_base": {
+      "revision": "0eea2a0eb35ae97d8fa9f211b1db8f1a387d0bb4",
+      "role": "OS007 material-transfer branch base; not itself a material source snapshot."
+    },
+    "material_sources": [
+      {
+        "path": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
+        "revision": "d24cd6dcb4770126abdea6b15e5ca38b5f166e95",
+        "file_sha256": "09a0dc98ca0aa73b4e1bfd2091b71d03cfe367f379661119e595a239b32885ab",
+        "role": "original L8 source snapshot supplying the full material bundle; read from the review base."
+      },
+      {
+        "path": "docs/helix-os/L9-integration-verification/log-feedback-memory-lineage.json",
+        "revision": "21ba1562bd907e19d49274839d0bd2d736c060d5",
+        "file_sha256": "7eecd8271c19881b84a2b4c7e72117283fdab7ff88cb2f6674cbbd570222ad62",
+        "role": "fixed historical L9 source fixture referenced by the retained L9 material; not the implementation or review base."
+      },
+      {
+        "path": "docs/helix-os/L5-detail-design/log-feedback-memory-lineage.json",
+        "revision": "d9a038f18e982551c2b9523ebf0fff95840afb1d",
+        "file_sha256": "3b385f3995f8c1710d24d5f0e369d1f1755b40e4adf069df9fc7dd25d0dd6b66",
+        "role": "fixed historical candidate L5 binding; not read as the current review or implementation base."
+      }
+    ]
   },
   "l9_material_bundle": {
     "fixed_source_binding_rule_ja": "case配下の原L9 pointerはsource_basis記載の同path・revision・file_sha256へ固定する。材料の全値、配列順とordered replacementsはそのまま保持する。",

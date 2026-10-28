@@ -26066,6 +26066,22 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/boundary_probe_materials/probes/0"
+        },
+        "expected_property": {
+          "condition": "record_material_unknown",
+          "facet_correspondence": {
+            "logs": "unknown",
+            "feedback": "corresponding",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "findings": [
+            {
+              "code": "field_unknown",
+              "pointer": "/logs/worker/project_id",
+              "return_owner": "common-log-owner"
+            }
+          ]
         }
       },
       {
@@ -26073,6 +26089,27 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/boundary_probe_materials/probes/1"
+        },
+        "expected_property": {
+          "condition": "record_material_violation",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "violation",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "findings": [
+            {
+              "code": "stage_unrecorded_ref_present",
+              "pointer": "/context/feedback/unacked/stages/intake",
+              "return_owner": "feedback-source-owner"
+            },
+            {
+              "code": "stage_unrecorded_ref_present",
+              "pointer": "/feedback/unacked/stages/intake",
+              "return_owner": "feedback-source-owner"
+            }
+          ]
         }
       },
       {
@@ -26080,6 +26117,27 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/boundary_probe_materials/probes/2"
+        },
+        "expected_property": {
+          "condition": "record_material_unknown",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "unknown",
+            "boundary": "corresponding"
+          },
+          "findings": [
+            {
+              "code": "order_unknown",
+              "pointer": "/context/memory/pending_reflection/reflection/order",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "order_unknown",
+              "pointer": "/memory/pending_reflection/reflection/order",
+              "return_owner": "memory-canonical-owner"
+            }
+          ]
         }
       },
       {
@@ -26087,6 +26145,22 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/boundary_probe_materials/probes/3"
+        },
+        "expected_property": {
+          "condition": "record_material_unknown",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "corresponding",
+            "boundary": "unknown"
+          },
+          "findings": [
+            {
+              "code": "whole_claim_unknown",
+              "pointer": "/whole_completion_claim",
+              "return_owner": "management-authority-owner"
+            }
+          ]
         }
       }
     ],
@@ -26133,6 +26207,123 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/whole_probe_materials/cases/0"
+        },
+        "expected_property": {
+          "condition": "record_material_violation",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "violation",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "ordered_findings": [
+            {
+              "code": "boolean_conflict",
+              "pointer": "/memory/retired/reflection/recorded",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "field_conflict",
+              "pointer": "/memory/retired/reflection/source_entry_id",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "reflection_unrecorded_ref_present",
+              "pointer": "/memory/retired/reflection",
+              "return_owner": "memory-canonical-owner"
+            },
+            {
+              "code": "retire_before_reflection",
+              "pointer": "/memory/retired/state",
+              "return_owner": "memory-canonical-owner"
+            }
+          ],
+          "non_effects": {
+            "whole_management_complete": false,
+            "operation_effect": "none",
+            "actual_log_written": false,
+            "actual_feedback_resolved": false,
+            "actual_memory_retired": false
+          }
         }
       },
       {
@@ -26140,6 +26331,102 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/whole_probe_materials/cases/1"
+        },
+        "expected_property": {
+          "condition": "record_material_corresponding",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "corresponding",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": true,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "ordered_findings": [],
+          "non_effects": {
+            "whole_management_complete": false,
+            "operation_effect": "none",
+            "actual_log_written": false,
+            "actual_feedback_resolved": false,
+            "actual_memory_retired": false
+          }
         }
       },
       {
@@ -26147,6 +26434,113 @@
         "l7_probe_ref": {
           "path": "docs/helix-os/L7-function-verification/log-feedback-memory-lineage.json",
           "pointer": "/l8_material_bundle/case/whole_probe_materials/cases/2"
+        },
+        "expected_property": {
+          "condition": "record_material_unknown",
+          "facet_correspondence": {
+            "logs": "corresponding",
+            "feedback": "unknown",
+            "memory": "corresponding",
+            "boundary": "corresponding"
+          },
+          "log_material_usable": {
+            "worker": true,
+            "decision": true,
+            "operation": true,
+            "verification": true
+          },
+          "feedback_material": {
+            "unacked": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": false,
+                "ack": false,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "acked_pending": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": true,
+                "resolution": false
+              },
+              "resolution_material_corresponding": false,
+              "actual_resolved": false
+            },
+            "resolved": {
+              "stage_recorded": {
+                "intake": true,
+                "classify": true,
+                "ack": true,
+                "pending": false,
+                "resolution": true
+              },
+              "resolution_material_corresponding": true,
+              "actual_resolved": false
+            }
+          },
+          "memory_material": {
+            "pending_reflection": {
+              "state": "active",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": true,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "retired": {
+              "state": "retired",
+              "freshness": "current_material",
+              "reflection_recorded": true,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "expired": {
+              "state": "expired",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            },
+            "consumed": {
+              "state": "consumed",
+              "freshness": "current_material",
+              "reflection_recorded": false,
+              "active_material_eligible": false,
+              "actual_retired": false,
+              "actual_delivered": false,
+              "actual_consumed": false
+            }
+          },
+          "ordered_findings": [
+            {
+              "code": "field_unknown",
+              "pointer": "/context/feedback/unacked/original_finding/source_head",
+              "return_owner": "feedback-source-owner"
+            },
+            {
+              "code": "finding_missing",
+              "pointer": "/feedback/unacked/original_finding",
+              "return_owner": "feedback-source-owner"
+            }
+          ],
+          "non_effects": {
+            "whole_management_complete": false,
+            "operation_effect": "none",
+            "actual_log_written": false,
+            "actual_feedback_resolved": false,
+            "actual_memory_retired": false
+          }
         }
       }
     ]
