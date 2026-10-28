@@ -1,6 +1,7 @@
 """Unit tests for H009 L5#/functions/5 compare_requirement_gaps."""
 
 import copy
+import hashlib
 import json
 from pathlib import Path
 import sys
@@ -75,6 +76,32 @@ def _resolve_recipe_raw(recipe_id):
         else:
             _set_path(raw, change["property_path"], change["value"])
     return raw
+
+
+def _rename_id(val):
+    return "id-" + hashlib.sha256(val.encode("utf-8")).hexdigest()[:12]
+
+
+def _rename_all_identifiers(obj):
+    """Recursively obfuscate all synthetic/fixture identifiers so no literal substring survives."""
+    if isinstance(obj, dict):
+        out = {}
+        for k, v in obj.items():
+            if k in ("identity", "owner", "actor", "decider"):
+                out[k] = _rename_id(v) if isinstance(v, str) else v
+            elif k in (
+                "field",
+                "template",
+                "application_contract",
+                "subject",
+            ) and isinstance(v, str):
+                out[k] = _rename_id(v)
+            else:
+                out[k] = _rename_all_identifiers(v)
+        return out
+    if isinstance(obj, list):
+        return [_rename_all_identifiers(x) for x in obj]
+    return obj
 
 
 def _same_ref_core(left, right):
@@ -639,6 +666,65 @@ class TestCompareRequirementGaps(unittest.TestCase):
         self.assertEqual(res["material"]["field_checks"], [])
         self.assertEqual(res["material"]["candidate_proposals"], [])
         self.assertEqual(res["material"]["unfinished_obligation_refs"], [])
+
+    def test_identifier_rename_invariance_and_structural_predicates(self):
+        """R1 F1: All F05 cases (normal, ADD-15, ADD-16, NEG-01..07) work under bulk identifier renaming without literal fixture strings."""
+        # 1. Normal, ADD-15, ADD-16 under bulk identifier renaming
+        for recipe_id in (
+            "CORE-NORMAL-UNIT-REQUIRED",
+            "CORE-ADD-INPUT-15",
+            "CORE-ADD-INPUT-16",
+        ):
+            raw = _rename_all_identifiers(_resolve_recipe_raw(recipe_id))
+            _rebuild_source_graph(raw)
+            res, _, _, _ = self._run_gaps(raw)
+            self.assertEqual(res["producer_symbol"], "compare_requirement_gaps")
+            self.assertEqual(res["input_binding"], raw["binding"])
+            self.assertEqual(res["findings"], [])
+            if recipe_id == "CORE-ADD-INPUT-15":
+                self.assertEqual(
+                    [p["kind"] for p in res["material"]["candidate_proposals"]],
+                    [
+                        "question",
+                        "contradiction",
+                        "derived_requirement_candidate",
+                        "na_candidate",
+                    ],
+                )
+
+        # 2. All 7 negative cases under bulk identifier renaming and neutral proposed_value
+        for cid, neg in self.f05_negative_cases.items():
+            with self.subTest(case_id=cid):
+                raw = _rename_all_identifiers(self._apply_f05_mutation(neg))
+                for claim in raw.get("claims") or []:
+                    claim["proposed_value"] = {"note": "neutral-structural-test"}
+                if cid == "HARNESS-L8-009-F05-NEG-06":
+                    # Subject is the structural definition_ref from field_inputs (not literal 'field-definition')
+                    def_ref = copy.deepcopy(
+                        raw["field_inputs"][0]["definition_refs"][0]
+                    )
+                    raw["gap_proposals"][-1]["subject_ref"] = def_ref
+                    raw["gap_proposals"][-1]["source_refs"] = [def_ref]
+                elif cid == "HARNESS-L8-009-F05-NEG-07":
+                    # Basis is the structural source_ref of the derived_requirement_candidate proposal
+                    derived_src = copy.deepcopy(
+                        raw["gap_proposals"][2]["source_refs"][0]
+                    )
+                    raw["claims"][-1]["subject_ref"] = copy.deepcopy(
+                        raw["binding"]["template_ref"]
+                    )
+                    raw["claims"][-1]["basis_refs"] = [derived_src]
+                _rebuild_source_graph(raw)
+                res, _, _, _ = self._run_gaps(raw)
+                matching = [
+                    f
+                    for f in res["findings"]
+                    if f["code"] == neg["expected_classification"]
+                ]
+                self.assertTrue(
+                    matching,
+                    f"Expected finding {neg['expected_classification']} in renamed {cid}",
+                )
 
 
 if __name__ == "__main__":
