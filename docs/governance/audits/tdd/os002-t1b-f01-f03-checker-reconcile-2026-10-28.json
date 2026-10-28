@@ -1,0 +1,268 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T1b",
+  "request_id": "WR95-OS002-HARNESS001-FREEZE-REGENERATE",
+  "resolves_disposition_ref": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json#/independent_expectation_derivation/derived_expectations",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "projectごとの要求から作業・実装・検証・提供・運用までの独立追跡とrelease kanban原状態の分離（F01）、ならびに各記録の発生event/actor/source/correlation・project/scope/要求revision/template版・unit/connection/composite義務/artifact/pair・nonrelated_basisの因果結合（F03）を保持。",
+    "change": "OSTRACE追補判断（2026-10-10）および #3510 / #3547 統制判断に基づき、L5 contracts/2,4・functions/3,5のalgorithm文言へL3 F01/F03の全工程・全不成立状態・全9記録種別・未解決保持を明記して対応を閉じ、L8へ全返却/fixture/hashを追加せず公開関数単位（fn3 compare_project_stages, fn5 compare_event_obligation_trace）でT:298・T:300詳細対を凍結した。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化"
+    ]
+  },
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/3",
+        "function_id": "HELIXOS-L5-002-compare_project_stages",
+        "symbol": "compare_project_stages"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/5",
+        "function_id": "HELIXOS-L5-002-compare_event_obligation_trace",
+        "symbol": "compare_event_obligation_trace"
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3F#/requirements/8",
+      "l3_clause": "F01正常系として、compare_project_stagesは各project_states（要求から作業・実装・検証・提供・運用までの工程状態）を対象project/scope（binding.project_scope）と要求revision（binding.requirement_ref）へ独立に結び、欠落・競合・未接続・未合意・未実装・未検証を区別し、release_kanbanは元owner recordからstate/source_refを解決して既知（例: QのKQ prepared）と未提示（null→not_supplied、例: Pのkanban未提示）を区別し、部分成功で全体完了を生成しない。",
+      "l5_pointers": [
+        "L5#/contracts/2",
+        "L5#/functions/3/algorithm/0",
+        "L5#/functions/3/algorithm/1",
+        "L5#/type_contract/types/F01RecordInput",
+        "L5#/type_contract/types/F01RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/3",
+        "L8#/normal_fixtures/2"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L10F#/cases/8/negative_input",
+      "l3_clause": "F01負例として、compare_project_stagesは別project Qの成功で対象project Pを完了とするclaim（other_project_completion → axis=project_scope, state=conflict, backflow_owner=OS002）およびGitHub Issue close/PR mergeをrelease kanban提供状態へ転写するclaim（github_as_release → axis=release_state, state=unknown, backflow_owner=OS002/提供記録owner）を退け、Pの未実装/未検証/kanban未提示とQの原状態（KQ prepared）を副作用0で保存する。",
+      "l5_pointers": [
+        "L5#/failure_rules/5",
+        "L5#/failure_rules/6"
+      ],
+      "l8_pointers": [
+        "L8#/cases/2"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3F#/requirements/10",
+      "l3_clause": "F03正常系として、compare_event_obligation_traceは全9種の記録（template適用・義務生成/消込・N/A・Backflow・設計成果・finding・再作業・受入・運用結果）のeventsをevent_refで原sourceへ結び、actor_ref・source_ref・correlation_refおよびbindingのproject・scope・requirement_revision・選択/使用template版を個別照合し、obligation_refからkind_obligationsのunit/connection/compositeとartifact_ref・pair_ref両端identity/revisionを同義務へ照合（単体成功を他kindへ伝播しない）し、非関係項目は有資格nonrelated_basisの対象端と不適用理由または未解決として保持し、completion_generated=falseを維持する。",
+      "l5_pointers": [
+        "L5#/contracts/4",
+        "L5#/functions/5/algorithm/0",
+        "L5#/functions/5/algorithm/1",
+        "L5#/functions/5/algorithm/2",
+        "L5#/type_contract/types/F03RecordInput",
+        "L5#/type_contract/types/F03RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/5",
+        "L8#/normal_fixtures/4"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L10F#/cases/10/negative_input",
+      "l3_clause": "F03負例として、compare_event_obligation_traceは原eventのproject/scope/requirement_revision/template_revision/obligation/artifact/pair各参照の欠落・別対象置換14件（axis=各対象軸, state=missing/conflict, backflow_owner=元record/source owner）、発生元event/actor/source/correlation除去4件（axis=event/actor/source/correlation, state=missing, backflow_owner=元event owner）、非関係項目の架空pair捏造1件（nonrelated_fabrication → axis=applicability, state=conflict, backflow_owner=元record owner）の計19件を具体recordへ返し、他eventの原結合とQ有効記録を副作用0で保存する。",
+      "l5_pointers": [
+        "L5#/failure_rules/10",
+        "L5#/failure_rules/11",
+        "L5#/failure_rules/12",
+        "L5#/failure_rules/13",
+        "L5#/failure_rules/14",
+        "L5#/failure_rules/15",
+        "L5#/failure_rules/16",
+        "L5#/failure_rules/17",
+        "L5#/failure_rules/18",
+        "L5#/failure_rules/19",
+        "L5#/failure_rules/20",
+        "L5#/failure_rules/21",
+        "L5#/failure_rules/22",
+        "L5#/failure_rules/23",
+        "L5#/failure_rules/24",
+        "L5#/failure_rules/25",
+        "L5#/failure_rules/26",
+        "L5#/failure_rules/27",
+        "L5#/failure_rules/28"
+      ],
+      "l8_pointers": [
+        "L8#/cases/4"
+      ]
+    }
+  ],
+  "source_main": "3f89247e0d07e761d91299d5acaa0faedb42f747",
+  "request_base_sha": "3f89247e0d07e761d91299d5acaa0faedb42f747",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "recorded_at_utc": "2026-10-28T07:24:44+00:00",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L9_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L5_sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3",
+    "L8_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 45,
+    "expanded_target_count": 45,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_project_stages",
+      "id": "HELIXOS-L5-002-compare_project_stages",
+      "l5_pointer": "L5#/functions/3",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_project_stages",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_event_obligation_trace",
+      "id": "HELIXOS-L5-002-compare_event_obligation_trace",
+      "l5_pointer": "L5#/functions/5",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_event_obligation_trace",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_project_stages",
+      "l5_pointer": "L5#/functions/3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_event_obligation_trace",
+      "l5_pointer": "L5#/functions/5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
