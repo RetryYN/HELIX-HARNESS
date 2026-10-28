@@ -122,13 +122,15 @@
       "git diff --check"
     ],
     "negative_cases": [
-      "CHK-PIN-SHA256でraw SHA-256およびcanonical_json_sha256の不一致を検出してFAILにする",
-      "CHK-JSON-POINTERで0..N範囲展開後の未解決indexおよびremoved sidecarへのunpinned参照を検出してFAILにする",
-      "CHK-PAIR-BIDIR-IDで逆方向リンク欠落・重複ID・/completion/negative_case_count不一致を検出してFAILにする",
-      "CHK-OWNERSHIP-CAP-L8L9/L3L6でL8/L9のfixture_patch・seed・非pin *_sha256およびL5のfull_returnを検出してFAILにする",
-      "CHK-NEG-4WAY-MATCHで4層間のbackflow_owner不一致およびside_effect_count != 0を検出してFAILにする",
-      "CHK-PUBLIC-FN-FREEZEでprivate関数の公開凍結・未解決unit_case_ref・戻し先欠落private detailを検出してFAILにする",
-      "CHK-L3-OBLIGATION-MAPで空のl5/l8_pointers・blocking_a_count != 0・未参照L9 branchを検出してFAILにする"
+      "CHK-PIN-SHA256: corrupt raw SHA-256 and canonical_json_sha256",
+      "CHK-JSON-POINTER: out-of-range 0..N index and unpinned removed material reference",
+      "CHK-PAIR-BIDIR-ID: asymmetric reverse link and /completion/negative_case_count mismatch",
+      "CHK-OWNERSHIP-CAP-L8L9 / L3L6: forbidden key in L8 and L3, plus scope_pointer filtering",
+      "CHK-NEG-4WAY-MATCH: 4-layer count mismatch, 7-attribute mismatch, and missing 0-side-effect proof",
+      "CHK-PUBLIC-FN-FREEZE: private function frozen as public, unresolved unit_case_refs, missing reentry owner, and unparsed_record_shape vs design violation (F3)",
+      "CHK-L3-OBLIGATION-MAP: empty l8_pointers in string/dict obligation (F1), self-reported status override (F1), non-zero blocking_a_count, and unreferenced L9 branch",
+      "Zero-count fail-close (F2): 0 checked items or missing layer documents yield status=not_evaluated (with reason) and passed=False across PIN, PTR, PAIR, NEG, FN, OBL, and head_entity_counts",
+      "TICKET-CI-PROFILE-DEFERRAL: missing ci_profile_deferral_ticket and missing required subfield"
     ]
   },
   "replacement": {

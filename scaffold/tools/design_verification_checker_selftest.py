@@ -472,14 +472,187 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertFalse(res_fail3["passed"])
         self.assertEqual(res_fail3["failures"][0]["error"], "unreferenced_l9_branch")
 
+        # Mutation 4 (F1): string obligation with L5 pointer only and L8 pointer count == 0
+        mut4 = {
+            "upper_expectation_rederivation": {
+                "derived_expectations_and_t2b_coverage": [
+                    "E1（テスト期待）: L5#/functions/5 と L8 origin_cases/0（U-01）で固定。"
+                ]
+            }
+        }
+        res_fail4 = dvc.check_l3_obligation_map(mut4, {}, {})
+        self.assertFalse(res_fail4["passed"])
+        self.assertEqual(res_fail4["failures"][0]["error"], "empty_l5_or_l8_pointers")
+        self.assertEqual(
+            res_fail4["obligations"][0]["status"], "missing_l5_or_l8_pointers"
+        )
+
+        # Mutation 5 (F1): dict obligation with empty l8_pointers but self-reported status="covered"
+        mut5 = {
+            "l3_obligation_decomposition": [
+                {
+                    "obligation_id": "O-SELF-REPORTED",
+                    "l5_pointers": ["L5#/functions/0"],
+                    "l8_pointers": [],
+                    "status": "covered",
+                }
+            ]
+        }
+        res_fail5 = dvc.check_l3_obligation_map(mut5, {}, {})
+        self.assertFalse(res_fail5["passed"])
+        self.assertEqual(
+            res_fail5["obligations"][0]["status"], "missing_l5_or_l8_pointers"
+        )
+
+    def test_f2_zero_count_fail_close_not_evaluated(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            empty_pin = dvc.check_pin_sha256(root, "empty.json", {})
+            self.assertFalse(empty_pin["passed"])
+            self.assertEqual(empty_pin["status"], "not_evaluated")
+            self.assertEqual(
+                empty_pin["not_evaluated_reason"], "no_pinned_inputs_found"
+            )
+
+            empty_ptr = dvc.check_json_pointer(root, "empty.json", {"hello": "world"})
+            self.assertFalse(empty_ptr["passed"])
+            self.assertEqual(empty_ptr["status"], "not_evaluated")
+            self.assertEqual(
+                empty_ptr["not_evaluated_reason"], "no_json_pointers_found"
+            )
+
+            empty_pair = dvc.check_pair_bidir_id(
+                root,
+                "l3.json",
+                "l10.json",
+                left_data={"requirements": []},
+                right_data={"cases": []},
+            )
+            self.assertFalse(empty_pair["passed"])
+            self.assertEqual(empty_pair["status"], "not_evaluated")
+            self.assertIn("empty_pair_entities", empty_pair["not_evaluated_reason"])
+
+            empty_neg_missing = dvc.check_neg_4way_match(
+                root, "l4.json", "l9.json", "l8.json", "l5.json", {}, {}, {}, {}
+            )
+            self.assertFalse(empty_neg_missing["passed"])
+            self.assertEqual(empty_neg_missing["status"], "not_evaluated")
+            self.assertEqual(
+                empty_neg_missing["not_evaluated_reason"],
+                "missing_or_unparsed_layer_documents",
+            )
+
+            non_empty_no_neg = {"contracts": [{"id": "C1"}], "cases": [{"id": "C1"}]}
+            zero_neg_no_rationale = dvc.check_neg_4way_match(
+                root,
+                "l4.json",
+                "l9.json",
+                "l8.json",
+                "l5.json",
+                non_empty_no_neg,
+                non_empty_no_neg,
+                non_empty_no_neg,
+                non_empty_no_neg,
+            )
+            self.assertFalse(zero_neg_no_rationale["passed"])
+            self.assertEqual(zero_neg_no_rationale["status"], "not_evaluated")
+            self.assertEqual(
+                zero_neg_no_rationale["not_evaluated_reason"],
+                "zero_negative_case_counts_without_rationale",
+            )
+
+            with_rationale = {
+                "contracts": [{"id": "C1"}],
+                "zero_negative_cases_rationale": "Pure constant declaration slice without failure path",
+            }
+            zero_neg_with_rationale = dvc.check_neg_4way_match(
+                root,
+                "l4.json",
+                "l9.json",
+                "l8.json",
+                "l5.json",
+                with_rationale,
+                non_empty_no_neg,
+                non_empty_no_neg,
+                non_empty_no_neg,
+            )
+            self.assertTrue(zero_neg_with_rationale["passed"])
+            self.assertEqual(zero_neg_with_rationale["status"], "evaluated")
+            self.assertIsNotNone(zero_neg_with_rationale["zero_count_rationale"])
+
+            empty_fn = dvc.check_public_fn_freeze({}, {}, {})
+            self.assertFalse(empty_fn["passed"])
+            self.assertEqual(empty_fn["status"], "not_evaluated")
+            self.assertEqual(
+                empty_fn["not_evaluated_reason"],
+                "no_public_or_private_function_freeze_rows_found",
+            )
+
+            empty_obl = dvc.check_l3_obligation_map({}, {}, {})
+            self.assertFalse(empty_obl["passed"])
+            self.assertEqual(empty_obl["status"], "not_evaluated")
+            self.assertEqual(
+                empty_obl["not_evaluated_reason"], "no_l3_obligations_found"
+            )
+
+        for unparsed_rec in (
+            "docs/governance/audits/tdd/harness001-v12-layer-contract-pair-freeze-2026-10-28.json",
+            "docs/governance/audits/tdd/labo011-aggregate-correlate-connection-pair-freeze-2026-10-28.json",
+            "docs/governance/audits/tdd/os007-os015-function-pair-freeze-2026-10-28.json",
+        ):
+            audit = dvc.audit_freeze_record(REPO_ROOT, unparsed_rec)
+            self.assertFalse(
+                audit["mechanical_match"],
+                msg=f"Expected mechanical_match=False for {unparsed_rec}",
+            )
+
+    def test_f3_unparsed_record_shape_vs_design_violation(self) -> None:
+        l5 = {
+            "functions": [
+                {
+                    "id": "FN-01",
+                    "symbol": "pub_fn",
+                    "visibility": "public",
+                    "unit_case_refs": ["U1"],
+                }
+            ]
+        }
+        l8 = {"cases": [{"id": "U1"}]}
+        # Missing pointer -> unparsed_record_shape
+        rec_unparsed = {"function_freeze_rows": [{"symbol": "pub_fn"}]}
+        res_unparsed = dvc.check_public_fn_freeze(rec_unparsed, l5, l8)
+        self.assertFalse(res_unparsed["passed"])
+        self.assertEqual(res_unparsed["failures"][0]["error"], "unparsed_record_shape")
+
+        # Empty l5_data -> unparsed_record_shape
+        rec_empty_l5 = {
+            "function_freeze_rows": [
+                {"symbol": "pub_fn", "l5_pointer": "L5#/functions/0"}
+            ]
+        }
+        res_empty_l5 = dvc.check_public_fn_freeze(rec_empty_l5, {}, l8)
+        self.assertFalse(res_empty_l5["passed"])
+        self.assertEqual(res_empty_l5["failures"][0]["error"], "unparsed_record_shape")
+
+        # Non-existent index in loaded l5_data -> unresolved_l5_function_pointer
+        rec_missing_idx = {
+            "function_freeze_rows": [
+                {"symbol": "pub_fn", "l5_pointer": "L5#/functions/99"}
+            ]
+        }
+        res_missing_idx = dvc.check_public_fn_freeze(rec_missing_idx, l5, l8)
+        self.assertFalse(res_missing_idx["passed"])
+        self.assertEqual(
+            res_missing_idx["failures"][0]["error"], "unresolved_l5_function_pointer"
+        )
+
     def test_existing_four_freeze_records_audit_and_generate(self) -> None:
-        records = [
+        pass_records = [
             "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
             "docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json",
             "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
-            "docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json",
         ]
-        for rpath in records:
+        for rpath in pass_records:
             audit = dvc.audit_freeze_record(REPO_ROOT, rpath, use_creation_commit=True)
             self.assertTrue(
                 audit["mechanical_match"],
@@ -490,6 +663,20 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             self.assertTrue(cmp_sec["pointers_resolved_match"])
             self.assertTrue(cmp_sec["head_entity_counts_match"])
             self.assertTrue(cmp_sec["verification_fields_match"])
+
+        # os002-t2b has E1..E4 with L5#/... pointers but prose L8 references (l8_pointer_count == 0),
+        # so CHK-L3-OBLIGATION-MAP must fail with empty_l5_or_l8_pointers (F1).
+        t2b_path = "docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json"
+        t2b_audit = dvc.audit_freeze_record(
+            REPO_ROOT, t2b_path, use_creation_commit=True
+        )
+        self.assertFalse(t2b_audit["mechanical_match"])
+        t2b_obl = t2b_audit["checks"]["CHK-L3-OBLIGATION-MAP"]
+        self.assertFalse(t2b_obl["passed"])
+        self.assertEqual(len(t2b_obl["failures"]), 4)
+        self.assertTrue(
+            all(f["error"] == "empty_l5_or_l8_pointers" for f in t2b_obl["failures"])
+        )
 
         # Also test generate_freeze_record on a minimal declaration skeleton
         h009_rec = json.loads(

@@ -551,9 +551,24 @@ def check_pin_sha256(
                 if isinstance(v, dict):
                     _verify_pin_obj(v, f"/{top_key}/{i}")
 
+    not_evaluated = checked_count == 0
+    not_evaluated_reason = "no_pinned_inputs_found" if not_evaluated else None
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-PIN-SHA256",
+                "file": file_path,
+                "pointer": "/",
+                "target_path": file_path,
+                "revision": head_rev or "WORKTREE",
+                "error": "not_evaluated:no_pinned_inputs_found",
+            }
+        )
     return {
         "check": "CHK-PIN-SHA256",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "checked_count": checked_count,
         "failures": failures,
         "derived_from": DERIVATION_MAP["CHK-PIN-SHA256"],
@@ -737,9 +752,24 @@ def check_json_pointer(
 
     _walk(data, "")
 
+    not_evaluated = checked_count == 0
+    not_evaluated_reason = "no_json_pointers_found" if not_evaluated else None
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-JSON-POINTER",
+                "file": file_path,
+                "source_pointer": "/",
+                "target_file": file_path,
+                "target_pointer": "/",
+                "error": "not_evaluated:no_json_pointers_found",
+            }
+        )
     return {
         "check": "CHK-JSON-POINTER",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "checked_count": checked_count,
         "expanded_target_count": expanded_target_count,
         "failures": failures,
@@ -989,9 +1019,27 @@ def check_pair_bidir_id(
                     }
                 )
 
+    not_evaluated = len(l_items) == 0 or len(r_items) == 0
+    not_evaluated_reason = (
+        f"empty_pair_entities:left={len(l_items)},right={len(r_items)}"
+        if not_evaluated
+        else None
+    )
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-PAIR-BIDIR-ID",
+                "left_path": left_path,
+                "right_path": right_path,
+                "pointer": "/",
+                "error": f"not_evaluated:{not_evaluated_reason}",
+            }
+        )
     return {
         "check": "CHK-PAIR-BIDIR-ID",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "left_count": len(l_items),
         "right_count": len(r_items),
         "failures": failures,
@@ -1349,9 +1397,43 @@ def check_neg_4way_match(
             if case_ok:
                 matched_case_count += 1
 
+    docs_missing = not (l4_data and l9_data and l8_data and l5_data)
+    all_zero = all(v == 0 for v in total_counts.values())
+    zero_rationale = None
+    if isinstance(l4_data, dict):
+        zero_rationale = l4_data.get("zero_negative_cases_rationale")
+    if not zero_rationale and isinstance(l5_data, dict):
+        zero_rationale = l5_data.get("zero_negative_cases_rationale")
+
+    not_evaluated = False
+    not_evaluated_reason: str | None = None
+    if docs_missing:
+        not_evaluated = True
+        not_evaluated_reason = "missing_or_unparsed_layer_documents"
+    elif all_zero and not zero_rationale:
+        not_evaluated = True
+        not_evaluated_reason = "zero_negative_case_counts_without_rationale"
+
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-NEG-4WAY-MATCH",
+                "case_id": "<none>",
+                "attribute": "counts",
+                "error": f"not_evaluated:{not_evaluated_reason}",
+                "L4": total_counts["L4"],
+                "L9": total_counts["L9"],
+                "L8": total_counts["L8"],
+                "L5": total_counts["L5"],
+            }
+        )
+
     return {
         "check": "CHK-NEG-4WAY-MATCH",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "zero_count_rationale": zero_rationale,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "counts": total_counts,
         "matched_case_count": matched_case_count,
         "failures": failures,
@@ -1423,7 +1505,15 @@ def check_public_fn_freeze(
         l5_fn_meta = (
             row.get("l5_function")
             if isinstance(row.get("l5_function"), dict)
-            else (row.get("function") if isinstance(row.get("function"), dict) else row)
+            else (
+                row.get("function")
+                if isinstance(row.get("function"), dict)
+                else (
+                    row.get("public_function")
+                    if isinstance(row.get("public_function"), dict)
+                    else row
+                )
+            )
         )
         raw_ptr = (
             l5_fn_meta.get("l5_function_pointer")
@@ -1434,13 +1524,37 @@ def check_public_fn_freeze(
             or ""
         )
         ptr = raw_ptr.split("#", 1)[-1] if "#" in str(raw_ptr) else str(raw_ptr)
-        sym = (
-            l5_fn_meta.get("symbol")
-            or l5_fn_meta.get("id")
-            or row.get("symbol")
-            or "unknown"
+        sym_candidates = (
+            l5_fn_meta.get("symbol"),
+            l5_fn_meta.get("planned_public_symbol"),
+            l5_fn_meta.get("public_function"),
+            l5_fn_meta.get("function_id"),
+            l5_fn_meta.get("name"),
+            l5_fn_meta.get("id"),
+            row.get("symbol"),
+            row.get("planned_public_symbol"),
+            row.get("public_function"),
+            row.get("function_id"),
+            row.get("symbol_or_entry"),
+            row.get("name"),
+        )
+        sym = next(
+            (c for c in sym_candidates if isinstance(c, str) and c.strip()),
+            "unknown",
         )
         vis = l5_fn_meta.get("visibility") or "public"
+
+        if not str(raw_ptr).strip() or sym == "unknown":
+            failures.append(
+                {
+                    "check": "CHK-PUBLIC-FN-FREEZE",
+                    "symbol": str(sym),
+                    "l5_pointer": str(raw_ptr),
+                    "visibility": str(vis),
+                    "error": "unparsed_record_shape",
+                }
+            )
+            continue
 
         if not ptr.startswith("/functions/"):
             failures.append(
@@ -1454,6 +1568,18 @@ def check_public_fn_freeze(
             )
             continue
 
+        if not isinstance(l5_data, dict) or not l5_data:
+            failures.append(
+                {
+                    "check": "CHK-PUBLIC-FN-FREEZE",
+                    "symbol": str(sym),
+                    "l5_pointer": str(raw_ptr),
+                    "visibility": str(vis),
+                    "error": "unparsed_record_shape",
+                }
+            )
+            continue
+
         ok, l5_fn_obj = resolve_json_pointer(l5_data, ptr)
         if not ok or not isinstance(l5_fn_obj, dict):
             failures.append(
@@ -1462,7 +1588,7 @@ def check_public_fn_freeze(
                     "symbol": str(sym),
                     "l5_pointer": str(raw_ptr),
                     "visibility": str(vis),
-                    "error": "private_or_non_function_frozen_as_public",
+                    "error": "unresolved_l5_function_pointer",
                 }
             )
             continue
@@ -1632,9 +1758,25 @@ def check_public_fn_freeze(
             }
         )
 
+    not_evaluated = (len(pub_rows) + len(priv_rows)) == 0
+    not_evaluated_reason = (
+        "no_public_or_private_function_freeze_rows_found" if not_evaluated else None
+    )
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-PUBLIC-FN-FREEZE",
+                "symbol": "<none>",
+                "l5_pointer": "",
+                "visibility": "unknown",
+                "error": "not_evaluated:no_public_or_private_function_freeze_rows_found",
+            }
+        )
     return {
         "check": "CHK-PUBLIC-FN-FREEZE",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "resolved_function_rows": resolved_rows,
         "failures": failures,
         "human_judgment_pending": human_judgment_pending,
@@ -1697,13 +1839,14 @@ def check_l3_obligation_map(
                 if m.group(1) in ("L8", "H009_L8")
             ]
             oid = item.split("（", 1)[0].split(":", 1)[0].strip() or f"E{i + 1}"
-            if not l5_matches and not l8_matches:
+            both_non_empty = len(l5_matches) > 0 and len(l8_matches) > 0
+            if not both_non_empty:
                 failures.append(
                     {
                         "check": "CHK-L3-OBLIGATION-MAP",
                         "item_id": str(oid),
                         "error": "empty_l5_or_l8_pointers",
-                        "details": f"No L5/L8 pointers found in string obligation item {oid}",
+                        "details": f"l5_pointers={len(l5_matches)}, l8_pointers={len(l8_matches)} in string obligation item {oid}",
                     }
                 )
             obligation_rows.append(
@@ -1711,7 +1854,9 @@ def check_l3_obligation_map(
                     "obligation_id": oid,
                     "l5_pointer_count": len(l5_matches),
                     "l8_pointer_count": len(l8_matches),
-                    "status": "covered",
+                    "status": "covered"
+                    if both_non_empty
+                    else "missing_l5_or_l8_pointers",
                 }
             )
             human_judgment_pending.append(
@@ -1733,26 +1878,24 @@ def check_l3_obligation_map(
         )
         l5_ptrs = item.get("l5_pointers") or item.get("h009_l5_pointers") or []
         l8_ptrs = item.get("l8_pointers") or item.get("h009_l8_pointers") or []
-        if (
-            not isinstance(l5_ptrs, list)
-            or len(l5_ptrs) == 0
-            or not isinstance(l8_ptrs, list)
-            or len(l8_ptrs) == 0
-        ):
+        l5_cnt = len(l5_ptrs) if isinstance(l5_ptrs, list) else 0
+        l8_cnt = len(l8_ptrs) if isinstance(l8_ptrs, list) else 0
+        both_non_empty = l5_cnt > 0 and l8_cnt > 0
+        if not both_non_empty:
             failures.append(
                 {
                     "check": "CHK-L3-OBLIGATION-MAP",
                     "item_id": str(oid),
                     "error": "empty_l5_or_l8_pointers",
-                    "details": f"l5_pointers={len(l5_ptrs) if isinstance(l5_ptrs, list) else 0}, l8_pointers={len(l8_ptrs) if isinstance(l8_ptrs, list) else 0}",
+                    "details": f"l5_pointers={l5_cnt}, l8_pointers={l8_cnt}",
                 }
             )
         obligation_rows.append(
             {
                 "obligation_id": oid,
-                "l5_pointer_count": len(l5_ptrs) if isinstance(l5_ptrs, list) else 0,
-                "l8_pointer_count": len(l8_ptrs) if isinstance(l8_ptrs, list) else 0,
-                "status": item.get("status", "covered"),
+                "l5_pointer_count": l5_cnt,
+                "l8_pointer_count": l8_cnt,
+                "status": "covered" if both_non_empty else "missing_l5_or_l8_pointers",
             }
         )
         human_judgment_pending.append(
@@ -1807,9 +1950,22 @@ def check_l3_obligation_map(
             }
         )
 
+    not_evaluated = len(obligation_rows) == 0
+    not_evaluated_reason = "no_l3_obligations_found" if not_evaluated else None
+    if not_evaluated:
+        failures.append(
+            {
+                "check": "CHK-L3-OBLIGATION-MAP",
+                "item_id": "<none>",
+                "error": "not_evaluated:no_l3_obligations_found",
+                "details": "No obligation rows parsed from freeze record",
+            }
+        )
     return {
         "check": "CHK-L3-OBLIGATION-MAP",
-        "passed": len(failures) == 0,
+        "status": "not_evaluated" if not_evaluated else "evaluated",
+        "not_evaluated_reason": not_evaluated_reason,
+        "passed": (not not_evaluated) and len(failures) == 0,
         "obligation_count": len(obligation_rows),
         "obligations": obligation_rows,
         "unreferenced_l9_branches": unreferenced_branches,
@@ -2052,12 +2208,24 @@ def audit_freeze_record(
         reference_counts=recorded_counts if isinstance(recorded_counts, dict) else None,
         extra_docs=extra_docs,
     )
+    counts_not_evaluated = (
+        not isinstance(recorded_counts, dict) or len(recorded_counts) == 0
+    )
+    counts_not_evaluated_reason = (
+        "no_head_entity_counts_in_record" if counts_not_evaluated else None
+    )
     count_diffs: dict[str, dict[str, Any]] = {}
-    if isinstance(recorded_counts, dict):
+    if isinstance(recorded_counts, dict) and len(recorded_counts) > 0:
         for k, rec_v in recorded_counts.items():
             comp_v = computed_counts.get(k)
             if rec_v != comp_v:
                 count_diffs[k] = {"recorded": rec_v, "computed": comp_v}
+    else:
+        count_diffs["<head_entity_counts>"] = {
+            "recorded": None,
+            "computed": computed_counts,
+            "error": "not_evaluated:no_head_entity_counts_in_record",
+        }
 
     recorded_ver = rec_data.get("verification", {})
     ver_diffs: dict[str, dict[str, Any]] = {}
@@ -2116,7 +2284,12 @@ def audit_freeze_record(
             "pin_mismatches": pin_res["failures"],
             "pointers_resolved_match": ptr_res["passed"],
             "unresolved_pointers": ptr_res["failures"],
-            "head_entity_counts_match": len(count_diffs) == 0,
+            "head_entity_counts_status": "not_evaluated"
+            if counts_not_evaluated
+            else "evaluated",
+            "head_entity_counts_not_evaluated_reason": counts_not_evaluated_reason,
+            "head_entity_counts_match": (not counts_not_evaluated)
+            and len(count_diffs) == 0,
             "head_entity_counts_computed": computed_counts,
             "head_entity_counts_diffs": count_diffs,
             "verification_fields_match": len(ver_diffs) == 0,
