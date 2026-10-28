@@ -1130,12 +1130,12 @@
           "code": "harness_process_contract_ref_missing",
           "change": "template選択/使用operationでapplication contract Refと既存共有HARNESS_contract_refだけを供給し、process contract Refの欠落を充足扱いする。",
           "axis": "operation_dependency",
-          "state": "unknown",
+          "state": "missing",
           "backflow_owner": "HARNESS009/OS002",
-          "expected": "process contract refの欠落をapplication refや共通Refで補完せず、process側を未解決として返す。",
+          "expected": "process_contract_refはmissingのまま保持する。application_contract_refや共有HARNESS_contract_refからprocess recordを解決・補完しない。",
           "expected_preserved": {
             "original_binding": "B02 bindingと供給済みapplication contract Ref、共通HARNESS_contract_refの原値",
-            "observable": "process contract Refの欠落を局所化し、application側の供給値を保持する。",
+            "observable": "process_contract_refがmissingであることを保持し、application側の供給値と既存共有HARNESS_contract_refを別々に保持する。",
             "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
           },
           "expected_side_effect_count": 0,
@@ -1176,12 +1176,12 @@
           "code": "harness_application_contract_ref_missing",
           "change": "template選択/使用operationでprocess contract Refと既存共有HARNESS_contract_refだけを供給し、application contract Refの欠落を充足扱いする。",
           "axis": "operation_dependency",
-          "state": "unknown",
+          "state": "missing",
           "backflow_owner": "HARNESS009/OS002",
-          "expected": "application contract refの欠落をprocess refや共通Refで補完せず、application側を未解決として返す。",
+          "expected": "application_contract_refはmissingのまま保持する。process_contract_refや共有HARNESS_contract_refからapplication recordを解決・補完しない。",
           "expected_preserved": {
             "original_binding": "B02 bindingと供給済みprocess contract Ref、共通HARNESS_contract_refの原値",
-            "observable": "application contract Refの欠落を局所化し、process側の供給値を保持する。",
+            "observable": "application_contract_refがmissingであることを保持し、process側の供給値と既存共有HARNESS_contract_refを別々に保持する。",
             "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
           },
           "expected_side_effect_count": 0,
@@ -1224,16 +1224,81 @@
           "axis": "operation_dependency",
           "state": "missing",
           "backflow_owner": "OS002",
-          "expected": "qualified F02原recordからselected_refs/selected_sourceだけを解決し、selected record refの欠落をused側から補完しない。",
+          "expected": "selected_set_record_refがmissingのためselected側のF02 recordを解決しない。selected membershipをmissingとして返し、供給済みused側recordとその全member/sourceは保持する。",
           "expected_preserved": {
             "original_binding": "B02 bindingとqualified F02 used record、selected record ref欠落の原状態",
-            "observable": "selected membershipはmissing/未解決として局所化し、used membershipと全source originを保持する。",
+            "observable": "selected_set_record_refとselected membershipのmissingを局所化し、used側record/ref/membership/provenanceを保持する。",
             "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
           },
           "expected_side_effect_count": 0,
           "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "operation": "template-selection",
+            "selected_set_record_ref_absent": true,
+            "used_set_record_ref": {
+              "identity": "OS-F02-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            },
+            "used_F02_OwnerRecord": {
+              "subject_ref": {
+                "identity": "OS-F02-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "fixture"
+              },
+              "section_key": "F02",
+              "record_kind": "fixture-record",
+              "payload": {
+                "selected_refs": [
+                  {
+                    "identity": "TPL-A",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  {
+                    "identity": "TPL-B",
+                    "revision": "v2",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ],
+                "used_refs": [
+                  {
+                    "identity": "TPL-A",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ]
+              },
+              "owner": "fixture"
+            }
+          }
         },
         {
           "code": "used_template_set_record_missing",
@@ -1241,33 +1306,81 @@
           "axis": "operation_dependency",
           "state": "missing",
           "backflow_owner": "OS002",
-          "expected": "qualified F02原recordからused_refs/used_source/used_empty_basisだけを解決し、used record refの欠落をselected側から補完しない。",
+          "expected": "used_set_record_refがmissingのためused側のF02 recordを解決しない。used membershipをmissingとして返し、供給済みselected側recordとその全member/sourceは保持する。",
           "expected_preserved": {
             "original_binding": "B02 bindingとqualified F02 selected record、used record ref欠落の原状態",
-            "observable": "used membershipはmissing/未解決として局所化し、selected membershipと全source originを保持する。",
+            "observable": "used_set_record_refとused membershipのmissingを局所化し、selected側record/ref/membership/provenanceを保持する。",
             "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
           },
           "expected_side_effect_count": 0,
           "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-          "execution_state": "not_executed"
-        },
-        {
-          "code": "selected_used_membership_conflated",
-          "change": "qualified F02 recordのselected_refsとused_refsが異なるのに、used membershipをselected_refsと同じとして主張する。",
-          "axis": "operation_dependency",
-          "state": "conflict",
-          "backflow_owner": "OS002",
-          "expected": "F02 selected_refsとused_refsを別々に照合し、selected setからused setを補完しない。",
-          "expected_preserved": {
-            "original_binding": "B02 binding、qualified F02 recordのselected_refs/used_refs、selected_source/used_source各原値",
-            "observable": "selected/useの役割取り違えをconflictとして返し、両集合と各provenanceを保持する。",
-            "effects": "F02原record・各集合の原順と他scopeを保持。authority/使用成立/全体完了なし。"
-          },
-          "expected_side_effect_count": 0,
-          "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
-          "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "operation": "template-use",
+            "selected_set_record_ref": {
+              "identity": "OS-F02-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            },
+            "used_set_record_ref_absent": true,
+            "selected_F02_OwnerRecord": {
+              "subject_ref": {
+                "identity": "OS-F02-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "fixture"
+              },
+              "section_key": "F02",
+              "record_kind": "fixture-record",
+              "payload": {
+                "selected_refs": [
+                  {
+                    "identity": "TPL-A",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  {
+                    "identity": "TPL-B",
+                    "revision": "v2",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ],
+                "used_refs": [
+                  {
+                    "identity": "TPL-A",
+                    "revision": "v1",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "fixture",
+                      "environment": "test"
+                    },
+                    "owner": "BRAIN"
+                  }
+                ]
+              },
+              "owner": "fixture"
+            }
+          }
         },
         {
           "code": "selected_template_set_record_unqualified",
@@ -1389,33 +1502,50 @@
         },
         {
           "code": "harness_shared_contract_ref_cannot_substitute",
-          "change": "template選択operationでprocess_contract_refが欠落しているのに、既存共有HARNESS_contract_refを代わりに充足扱いする。",
+          "change": "template選択operationでprocess_contract_refとapplication_contract_refの両方がmissingだが、既存共有HARNESS_contract_refだけは供給されている。",
           "axis": "operation_dependency",
-          "state": "conflict",
+          "state": "missing",
           "backflow_owner": "HARNESS009/OS002",
-          "expected": "process_contract_refの欠落をmissingのまま返し、共有HARNESS_contract_refやapplication_contract_refで補完しない。",
+          "expected": "両operation memberをmissingのまま保持し、共有HARNESS_contract_refからいずれのrecordも解決・補完しない。",
           "expected_preserved": {
-            "original_binding": "template選択/使用operation、共有HARNESS_contract_refの供給値、欠落したprocess/application memberの原状態",
-            "observable": "operation memberの欠落を個別に保持し、共有Refを代替として採用しない。",
+            "original_binding": "template選択operation、供給済み共有HARNESS_contract_ref、missingのprocess_contract_ref/application_contract_ref",
+            "observable": "process/application両operation memberのmissingを別々に保持し、共有Refを代替解決に使わない。",
             "effects": "共有型とowner原値、他の有効scopeを保持。authority/適用成立/全体完了なし。"
           },
           "expected_side_effect_count": 0,
           "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
           "mutations": [
             {
-              "op": "append_claim",
-              "path": "claims",
-              "value": {
-                "name": "shared_contract_ref_satisfies_operation_refs",
-                "target_ref": null,
-                "value": "template選択/使用operationの欠落process/application Refを共有HARNESS_contract_refで補える。",
-                "basis_refs": []
-              }
+              "op": "remove",
+              "path": "candidate/HARNESS_process_contract_ref"
+            },
+            {
+              "op": "remove",
+              "path": "candidate/HARNESS_application_contract_ref"
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
           "execution_state": "not_executed",
-          "owner_evidence_coverage": "既存共有Refを補完扱いする誤claimに対し、operation member欠落を局所保持する。共有Refとの対応はHARNESS owner依存で未形成。"
+          "owner_evidence_coverage": "既存共有Refを補完扱いする誤claimに対し、operation member欠落を局所保持する。共有Refとの対応はHARNESS owner依存で未形成。",
+          "input_state_minimum": {
+            "operation": "template-selection",
+            "binding": {
+              "HARNESS_contract_ref": {
+                "identity": "fixture-shared-contract",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "fixture"
+              }
+            },
+            "absent_members": [
+              "HARNESS_process_contract_ref",
+              "HARNESS_application_contract_ref"
+            ]
+          }
         }
       ],
       "execution_state": "not_executed"
@@ -7925,7 +8055,189 @@
       "input_patch_recipe": "同じRecordTraceInput.sourcesへB02 recordとQualification済みF02 OwnerRecord(section_key=F02)を供給。B02.selected_set_record_ref=F02.subject_ref、F02.binding=B02 binding。F02 selected_refs=[TPL-A,TPL-B], used_refs=[TPL-A]。",
       "mutations": [],
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "input_state_minimum": {
+        "B02RecordInput": {
+          "binding": {
+            "project_scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "requirement_ref": {
+              "identity": "REQ-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "HARNESS_contract_ref": {
+              "identity": "HARNESS-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "template_ref": {
+              "identity": "TPL-A",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            },
+            "semantic_contract_ref": {
+              "identity": "SEM-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            }
+          },
+          "operation": "template-selection",
+          "selected_set_record_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          }
+        },
+        "OwnerRecord": {
+          "subject_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          },
+          "section_key": "F02",
+          "record_kind": "fixture-record",
+          "payload": {
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "requirement_ref": {
+                "identity": "REQ-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "template_ref": {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "SEM-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "selected_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              {
+                "identity": "TPL-B",
+                "revision": "v2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "used_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "selected_source": {
+              "identity": "F02-SELECTED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            },
+            "used_source": {
+              "identity": "F02-USED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            }
+          },
+          "owner": "fixture"
+        },
+        "source_qualification": "合成root上の例であり、実資格/実source/hashは実行・検証していない。"
+      },
+      "oracle_assertion_rule": "template-selectionではqualified F02 payload.selected_refs/selected_sourceを選択側として読む。F02 payload.used_refs/used_sourceを別に保持し、OwnerRecord.subject_refをpayload source Refに代入しない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-40",
@@ -7936,7 +8248,189 @@
       "input_patch_recipe": "同じRecordTraceInput.sourcesへB02 recordとQualification済みF02 OwnerRecord(section_key=F02)を供給。B02.used_set_record_ref=F02.subject_ref、F02.binding=B02 binding。F02 selected_refs=[TPL-A,TPL-B], used_refs=[TPL-A]。",
       "mutations": [],
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "input_state_minimum": {
+        "B02RecordInput": {
+          "binding": {
+            "project_scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "requirement_ref": {
+              "identity": "REQ-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "HARNESS_contract_ref": {
+              "identity": "HARNESS-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "template_ref": {
+              "identity": "TPL-A",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            },
+            "semantic_contract_ref": {
+              "identity": "SEM-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            }
+          },
+          "operation": "template-use",
+          "used_set_record_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          }
+        },
+        "OwnerRecord": {
+          "subject_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          },
+          "section_key": "F02",
+          "record_kind": "fixture-record",
+          "payload": {
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "requirement_ref": {
+                "identity": "REQ-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "template_ref": {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "SEM-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "selected_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              {
+                "identity": "TPL-B",
+                "revision": "v2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "used_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "selected_source": {
+              "identity": "F02-SELECTED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            },
+            "used_source": {
+              "identity": "F02-USED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            }
+          },
+          "owner": "fixture"
+        },
+        "source_qualification": "合成root上の例であり、実資格/実source/hashは実行・検証していない。"
+      },
+      "oracle_assertion_rule": "template-useではqualified F02 payload.used_refs/used_source/used_empty_basisを使用側として読む。selected_refs/selected_sourceは別に保持し、selectedからusedを生成しない。"
     },
     {
       "id": "HELIXOS-L8-002-ADD-41",
@@ -8036,32 +8530,213 @@
     },
     {
       "id": "HELIXOS-L8-002-ADD-45",
-      "code": "selected_used_membership_conflated",
-      "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-F02",
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "change": "qualified F02 recordのselected_refsとused_refsが異なるのに、used membershipをselected_refsと同じとして主張する。",
+      "code": "b02_use_reads_used_membership_only",
+      "change": "template-use operationでqualified OS F02 recordのselected_refsとused_refsが異なるtyped inputを与え、使用側はused_refsとして観測する。",
       "axis": "operation_dependency",
-      "expected_state": "conflict",
+      "expected_state": "used_membership_only",
       "expected_preserved": {
-        "original_binding": "B02 binding、qualified F02 recordのselected_refs/used_refs、selected_source/used_source各原値",
-        "observable": "selected/useの役割取り違えをconflictとして返し、両集合と各provenanceを保持する。",
-        "effects": "F02原record・各集合の原順と他scopeを保持。authority/使用成立/全体完了なし。"
+        "original_binding": "B02 template-use operation、F02 OwnerRecord.subject_ref/section_key=F02、binding、selected_refs/used_refs、selected_source/used_source/used_empty_basisの原値",
+        "observable": "使用側はF02 used_refs/used_source/used_empty_basisから照合し、selected_refs/selected_sourceを別に保持する。",
+        "effects": "原配列と各provenance、他scopeを保持。実使用・authority・全体完了は生成しない。"
       },
       "expected_effect_count": 0,
-      "mutations": [
-        {
-          "op": "append_claim",
-          "path": "claims",
-          "value": {
-            "name": "used_set_equals_selected_set",
-            "target_ref": null,
-            "value": "F02 used_refsをselected_refsから構成する。",
-            "basis_refs": []
+      "input_state_minimum": {
+        "B02RecordInput": {
+          "binding": {
+            "project_scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "requirement_ref": {
+              "identity": "REQ-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "HARNESS_contract_ref": {
+              "identity": "HARNESS-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "OS002"
+            },
+            "template_ref": {
+              "identity": "TPL-A",
+              "revision": "v1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            },
+            "semantic_contract_ref": {
+              "identity": "SEM-P",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "BRAIN"
+            }
+          },
+          "operation": "template-use",
+          "selected_set_record_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          },
+          "used_set_record_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
           }
-        }
-      ],
-      "input_patch_recipe": "資格済みF02原recordのselected_refsとused_refsを異なる値で固定し、B02 claimだけがused_refsをselected_refsから構成したと主張する。原recordのsource bytes/hash/qualificationはそのまま保持し、source内容をclaimで書き換えない。",
-      "oracle_assertion_rule": "指定Refの有資格recordだけを解決する。input/source issueの必要cause、F02原配列・binding・source/presenceの保持を照合し、未資格/相反recordを有資格意味入力へ採らない。",
+        },
+        "OwnerRecord": {
+          "subject_ref": {
+            "identity": "OS-F02-P",
+            "revision": "r1",
+            "scope": {
+              "project": "P",
+              "tenant": "fixture",
+              "environment": "test"
+            },
+            "owner": "fixture"
+          },
+          "section_key": "F02",
+          "record_kind": "fixture-record",
+          "payload": {
+            "binding": {
+              "project_scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "requirement_ref": {
+                "identity": "REQ-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "OS002"
+              },
+              "template_ref": {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "SEM-P",
+                "revision": "r1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            },
+            "selected_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              },
+              {
+                "identity": "TPL-B",
+                "revision": "v2",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "used_refs": [
+              {
+                "identity": "TPL-A",
+                "revision": "v1",
+                "scope": {
+                  "project": "P",
+                  "tenant": "fixture",
+                  "environment": "test"
+                },
+                "owner": "BRAIN"
+              }
+            ],
+            "selected_source": {
+              "identity": "F02-SELECTED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            },
+            "used_source": {
+              "identity": "F02-USED-SOURCE",
+              "revision": "r1",
+              "scope": {
+                "project": "P",
+                "tenant": "fixture",
+                "environment": "test"
+              },
+              "owner": "fixture"
+            }
+          },
+          "owner": "fixture"
+        },
+        "source_qualification": "合成root上の例であり、実資格/実source/hashは実行・検証していない。"
+      },
+      "input_patch_recipe": "型付きF02RecordInputとしてselected_refs=[TPL-A,TPL-B]、used_refs=[TPL-A]、別のselected_source/used_sourceを供給する。B02 operation=template-use、used_set_record_refは資格済みOS-original-owner F02 OwnerRecord.subject_refを指す。選択側と使用側の配列が異なるため、使用oracleはused_refsのみを照合する。fixture値は合成であり実trust/owner mappingを成立させない。",
+      "mutations": [],
+      "oracle_assertion_rule": "F02RecordInput.used_refs/used_source/used_empty_basisから使用側期待を導き、selected_refsと異なる場合もselected側から使用値を生成しない。selector subject_refとpayload provenance Refを同一視しない。",
+      "owner_evidence_coverage": "同一の型付きF02 OwnerRecordのselected_refs/used_refsを異なる値とするcase。B02 selector fieldsは同じrecord subject_refを指しても役割別payload memberは独立。fixtureのowner/subject valuesは合成例で、固定owner基準や実trustを生成しない。",
       "execution_state": "not_executed"
     },
     {
@@ -8141,34 +8816,28 @@
       "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "code": "harness_shared_contract_ref_cannot_substitute",
-      "change": "template選択/使用operationでprocess/application Refが欠落しているのに、既存共有HARNESS_contract_refを代わりに充足扱いする。",
+      "change": "template選択operationでprocess_contract_refとapplication_contract_refの両方がmissingだが、既存共有HARNESS_contract_refだけは供給されている。",
       "axis": "operation_dependency",
-      "expected_state": "conflict",
+      "expected_state": "missing",
       "expected_preserved": {
-        "original_binding": "template選択/使用operation、共有HARNESS_contract_refの供給値、欠落したprocess/application memberの原状態",
-        "observable": "operation memberの欠落を個別に保持し、共有Refを代替として採用しない。",
+        "original_binding": "template選択operation、供給済み共有HARNESS_contract_ref、missingのprocess_contract_ref/application_contract_ref",
+        "observable": "process/application両operation memberのmissingを別々に保持し、共有Refを代替解決に使わない。",
         "effects": "共有型とowner原値、他の有効scopeを保持。authority/適用成立/全体完了なし。"
       },
       "expected_effect_count": 0,
-      "input_patch_recipe": "template選択operationに既存binding.HARNESS_contract_refとapplication_contract_refだけを供給し、process_contract_refをmissingにする。共有Refは存在するが、それとoperation Refの対応は未形成。",
+      "input_patch_recipe": "template選択operationにbinding.HARNESS_contract_refだけを供給し、process_contract_refとapplication_contract_refの両operation memberをmissingにする。両欠落を共有Refで補わず局所保持する。",
       "mutations": [
         {
           "op": "remove",
           "path": "candidate/HARNESS_process_contract_ref"
         },
         {
-          "op": "append_claim",
-          "path": "claims",
-          "value": {
-            "name": "shared_contract_ref_satisfies_operation_refs",
-            "target_ref": null,
-            "value": "template選択/使用operationの欠落process/application Refを共有HARNESS_contract_refで補える。",
-            "basis_refs": []
-          }
+          "op": "remove",
+          "path": "candidate/HARNESS_application_contract_ref"
         }
       ],
-      "oracle_assertion_rule": "共有binding.HARNESS_contract_refをoperation process/application Refへalias/補完せず、欠落memberをmissing/未解決として保持する。",
-      "owner_evidence_coverage": "この合成caseは欠落と誤claimを区別する宣言的oracle。共有Refとの実対応・owner source mapping・trustを証明しない。",
+      "oracle_assertion_rule": "両operation memberはmissingのまま。共有binding.HARNESS_contract_refをどちらのowner recordの取得にも代替しない。",
+      "owner_evidence_coverage": "この合成caseは型付きoperation memberの欠落と共有Refの分離を扱う。H009 ownerとの実対応/取得路/trustは未形成。",
       "execution_state": "not_executed"
     }
   ],
@@ -8193,7 +8862,7 @@
     "state": "draft_incomplete",
     "runtime_execution": "not_executed",
     "contract_count": 13,
-    "negative_case_count": 86,
+    "negative_case_count": 85,
     "full92_430_completion": "unproven",
     "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存77変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加49例（additional_cases/0..48）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4・cases/3原負例3件・ADD-12・NORMAL-compare_template_sets・core_proposal_receiving_verification 8 family/finite_cases 11件/additional_branch_probes 7件）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301（F04前半: fn6,14..18、cases/5原負例8件・association_projection 47件・f04_full_composition・f04_source_projection_profile_cases 25件・dispatch_boundary_cases 5件・function_call_path_bindings・f04_source_member_verification 9whole/9private/18shape/4role はD-OS002-T2a［os002-t2a-f04-projection-member-freeze-2026-10-28.json］、F04後半: f04_source_original_correspondence_verification 12component/17branch/4origin/9whole/3private_whole/3private_negative/3additional_branch_probes・private fn19..22およびfn14/15/16/18後半結線はD-OS002-T2b［os002-t2b-f04-original-correspondence-freeze-2026-10-28.json］）でA=0を確認し凍結済み。残るT:302..308（F05..F09, N01, N02）はD-OS002-T3a/T3b/T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
     "F04_source_projection_cases": {

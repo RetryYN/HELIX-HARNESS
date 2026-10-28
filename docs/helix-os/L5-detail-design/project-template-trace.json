@@ -4288,8 +4288,8 @@
       "contract_ref": "HELIXOS-L5-002-B02",
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
-      "state": "unknown",
-      "predicate": "B02 operationがtemplate選択/使用である場合に限り、H009 Bindingのprocess_contract_ref/application_contract_refを別memberで受領し各roleの原Refと比較する。片方missingなら他方または共有binding.HARNESS_contract_refで補わない。左右を逆roleへ割当てたらconflict。共有Refとの対応はowner依存で推定しない。",
+      "state": "missing",
+      "predicate": "template選択/使用operationでprocess_contract_refがmissing。application_contract_refおよび共有binding.HARNESS_contract_refをprocess recordの取得根拠にしない。",
       "backflow_owner": "HARNESS009/OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
@@ -4299,8 +4299,8 @@
       "contract_ref": "HELIXOS-L5-002-B02",
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
-      "state": "unknown",
-      "predicate": "B02 operationがtemplate選択/使用である場合に限り、H009 Bindingのprocess_contract_ref/application_contract_refを別memberで受領し各roleの原Refと比較する。片方missingなら他方または共有binding.HARNESS_contract_refで補わない。左右を逆roleへ割当てたらconflict。共有Refとの対応はowner依存で推定しない。",
+      "state": "missing",
+      "predicate": "template選択/使用operationでapplication_contract_refがmissing。process_contract_refおよび共有binding.HARNESS_contract_refをapplication recordの取得根拠にしない。",
       "backflow_owner": "HARNESS009/OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
@@ -4311,7 +4311,7 @@
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
       "state": "missing",
-      "predicate": "B02 operationがtemplate selectionなのにselected_set_record_refがmissing。used_set_record_refやbinding.template_refを選択set membershipの代替にしてはならない。",
+      "predicate": "template-selection operationでselected_set_record_refがmissing。selected側record lookupをせず、used側Ref/record/memberは保持する。",
       "backflow_owner": "OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
@@ -4322,18 +4322,7 @@
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
       "state": "missing",
-      "predicate": "B02 operationがtemplate useなのにused_set_record_refがmissing。selected_set_record_refやbinding.template_refを使用set membershipの代替にしてはならない。",
-      "backflow_owner": "OS002",
-      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
-      "side_effect_count": 0
-    },
-    {
-      "code": "selected_used_membership_conflated",
-      "contract_ref": "HELIXOS-L5-002-B02",
-      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "axis": "operation_dependency",
-      "state": "conflict",
-      "predicate": "同一qualified F02 recordのselected_refs != used_refsであるが、B02 claimが選択集合を実使用集合へ流用している。",
+      "predicate": "template-use operationでused_set_record_refがmissing。used側record lookupをせず、selected側Ref/record/memberは保持する。",
       "backflow_owner": "OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
@@ -4376,8 +4365,8 @@
       "contract_ref": "HELIXOS-L5-002-B02",
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
-      "state": "conflict",
-      "predicate": "template選択/使用operationでprocess/application operation memberの一方または双方がmissingであるのに、共有binding.HARNESS_contract_refを代替根拠として充足と扱う。",
+      "state": "missing",
+      "predicate": "template-selection operationでprocess_contract_refとapplication_contract_refがともにmissingだが、共有binding.HARNESS_contract_refが供給されている。共有Refからどちらのowner recordも解決・補完しない。",
       "backflow_owner": "HARNESS009/OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
