@@ -4215,7 +4215,13 @@
    ],
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
-   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashを追加しない。未実行。"
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashを追加しない。未実行。",
+   "scope_limit": "このU-IDはD15のapplication_contract_recipient_boundaryだけを扱う。selected_brain_field_definition_detailのD16（A、D-H009-T2c-3）は未解消のままで、このU-IDと新freezeで解消しない。",
+   "scope_limit_refs": [
+    {"path": "docs/helix-harness/L5-detail-design/product-template-application.json", "pointer": "/selected_brain_field_definition_application_detail"},
+    {"path": "docs/helix-harness/L8-unit-verification/product-template-application.json", "pointer": "/selected_brain_field_definition_application_detail_verification"},
+    {"path": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json", "pointer": "/dispositions/15"}
+   ]
   }
  ],
  "normal_function_oracles": [

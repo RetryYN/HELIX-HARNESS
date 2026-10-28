@@ -12676,6 +12676,12 @@
         "scope": "HARNESS返却は原適用contract不整合の根拠に対応する既存範囲。process contractを参照した質問という分類だけではHARNESS返却の根拠にならない。",
         "preserve": "元process/application/requirement資料・原質問・requested operand・gap_basis・source/body/版/scopeは従来どおり全返却へ保持し、質問候補自体を削除又は文章parseで適用不整合へ変換しない。",
         "remaining": "process資料が原適用contract不整合へ実際に対応する根拠のtyped形成が足りない場合、その返却先形成は局所未閉包のまま残す。process資料全般をHARNESSへ返す新owner権限/要求を追加しない。",
+        "adjacent_unclosed_scope": "この境界とADD-25はDISP2 D15のrecipient境界だけを扱う。selected_brain_field_definition_application_detailはDISP2 D16（A、D-H009-T2c-3）の未解消scopeであり、このrefreezeでは解消・再割当しない。",
+        "adjacent_unclosed_scope_refs": [
+          "L5:/selected_brain_field_definition_application_detail",
+          "L8:/selected_brain_field_definition_application_detail_verification",
+          "DISP2:/dispositions/15"
+        ],
         "l8_unit_case_refs": [
           "HARNESS-L8-009-ADD-25"
         ]
