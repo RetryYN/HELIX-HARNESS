@@ -7703,85 +7703,6 @@
         "原repair from/to HEADに結んだtest削除/閾値緩和/scope拡張/無審査の意味変更を独立に識別する。reviewの対象HEAD・作成contextとの差・authority ref・routeを照合し、同providerでも別context/authority/routeを満たせば排除しない。",
         "consumer受入の原状態を保持し、未観測と未実行を完了へ変換しない。元検証条件をruntime交代で欠かした場合は不足と戻し先を残す。候補の保存/表示/自己申告で成立を生成しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "saved_as_verified",
-          "state": "conflict",
-          "condition": "OS保存receiptだけで検証成功を主張",
-          "backflow_owner": "HARNESS005/OS検収",
-          "preserve": "保存は保存。実oracle不足を保持。"
-        },
-        {
-          "code": "test_deleted_green",
-          "state": "conflict",
-          "condition": "修復で必要testを削除してgreen化",
-          "backflow_owner": "検証設計owner",
-          "preserve": "削除で失った義務を保持し修復成立にしない。"
-        },
-        {
-          "code": "threshold_relaxed_green",
-          "state": "conflict",
-          "condition": "修復で凍結した期待閾値を緩める",
-          "backflow_owner": "検証設計owner",
-          "preserve": "元oracleの期待と緩和差分を保持。"
-        },
-        {
-          "code": "repair_scope_expansion",
-          "state": "conflict",
-          "condition": "修復scopeを原対象外へ広げる",
-          "backflow_owner": "設計owner/OS",
-          "preserve": "元scopeと未許可差分を保持。"
-        },
-        {
-          "code": "unchecked_digest_update",
-          "state": "unknown",
-          "condition": "意味digestを独立照合なしで更新",
-          "backflow_owner": "意味owner",
-          "preserve": "新digestは検証成立を示さない。"
-        },
-        {
-          "code": "self_report_independent",
-          "state": "conflict",
-          "condition": "作成Worker自身の自己報告を独立検証とする",
-          "backflow_owner": "review-owner",
-          "preserve": "identity/context/authority/routeの不足を保持。"
-        },
-        {
-          "code": "unexecuted_as_complete",
-          "state": "missing",
-          "condition": "未実行oracleを完了とする",
-          "backflow_owner": "execution-owner",
-          "preserve": "実観測欠落を保持。"
-        },
-        {
-          "code": "digest_mismatch_accepted",
-          "state": "stale",
-          "condition": "実結果の意味digestを別値へ変更",
-          "backflow_owner": "意味owner/execution-owner",
-          "preserve": "当該結果を元対象の証拠へ数えない。"
-        },
-        {
-          "code": "other_head_review",
-          "state": "stale",
-          "condition": "独立reviewが別HEADを対象にする",
-          "backflow_owner": "review-owner",
-          "preserve": "review対象不一致を保持。"
-        },
-        {
-          "code": "projection_as_complete",
-          "state": "unknown",
-          "condition": "表示projectionだけで工程完了を主張",
-          "backflow_owner": "OS/検証owner",
-          "preserve": "原実結果未供給を保持。"
-        },
-        {
-          "code": "runtime_exchange_skip",
-          "state": "missing",
-          "condition": "runtime交代を理由に元証拠条件を省略",
-          "backflow_owner": "OS/実行環境",
-          "preserve": "同じ義務を保持し再開不足理由を示す。"
-        }
-      ],
       "detail_contract": "evidence_continuity_detail"
     },
     {
@@ -7797,85 +7718,6 @@
         "各ruleの明示when条件を原ticketへ照合する。合成ruleのforwardは列挙値への包含、changed_subjects_include/touched_connectors_includeは原集合への包含、change_kindは原種別への包含。指定されていない条件をtrue/falseの推測で追加しない。条件不明は未評価義務として保持する。",
         "一致ruleが参照するdutyをcatalogのidentity/revisionへ解決し、導出したrequired集合とdeclared_change_contractのaffected集合をexact照合する。選択前の必要義務とF03のPR前selected集合は別結果。catalogのrequired/conditional/informational/N_Aは原理由/条件を保持する。",
         "各対象義務のrequirement_ref revision/artifact/input/oracle/expected_failure/evidence_validity policy・失効条件・期限/backflow ownerを照合する。conditional falseは未充足のまま、N_AはCOREのreason/decider/target revision/reevaluationへ束縛する。actual nullやunknownをskip/実成功へ変換しない。"
-      ],
-      "failure_rules": [
-        {
-          "code": "duty_missing_requirement_revision",
-          "state": "missing",
-          "condition": "検証義務のrequirement_revisionを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のrequirement_revision不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_artifact",
-          "state": "missing",
-          "condition": "検証義務のartifactを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のartifact不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_input",
-          "state": "missing",
-          "condition": "検証義務のinputを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のinput不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_oracle",
-          "state": "missing",
-          "condition": "検証義務のoracleを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のoracle不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_expected_failure",
-          "state": "missing",
-          "condition": "検証義務のexpected_failureを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のexpected_failure不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_evidence_validity",
-          "state": "missing",
-          "condition": "検証義務のevidence_validityを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のevidence_validity不足を特定して成立させない。"
-        },
-        {
-          "code": "duty_missing_backflow_owner",
-          "state": "missing",
-          "condition": "検証義務のbackflow_ownerを除去",
-          "backflow_owner": "検証契約owner",
-          "preserve": "当該義務のbackflow_owner不足を特定して成立させない。"
-        },
-        {
-          "code": "unknown_as_skip",
-          "state": "unknown",
-          "condition": "適用unknownをskipへ変換",
-          "backflow_owner": "CORE/005",
-          "preserve": "不明義務を未評価として保持。"
-        },
-        {
-          "code": "worker_as_duty",
-          "state": "conflict",
-          "condition": "Worker名だけで必要義務を決める",
-          "backflow_owner": "005契約owner",
-          "preserve": "元変更/layer/risk/pair根拠不足を保持。"
-        },
-        {
-          "code": "conditional_as_discharged",
-          "state": "conflict",
-          "condition": "未充足conditionalを合格消込",
-          "backflow_owner": "CORE/005",
-          "preserve": "条件falseと未充足義務を保持。"
-        },
-        {
-          "code": "informational_as_required",
-          "state": "conflict",
-          "condition": "理由なくinformationalをrequiredへ変更",
-          "backflow_owner": "CORE/005",
-          "preserve": "元分類を保持し余分な必須化を拒否。"
-        }
       ],
       "detail_contract": "verification_duty_detail"
     },
@@ -7893,50 +7735,6 @@
         "composite_obligation_refsを上位固有母集合へ解決し、covered_by_lower_refsと別証明必要集合の意味partitionを照合する。固有非機能を下位proofで相殺せず、別proofがnullならunique_unprovenへ残す。",
         "下位必要proof/組合せ契約が有効で、原上位母集合とcoverageが完全かつ未解決固有義務が無い根拠を持つ場合だけcontract_supported_candidateを返す。端から端再実行を一律強制せず、実operation/利用者受入を自動生成しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "units_as_connection",
-          "state": "missing",
-          "condition": "全単体proofで接続完了を主張",
-          "backflow_owner": "接続設計/検証owner",
-          "preserve": "接続固有oracle不足を保持。"
-        },
-        {
-          "code": "lower_as_composite",
-          "state": "missing",
-          "condition": "下位proofで未証明上位固有UX1を相殺",
-          "backflow_owner": "構成体検証owner",
-          "preserve": "UX1の別証明不足を保持。"
-        },
-        {
-          "code": "combination_missing",
-          "state": "missing",
-          "condition": "組合せ契約を欠く",
-          "backflow_owner": "構成体設計owner",
-          "preserve": "原下位proofを保持し合成根拠不足を示す。"
-        },
-        {
-          "code": "unique_nfr_cancelled",
-          "state": "conflict",
-          "condition": "固有非機能を単体proofで充足扱い",
-          "backflow_owner": "構成体検証owner",
-          "preserve": "固有非機能の独立oracleを維持。"
-        },
-        {
-          "code": "unconditional_e2e",
-          "state": "conflict",
-          "condition": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
-          "backflow_owner": "005/構成体設計owner",
-          "preserve": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。"
-        },
-        {
-          "code": "count_as_composition",
-          "state": "conflict",
-          "condition": "proof件数一致だけで必要subject充足",
-          "backflow_owner": "構成体検証owner",
-          "preserve": "subject/oracle/revisionごとの不足を特定。"
-        }
-      ],
       "detail_contract": "proof_composition_detail"
     },
     {
@@ -7952,57 +7750,6 @@
         "当該scopeのinventoryをselectedとomittedへ分ける。交差0、和集合が元inventory exact set、必要pre-PR集合のselected包含を照合する。省略理由・item・回収先が不足したものをmissingへ残す。selectedに含むことと実oracle成功は別。",
         "省略のjoining_ticket_refと実合流先の同ref/revision/scope/ownerを照合する。small→medium/large、medium→largeだけを原関係として使い、largeからの無条件省略規則を補わない。回収は対象duty/oracle/HEAD/scopeの原結果へ結ぶ。",
         "省略集合から資格ある回収済み集合を差し引いたunrecoveredを保持し、Port要求時だけ当該省略条件の未成立材料へ返す。他のRelease条件やPort通過を生成しない。merge直後full/nightlyは既定でfalse。"
-      ],
-      "failure_rules": [
-        {
-          "code": "fixed_full_default",
-          "state": "conflict",
-          "condition": "ticket関係を無視して全件CIを既定化",
-          "backflow_owner": "005/OS検収",
-          "preserve": "ticket/risk由来の集合と必要上位義務を保持。"
-        },
-        {
-          "code": "omission_lost",
-          "state": "missing",
-          "condition": "省略した検査の集合を記録しない",
-          "backflow_owner": "OS検収/005",
-          "preserve": "省略itemと回収先を未完として保持。"
-        },
-        {
-          "code": "outside_ticket_change",
-          "state": "conflict",
-          "condition": "実差分にticket scope外Bを追加",
-          "backflow_owner": "OS/設計owner",
-          "preserve": "scope外Bを特定し当該合流未成立。"
-        },
-        {
-          "code": "high_risk_unit_only",
-          "state": "missing",
-          "condition": "小ticketだから高riskのC1/X1を省略",
-          "backflow_owner": "OS検収/005",
-          "preserve": "C1/X1のPR前証明不足を保持。"
-        },
-        {
-          "code": "unrecovered_release",
-          "state": "missing",
-          "condition": "未回収省略C1を残してPort通過を主張",
-          "backflow_owner": "OS/Release Port owner",
-          "preserve": "未回収C1とPort未成立を保持。"
-        },
-        {
-          "code": "wrong_join_ticket",
-          "state": "conflict",
-          "condition": "小から小へ省略を渡して回収済み扱い",
-          "backflow_owner": "OS推進/検収",
-          "preserve": "小→中/大、中→大の元関係と不足を保持。"
-        },
-        {
-          "code": "nightly_recovery_default",
-          "state": "conflict",
-          "condition": "省略回収先を夜間全件へ黙って変更",
-          "backflow_owner": "005/OS",
-          "preserve": "採択した合流先ticket回収を保持。"
-        }
       ],
       "detail_contract": "ticket_verification_detail"
     },
@@ -8020,57 +7767,6 @@
         "元closure、late failure、causal relation、追補assessmentを別owner/refで解決する。原closed/proofを保存し、時刻近接/path一致はrelationの候補材料だけで因果確定にしない。証拠refsが無いrelationは未決のまま。",
         "LABOへ要求された原record集合と因果未決・未観測範囲を返す。材料供給とLABOの評価結果を分け、自己報告から評価成功や元closureの上書きを生成しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "coupling_unit_only",
-          "state": "missing",
-          "condition": "AB/Xへ影響するのに小の単体だけで合流",
-          "backflow_owner": "OS検収/接続構成体owner",
-          "preserve": "当該PRのAB/X実証不足を保持。"
-        },
-        {
-          "code": "refactor_as_proof",
-          "state": "conflict",
-          "condition": "Design-refactor発行だけで当該PR検査成立",
-          "backflow_owner": "OS/設計owner",
-          "preserve": "発行材料と現PR検査の成立を分離。"
-        },
-        {
-          "code": "permanent_full_as_fix",
-          "state": "conflict",
-          "condition": "恒常全件CIで密結合設計不足を完了扱い",
-          "backflow_owner": "設計owner",
-          "preserve": "結合解消の別設計材料を残す。"
-        },
-        {
-          "code": "path_as_cause",
-          "state": "unknown",
-          "condition": "同じpathだけで後日失敗の原因ticket確定",
-          "backflow_owner": "assessment-owner/LABO",
-          "preserve": "因果根拠未決を保持。"
-        },
-        {
-          "code": "time_as_cause",
-          "state": "unknown",
-          "condition": "時刻近接だけで原因ticket確定",
-          "backflow_owner": "assessment-owner/LABO",
-          "preserve": "証拠付きrelation不足を保持。"
-        },
-        {
-          "code": "overwrite_old_closure",
-          "state": "conflict",
-          "condition": "後日失敗で元closedをfailedへ上書き",
-          "backflow_owner": "OS管理",
-          "preserve": "元closureと追補assessmentを別に保持。"
-        },
-        {
-          "code": "material_as_labo_success",
-          "state": "unknown",
-          "condition": "LABO入力供給だけで評価成功を主張",
-          "backflow_owner": "LABO",
-          "preserve": "原記録集合は保持し評価結果不足を残す。"
-        }
-      ],
       "detail_contract": "impact_causal_detail"
     },
     {
@@ -8086,50 +7782,6 @@
         "actual edgeごとに同対象allowed_edgesへの包含を確認し、禁止edgeを局所化する。向きの逆転を同じedgeに正規化しない。",
         "actual graphの経路を辿って循環を独立検出し、cycles_allowedの原条件へ照合する。全辺許可でも循環禁止なら不成立。cycle-isolated fixtureは許可辺を保持して閉じる辺だけを追加する。",
         "不足/禁止edge/cycleを設計ownerへ返し、規範から方向表・製品境界・authority変更を決めない。"
-      ],
-      "failure_rules": [
-        {
-          "code": "forbidden_edge",
-          "state": "conflict",
-          "condition": "domain→application禁止edgeを追加",
-          "backflow_owner": "設計owner",
-          "preserve": "禁止edgeを特定し元方向表を保存。"
-        },
-        {
-          "code": "forbidden_cycle",
-          "state": "conflict",
-          "condition": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
-          "backflow_owner": "設計owner",
-          "preserve": "cycleの辺を特定し無関係edgeを保持。"
-        },
-        {
-          "code": "direction_table_missing",
-          "state": "missing",
-          "condition": "宣言方向表を除去",
-          "backflow_owner": "設計owner",
-          "preserve": "表不足をunknownへ保持し旧表fallbackしない。"
-        },
-        {
-          "code": "foreign_scope_table",
-          "state": "conflict",
-          "condition": "PへQの方向表を転用",
-          "backflow_owner": "設計owner",
-          "preserve": "別scope表を被覆に数えない。"
-        },
-        {
-          "code": "old_direction_auto_apply",
-          "state": "conflict",
-          "condition": "旧src/lint/runtime/schema表を全製品へ自動適用",
-          "backflow_owner": "設計owner",
-          "preserve": "旧表の原意味は保持し今回の宣言表を置換しない。"
-        },
-        {
-          "code": "direction_authority_unknown",
-          "state": "unknown",
-          "condition": "表の設計authority状態を不明化",
-          "backflow_owner": "設計authority-owner",
-          "preserve": "当該表で合格を生成しない。"
-        }
       ],
       "detail_contract": "dependency_direction_detail"
     },
@@ -8147,43 +7799,6 @@
         "未被覆invariantと不足根拠を残し、原oracleの期待を保持する。意味対応不明は対設計へ戻し、任意の自然言語同値を推測する汎用resolverにしない。",
         "trace_pairsとactual_resultsを別結果へ返す。traceだけならbehavior_execution not_executedを保持し、振る舞い成功を生成しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "invariant_oracle_missing",
-          "state": "missing",
-          "condition": "INV2に対応するoracleを除去",
-          "backflow_owner": "検証設計owner",
-          "preserve": "INV2不足とINV1有効対応を保持。"
-        },
-        {
-          "code": "invariant_oracle_unresolved",
-          "state": "unknown",
-          "condition": "INV2 oracle参照を未解決にする",
-          "backflow_owner": "検証設計owner",
-          "preserve": "参照存在を被覆へ数えない。"
-        },
-        {
-          "code": "invariant_wrong_revision",
-          "state": "stale",
-          "condition": "INV2 oracleの対象revisionをr0へ変更",
-          "backflow_owner": "検証設計owner",
-          "preserve": "当該旧oracleはr1被覆にならない。"
-        },
-        {
-          "code": "invariant_wrong_behavior",
-          "state": "conflict",
-          "condition": "INV2 oracleを残高非負だけへ変更",
-          "backflow_owner": "検証設計owner",
-          "preserve": "件数/linkが同じでも重複event義務未被覆。"
-        },
-        {
-          "code": "trace_as_execution",
-          "state": "missing",
-          "condition": "traceのみで振る舞い実成功を主張",
-          "backflow_owner": "execution-owner",
-          "preserve": "trace成立と未実行を分離。"
-        }
-      ],
       "detail_contract": "invariant_oracle_detail"
     },
     {
@@ -8199,64 +7814,6 @@
         "原因順序freeze<Red<body<Greenを照合する。合成sequenceはorderのfixture値だけで実時刻規格ではない。欠落/順序不明をunknown、body後Red/Green後Redをconflictとして区別する。",
         "Redのexecuted trueとactual_failure==independent expected_failureを照合し、起動エラー/構文エラー/テスト記述時刻を意図欠陥の実Redへ数えない。Greenは同freeze oracleの実観測と最小変更の対象を照合する。 期待失敗はfreeze.oracle_refの独立owner内容から読み、Red自身のexpected_failureラベルだけで判定しない。",
         "postimplementation mutationは別強度証拠として保持し実装前Redへ転用しない。静的reviewや人の受入にはこの実Red順序を拡張せず、比較結果だけで実装完了を作らない。"
-      ],
-      "failure_rules": [
-        {
-          "code": "red_missing",
-          "state": "missing",
-          "condition": "Red原結果を除去",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "実装前Red不足を保持。"
-        },
-        {
-          "code": "red_after_green",
-          "state": "conflict",
-          "condition": "RedをGreen後sequence5へ変更",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "同oracleでも逆順を不成立。"
-        },
-        {
-          "code": "red_after_body",
-          "state": "conflict",
-          "condition": "Redを本体変更後かつGreen前sequence3.5へ変更",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "Green前だけでは実装前Red保証を満たさない。"
-        },
-        {
-          "code": "red_not_executed",
-          "state": "missing",
-          "condition": "Redをtest記述時刻だけへ置換",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "実観測と記述を区別。"
-        },
-        {
-          "code": "ordering_unknown",
-          "state": "unknown",
-          "condition": "sequence/因果orderの根拠を除去",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "壁時計文字列だけで順序を推測しない。"
-        },
-        {
-          "code": "mutation_as_pre_red",
-          "state": "conflict",
-          "condition": "実装後mutationを実装前Redの代替にする",
-          "backflow_owner": "execution-owner/015",
-          "preserve": "別の強度証拠を保持し実装前欠落を残す。"
-        },
-        {
-          "code": "green_oracle_changed",
-          "state": "stale",
-          "condition": "Green oracleを凍結時と別revisionへ変更",
-          "backflow_owner": "検証設計owner/015",
-          "preserve": "元凍結oracleのGreen不足を保持。"
-        },
-        {
-          "code": "red_wrong_failure",
-          "state": "conflict",
-          "condition": "Red実失敗を起動エラーへ変更",
-          "backflow_owner": "検証設計owner/015",
-          "preserve": "意図した欠陥検出の不足を特定。"
-        }
       ],
       "detail_contract": "tdd_observation_detail"
     },
@@ -8274,36 +7831,6 @@
         "固定正常/欠陥例それぞれのexpected behaviorへの一致/違反を返す。両例へ同じ成功を返す候補をoracle強度不足へ戻す。任意の自然言語behaviorをこの有限例で全証明したとしない。",
         "元concrete期待と対設計ownerを保持し、合成比較を実製品runや凍結済み実testへ昇格しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "oracle_no_assertion",
-          "state": "missing",
-          "condition": "oracleの判定内容を除去",
-          "backflow_owner": "検証設計owner",
-          "preserve": "実行欄だけでは具体期待を判定しない。"
-        },
-        {
-          "code": "oracle_truthiness",
-          "state": "conflict",
-          "condition": "equal5を結果truthinessだけへ変更",
-          "backflow_owner": "検証設計owner",
-          "preserve": "5/6両方truthyで欠陥を見逃す弱さを指摘。"
-        },
-        {
-          "code": "expected_from_implementation",
-          "state": "conflict",
-          "condition": "実装が返す6を期待値の正本とする",
-          "backflow_owner": "検証設計owner",
-          "preserve": "独立期待5と不一致を保持。"
-        },
-        {
-          "code": "same_pass_defect",
-          "state": "conflict",
-          "condition": "違反6と正解5へ同じ成功を返す",
-          "backflow_owner": "検証設計owner",
-          "preserve": "欠陥非識別を対象behaviorへ結ぶ。"
-        }
-      ],
       "detail_contract": "behavior_oracle_detail"
     },
     {
@@ -8319,43 +7846,6 @@
         "同scopeのintegration design Given状態/入力・When event・Then observable/relation/expectedを別々に照合し、空labelだけやThen欠落をmissingへ局所化する。",
         "境界/依存/failure pathと同pair oracleを照合する。合成CMD1二重送信/ACK喪失時のdebit1件という正常・失敗期待を両方保持し、別scope結果を転用しない。",
         "具体GWT材料と未実行を返す。docの形が揃ったことを実結合成功や受入へ変換しない。"
-      ],
-      "failure_rules": [
-        {
-          "code": "gwt_then_missing",
-          "state": "missing",
-          "condition": "Then期待を除去",
-          "backflow_owner": "結合検証設計owner",
-          "preserve": "前提/操作を保持し期待観測不足を示す。"
-        },
-        {
-          "code": "gwt_labels_only",
-          "state": "missing",
-          "condition": "Given/When/Thenを空の名前だけへ変更",
-          "backflow_owner": "結合検証設計owner",
-          "preserve": "名前で被覆を生成しない。"
-        },
-        {
-          "code": "gwt_foreign_scope",
-          "state": "conflict",
-          "condition": "結合oracleにQ結果を転用",
-          "backflow_owner": "結合検証設計owner",
-          "preserve": "Pの同pair不足を保持。"
-        },
-        {
-          "code": "old_layer_label_only",
-          "state": "unknown",
-          "condition": "旧L8/L9番号だけでcurrent pairを適用",
-          "backflow_owner": "設計/検証owner",
-          "preserve": "意味/種類/対応根拠不足を保持。"
-        },
-        {
-          "code": "gwt_failure_missing",
-          "state": "missing",
-          "condition": "失敗経路の期待を除去",
-          "backflow_owner": "結合検証設計owner",
-          "preserve": "再送重複eventの失敗経路を未被覆へ。"
-        }
       ],
       "detail_contract": "integration_gwt_detail"
     },
@@ -8373,71 +7863,6 @@
         "observed_rulesの同rule oracleとactual resultを原適用へ結ぶ。違反/不足/未評価の個別集合と戻し先を残し、別規律の成功でunknownを0違反やallpassへ相殺しない。",
         "未公開caseの独立owner/fixed_oracle_refを原契約へ結び、examples null/実結果欠落なら未実行を保持する。未公開という名称だけで実見証拠・独立性・成功を生成しない。"
       ],
-      "failure_rules": [
-        {
-          "code": "unknown_as_na",
-          "state": "unknown",
-          "condition": "integration unknownをN/Aへ変更",
-          "backflow_owner": "CORE/005",
-          "preserve": "入力不明と正当非適用を分離。"
-        },
-        {
-          "code": "unknown_as_zero",
-          "state": "unknown",
-          "condition": "規律未評価を0違反へ変更",
-          "backflow_owner": "005/検証owner",
-          "preserve": "未評価scopeと戻し先を保持。"
-        },
-        {
-          "code": "unknown_rule_fallback",
-          "state": "unknown",
-          "condition": "identity不明ruleを既知directionへ置換",
-          "backflow_owner": "005契約owner",
-          "preserve": "原identity不明をそのまま不足とする。"
-        },
-        {
-          "code": "other_rule_cancels",
-          "state": "conflict",
-          "condition": "direction成功でintegration不足を相殺",
-          "backflow_owner": "005/検証owner",
-          "preserve": "規律ごとの未完義務を独立保存。"
-        },
-        {
-          "code": "na_reason_missing",
-          "state": "missing",
-          "condition": "TDD N/A理由を除去",
-          "backflow_owner": "CORE009",
-          "preserve": "判定者/revision/再評価条件も既存009へ結ぶ。"
-        },
-        {
-          "code": "na_decider_missing",
-          "state": "missing",
-          "condition": "TDD N/A判定者を除去",
-          "backflow_owner": "CORE009",
-          "preserve": "N/Aの原判断不足を保持。"
-        },
-        {
-          "code": "na_revision_wrong",
-          "state": "stale",
-          "condition": "TDD N/A対象revisionをr0へ変更",
-          "backflow_owner": "CORE009",
-          "preserve": "r1へN/A継承しない。"
-        },
-        {
-          "code": "na_reevaluation_missing",
-          "state": "missing",
-          "condition": "TDD N/A再評価条件を除去",
-          "backflow_owner": "CORE009",
-          "preserve": "N/A消込にせず不足を残す。"
-        },
-        {
-          "code": "unseen_as_proven",
-          "state": "missing",
-          "condition": "未公開検証未実行を成功へ変更",
-          "backflow_owner": "independent-verification-owner",
-          "preserve": "未観測/未実行を維持し新一律gateを追加しない。"
-        }
-      ],
       "detail_contract": "discipline_applicability_detail"
     },
     {
@@ -8453,43 +7878,6 @@
         "backup_exists/restore/rollback/permanent_repair/recurrence_preventionを独立列として返す。observed_existsは存在だけ、observed_successはそのkindだけ、unknown/未実行はそのまま維持する。",
         "製品のsuccessは原oracleの具体観測条件を満たす証拠へ結び、環境違い/未実行を別kindから補わない。restore-separateは新しいrestore result refとintegrity観測だけで、他4結果を変更しない。",
         "規範から全製品のRTO/RPO/保持期間/環境を作らず、未供給の製品値をnullのまま残す。比較結果は製品受入/運用成立を生成しない。"
-      ],
-      "failure_rules": [
-        {
-          "code": "backup_as_restore",
-          "state": "missing",
-          "condition": "backup/snapshot存在でrestore成功を主張",
-          "backflow_owner": "product-verification-owner",
-          "preserve": "restore未実行を保持。"
-        },
-        {
-          "code": "rollback_as_permanent",
-          "state": "unknown",
-          "condition": "rollback成功で恒久修復完了を主張",
-          "backflow_owner": "product-verification-owner",
-          "preserve": "恒久修復の別結果不足を保持。"
-        },
-        {
-          "code": "rollback_as_prevention",
-          "state": "missing",
-          "condition": "rollback成功で再発防止完了を主張",
-          "backflow_owner": "product-verification-owner",
-          "preserve": "再発防止未実行を保持。"
-        },
-        {
-          "code": "foreign_environment_recovery",
-          "state": "conflict",
-          "condition": "別環境restore結果を今回へ転用",
-          "backflow_owner": "product-verification-owner",
-          "preserve": "対象環境のrestore不足を保持。"
-        },
-        {
-          "code": "fixed_global_rto",
-          "state": "conflict",
-          "condition": "規範から全製品同じRTO/RPOを生成",
-          "backflow_owner": "product-requirement-owner",
-          "preserve": "個別製品値未供給と元結果を維持。"
-        }
       ],
       "detail_contract": "recovery_result_detail"
     }
@@ -8638,6 +8026,680 @@
       "behavior": "backupの存在、restore成功、rollback成功、恒久修復、再発防止を独立した結果として対象revision/scope/環境/oracleへ結ぶ。一結果から他結果を生成せず、個別製品の実結果は当該製品のL11/L10/L12で判定する。HARNESSはRTO/RPOや環境/保持期間を全製品へ固定しない。",
       "input_type": "N02VerificationInput",
       "output_type": "N02VerificationObservation"
+    }
+  ],
+  "failure_rules": [
+    {
+      "code": "saved_as_verified",
+      "state": "conflict",
+      "condition": "OS保存receiptだけで検証成功を主張",
+      "backflow_owner": "HARNESS005/OS検収",
+      "preserve": "保存は保存。実oracle不足を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "test_deleted_green",
+      "state": "conflict",
+      "condition": "修復で必要testを削除してgreen化",
+      "backflow_owner": "検証設計owner",
+      "preserve": "削除で失った義務を保持し修復成立にしない。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "threshold_relaxed_green",
+      "state": "conflict",
+      "condition": "修復で凍結した期待閾値を緩める",
+      "backflow_owner": "検証設計owner",
+      "preserve": "元oracleの期待と緩和差分を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "repair_scope_expansion",
+      "state": "conflict",
+      "condition": "修復scopeを原対象外へ広げる",
+      "backflow_owner": "設計owner/OS",
+      "preserve": "元scopeと未許可差分を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "unchecked_digest_update",
+      "state": "unknown",
+      "condition": "意味digestを独立照合なしで更新",
+      "backflow_owner": "意味owner",
+      "preserve": "新digestは検証成立を示さない。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "self_report_independent",
+      "state": "conflict",
+      "condition": "作成Worker自身の自己報告を独立検証とする",
+      "backflow_owner": "review-owner",
+      "preserve": "identity/context/authority/routeの不足を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "unexecuted_as_complete",
+      "state": "missing",
+      "condition": "未実行oracleを完了とする",
+      "backflow_owner": "execution-owner",
+      "preserve": "実観測欠落を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "digest_mismatch_accepted",
+      "state": "stale",
+      "condition": "実結果の意味digestを別値へ変更",
+      "backflow_owner": "意味owner/execution-owner",
+      "preserve": "当該結果を元対象の証拠へ数えない。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "other_head_review",
+      "state": "stale",
+      "condition": "独立reviewが別HEADを対象にする",
+      "backflow_owner": "review-owner",
+      "preserve": "review対象不一致を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "projection_as_complete",
+      "state": "unknown",
+      "condition": "表示projectionだけで工程完了を主張",
+      "backflow_owner": "OS/検証owner",
+      "preserve": "原実結果未供給を保持。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "runtime_exchange_skip",
+      "state": "missing",
+      "condition": "runtime交代を理由に元証拠条件を省略",
+      "backflow_owner": "OS/実行環境",
+      "preserve": "同じ義務を保持し再開不足理由を示す。",
+      "contract_ref": "HARNESS-L5-005-B01"
+    },
+    {
+      "code": "duty_missing_requirement_revision",
+      "state": "missing",
+      "condition": "検証義務のrequirement_revisionを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のrequirement_revision不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_artifact",
+      "state": "missing",
+      "condition": "検証義務のartifactを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のartifact不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_input",
+      "state": "missing",
+      "condition": "検証義務のinputを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のinput不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_oracle",
+      "state": "missing",
+      "condition": "検証義務のoracleを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のoracle不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_expected_failure",
+      "state": "missing",
+      "condition": "検証義務のexpected_failureを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のexpected_failure不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_evidence_validity",
+      "state": "missing",
+      "condition": "検証義務のevidence_validityを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のevidence_validity不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "duty_missing_backflow_owner",
+      "state": "missing",
+      "condition": "検証義務のbackflow_ownerを除去",
+      "backflow_owner": "検証契約owner",
+      "preserve": "当該義務のbackflow_owner不足を特定して成立させない。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "unknown_as_skip",
+      "state": "unknown",
+      "condition": "適用unknownをskipへ変換",
+      "backflow_owner": "CORE/005",
+      "preserve": "不明義務を未評価として保持。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "worker_as_duty",
+      "state": "conflict",
+      "condition": "Worker名だけで必要義務を決める",
+      "backflow_owner": "005契約owner",
+      "preserve": "元変更/layer/risk/pair根拠不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "conditional_as_discharged",
+      "state": "conflict",
+      "condition": "未充足conditionalを合格消込",
+      "backflow_owner": "CORE/005",
+      "preserve": "条件falseと未充足義務を保持。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "informational_as_required",
+      "state": "conflict",
+      "condition": "理由なくinformationalをrequiredへ変更",
+      "backflow_owner": "CORE/005",
+      "preserve": "元分類を保持し余分な必須化を拒否。",
+      "contract_ref": "HARNESS-L5-005-F01"
+    },
+    {
+      "code": "units_as_connection",
+      "state": "missing",
+      "condition": "全単体proofで接続完了を主張",
+      "backflow_owner": "接続設計/検証owner",
+      "preserve": "接続固有oracle不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "lower_as_composite",
+      "state": "missing",
+      "condition": "下位proofで未証明上位固有UX1を相殺",
+      "backflow_owner": "構成体検証owner",
+      "preserve": "UX1の別証明不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "combination_missing",
+      "state": "missing",
+      "condition": "組合せ契約を欠く",
+      "backflow_owner": "構成体設計owner",
+      "preserve": "原下位proofを保持し合成根拠不足を示す。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "unique_nfr_cancelled",
+      "state": "conflict",
+      "condition": "固有非機能を単体proofで充足扱い",
+      "backflow_owner": "構成体検証owner",
+      "preserve": "固有非機能の独立oracleを維持。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "unconditional_e2e",
+      "state": "conflict",
+      "condition": "固有なしを示す契約と全下位有効proofがあるのに端から端再実行を一律強制",
+      "backflow_owner": "005/構成体設計owner",
+      "preserve": "契約根拠付き機械導出を可能とし新しい一律gateを拒否。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "count_as_composition",
+      "state": "conflict",
+      "condition": "proof件数一致だけで必要subject充足",
+      "backflow_owner": "構成体検証owner",
+      "preserve": "subject/oracle/revisionごとの不足を特定。",
+      "contract_ref": "HARNESS-L5-005-F02"
+    },
+    {
+      "code": "fixed_full_default",
+      "state": "conflict",
+      "condition": "ticket関係を無視して全件CIを既定化",
+      "backflow_owner": "005/OS検収",
+      "preserve": "ticket/risk由来の集合と必要上位義務を保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "omission_lost",
+      "state": "missing",
+      "condition": "省略した検査の集合を記録しない",
+      "backflow_owner": "OS検収/005",
+      "preserve": "省略itemと回収先を未完として保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "outside_ticket_change",
+      "state": "conflict",
+      "condition": "実差分にticket scope外Bを追加",
+      "backflow_owner": "OS/設計owner",
+      "preserve": "scope外Bを特定し当該合流未成立。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "high_risk_unit_only",
+      "state": "missing",
+      "condition": "小ticketだから高riskのC1/X1を省略",
+      "backflow_owner": "OS検収/005",
+      "preserve": "C1/X1のPR前証明不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "unrecovered_release",
+      "state": "missing",
+      "condition": "未回収省略C1を残してPort通過を主張",
+      "backflow_owner": "OS/Release Port owner",
+      "preserve": "未回収C1とPort未成立を保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "wrong_join_ticket",
+      "state": "conflict",
+      "condition": "小から小へ省略を渡して回収済み扱い",
+      "backflow_owner": "OS推進/検収",
+      "preserve": "小→中/大、中→大の元関係と不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "nightly_recovery_default",
+      "state": "conflict",
+      "condition": "省略回収先を夜間全件へ黙って変更",
+      "backflow_owner": "005/OS",
+      "preserve": "採択した合流先ticket回収を保持。",
+      "contract_ref": "HARNESS-L5-005-F03"
+    },
+    {
+      "code": "coupling_unit_only",
+      "state": "missing",
+      "condition": "AB/Xへ影響するのに小の単体だけで合流",
+      "backflow_owner": "OS検収/接続構成体owner",
+      "preserve": "当該PRのAB/X実証不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "refactor_as_proof",
+      "state": "conflict",
+      "condition": "Design-refactor発行だけで当該PR検査成立",
+      "backflow_owner": "OS/設計owner",
+      "preserve": "発行材料と現PR検査の成立を分離。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "permanent_full_as_fix",
+      "state": "conflict",
+      "condition": "恒常全件CIで密結合設計不足を完了扱い",
+      "backflow_owner": "設計owner",
+      "preserve": "結合解消の別設計材料を残す。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "path_as_cause",
+      "state": "unknown",
+      "condition": "同じpathだけで後日失敗の原因ticket確定",
+      "backflow_owner": "assessment-owner/LABO",
+      "preserve": "因果根拠未決を保持。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "time_as_cause",
+      "state": "unknown",
+      "condition": "時刻近接だけで原因ticket確定",
+      "backflow_owner": "assessment-owner/LABO",
+      "preserve": "証拠付きrelation不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "overwrite_old_closure",
+      "state": "conflict",
+      "condition": "後日失敗で元closedをfailedへ上書き",
+      "backflow_owner": "OS管理",
+      "preserve": "元closureと追補assessmentを別に保持。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "material_as_labo_success",
+      "state": "unknown",
+      "condition": "LABO入力供給だけで評価成功を主張",
+      "backflow_owner": "LABO",
+      "preserve": "原記録集合は保持し評価結果不足を残す。",
+      "contract_ref": "HARNESS-L5-005-F04"
+    },
+    {
+      "code": "forbidden_edge",
+      "state": "conflict",
+      "condition": "domain→application禁止edgeを追加",
+      "backflow_owner": "設計owner",
+      "preserve": "禁止edgeを特定し元方向表を保存。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "forbidden_cycle",
+      "state": "conflict",
+      "condition": "CYCLE-ISOLATED-BASISの全辺許可・循環禁止tableを保持したままactualへcontract→applicationを追加",
+      "backflow_owner": "設計owner",
+      "preserve": "cycleの辺を特定し無関係edgeを保持。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "direction_table_missing",
+      "state": "missing",
+      "condition": "宣言方向表を除去",
+      "backflow_owner": "設計owner",
+      "preserve": "表不足をunknownへ保持し旧表fallbackしない。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "foreign_scope_table",
+      "state": "conflict",
+      "condition": "PへQの方向表を転用",
+      "backflow_owner": "設計owner",
+      "preserve": "別scope表を被覆に数えない。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "old_direction_auto_apply",
+      "state": "conflict",
+      "condition": "旧src/lint/runtime/schema表を全製品へ自動適用",
+      "backflow_owner": "設計owner",
+      "preserve": "旧表の原意味は保持し今回の宣言表を置換しない。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "direction_authority_unknown",
+      "state": "unknown",
+      "condition": "表の設計authority状態を不明化",
+      "backflow_owner": "設計authority-owner",
+      "preserve": "当該表で合格を生成しない。",
+      "contract_ref": "HARNESS-L5-005-F05"
+    },
+    {
+      "code": "invariant_oracle_missing",
+      "state": "missing",
+      "condition": "INV2に対応するoracleを除去",
+      "backflow_owner": "検証設計owner",
+      "preserve": "INV2不足とINV1有効対応を保持。",
+      "contract_ref": "HARNESS-L5-005-F06"
+    },
+    {
+      "code": "invariant_oracle_unresolved",
+      "state": "unknown",
+      "condition": "INV2 oracle参照を未解決にする",
+      "backflow_owner": "検証設計owner",
+      "preserve": "参照存在を被覆へ数えない。",
+      "contract_ref": "HARNESS-L5-005-F06"
+    },
+    {
+      "code": "invariant_wrong_revision",
+      "state": "stale",
+      "condition": "INV2 oracleの対象revisionをr0へ変更",
+      "backflow_owner": "検証設計owner",
+      "preserve": "当該旧oracleはr1被覆にならない。",
+      "contract_ref": "HARNESS-L5-005-F06"
+    },
+    {
+      "code": "invariant_wrong_behavior",
+      "state": "conflict",
+      "condition": "INV2 oracleを残高非負だけへ変更",
+      "backflow_owner": "検証設計owner",
+      "preserve": "件数/linkが同じでも重複event義務未被覆。",
+      "contract_ref": "HARNESS-L5-005-F06"
+    },
+    {
+      "code": "trace_as_execution",
+      "state": "missing",
+      "condition": "traceのみで振る舞い実成功を主張",
+      "backflow_owner": "execution-owner",
+      "preserve": "trace成立と未実行を分離。",
+      "contract_ref": "HARNESS-L5-005-F06"
+    },
+    {
+      "code": "red_missing",
+      "state": "missing",
+      "condition": "Red原結果を除去",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "実装前Red不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "red_after_green",
+      "state": "conflict",
+      "condition": "RedをGreen後sequence5へ変更",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "同oracleでも逆順を不成立。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "red_after_body",
+      "state": "conflict",
+      "condition": "Redを本体変更後かつGreen前sequence3.5へ変更",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "Green前だけでは実装前Red保証を満たさない。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "red_not_executed",
+      "state": "missing",
+      "condition": "Redをtest記述時刻だけへ置換",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "実観測と記述を区別。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "ordering_unknown",
+      "state": "unknown",
+      "condition": "sequence/因果orderの根拠を除去",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "壁時計文字列だけで順序を推測しない。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "mutation_as_pre_red",
+      "state": "conflict",
+      "condition": "実装後mutationを実装前Redの代替にする",
+      "backflow_owner": "execution-owner/015",
+      "preserve": "別の強度証拠を保持し実装前欠落を残す。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "green_oracle_changed",
+      "state": "stale",
+      "condition": "Green oracleを凍結時と別revisionへ変更",
+      "backflow_owner": "検証設計owner/015",
+      "preserve": "元凍結oracleのGreen不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "red_wrong_failure",
+      "state": "conflict",
+      "condition": "Red実失敗を起動エラーへ変更",
+      "backflow_owner": "検証設計owner/015",
+      "preserve": "意図した欠陥検出の不足を特定。",
+      "contract_ref": "HARNESS-L5-005-F07"
+    },
+    {
+      "code": "oracle_no_assertion",
+      "state": "missing",
+      "condition": "oracleの判定内容を除去",
+      "backflow_owner": "検証設計owner",
+      "preserve": "実行欄だけでは具体期待を判定しない。",
+      "contract_ref": "HARNESS-L5-005-F08"
+    },
+    {
+      "code": "oracle_truthiness",
+      "state": "conflict",
+      "condition": "equal5を結果truthinessだけへ変更",
+      "backflow_owner": "検証設計owner",
+      "preserve": "5/6両方truthyで欠陥を見逃す弱さを指摘。",
+      "contract_ref": "HARNESS-L5-005-F08"
+    },
+    {
+      "code": "expected_from_implementation",
+      "state": "conflict",
+      "condition": "実装が返す6を期待値の正本とする",
+      "backflow_owner": "検証設計owner",
+      "preserve": "独立期待5と不一致を保持。",
+      "contract_ref": "HARNESS-L5-005-F08"
+    },
+    {
+      "code": "same_pass_defect",
+      "state": "conflict",
+      "condition": "違反6と正解5へ同じ成功を返す",
+      "backflow_owner": "検証設計owner",
+      "preserve": "欠陥非識別を対象behaviorへ結ぶ。",
+      "contract_ref": "HARNESS-L5-005-F08"
+    },
+    {
+      "code": "gwt_then_missing",
+      "state": "missing",
+      "condition": "Then期待を除去",
+      "backflow_owner": "結合検証設計owner",
+      "preserve": "前提/操作を保持し期待観測不足を示す。",
+      "contract_ref": "HARNESS-L5-005-F09"
+    },
+    {
+      "code": "gwt_labels_only",
+      "state": "missing",
+      "condition": "Given/When/Thenを空の名前だけへ変更",
+      "backflow_owner": "結合検証設計owner",
+      "preserve": "名前で被覆を生成しない。",
+      "contract_ref": "HARNESS-L5-005-F09"
+    },
+    {
+      "code": "gwt_foreign_scope",
+      "state": "conflict",
+      "condition": "結合oracleにQ結果を転用",
+      "backflow_owner": "結合検証設計owner",
+      "preserve": "Pの同pair不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F09"
+    },
+    {
+      "code": "old_layer_label_only",
+      "state": "unknown",
+      "condition": "旧L8/L9番号だけでcurrent pairを適用",
+      "backflow_owner": "設計/検証owner",
+      "preserve": "意味/種類/対応根拠不足を保持。",
+      "contract_ref": "HARNESS-L5-005-F09"
+    },
+    {
+      "code": "gwt_failure_missing",
+      "state": "missing",
+      "condition": "失敗経路の期待を除去",
+      "backflow_owner": "結合検証設計owner",
+      "preserve": "再送重複eventの失敗経路を未被覆へ。",
+      "contract_ref": "HARNESS-L5-005-F09"
+    },
+    {
+      "code": "unknown_as_na",
+      "state": "unknown",
+      "condition": "integration unknownをN/Aへ変更",
+      "backflow_owner": "CORE/005",
+      "preserve": "入力不明と正当非適用を分離。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "unknown_as_zero",
+      "state": "unknown",
+      "condition": "規律未評価を0違反へ変更",
+      "backflow_owner": "005/検証owner",
+      "preserve": "未評価scopeと戻し先を保持。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "unknown_rule_fallback",
+      "state": "unknown",
+      "condition": "identity不明ruleを既知directionへ置換",
+      "backflow_owner": "005契約owner",
+      "preserve": "原identity不明をそのまま不足とする。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "other_rule_cancels",
+      "state": "conflict",
+      "condition": "direction成功でintegration不足を相殺",
+      "backflow_owner": "005/検証owner",
+      "preserve": "規律ごとの未完義務を独立保存。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "na_reason_missing",
+      "state": "missing",
+      "condition": "TDD N/A理由を除去",
+      "backflow_owner": "CORE009",
+      "preserve": "判定者/revision/再評価条件も既存009へ結ぶ。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "na_decider_missing",
+      "state": "missing",
+      "condition": "TDD N/A判定者を除去",
+      "backflow_owner": "CORE009",
+      "preserve": "N/Aの原判断不足を保持。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "na_revision_wrong",
+      "state": "stale",
+      "condition": "TDD N/A対象revisionをr0へ変更",
+      "backflow_owner": "CORE009",
+      "preserve": "r1へN/A継承しない。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "na_reevaluation_missing",
+      "state": "missing",
+      "condition": "TDD N/A再評価条件を除去",
+      "backflow_owner": "CORE009",
+      "preserve": "N/A消込にせず不足を残す。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "unseen_as_proven",
+      "state": "missing",
+      "condition": "未公開検証未実行を成功へ変更",
+      "backflow_owner": "independent-verification-owner",
+      "preserve": "未観測/未実行を維持し新一律gateを追加しない。",
+      "contract_ref": "HARNESS-L5-005-N01"
+    },
+    {
+      "code": "backup_as_restore",
+      "state": "missing",
+      "condition": "backup/snapshot存在でrestore成功を主張",
+      "backflow_owner": "product-verification-owner",
+      "preserve": "restore未実行を保持。",
+      "contract_ref": "HARNESS-L5-005-N02"
+    },
+    {
+      "code": "rollback_as_permanent",
+      "state": "unknown",
+      "condition": "rollback成功で恒久修復完了を主張",
+      "backflow_owner": "product-verification-owner",
+      "preserve": "恒久修復の別結果不足を保持。",
+      "contract_ref": "HARNESS-L5-005-N02"
+    },
+    {
+      "code": "rollback_as_prevention",
+      "state": "missing",
+      "condition": "rollback成功で再発防止完了を主張",
+      "backflow_owner": "product-verification-owner",
+      "preserve": "再発防止未実行を保持。",
+      "contract_ref": "HARNESS-L5-005-N02"
+    },
+    {
+      "code": "foreign_environment_recovery",
+      "state": "conflict",
+      "condition": "別環境restore結果を今回へ転用",
+      "backflow_owner": "product-verification-owner",
+      "preserve": "対象環境のrestore不足を保持。",
+      "contract_ref": "HARNESS-L5-005-N02"
+    },
+    {
+      "code": "fixed_global_rto",
+      "state": "conflict",
+      "condition": "規範から全製品同じRTO/RPOを生成",
+      "backflow_owner": "product-requirement-owner",
+      "preserve": "個別製品値未供給と元結果を維持。",
+      "contract_ref": "HARNESS-L5-005-N02"
     }
   ],
   "storage_boundary": {
