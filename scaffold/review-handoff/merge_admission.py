@@ -38,6 +38,8 @@ HEX40_RE = re.compile(r"^[0-9a-f]{40}$")
 GH_SUBCMD = "merge"
 MAX_WAIT_ATTEMPTS = 240
 MAX_WAIT_INTERVAL = 300.0
+READ_AFTER_WAIT_ATTEMPTS = 5
+READ_AFTER_WAIT_INTERVAL = 1.0
 PR_VIEW_FIELDS = "state,isDraft,headRefOid,autoMergeRequest,mergeStateStatus"
 
 RunnerType = Callable[[list[str], Path | None], subprocess.CompletedProcess[str]]
@@ -513,19 +515,27 @@ def run_merge_admission(
 
     # Step (d): post-merge read-after（gh pr view --json state,mergeCommit でmerge commitを特定）
     runner(["git", "fetch", "-q", "origin"], repo_root)
-    mc_view = runner(
-        ["gh", "pr", "view", str(pr), "--json", "state,mergeCommit"],
-        repo_root,
-    )
     merge_commit = ""
-    if mc_view.returncode == 0:
-        try:
-            mc_info = json.loads(mc_view.stdout)
-            mc_obj = mc_info.get("mergeCommit") or {}
-            if isinstance(mc_obj, dict):
-                merge_commit = str(mc_obj.get("oid") or "").strip()
-        except json.JSONDecodeError:
-            merge_commit = ""
+    for mc_attempt in range(1, READ_AFTER_WAIT_ATTEMPTS + 1):
+        mc_view = runner(
+            ["gh", "pr", "view", str(pr), "--json", "state,mergeCommit"],
+            repo_root,
+        )
+        if mc_view.returncode == 0:
+            try:
+                mc_info = json.loads(mc_view.stdout)
+                mc_state = str(mc_info.get("state") or "").strip()
+                mc_obj = mc_info.get("mergeCommit") or {}
+                if mc_state == "MERGED" and isinstance(mc_obj, dict):
+                    oid = str(mc_obj.get("oid") or "").strip()
+                    if HEX40_RE.match(oid):
+                        merge_commit = oid
+                        break
+            except json.JSONDecodeError:
+                merge_commit = ""
+        if mc_attempt < READ_AFTER_WAIT_ATTEMPTS and READ_AFTER_WAIT_INTERVAL > 0:
+            sleep_fn(READ_AFTER_WAIT_INTERVAL)
+            runner(["git", "fetch", "-q", "origin"], repo_root)
 
     if not HEX40_RE.match(merge_commit):
         return {

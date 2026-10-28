@@ -52,6 +52,7 @@ class FakeScenarioRunner:
         trial_tree: str = SAMPLE_TREE,
         merge_rc: int = 0,
         merge_commit: str = SAMPLE_MERGE,
+        post_merge_views: list[dict[str, object]] | None = None,
         post_merge_origin_main_sha: str | None = None,
         merge_tree: str = SAMPLE_TREE,
         parents: str | None = None,
@@ -80,6 +81,10 @@ class FakeScenarioRunner:
         self.trial_tree = trial_tree
         self.merge_rc = merge_rc
         self.merge_commit = merge_commit
+        self.post_merge_views = (
+            list(post_merge_views) if post_merge_views is not None else None
+        )
+        self._post_merge_view_idx = 0
         self.post_merge_origin_main_sha = (
             post_merge_origin_main_sha
             if post_merge_origin_main_sha is not None
@@ -101,10 +106,15 @@ class FakeScenarioRunner:
         self.calls.append(list(argv))
         if argv[:3] == ["gh", "pr", "view"]:
             if argv[-1] == "state,mergeCommit":
-                payload = {
-                    "state": "MERGED",
-                    "mergeCommit": {"oid": self.merge_commit},
-                }
+                if self.post_merge_views is not None:
+                    idx = min(self._post_merge_view_idx, len(self.post_merge_views) - 1)
+                    self._post_merge_view_idx += 1
+                    payload = self.post_merge_views[idx]
+                else:
+                    payload = {
+                        "state": "MERGED",
+                        "mergeCommit": {"oid": self.merge_commit},
+                    }
                 return subprocess.CompletedProcess(argv, 0, json.dumps(payload), "")
             idx = min(self._view_idx, len(self.pr_views) - 1)
             self._view_idx += 1
@@ -445,6 +455,71 @@ class MergeAdmissionTest(unittest.TestCase):
         self.assertFalse(res["ok"])
         self.assertEqual(res["status"], "read_after_failed")
         self.assertEqual(res["reason"], "read_after_head_or_parent_mismatch")
+        self.assertFalse(any(c[:3] == ["gh", "pr", "comment"] for c in runner.calls))
+
+    def test_read_after_merge_commit_null_then_oid_succeeds(self) -> None:
+        runner = FakeScenarioRunner(
+            post_merge_views=[
+                {"state": "MERGED", "mergeCommit": None},
+                {"state": "MERGED", "mergeCommit": {"oid": SAMPLE_MERGE}},
+            ]
+        )
+        slept: list[float] = []
+        res = merge_admission.run_merge_admission(
+            pr=3999,
+            head=SAMPLE_HEAD,
+            review_comment="IC_1",
+            repo_root=self.tmp_dir,
+            worktree_parent=self.tmp_dir,
+            runner=runner,
+            sleep_fn=slept.append,
+        )
+        self.assertTrue(res["ok"])
+        self.assertEqual(res["status"], "merged")
+        self.assertEqual(res["merge_commit"], SAMPLE_MERGE)
+        self.assertEqual(slept, [merge_admission.READ_AFTER_WAIT_INTERVAL])
+        merge_calls = [c for c in runner.calls if c[:3] == ["gh", "pr", GH_SUBCMD]]
+        self.assertEqual(len(merge_calls), 1)
+        mc_view_calls = [
+            c
+            for c in runner.calls
+            if c[:3] == ["gh", "pr", "view"] and c[-1] == "state,mergeCommit"
+        ]
+        self.assertEqual(len(mc_view_calls), 2)
+
+    def test_read_after_merge_commit_always_null_fails(self) -> None:
+        runner = FakeScenarioRunner(
+            post_merge_views=[
+                {"state": "MERGED", "mergeCommit": None},
+            ]
+        )
+        slept: list[float] = []
+        res = merge_admission.run_merge_admission(
+            pr=3999,
+            head=SAMPLE_HEAD,
+            review_comment="IC_1",
+            repo_root=self.tmp_dir,
+            post_comment=True,
+            worktree_parent=self.tmp_dir,
+            runner=runner,
+            sleep_fn=slept.append,
+        )
+        self.assertFalse(res["ok"])
+        self.assertEqual(res["status"], "read_after_failed")
+        self.assertEqual(res["reason"], "read_after_merge_commit_missing")
+        self.assertEqual(
+            slept,
+            [merge_admission.READ_AFTER_WAIT_INTERVAL]
+            * (merge_admission.READ_AFTER_WAIT_ATTEMPTS - 1),
+        )
+        merge_calls = [c for c in runner.calls if c[:3] == ["gh", "pr", GH_SUBCMD]]
+        self.assertEqual(len(merge_calls), 1)
+        mc_view_calls = [
+            c
+            for c in runner.calls
+            if c[:3] == ["gh", "pr", "view"] and c[-1] == "state,mergeCommit"
+        ]
+        self.assertEqual(len(mc_view_calls), merge_admission.READ_AFTER_WAIT_ATTEMPTS)
         self.assertFalse(any(c[:3] == ["gh", "pr", "comment"] for c in runner.calls))
 
     def test_read_after_tree_mismatch(self) -> None:
