@@ -206,11 +206,11 @@
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
     "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
     "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
-    "L4_post_sha256": "3ca4b57b430a09f7078bbb5f37342356bc78017e875d22ebfc50d349e7db6e14",
+    "L4_post_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
     "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L9_post_sha256": "7080040299e8cd5098e7cd114d1a853c40b335139a7e20d75f376f5ead1eba0f",
+    "L9_post_sha256": "658e341c7a652878e071c44ab84d2f56c3540d34356557835791ed58372ff923",
     "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
-    "L5_post_sha256": "4993198a4b5a086b801eb0a16ff552f6928dd063228e3db49aa0b1b3ad2a345b",
+    "L5_post_sha256": "80342b79c5ef387990663011724c953d307224dae9b9ebf3a4ebd9de3d9904fa",
     "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
     "L8_post_sha256": "aef4d919b8e0e72e47f97ae9049dccc3c9fefcffd7e3060e28aa1b4de3a274fa"
   },
@@ -234,8 +234,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 74,
-    "expanded_target_count": 74,
+    "checked_count": 140,
+    "expanded_target_count": 246,
     "unresolved_count": 0,
     "passed": true
   },
@@ -314,18 +314,6 @@
       "item_id": "O2-definition-axis-projection",
       "status": "pending_human_or_independent_semantic_review",
       "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
-    },
-    {
-      "check": "CHK-PAIR-BIDIR-ID",
-      "target": "L4/L9 basic pair: F05 CauseKind vocabulary and owner/Axis logical cause cases",
-      "status": "pending_human_or_independent_semantic_review",
-      "judgment_required": "DT-VT-105: review the semantic alignment of changed L4 cause vocabulary with L9 negative logical cases; check-pair establishes pair identifiers/structure and ownership caps, not semantic equivalence or execution."
-    },
-    {
-      "check": "CHK-L3-OBLIGATION-MAP",
-      "item_id": "O1/O2 L4/L9 basic-pair semantic correspondence",
-      "status": "pending_human_or_independent_semantic_review",
-      "judgment_required": "DT-VT-105: review that each L4 cause boundary and L9 logical case is an independently derived observation for the mapped L3/L10 obligation; cases are not executed."
     }
   ],
   "verification": {
