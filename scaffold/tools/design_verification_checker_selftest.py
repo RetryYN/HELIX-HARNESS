@@ -569,6 +569,47 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(os002_match["passed"], msg=os002_match["failures"])
         self.assertEqual(os002_match["matched_case_count"], 2)
 
+        os002_missing_upper_values = copy.deepcopy(os002_layers)
+        for layer in ("L4", "L9", "L8"):
+            rows = (
+                os002_missing_upper_values[layer]["contracts"][0][
+                    "negative_classifications"
+                ]
+                if layer == "L4"
+                else os002_missing_upper_values[layer]["cases"][0]["negative_cases"]
+            )
+            for row in rows:
+                row.pop("expected_preserved", None)
+        os002_missing_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            os002_paths["L4"],
+            os002_paths["L9"],
+            os002_paths["L8"],
+            os002_paths["L5"],
+            os002_missing_upper_values["L4"],
+            os002_missing_upper_values["L9"],
+            os002_missing_upper_values["L8"],
+            os002_missing_upper_values["L5"],
+            contract_index=0,
+        )
+        preserved_failures = [
+            failure
+            for failure in os002_missing_result["failures"]
+            if failure["attribute"] == "expected_preserved"
+        ]
+        self.assertFalse(os002_missing_result["passed"])
+        self.assertEqual(len(preserved_failures), 2)
+        self.assertTrue(
+            all(
+                failure["L4"] is None
+                and failure["L9"] is None
+                and failure["L8"] is None
+                and failure["L5"] is None
+                for failure in preserved_failures
+            )
+        )
+        self.assertEqual(os002_missing_upper_values["L5"], os002_layers["L5"])
+
     def test_chk_public_fn_freeze_pass_and_mutation_fail(self) -> None:
         l5 = {
             "functions": [
