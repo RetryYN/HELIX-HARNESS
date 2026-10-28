@@ -4166,6 +4166,75 @@
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
    "fixture_refinement": "bound to general_proposal_exchange_verification cases without adding raw/whole fixtures to L8; not executed"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-25",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "application-contract-recipient-boundary-positive-and-negative",
+   "l5_boundary_ref": {
+    "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "pointer": "/f05_detail_contract/recipient_and_obligation_contract/application_contract_recipient_boundary"
+   },
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/owners"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/contracts/6/backflow"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/6"
+    }
+   ],
+   "positive_expectation": {
+    "condition": "原適用contract不整合を示す独立根拠が形成され、process資料を含むという事実だけを判定根拠にしない。",
+    "expected_observation": "当該不整合に対応するHARNESS返却候補材料へ結び、原資料・source/body/revision/scope・原質問・requested operand・gap_basis・未完義務を保持する。質問候補を削除せず、候補を合意・ticket・義務消込へ昇格しない。"
+   },
+   "negative_expectations": [
+    {
+     "id": "process-material-alone",
+     "condition": "process contract資料が含まれるが、原適用contract不整合を示す独立根拠は形成されていない。",
+     "expected_observation": "recipient=unresolved。元process/application/requirement資料、原質問、requested operand、gap_basis、source/body/revision/scope、未完義務を保持し、process資料だけを理由にHARNESSへ送らない。"
+    },
+    {
+     "id": "application-basis-unformed",
+     "condition": "不整合を示すbasisが未形成または資格付けできない。",
+     "expected_observation": "recipient=unresolved。原材料を保持し、文章parseや別scopeの推定で適用contract不整合を作らない。"
+    }
+   ],
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計行のみ。具体fixture・全返却・hashを追加しない。未実行。",
+   "scope_limit": "このU-IDはD15のapplication_contract_recipient_boundaryだけを扱う。D16（D-H009-T2c-3）は既存FN5 freezeで解消済みと宣言され、元DISP2行はcategory Aの履歴として残る。本U-IDとD15再freezeはD16を再開しない。",
+   "scope_limit_refs": [
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/selected_brain_field_definition_application_detail"
+    },
+    {
+     "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+     "pointer": "/selected_brain_field_definition_application_detail_verification"
+    },
+    {
+     "path": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+     "pointer": "/dispositions/15"
+    },
+    {
+     "path": "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+     "pointer": "/resolves_disposition_ref"
+    }
+   ]
   }
  ],
  "normal_function_oracles": [
