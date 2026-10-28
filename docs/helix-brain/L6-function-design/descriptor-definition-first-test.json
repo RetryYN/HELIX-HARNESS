@@ -1527,6 +1527,95 @@
       "existing_stop": "F05/F06/unclosed/descriptor_claim_uses; owner=knowledge_owner; Backflow HELIXBRAIN-L6-032-FN4-ORACLE"
     }
   },
+  "fn1_fn6_wrapper_via_walk_preparation": {
+    "id": "HELIXBRAIN-L6-032-FN1-FN6-WRAPPER-VIA-WALK",
+    "request_id": "WR-BRAIN032-WRAPPERS-VIA-WALK-3547-R2",
+    "working_base": "65f0c01ad11772c845741034cebe3bf4fb37678f",
+    "test_only_commit_head": "36408e9444",
+    "authority_effect": "none",
+    "scope": {
+      "included": "FN1 compare_descriptor_definitionsは同一ValidatedSupplyでcanonical walkを一回呼び、walk.evaluation.comparisonを公開Comparisonとして返す。FN6 compare_dependencies_and_handoffはzero/nonfill/fill全てで同じValidatedSupplyのcanonical walk/frame/detail経路を一回通し、従来のB02/handoff/依存所見を保つ。FN1 fill Claimごとに原Claim index/locatorでspecial support readを一回行い、positive rule7/8とunresolved枝だけ同call walkへ投影する。FN2 compare_values_and_applicabilityは依頼対象として既存実装を静的照合し、同じValidatedSupply snapshotからF03 private detailを一回評価してComparisonへfieldwise射影する既存wrapperを保持する。FN2 source変更は不要と判断し、専用call-count testで別途照合する。",
+      "excluded": "FN2のsource変更（既存契約どおりのwrapperを維持するため不要）、FN0資格判定変更、FN7 writer/meaning変更、D27追加gate、F02全domain閉包、L8期待やL3意味の変更。"
+    },
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+        "pointers": [
+          "/definition_meaning_resolution_contract/evaluation_populations",
+          "/definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order",
+          "/dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+        "pointers": [
+          "/source_return_contract/descriptor_target_dataflow/direct_wrappers",
+          "/functions/2",
+          "/functions/2/private_detail_binding",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/source_cohort",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/raw_occurrences",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/common/common_fields",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/special_event_constructors/constructors/3",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/special_predicate_projection/4"
+        ]
+      }
+    ],
+    "wrapper_contract": {
+      "FN1": "public signature/context/result unchanged; one canonical walk call; return that walk evaluation comparison without recomputing FN1.",
+      "FN2": "public wrapper and F03 fieldwise projection unchanged; receives FN1 public comparison and does not add another walk.",
+      "FN6": "same validated input is walked once in zero/nonfill/fill cases; FN6 consumes frame and retains existing B02/handoff/Claim responsibilities without a public FN1 re-call."
+    },
+    "special_read_contract": "Each raw fill_definition occurrence has a separate request in source order. Raw source occurrence and typed support are distinguished; support matching uses original source/use/fact relations. Rule7/8 findings use the same-local support links; nonfiring and unresolved cases retain the original read and do not fabricate supported findings.",
+    "preserved_stops": [
+      "F02/required_kinds_outside_frozen_path",
+      "F02/descriptor_kind_duplicate_slot",
+      "F01/F02/unclosed/definition_meaning_walk/meaning_pair_nonempty_unimplemented"
+    ],
+    "unformed_support_link_boundary": "A public input with Claim.template_ref.identity=null passes FN0 but its target read has state=unknown and matches=[]; no special event is formed. A use basis_binding with null template identity cannot correspond to its source Binding under the existing Binding comparison, so it is retained as a local problem rather than a support. Thus a support-bearing unresolved special event was not reached or claimed; no synthetic gate or private test input was added.",
+    "legacy_and_failure_basis": [
+      {
+        "asset_id": "LEGACY-ASSET-4674004EAE02B2811AE0",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L12-vmodel/vmodel-layer-coverage.md",
+        "lines": "138-154,168-173",
+        "retained": "Independent tests/oracles are traceable to each current behavior; legacy runtime/gates are not transferred."
+      },
+      {
+        "asset_id": "LEGACY-ASSET-FDBA655B1CFF75DCDC0E",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/repository-structure.md",
+        "lines": "102-120,152-159",
+        "retained": "Function and test placement remain explicit; existing implementation ownership is not replaced by an empty stub."
+      },
+      {
+        "recorded_failure": "PR #3721 R1 regression tests exposed that public FN1/FN6 wrappers had not been connected to the canonical walk. The new tests exercise actual public wrappers and same-call walk invocation; this history does not create product requirements."
+      }
+    ],
+    "source_commit_sha": "65135d8265b6aa26b811e82612d0f763acdec02f",
+    "fn2_test_commit_sha": "037ac5fd44887071904b78cc56d5a2fffc3aa763",
+    "observed_candidate_history": "The full-unit observation was collected with source files as uncommitted working-tree content on test_only_commit_head; those exact source bytes were later committed as source_commit_sha. FN2 focused test was also observed against an uncommitted test/source worktree and later committed separately as fn2_test_commit_sha.",
+    "format_only_test_commit_sha": "0ddba80cc6faf11f45cb6a1770be3a50165c6438",
+    "module_size_scope": {
+      "scope": "The 700 nonblank-line refactor-candidate threshold applies to source modules changed or added by this work. It does not require splitting unchanged source modules or test modules.",
+      "changed_source_module_nonblank_lines": {
+        "definition_comparison.py": 360,
+        "dependencies_handoff.py": 606,
+        "dependencies_handoff_claim_assessment.py": 193,
+        "descriptor_definition_reads.py": 487,
+        "descriptor_definition_special_claims.py": 336,
+        "descriptor_definition_special_reads.py": 435,
+        "descriptor_definition_walk.py": 693
+      },
+      "unchanged_source_candidate": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability_rows.py",
+        "nonblank_lines": 749,
+        "handling": "Existing separate refactor candidate; not split in this work."
+      },
+      "test_modules": "Excluded from the 700-line scope; preserve and report their counts without splitting.",
+      "basis": "Scope clarification supplied to the parent from the module-limit query: threshold is a refactor-candidate detector for changed/new source only, based on old config/requirements-binding-policy.ts:4-5, old state-db/refactor-candidates.ts:293-294, old docs/governance/coding-rules.md:29, PR #3709 M10 (comment 6421876852), and Issue #3547 comment 6421872614. The response was scaffold with authority_effect none and result incomplete; this records the parent-directed work scope and creates no new gate."
+    }
+  },
   "fn1_descriptor_claim_uses_preparation": {
     "id": "HELIXBRAIN-L6-032-FN1-DESCRIPTOR-CLAIM-USES",
     "parent_subtree": "/fn1_same_call_claim_reads_and_missing_events_preparation",

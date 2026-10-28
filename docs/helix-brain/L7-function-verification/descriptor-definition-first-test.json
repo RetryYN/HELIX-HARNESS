@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "57d3f390c4a548aae8af403d40933aba6f7b9deb6df2b4928b755543b3bb6643",
+    "sha256": "f7963c6a86e0f4ae1ffb15202a9fbd331c3f9488876528fd9a540e0070b09562",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -2684,6 +2684,346 @@
       "unit": "root-wr33-g2a-r1-unit-green.json:352PASS20824ms/reaped/notruncation",
       "latest_main_integration": "root-wr33-g2a-r1-latest-main-integration.json:mainb364475e unit+BRAINdocs tree same before/after merge. 同source/testと全BRAIN文書が同一であるため352PASS証拠を保持し、無変更testを重複実行しない。",
       "source_body_unchanged_since_review_head": "3457abd3d3f4d958605452c7f046f27c356d4e57"
+    }
+  },
+  "fn1_fn6_wrapper_via_walk_verification": {
+    "id": "HELIXBRAIN-L7-032-FN1-FN6-WRAPPER-VIA-WALK",
+    "design_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn1_fn6_wrapper_via_walk_preparation",
+      "document_base_revision": "65f0c01ad11772c845741034cebe3bf4fb37678f",
+      "pointer_state": "The referenced subtree is an uncommitted addition in the working tree and was not present at document_base_revision."
+    },
+    "request_id": "WR-BRAIN032-WRAPPERS-VIA-WALK-3547-R2",
+    "test_commit_lineage": [
+      "6cf402a9aa1417c1d41d5ff96b5a57063ffdf66d",
+      "ee8fc1b5a2f1b796cba225acc5e012c3c8f7a94f",
+      "36408e9444f42c2be55bfe774c172ce1a77157e0",
+      "037ac5fd4a28a8c1a8ed09d646a9746633b77eb3",
+      "0ddba80cc6faf11f45cb6a1770be3a50165c6438"
+    ],
+    "source_revision": {
+      "base_main": "65f0c01ad11772c845741034cebe3bf4fb37678f",
+      "test_only_head": "36408e9444f42c2be55bfe774c172ce1a77157e0",
+      "test_only_commit_lineage": [
+        "6cf402a9aa1417c1d41d5ff96b5a57063ffdf66d",
+        "ee8fc1b5a2f1b796cba225acc5e012c3c8f7a94f",
+        "36408e9444f42c2be55bfe774c172ce1a77157e0"
+      ],
+      "source_state": "The source files identified by source_sha256 were uncommitted working-tree bytes during the full-suite observation and are now committed in source_commit_sha. The FN2 test was separately committed in fn2_test_commit_sha.",
+      "source_commit_sha": "65135d8265b6aa26b811e82612d0f763acdec02f",
+      "fn2_test_commit_sha": "037ac5fd44887071904b78cc56d5a2fffc3aa763",
+      "source_sha256": {
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py": "85624b44ca7949594d562ce2ac561a6f255c218ebc5f85331c438f4e85bd6c6a",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_walk.py": "0b6b3a0711027d4519d02cd3d8c47c5891face2db80a68dfdc78e73fe367367c",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_reads.py": "815c4624f1577b4ee44d03d46ed63d3d453cb9dd2fbbc2e087aad918f54a1ae3",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_special_reads.py": "386722915dc25bbc03a0b79c1729cd84d328c7cb19edb2b5e1cacd64e43ef3f8",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_special_claims.py": "eee824fbeed7cad14c69191d042f8114ccb3c751f2cfb745d33030cdcd5694c8",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py": "458eedc6d838fa71cc68364c095cc45cc2f20dbbe8bb395ee0c7ca6583c642c6",
+        "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_claim_assessment.py": "64372169a26be45131aa573da54ede4e51d3eaeac75cb081b74b58b689635649"
+      },
+      "format_only_commit_sha": "0ddba80cc6faf11f45cb6a1770be3a50165c6438"
+    },
+    "test_sources": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn1_wrapper_walk_missing_facts.py",
+        "sha256": "7a30a5ed2143a1ac7e8d8bfa057e593b0d3a64c89cacac4790a614add97f2400"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn6_wrapper_walk_coverage.py",
+        "sha256": "e322cce86756284ebb4d6ada3e53ea21c08f4adb991772e47c66ea6a6fc10def",
+        "format_only_commit_sha": "0ddba80cc6faf11f45cb6a1770be3a50165c6438"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn1_wrapper_walk_replacement_special.py",
+        "sha256": "24bafb55db86286ba655ab7aa5832a96f12b8ea02d8798aaec0e9d94ee0f259d"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn1_wrapper_walk_replacement_source_cohort.py",
+        "sha256": "14df3e88ddb1c2908f1540fd717881a802db490404a19d4164b9bc1fb97f5049"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_walk_raw_distinct_frames.py",
+        "sha256": "e8e40de284e3ddb379d539afdddb1fadb2455b7b3bf988a6b8495566878531dd"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+        "sha256": "c4e1b5be7464d049149eacf049d6e788d6f419ecf8c9fda489bfbac511b9be14"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_claim_walk.py",
+        "sha256": "fd75858b1612f95a86979ce8f4f835b29b35f30c891022433757228db07908f1"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_full_contract.py",
+        "sha256": "dd7454e310eff1e7380c4da36755980ee98466de3e65f8fdb0f752e764ab6317"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_population_stops.py",
+        "sha256": "236b3792157251086c447142d2a25d06493e06bd1b8018aa061873dd199cbe8d"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_missing_origins.py",
+        "sha256": "acc8228482eb51bee537102e431503b1b0f418879aa3fc00b88d65abf895e0d2"
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn2_public_wrapper_detail_once.py",
+        "sha256": "bb8ae2f592a38b3b3b41015fc3a3cbfdec1fed45340e0927e38072a566d472e0",
+        "state": "committed in fn2_test_commit_sha"
+      }
+    ],
+    "red_evidence": [
+      {
+        "target": "FN6 zero/nonfill walk invocation and FN1 absent/null/empty facts projection",
+        "base_revision": "026afb1c21846fac233561f40057a5bd4f4bc8ac",
+        "test_source_sha256": {
+          "tests/test_fn6_wrapper_walk_coverage.py": "c069a83b6305bfa5976af47a5c386b35d96c125e0ae7a2e806314a96e6b884eb",
+          "tests/test_fn1_wrapper_walk_missing_facts.py": "7a30a5ed2143a1ac7e8d8bfa057e593b0d3a64c89cacac4790a614add97f2400"
+        },
+        "command": "python3 -B scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 100000 --cwd <worktree> -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_fn6_wrapper_walk_coverage test_fn1_wrapper_walk_missing_facts",
+        "result": {
+          "methods": 4,
+          "passes": 1,
+          "assertion_failures": 3,
+          "errors": 0,
+          "duration_ms": 214,
+          "timed_out": false,
+          "output_truncated": false
+        },
+        "limits": "Test-only Red before implementation. FN6 fill positive control passed. Nonfill preservation check is metamorphic; it is not an independent whole-output oracle."
+      },
+      {
+        "target": "FN1 replacement special-reader read schedule and typed projection",
+        "target_revision": "not recorded by retained execution outcome",
+        "command": "not recorded by retained execution outcome",
+        "result": "3 tests ran; four assertion failures (one test contains two subtest failures); failures include zero reader calls, raw Ref branches stopping at raw_distinct_binding_frames, and a missing typed cross-pattern finding. No timeout or setup error is recorded.",
+        "limits": "Historical observation only. The retained outcome does not bind a source/test SHA or commit, so it is not reproducible evidence for the current source candidate."
+      }
+    ],
+    "green_evidence": [
+      {
+        "target": "Full HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION test suite",
+        "base_revision": "65f0c01ad11772c845741034cebe3bf4fb37678f",
+        "test_only_head": "36408e9444f42c2be55bfe774c172ce1a77157e0",
+        "test_only_commit_lineage": [
+          "6cf402a9aa1417c1d41d5ff96b5a57063ffdf66d",
+          "ee8fc1b5a2f1b796cba225acc5e012c3c8f7a94f",
+          "36408e9444f42c2be55bfe774c172ce1a77157e0"
+        ],
+        "command": "PYTHONPATH=src:tests python3 -B -m unittest discover -s tests via scaffold/tools/bounded_exec.py",
+        "result": {
+          "classification": "ok",
+          "status": 0,
+          "methods": 460,
+          "failures": 0,
+          "errors": 0,
+          "duration_ms": 40114,
+          "reaped": true,
+          "timed_out": false,
+          "output_truncated": false
+        },
+        "limits": "Run recorded on scratch from base_revision with test-only commits and the then-current uncommitted source/test candidate applied. The original work branch was not merged/rebased. This is the recorded 65f0 base; it is five commits behind the worktree local origin/main observed during this inspection. The run does not prove full behavior outside the included suite. The source was committed later as 65135d826; the run itself predates that commit.",
+        "source_sha256_ref": "/source_revision/source_sha256",
+        "observed_source_state": "The recorded run used these exact source SHA bytes while they were uncommitted working-tree content on test_only_head; those bytes were later committed in source_commit_sha."
+      },
+      {
+        "target": "FN2 public wrapper detail-once and fieldwise-projection focused test",
+        "target_revision": {
+          "test_only_head": "36408e9444f42c2be55bfe774c172ce1a77157e0",
+          "source_and_test_state": "Uncommitted source/test working tree on that test-only HEAD; exact source identity is bound by /source_revision/working_source_sha256 and test_sha256 below.",
+          "later_source_commit_sha": "65135d8265b6aa26b811e82612d0f763acdec02f",
+          "later_test_commit_sha": "037ac5fd44887071904b78cc56d5a2fffc3aa763",
+          "observed_before_commit": "The bounded run observed the uncommitted source/test tree on test_only_head."
+        },
+        "source_sha256_ref": "/source_revision/working_source_sha256",
+        "test_source": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn2_public_wrapper_detail_once.py",
+        "test_sha256": "bb8ae2f592a38b3b3b41015fc3a3cbfdec1fed45340e0927e38072a566d472e0",
+        "command": "python3 -B scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd <r2-worktree> -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest discover -s helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests -p test_fn2_public_wrapper_detail_once.py -v",
+        "result": {
+          "classification": "ok",
+          "status": 0,
+          "methods": 1,
+          "passes": 1,
+          "failures": 0,
+          "errors": 0,
+          "duration_ms": 196,
+          "reaped": true,
+          "timed_out": false,
+          "output_truncated": false
+        },
+        "scope": "Same ValidatedSupply snapshot identity; exactly one private detail invocation; fieldwise expected public comparison projection; input immutability.",
+        "limits": "Focused behavior only. It does not establish FN1/FN6 equivalence or independent review/acceptance. The source/test bytes were committed afterward in the recorded commits; this run predates those commits."
+      }
+    ],
+    "existing_public_expectation_changes": [
+      {
+        "test": "test_fn1_wrapper_walk_replacement_special.py::test_fill_occurrences_are_read_once_in_order_and_only_supported_positive_projects",
+        "old": "positive read only the selected support occurrence; nonfiring reads expected no raw occurrences.",
+        "new": "each read retains all usable semantic_json source occurrences in physical source/record order, including nonfiring reads; supports remain selected separately.",
+        "basis": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/raw_occurrences"
+      },
+      {
+        "test": "test_descriptor_definitions.py::test_r1_m2_special_sort_source_refs_per_usable_occurrence_and_finding_sort",
+        "old": "cross axes ordered C,C,B2.",
+        "new": "cross axes ordered B2,C,C for the full occurrence source_ref sort column; equal sort keys retain event/Claim order.",
+        "basis": "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/sort_source_ref_column/special and /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/raw_occurrences"
+      },
+      {
+        "test": "test_descriptor_definitions.py::test_r1_m4_target_and_basis_negative_boundary_mutations/use_basis_ref_sha_diff",
+        "old": "Claim basis SHA absent vs record basis SHA known expected unresolved/no cross finding.",
+        "new": "existing ref_same treats a one-sided null SHA as corresponding; expected descriptor_07_missing plus cross_pattern_field_substitution with original source refs.",
+        "basis": "L5 /source_return_contract/pure_reference_notation/definitions and /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/positive_cohort"
+      }
+    ],
+    "l8_expectation_check": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "finding": "No U-ID/oracle row directly specifies the old C,C,B2 ordering or use_basis_ref_sha_diff nonfiring expectation; no L8 value was changed."
+    },
+    "remaining_boundaries": {
+      "F02": "The current public suite still preserves required_kinds_outside_frozen_path and descriptor_kind_duplicate_slot stops, plus the nonempty meaning pair unimplemented stop. They are not claimed resolved by wrapper connection.",
+      "support_link_unknown": "No real public frame with a formed target event plus a typed support whose template identity is unresolved was constructible under existing same-call source/record Binding correspondence. The L5 all-local-support link rule is not claimed exercised for this unformed branch."
+    },
+    "static_checks": {
+      "module_nonblank_lines": {
+        "descriptor_definition_walk.py": 693,
+        "descriptor_definition_reads.py": 487,
+        "descriptor_definition_special_reads.py": 435,
+        "descriptor_definition_special_claims.py": 336,
+        "dependencies_handoff.py": 606,
+        "dependencies_handoff_claim_assessment.py": 193
+      },
+      "ruff_check": "PASS",
+      "git_diff_check": "PASS"
+    },
+    "completion_boundary": "Source/test commits and format-only commit are recorded. Focused FN6 and full 461-method suite passed on the named latest-main trial after formatting; SCF validate/stale and Ruff check/format passed. Existing FN2 source remains unchanged. The module threshold applies only to changed/new source modules; unchanged values_applicability_rows.py is separately recorded at 749 lines. Independent review, Ready, merge, and final acceptance are not claimed.",
+    "authority_effect": "none",
+    "fn2_existing_wrapper_preservation": {
+      "static_source_observation": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+        "sha256": "5d282c9e43f2f4cf8e69254afac28b2fa666f1b511597c2756516e0a49016317",
+        "observed": "compare_values_and_applicability builds F03BasicContext from the same validated snapshot and fieldwise input-comparison projection, calls _evaluate_field_values_detail once, then returns only the existing public Comparison projection."
+      },
+      "detail_source_observation": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability.py",
+        "sha256": "479ca23c687feffd93ddcbe4c32338199ab7c37e52b8fcfe0b2ed0af04b1b115",
+        "observed": "_evaluate_field_values_detail delegates once to evaluate_field_values_detail; the private detail returns the fieldwise F03 comparison, rows, and problems."
+      },
+      "conclusion": "Existing wrapper already matches the requested FN2 behavior; source change is unnecessary. The dedicated focused test is recorded above.",
+      "dedicated_test": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn2_public_wrapper_detail_once.py",
+        "sha256": "bb8ae2f592a38b3b3b41015fc3a3cbfdec1fed45340e0927e38072a566d472e0",
+        "state": "Committed in 037ac5fd4",
+        "result_ref": "/fn1_fn6_wrapper_via_walk_verification/green_evidence/1"
+      }
+    },
+    "format_only_observation": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn6_wrapper_walk_coverage.py",
+      "commit_sha": "0ddba80cc6faf11f45cb6a1770be3a50165c6438",
+      "formatter": "Ruff 0.17.1; `ruff format --no-cache <path>`",
+      "before_file_sha256": "c069a83b6305bfa5976af47a5c386b35d96c125e0ae7a2e806314a96e6b884eb",
+      "after_file_sha256": "e322cce86756284ebb4d6ada3e53ea21c08f4adb991772e47c66ea6a6fc10def",
+      "ast_sha256_before": "d2f36afbf1a0ab49714685c4e5d3d92fd456838580af6f881bc84ac30253bbd5",
+      "ast_sha256_after": "d2f36afbf1a0ab49714685c4e5d3d92fd456838580af6f881bc84ac30253bbd5",
+      "ast_equivalent": true
+    },
+    "module_size_scope": {
+      "applies_to": "Changed or added source modules only; test modules and unchanged source modules are outside the 700-line refactor-candidate threshold.",
+      "changed_source_module_nonblank_lines": {
+        "definition_comparison.py": 360,
+        "dependencies_handoff.py": 606,
+        "dependencies_handoff_claim_assessment.py": 193,
+        "descriptor_definition_reads.py": 487,
+        "descriptor_definition_special_claims.py": 336,
+        "descriptor_definition_special_reads.py": 435,
+        "descriptor_definition_walk.py": 693
+      },
+      "all_changed_source_modules_lt_700": true,
+      "unchanged_source_candidate": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability_rows.py",
+        "nonblank_lines": 749,
+        "base_nonblank_lines": 749,
+        "handling": "Not changed or split here; separate refactor candidate."
+      },
+      "test_module_counts_outside_threshold": [
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py",
+          "nonblank_lines": 1362,
+          "base_nonblank_lines": 1298,
+          "changed": true
+        },
+        {
+          "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_f03_values_and_applicability.py",
+          "nonblank_lines": 3811,
+          "base_nonblank_lines": 3811,
+          "changed": false
+        }
+      ],
+      "basis": "Parent-directed scope clarification: the 700-line threshold identifies source refactor candidates among changed/new source modules; it is not a gate for unchanged source or tests. The clarification response was scaffold with authority_effect none/result incomplete, so no new requirement or gate is claimed. Preserve these counts and basis in the PR description."
+    },
+    "latest_main_trial_after_format": {
+      "authority_effect": "none",
+      "base_sha": "2a602a7f763c0206b4a8e487d93cbd0cf96317dc",
+      "candidate_head": "0ddba80cc6faf11f45cb6a1770be3a50165c6438",
+      "merge": "automatic clean merge; trial remained uncommitted",
+      "focused_fn6": {
+        "command": "python3 -B scaffold/tools/bounded_exec.py --timeout-ms 120000 --max-output-bytes 1000000 --cwd <trial-worktree> -- env PYTHONPATH=<unit>/src:<unit>/tests python3 -B -m unittest -v test_fn6_wrapper_walk_coverage",
+        "result": {
+          "status": 0,
+          "methods": 3,
+          "passes": 3,
+          "failures": 0,
+          "errors": 0,
+          "duration_ms": 168,
+          "reaped": true,
+          "timed_out": false,
+          "output_truncated": false
+        }
+      },
+      "full_unit_suite": {
+        "command": "python3 -B scaffold/tools/bounded_exec.py --timeout-ms 120000 --max-output-bytes 1000000 --cwd <trial-worktree> -- env PYTHONPATH=<unit>/src:<unit>/tests python3 -B -m unittest discover -s <unit>/tests",
+        "result": {
+          "status": 0,
+          "methods": 461,
+          "failures": 0,
+          "errors": 0,
+          "duration_ms": 39896,
+          "reaped": true,
+          "timed_out": false,
+          "output_truncated": false
+        }
+      },
+      "scf_validate": {
+        "command": "python3 -B scaffold/tools/scfctl.py validate via bounded_exec",
+        "result": {
+          "status": 0,
+          "bindings": 158,
+          "fail": 0,
+          "duration_ms": 244
+        }
+      },
+      "scf_stale": {
+        "command": "python3 -B scaffold/tools/scfctl.py stale via bounded_exec",
+        "result": {
+          "status": 0,
+          "stale": 0,
+          "duration_ms": 1249
+        }
+      },
+      "ruff_0_17_1": {
+        "command": "RAYON_NUM_THREADS=2 ruff check --no-fix --no-cache and ruff format --no-cache --check --output-format concise for the 18 changed Python files, each via bounded_exec",
+        "check": {
+          "status": 0,
+          "result": "All checks passed",
+          "duration_ms": 26
+        },
+        "format": {
+          "status": 0,
+          "result": "18 files already formatted",
+          "duration_ms": 24
+        }
+      },
+      "module_limit_check": "All seven changed source modules listed in module_size_scope are below 700 nonblank lines.",
+      "limits": "This is a static trial merge against the named local main revision; it is not a committed merge, independent review, Ready, or final acceptance."
     }
   },
   "fn1_descriptor_claim_uses_verification": {
