@@ -4117,6 +4117,15 @@ def _check_basic_pair_freeze_row(
         return {
             "passed": False,
             "failures": [{"error": "missing_basic_pair_freeze_row"}],
+            "verification_scope": "declared_reference_integrity_only",
+            "coverage_completeness": "not_independently_verified",
+            "scope_limits": [
+                "l4_subcontracts_and_l9_sub_oracles_selection_completeness",
+                "remaining_disposition_target_basis_and_reentry_semantics",
+            ],
+            "pair_ids": {},
+            "subcontract_count": 0,
+            "suboracle_count": 0,
         }
 
     def resolve_ref(ref: Any) -> tuple[bool, Any, str | None, str | None]:
@@ -4681,10 +4690,8 @@ def audit_freeze_record(
                     "computed": computed_added,
                 }
 
-    if is_basic_pair and isinstance(
-        rec_data.get("basic_pair_freeze_verification"), dict
-    ):
-        recorded_basic = rec_data["basic_pair_freeze_verification"]
+    if is_basic_pair:
+        recorded_basic = rec_data.get("basic_pair_freeze_verification")
         computed_basic = {
             "passed": basic_pair_audit["passed"] if basic_pair_audit else False,
             "pair_ids": basic_pair_audit["pair_ids"] if basic_pair_audit else {},
@@ -4707,12 +4714,34 @@ def audit_freeze_record(
             if basic_pair_audit
             else [],
         }
-        for key, actual in computed_basic.items():
-            if key in recorded_basic and recorded_basic.get(key) != actual:
-                ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
-                    "recorded": recorded_basic.get(key),
-                    "computed": actual,
-                }
+        required_basic_keys = {
+            "passed",
+            "pair_ids",
+            "subcontract_count",
+            "suboracle_count",
+            "failure_count",
+        }
+        if not isinstance(recorded_basic, dict):
+            ver_diffs["basic_pair_freeze_verification"] = {
+                "recorded": recorded_basic,
+                "computed": "object with required mechanical fields",
+                "error": "missing_or_invalid_basic_pair_summary",
+            }
+        else:
+            for key, actual in computed_basic.items():
+                if key not in recorded_basic:
+                    if key in required_basic_keys:
+                        ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
+                            "recorded": None,
+                            "computed": actual,
+                            "error": "missing_required_basic_pair_summary_field",
+                        }
+                    continue
+                if recorded_basic[key] != actual:
+                    ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
+                        "recorded": recorded_basic[key],
+                        "computed": actual,
+                    }
     if is_basic_pair and isinstance(recorded_ver, dict) and basic_pair_audit:
         for key, actual in (
             ("basic_pair_freeze_passed", basic_pair_audit["passed"]),

@@ -3583,6 +3583,99 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             "not_independently_verified",
         )
 
+        required_summary_fields = (
+            "passed",
+            "pair_ids",
+            "subcontract_count",
+            "suboracle_count",
+            "failure_count",
+        )
+        for missing_field in required_summary_fields:
+            malformed_summary = copy.deepcopy(generated)
+            del malformed_summary["basic_pair_freeze_verification"][missing_field]
+            with tempfile.TemporaryDirectory() as tmpdir:
+                malformed_path = Path(tmpdir) / "missing-summary-field.json"
+                malformed_path.write_text(
+                    json.dumps(malformed_summary, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                malformed_audit = dvc.audit_freeze_record(
+                    REPO_ROOT, str(malformed_path), use_creation_commit=False
+                )
+            self.assertFalse(malformed_audit["mechanical_match"])
+            diff_key = f"basic_pair_freeze_verification.{missing_field}"
+            self.assertIn(
+                diff_key,
+                malformed_audit["comparison_with_existing_record"][
+                    "verification_fields_diffs"
+                ],
+            )
+            self.assertEqual(
+                malformed_audit["comparison_with_existing_record"][
+                    "verification_fields_diffs"
+                ][diff_key]["error"],
+                "missing_required_basic_pair_summary_field",
+            )
+
+        missing_summary = copy.deepcopy(generated)
+        missing_summary.pop("basic_pair_freeze_verification")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            missing_summary_path = Path(tmpdir) / "missing-summary.json"
+            missing_summary_path.write_text(
+                json.dumps(missing_summary, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            missing_summary_audit = dvc.audit_freeze_record(
+                REPO_ROOT, str(missing_summary_path), use_creation_commit=False
+            )
+        self.assertFalse(missing_summary_audit["mechanical_match"])
+        self.assertEqual(
+            missing_summary_audit["comparison_with_existing_record"][
+                "verification_fields_diffs"
+            ]["basic_pair_freeze_verification"]["error"],
+            "missing_or_invalid_basic_pair_summary",
+        )
+
+        for row_shape in ("missing", None, []):
+            malformed_row_manifest = copy.deepcopy(manifest)
+            if row_shape == "missing":
+                malformed_row_manifest.pop("basic_pair_freeze_row")
+            else:
+                malformed_row_manifest["basic_pair_freeze_row"] = row_shape
+            malformed_row_generated = dvc.generate_freeze_record(
+                REPO_ROOT,
+                malformed_row_manifest,
+                base_rev=current_head,
+                head_rev=current_head,
+            )
+            malformed_summary = malformed_row_generated[
+                "basic_pair_freeze_verification"
+            ]
+            self.assertFalse(malformed_summary["passed"])
+            self.assertGreater(malformed_summary["failure_count"], 0)
+            self.assertEqual(malformed_summary["pair_ids"], {})
+            with tempfile.TemporaryDirectory() as tmpdir:
+                malformed_row_path = Path(tmpdir) / "malformed-basic-pair-row.json"
+                malformed_row_path.write_text(
+                    json.dumps(malformed_row_generated, ensure_ascii=False, indent=2)
+                    + "\n",
+                    encoding="utf-8",
+                )
+                malformed_row_audit = dvc.audit_freeze_record(
+                    REPO_ROOT,
+                    str(malformed_row_path),
+                    use_creation_commit=False,
+                )
+            self.assertFalse(malformed_row_audit["mechanical_match"])
+            basic_pair_check = malformed_row_audit["checks"]["CHK-PAIR-BIDIR-ID"]
+            self.assertFalse(basic_pair_check["basic_pair_freeze_row"]["passed"])
+            self.assertTrue(
+                any(
+                    failure.get("error") == "missing_basic_pair_freeze_row"
+                    for failure in basic_pair_check["basic_pair_freeze_row"]["failures"]
+                )
+            )
+
         for bad_aliases in ([], None, "L4=bad"):
             bad_alias_manifest = copy.deepcopy(manifest)
             bad_alias_manifest["path_aliases"] = bad_aliases
