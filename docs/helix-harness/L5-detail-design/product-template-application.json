@@ -23257,7 +23257,7 @@
       ],
       "conclusion_writer_ja": "対象の決定に必要なcontext/universe/source/boundaryが到達し、全対象memberと全candidate逆対応の必要stepがequal又は既存規範で真にnot_applicableで閉じた時だけexact_for_context。basis_stepsは上記必要stepの実observation所在を原順に全列挙。そうでなければincomplete.obstructionsへ到達した阻害stepの実所在を原順で全列挙する。空findings/空axesだけの判定、無関係finding全面拒否、not_recomputed全面拒否はしない。",
       "comparison_projection_ja": "comparison.producer_symbol/input_binding/original_axes/findings/materialは旧関数の同実判断による全値。新detail stepから旧normal空axes/findingsを埋め直さない。",
-      "unclosed_oracle_ja": "f02_step_writerの比較順序とUniverseEvidenceStep出力規則は本節に定義済みであり、公開11 finite_casesのうち対応caseの期待はL8側に記載済み。L9 general_proposal_exchange_oracles 15基本branch・8 familyのうち未収載branch（F06等）のL8 U-ID行追補と凍結範囲の確定はA（Q-H009-1）としてD-H009-T1d-2へ渡す。"
+      "unclosed_oracle_ja": "【B:f02_step_writer・U-ID検証対応固定】f02_step_writerの比較順序とUniverseEvidenceStep 10行出力規則、およびL9 general_proposal_exchange_oracles 15基本branch・8 familyに対するL8単体検証（finite_cases 11件＋additional_branch_probes 9件）はD-H009-T1d-2（h009-f02b-general-proposal-exchange-freeze-2026-10-28.json）でA=0を確認し対照・固定済み。【C:下流L6/L7境界】#3510方針により全返却fixture/hash/COPY材料の展開と実行検証は下流L6/L7へ戻す。"
     },
     "general_body_writer": {
       "stages": [
@@ -24409,7 +24409,7 @@
         ],
         "bytes_ja": "objectは{key:value,...}、arrayは[value,...]、区切り余白無し、UTF8・BOM無し・末尾改行無し。stringはJSON標準escape（制御文字/quote/backslash、非ASCIIはUTF8）。numberの字句選択/非有限拒否は既存numeric profileだけを使い新等値規範を追加しない。digestはこの完成bytesのSHA256 lowerhex。",
         "inverse_reader_ja": "OS新profileは同旧CORE numeric/Field表現へ型付き再decodeし、raw body/typed evidence/元valueの全対応を確認する。hash一致をsamecall/意味同値へ置換しない。",
-        "unfrozen_ja": "公開11 finite_casesに対する論理writer規則とU-ID検証契約を記載済み。L9 15基本branch・8 familyの未収載U-ID行追補と関数別pair凍結はA（Q-H009-1、D-H009-T1d-2）として残し、全返却fixture/hash/COPY材料の展開は#3510方針により下流L6/L7へ、全union・特殊numberの任意組合せとruntime codec実行は下流L6/L7へ戻す。"
+        "unfrozen_ja": "【B:private_wire_writer・U-ID検証対応固定】公開11 finite_casesおよび追加9単体probe（additional_branch_probes/0..8）に対する論理writer規則とU-ID検証契約、公開端点契約（publish_general_proposal_exchange_public, L5#/functions/13）とprivate detail契約対照はD-H009-T1d-2（h009-f02b-general-proposal-exchange-freeze-2026-10-28.json）でA=0を確認し固定済み。【C:下流L6/L7境界】全返却fixture/hash/COPY材料の展開は#3510方針により下流L6/L7へ、全union・特殊numberの任意組合せとruntime codec実行は下流L6/L7へ戻す。"
       },
       "finite_port_issue_writer": {
         "scope_ja": "新private publish_general_proposal_exchangeのP2/P5局所技術writer。既存LocalIssue型/旧publiccodec/旧wholeを変更せず、この新返却へだけ適用する。portがreturnedの場合のshape/端差等を未供給と同一化しない。",
@@ -24783,9 +24783,9 @@
       "old_values_ja": "旧publictype/functions/codec6entry/Comparison/caller全7producer/proposal/N/旧provider3whole/旧totalwholeを変更しない。新.valueの元全値投影とmember順を新L8で検証する。",
       "legacy_source_ja": "L4 source_basisのLEGACY/FAILURE固定原文を起点に、候補受領を使用済みと混同しない、同件数補償・別source救済・unknown empty化を防ぐ既決要求を詳細化する。旧runtimeを移植/実行しない。",
       "remaining_ja": [
-        "L8 general_proposal_exchange_verificationへ11有限case（F01/F02/F03singleton/F04/F05/F07/known-candidate-control/F08四port）を記載済み。L9 15基本branch・8 familyに対する未収載branch（F06等）のU-ID行追補と詳細pair凍結範囲はA（Q-H009-1）としてD-H009-T1d-2へ渡す（全返却fixture/hashはL8に足さない）。",
+        "【B:L5/L8一般提案交換詳細契約・U-ID検証対応】f02_step_writer・general_body_writer・publication_writer・all_leaf_writer_ledger・entry_points 3種（compare_candidate_universe_detail・build_general_native_proposal_record_detail・build_general_original_operation_proposal）・publication_entry（publish_general_proposal_exchange）・公開端点（publish_general_proposal_exchange_public, L5#/functions/13）と、L9 15基本branch・8 familyに対するL8単体検証（finite_cases 11件＋additional_branch_probes 9件＋public_proposal_publication_endpoint_oracle）はD-H009-T1d-2（h009-f02b-general-proposal-exchange-freeze-2026-10-28.json）でA=0を確認し対照・固定済み。【C:下流L6/L7境界】#3510方針により全返却fixture/hash/COPYはL8へ足さず、具体fixture展開と実行検証は下流L6/L7へ戻す。",
         "実owner登録、qualification trust、CONNECT実配送、OS002/053での保存・selected/used登録・受入は他ownerと下流実行層の担当（C）へ戻す。",
-        "本詳細pairの関数別凍結はD-H009-T1d-2で行い、全92親430対の完成は称さない。"
+        "【C:他スライス・全体閉包境界】残るH009詳細対（D-H009-T2a〜T3b）および全92親430対の総合凍結・製品実行完成は称さない。"
       ]
     },
     "finite_repository_oracle_binding": {
@@ -24795,7 +24795,7 @@
       "role": "有限source-first oracleの公開recipe。自己rawhashを持たない。",
       "cases_pointer": "/cases",
       "remaining_pointer": "/family_remaining_ja",
-      "verification_scope_ja": "各caseの旧素材whole監査と本公開recipe通し監査を区別する。新recipeの独立通し監査は未完。製品runtime/実資格/CONNECT/OS記録の証拠ではない。",
+      "verification_scope_ja": "旧素材subfile（WR-40で撤去・revision cbe8c777c518df577c66628bc04caef3d8fd396eピン済み）の履歴参照と現行L8のU-ID単体検証契約（finite_cases 11件＋additional_branch_probes 9件、D-H009-T1d-2で固定）を区別する。公開recipeからのwhole再構成・実行検証は下流L6/L7へ戻し、製品runtime/実資格/CONNECT/OS記録の証拠とはしない（C）。",
       "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
     },
     "finite_writer_realizations": {
