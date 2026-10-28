@@ -1,0 +1,136 @@
+{
+  "schema_revision": 1,
+  "id": "SCF-B-0165",
+  "kind": "scaffold",
+  "title": "統制レーンのmerge admission・試験merge・明示merge・read-after仮設ツール",
+  "product": "HELIX-OS",
+  "owner_candidate": "HELIX-OS 検収・統合判定（merge admission・post-merge read-after）",
+  "state": "registered",
+  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『保証の仕組み』対応の順序決定）に基づき、Claudeのscratchpad上の個人スクリプト（admit-reference-20261028.sh 39行）だけで動いていた統制レーンのmerge admission手順をrepositoryのscaffold/review-handoff/に仮設の道具として置き、どのレーンでも同じ手順で再現・確認できるようにする。手順の正本はdocs/governance/github-upstream-operating-model.md 258〜298行（作成側とレビュー対応側の責務258〜266行、merge直前のPR状態再取得、content HEADを動かさない一時worktree --no-ff試験merge上のscfctl stale=0確認とtrial tree記録、--merge --match-head-commit明示merge、merge commit親・HEAD祖先性・origin/main^{tree}一致のread-after）。旧HELIXのLEGACY-ASSET-6EBDB617A8104A7756D0（CLAUDE.md L191-215）、LEGACY-ASSET-A54FF182C7E8ACF56ACF（AGENTS.md L315-335）、LEGACY-ASSET-CF1129DCA8779904F6B3（github-autonomous-operations-requirements.md L91-94, L107-115）、LEGACY-ASSET-8686BB8CF396BAF57F2E（github-merge-admission-requirements.md L21-50, L98-126, L135）、LEGACY-ASSET-A813B096E3205791EC07（src/audit/github-merge-readiness.ts L1-882）から作成側/review側の分離・自己PR merge禁止・native auto-merge禁止・exact HEAD再照合・明示merge・post-merge read-afterの意味を保持し、旧harness.db追従・PLAN転記・旧CIの代わりに現行の試験merge上scfctl stale=0とtree/parent/ancestor read-afterをPython標準ライブラリで機械化した。",
+  "upstream": [
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "b7ba29b45f6926639eafddbc2f782dfa518e7cde41099795d9862115882602e8",
+      "note": "正本手順: 258〜298行（作成側とレビュー対応側の責務258〜266行、governance/operation_change PRのmerge admission 268〜282行、repository_foundation read-after 284〜299行）。"
+    },
+    {
+      "path": "docs/helix-os/L1-planning/system-intent.md",
+      "sha256": "2bb62571308aa1fde0351ca7242e961ddd25b9c4722196c7bb255cf3ad1cfe0e",
+      "note": "HELIX-OS L1企画（独立検収・統合統制の境界）。"
+    },
+    {
+      "path": "docs/helix-os/L2-requirements/governance-requirements.md",
+      "sha256": "810a068ab6077872ce6a85c0a6a3f3a434465cb71df6beb280c289b47fb71e84",
+      "note": "HELIX-OS L2要求（検収・完了判定・evidence検証の境界）。"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "再構築の原則、通常のGitHub作業のmerge admissionとread-after境界。"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/CLAUDE.md",
+      "sha256": "7bdfc0bc578359e42efae4242ee42b53abd6e2ec23874f1294d3ec0e278c8feb",
+      "note": "LEGACY-ASSET-6EBDB617A8104A7756D0 (L191-215 GitHub自走運用): AI-A/AI-B分離、native auto-merge禁止、証拠再照合後の明示merge。静的read-only参照のみ"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/AGENTS.md",
+      "sha256": "fafe73efa4b34864c3b5e6a60775a21007d9c6bf358e710edaa5d2bce50ea2bf",
+      "note": "LEGACY-ASSET-A54FF182C7E8ACF56ACF (L315-335 GitHub自走運用): AI-Bは編集・push・Ready化を行わず、current HEADの独立review後に明示mergeする。静的read-only参照のみ"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-autonomous-operations-requirements.md",
+      "sha256": "b387f8a4ffd324d2abd210439bc791611d4e6c8aa2498fe5facccc48fc7f552f",
+      "note": "LEGACY-ASSET-CF1129DCA8779904F6B3 (L91-94 GH-FR-008, L107-115 GH-FR-012): 作成runtimeと判断runtimeの分離、current HEAD再照合後の明示merge。静的read-only参照のみ"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-merge-admission-requirements.md",
+      "sha256": "cdd4f9fd0ab9b4862ec52c6b6dbcd9fd5f97c5e7bb5440f1b2cda69d37c504f8",
+      "note": "LEGACY-ASSET-8686BB8CF396BAF57F2E (L21-50 GH-FR-018..019, L98-126 GH-FR-022, L135 GH-AC-020): 同一HEAD文脈review、自己verdict禁止、main read-after欠落拒否。静的read-only参照のみ"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/src/audit/github-merge-readiness.ts",
+      "sha256": "d7092c3262586b04fd09763b93d154c13463ab24b221adf1235a95db8b667ed5",
+      "note": "LEGACY-ASSET-A813B096E3205791EC07 (L1-882): 旧世代のPR作成前ローカルreadiness監査。静的read-only参照のみ"
+    }
+  ],
+  "role": "helix-control-lane-merge-admission-scaffold",
+  "obligations": [
+    "PR番号・exact HEAD（40-hex）・review comment ID/URLを引数に取り、gh pr viewでstate/isDraft/headRefOid/autoMergeRequest/mergeStateStatusを再取得してOPEN・Ready（isDraft=false）・HEAD一致・autoMergeRequest=null・CLEANを確かめる（待機は上限回数付き）。",
+    "最新origin/mainを再取得し、PRのcontent HEADを動かさずに一時worktreeで--no-ffの試験mergeを行い、scfctl staleがstale=0を返すことを確認してtrial treeを記録し、成功・失敗を問わず一時worktreeを必ず削除する。",
+    "明示mergeの直前にorigin/mainとPR状態（OPEN・isDraft=false・headRefOid==head・autoMergeRequest=null・CLEAN）を再取得して試験merge時点から変化していないことを確かめ、明示merge（--merge --match-head-commit）を実行し、直後にgh pr view --json state,mergeCommitでmerge commitを特定して第1親（base main）・第2親（content HEAD）・HEADおよびmerge commitがorigin/mainのancestorであること・<mergeCommit>^{tree}とtrial treeの一致をread-afterする。",
+    "結果を構造化JSONで標準出力し、完了comment本文を生成する（投稿有無は--post-commentで選択可能）。ハードコードされたローカルpathやsession IDを持たない。",
+    "権限の境界として、このスクリプトは手順を機械化するだけでmergeの権限を生まない。自己PRのmerge（author == executor / reviewer）、DraftのReady化、GitHub native auto-merge、PR branchへのbase取込み、release/tagは行わず、行える分岐も作らない。"
+  ],
+  "connections": {
+    "consumers": [
+      "#3510 統制レーンのmerge admission再現・確認",
+      "SCF-B-0003 GUIレーン間review/merge運用",
+      "HELIX-OS 検収・統合判定機構の後続正式設計"
+    ],
+    "dependencies": [
+      "Python標準ライブラリ（argparse, json, os, re, shutil, subprocess, sys, tempfile, time, pathlib, typing）",
+      "git / gh CLIおよびscaffold/tools/scfctl.py"
+    ],
+    "boundary": "scaffold/review-handoff/配下の仮設補助具のみ。mergeの権限を新たに生成せず、自己PR merge・Draft Ready化・native auto-merge・base取込み・release/tagを行わない。"
+  },
+  "operations": {
+    "allowed": [
+      "python3 -B scaffold/review-handoff/merge_admission.py --pr <PR> --head <SHA> --review-comment <ID_OR_URL> [options]",
+      "python3 -B scaffold/review-handoff/merge_admission_selftest.py"
+    ],
+    "forbidden": [
+      "旧archiveは実行しない",
+      "自分のPRのmerge（author == executor / reviewer）",
+      "Draft PRのReady化、GitHub native auto-merge、PR branchへのbase取込み（content HEAD変更）、release/tag実行",
+      "scaffold外への恒常書込み",
+      "要求・承認・完了・authorityの生成"
+    ]
+  },
+  "artifacts": [
+    "scaffold/review-handoff/merge_admission.py",
+    "scaffold/review-handoff/merge_admission_selftest.py",
+    "scaffold/bindings/SCF-B-0165.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "schema_interface",
+      "deterministic_behavior",
+      "source_revision_stale",
+      "negative_case",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 -B scaffold/review-handoff/merge_admission_selftest.py",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "Draft PR（isDraft=true）をpr_is_draftで拒否する",
+      "HEAD不一致（headRefOid != head）をhead_mismatchで拒否する",
+      "autoMergeRequest有りをauto_merge_enabledで拒否する",
+      "試験merge衝突時にworktreeを確実に削除しtrial_merge_conflictで停止する",
+      "scfctl stale >= 1のときにworktreeを確実に削除しscaffold_staleで停止する",
+      "merge直前の再取得でorigin/mainが変化していたときにmain_head_moved_before_mergeで拒否しmergeしない",
+      "merge直前の再取得でPR状態が変化していたときにpre_merge_pr_state_driftedで拒否しmergeしない",
+      "merge後のread-afterで親commitまたはancestor不一致をread_after_head_or_parent_mismatchとして検出しcomment投稿を止める",
+      "merge後のread-afterで<mergeCommit>^{tree}とtrial treeの不一致をread_after_tree_mismatchとして検出しcomment投稿を止める",
+      "author == executor / reviewer（自己PR merge）やno_findings以外のpacketをself_merge_forbidden / review_not_no_findingsで拒否する"
+    ]
+  },
+  "replacement": {
+    "role_target": "HELIX-OSの正式なPR merge admission・統合検収・post-merge read-after機構",
+    "formal_artifacts": [],
+    "issue": 3510,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
+  },
+  "created": "2026-10-28",
+  "updated": "2026-10-28"
+}
