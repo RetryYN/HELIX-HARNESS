@@ -209,63 +209,24 @@ def _evaluate_correspondence_records(
                     reasons.append(
                         "comparison producer_symbol is not compare_descriptor_definitions."
                     )
-                if resolved_comp.get("call_input_pointer") != in_ptr:
-                    reasons.append(
-                        "comparison lacks explicit call_input_pointer correspondence."
-                    )
-
-        if reasons:
-            unique_src_ref = (
-                copy.deepcopy(rec_sources[0]["ref"]) if len(rec_sources) == 1 else None
-            )
-            correspondence_issues.append(
-                {
-                    "locator": f"/semantic_records/{rec_idx}",
-                    "reason": " ".join(reasons),
-                    "source_ref": unique_src_ref,
-                }
-            )
-            continue
-
-        target_kr = matched_krs[0]
-        rec_source_env = rec_sources[0]
-        brain_source_env = brain_sources[0]
-        comp_axes = resolved_comp.get("original_axes")
-        if not isinstance(comp_axes, list):
-            comp_axes = resolved_comp.get("axes") or []
-
-        for ax_idx, orig_ax in enumerate(comp_axes):
-            if not isinstance(orig_ax, dict):
-                continue
-            if (
-                _json_equal(orig_ax.get("binding"), resolved_b_bind)
-                and orig_ax.get("axis") in ("field.definition", "descriptor.definition")
-                and orig_ax.get("state") == "missing"
-            ):
-                usable_candidate_refs[:] = [
-                    r
-                    for r in usable_candidate_refs
-                    if not _same_ref_ignoring_sha(r, target_kr["ref"])
-                ]
-                original_axes.append(
-                    {
-                        "subject_ref": copy.deepcopy(target_kr["ref"]),
-                        "binding": copy.deepcopy(target_kr["binding"]),
-                        "axis": "knowledge.usability",
-                        "state": "unknown",
-                        "original_refs": [
-                            copy.deepcopy(rec_ref),
-                            copy.deepcopy(rec_source_env["ref"]),
-                            copy.deepcopy(brain_source_env["ref"]),
-                        ],
-                        "reason": (
-                            f"Correspondence /semantic_records/{rec_idx} observed missing "
-                            f"BRAIN definition at {comp_ptr}/original_axes/{ax_idx}: "
-                            f"{orig_ax.get('reason', '')}"
-                        ),
-                        "backflow_owner": copy.deepcopy(orig_ax.get("backflow_owner")),
-                    }
+                if not isinstance(resolved_comp.get("axes"), list):
+                    reasons.append("comparison.axes is not an array.")
+                reasons.append(
+                    "public Comparison contract lacks a call-input correspondence member; "
+                    "pointer reachability, producer_symbol, and Binding match alone do not "
+                    "establish same-call capture correspondence."
                 )
+
+        unique_src_ref = (
+            copy.deepcopy(rec_sources[0]["ref"]) if len(rec_sources) == 1 else None
+        )
+        correspondence_issues.append(
+            {
+                "locator": f"/semantic_records/{rec_idx}",
+                "reason": " ".join(reasons),
+                "source_ref": unique_src_ref,
+            }
+        )
 
     return correspondence_issues
 
@@ -469,11 +430,7 @@ def compare_selected_knowledge(context):
                         and not _is_unusable(fi.get("source_ref"), unusable_refs)
                     ]
                     if matched_fis:
-                        if not any(
-                            _same_ref_ignoring_sha(rf_ref, existing)
-                            for existing in checked_field_refs
-                        ):
-                            checked_field_refs.append(copy.deepcopy(rf_ref))
+                        checked_field_refs.append(copy.deepcopy(rf_ref))
                     else:
                         kr_usable = False
                         src_refs = [copy.deepcopy(kr_ref), copy.deepcopy(rf_ref)]
@@ -496,10 +453,7 @@ def compare_selected_knowledge(context):
                             }
                         )
 
-            if kr_usable and not any(
-                _same_ref_ignoring_sha(kr_ref, existing)
-                for existing in usable_candidate_refs
-            ):
+            if kr_usable:
                 usable_candidate_refs.append(copy.deepcopy(kr_ref))
 
     # Evaluate claims for NEG-04, NEG-06, NEG-07
