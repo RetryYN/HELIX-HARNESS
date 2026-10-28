@@ -2177,15 +2177,15 @@
       "legacy": "LEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)を再読。JSON/原source/ownerと未解決保持を継承し、旧runtime/CI/testを実行・移植しない。",
       "source_closure": "WR60 walk非fill、WR65 fill-only ClaimUse、WR66 S4のFN1対象外Claim保持に続き、S2のroot/明示candidate評価域を既存L4/L5どおりに局所実装。全raw/原Binding/原slot出現を保持する。非filltarget/use/intent/意味/rowは生成せず、元missingは既存規則でframeごと保持。FN4 detail/FN5/FN7とsource資格/意味decoderは不変。",
       "owner_boundaries": {
-        "FN1": "S4とS2の局所閉包中。残る原17rawのFN1停止は追加top-level MeaningFact閉型S3だけ。比較不能/partial alias等の一般domainは既存停止を保持。",
-        "FN4": "walk非fill限定とfill-only ClaimUse対応は閉じた。17raw replayの11入力は現在oracle_claim_portsで停止する。detail/finite carryは未閉包で、six Comparisonはまだ形成されない。",
+        "FN1": "S4/S2を局所閉包し、原17rawの残るFN1停止は追加top-level MeaningFact閉型S3だけ。比較不能/partial alias等の一般domainは既存停止を保持。",
+        "FN4": "原17rawのうち16入力の実firststopはoracle_claim_ports。FN4 detail/finite carryの範囲は変えずsix Comparison成立はまだ0。",
         "FN5": "L4 knowledge_promotion_contract/finite_domain/claimsはfillのみ。candidate-empty nonfill停止は条件付き静的境界で今回未行使。",
         "FN7": "finite writerはfill専用。16規則writerは本slice外。",
         "fixture": "hash/countとqualified比較のtyped selector、ADD20の原known definition素材。"
       },
       "family_readiness": {
-        "authority4": "保留: FN1/FN4、B01は補助二Binding入力のみ。",
-        "obligation_handoff5": "保留: FN1/FN4とhash/lower-green根拠selector。",
+        "authority4": "保留: 4規則とも実firststopはFN4 oracle_claim_ports。B01は補助二Binding素材で、元L8 baseline完全材料化とはしない。",
+        "obligation_handoff5": "保留: FN4 oracle_claim_portsとhash/lower-green根拠selector。",
         "descriptor_missing2": "保留: FN4で停止。",
         "values_applicability2": "保留: FN4で停止。",
         "qualified_conflict1": "保留: typed比較素材未材料化。",
@@ -2266,9 +2266,9 @@
       "fn1_S2_candidate_population": {
         "request": "WR-CLAUDE-BRAIN032-FN7B-FN1-STOPS-3547-20261028-66",
         "base": "2b28fc1a2dbfe5fa3f03309fea40a6ad5baa368e",
-        "source_revision": "625b494a83379ca6969f08237e9baf84b6ea4d62",
+        "source_revision": "ca3cd2701bab6d32e9425ec27275e4a8a08ca698",
         "source_sha256": {
-          "definition_comparison.py": "84ca61c573f6fa6158243645b8ba48d5de72d98006139db5f6cf33874b768422",
+          "definition_comparison.py": "59609dbc03116962a363f6cb3182bd62c90772b931fb67da456026435f33aca1",
           "descriptor_definition_walk.py": "075b40d1def387f864b3519809c15e58d85d39b0c848fbad86da929c4b3aaa39"
         },
         "scope": "既存2owned moduleに同一private populationを共有し、root契約と明示candidateが実slot.template_refへ既存Ref比較で対応する要求frameを保持。原Binding全値/全slot locator/原順を保存し、未要求frameはreadだけで15義務を増殖しない。",
@@ -2278,7 +2278,15 @@
         "test_freeze": "f2900047be6941d07572c07c740d3104af300b14",
         "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn1_candidate_frames.py",
         "test_scope": "新4methods281行。I02 canonicalSHA、実publicFN1/walkの原root/明示B要求、Bの既存14missing、原descriptor15/fact0/native origin/readと最終index対応、B候補なし/全候補emptyでもrootと全slot read保持、未要求14missing非増殖。対照の別call結果をContextへ借用しない。",
-        "status": "focused_green_old_stop_transition_control_pending"
+        "status": "controlled_old_stop_transition_done_full_unit_green_independent_review_pending",
+        "initial_source_revision": "625b494a83379ca6969f08237e9baf84b6ea4d62",
+        "initial_source_sha256": {
+          "definition_comparison.py": "84ca61c573f6fa6158243645b8ba48d5de72d98006139db5f6cf33874b768422",
+          "descriptor_definition_walk.py": "075b40d1def387f864b3519809c15e58d85d39b0c848fbad86da929c4b3aaa39"
+        },
+        "qualification_selection": "統制6456950754条件2の資格と候補選択の混同をrootがL4と実入力で指摘し、6457024900で訂正確認。raw candidate Bが明示ならsource資格不成立でも要求frame/14missingは保持し、元Issue/unusable/B帰属unknownを局所保持。raw candidatesからBを除いた場合だけ非対象frame/missing0。新qualification gateは追加しない。",
+        "readability_followup": "統制6456950754の自己比較意図確認に対し、既存Ref比較成立を保持する注記とroot自己比較のloop外化だけをca3cd2701で追加。slot/rootの受理predicateは同じ。",
+        "non_target_fact_test": "TestFN1CandidateFrames.test_candidate_b_omission_keeps_root_and_b_slot_without_unrequested_missing_rowsがcandidate Aのみ/[]各caseでpublicのB原fact軸とwalkの原slot15/fact0/meaning_reads1件を確認し、Bのrequired missing0と区別する。"
       }
     }
   }
