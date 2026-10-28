@@ -1,0 +1,345 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6478862688",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json"
+  },
+  "record_id": "HARNESS009-FN5-OWNER-AXIS-CAUSE-FREEZE-20261029",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-FN5-OWNER-AXIS",
+  "request_id": "WR154-R2-OWNER-AXIS-CAUSE-WRITER",
+  "record_path": "docs/governance/audits/tdd/h009-fn5-owner-axis-cause-freeze-2026-10-29.json",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60,81–92",
+      "keep_ja": "JSONを構造的意味の正本とし、field/owner/traceとunknown・失敗境界を保持する。",
+      "change_ja": "旧registry/planner/runtimeを移植せず、承認済み現行F05 role outcomeを閉じたprivate Cause writerへ具体化する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "I/O・failure・consumer/traceとunknownをN/A/空へ丸めない。",
+      "change_ja": "旧TPL/operator/runtime/CIを移植せず、L8へ有限U-IDだけを追加しfixture/full return/hashを追加しない。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80,86–87",
+      "keep_ja": "UTW-014欠損→空、UTW-020 aggregate診断の粗さ、UTW-021自己申告completionという実failureを照合する。",
+      "change_ja": "これらは既存の設計課題を照らす根拠であり、新しい要求・gate・完了証拠を生成しない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1-owner-cause",
+      "obligation_ja": "F05で定めたwrapper/source/qualificationと各meaning-role owner relationのdifferent/unestablishedを区別し、元Read・Cause・orderを保持して親cause列へ伝える。owner名だけから委任や意味権限を生成しない。source_wrapperは必須ANDの三値論理を用い、既知false（S4またはS2のdifferent）はunestablishedより優先し、S4とS3は各条件成立時に併記する。",
+      "l3_pointers": [
+        "L3F#/requirements/27",
+        "L10F#/cases/27"
+      ],
+      "l5_pointers": [
+        "L5#/f05_detail_contract/owner_binding_contract",
+        "L5#/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause",
+        "L5#/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause",
+        "L5#/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
+        "L5#/f05_detail_contract/cause_kind_crosswalk"
+      ],
+      "l8_pointers": [
+        "L8#/additional_unit_cases/30",
+        "L8#/additional_unit_cases/31",
+        "L8#/additional_unit_cases/32",
+        "L8#/additional_unit_cases/33",
+        "L8#/additional_unit_cases/34",
+        "L8#/additional_unit_cases/35",
+        "L8#/additional_unit_cases/36",
+        "L8#/additional_unit_cases/37"
+      ],
+      "l4_pointers": [
+        "L4#/field_semantic_evidence_contract/role_owner_binding/common",
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+      ],
+      "l9_pointers": [
+        "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/0",
+        "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+      ]
+    },
+    {
+      "element_id": "O2-definition-axis-projection",
+      "obligation_ja": "definition AxisFact payloadは元全体を保持する一方、definition role/formには実宣言又は同一source/bodyの独立根拠を要し、projection-basis不成立のCauseをDefinitionAssessment missing/unknownへ変換しない。",
+      "l3_pointers": [
+        "L3F#/requirements/27",
+        "L10F#/cases/27"
+      ],
+      "l5_pointers": [
+        "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+        "L5#/f05_detail_contract/field_summary_and_custody_writer_contract/patterns/3",
+        "L5#/f05_detail_contract/source_material_leaf_writer_contract/projection_leaf/definition_axis_no_projection_basis",
+        "L5#/f05_detail_contract/projection_contract/native_definition_whole",
+        "L5#/f05_detail_contract/projection_contract/failure",
+        "L5#/f05_detail_contract/cause_kind_crosswalk"
+      ],
+      "l8_pointers": [
+        "L8#/additional_unit_cases/26",
+        "L8#/additional_unit_cases/27",
+        "L8#/additional_unit_cases/28",
+        "L8#/additional_unit_cases/29"
+      ],
+      "l4_pointers": [
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+        "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules",
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+      ],
+      "l9_pointers": [
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/f05_detail_contract/owner_relation_cause_writer_contract",
+        "symbol": "f05_owner_relation_cause_writer_contract",
+        "visibility": "private_detail_contract_for_fn5",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "D-H009-FN5-OWNER-AXIS",
+        "bound_public_function": "HARNESS-L5-009-compare_requirement_gaps",
+        "l8_oracle_pointer": "L8#/additional_unit_cases/30",
+        "unit_case_pointers": [
+          "L8#/additional_unit_cases/30",
+          "L8#/additional_unit_cases/31",
+          "L8#/additional_unit_cases/32",
+          "L8#/additional_unit_cases/33",
+          "L8#/additional_unit_cases/34",
+          "L8#/additional_unit_cases/35",
+          "L8#/additional_unit_cases/36",
+          "L8#/additional_unit_cases/37"
+        ],
+        "basis_pointers": [
+          "L4#/field_semantic_evidence_contract/role_owner_binding/common",
+          "L4#/field_semantic_evidence_contract/role_owner_binding/definition",
+          "L9#/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7",
+          "L9#/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8",
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+        ]
+      },
+      {
+        "detail_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+        "symbol": "f05_definition_axis_projection_cause_writer_contract",
+        "visibility": "private_detail_contract_for_fn5",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "D-H009-FN5-OWNER-AXIS",
+        "bound_public_function": "HARNESS-L5-009-compare_requirement_gaps",
+        "l8_oracle_pointer": "L8#/additional_unit_cases/27",
+        "unit_case_pointers": [
+          "L8#/additional_unit_cases/26",
+          "L8#/additional_unit_cases/27",
+          "L8#/additional_unit_cases/28",
+          "L8#/additional_unit_cases/29"
+        ],
+        "basis_pointers": [
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+          "L4#/field_semantic_evidence_contract/field_definition_evidence_body/present_guard",
+          "L4#/field_semantic_evidence_contract/role_owner_binding/definition",
+          "L9#/field_semantic_evidence_verification/cases/0",
+          "L9#/field_semantic_evidence_verification/cases/4",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
+          "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+        ]
+      }
+    ],
+    "basic_pair_bindings": [
+      {
+        "binding_id": "L4-L9-owner-axis-cause-vocabulary",
+        "left_pointer": "L4#/field_semantic_evidence_contract/role_owner_binding/common",
+        "right_pointer": "L9#/field_semantic_evidence_verification/owner_relation_cause_cases",
+        "obligation_ids": [
+          "O1-owner-cause"
+        ],
+        "basis_pointers": [
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+        ]
+      },
+      {
+        "binding_id": "L4-L9-axis-cause-vocabulary",
+        "left_pointer": "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules",
+        "right_pointer": "L9#/field_semantic_evidence_verification/cause_kind_extension_cases",
+        "obligation_ids": [
+          "O2-definition-axis-projection"
+        ],
+        "basis_pointers": [
+          "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+        ]
+      }
+    ]
+  },
+  "source_main": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "request_base_sha": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "modified_aliases": [
+    "L4",
+    "L9",
+    "L5",
+    "L8"
+  ],
+  "remaining_scope_ja": "本限定sliceは、L5 OwnerBinding/RoleOwnerPairのCause writerとdefinition AxisFact no-basis/declaration-failure writer、および追加した有限U-IDの設計対照に限る。Issue #3510の照会回答は承認を生成しない。S4は両owner Read presentかつ既知直接差でcheck linkの数/結果によらず成立し、check link 0件では独立条件のS3と[S4,S3]順で併記する。source_wrapper_relationはAND三値集約で既知falseをunestablishedより優先する。残るSTOP-OWNER-CAUSE-WRAPPER-RELATION-01、STOP-OWNER-CAUSE-QUAL-READ-01、selection_unestablished writer none_foundは未閉包として保持する。全FN5、公開compare_requirement_gaps_detailの変更、qualification/root全組合せの実行証明、runtime/test実行、独立意味reviewは含まない。既存D15/D16 dispositionを解決・再開せず、resolves_disposition_refは設けない。",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "target": "F05 OwnerBinding/RoleOwnerPair Cause writerとdefinition AxisFact no-basis/declaration-failure writerの限定slice。L4/L9基本対のCauseKind vocabulary→logical casesとL5/L8詳細対の有限U-IDを同一O1/O2へ結び、両pairのpre/post SHAを記録する。runtime/test executionや独立意味reviewを主張しない。",
+  "criterion": "O1/O2はL3/L10義務からL4基本契約とL9 logical casesを結び、さらにL5 private-detail contractとL8有限U-IDを結ぶ。L4/L9 pair、L5/L8 pair、negative 4-way、pointer、ownership、L3 obligation mapの機械的照合を行い、L9/L8をexecution evidenceとして扱わない。",
+  "recorded_at_utc": "2026-10-28T21:09:53+00:00",
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+    "L4_post_sha256": "3ca4b57b430a09f7078bbb5f37342356bc78017e875d22ebfc50d349e7db6e14",
+    "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
+    "L9_post_sha256": "42b43e765e97f7b39da2b806fcbcce657cb18ffd8c4a752e3a032a33fc2f2282",
+    "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
+    "L5_post_sha256": "4993198a4b5a086b801eb0a16ff552f6928dd063228e3db49aa0b1b3ad2a345b",
+    "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
+    "L8_post_sha256": "7e8e411267c1618e5866d925475c84d0424bd37b48ada9521b9c756470c780ee"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 107,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 106,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 38,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 74,
+    "expanded_target_count": 74,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 106,
+      "L9": 106,
+      "L8": 106,
+      "L5": 106
+    },
+    "matched_case_count": 106,
+    "failure_count": 0,
+    "passed": true,
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "f05_owner_relation_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/owner_relation_cause_writer_contract",
+      "visibility": "private_detail_contract_for_fn5",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "f05_definition_axis_projection_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+      "visibility": "private_detail_contract_for_fn5",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "f05_owner_relation_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/owner_relation_cause_writer_contract",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "f05_definition_axis_projection_cause_writer_contract",
+      "l5_pointer": "L5#/f05_detail_contract/definition_axis_projection_cause_writer_contract",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1-owner-cause",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2-definition-axis-projection",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 106,
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows",
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
