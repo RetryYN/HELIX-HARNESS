@@ -12790,7 +12790,7 @@
       "HELIXBRAIN-L9-032-F05",
       "HELIXBRAIN-L9-032-F06"
     ],
-    "status": "原operand未供給の有限carry枝（D27 A/B形、空/absent原集合を含む）の基本writer技術選択候補。既存7 ruleの公開割当/順序を定めるが、normal_control等の実oracle/値/対象slotの実行・資格・全fn4を閉じない。",
+    "status": "既存F05/F06のnonfill Claim dispatch、7 ruleのoperand境界、typed row又はunknown非returnを定める基本設計。実装・全入力の意味解決・source資格の成立を宣言しない。",
     "authority": "既存F05/F06の意味を変えず、同call definition carryと既存7 ruleのAxis/Finding projectionをAI技術選定する。新しい要求・承認・stage gateは作らない。",
     "basis": [
       {
@@ -12871,7 +12871,7 @@
       "definitions": "同validatedにcompare_descriptor_definitionsが返したComparison全値。新たなfn4不足行を作るためにrawから既存definitionを再構築しない。",
       "identity_trace": "既存OracleContextの互換入力として全値を保持する。本枝のaxis/finding生成には使用せず、同call/producer/bindingという既存Context条件だけを維持する。F04判定をfn4で再評価又は転載する指定ではない。",
       "producer_binding": "各入力Comparisonは指定producer_symbolと同validated.input.binding由来のinput_bindingを持つ。別snapshot/別producer/別bindingのcached結果を正規入力へ置換しない。",
-      "invalid_context": "OracleContext.meaningを満たさない一般入力のfn4単独回復は未閉包。別producer/Bindingはpartial_context_projectionのunknown限定に従い、別Binding又はempty成功Comparisonで補完しない。builderの既存composition所見をfn4の新出力fieldへ移さない。",
+      "invalid_context": "別producer/Binding又は型外memberはpartial_context_projectionとunknown_reentryに従い原contextを保持して非return。別Binding又は空成功Comparisonで補完しない。公開Context3/Comparison4を変更しない。",
       "no_ambient": "clock/fs/network/DB、別call private walk、外部のowner判断又はexpected/goldを意味入力にしない。",
       "null_input": "validated.input=nullの既存decode不能経路ではaxes/findings=[]、producer_symbolはfn4、input_binding=null。元InputIssueはvalidatedに保持し、空列を資格/評価成功にしない。これは既存empty Comparison経路との整合を取る技術選択。",
       "private_reads": "raw runnerでは同vの前段walkが既に生成した全DescriptorTargetReadを、既存DescriptorTargetCallFrame.target_readsからprivate detailへ渡す。port/intent/walkを後段で再呼出しせず、public OracleContext3にframe field又はoverrideを足さない。",
@@ -12890,10 +12890,10 @@
         "populations": "sources/claims/descriptors/oracle_bindings/values/handoff_recordsの各原memberはabsent又はarrayを列挙し、absentと[]をsnapshotで区別したまま原出現0件を共有する。null/型外を[]へ直さず本枝外。これ自体は評価/資格成功ではない。",
         "roles": "全実source.roleがsemantic_json又はreference_onlyとして供給され、derived_view/explanation原sourceは0件。未知roleをbody keyから推論しない。",
         "source_content_shape": "全roleのcontentはobjectで、そのtop-level key集合が下記role別許容集合の部分集合であることを確認する。集合外key又は非objectは一律枝外。keyの有無を意味/資格の判定には使わず、nested RawValueをkeyword検索して解釈しない。",
-        "claims": "全実Claim.kindはfill_definition。proposed_valueは明示null、又は既存private target readがresolved/非空かつ全matchが3対象kind外の非null提案に限る。absentはnullへ変えず枝外。basis_refsのabsent/[]/原Refは保持する。",
+        "claims": "全原Claimをclaim_dispatchで一度分類する。fill_definitionは既存null/非nullの有限条件を満たすものに限る。他producer担当kindはFN4 Claim operand無しとして原値を保持する。rule70/74 operand又は未定義kindは本有限carry枝に入れず、各ruleの照合又はunknown_reentryへ進む。basis_refsのabsent/[]/原Refを保持する。",
         "descriptors": "全実slot/factを保持する。measurement/completion/negative oracleの実slot原出現は0件。required_descriptor_kindsの必要性は別に保持する。実対象slotの意味/根拠/個別oracle readが未閉包のため、その3kindのslotはfacts=[]でも保守的に枝外とする。",
         "oracle_and_values": "oracle_bindings/valuesの実record原出現は0件。非空ValueFactにはmeasurement専用kindタグがなく、無関係を決める義務/subject joinも未閉包なので全非空valuesを保守的に枝外とする。値recordだけでrule74発火とする指定ではない。",
-        "other_claims": "他kindは無関係と思われても、全kindの対象/意図dispatchが未閉包のため保守的に枝外とする。Claimを削除又は違反にせず、非発火と認定しない。",
+        "other_claims": "claim_dispatchの他producer担当kindはClaim operand無しとして扱うが、残る全raw_domain条件を省略しない。未定義kind、意味更新又は閾値Claimを一括して非対象へ落とさない。",
         "handoff_records": "handoff_recordsもabsentと[]を区別し実record原出現0件だけを扱う。非空recordの生成/引渡し/完了の関係readerが未閉包のため、全非空を保守的に枝外とする。生成成功又は完了を件数から作らない。"
       },
       "rule_exclusion_observations": [
@@ -12925,7 +12925,7 @@
     },
     "nonnull_claim_target_reuse": {
       "mode": "既存L4 descriptor_target_contractが前段で生成した同vのread結果を全値で再利用し、fn4を新consumerとする技術選択。既存portの契約・state/matchesを変更せず、fn4 detailから再呼出ししない。",
-      "call": "同private frame.target_readsから原Claim locator/Claim全値に対応する既読結果を使う。全原readを保ち、見つからない/別v/不適合readから代替成功を作らず本枝外とする。public contextへのprivate overrideはない。",
+      "call": "原fill_definition出現だけが既存frame.target_readsとの対応を必須とする。非fill_definitionに住所readを要求せずclaim_dispatchを使う。元frame/read全値は保持し、再walk、別v read又はpublic overrideを導入しない。",
       "null": "明示nullは原nullのまま保持する。本枝ではderived_view/completion fact/値record等の実operandが無いため、nullだけから補修/更新/閾値を作らず対象住所を必須にしない。targetがunknown/conflictでも解消又は対象外認定せず、元readとfn1返却を保持する。非nullには値の誤帰属を防ぐresolvedな対象外住所確認を追加する、この非対称を技術選択とする。",
       "eligible_nonnull": "返ったDescriptorTargetRead.stateがresolvedでmatchesが非空、全match.descriptor_kindがmeasurement/completion/negative oracleの3名以外である場合だけ、当該非nullClaimを本有限枝で扱う。kindは既存固定15名の原owner分類を使う。",
       "nonresolved": "unknown/conflict、matches=[]、kind/frame/Binding不明を対象外へ変えず、この非nullClaimについて本枝外とする。既存cohort_result_contractのconflict→unknown→resolved順とmatches空化を変更しない。",
@@ -13037,8 +13037,8 @@
     ],
     "unclosed_projection_boundaries": {
       "oracle_binding": "有限nonfire carryでの実recordのsource qualification、viewpoint/evidenceの一般意味解釈、複数候補の競合、normal rowの完全なidentity/ref/reasonは未閉。実際に発火した既存7 ruleに限るprojectionはrule_projection_tableを使い、空枝から一般照合済みとはしない。",
-      "rule_witness": "下記7 rule以外、又は表のtyped predicate/witnessを形成できない部分の完全返却。既存negative入力のruleを削除しない。",
-      "partial_context": "subjectを形成できない場合のAxisResult、decode可能な未定義partial入力の個別分類。既存validated/原InputIssueを保持し、型必須memberを捏造しない。",
+      "rule_witness": "7 ruleのtyped witnessが供給されれば既存表へ結ぶ。必要readを形成できない場合の処理はunknown_reentryで確定する。任意RawValueの意味を創作する一般decoderを閉じたとはしない。",
+      "partial_context": "subject未形成等の返却方法はunknown_reentry.nonreturnで確定。原contextを保持し公開必須memberを捏造しない。未供給意味の回復自体は実owner資料の再入に残る。",
       "qualification": "実owner/custody/trust接続は未成立。fn4 finite writer/field一致から原source資格を発行しない。",
       "source_content": "許容key外/非object/他roleのbodyは一律有限枝外。任意body decoder、実oracle/値/Claimの全対象判定をこのwriterで新設しない。"
     },
@@ -13050,9 +13050,9 @@
       "revision_order": "subjectと適用義務の原対応を別々に確認した後、rule 72の既存oracle revision述語を評価する。viewpoint/evidenceの完全一致を前提条件へ追加せず、別subjectや別義務の版を同一要求へ読み替えない。"
     },
     "partial_context_projection": {
-      "producer_or_binding": "別producer又は別BindingのComparisonを当該callへ混ぜず、新しい公開Axis/Findingも作らない。元validated、InputIssue、OracleBinding、Comparisonと原readを保持したままunknownとして扱い、owner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
-      "member_type": "OracleBindingの型外memberは元validated、InputIssue、RawValue、Comparisonと原readを保持し、新しい公開Axis/Findingを作らない。型外値をcast・欠落補完せず、unknownとしてowner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。",
-      "subject_unformed": "subject_refを型付きRefとして形成できない場合はAxisResultを作らず、原InputIssue/原OracleBindingを保持する。空Comparisonや別subjectのrowを成功・診断の代用にしない。",
+      "producer_or_binding": "別producer又は別BindingのComparisonを当該callへ混ぜず、新しい公開Axis/Findingも作らない。元validated、InputIssue、OracleBinding、Comparisonと原readを保持したままunknownとして扱い、owner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。 unknown_reentry.nonreturnを適用する。",
+      "member_type": "OracleBindingの型外memberは元validated、InputIssue、RawValue、Comparisonと原readを保持し、新しい公開Axis/Findingを作らない。型外値をcast・欠落補完せず、unknownとしてowner_defaultの担当へ戻し、同Binding/revision/scopeの原readから再入する。 unknown_reentry.nonreturnを適用する。",
+      "subject_unformed": "subject_refを型付きRefとして形成できない場合はAxisResultを作らず、原InputIssue/原OracleBindingを保持する。空Comparisonや別subjectのrowを成功・診断の代用にしない。 unknown_reentry.nonreturnを適用し、Comparisonを返さない。",
       "owner_default": "semantic definition・義務・oracle対応の未解決はknowledge_owner、製品値/thresholdの未解決はcore_owner。各既存ruleの指定ownerを優先し、新owner/cause/public memberは作らない。"
     },
     "rule_projection_table": [
@@ -13110,7 +13110,12 @@
     "predicate_axis_fields": "新たに形成する既存rule行は表の実predicate対象のsubject_ref/Bindingを使い、axis/state/backflow_ownerは当該既存rule値、original_refsは実witnessが読んだtyped Refだけを原locator順・反復込みで保持する。reasonは同じ原predicateのfinding_reasonとする。原carryの7member・reason・順序は変更しない。",
     "finding_reason": "Finding.reasonは既存L4 identity_version_trace_contract/public_projection/axis_reason_writer/reason_serialization/unexercised_findingと同じ局所形式にする。L5 predicate固定prefix + U+000A + diagnostic JSON {code,rule_ref,predicate_observations:[{locator,original_read}]}。観測は実predicateが読んだ同一原出現だけで、元のcarry reasonは変更しない。",
     "multi_occurrence_order": "原ComparisonのAxis配列と既存row順を保持する。Findingは既存rule_mapping（/failure_rules/68..74）の順、rule内はpredicateの原出現index順に各出現一件。別原indexの出現は値が同じでも残す。異なるraw配列間の相対順が既存sourceで定まらなければ順を捏造せずunknown/owner再入とする。各Finding.source_refsは実predicateのwitnessだけを元source index/出現順で列挙。",
-    "unknown_reentry": "表でtyped対応又はwitnessを形成できない場合は既存型のunknownを返し、同Binding/revision/scopeの原readとInputIssueを保つ。semantic/oracle側はknowledge_owner、製品値側はcore_ownerへ戻し、原owner資料の供給・訂正後に同じscopeの原readから再入する。新cause・資格条件・公開型は追加しない。",
+    "unknown_reentry": {
+      "typed_row": "既存のtyped subject/Binding/axisと原unknown rowが成立している場合は、その原row全値を保持する。7 ruleのpredicateがtrueなら既存rule_projection_tableだけを使う。predicate未確定を新しい違反Finding又はfalseへ変えない。",
+      "nonreturn": "typed subject/Binding又は既存axisを形成できずunknownを既存Comparisonで表せない場合、FN4 detailはComparisonを返さず既存NotImplementedErrorで停止する。原OracleContext/validated/InputIssue/frameを呼出側に保持し、Backflow HELIXBRAIN-L6-032-FN4-ORACLEへ戻す。空Comparison、仮Ref、新cause又は新公開型は作らない。",
+      "owner": "既存ruleのownerを優先する。semantic/oracle又は未定義kindはknowledge_owner、measurement値/閾値はcore_owner。実行時の原資料供給・訂正先であり、設計をPO待ちにする指定ではない。",
+      "reentry": "原owner資料の供給・訂正後、同Binding/revision/scopeの原入力を再評価する。原readやInputIssueを消さず、stopを評価成功又はdomain違反として集計しない。"
+    },
     "legacy_oracle_rederivation": [
       "LEGACY-ASSET-4F5A1F0739EC1111D91D（旧L4 design-template-json-authority.md 16–92）: JSON意味からgenerated viewへの一方向と構造意味/説明の分離を保持する。",
       "LEGACY-ASSET-98372FEE8A3AC8F9C299（旧L5 design-template-json-authority.md 30–148）及びUTW-021（旧predecessor-harness-full-weakness-audit 65–101）: source版とcompletion根拠の追跡を保持し、表示/生成成功を意味成立へ昇格させない。旧registry/projector/runtimeは移植しない。"
@@ -13182,9 +13187,171 @@
     },
     "limits": [
       "閉じるのは上記構造のoperand不在carry枝で、D27 A/B形と各原集合の明示空/absentを含む。claims absentだけで枝外にしない。元state/原presenceを保存し、空列から評価成功を認定しない。",
-      "normal_controlは全descriptor slot15（対象3kindを含む）・oracle_bindings1・values1・handoff_records1及び許容集合外fixture_proposition等があり枝外。既存F05/F06 negative変異計画の実view/oracle/値/更新Claimがある枝も未閉包として保持し、要求や既存ruleを削除しない。",
+      "normal_control等の非空oracle/値/対象slotは、それぞれ実typed operandの照合が必要。Claim dispatchの成立だけで一般資格又は全体nonfireを認定しない。既存negative入力の7 ruleは保持する。",
       "fn4全域・任意opaque入力・全failure witness、D27全期待値/Issue完了、製品/helper/fn0/実trust/CIの成立を示さない。未閉包に当たる有限期待は当該producerで上流へ返す。"
-    ]
+    ],
+    "claim_dispatch": [
+      {
+        "kind": "fill_definition",
+        "route": "既存finite carryの対象住所readを同frameから再利用する。明示null/非null、resolved/unknown/conflictの原区別と既存nonnull_claim_target_reuseを維持する。"
+      },
+      {
+        "kind": "meaning_revision_update",
+        "rule_pointer": "/failure_rules/70",
+        "operand": "F05-NEG-03の意味更新報告を表す既存Claim.kind。basis_refsから実view sourceを読み、独立のsemantic_json原identity/revision/stateと対照する。kind又はsemantic_json_change_ref=nullだけではpredicate trueにしない。",
+        "when_true": "既存meaning_update_claim/conflict/knowledge_owner。subject/Bindingは当該原Claim出現、Refs/reasonは実predicate witness。"
+      },
+      {
+        "kind": "measurement_threshold",
+        "rule_pointer": "/failure_rules/74",
+        "operand": "F06-NEG-04の汎用既定閾値提案を表す既存Claim.kind。generic_defaultという原提案originと実measurement owner値unknownを別に読む。kindや値nullだけでpredicate trueにしない。",
+        "when_true": "既存measurement.value/unknown/core_owner。原ValueFactと原Claimの同subject/full Binding対応を保持し、製品閾値又は代替値を生成しない。"
+      },
+      {
+        "kind": "既存の他producer担当kind",
+        "route": "既存claim_intent_protocol及びclaim_boundary_projection_contractで担当が明示されたkindは、その担当producerが判定する。FN4のClaim operandを形成せず、原Claim全値・順・locatorを保持する。FN4で違反又は全体nonfireを認定しない。source/descriptor/OracleBinding/ValueFact由来の別FN4 operandは独立に照合する。",
+        "existing_case_kind_routes": [
+          {
+            "kind": "absolute_product_choice",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/0"
+            ],
+            "l8_case_pointers": [
+              "/cases/0/negative_cases/0"
+            ]
+          },
+          {
+            "kind": "design_completion",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/78"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/3"
+            ]
+          },
+          {
+            "kind": "no_gaps",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/92"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/0"
+            ]
+          },
+          {
+            "kind": "os_obligation_discharge",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/79"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/4"
+            ]
+          },
+          {
+            "kind": "product_template_adoption",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/76"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/1"
+            ]
+          },
+          {
+            "kind": "requirements_agreement",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/77"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/2"
+            ]
+          },
+          {
+            "kind": "return_definition_known",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/96",
+              "/failure_rules/98"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/4",
+              "/cases/12/negative_cases/6"
+            ]
+          },
+          {
+            "kind": "return_field_applicable",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/99"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/7"
+            ]
+          },
+          {
+            "kind": "return_received",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/101"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/9"
+            ]
+          },
+          {
+            "kind": "return_source_observed",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/100"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/8"
+            ]
+          },
+          {
+            "kind": "return_value_supplied",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/97"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/5"
+            ]
+          },
+          {
+            "kind": "same_template_identity",
+            "producer_pointer": "/functions/3",
+            "rule_pointers": [
+              "/failure_rules/66"
+            ],
+            "l8_case_pointers": [
+              "/cases/5/negative_cases/8"
+            ]
+          }
+        ],
+        "decoder_kind_routes": "claim_intent_detail/decoder_rowsの既存7kindは既存担当へ残す。fill_definitionだけはdispatch/0を優先する。これらの既存decoder定義は変更しない。",
+        "boundary": "上表12kindは既存rule-linked L8 logical caseから担当を選ぶ032内部の技術dispatchである。一般ClaimIntent decoderへ登録又は全kind enum化するものではない。FN4 operand無しという判定だけで担当ruleのpredicate true/falseを決めない。未知の別kindをこれらの類似名で分類しない。"
+      },
+      {
+        "kind": "上記以外の未定義kind又はdispatch不能",
+        "route": "unknown_reentry。kindがopen stringであることを新たなdecode拒否にせず、元validated/Claim/既読frameを保持する。未知kindからaxis/subject/owner事実を創作しない。"
+      }
+    ],
+    "nonfill_legacy_rederivation": {
+      "source_assets": [
+        "4F5A1F0739EC1111D91D",
+        "98372FEE8A3AC8F9C299"
+      ],
+      "source_sections": "旧L4 design-template-json-authority §§1–4、旧L5同名 §§2–3。JSON/view分離とunknown保持を読む。旧コードは実行しない。",
+      "failure_basis": "A127DEC3EEE6ED63CF17:UTW-014/020/021（absence→empty、部分診断の欠落、prose完了）。WR82 R1のPO判断待ちへの誤分類もPR #3780の独立reviewで訂正。",
+      "kept": "JSON意味/view境界、原unknown、owner再入と実作用0。",
+      "changed": "旧sourceに無いFN4 dispatchとtyped row/非return停止を、既存L3 F05/F06とB8 NEG03/NEG04からAIが技術選定する。L3要求・公開型・owner roleを追加しない。"
+    }
   },
   "knowledge_promotion_contract": {
     "id": "HELIXBRAIN-L4-032-F08-KNOWLEDGE-PROMOTION-PROJECTION",
