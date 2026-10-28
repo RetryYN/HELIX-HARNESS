@@ -503,14 +503,14 @@
           "producer_public_symbol": "publish_general_proposal_exchange_public",
           "l4_producer_pin": {
             "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-            "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-            "file_sha256": "fa9c24c3929c7b83e8faac252386ccfdaaeeb8b1ae3ab70c2f811bbeb9f45a27",
+            "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+            "file_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
             "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint"
           },
           "l5_producer_pin": {
             "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-            "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-            "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+            "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+            "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
             "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint",
             "function_pointer": "/functions/13"
           },

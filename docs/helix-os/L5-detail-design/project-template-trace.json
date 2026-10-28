@@ -11861,28 +11861,28 @@
       "producer_public_symbol": "publish_general_proposal_exchange_public",
       "l4_producer_pin": {
         "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-        "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-        "file_sha256": "fa9c24c3929c7b83e8faac252386ccfdaaeeb8b1ae3ab70c2f811bbeb9f45a27",
+        "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+        "file_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
         "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint"
       },
       "l5_producer_pin": {
         "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-        "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-        "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+        "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+        "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
         "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint",
         "function_pointer": "/functions/13"
       },
       "l8_producer_pin": {
         "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
-        "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-        "file_sha256": "9b57535a74ab82d5ac76ba16c7846d07b4a5c2bb052483323a0c7cb87b6f8d5a",
+        "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+        "file_sha256": "2d20722fcd7a4ca26696076afb583e81102e5b328cc6eabb160ce9cf38bf9765",
         "unit_case_pointer": "/additional_unit_cases/24",
         "normal_oracle_pointer": "/normal_function_oracles/12",
         "verification_pointer": "/general_proposal_exchange_verification/public_proposal_publication_endpoint_oracle"
       },
       "l9_producer_pin": {
         "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-        "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
+        "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
         "file_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
         "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles/publication_oracles/4"
       },
@@ -12140,8 +12140,8 @@
         "target_os_receiver_type": "/core_proposal_receiving_detail/private_types/OsReceivedProposalPublication",
         "core_public_schema_ref": {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-          "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
           "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/CoreProposalPublication"
         },
         "boundary_ja": "CORE private_typesへの機構横断直接束縛を廃止し、CORE公開端点契約（publish_general_proposal_exchange_public, schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint）のcarrier_schemasに対してOS受領型OsReceivedProposalPublicationとadapter/schema検証で受領する。CORE private関数をOSから呼ばず、旧OS OwnerRecordへのcastをしない。"
@@ -12151,8 +12151,8 @@
         "target_os_receiver_type": "/core_proposal_receiving_detail/private_types/OsReceivedPublicationSourceCarrier",
         "core_public_schema_ref": {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-          "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
           "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/PublicationSourceCarrier"
         },
         "boundary_ja": "CORE private_typesへの機構横断直接束縛を廃止し、CORE公開端点契約のPublicationSourceCarrier schemaに対してOS受領型OsReceivedPublicationSourceCarrierとsame-walk検証で受領する。CORE private関数をOSから呼ばず、旧OS OwnerRecordへのcastをしない。"
@@ -12162,8 +12162,8 @@
         "target_os_receiver_type": "/core_proposal_receiving_detail/private_types/OsReceivedPublicationRecord",
         "core_public_schema_ref": {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-          "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
           "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/PublicationRecord"
         },
         "boundary_ja": "CORE private_typesへの機構横断直接束縛を廃止し、CORE公開端点契約のPublicationRecord schemaに対してOS受領型OsReceivedPublicationRecordとrole別decodeで受領する。CORE private関数をOSから呼ばず、旧OS OwnerRecordへのcastをしない。"
@@ -12173,8 +12173,8 @@
         "target_os_receiver_type": "/core_proposal_receiving_detail/private_types/OsReceivedGeneralProposalView",
         "core_public_schema_ref": {
           "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
-          "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
           "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/GeneralProposalView"
         },
         "boundary_ja": "CORE private_typesへの機構横断直接束縛を廃止し、CORE公開端点契約のGeneralProposalView schemaに対してOS受領型OsReceivedGeneralProposalViewと同一call F02比較証拠readerで受領する。CORE private関数をOSから呼ばず、旧OS OwnerRecordへのcastをしない。"
@@ -12190,6 +12190,128 @@
           "ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
           "source_role": "fixed_source_snapshot"
         }
+      },
+      "OSQualification": {
+        "kind": "exact_existing_type_alias",
+        "target": "Qualification",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/public_type_aliases/OSQualification"
+        },
+        "preservation_ja": "CORE公開端点契約のpublic_type_aliases/OSQualificationと同一のOS Qualification型（/type_contract/types/Qualification）。"
+      },
+      "OSQualificationRoot": {
+        "kind": "exact_existing_type_alias",
+        "target": "QualificationRoot",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/public_type_aliases/OSQualificationRoot"
+        },
+        "preservation_ja": "CORE公開端点契約のpublic_type_aliases/OSQualificationRootと同一のOS QualificationRoot型（/type_contract/types/QualificationRoot）。"
+      },
+      "PublicationHeaderPortCapture": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/PublicationHeaderPortCapture"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/PublicationHeaderPortCaptureで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "PublicationHeaderDecode": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/PublicationHeaderDecode"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/PublicationHeaderDecodeで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "PublicationAuthorityPortCapture": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/PublicationAuthorityPortCapture"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/PublicationAuthorityPortCaptureで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "PublicationSourceStage": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/PublicationSourceStage"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/PublicationSourceStageで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "PublicationRolePayload": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/PublicationRolePayload"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/PublicationRolePayloadで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "GeneralOwnerAttempt": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/GeneralOwnerAttempt"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/GeneralOwnerAttemptで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "GeneralMembershipCapture": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/GeneralMembershipCapture"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/GeneralMembershipCaptureで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "UniverseDetailObservation": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/UniverseDetailObservation"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/UniverseDetailObservationで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "GeneralCandidateRelation": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/GeneralCandidateRelation"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/GeneralCandidateRelationで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
+      },
+      "GeneralProposalBody": {
+        "kind": "os_receiver_contract_type_bound_to_core_public_publication_schema",
+        "core_public_schema_ref": {
+          "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
+          "file_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+          "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/nested_public_type_schemas/GeneralProposalBody"
+        },
+        "boundary_ja": "CORE公開端点契約のnested_public_type_schemas/GeneralProposalBodyで宣言された公開schemaに束縛されるOS受領入れ子型。CORE private_typesへの直接束縛を行わない。"
       }
     },
     "private_types": {
@@ -12198,13 +12320,13 @@
         "bound_public_schema_ref": "docs/helix-harness/L5-detail-design/product-template-application.json#/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/CoreProposalPublication",
         "ordered_members": {
           "general_view": "OsReceivedGeneralProposalView",
-          "header_port": "CoreJsonValue",
-          "header_decode": "CoreJsonValue",
-          "authority_port": "CoreJsonValue",
-          "source_candidate": "CoreJsonValue",
+          "header_port": "PublicationHeaderPortCapture",
+          "header_decode": "PublicationHeaderDecode",
+          "authority_port": "PublicationAuthorityPortCapture",
+          "source_candidate": "PublicationSourceStage",
           "publication_issues": "LocalIssue[]"
         },
-        "meaning_ja": "CORE公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint）のCoreProposalPublication構造をCONNECT経由で受領するOS側受領型。CORE private_typesへの直接束縛を行わない。"
+        "meaning_ja": "CORE公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint）のCoreProposalPublication公開schemaとmember名・member公開型（PublicationHeaderPortCapture・PublicationHeaderDecode・PublicationAuthorityPortCapture・PublicationSourceStage・LocalIssue[]）が完全一致するOS側受領型。CORE private_typesへの直接束縛を行わない。"
       },
       "OsReceivedPublicationSourceCarrier": {
         "kind": "closed_record",
@@ -12216,10 +12338,10 @@
           "source_sha256": "string",
           "decoded_raw_records": "OsReceivedPublicationRecord[]",
           "qualification_ref": "OSRef4",
-          "qualifications": "Qualification[]",
-          "qualification_roots": "QualificationRoot[]"
+          "qualifications": "OSQualification[]",
+          "qualification_roots": "OSQualificationRoot[]"
         },
-        "meaning_ja": "CORE公開端点契約のPublicationSourceCarrier構造をOS same-walkで検証するOS側受領carrier型。"
+        "meaning_ja": "CORE公開端点契約のPublicationSourceCarrier公開schemaとmember名・member公開型（OSRef4・string・OsReceivedPublicationRecord[]・OSQualification[]・OSQualificationRoot[]）が完全一致するOS側受領carrier型。"
       },
       "OsReceivedPublicationRecord": {
         "kind": "closed_record",
@@ -12228,23 +12350,23 @@
           "subject_ref": "OSRef4",
           "section_key": "literal F02",
           "record_kind": "literal core_proposal_exchange",
-          "payload": "CoreJsonValue",
+          "payload": "PublicationRolePayload",
           "owner": "string"
         },
-        "meaning_ja": "CORE公開端点契約のPublicationRecord構造をOS受領profile（HELIXOS-F02-core-proposal-exchange）で読むOS側受領raw record型。旧OwnerRecordへcastしない。"
+        "meaning_ja": "CORE公開端点契約のPublicationRecord公開schemaとmember名・member公開型（OSRef4・literal F02・literal core_proposal_exchange・PublicationRolePayload・string）が完全一致するOS側受領raw record型。旧OwnerRecordへcastしない。"
       },
       "OsReceivedGeneralProposalView": {
         "kind": "closed_record",
         "bound_public_schema_ref": "docs/helix-harness/L5-detail-design/product-template-application.json#/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint/response_contract/carrier_schemas/GeneralProposalView",
         "ordered_members": {
-          "attempt_capture": "CoreJsonValue",
-          "membership_capture": "CoreJsonValue",
-          "universe_observation": "CoreJsonValue",
-          "relation_observations": "CoreJsonValue[]",
-          "proposed_body": "CoreJsonValue",
+          "attempt_capture": "GeneralOwnerAttempt",
+          "membership_capture": "GeneralMembershipCapture",
+          "universe_observation": "UniverseDetailObservation",
+          "relation_observations": "GeneralCandidateRelation[]",
+          "proposed_body": "GeneralProposalBody",
           "body_issues": "LocalIssue[]"
         },
-        "meaning_ja": "CORE公開端点契約のGeneralProposalView構造（同一call F02比較証拠・membership・relation観測）をOS側で役割別decodeして検証するOS受領evidence型。"
+        "meaning_ja": "CORE公開端点契約のGeneralProposalView公開schemaとmember名・member公開型（GeneralOwnerAttempt・GeneralMembershipCapture・UniverseDetailObservation・GeneralCandidateRelation[]・GeneralProposalBody・LocalIssue[]）が完全一致するOS受領evidence型。"
       },
       "ProposalReceiverDiagnosticRef": {
         "kind": "closed_record",

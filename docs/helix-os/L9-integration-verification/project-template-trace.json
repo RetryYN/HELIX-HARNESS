@@ -420,7 +420,7 @@
         },
         "core_public_endpoint_oracle_ref": {
           "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
+          "revision": "61aaffe46e34eeddf4af259cb4a24c448d9a297d",
           "file_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
           "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles/publication_oracles/4",
           "role": "CORE公開端点契約（PUB-PUBLIC-CONTRACT-BOUNDARY）との統合oracle束縛"
