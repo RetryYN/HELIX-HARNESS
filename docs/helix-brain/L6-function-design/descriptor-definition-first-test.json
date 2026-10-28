@@ -2537,5 +2537,57 @@
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability.py"
     ],
     "authority_effect": "none"
+  },
+  "fn0_qualification_boundary_preparation": {
+    "scope": "fn0のsource bytes/body/digest、独立Qualification join、Qualification Refのidentity比較、適用scope診断、およびcontent_bytes内数値のstrict exact比較に限る。既存NORMAL/ADD04 nodeは変更しない。",
+    "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+    "entry": "既存validate_supply_input(raw) -> ValidatedSupplyとsource qualification順序を維持する。資格成功adapter、public numeric carrier、floatからExactJsonNumberへの変換は追加しない。",
+    "contract_refs": [
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/0",
+          "/type_contract/reference_comparison",
+          "/wire_codec_contract/source_byte_and_qualification_order",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules",
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps",
+          "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization"
+        ]
+      }
+    ],
+    "fixture_assumption_ref": {
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/fixture_contract/normal_control/reference_resolution"
+    },
+    "independent_cases": [
+      {
+        "test_module": "tests/test_fn0_source_qualification_contract.py",
+        "coverage": [
+          "UTF-8 encoding failure preserves source snapshot and marks only original source unusable",
+          "strict source JSON rejects duplicate keys and non-JSON constants",
+          "parsed body must equal supplied content",
+          "Qualification subject identity/revision/scope/owner and subject digest match",
+          "independent qualification root required",
+          "scope mismatch reports original qualification applicable_scope locator/reason",
+          "Qualification Ref source_locator-only difference is not a conflict; original occurrence retained"
+        ]
+      },
+      {
+        "test_module": "tests/test_fn0_source_numeric_exactness.py",
+        "coverage": [
+          "source decimal 9007199254740993.0 is not rounded to supplied host float 9007199254740992.0",
+          "source decimal 1.0 equals supplied strict native integer 1 by exact value",
+          "source decimal 1.0 does not equal supplied host float 1.0",
+          "finite host float outside source body remains accepted by existing outer input shape",
+          "syntactically valid extreme decimal exponent whose Decimal representation raises is reported through existing unusable-source/InputIssue path with original snapshot retained"
+        ]
+      }
+    ],
+    "numeric_scope": "Decimal-token parsing and exact comparison apply only while validating source.content_bytes against supplied source.content. A host float encountered inside that body comparison makes the source body unresolved; finite-float acceptance in outer _is_json_value is unchanged. No adapter or public carrier is introduced. Decimal representation exceptions from strict parsing also return through the same existing source-unusable path without an invented exponent limit.",
+    "limits": [
+      "The synthetic fixture proves local byte/body/digest/qualification correspondence only; it does not establish operational root provenance, custody, or origin authentication.",
+      "This subtree does not claim full codec coverage, qualification resolver completion, or downstream fn1/F02 completion."
+    ]
   }
 }

@@ -4175,5 +4175,138 @@
     ],
     "tdd_sequence": "test-only commitを先行して現source（src/descriptor_definitions.py 及び src/values_applicability.py に evaluate_selected_field_values_public 未定義）上でRedを実観測し、次commitで src/values_applicability.py と src/descriptor_definitions.py に evaluate_selected_field_values_public を最小実装してGreenにする。",
     "authority_effect": "none"
+  },
+  "fn0_qualification_boundary_verification": {
+    "scope": "L6 fn0_qualification_boundary_preparationの限定source/Qualification/numeric境界を実fn0で検証する。既存fn0_source_validation_verification subtreeとは別の追加範囲。",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn0_qualification_boundary_preparation"
+    },
+    "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+    "oracle_refs": [
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/0",
+          "/type_contract/reference_comparison",
+          "/wire_codec_contract/source_byte_and_qualification_order",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules",
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps",
+          "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointers": [
+          "/fixture_contract/normal_control/reference_resolution"
+        ]
+      }
+    ],
+    "test_bindings": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_qualification_contract.py",
+        "sha256": "2d8163eac9049c6de34b4ffe97b890279cae8d602bc2ea766162a63f991135f9",
+        "commit": "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+        "methods": [
+          "test_unencodable_source_text_is_unusable_and_preserved",
+          "test_strict_source_json_rejects_duplicate_keys_and_non_json_constants",
+          "test_parsed_source_body_must_equal_supplied_content",
+          "test_qualification_subject_tuple_and_digest_must_match_source",
+          "test_qualification_requires_an_independent_matching_root",
+          "test_scope_mismatch_uses_qualification_locator_and_l5_reason",
+          "test_qualification_ref_locator_difference_does_not_create_conflict"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_numeric_exactness.py",
+        "sha256": "89c39758670c90085d620012c61417f01b700a184deeddb8b8cc13cafae318c9",
+        "commits": [
+          "9b5d798c7d",
+          "a75fc4119c",
+          "dfb2c55827",
+          "a5db3d155"
+        ],
+        "methods": [
+          "test_inner_source_parse_does_not_round_distinct_decimal_values_together",
+          "test_inner_source_decimal_token_equals_supplied_exact_integer_by_value",
+          "test_inner_source_decimal_does_not_gain_host_float_equality",
+          "test_finite_float_outside_source_body_remains_valid_input",
+          "test_unrepresentable_decimal_exponent_keeps_source_unusable"
+        ]
+      }
+    ],
+    "fixture_reader": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/supply_input_fixtures.py",
+      "sha256": "eb22fcc373d228ae32ac28855ec23ee84e26a856f8e395c3953a5da2f22d036e",
+      "source_integrity_control": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py",
+        "sha256": "021a9092cc874fd010cc57d4a17948a8de972a075ad6d856745b308dbeb5a774"
+      }
+    },
+    "red_evidence": [
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-qualification-red-B-R1.json",
+        "classification": "exit_nonzero",
+        "duration_ms": 246,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "7 tests; 2 assertion failures; 0 errors."
+      },
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-red-B-R3.json",
+        "classification": "exit_nonzero",
+        "duration_ms": 116,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "4 tests; 3 assertion failures; 0 errors. The outside-source finite-float control passed."
+      },
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-decimal-exponent-red-R1.json",
+        "classification": "exit_nonzero",
+        "duration_ms": 64,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "The single test exposed uncaught decimal.InvalidOperation from a valid extreme exponent token; this was the targeted Red."
+      }
+    ],
+    "green_evidence": [
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-b-green-focused-R2.json",
+        "classification": "ok",
+        "duration_ms": 389,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "14 tests passed; source qualification boundary and prior fn0 controls."
+      },
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-focused-R2.json",
+        "classification": "ok",
+        "duration_ms": 413,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "19 focused fn0 tests passed after DecimalException handling."
+      },
+      {
+        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-unit-green-R2.json",
+        "classification": "ok",
+        "duration_ms": 28045,
+        "reaped": true,
+        "output_truncated": false,
+        "result": "441 unit tests passed."
+      }
+    ],
+    "implemented_boundary": {
+      "source_commit": "756023176520cb2a4f308b22dbd80f5362553d99",
+      "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
+      "source_sha256": "3deea6cf8a669e6858140f31e80a256e0e64c8e6d376aa178df7cb1b5c595e7f",
+      "behavior": "Source content_bytes is strict-parsed with Decimal numeric tokens and compared recursively to supplied body. Exact numeric values compare to strict native int; supplied host float inside source body does not qualify. Outer finite-float raw shape acceptance is retained. Decimal representation exceptions during source parsing use the same existing unusable-source/InputIssue result; no exponent ceiling was added."
+    },
+    "limits": [
+      "The passing unit tests establish the selected synthetic fn0 boundary only, not an operational qualification resolver or origin-authentication system.",
+      "No public numeric type, float adapter, or full JSON codec completion is claimed. Existing qualification_body remains opaque.",
+      "No qualification/body/source behavior outside the enumerated cases is inferred."
+    ],
+    "execution_state": "bounded Red and Green completed; full unit suite passed 441 tests."
   }
 }
