@@ -1624,7 +1624,8 @@
         "HARNESS-L8-009-F02-NEG-05",
         "HARNESS-L8-009-F02-NEG-06",
         "HARNESS-L8-009-ADD-09",
-        "HARNESS-L8-009-ADD-10"
+        "HARNESS-L8-009-ADD-10",
+        "HARNESS-L8-009-ADD-40"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_candidate_universe"
     },
@@ -1671,7 +1672,8 @@
         "HARNESS-L8-009-ADD-11",
         "HARNESS-L8-009-ADD-12",
         "HARNESS-L8-009-ADD-13",
-        "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01"
+        "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01",
+        "HARNESS-L8-009-ADD-41"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_applicability",
       "output_shape_additions": {
@@ -1988,7 +1990,7 @@
       ],
       "algorithm": [
         "同要求分類/母集合/適用契約/製品scopeのqualified意味比較へ結果の必要論点/義務を対応させる。AI/言語/project表示名（nonsemantic_metadata）の差だけで増減させない。",
-        "異domain/risk/scopeは比較境界と根拠の相違を保存し同setを強制しない。文字列/件数/hash一致で意味同等にしない。",
+        "異domain/risk/scopeや未観測知識（unobserved）は比較境界と根拠の相違・未観測範囲（unobserved）を保存し同一setへ固定せず意味同値を主張しない。文字列/件数/hash一致で意味同等にしない。",
         "具体missing/extra義務と未評価範囲を返す。実未見入力/oracle凍結はL6/L7の別系統準備へ残す。"
       ],
       "effect": "none",
@@ -1996,13 +1998,15 @@
         "HARNESS-L5-009-R-ai_name_changes_obligations",
         "HARNESS-L5-009-R-language_changes_obligations",
         "HARNESS-L5-009-R-different_domain_forced_equal",
-        "HARNESS-L5-009-R-count_as_semantic_equivalence"
+        "HARNESS-L5-009-R-count_as_semantic_equivalence",
+        "HARNESS-L5-009-R-unobserved_knowledge_forced_equal"
       ],
       "unit_case_refs": [
         "HARNESS-L8-009-B02-NEG-01",
         "HARNESS-L8-009-B02-NEG-02",
         "HARNESS-L8-009-B02-NEG-03",
         "HARNESS-L8-009-B02-NEG-04",
+        "HARNESS-L8-009-B02-NEG-05",
         "HARNESS-L8-009-ADD-20"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_semantic_equivalence",
@@ -2056,7 +2060,9 @@
         "HARNESS-L8-009-N01-NEG-04",
         "HARNESS-L8-009-N01-NEG-05",
         "HARNESS-L8-009-N01-NEG-06",
-        "HARNESS-L8-009-ADD-21"
+        "HARNESS-L8-009-ADD-21",
+        "HARNESS-L8-009-ADD-42",
+        "HARNESS-L8-009-ADD-43"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-check_application_claims",
       "logical_producer_symbol": "check_application_claims",
@@ -2066,12 +2072,17 @@
         "legacy_l8_pointer": "/normal_function_oracles/9",
         "legacy_context_type": "CheckApplicationClaimsContext",
         "legacy_output_type": "Comparison",
-        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/9）とB01原負例8件（/cases/0/negative_cases）・追加単体1件（ADD-21）はT:39 B01の関数別pair凍結（docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json、D-H009-T1a）で照合・凍結済みであり、N01原負例6件（/cases/10/negative_cases）とfn9 original_axes helper oracleもBとして保持する。CheckApplicationClaimsDetailedContext->CoreComparisonの詳細引数（F05DetailedReturn・F06 correspondence_issues連携）およびN01範囲のL5/L8対照とfn9 N01側pair凍結はA（D-H009-T3b）へ分離し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
+        "detailed_l8_unit_case_pointers": [
+          "/additional_unit_cases/42",
+          "/additional_unit_cases/43",
+          "/additional_unit_cases/25"
+        ],
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/9）とB01原負例8件（/cases/0/negative_cases）・追加単体1件（ADD-21）はT:39 B01の関数別pair凍結（docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json、D-H009-T1a）で照合・凍結済みであり、N01原負例6件（/cases/10/negative_cases）とfn9 original_axes helper oracleもBとして保持する。CheckApplicationClaimsDetailedContext->CoreComparisonの詳細署名境界・F05DetailedReturn消費（F05 HARNESS recipient境界ADD-25の保持を含む）はHARNESS-L8-009-ADD-42（/additional_unit_cases/42）、F06 correspondence_issues消費はHARNESS-L8-009-ADD-43（/additional_unit_cases/43）のL8 U-IDへ束縛し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
       },
       "knowledge_correspondence_consumer_binding": {
         "reads": "native_context.compare_selected_knowledgeの同operation実Comparison.materialを、更新されたKnowledgeUseMaterialとして読む。correspondence_issuesがpresentなら原列を保持し、absentなら旧入力の意味を維持する。fn0 input_issues又はF05 private Causeだと称さない。",
         "interpretation": "当該原recordへ依存するclaimについて原source/subject/scopeと未形成理由を照合し、裏付け未形成を成功にしない。診断列の存在だけで全claim/独立有資格範囲を不成立にせず、診断の不在も全BRAIN知識の観測・成立証拠にしない。既存各predicateの条件は保持し、unselected限定predicateへ選択record不足を流用しない。",
-        "boundary": "原7comparisonを使うaxes連結helperは変更せず、診断は実F06 material wholeに保持し疑似AxisResult/Findingを合成しない（B）。fn9/fn10におけるF06 correspondence_issuesおよびF05詳細返却のconsumer対照・関数別pair凍結はA（D-H009-T2d/T3b）へ渡し、全claim consumerの具体fixture展開・実行は下流L6/L7（C）へ戻す。"
+        "boundary": "原7comparisonを使うaxes連結helperは変更せず、診断は実F06 material wholeに保持し疑似AxisResult/Findingを合成しない（B）。fn9におけるF06 correspondence_issues消費U-IDはHARNESS-L8-009-ADD-43（/additional_unit_cases/43）、F05詳細返却消費U-IDはHARNESS-L8-009-ADD-42（/additional_unit_cases/42）へ束縛し、全claim consumerの具体fixture展開・実行は下流L6/L7（C）へ戻す。"
       }
     },
     {
@@ -2104,7 +2115,8 @@
       "unit_case_refs": [
         "HARNESS-L8-009-ADD-22",
         "HARNESS-L8-009-ADD-23",
-        "HARNESS-L8-009-ADD-24"
+        "HARNESS-L8-009-ADD-24",
+        "HARNESS-L8-009-ADD-44"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-build_application_analysis",
       "optional_context_members": [
@@ -2121,7 +2133,11 @@
         "legacy_l8_pointer": "/normal_function_oracles/10",
         "legacy_context_type": "BuildApplicationAnalysisContext",
         "legacy_output_type": "ApplicationAnalysis",
-        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/10）と追加単体3件（ADD-22〜24）およびseven_member_caller oracleはBとして保持する。BuildApplicationAnalysisDetailedContext->CoreApplicationAnalysisの詳細引数（F05DetailedReturn・source_result_reference_projection・F06 correspondence_issues保持）のL5/L8対照とfn10の関数別pair凍結はA（D-H009-T3b）へ渡し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
+        "detailed_l8_unit_case_pointers": [
+          "/additional_unit_cases/44",
+          "/additional_unit_cases/25"
+        ],
+        "detail_full_oracle_status": "旧logical oracle（/normal_function_oracles/10）と追加単体3件（ADD-22〜24）およびseven_member_caller oracleはBとして保持する。BuildApplicationAnalysisDetailedContext->CoreApplicationAnalysisの詳細引数（F05DetailedReturn・HARNESS recipient境界ADD-25・source_result_reference_projection・F06 correspondence_issues保持）のL5/L8対照はHARNESS-L8-009-ADD-44（/additional_unit_cases/44）およびHARNESS-L8-009-ADD-25（/additional_unit_cases/25）へ束縛し、全入力fixture展開・実行は下流L6/L7（C）へ戻し、旧L8 expected_outputを新署名oracleへcastしない。"
       },
       "knowledge_correspondence_preservation": "同operationの実F06 Comparison wholeを元comparison列へ無加工で保持する。material.correspondence_issuesのpresence/全3member/順/反復を保存し、Analysis.input_issuesへ転記しない。旧optional不在は不在のまま。"
     },
@@ -4653,6 +4669,26 @@
         "effects": "authority/gate/approval/義務消込/writeなし"
       },
       "backflow_owner": "core_owner"
+    },
+    {
+      "id": "HARNESS-L5-009-R-unobserved_knowledge_forced_equal",
+      "code": "unobserved_knowledge_forced_equal",
+      "contract_ref": "HARNESS-L5-009-B02",
+      "function_ref": "HARNESS-L5-009-compare_semantic_equivalence",
+      "oracle_ref": "HARNESS-L8-009-B02-NEG-05",
+      "condition": "未観測知識まで既知対象と同一setへ固定する",
+      "predicate": "未観測（unobserved）の知識範囲があるのに既知対象と同一集合へ固定または同値と主張している。",
+      "predicate_status": "defined_candidate",
+      "expected_axis": "comparison_boundary",
+      "expected_state": "unknown",
+      "expected": "未観測知識の範囲をunobservedのまま保持し、既知対象との同一set固定や意味同値を主張しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "未観測知識の範囲をunobservedのまま保持し、既知対象との同一set固定や意味同値を主張しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "backflow_owner": "core_owner",
+      "pair_observation_ref": "/semantic_equivalence_pair_detail/failure_observations/neg_05"
     }
   ],
   "implementation_preparation": {
@@ -4873,6 +4909,18 @@
         "stop_id": "HARNESS-L8-009-B02-NEG-04",
         "stop_reason": "設計候補ではSemanticComparison.basis_kindをoptional closed enum semantic_meaning|count_onlyとして識別するが、current FN8 comparison_basis_refsは空で、recordから二返却の完全な義務集合対応を結ぶtyped memberもない。basis_kindは宣言されたbasis種別であり真偽・資格・集合対応を証明しない。count_onlyとsame_meaning=trueだけで異なる集合を等価と確定せず、完全集合対応を示す実carrierがない限りcount_as_semantic_equivalence判定はstopped_missing_qualified_materialのままにする。数の一致と意味差の相関からbasisを推測しない。",
         "required_decision": "再開にはactual FN8 returnへ解決するbasis refsと、左右CandidateUniverse/KindObligation全体を一意に対応付ける既存型付きcarrierが必要。現行SemanticComparison.left_ref/right_refは単一Ref端で集合全体のmember pairingを定義せず、CandidateUniverse.membersも義務Refとの全単射を宣言しないため、完全集合対応は未解決。型の追加推測や期待値入力はせず、L5下流consumer接続を別設計へ戻す。候補影響先はApplicationInput.semantic_comparisons利用関数（application_required_axes.py, application_applicability_condition_evaluation.py, application_meaning_impacts.py, application_semantic_equivalence.py）とwire/native mirrorである。"
+      },
+      "neg_05": {
+        "failure_rule_ref": "HARNESS-L5-009-R-unobserved_knowledge_forced_equal",
+        "l8_case_ref": "HARNESS-L8-009-B02-NEG-05",
+        "observation_members": [
+          "両snapshot.input.knowledge_records / templates / obligations / universes",
+          "各SourceEnvelope / Qualification / QualificationRoot",
+          "snapshot.input.semantic_comparisons",
+          "双方return.material: obligation_refs / comparison_basis_refs / missing_obligation_refs / extra_obligation_refs / not_evaluated_refs"
+        ],
+        "observable_condition": "未観測（unobserved）の知識範囲を含む対照に対して、観測済み対象と同一の必要義務集合へ固定またはsame_meaning=trueと主張する。",
+        "result": "未観測知識の範囲をunobserved（not_evaluated_refs / state=unknown）のまま保持し、既知対象との同一set固定や意味同値を主張しない。"
       }
     },
     "typed_metadata_member_gap": {

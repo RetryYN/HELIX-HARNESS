@@ -1,0 +1,477 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6478977136",
+  "path_aliases": {
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json"
+  },
+  "record_id": "HARNESS009-F02A-FUNCTION-PAIR-REFREEZE-20261029",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-T1d-1",
+  "request_id": "WR161-H009-SEMREV-L8-FIX",
+  "resolves_disposition_ref": "DISP1#/dispositions/15",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60, 81–92",
+      "keep_ja": "候補templateのexact set・適用unknown・理由/再評価条件付きN/A・不足のBackflow返却・requirement→obligation→design→pairのtraceを保持する。",
+      "change_ja": "旧単一DesignTemplateRegistry/ApplicabilityEvaluator/PairGraphBinderからBRAIN(032)・HARNESS-CORE(009)・HELIX-OS(002)の3機構へ責務を分離し、関数単位のpair凍結で検収する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "I/O・副作用none・failure・consumer/oracleを保持しunknownをN/Aや空集合へ丸めない。",
+      "change_ja": "旧TPL文法・operator・runtime・CIを移植せず、L8にはU-ID行（対象・反例と期待・oracle ID・test citation）のみを置き具体fixture展開はL6/L7へ分離する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–55",
+      "keep_ja": "異なるbehaviorを束ねず原子的sliceと不変条件単位で分割・検収する。",
+      "change_ja": "11組一括FREEZEを廃止し、公開関数1つ＋対のL8 case行＋担うL3義務を単位として凍結を記録する。"
+    },
+    {
+      "asset_id": "UTW-014/020/021/033",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "65–101",
+      "keep_ja": "欠損の空集合縮退、巨大aggregateへの集中による部分不足不可視、件数/hashのみによる自己申告完了、freezeとreopen境界の未分離を再発防止の事例として確認する。",
+      "change_ja": "現行の承認済み意味へ照合し、旧運用文言を製品規則へ写さない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "obligation_ja": "適用条件と入力axisを比較し、検討対象のexact setを結果候補へ結ぶ。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/0",
+        "L5#/functions/2/algorithm/1",
+        "L5#/functions/2/algorithm/2",
+        "L5#/failure_rules/54",
+        "L5#/failure_rules/55",
+        "L5#/failure_rules/59"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/cases/3/negative_cases/0",
+        "L8#/cases/3/negative_cases/1",
+        "L8#/cases/3/negative_cases/5",
+        "L8#/normal_function_oracles/2",
+        "L8#/additional_unit_cases/8",
+        "L8#/additional_unit_cases/9"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "obligation_ja": "各要素の適用/不適用/未解決理由を結果候補へ結ぶ。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/1",
+        "L5#/proposal_material_formation_detail/guards",
+        "L5#/proposal_material_formation_detail/formation_and_failure_semantics",
+        "L5#/proposal_native_record_material_detail/coverage_branch_table"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/normal_function_oracles/2",
+        "L8#/proposal_material_formation_native_oracle/case_order_and_names",
+        "L8#/proposal_native_record_material_verification/case_discriminators_ja"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "obligation_ja": "比較境界を結果候補へ結ぶ（未評価の比較境界はunknownとし、空集合の成功にしない）。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/0",
+        "L5#/failure_rules/55",
+        "L5#/proposal_native_record_material_detail/coverage_branch_table/5",
+        "L5#/proposal_native_record_material_detail/coverage_branch_table/6"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/cases/3/negative_cases/1",
+        "L8#/normal_function_oracles/2",
+        "L8#/additional_unit_cases/8",
+        "L8#/additional_unit_cases/40",
+        "L8#/proposal_native_record_material_verification/case_discriminators_ja/3",
+        "L8#/proposal_native_record_material_verification/case_discriminators_ja/5"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "obligation_ja": "要求/製品scopeを結果候補へ結ぶ。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/0",
+        "L5#/functions/2/algorithm/1",
+        "L5#/failure_rules/57"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/cases/3/negative_cases/3",
+        "L8#/normal_function_oracles/2"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    },
+    {
+      "element_id": "O5",
+      "obligation_ja": "知識/適用契約版を結果候補へ結ぶ。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/0",
+        "L5#/functions/2/algorithm/1",
+        "L5#/failure_rules/56",
+        "L5#/proposal_material_formation_detail/guards/policy_ref"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/cases/3/negative_cases/2",
+        "L8#/normal_function_oracles/2",
+        "L8#/proposal_material_formation_native_oracle/case_order_and_names/5"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    },
+    {
+      "element_id": "O6",
+      "obligation_ja": "candidate/proposed setとOS selected/used setを混同しない。",
+      "l5_pointers": [
+        "L5#/contracts/3",
+        "L5#/functions/2",
+        "L5#/functions/2/algorithm/1",
+        "L5#/failure_rules/58",
+        "L5#/proposal_material_formation_detail/authority_and_operation_boundary_ja",
+        "L5#/proposal_native_record_material_detail/authority_and_operation_boundary_ja",
+        "L5#/original_operation_proposal_provider_detail/owner_and_effect"
+      ],
+      "l8_pointers": [
+        "L8#/cases/3",
+        "L8#/cases/3/negative_cases/4",
+        "L8#/normal_function_oracles/2",
+        "L8#/proposal_material_formation_native_oracle/preservation_and_limits_ja/nonclaims",
+        "L8#/proposal_native_record_material_verification/nonclaims_ja",
+        "L8#/original_operation_proposal_provider_verification/expected_component_checks"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/24",
+        "L10F#/cases/24",
+        "L4#/contracts/3",
+        "L9#/cases/3"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/2",
+        "function_id": "HARNESS-L5-009-compare_candidate_universe",
+        "symbol": "compare_candidate_universe",
+        "l8_oracle_pointer": "L8#/normal_function_oracles/2",
+        "unit_case_pointers": [
+          "L8#/cases/3",
+          "L8#/additional_unit_cases/8",
+          "L8#/additional_unit_cases/9",
+          "L8#/additional_unit_cases/40"
+        ]
+      }
+    ],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/proposal_material_formation_detail",
+        "symbol": "proposal_material_formation_detail",
+        "visibility": "private_detail_not_in_L5_functions",
+        "bound_public_function": "compare_candidate_universe",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "C: L6/L7_and_OS002_053",
+        "l8_oracle_pointer": "L8#/proposal_material_formation_native_oracle",
+        "unit_case_pointers": [
+          "L8#/proposal_material_formation_native_oracle/case_order_and_names"
+        ],
+        "basis_pointers": [
+          "L4#/contracts/3/proposal_material_formation",
+          "L9#/cases/3/proposal_material_formation_cases",
+          "DISP1#/dispositions/15"
+        ]
+      },
+      {
+        "detail_pointer": "L5#/proposal_native_record_material_detail",
+        "symbol": "proposal_native_record_material_detail",
+        "visibility": "private_detail_not_in_L5_functions",
+        "bound_public_function": "compare_candidate_universe",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "C: L6/L7_and_OS002_053",
+        "l8_oracle_pointer": "L8#/proposal_native_record_material_verification",
+        "unit_case_pointers": [
+          "L8#/proposal_native_record_material_verification/case_discriminators_ja"
+        ],
+        "basis_pointers": [
+          "L4#/contracts/3/proposal_native_record_material",
+          "L9#/cases/3/proposal_native_record_material_cases",
+          "DISP1#/dispositions/15"
+        ]
+      },
+      {
+        "detail_pointer": "L5#/original_operation_proposal_provider_detail",
+        "symbol": "original_operation_proposal_provider_detail",
+        "visibility": "private_detail_not_in_L5_functions",
+        "bound_public_function": "compare_candidate_universe",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "C: L6/L7_and_OS002_053",
+        "l8_oracle_pointer": "L8#/original_operation_proposal_provider_verification",
+        "unit_case_pointers": [
+          "L8#/original_operation_proposal_provider_verification/expected_component_checks"
+        ],
+        "basis_pointers": [
+          "L4#/contracts/3/original_operation_proposal_provider",
+          "L9#/cases/3/original_operation_proposal_provider_oracles",
+          "DISP1#/dispositions/15"
+        ]
+      }
+    ]
+  },
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "1cf6564f698dbf17670f24e9b68839df444a1c7e",
+  "request_base_sha": "1cf6564f698dbf17670f24e9b68839df444a1c7e",
+  "recorded_at_utc": "2026-10-28T22:37:40+00:00",
+  "pins": {
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+    "L9_sha256": "b9dec5bf678d5e4263e3dcbdbb00ee647af435db0b6ff2342ba77987ad90f5f1",
+    "L5_pre_sha256": "e15fbf4547d2cb59544a508889528d6a86e0880ac2f0e8b38ba5245d91044620",
+    "L5_post_sha256": "5396d9a840c6f318a66fb23ede9619976f6eb02a8263d03d0b9c1248d5ebfd10",
+    "L8_pre_sha256": "620c47c689a3933d400b4115496a6c62d026772763211e7a1cf58a3ba62d7eea",
+    "L8_post_sha256": "4b1b8d091a6b72339f1bbce9c763c0262c76dd7e8b7ac49d4af8101939551b4e",
+    "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 108,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 107,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 45,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 118,
+    "expanded_target_count": 118,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 107,
+      "L9": 107,
+      "L8": 107,
+      "L5": 107
+    },
+    "matched_case_count": 107,
+    "failure_count": 0,
+    "passed": true,
+    "parent_link_mode": "legacy",
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_candidate_universe",
+      "id": "HARNESS-L5-009-compare_candidate_universe",
+      "l5_pointer": "L5#/functions/2",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_candidate_universe",
+      "unit_case_refs_count": 9,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "proposal_material_formation_detail",
+      "l5_pointer": "L5#/proposal_material_formation_detail",
+      "visibility": "private_detail_not_in_L5_functions",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "proposal_native_record_material_detail",
+      "l5_pointer": "L5#/proposal_native_record_material_detail",
+      "visibility": "private_detail_not_in_L5_functions",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "original_operation_proposal_provider_detail",
+      "l5_pointer": "L5#/original_operation_proposal_provider_detail",
+      "visibility": "private_detail_not_in_L5_functions",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_candidate_universe",
+      "l5_pointer": "L5#/functions/2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "proposal_material_formation_detail",
+      "l5_pointer": "L5#/proposal_material_formation_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "proposal_native_record_material_detail",
+      "l5_pointer": "L5#/proposal_native_record_material_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "original_operation_proposal_provider_detail",
+      "l5_pointer": "L5#/original_operation_proposal_provider_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O6",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 107,
+    "negative_4way_parent_link_mode": "legacy",
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows",
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
