@@ -11164,9 +11164,9 @@
     "role": "現行L9の関係のみ・cause/value・structural-present・no-call・outer/inner formation・producer cardinalityの独立期待。"
    },
    {
-    "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
+    "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
     "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-    "sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066",
+    "sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
     "selected_objects": [
      {
       "pointer": "/field_value_applicability_contract/functions/2",

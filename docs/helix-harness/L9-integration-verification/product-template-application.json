@@ -14094,22 +14094,22 @@
    },
    {
     "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-    "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-    "file_sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066",
+    "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+    "file_sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
     "pointer": "/field_value_applicability_contract",
     "role": "BRAIN F03原source/read/cause及び公開端点契約（public_selected_field_evaluation_endpoint）"
    },
    {
     "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-    "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-    "file_sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066",
+    "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+    "file_sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
     "pointer": "/field_value_applicability_contract/field_definition_cause_table",
     "role": "31原因表。全枝を新規複製せずsourceunknownとownerunknownを区別"
    },
    {
     "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-    "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-    "file_sha256": "2b12fd5e4cf009b9c047b9ceb12d5df66f037b41b4cb87f3ba28c522eeb137fe",
+    "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+    "file_sha256": "6420f2b133255fe572c847ca98361cdb7787fca8d33532948f0d848d6bf23250",
     "pointer": "/field_value_applicability_detail",
     "role": "BRAIN F03公開端点契約（public_selected_field_evaluation_endpoint: evaluate_selected_field_values_public）と選択field評価詳細"
    },

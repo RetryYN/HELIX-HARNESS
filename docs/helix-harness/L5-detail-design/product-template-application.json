@@ -18877,7 +18877,7 @@
       {
         "kind": "fixed_existing_BRAIN_F03_contract",
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
+        "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
         "selected_pointer": "/field_value_applicability_contract",
         "used_pointers": [
           "/field_value_applicability_contract/functions/2",
@@ -18895,14 +18895,15 @@
           "/field_value_applicability_contract/public_selected_field_evaluation_endpoint"
         ],
         "role": "F03実選択read、実supportとcauseの基本意味および公開端点契約（public_selected_field_evaluation_endpoint）。全source payloadを再掲しない。",
-        "file_sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066"
+        "file_sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0"
       },
       {
         "kind": "fixed_existing_BRAIN_F03_detail",
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
+        "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
         "selected_pointer": "/field_value_applicability_detail",
         "used_pointers": [
+          "/functions/9",
           "/field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint",
           "/field_value_applicability_detail/private_detail_binding",
           "/field_value_applicability_detail/private_reader_bindings/read_f03_original_field_definition",
@@ -18911,7 +18912,7 @@
           "/type_contract/types/MeaningComparison"
         ],
         "role": "実F03Evaluationを返すBRAIN公開端点契約（evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation）とselected support readerの詳細境界。BRAIN内部private_full_runnerや3-member private_returnには結合しない。",
-        "file_sha256": "2b12fd5e4cf009b9c047b9ceb12d5df66f037b41b4cb87f3ba28c522eeb137fe"
+        "file_sha256": "6420f2b133255fe572c847ca98361cdb7787fca8d33532948f0d848d6bf23250"
       },
       {
         "kind": "fixed_existing_fn9_empty_axes_oracles",
@@ -19276,24 +19277,24 @@
               "visibility": "public",
               "source_basis_kind": "fixed_existing_BRAIN_F03_contract",
               "source_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-              "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-              "file_sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066",
+              "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+              "file_sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
               "pointer": "/field_value_applicability_contract/closed_types/F03BRawValue"
             },
             "F03BPresenceRaw": {
               "visibility": "public",
               "source_basis_kind": "fixed_existing_BRAIN_F03_contract",
               "source_path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-              "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-              "file_sha256": "83a3fa574fb06ce5f06041290f91c2cc34292eb8d7651e97ffdb05bc76c96066",
+              "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+              "file_sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
               "pointer": "/field_value_applicability_contract/closed_types/F03BPresenceRaw"
             },
             "F03BMeaningFact": {
               "visibility": "public",
               "source_basis_kind": "fixed_existing_BRAIN_F03_detail",
               "source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-              "revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-              "file_sha256": "2b12fd5e4cf009b9c047b9ceb12d5df66f037b41b4cb87f3ba28c522eeb137fe",
+              "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+              "file_sha256": "6420f2b133255fe572c847ca98361cdb7787fca8d33532948f0d848d6bf23250",
               "pointer": "/type_contract/types/MeaningFact"
             }
           },
@@ -19861,10 +19862,11 @@
           "l4_member": "同call BRAIN公開端点契約（public_selected_field_evaluation_endpoint: evaluate_selected_field_values_public）の実F03Evaluation wholeとsnapshot/source originを保持",
           "l5_pointer": "/selected_brain_field_definition_application_detail/private_types/brain_runner_return",
           "preserve_ja": "BRAIN公開端点契約（symbol=evaluate_selected_field_values_public, schema_id=helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint, schema_version=1.0.0）のCORE側adapter受領envelopeをprivate member brain_runner_returnへ保全し、公開応答のF03Evaluation wholeそのものをbrain_f03_returnへ渡す。BRAIN内部private runnerや3-member private_returnには結合せず、呼出し回数/意味を追加せず、再構成や型castをしない。reader入力はF03Evaluationだけで維持。原snapshot identity/資格/配送を追加生成しない。",
+          "brain_fixed_function_pointer": "/functions/9",
           "brain_fixed_source_pointer": "/field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint",
           "brain_fixed_source_path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-          "brain_fixed_source_revision": "5a4e7726dec7361a6b0db31eb15992aad2dd5497",
-          "brain_fixed_source_file_sha256": "2b12fd5e4cf009b9c047b9ceb12d5df66f037b41b4cb87f3ba28c522eeb137fe"
+          "brain_fixed_source_revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+          "brain_fixed_source_file_sha256": "6420f2b133255fe572c847ca98361cdb7787fca8d33532948f0d848d6bf23250"
         }
       ]
     }
