@@ -495,9 +495,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 ],
             }
         ]
-        l4["failure_classifications"][0]["integration_case_ref"] = (
-            "CASE-UNKNOWN-1"
-        )
+        l4["failure_classifications"][0]["integration_case_ref"] = "CASE-UNKNOWN-1"
         for row in l4["failure_classifications"]:
             if row.get("backflow_owner") == "owner-x":
                 row["expected_axis"] = ["/fixture/owner"]
@@ -531,9 +529,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             duplicate_l4["id"] = "L4-C-UNKNOWN-CONTRACT-B"
             duplicate_l4["integration_case_ref"] = "CASE-UNKNOWN-CONTRACT-B"
             l4["failure_classifications"].append(duplicate_l4)
-            l4["contracts"][0]["negative_classifications"].append(
-                duplicate_l4
-            )
+            l4["contracts"][0]["negative_classifications"].append(duplicate_l4)
 
             duplicate_l5 = copy.deepcopy(rule)
             duplicate_l5.update(
@@ -554,18 +550,30 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
 
             duplicate_l8_class = copy.deepcopy(
-                next(row for row in l8["negative_equivalence_classes"] if row["class_id"] == "L8-CLASS-1")
+                next(
+                    row
+                    for row in l8["negative_equivalence_classes"]
+                    if row["class_id"] == "L8-CLASS-1"
+                )
             )
             duplicate_l8_class["class_id"] = "L8-CLASS-UNKNOWN-CONTRACT-B"
             l8["negative_equivalence_classes"].append(duplicate_l8_class)
             duplicate_l9_class = copy.deepcopy(
-                next(row for row in l9["negative_equivalence_classes"] if row["class_id"] == "L9-CLASS-A")
+                next(
+                    row
+                    for row in l9["negative_equivalence_classes"]
+                    if row["class_id"] == "L9-CLASS-A"
+                )
             )
             duplicate_l9_class["class_id"] = "L9-CLASS-UNKNOWN-CONTRACT-B"
             l9["negative_equivalence_classes"].append(duplicate_l9_class)
 
             new_l8_case = copy.deepcopy(
-                next(row for row in l8["unit_cases"] if row["case_id"] == "CASE-UNKNOWN-1")
+                next(
+                    row
+                    for row in l8["unit_cases"]
+                    if row["case_id"] == "CASE-UNKNOWN-1"
+                )
             )
             new_l8_case.update(
                 {
@@ -582,7 +590,11 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             l8["unit_cases"].append(new_l8_case)
 
             new_l9_case = copy.deepcopy(
-                next(row for row in l9["integration_cases"] if row["id"] == "CASE-UNKNOWN-1")
+                next(
+                    row
+                    for row in l9["integration_cases"]
+                    if row["id"] == "CASE-UNKNOWN-1"
+                )
             )
             new_l9_case.update(
                 {
@@ -646,7 +658,10 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(result["passed"], msg=result)
         self.assertEqual(result["counts"], {"L4": 3, "L9": 3, "L8": 3, "L5": 3})
         self.assertFalse(
-            any(failure.get("attribute") == "function_ref" for failure in result["failures"]),
+            any(
+                failure.get("attribute") == "function_ref"
+                for failure in result["failures"]
+            ),
             msg=result,
         )
 
@@ -685,6 +700,53 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 row["requirement_trace"] = ["REQ-OTHER"]
         mutations.append(("contract_trace_mismatch", wrong_trace, "contract_ref"))
 
+        non_string_trace_member = copy.deepcopy(baseline)
+        for row in non_string_trace_member[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["requirement_trace"] = ["REQ-A", 7]
+                row["source_trace"] = {"requirement_ref": "REQ-A"}
+        mutations.append(
+            (
+                "requirement_trace_non_string_member_even_with_valid_source_trace",
+                non_string_trace_member,
+                "contract_ref",
+            )
+        )
+
+        inconsistent_trace_carriers = copy.deepcopy(baseline)
+        for row in inconsistent_trace_carriers[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["requirement_trace"] = ["REQ-A"]
+                row["source_trace"] = {"requirement_ref": "REQ-OTHER"}
+        mutations.append(
+            (
+                "source_trace_mismatch_even_with_valid_requirement_trace",
+                inconsistent_trace_carriers,
+                "contract_ref",
+            )
+        )
+
+        both_refs_case_contract_mismatch = copy.deepcopy(baseline)
+        rule = next(
+            row
+            for row in both_refs_case_contract_mismatch[3]["failure_rules"]
+            if row["id"] == "L5-RULE-UNKNOWN"
+        )
+        rule["function_ref"] = "L5-fn-A"
+        both_refs_case_contract_mismatch[3]["contracts"][0]["function"] = "L5-fn-A"
+        for row in both_refs_case_contract_mismatch[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["function_ref"] = "L5-fn-A"
+                if row["case_id"] == "CASE-UNKNOWN-1":
+                    row["contract_ref"] = "L5-CONTRACT-WRONG"
+        mutations.append(
+            (
+                "both_rule_refs_case_contract_trace_mismatch",
+                both_refs_case_contract_mismatch,
+                "contract_ref",
+            )
+        )
+
         invalid_function_no_fallback = copy.deepcopy(baseline)
         rule = next(
             row
@@ -693,7 +755,11 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         rule["function_ref"] = "NO-SUCH-FUNCTION"
         mutations.append(
-            ("invalid_function_does_not_fall_back_to_contract", invalid_function_no_fallback, "function_ref")
+            (
+                "invalid_function_does_not_fall_back_to_contract",
+                invalid_function_no_fallback,
+                "function_ref",
+            )
         )
 
         both_refs_disagree = copy.deepcopy(baseline)
@@ -736,7 +802,11 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         case["rule_ref"] = "L5-RULE-UNKNOWN-OTHER-OWNER"
         case["function_ref"] = "L5-fn-D"
         mutations.append(
-            ("same_class_has_different_owner_refs", same_class_different_owners, "owner_ref")
+            (
+                "same_class_has_different_owner_refs",
+                same_class_different_owners,
+                "owner_ref",
+            )
         )
 
         ambiguous_rule_ref = copy.deepcopy(baseline)
@@ -816,9 +886,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     if field in ("expected_axis", "expected_state")
                     else field
                 )
-                mutations.append(
-                    (f"L{layer + 4}_{field}", mutated, expected_attribute)
-                )
+                mutations.append((f"L{layer + 4}_{field}", mutated, expected_attribute))
 
         case_mutations = (
             ("case_condition", lambda row: row.__setitem__("condition", "other")),

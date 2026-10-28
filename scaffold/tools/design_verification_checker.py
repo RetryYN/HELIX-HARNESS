@@ -1678,9 +1678,11 @@ def _check_negative_equivalence_mode(
                     case_id=rule_id,
                     reason="rule_contract_ref_unresolved",
                 )
-            elif isinstance(function_ref, str) and function_ref.strip() and contract.get(
-                "function"
-            ) != function_ref:
+            elif (
+                isinstance(function_ref, str)
+                and function_ref.strip()
+                and contract.get("function") != function_ref
+            ):
                 fail(
                     "contract_ref",
                     layer="L5",
@@ -1915,10 +1917,7 @@ def _check_negative_equivalence_mode(
                 )
             continue
         owner9 = next(iter(owners9))
-        if (
-            class8["partial_key"] != class9["partial_key"]
-            or owner9 != class9["key"][2]
-        ):
+        if class8["partial_key"] != class9["partial_key"] or owner9 != class9["key"][2]:
             fail(
                 "equivalence_key",
                 case_id=l8_id,
@@ -1988,15 +1987,32 @@ def _check_negative_equivalence_mode(
                 )
             rule_function_ref = rule.get("function_ref")
             rule_contract_ref = rule.get("contract_ref")
+            contract = None
+            if isinstance(rule_contract_ref, str) and rule_contract_ref.strip():
+                contract = contract_by_id.get(rule_contract_ref)
+                if contract is None:
+                    fail(
+                        "contract_ref",
+                        layer="L5",
+                        case_id=l8_id,
+                        reason="rule_contract_ref_unresolved",
+                    )
+
             if "function_ref" in rule:
-                if not isinstance(rule_function_ref, str) or not rule_function_ref.strip():
+                if (
+                    not isinstance(rule_function_ref, str)
+                    or not rule_function_ref.strip()
+                ):
                     fail(
                         "function_ref",
                         layer="L5",
                         case_id=l8_id,
                         reason="declared_function_ref_invalid_no_contract_fallback",
                     )
-                elif not isinstance(function_ref, str) or function_ref not in function_by_id:
+                elif (
+                    not isinstance(function_ref, str)
+                    or function_ref not in function_by_id
+                ):
                     fail(
                         "function_ref",
                         layer="L8",
@@ -2010,86 +2026,90 @@ def _check_negative_equivalence_mode(
                         case_id=l8_id,
                         reason="function_ref_disagrees_with_rule",
                     )
-            elif isinstance(rule_contract_ref, str) and rule_contract_ref.strip():
-                contract = contract_by_id.get(rule_contract_ref)
-                if contract is None:
-                    fail(
-                        "contract_ref",
-                        layer="L5",
-                        case_id=l8_id,
-                        reason="rule_contract_ref_unresolved",
-                    )
-                else:
-                    case_contract_ref = l8_row.get("contract_ref")
-                    requirement_trace = l8_row.get("requirement_trace")
-                    source_trace = l8_row.get("source_trace")
-                    trace_requirement_ref = (
-                        source_trace.get("requirement_ref")
-                        if isinstance(source_trace, dict)
-                        else None
-                    )
-                    has_contract_trace = False
-                    if "contract_ref" in l8_row:
-                        has_contract_trace = True
-                        if case_contract_ref != rule_contract_ref:
-                            fail(
-                                "contract_ref",
-                                layer="L8",
-                                case_id=l8_id,
-                                reason="case_contract_ref_disagrees_with_rule",
-                            )
-                    if "requirement_trace" in l8_row or isinstance(
-                        source_trace, dict
-                    ) and "requirement_ref" in source_trace:
-                        has_contract_trace = True
-                        requirement_ref = contract.get("requirement_ref")
-                        trace_values: list[str] = []
-                        if isinstance(requirement_trace, str):
-                            trace_values.append(requirement_trace)
-                        elif isinstance(requirement_trace, list) and all(
-                            isinstance(value, str) for value in requirement_trace
-                        ):
-                            trace_values.extend(requirement_trace)
-                        if isinstance(trace_requirement_ref, str):
-                            trace_values.append(trace_requirement_ref)
-                        elif isinstance(source_trace, dict) and "requirement_ref" in source_trace:
-                            fail(
-                                "contract_ref",
-                                layer="L8",
-                                case_id=l8_id,
-                                reason="case_source_trace_requirement_ref_invalid",
-                            )
-                        if not isinstance(requirement_trace, (str, list)) and "requirement_trace" in l8_row:
-                            fail(
-                                "contract_ref",
-                                layer="L8",
-                                case_id=l8_id,
-                                reason="case_requirement_trace_invalid",
-                            )
-                        if (
-                            not isinstance(requirement_ref, str)
-                            or requirement_ref not in trace_values
-                        ):
-                            fail(
-                                "contract_ref",
-                                layer="L8",
-                                case_id=l8_id,
-                                reason="case_requirement_trace_disagrees_with_rule_contract",
-                            )
-                    if not has_contract_trace:
-                        fail(
-                            "contract_ref",
-                            layer="L8",
-                            case_id=l8_id,
-                            reason="case_contract_trace_missing_for_contract_owned_rule",
-                        )
-            else:
+            elif (
+                not isinstance(rule_contract_ref, str) or not rule_contract_ref.strip()
+            ):
                 fail(
                     "owner_ref",
                     layer="L5",
                     case_id=l8_id,
                     reason="rule_owner_ref_missing_or_invalid",
                 )
+
+            if contract is not None:
+                case_contract_ref = l8_row.get("contract_ref")
+                requirement_trace = l8_row.get("requirement_trace")
+                source_trace = l8_row.get("source_trace")
+                has_contract_trace = False
+                requirement_ref = contract.get("requirement_ref")
+
+                if "contract_ref" in l8_row:
+                    has_contract_trace = True
+                    if case_contract_ref != rule_contract_ref:
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_contract_ref_disagrees_with_rule",
+                        )
+
+                if "requirement_trace" in l8_row:
+                    has_contract_trace = True
+                    if isinstance(requirement_trace, str):
+                        trace_values = [requirement_trace]
+                    elif isinstance(requirement_trace, list):
+                        trace_values = requirement_trace
+                        if any(not isinstance(value, str) for value in trace_values):
+                            fail(
+                                "contract_ref",
+                                layer="L8",
+                                case_id=l8_id,
+                                reason="case_requirement_trace_contains_non_string",
+                            )
+                    else:
+                        trace_values = []
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_requirement_trace_invalid",
+                        )
+                    if (
+                        not isinstance(requirement_ref, str)
+                        or requirement_ref not in trace_values
+                    ):
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_requirement_trace_disagrees_with_rule_contract",
+                        )
+
+                if isinstance(source_trace, dict) and "requirement_ref" in source_trace:
+                    has_contract_trace = True
+                    trace_requirement_ref = source_trace["requirement_ref"]
+                    if not isinstance(trace_requirement_ref, str):
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_source_trace_requirement_ref_invalid",
+                        )
+                    elif trace_requirement_ref != requirement_ref:
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_source_trace_requirement_ref_disagrees_with_rule_contract",
+                        )
+
+                if not has_contract_trace and "function_ref" not in rule:
+                    fail(
+                        "contract_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="case_contract_trace_missing_for_contract_owned_rule",
+                    )
             if isinstance(rule_function_ref, str) and isinstance(
                 rule_contract_ref, str
             ):
@@ -2108,7 +2128,9 @@ def _check_negative_equivalence_mode(
                         case_id=l8_id,
                         reason="rule_function_ref_disagrees_with_contract",
                     )
-            owner_ref = resolved_rule_class.get("owner_ref") if resolved_rule_class else None
+            owner_ref = (
+                resolved_rule_class.get("owner_ref") if resolved_rule_class else None
+            )
             if owner_ref is not None:
                 l8_owner_refs.setdefault(ref8, set()).add(owner_ref)
                 l9_owner_refs.setdefault(ref9, set()).add(owner_ref)
