@@ -50,7 +50,8 @@
         "L5#/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause",
         "L5#/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause",
         "L5#/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
-        "L5#/f05_detail_contract/cause_kind_crosswalk"
+        "L5#/f05_detail_contract/cause_kind_crosswalk",
+        "L5#/f05_detail_contract/owner_binding_contract/role_pairs"
       ],
       "l8_pointers": [
         "L8#/additional_unit_cases/30",
@@ -69,7 +70,9 @@
         "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
         "L4#/field_obligation_scope_contract/role_owner_binding/combination",
         "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair",
-        "L4#/field_obligation_scope_contract/basic_view_contract/types/OwnerView"
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/OwnerView",
+        "L4#/field_obligation_scope_contract/role_owner_binding/eligible_operands",
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair/members/operand_role"
       ],
       "l9_pointers": [
         "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/0",
@@ -141,7 +144,10 @@
           "L4#/field_obligation_scope_contract/role_owner_binding/combination",
           "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair",
           "L4#/field_obligation_scope_contract/basic_view_contract/types/OwnerView",
-          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/2"
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/2",
+          "L4#/field_obligation_scope_contract/role_owner_binding/eligible_operands",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair/members/operand_role",
+          "L5#/f05_detail_contract/owner_binding_contract/role_pairs"
         ]
       },
       {
@@ -232,11 +238,11 @@
     "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L4_post_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
     "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L9_post_sha256": "a8d81dee424bccb369754516927a454c5e57aa53b1429c1f2995a6781e26e75e",
+    "L9_post_sha256": "5fb1107d001bed62ea71b44b2778f87ee2cb970a8e8f10562c2e6e1395592f5c",
     "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
     "L5_post_sha256": "e15fbf4547d2cb59544a508889528d6a86e0880ac2f0e8b38ba5245d91044620",
     "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
-    "L8_post_sha256": "34a9e4fb3c7fed19cb69a3b2326883d1b337cbf5666d67447e8f0ae7a3b982ac"
+    "L8_post_sha256": "639faa2506f55781e465ac51a84712cd56eb7f41479ff315067e504008e24212"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
@@ -258,8 +264,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 155,
-    "expanded_target_count": 261,
+    "checked_count": 161,
+    "expanded_target_count": 267,
     "unresolved_count": 0,
     "passed": true
   },
