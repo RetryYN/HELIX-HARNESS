@@ -1,0 +1,345 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T1a",
+  "request_id": "WR95-OS002-HARNESS001-FREEZE-REGENERATE",
+  "resolves_disposition_ref": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json#/independent_expectation_derivation/derived_expectations",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "案件単位の選択・適用・結果・未完義務trace、owner間責務分離（B01）、開始時前提と操作時前提・未発生と欠落の区別および非対象scope保全（B02）、未資格/相反sourceの局所化を保持。",
+    "change": "OSTRACE追補判断（2026-10-10）および #3510 / #3547 統制判断に基づき、L5/L8共通remainingとwire_codec未固定範囲をA/B/Cへ根拠pointer付きで仕分け、L8へ全返却/fixture/hashを追加せず公開関数単位（fn0, fn1[B01分], fn2, fn13）でT:296・T:297詳細対を凍結した。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化"
+    ]
+  },
+  "path_aliases": {
+    "L3B": "docs/helix-os/L3-requirements/business-requirements.json",
+    "L10B": "docs/helix-os/L10-verification/business-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/0",
+        "function_id": "HELIXOS-L5-002-validate_record_trace_input",
+        "symbol": "validate_record_trace_input"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/1",
+        "function_id": "HELIXOS-L5-002-check_record_claims",
+        "symbol": "check_record_claims"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/2",
+        "function_id": "HELIXOS-L5-002-compare_operation_dependencies",
+        "symbol": "compare_operation_dependencies"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/13",
+        "function_id": "HELIXOS-L5-002-build_record_trace_analysis",
+        "symbol": "build_record_trace_analysis"
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L4#/contracts/0/comparison_order/0",
+      "l3_clause": "共通入口validate_record_trace_inputはraw入力のUTF-8/JSON構文・宣言closed field集合・source_json_utf8とsource_sha256/decoded_recordsの一致・Qualification.root_refと独立QualificationRoot（owner/allowed_subject_refs/allowed_source_ref/allowed_source_sha256）を検証し、未資格/相反/未解決sourceをsource_issuesと各Ref集合へ局所化して無関係な有資格source（Q等）を保持する。欠落を空集合へ補完しない。",
+      "l5_pointers": [
+        "L5#/functions/0",
+        "L5#/wire_codec_contract/codec_operations/0",
+        "L5#/wire_codec_contract/source_qualification_stages"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/0",
+        "L8#/additional_cases/0",
+        "L8#/additional_cases/1",
+        "L8#/additional_cases/2",
+        "L8#/additional_cases/3",
+        "L8#/additional_cases/4",
+        "L8#/additional_cases/5",
+        "L8#/additional_cases/6",
+        "L8#/additional_cases/7",
+        "L8#/additional_cases/8",
+        "L8#/additional_cases/9",
+        "L8#/additional_cases/10",
+        "L8#/function_cases/15"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L3B#/requirements/1",
+      "l3_clause": "B01正常系として、check_record_claimsはowner_outputsをBRAIN（知識意味/版）・CORE（適用/意味影響）・LABO（効果/退行評価）・SECURITY（操作/data利用条件）の原出力ref・stateへ照合し、record_receiptを記録のみの観測として保存し、実接続証拠やPO受入証拠が未供給ならnot_provenを保持する。",
+      "l5_pointers": [
+        "L5#/contracts/0",
+        "L5#/functions/1/algorithm/0",
+        "L5#/functions/1/algorithm/1"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/1",
+        "L8#/normal_fixtures/0"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L10B#/cases/1/negative_input",
+      "l3_clause": "B01負例として、check_record_claimsはOS保存成功だけでBRAIN採否/CORE適用/LABO評価済みを主張するclaim（record_as_owner_decision）をaxis=owner・state=conflict・戻し先=該当BRAIN/CORE/LABOとして検出し、原記録集合供給だけでLABO接続成立を主張するclaim（collection_as_connection）をaxis=connection・state=unknown・戻し先=OS005/024とLABOとして検出し、原結合と非対象Qの有効作業を副作用0で保持する。",
+      "l5_pointers": [
+        "L5#/contracts/0/algorithm/1",
+        "L5#/functions/1/algorithm/1"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L3B#/requirements/2",
+      "l3_clause": "B02正常系として、compare_operation_dependenciesは常時必要なbinding（project/scope）・source_event_ref・OS001_contract_refと選択operation条件を照合し、初回記録時に未発生のresult_state/receipt_state（not_occurred）を欠落へ変えず、template選択/使用時やevaluation_selected時のみ該当集合/版/CORE出力/LABO条件を照合し、未選択sourceをunobservedとして保持する。",
+      "l5_pointers": [
+        "L5#/contracts/1",
+        "L5#/functions/2/algorithm/0",
+        "L5#/functions/2/algorithm/1"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/2",
+        "L8#/normal_fixtures/1"
+      ]
+    },
+    {
+      "element_id": "O5",
+      "l3_pointer": "L10B#/cases/2/negative_input",
+      "l3_clause": "B02負例として、compare_operation_dependenciesは未発生結果receiptを初回入力へ要求するclaim（future_receipt_gate）、全seed採択を初回記録へ要求するclaim（all_seed_gate）、LABO未観測で無関係な有効scope Qを停止するclaim（unrelated_scope_stop）をそれぞれaxis=operation_dependency・state=conflict・戻し先=OS002/該当評価ownerとして返し、P初回の有効入力とQ有効作業を副作用0で保持する。",
+      "l5_pointers": [
+        "L5#/contracts/1/algorithm/2",
+        "L5#/functions/2/algorithm/2"
+      ],
+      "l8_pointers": [
+        "L8#/cases/1"
+      ]
+    },
+    {
+      "element_id": "O6",
+      "l3_pointer": "L4#/contracts/0/output",
+      "l3_clause": "共通集約build_record_trace_analysisはValidatedRecordTrace.input有効時にcontext.selected_sections順で各section比較関数を呼び、input missing/invalid時や未選択sectionの結果を合成せず、input_issuesと各section結果を元context/原refへ結び、effects=[]・authority_generated=falseを維持する。",
+      "l5_pointers": [
+        "L5#/functions/13/algorithm/0",
+        "L5#/functions/13/algorithm/1",
+        "L5#/functions/13/algorithm/2"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/13",
+        "L8#/function_cases/16"
+      ]
+    }
+  ],
+  "source_main": "3f89247e0d07e761d91299d5acaa0faedb42f747",
+  "request_base_sha": "3f89247e0d07e761d91299d5acaa0faedb42f747",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "recorded_at_utc": "2026-10-28T07:24:44+00:00",
+  "pins": {
+    "L3B_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+    "L10B_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+    "L4_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L9_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L5_sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3",
+    "L8_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 48,
+    "expanded_target_count": 48,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "validate_record_trace_input",
+      "id": "HELIXOS-L5-002-validate_record_trace_input",
+      "l5_pointer": "L5#/functions/0",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-validate_record_trace_input",
+      "unit_case_refs_count": 22,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "check_record_claims",
+      "id": "HELIXOS-L5-002-check_record_claims",
+      "l5_pointer": "L5#/functions/1",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-check_record_claims",
+      "unit_case_refs_count": 2,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_operation_dependencies",
+      "id": "HELIXOS-L5-002-compare_operation_dependencies",
+      "l5_pointer": "L5#/functions/2",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_operation_dependencies",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "build_record_trace_analysis",
+      "id": "HELIXOS-L5-002-build_record_trace_analysis",
+      "l5_pointer": "L5#/functions/13",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-build_record_trace_analysis",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "validate_record_trace_input",
+      "l5_pointer": "L5#/functions/0",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "check_record_claims",
+      "l5_pointer": "L5#/functions/1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_operation_dependencies",
+      "l5_pointer": "L5#/functions/2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "build_record_trace_analysis",
+      "l5_pointer": "L5#/functions/13",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O6",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
