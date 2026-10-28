@@ -7872,7 +7872,7 @@
             "condition": "対象definition_refs[j]が実AxisFact contentへ既に解決し、同field/binding/material_refのdefinition/AxisFact/axis_valueを示す適用宣言も同一source/body上の独立role sourceも成立しない。Ref lookup missとは別条件。",
             "target": "当該field_inputs[i].definition_refs[j]のoriginal Ref location。",
             "left": "対応済みAxisFact contentの/value全体のoriginal Read。",
-            "right": "normative_literal(original definition role/form basis)。",
+            "right": "normative_literal（原definition role/form根拠）",
             "storage": "local_unestablishedに局所保持し、DefinitionAssessmentへCauseを伝えない。projection_attempts=[]。",
             "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0"
           },
