@@ -1,0 +1,36 @@
+{
+  "id": "HARNESS-L8-009-F03-SOURCE-UNRESOLVED-01",
+  "layer": "L7",
+  "authority_effect": "none",
+  "status": "not_executed",
+  "contract_refs": [
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/3"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/functions/3/condition_meaning_lookup_miss_writer"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "pointer": "/failure_rules/106"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "pointer": "/condition_meaning_lookup_miss_oracle"
+    }
+  ],
+  "source_basis_ref": {
+    "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "pointer": "/condition_meaning_lookup_miss_oracle/source_basis/3"
+  },
+  "material_limit_ja": "既存のreconstruction記述を歴史的検証材料として移したもの。固定sourceにはnormal fixture・normal function expected output・既存NEG05と全体追加recipe群があるが、L8 case_matrixの3 variantから個別input_recipe/expected_recipe/RFC6902 operationへの対応pointerは結ばれていない。この移管ではrecipeを推定・作成せず、実行可能なfixture、pack、runtime、検証完了を主張しない。",
+  "reconstruction": {
+    "seed": "source_basis[3]の固定git L8全documentを読む。各caseのinput_recipe.root_pointerを原入力seed、expected_recipe.root_pointerを独立した元期待seedとし、各rfc6902_operationsを記載順にそれぞれ適用する。",
+    "independence": "期待は手著述literalであり、候補意味評価器や入力判定から生成しない。前段依存は既存normal input_preparationの同snapshot条件を保持し、cached期待を実際の比較結果へ流用しない。",
+    "local_paths": "contrast.provenance等のlocal pathは著述訂正の来歴だけ。全3caseはこのsectionの埋込patchと固定git seedで再構成でき、local driver又はignored fileを要しない。",
+    "canonical_hash": "input/expected及びselected objectはensure_ascii=False,sort_keys=True,separators=(comma,colon)のUTF8 SHA256。",
+    "source_hash": "source.content_bytesは固定原文字列literalのUTF8 bytesをhashする。body parse値のcanonical hashへ置換しない。"
+  }
+}
