@@ -7,7 +7,7 @@ import functools
 import hashlib
 import json
 import math
-from decimal import Decimal
+from decimal import Decimal, DecimalException
 from typing import Any
 
 
@@ -494,7 +494,7 @@ def _source_qualification_check(
             parse_int=Decimal,
             parse_float=Decimal,
         )
-    except (json.JSONDecodeError, UnicodeDecodeError, ValueError):
+    except (json.JSONDecodeError, UnicodeDecodeError, ValueError, DecimalException):
         return False, None
     if not _source_body_equal(decoded, source["content"]):
         return False, None
