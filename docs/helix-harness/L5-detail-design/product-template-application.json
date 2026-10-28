@@ -447,7 +447,7 @@
           "trace_requirements": "TraceRequirement[]",
           "input_ref": "Ref"
         },
-        "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。B02上AI/言語/project差だけで論点を増減しない。表示名をmetadataとして扱う意図は保つが、現在nonsemantic_metadataはRawValueであり内側のkeyはopaque、個別名の型付きmemberは無い。したがってRawValue内の未宣言keyをAI/言語/project表示名と識別する判定はcase-level stopとする。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。 source-result projectionが扱うApplicationInput.input_refは同じsnapshotの任意原Refとして保持し、未供給時に他fieldから生成しない。",
+        "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。 AI/言語/project表示名はnonsemantic_metadataへ保存し適用理由へ使わない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。 source-result projectionが扱うApplicationInput.input_refは同じsnapshotの任意原Refとして保持し、未供給時に他fieldから生成しない。",
         "optional_fields": [
           "input_ref"
         ]
@@ -1978,7 +1978,7 @@
         "HARNESS-L5-009-B02"
       ],
       "algorithm": [
-        "同要求分類/母集合/適用契約/製品scopeのqualified意味比較へ結果の必要論点/義務を対応させる。承認済みB02はAI/言語/project差だけで論点を増減しないと定めるが、現在のApplicationInputはnonsemantic_metadataをRawValueとしてのみ宣言し、その内側のAI/言語/project keyを型付きmemberとして定義しない。したがって未宣言keyを識別して比較せず、該当NEGはcase ID付きで停止する。",
+        "同要求分類/母集合/適用契約/製品scopeのqualified意味比較へ結果の必要論点/義務を対応させる。AI/言語/project表示名（nonsemantic_metadata）の差だけで増減させない。",
         "異domain/risk/scopeは比較境界と根拠の相違を保存し同setを強制しない。文字列/件数/hash一致で意味同等にしない。",
         "具体missing/extra義務と未評価範囲を返す。実未見入力/oracle凍結はL6/L7の別系統準備へ残す。"
       ],
@@ -4787,7 +4787,7 @@
         "各Comparison.material.obligation_refsは対応snapshot.input.obligationsのref列へ原順/重複を保って照合する。返却順・欠落・追加を別々に観測し、baseline refsでvariant refsを上書きしない。",
         "各SourceEnvelope.ref/source_refを同じsnapshot内のSourceEnvelope、Qualification.subject_ref/owner/scope/sha256、qualification_rootsへ解決する。資格rootの実trust判断は外部owner境界のままで、candidate/fixtureがqualification成立を証明したとはしない。",
         "SemanticComparisonはfull Ref・left_ref/right_ref・same_meaning・source_refを2 snapshotのrecord/source集合へ結ぶ。各recordのowner snapshot内source、Qualification、rootを確認し、left/rightは該当するbaseline/variant recordへ完全Refで結ぶ。reason文字列、Claim、自己申告はsource資格/meaning basisの代替にしない。",
-        "nonsemantic_metadataは宣言上RawValueであり、その任意object keyはopaque値として保持する。fixture内にai_name/language_name keyがあっても型付きApplicationInput memberの根拠にせず、private callerはそのkeyを意味分類・単軸差分の識別子として読まない。型付き識別carrierが別途設計・承認・producer/consumer接続されるまではNEG-01/02を停止する。",
+        "nonsemantic_metadataは宣言上RawValueであり、その任意object keyはopaque値として保持する。fixture内にai_name/language_name keyがあっても型付きApplicationInput memberの根拠にせず、private callerはそのkeyを意味分類・単軸差分の識別子として読まない。既存のL5下流設計と独立reviewで型付き識別carrierが定まり、実producer/consumerへ接続されるまではNEG-01/02の観測を停止する。上流B02の意味は維持し、別の人手承認gateを追加しない。",
         "Finding code/state/expected set/L9 expected textは入力に含めない。private callerは既存Finding[]で観測結果を返し、各rule_refはL5 failure_rules/8..11へ結ぶ。",
         "現FN8 return.material.comparison_basis_refsは空である。これをpair basisとして読まず、将来FN8 producerが自動補完すると仮定しない。pair callerは既にinputに供給されたsemantic_comparisonsとqualified sourcesだけを使い、欠落時はcase停止を維持する。"
       ],
@@ -4815,7 +4815,7 @@
         "observable_condition": "B02はAI名だけで義務を増減しない意味を承認しているが、現行ApplicationInputではnonsemantic_metadata: RawValueのみが宣言されai_nameのtyped memberは無い。RawValue object上の任意key差だけではAI名の差と特定できないため、現行carrierではこのcaseの入力条件を識別できない。fixture keyを型承認・意味分類へ昇格しない。",
         "result": "現行carrierではfindingを生成せず、HARNESS-L8-009-B02-NEG-01をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-01",
-        "stop_if": "ai_nameを表す承認済みtyped input memberまたはそれと同義の既存typed sourceが存在しない間は停止する。再開には型宣言、wire/schema mirror、実producer、validation/normalization、全consumerの利用範囲を照合し、AI名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "ai_nameを表すtyped input memberまたはそれと同義の既存typed sourceが入力から供給されていない間は停止する。再開には既存L5下流設計・独立reviewで型宣言、wire/schema mirror、実producer、validation/normalization、全consumer接続を整合させ、AI名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
       },
       "neg_02": {
         "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
@@ -4831,7 +4831,7 @@
         "observable_condition": "B02は言語差だけで論点を増減しない意味を承認しているが、現行ApplicationInputではnonsemantic_metadata: RawValueのみが宣言されlanguage_nameのtyped memberは無い。RawValue object上の任意key差だけでは言語名の差と特定できないため、現行carrierではこのcaseの入力条件を識別できない。fixture keyを型承認・意味分類へ昇格しない。",
         "result": "現行carrierではfindingを生成せず、HARNESS-L8-009-B02-NEG-02をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-02",
-        "stop_if": "language_nameを表す承認済みtyped input memberまたはそれと同義の既存typed sourceが存在しない間は停止する。再開には型宣言、wire/schema mirror、実producer、validation/normalization、全consumerの利用範囲を照合し、言語名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "language_nameを表すtyped input memberまたはそれと同義の既存typed sourceが入力から供給されていない間は停止する。再開には既存L5下流設計・独立reviewで型宣言、wire/schema mirror、実producer、validation/normalization、全consumer接続を整合させ、言語名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
       },
       "neg_03": {
         "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
@@ -4890,7 +4890,7 @@
         "private pair callerとcompare_semantic_equivalence設計はそのtyped memberのみでAI名/言語名の単軸差を判定する。",
         "ApplicationInputを保持・射影する既存consumerとwire/native crosswalkが追加memberを落とさず、unknown keyとして拒否も別意味へのaliasもしないか再照合する。現source検索ではnonsemantic_metadataのnested keyを読む実装consumerは未発見。"
       ],
-      "reentry_condition": "別設計でL3/L10の既存意味を変えずに型付きcarrierの必要性・owner/source・producer・closed schema/validator・全consumer互換を具体化し、型memberが実入力から供給されるまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。"
+      "reentry_condition": "既存L5下流設計と独立reviewで、L3/L10の既存意味を変えずに型付きcarrierの必要性・owner/source・producer・closed schema/validator・全consumer互換を具体化し、型memberが実入力から供給されるまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。人の判断は上流意味を変える場合、またはauthority-state modelが対象revisionのdecisionを要求する場合に限る。この記載は別承認gateを追加しない。"
     },
     "legacy_and_failure_basis": [
       {
@@ -5258,7 +5258,7 @@
                 "semantic_records": "SemanticRecord[]",
                 "trace_requirements": "TraceRequirement[]"
               },
-              "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。B02上AI/言語/project差だけで論点を増減しない。表示名をmetadataとして扱う意図は保つが、現在nonsemantic_metadataはRawValueであり内側のkeyはopaque、個別名の型付きmemberは無い。したがってRawValue内の未宣言keyをAI/言語/project表示名と識別する判定はcase-level stopとする。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。"
+              "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。 AI/言語/project表示名はnonsemantic_metadataへ保存し適用理由へ使わない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。"
             },
             "InputIssue": {
               "fields": {
