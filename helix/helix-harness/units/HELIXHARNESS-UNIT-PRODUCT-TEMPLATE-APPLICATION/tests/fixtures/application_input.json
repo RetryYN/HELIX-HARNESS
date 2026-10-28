@@ -69,6 +69,23 @@
       "/cases/6/negative_cases",
       "/additional_unit_cases/14",
       "/additional_unit_cases/15"
+    ],
+    "row_specific_source_override_history": [
+      {
+        "fixture_pointer": "/f02_negative_cases/5/typed_mutation/synthetic_value/value",
+        "source_path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "source_revision": "75f51309e0b391604427fedcbdda0a2743aa690a",
+        "source_whole_file_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+        "source_pointer": "/cases/3/negative_cases/5/typed_mutation/synthetic_value/value",
+        "previous_value": [
+          "template-TU",
+          "template-foreign"
+        ],
+        "current_value": [
+          "SYNTHETIC-T-EXTRA"
+        ],
+        "scope": "このfixtureのF02-NEG-06 mutation valueだけを上書きする。既存のsnapshot/current L8全体pinと他pointerの履歴は変更しない。"
+      }
     ]
   },
   "normal_input": {
@@ -26470,8 +26487,7 @@
         "synthetic_value": {
           "kind": "candidate_members",
           "value": [
-            "template-TU",
-            "template-foreign"
+            "SYNTHETIC-T-EXTRA"
           ],
           "basis": "same-count"
         },

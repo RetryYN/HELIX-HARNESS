@@ -1,0 +1,294 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": null,
+  "path_aliases": {
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "L7": "docs/helix-harness/L7-function-verification/product-template-application.json",
+    "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json"
+  },
+  "record_id": "WR139-H009-FN4-FUNCTION-PAIR-2026-10-29",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-WR139-FN4",
+  "request_id": "WR139-H009-FOLLOWUP-FIXTURE-FREEZE",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60, 81–92",
+      "keep_ja": "候補templateのexact set・適用unknown・理由/再評価条件付きN/A・不足のBackflow返却・requirement→obligation→design→pairのtraceを保持する。",
+      "change_ja": "旧単一DesignTemplateRegistry/ApplicabilityEvaluator/PairGraphBinderからBRAIN(032)・HARNESS-CORE(009)・HELIX-OS(002)の3機構へ責務を分離し、関数単位のpair凍結で検収する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "I/O・副作用none・failure・consumer/oracleを保持しunknownをN/Aや空集合へ丸めない。",
+      "change_ja": "旧TPL文法・operator・runtime・CIを移植せず、L8にはU-ID行（対象・反例と期待・oracle ID・test citation）のみを置き具体fixture展開はL6/L7へ分離する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "lines": "34–55",
+      "keep_ja": "異なるbehaviorを束ねず原子的sliceと不変条件単位で分割・検収する。",
+      "change_ja": "11組一括FREEZEを廃止し、公開関数1つ＋対のL8 case行＋担うL3義務を単位として凍結を記録する。"
+    },
+    {
+      "asset_id": "UTW-014/020/021/033",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "65–101",
+      "keep_ja": "欠損の空集合縮退、巨大aggregateへの集中による部分不足不可視、件数/hashのみによる自己申告完了、freezeとreopen境界の未分離を再発防止の事例として確認する。",
+      "change_ja": "現行の承認済み意味へ照合し、旧運用文言を製品規則へ写さない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "obligation_ja": "選択template版へunit/connection/composite固有義務とrequirement→obligation→design→pairのtraceを結ぶ。",
+      "l5_pointers": [
+        "L5#/contracts/5",
+        "L5#/functions/4",
+        "L5#/failure_rules/68",
+        "L5#/failure_rules/69",
+        "L5#/failure_rules/70",
+        "L5#/failure_rules/71",
+        "L5#/failure_rules/72",
+        "L5#/failure_rules/74"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5",
+        "L8#/cases/5/negative_cases",
+        "L8#/normal_function_oracles/4",
+        "L8#/additional_unit_cases/13"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/26",
+        "L10F#/cases/26",
+        "L4#/contracts/5",
+        "L9#/cases/5",
+        "L9#/cases/5/negative_cases"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "obligation_ja": "041のatom/proposal/gap抽出と025/026の具体設計/oracle構成は別能力として残す。",
+      "l5_pointers": [
+        "L5#/contracts/5",
+        "L5#/functions/4",
+        "L5#/failure_rules/73"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5",
+        "L8#/cases/5/negative_cases",
+        "L8#/cases/5/negative_cases/5",
+        "L8#/normal_function_oracles/4",
+        "L8#/additional_unit_cases/13"
+      ],
+      "basis_pointers": [
+        "L3F#/requirements/26",
+        "L10F#/cases/26",
+        "L4#/contracts/5",
+        "L9#/cases/5",
+        "L9#/cases/5/negative_cases",
+        "L9#/cases/5/negative_cases/5"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/4",
+        "function_id": "HARNESS-L5-009-compare_kind_obligation_trace",
+        "symbol": "compare_kind_obligation_trace",
+        "l8_oracle_pointer": "L8#/normal_function_oracles/4",
+        "unit_case_pointers": [
+          "L8#/cases/5",
+          "L8#/additional_unit_cases/13"
+        ]
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "75f51309e0b391604427fedcbdda0a2743aa690a",
+  "request_base_sha": "77b50ec7dc1c219822a88bc40f9ed689c51b2892",
+  "recorded_at_utc": "2026-10-28T17:04:37+00:00",
+  "pins": {
+    "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10B_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+    "L9_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
+    "L5_pre_sha256": "a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503",
+    "L5_post_sha256": "a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503",
+    "L8_pre_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+    "L8_post_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+    "L7_sha256": "da3359bba2815a95fd3362395f2271faffe71bc27156474c0de2cba24868e56d",
+    "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 107,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 106,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 25,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11,
+    "L8_general_proposal_exchange_additional_branch_probes": 9
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 39,
+    "expanded_target_count": 39,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 106,
+      "L9": 106,
+      "L8": 106,
+      "L5": 106
+    },
+    "matched_case_count": 106,
+    "failure_count": 0,
+    "passed": true,
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_kind_obligation_trace",
+      "id": "HARNESS-L5-009-compare_kind_obligation_trace",
+      "l5_pointer": "L5#/functions/4",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HARNESS-L8-009-NORMAL-compare_kind_obligation_trace",
+      "unit_case_refs_count": 8,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_kind_obligation_trace",
+      "l5_pointer": "L5#/functions/4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 106,
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows",
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  },
+  "record_path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
+  "target": "H009 FN4 公開関数 compare_kind_obligation_trace（L5#/functions/4）とL8 pair。F04 extraction/design-complete境界を含む。",
+  "criterion": "L3/L10-009-F04とL4/L9-009-F04は上流根拠の参照元として保持する。旧宣言のpointer mappingを出発点にした機械照合candidateであり、現revisionに対する独立意味再導出・完全性判断はpending。機械checkerはpointer/case対応のみ確認し、L5/L8の意味一致や正例/境界testの実行を認定しない。対象は公開 compare_kind_obligation_trace 関数pairのみ。",
+  "current_request_ref": {
+    "url": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6475436034",
+    "payload_sha256": "c68d6aa736761b0ad03eec1ce97d4892a56a2e1bdf61586922992eae01b23070",
+    "authority_effect": "none"
+  },
+  "historical_source_record": {
+    "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+    "commit": "3c32df7b1e4736403ba428907455002b4199a173",
+    "file_sha256": "3c3817dd975ee927ea67e3acac49d69c1e00a56ba9aa19fdfc2810b662c81c06",
+    "record_id": "HARNESS009-FN4-FUNCTION-PAIR-FREEZE-20261028",
+    "historical_decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6457411605",
+    "historical_slice_id": "D-H009-T2b-FN4",
+    "historical_resolves_disposition_ref": {
+      "alias": "DISP2",
+      "json_pointer": "/dispositions/12",
+      "label": "DISP2#/dispositions/12"
+    },
+    "historical_target": null,
+    "historical_criterion": null,
+    "source_main": "15d8549885fdc2671c400d0c68b6af715549b1ca",
+    "request_base_sha": "15d8549885fdc2671c400d0c68b6af715549b1ca",
+    "recorded_at_utc": "2026-10-28T09:56:06+00:00",
+    "historical_expectation_declaration_sha256": "d63991d7a05b9235fda01049a47996a32956ec9a53a055b50e8006fb1ee01e89",
+    "historical_not_claimed_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "historical_verification_sha256": "daec9038ca0da775788f5a54f2ff1f43c13e6d1981208239f604c55994a7d4fe",
+    "historical_verification_scope": "旧sliceのchecker結果。新recordでは流用せず、現行checkerの生成結果だけをverificationに保持する。"
+  },
+  "semantic_review_status": "pending_independent_semantic_review",
+  "not_claimed": [
+    "L3 obligation decomposition completeness or current L5/L8 semantic agreement is not established; independent semantic review pending.",
+    "No requirement/design/PO approval, L11 acceptance, implementation or test execution pass, or overall freeze is generated."
+  ],
+  "expectation_derivation_status": "Prior L3/L10/L4/L9 mapping is carried as a pointer declaration only; semantic completeness and its application to current revision remain pending independent review. It does not reapprove the historical FN4 freeze."
+}
