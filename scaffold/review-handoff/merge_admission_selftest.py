@@ -3,16 +3,18 @@
 
 gh / git / scfctl 呼出しをモックrunnerで差し替え、実PRや外部GitHubへ一切作用させずに
 次の全分岐を検証する:
-1. Ready + CLEAN + trial merge OK + stale=0 + 明示merge + read-after一致 (正常系・待機後CLEAN含む)
+1. Ready + CLEAN + trial merge OK + stale=0 + merge直前再照合OK + 明示merge + read-after一致 (正常系・待機後CLEAN含む)
 2. Draft PR 拒否 (pr_is_draft)
 3. HEAD 不一致 拒否 (head_mismatch)
 4. autoMergeRequest 有り 拒否 (auto_merge_enabled)
-5. mergeStateStatus != CLEAN 拒否 (merge_state_not_clean)
-6. 試験 merge 衝突 拒否 + worktree 確実削除 (trial_merge_conflict)
-7. scfctl stale >= 1 拒否 + worktree 確実削除 (scaffold_stale)
-8. merge 後 read-after HEAD/parent/ancestor 不一致 検出 (read_after_head_or_parent_mismatch)
-9. merge 後 read-after tree 不一致 検出 (read_after_tree_mismatch)
-10. 権限境界: 自己PR merge 拒否 (self_merge_forbidden) / packet 照合拒否
+5. 試験 merge 衝突 拒否 + worktree 確実削除 (trial_merge_conflict)
+6. scfctl stale >= 1 拒否 + worktree 確実削除 (scaffold_stale)
+7. merge直前の再取得で origin/main が動いていた場合の拒否 (main_head_moved_before_merge, R1 F1)
+8. merge直前の再取得で PR 状態が変化していた場合の拒否 (pre_merge_pr_state_drifted, R1 F1)
+9. merge 後 read-after HEAD/parent/ancestor 不一致 検出 (read_after_head_or_parent_mismatch)
+10. merge 後 read-after tree 不一致 検出 (read_after_tree_mismatch)
+11. merge 直後に別 merge が入って origin/main 先頭が進んでも gh pr view mergeCommit と <mergeCommit>^{tree} で照合する (R1 F2)
+12. 権限境界: 自己PR merge 拒否 (self_merge_forbidden) / packet 照合拒否
 """
 
 from __future__ import annotations
@@ -43,13 +45,15 @@ class FakeScenarioRunner:
         *,
         pr_views: list[dict[str, object]] | None = None,
         base_main_sha: str = SAMPLE_BASE,
+        pre_merge_main_sha: str | None = None,
         trial_merge_rc: int = 0,
         stale_rc: int = 0,
         stale_stdout: str = "checked=165\nstale=0\n",
         trial_tree: str = SAMPLE_TREE,
         merge_rc: int = 0,
         merge_commit: str = SAMPLE_MERGE,
-        main_tree: str = SAMPLE_TREE,
+        post_merge_origin_main_sha: str | None = None,
+        merge_tree: str = SAMPLE_TREE,
         parents: str | None = None,
         is_ancestor_rc: int = 0,
         comment_url: str = "https://github.com/RetryYN/HELIX-HARNESS/pull/3999#issuecomment-1",
@@ -67,13 +71,21 @@ class FakeScenarioRunner:
             ]
         )
         self.base_main_sha = base_main_sha
+        self.pre_merge_main_sha = (
+            pre_merge_main_sha if pre_merge_main_sha is not None else base_main_sha
+        )
         self.trial_merge_rc = trial_merge_rc
         self.stale_rc = stale_rc
         self.stale_stdout = stale_stdout
         self.trial_tree = trial_tree
         self.merge_rc = merge_rc
         self.merge_commit = merge_commit
-        self.main_tree = main_tree
+        self.post_merge_origin_main_sha = (
+            post_merge_origin_main_sha
+            if post_merge_origin_main_sha is not None
+            else merge_commit
+        )
+        self.merge_tree = merge_tree
         self.parents = (
             parents if parents is not None else f"{base_main_sha} {SAMPLE_HEAD}"
         )
@@ -88,6 +100,12 @@ class FakeScenarioRunner:
     ) -> subprocess.CompletedProcess[str]:
         self.calls.append(list(argv))
         if argv[:3] == ["gh", "pr", "view"]:
+            if argv[-1] == "state,mergeCommit":
+                payload = {
+                    "state": "MERGED",
+                    "mergeCommit": {"oid": self.merge_commit},
+                }
+                return subprocess.CompletedProcess(argv, 0, json.dumps(payload), "")
             idx = min(self._view_idx, len(self.pr_views) - 1)
             self._view_idx += 1
             return subprocess.CompletedProcess(
@@ -97,7 +115,12 @@ class FakeScenarioRunner:
             self._fetch_count += 1
             return subprocess.CompletedProcess(argv, 0, "", "")
         if argv == ["git", "rev-parse", "origin/main"]:
-            sha = self.base_main_sha if self._fetch_count <= 1 else self.merge_commit
+            if self._fetch_count == 1:
+                sha = self.base_main_sha
+            elif self._fetch_count == 2:
+                sha = self.pre_merge_main_sha
+            else:
+                sha = self.post_merge_origin_main_sha
             return subprocess.CompletedProcess(argv, 0, sha + "\n", "")
         if argv[:3] == ["git", "worktree", "add"]:
             return subprocess.CompletedProcess(argv, 0, "", "")
@@ -112,7 +135,7 @@ class FakeScenarioRunner:
         if (
             len(argv) >= 5
             and argv[:2] == ["git", "-C"]
-            and argv[3:] == ["rev-parse", "HEAD^{tree}"]
+            and argv[3:] == ["rev-parse", "HEAD^{{tree}}"]
         ):
             return subprocess.CompletedProcess(argv, 0, self.trial_tree + "\n", "")
         if argv[:3] == ["git", "worktree", "remove"]:
@@ -127,8 +150,8 @@ class FakeScenarioRunner:
             return subprocess.CompletedProcess(
                 argv, self.merge_rc, "", "merge failed" if self.merge_rc else ""
             )
-        if argv == ["git", "rev-parse", "origin/main^{tree}"]:
-            return subprocess.CompletedProcess(argv, 0, self.main_tree + "\n", "")
+        if argv == ["git", "rev-parse", f"{self.merge_commit}^{{tree}}"]:
+            return subprocess.CompletedProcess(argv, 0, self.merge_tree + "\n", "")
         if argv[:4] == ["git", "log", "-1", "--format=%P"]:
             return subprocess.CompletedProcess(argv, 0, self.parents + "\n", "")
         if argv[:3] == ["git", "merge-base", "--is-ancestor"]:
@@ -325,6 +348,85 @@ class MergeAdmissionTest(unittest.TestCase):
         leftover = list(self.tmp_dir.glob("helix-admit-*"))
         self.assertEqual(leftover, [])
 
+    def test_reject_main_head_moved_before_merge(self) -> None:
+        runner = FakeScenarioRunner(
+            base_main_sha=SAMPLE_BASE,
+            pre_merge_main_sha="1" * 40,
+        )
+        res = merge_admission.run_merge_admission(
+            pr=3999,
+            head=SAMPLE_HEAD,
+            review_comment="IC_1",
+            repo_root=self.tmp_dir,
+            worktree_parent=self.tmp_dir,
+            runner=runner,
+            sleep_fn=lambda _: None,
+        )
+        self.assertFalse(res["ok"])
+        self.assertEqual(res["reason"], "main_head_moved_before_merge")
+        self.assertEqual(res["base_main_sha"], SAMPLE_BASE)
+        self.assertEqual(res["observed_main_sha"], "1" * 40)
+        self.assertTrue(res["worktree_removed"])
+        self.assertFalse(any(c[:3] == ["gh", "pr", GH_SUBCMD] for c in runner.calls))
+
+    def test_reject_pr_state_drifted_before_merge(self) -> None:
+        runner = FakeScenarioRunner(
+            pr_views=[
+                {
+                    "state": "OPEN",
+                    "isDraft": False,
+                    "headRefOid": SAMPLE_HEAD,
+                    "autoMergeRequest": None,
+                    "mergeStateStatus": "CLEAN",
+                },
+                {
+                    "state": "OPEN",
+                    "isDraft": False,
+                    "headRefOid": SAMPLE_HEAD,
+                    "autoMergeRequest": None,
+                    "mergeStateStatus": "DIRTY",
+                },
+            ]
+        )
+        res = merge_admission.run_merge_admission(
+            pr=3999,
+            head=SAMPLE_HEAD,
+            review_comment="IC_1",
+            repo_root=self.tmp_dir,
+            worktree_parent=self.tmp_dir,
+            runner=runner,
+            sleep_fn=lambda _: None,
+        )
+        self.assertFalse(res["ok"])
+        self.assertEqual(res["reason"], "pre_merge_pr_state_drifted")
+        self.assertEqual(res["drift_reason"], "merge_state_not_clean")
+        self.assertTrue(res["worktree_removed"])
+        self.assertFalse(any(c[:3] == ["gh", "pr", GH_SUBCMD] for c in runner.calls))
+
+    def test_read_after_uses_pr_merge_commit_even_if_main_advanced(self) -> None:
+        runner = FakeScenarioRunner(
+            merge_commit=SAMPLE_MERGE,
+            post_merge_origin_main_sha="8" * 40,
+            merge_tree=SAMPLE_TREE,
+            trial_tree=SAMPLE_TREE,
+        )
+        res = merge_admission.run_merge_admission(
+            pr=3999,
+            head=SAMPLE_HEAD,
+            review_comment="IC_1",
+            repo_root=self.tmp_dir,
+            worktree_parent=self.tmp_dir,
+            runner=runner,
+            sleep_fn=lambda _: None,
+        )
+        self.assertTrue(res["ok"])
+        self.assertEqual(res["merge_commit"], SAMPLE_MERGE)
+        self.assertTrue(res["tree_matched"])
+        self.assertIn(
+            ["git", "rev-parse", f"{SAMPLE_MERGE}^{{tree}}"],
+            runner.calls,
+        )
+
     def test_read_after_head_or_parent_mismatch(self) -> None:
         runner = FakeScenarioRunner(
             parents=f"{SAMPLE_BASE} {'f' * 40}",
@@ -348,7 +450,7 @@ class MergeAdmissionTest(unittest.TestCase):
     def test_read_after_tree_mismatch(self) -> None:
         runner = FakeScenarioRunner(
             trial_tree=SAMPLE_TREE,
-            main_tree="9" * 40,
+            merge_tree="9" * 40,
         )
         res = merge_admission.run_merge_admission(
             pr=3999,

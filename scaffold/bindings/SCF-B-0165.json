@@ -58,7 +58,7 @@
   "obligations": [
     "PR番号・exact HEAD（40-hex）・review comment ID/URLを引数に取り、gh pr viewでstate/isDraft/headRefOid/autoMergeRequest/mergeStateStatusを再取得してOPEN・Ready（isDraft=false）・HEAD一致・autoMergeRequest=null・CLEANを確かめる（待機は上限回数付き）。",
     "最新origin/mainを再取得し、PRのcontent HEADを動かさずに一時worktreeで--no-ffの試験mergeを行い、scfctl staleがstale=0を返すことを確認してtrial treeを記録し、成功・失敗を問わず一時worktreeを必ず削除する。",
-    "明示merge（--merge --match-head-commit）を実行し、直後にorigin/mainを再取得してmerge commitの第1親（base main）・第2親（content HEAD）・HEADがorigin/mainのancestorであること・origin/main^{tree}とtrial treeの一致をread-afterする。",
+    "明示mergeの直前にorigin/mainとPR状態（OPEN・isDraft=false・headRefOid==head・autoMergeRequest=null・CLEAN）を再取得して試験merge時点から変化していないことを確かめ、明示merge（--merge --match-head-commit）を実行し、直後にgh pr view --json state,mergeCommitでmerge commitを特定して第1親（base main）・第2親（content HEAD）・HEADおよびmerge commitがorigin/mainのancestorであること・<mergeCommit>^{tree}とtrial treeの一致をread-afterする。",
     "結果を構造化JSONで標準出力し、完了comment本文を生成する（投稿有無は--post-commentで選択可能）。ハードコードされたローカルpathやsession IDを持たない。",
     "権限の境界として、このスクリプトは手順を機械化するだけでmergeの権限を生まない。自己PRのmerge（author == executor / reviewer）、DraftのReady化、GitHub native auto-merge、PR branchへのbase取込み、release/tagは行わず、行える分岐も作らない。"
   ],
@@ -114,8 +114,10 @@
       "autoMergeRequest有りをauto_merge_enabledで拒否する",
       "試験merge衝突時にworktreeを確実に削除しtrial_merge_conflictで停止する",
       "scfctl stale >= 1のときにworktreeを確実に削除しscaffold_staleで停止する",
+      "merge直前の再取得でorigin/mainが変化していたときにmain_head_moved_before_mergeで拒否しmergeしない",
+      "merge直前の再取得でPR状態が変化していたときにpre_merge_pr_state_driftedで拒否しmergeしない",
       "merge後のread-afterで親commitまたはancestor不一致をread_after_head_or_parent_mismatchとして検出しcomment投稿を止める",
-      "merge後のread-afterでorigin/main^{tree}とtrial treeの不一致をread_after_tree_mismatchとして検出しcomment投稿を止める",
+      "merge後のread-afterで<mergeCommit>^{tree}とtrial treeの不一致をread_after_tree_mismatchとして検出しcomment投稿を止める",
       "author == executor / reviewer（自己PR merge）やno_findings以外のpacketをself_merge_forbidden / review_not_no_findingsで拒否する"
     ]
   },

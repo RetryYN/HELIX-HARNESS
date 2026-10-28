@@ -38,6 +38,7 @@ HEX40_RE = re.compile(r"^[0-9a-f]{40}$")
 GH_SUBCMD = "merge"
 MAX_WAIT_ATTEMPTS = 240
 MAX_WAIT_INTERVAL = 300.0
+PR_VIEW_FIELDS = "state,isDraft,headRefOid,autoMergeRequest,mergeStateStatus"
 
 RunnerType = Callable[[list[str], Path | None], subprocess.CompletedProcess[str]]
 
@@ -121,6 +122,26 @@ def validate_inputs(
     return True, None
 
 
+def check_pr_admissible(pr_info: dict[str, Any], expected_head: str) -> str | None:
+    state = pr_info.get("state", "OPEN")
+    is_draft = pr_info.get("isDraft")
+    head_oid = pr_info.get("headRefOid")
+    auto_merge = pr_info.get("autoMergeRequest")
+    merge_state = pr_info.get("mergeStateStatus")
+
+    if state != "OPEN":
+        return "pr_not_open"
+    if is_draft is not False:
+        return "pr_is_draft"
+    if head_oid != expected_head:
+        return "head_mismatch"
+    if auto_merge is not None:
+        return "auto_merge_enabled"
+    if merge_state != "CLEAN":
+        return "merge_state_not_clean"
+    return None
+
+
 def render_completion_comment(
     *,
     pr: int,
@@ -158,12 +179,12 @@ def render_completion_comment(
             "",
             "**read-after**",
             f"- merge commit は `{merge_commit}`（parents: {parents_str}）。",
-            f"- `origin/main^{{tree}}` と trial tree は{tm_ja}した。",
+            f"- `{merge_commit}^{{tree}}` と trial tree は{tm_ja}した。",
             f"- HEAD は main の ancestor か：{anc_ja}。",
             "",
             "**作業結果**",
             f"- {wl}。",
-            f"- 後続の作業 base は、merge 後の main `{merge_commit[:8]}` とする。",
+            f"- 後続の作業 base は、merge 後の `{merge_commit[:8]}` とする。",
             "",
         ]
     )
@@ -214,14 +235,7 @@ def run_merge_admission(
     pr_info: dict[str, Any] = {}
     for attempt in range(1, wait_attempts + 1):
         view_proc = runner(
-            [
-                "gh",
-                "pr",
-                "view",
-                str(pr),
-                "--json",
-                "state,isDraft,headRefOid,autoMergeRequest,mergeStateStatus",
-            ],
+            ["gh", "pr", "view", str(pr), "--json", PR_VIEW_FIELDS],
             repo_root,
         )
         if view_proc.returncode != 0:
@@ -250,97 +264,30 @@ def run_merge_admission(
                 "head": head,
             }
 
-        state = pr_info.get("state", "OPEN")
-        is_draft = pr_info.get("isDraft")
-        head_oid = pr_info.get("headRefOid")
-        auto_merge = pr_info.get("autoMergeRequest")
-        merge_state = pr_info.get("mergeStateStatus")
-
-        if (
-            state == "OPEN"
-            and is_draft is False
-            and head_oid == head
-            and auto_merge is None
-            and merge_state == "CLEAN"
-        ):
+        chk_reason = check_pr_admissible(pr_info, head)
+        if chk_reason is None:
             break
-        if (
-            state != "OPEN"
-            or is_draft is not False
-            or head_oid != head
-            or auto_merge is not None
-        ):
+        if chk_reason != "merge_state_not_clean":
             break
         if attempt < wait_attempts and wait_interval > 0:
             sleep_fn(wait_interval)
 
-    state = pr_info.get("state", "OPEN")
-    is_draft = pr_info.get("isDraft")
-    head_oid = pr_info.get("headRefOid")
-    auto_merge = pr_info.get("autoMergeRequest")
-    merge_state = pr_info.get("mergeStateStatus")
-
-    if state != "OPEN":
-        return {
+    chk_reason = check_pr_admissible(pr_info, head)
+    if chk_reason is not None:
+        out_err: dict[str, Any] = {
             "schema": "scaffold-merge-admission-result.v1",
             "evidence_kind": "scaffold",
             "authority_effect": "none",
             "ok": False,
             "status": "rejected",
-            "reason": "pr_not_open",
+            "reason": chk_reason,
             "pr": pr,
             "head": head,
             "observed_pr": pr_info,
         }
-    if is_draft is not False:
-        return {
-            "schema": "scaffold-merge-admission-result.v1",
-            "evidence_kind": "scaffold",
-            "authority_effect": "none",
-            "ok": False,
-            "status": "rejected",
-            "reason": "pr_is_draft",
-            "pr": pr,
-            "head": head,
-            "observed_pr": pr_info,
-        }
-    if head_oid != head:
-        return {
-            "schema": "scaffold-merge-admission-result.v1",
-            "evidence_kind": "scaffold",
-            "authority_effect": "none",
-            "ok": False,
-            "status": "rejected",
-            "reason": "head_mismatch",
-            "pr": pr,
-            "head": head,
-            "observed_head": head_oid,
-            "observed_pr": pr_info,
-        }
-    if auto_merge is not None:
-        return {
-            "schema": "scaffold-merge-admission-result.v1",
-            "evidence_kind": "scaffold",
-            "authority_effect": "none",
-            "ok": False,
-            "status": "rejected",
-            "reason": "auto_merge_enabled",
-            "pr": pr,
-            "head": head,
-            "observed_pr": pr_info,
-        }
-    if merge_state != "CLEAN":
-        return {
-            "schema": "scaffold-merge-admission-result.v1",
-            "evidence_kind": "scaffold",
-            "authority_effect": "none",
-            "ok": False,
-            "status": "rejected",
-            "reason": "merge_state_not_clean",
-            "pr": pr,
-            "head": head,
-            "observed_pr": pr_info,
-        }
+        if chk_reason == "head_mismatch":
+            out_err["observed_head"] = pr_info.get("headRefOid")
+        return out_err
 
     fetch_pre = runner(["git", "fetch", "-q", "origin"], repo_root)
     if fetch_pre.returncode != 0:
@@ -429,7 +376,7 @@ def run_merge_admission(
             }
 
         tree_proc = runner(
-            ["git", "-C", str(wt_dir), "rev-parse", "HEAD^{tree}"],
+            ["git", "-C", str(wt_dir), "rev-parse", "HEAD^{{tree}}"],
             repo_root,
         )
         if tree_proc.returncode != 0:
@@ -453,6 +400,89 @@ def run_merge_admission(
         shutil.rmtree(wt_dir, ignore_errors=True)
         worktree_removed = (rm_proc.returncode == 0) and (not wt_dir.exists())
 
+    # Step (c-pre): merge直前の再取得（operating-model 274行・294行）
+    fetch_before_merge = runner(["git", "fetch", "-q", "origin"], repo_root)
+    if fetch_before_merge.returncode != 0:
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "rejected",
+            "reason": "git_fetch_failed",
+            "pr": pr,
+            "head": head,
+            "worktree_removed": worktree_removed,
+        }
+    rev_main_before_merge = runner(["git", "rev-parse", "origin/main"], repo_root)
+    observed_main_before_merge = rev_main_before_merge.stdout.strip()
+    if (
+        rev_main_before_merge.returncode != 0
+        or observed_main_before_merge != base_main_sha
+    ):
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "rejected",
+            "reason": "main_head_moved_before_merge",
+            "pr": pr,
+            "head": head,
+            "base_main_sha": base_main_sha,
+            "observed_main_sha": observed_main_before_merge,
+            "trial_tree": trial_tree,
+            "worktree_removed": worktree_removed,
+        }
+
+    recheck_view = runner(
+        ["gh", "pr", "view", str(pr), "--json", PR_VIEW_FIELDS],
+        repo_root,
+    )
+    if recheck_view.returncode != 0:
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "rejected",
+            "reason": "gh_pr_view_failed",
+            "pr": pr,
+            "head": head,
+            "worktree_removed": worktree_removed,
+        }
+    try:
+        recheck_pr_info = json.loads(recheck_view.stdout)
+    except json.JSONDecodeError:
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "rejected",
+            "reason": "gh_pr_view_invalid_json",
+            "pr": pr,
+            "head": head,
+            "worktree_removed": worktree_removed,
+        }
+    recheck_reason = check_pr_admissible(recheck_pr_info, head)
+    if recheck_reason is not None:
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "rejected",
+            "reason": "pre_merge_pr_state_drifted",
+            "drift_reason": recheck_reason,
+            "pr": pr,
+            "head": head,
+            "base_main_sha": base_main_sha,
+            "observed_pr": recheck_pr_info,
+            "worktree_removed": worktree_removed,
+        }
+
+    # Step (c): 明示merge
     merge_proc = runner(
         [
             "gh",
@@ -481,22 +511,57 @@ def run_merge_admission(
             "stderr": merge_proc.stderr.strip(),
         }
 
+    # Step (d): post-merge read-after（gh pr view --json state,mergeCommit でmerge commitを特定）
     runner(["git", "fetch", "-q", "origin"], repo_root)
-    mc_proc = runner(["git", "rev-parse", "origin/main"], repo_root)
-    mt_proc = runner(["git", "rev-parse", "origin/main^{tree}"], repo_root)
-    merge_commit = mc_proc.stdout.strip()
-    main_tree = mt_proc.stdout.strip()
+    mc_view = runner(
+        ["gh", "pr", "view", str(pr), "--json", "state,mergeCommit"],
+        repo_root,
+    )
+    merge_commit = ""
+    if mc_view.returncode == 0:
+        try:
+            mc_info = json.loads(mc_view.stdout)
+            mc_obj = mc_info.get("mergeCommit") or {}
+            if isinstance(mc_obj, dict):
+                merge_commit = str(mc_obj.get("oid") or "").strip()
+        except json.JSONDecodeError:
+            merge_commit = ""
+
+    if not HEX40_RE.match(merge_commit):
+        return {
+            "schema": "scaffold-merge-admission-result.v1",
+            "evidence_kind": "scaffold",
+            "authority_effect": "none",
+            "ok": False,
+            "status": "read_after_failed",
+            "reason": "read_after_merge_commit_missing",
+            "pr": pr,
+            "head": head,
+            "base_main_sha": base_main_sha,
+            "trial_tree": trial_tree,
+            "worktree_removed": worktree_removed,
+        }
+
+    mt_proc = runner(
+        ["git", "rev-parse", f"{merge_commit}^{{tree}}"],
+        repo_root,
+    )
+    merge_tree = mt_proc.stdout.strip()
     par_proc = runner(
         ["git", "log", "-1", "--format=%P", merge_commit],
         repo_root,
     )
     parents = par_proc.stdout.strip().split()
-    anc_proc = runner(
+    anc_head_proc = runner(
         ["git", "merge-base", "--is-ancestor", head, "origin/main"],
         repo_root,
     )
-    is_ancestor = anc_proc.returncode == 0
-    tree_matched = main_tree == trial_tree
+    anc_mc_proc = runner(
+        ["git", "merge-base", "--is-ancestor", merge_commit, "origin/main"],
+        repo_root,
+    )
+    is_ancestor = anc_head_proc.returncode == 0 and anc_mc_proc.returncode == 0
+    tree_matched = (mt_proc.returncode == 0) and (merge_tree == trial_tree)
     parents_valid = (
         len(parents) == 2 and parents[0] == base_main_sha and parents[1] == head
     )
@@ -533,7 +598,7 @@ def run_merge_admission(
             "parents": parents,
             "is_ancestor": is_ancestor,
             "trial_tree": trial_tree,
-            "main_tree": main_tree,
+            "main_tree": merge_tree,
             "tree_matched": tree_matched,
             "worktree_removed": worktree_removed,
             "comment_markdown": comment_md,
@@ -554,7 +619,7 @@ def run_merge_admission(
             "parents": parents,
             "is_ancestor": is_ancestor,
             "trial_tree": trial_tree,
-            "main_tree": main_tree,
+            "main_tree": merge_tree,
             "tree_matched": tree_matched,
             "worktree_removed": worktree_removed,
             "comment_markdown": comment_md,
@@ -604,7 +669,7 @@ def run_merge_admission(
         "trial_tree": trial_tree,
         "merge_commit": merge_commit,
         "parents": parents,
-        "main_tree": main_tree,
+        "main_tree": merge_tree,
         "is_ancestor": is_ancestor,
         "tree_matched": tree_matched,
         "worktree_removed": worktree_removed,
