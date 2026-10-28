@@ -5,7 +5,7 @@
   "parent": "HELIXOS-L2-002",
   "status": "candidate_design_only",
   "authority_effect": "none",
-  "scope_ja": "checker照合でall_mechanical_matched=trueの凍結記録3件（os002-t1c-f02-proposal-receiving-freeze、os002-t2a-f04-projection-member-freeze、os002-t2b-original-correspondence-checker-reconcile）に載るL5公開関数7件だけをL5契約・L8 oracle・L7対へ結ぶ。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "scope_ja": "凍結記録と独立reviewの対象scopeを確認した公開関数17件をL5契約・L8 oracle・L7対へ結ぶ。既存7件に加えFN02・FN03・FN05・FN01・FN07〜FN12を追加する。checker生成の宣言manifestはgenerate-freeze記録と独立reviewを併せて読む。既存L5契約を再定義せず、fixture、全返却、実行結果を複製しない。部分scopeの凍結は関数全体の凍結として扱わない。",
   "source_pins": [
     {
       "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
@@ -71,6 +71,31 @@
       "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
       "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
       "sha256": "b6289826727953685a6375d54938cb7d090c2789b1250b21251b689c3f49645b"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "sha256": "da317a1762ac041d65dbffdf3e13802234f8365ae6aed13e665055e1d639b39d"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "sha256": "4097cb2c6f9487fe91ef9d29450348992447cc5a2f4bb54023b708c9dd25acd4"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json",
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "sha256": "2a44ae1b1f1a20fb0ab52cf7055315e294e5a007ad0b9c3158f200f0c9c4f36a"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json",
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "sha256": "5305e02ecffc380a206ac96857929ba63bc8f8e7ae1eba37cee81d67c0b35fa7"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json",
+      "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
+      "sha256": "e4c7d6b651c21a2f71656d6a1c39028a96ff99d83179c619106a7e53c4dacfd6"
     }
   ],
   "legacy_rederivation": {
@@ -79,7 +104,25 @@
     "lines": "24,36,58,86,91",
     "reuse_mode": "semantic_rederivation",
     "keep_ja": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。",
-    "change_ja": "BRAIN汎用契約、CORE製品適用、OS使用記録を分離し、旧TPL grammar/整数版/lifecycle/DB収束gateを採用しない。"
+    "change_ja": "BRAIN汎用契約、CORE製品適用、OS使用記録を分離し、旧TPL grammar/整数版/lifecycle/DB収束gateを採用しない。",
+    "pair_table_sources": [
+      {
+        "asset_id": "LEGACY-ASSET-D5630716F221DA23DB09",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L6-function-design/pillar-function-design.md",
+        "sha256": "0c14883e32ab87a99be1b18ef85a12e43ba4950b962a5d5ebebe57d38facf490",
+        "lines": "20-27,459-477",
+        "preserve_ja": "L5契約からL6の関数単位へ対応づけ、状態の意味と完了主張の境界を明示する。",
+        "change_ja": "旧L3/L5 IDや旧runtime実装は引き継がず、承認済みHELIX-OS L5/L8とOS002凍結recordの対象scopeだけを結ぶ。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-20B1CF42FF88724DE8AD",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/test-design/helix/L6-pillar-unit-test-design.md",
+        "sha256": "cf7535d7a249e06feaa8dfd1b7bdd32f0ada1d74b9afb15dc8efea77dc9efed9",
+        "lines": "21-36",
+        "preserve_ja": "各L6関数とL7単体oracleを対応づけ、期待する観測を設計する。",
+        "change_ja": "旧U-* oracleと実行証拠を転記せず、現行L8のU-ID参照とnot_executed状態を保持する。"
+      }
+    ]
   },
   "failure_basis": {
     "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
@@ -246,11 +289,252 @@
         "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
         "pointer": "/cases/6"
       }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN02-compare_operation_dependencies",
+      "symbol": "compare_operation_dependencies",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/2"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN02-compare_operation_dependencies",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/2"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/2"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
+      "state_event_meaning_ja": "開始時と操作時の依存入力を原契約へ照合し、未発生・未観測を欠落へせず、非対象scopeを失効させない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/7"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN03-compare_project_stages",
+      "symbol": "compare_project_stages",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/3"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN03-compare_project_stages",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/3"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/0"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
+      "state_event_meaning_ja": "各projectの要求から運用までの状態を個別照合し、原状態と欠落・競合・未接続・未合意・未実装・未検証を保持する。GitHub Issue/PR状態から提供状態を生成しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/8"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN05-compare_event_obligation_trace",
+      "symbol": "compare_event_obligation_trace",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/5"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN05-compare_event_obligation_trace",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/5"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/1"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
+      "state_event_meaning_ja": "event・義務・artifact/pairを元のproject・scope・要求/テンプレートrevisionへ結び、unit/connection/composite別の非該当根拠を保持する。未知や空欄からN/A・架空端・他義務の完了を生成しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/9"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN01-check_record_claims",
+      "symbol": "check_record_claims",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/1"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN01-check_record_claims",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/1"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/1"
+      },
+      "additional_pair_freeze_binding_refs": [
+        {
+          "path": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json",
+          "pointer": "/target_bindings/public_functions/1"
+        }
+      ],
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
+      "additional_independent_review_refs": [
+        "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803"
+      ],
+      "state_event_meaning_ja": "owner出力と記録を原sourceへ照合し、非選択sourceの未観測、未発生結果、観測期間不足を区別する。held_out/runtime evidenceの不足を残し、入力整合・件数・一経路成功から全scope評価済み、欠陥0、Acceptedを生成しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/10"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN07-compare_backflow_evidence",
+      "symbol": "compare_backflow_evidence",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/7"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN07-compare_backflow_evidence",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/7"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
+      "state_event_meaning_ja": "返却event・受領・意味解決・元義務消込を個別に結び、ACK・文書・他義務成功だけで返却未完を消し込まない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/11"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN08-compare_correction_history",
+      "symbol": "compare_correction_history",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/8"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN08-compare_correction_history",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/8"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
+      "state_event_meaning_ja": "原event・旧projection・訂正・新projectionをownerの各refへ結び、旧失敗/C1を上書きせずcurrentとstale、未供給versionを区別する。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/12"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN09-compare_core_impact_history",
+      "symbol": "compare_core_impact_history",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/9"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN09-compare_core_impact_history",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/9"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/2"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
+      "state_event_meaning_ja": "使用版と候補版・影響・移管receiptを分け、CORE原内容にあるunknownをunaffectedへ変えず、digest/path/viewだけで移管済みにしない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/13"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN10-compare_labo_record_selection",
+      "symbol": "compare_labo_record_selection",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/10"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN10-compare_labo_record_selection",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/10"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
+      "state_event_meaning_ja": "LABOのscope・期間・必要record集合を原契約へ結び、再送関係・除外理由・必要集合との差を保持する。供給済recordから母集団を作らず、missingを空集合成功にしない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/14"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN11-compare_finding_causal_trace",
+      "symbol": "compare_finding_causal_trace",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/11"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN11-compare_finding_causal_trace",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/11"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
+      "state_event_meaning_ja": "finding・義務・使用template・再作業・受入・運用結果を同じbindingの原sourceへ結び、因果証拠がない場合はunresolvedを保つ。時間・path・回数・AI評価から因果や昇格を生成しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/15"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN12-compare_security_use_binding",
+      "symbol": "compare_security_use_binding",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/12"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN12-compare_security_use_binding",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/12"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
+      "state_event_meaning_ja": "共有対象のpermission・data class・scopeをSECURITY原出力へ個別照合し、不足や不一致は該当共有だけを未成立にする。後付け許可で原eventを成功へ書き換えず、許可発行・共有操作をしない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/16"
+      }
     }
   ],
   "out_of_scope_ja": [
-    "all_mechanical_matched=trueではない記録（os002-t1a、os002-t1b、os002-t3a、os002-t3b）に属するL5関数は本対に含めない。",
-    "H009 #3788のGeneralProposalExchangeCarrierを受領するL5#/core_proposal_receiving_detail（receive_core_proposal_exchange等）およびL5#/functions/19..20は凍結記録上でOS private（private_detail_bindings / private_units）と定義されており、公開関数表には昇格させず、公開compare_template_sets（fn4）との共用kernel同値検証（L7#/compare_template_sets_tdd）で境界を保つ。",
+    "FN00はT1a /function_freeze_rows/0でADD-01..11と共通入力・invalid-rootを凍結済みだが、残るL5#/functions/0のHELIXOS-L8-002-F04（L8#/cases/5）とHELIXOS-L8-002-F04-SOURCE-MEMBER-01..09（L8#/f04_source_member_verification/whole_cases/0..8）は、T2a /function_freeze_rowsにFN00行がなく、T2a /private_detail_bindings/0,1のbound_public_functionsにもL5#/functions/0がない。T2a /function_freeze_rows/0のunit_case_refs_and_shared_function_refs_dispositionはこれらの存在・結線確認を記録するがFN00の関数pair凍結ではない。T2b /private_detail_bindings/0,1はL5#/functions/0をbound_public_functionsに含むものの、対象はsource_original_correspondence detailとprivate fn19であり、上記T2a U-ID群のFN00 public pair bindingを補わないため、FN00を関数全体の行として追加しない。FN13はT1a /function_freeze_rows/3でnormal oracleとHELIXOS-L8-002-F04-DISPATCH-NO-F04（L8#/function_cases/16、dispatch_boundary_cases/cases/1）を凍結済み。T2a /private_detail_bindings/0のdispositionはfn13接続を記すが、bound_public_functionsはL5#/functions/14..18のみでL5#/functions/13を含まず、公開FN13のF04 profile scopeを結ぶfreeze pointerがないため、FN13も追加しない。T1a/T2a/T2bは独立review済み（#3754 R1、#3764 R1、#3769 R1 no findings）だが、この境界不足は別に残る。",
+    "FN01はT1aのB01 scopeとT4 generate-freezeのN02 scopeを、各manifest内の対象pointerと対応U-IDで区分して参照する。両scopeを一つの記録へ拡張・混同しない。",
+    "D-OS002-T3a/T3b/T4は、schema design-verification-declaration-manifest.v1のtarget_bindingsをgenerate-freeze入力/記録として参照し、PR #3814 R1・#3815 R2の独立review結果と併せて扱う。",
+    "H009 #3788のGeneralProposalExchangeCarrierを受領するL5#/core_proposal_receiving_detail（receive_core_proposal_exchange等）およびL5#/functions/19..20は凍結記録上でOS privateと定義されているため、公開関数表へ昇格させない。L5#/functions/19..22のprivate detailも公開関数表へ昇格させない。",
     "runtime、正式wire schema、実source資格、OS登録/使用完了、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
   ]
 }
