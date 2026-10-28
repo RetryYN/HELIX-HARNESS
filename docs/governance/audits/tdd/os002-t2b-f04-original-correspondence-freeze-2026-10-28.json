@@ -1,0 +1,219 @@
+{
+  "record_id": "OS002-T2B-F04-ORIGINAL-CORRESPONDENCE-FUNCTION-PAIR-FREEZE-2026-10-28",
+  "record_kind": "function_pair_l5_l8_freeze_record",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "request_id": "WR-CLAUDE-OS002-T2B-3547-20261028-67",
+  "slice_id": "D-OS002-T2b",
+  "decision_refs": ["https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447837744", "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447858361", "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479", "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6408252809", "docs/governance/decisions/helix-os-template002-prerequisite-l3-l10-delegated-decision-2026-10-12.md", "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json", "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json", "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json", "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json", "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json"],
+  "source_main": "36c17baca10a429d12a3c427d7fdab1d3ac5a9c1",
+  "request_base_sha": "62ee78a053537ff03768eb3ad4cda419e94c2916",
+  "recorded_at_utc": "2026-10-28T00:05:00+00:00",
+  "target": "HELIXOS-L2-002 詳細対 T:301 後半（HELIXOS-L3-002-F04 ↔ HELIXOS-L10-002-F04：source_original_correspondence_detail / private 4関数 fn19 validate_record_trace_with_origins・fn20 resolve_f04_projection_sources・fn21 lookup_f04_original_native・fn22 compare_f04_source_original_correspondence、および D-OS002-T2a から申し送られた公開4関数 fn14・fn15・fn16・fn18 の後半 unit_case_refs / private call 結線）の remaining A/B/C 仕分け・A解消（追加3 U-ID単体probe追補）・T:301 完了凍結記録。全体完了や総合凍結とは呼ばない。",
+  "criterion": "上位L3/L10（HELIXOS-L3-002-F04 ↔ HELIXOS-L10-002-F04）および基本設計L4/L9（L4#/contracts/5/source_original_correspondence ↔ L9#/cases/5/source_original_correspondence_oracles、B1_FREEZE）から独立導出した期待（DT-VT-105）に対し、D-OS002-T2a で申し送られた公開関数 fn14, 15, 16, 18 の後半 unit_case_refs（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N1）と private 4関数（fn19..22）および詳細節（L5#/f04_source_original_correspondence_detail）が L8 単体検証 U-ID行（component_cases 12件・branch_cases 17件・origin_cases 4件・whole_cases 9件・private_return_whole_cases 3件・private_return_negative_controls 3件・additional_branch_probes 3件）と1対1に対応し、D-OS002-T2b 内に未確定残件（A）が0件であること。private 関数（fn19..22）は公開関数として凍結せず private_detail_bindings として記録し（#3763 R1-m1）、L8 へ全返却・fixture・hash・COPY は追加しない（#3510）。",
+  "path_aliases": {"L3F": "docs/helix-os/L3-requirements/functional-requirements.json", "L10F": "docs/helix-os/L10-verification/functional-verification.json", "L4": "docs/helix-os/L4-basic-design/project-template-trace.json", "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json", "L5": "docs/helix-os/L5-detail-design/project-template-trace.json", "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json", "B1_FREEZE": "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json", "T2A_FREEZE": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json", "T1C_FREEZE": "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json"},
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "10bf6ac45c3bf96a2434692791f8bb671dcf06a4ba3fef9e06f6ace1c982e2eb",
+    "L9_sha256": "78fbb68377c36ee8173e820001db411abd9c8262affe4098c7fcf2bb6c31d62b",
+    "L5_pre_sha256": "c12bd0efc7abfbaf997f7b8e16d04494427a1e5f378ba9971c0389eab13dd015",
+    "L5_post_sha256": "a8097471e7352211ea260b0a78e8c209e2015dc2cec612f9a8c72739ba6460cb",
+    "L8_pre_sha256": "035a480900dba792de12921abb354c7eb2a7ad5b1e7a5d678df216007ac2be36",
+    "L8_post_sha256": "bdf931561f2452343ade43cb6672da4a7c95cddd552911d4a175684a81418db7",
+    "B1_FREEZE_sha256": "448f819234777bcc9e28bb5f4cfa25f26a69b1cfd743c85816966426c8d8d9c5",
+    "T2A_FREEZE_sha256": "208fcf87282dc38bf7a0a78d66aabfcf99d1558934c3c691535a7e0678f8babd",
+    "T1C_FREEZE_sha256": "8ad6e690e4e74f40636c2b95341d16cba78bf0a191d5853a92b70bdcdbed033b"
+  },
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {"asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md", "lines": "24, 30, 37, 58, 80-86", "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"},
+      {"asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299", "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md", "lines": "110-147", "sha256": "063195290ff77a56cb3f88f8be2db71f66f0df0070ba3c871cdca5a3b64ab313"},
+      {"asset_id": "UTW-014/020/021", "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md", "lines": "80, 86, 87", "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"}
+    ],
+    "preserve": "選択instance・原条件/義務source・native endpoint・同walk資格originの分離保持、unknown/未完をempty/false/完了へ丸めない原則、局所原因とowner返却を保持。",
+    "change": "OSTRACE追補判断（2026-10-10）および #3510 / #3547 統制判断に基づき、L9 unobserved_branches/6..8 が D-OS002-T2b へ委ねていた3分岐（native endpoint不成立、same_relation_state_reduction 混在縮約、両role既知not_requested＋closed_record_tuple_rules 4表現）を L8 compact U-ID probe 3件として追加し、全返却fixture/hash/COPYを追加せずに T:301 後半（f04_source_original_correspondence_detail・private fn19..22・公開fn14/15/16/18後半結線）を凍結して T:301 全体のL5/L8凍結を完了した。",
+    "failure_refs": ["Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化", "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・未確定残件（A）混在による凍結境界不明確化", "PR #3763 R1-m1: private関数を公開関数（public_function）と混同せず private_detail_bindings として分離記録する規律"]
+  },
+  "remaining_dispositions": [
+    {
+      "id": "DT2B-01",
+      "class": "B",
+      "targets": ["L5#/f04_source_original_correspondence_detail", "L5#/f04_source_original_correspondence_detail/remaining/0", "L5#/f04_source_original_correspondence_detail/remaining/1", "L5#/f04_source_original_correspondence_detail/remaining/2", "L5#/f04_source_original_correspondence_detail/remaining/4", "L5#/functions/14", "L5#/functions/15", "L5#/functions/16", "L5#/functions/18", "L5#/functions/19", "L5#/functions/20", "L5#/functions/21", "L5#/functions/22", "L5#/implementation_preparation/remaining/0", "L5#/wire_codec_contract/remaining/0", "L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/branch_cases", "L8#/f04_source_original_correspondence_verification/origin_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls", "L8#/f04_source_original_correspondence_verification/additional_branch_probes", "L8#/f04_source_original_correspondence_verification/comparison_limits", "L8#/function_call_path_bindings", "L8#/completion/remaining", "L8#/wire_codec_verification/completion_limit"],
+      "topic": "T:301後半（F04 f04_source_original_correspondence_detail・private fn19..22・公開fn14/15/16/18後半結線）のA解消（additional_branch_probes 3件追補）とT:301全体のL5/L8詳細対凍結完了",
+      "basis_pointers": ["L3F#/requirements/11", "L10F#/cases/11", "L4#/contracts/5/source_original_correspondence", "L9#/cases/5/source_original_correspondence_oracles", "B1_FREEZE#/upper_expectation_mapping", "T2A_FREEZE#/function_freeze_rows"],
+      "reason": "L9#/cases/5/source_original_correspondence_oracles/remaining/4/unobserved_branches/0..5 は L8 branch_cases/0..16（17件）で対応済みであり、D-OS002-T2b へ委ねられていた unobserved_branches/6..8（native endpoint不成立、same_relation_state_reduction混在縮約、両role既知not_requested＋closed_record_tuple_rules 4表現）を L8 additional_branch_probes/0..2 として追補・固定したことで、T:301後半および T:301全体の L5/L8 詳細対に未確定残件（A）は 0 件となった。"
+    },
+    {
+      "id": "DT2B-02",
+      "class": "A",
+      "targets": ["L5#/contracts/6", "L5#/contracts/7", "L5#/contracts/8", "L5#/contracts/9", "L5#/contracts/10", "L5#/contracts/11", "L5#/contracts/12", "L5#/implementation_preparation/remaining/0", "L8#/completion/remaining"],
+      "topic": "残る7詳細対 T:302..308（F05..F09, N01, N02）の関数別精査・凍結",
+      "basis_pointers": ["L5#/contracts/6", "L5#/contracts/7", "L5#/contracts/8", "L5#/contracts/9", "L5#/contracts/10", "L5#/contracts/11", "L5#/contracts/12"],
+      "reason": "本スライス D-OS002-T2b のスコープ外（D-OS002-T2b 内の A 残件は 0 件、T:301 は本スライスで全体凍結完了）。採択済み分割計画（#3547 comment 6447837744 / 6447858361）に従い、残る T:302..308 は後続スライス D-OS002-T3a / T3b / T4 で順次精査・凍結する。"
+    },
+    {
+      "id": "DT2B-03",
+      "class": "C",
+      "targets": ["L5#/f04_source_original_correspondence_detail/remaining/0", "L5#/f04_source_original_correspondence_detail/remaining/1", "L5#/f04_source_original_correspondence_detail/remaining/2", "L5#/f04_source_original_correspondence_detail/remaining/3", "L5#/implementation_preparation/remaining/1", "L5#/implementation_preparation/remaining/2", "L5#/implementation_preparation/remaining/3", "L5#/implementation_preparation/remaining/4", "L8#/f04_source_original_correspondence_verification/comparison_limits/0", "L8#/f04_source_original_correspondence_verification/comparison_limits/1", "L8#/f04_source_original_correspondence_verification/comparison_limits/4", "L8#/f04_source_original_correspondence_verification/comparison_limits/5"],
+      "topic": "#3510方針によるL8への全Analysis whole25・追加fixture/hash/COPY非追加、および外部owner・OS053実保存・下流L6/L7実装・Red/Green・PO L11受入境界",
+      "basis_pointers": ["L4#/contracts/5/source_original_correspondence/remaining/0", "L4#/contracts/5/source_original_correspondence/remaining/2", "L9#/cases/5/source_original_correspondence_oracles/remaining/1", "L9#/cases/5/source_original_correspondence_oracles/remaining/2", "B1_FREEZE#/remaining_dispositions"],
+      "reason": "検証層JSONの肥大化防止方針（#3510）および下流L6/L7・外部owner・実行環境の責務であり、L5/L8仕様未確定（A）ではない。"
+    }
+  ],
+  "upper_expectation_rederivation": {
+    "pair_id": "T:301",
+    "requirement_pointer": "L3F#/requirements/11",
+    "l10_case_pointer": "L10F#/cases/11",
+    "l4_contract_pointers": ["L4#/contracts/5", "L4#/contracts/5/source_original_correspondence"],
+    "l9_case_pointers": ["L9#/cases/5", "L9#/cases/5/source_original_correspondence_oracles"],
+    "derived_expectations_and_t2b_coverage": ["E1（同walk資格originとequal Ref独立保持）：L5#/functions/19（validate_record_trace_with_origins）↔ L8 origin_cases/0..3（4件）・private_return_whole_cases/0..2（3件）・private_return_negative_controls/1..2（N2, N3）で1対1に対応。", "E2（source_projection解決とoriginal_context構築・ambiguous/domain失敗/trusted locator相反分離）：L5#/functions/20（resolve_f04_projection_sources）↔ L8 component_cases/0..11（12件）・branch_cases/0..1,14..16（5件）・private_return_whole_cases/0..2（3件）・private_return_negative_controls/0..2（N1..N3）で1対1に対応。", "E3（独立native locatorによるcondition/obligation原output・原state lookup）：L5#/functions/21（lookup_f04_original_native）↔ L8 component_cases/0..11（12件）・additional_branch_probes/0（HELIXOS-L8-002-F04-ORIGINAL-PROBE-CONDITION-NATIVE-ENDPOINT-FAIL）・function_call_path_bindings/calls/10..12 で1対1に対応。", "E4（CORE原condition/obligation collection活性・mirror/endpoint状態縮約・closed 14-field tuple・preserved_observation付き所見構築）：L5#/functions/22（compare_f04_source_original_correspondence）および L5#/f04_source_original_correspondence_detail ↔ L8 component_cases/0..11（12件）・branch_cases/0..16（17件）・origin_cases/0..3（4件）・whole_cases/0..8（9件）・private_return_whole_cases/0..2（3件）・private_return_negative_controls/0（N1）・additional_branch_probes/0..2（3件）で1対1に対応。"]
+  },
+  "function_freeze_rows": [
+    {
+      "l5_function_pointer": "L5#/functions/14",
+      "function_id": "HELIXOS-L5-002-decode_f04_source_projection_profile",
+      "symbol": "decode_f04_source_projection_profile",
+      "entry_kind": "public_function",
+      "l5_contract_pointer": "L5#/contracts/5",
+      "audit_index": 301,
+      "pair_id": "T:301",
+      "scope_in_slice": "D-OS002-T2a で申し送られた F04後半 source_bindings/2（OS002.CoreOutputOriginalCorrespondence → F04OriginalCorrespondenceRawPayload → F04OriginalCorrespondencePayload）および後半 unit_case_refs 15件の照合・T:301全体凍結完了。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/14/unit_case_refs 全50件のうち、T2a前半35件に加え、残る15件（HELIXOS-L8-002-F04-ORIGINAL-01..12：L8#/f04_source_original_correspondence_verification/component_cases/0..11、HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-CONDITION-MALFORMED-PRESENCE・HELIXOS-L8-002-F04-PRIVATE-WHOLE-CORE-OBLIGATION-MALFORMED-PRESENCE：L8#/f04_source_original_correspondence_verification/private_return_whole_cases/0..1、HELIXOS-L8-002-F04-PRIVATE-N1-HEADER-MISMATCH-DOMAIN-FAILURE：L8#/f04_source_original_correspondence_verification/private_return_negative_controls/0）を本スライス D-OS002-T2b で全件照合し、50/50件すべて解決完了。",
+      "l8_t2b_oracles": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases/0", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases/1", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/0"],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_complete_T301"
+    },
+    {
+      "l5_function_pointer": "L5#/functions/15",
+      "function_id": "HELIXOS-L5-002-compare_f04_source_projection_join",
+      "symbol": "compare_f04_source_projection_join",
+      "entry_kind": "public_function",
+      "l5_contract_pointer": "L5#/contracts/5",
+      "audit_index": 301,
+      "pair_id": "T:301",
+      "scope_in_slice": "D-OS002-T2a で申し送られた private_resolver_call（callee: fn20 resolve_f04_projection_sources、L8#/function_call_path_bindings/calls/8）の private detail 側検証完了に伴う T:301全体凍結完了。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/15/unit_case_refs 全36件は D-OS002-T2a で全件解決済みであり、private_resolver_call が委譲する fn20 resolve_f04_projection_sources（L5#/functions/20）の単体契約・17件の unit_case_refs を本スライス D-OS002-T2b で全件照合・固定した。",
+      "l8_t2b_oracles": ["L8#/function_call_path_bindings/calls/8", "L8#/f04_source_original_correspondence_verification/internal_oracle_bindings/resolver"],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_complete_T301"
+    },
+    {
+      "l5_function_pointer": "L5#/functions/16",
+      "function_id": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "symbol": "run_f04_source_projection_operation",
+      "entry_kind": "public_function",
+      "l5_contract_pointer": "L5#/contracts/5",
+      "audit_index": 301,
+      "pair_id": "T:301",
+      "scope_in_slice": "D-OS002-T2a で申し送られた後半 unit_case_refs 12件（ORIGINAL-01..12）、function_ref を持つ branch_cases 17件・origin_cases 4件・whole_cases 9件、および validator_call_binding（callee: fn19 validate_record_trace_with_origins）の照合・T:301全体凍結完了。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/16/unit_case_refs 全46件のうち、T2a前半34件に加え、残る12件（HELIXOS-L8-002-F04-ORIGINAL-01..12：L8#/f04_source_original_correspondence_verification/component_cases/0..11）および function_ref=HELIXOS-L5-002-run_f04_source_projection_operation を持つ branch_cases/0..16（17件）・origin_cases/0..3（4件）・whole_cases/0..8（9件）を本スライス D-OS002-T2b で全件照合し、46/46件すべて解決完了。",
+      "l8_t2b_oracles": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/branch_cases", "L8#/f04_source_original_correspondence_verification/origin_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/function_call_path_bindings/calls/0"],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_complete_T301"
+    },
+    {
+      "l5_function_pointer": "L5#/functions/18",
+      "function_id": "HELIXOS-L5-002-compare_core_dispositions_with_source_projection_profile",
+      "symbol": "compare_core_dispositions_with_source_projection_profile",
+      "entry_kind": "public_function",
+      "l5_contract_pointer": "L5#/contracts/5",
+      "audit_index": 301,
+      "pair_id": "T:301",
+      "scope_in_slice": "D-OS002-T2a で申し送られた後半 unit_case_refs 12件（ORIGINAL-01..12）および private_call_bindings/0..1（callee: fn20 resolve_f04_projection_sources, fn22 compare_f04_source_original_correspondence）の照合・T:301全体凍結完了。",
+      "unit_case_refs_and_shared_function_refs_disposition": "L5#/functions/18/unit_case_refs 全56件のうち、T2a前半44件に加え、残る12件（HELIXOS-L8-002-F04-ORIGINAL-01..12：L8#/f04_source_original_correspondence_verification/component_cases/0..11）および private_call_bindings/0..1（L8#/function_call_path_bindings/calls/5,9）を本スライス D-OS002-T2b で全件照合し、56/56件すべて解決完了。",
+      "l8_t2b_oracles": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/function_call_path_bindings/calls/5", "L8#/function_call_path_bindings/calls/9"],
+      "remaining_A_count": 0,
+      "freeze_state": "function_pair_frozen_complete_T301"
+    }
+  ],
+  "private_detail_bindings": [
+    {
+      "detail_pointer": "L5#/f04_source_original_correspondence_detail",
+      "symbol": "f04_source_original_correspondence_detail",
+      "visibility": "private_detail_section",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_detail_contract_only",
+      "bound_public_functions": ["L5#/functions/0", "L5#/functions/14", "L5#/functions/15", "L5#/functions/16", "L5#/functions/18"],
+      "l4_contract_pointer": "L4#/contracts/5/source_original_correspondence",
+      "l9_oracle_pointer": "L9#/cases/5/source_original_correspondence_oracles",
+      "l8_verification_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/branch_cases", "L8#/f04_source_original_correspondence_verification/origin_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls", "L8#/f04_source_original_correspondence_verification/additional_branch_probes", "L8#/f04_source_original_correspondence_verification/comparison_limits"],
+      "disposition": "public_compatibility・state_tables・state_reduction・diagnostic_contract・phase_binding・issue_producer・diagnostic_code_binding を規定する詳細節として、L8#/f04_source_original_correspondence_verification（12 component + 17 branch + 4 origin + 9 whole + 3 private_whole + 3 private_negative + 3 additional_branch_probes）と1対1に対照・固定完了。"
+    },
+    {
+      "detail_pointer": "L5#/functions/19",
+      "function_id": "HELIXOS-L5-002-validate_record_trace_with_origins",
+      "symbol": "validate_record_trace_with_origins",
+      "visibility": "private",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_detail_contract_only",
+      "signature": "RawValue + optional F04ProfileDecodeContext -> F04ValidationBundle",
+      "bound_public_functions": ["L5#/functions/0", "L5#/functions/16"],
+      "l4_contract_pointer": "L4#/contracts/5/source_original_correspondence",
+      "l9_oracle_pointer": "L9#/cases/5/source_original_correspondence_oracles",
+      "l8_verification_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/origin_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/1", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/2", "L8#/function_call_path_bindings/calls/0", "L8#/function_call_path_bindings/calls/7"],
+      "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全16件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N2、PRIVATE-N3）および origin_cases 4件・PRIVATE-WHOLE-N2 が1対1に解決し、public fn0（validate_record_trace_input）は bundle.validated_trace の全値projectionを保持する。"
+    },
+    {
+      "detail_pointer": "L5#/functions/20",
+      "function_id": "HELIXOS-L5-002-resolve_f04_projection_sources",
+      "symbol": "resolve_f04_projection_sources",
+      "visibility": "private",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_detail_contract_only",
+      "signature": "ValidatedRecordTrace + F04ProjectionTypedInputs -> F04ProjectionResolution",
+      "bound_public_functions": ["L5#/functions/15", "L5#/functions/18"],
+      "l4_contract_pointer": "L4#/contracts/5/source_original_correspondence/resolution_and_decode",
+      "l9_oracle_pointer": "L9#/cases/5/source_original_correspondence_oracles",
+      "l8_verification_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/branch_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls", "L8#/function_call_path_bindings/calls/5", "L8#/function_call_path_bindings/calls/8"],
+      "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全17件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N1..N3）および PRIVATE-WHOLE-N2 が1対1に解決し、public fn15 へ join を、public fn18 へ join と original_context を供給する。"
+    },
+    {
+      "detail_pointer": "L5#/functions/21",
+      "function_id": "HELIXOS-L5-002-lookup_f04_original_native",
+      "symbol": "lookup_f04_original_native",
+      "visibility": "private",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_detail_contract_only",
+      "signature": "ValidatedRecordTrace + F04OriginValidationSupport + F04NativeRecordLocator -> F04NativeLookupResult",
+      "bound_public_functions": ["L5#/functions/16", "L5#/functions/18"],
+      "l4_contract_pointer": "L4#/contracts/5/source_original_correspondence/logical_return/state_derivation",
+      "l9_oracle_pointer": "L9#/cases/5/source_original_correspondence_oracles",
+      "l8_verification_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/additional_branch_probes/0", "L8#/function_call_path_bindings/calls/10", "L8#/function_call_path_bindings/calls/11", "L8#/function_call_path_bindings/calls/12"],
+      "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全12件（ORIGINAL-01..12）および additional_branch_probes/0（condition native endpoint不成立対照）が1対1に解決し、fn22 の native_lookup_calls/0..2（condition native_output・edge native_output・edge native_state）から独立に呼び出される。"
+    },
+    {
+      "detail_pointer": "L5#/functions/22",
+      "function_id": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+      "symbol": "compare_f04_source_original_correspondence",
+      "visibility": "private",
+      "entry_kind": "private_detail_contract_pair",
+      "frozen_scope": "private_detail_contract_only",
+      "signature": "ValidatedRecordTrace + F04OriginalResolutionContext -> F04OriginalComparisonOutput",
+      "bound_public_functions": ["L5#/functions/16", "L5#/functions/18"],
+      "l4_contract_pointer": "L4#/contracts/5/source_original_correspondence",
+      "l9_oracle_pointer": "L9#/cases/5/source_original_correspondence_oracles",
+      "l8_verification_pointers": ["L8#/f04_source_original_correspondence_verification/component_cases", "L8#/f04_source_original_correspondence_verification/branch_cases", "L8#/f04_source_original_correspondence_verification/origin_cases", "L8#/f04_source_original_correspondence_verification/whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_whole_cases", "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/0", "L8#/f04_source_original_correspondence_verification/additional_branch_probes", "L8#/function_call_path_bindings/calls/9"],
+      "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全15件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N1）に加え、branch_cases 17件・origin_cases 4件・whole_cases 9件・PRIVATE-WHOLE-N2・additional_branch_probes 3件が1対1に解決し、public fn18 から original_context 供給時に呼び出される。"
+    }
+  ],
+  "head_entity_counts": {"L5_contracts": 13, "L5_functions": 23, "L5_f04_private_functions": 4, "L5_failure_rules": 72, "L5_source_pins": 31, "L8_cases": 13, "L8_negative_cases_total": 71, "L8_function_cases": 22, "L8_additional_cases": 37, "L8_normal_fixtures": 14, "L8_wire_codec_cases": 43, "L8_encoder_obligations": 3, "L8_dispatch_boundary_cases": 5, "L8_f04_original_component_cases": 12, "L8_f04_original_branch_cases": 17, "L8_f04_original_origin_cases": 4, "L8_f04_original_whole_cases": 9, "L8_f04_original_private_return_whole_cases": 3, "L8_f04_original_private_return_negative_controls": 3, "L8_f04_original_additional_branch_probes": 3, "L8_source_pins": 29},
+  "verification": {
+    "all_pointers_resolved": true,
+    "f04_original_component_cases_count": 12,
+    "f04_original_branch_cases_count": 17,
+    "f04_original_origin_cases_count": 4,
+    "f04_original_whole_cases_count": 9,
+    "f04_original_private_return_whole_cases_count": 3,
+    "f04_original_private_return_negative_controls_count": 3,
+    "f04_original_additional_branch_probes_added": 3,
+    "l9_unobserved_branches_9_all_mapped_to_l8": 9,
+    "t2a_deferred_unit_case_refs_resolved": {"fn14": 15, "fn16": 12, "fn18": 12, "fn19": 16, "fn20": 17, "fn21": 12, "fn22": 15},
+    "t2b_remaining_A_count": 0,
+    "t301_f04_full_pair_frozen": true,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  },
+  "not_claimed": ["92親430対の総合凍結やOS002全13組（T:296..308）の全体完了ではない。", "残る7詳細対 T:302..308（F05..F09, N01, N02、D-OS002-T3a/T3b/T4）の関数単位凍結ではない。", "L5#/functions/19..22（validate_record_trace_with_origins・resolve_f04_projection_sources・lookup_f04_original_native・compare_f04_source_original_correspondence）は visibility=private（private_l5_unit）であるため公開関数（public_function）としては凍結せず、private_detail_bindings（entry_kind: private_detail_contract_pair）として記録したものである。", "下流L6/L7の作成・実装・Red/Green実行・実provider/OS053/SECURITY接続・PO L11 Acceptedではない。"]
+}

@@ -7038,7 +7038,7 @@
     "contract_count": 13,
     "negative_case_count": 71,
     "full92_430_completion": "unproven",
-    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存71変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4・cases/3原負例3件・ADD-12・NORMAL-compare_template_sets・core_proposal_receiving_verification 8 family/finite_cases 11件/additional_branch_probes 7件）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301前半（F04前半: fn6,14..18、cases/5原負例8件・association_projection 47件・f04_full_composition・f04_source_projection_profile_cases 25件・dispatch_boundary_cases 5件・function_call_path_bindings・f04_source_member_verification 9whole/9private/18shape/4role）はD-OS002-T2a（os002-t2a-f04-projection-member-freeze-2026-10-28.json）でA=0を確認し凍結済み。残るT:301後半（F04後半: f04_source_original_correspondence_verification・fn19..22 / D-OS002-T2b）, 302..308（F05..F09, N01, N02）はD-OS002-T2b〜T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
+    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存71変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4・cases/3原負例3件・ADD-12・NORMAL-compare_template_sets・core_proposal_receiving_verification 8 family/finite_cases 11件/additional_branch_probes 7件）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301（F04前半: fn6,14..18、cases/5原負例8件・association_projection 47件・f04_full_composition・f04_source_projection_profile_cases 25件・dispatch_boundary_cases 5件・function_call_path_bindings・f04_source_member_verification 9whole/9private/18shape/4role はD-OS002-T2a［os002-t2a-f04-projection-member-freeze-2026-10-28.json］、F04後半: f04_source_original_correspondence_verification 12component/17branch/4origin/9whole/3private_whole/3private_negative/3additional_branch_probes・private fn19..22およびfn14/15/16/18後半結線はD-OS002-T2b［os002-t2b-f04-original-correspondence-freeze-2026-10-28.json］）でA=0を確認し凍結済み。残るT:302..308（F05..F09, N01, N02）はD-OS002-T3a/T3b/T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
     "F04_source_projection_cases": {
       "total": 25,
       "join_result": 23,
@@ -9722,7 +9722,7 @@
       "shape/UTF8/構文/出力required失敗は所在と元rawを保存。source意味不足をglobal raw形不正や補完正常へ変更しない。",
       "定義外宣言memberは削除/aliasで成功にせずpointerへ失敗。opaque map正常と宣言carrier失敗を分離し、選択section解決後のshapeも同じclosed集合へ照合する。"
     ],
-    "completion_limit": "【B:L8純粋単体検証境界】旧source hash/quotes/承認objects/既存member/固定raw/schema/declared presenceおよびwire_codec 43例（cases/0..42）・encoder_obligations 3項目の静的単体検証仕様はD-OS002-T1aで整理・凍結済み（各section固有の意味比較はT:296/297がD-OS002-T1a、T:298/300がD-OS002-T1b、T:299［fn4・core_proposal_receiving］がD-OS002-T1c、T:301前半［fn6,14..18］がD-OS002-T2aで凍結、T:301後半/302..308がD-OS002-T2b〜T4で順次凍結）。【C:下流L6/L7・外部接続・全体閉包境界】CaseInput/Observation各sectionとselector実binding/root供給元/custody、小数/指数/1e400/encode非JSON値の具体float/resource実行時幅、実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは本L8純粋単体検証仕様の外。",
+    "completion_limit": "【B:L8純粋単体検証境界】旧source hash/quotes/承認objects/既存member/固定raw/schema/declared presenceおよびwire_codec 43例（cases/0..42）・encoder_obligations 3項目の静的単体検証仕様はD-OS002-T1aで整理・凍結済み（各section固有の意味比較はT:296/297がD-OS002-T1a、T:298/300がD-OS002-T1b、T:299［fn4・core_proposal_receiving］がD-OS002-T1c、T:301［F04前半 D-OS002-T2a・F04後半 D-OS002-T2b］で凍結、T:302..308がD-OS002-T3a/T3b/T4で順次凍結）。【C:下流L6/L7・外部接続・全体閉包境界】CaseInput/Observation各sectionとselector実binding/root供給元/custody、小数/指数/1e400/encode非JSON値の具体float/resource実行時幅、実codec/library採用/資格/保存/外部作用/旧test/CI、全92親430対閉包と実装Readyは本L8純粋単体検証仕様の外。",
     "association_wire_connection": {
       "design_ref": "HELIXOS-L5-002-compare_core_dispositions_typed/source_output_association_rule",
       "scope": "追加済みlogical型のschema結線。全F04/builderや実codecの検証とは分離。",
@@ -12849,12 +12849,12 @@
     },
     "execution_state": "not_executed",
     "comparison_limits": [
-      "原12は新component/全新suffix/保存元最終F04観測。全Analysis wholeではない。",
-      "branch17の型外Presence2件はcomponent/semantic suffixのみ。旧join/最終F04 wholeは未固定。",
-      "origin4はcomponent/新suffix/保存元F04観測/同walk origin全列/既存分類を比較。全public validator返却を代替しない。",
-      "旧member9は同じrawから全Analysis新whole。現active期待はnative4を元source値へ追随し、4歴史case各9phaseの観測だけ訂正。旧期待/素材/履歴は別に保持し、finding非観測値/順序と各到達phaseのfield集合は不変。",
-      "旧25のpublic fn0全返却は全member比較を維持する。join/native/member既存各phaseの部分比較はその元範囲を保持し、新original全Analysis whole25とは称さない。",
-      "新private関数は規範/型/全値期待の候補であり、業務evaluator/実codec/資格/runtimeを実行していない。"
+      "【B:U-ID部分比較・C:L8 whole非追加（#3510）】原12（component_cases/0..11）は新component/全新suffix/保存元最終F04観測の単体対照として固定済み（B）。全RecordTraceAnalysis wholeは#3510方針によりL8へ追加しない（C）。",
+      "【B:branch/private return固定・C:L8 whole非追加（#3510）】branch17（branch_cases/0..16）の型外Presence2件はcomponent/semantic suffixとprivate_return_whole_cases/0..1（fn19/14/20/22の4段階private return）で固定済み（B）。旧join/最終F04 wholeの追加展開は#3510方針により行わない（C）。",
+      "【B:origin4とpublic fn0の分離固定】origin4（origin_cases/0..3）はcomponent/新suffix/保存元F04観測/同walk origin全列/既存分類を比較し、public validator（fn0）の全返却は既存oracleのまま保持して代替しない（B）。",
+      "【B:旧member9 wholeと履歴分離固定】旧member9（whole_cases/0..8）は同じrawから全Analysis新wholeを比較し、現active期待はnative4を元source値へ追随し4歴史case各9phaseの観測だけ訂正。旧期待/素材/履歴は別に保持し、finding非観測値/順序と各到達phaseのfield集合は不変（B）。",
+      "【B:旧25の比較範囲維持・C:whole25非追加（#3510）】旧25のpublic fn0全返却は全member比較を維持し、join/native/member既存各phaseの部分比較はその元範囲を保持する（B）。新original全Analysis whole25は#3510方針によりL8へ追加しない（C）。",
+      "【B:private 4関数とL9未観測3分岐のU-ID固定・C:実行環境境界】新private関数（fn19..22）の単体契約・private return期待（private_return_whole_cases/0..2・private_return_negative_controls/0..2）およびL9 unobserved_branches/6..8に対応するadditional_branch_probes/0..2はD-OS002-T2bでA=0を確認し固定済み（B）。業務evaluator/実codec/資格/runtimeの実行は下流L6/L7・実行環境へ戻す（C）。"
     ],
     "historical_whole_extension": {
       "reason": "新L4原条件/義務対応を選択済み旧9rawにも適用する。原対応source未供給のD1/D2/D4を各missingとし新component/3所見を追加。旧wholeを導入前scopeへ逃がさない。",
@@ -13472,6 +13472,53 @@
         "file_sha256": "e08f896a3581f88fbdf7e6bcbda55f525cac13a53e36d525744f5ec455cdce65",
         "revision_note": "この参照は、今回のOS002 L5/L8候補対に含まれる技術規則を指す。承認済み原資料版、製品実測、実行時評価の証拠ではない。",
         "revision": "cbe8c777c518df577c66628bc04caef3d8fd396e"
+      }
+    ],
+    "additional_branch_probes": [
+      {
+        "id": "HELIXOS-L8-002-F04-ORIGINAL-PROBE-CONDITION-NATIVE-ENDPOINT-FAIL",
+        "function_ref": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+        "callee_lookup_ref": "HELIXOS-L5-002-lookup_f04_original_native",
+        "basic_branch_ref": "L9#/cases/5/source_original_correspondence_oracles/remaining/4/unobserved_branches/6",
+        "l5_rule_refs": [
+          "L5#/f04_source_original_correspondence_detail/state_reduction/condition_correspondence_state/internal_operands/native_endpoint_binding_state",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/condition_correspondence_state/independent_native_value",
+          "L5#/f04_source_original_correspondence_detail/diagnostic_code_binding/condition_native_endpoint_conflict",
+          "L5#/functions/21/algorithm/0",
+          "L5#/functions/22/algorithm/2"
+        ],
+        "counterexample_and_expected_ja": "unique domain原対応とshared core_row_locatorが成立しcondition mirrorは一致（mirror_state=corresponding）するが、condition.native_outputが指すnative endpointの所在/output_refが既知相反（conflict）または未供給/未決（missing/unknown）となる入力に対し、fn21 lookup_f04_original_nativeの独立結果を受けて親condition_correspondence_stateに当該不成立状態を保持し、child original_condition_stateにもその元状態を保持する。既知相反時はcore_source_condition_relation_conflict（path=relationship_raw/condition.native_output、owner=原対応OwnerRecord.owner）を発行し、独立資格source issueが原因の場合は既存source issueを保持して重複semantic findingを生成しない（effect=none）。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-F04-ORIGINAL-PROBE-CONDITION-SAME-RELATION-REDUCTION",
+        "function_ref": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+        "basic_branch_ref": "L9#/cases/5/source_original_correspondence_oracles/remaining/4/unobserved_branches/7",
+        "l5_rule_refs": [
+          "L5#/f04_source_original_correspondence_detail/state_reduction/condition_correspondence_state/same_relation_state_reduction",
+          "L5#/f04_source_original_correspondence_detail/diagnostic_contract/order/4",
+          "L5#/functions/22/algorithm/2"
+        ],
+        "counterexample_and_expected_ja": "同一selected outputのcondition対応においてmirror_stateとnative_endpoint_binding_stateの両方がcorresponding以外となる混在入力（conflict+unknown、conflict+missing、unknown+missing）に対し、same_relation_state_reductionの順位（conflict > unknown > missing > corresponding > not_compared）に従い親condition_correspondence_stateをそれぞれconflict・conflict・unknownへ決定論的に縮約し、入力二状態・原値・各独立診断（mirror問題→native endpoint所在/Ref問題の順）を上書きせず両方保持し、この縮約順位を他axisや既存CORE-row carrier aggregateへ波及させない（effect=none）。",
+        "execution_state": "not_executed"
+      },
+      {
+        "id": "HELIXOS-L8-002-F04-ORIGINAL-PROBE-NOT-REQUESTED-AND-CLOSED-TUPLE-RULES",
+        "function_ref": "HELIXOS-L5-002-compare_f04_source_original_correspondence",
+        "basic_branch_ref": "L9#/cases/5/source_original_correspondence_oracles/remaining/4/unobserved_branches/8",
+        "l5_rule_refs": [
+          "L5#/f04_source_original_correspondence_detail/state_tables/activation/CORE_collection_table/4",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/correspondence_resolution_state/1",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/closed_record_tuple_rules/not_requested",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/closed_record_tuple_rules/not_compared_before_raw_row",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/closed_record_tuple_rules/shared_relation_semantic_suppression",
+          "L5#/f04_source_original_correspondence_detail/state_reduction/closed_record_tuple_rules/invalid_core_ref_occurrence",
+          "L5#/functions/22/algorithm/0",
+          "L5#/functions/22/algorithm/3",
+          "L5#/functions/22/algorithm/6"
+        ],
+        "counterexample_and_expected_ja": "(a) CORE原row取得済みでcomputed_condition_pairs=[]かつcomputed_disposition in {required,na,unresolved}、computed_obligation_refs=[]により両roleが既知not_requestedとなる入力ではcorrespondence_resolution_state=not_requestedとし、trusted core_row_locator・原empty Presence・source_refsを保持したまま関係候補/role観測/edge/decode配列を空としsource state emptyをnot_comparedへ変換せず新source要求も作らない。(b) closed_record_tuple_rulesの残3表現（not_compared_before_raw_row：raw collection Field=missing・source/対応state=not_compared・候補/edge空、shared_relation_semantic_suppression：condition_correspondence_state=not_compared・既知CORE義務出現のassignment_presence_state=unknown/assignments=[]、invalid_core_ref_occurrence：型外Ref6出現のみcore_ref_decode_state=unknown/assignment_presence_state=unknown/assignments=[]・core_raw_ref保持・仮想missing assignment非生成）を各閉じた14フィールドtupleで保持する（effect=none）。",
+        "execution_state": "not_executed"
       }
     ]
   },
