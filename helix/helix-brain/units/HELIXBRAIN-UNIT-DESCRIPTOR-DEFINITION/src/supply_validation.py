@@ -7,6 +7,7 @@ import functools
 import hashlib
 import json
 import math
+from decimal import Decimal
 from typing import Any
 
 
@@ -118,6 +119,28 @@ def _json_equal(left: Any, right: Any) -> bool:
             _json_equal(a, b) for a, b in zip(left, right)
         )
     return left == right
+
+
+def _source_body_equal(decoded: Any, supplied: Any) -> bool:
+    """Compare exact source JSON numbers without promoting host floats."""
+    if isinstance(decoded, Decimal):
+        return (
+            decoded.is_finite()
+            and type(supplied) is int
+            and decoded == supplied
+        )
+    if type(decoded) is not type(supplied):
+        return False
+    if isinstance(decoded, dict):
+        return decoded.keys() == supplied.keys() and all(
+            _source_body_equal(decoded[key], supplied[key]) for key in decoded
+        )
+    if isinstance(decoded, list):
+        return len(decoded) == len(supplied) and all(
+            _source_body_equal(left_item, right_item)
+            for left_item, right_item in zip(decoded, supplied)
+        )
+    return decoded == supplied
 
 
 def _is_json_value(value: Any) -> bool:
@@ -468,10 +491,12 @@ def _source_qualification_check(
             content_bytes,
             object_pairs_hook=_unique_object_pairs,
             parse_constant=_reject_non_json_constant,
+            parse_int=Decimal,
+            parse_float=Decimal,
         )
     except (json.JSONDecodeError, UnicodeDecodeError, ValueError):
         return False, None
-    if not _is_json_value(decoded) or not _json_equal(decoded, source["content"]):
+    if not _source_body_equal(decoded, source["content"]):
         return False, None
 
     qualification_ref = source["qualification_ref"]
