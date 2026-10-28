@@ -663,6 +663,11 @@ def _compare_dependencies_and_claims(
         "proposed_value",
         "basis_refs",
     }
+    fill_claim_count = sum(
+        isinstance(claim, dict) and claim.get("kind") == "fill_definition"
+        for claim in claims
+    )
+    fill_use_index = 0
     for index, claim in enumerate(claims):
         if isinstance(claim, dict) and claim.get("kind") == "fill_definition":
             fill_required_members = {"subject_ref", "binding", "actor", "kind"}
@@ -693,30 +698,33 @@ def _compare_dependencies_and_claims(
                 )
             if (
                 not isinstance(frame, dict)
-                or len(frame["target_reads"]) != len(claims)
-                or len(frame["claim_uses"]) != len(claims)
+                or len(frame["target_reads"]) != fill_claim_count
+                or len(frame["claim_uses"]) != fill_claim_count
             ):
                 raise _unsupported(
                     "B02/F09",
                     "claim_call_frame_shape",
                     "FN6 requires original fill ClaimUse occurrences",
                 )
-            use = frame["claim_uses"][index]
+            claim_locator = f"/claims/{index}"
+            use_locator = f"/frame/claim_uses/{fill_use_index}"
+            use = frame["claim_uses"][fill_use_index]
             if (
                 not isinstance(use, dict)
-                or use.get("claim_locator") != f"/claims/{index}"
+                or use.get("claim_locator") != claim_locator
                 or not _json_equal(use.get("claim"), claim)
             ):
                 raise _unsupported(
                     "B02/F09",
                     "claim_call_frame_shape",
-                    f"ClaimUse does not match /claims/{index}",
+                    f"ClaimUse does not match {claim_locator}",
                 )
+            fill_use_index += 1
             route = use.get("route")
             if route == "rule87":
                 reason = (
-                    f"Claim /claims/{index} は、元targetの意味定義missingをreference_only資料で置換する主張である。"
-                    f"原missingを保持し、全支持記録は同呼出し観測/frame/claim_uses/{index}に残す。"
+                    f"Claim {claim_locator} は、元targetの意味定義missingをreference_only資料で置換する主張である。"
+                    f"原missingを保持し、全支持記録は同呼出し観測{use_locator}に残す。"
                 )
                 common = {
                     "subject_ref": copy.deepcopy(claim["subject_ref"]),
