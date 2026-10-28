@@ -1,148 +1,148 @@
 {
- "schema_revision": 1,
- "id": "SCF-B-0159",
- "kind": "scaffold",
- "title": "design JSON pointer and source-pin static check",
- "product": "HELIX-HARNESS",
- "owner_candidate": "HELIX-HARNESS design verification scaffold",
- "state": "registered",
- "reason": "Issue #3546の仮組み。現行mainの設計JSONに対し、明示されたJSON Pointer/path参照の解決と、commit revisionを持つsource pinの本文SHA-256一致だけをread-onlyに検査する。正式な新世代CI・schema validator・要求/承認/完了の生成ではない。",
- "upstream": [
-  {
-   "path": "docs/governance/new-generation-start-here.md",
-   "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
-   "note": "新世代作業入口。scaffold仮組み・authority非生成の入口確認。"
+  "schema_revision": 1,
+  "id": "SCF-B-0159",
+  "kind": "scaffold",
+  "title": "design JSON pointer and source-pin static check",
+  "product": "HELIX-HARNESS",
+  "owner_candidate": "HELIX-HARNESS design verification scaffold",
+  "state": "registered",
+  "reason": "Issue #3546の仮組み。現行mainの設計JSONに対し、明示されたJSON Pointer/path参照の解決と、commit revisionを持つsource pinの本文SHA-256一致だけをread-onlyに検査する。正式な新世代CI・schema validator・要求/承認/完了の生成ではない。",
+  "upstream": [
+    {
+      "path": "docs/governance/new-generation-start-here.md",
+      "sha256": "09a5a870ce1cd9cc1098fc3bc1a084c85f32e351137c488f502004468a37a3dc",
+      "note": "新世代作業入口。scaffold仮組み・authority非生成の入口確認。"
+    },
+    {
+      "path": "docs/governance/github-upstream-operating-model.md",
+      "sha256": "d8ea5ca8669ef15c9eb281c36e15724d86c30fdc4c18e14a9232c17c560174ac",
+      "note": "GUI mailbox、worker/reviewer分離、create/review/merge責務の現行運用参照。 [2026-10-22 #3546 Codex引取照合: Devin元HEAD b600d4f9のchecker/selftest内容は不変。現行運用モデルの5件/並列claim/各自TTL起算へpinを追随し、本Bindingの静的参照検査role・obligations・authorityは不変。]"
+    },
+    {
+      "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+      "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+      "note": "限定L3/L10の対設計・実装・検証・対象CIの段階境界。"
+    },
+    {
+      "path": "docs/governance/crosswalks/design-json-materialization-inventory.json",
+      "sha256": "018c866fcc898285edc510128901bb6de1cdaba899aeeaf97165fcb3ea9167b5",
+      "note": "既存設計JSONのpointer、materialization、source pin形式の棚卸し参照。"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
+      "note": "scaffold配置、旧runtime/test/CI非実行、fail-closeと日本語報告の作業規則。"
+    }
+  ],
+  "role": "design-json-static-reference-check-scaffold",
+  "obligations": [
+    "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
+    "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。path#fragmentは明示された同objectの固定revisionを使う。input_constructionとsource_material_pinsを持つ節ではinput_bases内の参照に限り、pathとpointerが完全一致する一意な固定revision/file_sha256へ束縛する。embedded revision、同object revision、親pinの順で優先し、label revisionや曖昧なpinからは継承しない。同objectのfragment参照ではrevisionだけを解決に使い、同objectのfile SHAは照合しない（fragment shapeを未分類とする既存境界を保持）。",
+    "`*_path`/例外path keyと対応する`*_revision`・`*_commit`・whole-file `*_sha256`のprefix-pairが同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。汎用例外は明示し、prefix違いのcross-pairはしない。",
+    "pointer、line/read/quote/range系key、historical、candidate印、または`path#fragment`を持つshapeはpin照合せず未分類へ数える。label revision、legacy-root path、pointer-valued path、fixture/placeholder pathも未分類へ数える。",
+    "絶対path・.. traversal・backslash pathはfile-shaped値でfail-closeに違反とし、path正規化は行わない。prefix許可リストは持たない。`scaffold/review-handoff/local/`参照はE_LOCAL_REFとして別codeに分ける。",
+    "違反件数とfile/at/code/detail一覧に加え、意味未確定shapeのunclassified件数をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
+    "selftestは隔離された一時repositoryで正常系（部分hash・label revision・historical pin・repo直下path・commit pin・古いrevision pin・legacy-root/pointer-valued/line-range path・prefix-derived pinを含む）と否定例を厳密なcode+at照合で確認する。",
+    "結果はevidence_kind scaffold、authority_effect noneであり、正式CI・製品受入・設計採否を生成しない。"
+  ],
+  "connections": {
+    "consumers": [
+      "#3546 design JSON static check proposal review",
+      "#3502 ②設計検証用CIの後続設計"
+    ],
+    "dependencies": [
+      "stdlib json/hashlib/argparse/subprocess/pathlib",
+      "git show <revision>:<path> read access",
+      "RFC6901 absolute JSON Pointer"
+    ],
+    "boundary": "scaffold/配下の読み取り専用checkerと一時repository selftestのみ。GitHub Actions workflow、旧archive実行、要求生成、設計修正、正式resolverを作らない。"
   },
-  {
-   "path": "docs/governance/github-upstream-operating-model.md",
-   "sha256": "b7ba29b45f6926639eafddbc2f782dfa518e7cde41099795d9862115882602e8",
-   "note": "GUI mailbox、worker/reviewer分離、create/review/merge責務の現行運用参照。 [2026-10-22 #3546 Codex引取照合: Devin元HEAD b600d4f9のchecker/selftest内容は不変。現行運用モデルの5件/並列claim/各自TTL起算へpinを追随し、本Bindingの静的参照検査role・obligations・authorityは不変。]"
+  "operations": {
+    "allowed": [
+      "python3 scaffold/tools/design_json_check.py --root <repo>",
+      "python3 scaffold/tools/design_json_check_selftest.py",
+      "temporary git repository creation inside tempfile.mkdtemp for selftest"
+    ],
+    "forbidden": [
+      "scaffold外への恒常書込み",
+      "network access or external resolver execution",
+      "old archive runtime/test/CI execution",
+      "requirement/approval/acceptance semantics generation",
+      "automatic design JSON rewrite"
+    ]
   },
-  {
-   "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
-   "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
-   "note": "限定L3/L10の対設計・実装・検証・対象CIの段階境界。"
+  "artifacts": [
+    "scaffold/tools/design_json_check.py",
+    "scaffold/tools/design_json_check_selftest.py",
+    "scaffold/bindings/SCF-B-0159.json"
+  ],
+  "verification": {
+    "evidence_kind": "scaffold",
+    "scope": [
+      "deterministic_behavior",
+      "negative_case",
+      "source_revision_stale",
+      "forbidden_write_scope"
+    ],
+    "oracles": [
+      "python3 scaffold/tools/design_json_check_selftest.py",
+      "python3 -m py_compile scaffold/tools/design_json_check.py scaffold/tools/design_json_check_selftest.py",
+      "python3 scaffold/tools/design_json_check.py --root .",
+      "python3 -B scaffold/tools/scfctl.py validate",
+      "python3 -B scaffold/tools/scfctl.py stale",
+      "python3 -B scaffold/tools/scfctl.py residuals",
+      "git diff --check"
+    ],
+    "negative_cases": [
+      "missing local JSON Pointer",
+      "missing pinned path",
+      "source sha mismatch",
+      "unsafe pin path",
+      "unsafe path reference",
+      "absolute path reference",
+      "local-only reference",
+      "unknown pinned revision",
+      "missing cross-file json_pointer",
+      "local-only pointer target",
+      "same-object source pin with a distinct audit source_revision",
+      "input_base bound by fixed_source_binding_rule_ja and source_basis",
+      "all fixed revision aliases are checked",
+      "valid commit is checked after a label revision",
+      "fixed revision is checked after audit source revision",
+      "source path keeps source revision as a pin alias",
+      "explicit revision overrides source basis",
+      "ambiguous source basis does not bind",
+      "non-hex source basis revision does not bind",
+      "different path source basis does not bind",
+      "pathless source basis leaves target implicit",
+      "fixed source basis sha is enforced",
+      "fixed source binding does not escape case",
+      "fixed source binding marker is required",
+      "fixed fragment pointer remains checked",
+      "explicit fragment revision overrides material pin",
+      "ambiguous material pin does not bind",
+      "material pin sha is enforced",
+      "material pin pointer must match",
+      "material pin scope does not escape input bases",
+      "material construction marker is required",
+      "label revision blocks material pin binding",
+      "embedded fragment revision overrides sibling",
+      "different path material pin does not bind",
+      "non-hex material pin revision does not bind",
+      "non-hex material pin sha does not bind",
+      "fragment sibling sha remains unclassified"
+    ]
   },
-  {
-   "path": "docs/governance/crosswalks/design-json-materialization-inventory.json",
-   "sha256": "018c866fcc898285edc510128901bb6de1cdaba899aeeaf97165fcb3ea9167b5",
-   "note": "既存設計JSONのpointer、materialization、source pin形式の棚卸し参照。"
+  "replacement": {
+    "role_target": "新世代設計検証CIの正式resolver/static check",
+    "formal_artifacts": [],
+    "issue": 3546,
+    "status": "pending",
+    "transfer": null,
+    "target_revisions": {},
+    "confirmation_ref": null,
+    "confirmation_digest": null
   },
-  {
-   "path": "AGENTS.md",
-   "sha256": "e9bf270eea4288b55ebd66d9d153d43d9c85220bd611281782af99a3c3b853a7",
-   "note": "scaffold配置、旧runtime/test/CI非実行、fail-closeと日本語報告の作業規則。"
-  }
- ],
- "role": "design-json-static-reference-check-scaffold",
- "obligations": [
-  "docs/helix-*/L*-*/**/*.json を再帰的に読み、JSON parse失敗を違反として報告する。",
-  "明示されたrepo相対file pathと、自文書または明示document/pathを対象とするpointerだけを解決し、対象推測やsource_main/baseへのrevision継承は行わない。既存のfixed_source_binding_rule_jaとsource_basisがある節ではcase内のpath/pointerだけを一意な固定revisionとfile_sha256へ束縛し、case外へ適用しない。path#fragmentは明示された同objectの固定revisionを使う。input_constructionとsource_material_pinsを持つ節ではinput_bases内の参照に限り、pathとpointerが完全一致する一意な固定revision/file_sha256へ束縛する。embedded revision、同object revision、親pinの順で優先し、label revisionや曖昧なpinからは継承しない。同objectのfragment参照ではrevisionだけを解決に使い、同objectのfile SHAは照合しない（fragment shapeを未分類とする既存境界を保持）。",
-  "`*_path`/例外path keyと対応する`*_revision`・`*_commit`・whole-file `*_sha256`のprefix-pairが同じobjectに揃い、40hex revisionと64hex SHAが明示されたpinだけをgit show <revision>:<path>のraw bytesで照合する。汎用例外は明示し、prefix違いのcross-pairはしない。",
-  "pointer、line/read/quote/range系key、historical、candidate印、または`path#fragment`を持つshapeはpin照合せず未分類へ数える。label revision、legacy-root path、pointer-valued path、fixture/placeholder pathも未分類へ数える。",
-  "絶対path・.. traversal・backslash pathはfile-shaped値でfail-closeに違反とし、path正規化は行わない。prefix許可リストは持たない。`scaffold/review-handoff/local/`参照はE_LOCAL_REFとして別codeに分ける。",
-  "違反件数とfile/at/code/detail一覧に加え、意味未確定shapeのunclassified件数をJSONで返し、exit codeは0合格・1違反または読取失敗とする。",
-  "selftestは隔離された一時repositoryで正常系（部分hash・label revision・historical pin・repo直下path・commit pin・古いrevision pin・legacy-root/pointer-valued/line-range path・prefix-derived pinを含む）と否定例を厳密なcode+at照合で確認する。",
-  "結果はevidence_kind scaffold、authority_effect noneであり、正式CI・製品受入・設計採否を生成しない。"
- ],
- "connections": {
-  "consumers": [
-   "#3546 design JSON static check proposal review",
-   "#3502 ②設計検証用CIの後続設計"
-  ],
-  "dependencies": [
-   "stdlib json/hashlib/argparse/subprocess/pathlib",
-   "git show <revision>:<path> read access",
-   "RFC6901 absolute JSON Pointer"
-  ],
-  "boundary": "scaffold/配下の読み取り専用checkerと一時repository selftestのみ。GitHub Actions workflow、旧archive実行、要求生成、設計修正、正式resolverを作らない。"
- },
- "operations": {
-  "allowed": [
-   "python3 scaffold/tools/design_json_check.py --root <repo>",
-   "python3 scaffold/tools/design_json_check_selftest.py",
-   "temporary git repository creation inside tempfile.mkdtemp for selftest"
-  ],
-  "forbidden": [
-   "scaffold外への恒常書込み",
-   "network access or external resolver execution",
-   "old archive runtime/test/CI execution",
-   "requirement/approval/acceptance semantics generation",
-   "automatic design JSON rewrite"
-  ]
- },
- "artifacts": [
-  "scaffold/tools/design_json_check.py",
-  "scaffold/tools/design_json_check_selftest.py",
-  "scaffold/bindings/SCF-B-0159.json"
- ],
- "verification": {
-  "evidence_kind": "scaffold",
-  "scope": [
-   "deterministic_behavior",
-   "negative_case",
-   "source_revision_stale",
-   "forbidden_write_scope"
-  ],
-  "oracles": [
-   "python3 scaffold/tools/design_json_check_selftest.py",
-   "python3 -m py_compile scaffold/tools/design_json_check.py scaffold/tools/design_json_check_selftest.py",
-   "python3 scaffold/tools/design_json_check.py --root .",
-   "python3 -B scaffold/tools/scfctl.py validate",
-   "python3 -B scaffold/tools/scfctl.py stale",
-   "python3 -B scaffold/tools/scfctl.py residuals",
-   "git diff --check"
-  ],
-  "negative_cases": [
-   "missing local JSON Pointer",
-   "missing pinned path",
-   "source sha mismatch",
-   "unsafe pin path",
-   "unsafe path reference",
-   "absolute path reference",
-   "local-only reference",
-   "unknown pinned revision",
-   "missing cross-file json_pointer",
-   "local-only pointer target",
-   "same-object source pin with a distinct audit source_revision",
-   "input_base bound by fixed_source_binding_rule_ja and source_basis",
-   "all fixed revision aliases are checked",
-   "valid commit is checked after a label revision",
-   "fixed revision is checked after audit source revision",
-   "source path keeps source revision as a pin alias",
-   "explicit revision overrides source basis",
-   "ambiguous source basis does not bind",
-   "non-hex source basis revision does not bind",
-   "different path source basis does not bind",
-   "pathless source basis leaves target implicit",
-   "fixed source basis sha is enforced",
-   "fixed source binding does not escape case",
-   "fixed source binding marker is required",
-   "fixed fragment pointer remains checked",
-   "explicit fragment revision overrides material pin",
-   "ambiguous material pin does not bind",
-   "material pin sha is enforced",
-   "material pin pointer must match",
-   "material pin scope does not escape input bases",
-   "material construction marker is required",
-   "label revision blocks material pin binding",
-   "embedded fragment revision overrides sibling",
-   "different path material pin does not bind",
-   "non-hex material pin revision does not bind",
-   "non-hex material pin sha does not bind",
-   "fragment sibling sha remains unclassified"
-  ]
- },
- "replacement": {
-  "role_target": "新世代設計検証CIの正式resolver/static check",
-  "formal_artifacts": [],
-  "issue": 3546,
-  "status": "pending",
-  "transfer": null,
-  "target_revisions": {},
-  "confirmation_ref": null,
-  "confirmation_digest": null
- },
- "created": "2026-10-22",
- "updated": "2026-10-23"
+  "created": "2026-10-22",
+  "updated": "2026-10-28"
 }

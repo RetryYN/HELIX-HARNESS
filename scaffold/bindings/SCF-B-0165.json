@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/github-upstream-operating-model.md",
-      "sha256": "b7ba29b45f6926639eafddbc2f782dfa518e7cde41099795d9862115882602e8",
+      "sha256": "d8ea5ca8669ef15c9eb281c36e15724d86c30fdc4c18e14a9232c17c560174ac",
       "note": "正本手順: 258〜298行（作成側とレビュー対応側の責務258〜266行、governance/operation_change PRのmerge admission 268〜282行、repository_foundation read-after 284〜299行）。"
     },
     {

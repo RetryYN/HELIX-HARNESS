@@ -1675,16 +1675,36 @@ class GuiChecks(unittest.TestCase):
                 p.validate_work_result(result, request)
 
     def test_four_runtime_lanes(self):
-        # Claude・Codex・Antigravityはexecution/review_mergeの排他レーン、Devinはworkerレーン。
+        # Claude・Codex・Antigravityはexecutionを同時に持て、review_mergeは1 runtimeだけの排他レーン、Devinはworkerレーン。
         g.bind(self.data, "devin", "devin-gui", "worker", 60, self.now)
-        # Codexがexecution、Claudeがreview_mergeの間は、Antigravityはいずれにもbindできない（排他規則）。
-        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
-            g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now)
-        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
+        # Codexがexecution、Claudeがreview_mergeの間も、Antigravityはexecutionを同時にbindできる。
+        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now)
+        self.assertEqual(self.data["lanes"]["codex"]["lane"], "execution")
+        self.assertEqual(self.data["lanes"]["antigravity"]["lane"], "execution")
+        # 同じruntimeは生存中レーンと別のレーン（executionとreview_merge）を兼ねられない。
+        with self.assertRaisesRegex(
+            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
+        ):
             g.bind(self.data, "antigravity", "agy-gui", "review_merge", 60, self.now)
-        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now + 61)
+        with self.assertRaisesRegex(
+            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
+        ):
+            g.bind(self.data, "codex", "codex-gui", "review_merge", 60, self.now)
+        with self.assertRaisesRegex(
+            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
+        ):
+            g.bind(self.data, "claude", "claude-gui", "execution", 60, self.now)
+        # review_mergeは排他レーンのため、別runtimeが同時にbindできない。
+        g.bind(self.data, "claude", "claude-gui", "review_merge", 60, self.now + 61)
         with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
-            g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now + 61)
+            g.bind(
+                self.data, "antigravity", "agy-gui", "review_merge", 60, self.now + 61
+            )
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
+            g.bind(self.data, "codex", "codex-gui", "review_merge", 60, self.now + 61)
+        # 片方のleaseが切れたあとも、Antigravityがexecutionを持った状態でCodexがexecutionを再bindできる。
+        g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now + 61)
+        g.bind(self.data, "codex", "codex-gui", "execution", 60, self.now + 61)
         for runtime, lane in (
             ("devin", "execution"),
             ("antigravity", "worker"),
@@ -1694,9 +1714,9 @@ class GuiChecks(unittest.TestCase):
                 g.bind(self.data, runtime, runtime + "-x", lane, 60, self.now + 122)
         data = dict(version=1, lanes={}, observed={}, messages={})
         g.bind(data, "codex", "codex-gui", "review_merge", 60, self.now)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
             g.bind(data, "claude", "claude-gui", "review_merge", 60, self.now)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
             g.bind(data, "antigravity", "agy-gui", "review_merge", 60, self.now)
 
     def test_antigravity_dispatcher_work_request_and_self_reject(self):

@@ -27,8 +27,8 @@ LANES = {
     "devin": ("worker",),
     "antigravity": ("execution", "review_merge"),
 }
-# 同じ役割を同時に二つのruntimeへ割り当てない役割。workerは複数のruntimeが並んで持てる。
-EXCLUSIVE_LANES = ("execution", "review_merge")
+# 同じ役割を同時に二つのruntimeへ割り当てない役割。executionとworkerは複数のruntimeが並んで持てる。
+EXCLUSIVE_LANES = ("review_merge",)
 HOOK_EVENTS = {
     "claude": ("SessionStart", "Stop", "ConfigChange"),
     "codex": ("SessionStart", "Stop"),
@@ -441,6 +441,10 @@ def bind(data, runtime, session, lane, ttl, now):
     p.require(
         not prior or prior["expires"] <= now or prior["session"] == session,
         "生存中レーンの別sessionへの上書き禁止。unbindが必要",
+    )
+    p.require(
+        not prior or prior["expires"] <= now or prior["lane"] == lane,
+        "同じruntimeがexecutionとreview_mergeを兼ねられない。unbindが必要",
     )
     if lane in EXCLUSIVE_LANES:
         for other_runtime, other in data["lanes"].items():

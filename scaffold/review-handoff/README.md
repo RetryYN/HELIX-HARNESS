@@ -49,7 +49,7 @@ python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime devin --session
 python3 -B scaffold/review-handoff/gui_mailbox.py bind --runtime antigravity --session ANTIGRAVITY_CONVERSATION --lane execution
 ```
 
-Claude・Codex・Antigravityは`execution`か`review_merge`に就き、同じruntimeが両レーンを兼ねず、同じ役割を同時に二つのruntimeへ割り当てない。Devinは`worker`だけに就く。
+Claude・Codex・Antigravityは`execution`か`review_merge`に就き、同じruntimeが両レーンを兼ねない。`execution`は複数のruntimeが同時に就け、`review_merge`は排他で同時に1つのruntimeだけが持つ。Devinは`worker`だけに就く。
 
 `worker`はDevinのレーン割当を示し、PR当事者のruntimeはpacketの`author`／`reviewer`で決まる。AntigravityはCodexと同じく作成・作業依頼・review対応（`author=antigravity`・`reviewer=claude`および`author=claude`・`reviewer=antigravity`）を行える。Devinは`author=devin`・`reviewer=claude`の組だけ作成側として使え、reviewer・自己review・mergeを担わない。`work_request`のdispatcherはClaude／Codex／Antigravityとする。
 
