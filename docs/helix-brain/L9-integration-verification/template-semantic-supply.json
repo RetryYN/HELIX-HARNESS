@@ -1338,7 +1338,7 @@
     {
      "id": "HELIXBRAIN-L9-032-F04-NEG-04",
      "change": "両端契約の互換根拠を未供給にする",
-     "expected": "当該利用を許さない。",
+     "expected": "当該利用を許さない。compatibility_unknown / compatibility / unknown分類を保つ。原record.source_refが明示nullの場合は、L4 bilateral finite cause precedenceが定めるcause文字列null（JSON nullではない）を保持し、left_owner_unprovided/right_owner_unprovidedで上書きしない。各原recordのreason値は原値のまま原record順で保持する。公開RefはL4 bilateral順とし、nullのsource_refは公開Ref列に含めず原recordには保持する。",
      "expected_classification": "compatibility_unknown",
      "expected_axis": "compatibility",
      "expected_state": "unknown",
@@ -1411,7 +1411,9 @@
      "backflow_owner": "knowledge_owner",
      "expected_side_effect_count": 0,
      "execution_state": "not_executed"
-    },
+    }
+   ],
+   "property_cases": [
     {
      "id": "HELIXBRAIN-L9-032-I1B-EQUAL-RECORDS",
      "l4_contract_ref": {
