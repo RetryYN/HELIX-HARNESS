@@ -1167,6 +1167,58 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertFalse(l4_bad_cap["passed"])
         self.assertEqual(l4_bad_cap["failures"][0]["key"], "fixture_patch")
 
+    def test_chk_pair_bidir_id_selects_layer_specific_reverse_ref_when_l4_and_l5_refs_coexist(
+        self,
+    ) -> None:
+        l5_data = {
+            "contracts": [
+                {
+                    "id": "HELIXLABO-L5-001-F01",
+                    "oracle_ref": "LABO001-F01-CASE-01",
+                }
+            ],
+            "completion": {"contracts_total": 1},
+        }
+        l8_data = {
+            "cases": [
+                {
+                    "id": "LABO001-F01-CASE-01",
+                    "requirement_ref": "HELIXLABO-L3-001-F01",
+                    "l4_contract_ref": "HELIXLABO-L4-001-F01",
+                    "l5_contract_ref": "HELIXLABO-L5-001-F01",
+                }
+            ],
+            "completion": {"cases_total": 1},
+        }
+        res_l5 = dvc.check_pair_bidir_id(
+            REPO_ROOT,
+            "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json",
+            "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+            left_data=l5_data,
+            right_data=l8_data,
+        )
+        self.assertTrue(
+            res_l5["passed"],
+            f"Expected L5<->L8 pass when l4_contract_ref and l5_contract_ref coexist, got: {res_l5}",
+        )
+        self.assertEqual(res_l5["failures"], [])
+
+        # Counterexample: if left is L4, it must pick l4_contract_ref and fail against L5 IDs
+        res_as_l4 = dvc.check_pair_bidir_id(
+            REPO_ROOT,
+            "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
+            "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+            left_data=l5_data,
+            right_data=l8_data,
+        )
+        self.assertFalse(res_as_l4["passed"])
+        self.assertTrue(
+            any(
+                f["error"] == "missing_reverse_link" and f["pointer"] == "/cases/0"
+                for f in res_as_l4["failures"]
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

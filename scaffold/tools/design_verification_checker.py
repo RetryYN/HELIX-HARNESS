@@ -787,6 +787,7 @@ def check_pair_bidir_id(
     right_data: dict[str, Any] | None = None,
     left_key: str | None = None,
     right_key: str | None = None,
+    left_layer: str | None = None,
 ) -> dict[str, Any]:
     """CHK-PAIR-BIDIR-ID: Verify 1-to-1 bidirectional ID links and /completion/* counts."""
     if left_data is None:
@@ -905,16 +906,42 @@ def check_pair_bidir_id(
             }
         )
 
-    reverse_ref_keys: tuple[str, ...] = (
-        (
+    eff_left_layer = left_layer or _infer_layer(left_path)
+    if eff_left_layer == "UNKNOWN" and left_key == "requirements":
+        eff_left_layer = "L3"
+
+    if eff_left_layer == "L3" or left_key == "requirements":
+        reverse_ref_keys: tuple[str, ...] = (
             "requirement_ref",
             "design_ref",
             "contract_ref",
             "detail_design_ref",
             "function_design_ref",
         )
-        if left_key == "requirements"
-        else (
+    elif eff_left_layer == "L4":
+        reverse_ref_keys = (
+            "design_ref",
+            "contract_ref",
+            "l4_contract_ref",
+            "requirement_ref",
+        )
+    elif eff_left_layer == "L5":
+        reverse_ref_keys = (
+            "l5_contract_ref",
+            "detail_design_ref",
+            "design_ref",
+            "contract_ref",
+            "requirement_ref",
+        )
+    elif eff_left_layer == "L6":
+        reverse_ref_keys = (
+            "function_design_ref",
+            "design_ref",
+            "contract_ref",
+            "requirement_ref",
+        )
+    else:
+        reverse_ref_keys = (
             "design_ref",
             "contract_ref",
             "l4_contract_ref",
@@ -923,7 +950,6 @@ def check_pair_bidir_id(
             "function_design_ref",
             "requirement_ref",
         )
-    )
 
     def _pick_reverse_ref(ritem: dict[str, Any]) -> Any:
         for rk in reverse_ref_keys:
@@ -1065,8 +1091,14 @@ def check_pair_bidir_id(
 
 
 def _infer_layer(file_path: str) -> str:
+    base = Path(file_path).name
     for tok in ("L10", "L3", "L4", "L5", "L6", "L7", "L8", "L9"):
-        if f"/{tok}-" in file_path or file_path.startswith(f"{tok}-"):
+        if (
+            f"/{tok}-" in file_path
+            or file_path.startswith(f"{tok}-")
+            or base == f"{tok}.json"
+            or base.startswith(f"{tok}_")
+        ):
             return tok
     return "UNKNOWN"
 
@@ -2589,8 +2621,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if ok else 1
 
     if args.command == "check-child":
-        p49 = check_pair_bidir_id(repo_root, args.l4, args.l9)
-        p58 = check_pair_bidir_id(repo_root, args.l5, args.l8)
+        p49 = check_pair_bidir_id(repo_root, args.l4, args.l9, left_layer="L4")
+        p58 = check_pair_bidir_id(repo_root, args.l5, args.l8, left_layer="L5")
         neg = check_neg_4way_match(repo_root, args.l4, args.l9, args.l8, args.l5)
         caps = [
             check_ownership_cap(repo_root, p)
