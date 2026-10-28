@@ -38,10 +38,10 @@ def ownership_cap_test_material() -> dict[str, object]:
 class DesignVerificationCheckerSelfTest(unittest.TestCase):
     @staticmethod
     def _negative_rows(layer: dict[str, object]) -> list[dict[str, object]]:
-        if "contracts" in layer:
-            return layer["contracts"][0].get("negative_classifications", [])
         if "failure_rules" in layer:
             return layer["failure_rules"]
+        if "contracts" in layer:
+            return layer["contracts"][0].get("negative_classifications", [])
         return layer["cases"][0].get("negative_cases", [])
 
     @staticmethod
@@ -178,6 +178,14 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     msg=f"repeated code with {identity_mode} identity must fail closed",
                 )
                 self.assertTrue(result["failures"])
+                if identity_mode == "missing":
+                    missing_identity_layers = {
+                        failure.get("layer")
+                        for failure in result["failures"]
+                        if failure.get("attribute") == "case_identity"
+                        and failure.get("reason") == "missing_or_invalid"
+                    }
+                    self.assertEqual(missing_identity_layers, {"L4", "L9", "L8", "L5"})
 
         ambiguous_l5 = copy.deepcopy(layers)
         extra_rule = copy.deepcopy(ambiguous_l5[3]["failure_rules"][0])
