@@ -7858,9 +7858,36 @@
         "content_unresolved",
         "proposition_operand_unresolved",
         "constraint_mismatch",
-        "aggregation_unestablished"
+        "aggregation_unestablished",
+        "declaration_unresolved",
+        "projection_unformed"
       ],
-      "cause_boundary": "上記は私有基本viewの局所原因の閉集合で、native/public Finding code/stateではない。各causeは対象field/proposal/role/原Ref-indexとrequested/reached locator、左右原値/presenceを持つ。kind差はoriginal_kind_differenceとして原値とともに別観測し、支持された意味を未決へ置換する原因にしない。 複数role支持それ自体はcauseではなくmultiple_support_observationsに置く。実際の原constraint/源資料の未形成又は既知不一致は既存の該当causeで出現単位に保存し、他の支持済みinterpretationを消さない。",
+      "cause_boundary": "上記は私有基本viewの局所原因の閉集合で、native/public Finding code/stateではない。各causeは対象field/proposal/role/原Ref-indexとrequested/reached locator、左右原値/presenceを持つ。kind差はoriginal_kind_differenceとして原値とともに別観測し、支持された意味を未決へ置換する原因にしない。 複数role支持それ自体はcauseではなくmultiple_support_observationsに置く。実際の原constraint/源資料の未形成又は既知不一致は既存の該当causeで出現単位に保存し、他の支持済みinterpretationを消さない。 declaration_unresolvedは対応済みcontentに対して必要role/form basisが未供給である局所原因、projection_unformedは実宣言のrequired memberと対応contentの既知差で投影のみが未形成となる局所原因として使う。いずれもnative/public Finding code/state又はdomain missing/unknownを生成しない。",
+      "cause_kind_extension_rules": {
+        "authority_boundary": "既存F05 requirementの意味を変更せず、basic_candidate_returnのlocal causeとして使える二値の意味境界を明記する。native/public Finding code/state、実qualification、runtime実行を主張しない。",
+        "rules": [
+          {
+            "id": "F05-CAUSE-DECLARATION-UNRESOLVED",
+            "kind": "declaration_unresolved",
+            "condition": "対象definition_refs[j]が実AxisFact contentへ既に解決し、同field/binding/material_refのdefinition/AxisFact/axis_valueを示す適用宣言も同一source/body上の独立role sourceも成立しない。Ref lookup missとは別条件。",
+            "target": "当該field_inputs[i].definition_refs[j]のoriginal Ref location。",
+            "left": "対応済みAxisFact contentの/value全体のoriginal Read。",
+            "right": "normative_literal（原definition role/form根拠）",
+            "storage": "local_unestablishedに局所保持し、DefinitionAssessmentへCauseを伝えない。projection_attempts=[]。",
+            "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0"
+          },
+          {
+            "id": "F05-CAUSE-PROJECTION-UNFORMED",
+            "kind": "projection_unformed",
+            "condition": "AxisFact definition contentへ対応する実宣言が存在し、required declaration member（material_carrier又はpayload_form等）と対応contentの間に既知差がある。absent/unknownへ潰さない。",
+            "target": "実不一致宣言member Readのlocation。",
+            "left": "実宣言memberのoriginal Read全値。",
+            "right": "対応する実AxisFact content recordのoriginal Read全値。",
+            "storage": "該当projectionだけをunformedとして原宣言/content Readとともにlocal_unestablishedへ保持し、DefinitionAssessmentへCauseを伝えない。",
+            "rule_pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
+          }
+        ]
+      },
       "basis_occurrence_index_contract": {
         "namespace": "definition_evidence_resultsの各resultとgap_evidence_resultsの各resultはそれぞれ独立したbasis_occurrences配列を持つ。当該result内の全basis_occurrence_indicesは、その配列に実在するentryへの0-based indexだけを指す。別resultの表、native collection index、source/bodyの元index、proposition_occurrence_index又はcandidate interpretation indexを代入しない。",
         "entry_fields": {
@@ -8460,7 +8487,7 @@
         "Cause": {
           "kind": "closed_record",
           "members": {
-            "kind": "enum:input_unobserved|target_unformed|source_unresolved|source_unusable|source_body_mismatch|body_unformed|target_mismatch|owner_binding_unestablished|owner_mismatch|statement_source_conflict|content_unresolved|proposition_operand_unresolved|constraint_mismatch|aggregation_unestablished",
+            "kind": "enum:input_unobserved|target_unformed|source_unresolved|source_unusable|source_body_mismatch|body_unformed|target_mismatch|owner_binding_unestablished|owner_mismatch|statement_source_conflict|content_unresolved|proposition_operand_unresolved|constraint_mismatch|aggregation_unestablished|declaration_unresolved|projection_unformed",
             "target": "Location",
             "left": "Operand",
             "right": "Operand",
@@ -8708,9 +8735,11 @@
         "content_unresolved",
         "proposition_operand_unresolved",
         "constraint_mismatch",
-        "aggregation_unestablished"
+        "aggregation_unestablished",
+        "declaration_unresolved",
+        "projection_unformed"
       ],
-      "cause_semantics": "既存14語の意味/局所性を保持する。source未取得/不成立、body/target/owner未形成、同Refsource相反と異なる有効scope列集約を分ける。候補scope事実からdomain定義missing/値unknown/NA/完了を発明しない。",
+      "cause_semantics": "既存語の意味/局所性を保持する。source未取得/不成立、body/target/owner未形成、同Refsource相反と異なる有効scope列集約を分ける。declaration_unresolvedは対応済み対象materialの必要role/form basis未供給、projection_unformedは宣言投影のrequired member/content間の既知差であり、いずれも候補scope事実からdomain定義missing/値unknown/NA/完了を発明しない。",
       "projection_boundary": "ScopeReturnはこの有限基本viewの全member/leaf。元C/native SourceCheck/InputIssue/全Comparison/全F05wholeは返却typeに偽のnull/{}を置かず別の未束縛symbolic義務として保持する。"
     },
     "cause_patterns": {
