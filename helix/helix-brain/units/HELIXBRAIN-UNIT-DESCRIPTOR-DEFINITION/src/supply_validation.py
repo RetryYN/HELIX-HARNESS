@@ -7,6 +7,7 @@ import functools
 import hashlib
 import json
 import math
+from decimal import Decimal, DecimalException
 from typing import Any
 
 
@@ -118,6 +119,24 @@ def _json_equal(left: Any, right: Any) -> bool:
             _json_equal(a, b) for a, b in zip(left, right)
         )
     return left == right
+
+
+def _source_body_equal(decoded: Any, supplied: Any) -> bool:
+    """Compare exact source JSON numbers without promoting host floats."""
+    if isinstance(decoded, Decimal):
+        return decoded.is_finite() and type(supplied) is int and decoded == supplied
+    if type(decoded) is not type(supplied):
+        return False
+    if isinstance(decoded, dict):
+        return decoded.keys() == supplied.keys() and all(
+            _source_body_equal(decoded[key], supplied[key]) for key in decoded
+        )
+    if isinstance(decoded, list):
+        return len(decoded) == len(supplied) and all(
+            _source_body_equal(left_item, right_item)
+            for left_item, right_item in zip(decoded, supplied)
+        )
+    return decoded == supplied
 
 
 def _is_json_value(value: Any) -> bool:
@@ -428,71 +447,103 @@ def _input_issue(locator: str, reason: str, source_ref: Any = None) -> dict[str,
     }
 
 
-def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
-    if not isinstance(source, dict):
+def _qualification_same(left: Any, right: Any) -> bool:
+    """Compare Qualification values with L5 Ref identity semantics."""
+    if not isinstance(left, dict) or not isinstance(right, dict):
         return False
+    if left.keys() != right.keys():
+        return False
+    ref_fields = {"ref", "subject_ref", "root_ref"}
+    return all(
+        (
+            _ref_same(left[key], right[key])
+            if key in ref_fields
+            else _json_equal(left[key], right[key])
+        )
+        for key in left
+    )
+
+
+def _source_qualification_check(
+    raw: dict[str, Any], source: Any
+) -> tuple[bool, dict[str, Any] | None]:
+    if not isinstance(source, dict):
+        return False, None
     source_ref = source["ref"]
     content_bytes = source["content_bytes"]
     if not isinstance(content_bytes, str) or not isinstance(
         source_ref.get("sha256"), str
     ):
-        return False
+        return False, None
     try:
         encoded = content_bytes.encode("utf-8", errors="strict")
     except UnicodeEncodeError:
-        return False
+        return False, None
     digest = hashlib.sha256(encoded).hexdigest()
     if digest != source_ref["sha256"]:
-        return False
+        return False, None
     try:
         decoded = json.loads(
             content_bytes,
             object_pairs_hook=_unique_object_pairs,
             parse_constant=_reject_non_json_constant,
+            parse_int=Decimal,
+            parse_float=Decimal,
         )
-    except (json.JSONDecodeError, UnicodeDecodeError, ValueError):
-        return False
-    if not _is_json_value(decoded) or not _json_equal(decoded, source["content"]):
-        return False
+    except (json.JSONDecodeError, UnicodeDecodeError, ValueError, DecimalException):
+        return False, None
+    if not _source_body_equal(decoded, source["content"]):
+        return False, None
 
     qualification_ref = source["qualification_ref"]
     if not isinstance(qualification_ref, dict):
-        return False
+        return False, None
     qualifications = raw.get("qualifications")
     roots = raw.get("qualification_roots")
     if not isinstance(qualifications, list) or not isinstance(roots, list):
-        return False
+        return False, None
     matches = [
         (index, row)
         for index, row in enumerate(qualifications)
         if isinstance(row, dict) and _ref_same(row.get("ref"), qualification_ref)
     ]
     if not matches:
-        return False
-    # The sole repeated-Q branch implemented here is whole-equal occurrences;
-    # distinct candidates remain unresolved instead of selecting a winner.
+        return False, None
+    # Preserve every supplied occurrence, but compare embedded Refs by identity rather
+    # than location. Other Qualification fields still have to agree exactly.
     first = matches[0][1]
-    if any(not _json_equal(row, first) for _, row in matches[1:]):
-        return False
-    for _index, qualification in matches:
+    if any(not _qualification_same(row, first) for _, row in matches[1:]):
+        return False, None
+    for qualification_index, qualification in matches:
         root_ref = qualification.get("root_ref")
         root_matches = [
             root for root in roots if _ref_shape_ok(root) and _ref_same(root, root_ref)
         ]
         if not root_matches:
-            return False
+            return False, None
         subject_sha = qualification.get("subject_sha256")
         if not (
             _ref_same(qualification.get("subject_ref"), source_ref)
             and subject_sha == digest
-            and _json_equal(
-                qualification.get("applicable_scope"), source_ref.get("scope")
-            )
-            # qualification_body is opaque here; no trust resolver is implied.
-            and "qualification_body" in qualification
         ):
-            return False
-    return True
+            return False, None
+        if not _json_equal(
+            qualification.get("applicable_scope"), source_ref.get("scope")
+        ):
+            return False, _input_issue(
+                f"/qualifications/{qualification_index}/applicable_scope",
+                "原資格の適用scopeが当該sourceのscopeに対応しない。",
+                source_ref,
+            )
+        # qualification_body is opaque here; no trust resolver is implied.
+        if "qualification_body" not in qualification:
+            return False, None
+    return True, None
+
+
+def _source_qualification_ok(raw: dict[str, Any], source: Any) -> bool:
+    """Compatibility predicate retained for existing same-unit consumers."""
+    return _source_qualification_check(raw, source)[0]
 
 
 def validate_supply_input(raw: object) -> dict[str, object]:
@@ -609,12 +660,14 @@ def validate_supply_input(raw: object) -> dict[str, object]:
     issues: list[dict[str, Any]] = []
     if "sources" in snapshot:
         for index, source in enumerate(snapshot["sources"]):
-            if not _source_qualification_ok(snapshot, source):
+            source_ok, specific_issue = _source_qualification_check(snapshot, source)
+            if not source_ok:
                 ref = source["ref"] if isinstance(source, dict) else None
                 if isinstance(ref, dict):
                     unusable.append(copy.deepcopy(ref))
                 issues.append(
-                    _input_issue(
+                    specific_issue
+                    or _input_issue(
                         f"/sources/{index}",
                         "source bytes/body/digest or independent qualification is unresolved.",
                         ref,

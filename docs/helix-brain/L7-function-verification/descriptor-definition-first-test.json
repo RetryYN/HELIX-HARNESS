@@ -4175,5 +4175,234 @@
     ],
     "tdd_sequence": "test-only commitを先行して現source（src/descriptor_definitions.py 及び src/values_applicability.py に evaluate_selected_field_values_public 未定義）上でRedを実観測し、次commitで src/values_applicability.py と src/descriptor_definitions.py に evaluate_selected_field_values_public を最小実装してGreenにする。",
     "authority_effect": "none"
+  },
+  "fn0_qualification_boundary_verification": {
+    "scope": "L6 fn0_qualification_boundary_preparationの限定source/Qualification/numeric境界を実fn0で検証する。既存fn0_source_validation_verification subtreeとは別の追加範囲。",
+    "design_binding_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn0_qualification_boundary_preparation"
+    },
+    "source_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
+    "oracle_refs": [
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "pointers": [
+          "/functions/0",
+          "/type_contract/reference_comparison",
+          "/wire_codec_contract/source_byte_and_qualification_order",
+          "/wire_codec_contract/numeric_carrier_profile/number_rules",
+          "/wire_codec_contract/numeric_carrier_profile/decode_steps",
+          "/wire_codec_contract/numeric_carrier_profile/private_types/PrivateJsonValue",
+          "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/fn0_qualification_scope_issue_serialization"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+        "pointers": [
+          "/fixture_contract/normal_control/reference_resolution"
+        ]
+      }
+    ],
+    "test_bindings": [
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_qualification_contract.py",
+        "sha256": "fc95ce8ccf93fa7e271024e33c54cc29c0cbe0877b592efe587a2cd5571ad088",
+        "methods": [
+          "test_unencodable_source_text_is_unusable_and_preserved",
+          "test_strict_source_json_rejects_duplicate_keys_and_non_json_constants",
+          "test_parsed_source_body_must_equal_supplied_content",
+          "test_qualification_subject_tuple_and_digest_must_match_source",
+          "test_qualification_requires_an_independent_matching_root",
+          "test_scope_mismatch_uses_qualification_locator_and_l5_reason",
+          "test_qualification_ref_locator_difference_does_not_create_conflict"
+        ],
+        "file_bytes_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
+        "commits": [
+          "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+          "59f21fd7023172c063590b48385bdc060b2743d9"
+        ]
+      },
+      {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_numeric_exactness.py",
+        "sha256": "1e5628edfe5a50361ed1d34978eb90beb7b527a1ba1320c51b456f7047715f25",
+        "commits": [
+          "9b5d798c7db2bf6419690b9fc7e9415beec3ccd6",
+          "a75fc4119c0a67c82e01091647b5d47504dc0523",
+          "dfb2c55827b9312eff4eafa8f3563776690b350b",
+          "a5db3d155b0051433cfd60de2a113ff33caa212e",
+          "59f21fd7023172c063590b48385bdc060b2743d9"
+        ],
+        "methods": [
+          "test_inner_source_parse_does_not_round_distinct_decimal_values_together",
+          "test_inner_source_decimal_token_equals_supplied_exact_integer_by_value",
+          "test_inner_source_decimal_does_not_gain_host_float_equality",
+          "test_finite_float_outside_source_body_remains_valid_input",
+          "test_unrepresentable_decimal_exponent_keeps_source_unusable",
+          "test_unrepresentable_decimal_exponent_keeps_source_unusable"
+        ],
+        "file_bytes_revision": "59f21fd7023172c063590b48385bdc060b2743d9"
+      }
+    ],
+    "fixture_reader": {
+      "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/supply_input_fixtures.py",
+      "sha256": "eb22fcc373d228ae32ac28855ec23ee84e26a856f8e395c3953a5da2f22d036e",
+      "source_integrity_control": {
+        "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_source_integrity.py",
+        "sha256": "021a9092cc874fd010cc57d4a17948a8de972a075ad6d856745b308dbeb5a774"
+      }
+    },
+    "red_evidence": [
+      {
+        "phase": "qualification Ref identity and scope oracle Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_qualification_contract",
+        "test_commit": "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+        "source_revision": "026afb1c21846fac233561f40057a5bd4f4bc8ac",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 246,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 7,
+          "assertion_failures": 2,
+          "errors": 0
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
+      },
+      {
+        "phase": "numeric source parse/equality Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness",
+        "test_commit": "dfb2c55827b9312eff4eafa8f3563776690b350b",
+        "source_revision": "a75fc4119c0a67c82e01091647b5d47504dc0523",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 116,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 4,
+          "assertion_failures": 3,
+          "errors": 0,
+          "control_passed": "finite float outside source body remains accepted"
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
+      },
+      {
+        "phase": "extreme Decimal exponent Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness.TestFn0SourceNumericExactness.test_unrepresentable_decimal_exponent_keeps_source_unusable",
+        "test_commit": "a5db3d155b0051433cfd60de2a113ff33caa212e",
+        "source_revision": "d8ea41e23db9534a471518301c109c1ffda3bde9",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 64,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 1,
+          "assertion_failures": 0,
+          "errors": 1,
+          "error": "decimal.InvalidOperation escaped strict source parsing; this was the targeted behavior, not setup/import failure"
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 100000
+      }
+    ],
+    "green_evidence": [
+      {
+        "phase": "focused fn0 qualification/numeric/control suite before formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness test_fn0_source_qualification_contract test_fn0_identity_wire_and_qualifications test_supply_input test_source_integrity",
+        "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 413,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 19,
+          "failures": 0,
+          "errors": 0
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
+      },
+      {
+        "phase": "focused fn0 qualification/numeric/control suite after formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness test_fn0_source_qualification_contract test_fn0_identity_wire_and_qualifications test_supply_input test_source_integrity",
+        "source_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 432,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 19,
+          "failures": 0,
+          "errors": 0
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
+      },
+      {
+        "phase": "whole descriptor-definition unit suite before formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest discover -s tests",
+        "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 28045,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 441,
+          "failures": 0,
+          "errors": 0,
+          "format_relation": "The three subsequently formatted owned files had identical AST dumps before and after formatting; the format commit changed no AST."
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
+      }
+    ],
+    "implemented_boundary": {
+      "source_commit": "59f21fd7023172c063590b48385bdc060b2743d9",
+      "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
+      "source_sha256": "391dde873da38777b8a01072d06715caa57cde0e66e8f5ed002122a51c382f96",
+      "behavior": "Source content_bytes is strict-parsed with Decimal numeric tokens and compared recursively to supplied body. Exact numeric values compare to strict native int; supplied host float inside source body does not qualify. Outer finite-float raw shape acceptance is retained. Decimal representation exceptions during source parsing use the same existing unusable-source/InputIssue result; no exponent ceiling was added.",
+      "implementation_commit": "756023176520cb2a4f308b22dbd80f5362553d99",
+      "implementation_sha256": "3deea6cf8a669e6858140f31e80a256e0e64c8e6d376aa178df7cb1b5c595e7f"
+    },
+    "limits": [
+      "The passing unit tests establish the selected synthetic fn0 boundary only, not an operational qualification resolver or origin-authentication system.",
+      "No public numeric type, float adapter, or full JSON codec completion is claimed. Existing qualification_body remains opaque.",
+      "No qualification/body/source behavior outside the enumerated cases is inferred."
+    ],
+    "execution_state": "bounded Red/Green observed; formatted focused fn0 suite 19 PASS; pre-format full unit suite 441 PASS with identical AST across formatting.",
+    "format_confirmation": {
+      "tool": "Ruff 0.17.1",
+      "commands": [
+        "ruff format <the three owned source/test files>",
+        "ruff format --check <the three owned source/test files>",
+        "ruff check <the three owned source/test files>"
+      ],
+      "result": "3 files reformatted; then 3 already formatted; all checks passed. Python AST dumps for supply_validation.py, test_fn0_source_numeric_exactness.py, and test_fn0_source_qualification_contract.py were identical before/after formatting. The full 441-test run is explicitly against the pre-format bytes; the focused 19-test run was repeated after formatting."
+    }
   }
 }
