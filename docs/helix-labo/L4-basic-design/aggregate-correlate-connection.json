@@ -140,7 +140,2088 @@
         "episode候補のrelationと元observation側backlinkは同じidentity/revision/scopeを往復参照する。不一致は元記録を保ってcorrelation ownerへ返す。相関を因果確定へ昇格しない。",
         "本対のscope内容（requirement_revision、ticket、product、mechanism）が非null non-object scopeのため供給されない場合は、原scope値とFN01のpresence=value/子4項目absent/必須13値不成立を保持し、connection.scopeの必須内容不足をmissingとしてLABO-connection-ownerへ一件返す。missingはraw member不存在への変換ではない。親一件へ集約し子4件の不足理由を重複しない。実資格・接続成功は発行しない。"
       ],
-      "representation_limit": "参照と不成立理由の合成例。payload digest一致だけで実受領/実接続/評価成立を主張しない。"
+      "representation_limit": "参照と不成立理由の合成例。payload digest一致だけで実受領/実接続/評価成立を主張しない。",
+      "oracle_ref": "HELIXLABO-L9-011-F01",
+      "negative_classifications": [
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-identity-MISSING",
+          "change": "CONNECTION-identity-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.identity",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/1/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-identity-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-identity-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-revision-MISSING",
+          "change": "CONNECTION-revision-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.revision",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/2/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-revision-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-revision-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-from_endpoint-MISSING",
+          "change": "CONNECTION-from_endpoint-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.from_endpoint"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.from_endpoint",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/3/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-from_endpoint-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-from_endpoint-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-to_endpoint-MISSING",
+          "change": "CONNECTION-to_endpoint-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.to_endpoint"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.to_endpoint",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/4/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-to_endpoint-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-to_endpoint-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-connector_identity-MISSING",
+          "change": "CONNECTION-connector_identity-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.connector_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.connector_identity",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/5/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-connector_identity-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-connector_identity-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-connector_revision-MISSING",
+          "change": "CONNECTION-connector_revision-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.connector_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.connector_revision",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/6/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-connector_revision-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-connector_revision-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-contract_identity-MISSING",
+          "change": "CONNECTION-contract_identity-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.contract_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.contract_identity",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/7/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-contract_identity-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-contract_identity-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-contract_revision-MISSING",
+          "change": "CONNECTION-contract_revision-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.contract_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.contract_revision",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/8/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-contract_revision-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-contract_revision-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-CONNECTION-scope-MISSING",
+          "change": "CONNECTION-scope-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/9/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-CONNECTION-scope-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-CONNECTION-scope-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-MISSING",
+          "change": "send_receipt-MISSING",
+          "expected_classification": "missing_endpoint_receipt",
+          "expected_axis": [
+            "send_receipt"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt",
+                "result": "missing_endpoint_receipt",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/10/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-connection-FOREIGN",
+          "change": "send_receipt-connection-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "send_receipt.connection"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.connection",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/11/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-connection-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-connection-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-observation_identity-FOREIGN",
+          "change": "send_receipt-observation_identity-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "send_receipt.observation_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.observation_identity",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/12/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-observation_identity-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-observation_identity-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-observation_revision-FOREIGN",
+          "change": "send_receipt-observation_revision-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "send_receipt.observation_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.observation_revision",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/13/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-observation_revision-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-observation_revision-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-source-FOREIGN",
+          "change": "send_receipt-source-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "send_receipt.source"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.source",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/14/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-source-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-source-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-scope-FOREIGN",
+          "change": "send_receipt-scope-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "send_receipt.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.scope",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/15/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-scope-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-scope-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-send_receipt-NOT-SUCCESS",
+          "change": "send_receipt-NOT-SUCCESS",
+          "expected_classification": "not_observed",
+          "expected_axis": [
+            "send_receipt.state"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "send_receipt.state",
+                "result": "not_observed",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/16/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-send_receipt-NOT-SUCCESS",
+          "rule_ref": "LABO011-NEG-LABO011-F01-send_receipt-NOT-SUCCESS",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-MISSING",
+          "change": "receive_receipt-MISSING",
+          "expected_classification": "missing_endpoint_receipt",
+          "expected_axis": [
+            "receive_receipt"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt",
+                "result": "missing_endpoint_receipt",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/17/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-connection-FOREIGN",
+          "change": "receive_receipt-connection-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "receive_receipt.connection"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.connection",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/18/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-connection-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-connection-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-observation_identity-FOREIGN",
+          "change": "receive_receipt-observation_identity-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "receive_receipt.observation_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.observation_identity",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/19/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-observation_identity-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-observation_identity-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-observation_revision-FOREIGN",
+          "change": "receive_receipt-observation_revision-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "receive_receipt.observation_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.observation_revision",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/20/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-observation_revision-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-observation_revision-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-source-FOREIGN",
+          "change": "receive_receipt-source-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "receive_receipt.source"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.source",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/21/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-source-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-source-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-scope-FOREIGN",
+          "change": "receive_receipt-scope-FOREIGN",
+          "expected_classification": "foreign_reference",
+          "expected_axis": [
+            "receive_receipt.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.scope",
+                "result": "foreign_reference",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/22/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-scope-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-scope-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-receive_receipt-NOT-SUCCESS",
+          "change": "receive_receipt-NOT-SUCCESS",
+          "expected_classification": "not_observed",
+          "expected_axis": [
+            "receive_receipt.state"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "receive_receipt.state",
+                "result": "not_observed",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/23/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-receive_receipt-NOT-SUCCESS",
+          "rule_ref": "LABO011-NEG-LABO011-F01-receive_receipt-NOT-SUCCESS",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-OBSERVATION-identity-MISSING",
+          "change": "OBSERVATION-identity-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "received_observation.identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.identity",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/24/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-OBSERVATION-identity-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-OBSERVATION-identity-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-OBSERVATION-revision-MISSING",
+          "change": "OBSERVATION-revision-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "received_observation.revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.revision",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/25/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-OBSERVATION-revision-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-OBSERVATION-revision-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-OBSERVATION-source-MISSING",
+          "change": "OBSERVATION-source-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "received_observation.source"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.source",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/26/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-OBSERVATION-source-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-OBSERVATION-source-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-OBSERVATION-scope-MISSING",
+          "change": "OBSERVATION-scope-MISSING",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "received_observation.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.scope",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/27/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-OBSERVATION-scope-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-OBSERVATION-scope-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-FIELD-MISSING-SUCCESS-FABRICATED",
+          "change": "FIELD-MISSING-SUCCESS-FABRICATED",
+          "expected_classification": "missing_not_success",
+          "expected_axis": [
+            "received_observation.fields.runtime"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.fields.runtime",
+                "result": "missing_not_success",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/28/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-FIELD-MISSING-SUCCESS-FABRICATED",
+          "rule_ref": "LABO011-NEG-LABO011-F01-FIELD-MISSING-SUCCESS-FABRICATED",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-SOURCE-REVISION-CHANGED",
+          "change": "SOURCE-REVISION-CHANGED",
+          "expected_classification": "foreign_revision",
+          "expected_axis": [
+            "received_observation.source.revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.source.revision",
+                "result": "foreign_revision",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/29/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-SOURCE-REVISION-CHANGED",
+          "rule_ref": "LABO011-NEG-LABO011-F01-SOURCE-REVISION-CHANGED",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-episode_identity-FOREIGN",
+          "change": "BACKLINK-episode_identity-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.episode_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.episode_identity",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/30/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-episode_identity-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-episode_identity-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-episode_revision-FOREIGN",
+          "change": "BACKLINK-episode_revision-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.episode_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.episode_revision",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/31/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-episode_revision-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-episode_revision-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-observation_identity-FOREIGN",
+          "change": "BACKLINK-observation_identity-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.observation_identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.observation_identity",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/32/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-observation_identity-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-observation_identity-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-observation_revision-FOREIGN",
+          "change": "BACKLINK-observation_revision-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.observation_revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.observation_revision",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/33/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-observation_revision-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-observation_revision-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-source-FOREIGN",
+          "change": "BACKLINK-source-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.source"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.source",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/34/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-source-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-source-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-scope-FOREIGN",
+          "change": "BACKLINK-scope-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "observation_backlinks.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks.scope",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/35/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-scope-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-scope-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-BACKLINK-ABSENT",
+          "change": "BACKLINK-ABSENT",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "observation_backlinks"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "observation_backlinks",
+                "result": "missing",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/36/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-BACKLINK-ABSENT",
+          "rule_ref": "LABO011-NEG-LABO011-F01-BACKLINK-ABSENT",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-RELATION-VERSION-FOREIGN",
+          "change": "RELATION-VERSION-FOREIGN",
+          "expected_classification": "relation_mismatch",
+          "expected_axis": [
+            "episode_candidate.relations.revision"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "episode_candidate.relations.revision",
+                "result": "relation_mismatch",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/37/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-RELATION-VERSION-FOREIGN",
+          "rule_ref": "LABO011-NEG-LABO011-F01-RELATION-VERSION-FOREIGN",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-REJECT-engine_green_is_connection_success",
+          "change": "REJECT-engine_green_is_connection_success",
+          "expected_classification": "unsupported_connection_or_cause",
+          "expected_axis": [
+            "claims"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "claims",
+                "result": "unsupported_connection_or_cause",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/38/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-REJECT-engine_green_is_connection_success",
+          "rule_ref": "LABO011-NEG-LABO011-F01-REJECT-engine_green_is_connection_success",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-REJECT-send_only_is_connection_success",
+          "change": "REJECT-send_only_is_connection_success",
+          "expected_classification": "unsupported_connection_or_cause",
+          "expected_axis": [
+            "claims"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "claims",
+                "result": "unsupported_connection_or_cause",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/39/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-REJECT-send_only_is_connection_success",
+          "rule_ref": "LABO011-NEG-LABO011-F01-REJECT-send_only_is_connection_success",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-REJECT-receipt_hash_is_actual_success",
+          "change": "REJECT-receipt_hash_is_actual_success",
+          "expected_classification": "unsupported_connection_or_cause",
+          "expected_axis": [
+            "claims"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "claims",
+                "result": "unsupported_connection_or_cause",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/40/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-REJECT-receipt_hash_is_actual_success",
+          "rule_ref": "LABO011-NEG-LABO011-F01-REJECT-receipt_hash_is_actual_success",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-REJECT-correlation_is_cause",
+          "change": "REJECT-correlation_is_cause",
+          "expected_classification": "unsupported_connection_or_cause",
+          "expected_axis": [
+            "claims"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "unqualified",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "claims",
+                "result": "unsupported_connection_or_cause",
+                "return_owner": "LABO-correlation-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-correlation-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/41/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-correlation-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-REJECT-correlation_is_cause",
+          "rule_ref": "LABO011-NEG-LABO011-F01-REJECT-correlation_is_cause",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-SCOPE-PRODUCT-MISSING",
+          "change": "remove_scope_product",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.scope.product"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope.product",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/42/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-SCOPE-PRODUCT-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-SCOPE-PRODUCT-MISSING",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+          "change": "received_field_value_mismatch",
+          "expected_classification": "received_content_conflict",
+          "expected_axis": [
+            "received_observation.fields"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.fields",
+                "result": "received_content_conflict",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/43/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+          "rule_ref": "LABO011-NEG-LABO011-F01-RECEIVED-FIELD-NON_NULL-MISMATCH",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+          "change": "received_identity_mismatch",
+          "expected_classification": "received_content_conflict",
+          "expected_axis": [
+            "received_observation.identity"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "received_observation.identity",
+                "result": "received_content_conflict",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/44/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+          "rule_ref": "LABO011-NEG-LABO011-F01-RECEIVED-IDENTITY-NON_NULL-MISMATCH",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+          "change": "RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.scope",
+            "received_observation.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              },
+              {
+                "field": "received_observation.scope",
+                "result": "missing",
+                "return_owner": "LABO-Aggregate-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner",
+              "LABO-Aggregate-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/45/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner",
+            "LABO-Aggregate-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+          "rule_ref": "LABO011-NEG-LABO011-F01-RECEIVED-SCOPE-NULL-SOURCE-REVISION-MISMATCH",
+          "function_ref": "FN-LABO011-04"
+        },
+        {
+          "id": "LABO011-NEG-LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING",
+          "change": "nonobject_scope_required_contents_missing",
+          "expected_classification": "missing",
+          "expected_axis": [
+            "connection.scope"
+          ],
+          "expected_state": "held_connection_unqualified",
+          "expected": {
+            "information_state": "held_connection_unqualified",
+            "receipt_state": "unqualified",
+            "relation_state": "corresponding_in_fixture_only",
+            "causal_state": "not_established",
+            "failure_reasons": [
+              {
+                "field": "connection.scope",
+                "result": "missing",
+                "return_owner": "LABO-connection-owner"
+              }
+            ],
+            "return_owners": [
+              "LABO-connection-owner"
+            ],
+            "actual_effects_all_false": true
+          },
+          "expected_preserved": {
+            "source_input_ref": {
+              "path": "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+              "pointer": "/case/cases/46/case_input"
+            },
+            "original_observation_preserved": true,
+            "missing_field_keys": [
+              "runtime"
+            ],
+            "causal_state": "not_established",
+            "actual_effects_all_false": true
+          },
+          "backflow_owner": [
+            "LABO-connection-owner"
+          ],
+          "side_effect_count": 0,
+          "integration_case_ref": "LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING",
+          "rule_ref": "LABO011-NEG-LABO011-F01-NONOBJECT-SCOPE-CONTENTS-MISSING",
+          "function_ref": "FN-LABO011-04"
+        }
+      ]
     }
   ],
   "scope_content_correction": {
