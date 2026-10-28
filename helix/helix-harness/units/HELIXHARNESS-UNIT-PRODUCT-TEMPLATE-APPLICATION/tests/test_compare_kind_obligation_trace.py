@@ -548,7 +548,24 @@ class TestCompareKindObligationTrace(unittest.TestCase):
             basis_refs, "claim-f04-design-and-oracle-basis"
         )
 
-        res, _, _ = self._run_trace(raw)
+        res, validated, applicability = self._run_trace(raw)
+
+        self.assertEqual(validated["input"], raw)
+        self.assertEqual(res["input_binding"], raw["binding"])
+        self.assertEqual(
+            applicability["producer_symbol"], "compare_applicability"
+        )
+        self.assertEqual(applicability["input_binding"], raw["binding"])
+        material = res["material"]
+        self.assertIn(raw["obligations"][0], material["obligations"])
+        forward_design_requirement = next(
+            req
+            for req in raw["trace_requirements"]
+            if req["ref"]["identity"] == "trace-required-2-forward"
+        )
+        self.assertIn(
+            forward_design_requirement["ref"], material["required_trace_refs"]
+        )
 
         self.assertNotIn(
             "extraction_as_design_complete",
