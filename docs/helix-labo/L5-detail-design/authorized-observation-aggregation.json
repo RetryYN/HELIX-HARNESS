@@ -398,7 +398,7 @@
     {
       "id": "HELIXLABO-L5-001-F01",
       "requirement_ref": "HELIXLABO-L3-001-F01",
-      "oracle_ref": "HELIXLABO-L10-001-F01",
+      "oracle_ref": "HELIXLABO-L8-001-F01",
       "basic_contract_ref": "HELIXLABO-L4-001-F01",
       "rules": [
         "許可情報の限定はsource/SECURITY ownerが供給する資格入力に依存し、synthetic fixtureのallowed_in_fixture_onlyは実資格ではない。",
@@ -409,12 +409,50 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-F01",
+      "unit_case_refs": [
+        "LABO001-F01-TWO-SOURCES-DIFFERENT-OWNERS",
+        "LABO001-F01-SOURCE-identity-MISSING",
+        "LABO001-F01-SOURCE-revision-MISSING",
+        "LABO001-F01-SOURCE-provenance_ref-MISSING",
+        "LABO001-F01-FIELD-episode_id-UNOBSERVED",
+        "LABO001-F01-FIELD-requirement_revision-UNOBSERVED",
+        "LABO001-F01-FIELD-ticket_id-UNOBSERVED",
+        "LABO001-F01-FIELD-responsibility_id-UNOBSERVED",
+        "LABO001-F01-FIELD-product-UNOBSERVED",
+        "LABO001-F01-FIELD-mechanism-UNOBSERVED",
+        "LABO001-F01-FIELD-worker-UNOBSERVED",
+        "LABO001-F01-FIELD-provider-UNOBSERVED",
+        "LABO001-F01-FIELD-model-UNOBSERVED",
+        "LABO001-F01-FIELD-configuration-UNOBSERVED",
+        "LABO001-F01-FIELD-artifact-UNOBSERVED",
+        "LABO001-F01-FIELD-CI_test-UNOBSERVED",
+        "LABO001-F01-FIELD-release-UNOBSERVED",
+        "LABO001-F01-FIELD-deployment-UNOBSERVED",
+        "LABO001-F01-FIELD-runtime-UNOBSERVED",
+        "LABO001-F01-FIELD-failure-UNOBSERVED",
+        "LABO001-F01-FIELD-rework-UNOBSERVED",
+        "LABO001-F01-FIELD-cost-UNOBSERVED",
+        "LABO001-F01-FIELD-time-UNOBSERVED",
+        "LABO001-F01-FIELD-result-UNOBSERVED",
+        "LABO001-F01-RELEASE-NOT-OCCURRED-EXPLICIT",
+        "LABO001-F01-PERMISSION-OUTSIDE-SCOPE",
+        "LABO001-F01-CLASSIFICATION-NOT-PERMITTED",
+        "LABO001-F01-REJECT-missing_revision_is_current",
+        "LABO001-F01-REJECT-secret_ingestion_allowed",
+        "LABO001-F01-REJECT-invent_provenance",
+        "LABO001-F01-OTHER-KNOWN-SCOPE-REVISION"
+      ],
+      "l8_suite_ref": {
+        "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+        "pointer": "/cases/0"
+      }
     },
     {
       "id": "HELIXLABO-L5-001-F02",
       "requirement_ref": "HELIXLABO-L3-001-F02",
-      "oracle_ref": "HELIXLABO-L10-001-F02",
+      "oracle_ref": "HELIXLABO-L8-001-F02",
       "basic_contract_ref": "HELIXLABO-L4-001-F02",
       "rules": [
         "21 domain値と7状態値をscope付き原値で保持する。",
@@ -424,12 +462,50 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-F02",
+      "unit_case_refs": [
+        "LABO001-F02-STATE-success",
+        "LABO001-F02-STATE-failure",
+        "LABO001-F02-STATE-rejected",
+        "LABO001-F02-STATE-cancelled",
+        "LABO001-F02-STATE-blocked",
+        "LABO001-F02-STATE-unknown",
+        "LABO001-F02-STATE-not_observed",
+        "LABO001-F02-DOMAIN-development",
+        "LABO001-F02-DOMAIN-AI_judgment",
+        "LABO001-F02-DOMAIN-CI",
+        "LABO001-F02-DOMAIN-test",
+        "LABO001-F02-DOMAIN-review",
+        "LABO001-F02-DOMAIN-backflow",
+        "LABO001-F02-DOMAIN-recovery",
+        "LABO001-F02-DOMAIN-incident",
+        "LABO001-F02-DOMAIN-refactor",
+        "LABO001-F02-DOMAIN-release",
+        "LABO001-F02-DOMAIN-deployment",
+        "LABO001-F02-DOMAIN-runtime",
+        "LABO001-F02-DOMAIN-usage",
+        "LABO001-F02-DOMAIN-rework",
+        "LABO001-F02-DOMAIN-cost",
+        "LABO001-F02-DOMAIN-token_API",
+        "LABO001-F02-DOMAIN-model_provider",
+        "LABO001-F02-DOMAIN-correction",
+        "LABO001-F02-DOMAIN-rollback",
+        "LABO001-F02-DOMAIN-product_result",
+        "LABO001-F02-SOURCE-NOT-OCCURRED",
+        "LABO001-F02-REJECT-success_only_filter",
+        "LABO001-F02-REJECT-unknown_is_success",
+        "LABO001-F02-REJECT-not_observed_is_observed"
+      ],
+      "l8_suite_ref": {
+        "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+        "pointer": "/cases/1"
+      }
     },
     {
       "id": "HELIXLABO-L5-001-N01",
       "requirement_ref": "HELIXLABO-L3-001-N01",
-      "oracle_ref": "HELIXLABO-L10-001-N01",
+      "oracle_ref": "HELIXLABO-L8-001-N01",
       "basic_contract_ref": "HELIXLABO-L4-001-N01",
       "rules": [
         "要求revision/source exact set/source-result/contract revision/operation/scope/stateをscope_keys全項目で比較する。",
@@ -439,12 +515,33 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-N01",
+      "unit_case_refs": [
+        "LABO001-N01-EXACT-SCOPE-RECEIPT",
+        "LABO001-N01-RECEIPT-requirement_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-sources-FOREIGN",
+        "LABO001-N01-RECEIPT-source_result_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-contract_revision-FOREIGN",
+        "LABO001-N01-RECEIPT-operation-FOREIGN",
+        "LABO001-N01-RECEIPT-scope-FOREIGN",
+        "LABO001-N01-RECEIPT-state-FOREIGN",
+        "LABO001-N01-permission-MISSING",
+        "LABO001-N01-receipt-MISSING",
+        "LABO001-N01-SOURCE-REVISION-UNSEEN",
+        "LABO001-N01-REJECT-count_is_all_complete",
+        "LABO001-N01-REJECT-foreign_scope_inherits_success",
+        "LABO001-N01-REJECT-field_presence_is_evaluation"
+      ],
+      "l8_suite_ref": {
+        "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+        "pointer": "/cases/2"
+      }
     },
     {
       "id": "HELIXLABO-L5-001-B01",
       "requirement_ref": "HELIXLABO-L3-001-B01",
-      "oracle_ref": "HELIXLABO-L10-001-B01",
+      "oracle_ref": "HELIXLABO-L8-001-B01",
       "basic_contract_ref": "HELIXLABO-L4-001-B01",
       "rules": [
         "source recordとsubmitted observationは別identity/owner。source rawはread-only。",
@@ -454,7 +551,21 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-B01",
+      "unit_case_refs": [
+        "LABO001-B01-SOURCE-OBSERVATION-SEPARATE",
+        "LABO001-B01-OBSERVATION-USES-SOURCE-IDENTITY",
+        "LABO001-B01-OBSERVATION-OWNER-IS-SOURCE",
+        "LABO001-B01-REJECT-labo_source_writeback",
+        "LABO001-B01-REJECT-observation_grants_assignment",
+        "LABO001-B01-REJECT-ingestion_is_evaluation",
+        "LABO001-B01-REJECT-all_source_capabilities_complete"
+      ],
+      "l8_suite_ref": {
+        "path": "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+        "pointer": "/cases/3"
+      }
     }
   ],
   "logical_type_definitions": [
@@ -1100,7 +1211,9 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-F01",
+      "unit_oracle_ref": "HELIXLABO-L8-001-F01"
     },
     {
       "requirement_ref": "HELIXLABO-L3-001-F02",
@@ -1111,7 +1224,9 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-F02",
+      "unit_oracle_ref": "HELIXLABO-L8-001-F02"
     },
     {
       "requirement_ref": "HELIXLABO-L3-001-N01",
@@ -1122,7 +1237,9 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-N01",
+      "unit_oracle_ref": "HELIXLABO-L8-001-N01"
     },
     {
       "requirement_ref": "HELIXLABO-L3-001-B01",
@@ -1133,7 +1250,9 @@
         "LABO001-FN01",
         "LABO001-FN02",
         "LABO001-FN03"
-      ]
+      ],
+      "system_oracle_ref": "HELIXLABO-L10-001-B01",
+      "unit_oracle_ref": "HELIXLABO-L8-001-B01"
     }
   ],
   "consumer_rederivation": {
