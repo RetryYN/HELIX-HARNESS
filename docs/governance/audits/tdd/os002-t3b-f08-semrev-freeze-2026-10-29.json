@@ -127,7 +127,7 @@
     {
       "element_id": "O5",
       "l3_pointer": "L3F#/requirements/15",
-      "l3_clause": "LABO指定/合意の範囲と必要入力が未決なら不完全として示す。U-IDでLABO_scope/required_record_refsを未決・未供給として与え、選択評価complete/evaluated claimを退ける。L7にOS002専用expected_materialは無い。",
+      "l3_clause": "LABO指定/合意の範囲と必要入力が未決なら不完全として示す。U-IDはnative LABO_scope Field内のrequired_record_refs/required_set_source_ref欠落を明示する。専用L7 expected_materialは確認できず、実行・独立意味判定は未了。",
       "l4_pointers": [
         "L4#/contracts/9/behavior",
         "L4#/contracts/9/negative_classifications/5"
@@ -143,7 +143,12 @@
       ],
       "l9_pointers": [
         "L9#/cases/9/negative_cases/5"
-      ]
+      ],
+      "owner_and_reentry": {
+        "owner": "LABO",
+        "unresolved": "L5 F08RecordInputには型付きLABO_scope fieldがあるためrequired_record_refs/required_set_source_refの欠落は表せる。一方でL7にOS002 FN10専用expected_materialがなく、負例の期待観測と独立意味reviewは成立していない。",
+        "reentry_condition": "LABOが権威あるrequired-set refsを供給し、FN10のL7 expected_materialに不足時の観測を独立に記録した後に再開する。L8/L10からL7期待を推定しない。"
+      }
     }
   ],
   "source_main": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
@@ -155,13 +160,13 @@
     "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
     "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
     "L4_pre_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
-    "L4_post_sha256": "77d40d17621cafe9136d11d4ffb8592a80ad2d23d02d3b2d35f216fa41729ab7",
+    "L4_post_sha256": "9f4c08530cb3830dccdd147cffaebffaa4e027b6ec72e1519c656132dda51737",
     "L9_pre_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
-    "L9_post_sha256": "ef898108c3c46276d7e0215030385a4d54356c19b0bbd9fa0fdd7f6b899c1bed",
+    "L9_post_sha256": "4c3ad78c0701ec3df177428c6ab236141d9ce17cdcb1fd5c083b384ef92af035",
     "L5_pre_sha256": "e82782f392d79e6ee9661c5243dbbec99c83ace2d76e5863c3855c8de2048d9e",
-    "L5_post_sha256": "1a411d9f7f8bfde792371c7c7d198f091a7b3c1d31741b1c13c443497fb09678",
+    "L5_post_sha256": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18",
     "L8_pre_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5",
-    "L8_post_sha256": "92ab2d6eed50e16368e67c59f412e334c21145386ae1e6bd2075db6c481a6889"
+    "L8_post_sha256": "9d2be9b2c4054a4c8162cd0324191cb003b112c18e66573f0b2b2b4546285a3a"
   },
   "head_entity_counts": {
     "L5_contracts": 13,
