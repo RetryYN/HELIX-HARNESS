@@ -1,0 +1,570 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "record_id": "BRAIN032-F03-N03-CHECKER-RECONCILE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-BRAIN032-F03-N03",
+  "request_id": "WR94-BRAIN032-FREEZE-REGENERATE",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6405690269",
+  "resolves_disposition_ref": "PRIOR#/children",
+  "path_aliases": {
+    "L3F": "docs/helix-brain/L3-requirements/functional-requirements.json",
+    "L3N": "docs/helix-brain/L3-requirements/nfr-grade.json",
+    "L10F": "docs/helix-brain/L10-verification/functional-verification.json",
+    "L10N": "docs/helix-brain/L10-verification/nfr-verification.json",
+    "L4": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+    "L9": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+    "L5": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "L8": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+    "PRIOR": "docs/governance/audits/tdd/brain032-f03-n03-pair-freeze-2026-10-26.json",
+    "RECHECK": "docs/governance/audits/tdd/brain032-14child-remaining-recheck-2026-10-26.json"
+  },
+  "modified_aliases": [],
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "18–45, 61–101",
+      "keep_ja": "JSON意味/trace/oracleとunknown・N/A・unresolved又はowner/reentry付きdeferを保持する。",
+      "change_ja": "旧registry/TPL/runtime/gateをcopyせず、F03/N03のchild pair有限scopeへ意味再導出する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "73–108",
+      "keep_ja": "版/参照とunknownをN/Aへ丸めない境界を保持する。",
+      "change_ja": "旧整数版/式木/registryを採用せず、現行L3 F03/N03の意味を維持する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-59E7DCC3DF0FDD2DC7C0",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/feedback-log.md",
+      "lines": "16",
+      "keep_ja": "FB-001: 欠落・部分失敗・自己申告を隠さない。",
+      "change_ja": "有限対照と未完・戻し先（owner/reentry）を併記し、手書きの機械出力を増やさずchecker出力で固定する。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "lines": "80, 86–87",
+      "keep_ja": "UTW-014/020/021の部分成功・自己申告・意味未達を保持する。",
+      "change_ja": "source一致と上位義務対照を分離し、未完を外ownerへ隠さない。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3F#/requirements/2",
+      "l10_pointer": "L10F#/cases/2",
+      "obligation_ja": "HELIXBRAIN-L3-032-F03（案件値未決と非適用・前半）：定義済みfieldの案件値がunknownならfield identity・未決理由・元knowledge版を保持してCOREへ未充足材料として返し、unknownをN/Aへ変換しない。",
+      "l4_pointers": [
+        "L4#/contracts/4"
+      ],
+      "l9_pointers": [
+        "L9#/cases/4",
+        "L9#/cases/4/negative_cases/0"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/4",
+        "L5#/functions/0",
+        "L5#/functions/2",
+        "L5#/functions/8",
+        "L5#/failure_rules/54",
+        "L5#/field_value_applicability_detail/claim_protocol"
+      ],
+      "l8_pointers": [
+        "L8#/cases/4",
+        "L8#/cases/4/negative_cases/0",
+        "L8#/function_oracles/0",
+        "L8#/function_oracles/2",
+        "L8#/function_oracles/8",
+        "L8#/additional_unit_cases/35"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L3F#/requirements/2",
+      "l10_pointer": "L10F#/cases/2",
+      "obligation_ja": "HELIXBRAIN-L3-032-F03（案件値未決と非適用・後半）：根拠付き非適用、定義欠落、適用条件unknownを別に示し、定義欠落を案件値未決へ変えず、適用条件unknownへのN/A理由創作やsection N/Aの全field無条件転写を成立させず元の不足種類・理由・返却先（汎用定義/知識版はBRAIN、製品値/適用はCORE、project記録はOS）を保持する。",
+      "l4_pointers": [
+        "L4#/contracts/4"
+      ],
+      "l9_pointers": [
+        "L9#/cases/4/negative_cases/1",
+        "L9#/cases/4/negative_cases/2",
+        "L9#/cases/4/negative_cases/3"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/4",
+        "L5#/functions/2",
+        "L5#/functions/2/claim_protocol_pointer",
+        "L5#/failure_rules/55",
+        "L5#/failure_rules/56",
+        "L5#/failure_rules/57",
+        "L5#/field_value_applicability_detail/claim_protocol"
+      ],
+      "l8_pointers": [
+        "L8#/cases/4/negative_cases/1",
+        "L8#/cases/4/negative_cases/2",
+        "L8#/cases/4/negative_cases/3",
+        "L8#/function_oracles/2",
+        "L8#/additional_unit_cases/35"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3N#/requirements/2",
+      "l10_pointer": "L10N#/cases/2",
+      "obligation_ja": "HELIXBRAIN-L3-032-N03（観測と非機能値の不足）：稼働対象の性能/容量/可用性/運用条件等は採用P3FIRSTの問いとHARNESS034へ結び、根拠付き値または適用判定を別途導く。参照fixture（90秒/1CPU/256MiB等）を一般既定値や実資源・実容量へ転用せず、未決baseline/閾値・方式・実資源をBRAIN知識が創作せず、初回実操作の安全/資源/観測契約は各owner（汎用定義/知識版はBRAIN、製品値/適用はCORE、project記録はOS、実資源はINFRA）へ返す。",
+      "l4_pointers": [
+        "L4#/contracts/13"
+      ],
+      "l9_pointers": [
+        "L9#/cases/13",
+        "L9#/cases/13/negative_cases/0",
+        "L9#/cases/13/negative_cases/1",
+        "L9#/cases/13/negative_cases/2"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/13",
+        "L5#/functions/0",
+        "L5#/functions/2",
+        "L5#/functions/8",
+        "L5#/failure_rules/102",
+        "L5#/failure_rules/103",
+        "L5#/failure_rules/104",
+        "L5#/field_value_applicability_detail/claim_protocol"
+      ],
+      "l8_pointers": [
+        "L8#/cases/13",
+        "L8#/cases/13/negative_cases/0",
+        "L8#/cases/13/negative_cases/1",
+        "L8#/cases/13/negative_cases/2",
+        "L8#/function_oracles/0",
+        "L8#/function_oracles/2",
+        "L8#/function_oracles/8",
+        "L8#/additional_unit_cases/36"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/0",
+        "function_id": "HELIXBRAIN-L5-032-validate_supply_input",
+        "symbol": "validate_supply_input",
+        "l8_oracle_pointer": "L8#/function_oracles/0"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/2",
+        "function_id": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+        "symbol": "compare_values_and_applicability",
+        "l8_oracle_pointer": "L8#/function_oracles/2"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/8",
+        "function_id": "HELIXBRAIN-L5-032-build_supply_analysis",
+        "symbol": "build_supply_analysis",
+        "l8_oracle_pointer": "L8#/function_oracles/8"
+      }
+    ]
+  },
+  "prior_record": {
+    "path": "docs/governance/audits/tdd/brain032-14child-remaining-recheck-2026-10-26.json",
+    "revision": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
+    "sha256": "8c20bde6d97e66b99f6297c492ab4dccfe09e1448d737e9e352182a9f8bb54a8",
+    "pointer_F03": "/children/4",
+    "pointer_N03": "/children/13"
+  },
+  "criterion": "L3の義務ごとにL4/L5の契約の行とL8/L9のcase行（oracle ID付き）がそろい、unknown・N/A・未完のそれぞれに戻し先（ownerとreentry）が付いていること。032設計自身へ戻す空の規則（(a)）が0件であること（再照合記録のcontrol_decision）。全返却の列挙は条件にしない。",
+  "closure_of_blocking_item": {
+    "id": "VF-3",
+    "closed_by": "PR #3695（merge commit 7d2aa64f62c5bb9df83c3c6b9057fa369a116858）",
+    "pointers": [
+      "L5#/field_value_applicability_detail/claim_protocol",
+      "L5#/functions/2/claim_protocol_pointer",
+      "L8#/additional_unit_cases/35",
+      "L8#/additional_unit_cases/36"
+    ],
+    "pointer_revision": "7d2aa64f62c5bb9df83c3c6b9057fa369a116858",
+    "remaining_declared_by_closure": "L5#/field_value_applicability_detail/not_closed_here/5 の3項目は、children/*/remaining_with_return の VF3-R1（b）、VF3-R2（d）、VF3-R3（d）として個別に分類した。R2とR3は現行契約が動作を定めており、032設計の空白（(a)）ではない。"
+  },
+  "children": [
+    {
+      "child": "HELIXBRAIN-L3-032-F03",
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/2 (HELIXBRAIN-L3-032-F03)",
+        "L10": "docs/helix-brain/L10-verification/functional-verification.json#/cases/2 (HELIXBRAIN-L10-032-F03)",
+        "L4_contract": "L4#/contracts/4",
+        "L5_contract": "L5#/contracts/4",
+        "L5_failure_rules_count": 4,
+        "L9_case": "L9#/cases/4",
+        "L8_case": "L8#/cases/4",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "blocking_a_after_closure": 0,
+      "remaining_with_return": [
+        {
+          "id": "VF-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "契約（field_definition_cause_table 等）は L4 に在る。未行使causeの入力と期待は L7 で独立に導く。7caseの外へ新gateは足さない"
+        },
+        {
+          "id": "VF-2",
+          "category": "c",
+          "owner": "core_owner（実field値・適用判定）",
+          "reentry": "CORE の実値供給後、同Binding/revision/scopeの原readから再入"
+        },
+        {
+          "id": "DF-1",
+          "category": "b",
+          "owner": "L7 test author（032）／各callerの原operandsは意味owner（knowledge_owner）",
+          "reentry": "callerごとに 独立に導いた原operandsとwholeを L7 の fixture として凍結（L8 definition_meaning_M1a/M2b/M2c/M3 の有限範囲は材料として再利用）"
+        },
+        {
+          "id": "DF-4",
+          "category": "b",
+          "owner": "L7 test author（032）。semantic_or_mixed の任意対応は CL-1 へ",
+          "reentry": "fn6/fn7 callerの全返却は実caller入力から L7 で独立に著述（L5 old_values_and_oracle_limits/callers）"
+        },
+        {
+          "id": "DF-5",
+          "category": "c",
+          "owner": "knowledge_owner（原operands・原知識内容）／infrastructure_owner（provider/codec/custody）",
+          "reentry": "実owner供給・訂正後、同Binding/revision/scopeの原readから再入（HISTORY external_return_scope.reentry、L9 remaining/3）"
+        },
+        {
+          "id": "NM-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "重複key、途中UTF-8、一般schema原因混在などは契約（L5 numeric_carrier_profile）が在る単一分岐。入力と全返却は L7"
+        },
+        {
+          "id": "NM-2",
+          "category": "c",
+          "owner": "infrastructure_owner（資源上限）／実adapter owner",
+          "reentry": "資源・adapter条件の確定後に L7 で期待を固定（1e400 の成功か表現不能失敗かは owner が決めた上限に依存）"
+        },
+        {
+          "id": "NM-3",
+          "category": "d",
+          "owner": "（範囲外。数値atom/全値代表は L4 numeric_sort_writer・numeric_unique_representative で閉じ、数値だけの有限写像は n3sort_numeric_only_detail）",
+          "reentry": "一般helper域は有限枝外。必要になった時点で新規child設計"
+        },
+        {
+          "id": "NM-4",
+          "category": "c",
+          "owner": "core_owner／os_owner／CONNECT",
+          "reentry": "両端schema・実adapter の成立後に再入"
+        },
+        {
+          "id": "BU-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        },
+        {
+          "id": "VF3-R1",
+          "category": "b",
+          "item": "全Claim組合せの入力と網羅検証",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "L7 test author（032）",
+          "reentry": "L5 claim_protocol の契約から、組合せ入力と期待をL7で独立に導いてtestにする。設計の追補は要しない。",
+          "basis": "処理先の規則（同一Claim内の第一一致、各出現を一度ずつ処理）は契約で定まっており、残るのは組合せの行使だけ。"
+        },
+        {
+          "id": "VF3-R2",
+          "category": "d",
+          "item": "Claim間の矛盾裁定・勝者選択の一般規則",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（L3 F03/N03は求めていない）",
+          "reentry": "Claim間の裁定を求める要求が承認されたとき、L3からBackflowして新しく設計する。",
+          "basis": "現行契約は矛盾するClaimも各原出現を個別に一度処理し、勝者選択もdedupもしないと動作を定めている（L5 claim_protocol/claim_occurrence_and_rule_selection/selection_ja）。動作が定義済みなので032設計の空白ではない。"
+        },
+        {
+          "id": "VF3-R3",
+          "category": "d",
+          "item": "未認識値・null・型違い・basis_origin書換えの一般回避",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（新しいkind・literalの採用はknowledge_owner）",
+          "reentry": "新しいClaim kindやliteralが採用されたとき、その範囲でL5 claim_protocolへ追補する。",
+          "basis": "現行契約は未認識のときFindingを出さず、元のraw value・presence・axis/stateを保持し、他のdiagnosticを抑止しないと動作を定めている（L5 claim_protocol/value_expression/unrecognized_or_incomplete_ja）。動作が定義済みなので032設計の空白ではない。"
+        }
+      ],
+      "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
+    },
+    {
+      "child": "HELIXBRAIN-L3-032-N03",
+      "pointers": {
+        "L3": "docs/helix-brain/L3-requirements/nfr-grade.json#/requirements/2 (HELIXBRAIN-L3-032-N03)",
+        "L10": "docs/helix-brain/L10-verification/nfr-verification.json#/cases/2 (HELIXBRAIN-L10-032-N03)",
+        "L4_contract": "L4#/contracts/13",
+        "L5_contract": "L5#/contracts/13",
+        "L5_failure_rules_count": 3,
+        "L9_case": "L9#/cases/13",
+        "L8_case": "L8#/cases/13",
+        "normal_oracles": [
+          "L8#/function_oracles/0",
+          "L8#/function_oracles/2",
+          "L8#/function_oracles/8"
+        ],
+        "normal_oracle_ids": [
+          "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+          "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+          "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+        ]
+      },
+      "blocking_a_after_closure": 0,
+      "remaining_with_return": [
+        {
+          "id": "BU-1",
+          "category": "b",
+          "owner": "L7 test author（032）",
+          "reentry": "build_supply_analysis の rawrunner（builder_assembly_case_refs 4件）を L7 で実行。producer 接続は L7 の統合"
+        },
+        {
+          "id": "BU-2",
+          "category": "d",
+          "owner": "（有限保全。全SupplyAnalysis意味閉包を主張しない）",
+          "reentry": "範囲外"
+        },
+        {
+          "id": "E1",
+          "category": "b",
+          "owner": "L7 test author（032）＋独立review",
+          "reentry": "実fixture/oracle凍結、実装前Red→Green、独立review は L6/L7 と review 側（L5#/remaining/4）"
+        },
+        {
+          "id": "VF3-R1",
+          "category": "b",
+          "item": "全Claim組合せの入力と網羅検証",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "L7 test author（032）",
+          "reentry": "L5 claim_protocol の契約から、組合せ入力と期待をL7で独立に導いてtestにする。設計の追補は要しない。",
+          "basis": "処理先の規則（同一Claim内の第一一致、各出現を一度ずつ処理）は契約で定まっており、残るのは組合せの行使だけ。"
+        },
+        {
+          "id": "VF3-R2",
+          "category": "d",
+          "item": "Claim間の矛盾裁定・勝者選択の一般規則",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（L3 F03/N03は求めていない）",
+          "reentry": "Claim間の裁定を求める要求が承認されたとき、L3からBackflowして新しく設計する。",
+          "basis": "現行契約は矛盾するClaimも各原出現を個別に一度処理し、勝者選択もdedupもしないと動作を定めている（L5 claim_protocol/claim_occurrence_and_rule_selection/selection_ja）。動作が定義済みなので032設計の空白ではない。"
+        },
+        {
+          "id": "VF3-R3",
+          "category": "d",
+          "item": "未認識値・null・型違い・basis_origin書換えの一般回避",
+          "source": "L5#/field_value_applicability_detail/not_closed_here/5（revision 7d2aa64f）",
+          "owner": "範囲外（新しいkind・literalの採用はknowledge_owner）",
+          "reentry": "新しいClaim kindやliteralが採用されたとき、その範囲でL5 claim_protocolへ追補する。",
+          "basis": "現行契約は未認識のときFindingを出さず、元のraw value・presence・axis/stateを保持し、他のdiagnosticを抑止しないと動作を定めている（L5 claim_protocol/value_expression/unrecognized_or_incomplete_ja）。動作が定義済みなので032設計の空白ではない。"
+        }
+      ],
+      "verdict": "新しい凍結条件を満たす。pairを凍結する（本記録のmerge後に効力）。"
+    }
+  ],
+  "freeze_effect": {
+    "frozen": "F03とN03について、L4/L5の契約行とL8/L9のcase行を、source_mainのrevisionで凍結する。以後の意味変更は左の層へのBackflowとして扱い、L6/L7はこのrevisionの契約から期待値を独立に導く。",
+    "not_frozen": "fixture、全返却期待、hash、直列化、実装。これらはL6/L7でtestを先に書き、Redを観測してから実装でGreenにする。",
+    "implementation_entry": "凍結できたchildからL6/L7と実装に入る（統制の決定6405690269「実装に入る時期」、2026-10-12 PO判断 docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目 段階2）。",
+    "stage2_conditions": {
+      "source": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md 31行目（段階2）",
+      "rows": [
+        {
+          "condition": "対象L3/L10の既存委任承認",
+          "state": "BRAIN032の前提L3/L10は委任承認済み：docs/governance/decisions/helix-brain-template032-prerequisite-l3-l10-delegated-decision-2026-10-12.md（reviewed content 47354be8c1ef225dd7eacffe390d268c0dfee784、PR #2938 comment 6113010770）。対象4 JSONの承認本文との一致は同記録が固定する。本記録は承認を再生成しない。"
+        },
+        {
+          "condition": "必要な設計知識の内容採否",
+          "state": "15項目の採択：docs/governance/decisions/brain-template-contract-032-po-decision-2026-10-10.md（packet 5624705c0f98e22b646860a61c6512ee12598170）。F03/N03はその範囲だけを使い、新しい知識の採否は行わない。"
+        },
+        {
+          "condition": "対設計/test-oracle凍結",
+          "state": "対設計（L4/L5↔L8/L9の契約行とcase行）は本記録で凍結する。test-oracleの実体（fixture・全返却期待）はL6/L7でtestを先に書くときに凍結し、Redを観測する。"
+        },
+        {
+          "condition": "実operationのauthority/隔離/資源",
+          "state": "最初のsliceは外部作用のない純関数の局所unit test（Python標準unittest、L4 first_local_unit_bindingの方式）。実operationを伴わない。"
+        }
+      ]
+    }
+  },
+  "first_L6_L7_slice": {
+    "child": "HELIXBRAIN-L3-032-N03",
+    "function": "L5#/functions/2（compare_values_and_applicability）",
+    "tests_first": [
+      "L8#/cases/13/negative_cases/0..2（N03-NEG-01..03、rule 102..104）",
+      "L8#/additional_unit_cases/36（VF3-N03-CLAIMS）",
+      "L8#/function_oracles/2（normal oracle）"
+    ],
+    "expected_source": "期待値はL5 failure_rules 102..104とclaim_protocol/value_expression/n03_reference_fixtureから独立に導き、実装コードから読まない。",
+    "placement": "既存unit HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITIONの配置規則（L4#/first_local_unit_binding）に倣う。新しいunit identityを要する場合はL6で示す。",
+    "memory_bound": "大きいJSONの読込は時間とメモリの上限付きで行う。"
+  },
+  "not_claimed": [
+    "承認、完了、Issueのclose、実装Readyの宣言はしない。",
+    "件数やpointerの実在を意味閉包の根拠にしない。",
+    "新しいgate・閾値・資格・要求を作らない。",
+    "他の12 childは凍結しない（再照合記録の(a)が残る）。"
+  ],
+  "historical_scope_boundary": {
+    "prior_freeze_record": "PRIOR#/children",
+    "recheck_f03_pointer": "RECHECK#/children/4",
+    "recheck_n03_pointer": "RECHECK#/children/13",
+    "later_public_endpoint_note": "後続 #3782 で追加された L5#/functions/9 (evaluate_selected_field_values_public) / L8#/function_oracles/9 は元記録 (2026-10-26) の宣言範囲外のため target_bindings.public_functions へは加えず、元記録の3公開関数 (functions/0, 2, 8) のみを保持する。"
+  },
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "dece8766659c5a46c9bd50480b1bee0b15703fca",
+  "request_base_sha": "dece8766659c5a46c9bd50480b1bee0b15703fca",
+  "recorded_at_utc": "2026-10-28T06:54:08+00:00",
+  "pins": {
+    "L3F_sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b",
+    "L3N_sha256": "6f9422e1da9fe7a4bd78a25dfd4cddce8ad4835ab3693d7149885a2a010da9c9",
+    "L10F_sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a",
+    "L10N_sha256": "4e2f462c4b9caa7e408d7488ddbe6a585589f977e253f22b3b396f381393beba",
+    "L4_sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+    "L9_sha256": "7b372fa3939d4be2595d311ce0bcc553bbb6f65e1b68680416466700da3b84b4",
+    "L5_sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+    "L8_sha256": "472afb4f4a79bae901036b44c598c80766d1c68fdaf1c3412a079f2a68c00c25",
+    "PRIOR_sha256": "94b074b32de2c611ccedf146f377cdf03db8ff6917b699411cc6529cb439e188",
+    "RECHECK_sha256": "8c20bde6d97e66b99f6297c492ab4dccfe09e1448d737e9e352182a9f8bb54a8"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 14,
+    "L5_functions": 10,
+    "L5_failure_rules": 107,
+    "L8_cases": 14,
+    "L8_negative_cases_total": 105,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 42,
+    "L5_source_pins": 22,
+    "L8_source_pins": 22,
+    "L8_wire_codec_cases": 27,
+    "L8_encoder_obligations": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 106,
+    "expanded_target_count": 108,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 105,
+      "L9": 105,
+      "L8": 105,
+      "L5": 105
+    },
+    "matched_case_count": 105,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "validate_supply_input",
+      "id": "HELIXBRAIN-L5-032-validate_supply_input",
+      "l5_pointer": "L5#/functions/0",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-validate_supply_input",
+      "unit_case_refs_count": 8,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_values_and_applicability",
+      "id": "HELIXBRAIN-L5-032-compare_values_and_applicability",
+      "l5_pointer": "L5#/functions/2",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
+      "unit_case_refs_count": 11,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "build_supply_analysis",
+      "id": "HELIXBRAIN-L5-032-build_supply_analysis",
+      "l5_pointer": "L5#/functions/8",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis",
+      "unit_case_refs_count": 17,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "validate_supply_input",
+      "l5_pointer": "L5#/functions/0",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_values_and_applicability",
+      "l5_pointer": "L5#/functions/2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "build_supply_analysis",
+      "l5_pointer": "L5#/functions/8",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 105,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
