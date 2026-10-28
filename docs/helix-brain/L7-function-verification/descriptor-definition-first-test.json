@@ -4207,7 +4207,6 @@
       {
         "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_qualification_contract.py",
         "sha256": "fc95ce8ccf93fa7e271024e33c54cc29c0cbe0877b592efe587a2cd5571ad088",
-        "commit": "59f21fd7023172c063590b48385bdc060b2743d9",
         "methods": [
           "test_unencodable_source_text_is_unusable_and_preserved",
           "test_strict_source_json_rejects_duplicate_keys_and_non_json_constants",
@@ -4216,6 +4215,11 @@
           "test_qualification_requires_an_independent_matching_root",
           "test_scope_mismatch_uses_qualification_locator_and_l5_reason",
           "test_qualification_ref_locator_difference_does_not_create_conflict"
+        ],
+        "file_bytes_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
+        "commits": [
+          "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+          "59f21fd7023172c063590b48385bdc060b2743d9"
         ]
       },
       {
@@ -4235,7 +4239,8 @@
           "test_finite_float_outside_source_body_remains_valid_input",
           "test_unrepresentable_decimal_exponent_keeps_source_unusable",
           "test_unrepresentable_decimal_exponent_keeps_source_unusable"
-        ]
+        ],
+        "file_bytes_revision": "59f21fd7023172c063590b48385bdc060b2743d9"
       }
     ],
     "fixture_reader": {
@@ -4261,7 +4266,12 @@
           "tests": 7,
           "assertion_failures": 2,
           "errors": 0
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
       },
       {
         "phase": "numeric source parse/equality Red",
@@ -4278,7 +4288,12 @@
           "assertion_failures": 3,
           "errors": 0,
           "control_passed": "finite float outside source body remains accepted"
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
       },
       {
         "phase": "extreme Decimal exponent Red",
@@ -4295,7 +4310,12 @@
           "assertion_failures": 0,
           "errors": 1,
           "error": "decimal.InvalidOperation escaped strict source parsing; this was the targeted behavior, not setup/import failure"
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 100000
       }
     ],
     "green_evidence": [
@@ -4312,7 +4332,12 @@
           "tests": 19,
           "failures": 0,
           "errors": 0
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
       },
       {
         "phase": "focused fn0 qualification/numeric/control suite after formatting",
@@ -4327,7 +4352,12 @@
           "tests": 19,
           "failures": 0,
           "errors": 0
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
       },
       {
         "phase": "whole descriptor-definition unit suite before formatting",
@@ -4343,15 +4373,21 @@
           "failures": 0,
           "errors": 0,
           "format_relation": "The three subsequently formatted owned files had identical AST dumps before and after formatting; the format commit changed no AST."
-        }
+        },
+        "working_directory": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION",
+        "timeout_ms": 120000,
+        "rlimit_as_bytes": 2147483648,
+        "rlimit_cpu_seconds": 120,
+        "max_output_bytes": 300000
       }
     ],
     "implemented_boundary": {
-      "source_commit": "756023176520cb2a4f308b22dbd80f5362553d99",
+      "source_commit": "59f21fd7023172c063590b48385bdc060b2743d9",
       "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
       "source_sha256": "391dde873da38777b8a01072d06715caa57cde0e66e8f5ed002122a51c382f96",
       "behavior": "Source content_bytes is strict-parsed with Decimal numeric tokens and compared recursively to supplied body. Exact numeric values compare to strict native int; supplied host float inside source body does not qualify. Outer finite-float raw shape acceptance is retained. Decimal representation exceptions during source parsing use the same existing unusable-source/InputIssue result; no exponent ceiling was added.",
-      "formatted_revision": "59f21fd7023172c063590b48385bdc060b2743d9"
+      "implementation_commit": "756023176520cb2a4f308b22dbd80f5362553d99",
+      "implementation_sha256": "3deea6cf8a669e6858140f31e80a256e0e64c8e6d376aa178df7cb1b5c595e7f"
     },
     "limits": [
       "The passing unit tests establish the selected synthetic fn0 boundary only, not an operational qualification resolver or origin-authentication system.",
