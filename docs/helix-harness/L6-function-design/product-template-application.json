@@ -233,7 +233,8 @@
         "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer",
         "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/primitive_preservation",
         "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
-        "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation"
+        "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation",
+        "/f05_detail_contract/types/ValidationInput"
       ],
       "role": "validation_detail_contract"
     },
@@ -307,7 +308,7 @@
         "scope_ja": "同一validation walkから詳細観測と既存validated projectionを返すprivate writer。今回の実装/検証はnative ValidationInputだけ。既存public validate_application_inputの公開契約・pair freeze・FN00 IDは増やさない。",
         "single_call_projection_ja": "public fn0は同一detail返却のvalidatedを射影する。raw whole、presence、source/qualification/root occurrenceと原順を保持する。source roleはprivate意味観測であり、role-only差からpublic InputIssueを追加しない。",
         "diagnostic_ja": "L5 check_kind_tableとvalidated_input_issue_writerの固定reasonを使う。公開reason文言はL5の現在literalに従うため、旧FN0 literalと異なるreason差はあり得る。観測した355比較ではIssue件数/順序/locator/source_ref/unusable_source_refsは一致し、reason差42件だけだった。既存primitive preservationは既存primitiveがInputIssueを返す場合だけ適用し、現実装にはそのinner content JSON/numeric InputIssue producerを確認できなかった。",
-        "not_implemented_ja": "same_decode_successはWR153-SD-01で未実装。decode_core009_wireの実producer/承認型がなく、owner codec入口及びreentry codec merge後に再開する。decoder/codec型はこの範囲で新設しない。",
+        "not_implemented_ja": "same_decode_successはWR153-SD-01で未実装。ValidationInputのclosed variantにはraw memberがなく、実CoreDecodeResult producerもrepository srcにないため、valid runtime carrierを用いた検査材料が未成立。owner codec入口及びreentry codec merge後に再開する。variant外tag+rawへ新しい例外/挙動契約を設けず、decoder/codec型もこの範囲で新設しない。",
         "l7_tdd_ref": {
           "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
           "pointer": "/validate_application_input_detail_tdd"

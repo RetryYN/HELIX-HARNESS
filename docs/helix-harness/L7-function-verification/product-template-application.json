@@ -1614,7 +1614,8 @@
         "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer",
         "/f05_detail_contract/validation_cause_diagnostic_contract/validated_input_issue_writer/primitive_preservation",
         "/f05_detail_contract/validation_cause_diagnostic_contract/public_validation_projection",
-        "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation"
+        "/f05_detail_contract/validation_cause_diagnostic_contract/source_usability_aggregation",
+        "/f05_detail_contract/types/ValidationInput"
       ],
       "role": "validation_detail_contract"
     },
@@ -1667,9 +1668,15 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_validation_detail_support.py",
       "file_sha256": "3e2034816607ce84475472c2cdccca62839c63019649c7ea3eb931679134a1c4",
       "role": "green_source"
+    },
+    {
+      "revision": "d6e8af6e0c7420c93c31d726b739fc4061ef74f5",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_application_validation_detail_metamorphic.py",
+      "file_sha256": "6f8ce471b40e1880fa0c546f87df3ab1195927e371599f0093ca98df7d2073d0",
+      "role": "metamorphic_test_only"
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。 FN00 validation detail TDDはL5 V01–V07/diagnostic writer、L8 six oracle群、test-only Redとbase同一source hash、Green source-only各module SHA、fixture SHAをrevision別に束縛する。",
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。 FN00 validation detail TDDはL5 V01–V07/diagnostic writer、L8 six oracle群、test-only Redとbase同一source hash、Green source-only各module SHA、fixture SHAをrevision別に束縛する。 FN00 validation detailのGreen後metamorphic testは、別のtest-only revision/whole-file SHAで追加観測を束縛し、旧Red/Green列を遡及変更しない。",
   "validate_application_input_detail_tdd": {
     "function_design_ref": "HARNESS-L6-009-FN00-validate_application_input",
     "l5_entry_ref": {
@@ -1800,13 +1807,37 @@
         "id": "WR153-SD-01",
         "branch": "same_decode_success",
         "state": "not_implemented",
-        "reason_ja": "実decode_core009_wire producerと承認済みruntime carrierが未成立。上流回答はowner codec入口とreentry codec merge後の再開を条件とする。"
+        "reason_ja": "L5のValidationInputはclosed unionでsame_decode_success payloadにraw memberはなく、実decode_core009_wire/CoreDecodeResult producerも現repository srcに見つからないためvalid carrierを構成できない。上流回答はowner codec入口とreentry codec merge後を再開条件とする。実variantのruntime test/decoderは未実施。型外のtag+rawへ例外契約を追加しない。"
       }
     ],
     "observed_limits_ja": "6-source testはL8 six-source candidateの全 occurrence/check条件に対応する。8-sourceはL5由来synthetic rawで2追加行を検証し、L8 eight-source exact literal/その実証とは区別する。Formal execution、decode branch、L8候補の実行状態はnot_executed。",
     "function_design_detail_ref": {
       "path": "docs/helix-harness/L6-function-design/product-template-application.json",
       "pointer": "/contracts/0/private_detail_extension"
+    },
+    "metamorphic_observation": {
+      "test_name": "test_consistent_opaque_root_identity_renaming_preserves_detail",
+      "test_source_ref": {
+        "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_application_validation_detail_metamorphic.py",
+        "revision": "d6e8af6e0c7420c93c31d726b739fc4061ef74f5",
+        "sha256": "6f8ce471b40e1880fa0c546f87df3ab1195927e371599f0093ca98df7d2073d0"
+      },
+      "construction_ja": "既存normal fixtureのrawからqualification_roots[*].identityとqualifications[*].root_ref.identityの共通opaque ID集合を実測し、そこだけに一括写像を作って両参照を一貫して改名する。変換先IDや期待DTOをrawへ埋めず、fixtureも変更しない。",
+      "assertion_ja": "原raw detailを一度評価し、返却全体に同じID写像を対応原値へ適用した値と、改名rawからのdetail返却全体を比較する。raw whole、Read値、Ref、Cause/Check、usability、配列順・反復を含む完全返却の不変性を観測する。これは改名metamorphic propertyであり、絶対的なValidationDetailedReturn正しさを単独で証明しない。",
+      "history_ja": "source-only Green ac0e3da9ced7d76ecc6d7e20b1f44e45ce0c42a9の後、test-only commit d6e8af6e0c7420c93c31d726b739fc4061ef74f5で追加。source/fixture変更なし。Green後の追加testなのでRed→Green履歴として数えない。focused 1 PASS、同commit全unit 183 PASS。",
+      "source_unchanged_ja": "application_validation.py、application_validation_detail.py、application_validation_detail_support.pyはGreen commitの内容から変化なし。"
+    },
+    "same_decode_runtime_test_state": "not_executed_no_typed_producer",
+    "post_green_test_only_verification": {
+      "revision": "d6e8af6e0c7420c93c31d726b739fc4061ef74f5",
+      "unit_suite": "python3 -B -m unittest discover -s helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests -v",
+      "observed": "183 PASS",
+      "ruff_version": "0.17.1",
+      "ruff_observed": "check and format --check passed for 5 source/test files",
+      "scf_observed": "validate bindings=158 fail=0; stale=0",
+      "unit_module_nonempty_lines": {
+        "test_application_validation_detail_metamorphic.py": 72
+      }
     }
   }
 }
