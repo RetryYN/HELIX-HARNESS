@@ -195,7 +195,9 @@
           "generic_rule_basis_ref": "R-classification_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-01",
           "local_predicate": "reported.declarations[slot].category != original.category（B source→always等）。原categoryで計算しreportedを採用しない。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/4/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-02",
@@ -211,7 +213,9 @@
           "generic_rule_basis_ref": "R-required_omission",
           "rule_ref": "HARNESS-L5-023-F01-NEG-02",
           "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-03",
@@ -227,7 +231,9 @@
           "generic_rule_basis_ref": "R-meaning_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-03",
           "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-04",
@@ -243,7 +249,9 @@
           "generic_rule_basis_ref": "R-meaning_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-04",
           "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-05",
@@ -259,7 +267,9 @@
           "generic_rule_basis_ref": "R-meaning_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-05",
           "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-06",
@@ -275,7 +285,9 @@
           "generic_rule_basis_ref": "R-meaning_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-06",
           "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-07",
@@ -291,7 +303,9 @@
           "generic_rule_basis_ref": "R-version_scope_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-07",
           "local_predicate": "proposed_meaning.version_target_ref != original.version_target_refによって後続版能力を現在利用requiredへ強制。版/成熟度変更は別meaning_change原因も保持。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/26/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-08",
@@ -307,7 +321,9 @@
           "generic_rule_basis_ref": "R-safety_omission",
           "rule_ref": "HARNESS-L5-023-F01-NEG-08",
           "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-09",
@@ -323,7 +339,9 @@
           "generic_rule_basis_ref": "R-completion_scope_change",
           "rule_ref": "HARNESS-L5-023-F01-NEG-09",
           "local_predicate": "proposed_meaning.completion_obligation_refs != original集合。unselected宣言の完成義務も比較対象。",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/7/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -362,7 +380,9 @@
           "generic_rule_basis_ref": "R-condition_unknown",
           "rule_ref": "HARNESS-L5-023-F02-NEG-01",
           "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-02",
@@ -378,7 +398,9 @@
           "generic_rule_basis_ref": "R-condition_unknown",
           "rule_ref": "HARNESS-L5-023-F02-NEG-02",
           "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-03",
@@ -394,7 +416,9 @@
           "generic_rule_basis_ref": "R-condition_stale",
           "rule_ref": "HARNESS-L5-023-F02-NEG-03",
           "local_predicate": "適用ConditionBody.state=stale又はenvelope.state=stale。旧revisionを新bindingへ継承せずpending。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/9/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-04",
@@ -410,7 +434,9 @@
           "generic_rule_basis_ref": "R-declaration_missing",
           "rule_ref": "HARNESS-L5-023-F02-NEG-04",
           "local_predicate": "declarations_ref/body又はDeclaration.dependency_refがsemantic null/missing。slotで不足locatorを返し分類unresolved、空集合にしない。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/13/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-05",
@@ -426,7 +452,9 @@
           "generic_rule_basis_ref": "R-declaration_ambiguous",
           "rule_ref": "HARNESS-L5-023-F02-NEG-05",
           "local_predicate": "Declaration.declaration_state=ambiguous又はcategory/requested_revision/条件宣言/compatibility指定の意味が曖昧。pending、自己推定しない。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/12/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-06",
@@ -442,7 +470,9 @@
           "generic_rule_basis_ref": "R-backflow_mismatch",
           "rule_ref": "HARNESS-L5-023-F02-NEG-06",
           "local_predicate": "reported backflow claimのowner != 原cause.domain対応owner。caller operation/source/scope/receipt不足を010へ返す場合を含み、正しいcall_owner recordを返す。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/1/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-07",
@@ -458,7 +488,9 @@
           "generic_rule_basis_ref": "R-authority_unknown",
           "rule_ref": "HARNESS-L5-023-F02-NEG-07",
           "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-08",
@@ -474,7 +506,9 @@
           "generic_rule_basis_ref": "R-implicit_fallback",
           "rule_ref": "HARNESS-L5-023-F02-NEG-08",
           "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-09",
@@ -490,7 +524,9 @@
           "generic_rule_basis_ref": "R-condition_conflict",
           "rule_ref": "HARNESS-L5-023-F02-NEG-09",
           "local_predicate": "原宣言/適用ConditionBody.state=conflict又は相互矛盾するqualified根拠。宣言矛盾はdeclaration domain、caller条件矛盾はcall domain。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/8/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-10",
@@ -506,7 +542,9 @@
           "generic_rule_basis_ref": "R-implicit_fallback",
           "rule_ref": "HARNESS-L5-023-F02-NEG-10",
           "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-10"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-10",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-11",
@@ -522,7 +560,9 @@
           "generic_rule_basis_ref": "R-implicit_fallback",
           "rule_ref": "HARNESS-L5-023-F02-NEG-11",
           "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-11"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-11",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -561,7 +601,9 @@
           "generic_rule_basis_ref": "R-required_omission",
           "rule_ref": "HARNESS-L5-023-F03-NEG-01",
           "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-02",
@@ -577,7 +619,9 @@
           "generic_rule_basis_ref": "R-safety_omission",
           "rule_ref": "HARNESS-L5-023-F03-NEG-02",
           "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-03",
@@ -593,7 +637,9 @@
           "generic_rule_basis_ref": "R-safety_omission",
           "rule_ref": "HARNESS-L5-023-F03-NEG-03",
           "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-04",
@@ -609,7 +655,9 @@
           "generic_rule_basis_ref": "R-binding_document_omission",
           "rule_ref": "HARNESS-L5-023-F03-NEG-04",
           "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-05",
@@ -625,7 +673,9 @@
           "generic_rule_basis_ref": "R-binding_document_omission",
           "rule_ref": "HARNESS-L5-023-F03-NEG-05",
           "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-06",
@@ -641,7 +691,9 @@
           "generic_rule_basis_ref": "R-condition_unknown",
           "rule_ref": "HARNESS-L5-023-F03-NEG-06",
           "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-07",
@@ -657,7 +709,9 @@
           "generic_rule_basis_ref": "R-unselected_claim",
           "rule_ref": "HARNESS-L5-023-F03-NEG-07",
           "local_predicate": "unselected_unobserved identityについてreported success/nonexistent claimがある。未観測維持、domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/24/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-08",
@@ -673,7 +727,9 @@
           "generic_rule_basis_ref": "R-implicit_fallback",
           "rule_ref": "HARNESS-L5-023-F03-NEG-08",
           "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-09",
@@ -689,7 +745,9 @@
           "generic_rule_basis_ref": "R-coverage_shrink",
           "rule_ref": "HARNESS-L5-023-F03-NEG-09",
           "local_predicate": "reported green claim有り、computed required_refs - reported.observed_target_refs が非empty。失敗/未知対象を差分へ残す。",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/11/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -728,7 +786,9 @@
           "generic_rule_basis_ref": "R-classification_as_use",
           "rule_ref": "HARNESS-L5-023-F04-NEG-01",
           "local_predicate": "reported claimsにdispatchが有り、その根拠がclassificationだけ又は実owner条件未成立。pure分類からdispatch許可を生成しない。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/3/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-02",
@@ -744,7 +804,9 @@
           "generic_rule_basis_ref": "R-global_gate_added",
           "rule_ref": "HARNESS-L5-023-F04-NEG-02",
           "local_predicate": "reported all_source_gate claim有り、unselected_unobserved又は無関係scopeの実装まで分類の前提にする。分類は返すが当該不正gate claimをheld。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/16/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-03",
@@ -760,7 +822,9 @@
           "generic_rule_basis_ref": "R-utilization_unproven",
           "rule_ref": "HARNESS-L5-023-F04-NEG-03",
           "local_predicate": "required observationが未解決又はactual_revision=null。原classify可、domain=call、mapping不足とは別原因。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/25/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-04",
@@ -776,7 +840,9 @@
           "generic_rule_basis_ref": "R-compatibility_unknown",
           "rule_ref": "HARNESS-L5-023-F04-NEG-04",
           "local_predicate": "required Dependencyのcompatibility_ref又はmappingがmissing/unknown/ambiguous/stale/conflict/資格未解決。requested/observed差を消さずdomain=declaration。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/6/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-05",
@@ -792,7 +858,9 @@
           "generic_rule_basis_ref": "R-authority_unknown",
           "rule_ref": "HARNESS-L5-023-F04-NEG-05",
           "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-06",
@@ -808,7 +876,9 @@
           "generic_rule_basis_ref": "R-evidence_unproven",
           "rule_ref": "HARNESS-L5-023-F04-NEG-06",
           "local_predicate": "required実evidence/verification/record根拠がowner解決未成立、mock/hash/plain claimだけ又はobservation failure/unknown。実資格に昇格せずdomain=call。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/15/effect"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-07",
@@ -824,7 +894,9 @@
           "generic_rule_basis_ref": "R-compatibility_mismatch",
           "rule_ref": "HARNESS-L5-023-F04-NEG-07",
           "local_predicate": "qualified mappingあり、qualified observation.actual_revision != nullで(requested_revision,actual_revision)がallowed_revision_pairsに無い。domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/5/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -863,7 +935,9 @@
           "generic_rule_basis_ref": "R-nondeterministic_closure",
           "rule_ref": "HARNESS-L5-023-N01-NEG-01",
           "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-02",
@@ -879,7 +953,9 @@
           "generic_rule_basis_ref": "R-nondeterministic_closure",
           "rule_ref": "HARNESS-L5-023-N01-NEG-02",
           "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-03",
@@ -895,7 +971,9 @@
           "generic_rule_basis_ref": "R-trace_cross_binding",
           "rule_ref": "HARNESS-L5-023-N01-NEG-03",
           "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-04",
@@ -911,7 +989,9 @@
           "generic_rule_basis_ref": "R-trace_cross_binding",
           "rule_ref": "HARNESS-L5-023-N01-NEG-04",
           "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -950,7 +1030,9 @@
           "generic_rule_basis_ref": "R-delegate_obligation_omission",
           "rule_ref": "HARNESS-L5-023-B01-NEG-01",
           "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-02",
@@ -966,7 +1048,9 @@
           "generic_rule_basis_ref": "R-delegate_obligation_omission",
           "rule_ref": "HARNESS-L5-023-B01-NEG-02",
           "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-03",
@@ -982,7 +1066,9 @@
           "generic_rule_basis_ref": "R-receipt_unproven",
           "rule_ref": "HARNESS-L5-023-B01-NEG-03",
           "local_predicate": "required receiptがnull/未資格又はreported oral_receipt。実保存/受領成立を返さない、domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/20/effect"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-04",
@@ -998,7 +1084,9 @@
           "generic_rule_basis_ref": "R-trace_cross_binding",
           "rule_ref": "HARNESS-L5-023-B01-NEG-04",
           "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         }
       ],
       "execution_state": "not_executed"

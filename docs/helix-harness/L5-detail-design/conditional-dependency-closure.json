@@ -1385,7 +1385,9 @@
       "expected_state": "rejected",
       "expected": "requiredにBを追加せず宣言差異を拒否、元B=unselected_unobservedを保持。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/4/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-02",
@@ -1396,7 +1398,9 @@
       "expected_state": "held",
       "expected": "A不足をspecific identityで返し実利用held、母集合Aを削除しない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-03",
@@ -1407,7 +1411,9 @@
       "expected_state": "rejected",
       "expected": "元ownerを保持してowner差を拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-04",
@@ -1418,7 +1424,9 @@
       "expected_state": "rejected",
       "expected": "元parent scopeを保持して意味差をPOへ返す。",
       "backflow_owner": "PO",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-05",
@@ -1429,7 +1437,9 @@
       "expected_state": "rejected",
       "expected": "元behaviorを保持し分類による機能削減を拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-06",
@@ -1440,7 +1450,9 @@
       "expected_state": "rejected",
       "expected": "元version/maturityを別軸のまま保持し昇格拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-07",
@@ -1451,7 +1463,9 @@
       "expected_state": "rejected",
       "expected": "元適用版を保持し後続版必須化を拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/26/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-08",
@@ -1462,7 +1476,9 @@
       "expected_state": "held",
       "expected": "Cは当該利用requiredのまま、実利用held。",
       "backflow_owner": "authority_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
     },
     {
       "id": "HARNESS-L5-023-F01-NEG-09",
@@ -1473,7 +1489,9 @@
       "expected_state": "rejected",
       "expected": "当該利用B未観測と1.0完成義務保持を同時に返す。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/7/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-01",
@@ -1484,7 +1502,9 @@
       "expected_state": "held",
       "expected": "Oはpendingで実利用held、condition=unknownを保全。",
       "backflow_owner": "call_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-02",
@@ -1495,7 +1515,9 @@
       "expected_state": "held",
       "expected": "Sはpending、未選択成功へしない。",
       "backflow_owner": "call_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-03",
@@ -1506,7 +1528,9 @@
       "expected_state": "held",
       "expected": "Oはpending、stale revisionを理由へ保持。",
       "backflow_owner": "call_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/9/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-04",
@@ -1517,7 +1541,9 @@
       "expected_state": "held",
       "expected": "分類unresolved、010契約ownerへidentity不足を返す。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/13/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-05",
@@ -1528,7 +1554,9 @@
       "expected_state": "held",
       "expected": "宣言はpending、010改訂候補、scope/版を補完しない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/12/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-06",
@@ -1539,7 +1567,9 @@
       "expected_state": "held",
       "expected": "入力不足を011呼出しownerへ返し実利用held。",
       "backflow_owner": "call_owner",
-      "function_ref": "route_dependency_backflow"
+      "function_ref": "route_dependency_backflow",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/1/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-07",
@@ -1550,7 +1580,9 @@
       "expected_state": "held",
       "expected": "原矛盾を保全、authority owner又はPOへ返し利用held。",
       "backflow_owner": "authority_owner_or_PO",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-08",
@@ -1561,7 +1593,9 @@
       "expected_state": "held",
       "expected": "元選択Sの不足を保持し、代替sourceで成立にしない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-09",
@@ -1572,7 +1606,9 @@
       "expected_state": "held",
       "expected": "矛盾条件はpending、falseへしない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/8/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-10",
@@ -1583,7 +1619,9 @@
       "expected_state": "held",
       "expected": "元O/Sのunknown条件と安全/receipt不足を保全し、人の自己申告でclosure成立にせず011呼出しownerへ返す。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
     },
     {
       "id": "HARNESS-L5-023-F02-NEG-11",
@@ -1594,7 +1632,9 @@
       "expected_state": "held",
       "expected": "元pending dependencyの必須役割と不足を保持し、referenceへの付替えで保留を消さず呼出しownerへ返す。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-01",
@@ -1605,7 +1645,9 @@
       "expected_state": "held",
       "expected": "Q不足をrequired集合へ残し実利用held。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-02",
@@ -1616,7 +1658,9 @@
       "expected_state": "held",
       "expected": "Cは必須、欠落credential理由を保持、利用held。",
       "backflow_owner": "authority_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-03",
@@ -1627,7 +1671,9 @@
       "expected_state": "held",
       "expected": "安全roleに一致する依存はrequired又はpending、referenceへしない。",
       "backflow_owner": "authority_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-04",
@@ -1638,7 +1684,9 @@
       "expected_state": "held",
       "expected": "oracle文書Qの契約役割を保持しreference化拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-05",
@@ -1649,7 +1697,9 @@
       "expected_state": "held",
       "expected": "source authority不足はsource利用held、宣言の役割を保存。",
       "backflow_owner": "authority_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-06",
@@ -1660,7 +1710,9 @@
       "expected_state": "held",
       "expected": "該当安全条件をpendingへ保持し利用held。",
       "backflow_owner": "authority_owner",
-      "function_ref": "classify_dependency_conditions"
+      "function_ref": "classify_dependency_conditions",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-07",
@@ -1671,7 +1723,9 @@
       "expected_state": "held",
       "expected": "Bはunselected_unobserved、原claimと差を保持。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/24/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-08",
@@ -1682,7 +1736,9 @@
       "expected_state": "held",
       "expected": "Sの元failureを保持し新sourceの利用成立を生成しない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
     },
     {
       "id": "HARNESS-L5-023-F03-NEG-09",
@@ -1693,7 +1749,9 @@
       "expected_state": "held",
       "expected": "必要集合と観測集合の差Qを返しgreenを受理しない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "expand_dependency_closure"
+      "function_ref": "expand_dependency_closure",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/11/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-01",
@@ -1704,7 +1762,9 @@
       "expected_state": "held",
       "expected": "classification validを保持し、utilization heldを別軸に返す。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/3/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-02",
@@ -1715,7 +1775,9 @@
       "expected_state": "held",
       "expected": "B未実装でも対象の分類を返し、根拠のない全体gateを拒否。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/16/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-03",
@@ -1726,7 +1788,9 @@
       "expected_state": "held",
       "expected": "実版missing依存Aを指定してheld、分類結果は保持。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/25/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-04",
@@ -1737,7 +1801,9 @@
       "expected_state": "held",
       "expected": "requested/observed版差を保持し、qualified mapping自体の不足を010契約ownerへ返してheld。latestで版補完しない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/6/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-05",
@@ -1748,7 +1814,9 @@
       "expected_state": "held",
       "expected": "未検証根拠を保持し利用held、実allowを生成しない。",
       "backflow_owner": "authority_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-06",
@@ -1759,7 +1827,9 @@
       "expected_state": "held",
       "expected": "実evidence不足を返し利用held、分類能力は否定しない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/15/effect"
     },
     {
       "id": "HARNESS-L5-023-F04-NEG-07",
@@ -1770,7 +1840,9 @@
       "expected_state": "held",
       "expected": "宣言mappingはそのまま保持し、requested/observed実版差を011呼出しownerへ返す。pack宣言不足と取り違えずheld。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/5/effect"
     },
     {
       "id": "HARNESS-L5-023-N01-NEG-01",
@@ -1781,7 +1853,9 @@
       "expected_state": "held",
       "expected": "同じ集合/理由へ一致し、差を依存identityで返す。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "build_dependency_analysis"
+      "function_ref": "build_dependency_analysis",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
     },
     {
       "id": "HARNESS-L5-023-N01-NEG-02",
@@ -1792,7 +1866,9 @@
       "expected_state": "held",
       "expected": "注入条件snapshotが不変なら同結果、clockを暗黙取得しない。",
       "backflow_owner": "pack_contract_owner",
-      "function_ref": "build_dependency_analysis"
+      "function_ref": "build_dependency_analysis",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
     },
     {
       "id": "HARNESS-L5-023-N01-NEG-03",
@@ -1803,7 +1879,9 @@
       "expected_state": "held",
       "expected": "元revision理由を保全しcurrent利用へ転用しない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
     },
     {
       "id": "HARNESS-L5-023-N01-NEG-04",
@@ -1814,7 +1892,9 @@
       "expected_state": "held",
       "expected": "所属差を返し当該利用held、原receipt不変。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
     },
     {
       "id": "HARNESS-L5-023-B01-NEG-01",
@@ -1825,7 +1905,9 @@
       "expected_state": "held",
       "expected": "Workerと同じrequired authority/隔離不足でheld。",
       "backflow_owner": "authority_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
     },
     {
       "id": "HARNESS-L5-023-B01-NEG-02",
@@ -1836,7 +1918,9 @@
       "expected_state": "held",
       "expected": "同じ依存版/検証不足でheld、actorの差で要件を削らない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
     },
     {
       "id": "HARNESS-L5-023-B01-NEG-03",
@@ -1847,7 +1931,9 @@
       "expected_state": "held",
       "expected": "口頭claimとqualified receiptを区別し利用held、保存成立を生成しない。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/20/effect"
     },
     {
       "id": "HARNESS-L5-023-B01-NEG-04",
@@ -1858,7 +1944,9 @@
       "expected_state": "held",
       "expected": "原actor/source/revisionを保全し誤所属を返す。",
       "backflow_owner": "call_owner",
-      "function_ref": "check_dependency_utilization"
+      "function_ref": "check_dependency_utilization",
+      "expected_side_effect_count": 0,
+      "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
     }
   ]
 }
