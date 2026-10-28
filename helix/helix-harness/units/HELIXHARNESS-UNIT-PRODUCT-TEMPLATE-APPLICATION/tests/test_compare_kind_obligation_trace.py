@@ -502,6 +502,97 @@ class TestCompareKindObligationTrace(unittest.TestCase):
             [f["code"] for f in res_struct["findings"]],
         )
 
+    def _f04_design_complete_claim_input(self, basis_refs, claim_identity):
+        raw = _fixture_normal_input()
+        raw["claims"].append(
+            {
+                "ref": {
+                    "identity": claim_identity,
+                    "revision": "synthetic-A",
+                    "scope": copy.deepcopy(raw["binding"]["product_scope"]),
+                    "owner": "synthetic-design-owner",
+                    "source_locator": None,
+                    "sha256": None,
+                },
+                "subject_ref": copy.deepcopy(raw["binding"]["template_ref"]),
+                "binding": copy.deepcopy(raw["binding"]),
+                "actor": "synthetic-design-owner",
+                "kind": "design_complete",
+                "proposed_value": {"basis": "041-extraction-success"},
+                "basis_refs": copy.deepcopy(basis_refs),
+            }
+        )
+        _rebuild_source_graph(raw)
+        return raw
+
+    def _f04_design_endpoint_ref(self, raw):
+        # The L5/L4/L9 contract's requirement→obligation→design trace is
+        # represented by this fixture edge; it is supplied as Claim basis.
+        edge = next(
+            req
+            for req in raw["trace_requirements"]
+            if req["ref"]["identity"] == "trace-required-2-forward"
+        )
+        self.assertEqual(edge["direction"], "forward")
+        self.assertEqual(edge["from_ref"], raw["obligations"][0]["ref"])
+        return copy.deepcopy(edge["to_ref"])
+
+    def test_f04_design_complete_claim_with_both_basis_refs_has_no_finding(self):
+        """F04: both design endpoint and bound oracle refs suppress this finding."""
+        raw = _fixture_normal_input()
+        basis_refs = [
+            self._f04_design_endpoint_ref(raw),
+            copy.deepcopy(raw["binding"]["oracle_ref"]),
+        ]
+        raw = self._f04_design_complete_claim_input(
+            basis_refs, "claim-f04-design-and-oracle-basis"
+        )
+
+        res, _, _ = self._run_trace(raw)
+
+        self.assertNotIn(
+            "extraction_as_design_complete",
+            [finding["code"] for finding in res["findings"]],
+        )
+
+    def test_f04_design_complete_claim_missing_design_basis_has_finding(self):
+        """F04 boundary: oracle basis alone leaves the concrete design basis missing."""
+        raw = _fixture_normal_input()
+        raw = self._f04_design_complete_claim_input(
+            [copy.deepcopy(raw["binding"]["oracle_ref"])],
+            "claim-f04-oracle-only-basis",
+        )
+
+        res, _, _ = self._run_trace(raw)
+
+        finding = next(
+            row
+            for row in res["findings"]
+            if row["code"] == "extraction_as_design_complete"
+        )
+        self.assertEqual(finding["axis"], "design_completion_claim")
+        self.assertEqual(finding["state"], "unknown")
+        self.assertEqual(finding["backflow_owner"], "design_owner")
+
+    def test_f04_design_complete_claim_missing_oracle_basis_has_finding(self):
+        """F04 boundary: design basis alone leaves the bound oracle basis missing."""
+        raw = _fixture_normal_input()
+        raw = self._f04_design_complete_claim_input(
+            [self._f04_design_endpoint_ref(raw)],
+            "claim-f04-design-only-basis",
+        )
+
+        res, _, _ = self._run_trace(raw)
+
+        finding = next(
+            row
+            for row in res["findings"]
+            if row["code"] == "extraction_as_design_complete"
+        )
+        self.assertEqual(finding["axis"], "design_completion_claim")
+        self.assertEqual(finding["state"], "unknown")
+        self.assertEqual(finding["backflow_owner"], "design_owner")
+
     def test_f04_neg_07_composite_empty_without_reason(self):
         """HARNESS-L8-009-F04-NEG-07: composite_empty_without_reason."""
         neg = self.f04_negative_cases["HARNESS-L8-009-F04-NEG-07"]
