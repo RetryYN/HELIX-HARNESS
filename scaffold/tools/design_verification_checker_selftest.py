@@ -1288,6 +1288,130 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             },
         )
 
+    def test_chk_pair_bidir_id_resolves_design_ref_when_upstream_requirement_ref_coexists(
+        self,
+    ) -> None:
+        l4_path = "docs/helix-brain/L4-basic-design/template-semantic-supply.json"
+        l9_path = (
+            "docs/helix-brain/L9-integration-verification/template-semantic-supply.json"
+        )
+        l5_path = "docs/helix-brain/L5-detail-design/template-semantic-supply.json"
+        l8_path = "docs/helix-brain/L8-unit-verification/template-semantic-supply.json"
+
+        l4_l9 = dvc.check_pair_bidir_id(
+            REPO_ROOT, l4_path, l9_path, left_key="contracts", right_key="cases"
+        )
+        l5_l8 = dvc.check_pair_bidir_id(
+            REPO_ROOT, l5_path, l8_path, left_key="contracts", right_key="cases"
+        )
+        self.assertTrue(l4_l9["passed"], f"Expected L4<->L9 pass, got: {l4_l9}")
+        self.assertEqual(l4_l9["left_count"], 14)
+        self.assertEqual(l4_l9["right_count"], 14)
+        self.assertEqual(l4_l9["failures"], [])
+        self.assertTrue(l5_l8["passed"], f"Expected L5<->L8 pass, got: {l5_l8}")
+        self.assertEqual(l5_l8["left_count"], 14)
+        self.assertEqual(l5_l8["right_count"], 14)
+        self.assertEqual(l5_l8["failures"], [])
+
+        # Counterexample: mismatched design_ref must still fail even when requirement_ref is present
+        bad_l9 = dvc._load_json(REPO_ROOT, l9_path)
+        bad_l9["cases"][0]["design_ref"] = "HELIXBRAIN-L4-032-MISMATCH"
+        bad_res = dvc.check_pair_bidir_id(
+            REPO_ROOT,
+            l4_path,
+            l9_path,
+            left_data=dvc._load_json(REPO_ROOT, l4_path),
+            right_data=bad_l9,
+            left_key="contracts",
+            right_key="cases",
+        )
+        self.assertFalse(bad_res["passed"])
+        self.assertTrue(
+            any(f["error"] == "missing_reverse_link" for f in bad_res["failures"])
+        )
+
+    def test_chk_ownership_cap_scopes_same_invocation_to_l8l9_and_passes_brain032_l4(
+        self,
+    ) -> None:
+        l4_path = "docs/helix-brain/L4-basic-design/template-semantic-supply.json"
+        l4_cap = dvc.check_ownership_cap(REPO_ROOT, l4_path, layer="L4")
+        self.assertTrue(l4_cap["passed"], f"Expected BRAIN032 L4 pass, got: {l4_cap}")
+        self.assertEqual(l4_cap["failures"], [])
+
+        # Counterexample 1: same_invocation in L8/L9 must still fail CHK-OWNERSHIP-CAP-L8L9
+        l8_with_same_inv = {
+            "cases": [{"id": "C1", "recipe_contract": {"same_invocation": "forbidden"}}]
+        }
+        l8_cap = dvc.check_ownership_cap(
+            REPO_ROOT,
+            "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+            data=l8_with_same_inv,
+            layer="L8",
+        )
+        self.assertFalse(l8_cap["passed"])
+        self.assertEqual(len(l8_cap["failures"]), 1)
+        self.assertEqual(l8_cap["failures"][0]["key"], "same_invocation")
+
+        # Counterexample 2: fixture_patch / expected_return in L4 must still fail CHK-OWNERSHIP-CAP-L3L6
+        l4_with_fixture = {"contracts": [{"id": "B1", "fixture_patch": []}]}
+        l4_bad_cap = dvc.check_ownership_cap(
+            REPO_ROOT, l4_path, data=l4_with_fixture, layer="L4"
+        )
+        self.assertFalse(l4_bad_cap["passed"])
+        self.assertEqual(l4_bad_cap["failures"][0]["key"], "fixture_patch")
+
+    def test_chk_pair_bidir_id_selects_layer_specific_reverse_ref_when_l4_and_l5_refs_coexist(
+        self,
+    ) -> None:
+        l5_data = {
+            "contracts": [
+                {
+                    "id": "HELIXLABO-L5-001-F01",
+                    "oracle_ref": "LABO001-F01-CASE-01",
+                }
+            ],
+            "completion": {"contracts_total": 1},
+        }
+        l8_data = {
+            "cases": [
+                {
+                    "id": "LABO001-F01-CASE-01",
+                    "requirement_ref": "HELIXLABO-L3-001-F01",
+                    "l4_contract_ref": "HELIXLABO-L4-001-F01",
+                    "l5_contract_ref": "HELIXLABO-L5-001-F01",
+                }
+            ],
+            "completion": {"cases_total": 1},
+        }
+        res_l5 = dvc.check_pair_bidir_id(
+            REPO_ROOT,
+            "docs/helix-labo/L5-detail-design/authorized-observation-aggregation.json",
+            "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+            left_data=l5_data,
+            right_data=l8_data,
+        )
+        self.assertTrue(
+            res_l5["passed"],
+            f"Expected L5<->L8 pass when l4_contract_ref and l5_contract_ref coexist, got: {res_l5}",
+        )
+        self.assertEqual(res_l5["failures"], [])
+
+        # Counterexample: if left is L4, it must pick l4_contract_ref and fail against L5 IDs
+        res_as_l4 = dvc.check_pair_bidir_id(
+            REPO_ROOT,
+            "docs/helix-labo/L4-basic-design/authorized-observation-aggregation.json",
+            "docs/helix-labo/L8-unit-verification/authorized-observation-aggregation.json",
+            left_data=l5_data,
+            right_data=l8_data,
+        )
+        self.assertFalse(res_as_l4["passed"])
+        self.assertTrue(
+            any(
+                f["error"] == "missing_reverse_link" and f["pointer"] == "/cases/0"
+                for f in res_as_l4["failures"]
+            )
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

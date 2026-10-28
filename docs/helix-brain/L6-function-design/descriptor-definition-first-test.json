@@ -679,17 +679,19 @@
     "contract_sources": [
       "L4 template-semantic-supply.json /oracle_view_boundary_contract/same_call",
       "L4 /oracle_view_boundary_contract/partial_context_projection",
+      "L4 /oracle_view_boundary_contract/claim_dispatch",
       "L5 template-semantic-supply.json /functions/4",
+      "L5 /fn4_nonfill_claim_detail",
       "L5 /source_return_contract/descriptor_target_dataflow/index_types",
       "L5 /source_return_contract/descriptor_target_dataflow/transport_types",
       "L5 /source_return_contract/descriptor_target_dataflow/private_imports",
       "L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core"
     ],
-    "implemented_scope": "decode-null、Claim原出現0件（absent又は[]）/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影。発火時も他ruleは未評価であり、7rule全域の閉包ではない。 WR18統合後、Claim0/meaning carrier実出現0の非nullfinitecarryを追加。source role/key・対象slot・実OB/値/handoff0件を全観測し、context.definitionsの原3軸だけを保持する。",
+    "implemented_scope": "decode-null、Claim原出現0件（absent又は[]）/固定15kind各single-fact/意味source未解決又はcarrier未供給/明示null NAの同call canonical walk。fn4 wrapperは一回walk→uses/frame→detail。既存typed入力に明示したR71義務相違/R72oracle版相違の局所投影。発火時も他ruleは未評価であり、7rule全域の閉包ではない。 WR18統合後、Claim0/meaning carrier実出現0の非nullfinitecarryを追加。source role/key・対象slot・実OB/値/handoff0件を全観測し、context.definitionsの原3軸だけを保持する。 WR85でL4 /oracle_view_boundary_contract/claim_dispatch 及び L5 /fn4_nonfill_claim_detail（#3780、merge 4d0a6952）に従いnonfill Claim経路（fill_definition→finite carry、meaning_revision_update→rule70、measurement_threshold→rule74、他producer担当18kind→FN4非生成で各producer保持、未認識・不成立→unknown_reentry停止）を追補する。",
     "entry_bootstrap": "元sourceにfn4 public symbol自体が無かったため、test commitでL5既存署名のlazy facadeと専用moduleの固定ID付きNotImplementedError宣言だけを先に置いた。import/属性errorではなく未実装Redを確認してから別source commitで3境界を実装する。成功fallbackやfixture dispatchは置かない。",
     "same_call": "decode可能なテストContextは同一fn0から実fn1/fn3を呼んだ全Comparisonを使う。比較producer又はBindingだけを不適合へ変え、その元Contextを保持する。decode不能だけはL4 null_inputに従う明示empty前段Comparisonをcomposition入力にする。これを通常入力の前段出力の代わりに使わない。 claims absentの新walkテストは実fn0から実walk evaluation.comparisonと実fn3を同callで構成する宣言済raw runner経路。public fn1はclaims配列必須のままで、fn1成功出力とは呼ばない。人工の前段Comparisonは置かない。",
     "projection": "nullのみempty Comparison。別producer/Bindingは固有partial ID/knowledge_owner Backflow。definition carryはcontext.definitions.axesの対象3軸を全値・原順保存。R71/R72は同subject/義務の独立typed対応後の明示相違だけを投影し、source witnessを元source順で保持。元Comparisonとnew walk Comparisonの全値同一性をgateにしない。",
-    "current_unclosed": "通常controlのOB subjectはdescriptor fact Refに対応せずformed_context停止。F05 NEG01/02は供給Claimのwalk/supplied_claim_ports停止。nonnull Claim target-read再利用は未実装。供給operation carrier、非nullNA、multi-factpairは個別ID停止。発火時のR71/R72以外は未評価。",
+    "current_unclosed": "通常controlのOB subjectはdescriptor fact Refに対応せずformed_context停止。nonfill Claim経路はfn4_nonfill_claim_dispatch_preparationでL4 /oracle_view_boundary_contract/claim_dispatch 及び L5 /fn4_nonfill_claim_detail に従って閉包（R70/R71/R72/R74順投影、未認識kind・operand不成立はunknown_reentry停止）。供給operation carrier、非nullNA、multi-factpairは個別ID停止。R68/R69/R73は未評価。",
     "prerequisite_gap": "WR18 #3721を含むmain dbaffdf989e5d9ee220d46cd1aca7fe95f599bb0を統合。F05 NEG01/02は実fn0→fn1/fn3 Context後、walk/supplied_claim_ports停止を固定。Claim0の有限carryは実前段Comparisonで閉じた。Claim/target frame、非空meaning carrierの有限枝は未閉包。fn1/fn6公開wrapper変更なし。",
     "authority_items": [
       {
@@ -2390,18 +2392,22 @@
         },
         "FN4_oracle_claim_ports": {
           "source": "src/oracle_binding_rules.py",
-          "classification": "nonfillを含む一般FN4の返却/carry/stop境界は設計未閉。現stopを削ってsuccessへ進めない。",
+          "classification": "L4 /oracle_view_boundary_contract/claim_dispatch と L5 /fn4_nonfill_claim_detail（#3780、merge 4d0a6952）で設計確定・解消済み。WR85（fn4_nonfill_claim_dispatch_preparation）でtest-first実装へ追随し、現stopを削って未閉ケースをsuccessへ進めずunknownを既知へ丸めない。",
           "L4_pointers": [
+            "/oracle_view_boundary_contract/claim_dispatch",
             "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/other_claims",
             "/oracle_view_boundary_contract/nonnull_claim_target_reuse/call"
           ],
           "L5_pointers": [
+            "/fn4_nonfill_claim_detail",
             "/functions/4/algorithm/3",
-            "/source_return_contract/descriptor_target_dataflow/consumer/fn4_read_binding"
+            "/source_return_contract/descriptor_target_dataflow/consumer/fn4_read_binding",
+            "/failure_rules/70",
+            "/failure_rules/74"
           ],
-          "owner": "HELIXBRAIN-L6-032-FN4-ORACLEに対応するL4/L5設計owner。元意味資料と既存stopのbackflowはknowledge_ownerを維持し、新roleを作らない。",
-          "required_design": "nonfill Claim存在時の原Comparison carry/stopと既存rule68–74の対象operandを明示し、L5 fn4_read_bindingの非null Claimのどのkindが既読fill-only target_readを消費するかを確定する。",
-          "reentry": "このL4/L5 pairに当該範囲の振舞が明記された後、同じBinding/revision/scope/実inputからtest-firstへ戻る。ここで無関係/nonfireや新targetを推定しない。"
+          "owner": "HELIXBRAIN-L6-032-FN4-ORACLEに対応するL4/L5設計owner。rule70とclaim_dispatch未認識/不成立のbackflowはknowledge_owner、rule74のbackflowはcore_ownerを維持し、新roleを作らない。",
+          "resolved_design": "Claim.kindの5分岐（fill_definition→既読target_read消費とfinite carry、meaning_revision_update→rule70 view_as_semantic_update、measurement_threshold→rule74 threshold_fabricated、他producer担当18kind→FN4 Claim operand非形成・target_read不要で各producer経路保持、未認識kind又はoperand不成立→unknown_reentry停止）がL4 claim_dispatchとL5 fn4_nonfill_claim_detailに確定済み。",
+          "reentry": "確定したL4/L5 pair（#3780）と負例4層一致（#3786）に基づき、WR85で同じBinding/revision/scope/実inputからtest-first実装を行う。"
         },
         "FN6_mixed_alignment": {
           "source": "src/dependencies_handoff.py",
@@ -2438,5 +2444,55 @@
         "closure_boundary": "FN4 general oracle_claim_portsは設計未閉で変更しない。FN7有限域とFN4 finite carryも変更不要。WR76監査結論の後に再開し、公開端点設計を本実装へ混入しない。WR13 B/L8/OS完了を生成しない。"
       }
     }
+  },
+  "fn4_nonfill_claim_dispatch_preparation": {
+    "sibling_of": "fn4_oracle_preparation",
+    "request": "WR-CLAUDE-BRAIN032-FN4-NONFILL-IMPL-3547-20261028-85",
+    "working_base": "730e46c955def9d3b27cf280a62b886568028aa3",
+    "design_closure_ref": "PR #3780 (merge 4d0a6952) L4 /oracle_view_boundary_contract/claim_dispatch and L5 /fn4_nonfill_claim_detail; PR #3786 (merge 96a6921b) negative 4-layer parity (105/105/105/105)",
+    "scope": "FN4（src/oracle_binding_rules.py 及び src/oracle_finite_carry.py）のnonfill Claim経路を、L4 /oracle_view_boundary_contract/claim_dispatch と L5 /fn4_nonfill_claim_detail に従って最小変更で実装する。fill_definitionの既存finite carryとoracle_claim_ports停止を維持し、meaning_revision_update（rule70）とmeasurement_threshold（rule74）の局所投影、他producer担当18kindのFN4非生成carry/共存、未認識kind・operand不成立時のunknown_reentry停止を閉包する。",
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+        "pointers": [
+          "/oracle_view_boundary_contract/claim_dispatch",
+          "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/other_claims",
+          "/oracle_view_boundary_contract/nonnull_claim_target_reuse/call",
+          "/oracle_view_boundary_contract/partial_context_projection"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+        "pointers": [
+          "/fn4_nonfill_claim_detail",
+          "/fn4_nonfill_claim_detail/dispatch/0",
+          "/fn4_nonfill_claim_detail/dispatch/1",
+          "/fn4_nonfill_claim_detail/dispatch/2",
+          "/fn4_nonfill_claim_detail/dispatch/3",
+          "/fn4_nonfill_claim_detail/dispatch/4",
+          "/fn4_nonfill_claim_detail/rule_operands/1",
+          "/fn4_nonfill_claim_detail/rule_operands/4",
+          "/fn4_nonfill_claim_detail/unknown_return",
+          "/fn4_nonfill_claim_detail/stop_protocol",
+          "/functions/4/algorithm/3",
+          "/source_return_contract/descriptor_target_dataflow/consumer/fn4_read_binding",
+          "/failure_rules/70",
+          "/failure_rules/71",
+          "/failure_rules/72",
+          "/failure_rules/74"
+        ]
+      }
+    ],
+    "dispatch_table": {
+      "fill_definition": "L4 /oracle_view_boundary_contract/claim_dispatch/0, L5 /fn4_nonfill_claim_detail/dispatch/0: 既読 frame.target_reads の /claims/{i} を1対1で消費し、null提案又はresolvedかつ非対象kind（measurement/completion/negative_oracle_definition以外）のとき既存finite carryへ進む。不適格fillは既存 F05/F06/unclosed/oracle_claim_ports (owner=knowledge_owner) で停止する。",
+      "meaning_revision_update": "L4 /oracle_view_boundary_contract/claim_dispatch/1, L5 /fn4_nonfill_claim_detail/dispatch/1, /fn4_nonfill_claim_detail/rule_operands/1, /failure_rules/70: target_readを消費せず、Claim.proposed_value.semantic_json_change_ref == null、Claim.basis_refs が資格成立derived_view sourceを指し、同一subject/Bindingの資格成立semantic_json descriptor factの原identity/revision/stateが不変でderived_viewと相違するとき、meaning_update_claim 軸（state=conflict）と view_as_semantic_update Finding（backflow_owner=knowledge_owner）を原Claim出現順に投影する。Ref文字列（changed-view等）から相違を推定せず、operand不成立は F05/F06/unknown_reentry/* (owner=knowledge_owner) で停止する。",
+      "measurement_threshold": "L4 /oracle_view_boundary_contract/claim_dispatch/2, L5 /fn4_nonfill_claim_detail/dispatch/2, /fn4_nonfill_claim_detail/rule_operands/4, /failure_rules/74: target_readを消費せず、Claim.proposed_value.basis_origin == 'generic_default'、basis_refsの各要素が資格成立sourceへ一意に解決し（未解決はunknown_reentry/witness）、かつ資格成立semantic_json owner sourceが無く（derived_view等の非owner資格成立sourceは許容しsource_refsへ保持）、同一subject/Bindingのmeasurement descriptor fact（measurement.definition評価対象）と対応する一意のValueFact（value == null、資格成立semantic_json source）が成立するとき、measurement.value 軸（state=unknown）と threshold_fabricated Finding（backflow_owner=core_owner）を原Claim出現順に投影する。operand不成立・既知value・競合ValueFactは F05/F06/unknown_reentry/* (owner=core_owner) で停止する。",
+      "other_producer_claim_kinds": "L4 /oracle_view_boundary_contract/claim_dispatch/3, L5 /fn4_nonfill_claim_detail/dispatch/3: 既存L8 case 12 kindとclaim_intent_detail非fill 6 kindの計18 kindは、閉型ClaimとBinding一致を満たすときFN4のClaim operandを形成せずtarget_readも要求しない。原Claim値/順序/locatorを保持し、他全てのFN4有限carry条件が成立するときだけ原3 definition軸をcarryし、R70/R71/R72/R74発火時は各規則投影を妨げない。",
+      "unrecognized_or_malformed": "L4 /oracle_view_boundary_contract/claim_dispatch/4, L5 /fn4_nonfill_claim_detail/dispatch/4, /fn4_nonfill_claim_detail/unknown_return, /fn4_nonfill_claim_detail/stop_protocol: 未宣言Claim.kind又は閉型/Binding不適合Claimは F05/F06/unknown_reentry/claim_dispatch (owner=knowledge_owner, Backflow HELIXBRAIN-L6-032-FN4-ORACLE) で停止し、1件でも未解決Claimがあれば他Claimでマスクしない。"
+    },
+    "projection_order": "L5 /failure_rules/68..74 及び /fn4_nonfill_claim_detail に従い、発火時は rule70 → rule71 → rule72 → rule74 の順、同一規則内は原出現locator順（/claims/{i} 又は descriptor/oracle_binding 順）で axes と findings を投影する。",
+    "authority_effect": "none"
   }
 }
