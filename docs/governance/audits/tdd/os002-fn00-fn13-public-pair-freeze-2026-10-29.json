@@ -264,34 +264,39 @@
     {
       "record": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json#/private_detail_bindings/0",
       "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3764#issuecomment-6455979090",
-      "coverage": "F04 source projection profile and selected source-member verification; FN00 return expectation is /validated_record_trace."
+      "coverage": "T2a F04 source projection profile private detail and its bound public functions; FN00/FN13 linkage is stated in this detail scope."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json#/private_detail_bindings/1",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3764#issuecomment-6455979090",
+      "coverage": "T2a selected source-member private detail; whole cases bind expected_validator_output_ref to case_input#/validated_record_trace (function 0 return expectation), with L9 selected-source oracle cases 0..8."
     },
     {
       "record": "docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json#/private_detail_bindings/0",
       "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3769#issuecomment-6456918326",
-      "coverage": "F04 original-correspondence private scope; repeated SOURCE-MEMBER IDs are not the FN00 selected-source return expectation."
+      "coverage": "T2b F04 original-correspondence private scope; repeated SOURCE-MEMBER IDs are distinct from T2a selected-source return expectation."
     },
     {
-      "record": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json#/",
+      "record": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json#/resolved_function_rows",
       "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
-      "coverage": "T3a checker reconciliation only; not represented as a generate-freeze function pair."
+      "coverage": "QA §5 generate-freeze output (design-verification-declaration-manifest.v1, request WR105-OS002-NEXT-SLICE-GENERATE-FREEZE), resolved function rows compare_backflow_evidence, compare_correction_history, compare_core_impact_history (FN07..FN09); independently reviewed #3814 R1 no findings."
     },
     {
-      "record": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json#/",
-      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
-      "coverage": "T3b checker reconciliation only; not represented as a generate-freeze function pair."
-    },
-    {
-      "record": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json#/",
+      "record": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json#/resolved_function_rows",
       "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
-      "coverage": "T4 checker reconciliation only; not represented as a generate-freeze function pair."
+      "coverage": "QA §5 generate-freeze output (design-verification-declaration-manifest.v1, request WR108-OS002-T3B-T4-GENERATE-FREEZE), resolved function rows compare_labo_record_selection and compare_finding_causal_trace (FN10..FN11); independently reviewed #3815 R2 no findings."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json#/resolved_function_rows",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
+      "coverage": "QA §5 generate-freeze output (design-verification-declaration-manifest.v1, request WR108-OS002-T3B-T4-GENERATE-FREEZE), resolved function rows compare_security_use_binding (FN12) and check_record_claims (FN01 N02 scope); independently reviewed #3815 R2 no findings."
     }
   ],
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
   "source_main": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
   "request_base_sha": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
-  "recorded_at_utc": "2026-10-28T19:40:08+00:00",
+  "recorded_at_utc": "2026-10-28T19:41:25+00:00",
   "pins": {
     "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
     "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
@@ -331,8 +336,8 @@
     "L8_f04_original_additional_branch_probes": 3
   },
   "pointer_resolution_summary": {
-    "checked_count": 89,
-    "expanded_target_count": 89,
+    "checked_count": 93,
+    "expanded_target_count": 93,
     "unresolved_count": 0,
     "passed": true
   },
