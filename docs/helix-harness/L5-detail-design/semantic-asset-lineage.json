@@ -901,7 +901,7 @@
   "failure_rules": [
     {
       "id": "HARNESS-L5-053-R-path_identity_inference",
-      "classification": "path_identity_inference",
+      "code": "path_identity_inference",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-01",
@@ -926,7 +926,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-name_identity_inference",
-      "classification": "name_identity_inference",
+      "code": "name_identity_inference",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-02",
@@ -951,7 +951,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-identity_conflict",
-      "classification": "identity_conflict",
+      "code": "identity_conflict",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-03",
@@ -976,7 +976,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-identity_missing",
-      "classification": "identity_missing",
+      "code": "identity_missing",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-04",
@@ -1001,7 +1001,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-location_identity_change",
-      "classification": "location_identity_change",
+      "code": "location_identity_change",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-05",
@@ -1031,7 +1031,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-hash_identity_inference",
-      "classification": "hash_identity_inference",
+      "code": "hash_identity_inference",
       "function": "compare_asset_identity",
       "integration_negative_ref": "HARNESS-L9-053-F01-NEG-06",
       "unit_negative_ref": "HARNESS-L8-053-F01-NEG-06",
@@ -1056,7 +1056,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-location_as_semantic",
-      "classification": "location_as_semantic",
+      "code": "location_as_semantic",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-01",
@@ -1086,7 +1086,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-semantic_as_location",
-      "classification": "semantic_as_location",
+      "code": "semantic_as_location",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-02",
@@ -1121,7 +1121,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-semantic_identity_change",
-      "classification": "semantic_identity_change",
+      "code": "semantic_identity_change",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-03",
@@ -1151,7 +1151,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-semantic_source_missing",
-      "classification": "semantic_source_missing",
+      "code": "semantic_source_missing",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-04",
@@ -1176,7 +1176,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-semantic_impact_missing",
-      "classification": "semantic_impact_missing",
+      "code": "semantic_impact_missing",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-05",
@@ -1211,7 +1211,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-revision_conflict",
-      "classification": "revision_conflict",
+      "code": "revision_conflict",
       "function": "compare_semantic_revision",
       "integration_negative_ref": "HARNESS-L9-053-F02-NEG-06",
       "unit_negative_ref": "HARNESS-L8-053-F02-NEG-06",
@@ -1236,7 +1236,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-history_mapping_missing",
-      "classification": "history_mapping_missing",
+      "code": "history_mapping_missing",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-01",
@@ -1261,7 +1261,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-lineage_endpoint_missing",
-      "classification": "lineage_endpoint_missing",
+      "code": "lineage_endpoint_missing",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-02",
@@ -1291,7 +1291,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-relation_kind_missing",
-      "classification": "relation_kind_missing",
+      "code": "relation_kind_missing",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-03",
@@ -1316,7 +1316,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-base_revision_mismatch",
-      "classification": "base_revision_mismatch",
+      "code": "base_revision_mismatch",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-04",
@@ -1346,7 +1346,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-lineage_target_missing",
-      "classification": "lineage_target_missing",
+      "code": "lineage_target_missing",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-05",
@@ -1376,7 +1376,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-lineage_as_authority_transfer",
-      "classification": "lineage_as_authority_transfer",
+      "code": "lineage_as_authority_transfer",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-06",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-06",
@@ -1401,7 +1401,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-scope_cross_binding",
-      "classification": "scope_cross_binding",
+      "code": "scope_cross_binding",
       "function": "compare_lineage_records",
       "integration_negative_ref": "HARNESS-L9-053-F03-NEG-07",
       "unit_negative_ref": "HARNESS-L8-053-F03-NEG-07",
@@ -1446,7 +1446,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-authority_mapping_missing",
-      "classification": "authority_mapping_missing",
+      "code": "authority_mapping_missing",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-01",
@@ -1486,7 +1486,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-oracle_mapping_missing",
-      "classification": "oracle_mapping_missing",
+      "code": "oracle_mapping_missing",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-02",
@@ -1521,7 +1521,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-typed_edge_mapping_missing",
-      "classification": "typed_edge_mapping_missing",
+      "code": "typed_edge_mapping_missing",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-03",
@@ -1556,7 +1556,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-authority_mapping_unknown",
-      "classification": "authority_mapping_unknown",
+      "code": "authority_mapping_unknown",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-04",
@@ -1581,7 +1581,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-oracle_revision_mismatch",
-      "classification": "oracle_revision_mismatch",
+      "code": "oracle_revision_mismatch",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-05",
@@ -1606,7 +1606,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-typed_edge_kind_mismatch",
-      "classification": "typed_edge_kind_mismatch",
+      "code": "typed_edge_kind_mismatch",
       "function": "compare_lineage_mappings",
       "integration_negative_ref": "HARNESS-L9-053-F04-NEG-06",
       "unit_negative_ref": "HARNESS-L8-053-F04-NEG-06",
@@ -1631,7 +1631,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-reference_meaning_mismatch",
-      "classification": "reference_meaning_mismatch",
+      "code": "reference_meaning_mismatch",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-N01-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-N01-NEG-01",
@@ -1656,7 +1656,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-reference_substitution",
-      "classification": "reference_substitution",
+      "code": "reference_substitution",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-N01-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-N01-NEG-02",
@@ -1681,7 +1681,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-unselected_operation",
-      "classification": "unselected_operation",
+      "code": "unselected_operation",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-N01-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-N01-NEG-03",
@@ -1706,7 +1706,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-local_as_global_completion",
-      "classification": "local_as_global_completion",
+      "code": "local_as_global_completion",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-N01-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-N01-NEG-04",
@@ -1731,7 +1731,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-global_stop_added",
-      "classification": "global_stop_added",
+      "code": "global_stop_added",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-N01-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-N01-NEG-05",
@@ -1756,7 +1756,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-record_as_persistence",
-      "classification": "record_as_persistence",
+      "code": "record_as_persistence",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-01",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-01",
@@ -1781,7 +1781,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-fixture_as_rollback",
-      "classification": "fixture_as_rollback",
+      "code": "fixture_as_rollback",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-02",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-02",
@@ -1806,7 +1806,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-record_as_permission",
-      "classification": "record_as_permission",
+      "code": "record_as_permission",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-03",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-03",
@@ -1831,7 +1831,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-record_as_acceptance",
-      "classification": "record_as_acceptance",
+      "code": "record_as_acceptance",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-04",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-04",
@@ -1856,7 +1856,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-legacy_completion_claim",
-      "classification": "legacy_completion_claim",
+      "code": "legacy_completion_claim",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-05",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-05",
@@ -1881,7 +1881,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-owner_boundary_change",
-      "classification": "owner_boundary_change",
+      "code": "owner_boundary_change",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-06",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-06",
@@ -1906,7 +1906,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-new_precondition",
-      "classification": "new_precondition",
+      "code": "new_precondition",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-07",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-07",
@@ -1931,7 +1931,7 @@
     },
     {
       "id": "HARNESS-L5-053-R-authority_procedure_added",
-      "classification": "authority_procedure_added",
+      "code": "authority_procedure_added",
       "function": "check_lineage_operation_boundary",
       "integration_negative_ref": "HARNESS-L9-053-B01-NEG-08",
       "unit_negative_ref": "HARNESS-L8-053-B01-NEG-08",

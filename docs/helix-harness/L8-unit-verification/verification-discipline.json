@@ -3491,7 +3491,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "saved_as_verified",
           "change": "OS保存receiptだけで検証成功を主張",
@@ -47582,7 +47582,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "duty_missing_requirement_revision",
           "change": "検証義務のrequirement_revisionを除去",
@@ -127360,7 +127360,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "units_as_connection",
           "change": "全単体proofで接続完了を主張",
@@ -155710,7 +155710,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "fixed_full_default",
           "change": "ticket関係を無視して全件CIを既定化",
@@ -192115,7 +192115,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "coupling_unit_only",
           "change": "AB/Xへ影響するのに小の単体だけで合流",
@@ -205404,7 +205404,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "forbidden_edge",
           "change": "domain→application禁止edgeを追加",
@@ -211182,7 +211182,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "invariant_oracle_missing",
           "change": "INV2に対応するoracleを除去",
@@ -216937,7 +216937,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "red_missing",
           "change": "Red原結果を除去",
@@ -227049,7 +227049,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "oracle_no_assertion",
           "change": "oracleの判定内容を除去",
@@ -231244,7 +231244,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "gwt_then_missing",
           "change": "Then期待を除去",
@@ -240200,7 +240200,7 @@
       },
       "normal_variants": [],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "unknown_as_na",
           "change": "integration unknownをN/Aへ変更",
@@ -254853,7 +254853,7 @@
         }
       ],
       "execution_state": "not_executed",
-      "negative_calls": [
+      "negative_cases": [
         {
           "code": "backup_as_restore",
           "change": "backup/snapshot存在でrestore成功を主張",
@@ -265224,20 +265224,20 @@
   "shared_referents_materialization": {
     "status": "局所materialization記述（実行なし）。referents_recipeは記録形式でありdomain入力値ではない。",
     "scope_pointers": [
-      "/cases/1/negative_calls/9/call/sources/referents",
-      "/cases/1/negative_calls/10/call/sources/referents",
-      "/cases/2/negative_calls/1/call/sources/referents",
-      "/cases/2/negative_calls/3/call/sources/referents",
-      "/cases/5/negative_calls/4/call/sources/referents",
-      "/cases/6/negative_calls/4/call/sources/referents",
-      "/cases/8/negative_calls/3/call/sources/referents",
-      "/cases/10/negative_calls/0/call/sources/referents",
-      "/cases/10/negative_calls/1/call/sources/referents",
-      "/cases/10/negative_calls/8/call/sources/referents",
-      "/cases/11/negative_calls/0/call/sources/referents",
-      "/cases/11/negative_calls/1/call/sources/referents",
-      "/cases/11/negative_calls/2/call/sources/referents",
-      "/cases/11/negative_calls/4/call/sources/referents"
+      "/cases/1/negative_cases/9/call/sources/referents",
+      "/cases/1/negative_cases/10/call/sources/referents",
+      "/cases/2/negative_cases/1/call/sources/referents",
+      "/cases/2/negative_cases/3/call/sources/referents",
+      "/cases/5/negative_cases/4/call/sources/referents",
+      "/cases/6/negative_cases/4/call/sources/referents",
+      "/cases/8/negative_cases/3/call/sources/referents",
+      "/cases/10/negative_cases/0/call/sources/referents",
+      "/cases/10/negative_cases/1/call/sources/referents",
+      "/cases/10/negative_cases/8/call/sources/referents",
+      "/cases/11/negative_cases/0/call/sources/referents",
+      "/cases/11/negative_cases/1/call/sources/referents",
+      "/cases/11/negative_cases/2/call/sources/referents",
+      "/cases/11/negative_cases/4/call/sources/referents"
     ],
     "root": "各caseの /cases/<i>/normal_call/sources/referents literal（同case anchor）",
     "form": "各scope memberは{\"referents_recipe\":{\"base_pointer\": 同case normal_call/sources, \"patch\": [{\"op\":\"copy\",\"from\":\"/referents\",\"path\":\"\"}]}}の記録形を持つ。復元は同一文書snapshot内のbase_pointer literalだけをRFC6901で解決し、深い複製へRFC6902 copyを適用して原member全値を戻す。完全一致した同一caseのnegative call referentsに限り、fixture_root・call全体・独立expected・negative mutation・別case/別責務の値は共有しない。member位置・型・member/array順・反復・欠落/null・presenceは変えない。",
