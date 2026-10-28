@@ -12645,9 +12645,9 @@
     },
     "owner_binding_contract": {
       "storage": "各RecordOccurrence.owner_bindingsはそのcontent recordとsource/body occurrenceのsubject。DeclarationOccurrence/DefinitionEvidenceInterpretation/GapInterpretation/ConstraintOccurrenceのowner_bindingsは各宣言/原命題subject自身。evidenceをcontentへ置換しない。content_owner_binding_linksはcontent側の実entryへだけ向ける。 EvidenceRecordOccurrenceはowner_bindingsを内包せず、対応する宣言/原命題Interpretationのinline owner_bindingsへそのsubject自身の証拠を一度格納する。content RecordOccurrenceとは別型で、content_owner_binding_linksはcontent側entryだけを指す。",
-      "source_wrapper": "wrapper.ref.owner、実source.ref.owner及び同fn0資格checkの原owner対応を先に保持する。必要元relation不足はunestablished、照合済み既知差はdifferent。単なるowner文字列差だけで委任/関係有無を創作しない。",
+      "source_wrapper": "唯一のsource_wrapper_relation writer。wrapper.ref.owner、実source.ref.owner及び同fn0資格checkのqualification_owner/root_owner linkの原順を用いて原owner対応を形成する。両Readがpresentで直接の既知差又は対応checkのdifferentがあればdifferent（既知falseを他条件の未成立で相殺しない）。correspondingは両Readがpresentで、必要なqualification_owner/root_owner linkが一件以上あり、該当linkの全check resultがcorrespondingの場合だけ。Read欠落、該当linkなし、対応checkがunestablished又はnot_applicableならunestablishedとする。not_applicableは対応成立の証拠ではない。Cause形はowner_relation_cause_writer_contractが別に扱い、relationを再計算しない。単なるowner文字列差からdelegation/authority/trust relationを作らない。",
       "role_pairs": "各適用operand fullRef/owner Readを全原順でRoleOwnerPairへ。定義はfield.template_ref、非null field.binding.knowledge_ref、対応済definition_refs。値宣言は対応value_fact_refs又はfield.binding.requirement_ref。質問/派生/NA命題はGapProposal.ref。矛盾constraintは実左右Refs又はfield.binding.application_contract_ref、左右命題sourceは各Ref。派生constraintは実antecedent要求Refs又はapplication_contract_ref、proposed bodyはproposed_ref。NA判断はNARecord.ref、policyはApplicationPolicy.ref。各body/field/fullbinding/版/scope対応も別必要。",
-      "aggregate": "共通source_wrapper関係 AND 当該role候補内OR。source_wrapper=differentならrole候補のcorrespondingで相殺不可、result=different/owner_mismatch。source_wrapper=unestablishedならpositiveがあってもresult=unestablished。source_wrapper=correspondingかつ適用role pairに一つ以上correspondingならresult=corresponding、他pair差は保存。全適用候補が読めてdifferentだけならresult=different、positive無く必要元端未取得ならunestablished。field.ref.ownerとの一律一致、新registry/委任/trust rootを作らない。"
+      "aggregate": "OwnerBinding.resultのwriter。source_wrapper_relationはowner_binding_contract/source_wrapperで形成済みの値を読む。source_wrapper=differentならrole候補のcorrespondingで相殺不可、result=different/owner_mismatch。source_wrapper=unestablishedならpositiveがあってもresult=unestablished。source_wrapper=correspondingかつ適用role pairに一つ以上correspondingならresult=corresponding、他pair差は保存。全適用候補が読めてdifferentだけならresult=different、positive無く必要元端未取得ならunestablished。field.ref.ownerとの一律一致、新registry/委任/trust rootを作らない。"
     },
     "projection_contract": {
       "declaration_reader": "kind=field_material_projection_declarationの実SemanticRecord.meaningを原objectとして読む。共通8member binding/field_ref/material_ref/material_role/material_carrier/payload_form/reason_role/basis_refsと各供給形、product_valueでは追加value_roleを閉型へ結ぶ。kindだけでは成立せず全対象/source/body/owner/元basis対応を必要とする。definitionのvalue_roleは非適用で元Readを残し、不在/null/差を投影失敗へしない。",
@@ -18724,7 +18724,7 @@
           "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper"
         },
         "S2_both_owner_reads_present_and_owner_check_different_or_unestablished": {
-          "guard": "wrapper_owner/source_ownerはともにpresent。qualification_check_linksをqualification_check_link_writer/traversalのflatten順に辿り、kind=qualification_owner又はroot_ownerかつresult=different又はunestablishedの実SourceCheckだけを処理する。",
+          "guard": "wrapper_owner/source_ownerはともにpresent。qualification_check_linksをqualification_check_link_writer/traversalのflatten順に辿り、kind=qualification_owner又はroot_ownerかつresult=different又はunestablishedの実SourceCheckだけを処理する。different又はunestablishedのCauseKindはcheck_kind_table/6又は/9から写す。not_applicableはCauseを生成せず、relationをcorrespondingにも変えない。",
           "count": "該当実CheckLinkごとに一件。",
           "kind": "対応するcheck_kind_table/6又は/9のdifferent_kind/unestablished_kindをそのまま使う。",
           "target": "validation_cause_diagnostic_contract/check_cause_leaf_writer/targetと同一の左右Read規則をその実SourceCheck.left/rightに適用する。",
@@ -18745,7 +18745,7 @@
           "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper",
           "absence": "架空CheckLink/indexを作らない。親未到達の原Causeはsource observation側に残しOwnerBinding.causesへcopyしない。"
         },
-        "qualification_link_present_but_source_wrapper_still_unestablished": "S1-S3のどれにも合わずsource_wrapper_relation=unestablishedが残る形は未閉包。Causeを生成しない。STOP-OWNER-CAUSE-WRAPPER-RELATION-01。",
+        "qualification_link_present_but_source_wrapper_still_unestablished": "source_wrapper_relationの唯一writerがunestablishedを返し、資格owner/root linkが存在するが全てnot_applicable等のためS1/S2/S3に対応Causeがなく、source_wrapper relationの必要対応が未成立の形はCause未閉包。relationをcorrespondingへ短絡せずCauseを作らない。STOP-OWNER-CAUSE-WRAPPER-RELATION-01。",
         "direct_wrapper_source_different_without_different_owner_check": "S4は両Read presentかつ既知の直接差だけで成立し、check linkの数・結果に依存しない。linkが0件なら独立に成立するS3も併記する。",
         "S4_both_owner_reads_present_direct_known_difference": {
           "guard": "wrapper_owner/source_owner Readが両方presentで、両Readの原値がCoreJsonValueとして既知に異なる。check linkの有無・結果には依存しない。S1〜S3は各guardが独立に成立すれば併記する。",
@@ -18754,15 +18754,15 @@
           "left": "CheckOperand.original（wrapper_ownerのfull Read）",
           "right": "CheckOperand.original（source_ownerのfull Read）",
           "rule_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper",
-          "relation": "source_wrapper_relation=different。これは照合済み既知差の記録であり、owner名からdelegation/authority/trust relationを生成しない。",
-          "rationale": "L4 source_wrapperはwrapper owner・source owner・qualification checkのAND要件を要求する。既知の直接差というfalseが一つでもあれば、他の条件がunestablishedでも全体はdifferentとなる。S2のdifferentも同様にdifferentを確定し、unestablishedは別Causeとして保持する。"
+          "relation": "relationはowner_binding_contract/source_wrapperが形成する。S4 Cause writerはsource_wrapper_relationを更新・再計算しない。",
+          "rationale": "L4 source_wrapperのAND要件において既知の直接差はfalseを確定するため、唯一のrelation writerはdifferentを返す。このCause writerはその差をowner_mismatchとして記録する。S2のdifferentもrelation writerをdifferentにし、別のunestablished Causeを消さない。"
         }
       },
       "role_pair_cause": {
-        "comparison": "source_wrapper_relation=correspondingのとき、operand_ownerをwrapper_ownerへ比較する。source wrapperの原因は上段の独立Causeでありrole pair Causeと重複させない。relation値を再計算しない。",
+        "comparison": "各RoleOwnerPairは自身のoperand_owner/wrapper_owner Readと既存RoleOwnerPair.relationに従い、source_wrapper_relationの値にかかわらずpair局所Causeを作る。source-wrapper Causeとは別のrelation上のCauseとしてRoleOwnerPair.causesへ保持し、OwnerBinding.result又はsource_wrapper_relationを再計算しない。corresponding pairはCauseなし。different pairはowner_mismatch、missing Readを伴うunestablished pairはowner_binding_unestablished。両Read presentのunestablishedはSTOP-OWNER-CAUSE-QUAL-READ-01。",
         "different": {
           "count": "一件",
-          "guard": "operand_owner及びwrapper_ownerがともにpresentで、既存RoleOwnerPair.relation=different",
+          "guard": "既存RoleOwnerPair.relation=differentかつ両owner Readがpresent。source_wrapper_relationの値にかかわらずこのpair局所Causeを一件生成する。",
           "kind": "owner_mismatch",
           "target": "operand_ownerのRead.present.location",
           "left": "CheckOperand.original（operand_ownerのfull Read）",
@@ -18771,7 +18771,7 @@
         },
         "unestablished_with_missing_owner_read": {
           "count": "一件",
-          "guard": "既存RoleOwnerPair.relation=unestablishedで、operand_owner又はwrapper_owner Readがabsent/unreached",
+          "guard": "既存RoleOwnerPair.relation=unestablishedで、operand_owner又はwrapper_owner Readがabsent/unreached。source_wrapper_relationの値にかかわらずこのpair局所Causeを一件生成する。",
           "kind": "owner_binding_unestablished",
           "target": "left operand_owner Readがabsent/unreachedならそのrequested、そうでなければwrapper_owner Readのrequested",
           "left": "CheckOperand.original（operand_ownerのfull Read）",
@@ -18781,22 +18781,24 @@
         "corresponding": {
           "causes": []
         },
-        "unestablished_with_both_reads_present": "relation=unestablishedの原因が比較端Readの欠落ではなくsource wrapper qualification relation未成立又は別の未閉包入力の場合、その原因CauseのRead anchorは未定義。STOP-OWNER-CAUSE-QUAL-READ-01。"
+        "unestablished_with_both_reads_present": "relation=unestablishedの原因が比較端Readの欠落ではなくsource-wrapper qualification relation未成立又は別の未閉包入力の場合、wrapper_relation値にかかわらず原因CauseのRead anchorは未定義。Causeを作らない。STOP-OWNER-CAUSE-QUAL-READ-01。"
       },
       "owner_binding_aggregate_and_propagation": {
-        "owner_binding_causes": "OwnerBinding.causesはsource_wrapper由来Causeを先にS1（Read不在。複数ならwrapper端→source端）、S4（両Read present・既知直接差。check linkの数/結果によらない）、S2（qualification_check_linksの原traversal順）、S3（両Read presentでowner check link不在）の順で形成する。各guardは独立に評価するため、S4とS3は同時成立しlinkが0件ならこの順で両Causeを保持する。その後RoleOwnerPairを原配列順に歩き各pair.causesを無変換連結する。S4成立、またはS2のいずれかがdifferentならsource_wrapper_relation=different。それ以外でS1、S2のunestablished、S3のいずれかが成立すればunestablished。それ以外はcorresponding。positive RoleOwnerPairでsource-wrapper既知差を相殺しない。これはAND条件の三値集約であり、既知falseが未確定より優先する。一方RoleOwnerPair aggregateは候補内ORのため、positiveがなく未取得があればunestablished。新aggregate Causeを作らずvalue-dedupしない。",
+        "owner_binding_causes": "Causeだけを集約・伝播する。source_wrapper_relationは唯一writer owner_binding_contract/source_wrapperの既形成値を使い、この節ではrelationを導出・更新しない。OwnerBinding.causesはsource_wrapper由来Causeを先にS1（Read不在。複数ならwrapper端→source端）、S4（両Read present・既知直接差）、S2（qualification_check_linksの原traversal順）、S3（両Read presentでowner check link不在）の順で保持する。各Cause guardは独立評価し、S4とS3は同時成立しlinkが0件なら両Causeを保持する。その後source_wrapper_relationの値にかかわらずRoleOwnerPairを原配列順に歩き各pair.causesを無変換連結する。全causeをvalue-dedupしない。OwnerBinding.resultはowner_binding_contract/aggregateがsource_wrapper_relationと役割候補を別途集約する。",
         "parent_storage": "作成した同一Cause出現を既存OwnerBinding.causesへ置き、各対応OperandMaterial.causesへselection/raw/source/body原因後のowner-generation segmentとしてcopyする。FieldOwnerResult.causesにも同fieldのraw operand/OwnerBinding原順で当該生成Causeを一回ずつcopyし、OwnerMaterial.evaluated.causesは既存cause_propagation_orderによりfield順で親へ一度だけ伝える。子列を再flatten/再生成/値dedupしない。RoleOwnerPair.causesはrelation単位、OwnerBinding.causesはsource-wrapper→role-pairの親順を保つ。",
         "not_applicable": "Relation enumにはnot_applicableが無い。適用外role operandはOwnerBinding.role_pairsへ追加せず0件causeとする。"
       },
-      "difference_from_validation_writer_ja": "validation_cause_diagnostic_contract/check_cause_leaf_writerは実SourceCheckのkind/result/left/right/rule_pointerを無変換でCauseへ写す。owner writerはSourceCheckではなく既に形成済みのOwnerBinding/RoleOwnerPair relationを消費し、CauseKindだけL4 role_owner_bindingのdifferent/unestablished outcomeへ対応させる。Qualification checksは既存CheckLinkを通じて実checkを保持し、本writerで再評価しない。Cause型のclosed memberは同じだが出力契機/対応rule pointer/格納先が異なる。",
+      "difference_from_validation_writer_ja": "owner_binding_contract/source_wrapperだけがOwnerBinding.source_wrapper_relationのwriterである。owner_binding_contract/aggregateは既形成relationとRoleOwnerPair群からOwnerBinding.resultを作り、cause aggregationはrelationを再計算せずCausesを保持・伝播する。validation_cause_diagnostic_contract/check_cause_leaf_writerは実SourceCheckのkind/result/left/right/rule_pointerを無変換でCauseへ写す。S2のowner Causeは対応check_kind_table/6又は/9を使う別のOwnerBinding Causeで、SourceCheck.causesを移動・再生成しない。",
       "stop_ids": [
-        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01"
+        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01",
+        "STOP-OWNER-CAUSE-QUAL-READ-01"
       ],
       "remaining_and_nonclaims_ja": [
-        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01に該当する、qualification/root owner check linkは存在するがそのkind/resultでsource_wrapper_relationが説明されない形はCause未閉包。Causeを作らない。",
+        "STOP-OWNER-CAUSE-WRAPPER-RELATION-01: qualification_owner/root_owner linkが存在しても、result=not_applicable等で必要owner対応が形成されず、source_wrapper_relation=unestablishedに対応するCause anchorが定義されない場合。relationはunestablishedのまま保ち、correspondingやCauseを推測しない。",
+        "STOP-OWNER-CAUSE-QUAL-READ-01: RoleOwnerPair.relation=unestablishedなのに両比較端Readがpresentで、原因CauseのRead anchorを既存契約から特定できない場合。",
         "実validator/qualification/source/bodyの再実行、異なるscope/owner間の意味関係推定、全role/root全組合せの実行証明はしない。",
         "L8 U-IDのexecution_state=not_executedを維持し、設計caseをruntime evidenceと扱わない。",
-        "S4は両Read presentかつ既知の直接差で成立し、linkが0件なら独立条件のS3も併記する。S4 zero-linkケースをL8 ADD-37で追加し、未実行として保持する。"
+        "S4は両Read presentかつ既知の直接差でCauseを生成する。linkが0件なら独立条件S3のCauseも保持する。relationそのものはowner_binding_contract/source_wrapperだけが形成する。"
       ],
       "closed_cause_rules": {
         "relation_cases": [
@@ -18806,14 +18808,17 @@
           "S3: 両owner Readが存在するがqualification_owner/root_ownerのlinkがない。直接差が既知ならS4と併存する"
         ],
         "role_pair_cases": [
-          "両operand_owner/wrapper_ownerが存在し、relation=different",
-          "operand_owner又はwrapper_ownerがabsent/unreachedでrelation=unestablished",
-          "relation=correspondingの場合、Causeはない"
+          "source_wrapper_relationの値にかかわらず、両operand_owner/wrapper_ownerがpresentでRoleOwnerPair.relation=differentならpair局所owner_mismatch Causeを保持する",
+          "source_wrapper_relationの値にかかわらず、operand_owner又はwrapper_ownerがabsent/unreachedでRoleOwnerPair.relation=unestablishedならpair局所owner_binding_unestablished Causeを保持する",
+          "source_wrapper_relationの値にかかわらず、RoleOwnerPair.relation=correspondingの場合Causeはない",
+          "RoleOwnerPair.relation=unestablishedかつ両端Read presentの場合はCause anchor未定義としてSTOP-OWNER-CAUSE-QUAL-READ-01"
         ],
         "aggregation_pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
         "limitations": [
-          "STOP-OWNER-CAUSE-WRAPPER-RELATION-01"
-        ]
+          "STOP-OWNER-CAUSE-WRAPPER-RELATION-01",
+          "STOP-OWNER-CAUSE-QUAL-READ-01"
+        ],
+        "source_wrapper_relation_writer_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper"
       }
     },
     "cause_kind_crosswalk": {
@@ -18996,12 +19001,20 @@
             "/f05_detail_contract/types/SourceCheck/members/causes"
           ],
           "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/owner_binding_contract/source_wrapper",
             "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S1_read_endpoint_absent_or_unreached",
-            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6"
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S2_both_owner_reads_present_and_owner_check_different_or_unestablished",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S3_both_reads_present_but_no_qualification_owner_or_root_owner_link",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/unestablished_with_missing_owner_read",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/qualification_link_present_but_source_wrapper_still_unestablished",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/unestablished_with_both_reads_present",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
           ],
           "l5_writer_state": "writer_or_mapping_pointer_listed",
           "boundary_ja": "L4 basic viewのcause vocabularyに同じCauseKindがある。格納先とwriterは上記のL5実ポインタに限り、実行済み観測を意味しない。",
-          "l5_storage_route_ja": "owner writerはOwnerBinding.causes又はRoleOwnerPair.causesへ格納する。validation check由来はSourceCheck.causesに留まり、owner writerからは再生成しない。",
+          "l5_storage_route_ja": "source-wrapper CauseはOwnerBinding.causes、各pairのCauseはRoleOwnerPair.causes、validation check由来CauseはSourceCheck.causesへ置く。S2は実Checkのkind/resultをcheck_kind_table/6又は/9で対応させた別CauseをOwnerBindingへ作るが、SourceCheck.causesを移動・複製しない。Causeは親へ原順で集約する。",
           "l5_storage_path_pointers": [
             "/f05_detail_contract/types/OwnerBinding/members/causes",
             "/f05_detail_contract/types/RoleOwnerPair/members/causes",
@@ -19020,12 +19033,17 @@
             "/f05_detail_contract/types/SourceCheck/members/causes"
           ],
           "l5_writer_or_mapping_pointers": [
+            "/f05_detail_contract/owner_binding_contract/source_wrapper",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S2_both_owner_reads_present_and_owner_check_different_or_unestablished",
             "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference",
-            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6"
+            "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/different",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9",
+            "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
           ],
           "l5_writer_state": "writer_or_mapping_pointer_listed",
           "boundary_ja": "L4 basic viewのcause vocabularyに同じCauseKindがある。格納先とwriterは上記のL5実ポインタに限り、実行済み観測を意味しない。",
-          "l5_storage_route_ja": "owner writerはOwnerBinding.causes又はRoleOwnerPair.causesへ格納する。qualification/root check由来はSourceCheck.causesにあり、既存linkを通じて参照する。",
+          "l5_storage_route_ja": "source-wrapper CauseはOwnerBinding.causes、pair固有CauseはRoleOwnerPair.causes、validation check由来CauseはSourceCheck.causesへ置く。S2のCauseKindはcheck_kind_table/6又は/9から写すが、実SourceCheck.causesは元Observation内に保持し、OwnerBindingへ移動・再生成しない。各pair Causeは原順で親へ集約する。",
           "l5_storage_path_pointers": [
             "/f05_detail_contract/types/OwnerBinding/members/causes",
             "/f05_detail_contract/types/RoleOwnerPair/members/causes",

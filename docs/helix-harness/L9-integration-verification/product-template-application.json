@@ -12699,11 +12699,19 @@
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
       "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_obligation_scope_contract/basic_view_contract/types/OwnerView"
      }
     ],
-    "condition": "wrapper_owner/source_owner Readは両方presentで、その元値は既知に異なる。qualification_owner/root_owner check linkは0件。",
+    "condition": "wrapper_owner/source_owner Readは両方presentで既知に異なり、source_wrapper側のqualification_owner/root_owner check linkは0件。適用role候補には一件以上のRoleOwnerPair.relation=correspondingがある。",
     "expected_relation": "source_wrapper_relation=different。L4のsource_wrapper共通ANDに既知differentがあるため。",
-    "expected_preserved": "両Causeと、wrapper/sourceの全原Ref・owner・Read presenceを保持する。positiveな役割候補で既知differentを相殺せず、架空CheckLink/indexやdelegation/authority関係を生成しない。",
+    "expected_preserved": "source_wrapperの既知differentをpositive role candidateで相殺しない。両Causeとwrapper/sourceの全原Ref・owner・Read presence、positive RoleOwnerPairを保持する。架空CheckLink/indexやdelegation/authority関係を生成しない。",
     "expected_side_effect_count": 0,
     "expected_causes": {
      "owner_mismatch": true,
