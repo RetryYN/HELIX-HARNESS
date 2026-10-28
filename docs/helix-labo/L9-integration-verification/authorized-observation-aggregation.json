@@ -229,32 +229,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/0/l9_relocated_verification_material"
@@ -273,40 +247,6 @@
             "revision": "fixture-9d1f3179ffb8e675c6f4e63f779c3b439a78f39b7ee756676996244652e14da2",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.identity",
-                "result": "missing",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -327,40 +267,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.revision",
-                "result": "missing",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/2/l9_relocated_verification_material"
@@ -379,40 +285,6 @@
             "revision": "fixture-b2264840b492ffe0664441a8989007570c3c56ac9429f225ccab7bf0516f6e3f",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.provenance_ref",
-                "result": "missing",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -433,40 +305,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.episode_id",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/4/l9_relocated_verification_material"
@@ -485,40 +323,6 @@
             "revision": "fixture-6f849bb26a60596ea6072cd104ddb34a32461d56274ebd00d508b55f889a190b",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.requirement_revision",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -539,40 +343,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.ticket_id",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/6/l9_relocated_verification_material"
@@ -591,40 +361,6 @@
             "revision": "fixture-f79ebadd935f98c48fd4bfa05c5957571711c32b34257d9aaa4e3e9c54e12d10",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.responsibility_id",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -645,40 +381,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.product",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/8/l9_relocated_verification_material"
@@ -697,40 +399,6 @@
             "revision": "fixture-6861070ba4315c5da978c4fd6370701d6f1fad594dda610ca48f2b68e4462049",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.mechanism",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -751,40 +419,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.worker",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/10/l9_relocated_verification_material"
@@ -803,40 +437,6 @@
             "revision": "fixture-faf70e09c96c3c8f370efe8a0375577b210fdb173fc3a61e35776bddd98e535d",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.provider",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -857,40 +457,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.model",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/12/l9_relocated_verification_material"
@@ -909,40 +475,6 @@
             "revision": "fixture-9477283ca909f957a42efdd3443770f3a882c0e5af627440d21afe312fa507f6",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.configuration",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -963,40 +495,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.artifact",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/14/l9_relocated_verification_material"
@@ -1015,40 +513,6 @@
             "revision": "fixture-7af2f6ea5ed19014f0cde9c41b57a5c1f980ceca75d5f69d3aecae3d3bfa0326",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.CI_test",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1069,40 +533,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.release",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/16/l9_relocated_verification_material"
@@ -1121,40 +551,6 @@
             "revision": "fixture-214b4531ad3d1b50a0a0d9a9730910aa2bfc108ce7b49a6fb15f20321b637e9a",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.deployment",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1175,40 +571,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.runtime",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/18/l9_relocated_verification_material"
@@ -1227,40 +589,6 @@
             "revision": "fixture-1eff448c757edf43facefbb6190ccf898d485fd9bb2d47a7b06d3369dbb5a736",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.failure",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1281,40 +609,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.rework",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/20/l9_relocated_verification_material"
@@ -1333,40 +627,6 @@
             "revision": "fixture-f0c6ff402c8cc4674e827472650691ac4e4c55728e4fe7fa00c642ed4be60444",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.cost",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1387,40 +647,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.time",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/22/l9_relocated_verification_material"
@@ -1439,40 +665,6 @@
             "revision": "fixture-f6cf7c03bcb2bd3a54ee128f6604406c0f38c3df192d8d1ba51710cd34cd5173",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.fields.result",
-                "result": "not_observed",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1493,32 +685,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/24/l9_relocated_verification_material"
@@ -1537,40 +703,6 @@
             "revision": "fixture-80f5f0a2fc42629037953a391056e1e1655dfd9876b48e946173ccdd50e740ba",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.permission.scope",
-                "result": "foreign",
-                "return_owner": "HELIX-SECURITY"
-              }
-            ],
-            "return_owners": [
-              "HELIX-SECURITY"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1591,40 +723,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.permission.classification",
-                "result": "not_permitted",
-                "return_owner": "HELIX-SECURITY"
-              }
-            ],
-            "return_owners": [
-              "HELIX-SECURITY"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/26/l9_relocated_verification_material"
@@ -1643,42 +741,6 @@
             "revision": "fixture-2296bd7a8d79d3ed5396928eb1632d828f978b1d748823d12c2eeed8f505bc6f",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "source.revision",
-                "result": "unsupported_imputation_or_permission",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "missing_revision_is_current"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1699,42 +761,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "source.classification",
-                "result": "unsupported_imputation_or_permission",
-                "return_owner": "HELIX-SECURITY"
-              }
-            ],
-            "return_owners": [
-              "HELIX-SECURITY"
-            ],
-            "rejected_claims": [
-              "secret_ingestion_allowed"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/28/l9_relocated_verification_material"
@@ -1754,42 +780,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "source.provenance_ref",
-                "result": "unsupported_imputation_or_permission",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "invent_provenance"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/29/l9_relocated_verification_material"
@@ -1808,32 +798,6 @@
             "revision": "fixture-e0c99aa1464c0c516951327e941d213ad047c7c5c1faad1db0495ce3247cd680",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-Q"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1908,32 +872,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "success",
-              "success"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/31/l9_relocated_verification_material"
@@ -1952,32 +890,6 @@
             "revision": "fixture-ee52ff97946a544e7fd24520a302c4c97d5ff75ae8dfb6f2c92477d0596cd2b6",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -1998,32 +910,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "rejected",
-              "rejected"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/33/l9_relocated_verification_material"
@@ -2042,32 +928,6 @@
             "revision": "fixture-dcd51376df501c8c2302e651d8879d7e3c98e9215e4c04ebfd55117c8ca54997",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "cancelled",
-              "cancelled"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2088,32 +948,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "blocked",
-              "blocked"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/35/l9_relocated_verification_material"
@@ -2132,32 +966,6 @@
             "revision": "fixture-669e3b70764ba15f063b44107129c3e371619366804e4001fe1ed883defc70c6",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "unknown",
-              "unknown"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2178,32 +986,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "not_observed",
-              "not_observed"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/37/l9_relocated_verification_material"
@@ -2222,32 +1004,6 @@
             "revision": "fixture-87b690a6cac82cfccd3345405e7fc7d24b23d0fab2e6fd13bb1dca2880bfa0e7",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2268,32 +1024,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/39/l9_relocated_verification_material"
@@ -2312,32 +1042,6 @@
             "revision": "fixture-1ee355de6251a5469b5e85946d1d94028157076db51f7fc9d06d1130bdf3239a",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2358,32 +1062,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/41/l9_relocated_verification_material"
@@ -2402,32 +1080,6 @@
             "revision": "fixture-ffc9dc6d80917aeef512cf3639634a6a404dabad4c75dd825e34d9d1e12e0a9e",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2448,32 +1100,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/43/l9_relocated_verification_material"
@@ -2492,32 +1118,6 @@
             "revision": "fixture-9a8c2a1b3e88cacbc11af830ba212c7946ba039b28759249abe86f7acf026670",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2538,32 +1138,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/45/l9_relocated_verification_material"
@@ -2582,32 +1156,6 @@
             "revision": "fixture-0d4a2589bb2f726604bccd577d4da5a91aadee0e765c94cbf5d56aff0c4fca2c",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2628,32 +1176,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/47/l9_relocated_verification_material"
@@ -2672,32 +1194,6 @@
             "revision": "fixture-27a57a32d0d71605df97a6c27e9f992fb7623c54c86607ec525180582d42610d",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2718,32 +1214,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/49/l9_relocated_verification_material"
@@ -2762,32 +1232,6 @@
             "revision": "fixture-c90d21b57478c0fdc7d9753c2e3f0d6f95bb0e39573e3667db77900d783f4203",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2808,32 +1252,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/51/l9_relocated_verification_material"
@@ -2852,32 +1270,6 @@
             "revision": "fixture-3c395fd893b8e964e576de71aadfa5e313d8990e607023112c42460760022e46",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2898,32 +1290,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/53/l9_relocated_verification_material"
@@ -2942,32 +1308,6 @@
             "revision": "fixture-f8e1edcd713eddb637f25c4d12bf095ae6010a1e0c40064bd132a553c8537138",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -2988,32 +1328,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/55/l9_relocated_verification_material"
@@ -3032,32 +1346,6 @@
             "revision": "fixture-9ca2793531e51189035ccb90e90f6783ee286527fff6db787b8f6a50ea6b1ae1",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3078,32 +1366,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/57/l9_relocated_verification_material"
@@ -3122,32 +1384,6 @@
             "revision": "fixture-36aed90723c157b2b09b6bf24cb12be8c9819522de4e256e4b99d5bb752f788e",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "not_observed",
-              "not_observed"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "not_occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3168,42 +1404,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "submitted_observations",
-                "result": "source_state_loss_or_promotion",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "success_only_filter"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/59/l9_relocated_verification_material"
@@ -3222,42 +1422,6 @@
             "revision": "fixture-b2b1f995d8fe849fb179319f9a44c667d9cbe21ed47a212675fa0bbfe9fe9c32",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "unknown",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "submitted_observations.state",
-                "result": "source_state_loss_or_promotion",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "unknown_is_success"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3278,42 +1442,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "not_observed",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "submitted_observations.state",
-                "result": "source_state_loss_or_promotion",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "not_observed_is_observed"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/61/l9_relocated_verification_material"
@@ -3322,7 +1450,135 @@
           "effect": "none"
         }
       ],
-      "coverage_limit": "初期例。選択source追加閉包/全組合せ/実SEC/実取込/実L9/TDDは未成立。"
+      "coverage_limit": "初期例。選択source追加閉包/全組合せ/実SEC/実取込/実L9/TDDは未成立。",
+      "domain_case_mapping": [
+        {
+          "domain": "development",
+          "case_ref": "LABO001-F02-DOMAIN-development",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "development"
+        },
+        {
+          "domain": "Worker",
+          "case_ref": "LABO001-F02-STATE-failure",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "Worker"
+        },
+        {
+          "domain": "AI_judgment",
+          "case_ref": "LABO001-F02-DOMAIN-AI_judgment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "AI_judgment"
+        },
+        {
+          "domain": "CI",
+          "case_ref": "LABO001-F02-DOMAIN-CI",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "CI"
+        },
+        {
+          "domain": "test",
+          "case_ref": "LABO001-F02-DOMAIN-test",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "test"
+        },
+        {
+          "domain": "review",
+          "case_ref": "LABO001-F02-DOMAIN-review",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "review"
+        },
+        {
+          "domain": "backflow",
+          "case_ref": "LABO001-F02-DOMAIN-backflow",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "backflow"
+        },
+        {
+          "domain": "recovery",
+          "case_ref": "LABO001-F02-DOMAIN-recovery",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "recovery"
+        },
+        {
+          "domain": "incident",
+          "case_ref": "LABO001-F02-DOMAIN-incident",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "incident"
+        },
+        {
+          "domain": "refactor",
+          "case_ref": "LABO001-F02-DOMAIN-refactor",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "refactor"
+        },
+        {
+          "domain": "release",
+          "case_ref": "LABO001-F02-DOMAIN-release",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "release"
+        },
+        {
+          "domain": "deployment",
+          "case_ref": "LABO001-F02-DOMAIN-deployment",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "deployment"
+        },
+        {
+          "domain": "runtime",
+          "case_ref": "LABO001-F02-DOMAIN-runtime",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "runtime"
+        },
+        {
+          "domain": "usage",
+          "case_ref": "LABO001-F02-DOMAIN-usage",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "usage"
+        },
+        {
+          "domain": "rework",
+          "case_ref": "LABO001-F02-DOMAIN-rework",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rework"
+        },
+        {
+          "domain": "cost",
+          "case_ref": "LABO001-F02-DOMAIN-cost",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "cost"
+        },
+        {
+          "domain": "token_API",
+          "case_ref": "LABO001-F02-DOMAIN-token_API",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "token_API"
+        },
+        {
+          "domain": "model_provider",
+          "case_ref": "LABO001-F02-DOMAIN-model_provider",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "model_provider"
+        },
+        {
+          "domain": "correction",
+          "case_ref": "LABO001-F02-DOMAIN-correction",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "correction"
+        },
+        {
+          "domain": "rollback",
+          "case_ref": "LABO001-F02-DOMAIN-rollback",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "rollback"
+        },
+        {
+          "domain": "product_result",
+          "case_ref": "LABO001-F02-DOMAIN-product_result",
+          "input_field": "original_sources[0].domain",
+          "expected_domain": "product_result"
+        }
+      ]
     },
     {
       "id": "HELIXLABO-L9-001-N01",
@@ -3370,32 +1626,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/62/l9_relocated_verification_material"
@@ -3414,40 +1644,6 @@
             "revision": "fixture-b74b754c572f31550f5b6b541c757ea28e74982ad4aa30d6de182394656cec65",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.requirement_revision",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3468,40 +1664,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.sources",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/64/l9_relocated_verification_material"
@@ -3520,40 +1682,6 @@
             "revision": "fixture-6f0153b206d4268d4de6678f23a9679f2818767d12c1bfaf9c0c51a62f0312ec",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.source_result_revision",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3574,40 +1702,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.contract_revision",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/66/l9_relocated_verification_material"
@@ -3626,40 +1720,6 @@
             "revision": "fixture-1ce33ddf77141c19e865c30aa6fcbd5ce7d115a8ccc33518eb17d9bb234e23b6",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.operation",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3680,40 +1740,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.scope",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/68/l9_relocated_verification_material"
@@ -3732,40 +1758,6 @@
             "revision": "fixture-7897595603f80eab4354201295e46ba711ea310347d6aeb644573d5a7922a80f",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt.scope.state",
-                "result": "foreign_or_unseen",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3786,40 +1778,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.permission",
-                "result": "unobserved",
-                "return_owner": "HELIX-SECURITY"
-              }
-            ],
-            "return_owners": [
-              "HELIX-SECURITY"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/70/l9_relocated_verification_material"
@@ -3838,40 +1796,6 @@
             "revision": "fixture-3636c18ae3f02c39ce16745b4263c3f095bd6d82570dd077a47889eb6d12215a",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.receipt",
-                "result": "unobserved",
-                "return_owner": "LABO-receipt-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-receipt-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -3892,40 +1816,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "sources.OS.revision",
-                "result": "unseen_revision",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/72/l9_relocated_verification_material"
@@ -3944,42 +1834,6 @@
             "revision": "fixture-676f619e828336f324004c2b0278009e497b431db4b14e07c834f935300058d5",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "qualification",
-                "result": "unsupported_extrapolation",
-                "return_owner": "LABO-observation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-observation-owner"
-            ],
-            "rejected_claims": [
-              "count_is_all_complete"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -4000,42 +1854,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "scope",
-                "result": "unsupported_extrapolation",
-                "return_owner": "LABO-observation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-observation-owner"
-            ],
-            "rejected_claims": [
-              "foreign_scope_inherits_success"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/74/l9_relocated_verification_material"
@@ -4054,42 +1872,6 @@
             "revision": "fixture-649c2ad6d5fbb2c102e473072b435d412c37ea41c47a2e5de55347de6d9a54fe",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "qualification",
-                "result": "unsupported_extrapolation",
-                "return_owner": "LABO-observation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-observation-owner"
-            ],
-            "rejected_claims": [
-              "field_presence_is_evaluation"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -4140,32 +1922,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "observation_content_requires_actual_qualification",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [],
-            "return_owners": [],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/76/l9_relocated_verification_material"
@@ -4184,40 +1940,6 @@
             "revision": "fixture-75d97fa286c0d1c8b4a5c7cd47e800445b18bb1fc5a082a29f60c56d88263bb5",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "submitted_observations.identity",
-                "result": "source_observation_conflated",
-                "return_owner": "LABO-observation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-observation-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -4238,40 +1960,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "submitted_observations.owner",
-                "result": "wrong_owner",
-                "return_owner": "LABO-observation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-observation-owner"
-            ],
-            "rejected_claims": [],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/78/l9_relocated_verification_material"
@@ -4290,42 +1978,6 @@
             "revision": "fixture-bcecec06560ce959c8c62e65be1b231063ab954d52bdca2dc2a61212b9d2b909",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "source.authority",
-                "result": "unsupported_authority_or_state_promotion",
-                "return_owner": "OS-source-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-source-owner"
-            ],
-            "rejected_claims": [
-              "labo_source_writeback"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
@@ -4346,42 +1998,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "assignment",
-                "result": "unsupported_authority_or_state_promotion",
-                "return_owner": "OS-assignment-owner"
-              }
-            ],
-            "return_owners": [
-              "OS-assignment-owner"
-            ],
-            "rejected_claims": [
-              "observation_grants_assignment"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/80/l9_relocated_verification_material"
@@ -4401,42 +2017,6 @@
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
           },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "evaluation",
-                "result": "unsupported_authority_or_state_promotion",
-                "return_owner": "LABO-evaluation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-evaluation-owner"
-            ],
-            "rejected_claims": [
-              "ingestion_is_evaluation"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
-          },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
             "pointer": "/cases/81/l9_relocated_verification_material"
@@ -4455,42 +2035,6 @@
             "revision": "fixture-7e9883ee29f6ef993edac4c706c9ed8694af896124df371ab4bfcf02c85a2936",
             "owner": "synthetic-fixture-owner",
             "scope": "PRODUCT-P"
-          },
-          "system_oracle_properties": {
-            "information_state": "held_observation_unqualified",
-            "retained_original_states": [
-              "failure",
-              "failure"
-            ],
-            "retained_occurrences": [
-              "occurred",
-              "occurred"
-            ],
-            "evaluation_state": "not_evaluated",
-            "failure_reasons": [
-              {
-                "field": "coverage_scope",
-                "result": "unsupported_authority_or_state_promotion",
-                "return_owner": "LABO-evaluation-owner"
-              }
-            ],
-            "return_owners": [
-              "LABO-evaluation-owner"
-            ],
-            "rejected_claims": [
-              "all_source_capabilities_complete"
-            ],
-            "actual_effects": {
-              "source_overwrite": false,
-              "state_change": false,
-              "authority_change": false,
-              "ingestion_write": false,
-              "evaluation": false,
-              "assignment": false,
-              "permission": false,
-              "acceptance": false,
-              "implementation_ready": false
-            }
           },
           "l7_material_ref": {
             "path": "docs/helix-labo/L7-function-verification/authorized-observation-aggregation.json",
