@@ -59,6 +59,30 @@ class TestFn0SourceNumericExactness(unittest.TestCase):
         self.assertEqual(result["input_issues"], [])
         self.assertEqual(raw, before)
 
+    def test_inner_source_decimal_does_not_gain_host_float_equality(self):
+        raw = _raw_with_source_number('{"value":1.0}', {"value": 1.0})
+        before = copy.deepcopy(raw)
+        source_ref = copy.deepcopy(raw["sources"][0]["ref"])
+
+        result = validate_supply_input(raw)
+
+        self.assertEqual(result["input"], before)
+        self.assertIn(source_ref, result["unusable_source_refs"])
+        self.assertTrue(result["input_issues"])
+        self.assertEqual(raw, before)
+
+    def test_finite_float_outside_source_body_remains_valid_input(self):
+        raw = base_input(load_document())
+        raw["descriptors"][0]["facts"][0]["meaning"] = 1.25
+        before = copy.deepcopy(raw)
+
+        result = validate_supply_input(raw)
+
+        self.assertEqual(result["input"], before)
+        self.assertEqual(result["unusable_source_refs"], [])
+        self.assertEqual(result["input_issues"], [])
+        self.assertEqual(raw, before)
+
 
 if __name__ == "__main__":
     unittest.main()
