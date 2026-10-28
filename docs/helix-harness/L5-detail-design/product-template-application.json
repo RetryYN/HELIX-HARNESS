@@ -2266,6 +2266,62 @@
         "source_envelopes": "独立source-envelope provider portのraw returnを呼出側が明示束縛する。ApplicationInput.sources、computed output、L9 expectedから生成・抽出しない。port未供給時はoptional input memberをAbsentのまま渡す。",
         "qualification_limit": "portにenvelopeがあることやclaimの値だけではsource/owner資格を成立させない。"
       }
+    },
+    {
+      "id": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+      "symbol": "publish_general_proposal_exchange_public",
+      "visibility": "public",
+      "input": "RawProviderRequest",
+      "output": "CoreProposalPublication",
+      "contract_refs": [
+        "HARNESS-L5-009-F02",
+        "HARNESS-L5-009-F03",
+        "HARNESS-L5-009-F04",
+        "HARNESS-L5-009-GENERAL-PROPOSAL-EXCHANGE"
+      ],
+      "algorithm": [
+        "単一入力request:RawProviderRequestを受け取り、内部builder publish_general_proposal_exchange(request)（/general_proposal_exchange_detail/publication_entry、P0〜P6）へ1回委譲する。旧wrapperやF02比較を二重実行しない。",
+        "内部builderが返したCoreProposalPublication全値（general_view・header_port・header_decode・authority_port・source_candidate・publication_issues）を、公開契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）の返却shapeとして無変換で返す。",
+        "外部expected・cache・資格bool・内部walk添字を引数や返却へ混入させず、CONNECT実配送・OS状態変更・authority発行をeffectとして実行しない（effect=none）。"
+      ],
+      "effect": "none",
+      "failure_rules": [],
+      "unit_case_refs": [
+        "HARNESS-L8-009-F02-PUBLIC-PROPOSAL-PUBLICATION-ENDPOINT"
+      ],
+      "oracle_ref": "HARNESS-L8-009-NORMAL-publish_general_proposal_exchange_public",
+      "signature": {
+        "parameters": [
+          {
+            "name": "request",
+            "type": "RawProviderRequest"
+          }
+        ],
+        "returns": "CoreProposalPublication",
+        "effect": "none"
+      },
+      "reads": [
+        "request:RawProviderRequest",
+        "/general_proposal_exchange_detail/publication_entry",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/0..6"
+      ],
+      "preconditions": [
+        "requestは単一RawProviderRequestであり、外部expected・cache・資格bool・内部walk添字を含まない。",
+        "外部機構（HELIX-OS OS002等）はH5#/general_proposal_exchange_detail/private_types/*をsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、本公開端点契約を介して受領する。"
+      ],
+      "postconditions": [
+        "CoreProposalPublicationの6 member（general_view・header_port・header_decode・authority_port・source_candidate・publication_issues）と全Ref4/Ref6・不成立理由・未知状態を欠落なく保持する。",
+        "side_effect_count=0であり、OS側のselected/used/案件記録やauthority実成立を生成しない。"
+      ],
+      "branch_refs": [
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/0",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/1",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/2",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/3",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/4",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/5",
+        "/general_proposal_exchange_detail/publication_writer/ordered_stages/6"
+      ]
     }
   ],
   "contracts": [
@@ -22732,6 +22788,7 @@
       },
       "GeneralProposalView": {
         "kind": "closed_record",
+        "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
         "ordered_members": {
           "attempt_capture": "GeneralOwnerAttempt",
           "membership_capture": "GeneralMembershipCapture",
@@ -22740,7 +22797,7 @@
           "proposed_body": "GeneralProposalBody",
           "body_issues": "LocalIssue[]"
         },
-        "meaning_ja": "旧source/role観測と同call旧N全値、新F02詳細、全relation局所観測を保持する新私有一般形。旧attempt全返却又は旧absence enumへ偽装しない。旧3view/旧routeは別に無変更保存する。"
+        "meaning_ja": "旧source/role観測と同call旧N全値、新F02詳細、全relation局所観測を保持するCORE owner内部専用型。旧attempt全返却又は旧absence enumへ偽装しない。旧3view/旧routeは別に無変更保存する。外部機構（HELIX-OS OS002等）からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、機構間受渡しはpublic_proposal_publication_endpoint公開契約と受領側自身の型で行う。"
       },
       "PublicationHeaderRequest": {
         "kind": "closed_record",
@@ -22775,6 +22832,7 @@
       },
       "PublicationRecord": {
         "kind": "closed_record",
+        "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
         "ordered_members": {
           "subject_ref": "OSRef4",
           "section_key": "literal F02",
@@ -22782,7 +22840,7 @@
           "payload": "PublicationRolePayload",
           "owner": "string"
         },
-        "meaning_ja": "新private raw carrier。原owner供給headerと内部生成した同call body/evidenceだけから形成する。"
+        "meaning_ja": "CORE owner内部専用raw carrier。原owner供給headerと内部生成した同call body/evidenceだけから形成する。外部機構からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、受領側はpublic_proposal_publication_endpoint公開契約と受領側自身の型で検証する。"
       },
       "PublicationAuthorityRequest": {
         "kind": "closed_record",
@@ -22796,6 +22854,7 @@
       },
       "CoreProposalPublication": {
         "kind": "closed_record",
+        "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
         "ordered_members": {
           "general_view": "GeneralProposalView",
           "header_port": "PublicationHeaderPortCapture",
@@ -22804,7 +22863,7 @@
           "source_candidate": "PublicationSourceStage",
           "publication_issues": "LocalIssue[]"
         },
-        "meaning_ja": "source candidateの生成と資格供給観測を保持。port returnedだけで信頼/配送/OS受領を成立させない。"
+        "meaning_ja": "source candidateの生成と資格供給観測を保持するCORE内部構築結果。port returnedだけで信頼/配送/OS受領を成立させない。外部機構からprivate_typesへsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、機構間受渡しはpublic_proposal_publication_endpoint公開契約を介する。"
       },
       "UniverseEvidenceRef": {
         "kind": "closed_record",
@@ -22890,6 +22949,7 @@
       },
       "PublicationSourceCarrier": {
         "kind": "closed_record",
+        "cross_mechanism_visibility": "core_internal_only_prohibited_for_external_mechanisms",
         "ordered_members": {
           "source_ref": "OSRef4",
           "owner": "string",
@@ -22900,7 +22960,7 @@
           "qualifications": "OSQualification[]",
           "qualification_roots": "OSQualificationRoot[]"
         },
-        "meaning_ja": "供給headerと実body/evidenceを含む新raw source/独立claim/rootの配送単位。decoded_raw_recordsは旧OwnerRecord[]でなく新raw profileである。資格binding既知差も型成立なら全原値を配送してOS同walkで比較し、不整合を自動修復しない。"
+        "meaning_ja": "供給headerと実body/evidenceを含む新raw source/独立claim/rootのCORE内部形成単位。decoded_raw_recordsは旧OwnerRecord[]でなく新raw profileである。資格binding既知差も型成立なら全原値を配送してOS同walkで比較し、不整合を自動修復しない。外部機構からsame_candidate_cross_mechanism_private_type_bindingで直接束縛することを禁止し、public_proposal_publication_endpoint公開契約を介して受渡す。"
       },
       "PublicationHeaderDecode": {
         "kind": "closed_tagged_union",
@@ -23408,6 +23468,885 @@
             "authorityの実raw返却を閉型へdecodeし、同sourceのtyped claim/rootをsource_candidateへ保持する。既知資格差/unknownも原材料としてOS同walkへ渡し、producer側でrootを修復/採番しない。",
             "source_candidate/全port capture/局所issueを返す。CONNECTへの実配送/外部writeは当関数のeffectに含めず、配送側がこの全結果の形成されたsourceを受領profileへ渡す。"
           ]
+        }
+      },
+      "public_proposal_publication_endpoint": {
+        "schema_id": "helix.harness.product_template_application.general_proposal_publication_endpoint",
+        "schema_version": "1.0.0",
+        "visibility": "public_cross_mechanism_contract",
+        "id": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+        "symbol": "publish_general_proposal_exchange_public",
+        "signature": "(request:RawProviderRequest)->CoreProposalPublication",
+        "l4_endpoint_pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint",
+        "l5_function_ref": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+        "l5_function_pointer": "/functions/13",
+        "l8_normal_oracle_ref": "HARNESS-L8-009-NORMAL-publish_general_proposal_exchange_public",
+        "l8_normal_oracle_pointer": "/normal_function_oracles/12",
+        "l8_unit_case_ref": "HARNESS-L8-009-F02-PUBLIC-PROPOSAL-PUBLICATION-ENDPOINT",
+        "l8_unit_case_pointer": "/additional_unit_cases/24",
+        "internal_delegation_rule_ja": "publish_general_proposal_exchange_public(request:RawProviderRequest)は内部private builder publish_general_proposal_exchange(request)（/general_proposal_exchange_detail/publication_entry、P0〜P6）へ1回委譲し、生成されたCoreProposalPublication全値を公開契約schemaに従って返す。CORE内部のprivate_typesを外部機構がsame_candidate_cross_mechanism_private_type_bindingで直接参照・束縛することを禁止する。",
+        "upstream_connection_basis": {
+          "producer_l2_unit": "HARNESS-L2-009 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/48; docs/helix-harness/L2-requirements/product-requirements.md#L60,L116,L385-L414)",
+          "consumer_l2_unit": "HELIXOS-L2-002 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/187; delegated to HXT-FLOW-01 and HXT-SYS-01 in docs/helix-os/L2-requirements/governance-requirements.md#L610)",
+          "hxt_core_02_comparison_ja": "G7 /identities/63（HXT-CORE-02：docs/helix-harness/L2-requirements/product-requirements.md#L317［680dcaa #L314］）はHARNESS-L2-002/008からHXT-SYS-01への明示connectionであり、本境界（HARNESS-L2-009 -> HELIXOS-L2-002）とHARNESS (CORE) -> HELIX-OSの方向およびCOREが直接起票・OS状態確定を行わない権威境界は同一である一方、source L2 unitはHARNESS-L2-009とHARNESS-L2-002/008で異なる。OS側HELIXOS-L2-002（G7 /identities/187）は機構間接続条件をHXT-FLOW-01/HXT-SYS-01へ委譲しており、両者とも既存G7採択済みHELIXCONNECT契約群（HELIXCONNECT-L3-001-F01/F02, 002-F01/F02, 003-F01, 006-F01）の範囲内で収まる。",
+          "connector_requirement_refs": [
+            "HELIXCONNECT-L3-001-F01",
+            "HELIXCONNECT-L3-001-F02",
+            "HELIXCONNECT-L3-002-F01",
+            "HELIXCONNECT-L3-002-F02",
+            "HELIXCONNECT-L3-003-F01",
+            "HELIXCONNECT-L3-006-F01"
+          ],
+          "po_decision_ref": "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md#L62-L70",
+          "legacy_adr_ref": "LEGACY-ASSET-BD13CC67526B48D461F9 (archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md#L8-L45)"
+        },
+        "response_contract": {
+          "output_type": "CoreProposalPublication",
+          "type_authority_rule_ja": "4 carrier（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）の各member型、公開に出す入れ子型30種（nested_public_type_schemas）、共有型alias（public_type_aliases）は全て本公開契約が宣言し、internal_writer_refはCORE内部実装の説明参照（非規範：non-normative）にとどめる。受領側（HELIX-OS OS002等）の受領型は本公開契約のmember型・入れ子型と完全一致させる。",
+          "carrier_schemas": {
+            "CoreProposalPublication": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "general_view": "GeneralProposalView",
+                "header_port": "PublicationHeaderPortCapture",
+                "header_decode": "PublicationHeaderDecode",
+                "authority_port": "PublicationAuthorityPortCapture",
+                "source_candidate": "PublicationSourceStage",
+                "publication_issues": "LocalIssue[]"
+              },
+              "internal_writer_ref": "/general_proposal_exchange_detail/all_leaf_writer_ledger/records/CoreProposalPublication",
+              "internal_writer_ref_role": "internal_implementation_reference_only_non_normative_for_public_schema",
+              "preservation_rule_ja": "general_view:GeneralProposalView・header_port:PublicationHeaderPortCapture・header_decode:PublicationHeaderDecode・authority_port:PublicationAuthorityPortCapture・source_candidate:PublicationSourceStage・publication_issues:LocalIssue[]の6 memberと全Ref4/Ref6・不成立理由・未知状態を欠落なく公開契約として返す。"
+            },
+            "PublicationSourceCarrier": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "source_ref": "OSRef4",
+                "owner": "string",
+                "source_json_utf8": "string",
+                "source_sha256": "string",
+                "decoded_raw_records": "PublicationRecord[]",
+                "qualification_ref": "OSRef4",
+                "qualifications": "OSQualification[]",
+                "qualification_roots": "OSQualificationRoot[]"
+              },
+              "internal_writer_ref": "/general_proposal_exchange_detail/all_leaf_writer_ledger/records/PublicationSourceCarrier",
+              "internal_writer_ref_role": "internal_implementation_reference_only_non_normative_for_public_schema",
+              "preservation_rule_ja": "source_ref:OSRef4・owner:string・source_json_utf8:string・source_sha256:string・decoded_raw_records:PublicationRecord[]・qualification_ref:OSRef4・qualifications:OSQualification[]・qualification_roots:OSQualificationRoot[]の8 memberを保持し、資格既知差やunknownを自動修復しない。"
+            },
+            "PublicationRecord": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "subject_ref": "OSRef4",
+                "section_key": "literal F02",
+                "record_kind": "literal core_proposal_exchange",
+                "payload": "PublicationRolePayload",
+                "owner": "string"
+              },
+              "internal_writer_ref": "/general_proposal_exchange_detail/all_leaf_writer_ledger/records/PublicationRecord",
+              "internal_writer_ref_role": "internal_implementation_reference_only_non_normative_for_public_schema",
+              "preservation_rule_ja": "subject_ref:OSRef4・section_key:literal F02・record_kind:literal core_proposal_exchange・payload:PublicationRolePayload・owner:stringの5 memberを保持し、旧OwnerRecordへcastしない。"
+            },
+            "GeneralProposalView": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "attempt_capture": "GeneralOwnerAttempt",
+                "membership_capture": "GeneralMembershipCapture",
+                "universe_observation": "UniverseDetailObservation",
+                "relation_observations": "GeneralCandidateRelation[]",
+                "proposed_body": "GeneralProposalBody",
+                "body_issues": "LocalIssue[]"
+              },
+              "internal_writer_ref": "/general_proposal_exchange_detail/all_leaf_writer_ledger/records/GeneralProposalView",
+              "internal_writer_ref_role": "internal_implementation_reference_only_non_normative_for_public_schema",
+              "preservation_rule_ja": "attempt_capture:GeneralOwnerAttempt・membership_capture:GeneralMembershipCapture・universe_observation:UniverseDetailObservation・relation_observations:GeneralCandidateRelation[]・proposed_body:GeneralProposalBody・body_issues:LocalIssue[]の6 memberと同一call F02比較証拠を保持する。"
+            }
+          },
+          "nested_public_type_schemas": {
+            "PublicationHeaderPortCapture": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "not_called": {
+                  "blocked_by": "PublicationDiagnosticRef[]"
+                },
+                "unavailable": {
+                  "request": "PublicationHeaderRequest"
+                },
+                "return_unobserved": {
+                  "request": "PublicationHeaderRequest"
+                },
+                "returned": {
+                  "request": "PublicationHeaderRequest",
+                  "raw_return": "CoreJsonValue"
+                }
+              },
+              "meaning_ja": "実portの呼出し有無/供給不在/返却未観測/実raw返却を区別する。requestは型付き全値を保持しJSONへcastしない。実returnのない枝へdummy rawを作らない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationHeaderDecode": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "unreached": {
+                  "diagnostic_refs": "PublicationDiagnosticRef[]"
+                },
+                "unformed": {
+                  "diagnostic_refs": "PublicationDiagnosticRef[]"
+                },
+                "formed": {
+                  "value": "PublicationHeader"
+                }
+              },
+              "meaning_ja": "port実raw返却からheader閉型を形成した観測だけ。供給Refのowner/revision/scope/operation端照合は別実診断を残す。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationAuthorityPortCapture": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "not_called": {
+                  "blocked_by": "PublicationDiagnosticRef[]"
+                },
+                "unavailable": {
+                  "request": "PublicationAuthorityRequest"
+                },
+                "return_unobserved": {
+                  "request": "PublicationAuthorityRequest"
+                },
+                "returned": {
+                  "request": "PublicationAuthorityRequest",
+                  "raw_return": "CoreJsonValue"
+                }
+              },
+              "meaning_ja": "実portの呼出し有無/供給不在/返却未観測/実raw返却を区別する。requestは型付き全値を保持しJSONへcastしない。実returnのない枝へdummy rawを作らない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationSourceStage": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "unreached": {
+                  "diagnostic_refs": "PublicationDiagnosticRef[]"
+                },
+                "unformed": {
+                  "diagnostic_refs": "PublicationDiagnosticRef[]"
+                },
+                "formed": {
+                  "value": "PublicationSourceCarrier"
+                }
+              },
+              "meaning_ja": "typed source/claim/rootを形成したことだけ。資格成功/実trustではない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationRolePayload": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "original_trace_section": "ProposalBody",
+                "evidence": "GeneralProposalView"
+              },
+              "meaning_ja": "新raw record_kind=core_proposal_exchangeのpayload。旧OwnerRecord.payload/SourceSectionValueへ直接decode又は任意member追加しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralOwnerAttempt": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "request_capture": "RawProviderRequest",
+                "source_attempts": "既存SourceAttempt[]",
+                "qualification_snapshot": "既存QualificationSnapshot",
+                "operation_role": "既存OperationRoleOutcome",
+                "native_dispatch": "GeneralNativeDispatch"
+              },
+              "meaning_ja": "旧source/qualification/roleの型を無変更使用する新general実取得路。旧CoreF02ProviderAttempt又は旧ProviderReturnへcastせず、native実symbol/返却だけ新dispatchに記録。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralMembershipCapture": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                },
+                "observed": {
+                  "native_location": "GeneralDiagnosticRef",
+                  "record_location": "GeneralDiagnosticRef"
+                }
+              },
+              "meaning_ja": "実Nはattempt_capture.native_dispatch.value.value（tag=returned）にある。その原N/三partition/coverage/membership/exactnessを指す。旧Nのrootを変換しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseDetailObservation": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                },
+                "not_observed": {
+                  "original_dispatch": "DispatchObservation"
+                },
+                "observed": {
+                  "comparison_location": "GeneralDiagnosticRef",
+                  "value": "UniverseComparisonObservation"
+                }
+              },
+              "meaning_ja": "GeneralViewのF02 export。not_observedは同native captureの実slot1 DispatchObservationを保持、observedは同detail.observationと実N comparison所在の投影。旧Comparisonだけからdetailを再生成しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralCandidateRelation": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "candidate_entry_index": "Natural",
+                "result_index": "Natural",
+                "member_index": "Natural",
+                "template_ref_read": "既存CoreRead<CoreRef6>",
+                "relation_occurrences": "GeneralMatchedRelation[]",
+                "native_ref4": "GeneralNativeRef4"
+              },
+              "meaning_ja": "N.record.candidate_entriesの元順。result/member indexをCallerInputs配列indexへ読み替えない。同一Refの別candidate出現は別行のまま。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralProposalBody": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "formed": {
+                  "value": "ProposalBody"
+                },
+                "unformed": {
+                  "diagnostic_refs": "GeneralDiagnosticRef[]"
+                },
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                }
+              },
+              "meaning_ja": "構造的な全membership材料と全relation投影の形成。元母集合exactnessの成立はuniverse_observationの独立軸であり、このtagだけで完全な適用set/OS受領を返さない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationDiagnosticRef": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "pointer": "JSONPointer"
+              },
+              "meaning_ja": "CoreProposalPublication全体をrootとする新所在。GeneralDiagnosticRefと混同しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationHeaderRequest": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "operation_source_ref": "OSRef4",
+                "operation_subject_ref": "OSRef4",
+                "operation_owner": "string",
+                "operation_binding_observation": "GeneralBindingObservation",
+                "proposed_source": "OSRef4"
+              },
+              "meaning_ja": "実operationの供給済header/roleと、同実native validationで観測したbinding供給状態から作るowner内部要求。CallerInputsにbindingを追加せず、製品scopeからprojectscope/Ref4/source identityを作らない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationHeader": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "source_ref": "OSRef4",
+                "subject_ref": "OSRef4",
+                "owner": "string",
+                "qualification_ref": "OSRef4",
+                "operation_source_ref": "OSRef4",
+                "operation_subject_ref": "OSRef4"
+              },
+              "meaning_ja": "独立原ownerの登録/供給portが返すheader。四種のRefを代用せず、operation端は要求の原値に照合する。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "PublicationAuthorityRequest": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "header": "PublicationHeader",
+                "source_json_utf8": "string",
+                "source_sha256": "string",
+                "record": "PublicationRecord"
+              },
+              "meaning_ja": "生成した実bytes/recordを既存owner資格供給portへ渡す。portはbody/Refを改変しない。digest計算はbytes所在照合でありauthority生成ではない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralNativeDispatch": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "not_called": {
+                  "native_call_count": "literal 0",
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                },
+                "returned": {
+                  "native_call_count": "literal 1",
+                  "symbol": "literal build_general_native_proposal_record_detail",
+                  "value": "GeneralNativeDetailedReturn"
+                }
+              },
+              "meaning_ja": "新owner wrapperの実symbolと実返却だけを捕捉。旧ProviderCallCapture.symbolを実行していないのに生成しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralDiagnosticRef": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "pointer": "JSONPointer"
+              },
+              "meaning_ja": "この新GeneralProposalView rootだけに対する実在所在。旧Read/OriginRoot/Attempt DiagnosticRefのrootを変更しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseComparisonObservation": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "context": "CoreCompareCandidateUniverseContext",
+                "validation_source_locations": "UniverseEvidenceRef[]",
+                "universe_steps": "UniverseEvidenceStep[]",
+                "member_observations": "UniverseMemberObservation[]",
+                "candidate_steps": "UniverseEvidenceStep[]",
+                "original_finding_indices": "Natural[]",
+                "original_axis_indices": "Natural[]",
+                "conclusion": "UniverseComparisonConclusion"
+              },
+              "meaning_ja": "実F02比較のcontext全値と原過程を同実行から捕捉。原Comparison.material/axes/findingsの無損失投影とは別に返す。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralMatchedRelation": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "relation_occurrence_index": "Natural",
+                "relation": "RelationOccurrence",
+                "target_read": "GeneralTargetRead",
+                "qualification_origin": "GeneralQualificationOrigin",
+                "diagnostic_refs": "GeneralDiagnosticRef[]"
+              },
+              "meaning_ja": "同CoreRef6 keyに対応し得る全relationを原順に残す。同値の重複も保存する。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralNativeRef4": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "formed": {
+                  "value": "OSRef4",
+                  "representative_relation_occurrence_index": "Natural"
+                },
+                "unformed": {
+                  "diagnostic_refs": "GeneralDiagnosticRef[]"
+                },
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                }
+              },
+              "meaning_ja": "全対応relationの独立target読取/資格/型/全Ref4等値成立後のみ形成。代表indexは最小原indexで表現だけを選び根拠を削除しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralBindingObservation": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "present": {
+                  "location": "GeneralDiagnosticRef",
+                  "value": "CoreApplicationBinding"
+                },
+                "absent": {
+                  "parent_location": "GeneralDiagnosticRef"
+                },
+                "null": {
+                  "location": "GeneralDiagnosticRef"
+                },
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                }
+              },
+              "meaning_ja": "同実N.capture.capture.caller_return.validation.validated.input.bindingの供給状態。IはCallerInputsでありI.bindingを新設しない。CoreApplicationBindingの未供給memberを補完せず、input=null/未到達から架空bindingを作らない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralNativeDetailedReturn": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "value": "NativeProposalRecordDetailedReturn",
+                "universe_observation": "NativeUniverseDetailObservation"
+              },
+              "meaning_ja": "valueは同call caller全値から既存proposal/native formerを各一回適用した旧N。新観測を旧N/原OriginRootへ混ぜない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseEvidenceRef": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "root": "enum<context|comparison|observation>",
+                "pointer": "JSONPointer"
+              },
+              "meaning_ja": "CandidateUniverseDetailedReturnの当該rootに対する実在所在。GeneralDiagnosticRefとは別namespace。detail内の相対参照はpublicationでもそのrootを保つ。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseEvidenceStep": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "rule_pointer": "string",
+                "left_locations": "UniverseEvidenceRef[]",
+                "right_locations": "UniverseEvidenceRef[]",
+                "state": "UniverseStepState",
+                "finding_indices": "Natural[]",
+                "axis_indices": "Natural[]"
+              },
+              "meaning_ja": "原context/validation/source/member/意味比較の実所在。not_applicableは既存規範で該当比較を要求しない時だけ。欠落/nullは元全値に残し、equalへ変換しない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseMemberObservation": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "universe_index": "Natural",
+                "member_index": "Natural",
+                "source_steps": "UniverseEvidenceStep[]",
+                "boundary_steps": "UniverseEvidenceStep[]",
+                "template_steps": "UniverseEvidenceStep[]",
+                "semantic_steps": "UniverseEvidenceStep[]",
+                "candidate_indices": "Natural[]",
+                "candidate_steps": "UniverseEvidenceStep[]"
+              },
+              "meaning_ja": "原母集合memberごとの全照合と候補配列への全対応。別scopeの原出現も消去せず、既存比較の非対象理由をstepで残す。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseComparisonConclusion": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "exact_for_context": {
+                  "basis_steps": "UniverseEvidenceRef[]"
+                },
+                "incomplete": {
+                  "obstructions": "UniverseEvidenceRef[]"
+                }
+              },
+              "meaning_ja": "exactは当該contextの検討対象集合の原比較が全て到達し成立した範囲。F03適用義務/OS選択/使用/実trustの成功ではない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralTargetRead": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "present": {
+                  "location": "GeneralDiagnosticRef",
+                  "value": "CoreJsonValue"
+                },
+                "missing": {
+                  "requested": "JSONPointer",
+                  "parent_location": "GeneralDiagnosticRef"
+                },
+                "invalid_pointer": {
+                  "requested": "string"
+                },
+                "unreached": {
+                  "requested": "string",
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                }
+              },
+              "meaning_ja": "原decoded raw JSONの局所読取。型付きnative wholeをJSONへcastしない。missingとnullを分け、未到達Readを捏造しない新private型。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "GeneralQualificationOrigin": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "unreached": {
+                  "blocked_by": "GeneralDiagnosticRef[]"
+                },
+                "observed": {
+                  "source_occurrence_index": "Natural",
+                  "walk_index": "Natural",
+                  "classification_flags": "SourceClassification[]",
+                  "qualified_record_indices": "Natural[]",
+                  "target_record_indices": "Natural[]",
+                  "input_issue_indices": "Natural[]",
+                  "source_issue_indices": "Natural[]"
+                }
+              },
+              "meaning_ja": "元source index、snapshot walk index、global flat indexを別型memberで保持。複合flagsは排他化せず別walkへ状態を移さない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "NativeUniverseDetailObservation": {
+              "kind": "closed_tagged_union",
+              "tag": "tag",
+              "ordered_variants": {
+                "not_observed": {
+                  "original_dispatch": "DispatchObservation"
+                },
+                "observed": {
+                  "value": "CandidateUniverseDetailedReturn"
+                }
+              },
+              "meaning_ja": "新caller/native wrapperだけの同call F02観測。GeneralView rootにまだ存在しないpointerを作らず、実dispatch又は実detail全値を保持する。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "UniverseStepState": {
+              "kind": "enum",
+              "values": [
+                "equal",
+                "different",
+                "unresolved",
+                "not_applicable"
+              ],
+              "meaning_ja": "同じF02比較過程の局所照合観測。単なる全体success boolではない。",
+              "visibility": "public_cross_mechanism_schema"
+            },
+            "CandidateUniverseDetailedReturn": {
+              "kind": "closed_record",
+              "ordered_members": {
+                "comparison": "CoreComparison",
+                "observation": "UniverseComparisonObservation"
+              },
+              "meaning_ja": "新private F02詳細返却。comparisonは同一実比較の旧公開返却全値、順序も変えない。",
+              "visibility": "public_cross_mechanism_schema"
+            }
+          },
+          "public_type_aliases": {
+            "Natural": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/Natural",
+                "canonical_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+                "ordered_sha256": "3a837429b22928341b735e4998e761182a5bf340427998ce26aec13a9c60ce1c",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "JSONPointer": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/JSONPointer",
+                "canonical_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac",
+                "ordered_sha256": "c3f640125287565611f42a3ce0f4fe26b8ff4167de9c7fc7e91082998651eaac",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreJsonValue": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreJsonValue",
+                "canonical_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+                "ordered_sha256": "f99126144737df484c8db2252346992e459fbf81f987f619023b6051fbebe8e2",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreRef": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreRef",
+                "canonical_sha256": "56913bce08ec0d8ce7765564c7c358b275e3a5796e20be785ccacf458a7e6998",
+                "ordered_sha256": "6fd160daa102e277c1056c14f52500aa0a7258a457b777a65f878b688cee1924",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreApplicationBinding": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreApplicationBinding",
+                "canonical_sha256": "42b73dfdc4ea4d75a72916a9e1201c1c8094e2282de8de49c025fbe25c510266",
+                "ordered_sha256": "952d673a5a47efa4c7d658dba1ab6bdc010b2586ece05512773856a679191f0f",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreComparison": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreComparison",
+                "canonical_sha256": "d56afcae9ca4f80bebc363743017f239922dd67806ff1a00c40f613f5efbd93f",
+                "ordered_sha256": "c603855af8bf54aaf4c6f989eb951db7e3f77158fdcf9329d42193fc1eddf401",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreCompareCandidateUniverseContext": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreCompareCandidateUniverseContext",
+                "canonical_sha256": "e2d67c2ce38d4ebfd0dedd88c0176158581c1dc3f8c6ea25ab8d5c47b05bebed",
+                "ordered_sha256": "db6c769e9cd52a73f6b22ef8bca7e6112e7d7aa215604f77cd443ac9249d6e8a",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CallerInputs": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CallerInputs",
+                "canonical_sha256": "3bb204dfd0b72ee78ac9429d8e194f696ff2fa0469b3b1a81c489055b1f5667e",
+                "ordered_sha256": "6a17cf49f6c5bd860bee84052b61913dc0ce2e6a6a205eedaef601d0637570c6",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreApplicationDetailReturn": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreApplicationDetailReturn",
+                "canonical_sha256": "11c5efbc812534b6ae1f771c36a7e65b2b96a41a93792a7dd15662e4a8423dff",
+                "ordered_sha256": "a26296b671be4a262b2f771741fec68ff44b6fefc41a245d1415ad1d2b2ded76",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "DispatchObservation": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/DispatchObservation",
+                "canonical_sha256": "8df2c1d585ff61cdd77d603c1862fddbeb43c742671162eb9ff90f0ba8adc349",
+                "ordered_sha256": "5d9f0cfb175e200a08b6a9efb22860840e0df93fbbcd7fdccd3b8158793350e4",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "Read": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/Read",
+                "canonical_sha256": "9bf82653b27dc972e1bc0a111b90537fbfc5067e37eed1207da0c67e551c62ef",
+                "ordered_sha256": "321f8cb46828e3fa26bcce0647f32a93e9b74b106a2da04740308863b9271b42",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreValidatedApplication": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/CoreValidatedApplication",
+                "canonical_sha256": "5bb4aefcc886dc660d15574e125554419edb898c5ea11330aee3d6bfa14e8631",
+                "ordered_sha256": "5bb4aefcc886dc660d15574e125554419edb898c5ea11330aee3d6bfa14e8631",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "ValidationDetailedReturn": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/f05_detail_contract/types/ValidationDetailedReturn",
+                "canonical_sha256": "55e1250599370507d7fdaf4ad3bfb315d0af858954eb9caca9e65147a988d6f8",
+                "ordered_sha256": "aaffb7021ebe0498e05ce8b15b37bbaf6a2d22b28dfaab0cbed579f021704000",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "SourceAttempt": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/original_operation_proposal_provider_detail/private_types/SourceAttempt",
+                "canonical_sha256": "3ed9ffca3b5199047769dbd80693da992ddd722aa1b0560786d9af3b5dd80d20",
+                "ordered_sha256": "19baed56d1b3c1efd7258232ee7e2f228555da5662924659b5d29fd3a6d46f8d",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "QualificationSnapshot": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/original_operation_proposal_provider_detail/private_types/QualificationSnapshot",
+                "canonical_sha256": "491a140dd95240ae35ca20eb6a122683cb0990149256fbd8946762a1069a92a7",
+                "ordered_sha256": "539652d546b6ed6570b29cfd944fa2d6570a70dffeb1253a21595c20224df0d2",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "OperationRoleOutcome": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/original_operation_proposal_provider_detail/private_types/OperationRoleOutcome",
+                "canonical_sha256": "5ea730a8d0f84d2b9a329de043733a64a73dbd71f43c6fa11cc1eedd511c8f2f",
+                "ordered_sha256": "4d94ed191fbc0a5a94d3b312a418e2bf3c12b2b0335bae092e1f2572d4487a1e",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "ProposalBody": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+                "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/ProposalBody",
+                "canonical_sha256": "a88d91b4e332d649782e4759804cb606ebb40e690b932f99d6d9b16daa098d72",
+                "ordered_sha256": "c65d0625c48f0aa369321b28ec34894d6680995b04a07c89822996c213718a13",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "RelationOccurrence": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+                "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/RelationOccurrence",
+                "canonical_sha256": "fb7d813a9eb5873fa45bd47da6cfb30fb8d4e2bd66b6a86a4337d46c05113838",
+                "ordered_sha256": "5d50162930318eb5a3f7e25488a72ad4a2bd4f92f6e9830c1e2a3dd8d11e2b84",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "NativeRef4Locator": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+                "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/closed_types/NativeRef4Locator",
+                "canonical_sha256": "152f951eaee94ac974fa97c3534d144faa2526fc111b8384bb97d2476c8fe7bb",
+                "ordered_sha256": "0bbaa712398e743327f49f527f8a286c6300118f572c03ad6d8309903a7ed79b",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "RawProviderRequest": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+                "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/RawProviderRequest",
+                "canonical_sha256": "02010d2c58850f63189843a2bb7d7330e8f7e4375d3901c30d4845f1cf9693c5",
+                "ordered_sha256": "2dbca09d31334fe9bbc33b97c28be950e4cb38dee8c70e835415510bdd7e6447",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "SourceClassification": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+                "file_sha256": "bfaa1bff84e66593a9bf3dcb1056e85c636979b73637da560e0dfb4b5b8a376d",
+                "pointer": "/contracts/3/original_operation_proposal_provider/closed_private_types/new_private_types/SourceClassification",
+                "canonical_sha256": "4e5ee30b01e330e30d17f9d2185c269895332e9336659c9d27d4f3de2eccbb80",
+                "ordered_sha256": "85b4ff11127a887d17a4b1976643bd175761b4204879d3a187cb50068276bcf9",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "NativeProposalRecordDetailedReturn": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+                "file_sha256": "4b072ad4e75600b7af30e306979297e84f057fc933117f29a8c06aca8ddc0e14",
+                "pointer": "/proposal_native_record_material_detail/private_types/NativeProposalRecordDetailedReturn",
+                "canonical_sha256": "f42f3c2d293ebb4c8688d44cfae533caaed939a4327c164321888deb35450d17",
+                "ordered_sha256": "22509cb276982a557c099ac9659f310e8cc63ac3524c9522c5982575124a341d",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "OSRef4": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+                "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+                "pointer": "/type_contract/types/Ref",
+                "canonical_sha256": "5f0a1f37eca49818b7d24ec61c01072e344cade5ae675b4f991bef142f586d82",
+                "ordered_sha256": "3ef26703fd66930ecbde41b55cc865da28e24525a2cd995cbdce62536600441c",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "LocalIssue": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+                "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+                "pointer": "/type_contract/types/InputIssue",
+                "canonical_sha256": "a732dfe94a199db1fffb1c2fe3a4af68072cb8e101bb11440aaa0f5644ea94d4",
+                "ordered_sha256": "6fb472fa4a72bd7429b71a5fadffbbc30d169558c3e45089fda6ae4e632b1b9b",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "OSQualification": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+                "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+                "pointer": "/type_contract/types/Qualification",
+                "canonical_sha256": "9f331aaca5cbad77f2d796338a77584fd22562527cc7b243b83a1e3fd8dccb80",
+                "ordered_sha256": "446d26525fbce3faec59029e033c01445323375c1cf282f39a8fb93bf2253f96",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "OSQualificationRoot": {
+              "kind": "exact_existing_type_alias",
+              "source": {
+                "revision": "929a862c60309502e2b5935fadabbf290fc36185",
+                "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+                "file_sha256": "2baac1f9ed726a88d570531a527b96577656d6a39bbeb186f82706174360a557",
+                "pointer": "/type_contract/types/QualificationRoot",
+                "canonical_sha256": "20e59aaf7f82620ade4755fd78ac215306791539e5930c1520c5ae0735e42110",
+                "ordered_sha256": "e79d545ae57985670bfbb2714a98d3c8c144d9f54a970fed71325fdb8b6e453d",
+                "source_role": "fixed_source_snapshot"
+              },
+              "preservation_ja": "元型のrequired/partial/presence/null/数値同値と原全値を維持し、別名で新しい必須属性を足さない。"
+            },
+            "CoreRef6": {
+              "kind": "exact_existing_type_alias",
+              "target": "CoreRef",
+              "preservation_ja": "既存partial carrierの別名。source_locator/digest absent又はnullを新しい不成立条件にしない。"
+            },
+            "CoreRead<T>": {
+              "kind": "exact_existing_generic_alias",
+              "target": "Read<T>",
+              "preservation_ja": "旧OriginRootを変えず、present/absent/unreachedの元全値を保持する。"
+            }
+          },
+          "cross_mechanism_boundary_rule_ja": "外部機構（HELIX-OS OS002等）はH5#/general_proposal_exchange_detail/private_types/*をsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、本公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）のcarrier_schemas・nested_public_type_schemas・public_type_aliasesと完全一致する受領型（OsReceivedProposalPublication等）とadapter/schema検証で受領する。"
         }
       },
       "ordered_stages": [

@@ -3685,6 +3685,10 @@
       {
        "id": "PUB-BODY-TWIN",
        "expected_ja": "raw publicationのbody又はevidenceだけ変異しdigest/資格を据置くtwinは同walkで不成立。別source同Ref資格救済なし。"
+      },
+      {
+       "id": "PUB-PUBLIC-CONTRACT-BOUNDARY",
+       "expected_ja": "CORE公開端点契約（publish_general_proposal_exchange_public, schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）を介して4 carrier構造（CoreProposalPublication・PublicationSourceCarrier・PublicationRecord・GeneralProposalView）と全Ref4/Ref6・不成立理由・未知状態を引き渡し、OS側がCORE private_typesをsame_candidate_cross_mechanism_private_type_bindingで直接束縛せずにOS受領型とadapter/schema検証で受領する。"
       }
      ],
      "negative_controls": [
@@ -3695,7 +3699,7 @@
       "相反/未解決をexclusive flagへ縮約",
       "異なるoperation/caller F02詳細を同callとみなす",
       "新source identityをraw hash又はRef6 stripから作る",
-      "新CORE privateをOSから直呼びする"
+      "新CORE private関数・private_typesをOSから直呼び又はsame_candidate_cross_mechanism_private_type_bindingで直接束縛する"
      ],
      "unfrozen_ja": [
       "knownempty/NA-only/複合relationの全native wholeは既存固定coverageで未行使。本基本branchの独立期待と既存wholeの存在を区別する。",

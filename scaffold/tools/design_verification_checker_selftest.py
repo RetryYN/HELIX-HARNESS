@@ -18,6 +18,23 @@ import design_verification_checker as dvc  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
+def ownership_cap_test_material() -> dict[str, object]:
+    return {
+        "fixture": {"input": {"value": "raw"}},
+        "fixture_patch": [{"op": "replace", "path": "/value", "value": "case"}],
+        "expected_return": {"state": "held"},
+        "full_return": {"state": "held", "details": ["full"]},
+        "materialization_sha256": "a" * 64,
+        "literal_materialization_contract": {
+            "seed": {"input": "independent"},
+            "rfc6902_copy_ops": [{"op": "copy", "from": "/seed", "path": "/case"}],
+            "rfc6902_patch": [{"op": "add", "path": "/case", "value": {}}],
+            "expected_return": {"state": "held"},
+            "full_return": {"state": "held", "details": ["full"]},
+        },
+    }
+
+
 class DesignVerificationCheckerSelfTest(unittest.TestCase):
     def test_derivation_map_and_legacy_basis_recorded(self) -> None:
         for check_id in (
@@ -312,6 +329,39 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         self.assertFalse(res_l5_fail["passed"])
         self.assertEqual(res_l5_fail["failures"][0]["key"], "full_return")
+
+    def test_l7_allows_full_test_material(self) -> None:
+        l7 = dvc.check_ownership_cap(
+            REPO_ROOT,
+            "docs/helix-labo/L7-function-verification/aggregate-correlate-connection.json",
+            ownership_cap_test_material(),
+            layer="L7",
+        )
+        self.assertTrue(l7["passed"], msg=l7["failures"])
+        self.assertEqual(l7["status"], "not_applicable")
+        self.assertTrue(l7["reason"])
+
+    def test_l6_l8_l9_reject_l7_full_test_material(self) -> None:
+        material = ownership_cap_test_material()
+        common_material_keys = {
+            "fixture_patch",
+            "expected_return",
+            "full_return",
+            "literal_materialization_contract",
+        }
+        for layer in ("L6", "L8", "L9"):
+            result = dvc.check_ownership_cap(
+                REPO_ROOT,
+                f"docs/helix-labo/{layer}-verification/aggregate-correlate-connection.json",
+                material,
+                layer=layer,
+            )
+            self.assertFalse(result["passed"], msg=layer)
+            rejected = {failure["key"] for failure in result["failures"]}
+            self.assertTrue(common_material_keys <= rejected, msg=(layer, rejected))
+            if layer in ("L8", "L9"):
+                self.assertIn("seed", rejected)
+                self.assertIn("materialization_sha256", rejected)
 
     def test_chk_neg_4way_match_pass_and_mutation_fail(self) -> None:
         l4 = {
