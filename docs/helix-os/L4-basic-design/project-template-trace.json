@@ -493,15 +493,103 @@
         "core_producer_ref": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
           "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange",
+          "public_endpoint_pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint",
           "revision_binding": "same_design_snapshot"
+        },
+        "core_public_proposal_publication_contract_binding": {
+          "schema_id": "helix.harness.product_template_application.general_proposal_publication_endpoint",
+          "schema_version": "1.0.0",
+          "producer_public_function_id": "HARNESS-L5-009-publish_general_proposal_exchange_public",
+          "producer_public_symbol": "publish_general_proposal_exchange_public",
+          "l4_producer_pin": {
+            "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+            "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
+            "file_sha256": "fa9c24c3929c7b83e8faac252386ccfdaaeeb8b1ae3ab70c2f811bbeb9f45a27",
+            "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint"
+          },
+          "l5_producer_pin": {
+            "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+            "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
+            "file_sha256": "bf6d809c1aca77fe03586c3ac4f00420392fe39ac30f8eaf95973d391b4adfa6",
+            "pointer": "/general_proposal_exchange_detail/publication_writer/public_proposal_publication_endpoint",
+            "function_pointer": "/functions/13"
+          },
+          "upstream_connection_basis": {
+            "producer_l2_unit": "HARNESS-L2-009 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/48)",
+            "consumer_l2_unit": "HELIXOS-L2-002 (docs/governance/audits/g7-connect-source-identity-inventory.json#/identities/187; delegated to HXT-FLOW-01 and HXT-SYS-01)",
+            "hxt_core_02_comparison_ja": "G7 /identities/63（HXT-CORE-02：docs/helix-harness/L2-requirements/product-requirements.md#L317［680dcaa #L314］）はHARNESS-L2-002/008からHXT-SYS-01への明示connectionであり、本境界（HARNESS-L2-009 -> HELIXOS-L2-002）とHARNESS (CORE) -> HELIX-OSの方向およびCOREが直接起票・OS状態確定を行わない権威境界は同一である一方、source L2 unitはHARNESS-L2-009とHARNESS-L2-002/008で異なる。OS側HELIXOS-L2-002（G7 /identities/187）は機構間接続条件をHXT-FLOW-01/HXT-SYS-01（docs/helix-os/L2-requirements/governance-requirements.md#L610［680dcaa #L607］）へ委譲しており、両者とも既存G7採択済みHELIXCONNECT契約群（HELIXCONNECT-L3-001-F01/F02, 002-F01/F02, 003-F01, 006-F01）の範囲内で収まる。",
+            "connector_requirement_refs": [
+              "HELIXCONNECT-L3-001-F01",
+              "HELIXCONNECT-L3-001-F02",
+              "HELIXCONNECT-L3-002-F01",
+              "HELIXCONNECT-L3-002-F02",
+              "HELIXCONNECT-L3-003-F01",
+              "HELIXCONNECT-L3-006-F01"
+            ],
+            "po_decision_ref": "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md#L62-L70",
+            "legacy_adr_ref": "LEGACY-ASSET-BD13CC67526B48D461F9 (archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md#L8-L45)"
+          }
         },
         "source_ledger_ref": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
           "pointer": "/contracts/3/original_operation_proposal_provider/general_proposal_exchange/source_basis",
           "revision_binding": "same_design_snapshot"
         },
-        "authority_boundary_ja": "CORE原ownerが提案原sectionと詳細証拠を形成しCONNECTから渡す。OSはCORE private関数を呼ばず、自身のprivate reader/validatorで受領する。selected/used/案件scope/6facetは独立原owner入力へ結び、CORE製品scope/Ref6を変換生成しない。",
+        "authority_boundary_ja": "CORE原ownerが公開端点契約（publish_general_proposal_exchange_public, schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint, version=1.0.0）に従って提案原sectionと詳細証拠を形成しCONNECTから渡す。OSはCORE private関数を呼ばず、CORE private_typesをsame_candidate_cross_mechanism_private_type_bindingで直接束縛せず、OS自身の受領型（OsReceivedProposalPublication・OsReceivedPublicationSourceCarrier・OsReceivedPublicationRecord・OsReceivedGeneralProposalView）とprivate reader/validatorで受領する。selected/used/案件scope/6facetは独立原owner入力へ結び、CORE製品scope/Ref6を変換生成しない。",
         "private_types": {
+          "OsReceivedProposalPublication": {
+            "kind": "closed_record",
+            "bound_public_schema_ref": "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint/response_contract/carrier_schemas/CoreProposalPublication",
+            "ordered_members": {
+              "general_view": "OsReceivedGeneralProposalView",
+              "header_port": "CoreJsonValue",
+              "header_decode": "CoreJsonValue",
+              "authority_port": "CoreJsonValue",
+              "source_candidate": "CoreJsonValue",
+              "publication_issues": "LocalIssue[]"
+            },
+            "meaning_ja": "CORE公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint）のCoreProposalPublication構造をCONNECT経由で受領するOS側受領型。CORE private_typesへの直接束縛を行わない。"
+          },
+          "OsReceivedPublicationSourceCarrier": {
+            "kind": "closed_record",
+            "bound_public_schema_ref": "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint/response_contract/carrier_schemas/PublicationSourceCarrier",
+            "ordered_members": {
+              "source_ref": "OSRef4",
+              "owner": "string",
+              "source_json_utf8": "string",
+              "source_sha256": "string",
+              "decoded_raw_records": "OsReceivedPublicationRecord[]",
+              "qualification_ref": "OSRef4",
+              "qualifications": "Qualification[]",
+              "qualification_roots": "QualificationRoot[]"
+            },
+            "meaning_ja": "CORE公開端点契約のPublicationSourceCarrier構造をOS same-walkで検証するOS側受領carrier型。"
+          },
+          "OsReceivedPublicationRecord": {
+            "kind": "closed_record",
+            "bound_public_schema_ref": "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint/response_contract/carrier_schemas/PublicationRecord",
+            "ordered_members": {
+              "subject_ref": "OSRef4",
+              "section_key": "literal F02",
+              "record_kind": "literal core_proposal_exchange",
+              "payload": "CoreJsonValue",
+              "owner": "string"
+            },
+            "meaning_ja": "CORE公開端点契約のPublicationRecord構造をOS受領profile（HELIXOS-F02-core-proposal-exchange）で読むOS側受領raw record型。旧OwnerRecordへcastしない。"
+          },
+          "OsReceivedGeneralProposalView": {
+            "kind": "closed_record",
+            "bound_public_schema_ref": "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/public_proposal_publication_endpoint/response_contract/carrier_schemas/GeneralProposalView",
+            "ordered_members": {
+              "attempt_capture": "CoreJsonValue",
+              "membership_capture": "CoreJsonValue",
+              "universe_observation": "CoreJsonValue",
+              "relation_observations": "CoreJsonValue[]",
+              "proposed_body": "CoreJsonValue",
+              "body_issues": "LocalIssue[]"
+            },
+            "meaning_ja": "CORE公開端点契約のGeneralProposalView構造（同一call F02比較証拠・membership・relation観測）をOS側で役割別decodeして検証するOS受領evidence型。"
+          },
           "ProposalReceiverDiagnosticRef": {
             "kind": "closed_record",
             "ordered_members": {
@@ -522,7 +610,7 @@
           "ProposalReceivingEnvelope": {
             "kind": "closed_record",
             "ordered_members": {
-              "publication": "CORE CoreProposalPublication",
+              "publication": "OsReceivedProposalPublication",
               "record_trace_input": "CoreJsonValue"
             },
             "meaning_ja": "CONNECT経由の型付きpublication全値と、既存OS入力raw全値。public RecordTraceInput/型/codecを緩めない新private外側carrier。publication未形成でも実captureを失わない。"
@@ -531,7 +619,7 @@
             "kind": "closed_record",
             "ordered_members": {
               "source_location": "ProposalReceiverSourceLocation",
-              "general_view": "CORE GeneralProposalView",
+              "general_view": "OsReceivedGeneralProposalView",
               "domain": "ReceivedProposalDomain"
             },
             "meaning_ja": "新raw kindの同有資格recordから二段roledecodeした別carrier。CORE Comparisonを旧SourceSectionValueへcastしない。"
@@ -611,7 +699,7 @@
                 "value": "既存SourceEnvelope"
               },
               "publication_source": {
-                "value": "CORE PublicationSourceCarrier"
+                "value": "OsReceivedPublicationSourceCarrier"
               }
             },
             "meaning_ja": "same-walk profile入力目録。base source原順の後にpublication一出現。異なるsource domainを識別unionで保持し旧source型を緩めない。"
@@ -624,7 +712,7 @@
                 "value": "既存OwnerRecord"
               },
               "publication_record": {
-                "value": "CORE PublicationRecord"
+                "value": "OsReceivedPublicationRecord"
               }
             },
             "meaning_ja": "旧OwnerRecordのpayloadを新evidenceへ開放しない。識別はprofile source入力と同raw kindから得る。"
@@ -726,8 +814,8 @@
             "original_trace_section",
             "evidence"
           ],
-          "raw_type_ja": "CORE-owned PublicationRecordを新private raw carrierとしてdecode。payloadはCoreJsonValue域から役割別decodeし、旧OwnerRecordへのcast/許可member追加をしない。",
-          "domain_ja": "original_trace_sectionだけをReceivedProposalDomainのproposed_refs/proposed_sourceへclosed decodeする。両値は元2field全値をcopyし、source_locationは同raw recordの同walk原所在から引継ぐ。evidenceは別GeneralProposalViewへclosed decodeする。F02RecordInputのbinding/selected_refs/used_refs/selected_source/used_source/used_empty_basisと各Fieldのmissing/null/valueは原OS candidate側に全保持し、新2field domainへfieldを足さない。role失敗でもraw/資格観測を保持する。",
+          "raw_type_ja": "CORE公開端点契約（schema_id=helix.harness.product_template_application.general_proposal_publication_endpoint）に適合するPublicationRecord構造をOS受領型OsReceivedPublicationRecordとしてdecode。CORE private_typesへの直接束縛をせず、payloadはCoreJsonValue域から役割別decodeし、旧OwnerRecordへのcast/許可member追加をしない。",
+          "domain_ja": "original_trace_sectionだけをReceivedProposalDomainのproposed_refs/proposed_sourceへclosed decodeする。両値は元2field全値をcopyし、source_locationは同raw recordの同walk原所在から引継ぐ。evidenceはOS受領型OsReceivedGeneralProposalViewへclosed decodeする。F02RecordInputのbinding/selected_refs/used_refs/selected_source/used_source/used_empty_basisと各Fieldのmissing/null/valueは原OS candidate側に全保持し、新2field domainへfieldを足さない。role失敗でもraw/資格観測を保持する。",
           "origin_ja": "同一source_inputs目録のraw/header/bytes/root資格→衝突双方除外→残存raw出現→domain/evidence別roledecodeを保持する。source_occurrence_index/record_index/walk_index/flat indexを原出現から引継ぎ、同Ref別walkから再構成しない。旧SourceEnvelope/OwnerRecord/ValidatedRecordTraceへ新rawをcastしない。"
         },
         "processing_order": [

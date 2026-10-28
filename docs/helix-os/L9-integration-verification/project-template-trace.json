@@ -418,6 +418,13 @@
           "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles",
           "revision_binding": "same_design_snapshot"
         },
+        "core_public_endpoint_oracle_ref": {
+          "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+          "revision": "856cf916ec933ca153b4ced8d91bf9ce70badad5",
+          "file_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
+          "pointer": "/cases/3/original_operation_proposal_provider_oracles/general_proposal_exchange_oracles/publication_oracles/4",
+          "role": "CORE公開端点契約（PUB-PUBLIC-CONTRACT-BOUNDARY）との統合oracle束縛"
+        },
         "status": "independent_basic_oracle_design_not_runtime_observation",
         "source_ledger_ref": {
           "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -541,7 +548,8 @@
           "findings空なら全件承認",
           "candidate入力をCOREbodyで上書きして既知差を隠す",
           "既存source indexをappend前後で詰め直す",
-          "CORE source失敗でOS全兄弟を無効化する"
+          "CORE source失敗でOS全兄弟を無効化する",
+          "CORE private関数・private_typesをOSから直呼び又は機構横断private型束縛で直接参照する"
         ],
         "verification_boundary_ja": "本L9は基本統合oracle設計。旧OS normal全値を保持し、条件付き新branch期待と既存凍結whole/実観測を区別する。新全返却のcanonical/ordered/lengthは対L8詳細freezeで測定する。runtime/trust/配送/保存/全430義務完了の証明ではない。",
         "qualified_trace_fixture": {
@@ -554,7 +562,7 @@
         },
         "domain_and_kernel_oracles": {
           "domain_projection": {
-            "input_source_ja": "同有資格raw PublicationRecord.payload.original_trace_sectionの二field原全値と同walk原source_location。",
+            "input_source_ja": "CORE公開端点契約に従い受領した同有資格raw OsReceivedPublicationRecord（alias PublicationRecord）.payload.original_trace_sectionの二field原全値と同walk原source_location。",
             "expected_closed_members": {
               "ResolvedProposalDomainOccurrence": [
                 "source_location",
