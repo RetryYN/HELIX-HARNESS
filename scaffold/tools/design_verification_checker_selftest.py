@@ -702,16 +702,26 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
 
     def test_existing_four_freeze_records_audit_and_generate(self) -> None:
-        pass_records = [
-            "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
-            "docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json",
-            "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+        records_with_expected_match = [
+            (
+                "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+                True,
+            ),
+            (
+                "docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json",
+                False,
+            ),
+            (
+                "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+                True,
+            ),
         ]
-        for rpath in pass_records:
+        for rpath, expected_match in records_with_expected_match:
             audit = dvc.audit_freeze_record(REPO_ROOT, rpath, use_creation_commit=True)
-            self.assertTrue(
+            self.assertEqual(
                 audit["mechanical_match"],
-                msg=f"Expected mechanical_match=True for {rpath}, got {audit['comparison_with_existing_record']}",
+                expected_match,
+                msg=f"Expected mechanical_match={expected_match} for {rpath}, got {audit['comparison_with_existing_record']}",
             )
             cmp_sec = audit["comparison_with_existing_record"]
             self.assertTrue(cmp_sec["pins_match"])
@@ -769,6 +779,77 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         self.assertTrue(generated["pointer_resolution_summary"]["passed"])
         self.assertTrue(generated["negative_case_4way_verification"]["passed"])
+
+    def test_existing_l8_forbidden_key_fails_full_freeze_aggregate(self) -> None:
+        freeze_path = (
+            "docs/governance/audits/tdd/h009-f02a-function-pair-freeze-2026-10-28.json"
+        )
+        audit = dvc.audit_freeze_record(
+            REPO_ROOT, freeze_path, use_creation_commit=True
+        )
+        l8_path = dvc._load_json(REPO_ROOT, freeze_path)["path_aliases"]["L8"]
+        base_l8 = dvc._load_json(REPO_ROOT, l8_path, audit["base_revision"])
+        head_l8 = dvc._load_json(REPO_ROOT, l8_path, audit["evaluated_at_revision"])
+        base_cap = dvc.check_ownership_cap(REPO_ROOT, l8_path, base_l8, layer="L8")
+        head_cap = dvc.check_ownership_cap(REPO_ROOT, l8_path, head_l8, layer="L8")
+
+        proc = subprocess.run(
+            [
+                sys.executable,
+                str(Path(__file__).with_name("design_verification_checker.py")),
+                "check-freeze",
+                freeze_path,
+                "--root",
+                str(REPO_ROOT),
+            ],
+            cwd=str(REPO_ROOT),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        cli_report = json.loads(proc.stdout)
+
+        self.assertEqual(
+            {
+                "base_seed_violation": any(
+                    item["pointer"]
+                    == "/condition_meaning_lookup_miss_oracle/reconstruction/seed"
+                    for item in base_cap["failures"]
+                ),
+                "head_seed_violation": any(
+                    item["pointer"]
+                    == "/condition_meaning_lookup_miss_oracle/reconstruction/seed"
+                    for item in head_cap["failures"]
+                ),
+                "added_forbidden_keys": audit["checks"]["CHK-OWNERSHIP-CAP-L8-DIFF"][
+                    "added_forbidden_keys"
+                ],
+                "existing_violations": audit["checks"]["CHK-OWNERSHIP-CAP-L8-DIFF"][
+                    "full_file_existing_violations"
+                ],
+                "mechanical_match": audit["mechanical_match"],
+                "cli_all_mechanical_matched": cli_report["all_mechanical_matched"],
+                "cli_returncode": proc.returncode,
+            },
+            {
+                "base_seed_violation": True,
+                "head_seed_violation": True,
+                "added_forbidden_keys": [],
+                "existing_violations": [
+                    {
+                        "check": "CHK-OWNERSHIP-CAP",
+                        "layer": "L8",
+                        "file": l8_path,
+                        "pointer": "/condition_meaning_lookup_miss_oracle/reconstruction/seed",
+                        "violation": "forbidden_key",
+                        "key": "seed",
+                    }
+                ],
+                "mechanical_match": False,
+                "cli_all_mechanical_matched": False,
+                "cli_returncode": 1,
+            },
+        )
 
 
 if __name__ == "__main__":
