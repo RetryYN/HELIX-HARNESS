@@ -3,6 +3,7 @@
 from application_applicability import compare_applicability
 from application_candidate_universe import compare_candidate_universe
 from application_kind_obligation_trace import compare_kind_obligation_trace
+from application_meaning_impacts import compare_meaning_impacts
 from application_required_axes import compare_required_axes
 from application_requirement_gaps import (
     compare_requirement_gaps,
@@ -15,6 +16,7 @@ __all__ = [
     "compare_applicability",
     "compare_candidate_universe",
     "compare_kind_obligation_trace",
+    "compare_meaning_impacts",
     "compare_required_axes",
     "compare_requirement_gaps",
     "compare_requirement_gaps_detail",
