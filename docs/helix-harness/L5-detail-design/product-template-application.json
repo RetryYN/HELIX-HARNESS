@@ -15349,6 +15349,9 @@
         },
         {
           "id": "D-Axis-0",
+          "source_pointers": [
+            "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/0"
+          ],
           "guard_ja": "原definition_refs[j]が既存F03で実AxisFact content RecordOccurrenceへ解決している。実field_material_projection_declarationによる同field・同binding・同material_ref・material_role=definition・material_carrier=AxisFact・payload_form=axis_valueの適用宣言も、同一source/body上でこれらの全memberを実証する独立role sourceも成立していない。Ref lookup miss/未取得とは別条件。AxisFact.valueの形・kind/key・axis名・別role宣言からdefinition roleを推定しない。",
           "judgment": "実ProjectionAttemptを作らない。projection_attempts=[]。DefinitionAssessmentは本patternの原因を受けず、個別DefinitionEvidenceInterpretationの不在時はD0の独立guardだけを適用する。",
           "cause": {
@@ -18676,6 +18679,9 @@
         "declaration_unresolved/projection_unformedはL4 basic local Cause vocabularyにも明示されるが、native/public Finding/stateを追加しない。"
       ],
       "declaration_failure_cause": {
+        "source_pointers": [
+          "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_kind_extension_rules/rules/1"
+        ],
         "guard": "実AxisFact definition contentに適用宣言が存在し、宣言のrequired member material_role/material_carrier/payload_form等と対応contentの間に既知差がある。単なるabsence/unknown/Ref lookup missは含めない。",
         "cause": {
           "kind": "projection_unformed",
