@@ -582,11 +582,13 @@ class TestCompareKindObligationTrace(unittest.TestCase):
 
         res, _, _ = self._run_trace(raw)
 
-        finding = next(
+        findings = [
             row
             for row in res["findings"]
             if row["code"] == "extraction_as_design_complete"
-        )
+        ]
+        self.assertEqual(len(findings), 1)
+        finding = findings[0]
         self.assertEqual(finding["axis"], "design_completion_claim")
         self.assertEqual(finding["state"], "unknown")
         self.assertEqual(finding["backflow_owner"], "design_owner")
@@ -601,11 +603,13 @@ class TestCompareKindObligationTrace(unittest.TestCase):
 
         res, _, _ = self._run_trace(raw)
 
-        finding = next(
+        findings = [
             row
             for row in res["findings"]
             if row["code"] == "extraction_as_design_complete"
-        )
+        ]
+        self.assertEqual(len(findings), 1)
+        finding = findings[0]
         self.assertEqual(finding["axis"], "design_completion_claim")
         self.assertEqual(finding["state"], "unknown")
         self.assertEqual(finding["backflow_owner"], "design_owner")
