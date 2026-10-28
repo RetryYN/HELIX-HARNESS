@@ -424,6 +424,7 @@
         "meaning": "既存ownerの資格記録をそのまま解決する入力。自己申告/digestだけでは追加しない。trust resolverの実成立は本unit外。 root_refは同snapshotの独立qualification_rootsへ完全対応。未解決rootから新しいrootを生成しない。"
       },
       "MeaningFact": {
+        "visibility": "public",
         "fields": {
           "source_ref": "Ref",
           "owner": "string|null",
@@ -13456,8 +13457,18 @@
         "binding": "公開signatureとComparison出力shapeを維持する。返却値はF03 L4の現在の基本意味・元source読みの結果であり、旧L8 normal fixture/期待値の全値保持又は無条件等価を主張しない。",
         "legacy_oracle_condition": "旧normalのknown/supplied/applicable期待は、同入力がL4 F03に必要な原field owner/source/descriptor資料を供給し、固定L4契約からその期待が導ける範囲だけで照合する。根拠sourceが未取得ならF03 L4のunknownを維持する。旧fixtureの期待と矛盾する可能性はL8対検証側で別途解消し、本L5は旧期待を優先しない。"
       },
+      "public_selected_field_evaluation_endpoint": {
+        "contract_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/field_value_applicability_contract/public_selected_field_evaluation_endpoint",
+        "schema_id": "helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint",
+        "schema_version": "1.0.0",
+        "visibility": "public_cross_mechanism_endpoint",
+        "input": "F03BasicContext（または同一immutable snapshotのSupplyInput原入力とdefinitions Comparison）",
+        "output": "F03Evaluation（/field_value_applicability_contract/closed_types/F03Evaluationの全memberおよびsnapshot/source origin）",
+        "binding": "BRAIN内部で単一walk評価したF03Evaluationを公開端点契約として返す。他機構（HARNESS/CORE等）はconnector/adapter経由でこの公開端点契約のみを参照し、BRAIN内部private_full_runnerや3-member private_return wholeを直接呼出し・pinしない。"
+      },
       "private_full_runner": {
         "symbol": "run_descriptor_target_flow_with_field_value_detail",
+        "cross_mechanism_visibility": "brain_internal_only_prohibited_for_external_mechanisms",
         "input": "raw:RawValue",
         "private_return": {
           "kind": "closed_private_caller_result",
@@ -13468,7 +13479,7 @@
           },
           "additional_members": false
         },
-        "consumer": "同callのL8 F03詳細oracleはこのprivate返却field /field_value_evaluation を比較対象とする。既存ObservationやSupplyAnalysisへF03Evaluationを追加しない。"
+        "consumer": "同callのBRAIN内部L8 F03詳細oracleのみがこのprivate返却field /field_value_evaluation を比較対象とする。既存ObservationやSupplyAnalysisへF03Evaluationを追加しない。他機構（HARNESS/CORE等）からの直接呼出しおよび3-member private_return wholeへの結合は禁止し、機構間受渡しにはpublic_selected_field_evaluation_endpointを用いる。"
       },
       "existing_full_runner_projection": {
         "symbol": "run_descriptor_target_flow",

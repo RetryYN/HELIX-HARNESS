@@ -11191,9 +11191,13 @@
      {
       "pointer": "/field_value_applicability_contract/field_definition_judgment_writer",
       "id": null
+     },
+     {
+      "pointer": "/field_value_applicability_contract/public_selected_field_evaluation_endpoint",
+      "id": null
      }
     ],
-    "role": "F03 field/read/judgmentのraw cause及びsupport境界。"
+    "role": "F03 field/read/judgmentのraw cause、support境界及び公開端点契約（public_selected_field_evaluation_endpoint）。"
    },
    {
     "revision": "051fff3fffb4801f638c0af2f9f61fc60f184110",
@@ -11521,13 +11525,13 @@
      "2新SourceEnvelopeはbody/ref/role/qualification_refを供給しcontent_bytesは未供給の原状態。SourceEnvelopeはpartial carrierでcontent_bytes required無し。観測usability=unestablished、checks=[]は型付き与件でありsource照合成功/資格付与ではない。",
      "body.records payloadはsource_refを除いた原record全member/presence。source_refは元record上に存在しsource envelope.refと全値一致。",
      "CoreReturn.producer_observationsは正本DispatchObservation[]、7catalogue順の各producer literalとcomparison.producer_symbolを一致。新private named-record型を追加しない。",
-     "BRAIN原requestはgolden F03BasicContext.inputそのものではなく、そのsnapshot.input（SupplyInput raw）を既存runner引数型として保持。F03Evaluationは同golden expected whole。これは実same-callの証明ではなくunit明示precondition。",
+     "BRAIN原requestはgolden F03BasicContext.inputそのものではなく、そのsnapshot.input（SupplyInput raw）をBRAIN公開端点契約（public_selected_field_evaluation_endpoint）へのCORE側adapter request contextとして保持。F03Evaluationは同golden expected whole。これは実same-callの証明ではなくunit明示precondition。",
      "application_relationはoperation raw内実memberとして存在し、read originは/operation_request_raw/raw/application_relation。phantom pointerを使わない。",
      "negativeはlocator memberだけ除き、typed_relation=null/source_reads=[]でselector局所失敗に停止。relationの先読を期待しない。",
      "原owner_assertion.propositionはobjectのRawValue、詳細support_interpretation.owner_application_textは別の原string readとして与える。同じ意味のaliasと推定せず、target/full RefとF03支持出現だけを構造対応させて両原値を保全する。"
     ],
     "nonclaims_ja": [
-     "実C01又はBRAIN runnerの実行/返却生成",
+     "実C01又はBRAIN公開端点adapterの実行/返却生成",
      "実source bytes-body照合/資格/owner認証",
      "適用summary known又はmissing成立",
      "配送/受入/全flow成功"

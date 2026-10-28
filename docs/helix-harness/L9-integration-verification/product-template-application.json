@@ -14111,7 +14111,7 @@
     "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
     "file_sha256": "3d97d1333333f99a064a88a0b559365dac4207110c1a980a9e94bedfb8dd3142",
     "pointer": "/field_value_applicability_detail",
-    "role": "BRAIN private F03 full-runner詳細"
+    "role": "BRAIN F03公開端点契約（public_selected_field_evaluation_endpoint）と選択field評価詳細"
    },
    {
     "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
@@ -14343,7 +14343,7 @@
      "native fn9 /functions/9",
      "native fn10 /functions/10"
     ],
-    "expected": "元のclosed CallerInputsでC01を一回呼び、実whole return/native枝を保持する。C01 baselineを省略しない。BRAIN full F03 runner、statement reader、private fn9/fn10 variantsは実際の同operation args/producer observationsだけを使う。これら任意adapter/consumer branchの入力欠落はそのbranchだけlocal not_called/unformedとし、FlowReturn.original_requestを含む原要求・relation・BRAIN requestを失わず、summaryでunobserved producerを補完しない。fn10 contextへ渡すsource_result_reference_projectionは元CallerInputsのoptional raw Readを保ち、値やpresenceからtyped CoreSourceResultProjectionResultへcast/recomputeしない。既存native-only entrypoints/returnsは不変、公開API追加/二回F03 walkなし。"
+    "expected": "元のclosed CallerInputsでC01を一回呼び、実whole return/native枝を保持する。C01 baselineを省略しない。BRAIN公開端点契約（public_selected_field_evaluation_endpoint）へのCORE側adapter call、statement reader、private fn9/fn10 variantsは実際の同operation args/producer observationsだけを使う。これら任意adapter/consumer branchの入力欠落はそのbranchだけlocal not_called/unformedとし、FlowReturn.original_requestを含む原要求・relation・BRAIN requestを失わず、summaryでunobserved producerを補完しない。fn10 contextへ渡すsource_result_reference_projectionは元CallerInputsのoptional raw Readを保ち、値やpresenceからtyped CoreSourceResultProjectionResultへcast/recomputeしない。既存native-only entrypoints/returnsは不変、公開API追加/二回F03 walkなし。"
    },
    {
     "id": "F03-NOT-CALLED-DO-NOT-FABRICATE-FOREIGN-RETURN",
@@ -14353,7 +14353,7 @@
      "CORE F05DetailedReturn /f05_detail_contract/types/F05DetailedReturn",
      "CORE private caller /f05_detail_contract/entry_points/private_caller"
     ],
-    "planned_delta": "C01の実返却は取得したが、targeted field又は明示relationというBRAIN full-runnerの呼出し前提が未成立の枝を計画する。このoperationにはF03Evaluationと呼出済みF05適用返却が存在しない。",
+    "planned_delta": "C01の実返却は取得したが、targeted field又は明示relationというBRAIN公開端点契約（public_selected_field_evaluation_endpoint）へのCORE側adapter呼出し前提が未成立の枝を計画する。このoperationにはF03Evaluationと呼出済みF05適用返却が存在しない。",
     "expected": "CORE native wholeとouter.f05のFormation/presenceを保持する。FlowReturnはoriginal_request wholeを開始時から保持し、f05_applicationはF05BrainDefinitionApplicationInvocation.not_called枝となってoriginal_caller_inputs/native_core_return/native_f05 Formation/原因を持つ。called型のF05 return内に架空F03Evaluation/F03FieldDefinitionRead/supportを置かず、空配列やdefault known/emptyへ変換しない。未呼出しはF03意味のnegative/empty判定ではない。claims_variantとanalysis_variantもnot_called原因を保持し、mandatory C01 baselineは省略しない。"
    },
    {
@@ -14377,7 +14377,7 @@
    "not_proven": [
     "実CORE owner application statement/sourceまたは実mappingが現存すること。",
     "operation_request_rawおよびbrain_same_call_requestをprivate wrapperへ供給する上流caller/source route。",
-    "source/transport delivery、qualification/admission、F03実runnerやprivate consumer実装。",
+    "source/transport delivery、qualification/admission、BRAIN F03公開端点adapterやprivate consumer実装。",
     "synthetic statementの真偽や実製品意味適用成功。",
     "31 cause全組合せ、全field/全source chain/Claim閉包。",
     "実装、受入、release。"
