@@ -4795,6 +4795,78 @@
     "expectation_ja": "L5でsource_wrapper_relationはowner_binding_contract/source_wrapperが一度だけ形成し、Cause aggregation順はS4の後にS3。positive RoleOwnerPairは保持し、そのrelation=correspondingならpair Causeなし。これらはL5実装適合の技術期待であり、L8の独立意味期待の順序・authorityとしては扱わない。",
     "expected_role_pair_cause": "RoleOwnerPair.relation=correspondingのpairにはCauseを生成しない。"
    }
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-38",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "source-wrapper-different-retains-local-different-role-pair-cause",
+   "input_fixture_ref": "条件を記述した設計行。入力fixtureは未作成。",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/OwnerView"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+    },
+    {
+     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+     "pointer": "/field_semantic_evidence_verification/owner_relation_cause_cases/2"
+    }
+   ],
+   "typed_mutation_plan": "wrapper_owner/source_owner Readを両方presentかつ既知に異なる原値にし、qualification_owner/root_owner linkを0件とする。唯一の適用RolePairはfield.refで、operand_owner Readもpresentかつwrapper_ownerと既知に異なる。field/binding/template/義務のidentity対応は成立させる。",
+   "input_condition": "L9 owner_relation_cause_cases/2の型付き条件と同じ。fixture/全return/hashは未作成。",
+   "expected_observation": "source_wrapper_relation=different、field.ref RolePair.relation=different、そのpair局所cause kind=owner_mismatch、OwnerBinding.result=different。RolePair Causeは外側wrapper relationの再計算や相殺に使わない。",
+   "expected_preserved": "source-wrapperとRolePairの全原Ref・owner・presenceを保持する。Causeの順序とtarget/left/right/rule_pointerは独立意味期待に混ぜない。",
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "L4/L9の型付き論理条件のみ。fixture、全返却、hashはなく、実行していない。",
+   "l5_technical_expectation": {
+    "source_pointers": [
+     "/f05_detail_contract/owner_binding_contract/source_wrapper",
+     "/f05_detail_contract/owner_binding_contract/role_pairs",
+     "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/different",
+     "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
+    ],
+    "role_pair_cause_shape": {
+     "kind": "owner_mismatch",
+     "target": "operand_owner Read.present.location",
+     "left": "operand_ownerのfull Read",
+     "right": "wrapper_ownerのfull Read",
+     "rule_pointer": "/f05_detail_contract/owner_binding_contract/role_pairs"
+    },
+    "expected_owner_binding_cause_order": [
+     "S4",
+     "S3",
+     "RoleOwnerPair[0]"
+    ],
+    "expectation_ja": "L5技術順序としてsource-wrapper Cause segment S4→S3の後、原順RoleOwnerPair[0] Causeを親列へ置く。target/left/right/rule_pointerはL5 writerの技術形であり、L9独立意味期待の追加条件ではない。"
+   }
   }
  ],
  "normal_function_oracles": [
