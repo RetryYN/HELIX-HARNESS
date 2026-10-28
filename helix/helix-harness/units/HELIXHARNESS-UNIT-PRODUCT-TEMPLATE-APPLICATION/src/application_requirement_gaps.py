@@ -445,14 +445,9 @@ def compare_requirement_gaps(context):
                 other_template_refs.append(tmpl["ref"])
     for univ in raw.get("universes") or []:
         if isinstance(univ, dict):
-            for tr in univ.get("template_refs") or []:
+            for tr in (univ.get("members") or []) + (univ.get("template_refs") or []):
                 if isinstance(tr, dict) and not _same_ref_ignoring_sha(tr, t_ref):
                     other_template_refs.append(tr)
-    proposal_refs = [
-        cp["ref"]
-        for cp in candidate_proposals
-        if isinstance(cp, dict) and isinstance(cp.get("ref"), dict)
-    ]
 
     for claim in raw.get("claims") or []:
         if not isinstance(claim, dict):
@@ -515,16 +510,7 @@ def compare_requirement_gaps(context):
 
         elif ckind in ("gap_resolved", "classification_complete"):
             foreign_template_basis = any(
-                not _same_ref_ignoring_sha(b, t_ref)
-                and not any(_same_ref_ignoring_sha(b, pr) for pr in proposal_refs)
-                and (
-                    any(_same_ref_ignoring_sha(b, otr) for otr in other_template_refs)
-                    or _same_ref_ignoring_sha(c_subj, t_ref)
-                    or (
-                        bool(t_ref.get("owner"))
-                        and b.get("owner") == t_ref.get("owner")
-                    )
-                )
+                any(_same_ref_ignoring_sha(b, otr) for otr in other_template_refs)
                 for b in c_basis
             )
             has_gaps = bool(candidate_proposals) or any(
