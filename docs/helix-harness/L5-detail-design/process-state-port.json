@@ -6531,6 +6531,71 @@
       "basic_typed_projection_rule": "L8 expected_projectionで固定basic case/hash・fieldごとのflat→typed写像と理由を記録する。known false/空集合/nullへの一般変換ではなく、承認済み義務に基づく合成否定表現の明示。L9原bytesを変更せず後続oracle比較は写像後の期待を使う。"
     }
   ],
+  "contracts": [
+    {
+      "id": "HARNESS-L5-003-B01",
+      "basic_design_ref": "HARNESS-L4-003-B01",
+      "requirement_ref": "HARNESS-L3-003-B01",
+      "function_refs": [
+        "HARNESS-L5-003-B01"
+      ],
+      "oracle_ref": "HARNESS-L8-003-B01"
+    },
+    {
+      "id": "HARNESS-L5-003-F01",
+      "basic_design_ref": "HARNESS-L4-003-F01",
+      "requirement_ref": "HARNESS-L3-003-F01",
+      "function_refs": [
+        "HARNESS-L5-003-F01"
+      ],
+      "oracle_ref": "HARNESS-L8-003-F01"
+    },
+    {
+      "id": "HARNESS-L5-003-F02",
+      "basic_design_ref": "HARNESS-L4-003-F02",
+      "requirement_ref": "HARNESS-L3-003-F02",
+      "function_refs": [
+        "HARNESS-L5-003-F02"
+      ],
+      "oracle_ref": "HARNESS-L8-003-F02"
+    },
+    {
+      "id": "HARNESS-L5-003-F03",
+      "basic_design_ref": "HARNESS-L4-003-F03",
+      "requirement_ref": "HARNESS-L3-003-F03",
+      "function_refs": [
+        "HARNESS-L5-003-F03"
+      ],
+      "oracle_ref": "HARNESS-L8-003-F03"
+    },
+    {
+      "id": "HARNESS-L5-003-F04",
+      "basic_design_ref": "HARNESS-L4-003-F04",
+      "requirement_ref": "HARNESS-L3-003-F04",
+      "function_refs": [
+        "HARNESS-L5-003-F04"
+      ],
+      "oracle_ref": "HARNESS-L8-003-F04"
+    },
+    {
+      "id": "HARNESS-L5-003-F05",
+      "basic_design_ref": "HARNESS-L4-003-F05",
+      "requirement_ref": "HARNESS-L3-003-F05",
+      "function_refs": [
+        "HARNESS-L5-003-F05"
+      ],
+      "oracle_ref": "HARNESS-L8-003-F05"
+    },
+    {
+      "id": "HARNESS-L5-003-N01",
+      "basic_design_ref": "HARNESS-L4-003-N01",
+      "requirement_ref": "HARNESS-L3-003-N01",
+      "function_refs": [
+        "HARNESS-L5-003-N01"
+      ],
+      "oracle_ref": "HARNESS-L8-003-N01"
+    }
+  ],
   "review_corrections": {
     "reviewed_head": "89e08fd64237c2b106c7611dd42625f9b72c35a4",
     "review_comment": "https://github.com/RetryYN/HELIX-HARNESS/pull/2993#issuecomment-6130558104",
