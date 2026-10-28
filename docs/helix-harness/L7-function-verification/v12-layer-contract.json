@@ -115,6 +115,22 @@
       ]
     }
   ],
+  "fixed_source_binding_rule_ja": "本L7文書内の test_groups[*].l8_refs、source_pins、primary_call_oracles 等で docs/helix-harness/L8-unit-verification/v12-layer-contract.json の /f02_constructor_oracles 配下を指す項目は、source_basis の fixed_L8_pre_relocation（移管前L8固定revision 4416ce66b09fb7ddba806552588e49472d39fb69 / cbe8c777c518df577c66628bc04caef3d8fd396e、file_sha256 ad4b6ec1e8cfc6193bd4b8f86651c552c3070d84a4bc6a0f2eef6639c054cc00）および本L7文書内の /f02_constructor_oracles 配下の対応JSON Pointerを解決先とする。revision未指定の現行L8参照（/cases/*、/extra_cases/*、/fixture_basis、/fixture_contract）は source_basis の fixed_L8_post_relocation（移管後L8固定revision 2c768d43f9fa87762e99cb6699f2892000bb423c、file_sha256 5c387dd38d0f734864fc6c5973b1be1a6d3b69042189a6ba723ba232d57aff54）を解決先とする。",
+  "source_basis": [
+    {
+      "document": "fixed_L8_pre_relocation",
+      "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+      "revision": "4416ce66b09fb7ddba806552588e49472d39fb69",
+      "prior_revision": "cbe8c777c518df577c66628bc04caef3d8fd396e",
+      "file_sha256": "ad4b6ec1e8cfc6193bd4b8f86651c552c3070d84a4bc6a0f2eef6639c054cc00"
+    },
+    {
+      "document": "fixed_L8_post_relocation",
+      "path": "docs/helix-harness/L8-unit-verification/v12-layer-contract.json",
+      "revision": "2c768d43f9fa87762e99cb6699f2892000bb423c",
+      "file_sha256": "5c387dd38d0f734864fc6c5973b1be1a6d3b69042189a6ba723ba232d57aff54"
+    }
+  ],
   "pair_relation_ja": [
     "各L7 groupは対応するL6 symbolへ結び、入力・期待・failureをL8およびL3/L10へ双方向に追跡する。L7はL8期待値を再生成せず、実装出力からoracleを作らない。",
     "実装前に対象revision・入力・whole expected・独立根拠を凍結する。L3/015とL10/015の順序はfreeze→意図した欠陥に対するRed実観測→同じ凍結oracleを満たす最小Green→意味を保つ局所Refactor。Redが無関係な構文/環境失敗なら対象欠陥のRedとして扱わない。",
