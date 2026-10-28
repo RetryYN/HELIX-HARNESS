@@ -2203,6 +2203,19 @@ def _check_negative_equivalence_mode(
     for class_id, owner_refs in l9_owner_refs.items():
         bind_class_owner_ref("L9", class_id, owner_refs)
 
+    l5_rows_by_key: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
+    for row in normalized_rows["L5"]:
+        l5_rows_by_key.setdefault(tuple(row["key"]), []).append(row)
+    for rows in l5_rows_by_key.values():
+        if len(rows) > 1:
+            for row in rows:
+                fail(
+                    "owner_ref",
+                    layer="L5",
+                    case_id=row["id"],
+                    reason="multiple_l5_rules_share_equivalence_key",
+                )
+
     l5_owner_refs_by_key: dict[tuple[Any, ...], set[tuple[str, str]]] = {}
     for row in normalized_rows["L5"]:
         if row.get("owner_ref") is not None:
