@@ -2984,6 +2984,37 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     for failure in result["failures"]
                 )
             )
+        # A valid but unrelated code still reaches comparison via ADD-41's
+        # declared negative state and L5 unit_case_refs, then fails because
+        # the corresponding four-layer rows are absent.
+        unrelated_code_mutation = copy.deepcopy(layers["L8"])
+        unrelated_code_mutation["additional_cases"][40]["code"] = (
+            "unrelated_negative_code"
+        )
+        unrelated_code_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=unrelated_code_mutation,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            all(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "additional_case_counterpart"
+                    and failure.get("layer") == layer
+                    and failure.get("actual_count") == 0
+                    for failure in unrelated_code_result["failures"]
+                )
+                for layer in ("L4", "L9", "L5")
+            )
+        )
+        self.assertFalse(unrelated_code_result["passed"])
         deleted_state = copy.deepcopy(layers["L8"])
         del deleted_state["additional_cases"][40]["expected_state"]
         deleted_state_result = dvc.check_neg_4way_match(
@@ -3176,6 +3207,25 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             any(
                 failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
                 for failure in collision_result["failures"]
+            )
+        )
+        private_missing_code = copy.deepcopy(layers["L8"])
+        del private_missing_code["additional_cases"][49]["code"]
+        private_missing_code_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=private_missing_code,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in private_missing_code_result["failures"]
             )
         )
 
