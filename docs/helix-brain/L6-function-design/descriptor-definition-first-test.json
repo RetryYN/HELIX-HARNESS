@@ -2494,5 +2494,48 @@
     },
     "projection_order": "L5 /failure_rules/68..74 及び /fn4_nonfill_claim_detail に従い、発火時は rule70 → rule71 → rule72 → rule74 の順、同一規則内は原出現locator順（/claims/{i} 又は descriptor/oracle_binding 順）で axes と findings を投影する。",
     "authority_effect": "none"
+  },
+  "fn9_public_field_value_evaluation_endpoint_preparation": {
+    "sibling_of": "n03_path_fn0_fn1_fn2_preparation",
+    "request": "WR91-BRAIN032-PUBLIC-ENDPOINT-IMPL",
+    "working_base": "5b0239514646a8e2a4c04f2ea3a075a6470531cf",
+    "design_closure_ref": "PR #3776 item 4 / PR #3782 L4 /field_value_applicability_contract/public_selected_field_evaluation_endpoint, L5 /functions/9 evaluate_selected_field_values_public, L8 /function_oracles/9 & /additional_unit_cases/41",
+    "scope": "BRAIN032公開端点 /functions/9 evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation の1行関数設計契約。既存F03評価（compare_values_and_applicability、evaluate_field_values_detail）と公開Comparisonの振る舞いを変えず、単一入力型F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}を受け取り内部evaluate_field_values_detail(context)へちょうど1回委譲し、3-member閉型F03Evaluation（comparison, rows, problems）を変換・欠落なしにそのまま返す。",
+    "contract_pins": [
+      {
+        "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+        "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50",
+        "pointers": [
+          "/field_value_applicability_contract/public_selected_field_evaluation_endpoint",
+          "/field_value_applicability_contract/closed_types/F03BasicContext",
+          "/field_value_applicability_contract/closed_types/F03Evaluation"
+        ]
+      },
+      {
+        "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+        "sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0",
+        "pointers": [
+          "/functions/9",
+          "/field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint"
+        ]
+      }
+    ],
+    "function_row": {
+      "id": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "symbol": "evaluate_selected_field_values_public",
+      "pointer": "/functions/9",
+      "visibility": "public",
+      "input": "F03BasicContext",
+      "output": "F03Evaluation",
+      "effect": "none",
+      "delegation_target": "evaluate_field_values_detail(context:F03BasicContext)",
+      "delegation_count": 1,
+      "public_projection": "identity(detail)（comparison, rows, problemsの3-member閉型を変換・欠落なしに返し、3-member closed_private_caller_resultを露出しない）"
+    },
+    "target_files": [
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/values_applicability.py"
+    ],
+    "authority_effect": "none"
   }
 }

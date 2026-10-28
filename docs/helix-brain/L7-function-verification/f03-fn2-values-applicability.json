@@ -93,6 +93,20 @@
       "pointer": "/field_value_applicability_detail_verification",
       "function_ref": "HELIXBRAIN-L5-032-compare_values_and_applicability",
       "role": "same_walk_private_detail_and_seven_contrasts"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/function_oracles/9",
+      "function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "role": "public_selected_field_evaluation_endpoint_normal_oracle"
+    },
+    {
+      "id": "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT",
+      "path": "docs/helix-brain/L8-unit-verification/template-semantic-supply.json",
+      "pointer": "/additional_unit_cases/41",
+      "function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "role": "public_selected_field_evaluation_endpoint_single_delegation_and_equivalence"
     }
   ],
   "upstream_design_refs": [
