@@ -1819,8 +1819,19 @@ def _check_negative_equivalence_mode(
                 ("expected_axis", class_row["axis"]),
                 ("expected_state", class_row["state"]),
             ):
+                if field not in row:
+                    continue
                 value = row.get(field)
-                if not valid_axis(value):
+                if field == "expected_axis" and not valid_axis(value):
+                    fail(
+                        field,
+                        layer=layer,
+                        case_id=l8_id,
+                        reason="case_class_invariant_missing_or_invalid",
+                    )
+                elif field == "expected_state" and (
+                    not isinstance(value, str) or not value.strip()
+                ):
                     fail(
                         field,
                         layer=layer,
@@ -1835,27 +1846,39 @@ def _check_negative_equivalence_mode(
                         reason="case_class_invariant_differs_from_class",
                     )
 
-            side_effect_count = row.get(
-                "side_effect_count", row.get("expected_side_effect_count")
-            )
-            if (
-                isinstance(side_effect_count, bool)
-                or not isinstance(side_effect_count, int)
-                or side_effect_count != 0
-                or side_effect_count != class_row["side_effect_count"]
+            side_effect_fields = [
+                field
+                for field in ("side_effect_count", "expected_side_effect_count")
+                if field in row
+            ]
+            if len(side_effect_fields) == 2 and not json_values_equal(
+                row[side_effect_fields[0]], row[side_effect_fields[1]]
             ):
                 fail(
                     "side_effect_count",
                     layer=layer,
                     case_id=l8_id,
-                    reason="case_class_invariant_not_zero_or_differs_from_class",
+                    reason="case_side_effect_count_aliases_disagree",
                 )
+            if side_effect_fields:
+                side_effect_count = row[side_effect_fields[0]]
+                if (
+                    isinstance(side_effect_count, bool)
+                    or not isinstance(side_effect_count, int)
+                    or side_effect_count != class_row["side_effect_count"]
+                ):
+                    fail(
+                        "side_effect_count",
+                        layer=layer,
+                        case_id=l8_id,
+                        reason="case_class_invariant_not_zero_or_differs_from_class",
+                    )
 
         check_case_invariants(l8_row, class8, "L8")
         check_case_invariants(l9_row, class9, "L9")
 
         property8 = l8_row.get("expected_property")
-        if not isinstance(property8, dict):
+        if "expected_property" in l8_row and not isinstance(property8, dict):
             fail(
                 "equivalence_key",
                 layer="L8",
@@ -1863,10 +1886,9 @@ def _check_negative_equivalence_mode(
                 reason="case_observation_missing_or_invalid",
             )
             continue
-        case_classification8 = property8.get("condition")
-        case_codes8 = property8.get("finding_codes")
-        if case_classification8 != class8["partial_key"][0] or case_codes8 != list(
-            class8["partial_key"][1]
+        if isinstance(property8, dict) and (
+            property8.get("condition") != class8["partial_key"][0]
+            or property8.get("finding_codes") != list(class8["partial_key"][1])
         ):
             fail(
                 "equivalence_key",
@@ -2425,7 +2447,7 @@ def _check_negative_equivalence_mode(
             "owner_ref(kind, id); L5 function_ref wins over contract_ref",
         ],
         "class_invariants": [
-            "class_rows_and_negative_case_rows",
+            "class_rows_only; negative cases inherit by negative_class_ref",
             "expected_axis",
             "expected_state",
             "side_effect_count=0",
@@ -2442,9 +2464,8 @@ def _check_negative_equivalence_mode(
             "expected",
             "expected_preserved",
             "integration_case_ref",
-            "expected_axis↔class",
-            "expected_state↔class",
-            "side_effect_count=0↔class",
+            "negative_class_ref→class key (case key fields optional; if present, exact match)",
+            "L8.expected_property (optional class projection; if present, exact match)",
         ],
         "case_references": [
             "L8.rule_ref(string ID)→L5.failure_rules.id",

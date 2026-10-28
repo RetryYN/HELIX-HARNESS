@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "b4b832290999d6074546be4f3b54589cc8fbf7e980e3b204dfbd80d411420416",
-      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
+      "sha256": "4a1499c9a2e022de9c36a30eb73dd024a1fe9e5b74e356fdc9f216248c97851b",
+      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeで、case key省略時のclass参照導出・明示不一致の検出を含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
