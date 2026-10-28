@@ -922,7 +922,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/0/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-name_identity_inference",
@@ -947,7 +949,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/1/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-identity_conflict",
@@ -972,7 +976,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/2/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-identity_missing",
@@ -997,7 +1003,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/3/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-location_identity_change",
@@ -1027,7 +1035,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/4/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-hash_identity_inference",
@@ -1052,7 +1062,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/5/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-location_as_semantic",
@@ -1082,7 +1094,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/6/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-semantic_as_location",
@@ -1117,7 +1131,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/7/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-semantic_identity_change",
@@ -1147,7 +1163,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/8/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-semantic_source_missing",
@@ -1172,7 +1190,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/9/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-semantic_impact_missing",
@@ -1207,7 +1227,9 @@
         "side_effect_count": 0,
         "backflow_owner": "trace_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/10/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-revision_conflict",
@@ -1232,7 +1254,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/11/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-history_mapping_missing",
@@ -1257,7 +1281,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/12/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-lineage_endpoint_missing",
@@ -1287,7 +1313,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/13/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-relation_kind_missing",
@@ -1312,7 +1340,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/14/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-base_revision_mismatch",
@@ -1342,7 +1372,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/15/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-lineage_target_missing",
@@ -1372,7 +1404,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/16/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-lineage_as_authority_transfer",
@@ -1397,7 +1431,9 @@
         "side_effect_count": 0,
         "backflow_owner": "authority_record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/17/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-scope_cross_binding",
@@ -1442,7 +1478,9 @@
         "side_effect_count": 0,
         "backflow_owner": "record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/18/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-authority_mapping_missing",
@@ -1482,7 +1520,9 @@
         "side_effect_count": 0,
         "backflow_owner": "authority_record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/19/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-oracle_mapping_missing",
@@ -1517,7 +1557,9 @@
         "side_effect_count": 0,
         "backflow_owner": "oracle_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "oracle_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/20/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-typed_edge_mapping_missing",
@@ -1552,7 +1594,9 @@
         "side_effect_count": 0,
         "backflow_owner": "trace_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/21/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-authority_mapping_unknown",
@@ -1577,7 +1621,9 @@
         "side_effect_count": 0,
         "backflow_owner": "authority_record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/22/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-oracle_revision_mismatch",
@@ -1602,7 +1648,9 @@
         "side_effect_count": 0,
         "backflow_owner": "oracle_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "oracle_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/23/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-typed_edge_kind_mismatch",
@@ -1627,7 +1675,9 @@
         "side_effect_count": 0,
         "backflow_owner": "trace_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "trace_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/24/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-reference_meaning_mismatch",
@@ -1652,7 +1702,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/25/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-reference_substitution",
@@ -1677,7 +1729,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/26/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-unselected_operation",
@@ -1702,7 +1756,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/27/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-local_as_global_completion",
@@ -1727,7 +1783,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/28/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-global_stop_added",
@@ -1752,7 +1810,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/29/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-record_as_persistence",
@@ -1777,7 +1837,9 @@
         "side_effect_count": 0,
         "backflow_owner": "persistence_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "persistence_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/30/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-fixture_as_rollback",
@@ -1802,7 +1864,9 @@
         "side_effect_count": 0,
         "backflow_owner": "persistence_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "persistence_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/31/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-record_as_permission",
@@ -1827,7 +1891,9 @@
         "side_effect_count": 0,
         "backflow_owner": "authority_record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/32/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-record_as_acceptance",
@@ -1852,7 +1918,9 @@
         "side_effect_count": 0,
         "backflow_owner": "PO"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "PO",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/33/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-legacy_completion_claim",
@@ -1877,7 +1945,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/34/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-owner_boundary_change",
@@ -1902,7 +1972,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/35/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-new_precondition",
@@ -1927,7 +1999,9 @@
         "side_effect_count": 0,
         "backflow_owner": "harness053_requirement_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "harness053_requirement_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/36/decision/backflow_owner"
     },
     {
       "id": "HARNESS-L5-053-R-authority_procedure_added",
@@ -1952,7 +2026,9 @@
         "side_effect_count": 0,
         "backflow_owner": "authority_record_owner"
       },
-      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。"
+      "preservation": "入力原Ref/bindingと原記録axisを保持。claim判定で原記録axisを上書きせず、無関係なrelationの既知状態を保持。",
+      "backflow_owner": "authority_record_owner",
+      "basis_ref": "docs/helix-harness/L5-detail-design/semantic-asset-lineage.json#/failure_rules/37/decision/backflow_owner"
     }
   ],
   "determinism": "注入snapshotのみを参照、時計/env/network/実filesystem操作なし。出力はasset ID/semantic revision/relation ID/axis/owner/source RefのUnicode scalar昇順。保存locatorを解決せず、scope違いをsortで併合しない。",
