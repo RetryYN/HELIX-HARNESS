@@ -1387,7 +1387,7 @@
         "JSON意味sourceとderived_view/explanationを別参照で保持。表示変更/生成成功から意味ID/版/運用stateの更新を成立させない。",
         "measurement/completion/negative oracleのsubject/義務/版/scope/観点/対oracleを個別照合。無関係義務/異oracle版はconflict、生成成功だけのcompletion意味はunknown。",
         "JSON measurement/completion欠落はviewに値があってもmissingを保持する。BRAINが製品閾値を創作せず原値unknownをCOREへ返す。",
-        "L4 /oracle_view_boundary_contractの有限carryはprivate compare_oracle_and_view_boundary_detail(context,frame)へ委譲する。raw runnerは同vの既読frame.target_readsを渡してtarget/intentを再呼出ししない。公開fn4 wrapperは既存fn6方式で同validatedのwalk/uses/frameを一回構成して同detailへ渡す。Context3とComparison4は維持し、非null原提案のresolved非対象住所だけをこの枝で扱う。"
+        "L4 /oracle_view_boundary_contractとL5 /fn4_nonfill_claim_detailに従い、private detailへ同context/frameを渡す。fill_definitionだけ既存target_readsを消費し、意味更新/閾値Claimを既存rule70/74へ結び、他producer kindは原値保持で担当へ残す。未定義kind/未形成operandはtyped原unknown保持又はComparison非return停止。同call walk/frameは一回、Context3/Comparison4/effect noneを維持する。"
       ],
       "failure_rules": [
         "HELIXBRAIN-L5-032-R-view_measurement_repair",
@@ -7897,7 +7897,7 @@
         },
         "route_reason_templates": "/source_return_contract/descriptor_target_dataflow/definition_meaning_core/serialization_completion/use_route_reason_literals",
         "route_reason_authority_ja": "route_reasonの出力字面は、本L5文書内のroute_reason_templatesが示すJSON Pointer先の4 literalを唯一の正本とする。この文字列は同文書内の契約参照であり、型用private_contract_pointerの解決規則を拡張しない。既存のroute enum・判定順・predicate・原state・source資格・意味対応は変更しない。出力の字面の出典を指定するもので、上流のauthority（承認状態）ではない。",
-        "fn4_read_binding": "fn4_detailは同runner/direct wrapper内の既存frame.target_reads全原値から非null Claimに対応するreadを消費する。state/matches/occurrences/problemsを再計算又は部分選択せず、元frameの全4fieldを保持する。fn4はtarget_reads以外のframe内容を新predicateへ使わず、public引数/返却fieldを増やさない。"
+        "fn4_read_binding": "fn4 detailは原fill_definitionに限り既存frame.target_readsを消費する。nonfillは/fn4_nonfill_claim_detail/dispatchへ進め、target口を常時必須にしない。全4fieldと原readを保存し再計算/部分選択なし。公開引数/返却fieldは追加しない。"
       },
       "public_output": {
         "owner_rules": {
@@ -11412,7 +11412,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "b1f7ec167cb6d8e562b1ea3cc2d0d772eb14182ecee83542f1455ca826d5c835",
+        "sha256": "51f1279bda601caf6590688e2dcfe5bbfad53553d53466da41488da85f79ed2f",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11420,7 +11420,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "3b5d3568fa8a6d60f55c025358f85c7f2b66fae2e35db7adbff50efbbf5c2628"
+        "sha256": "c66ae91b359098360cd3680ed27f84dbb72181f1e7446dffad400fc819bf0a52"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
@@ -14029,5 +14029,220 @@
       "failure_ja": "UTW014/020/021とPR3664 R1 M3/PR3665 R1 M1を起点に、欠落→空・部分不足隠蔽・自己申告・二重所属・同identity/SHA差のdistinct誤認を避ける。carrier coreの原joined等を83predicateのunknownへ書換えず分けて保持する。"
     },
     "limits_ja": ["有限24 Claim入力の全返却とP3a dispatch対照1の予定であり、functions/5一般文のaccepted/matureとrule 83のaccepted条件の語彙整合はvocabulary_alignment_and_default_reentryのunknown/knowledge_owner既定再入に従う。全任意入力/形成不能/型外/実scope妥当性/原stage-body全域/実資格/独立性/実工程の採否・運用遷移は閉じない。","source役割宣言と実資格/実工程、Ref供給と独立検証実施、scope非空と十分性を区別する。実関数/helper/runtime/CI/旧testは未実行。","既存要求意味を変更せず新gate/遷移/許可を作らない。凍結/全fn5/Issue完了を主張しない。"]
+  },
+  "fn4_nonfill_claim_detail": {
+    "id": "HELIXBRAIN-L5-032-FN4-NONFILL-CLAIM-DETAIL",
+    "bound_public_function": "compare_oracle_and_view_boundary",
+    "input_boundary": "同immutable OracleContext3と同validated由来の既読DescriptorTargetCallFrame。公開署名/effect none/Comparison4を維持し、target/intentの再呼出しなし。",
+    "dispatch": [
+      {
+        "kind": "fill_definition",
+        "route": "既存finite carryの対象住所readを同frameから再利用する。明示null/非null、resolved/unknown/conflictの原区別と既存nonnull_claim_target_reuseを維持する。"
+      },
+      {
+        "kind": "meaning_revision_update",
+        "rule_pointer": "/failure_rules/70",
+        "operand": "F05-NEG-03の意味更新報告を表す既存Claim.kind。basis_refsから実view sourceを読み、独立のsemantic_json原identity/revision/stateと対照する。kind又はsemantic_json_change_ref=nullだけではpredicate trueにしない。",
+        "when_true": "既存meaning_update_claim/conflict/knowledge_owner。subject/Bindingは当該原Claim出現、Refs/reasonは実predicate witness。"
+      },
+      {
+        "kind": "measurement_threshold",
+        "rule_pointer": "/failure_rules/74",
+        "operand": "F06-NEG-04の汎用既定閾値提案を表す既存Claim.kind。generic_defaultという原提案originと実measurement owner値unknownを別に読む。kindや値nullだけでpredicate trueにしない。",
+        "when_true": "既存measurement.value/unknown/core_owner。原ValueFactと原Claimの同subject/full Binding対応を保持し、製品閾値又は代替値を生成しない。"
+      },
+      {
+        "kind": "既存の他producer担当kind",
+        "route": "既存claim_intent_protocol及びclaim_boundary_projection_contractで担当が明示されたkindは、その担当producerが判定する。FN4のClaim operandを形成せず、原Claim全値・順・locatorを保持する。FN4で違反又は全体nonfireを認定しない。source/descriptor/OracleBinding/ValueFact由来の別FN4 operandは独立に照合する。",
+        "existing_case_kind_routes": [
+          {
+            "kind": "absolute_product_choice",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/0"
+            ],
+            "l8_case_pointers": [
+              "/cases/0/negative_cases/0"
+            ]
+          },
+          {
+            "kind": "design_completion",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/78"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/3"
+            ]
+          },
+          {
+            "kind": "no_gaps",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/92"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/0"
+            ]
+          },
+          {
+            "kind": "os_obligation_discharge",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/79"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/4"
+            ]
+          },
+          {
+            "kind": "product_template_adoption",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/76"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/1"
+            ]
+          },
+          {
+            "kind": "requirements_agreement",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/77"
+            ],
+            "l8_case_pointers": [
+              "/cases/8/negative_cases/2"
+            ]
+          },
+          {
+            "kind": "return_definition_known",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/96",
+              "/failure_rules/98"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/4",
+              "/cases/12/negative_cases/6"
+            ]
+          },
+          {
+            "kind": "return_field_applicable",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/99"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/7"
+            ]
+          },
+          {
+            "kind": "return_received",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/101"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/9"
+            ]
+          },
+          {
+            "kind": "return_source_observed",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/100"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/8"
+            ]
+          },
+          {
+            "kind": "return_value_supplied",
+            "producer_pointer": "/functions/7",
+            "rule_pointers": [
+              "/failure_rules/97"
+            ],
+            "l8_case_pointers": [
+              "/cases/12/negative_cases/5"
+            ]
+          },
+          {
+            "kind": "same_template_identity",
+            "producer_pointer": "/functions/3",
+            "rule_pointers": [
+              "/failure_rules/66"
+            ],
+            "l8_case_pointers": [
+              "/cases/5/negative_cases/8"
+            ]
+          }
+        ],
+        "decoder_kind_routes": "claim_intent_detail/decoder_rowsの既存7kindは既存担当へ残す。fill_definitionだけはdispatch/0を優先する。これらの既存decoder定義は変更しない。",
+        "boundary": "上表12kindは既存rule-linked L8 logical caseから担当を選ぶ032内部の技術dispatchである。一般ClaimIntent decoderへ登録又は全kind enum化するものではない。FN4 operand無しという判定だけで担当ruleのpredicate true/falseを決めない。未知の別kindをこれらの類似名で分類しない。"
+      },
+      {
+        "kind": "上記以外の未定義kind又はdispatch不能",
+        "route": "unknown_reentry。kindがopen stringであることを新たなdecode拒否にせず、元validated/Claim/既読frameを保持する。未知kindからaxis/subject/owner事実を創作しない。"
+      }
+    ],
+    "claim_carrier": {
+      "unchanged_schema": "Claimはsubject_ref,binding,actor,kind,proposed_value,basis_refsの既存6fieldだけ。以下は032のRawValue内部表現でありtop-level field又は製品要求を追加しない。B8 logical mutationは完全なserialized Claimではない。",
+      "meaning_revision_update": "proposed_valueをobjectとしsemantic_json_change_refの原presenceを読む。NEG03のlogical nullはこのobject内の明示nullへ写す。basis_refsは実derived_viewのtyped Refを供給する。Refの字面changed-viewを実source/資格/未変更の証拠にしない。",
+      "measurement_threshold": "proposed_valueをobjectとしbasis_originの原presenceを読む。NEG04のlogical basis_origin=generic_defaultをこのobject内の同literalへ写す。元measurement ValueFact.value=nullは独立した原recordに保持する。任意の数値閾値や新しいClaim fieldを要求しない。",
+      "presence": "object外、member absent/null/型外、別literalを互いに同一化しない。falseを証明できない未形成operandはunknown_returnへ渡し、InputIssue又は違反を新設しない。"
+    },
+    "rule_operands": [
+      {
+        "rules": [
+          68,
+          69
+        ],
+        "read": "既存definition carryと実derived_view補修witness。generic missing単独では非発火。measurement/completion subjectと同call Bindingが必要。"
+      },
+      {
+        "rules": [
+          70
+        ],
+        "read": "当該Claimのtyped subject/full Binding、basisに対応した実view変更read、独立semantic_jsonの原identity/revision/state。semantic_json_change_ref=nullだけでは未変更を証明しない。変わった根拠がviewだけで意味更新を報告している時だけrule70。"
+      },
+      {
+        "rules": [
+          71,
+          72
+        ],
+        "read": "既存oracle_binding_correspondenceのtyped subject/適用義務と実OracleBinding。subject/Binding/版/scope/観点/根拠の原値を保持し、同名や配列先頭による対応を作らない。"
+      },
+      {
+        "rules": [
+          73
+        ],
+        "read": "既存rule73_condition_interpretationのtyped completion operandと原生成記録。別kindのnested生成record又は生成成功の件数だけでcompletionへ付け替えない。"
+      },
+      {
+        "rules": [
+          74
+        ],
+        "read": "当該Claimと実measurement ValueFactを同typed subject/full Bindingで対応し、owner値unknownとproposed_value.basis_origin=generic_defaultという根拠無し提案を独立に確認する。原basisの実owner意味資料がある場合はそれを消して根拠無しにしない。null値又はgeneric_default字面だけでは発火しない。"
+      }
+    ],
+    "order": "同call carryを先に全値・順で保存し、原Claim出現順にdispatchする。全operandを元locator順で保持し、predicate trueの7 ruleだけ既存rule表順でprojectionする。原重複・absent/[]/nullを保持する。1件の未確定を別Claim成功で消さない。",
+    "unknown_return": {
+      "typed_row": "既存のtyped subject/Binding/axisと原unknown rowが成立している場合は、その原row全値を保持する。7 ruleのpredicateがtrueなら既存rule_projection_tableだけを使う。predicate未確定を新しい違反Finding又はfalseへ変えない。",
+      "nonreturn": "typed subject/Binding又は既存axisを形成できずunknownを既存Comparisonで表せない場合、FN4 detailはComparisonを返さず既存NotImplementedErrorで停止する。原OracleContext/validated/InputIssue/frameを呼出側に保持し、Backflow HELIXBRAIN-L6-032-FN4-ORACLEへ戻す。空Comparison、仮Ref、新cause又は新公開型は作らない。",
+      "owner": "既存ruleのownerを優先する。semantic/oracle又は未定義kindはknowledge_owner、measurement値/閾値はcore_owner。実行時の原資料供給・訂正先であり、設計をPO待ちにする指定ではない。",
+      "reentry": "原owner資料の供給・訂正後、同Binding/revision/scopeの原入力を再評価する。原readやInputIssueを消さず、stopを評価成功又はdomain違反として集計しない。"
+    },
+    "stop_protocol": {
+      "operation": "非return分岐では既存標準例外NotImplementedErrorをraiseする。messageはF05/F06/unknown_reentry/<branch>; owner=<existing-owner>; Backflow HELIXBRAIN-L6-032-FN4-ORACLE。branchはdispatch/subject/binding/witness/contextの局所停止箇所であり新domain causeではない。",
+      "preservation": "raise前に原context/frameを変更しない。公開callerは自身が保有する原raw/OracleContextを再入資料とする。wrapper内部の一時frame objectを公開callerへ渡す要求ではない。訂正後の再入callは同Binding/revision/scopeの訂正済み原入力から既存手順で新frameを一回構成する。例外文字列へ原PII/source本文を埋め込まない。wrapper/runnerともComparisonを組み立てて成功returnへ置換しない。",
+      "typed_unknown": "原typed unknown rowがあることだけで未形成の別operandを解決しない。未解決operandをComparisonで表せなければnonreturnを優先する。validated.input=nullの既存decode不能経路だけは既存null_inputに従い、評価成功とは扱わない。"
+    },
+    "pair_refs": [
+      "HELIXBRAIN-L8-032-F05-NEG-03",
+      "HELIXBRAIN-L8-032-F06-NEG-04",
+      "HELIXBRAIN-L8-032-NORMAL-compare_oracle_and_view_boundary"
+    ],
+    "scope": "設計pairのみ。製品source、保存raw、L7期待値、execution_state、承認済みL3、固定source_pinsを変更しない。"
   }
 }
