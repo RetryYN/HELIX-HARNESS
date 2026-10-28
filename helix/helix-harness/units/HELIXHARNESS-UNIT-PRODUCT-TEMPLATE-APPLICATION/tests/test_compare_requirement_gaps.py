@@ -249,8 +249,14 @@ class TestCompareRequirementGaps(unittest.TestCase):
         if cid == "HARNESS-L8-009-F05-NEG-05":
             raw = _resolve_recipe_raw("CORE-SUPPORT-GAP-FOUR")
             assert target == "claims" and op == "append"
-            other_template_ref = copy.deepcopy(raw["binding"]["template_ref"])
-            other_template_ref["identity"] = "SYNTHETIC-T-other-TE"
+            other_template_ref = copy.deepcopy(
+                next(
+                    t["ref"]
+                    for t in raw["templates"]
+                    if t["ref"]["identity"]
+                    != raw["binding"]["template_ref"]["identity"]
+                )
+            )
             raw.setdefault("claims", []).append(
                 {
                     "ref": {
@@ -725,6 +731,33 @@ class TestCompareRequirementGaps(unittest.TestCase):
                     matching,
                     f"Expected finding {neg['expected_classification']} in renamed {cid}",
                 )
+
+        # 3. Control test: non-template basis (field_inputs[0].ref / definition_refs[0]) must NOT emit other_template_compensation
+        for non_tmpl_basis_fn in (
+            lambda r: copy.deepcopy(r["field_inputs"][0]["ref"]),
+            lambda r: copy.deepcopy(r["field_inputs"][0]["definition_refs"][0]),
+        ):
+            control_raw = _rename_all_identifiers(
+                self._apply_f05_mutation(
+                    self.f05_negative_cases["HARNESS-L8-009-F05-NEG-05"]
+                )
+            )
+            control_raw["claims"][-1]["proposed_value"] = {
+                "note": "neutral-non-template-control"
+            }
+            control_raw["claims"][-1]["basis_refs"] = [non_tmpl_basis_fn(control_raw)]
+            _rebuild_source_graph(control_raw)
+            control_res, _, _, _ = self._run_gaps(control_raw)
+            comp_findings = [
+                f
+                for f in control_res["findings"]
+                if f["code"] == "other_template_compensation"
+            ]
+            self.assertEqual(
+                comp_findings,
+                [],
+                "Non-template basis_refs must not emit other_template_compensation",
+            )
 
 
 if __name__ == "__main__":
