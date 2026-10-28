@@ -2,7 +2,7 @@
   "schema": "design-verification-declaration-manifest.v1",
   "slice_id": "D-OS002-WR159-FN00-FN13",
   "request_id": "WR159-OS002-FN00-FN13-PAIR-FREEZE",
-  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3862#issuecomment-6478499724",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3866#issuecomment-6478953400",
   "legacy_and_failure_basis": {
     "derivation_kind": "semantic_rederivation",
     "legacy_assets": [
@@ -95,26 +95,107 @@
       "l10_pointer": "L10F#/cases/11",
       "l4_pointer": "L4#/contracts/5",
       "l9_pointer": "L9#/cases/5",
-      "l3_clause": "F04のCORE適用判定、source projection/member観測、未確定・未評価・未実行境界を上流sourceと出力参照へ追跡し、OS独自の適用判断を加えない。",
+      "l3_clause": "CORE009のrequired/conditional/N/A/unresolvedを出力参照へ結ぶ。",
       "l5_pointers": [
-        "L5#/functions/0",
-        "L5#/functions/13",
-        "L5#/functions/0/unit_case_refs",
-        "L5#/functions/13/unit_case_refs",
-        "L5#/functions/0/f04_candidate_decode_binding",
-        "L5#/functions/13/profile_dispatch_binding",
-        "L5#/f04_source_projection_profile_detail",
-        "L5#/f04_source_member_detail"
+        "L5#/functions/6/algorithm/0",
+        "L5#/functions/17/algorithm/0"
       ],
       "l8_pointers": [
-        "L8#/function_cases/0",
-        "L8#/function_cases/13",
-        "L8#/cases/5",
-        "L8#/function_cases/15",
-        "L8#/function_cases/16",
-        "L8#/dispatch_boundary_cases/cases/0",
-        "L8#/dispatch_boundary_cases/cases/1",
-        "L8#/f04_source_member_verification/whole_cases"
+        "L8#/function_cases/6",
+        "L8#/normal_fixtures/5",
+        "L8#/cases/5/negative_cases/4"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/5/output",
+        "L4#/contracts/5/required_input_meanings/0"
+      ],
+      "l9_pointers": [
+        "L9#/cases/5/expected_observation"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L3F#/requirements/11",
+      "l10_pointer": "L10F#/cases/11",
+      "l4_pointer": "L4#/contracts/5",
+      "l9_pointer": "L9#/cases/5",
+      "l3_clause": "根拠・判定者・対象revision・再評価条件を出力参照へ結ぶ。",
+      "l5_pointers": [
+        "L5#/failure_rules/29",
+        "L5#/failure_rules/30",
+        "L5#/failure_rules/31",
+        "L5#/failure_rules/32"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5/negative_cases/0",
+        "L8#/cases/5/negative_cases/1",
+        "L8#/cases/5/negative_cases/2",
+        "L8#/cases/5/negative_cases/3"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/5/required_input_meanings/0",
+        "L4#/contracts/5/negative_classifications/0",
+        "L4#/contracts/5/negative_classifications/1",
+        "L4#/contracts/5/negative_classifications/2",
+        "L4#/contracts/5/negative_classifications/3"
+      ],
+      "l9_pointers": [
+        "L9#/cases/5/negative_cases/0",
+        "L9#/cases/5/negative_cases/1",
+        "L9#/cases/5/negative_cases/2",
+        "L9#/cases/5/negative_cases/3"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3F#/requirements/11",
+      "l10_pointer": "L10F#/cases/11",
+      "l4_pointer": "L4#/contracts/5",
+      "l9_pointer": "L9#/cases/5",
+      "l3_clause": "conditional未充足、義務の未実施/不合格/未評価を分ける。",
+      "l5_pointers": [
+        "L5#/contracts/5/behavior",
+        "L5#/failure_rules/33",
+        "L5#/failure_rules/35",
+        "L5#/failure_rules/36"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5/negative_cases/4",
+        "L8#/cases/5/negative_cases/6",
+        "L8#/cases/5/negative_cases/7"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/5/behavior",
+        "L4#/contracts/5/negative_classifications/4",
+        "L4#/contracts/5/negative_classifications/6",
+        "L4#/contracts/5/negative_classifications/7"
+      ],
+      "l9_pointers": [
+        "L9#/cases/5/negative_cases/4",
+        "L9#/cases/5/negative_cases/6",
+        "L9#/cases/5/negative_cases/7"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L3F#/requirements/11",
+      "l10_pointer": "L10F#/cases/11",
+      "l4_pointer": "L4#/contracts/5",
+      "l9_pointer": "L9#/cases/5",
+      "l3_clause": "OSが適用規則やN/A判断を新設しない。",
+      "l5_pointers": [
+        "L5#/contracts/5/behavior",
+        "L5#/failure_rules/34"
+      ],
+      "l8_pointers": [
+        "L8#/cases/5/negative_cases/5"
+      ],
+      "l4_pointers": [
+        "L4#/contracts/5/behavior",
+        "L4#/contracts/5/negative_classifications/5"
+      ],
+      "l9_pointers": [
+        "L9#/cases/5/negative_cases/5"
       ]
     }
   ],
@@ -296,7 +377,7 @@
   "authority_effect": "none",
   "source_main": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
   "request_base_sha": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
-  "recorded_at_utc": "2026-10-28T19:41:25+00:00",
+  "recorded_at_utc": "2026-10-28T19:50:14+00:00",
   "pins": {
     "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
     "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
@@ -336,8 +417,8 @@
     "L8_f04_original_additional_branch_probes": 3
   },
   "pointer_resolution_summary": {
-    "checked_count": 93,
-    "expanded_target_count": 93,
+    "checked_count": 134,
+    "expanded_target_count": 134,
     "unresolved_count": 0,
     "passed": true
   },
@@ -446,6 +527,24 @@
     {
       "check": "CHK-L3-OBLIGATION-MAP",
       "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
       "status": "pending_human_or_independent_semantic_review",
       "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
     }
