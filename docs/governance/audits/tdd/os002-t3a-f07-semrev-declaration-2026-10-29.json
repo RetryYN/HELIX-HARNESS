@@ -187,7 +187,7 @@
       "owner_and_reentry": {
         "owner": "CORE",
         "unresolved": "L5 F07RecordInput/algorithmには再評価待ちを表す専用member/valueもCORE資料の取得路も記載されていない。L7にOS002 FN09専用expected_materialもない。したがってU-IDは宣言的であり、実行可能な負例ではない。",
-        "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、承認済みL5入力型に反映したうえで、L7がFN09用expected_materialを独立に記録した後に再開する。affected/unknownやmigration receipt欠落から再評価待ちを推定しない。"
+        "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、対象L5設計のF07入力型へ反映した差分が独立reviewで確認され、L7がFN09用expected_materialを独立に記録した後に再開する。affected/unknownやmigration receipt欠落から再評価待ちを推定しない。新たな承認条件は設けない。"
       }
     }
   ],

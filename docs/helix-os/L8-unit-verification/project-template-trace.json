@@ -5171,7 +5171,7 @@
           "owner_material_coverage": "未形成条件: L5 F07RecordInput.CORE_impacts.stateはField<string>であるが、F07 algorithmはaffected/unknown/unaffectedを指定し、再評価待ちを直接表すnative member/valueやCORE owner出力の取得路を記述していない。F07専用L7 expected_materialも確認できない。したがって本U-IDは要求の宣言的追跡のみで、再評価待ちの実入力や挙動を表すケースは未形成・未実行である。",
           "owner_and_reentry": {
             "owner": "CORE",
-            "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を示し、承認済みL5 F07 input typeに反映され、L7 expected_materialで期待が明示された後に再照合・再凍結する。OS002は状態を推定しない。"
+            "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、対象L5設計のF07入力型へ反映した差分が独立reviewで確認され、L7がFN09用expected_materialを独立に記録した後に再照合・再凍結する。OS002は状態を推定せず、新たな承認条件を設けない。"
           }
         }
       ],
