@@ -1,0 +1,465 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T2b",
+  "request_id": "WR-CLAUDE-CHECKER-RECONCILE-FREEZE-L8-3510-20261028-83",
+  "resolves_disposition_ref": "docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json#/upper_expectation_rederivation/derived_expectations_and_t2b_coverage",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6447665479",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 30, 37, 58, 80-86",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": "110-147",
+        "sha256": "063195290ff77a56cb3f88f8be2db71f66f0df0070ba3c871cdca5a3b64ab313"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "原instance/source/義務traceとscope分離、unknownをfalseや完了へ丸めないこと、局所原因とowner/re-entryを保持する。",
+    "change": "設計意味・public/private境界・既存期待は変えず、checkerが既存E1..E4のL8対応を機械的に辿れるpointerを補う。",
+    "reason": "historical freezeのE1..E4はL5参照を含む説明文だが、機械可読なL8 pointerが空だった。既存U-ID行と既存L5契約への参照を記録し、このpointer gapだけを解消する。新しい期待・U-ID・実行成立は追加しない。"
+  },
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/14",
+        "function_id": "HELIXOS-L5-002-decode_f04_source_projection_profile",
+        "symbol": "decode_f04_source_projection_profile"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/15",
+        "function_id": "HELIXOS-L5-002-compare_f04_source_projection_join",
+        "symbol": "compare_f04_source_projection_join"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/16",
+        "function_id": "HELIXOS-L5-002-run_f04_source_projection_operation",
+        "symbol": "run_f04_source_projection_operation"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/18",
+        "function_id": "HELIXOS-L5-002-compare_core_dispositions_with_source_projection_profile",
+        "symbol": "compare_core_dispositions_with_source_projection_profile"
+      }
+    ],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/f04_source_original_correspondence_detail",
+        "symbol": "f04_source_original_correspondence_detail",
+        "visibility": "private_detail_section",
+        "bound_public_functions": [
+          "L5#/functions/0",
+          "L5#/functions/14",
+          "L5#/functions/15",
+          "L5#/functions/16",
+          "L5#/functions/18"
+        ],
+        "disposition": "public_compatibility・state_tables・state_reduction・diagnostic_contract・phase_binding・issue_producer・diagnostic_code_binding を規定する詳細節として、L8#/f04_source_original_correspondence_verification（12 component + 17 branch + 4 origin + 9 whole + 3 private_whole + 3 private_negative + 3 additional_branch_probes）と1対1に対照・固定完了。"
+      },
+      {
+        "detail_pointer": "L5#/functions/19",
+        "symbol": "validate_record_trace_with_origins",
+        "visibility": "private",
+        "bound_public_functions": [
+          "L5#/functions/0",
+          "L5#/functions/16"
+        ],
+        "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全16件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N2、PRIVATE-N3）および origin_cases 4件・PRIVATE-WHOLE-N2 が1対1に解決し、public fn0（validate_record_trace_input）は bundle.validated_trace の全値projectionを保持する。"
+      },
+      {
+        "detail_pointer": "L5#/functions/20",
+        "symbol": "resolve_f04_projection_sources",
+        "visibility": "private",
+        "bound_public_functions": [
+          "L5#/functions/15",
+          "L5#/functions/18"
+        ],
+        "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全17件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N1..N3）および PRIVATE-WHOLE-N2 が1対1に解決し、public fn15 へ join を、public fn18 へ join と original_context を供給する。"
+      },
+      {
+        "detail_pointer": "L5#/functions/21",
+        "symbol": "lookup_f04_original_native",
+        "visibility": "private",
+        "bound_public_functions": [
+          "L5#/functions/16",
+          "L5#/functions/18"
+        ],
+        "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全12件（ORIGINAL-01..12）および additional_branch_probes/0（condition native endpoint不成立対照）が1対1に解決し、fn22 の native_lookup_calls/0..2（condition native_output・edge native_output・edge native_state）から独立に呼び出される。"
+      },
+      {
+        "detail_pointer": "L5#/functions/22",
+        "symbol": "compare_f04_source_original_correspondence",
+        "visibility": "private",
+        "bound_public_functions": [
+          "L5#/functions/16",
+          "L5#/functions/18"
+        ],
+        "disposition": "private_l5_unit 関数として記録（公開関数として凍結しない）。unit_case_refs 全15件（ORIGINAL-01..12、PRIVATE-WHOLE 2件、PRIVATE-N1）に加え、branch_cases 17件・origin_cases 4件・whole_cases 9件・PRIVATE-WHOLE-N2・additional_branch_probes 3件が1対1に解決し、public fn18 から original_context 供給時に呼び出される。"
+      }
+    ]
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "E1",
+      "l3_pointer": "L3F#/requirements/11",
+      "l3_clause": "CORE出力参照の根拠を辿る同一source walkでは、資格状態・Qualification/QualificationRoot origin・source occurrence index・issue所在を個別に保持する。同値Refの別出現を統合・相互救済せず、qualified判定を同walkの完全資格bindingに結ぶ。",
+      "l5_pointers": [
+        "L5#/functions/19",
+        "L5#/functions/19/algorithm/1",
+        "L5#/functions/19/algorithm/5",
+        "L5#/functions/19/algorithm/7",
+        "L5#/functions/16/algorithm/1",
+        "L5#/functions/0/algorithm/0"
+      ],
+      "l8_pointers": [
+        "L8#/f04_source_original_correspondence_verification/origin_cases",
+        "L8#/f04_source_original_correspondence_verification/private_return_whole_cases/2",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/1",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/2",
+        "L8#/function_call_path_bindings/calls/0",
+        "L8#/function_call_path_bindings/calls/7"
+      ]
+    },
+    {
+      "element_id": "E2",
+      "l3_pointer": "L3F#/requirements/11",
+      "l3_clause": "選択されたsource projectionをcaller selectionとsame-walk資格originへ結び、candidate rawとvalidated traceの原値・presence・順序・重複を保持してoriginal contextを形成する。selection invalid、ambiguous、domain不成立、trusted locator相反を同一状態へ丸めない。",
+      "l5_pointers": [
+        "L5#/functions/20",
+        "L5#/functions/20/algorithm/0",
+        "L5#/functions/20/algorithm/1",
+        "L5#/functions/20/algorithm/4",
+        "L5#/functions/20/algorithm/9",
+        "L5#/functions/15/algorithm/0",
+        "L5#/functions/18/algorithm/2",
+        "L5#/f04_source_original_correspondence_detail/public_compatibility"
+      ],
+      "l8_pointers": [
+        "L8#/f04_source_original_correspondence_verification/component_cases",
+        "L8#/f04_source_original_correspondence_verification/branch_cases/0",
+        "L8#/f04_source_original_correspondence_verification/branch_cases/1",
+        "L8#/f04_source_original_correspondence_verification/branch_cases/14",
+        "L8#/f04_source_original_correspondence_verification/branch_cases/15",
+        "L8#/f04_source_original_correspondence_verification/branch_cases/16",
+        "L8#/f04_source_original_correspondence_verification/private_return_whole_cases/0",
+        "L8#/f04_source_original_correspondence_verification/private_return_whole_cases/1",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/0",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/1",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/2",
+        "L8#/function_call_path_bindings/calls/5",
+        "L8#/function_call_path_bindings/calls/8"
+      ]
+    },
+    {
+      "element_id": "E3",
+      "l3_pointer": "L3F#/requirements/11",
+      "l3_clause": "各CORE condition/obligationのnative originalを、指定source occurrence、record、subject_ref、payload RFC6901 locatorから独立に取得する。原値のPresence/stateを保持し、別source twinや名前によるfallback、native値だけからknown/completedの推定をしない。",
+      "l5_pointers": [
+        "L5#/functions/21",
+        "L5#/functions/21/algorithm/0",
+        "L5#/functions/21/algorithm/1",
+        "L5#/functions/21/algorithm/2",
+        "L5#/functions/21/algorithm/3",
+        "L5#/functions/21/algorithm/4",
+        "L5#/functions/22/native_lookup_calls",
+        "L5#/functions/16/algorithm/5"
+      ],
+      "l8_pointers": [
+        "L8#/f04_source_original_correspondence_verification/component_cases",
+        "L8#/f04_source_original_correspondence_verification/additional_branch_probes/0",
+        "L8#/function_call_path_bindings/calls/10",
+        "L8#/function_call_path_bindings/calls/11",
+        "L8#/function_call_path_bindings/calls/12"
+      ]
+    },
+    {
+      "element_id": "E4",
+      "l3_pointer": "L3F#/requirements/11",
+      "l3_clause": "CORE condition/obligation collectionsとnative原値の対応をselected occurrenceごとに比較し、required/conditional/N/A/unresolvedおよび未実施/不合格/未評価を区別して保存する。原index、閉じた14-field tuple、finding/owner/observationを保持し、OSが判定・N/A・義務完了を新設しない。",
+      "l5_pointers": [
+        "L5#/functions/22",
+        "L5#/functions/22/algorithm/0",
+        "L5#/functions/22/algorithm/2",
+        "L5#/functions/22/algorithm/3",
+        "L5#/functions/22/algorithm/6",
+        "L5#/functions/22/algorithm/9",
+        "L5#/functions/22/algorithm/10",
+        "L5#/functions/22/algorithm/13",
+        "L5#/f04_source_original_correspondence_detail/state_tables",
+        "L5#/f04_source_original_correspondence_detail/state_reduction",
+        "L5#/f04_source_original_correspondence_detail/diagnostic_contract",
+        "L5#/functions/18/algorithm/3"
+      ],
+      "l8_pointers": [
+        "L8#/f04_source_original_correspondence_verification/component_cases",
+        "L8#/f04_source_original_correspondence_verification/branch_cases",
+        "L8#/f04_source_original_correspondence_verification/origin_cases",
+        "L8#/f04_source_original_correspondence_verification/whole_cases",
+        "L8#/f04_source_original_correspondence_verification/private_return_whole_cases",
+        "L8#/f04_source_original_correspondence_verification/private_return_negative_controls/0",
+        "L8#/f04_source_original_correspondence_verification/additional_branch_probes",
+        "L8#/function_call_path_bindings/calls/9"
+      ]
+    }
+  ],
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "50df4ff0c7f45d6587ca8352db2d918785d53fcf",
+  "request_base_sha": "50df4ff0c7f45d6587ca8352db2d918785d53fcf",
+  "recorded_at_utc": "2026-10-28T02:57:31+00:00",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "10bf6ac45c3bf96a2434692791f8bb671dcf06a4ba3fef9e06f6ace1c982e2eb",
+    "L9_sha256": "78fbb68377c36ee8173e820001db411abd9c8262affe4098c7fcf2bb6c31d62b",
+    "L5_sha256": "a8097471e7352211ea260b0a78e8c209e2015dc2cec612f9a8c72739ba6460cb",
+    "L8_sha256": "bdf931561f2452343ade43cb6672da4a7c95cddd552911d4a175684a81418db7"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 94,
+    "expanded_target_count": 94,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "decode_f04_source_projection_profile",
+      "id": "HELIXOS-L5-002-decode_f04_source_projection_profile",
+      "l5_pointer": "L5#/functions/14",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
+      "unit_case_refs_count": 50,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_f04_source_projection_join",
+      "id": "HELIXOS-L5-002-compare_f04_source_projection_join",
+      "l5_pointer": "L5#/functions/15",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
+      "unit_case_refs_count": 36,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "run_f04_source_projection_operation",
+      "id": "HELIXOS-L5-002-run_f04_source_projection_operation",
+      "l5_pointer": "L5#/functions/16",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
+      "unit_case_refs_count": 46,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_core_dispositions_with_source_projection_profile",
+      "id": "HELIXOS-L5-002-compare_core_dispositions_with_source_projection_profile",
+      "l5_pointer": "L5#/functions/18",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-run_f04_source_projection_operation",
+      "unit_case_refs_count": 56,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "f04_source_original_correspondence_detail",
+      "l5_pointer": "L5#/f04_source_original_correspondence_detail",
+      "visibility": "private_detail_section",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "validate_record_trace_with_origins",
+      "l5_pointer": "L5#/functions/19",
+      "visibility": "private",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "resolve_f04_projection_sources",
+      "l5_pointer": "L5#/functions/20",
+      "visibility": "private",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "lookup_f04_original_native",
+      "l5_pointer": "L5#/functions/21",
+      "visibility": "private",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "compare_f04_source_original_correspondence",
+      "l5_pointer": "L5#/functions/22",
+      "visibility": "private",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "decode_f04_source_projection_profile",
+      "l5_pointer": "L5#/functions/14",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_f04_source_projection_join",
+      "l5_pointer": "L5#/functions/15",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "run_f04_source_projection_operation",
+      "l5_pointer": "L5#/functions/16",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_core_dispositions_with_source_projection_profile",
+      "l5_pointer": "L5#/functions/18",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "f04_source_original_correspondence_detail",
+      "l5_pointer": "L5#/f04_source_original_correspondence_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "validate_record_trace_with_origins",
+      "l5_pointer": "L5#/functions/19",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "resolve_f04_projection_sources",
+      "l5_pointer": "L5#/functions/20",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "lookup_f04_original_native",
+      "l5_pointer": "L5#/functions/21",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_f04_source_original_correspondence",
+      "l5_pointer": "L5#/functions/22",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "E1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "E2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "E3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "E4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
