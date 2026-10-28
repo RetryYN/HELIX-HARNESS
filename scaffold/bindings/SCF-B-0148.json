@@ -120,8 +120,8 @@
     },
     {
       "path": "scaffold/research/legacy-test-design-worker-workflow-0148/validate.py",
-      "sha256": "7aa79311edd1eb8ca358783e973f41e386f24a6f20fc989a938b0cb994fb0f15",
-      "note": "SCF-B-0148 research artifact; static candidate work only"
+      "sha256": "eb7c3b235d80afabaed95fc575acd6ca0806f46c58fc42afb7af3a9e16e2c665",
+      "note": "SCF-B-0148 research artifact; static candidate work only [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=7aa79311edd1eb8ca358783e973f41e386f24a6f20fc989a938b0cb994fb0f15; 現receipt=eb7c3b235d80afabaed95fc575acd6ca0806f46c58fc42afb7af3a9e16e2c665。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "legacy-test-design-worker-workflow-phase-product-classification-0148-static",

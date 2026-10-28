@@ -30,9 +30,7 @@ CURRENT_HEAD = "3df81ad27157c471e004083783f37a5860eaa2ee"
 FIRST15_PATH = "scaffold/pre-isolation-outside-holding-first15/inventory.json"
 REGISTER_PATH = "docs/governance/management-provisional-requirement-register-pre-append-3df81ad.jsonl"
 REGISTER_SHA = "4e43fadaec48dcb0399e73eff148419671d4ac87fd4f8f68899dadf186ce5b8b"
-DECISION_PATH = (
-    "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
-)
+DECISION_PATH = "docs/governance/decisions/concept-v4.1-and-four-l1-approval-2026-09-17.md"
 BOUNDARY_PATH = "docs/concept/product-boundary.md"
 START_HERE_PATH = "docs/governance/new-generation-start-here.md"
 HOLDING_PATH = "docs/governance/pre-isolation-revision-delta-source-holding.jsonl"
@@ -53,34 +51,11 @@ CASES = [
         "decision_line": 26,
         "boundary_line": 36,
         "anchors": [
-            {
-                "kind": "old_current_exact",
-                "old": [28, 34],
-                "current": [28, 34],
-                "claim": "HARNESS-L1-001..007の7要求行は現行L1へ保持されている",
-            },
-            {
-                "kind": "current_addition",
-                "current": [35, 36],
-                "claim": "現行L1はHARNESS-L1-008..009を追加して9要求へ拡張している",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [54, 56],
-                "current": [56, 58],
-                "claim": "Worker・CI・state等をOSへ置く対象外境界は保持されている",
-            },
-            {
-                "kind": "decision_approved_sha",
-                "decision": [26, 26],
-                "current": [1, 64],
-                "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
-            },
-            {
-                "kind": "boundary_owner",
-                "boundary": [36, 36],
-                "claim": "HARNESSの所有責務はVモデル・工程・要求・設計・検証対応として記録されている",
-            },
+            {"kind": "old_current_exact", "old": [28, 34], "current": [28, 34], "claim": "HARNESS-L1-001..007の7要求行は現行L1へ保持されている"},
+            {"kind": "current_addition", "current": [35, 36], "claim": "現行L1はHARNESS-L1-008..009を追加して9要求へ拡張している"},
+            {"kind": "old_current_exact", "old": [54, 56], "current": [56, 58], "claim": "Worker・CI・state等をOSへ置く対象外境界は保持されている"},
+            {"kind": "decision_approved_sha", "decision": [26, 26], "current": [1, 64], "claim": "現行L1の承認対象SHAはdecision recordへ記録されている"},
+            {"kind": "boundary_owner", "boundary": [36, 36], "claim": "HARNESSの所有責務はVモデル・工程・要求・設計・検証対応として記録されている"},
         ],
         "semantic_gap": "旧sourceは7要求、現行承認L1は9要求。旧7要求の保持は確認できるが、追加2要求と旧source blobの保存関係は別途記録が必要。",
     },
@@ -95,41 +70,12 @@ CASES = [
         "decision_line": 27,
         "boundary_line": 37,
         "anchors": [
-            {
-                "kind": "old_current_exact_except_one",
-                "old": [29, 34],
-                "current": [29, 34],
-                "claim": "HELIXOS-L1-001..006の6要求行は同一内容で保持されている",
-            },
-            {
-                "kind": "semantic_refinement",
-                "old": [35, 35],
-                "current": [35, 35],
-                "claim": "HELIXOS-L1-007は旧来のdeployment統制からpackage運転・release準備・artifact受渡しとruntime deployment authority分離へ精緻化されている",
-            },
-            {
-                "kind": "semantic_refinement",
-                "old": [54, 54],
-                "current": [54, 54],
-                "claim": "P6投影もdeployment運転を含む表現からHARNESS配布・release準備・artifact受渡しへ変更されている",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [61, 63],
-                "current": [61, 63],
-                "claim": "OSは各対象を管理するがWeb-OS runtimeを内包しない境界は保持されている",
-            },
-            {
-                "kind": "decision_approved_sha",
-                "decision": [27, 27],
-                "current": [1, 69],
-                "claim": "現行L1の精緻化後SHAはdecision recordへ記録されている",
-            },
-            {
-                "kind": "boundary_owner",
-                "boundary": [37, 37],
-                "claim": "OSの所有責務はproject群の管理・統制・Worker・CI・継続改善として記録されている",
-            },
+            {"kind": "old_current_exact_except_one", "old": [29, 34], "current": [29, 34], "claim": "HELIXOS-L1-001..006の6要求行は同一内容で保持されている"},
+            {"kind": "semantic_refinement", "old": [35, 35], "current": [35, 35], "claim": "HELIXOS-L1-007は旧来のdeployment統制からpackage運転・release準備・artifact受渡しとruntime deployment authority分離へ精緻化されている"},
+            {"kind": "semantic_refinement", "old": [54, 54], "current": [54, 54], "claim": "P6投影もdeployment運転を含む表現からHARNESS配布・release準備・artifact受渡しへ変更されている"},
+            {"kind": "old_current_exact", "old": [61, 63], "current": [61, 63], "claim": "OSは各対象を管理するがWeb-OS runtimeを内包しない境界は保持されている"},
+            {"kind": "decision_approved_sha", "decision": [27, 27], "current": [1, 69], "claim": "現行L1の精緻化後SHAはdecision recordへ記録されている"},
+            {"kind": "boundary_owner", "boundary": [37, 37], "claim": "OSの所有責務はproject群の管理・統制・Worker・CI・継続改善として記録されている"},
         ],
         "semantic_gap": "旧L1-007/P6のdeployment運転を現行L1はruntime deployment authorityから分離している。旧文言の意味同値は成立せず、差分の保持・採否関係を別途判断する必要がある。",
     },
@@ -144,35 +90,11 @@ CASES = [
         "decision_line": 28,
         "boundary_line": 38,
         "anchors": [
-            {
-                "kind": "old_current_exact",
-                "old": [24, 26],
-                "current": [24, 26],
-                "claim": "WebのConnector型AI開発SaaS価値と重複実装禁止境界は同一",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [30, 35],
-                "current": [30, 35],
-                "claim": "HELIXWEB-L1-001..006の6要求行は同一",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [47, 49],
-                "current": [47, 49],
-                "claim": "HARNESS・OS・Web-OSへの責務分離境界は同一",
-            },
-            {
-                "kind": "decision_approved_sha",
-                "decision": [28, 28],
-                "current": [1, 56],
-                "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
-            },
-            {
-                "kind": "boundary_owner",
-                "boundary": [38, 38],
-                "claim": "Webの所有責務はConnector型AI開発SaaSのdashboard・service・操作体験として記録されている",
-            },
+            {"kind": "old_current_exact", "old": [24, 26], "current": [24, 26], "claim": "WebのConnector型AI開発SaaS価値と重複実装禁止境界は同一"},
+            {"kind": "old_current_exact", "old": [30, 35], "current": [30, 35], "claim": "HELIXWEB-L1-001..006の6要求行は同一"},
+            {"kind": "old_current_exact", "old": [47, 49], "current": [47, 49], "claim": "HARNESS・OS・Web-OSへの責務分離境界は同一"},
+            {"kind": "decision_approved_sha", "decision": [28, 28], "current": [1, 56], "claim": "現行L1の承認対象SHAはdecision recordへ記録されている"},
+            {"kind": "boundary_owner", "boundary": [38, 38], "claim": "Webの所有責務はConnector型AI開発SaaSのdashboard・service・操作体験として記録されている"},
         ],
         "semantic_gap": "実質本文は同一。front matterのparent_candidateとsource_vision pathだけが現行構成へ更新されており、旧blob保存と現行承認L1のrelationを別記録する必要がある。",
     },
@@ -187,35 +109,11 @@ CASES = [
         "decision_line": 29,
         "boundary_line": 39,
         "anchors": [
-            {
-                "kind": "old_current_exact",
-                "old": [14, 15],
-                "current": [14, 15],
-                "claim": "Web-OSの独立service runtimeとOS state分離の価値は同一",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [19, 23],
-                "current": [19, 23],
-                "claim": "HELIXWEBOS-L1-001..005の5要求行は同一",
-            },
-            {
-                "kind": "old_current_exact",
-                "old": [39, 44],
-                "current": [39, 44],
-                "claim": "独立運転・service log連携・credential/data分離境界は同一",
-            },
-            {
-                "kind": "decision_approved_sha",
-                "decision": [29, 29],
-                "current": [1, 50],
-                "claim": "現行L1の承認対象SHAはdecision recordへ記録されている",
-            },
-            {
-                "kind": "boundary_owner",
-                "boundary": [39, 39],
-                "claim": "Web-OSの所有責務はtenant・Connector・job・service state・配備・監視・復旧として記録されている",
-            },
+            {"kind": "old_current_exact", "old": [14, 15], "current": [14, 15], "claim": "Web-OSの独立service runtimeとOS state分離の価値は同一"},
+            {"kind": "old_current_exact", "old": [19, 23], "current": [19, 23], "claim": "HELIXWEBOS-L1-001..005の5要求行は同一"},
+            {"kind": "old_current_exact", "old": [39, 44], "current": [39, 44], "claim": "独立運転・service log連携・credential/data分離境界は同一"},
+            {"kind": "decision_approved_sha", "decision": [29, 29], "current": [1, 50], "claim": "現行L1の承認対象SHAはdecision recordへ記録されている"},
+            {"kind": "boundary_owner", "boundary": [39, 39], "claim": "Web-OSの所有責務はtenant・Connector・job・service state・配備・監視・復旧として記録されている"},
         ],
         "semantic_gap": "実質本文は同一。front matterのparent_candidate pathだけが現行構成へ更新されており、旧blob保存と現行承認L1のrelationを別記録する必要がある。",
     },
@@ -227,30 +125,15 @@ def sha(data: bytes) -> str:
 
 
 def load_jsonl(path: Path) -> list[dict]:
-    return [
-        json.loads(line)
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip()
-    ]
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
 def git_blob(commit: str, path: str) -> bytes:
-    return subprocess.run(
-        ["git", "show", f"{commit}:{path}"],
-        cwd=ROOT,
-        check=True,
-        stdout=subprocess.PIPE,
-    ).stdout
+    return subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, check=True, stdout=subprocess.PIPE).stdout
 
 
 def git_oid(commit: str, path: str) -> str | None:
-    result = subprocess.run(
-        ["git", "rev-parse", f"{commit}:{path}"],
-        cwd=ROOT,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.DEVNULL,
-        text=True,
-    )
+    result = subprocess.run(["git", "rev-parse", f"{commit}:{path}"], cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, text=True)
     return result.stdout.strip() if result.returncode == 0 else None
 
 
@@ -270,42 +153,27 @@ def exact_hits(value: object, target: str, path: str = "") -> list[str]:
 
 def line_anchor(data: bytes, start: int, end: int) -> dict:
     lines = data.decode("utf-8").splitlines()
-    selected = lines[start - 1 : end]
-    return {
-        "line_start": start,
-        "line_end": end,
-        "text": selected,
-        "sha256": sha("\n".join(selected).encode("utf-8")),
-    }
+    selected = lines[start - 1:end]
+    return {"line_start": start, "line_end": end, "text": selected, "sha256": sha("\n".join(selected).encode("utf-8"))}
 
 
 def live_holdings(register: list[dict]) -> list[dict]:
-    superseded = {
-        row.get("supersedes_registration_id")
-        for row in register
-        if row.get("supersedes_registration_id")
-    }
+    superseded = {row.get("supersedes_registration_id") for row in register if row.get("supersedes_registration_id")}
     live = [row for row in register if row.get("registration_id") not in superseded]
     result = []
     for row in live:
         path = ROOT / row["source_atom_set_ref"]
         records = load_jsonl(path)
-        result.append(
-            {
-                "registration_id": row["registration_id"],
-                "source_atom_set_ref": row["source_atom_set_ref"],
-                "source_atom_set_sha256": sha(path.read_bytes()),
-                "source_atom_set_record_count": len(records),
-                "registration_kind": row["registration_kind"],
-                "product_target": row["product_target"],
-                "authority_effect": row["authority_effect"],
-                "register_line": next(
-                    i
-                    for i, item in enumerate(register, 1)
-                    if item["registration_id"] == row["registration_id"]
-                ),
-            }
-        )
+        result.append({
+            "registration_id": row["registration_id"],
+            "source_atom_set_ref": row["source_atom_set_ref"],
+            "source_atom_set_sha256": sha(path.read_bytes()),
+            "source_atom_set_record_count": len(records),
+            "registration_kind": row["registration_kind"],
+            "product_target": row["product_target"],
+            "authority_effect": row["authority_effect"],
+            "register_line": next(i for i, item in enumerate(register, 1) if item["registration_id"] == row["registration_id"]),
+        })
     return result
 
 
@@ -314,13 +182,7 @@ def first15_row(path: str) -> dict:
     return next(row for row in inventory["paths"] if row["path"] == path)
 
 
-def build_case(
-    case: dict,
-    holdings: list[dict],
-    holding_rows: dict[str, list[dict]],
-    decision_bytes: bytes,
-    boundary_bytes: bytes,
-) -> dict:
+def build_case(case: dict, holdings: list[dict], holding_rows: dict[str, list[dict]], decision_bytes: bytes, boundary_bytes: bytes) -> dict:
     old_blob = git_blob(PRE_ISOLATION, case["old_path"])
     archive_blob = git_blob(ARCHIVE, case["old_path"])
     old_oid = git_oid(PRE_ISOLATION, case["old_path"])
@@ -335,51 +197,31 @@ def build_case(
         blob_hits: list[str] = []
         sha_hits: list[str] = []
         for index, item in enumerate(holding_rows[holding["registration_id"]], 1):
-            path_hits.extend(
-                f"{index}:{hit}" for hit in exact_hits(item, case["old_path"])
-            )
-            blob_hits.extend(
-                f"{index}:{hit}" for hit in exact_hits(item, old_oid or "")
-            )
+            path_hits.extend(f"{index}:{hit}" for hit in exact_hits(item, case["old_path"]))
+            blob_hits.extend(f"{index}:{hit}" for hit in exact_hits(item, old_oid or ""))
             sha_hits.extend(f"{index}:{hit}" for hit in exact_hits(item, old_sha))
-        relations.append(
-            {
-                "registration_id": holding["registration_id"],
-                "source_atom_set_ref": holding["source_atom_set_ref"],
-                "path_match_count": len(path_hits),
-                "pre_isolation_blob_match_count": len(blob_hits),
-                "pre_isolation_sha256_match_count": len(sha_hits),
-                "path_match_evidence": path_hits,
-                "blob_match_evidence": blob_hits,
-                "sha256_match_evidence": sha_hits,
-                "relation": "no_exact_path_or_blob_or_sha_match"
-                if not (path_hits or blob_hits or sha_hits)
-                else "match_requires_review",
-            }
-        )
+        relations.append({
+            "registration_id": holding["registration_id"],
+            "source_atom_set_ref": holding["source_atom_set_ref"],
+            "path_match_count": len(path_hits),
+            "pre_isolation_blob_match_count": len(blob_hits),
+            "pre_isolation_sha256_match_count": len(sha_hits),
+            "path_match_evidence": path_hits,
+            "blob_match_evidence": blob_hits,
+            "sha256_match_evidence": sha_hits,
+            "relation": "no_exact_path_or_blob_or_sha_match" if not (path_hits or blob_hits or sha_hits) else "match_requires_review",
+        })
     anchors = []
     for spec in case["anchors"]:
         item = {"kind": spec["kind"], "claim": spec["claim"]}
         if "old" in spec:
-            item["old"] = {
-                "ref": f"{PRE_ISOLATION}:{case['old_path']}",
-                **line_anchor(old_blob, *spec["old"]),
-            }
+            item["old"] = {"ref": f"{PRE_ISOLATION}:{case['old_path']}", **line_anchor(old_blob, *spec["old"])}
         if "current" in spec:
-            item["current"] = {
-                "ref": f"{CURRENT_HEAD}:{case['current_path']}",
-                **line_anchor(current_bytes, *spec["current"]),
-            }
+            item["current"] = {"ref": f"{CURRENT_HEAD}:{case['current_path']}", **line_anchor(current_bytes, *spec["current"])}
         if "decision" in spec:
-            item["decision"] = {
-                "ref": DECISION_PATH,
-                **line_anchor(decision_bytes, *spec["decision"]),
-            }
+            item["decision"] = {"ref": DECISION_PATH, **line_anchor(decision_bytes, *spec["decision"])}
         if "boundary" in spec:
-            item["boundary"] = {
-                "ref": BOUNDARY_PATH,
-                **line_anchor(boundary_bytes, *spec["boundary"]),
-            }
+            item["boundary"] = {"ref": BOUNDARY_PATH, **line_anchor(boundary_bytes, *spec["boundary"])}
         anchors.append(item)
     return {
         "case_id": case["case_id"],
@@ -391,17 +233,14 @@ def build_case(
             "sha256": old_sha,
             "bytes": len(old_blob),
             "reported_blob_oid": report_row["pre_isolation"]["blob_oid"],
-            "reported_blob_oid_matches_git": old_oid
-            == report_row["pre_isolation"]["blob_oid"],
+            "reported_blob_oid_matches_git": old_oid == report_row["pre_isolation"]["blob_oid"],
         },
         "archive_source": {
             "commit": ARCHIVE,
             "blob_oid": archive_oid,
             "sha256": sha(archive_blob),
             "bytes": len(archive_blob),
-            "relation_to_pre_isolation": "same"
-            if archive_blob == old_blob
-            else "different",
+            "relation_to_pre_isolation": "same" if archive_blob == old_blob else "different",
         },
         "current_approved_l1": {
             "path": case["current_path"],
@@ -417,12 +256,7 @@ def build_case(
         "semantic_relation_label": case["relation_label"],
         "semantic_gap": case["semantic_gap"],
         "line_anchored_evidence": anchors,
-        "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings"
-        if all(
-            item["relation"] == "no_exact_path_or_blob_or_sha_match"
-            for item in relations
-        )
-        else "match_requires_review",
+        "existing_holding_relation": "no_exact_path_or_blob_or_sha_match_in_13_live_holdings" if all(item["relation"] == "no_exact_path_or_blob_or_sha_match" for item in relations) else "match_requires_review",
         "live_holding_relations": relations,
         "preservation_disposition": "source_holding_required_before_semantic_disposition",
         "semantic_evidence_role": "evidence_only_not_source_holding",
@@ -444,14 +278,8 @@ def build() -> dict:
     disposition_program_bytes = (ROOT / DISPOSITION_PROGRAM_PATH).read_bytes()
     register = load_jsonl(relocated(ROOT / REGISTER_PATH))
     holdings = live_holdings(register)
-    holding_rows = {
-        item["registration_id"]: load_jsonl(ROOT / item["source_atom_set_ref"])
-        for item in holdings
-    }
-    cases = [
-        build_case(case, holdings, holding_rows, decision_bytes, boundary_bytes)
-        for case in CASES
-    ]
+    holding_rows = {item["registration_id"]: load_jsonl(ROOT / item["source_atom_set_ref"]) for item in holdings}
+    cases = [build_case(case, holdings, holding_rows, decision_bytes, boundary_bytes) for case in CASES]
     return {
         "schema": SCHEMA,
         "candidate_id": "RDP-001-PREISO-OUTSIDE-L1-SEMANTIC-0036",
@@ -490,20 +318,9 @@ def build() -> dict:
         "live_holdings": holdings,
         "cases": cases,
         "aggregate": {
-            "semantic_relation_counts": {
-                key: sum(item["semantic_relation"] == key for item in cases)
-                for key in ("exact", "partial", "unresolved")
-            },
-            "holding_exact_match_count": sum(
-                item["existing_holding_relation"]
-                != "no_exact_path_or_blob_or_sha_match_in_13_live_holdings"
-                for item in cases
-            ),
-            "preservation_unresolved_count": sum(
-                item["preservation_disposition"]
-                == "source_holding_required_before_semantic_disposition"
-                for item in cases
-            ),
+            "semantic_relation_counts": {key: sum(item["semantic_relation"] == key for item in cases) for key in ("exact", "partial", "unresolved")},
+            "holding_exact_match_count": sum(item["existing_holding_relation"] != "no_exact_path_or_blob_or_sha_match_in_13_live_holdings" for item in cases),
+            "preservation_unresolved_count": sum(item["preservation_disposition"] == "source_holding_required_before_semantic_disposition" for item in cases),
         },
         "findings": [
             "旧pre-isolation blobとarchive blobは4件すべて同一で、Git objectとoutside-67 first15 inventoryをread-only照合した。",
@@ -524,20 +341,11 @@ def build() -> dict:
         "verification_scope": {
             "evidence_kind": "scaffold",
             "static_only": True,
-            "checks": [
-                "old blob identity",
-                "line anchors",
-                "approved L1 SHA",
-                "decision/boundary references",
-                "13 live holding exact scan",
-                "authority boundary",
-            ],
+            "checks": ["old blob identity", "line anchors", "approved L1 SHA", "decision/boundary references", "13 live holding exact scan", "authority boundary"],
         },
         "source_holding_rule": "new_source_requires_source_holding_before_semantic_disposition",
     }
 
 
 if __name__ == "__main__":
-    (HERE / "inventory.json").write_text(
-        json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    (HERE / "inventory.json").write_text(json.dumps(build(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

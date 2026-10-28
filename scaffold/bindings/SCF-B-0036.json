@@ -25,13 +25,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-outside-l1-semantic/validate.py",
-      "sha256": "ee4c53cc005fcb4ce68ca294389db896ee58577997e3d77d8f099a889e81f8a5",
-      "note": "approved SHA、line anchor、historical 13 holding atom setの独立検査と固定digest"
+      "sha256": "3fe292e4aca90e049f8ef00d00e74a321ce06ecd75b474927a336dae13ab2507",
+      "note": "approved SHA、line anchor、historical 13 holding atom setの独立検査と固定digest [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=ee4c53cc005fcb4ce68ca294389db896ee58577997e3d77d8f099a889e81f8a5; 現receipt=3fe292e4aca90e049f8ef00d00e74a321ce06ecd75b474927a336dae13ab2507。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-outside-l1-semantic/selfcheck.py",
-      "sha256": "ad29a7731514b7a0d019da7e30044c38bdbe28baec9f1ff45d1637a4b2ad2375",
-      "note": "inventory改変13件（current register／14 holding置換を含む）、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査"
+      "sha256": "ab54cd7960cab0dd30ff8df15d6b756f579cc3c9652a4963addd9868ac88e8ba",
+      "note": "inventory改変13件（current register／14 holding置換を含む）、digest pin更新後の生成器改変14件、独立oracle削除のfail-close検査 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=ad29a7731514b7a0d019da7e30044c38bdbe28baec9f1ff45d1637a4b2ad2375; 現receipt=ab54cd7960cab0dd30ff8df15d6b756f579cc3c9652a4963addd9868ac88e8ba。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-outside-holding-first15/inventory.json",

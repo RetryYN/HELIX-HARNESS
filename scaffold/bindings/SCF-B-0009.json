@@ -60,13 +60,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-batch/validate.py",
-      "sha256": "863e83afb864b3d1460ae7f0e8d6d306393dbda7ed186544a6e7cf45b578846f",
-      "note": "12 path候補と検証契約の入力 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-batch/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2adb8d3d76564fae9768039e4c870153cc9b3fdefeabb662b302b60cef4d01e4; 現receipt=d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de; このBindingの採否・authorityは変更しない。]"
+      "sha256": "c492f083f5e133499411e7c36d362704e594e86f253ed60f8e536ad8b7dd21a4",
+      "note": "12 path候補と検証契約の入力 [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-batch/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2adb8d3d76564fae9768039e4c870153cc9b3fdefeabb662b302b60cef4d01e4; 現receipt=d7b2abfe11dcabdfeec46e677f2dd161d6fe7ebd7dbf8cf02005aa115cfad9de; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=863e83afb864b3d1460ae7f0e8d6d306393dbda7ed186544a6e7cf45b578846f; 現receipt=c492f083f5e133499411e7c36d362704e594e86f253ed60f8e536ad8b7dd21a4。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-batch/selfcheck.py",
-      "sha256": "497bd38e972059c3ffdd642e0e8ad94646b78a7278c70e4a035d97222fbddee3",
-      "note": "12 path候補と検証契約の入力"
+      "sha256": "8ce8f297c0a74b549bb7cd78a7f647b675ab58090bb8862ec69d0a7423737a49",
+      "note": "12 path候補と検証契約の入力 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=497bd38e972059c3ffdd642e0e8ad94646b78a7278c70e4a035d97222fbddee3; 現receipt=8ce8f297c0a74b549bb7cd78a7f647b675ab58090bb8862ec69d0a7423737a49。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PREISO-REV-000009..000014／000017..000022のbaseline／pre-isolation／archive provenance、58 diff hunk、候補分類、旧asset／phase状態、未処理分母をreview可能なscaffoldへ固定する",

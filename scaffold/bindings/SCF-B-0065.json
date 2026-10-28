@@ -70,13 +70,13 @@
     },
     {
       "path": "scaffold/research/phcap15-deploy-sixth12-research/validate.py",
-      "sha256": "d92a77de760cab269cb86ae04ee9a03476639d952cf59ee7899befa9b7a92fc8",
-      "note": "static denominator/digest/span/status/keyset validator"
+      "sha256": "6cffa02d8f7a7277c6cc57107c4d8155f8ca993ac68190af597da281e147a5e3",
+      "note": "static denominator/digest/span/status/keyset validator [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=d92a77de760cab269cb86ae04ee9a03476639d952cf59ee7899befa9b7a92fc8; 現receipt=6cffa02d8f7a7277c6cc57107c4d8155f8ca993ac68190af597da281e147a5e3。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap15-deploy-sixth12-research/selfcheck.py",
-      "sha256": "f8fc4427f64d3c3e1f783de1dad88478ff5944d65844bf8b082d05a8c73fb5fc",
-      "note": "authority/scope/source/status/failure/consumer negative checks"
+      "sha256": "db53c47f3e62686a16517d00adfa385e89e7e0711819ee60e589b6d95efec19c",
+      "note": "authority/scope/source/status/failure/consumer negative checks [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=f8fc4427f64d3c3e1f783de1dad88478ff5944d65844bf8b082d05a8c73fb5fc; 現receipt=db53c47f3e62686a16517d00adfa385e89e7e0711819ee60e589b6d95efec19c。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PHCAP-15 Deploy第六12 sampleの12旧assetについて、旧asset source／decision／failure／consumer evidence、旧phase／product候補、旧／現行implementationとdegradation unknownをread-onlyで保持し、既レビュー6束との非重複と残8件分母を検証する",

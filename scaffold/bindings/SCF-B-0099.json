@@ -70,28 +70,28 @@
     },
     {
       "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/generate.py",
-      "sha256": "82d8d357110619eec53fe26b38af766251963ea14491f964fd112b95580c7ebf",
-      "note": "deterministic static materializer [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=645aa6cb06e8ca017fe4cc85940b414bad700a25f77dada457231aa7649719f1; 現receipt=d01321fe7283e4ffc2ee786a6b181af594a938cd43a4689fdd28588ede3ef029; このBindingの採否・authorityは変更しない。]"
+      "sha256": "f1c2389e075990483df27c9f26afd486f7ecd9552ceacb0809594b8c7ac439ad",
+      "note": "deterministic static materializer [2026-09-26 PR #2155 R2155-01対応: 移行台帳のdocs/governance/legacy-migration/への移動で、現行ファイルを読むこのgeneratorの再生成が移動前pathで失敗したため、現行ファイルを読む箇所だけを新pathへ追従した（出力に新pathを記録する場合はpath定数を、旧pathを記録する場合と固定commitのgit showは旧pathのまま対応表relocatedで読込み側だけを改めた）。一時作業先でbase 3d80407f4と同じ再生成結果になることを確認。判定条件・研究の意味・未採否・replacement状態は変えない。前receipt=645aa6cb06e8ca017fe4cc85940b414bad700a25f77dada457231aa7649719f1; 現receipt=d01321fe7283e4ffc2ee786a6b181af594a938cd43a4689fdd28588ede3ef029; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=82d8d357110619eec53fe26b38af766251963ea14491f964fd112b95580c7ebf; 現receipt=f1c2389e075990483df27c9f26afd486f7ecd9552ceacb0809594b8c7ac439ad。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/validate.py",
-      "sha256": "3d427bfbb4e096be4b3b41143b70b3c66f3f371d4b6175c4340ed1e44162c761",
-      "note": "fixed-base ancestor, source, atom, ledger and boundary validator"
+      "sha256": "db35a97c7a8a88f23421e4b0cc11b4c69999ba10264b274826c242b875931a0f",
+      "note": "fixed-base ancestor, source, atom, ledger and boundary validator [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=3d427bfbb4e096be4b3b41143b70b3c66f3f371d4b6175c4340ed1e44162c761; 現receipt=db35a97c7a8a88f23421e4b0cc11b4c69999ba10264b274826c242b875931a0f。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/coverage-audit.py",
-      "sha256": "ab21c6c67816efb25ad2be249b00a8875c3e896a6e4e3d3ccc23774a6c3245ed",
-      "note": "independent two-sided line coverage audit"
+      "sha256": "d2d8d749c34aff2381d2598dd6bfd63239540407ea4183b56a63d68e4d160903",
+      "note": "independent two-sided line coverage audit [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=ab21c6c67816efb25ad2be249b00a8875c3e896a6e4e3d3ccc23774a6c3245ed; 現receipt=d2d8d749c34aff2381d2598dd6bfd63239540407ea4183b56a63d68e4d160903。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/selfcheck.py",
-      "sha256": "7b9694db7f49d7c6cfa489a3455ef0ea84585cce3b0b67de59dae6bedd4ac0ec",
-      "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift"
+      "sha256": "dde745f3878c76bbdaebaa493fadfb79bad7fcdedd85da7b1c399c5f3dca4645",
+      "note": "negative mutations including fake ledger hit, normative metadata fallback and binding identity drift [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=7b9694db7f49d7c6cfa489a3455ef0ea84585cce3b0b67de59dae6bedd4ac0ec; 現receipt=dde745f3878c76bbdaebaa493fadfb79bad7fcdedd85da7b1c399c5f3dca4645。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-outside67-path011-015-atomization-099/source_classification.py",
-      "sha256": "3e298a446aedd4ee6a8f81fb3270f47f357dc66b2e45cc2161d975cad595e6e7",
-      "note": "shared frontmatter classification and PRE/ARCH diff derivation"
+      "sha256": "b19eeca10d77bf369c1e76127d09336ef0c7c0581b7b4a284791edd6ef79d0f4",
+      "note": "shared frontmatter classification and PRE/ARCH diff derivation [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=3e298a446aedd4ee6a8f81fb3270f47f357dc66b2e45cc2161d975cad595e6e7; 現receipt=b19eeca10d77bf369c1e76127d09336ef0c7c0581b7b4a284791edd6ef79d0f4。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "RDP-001 outside67 PATH-011〜015 source snapshot／line coverage／semantic atom候補を保持する静的Scaffold",

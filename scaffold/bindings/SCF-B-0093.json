@@ -70,18 +70,18 @@
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave48/generate.py",
-      "sha256": "e6668aef3fb5a5442139e4b245cf5977842cec5d6feb254e36312db2a7477ff4",
-      "note": "deterministic static generator"
+      "sha256": "26116fe8eecd0a9d5b12833ec081eb8b703eef7cdec78a950a069101a4c3beea",
+      "note": "deterministic static generator [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=e6668aef3fb5a5442139e4b245cf5977842cec5d6feb254e36312db2a7477ff4; 現receipt=26116fe8eecd0a9d5b12833ec081eb8b703eef7cdec78a950a069101a4c3beea。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave48/validate.py",
-      "sha256": "233dd433d5fdbdaca8cbd347bbfbd1f2c6f693562936dea2664ccc72fd7248ae",
-      "note": "fail-closed validator with rebaseline gate [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave48/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=839084d97b07ff6df2f6fc787296ad119342f7aac0a48a5d7de8a882e3b279b0; 現receipt=1653f2c1e2601045485d7346c7addebbd684d6d9e201ad27d98afcf32a255cab; このBindingの採否・authorityは変更しない。]"
+      "sha256": "b11964a35e918f0cb7c1bf554384c5990f6d6d39f274b004450929a053e7ee1d",
+      "note": "fail-closed validator with rebaseline gate [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave48/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=839084d97b07ff6df2f6fc787296ad119342f7aac0a48a5d7de8a882e3b279b0; 現receipt=1653f2c1e2601045485d7346c7addebbd684d6d9e201ad27d98afcf32a255cab; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=233dd433d5fdbdaca8cbd347bbfbd1f2c6f693562936dea2664ccc72fd7248ae; 現receipt=b11964a35e918f0cb7c1bf554384c5990f6d6d39f274b004450929a053e7ee1d。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave48/selfcheck.py",
-      "sha256": "b4260e63ff7ac5a9218dafebb4ca41fcef417edf1876a179fd594bddee3d633f",
-      "note": "validator negative mutation suite"
+      "sha256": "e00d6f24723042afc551b134a04e0172bfae46e36f96f9b53151c2ab7743a4a3",
+      "note": "validator negative mutation suite [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=b4260e63ff7ac5a9218dafebb4ca41fcef417edf1876a179fd594bddee3d633f; 現receipt=e00d6f24723042afc551b134a04e0172bfae46e36f96f9b53151c2ab7743a4a3。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave48/legacy-requirement-direct-semantic-review-wave48.jsonl",

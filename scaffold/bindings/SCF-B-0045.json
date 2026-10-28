@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-outside-holding-16-30/validate.py",
-      "sha256": "ede24f0b373fe369d7f246ebc1c25c00fee2e067f853c36c2308f8e28f0eafd1",
-      "note": "独立Git object anchorと13 holding scanを含むvalidator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-outside-holding-16-30/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。あわせて、generate.pyの変更に連動するSHA定数EXPECTED_GENERATOR_SHA256だけを更新した。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=0a923b53c632025681e8ee3f27ecaa5e4a00824ce373268c9b3699c07437c616; 現receipt=8e23faf9272259ea6e0c4a3af42ad84f467c2009bde306b9c99fb32049185b75; このBindingの採否・authorityは変更しない。]"
+      "sha256": "64064460b875f0fb60e16f71b28c3b496e6de4b660c0763993b26ff023d6c39b",
+      "note": "独立Git object anchorと13 holding scanを含むvalidator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-outside-holding-16-30/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、固定commitのgit objectと記録済みのpath（append-onlyの管理層registerのsource_atom_set_ref等）は旧pathのまま扱い、現行ファイルを読む箇所だけを旧path→新pathの対応表RELOCATED_PATHSと関数relocatedで移動先へ引き直した（判定の条件・分岐・意味field・期待件数は不変）。あわせて、generate.pyの変更に連動するSHA定数EXPECTED_GENERATOR_SHA256だけを更新した。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=0a923b53c632025681e8ee3f27ecaa5e4a00824ce373268c9b3699c07437c616; 現receipt=8e23faf9272259ea6e0c4a3af42ad84f467c2009bde306b9c99fb32049185b75; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=ede24f0b373fe369d7f246ebc1c25c00fee2e067f853c36c2308f8e28f0eafd1; 現receipt=64064460b875f0fb60e16f71b28c3b496e6de4b660c0763993b26ff023d6c39b。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-outside-holding-16-30/selfcheck.py",
-      "sha256": "e51c332ca061d477a58cf053d7450e162db1dd308885ab0bdeb1909e69b2fb99",
-      "note": "generator+inventory同時改竄negative selfcheck"
+      "sha256": "02cc057c20d3e631e6b5b64fabc37d1bb57edc656400e56099200378dfcf1a8e",
+      "note": "generator+inventory同時改竄negative selfcheck [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=e51c332ca061d477a58cf053d7450e162db1dd308885ab0bdeb1909e69b2fb99; 現receipt=02cc057c20d3e631e6b5b64fabc37d1bb57edc656400e56099200378dfcf1a8e。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "docs/governance/new-generation-start-here.md",

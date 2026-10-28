@@ -80,13 +80,13 @@
     },
     {
       "path": "scaffold/research/rdp001-ref-subset-0021/validate.py",
-      "sha256": "650ae118fd1fdad146aed1547c7269dfbaed823062c11b208f5e31aef8dd2e33",
-      "note": "fail-closed static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-ref-subset-0021/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=058a9ed11199d72ef2cdaad56970a083238b0ae9f67efebbe2745a1a9c682f4c; 現receipt=d9d4c7854b5bc2a188a03299558f44d1475d4e17c1b5545280d02358dbc0e179; このBindingの採否・authorityは変更しない。]"
+      "sha256": "10d73112c1f2c96f2b5d816ebd44a0bbd01ca6bb755bbe6cdf9b2b5aa5656612",
+      "note": "fail-closed static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: rdp001-ref-subset-0021/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=058a9ed11199d72ef2cdaad56970a083238b0ae9f67efebbe2745a1a9c682f4c; 現receipt=d9d4c7854b5bc2a188a03299558f44d1475d4e17c1b5545280d02358dbc0e179; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=650ae118fd1fdad146aed1547c7269dfbaed823062c11b208f5e31aef8dd2e33; 現receipt=10d73112c1f2c96f2b5d816ebd44a0bbd01ca6bb755bbe6cdf9b2b5aa5656612。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/rdp001-ref-subset-0021/selfcheck.py",
-      "sha256": "b62ac7039b7191cc6fad8bb07e096fe140cb20c88d1dc1ac860bc34fcdb417b5",
-      "note": "49 meaningful negative selfchecks"
+      "sha256": "1ecc5d31fa2fc25edaaae0cd79af9f90cf2e777ab79e3156812e599b1b42e3e5",
+      "note": "49 meaningful negative selfchecks [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=b62ac7039b7191cc6fad8bb07e096fe140cb20c88d1dc1ac860bc34fcdb417b5; 現receipt=1ecc5d31fa2fc25edaaae0cd79af9f90cf2e777ab79e3156812e599b1b42e3e5。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "selected RDP-001 reference edgeをsource lineとtarget blobへ無損失で結び、relation、target class、actor／authority／negative、owner product／phase候補、failure／consumer unknownを保持するedge classification scaffold",

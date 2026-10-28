@@ -65,13 +65,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation-002-atomization/validate.py",
-      "sha256": "b416cb55f1b8bc08b2d086f82d1279f20bda22b4764c6d0b243955ea793992a9",
-      "note": "read-only static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-002-atomization/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=9d6aaf7db55efa96770faa724da4f937fae8bbf40d6598c49f8c48bed6cf6fac; 現receipt=7695bdc08e3037496b209a7f1ae7efc7ee5b8cf6a51b884104466e5e6feff394; このBindingの採否・authorityは変更しない。]"
+      "sha256": "3437665b068209d0cc90350fe28052ed201ce7cdd9a3ea69b2c84ca7e91bab16",
+      "note": "read-only static validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: pre-isolation-002-atomization/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=9d6aaf7db55efa96770faa724da4f937fae8bbf40d6598c49f8c48bed6cf6fac; 現receipt=7695bdc08e3037496b209a7f1ae7efc7ee5b8cf6a51b884104466e5e6feff394; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=b416cb55f1b8bc08b2d086f82d1279f20bda22b4764c6d0b243955ea793992a9; 現receipt=3437665b068209d0cc90350fe28052ed201ce7cdd9a3ea69b2c84ca7e91bab16。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation-002-atomization/selfcheck.py",
-      "sha256": "cae0464f2c8896d44f26545b996c349542b95977929a05fec82883e8f5974449",
-      "note": "12 meaningful negative selfchecks"
+      "sha256": "16c4af70bd62765d5ccd68334f0036a477b4caee62431ae2fffaa27e77148bb3",
+      "note": "12 meaningful negative selfchecks [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=cae0464f2c8896d44f26545b996c349542b95977929a05fec82883e8f5974449; 現receipt=16c4af70bd62765d5ccd68334f0036a477b4caee62431ae2fffaa27e77148bb3。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "RDP-001 PREISOLATION-002の8 review-only subunitについて、hunk classificationとsemantic atomizationを分離したcandidate-only provenanceを保持する",

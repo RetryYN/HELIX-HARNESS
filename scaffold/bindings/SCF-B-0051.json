@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/research/phcap15-17-orphan-asset-links/validate.py",
-      "sha256": "c2e3e97c1114b97ca4dcacd17dfaaa83bfd74d9588ecba5db100100bf17a85b3",
-      "note": "read-only ledger/source/crosswalk static validator with exact nested keysets, audit-value pins and source-anchor meaning pins"
+      "sha256": "2feabfe05f42fda9c96a71e4a429511201df549f63a35118a377b224f043dbdf",
+      "note": "read-only ledger/source/crosswalk static validator with exact nested keysets, audit-value pins and source-anchor meaning pins [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=c2e3e97c1114b97ca4dcacd17dfaaa83bfd74d9588ecba5db100100bf17a85b3; 現receipt=2feabfe05f42fda9c96a71e4a429511201df549f63a35118a377b224f043dbdf。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap15-17-orphan-asset-links/selfcheck.py",
-      "sha256": "f0b3018b762c7651561c3036da7fcc38007ebec0a31311eafe4ba67e855f2c11",
-      "note": "24 negative cases against evidence, authority, closure/failure promotion, anchor loss and nested keys"
+      "sha256": "63a8dd2492eddaa4c92bd859fe893f6661e6f71339c5c4f1e3a14ab1f4f5ce84",
+      "note": "24 negative cases against evidence, authority, closure/failure promotion, anchor loss and nested keys [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=f0b3018b762c7651561c3036da7fcc38007ebec0a31311eafe4ba67e855f2c11; 現receipt=63a8dd2492eddaa4c92bd859fe893f6661e6f71339c5c4f1e3a14ab1f4f5ce84。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "PHCAP-15/17代表旧asset六件と218要求unit crosswalkのbounded direct-link監査を、要求採否・phase authority・製品owner・旧実装・current implementationへ昇格させないresearch premiseとして固定する",

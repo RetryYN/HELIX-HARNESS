@@ -52,3 +52,21 @@ PYTHONPATH=src:tests python3 -B -m unittest discover -s tests -v
 
 formatter/linterの成功は、動作test、上流設計との照合、独立review、受入の代わりにはならない。
 設定PR時点では既存コードの整形違反が残る。整形PRで解消した実測を別に残す。
+
+## 固定bytesの研究資料
+
+[PR #3773 F1](https://github.com/RetryYN/HELIX-HARNESS/pull/3773#issuecomment-6457745354)への対応で、
+次の4ファイルは元bytesを保持し、`extend-exclude`へ明示する。526 Pythonのうち検査対象は522である。
+これらを除くsourceのScaffold Bindingは、binding全fieldへの影響を確認してから再束縛する。
+
+| 元bytesを保持するファイル（`scaffold/research/`以下） | 固定値を読むconsumer |
+|---|---|
+| `pre-isolation-outside-l1-semantic/generate.py` | 同directoryの`validate.py`の`EXPECTED_GENERATOR_SHA`とimport時検査 |
+| `pre-isolation-outside-holding-16-30/generate.py` | 同directoryの`validate.py`の`EXPECTED_GENERATOR_SHA256`と元Git anchor照合 |
+| `legacy-test-design-worker-workflow-0148/selfcheck.py` | 同directoryの`validate.py`の`PINNED_SHA256`と`E_PIN`照合 |
+| `rdp001-web-webos-vision-coverage-0091/selfcheck.py` | 同directoryの`inventory.json`の`inputs`固定値と`validate.py`の`E_INPUT_DIGEST`照合 |
+
+いずれも元source bytesがvalidatorの固定captureに含まれ、改行だけでも既存検証を拒否させる。
+Bindingのhashだけを変えても内部pinは直らないため、元の固定値と監査snapshotを保持する。
+一般のformatter違反を無視する除外ではない。将来この研究束を再baselineする作業で、
+sourceとconsumerと固定captureを同時に照合したときに除外を見直す。過去の監査証拠は上書きしない。

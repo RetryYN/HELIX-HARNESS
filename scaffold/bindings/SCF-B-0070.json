@@ -95,18 +95,18 @@
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave40/generate.py",
-      "sha256": "5af25ae1dd523cbbb75268b38b80d43ece170139d1d01a16fb85b63f97326711",
-      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "eac65f65850e401d7a73a49a9020fc0c339f226e1d237eb4edd36d1f77d7a416",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=5af25ae1dd523cbbb75268b38b80d43ece170139d1d01a16fb85b63f97326711; 現receipt=eac65f65850e401d7a73a49a9020fc0c339f226e1d237eb4edd36d1f77d7a416。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave40/validate.py",
-      "sha256": "75729e92a819ced8c7ef6505d959f3dbcdff8450e736a1e69fe3aaef17bdc0ff",
-      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave40/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=dac76ecb15aa3afb8ddc789340b84cafcd44ca37b8f1650f2d5c6daf0861ccc2; 現receipt=0781ebea414890376b081a284adfce46c95e341ba500c20c3e98df2d7d366e05; このBindingの採否・authorityは変更しない。]"
+      "sha256": "bb4551c3b36bcde7e2e5e7c827d9c029e671742aed962c5263c133d2b1851df4",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: legacy-semantic-review-wave40/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=dac76ecb15aa3afb8ddc789340b84cafcd44ca37b8f1650f2d5c6daf0861ccc2; 現receipt=0781ebea414890376b081a284adfce46c95e341ba500c20c3e98df2d7d366e05; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=75729e92a819ced8c7ef6505d959f3dbcdff8450e736a1e69fe3aaef17bdc0ff; 現receipt=bb4551c3b36bcde7e2e5e7c827d9c029e671742aed962c5263c133d2b1851df4。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave40/selfcheck.py",
-      "sha256": "b437c0e087f6996c9e077b112be32dfedbf6c42eadcc7c7f53cb766fea212fba",
-      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority"
+      "sha256": "b6924f2c7c95420d6f97acac5b09e2a3f360074f9e638675e9471fed40b45660",
+      "note": "Wave40 static Scaffold artifact; no formal requirement or implementation authority [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=b437c0e087f6996c9e077b112be32dfedbf6c42eadcc7c7f53cb766fea212fba; 現receipt=b6924f2c7c95420d6f97acac5b09e2a3f360074f9e638675e9471fed40b45660。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/legacy-semantic-review-wave40/legacy-requirement-direct-semantic-review-wave40.jsonl",

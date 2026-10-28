@@ -40,13 +40,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation/validate.py",
-      "sha256": "e6b4829f28e87a602029dbc77dfcdc43d69d14b19846b43e3881ef5d14cd726b",
-      "note": "read-only静的coherence確認"
+      "sha256": "26748c188078164a46d7d2d4c47027c6689bcac2ed358f934a043e0598d671d0",
+      "note": "read-only静的coherence確認 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=e6b4829f28e87a602029dbc77dfcdc43d69d14b19846b43e3881ef5d14cd726b; 現receipt=26748c188078164a46d7d2d4c47027c6689bcac2ed358f934a043e0598d671d0。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation/selfcheck.py",
-      "sha256": "44aeef50d4175a3410916e0dbc3a564e8eb5104eaacc68d417f514e659e5bcf7",
-      "note": "provenance driftとsnapshot path driftの否定例"
+      "sha256": "f96c3525455a6add9b107f9c21d57118fa8fe2011e807a38f810dc4635f9dc01",
+      "note": "provenance driftとsnapshot path driftの否定例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=44aeef50d4175a3410916e0dbc3a564e8eb5104eaacc68d417f514e659e5bcf7; 現receipt=f96c3525455a6add9b107f9c21d57118fa8fe2011e807a38f810dc4635f9dc01。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation/rdp001-6path-semantic-diff-inventory.json",
@@ -55,13 +55,13 @@
     },
     {
       "path": "scaffold/research/pre-isolation/validate-semantic-diff.py",
-      "sha256": "63ade45d3f12a2237920cb216985d5d9ced3703149b1ac2eeeef3455a02cdfe3",
-      "note": "semantic diffのGit blob span／SHA-256／分類数／negative静的確認"
+      "sha256": "66a220aa927e0abfdcb9582f1c1fe12ccd526fafb0607fb377ef4ecb19350122",
+      "note": "semantic diffのGit blob span／SHA-256／分類数／negative静的確認 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=63ade45d3f12a2237920cb216985d5d9ced3703149b1ac2eeeef3455a02cdfe3; 現receipt=66a220aa927e0abfdcb9582f1c1fe12ccd526fafb0607fb377ef4ecb19350122。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/pre-isolation/selfcheck-semantic-diff.py",
-      "sha256": "e203ae45a0936d537d1d41e7c175c35afb9a081ce91e09958b35951ca007a709",
-      "note": "fragment digest、分類集計、retained negative spanの否定例"
+      "sha256": "09b9961586b12b33c427382bdbaa863a213450f006e80e96b3d2119526dbe44b",
+      "note": "fragment digest、分類集計、retained negative spanの否定例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=e203ae45a0936d537d1d41e7c175c35afb9a081ce91e09958b35951ca007a709; 現receipt=09b9961586b12b33c427382bdbaa863a213450f006e80e96b3d2119526dbe44b。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     }
   ],
   "role": "6 source pathのbaseline／pre-isolation provenance、registry／catalog参照関係、HARNESS製品境界をreview可能な仮束へ固定する",

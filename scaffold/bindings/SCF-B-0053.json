@@ -20,13 +20,13 @@
     },
     {
       "path": "scaffold/research/phcap15-17-membership-edges/validate.py",
-      "sha256": "58ea3a4089a0f7c36d723de99c0331e73fe7187420d25c601e9a7a3302ac380a",
-      "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap15-17-membership-edges/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348; 現receipt=0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693; このBindingの採否・authorityは変更しない。]"
+      "sha256": "110117c781f2825bce5b346ea3a06147855c6cee77a71c12ca83cc2020b37c92",
+      "note": "candidate pool再導出、逐語span／ID exact guard、asset ledger、anchor、unknown validator [2026-09-26 旧HELIXからの移行台帳のlegacy-migration/への移動（PO判断） read-after: phcap15-17-membership-edges/validate.pyは、旧HELIXからの移行作業の台帳・待ち行列・wave記録をdocs/governance/直下からdocs/governance/legacy-migration/の種類別フォルダへ移した（2026-09-26のPO判断、docs/governance/decisions/governance-legacy-migration-layout-po-decisions-2026-09-26.md）のに合わせ、現行ファイルを読む移動対象のpath定数（または同じ定数の一覧）だけを新しいpathへ改めた（判定の条件・分岐・意味field・期待件数は不変、git diffで定数行だけの変更を確認）。本bindingのrole・obligations・connections・replacement・artifactは、旧HELIXからの移行台帳のpath（旧docs/governance/直下）、それらへのリンクの表記、研究用pinとvalidatorのpath・digestの表記に依存しないことをbinding全体で確認した。前receipt=2747879c46068963f6131abdbbde54666319a7773936fc8294885b1d65cbb348; 現receipt=0dd371e106da1579d735f73310de605c647707aa1f0d1dcbe0d6bce663384693; このBindingの採否・authorityは変更しない。] [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=58ea3a4089a0f7c36d723de99c0331e73fe7187420d25c601e9a7a3302ac380a; 現receipt=110117c781f2825bce5b346ea3a06147855c6cee77a71c12ca83cc2020b37c92。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "scaffold/research/phcap15-17-membership-edges/selfcheck.py",
-      "sha256": "26c704a9603288dbd78e3731cf0983118804e2eec286e88448f724a4d35d7b04",
-      "note": "authority、実装、consumer、decision、source、分類、禁止推論、nested keyset、anchor meaning、membership contract／reason改変を拒否する27負例"
+      "sha256": "10198eeeb0c2fa968c128d8a4b3704b71a4cee2c9d84d807fb81052f1a5c402c",
+      "note": "authority、実装、consumer、decision、source、分類、禁止推論、nested keyset、anchor meaning、membership contract／reason改変を拒否する27負例 [WR73/PR3773: 402867935の元sourceとRuff整形後sourceは位置情報を除くAST同値、型コメント付属も保持。binding全体（reason/role/obligations/connections/operations/verificationのoracle・negative case/replacement.role_target）への意味影響を確認し、役割・権限・義務・固定capture・採否は不変として再束縛。旧receipt=26c704a9603288dbd78e3731cf0983118804e2eec286e88448f724a4d35d7b04; 現receipt=10198eeeb0c2fa968c128d8a4b3704b71a4cee2c9d84d807fb81052f1a5c402c。固定bytes consumerを持つ4ファイルは除外して元bytesを保持。]"
     },
     {
       "path": "docs/governance/legacy-migration/requirement/legacy-requirement-implementation-crosswalk-bootstrap.jsonl",
