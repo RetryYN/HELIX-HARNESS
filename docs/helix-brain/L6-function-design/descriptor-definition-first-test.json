@@ -199,7 +199,8 @@
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_claims.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_reader.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_bilateral.py",
-      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py"
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_projection.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/identity_trace_endpoint_owners.py"
     ],
     "module_split_basis": "PR3709追補M10（comment6421876852）とIssue3547 comment6421872614。旧src/config/requirements-binding-policy.ts:4–5、src/state-db/refactor-candidates.ts:293–294の700非空行以上の候補検出、旧docs/governance/coding-rules.md:29の一behavior contract・一責務ownerを再利用する。fn3だけ責務別に移動し新module各700非空行未満、既存fn0/fn1/fn6の分割は別WR。関数本体・定数の意味は保持し、fn6同様の遅延委譲へ変える。製品gateや新承認手続きは加えない。",
     "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_identity_versions_and_trace.py",
@@ -245,7 +246,10 @@
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison.py",
       "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff.py",
-      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_ports.py"
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_ports.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_comparison_scope.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/definition_replacement_claims.py",
+      "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/dependencies_handoff_port_support.py"
     ],
     "module_split_basis": "L6 /fn3_identity_preparation/module_split_basis の「既存fn0/fn1/fn6の分割は別WR」および WR-CLAUDE-BRAIN032-FN016-MODULE-SPLIT-3547-20261027-17（Issue #3547）。旧 src/config/requirements-binding-policy.ts:4-5（splitModuleLines: 700）、旧 src/state-db/refactor-candidates.ts:293-294（nonBlankLineCount >= policy.thresholds.splitModuleLines）、旧 docs/governance/coding-rules.md:29（1 behavior contract + 1 responsibility owner）を再利用し、descriptor_definitions.py（959非空行）と dependencies_handoff.py（1021非空行）をfn3と同じ遅延委譲方式で700非空行未満の責務別moduleへ分割する。関数本体・定数・例外文言・返却の意味は一切変更しない（純粋Refactor、新gate・新分岐なし）。",
     "legacy_sources": [
@@ -466,7 +470,75 @@
           "read_canonical_dependency_body"
         ]
       }
-    ]
+    ],
+    "postformat_module_split": {
+      "request": "WR-CLAUDE-BRAIN032-MODULE-SPLIT-POSTFORMAT-3547-20261028-79",
+      "working_base": "67dcb58b89a68c5a29049bb1874d9c0228d19b14",
+      "source_revision": "8f2ff57d7d08ac59f065248a0c24a5b42cb527ac",
+      "basis": "同node旧sourceの700非空行は分割候補検出。一behavior contract/一責務owner、関数/定数/例外/返却意味不変を再利用する。基準や製品gateを新設/変更しない。",
+      "legacy_read": "archive/legacy-generation-2026-09-14/root/src/config/requirements-binding-policy.ts:4–5、src/state-db/refactor-candidates.ts:287–294、docs/governance/coding-rules.md:20–31を静的再読。旧runtime/DB/CLI/test/CIは実行しない。",
+      "failure_basis": "既存WR73 PR3773 R1 Info I1で整形後9module超過を実測。既存split記録の同一意味を保ち、行数だけの切出しを避ける。本node module_mapping_tableのpre/post値は過去の移動時点の記録として保持し、現在値は本current_module_nonblank_linesを使う。",
+      "selected_boundaries": [
+        "FN1 scope/frame guard→definition_comparison_scope、fill replacement→definition_replacement_claims。元moduleはmeaning axes/比較合成を保持。",
+        "FN3 endpoint owner/source reads→identity_trace_endpoint_owners。元bilateralはpair aggregation/projectionを保持。",
+        "F03共通source/provenance/request支持→values_applicability_read_support。元readsはfield/target/fact読取とnormative snapshotを保持。",
+        "F03原field definition取得→values_applicability_definition_reads。元moduleはclaim/row評価合成を保持。",
+        "B02 protocol shape/trace/pointer支持→dependencies_handoff_port_support。元portsは4business readersを保持。",
+        "FN1 owner原資料取得→descriptor_owner_material。元target readerは住所解釈を保持。",
+        "FN5 context/witness/basis読取→knowledge_promotion_reads。元moduleはrule80–83評価/比較合成を保持。"
+      ],
+      "no_split": {
+        "dependencies_handoff.py": {
+          "nonblank_lines": 787,
+          "reason": "同call frame検証、B02/F09 prefix、Claim評価と一Comparison合成は既存FN6 ownerの一責務。port読取は既に別module。helper群はこのconsumerだけが使い、87行超過だけの再切出しはしない。全bytes不変。"
+        },
+        "values_applicability_rows.py": {
+          "nonblank_lines": 749,
+          "reason": "field-row一責務がapplicability/value/parent、definition judgment、N/Aとevent/axis順を協調する。単独consumerの小helperだけを行数のために分離しない。全bytes不変。"
+        }
+      },
+      "compatibility": "descriptor_definitions public facadeと全旧module上のfunction/constant import名を保持。移動は関数AST単位、署名/docstring/例外/文字列/順と定数値AST不変。新支持moduleから元consumerへの逆importを作らない。",
+      "previous_recorded_definition_comparison_nonblank_lines": 619,
+      "current_module_nonblank_lines": {
+        "claim_boundaries.py": 523,
+        "definition_comparison.py": 515,
+        "definition_comparison_scope.py": 454,
+        "definition_replacement_claims.py": 289,
+        "dependencies_handoff.py": 787,
+        "dependencies_handoff_port_support.py": 214,
+        "dependencies_handoff_ports.py": 558,
+        "dependency_missing_projection.py": 149,
+        "descriptor_definition_normative.py": 193,
+        "descriptor_definition_pairs.py": 35,
+        "descriptor_definition_reads.py": 479,
+        "descriptor_definition_walk.py": 632,
+        "descriptor_definitions.py": 327,
+        "descriptor_owner_material.py": 96,
+        "descriptor_target_frame.py": 344,
+        "descriptor_target_reader.py": 697,
+        "identity_trace.py": 209,
+        "identity_trace_actual.py": 501,
+        "identity_trace_bilateral.py": 691,
+        "identity_trace_claims.py": 410,
+        "identity_trace_endpoint_owners.py": 310,
+        "identity_trace_projection.py": 349,
+        "identity_trace_reader.py": 518,
+        "identity_trace_support.py": 401,
+        "knowledge_promotion.py": 344,
+        "knowledge_promotion_reads.py": 582,
+        "oracle_binding_rules.py": 258,
+        "oracle_finite_carry.py": 83,
+        "oracle_projection_writer.py": 36,
+        "oracle_view_boundary.py": 92,
+        "supply_validation.py": 613,
+        "values_applicability.py": 304,
+        "values_applicability_definition_reads.py": 484,
+        "values_applicability_read_support.py": 286,
+        "values_applicability_reads.py": 694,
+        "values_applicability_rows.py": 749
+      },
+      "verification": "root-wr79-root-static-proof-R3.jsonに全235関数/44移動/74定数、旧tests全bytes不変、移動先と旧aliasを記録。元417件にWR68追加4件を含む同一421unitを前後確認。FN4未閉/WR82設計は別責務のまま。"
+    }
   },
   "fn1_kind_slot_and_substitution_preparation": {
     "id": "HELIXBRAIN-L6-032-FN1-KIND-SLOT-TDD",
@@ -584,7 +656,7 @@
       "F01/descriptor_claim_unimplemented (same-Binding non-fill_definition claim targeting a descriptor fact)"
     ],
     "module_nonblank_lines": {
-      "definition_comparison.py": 619,
+      "definition_comparison.py": 515,
       "limit_nonblank_lines": 700
     },
     "design_notes": {
