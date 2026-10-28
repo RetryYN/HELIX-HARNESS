@@ -1716,6 +1716,163 @@ def _check_negative_equivalence_mode(
                     l4_parent_contract_refs.setdefault(classification_id, set()).add(
                         l4_contract_id
                     )
+    parent_link_mode = "legacy"
+    has_top_level_parent_link = any(
+        isinstance(row, dict) and "design_ref" in row
+        for row in raw_class_rows["L4"]
+    )
+    has_reverse_parent_link = isinstance(l4_contracts, list) and any(
+        isinstance(contract, dict) and "negative_class_refs" in contract
+        for contract in l4_contracts
+    )
+    if has_top_level_parent_link or has_reverse_parent_link:
+        parent_link_mode = "new_parent_link"
+        if not isinstance(l4_contracts, list):
+            fail(
+                "l4_parent_ref",
+                layer="L4",
+                reason="l4_contracts_not_array",
+            )
+        else:
+            l4_contract_by_id: dict[str, dict[str, Any]] = {}
+            for index, contract in enumerate(l4_contracts):
+                if not isinstance(contract, dict):
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=index,
+                        reason="l4_contract_not_object",
+                    )
+                    continue
+                contract_id = contract.get("id")
+                if not isinstance(contract_id, str) or not contract_id.strip():
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=index,
+                        reason="l4_contract_id_missing_or_invalid",
+                    )
+                    continue
+                if contract_id in l4_contract_by_id:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=contract_id,
+                        reason="l4_contract_id_duplicate",
+                    )
+                    continue
+                l4_contract_by_id[contract_id] = contract
+
+            top_rows_by_id: dict[str, dict[str, Any]] = {}
+            top_parent_by_id: dict[str, str] = {}
+            nested_ids = set(l4_parent_contract_refs)
+            for index, raw in enumerate(raw_class_rows["L4"]):
+                if not isinstance(raw, dict):
+                    continue
+                class_id = raw.get("class_id", raw.get("id"))
+                if not isinstance(class_id, str) or not class_id.strip():
+                    continue
+                if class_id in top_rows_by_id:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=class_id,
+                        reason="l4_top_level_class_id_duplicate",
+                    )
+                    continue
+                top_rows_by_id[class_id] = raw
+                if class_id in nested_ids:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=class_id,
+                        reason="l4_class_dual_definition_nested_and_top_level",
+                    )
+                design_ref = raw.get("design_ref")
+                if not isinstance(design_ref, str) or not design_ref.strip():
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=class_id,
+                        reason="l4_top_level_design_ref_missing_or_invalid",
+                    )
+                    continue
+                if design_ref not in l4_contract_by_id:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=class_id,
+                        reason="l4_top_level_design_ref_unresolved",
+                    )
+                    continue
+                top_parent_by_id[class_id] = design_ref
+
+            reverse_refs: dict[str, list[str]] = {}
+            for contract_id, contract in l4_contract_by_id.items():
+                if "negative_class_refs" not in contract:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=contract_id,
+                        reason="l4_negative_class_refs_missing",
+                    )
+                    continue
+                refs = contract.get("negative_class_refs")
+                if not isinstance(refs, list):
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=contract_id,
+                        reason="l4_negative_class_refs_not_array",
+                    )
+                    continue
+                seen_refs: set[str] = set()
+                for ref_index, class_id in enumerate(refs):
+                    if not isinstance(class_id, str) or not class_id.strip():
+                        fail(
+                            "l4_parent_ref",
+                            layer="L4",
+                            case_id=f"{contract_id}:{ref_index}",
+                            reason="l4_negative_class_ref_invalid",
+                        )
+                        continue
+                    if class_id in seen_refs:
+                        fail(
+                            "l4_parent_ref",
+                            layer="L4",
+                            case_id=class_id,
+                            reason="l4_negative_class_ref_duplicate",
+                        )
+                        continue
+                    seen_refs.add(class_id)
+                    if class_id not in top_rows_by_id:
+                        fail(
+                            "l4_parent_ref",
+                            layer="L4",
+                            case_id=class_id,
+                            reason="l4_negative_class_ref_unresolved",
+                        )
+                        continue
+                    if top_parent_by_id.get(class_id) != contract_id:
+                        fail(
+                            "l4_parent_ref",
+                            layer="L4",
+                            case_id=class_id,
+                            reason="l4_parent_links_disagree",
+                        )
+                        continue
+                    reverse_refs.setdefault(class_id, []).append(contract_id)
+
+            for class_id, contract_id in top_parent_by_id.items():
+                if reverse_refs.get(class_id, []) != [contract_id]:
+                    fail(
+                        "l4_parent_ref",
+                        layer="L4",
+                        case_id=class_id,
+                        reason="l4_parent_reverse_link_missing_or_ambiguous",
+                    )
+                    continue
+                l4_parent_contract_refs[class_id] = {contract_id}
     l8_owner_refs: dict[str, set[tuple[str, str]]] = {}
     l9_owner_refs: dict[str, set[tuple[str, str]]] = {}
     for l8_id, l8_row in l8_cases.items():
@@ -2480,6 +2637,7 @@ def _check_negative_equivalence_mode(
     return {
         "check": "CHK-NEG-4WAY-MATCH",
         "comparison_mode": "explicit_negative_equivalence_classes",
+        "parent_link_mode": parent_link_mode,
         "comparison_scope": comparison_scope,
         "count_unit": "unique_equivalence_class_keys_per_layer",
         "matched_case_count_unit": "paired_negative_L8_L9_case_rows",
@@ -2897,6 +3055,7 @@ def check_neg_4way_match(
     return {
         "check": "CHK-NEG-4WAY-MATCH",
         "comparison_mode": "legacy_casewise_four_layer",
+        "parent_link_mode": "legacy",
         "comparison_scope": {
             "case_rows": [
                 "L4.contracts[].negative_classifications",
@@ -3903,6 +4062,7 @@ def generate_freeze_record(
         "matched_case_count": neg_res["matched_case_count"],
         "failure_count": len(neg_res["failures"]),
         "passed": neg_res["passed"],
+        "parent_link_mode": neg_res.get("parent_link_mode", "legacy"),
     }
     if "comparison_mode" in neg_res:
         out["negative_case_4way_verification"].update(
@@ -3928,6 +4088,9 @@ def generate_freeze_record(
     ver = dict(out.get("verification") or {})
     ver["all_pointers_resolved"] = ptr_res["passed"]
     ver["negative_4way_matched_count"] = neg_res["matched_case_count"]
+    ver["negative_4way_parent_link_mode"] = neg_res.get(
+        "parent_link_mode", "legacy"
+    )
     if "comparison_mode" in neg_res:
         ver["negative_4way_comparison_mode"] = neg_res["comparison_mode"]
         ver["negative_4way_comparison_scope"] = neg_res["comparison_scope"]
