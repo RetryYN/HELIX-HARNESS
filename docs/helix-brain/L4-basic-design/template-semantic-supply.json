@@ -9485,6 +9485,8 @@
       "symbol": "evaluate_selected_field_values_public",
       "signature": "(context:F03BasicContext)->F03Evaluation",
       "basic_function_ref": "/field_value_applicability_contract/functions/3",
+      "l5_function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "l5_function_pointer": "/functions/9",
       "upstream_connection_basis": {
         "brain_l2_handoff_refs": [
           "HELIXBRAIN-L2-019",

@@ -1311,8 +1311,7 @@
         "HELIXBRAIN-L8-032-ADD-11",
         "HELIXBRAIN-L8-032-ADD-12",
         "HELIXBRAIN-L8-032-VF3-F03-CLAIMS",
-        "HELIXBRAIN-L8-032-VF3-N03-CLAIMS",
-        "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"
+        "HELIXBRAIN-L8-032-VF3-N03-CLAIMS"
       ],
       "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-compare_values_and_applicability",
       "private_detail_binding": {
@@ -1637,6 +1636,43 @@
         "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
       ],
       "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-build_supply_analysis"
+    },
+    {
+      "id": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "symbol": "evaluate_selected_field_values_public",
+      "visibility": "public",
+      "contract_refs": [
+        "HELIXBRAIN-L5-032-F03",
+        "HELIXBRAIN-L5-032-N03"
+      ],
+      "input": "F03BasicContext",
+      "output": "F03Evaluation",
+      "effect": "none",
+      "algorithm": [
+        "単一入力型context:F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}を受け取り、BRAIN内部のevaluate_field_values_detail(context:F03BasicContext)へちょうど一回委譲し、返却F03Evaluation（comparison:F03Comparison,rows:F03Row[],problems:F03Problem[]の3-member閉型）を変換・欠落なしにそのまま返す。",
+        "BRAIN内部private_full_runner（run_descriptor_target_flow_with_field_value_detail）の3-member closed_private_caller_result（supply_analysis, descriptor_target_call_observation, field_value_evaluation）を機構間境界へ露出せず、同一F03BasicContextに対する返却F03Evaluationはprivate_full_runner.field_value_evaluationと全member等価を保ち、公開Comparison射影write_existing_comparison_from_f03(result.comparison)はcompare_values_and_applicabilityの返却と一致する。副作用0。"
+      ],
+      "failure_rules": [
+        "HELIXBRAIN-L5-032-R-unknown_as_na",
+        "HELIXBRAIN-L5-032-R-definition_as_value_gap",
+        "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
+        "HELIXBRAIN-L5-032-R-section_na_all_fields",
+        "HELIXBRAIN-L5-032-R-fixture_timeout_default",
+        "HELIXBRAIN-L5-032-R-fixture_cpu_default",
+        "HELIXBRAIN-L5-032-R-fixture_memory_default"
+      ],
+      "claim_protocol_pointer": "/field_value_applicability_detail/claim_protocol",
+      "unit_case_refs": [
+        "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"
+      ],
+      "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+      "private_detail_binding": {
+        "symbol": "evaluate_field_values_detail",
+        "input": "context:F03BasicContext",
+        "output": "F03Evaluation",
+        "public_projection": "identity(detail)（F03Evaluationの3-member閉型を変換・欠落なしにそのまま返す。公開Comparison射影はwrite_existing_comparison_from_f03(detail.comparison)でcompare_values_and_applicabilityと一致）",
+        "call_count": "一回。詳細内容とclosed typesは/field_value_applicability_detailを参照。"
+      }
     }
   ],
   "contracts": [
@@ -13459,7 +13495,8 @@
         "legacy_oracle_condition": "旧normalのknown/supplied/applicable期待は、同入力がL4 F03に必要な原field owner/source/descriptor資料を供給し、固定L4契約からその期待が導ける範囲だけで照合する。根拠sourceが未取得ならF03 L4のunknownを維持する。旧fixtureの期待と矛盾する可能性はL8対検証側で別途解消し、本L5は旧期待を優先しない。"
       },
       "public_selected_field_evaluation_endpoint": {
-        "id": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+        "function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+        "function_pointer": "/functions/9",
         "symbol": "evaluate_selected_field_values_public",
         "signature": "(context:F03BasicContext)->F03Evaluation",
         "contract_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/field_value_applicability_contract/public_selected_field_evaluation_endpoint",
@@ -13470,7 +13507,8 @@
         "output": "F03Evaluation",
         "effect": "none",
         "delegation_and_runner_relation": "単一入力型context:F03BasicContextを受け、private_detail_bindingのevaluate_field_values_detail(context:F03BasicContext)をちょうど一回呼び、その返却F03Evaluation（comparison, rows, problemsの3-member閉型）を変換・欠落なしにそのまま返す。private_full_runner（run_descriptor_target_flow_with_field_value_detail）も内部order 4で同じevaluate_field_values_detail(f03_order_4_context)を一回呼んでfield_value_evaluationへ格納するため、本公開関数とprivate_full_runner.field_value_evaluationは同一のF03Evaluation意味・値を持ちつつ、本公開関数はSupplyAnalysisやDescriptorTargetCallObservationとの3-member private_return wrapperを作らず要求しない。",
-        "binding": "他機構（HARNESS/CORE等）はconnector/adapter経由でこの公開端点関数契約（evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation）のみを参照し、BRAIN内部private_full_runnerや3-member private_return wholeを直接呼出し・pinしない。",
+        "binding": "他機構（HARNESS/CORE等）はconnector/adapter経由でこの公開端点関数契約（/functions/9: evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation）のみを参照し、BRAIN内部private_full_runnerや3-member private_return wholeを直接呼出し・pinしない。",
+        "oracle_ref": "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
         "unit_case_ref": "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"
       },
       "private_full_runner": {
