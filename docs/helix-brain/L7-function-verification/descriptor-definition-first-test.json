@@ -2873,6 +2873,12 @@
         "old": "Claim basis SHA absent vs record basis SHA known expected unresolved/no cross finding.",
         "new": "existing ref_same treats a one-sided null SHA as corresponding; expected descriptor_07_missing plus cross_pattern_field_substitution with original source refs.",
         "basis": "L5 /source_return_contract/pure_reference_notation/definitions and /source_return_contract/descriptor_target_dataflow/definition_meaning_core/call_return_closure/replacement_claim_request_schedule/basis_shape_return_limits/positive_cohort"
+      },
+      {
+        "test": "test_descriptor_definitions.py::test_r1_m4_target_and_basis_negative_boundary_mutations/target_prov_shape_bad; replacement test_unrelated_provenance_problem_keeps_resolved_target_special_finding",
+        "old": "An unrelated malformed provenance occurrence was expected to suppress the special finding.",
+        "new": "The unrelated problem is retained while the independently resolved original target and cross-pattern support produce cross_pattern_field_substitution.",
+        "basis": "L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special/activation and /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special/nonfire"
       }
     ],
     "l8_expectation_check": {
