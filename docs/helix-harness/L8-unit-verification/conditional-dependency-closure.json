@@ -193,7 +193,8 @@
           "local_input_change": "報告B.category=always（原B.source/falseは固定）",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-classification_change",
-          "local_predicate": "reported.declarations[slot].category != original.category（B source→always等）。原categoryで計算しreportedを採用しない。"
+          "local_predicate": "reported.declarations[slot].category != original.category（B source→always等）。原categoryで計算しreportedを採用しない。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-02",
@@ -207,7 +208,8 @@
           "local_input_change": "報告A.state=capability_only; reported.requiredからAだけ除外",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-required_omission",
-          "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。"
+          "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-03",
@@ -221,7 +223,8 @@
           "local_input_change": "proposed_meaning.ownerだけother",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-meaning_change",
-          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。"
+          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-04",
@@ -235,7 +238,8 @@
           "local_input_change": "proposed_meaning.parent_scope_refだけother_scope",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-meaning_change",
-          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。"
+          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-04"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-05",
@@ -249,7 +253,8 @@
           "local_input_change": "proposed_meaning.behavior_refだけ機能削減body参照",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-meaning_change",
-          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。"
+          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-05"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-06",
@@ -263,7 +268,8 @@
           "local_input_change": "proposed_meaning.version_refだけ昇格。maturity差は独立subcase",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-meaning_change",
-          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。"
+          "local_predicate": "proposed_meaningのowner/parent_requirement_ref/parent_scope_ref/behavior_ref/version_ref/maturity_refいずれか != qualified original.meaning。親scope差のdomain=parent、それ以外declaration。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-06"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-07",
@@ -277,7 +283,8 @@
           "local_input_change": "proposed_meaning.version_target_refだけ後続→1.0強制",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-version_scope_change",
-          "local_predicate": "proposed_meaning.version_target_ref != original.version_target_refによって後続版能力を現在利用requiredへ強制。版/成熟度変更は別meaning_change原因も保持。"
+          "local_predicate": "proposed_meaning.version_target_ref != original.version_target_refによって後続版能力を現在利用requiredへ強制。版/成熟度変更は別meaning_change原因も保持。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-07"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-08",
@@ -291,7 +298,8 @@
           "local_input_change": "報告C.state=excluded_condition_false、役割credentialは原本保持",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-safety_omission",
-          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。"
+          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-08"
         },
         {
           "id": "HARNESS-L8-023-F01-NEG-09",
@@ -305,7 +313,8 @@
           "local_input_change": "proposed_meaning.completion_obligation_refsからBの1.0義務だけ削除",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-completion_scope_change",
-          "local_predicate": "proposed_meaning.completion_obligation_refs != original集合。unselected宣言の完成義務も比較対象。"
+          "local_predicate": "proposed_meaning.completion_obligation_refs != original集合。unselected宣言の完成義務も比較対象。",
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-09"
         }
       ],
       "execution_state": "not_executed"
@@ -342,7 +351,8 @@
           "local_input_change": "O condition.state=unknown; reported O.condition_state=false",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-condition_unknown",
-          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。"
+          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-02",
@@ -356,7 +366,8 @@
           "local_input_change": "S condition.state=unknown; reported S.state=unselected_unobserved",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-condition_unknown",
-          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。"
+          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-03",
@@ -370,7 +381,8 @@
           "local_input_change": "O Condition envelope.state=stale; reported O.condition_state=true",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-condition_stale",
-          "local_predicate": "適用ConditionBody.state=stale又はenvelope.state=stale。旧revisionを新bindingへ継承せずpending。"
+          "local_predicate": "適用ConditionBody.state=stale又はenvelope.state=stale。旧revisionを新bindingへ継承せずpending。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-04",
@@ -384,7 +396,8 @@
           "local_input_change": "owner DeclarationsBody A.dependency_ref=null（slot A保持）",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-declaration_missing",
-          "local_predicate": "declarations_ref/body又はDeclaration.dependency_refがsemantic null/missing。slotで不足locatorを返し分類unresolved、空集合にしない。"
+          "local_predicate": "declarations_ref/body又はDeclaration.dependency_refがsemantic null/missing。slotで不足locatorを返し分類unresolved、空集合にしない。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-04"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-05",
@@ -398,7 +411,8 @@
           "local_input_change": "owner Declaration O.declaration_state=ambiguous; category=null",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-declaration_ambiguous",
-          "local_predicate": "Declaration.declaration_state=ambiguous又はcategory/requested_revision/条件宣言/compatibility指定の意味が曖昧。pending、自己推定しない。"
+          "local_predicate": "Declaration.declaration_state=ambiguous又はcategory/requested_revision/条件宣言/compatibility指定の意味が曖昧。pending、自己推定しない。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-05"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-06",
@@ -412,7 +426,8 @@
           "local_input_change": "Binding.operation_ref=null; reported backflow.owner=pack_contract_owner、subject=O",
           "symbol": "route_dependency_backflow",
           "rule_ref": "R-backflow_mismatch",
-          "local_predicate": "reported backflow claimのowner != 原cause.domain対応owner。caller operation/source/scope/receipt不足を010へ返す場合を含み、正しいcall_owner recordを返す。"
+          "local_predicate": "reported backflow claimのowner != 原cause.domain対応owner。caller operation/source/scope/receipt不足を010へ返す場合を含み、正しいcall_owner recordを返す。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-06"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-07",
@@ -426,7 +441,8 @@
           "local_input_change": "C authority state=conflict; caller補完claim。他に親scope conflictの独立subcase",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-authority_unknown",
-          "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。"
+          "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-07"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-08",
@@ -440,7 +456,8 @@
           "local_input_change": "O condition.state=unknown; fallback replacement_source_ref=other",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-implicit_fallback",
-          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。"
+          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-08"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-09",
@@ -454,7 +471,8 @@
           "local_input_change": "owner Declaration O.declaration_state=conflict; reported O.condition_state=false",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-condition_conflict",
-          "local_predicate": "原宣言/適用ConditionBody.state=conflict又は相互矛盾するqualified根拠。宣言矛盾はdeclaration domain、caller条件矛盾はcall domain。"
+          "local_predicate": "原宣言/適用ConditionBody.state=conflict又は相互矛盾するqualified根拠。宣言矛盾はdeclaration domain、caller条件矛盾はcall domain。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-09"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-10",
@@ -468,7 +486,8 @@
           "local_input_change": "O condition.state=unknown; fallback actor=humanで自己申告",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-implicit_fallback",
-          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。"
+          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-10"
         },
         {
           "id": "HARNESS-L8-023-F02-NEG-11",
@@ -482,7 +501,8 @@
           "local_input_change": "O condition.state=unknown; fallback subject=O、reported O.state=reference",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-implicit_fallback",
-          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。"
+          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-11"
         }
       ],
       "execution_state": "not_executed"
@@ -519,7 +539,8 @@
           "local_input_change": "原S.edge target Q保持、Qの宣言slotだけmissing",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-required_omission",
-          "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。"
+          "local_predicate": "computed requiredにあるidentityがreported.required_refsに無い又はcapability_onlyに落とす。またqualified required edgeのtargetが宣言母集合に無い。target identityをrequired_refsへ残す。 またrequired edge.stateがunknown/missing/stale/conflict、target_ref=null、又は到達先条件と必須edgeが矛盾。unknown edgeを不足の原因として残す。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-02",
@@ -533,7 +554,8 @@
           "local_input_change": "reported C.state=optional",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-safety_omission",
-          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。"
+          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-03",
@@ -547,7 +569,8 @@
           "local_input_change": "reported C.state=reference; 原roles=authority,isolation,exclusion",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-safety_omission",
-          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。"
+          "local_predicate": "qualified origin/edgeが課すauthority/isolation/exclusion/credential/data_use/audit/stop/recovery roleの必要依存をreported optional/reference/未来版除外へ変える。required又はpendingを保持。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-04",
@@ -561,7 +584,8 @@
           "local_input_change": "reported Q.state=reference; 原Q.role=oracle",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-binding_document_omission",
-          "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。"
+          "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-04"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-05",
@@ -575,7 +599,8 @@
           "local_input_change": "Q role=source_authorityのqualified原fixture; reported Q.state=reference",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-binding_document_omission",
-          "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。"
+          "local_predicate": "required oracle/execution/result/source_authorityのroleとreported reference/backgroundが矛盾。source_authority domain=authority、その他declaration。拡張子を判定に使わない。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-05"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-06",
@@ -589,7 +614,8 @@
           "local_input_change": "C safety Condition.state=unknown; reported C.state=excluded_condition_false",
           "symbol": "classify_dependency_conditions",
           "rule_ref": "R-condition_unknown",
-          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。"
+          "local_predicate": "適用conditionのstateがmissing/unknown又は資格未解決。reported true/falseに置換せずdecision pending。domainはConditionBody.cause_ownerにより保持、未解決はunknown。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-06"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-07",
@@ -603,7 +629,8 @@
           "local_input_change": "reported B claim kind=success。nonexistentは別subcase",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-unselected_claim",
-          "local_predicate": "unselected_unobserved identityについてreported success/nonexistent claimがある。未観測維持、domain=call。"
+          "local_predicate": "unselected_unobserved identityについてreported success/nonexistent claimがある。未観測維持、domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-07"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-08",
@@ -617,7 +644,8 @@
           "local_input_change": "qualified S observation.state=failure; fallback replacement_source_ref=other",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-implicit_fallback",
-          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。"
+          "local_predicate": "元required/pending/失敗sourceの不足が残るのにreported fallback（別source/手作業/reference）で成立を主張。replacement_source_refを元選択へ付け替えない。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-08"
         },
         {
           "id": "HARNESS-L8-023-F03-NEG-09",
@@ -631,7 +659,8 @@
           "local_input_change": "reported green; observed_target_refsからQだけ削除",
           "symbol": "expand_dependency_closure",
           "rule_ref": "R-coverage_shrink",
-          "local_predicate": "reported green claim有り、computed required_refs - reported.observed_target_refs が非empty。失敗/未知対象を差分へ残す。"
+          "local_predicate": "reported green claim有り、computed required_refs - reported.observed_target_refs が非empty。失敗/未知対象を差分へ残す。",
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-09"
         }
       ],
       "execution_state": "not_executed"
@@ -668,7 +697,8 @@
           "local_input_change": "reported dispatch claim、basisはclassificationのみ",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-classification_as_use",
-          "local_predicate": "reported claimsにdispatchが有り、その根拠がclassificationだけ又は実owner条件未成立。pure分類からdispatch許可を生成しない。"
+          "local_predicate": "reported claimsにdispatchが有り、その根拠がclassificationだけ又は実owner条件未成立。pure分類からdispatch許可を生成しない。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-02",
@@ -682,7 +712,8 @@
           "local_input_change": "reported all_source_gate; B observation未供給",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-global_gate_added",
-          "local_predicate": "reported all_source_gate claim有り、unselected_unobserved又は無関係scopeの実装まで分類の前提にする。分類は返すが当該不正gate claimをheld。"
+          "local_predicate": "reported all_source_gate claim有り、unselected_unobserved又は無関係scopeの実装まで分類の前提にする。分類は返すが当該不正gate claimをheld。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-03",
@@ -696,7 +727,8 @@
           "local_input_change": "A observation.actual_revision=null; reported success A",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-utilization_unproven",
-          "local_predicate": "required observationが未解決又はactual_revision=null。原classify可、domain=call、mapping不足とは別原因。"
+          "local_predicate": "required observationが未解決又はactual_revision=null。原classify可、domain=call、mapping不足とは別原因。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-04",
@@ -710,7 +742,8 @@
           "local_input_change": "A.compatibility_ref=null; reported A版をlatestへ読む",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-compatibility_unknown",
-          "local_predicate": "required Dependencyのcompatibility_ref又はmappingがmissing/unknown/ambiguous/stale/conflict/資格未解決。requested/observed差を消さずdomain=declaration。"
+          "local_predicate": "required Dependencyのcompatibility_ref又はmappingがmissing/unknown/ambiguous/stale/conflict/資格未解決。requested/observed差を消さずdomain=declaration。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-04"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-05",
@@ -724,7 +757,8 @@
           "local_input_change": "C authority資格をcaller自己発行へ変更、qualification_rootsはowner既決のみ",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-authority_unknown",
-          "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。"
+          "local_predicate": "required roleのauthority/安全根拠が未資格/unknown/unsatisfied又は親scope矛盾をcallerが補完するclaim。authority不足domain=authority、親scope矛盾domain=parent。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-05"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-06",
@@ -738,7 +772,8 @@
           "local_input_change": "A evidenceをplain mock/hash envelopeへ置換、qualification未成立",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-evidence_unproven",
-          "local_predicate": "required実evidence/verification/record根拠がowner解決未成立、mock/hash/plain claimだけ又はobservation failure/unknown。実資格に昇格せずdomain=call。"
+          "local_predicate": "required実evidence/verification/record根拠がowner解決未成立、mock/hash/plain claimだけ又はobservation failure/unknown。実資格に昇格せずdomain=call。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-06"
         },
         {
           "id": "HARNESS-L8-023-F04-NEG-07",
@@ -752,7 +787,8 @@
           "local_input_change": "A observation.actual_revision=r9、mapping allowed (r1,r1)は固定",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-compatibility_mismatch",
-          "local_predicate": "qualified mappingあり、qualified observation.actual_revision != nullで(requested_revision,actual_revision)がallowed_revision_pairsに無い。domain=call。"
+          "local_predicate": "qualified mappingあり、qualified observation.actual_revision != nullで(requested_revision,actual_revision)がallowed_revision_pairsに無い。domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-07"
         }
       ],
       "execution_state": "not_executed"
@@ -789,7 +825,8 @@
           "local_input_change": "同snapshotで順序変更した報告からOだけrequired除去",
           "symbol": "build_dependency_analysis",
           "rule_ref": "R-nondeterministic_closure",
-          "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。"
+          "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。",
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-02",
@@ -803,7 +840,8 @@
           "local_input_change": "同snapshotで報告O.condition_state=false、time由来reason",
           "symbol": "build_dependency_analysis",
           "rule_ref": "R-nondeterministic_closure",
-          "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。"
+          "local_predicate": "reported_closureが同Bindingと同condition_snapshot_refsに束縛されるがcomputed 5集合/decision理由と異なる（arrival order又はclockだけの差も含む）。変更snapshotは比較対象外でtrace差を扱う。報告が無ければ比較原因を捏造しない。",
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-03",
@@ -817,7 +855,8 @@
           "local_input_change": "報告binding.contract_ref=c2（原condition reason=c1）",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-trace_cross_binding",
-          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。"
+          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-N01-NEG-04",
@@ -831,7 +870,8 @@
           "local_input_change": "A receipt Body.binding.correlation_id=other（原binding固定）",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-trace_cross_binding",
-          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。"
+          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-04"
         }
       ],
       "execution_state": "not_executed"
@@ -868,7 +908,8 @@
           "local_input_change": "actor human、reported delegate_waiver.roles=authority,isolation",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-delegate_obligation_omission",
-          "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。"
+          "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-01"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-02",
@@ -882,7 +923,8 @@
           "local_input_change": "actor human、reported delegate_waiver.waived_roles={version,verification}（免除claim）",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-delegate_obligation_omission",
-          "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。"
+          "local_predicate": "actor_kind=human又はworkerで、reported delegate_waiverのwaived_rolesに必要authority/isolation又はversion照合/verification相当が含まれる。安全domain=authority、版/検証domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-02"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-03",
@@ -896,7 +938,8 @@
           "local_input_change": "actor human、A.receipt_ref=null; oral_receipt claim",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-receipt_unproven",
-          "local_predicate": "required receiptがnull/未資格又はreported oral_receipt。実保存/受領成立を返さない、domain=call。"
+          "local_predicate": "required receiptがnull/未資格又はreported oral_receipt。実保存/受領成立を返さない、domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-03"
         },
         {
           "id": "HARNESS-L8-023-B01-NEG-04",
@@ -910,7 +953,8 @@
           "local_input_change": "actor human、A observation.source_ref=other、Body.binding.contract_ref=c2",
           "symbol": "check_dependency_utilization",
           "rule_ref": "R-trace_cross_binding",
-          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。"
+          "local_predicate": "Condition/Observation/OwnerEvidence/ReportedClosureのrequest/pack/contract/call/attempt/correlation/input/operation/source_selection/scope/actorいずれかが適用Bindingと不一致。原Refと差分保持、domain=call。",
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-04"
         }
       ],
       "execution_state": "not_executed"
