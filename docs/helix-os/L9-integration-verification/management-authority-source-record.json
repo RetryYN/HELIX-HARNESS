@@ -422,7 +422,12 @@
     "正式record schema/codec、digest算出・identity/actor/時刻の実資格と参照解決、writerの原子性・耐久性・不変性は未成立。",
     "共有HIL-NFR-32等の全consumerを本pairへ自動採用しない。OS016/019、OS053との正式bindingと全構造閉包を詳細設計で確かめる。",
     "独立oracle凍結、実装前Red→最小Green→Refactor、実製品CI、PO実物L11受入は未成立。",
-    "92親430対の残設計と全体整合性監査を継続する。"
+    "92親430対の残設計と全体整合性監査を継続する。",
+    "HELIXOS-L9-015-C0511: positive condition/expected/expected_preserved not formed; L3/L10 F02 define preservation of original event and classification history, but do not define a success observation for the case-specific missing-history variant; keep unresolved instead of projecting L9 historical observation as an oracle.",
+    "HELIXOS-L9-015-C0528: positive condition/expected/expected_preserved not formed; L3/L10 F02 define preservation of original event and classification history, but do not define a success observation for the case-specific missing-history variant; keep unresolved instead of projecting L9 historical observation as an oracle.",
+    "HELIXOS-L9-015-C0545: positive condition/expected/expected_preserved not formed; L3/L10 F02 define preservation of original event and classification history, but do not define a success observation for the case-specific missing-history variant; keep unresolved instead of projecting L9 historical observation as an oracle.",
+    "HELIXOS-L9-015-C0551: positive condition/expected/expected_preserved not formed; L3/L10 F02 define preservation of original event and classification history, but do not define a success observation for the case-specific missing-history variant; keep unresolved instead of projecting L9 historical observation as an oracle.",
+    "HELIXOS-L9-015-C0557: positive condition/expected/expected_preserved not formed; L3/L10 F02 define preservation of original event and classification history, but do not define a success observation for the case-specific missing-history variant; keep unresolved instead of projecting L9 historical observation as an oracle."
   ],
   "document_id": "HELIXOS-L9-015",
   "layer": "L9",
@@ -486,7 +491,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/0"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/1",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/24",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointer": "/cases/24",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0002",
@@ -534,7 +564,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/1"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/2",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/25",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointer": "/cases/25",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0003",
@@ -582,7 +637,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/2"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/2",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/25",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/functional-verification.json",
+          "pointer": "/cases/25",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0004",
@@ -28182,7 +28262,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/501"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/0",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.json",
+          "pointer": "/cases/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0503",
@@ -29093,7 +29198,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/518"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/0",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.json",
+          "pointer": "/cases/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0520",
@@ -30004,7 +30134,32 @@
         "path": "docs/helix-os/L7-function-verification/management-authority-source-record.json",
         "pointer": "/derived_observations/cases/535"
       },
-      "execution_state": "synthetic_document_comparison_only"
+      "execution_state": "synthetic_document_comparison_only",
+      "condition": "management_material_corresponding",
+      "expected": {
+        "finding_codes": []
+      },
+      "expected_preserved": true,
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L4-basic-design/management-authority-source-record.json",
+          "pointer": "/contracts/0",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "cd22661c06fd93795986ba3f34563911a355a92e9766553f72629199eb988de1"
+        },
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "pointer": "/requirements/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.json",
+          "pointer": "/cases/4",
+          "revision": "9d6cdf86c93c104afad8ecd7f4e15cfc83ff4791",
+          "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-015-C0537",
