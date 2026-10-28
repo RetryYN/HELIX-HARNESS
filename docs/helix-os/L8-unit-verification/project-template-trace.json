@@ -8038,13 +8038,14 @@
     {
       "id": "HELIXOS-L8-002-ADD-38",
       "code": "b02_process_application_contract_refs",
-      "change": "B02常時入力のprocess/application contract Refを別々に供給する。",
+      "change": "template選択/使用operationに限り、process/application contract Refを別々に供給する。非対象operationでは両Refを要求しない。",
       "expected_state": "formed_separate_refs",
-      "expected_preserved": "両Ref/presence/sourceを別memberとして保持し、共通binding.HARNESS_contract_refや他方Refを代替にしない。",
-      "input_patch_recipe": "B02RecordInputへHARNESS_process_contract_refとHARNESS_application_contract_refをそれぞれ型Refで供給し、同じB02 bindingのproject/scope/requirement/他memberを保持。各Refは独立にqualified原sourceへ解決する。",
+      "expected_preserved": "template選択/使用operationでは両Ref/presence/sourceを別memberとして保持し、共通binding.HARNESS_contract_refや他方Refを代替にしない。非対象operationでは2 Refを欠落扱いせず、共有bindingの従来roleを保持。",
+      "input_patch_recipe": "B02RecordInput.operationがtemplate-selectionまたはtemplate-useの場合だけ、HARNESS_process_contract_refとHARNESS_application_contract_refを別々の型Refとして供給し、同じB02 bindingのproject/scope/requirement/他memberを保持。各Refは独立にqualified原sourceへ解決する。非対象operationではこの2 operation-specific memberを要求しない。",
       "mutations": [],
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "operation_condition": "B02RecordInput.operation is template-selection or template-use."
     },
     {
       "id": "HELIXOS-L8-002-ADD-39",
@@ -8437,9 +8438,9 @@
       "code": "harness_process_contract_ref_missing",
       "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "change": "application contract refと共通HARNESS_contract_refだけを供給し、process contract refの欠落を充足扱いする。",
+      "change": "template選択/使用operationでapplication contract Refと共有HARNESS_contract_refだけを供給し、process contract Refの欠落を充足扱いする。非対象operationではprocess/application Refを要求しない。",
       "axis": "operation_dependency",
-      "expected_state": "unknown",
+      "expected_state": "missing",
       "expected_preserved": {
         "original_binding": "B02 bindingと供給済みapplication contract Ref、共通HARNESS_contract_refの原値",
         "observable": "process contract Refの欠落を局所化し、application側の供給値を保持する。",
@@ -8452,18 +8453,19 @@
           "path": "candidate/HARNESS_process_contract_ref"
         }
       ],
-      "input_patch_recipe": "application contract refと共通HARNESS_contract_refだけを供給し、process contract refの欠落を充足扱いする。 同じRecordTraceInput内のF02 sectionは別OwnerRecordとして扱い、資格状態、subject_ref、section_key、payloadを独立保持する。",
-      "oracle_assertion_rule": "指定Refの有資格recordだけを解決する。input/source issueの必要cause、F02原配列・binding・source/presenceの保持を照合し、未資格/相反recordを有資格意味入力へ採らない。",
-      "execution_state": "not_executed"
+      "input_patch_recipe": "template選択/使用operationでapplication contract refと共通HARNESS_contract_refだけを供給し、process contract refの欠落を充足扱いする。同じRecordTraceInput内のF02 sectionは別OwnerRecordとして扱い、資格状態、subject_ref、section_key、payloadを独立保持する。非対象operationには本欠落oracleを適用しない。",
+      "oracle_assertion_rule": "template選択/使用operationでのみprocess Refのmissingを局所化し、application側供給値と共有HARNESS_contract_refを保持する。非対象operationでは両operation-specific Refを要求せず、missing分類も生成しない。指定Refの有資格recordだけを解決し、F02原配列・binding・source/presenceは独立保持する。",
+      "execution_state": "not_executed",
+      "operation_condition": "B02RecordInput.operation is template-selection or template-use."
     },
     {
       "id": "HELIXOS-L8-002-ADD-42",
       "code": "harness_application_contract_ref_missing",
       "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
       "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-      "change": "process contract refと共通HARNESS_contract_refだけを供給し、application contract refの欠落を充足扱いする。",
+      "change": "template選択/使用operationでprocess contract Refと共有HARNESS_contract_refだけを供給し、application contract Refの欠落を充足扱いする。非対象operationではprocess/application Refを要求しない。",
       "axis": "operation_dependency",
-      "expected_state": "unknown",
+      "expected_state": "missing",
       "expected_preserved": {
         "original_binding": "B02 bindingと供給済みprocess contract Ref、共通HARNESS_contract_refの原値",
         "observable": "application contract Refの欠落を局所化し、process側の供給値を保持する。",
@@ -8476,9 +8478,10 @@
           "path": "candidate/HARNESS_application_contract_ref"
         }
       ],
-      "input_patch_recipe": "process contract refと共通HARNESS_contract_refだけを供給し、application contract refの欠落を充足扱いする。 同じRecordTraceInput内のF02 sectionは別OwnerRecordとして扱い、資格状態、subject_ref、section_key、payloadを独立保持する。",
-      "oracle_assertion_rule": "指定Refの有資格recordだけを解決する。input/source issueの必要cause、F02原配列・binding・source/presenceの保持を照合し、未資格/相反recordを有資格意味入力へ採らない。",
-      "execution_state": "not_executed"
+      "input_patch_recipe": "template選択/使用operationでprocess contract refと共通HARNESS_contract_refだけを供給し、application contract refの欠落を充足扱いする。同じRecordTraceInput内のF02 sectionは別OwnerRecordとして扱い、資格状態、subject_ref、section_key、payloadを独立保持する。非対象operationには本欠落oracleを適用しない。",
+      "oracle_assertion_rule": "template選択/使用operationでのみapplication Refのmissingを局所化し、process側供給値と共有HARNESS_contract_refを保持する。非対象operationでは両operation-specific Refを要求せず、missing分類も生成しない。指定Refの有資格recordだけを解決し、F02原配列・binding・source/presenceは独立保持する。",
+      "execution_state": "not_executed",
+      "operation_condition": "B02RecordInput.operation is template-selection or template-use."
     },
     {
       "id": "HELIXOS-L8-002-ADD-43",
@@ -8839,6 +8842,77 @@
       "oracle_assertion_rule": "両operation memberはmissingのまま。共有binding.HARNESS_contract_refをどちらのowner recordの取得にも代替しない。",
       "owner_evidence_coverage": "この合成caseは型付きoperation memberの欠落と共有Refの分離を扱う。H009 ownerとの実対応/取得路/trustは未形成。",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L8-002-ADD-50",
+      "code": "b02_non_template_operation_contract_refs_not_required",
+      "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
+      "function_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "operation_condition": "B02RecordInput.operation is the string \"initial-record\", a synthetic label for L10 B02 initial recording; it is neither template-selection nor template-use.",
+      "change": "非template選択/使用operationではprocess/application contract Refを両方不在にし、両Refを必要条件やmissingにしない。",
+      "axis": "operation_dependency",
+      "expected_state": "absent",
+      "expected": "両operation-specific Refがabsentでも、この非対象operationでは両Refのmissing分類を生成しない。",
+      "expected_preserved": {
+        "original_binding": "同じB02 binding、operation、両operation-specific Refの不在、共有binding.HARNESS_contract_refと他の供給memberの原値",
+        "observable": "template選択/使用の条件が成立しないためprocess/application Refのmissing分類を生成せず、無関係な有効scopeを停止しない。",
+        "effects": "原event、共有binding、owner未解決を保持。権限・適用成立・使用成立・全体完了なし。"
+      },
+      "expected_effect_count": 0,
+      "input_patch_recipe": "B02RecordInput.operationを合成値\"initial-record\"（L10 B02の初回記録場面）とし、HARNESS_process_contract_refとHARNESS_application_contract_refの両memberを供給しない。binding.HARNESS_contract_refと他の常時必要memberは原値のまま保持する。このoperation文字列はfixture上の型付き値であり、新しいclosed enumやruntime値採択を意味しない。",
+      "mutations": [
+        {
+          "op": "remove",
+          "path": "candidate/HARNESS_process_contract_ref"
+        },
+        {
+          "op": "remove",
+          "path": "candidate/HARNESS_application_contract_ref"
+        }
+      ],
+      "oracle_assertion_rule": "L4/L5/L9のoperation scopeに照らし、template-selection/useでない入力では両Refについてmissing findingが無いことを確認する。共有HARNESS_contract_refは別roleで保持し、両Refの代替にしない。",
+      "source_basis": [
+        {
+          "path": "docs/helix-os/L3-requirements/business-requirements.json",
+          "revision": "6b1cf6dbbaf08bbc2ab6993635967ede19a8ea84",
+          "file_sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7",
+          "pointer": "/requirements/2"
+        },
+        {
+          "path": "docs/helix-os/L10-verification/business-verification.json",
+          "revision": "6b1cf6dbbaf08bbc2ab6993635967ede19a8ea84",
+          "file_sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd",
+          "pointer": "/cases/2"
+        },
+        {
+          "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+          "revision": "6b1cf6dbbaf08bbc2ab6993635967ede19a8ea84",
+          "file_sha256": "5d5674c3c36c6a966a25a521347cc2ebe1695cbe4ff5a10ede78bc4915c1044e",
+          "pointer": "/contracts/1/required_input_meanings/5"
+        },
+        {
+          "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+          "revision": "6b1cf6dbbaf08bbc2ab6993635967ede19a8ea84",
+          "file_sha256": "d77edfc5f9fe69c4ff943e534ae8115b974e5697803b8a67e8c879c35136e855",
+          "pointer": "/contracts/1/operation_specific_input_members/contract_refs/source_boundary"
+        },
+        {
+          "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+          "revision": "6b1cf6dbbaf08bbc2ab6993635967ede19a8ea84",
+          "file_sha256": "183701591e4d471fd37dcf441c232f5dc1bd4739bad3948a0aea9be7be9d06d6",
+          "pointer": "/cases/1/independent_branch_expectations/0"
+        }
+      ],
+      "execution_state": "not_executed",
+      "input_state_minimum": {
+        "B02RecordInput": {
+          "binding": "既存HELIXOS-L8-002-FIXTURE-B02の原値を保持",
+          "operation": "initial-record",
+          "HARNESS_process_contract_ref": "absent",
+          "HARNESS_application_contract_ref": "absent",
+          "binding.HARNESS_contract_ref": "既存共有Refをそのroleで保持"
+        }
+      }
     }
   ],
   "shared_source_envelope_materialization": {
