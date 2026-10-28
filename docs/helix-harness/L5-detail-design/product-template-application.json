@@ -13672,7 +13672,7 @@
       "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。field_obligation_scope_writer_contractとnine_source_known_known_scope oracle（1件）を記載済み（B）であり、L9 field_obligation_scope_verification（21件）とのU-ID対照はA（Q-H009-2、D-H009-T2c-2）、外部ownerの局所scope profile実供給は各owner（C）へ分離し、全列保存から当該未完の新selector又は消込を生成しない。",
       "HARNESS返却先は原適用contract不整合の根拠に対応する範囲（B）。application_contract_recipient_boundaryのL5/L8対照はA（Q-H009-2、D-H009-T2c-2）へ渡し、元process資料が適用contract不整合へ対応する外部owner根拠の供給はHARNESS上流owner（C）へ戻す。",
       "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影（B）。source_result_reference_projectionのfn10 optional引き渡しとF05詳細返却連携はA（D-H009-T2a/T3b）へ渡し、実caller統合や外部runtimeは下流L6/L7（C）へ戻す。",
-      "WR154-R2の追補はL4既存guardで閉じるcontent/source/body Cause writerのみ。body entry 0件、proposition_operand_unresolved、constraint_mismatch、gap proposal body oracle、既存STOP-OWNER-CAUSE-WRAPPER-RELATION-01/STOP-OWNER-CAUSE-QUAL-READ-01は未解決として止め、意味を補完しない。"
+      "WR154-R2の追補で閉じるのはL4既存guardに基づくsource lookup/body payloadの2 Cause writerのみ。content_unresolvedは両lookup miss時のfield-level未形成意味を保つが、Cause数/right ReadはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01として未形成。body entry 0件、proposition_operand_unresolved、constraint_mismatch、gap proposal body oracle、既存STOP-OWNER-CAUSE-WRAPPER-RELATION-01/STOP-OWNER-CAUSE-QUAL-READ-01は未解決として止め、意味を補完しない。"
     ],
     "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
     "type_dependencies": {

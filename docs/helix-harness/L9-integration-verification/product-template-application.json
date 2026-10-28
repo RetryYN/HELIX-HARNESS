@@ -12498,7 +12498,8 @@
      "/original_context の全leaf",
      "選択field外の全出力"
     ],
-    "fixture_source_ref": "HARNESS-L8-009-ADD-41"
+    "fixture_source_ref": "HARNESS-L8-009-ADD-41",
+    "execution_state": "not_executed"
    },
    {
     "id": "HARNESS-L9-009-F05-EVIDENCE-BODY-PAYLOAD-MISMATCH",
@@ -12543,7 +12544,8 @@
      "/original_context の全leaf",
      "選択field外の全出力"
     ],
-    "fixture_source_ref": "HARNESS-L8-009-ADD-42"
+    "fixture_source_ref": "HARNESS-L8-009-ADD-42",
+    "execution_state": "not_executed"
    }
   ],
   "unexercised_and_unverified": {
@@ -12561,7 +12563,15 @@
      "status": "未行使"
     },
     {
+     "role": "misbound/body mismatch",
+     "status": "未行使"
+    },
+    {
      "role": "requested operandを持たないsource-backed question",
+     "status": "未行使"
+    },
+    {
+     "role": "source qualification不成立またはbody/content対応不一致",
      "status": "未行使"
     },
     {
