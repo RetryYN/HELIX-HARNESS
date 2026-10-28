@@ -230,6 +230,32 @@
     "concept",
     "implementation"
   ],
+  "contracts": [
+    {
+      "id": "HARNESS-L5-001-F01",
+      "l4_ref": "HARNESS-L4-001-F01",
+      "requirement_ref": "HARNESS-L3-001-F01",
+      "oracle_ref": "HARNESS-L8-001-F01",
+      "function_ref": "/functions/0",
+      "symbol": "check_artifact_layer_correspondence"
+    },
+    {
+      "id": "HARNESS-L5-001-F02",
+      "l4_ref": "HARNESS-L4-001-F02",
+      "requirement_ref": "HARNESS-L3-001-F02",
+      "oracle_ref": "HARNESS-L8-001-F02",
+      "function_ref": "/functions/1",
+      "symbol": "check_prototype_poc_applicability"
+    },
+    {
+      "id": "HARNESS-L5-001-B01",
+      "l4_ref": "HARNESS-L4-001-B01",
+      "requirement_ref": "HARNESS-L3-001-B01",
+      "oracle_ref": "HARNESS-L8-001-B01",
+      "function_ref": "/functions/2",
+      "symbol": "project_layer_authority_boundary"
+    }
+  ],
   "functions": [
     {
       "id": "HARNESS-L5-001-F01",
