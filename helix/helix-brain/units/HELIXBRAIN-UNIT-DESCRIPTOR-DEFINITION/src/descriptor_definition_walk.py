@@ -163,18 +163,24 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
     if not isinstance(raw_binding, dict):
         _stop("input_binding_shape")
     from definition_comparison import _fn1_scope_guard
+    from supply_validation import _binding_same, _json_equal
 
     # L4 shares zero occurrences for absent/[] while keeping the real snapshot
     # unchanged. The existing structural guard receives only a local view;
     # every native reader and returned observation still uses the original raw.
     structural_view = raw if "claims" in raw else {**raw, "claims": []}
-    _fn1_scope_guard(structural_view, raw_binding, allow_missing_facts=True)
-    from supply_validation import _json_equal
+    population = _fn1_scope_guard(structural_view, raw_binding, allow_missing_facts=True)
 
-    # Nullable Ref digests may compare equal while the original frames differ.
-    # This walk implements one raw root frame; retain other populations as an
-    # explicit unclosed branch instead of silently coalescing them.
-    if any(not _json_equal(slot["binding"], raw_binding) for slot in raw["descriptors"]):
+    # Keep the existing stop for a raw-distinct slot that only compares equal
+    # to root through nullable Ref members. A distinct full candidate frame is
+    # handled from the shared population instead of being globally stopped.
+    frames = population["frames"]
+    if any(
+        _binding_same(frames[left]["binding"], frames[right]["binding"])
+        and not _json_equal(frames[left]["binding"], frames[right]["binding"])
+        for left in range(len(frames))
+        for right in range(left + 1, len(frames))
+    ):
         _stop("raw_distinct_binding_frames")
     # These declared producer carriers need native special readers. Their
     # discovery precedes qualification; unknown candidates cannot become an
@@ -218,29 +224,30 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
         "meaning_read_origins": [],
     }
     events: list[dict[str, Any]] = []
-    slots_by_kind: dict[str, list[tuple[int, dict[str, Any]]]] = {}
-    for original_index, original_slot in enumerate(descriptors):
-        slots_by_kind.setdefault(original_slot["descriptor_kind"], []).append((original_index, original_slot))
     required_kinds = set(raw["required_descriptor_kinds"])
-    ordered_entries: list[tuple[int | None, dict[str, Any] | None, str | None]] = []
-    for approved_kind in _APPROVED_KINDS:
-        kind_slots = slots_by_kind.get(approved_kind, [])
-        if approved_kind in required_kinds and not kind_slots:
-            ordered_entries.append((None, None, approved_kind))
-        ordered_entries.extend((index, slot, None) for index, slot in kind_slots)
+    ordered_entries: list[tuple[int | None, dict[str, Any] | None, str | None, dict[str, Any]]] = []
+    for frame in population["frames"]:
+        frame_binding = frame["binding"]
+        for approved_kind in _APPROVED_KINDS:
+            kind_slots = frame["slots_by_kind"].get(approved_kind, [])
+            if frame["target"] and approved_kind in required_kinds and not kind_slots:
+                ordered_entries.append((None, None, approved_kind, frame_binding))
+            ordered_entries.extend(
+                (index, slot, None, frame_binding) for index, slot in kind_slots
+            )
 
-    for slot_index, slot, missing_kind in ordered_entries:
+    for slot_index, slot, missing_kind, frame_binding in ordered_entries:
         if slot is None:
             kind = missing_kind
-            subject = raw_binding.get("knowledge_ref")
+            subject = frame_binding.get("knowledge_ref")
             if not isinstance(subject, dict):
-                subject = raw_binding.get("template_ref")
+                subject = frame_binding.get("template_ref")
             if not isinstance(subject, dict):
                 _stop("input_binding_shape")
             axis_name = f"{kind}.definition"
             axis = {
                 "subject_ref": copy.deepcopy(subject),
-                "binding": copy.deepcopy(raw_binding),
+                "binding": copy.deepcopy(frame_binding),
                 "axis": axis_name,
                 "state": "missing",
                 "original_refs": [],
@@ -255,10 +262,10 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 cause="required_slot_absent",
                 branch="required_slot_absent",
                 subject_ref=subject,
-                binding=raw_binding,
+                binding=frame_binding,
                 sort_source_refs=[],
                 assessment_key={
-                    "binding": _presence(raw_binding),
+                    "binding": _presence(frame_binding),
                     "slot_identity": {"presence": "absent"},
                     "descriptor_kind": kind,
                 },
@@ -268,7 +275,7 @@ def evaluate_descriptor_definition_walk(context: dict[str, object]) -> dict[str,
                 "code": missing_code,
                 "rule_ref": f"HELIXBRAIN-L5-032-R-{missing_code}",
                 "subject_ref": copy.deepcopy(subject),
-                "binding": copy.deepcopy(raw_binding),
+                "binding": copy.deepcopy(frame_binding),
                 "axis": axis_name,
                 "state": "missing",
                 "source_refs": [],

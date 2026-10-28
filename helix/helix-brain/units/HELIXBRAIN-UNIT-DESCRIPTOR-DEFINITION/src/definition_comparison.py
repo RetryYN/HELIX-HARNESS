@@ -192,12 +192,47 @@ def _unknown_axis(subject: Any, binding: Any, axis: str, refs: list[Any], reason
 
 
 
+def _fn1_frame_population(raw: dict[str, Any], root_binding: dict[str, Any]) -> dict[str, Any]:
+    """Keep root and raw Binding frames while selecting only existing candidate frames."""
+    frames: list[dict[str, Any]] = [{
+        "binding": copy.deepcopy(root_binding), "slot_indices": [], "slots_by_kind": {},
+        "target": True,
+    }]
+    for index, slot in enumerate(raw["descriptors"]):
+        slot_binding = slot["binding"]
+        frame_index = next((
+            i for i, frame in enumerate(frames)
+            if _json_equal(frame["binding"], slot_binding)
+        ), None)
+        if frame_index is None:
+            frame_index = len(frames)
+            frames.append({
+                "binding": copy.deepcopy(slot_binding), "slot_indices": [], "slots_by_kind": {},
+                "target": False,
+            })
+        frame = frames[frame_index]
+        frame["slot_indices"].append(index)
+        frame["slots_by_kind"].setdefault(slot["descriptor_kind"], []).append((index, slot))
+
+    candidates = raw.get("candidates", [])
+    if isinstance(candidates, list):
+        for candidate in candidates:
+            for frame in frames[1:]:
+                if any(
+                    _ref_same(candidate, raw["descriptors"][index]["binding"].get("template_ref"))
+                    for index in frame["slot_indices"]
+                ):
+                    frame["target"] = True
+    legacy_root_scope = all(_binding_same(slot["binding"], root_binding) for slot in raw["descriptors"])
+    return {"frames": frames, "legacy_root_scope": legacy_root_scope}
+
+
 def _fn1_scope_guard(
     raw: dict[str, Any],
     binding: dict[str, Any],
     *,
     allow_missing_facts: bool = False,
-) -> None:
+) -> dict[str, Any]:
     """Keep fn1 inside the frozen 15-kind path; do not evaluate F01/F02 failures here."""
     for member in ("sources", "knowledge_records"):
         if member not in raw or not isinstance(raw[member], list):
@@ -212,8 +247,6 @@ def _fn1_scope_guard(
     if "descriptors" not in raw or not isinstance(raw["descriptors"], list):
         raise _unsupported("F02", "descriptor_slots_absent_or_wrong_type", "descriptor slots are not supplied as an array")
     slots = raw["descriptors"]
-    slots_by_kind: dict[str, list[dict[str, Any]]] = {}
-    slot_identities: set[str] = set()
     fact_refs: list[dict[str, Any]] = []
     comparison_refs: list[dict[str, Any]] = []
     slot_members = {"slot_identity", "descriptor_kind", "binding", "facts", "comparison_refs", "definition_applicability_ref"}
@@ -228,10 +261,15 @@ def _fn1_scope_guard(
         identity = slot["slot_identity"]
         if not isinstance(kind, str) or kind not in _APPROVED_KINDS:
             raise _unsupported("F02", "descriptor_kind_unrecognized", f"descriptors[{index}].descriptor_kind is outside the fixed domain")
-        if not isinstance(identity, str) or not identity or identity in slot_identities:
+        if (not isinstance(identity, str) or not identity or any(
+            previous.get("slot_identity") == identity
+            and _binding_same(previous.get("binding"), slot["binding"])
+            for previous in slots[:index]
+        )):
             raise _unsupported("F02", "slot_identity_missing_or_duplicate", f"descriptors[{index}].slot_identity is missing or duplicated")
-        slot_identities.add(identity)
-        if not _binding_shape_ok(slot["binding"]) or not _binding_same(slot["binding"], binding):
+        if (not _binding_shape_ok(slot["binding"])
+                or not _binding_same(slot["binding"], slot["binding"])
+                or not _binding_same(binding, binding)):
             raise _unsupported("F02", "descriptor_slot_binding_unresolved", f"descriptors[{index}] does not have the current full Binding")
         facts = slot.get("facts")
         if allow_missing_facts and ("facts" not in slot or facts is None or facts == []):
@@ -260,16 +298,26 @@ def _fn1_scope_guard(
         applicability_ref = slot["definition_applicability_ref"]
         if applicability_ref is not None and not _ref_shape_ok(applicability_ref):
             raise _unsupported("F02", "definition_applicability_ref_shape", f"descriptors[{index}].definition_applicability_ref is not a Ref or null")
-        slots_by_kind.setdefault(kind, []).append(slot)
-
-    duplicated = [kind for kind, kind_slots in slots_by_kind.items() if len(kind_slots) != 1]
-    if duplicated:
-        raise _unsupported("F02", "descriptor_kind_duplicate_slot", f"multiple slots for fixed kind(s): {', '.join(duplicated)}")
-
+    population = _fn1_frame_population(raw, binding)
+    scope_frames: list[list[dict[str, Any]]] = []
+    for frame in population["frames"]:
+        scope = next((items for items in scope_frames if _binding_same(items[0]["binding"], frame["binding"])), None)
+        if scope is None:
+            scope = []
+            scope_frames.append(scope)
+        scope.append(frame)
+    for scope in scope_frames:
+        kind_counts: dict[str, int] = {}
+        for frame in scope:
+            for kind, kind_slots in frame["slots_by_kind"].items():
+                kind_counts[kind] = kind_counts.get(kind, 0) + len(kind_slots)
+        duplicated = [kind for kind, count in kind_counts.items() if count != 1]
+        if duplicated:
+            raise _unsupported("F02", "descriptor_kind_duplicate_slot", f"multiple slots for fixed kind(s): {', '.join(duplicated)}")
     if "relations" not in raw or not isinstance(raw["relations"], list):
         raise _unsupported("F01", "relation_input_absent_or_wrong_type", "relation descriptor path has no typed relation array")
     relation_members = {"ref", "binding", "kind", "from_ref", "to_ref", "direction", "source_ref"}
-    related_relation_count = 0
+    related_relation_counts = [0] * len(population["frames"])
     for index, relation in enumerate(raw["relations"]):
         if not isinstance(relation, dict) or set(relation) != relation_members:
             raise _unsupported("F01", "relation_record_closed_shape", f"relations[{index}] is outside the fixed RelationRecord shape")
@@ -283,14 +331,22 @@ def _fn1_scope_guard(
             raise _unsupported("F01", "relation_kind_shape", f"relations[{index}].kind is not string or null")
         if relation["direction"] is not None and not isinstance(relation["direction"], str):
             raise _unsupported("F01", "relation_direction_shape", f"relations[{index}].direction is not string or null")
-        if _binding_same(relation["binding"], binding):
-            related_relation_count += 1
+        for frame_index, frame in enumerate(population["frames"]):
+            if not frame["target"] or not _binding_same(relation["binding"], frame["binding"]):
+                continue
+            related_relation_counts[frame_index] += 1
             if relation["from_ref"] is None or relation["to_ref"] is None:
                 raise _unsupported("F01", "relation_endpoint_missing", f"related relations[{index}] lacks an endpoint")
             if relation["direction"] is None or relation["direction"] == "":
                 raise _unsupported("F01", "relation_direction_missing", f"related relations[{index}] lacks direction")
-    if "relation" in slots_by_kind and related_relation_count == 0:
-        raise _unsupported("F01", "related_relation_unresolved", "the fixed relation descriptor has no same-Binding relation occurrence")
+    for scope in scope_frames:
+        target_frames = [frame for frame in scope if frame["target"]]
+        if not target_frames:
+            continue
+        has_relation_slot = any("relation" in frame["slots_by_kind"] for frame in scope)
+        relation_count = sum(related_relation_counts[population["frames"].index(frame)] for frame in scope)
+        if has_relation_slot and relation_count == 0:
+            raise _unsupported("F01", "related_relation_unresolved", "the fixed relation descriptor has no same-Binding relation occurrence")
 
     # Foreign record meanings are not evaluated here. fn0 already checks the
     # declared record shapes; retain this guard for callers with a hand-built
@@ -329,12 +385,15 @@ def _fn1_scope_guard(
 
     if "claims" not in raw or not isinstance(raw["claims"], list):
         raise _unsupported("F01", "claim_array_absent_or_wrong_type", "claims is absent or not an array")
+    target_bindings = [frame["binding"] for frame in population["frames"] if frame["target"]]
     for index, claim in enumerate(raw["claims"]):
-        if not isinstance(claim, dict) or not _binding_same(claim.get("binding"), binding):
+        if not isinstance(claim, dict) or not any(
+            _binding_same(claim.get("binding"), target_binding) for target_binding in target_bindings
+        ):
             continue
         if claim.get("kind") == "harness_layer_pair_override":
             raise _unsupported("F01", "harness_claim_unimplemented", f"claims[{index}] is a harness_layer_pair_override claim")
-
+    return population
 
 
 def _component_key(present: bool, value: Any = None) -> tuple[int, str]:
@@ -597,13 +656,12 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
     descriptors = raw.get("descriptors")
     if not isinstance(descriptors, list):
         raise NotImplementedError("descriptor array absent/null/type branch: Backflow HELIXBRAIN-L6-032-N03-PATH")
-    _fn1_scope_guard(raw, binding)
+    population = _fn1_scope_guard(raw, binding)
     emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
     finding_emissions: list[tuple[dict[str, Any], dict[str, Any], list[Any], bool]] = []
-    supplied_kinds: set[str] = set()
     for slot in descriptors:
-        owner = binding["knowledge_ref"]["owner"]
-        supplied_kinds.add(slot["descriptor_kind"])
+        slot_binding = slot["binding"]
+        owner = slot_binding["knowledge_ref"]["owner"]
         for fact in slot["facts"]:
             cause, refs, reason, definition_sources = _meaning_resolution(validated, slot, fact)
             definition_axis = _unknown_axis(
@@ -625,39 +683,43 @@ def compare_descriptor_definitions(context: dict[str, object]) -> dict[str, obje
             raise NotImplementedError("definition applicability supplied-ref branch: Backflow HELIXBRAIN-L6-032-N03-PATH")
 
     required_set = set(raw["required_descriptor_kinds"])
-    missing_kinds: set[str] = set()
     slot_missing_reason = "必要なdescriptor slotが当該原Bindingに供給されていない。"
-    for kind_idx, kind_name in enumerate(_APPROVED_KINDS, start=1):
-        if kind_name in required_set and kind_name not in supplied_kinds:
-            missing_kinds.add(kind_name)
-            code = f"descriptor_{kind_idx:02d}_missing"
-            axis_name = f"{kind_name}.definition"
-            subject_ref = binding.get("knowledge_ref")
-            if not isinstance(subject_ref, dict):
-                subject_ref = binding.get("template_ref")
-            if isinstance(subject_ref, dict):
-                emissions.append(({
-                    "subject_ref": copy.deepcopy(subject_ref),
-                    "binding": copy.deepcopy(binding),
-                    "axis": axis_name,
-                    "state": "missing",
-                    "original_refs": [],
-                    "reason": slot_missing_reason,
-                    "backflow_owner": "knowledge_owner",
-                }, {}, [], True))
-                finding_emissions.append(({
-                    "code": code,
-                    "rule_ref": f"HELIXBRAIN-L5-032-R-{code}",
-                    "subject_ref": copy.deepcopy(subject_ref),
-                    "binding": copy.deepcopy(binding),
-                    "axis": axis_name,
-                    "state": "missing",
-                    "source_refs": [],
-                    "reason": slot_missing_reason,
-                    "backflow_owner": "knowledge_owner",
-                }, {}, [], True))
 
-    _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
+    def emit_missing(kind_idx: int, kind_name: str, frame_binding: dict[str, Any]) -> None:
+        subject = frame_binding.get("knowledge_ref")
+        if not isinstance(subject, dict):
+            subject = frame_binding.get("template_ref")
+        if not isinstance(subject, dict):
+            return
+        finding_code = f"descriptor_{kind_idx:02d}_missing"
+        axis = {"subject_ref": copy.deepcopy(subject), "binding": copy.deepcopy(frame_binding), "axis": f"{kind_name}.definition", "state": "missing", "original_refs": [], "reason": slot_missing_reason, "backflow_owner": "knowledge_owner"}
+        emissions.append((axis, {}, [], True))
+        finding = {"code": finding_code, "rule_ref": f"HELIXBRAIN-L5-032-R-{finding_code}",
+                   "subject_ref": copy.deepcopy(subject), "binding": copy.deepcopy(frame_binding),
+                   "axis": f"{kind_name}.definition", "state": "missing", "source_refs": [],
+                   "reason": slot_missing_reason, "backflow_owner": "knowledge_owner"}
+        finding_emissions.append((finding, {}, [], True))
+
+    if population["legacy_root_scope"]:
+        supplied_kinds = {slot["descriptor_kind"] for slot in descriptors}
+        missing_kinds: set[str] = set()
+        for kind_idx, kind_name in enumerate(_APPROVED_KINDS, start=1):
+            if kind_name in required_set and kind_name not in supplied_kinds:
+                missing_kinds.add(kind_name)
+                emit_missing(kind_idx, kind_name, binding)
+        _evaluate_replacement_claims(validated, binding, missing_kinds, emissions, finding_emissions)
+    else:
+        for frame in population["frames"]:
+            if not frame["target"]:
+                continue
+            frame_binding = frame["binding"]
+            supplied_kinds = set(frame["slots_by_kind"])
+            missing_kinds: set[str] = set()
+            for kind_idx, kind_name in enumerate(_APPROVED_KINDS, start=1):
+                if kind_name in required_set and kind_name not in supplied_kinds:
+                    missing_kinds.add(kind_name)
+                    emit_missing(kind_idx, kind_name, frame_binding)
+            _evaluate_replacement_claims(validated, frame_binding, missing_kinds, emissions, finding_emissions)
 
     decorated = [
         (axis, _public_axis_sort_key(axis, slot, source_refs, source_refs_present, ordinal))
