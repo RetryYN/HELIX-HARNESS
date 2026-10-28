@@ -1,0 +1,443 @@
+{
+  "schema": "helix-os002-b02-binding-crosswalk-reassessment-v1",
+  "audit_id": "OS002-WR168-B02-BINDING-CROSSWALK-2026-10-28",
+  "request_id": "WR168-OS002-B02-BINDING-CROSSWALK",
+  "basis_commit": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+  "recorded_at_utc": "2026-10-28T21:22:14Z",
+  "evidence_kind": "bounded_static_consumer_crosswalk_audit",
+  "authority_effect": "none",
+  "scope": {
+    "mechanism": "HELIX-OS",
+    "pair": "OS002",
+    "operation": "B02開始時・template選択・template使用・評価送付のbinding crosswalk",
+    "changed_formal_design": false,
+    "changed_HARNESS_or_BRAIN_design": false,
+    "changed_SECURITY_meaning": false,
+    "generated_freeze": false,
+    "documents": [
+      "docs/helix-os/L3-requirements/business-requirements.json#/requirements/2",
+      "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/9",
+      "docs/helix-os/L4-basic-design/project-template-trace.json#/contracts/1",
+      "docs/helix-os/L9-integration-verification/project-template-trace.json#/cases/1",
+      "docs/helix-os/L5-detail-design/project-template-trace.json#/type_contract/types/B02RecordInputbinding",
+      "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/24",
+      "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/2",
+      "docs/helix-harness/L5-detail-design/product-template-application.json#/type_contract/types/ApplicationBinding",
+      "docs/helix-brain/L3-requirements/business-requirements.json#/requirements/1",
+      "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/contracts/1",
+      "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/type_contract/types/Binding"
+    ]
+  },
+  "review_basis": [
+    {
+      "url": "https://github.com/RetryYN/HELIX-HARNESS/pull/3874#issuecomment-6480906810",
+      "scope": "R2はno_findings。WR161のFN10-M1/m2是正をmergeした後にcrosswalkを照合し、その後L5/L8を作成してT1aを再凍結する順序を示す。"
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-wr166-b02-owner-route-reassessment-2026-10-28.json",
+      "pointer": "/owner_slice_assessments",
+      "scope": "WR166で確認した候補出力、未解決member、pointer別authority状態を再照合する。"
+    }
+  ],
+  "requirement_basis": [
+    {
+      "id": "HELIXOS-L3-002-B02",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json#/requirements/2",
+      "text": "常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定template選択/使用操作ではset/版/適用出力、評価へ送る操作では選択評価scope/必要入力/利用許可を照合する。"
+    },
+    {
+      "id": "HELIXOS-L3-002-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/9",
+      "role": "B02補助文脈",
+      "text": "OSは提案set・選択set・使用setを分け、所属setを記録する。選択/使用の事実はOS002が保持する。"
+    },
+    {
+      "id": "HELIXOS-L10-002-B02",
+      "path": "docs/helix-os/L10-verification/business-verification.json#/cases/2",
+      "text": "operation別に必要な入力を照合し、未発生と欠落を区別する。"
+    },
+    {
+      "id": "HARNESS-L3-009-F01/F02",
+      "paths": [
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/23",
+        "docs/helix-harness/L3-requirements/functional-requirements.json#/requirements/24"
+      ],
+      "text": "工程/適用contractと要求/product scopeは常時のidentity/revision照合対象。candidate/proposed setとOSが登録するselected/used setを混同しない。"
+    },
+    {
+      "id": "HELIXBRAIN-L3-032-B02/F04/F09",
+      "paths": [
+        "docs/helix-brain/L3-requirements/business-requirements.json#/requirements/1",
+        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/3",
+        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/8"
+      ],
+      "text": "B02: BRAIN030の知識受領可能性、CORE009の適用/N/A・不足、OS002の記録成立を分離する。F04: template identity/version、knowledge identity/revision/state、pack identity/contract/artifact/dependency版を別々に照合し、source/版/scopeの欠落を未評価、互換性unknown/mismatchを利用不可とする。F09: 常時依存と条件別依存を区別し、未選択sourceを未観測とする。"
+    }
+  ],
+  "source_member_shapes": {
+    "OS_B02RecordInputbinding": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json#/type_contract/types/B02RecordInputbinding",
+      "fields": {
+        "project_scope": "Field<Scope>",
+        "requirement_ref": "Field<Ref>",
+        "HARNESS_contract_ref": "Field<Ref>",
+        "template_ref": "Field<Ref>",
+        "semantic_contract_ref": "Field<Ref>"
+      }
+    },
+    "OS_Scope": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json#/type_contract/types/Scope",
+      "fields": {
+        "project": "Field<string>",
+        "tenant": "Field<string>",
+        "environment": "Field<string>"
+      },
+      "meaning": "合成fixture軸。実scope規格ではない。"
+    },
+    "H009_ApplicationBinding": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json#/type_contract/types/ApplicationBinding",
+      "fields": {
+        "requirement_ref": "Ref",
+        "product_scope": "RawValue",
+        "process_contract_ref": "Ref",
+        "application_contract_ref": "Ref",
+        "template_ref": "Ref|null",
+        "knowledge_ref": "Ref|null",
+        "oracle_ref": "Ref|null"
+      }
+    },
+    "H009_ApplicationAnalysis": {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json#/type_contract/types/ApplicationAnalysis",
+      "meaning": "候補/義務/不足/影響の論理material。selected/used等のOS状態を出力しない。"
+    },
+    "BRAIN_Binding": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/type_contract/types/Binding",
+      "fields": {
+        "template_ref": "Ref",
+        "knowledge_ref": "Ref",
+        "requirement_ref": "Ref",
+        "oracle_ref": "Ref",
+        "pack_ref": "Ref",
+        "pack_contract_version": "string|null",
+        "pack_artifact_version": "string|null",
+        "pack_dependency_versions": "Ref[]",
+        "version_target": "string|null"
+      }
+    },
+    "BRAIN_SupplyAnalysis": {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/type_contract/types/SupplyAnalysis",
+      "meaning": "供給root Bindingの原値を返す候補/不足/比較material。選択/採択/許可/実受領を作らない。"
+    },
+    "BRAIN_F09_incoming_binding_crosswalk": {
+      "L4_pointer": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/dependency_semantic_ports/producer_incoming/OS/binding_comparison",
+      "L5_pointer": "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/dependency_incoming_detail/binding_comparison",
+      "applicability": "fn6の同一DependencyContext.validated.input内で処理する正のproject_obligation_discharge/field_not_applicable claimに対するprivate incoming route。SupplyAnalysis/function/8全体の別endpointではない。",
+      "mapping": {
+        "consumer_binding.requirement_ref": "original_project_binding.requirement_ref/value via existing ref_same",
+        "consumer_binding.template_ref": "original_project_binding.template_ref/value via existing ref_same",
+        "consumer_binding.requirement_ref.scope.project/tenant/environment": "original_project_binding.project_scope.value.project/tenant/environment/value via exact component value",
+        "consumer_binding.project_scope": "member absent; requirement_ref.scope is the explicitly chosen local operand",
+        "template_ref.scope": "project_scopeと同一視しない"
+      },
+      "preserved_without_alias": [
+        "HARNESS_contract_ref",
+        "semantic_contract_ref"
+      ],
+      "limitation": "incoming B02 sourceの原binding比較を部分的に定める。OS consumerのselected/used set、HARNESS ApplicationBindingとのmapping、BRAIN SupplyAnalysis.bindingがこのprivate routeに連なる同一operationのproducer routeまでは宣言しない。"
+    },
+    "H009_scope_role_evidence": {
+      "pointer": "docs/helix-harness/L4-basic-design/product-template-application.json#/contracts/3/original_operation_proposal_provider/general_proposal_exchange/publication/scope_and_revision_roles_ja",
+      "applicability": "proposal publication endpointに対する既存L4記述。B02全体へ機械的に一般化しない。",
+      "finding": "CoreApplicationBinding.product_scopeとOS project/source scopeは異なる原roleと明記し、欠落/null/未到達を補完せず、owner原registration/sourceで各scopeを照合する。同じ文字列だけで対応とは認めない。"
+    }
+  },
+  "reference_comparison_boundary": {
+    "basis": [
+      "OS L3B B02およびL5 Refの記述はidentity/revision/scope/sourceの照合を求める。",
+      "H009とBRAINのRefはidentity/revisionをopaqueとして扱い、filename/path/digestから意味を導かない。",
+      "BRAIN L3/L4 F04はsource/版/scopeがmissingなら未評価、unknown/mismatchなら利用不可とする。",
+      "BRAIN L4 F09 dependency_semantic_ports /producer_incoming/OS/binding_comparison と L5 /dependency_incoming_detail/binding_comparison は、限定されたprivate routeでrequirement_ref/template_refおよびrequirement_ref.scope各componentの照合を明示する。"
+    ],
+    "rule": "各ownerが既に宣言した比較子・結果状態をその適用範囲で使う。比較根拠や必要memberの不足は、当該契約が定めるunknown/unresolved等の結果に保つ。別owner間に一般化した同値・正規化・mismatch分類を追加しない。BRAIN F09 private incoming routeではRef比較に既存ref_same、scope component比較にexact component valueを使い、必要なRef/memberの不足・null・component不一致はいずれもdomain support=unknownとする。",
+    "scope_raw_value_rule": "OS ScopeとH009 product_scope:RawValueの一般的なcoercion/normalization/equality規則は定義されていない。H009 L4のproposal-publication endpointはproduct_scopeとOS project/source scopeを異なる原roleとし、同じ文字列だけでは対応とみなさない。したがってB02での対応にはowner原registration/sourceが示す関係が必要。欠落/null/未到達または関係source未解決の結果は、各owner契約が定めるunknown等に保つ。別の限定routeとしてBRAIN L5 F09 incomingは、consumer Binding.requirement_ref.scope各componentとOS original_project_binding.project_scope各componentを明示的にexact比較するが、不一致もdomain support=unknownと定める。この結果をH009 product_scopeや全BRAIN SupplyAnalysisへ拡張しない。",
+    "authority_note": "これは既存Ref/unknown/mismatch境界の照合であり、scope schema、owner authority、許可または使用状態を新設しない。"
+  },
+  "operation_crosswalk": [
+    {
+      "operation": "initial_record / 常時必要な依存",
+      "OS_requirement": "記録対象project/scope/source/要求revisionと該当契約refを常時照合する。",
+      "H009_relation": "HARNESS L3 F01/L4 F01はrequirement/product scopeおよびprocess/application contractのidentity・revisionを常時必要とする。",
+      "BRAIN_relation": "BRAIN Bindingはrequirement_ref/template_ref/knowledge_refを持つ。BRAIN L4 B02はknowledge receipt、CORE適用、OS記録を分離する。",
+      "closed_mapping": [
+        "BRAIN L4/L5 F09のprivate incoming routeは、限定されたfn6 claim branchでBinding.requirement_ref/template_refをOS original_project_bindingの各Refへ既存ref_sameし、requirement_ref.scopeのproject/tenant/environmentをOS Scopeの各componentへexact比較する。",
+        "この限定route以外について、Ref型memberの存在は候補にとどまり、閉じた対応ではない。"
+      ],
+      "unformed": [
+        "OS HARNESS_contract_refは1個のRefだが、H009 process_contract_refとapplication_contract_refは別々に必要な2個のRefである。OS fieldがいずれか一方または両方を指すかを定めるmappingがない。",
+        "OS semantic_contract_ref ↔ H009/BRAIN knowledge_ref: L3/L4/L5に厳密な意味identity対応がない。",
+        "OS project_scope ↔ H009 product_scope:RawValueのB02全体に適用できるprojection/owner-registration mappingは未形成。H009 L4の別publication endpointは両者を異なる原roleとし、直接等置を禁じる。",
+        "BRAIN F09の明示scope comparatorはprivate incoming branch限定であり、BRAIN SupplyAnalysis/function/8の出力全体とOS B02 bindingのsource-linked routeを宣言しない。"
+      ],
+      "result": "BRAIN private incoming routeではrequirement/template refsとscope componentの比較が限定的に成立する。H009 scope・contract ref・semantic/knowledge refおよびB02全体のoperation bindingは未形成。",
+      "candidate_member_links": [
+        "OS requirement_ref、H009 ApplicationBinding.requirement_ref、BRAIN Binding.requirement_refは各schemaにRef型memberとして存在する。しかし型の一致だけでは同一operation、同一source、identity/revision/scopeの対応を閉じない。",
+        "OS template_ref、H009 ApplicationBinding.template_ref、BRAIN Binding.template_refもRef型memberとして存在する。型の一致だけではowner間mappingは成立しない。BRAIN F09 private incoming routeの比較範囲は、その限定branch内だけで閉じる。"
+      ]
+    },
+    {
+      "operation": "template_selection",
+      "owner_boundary": "OS002が選択setを記録する。H009は候補set/適用materialを導き、BRAINは汎用template/knowledgeの候補と版軸を供給する。",
+      "candidate_member_links": [
+        "OS template_ref、H009 ApplicationBinding.template_ref、BRAIN Binding.template_refは単一Ref型のmemberとして対応候補がある。正確なtemplate Refが供給された場合に限り、単一Ref同士を比較できる。",
+        "BRAIN SupplyAnalysis.candidate_refsはRef[]候補material、H009 candidate_materialはopaque RawValueである。どちらもOSのselected-set membershipそのものを表さない。"
+      ],
+      "unformed": [
+        "B02はselected set/versionを求めるが、OS bindingにあるのは単一template_refで、set membership/list memberがない。H009 ApplicationBinding.template_refも単一Ref、candidate_materialはopaque、BRAIN candidate_refsは提案候補である。OS単一template_refを完全なselected setやmembershipへ対応づける既存L3/L4/L5規則は見つからない。",
+        "BRAIN pack_contract_version/artifact/dependency versionsは別軸であり、OS template_ref.revisionまたはsemantic_contract_refへ対応づける根拠がない。",
+        "BRAINのrequirement/template/scope比較はF09 private incoming route内に限る。SupplyAnalysis/function/8の候補出力からOS selected-set全体へ結ぶsame-operation owner acquisition routeは見つからない。"
+      ],
+      "result": "OSが選択を担う点は成立。selected-set全体のcrosswalkは未形成。"
+    },
+    {
+      "operation": "template_use",
+      "owner_boundary": "選択setと実使用setの区別・記録はOS002が担う。",
+      "candidate_member_links": [
+        "H009 ApplicationAnalysisとBRAIN SupplyAnalysisは候補materialのみを返す。両型の意味はselected/used/acceptedを主張しない。"
+      ],
+      "unformed": [
+        "実使用を確立するowner memberはない。ただし使用記録はOS責務でありowner欠落ではない。現行B02 bindingには使用setの全membershipを表すconsumer member/crosswalkがない。",
+        "HARNESS_contract_ref単数からprocess/application refsへのoperation別mappingがない。",
+        "semantic/knowledge refとscopeの対応が未解決。",
+        "BRAIN F09 private incoming routeのscope比較結果はcandidate routeの1 branchであり、SupplyAnalysis/function/8からOSが実使用setを取得・記録するproofではない。semantic/knowledge ref mappingは未解決。"
+      ],
+      "result": "ownerに実使用を主張させない。OS consumer側の実使用set membershipは未形成。"
+    },
+    {
+      "operation": "evaluation_send",
+      "owner_boundary": "evaluation送付時に選択evaluation scope、必要入力、利用許可根拠を照合するのはOS B02の責務。",
+      "H009_BRAIN_boundary": "H009 ApplicationBinding.oracle_refは該当するverification operation時の参照。BRAIN候補materialはevaluation scopeでもpermissionでもない。",
+      "unformed": [
+        "LABOの選択scope/必要入力sourceとSECURITYのpermission sourceは別owner routeであり、H009/BRAIN Binding memberではない。",
+        "oracle_ref、knowledge_ref、candidate materialをLABO scope/SECURITY permissionの代替にしない。"
+      ],
+      "result": "このcrosswalkの範囲外。既存LABO/SECURITYの未解決を保持する。SECURITYの意味は変更しない。"
+    }
+  ],
+  "legacy_and_failure_basis": {
+    "assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "ledger": "docs/governance/legacy-asset-disposition.jsonl:508",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "16-60, 81-92",
+        "source_sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb",
+        "relation": "template ID/versionとset、applicabilityのfail-close、同一scopeのpair、owner/re-entry付きの明示deferを保持する。identity/versionと未解決の区別を残し、旧registry/runtimeは再導入しない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+        "ledger": "docs/governance/legacy-asset-disposition.jsonl:550",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+        "lines": "33-108",
+        "source_sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830",
+        "relation": "安定template identity/versionをpathと分離し、exact registry versionを参照する。unknown/missingをN/Aにしない。version軸を分ける。現行設計は区別を保つがOS-owner間の完全なcrosswalkはない。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-603D0E8D8193914F4AC0",
+        "ledger": "docs/governance/legacy-asset-disposition.jsonl:548",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+        "lines": "34-55",
+        "source_sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
+        "relation": "rename/crosswalkはI/O、state、consumer、oracleの意味署名に基づく。語句の類似でなく型付きedgeを分離する。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+        "ledger": "docs/governance/legacy-asset-disposition.jsonl:1000",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86-87",
+        "source_sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872",
+        "relation": "UTW-014のabsence-to-empty、UTW-020のaggregate診断単位の粗さ、UTW-021の自己申告completionを確認。未対応mappingを明示し、member形状やpointerの存在から成立を推定しない。"
+      }
+    ],
+    "reuse": "旧sourceを意味の再導出に使う。旧registryやruntimeを実行・移植せず、現行BRAIN/HARNESS/OS責務を旧単一registry境界と同一視しない。"
+  },
+  "freeze_and_review_dependencies": {
+    "HARNESS_FN10": "#3874 R2 comment 6480906810は、WR161でFN10-M1/m2を是正・mergeした後に再照合するよう指示する。本記録はfindingを閉じない。WR161後、現行pointerに対するreviewを確認してからFN10依存のapplication-output連結を再評価する。",
+    "BRAIN032": "確認したBRAIN function-pair記録のfreeze scopeはF03/N03に限られ、build_supply_analysisの意味reviewはpending。B02 crosswalkを成立させる証拠ではない。",
+    "T1a": "必要な全mappingが閉じ、B02 U-IDを既存L3/L10とL4/L9から導ける場合に限りfreezeを生成する。"
+  },
+  "owner_and_reentry": [
+    {
+      "owner": "OS002設計owner",
+      "missing": "B02 bindingにselected/used set全体のmembershipと、操作別consumer crosswalkがない。operationはField<string>であり、閉じたenumではない。",
+      "reentry": "既存owner参照のmappingが確定した後、B02で必要なconsumer fieldだけを定め、operation別L8 U-IDを導く。"
+    },
+    {
+      "owner": "HARNESS-CORE / HARNESS009",
+      "missing": "H009 process_contract_ref/application_contract_refとOS HARNESS_contract_refの対応、およびproduct_scopeの厳密な表現mappingがない。FN10との結合はWR161に依存する。",
+      "reentry": "まずWR161のFN10 M1/m2是正をmergeする。その後、各operationに必要な既存contract refとsource-backed scope表現を特定する。H009文書の変更が必要なら案を別記録し、このWRでは編集しない。"
+    },
+    {
+      "owner": "BRAIN032",
+      "missing": "BRAIN F09 private incoming routeは限定claim branchのrequirement_ref/template_ref/scope componentをOS original_project_bindingへ比較する。しかしSupplyAnalysis/function/8とOS selected/used setのsame-operation acquisition route、semantic_contract_ref↔knowledge_ref、HARNESS_contract_ref/contract member mappingは未形成。",
+      "reentry": "F09 private routeの限定範囲を越えて一般化せず、BRAIN ownerが既存public routeでtemplate/knowledge identity/versionとscopeをOS B02へ結ぶsource memberを示す。B02 slice review/freeze後にconsumer crosswalkを再評価する。"
+    },
+    {
+      "owner": "LABO / SECURITY",
+      "missing": "evaluation_selected operationにはLABO selected scope/required-source routeと既存SECURITY permission evidence routeが必要だが未確認。",
+      "reentry": "B02 crosswalk確定後、各ownerの既存公開contractに照らして再確認する。OSはpermissionの意味を作らず、読み替えない。"
+    }
+  ],
+  "conclusion": {
+    "complete_crosswalk": false,
+    "partial_result": "requirement_refと単一template_refはRef型memberとして対応候補がある。BRAIN F09 private incoming routeは正のclaim branchに限りrequirement_ref/template_refとscope componentをOS original_project_bindingへ明示比較するが、これだけではSupplyAnalysis/function/8やselected-set membershipを結ばない。H009 scope/contract-ref、semantic/knowledge mappingは未成立。",
+    "formal_design_changed": false,
+    "HARNESS_BRAIN_design_changed": false,
+    "security_meaning_changed": false,
+    "freeze_generated": false,
+    "status": "partial_crosswalk_not_closed",
+    "reentry_conditions": [
+      "OS Scope↔H009 product_scope:RawValueは直接等置せず、H009 L4が示すowner原registration/source mappingを探す。存在しなければ未形成として保持する。BRAIN F09のcomponent比較はその限定route内にとどめる。",
+      "operation別にOS HARNESS_contract_refをH009 process/application refsへ対応づける根拠を探し、なければOS側の不足memberを特定する。H009は変更しない。",
+      "OS semantic_contract_refとBRAIN knowledge_refのidentity/revision/scope対応を既存sourceから確定する。",
+      "選択/使用setのmembershipを既存data shapeから定め、選択・使用の責務はOSに置く。",
+      "WR161のFN10是正merge後にFN10依存linkを再評価し、B02 L8 U-IDを導けた場合だけT1aを再凍結する。"
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "9f4c08530cb3830dccdd147cffaebffaa4e027b6ec72e1519c656132dda51737"
+    },
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "4c3ad78c0701ec3df177428c6ab236141d9ce17cdcb1fd5c083b384ef92af035"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3"
+    },
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/business-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "b9a5c23e8980a83d18dc1d5c39eb0e139b6b75fee6be804a5b990fc9ef34aab1"
+    },
+    {
+      "path": "docs/helix-brain/L3-requirements/functional-requirements.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "2b91a5c1c7d41bdccbb069d82a732bb37ac67f94230c406378edef3af944500b"
+    },
+    {
+      "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "eae6011c70b310c68b5b28c43aeb48402da2a711bfa4a577c8af39b88b1a2b50"
+    },
+    {
+      "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "7528975453b57c3bd34bdf5c9ffacfa0dc0467d2dee2e69d8bd6683bae965bc0"
+    },
+    {
+      "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "7b372fa3939d4be2595d311ce0bcc553bbb6f65e1b68680416466700da3b84b4"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/business-verification.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "1ea2ddf526b2e8827a619b5c1d87b77f7c13839020a3e82b902ec113c66398f7"
+    },
+    {
+      "path": "docs/helix-brain/L10-verification/functional-verification.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "3308209af9d6b1556e164639b197dd4f4f0ab6753cdccb55698e1b464a755c7a"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-wr166-b02-owner-route-reassessment-2026-10-28.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "9ebaac5c12650e94df263dba9eb56ede5e0095681b82cddf757f920cfba40f42"
+    },
+    {
+      "path": "docs/governance/audits/tdd/h009-fn10-function-pair-freeze-2026-10-28.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "2256e2fc83fe1f96f258bc2d1fc07940fecf398dcc5aea83f4e86a6772829ebe"
+    },
+    {
+      "path": "docs/governance/audits/tdd/brain032-f03-n03-checker-reconcile-2026-10-28.json",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "fa412fd9a481b50fdb1054df5634ec2c99ce5eee21809c761539b1db72459b13"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-refactoring-domain-model.md",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b"
+    },
+    {
+      "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+      "revision": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+      "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+    }
+  ]
+}

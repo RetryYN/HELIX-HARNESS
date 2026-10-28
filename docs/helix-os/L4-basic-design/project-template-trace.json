@@ -348,6 +348,34 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_operation_unchecked",
+          "change": "set/版が未解決、CORE適用出力が欠落した選択済みtemplate操作を使用可能・完了として扱う。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "BRAIN/CORE/OS002",
+          "expected": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
+          "expected_preserved": {
+            "original_binding": "選択operationの原project/scope/requirement revision/template identityとsource refs",
+            "observable": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_evaluation_operation_unchecked",
+          "change": "evaluation_selected=trueでLABO scope/必要入力が未解決、SECURITY許可根拠が未確認の操作を送信・評価成立として扱う。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "OS002/LABO/SECURITY",
+          "expected": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
+          "expected_preserved": {
+            "original_binding": "選択evaluation operationの原project/scope/requirement revisionとowner source refs",
+            "observable": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "comparison_order": [
@@ -398,6 +426,34 @@
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
             "observable": "P kanban未提示を保持しQのKQ preparedを保持。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "unconnected_unagreed_collapsed",
+          "change": "同一入力でproject Pのimplementation=unconnected、project Qのverification=unagreedとした状態を、一方または両方とも欠落・競合・未実装・未検証へ置換する、またはP/Qを同一状態に丸める",
+          "axis": "project_state",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "same_project_partial_completion",
+          "change": "同一project Pでimplementation=supplied、verification=not_observed、release_kanban未提示という部分状態をproject全体完了へ昇格する。",
+          "axis": "project_scope",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=supplied、verification=not_observed、release_kanban未提示を個別に保持し、部分成功からproject全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=supplied、verification=not_observed、release_kanban未提示を個別に保持し、部分成功からproject全体完了を生成しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
@@ -3954,6 +4010,20 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "reassessment_pending_as_complete",
+          "change": "CORE原資料が再評価待ちを示す場合に、その状態を再評価済み・影響なし・移管済みとして扱う。",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "CORE原資料が再評価待ちを示す場合、その状態と移管未完を完了へ昇格せず、無関係なQの有効結果を保つ。現行入力から再評価待ちを表現できるとは主張しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "CORE原資料が再評価待ちを示す場合、その状態と移管未完を完了へ昇格せず、無関係なQの有効結果を保つ。現行入力から再評価待ちを表現できるとは主張しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "comparison_order": [
@@ -4047,6 +4117,20 @@
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
             "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "undecided_labo_scope_as_complete",
+          "change": "LABO_scopeを持つ入力でrequired_record_refsとrequired_set_source_refが未供給の状態を、評価完了として扱う。",
+          "axis": "evaluation_inputs",
+          "state": "unknown",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "LABO_scopeの必要記録集合・取得根拠が未供給なら不完全を保持し、評価完了を生成しない。OSはLABO scopeや必要集合を推定しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "LABO_scopeの必要記録集合・取得根拠が未供給なら不完全を保持し、評価完了を生成しない。OSはLABO scopeや必要集合を推定しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
