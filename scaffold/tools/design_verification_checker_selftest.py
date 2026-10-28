@@ -480,7 +480,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l5["contracts"] = [
             {
                 "id": "L5-CONTRACT-A",
-                "l4_contract_ref": "L4-CONTRACT-A",
+                "basic_design_ref": "L4-CONTRACT-A",
                 "requirement_ref": "REQ-A",
             }
         ]
@@ -529,7 +529,6 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             duplicate_l4["id"] = "L4-C-UNKNOWN-CONTRACT-B"
             duplicate_l4["integration_case_ref"] = "CASE-UNKNOWN-CONTRACT-B"
             l4["failure_classifications"].append(duplicate_l4)
-            l4["contracts"][0]["negative_classifications"].append(duplicate_l4)
 
             duplicate_l5 = copy.deepcopy(rule)
             duplicate_l5.update(
@@ -544,7 +543,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             l5["contracts"].append(
                 {
                     "id": "L5-CONTRACT-B",
-                    "l4_contract_ref": "L4-CONTRACT-B",
+                    "basic_design_ref": "L4-CONTRACT-B",
                     "requirement_ref": "REQ-B",
                 }
             )
@@ -612,9 +611,6 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     "id": "L4-CONTRACT-B",
                     "negative_classifications": [duplicate_l4],
                 }
-            )
-            l4["contracts"][1]["negative_classifications"].append(
-                copy.deepcopy(duplicate_l4)
             )
 
         return layers
@@ -722,6 +718,34 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             (
                 "source_trace_mismatch_even_with_valid_requirement_trace",
                 inconsistent_trace_carriers,
+                "contract_ref",
+            )
+        )
+
+        non_object_source_trace = copy.deepcopy(baseline)
+        for row in non_object_source_trace[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["contract_ref"] = "L5-CONTRACT-A"
+                row["source_trace"] = ["REQ-A"]
+        mutations.append(
+            (
+                "non_object_source_trace_not_rescued_by_contract_ref",
+                non_object_source_trace,
+                "contract_ref",
+            )
+        )
+
+        l4_parent_contract_mismatch = copy.deepcopy(baseline)
+        l5_contract = next(
+            row
+            for row in l4_parent_contract_mismatch[3]["contracts"]
+            if row["id"] == "L5-CONTRACT-A"
+        )
+        l5_contract["basic_design_ref"] = "L4-CONTRACT-WRONG"
+        mutations.append(
+            (
+                "l4_integration_case_owner_rule_contract_must_match_l4_parent",
+                l4_parent_contract_mismatch,
                 "contract_ref",
             )
         )

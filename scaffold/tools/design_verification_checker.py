@@ -1694,6 +1694,28 @@ def _check_negative_equivalence_mode(
         case_ref = rule.get("integration_case_ref")
         if isinstance(case_ref, str) and case_ref.strip():
             rules_by_integration_case.setdefault(case_ref, []).append(rule)
+    l4_parent_contract_refs: dict[str, set[str]] = {}
+    l4_contracts = l4_data.get("contracts", []) if isinstance(l4_data, dict) else []
+    if isinstance(l4_contracts, list):
+        for l4_contract in l4_contracts:
+            if not isinstance(l4_contract, dict):
+                continue
+            l4_contract_id = l4_contract.get("id")
+            classifications = l4_contract.get("negative_classifications", [])
+            if not isinstance(l4_contract_id, str) or not isinstance(
+                classifications, list
+            ):
+                continue
+            for classification in classifications:
+                if not isinstance(classification, dict):
+                    continue
+                classification_id = classification.get(
+                    "class_id", classification.get("id")
+                )
+                if isinstance(classification_id, str) and classification_id.strip():
+                    l4_parent_contract_refs.setdefault(classification_id, set()).add(
+                        l4_contract_id
+                    )
     l8_owner_refs: dict[str, set[tuple[str, str]]] = {}
     l9_owner_refs: dict[str, set[tuple[str, str]]] = {}
     for l8_id, l8_row in l8_cases.items():
@@ -2043,6 +2065,14 @@ def _check_negative_equivalence_mode(
                 has_contract_trace = False
                 requirement_ref = contract.get("requirement_ref")
 
+                if "source_trace" in l8_row and not isinstance(source_trace, dict):
+                    fail(
+                        "contract_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="case_source_trace_invalid",
+                    )
+
                 if "contract_ref" in l8_row:
                     has_contract_trace = True
                     if case_contract_ref != rule_contract_ref:
@@ -2199,9 +2229,37 @@ def _check_negative_equivalence_mode(
         elif isinstance(case_ref, str):
             matching_rules = rules_by_integration_case.get(case_ref, [])
             if len(matching_rules) == 1:
-                l5_item = class_indexes["L5"].get(matching_rules[0].get("id"))
+                matching_rule = matching_rules[0]
+                l5_item = class_indexes["L5"].get(matching_rule.get("id"))
                 if l5_item and l5_item.get("owner_ref") is not None:
                     owner_refs.add(l5_item["owner_ref"])
+                rule_contract_ref = matching_rule.get("contract_ref")
+                if isinstance(rule_contract_ref, str) and rule_contract_ref.strip():
+                    l5_contract = contract_by_id.get(rule_contract_ref)
+                    parent_contract_refs = l4_parent_contract_refs.get(row["id"], set())
+                    if len(parent_contract_refs) != 1:
+                        fail(
+                            "contract_ref",
+                            layer="L4",
+                            case_id=row["id"],
+                            reason="l4_contract_parent_missing_or_ambiguous",
+                        )
+                    elif l5_contract is None:
+                        fail(
+                            "contract_ref",
+                            layer="L5",
+                            case_id=row["id"],
+                            reason="rule_contract_ref_unresolved",
+                        )
+                    elif l5_contract.get("basic_design_ref") != next(
+                        iter(parent_contract_refs)
+                    ):
+                        fail(
+                            "contract_ref",
+                            layer="L4",
+                            case_id=row["id"],
+                            reason="rule_contract_ref_disagrees_with_l4_parent",
+                        )
             else:
                 fail(
                     "owner_ref",
