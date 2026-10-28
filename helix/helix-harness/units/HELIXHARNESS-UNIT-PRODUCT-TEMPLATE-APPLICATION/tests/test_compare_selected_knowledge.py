@@ -568,7 +568,7 @@ class TestCompareSelectedKnowledge(unittest.TestCase):
         self.assertEqual(res7["findings"], [])
 
     def test_brain_definition_source_correspondence_read_and_return_oracle(self):
-        """brain_definition_source_read_binding / return_writer: selected_missing, unselected, unformed."""
+        """brain_definition_source_read_binding / return_writer: call_unformed, unselected, unformed."""
         raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
         brain_src = next(
             s
@@ -579,9 +579,8 @@ class TestCompareSelectedKnowledge(unittest.TestCase):
         brain_src["body"]["call_input"] = {"binding": brain_binding}
         brain_src["body"]["call_comparison"] = {
             "producer_symbol": "compare_descriptor_definitions",
-            "call_input_pointer": "/call_input",
             "input_binding": brain_binding,
-            "original_axes": [
+            "axes": [
                 {
                     "subject_ref": copy.deepcopy(raw["knowledge_records"][0]["ref"]),
                     "binding": brain_binding,
@@ -620,19 +619,47 @@ class TestCompareSelectedKnowledge(unittest.TestCase):
             },
             "source_ref": copy.deepcopy(raw["templates"][0]["source_ref"]),
         }
+        call_unformed_idx = len(raw["semantic_records"])
         raw["semantic_records"].append(corr_rec)
         _rebuild_source_graph(raw)
         res, _, _ = self._run_selected_knowledge(raw)
-        self.assertEqual(res["material"]["usable_candidate_refs"], [])
-        self.assertNotIn("correspondence_issues", res["material"])
-        self.assertEqual(len(res["original_axes"]), 1)
-        ax = res["original_axes"][0]
-        self.assertEqual(ax["axis"], "knowledge.usability")
-        self.assertEqual(ax["state"], "unknown")
-        self.assertEqual(ax["subject_ref"], raw["knowledge_records"][0]["ref"])
-        self.assertEqual(ax["binding"], raw["knowledge_records"][0]["binding"])
-        self.assertEqual(ax["backflow_owner"], "BRAIN")
-        self.assertEqual(len(ax["original_refs"]), 3)
+        self.assertEqual(
+            res["material"]["usable_candidate_refs"],
+            [raw["knowledge_records"][0]["ref"]],
+        )
+        self.assertEqual(res["original_axes"], [])
+        self.assertIn("correspondence_issues", res["material"])
+        call_issues = res["material"]["correspondence_issues"]
+        self.assertEqual(len(call_issues), 1)
+        self.assertEqual(
+            call_issues[0]["locator"], f"/semantic_records/{call_unformed_idx}"
+        )
+        self.assertEqual(
+            call_issues[0]["source_ref"]["identity"],
+            raw["templates"][0]["source_ref"]["identity"],
+        )
+        self.assertTrue(
+            isinstance(call_issues[0]["reason"], str) and call_issues[0]["reason"]
+        )
+
+        # Also verify synthetic non-contract call_input_pointer does NOT bypass call_boundary
+        raw_synth_member = copy.deepcopy(raw)
+        raw_synth_member["sources"] = copy.deepcopy(raw["sources"])
+        for s in raw_synth_member["sources"]:
+            if s["ref"]["identity"] == brain_src["ref"]["identity"]:
+                s["body"]["call_comparison"]["call_input_pointer"] = "/call_input"
+        _rebuild_source_graph(raw_synth_member)
+        res_synth, _, _ = self._run_selected_knowledge(raw_synth_member)
+        self.assertEqual(
+            res_synth["material"]["usable_candidate_refs"],
+            [raw_synth_member["knowledge_records"][0]["ref"]],
+        )
+        self.assertEqual(res_synth["original_axes"], [])
+        self.assertIn("correspondence_issues", res_synth["material"])
+        self.assertEqual(
+            res_synth["material"]["correspondence_issues"][0]["locator"],
+            f"/semantic_records/{call_unformed_idx}",
+        )
 
         # 2. unformed_with_record_ref -> emits correspondence_issues with locator /semantic_records/{idx}
         raw_unformed = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
@@ -689,6 +716,54 @@ class TestCompareSelectedKnowledge(unittest.TestCase):
         )
         self.assertNotIn("correspondence_issues", res_unsel["material"])
         self.assertEqual(res_unsel["original_axes"], [])
+
+    def test_material_multiplicity_and_order_preserved_on_repeated_selection(self):
+        """L5 type_contract/general_rules & return_writer/material: preserve multiplicity and order."""
+        raw = _resolve_recipe_raw("CORE-NORMAL-UNIT-REQUIRED")
+        k1_ref = copy.deepcopy(raw["operations"]["selected_knowledge_refs"][0])
+        k2_ref = copy.deepcopy(k1_ref)
+        k2_ref["identity"] = f"{k1_ref['identity']}-SECOND"
+
+        f1_ref = copy.deepcopy(raw["knowledge_records"][0]["required_field_refs"][0])
+        f2_ref = copy.deepcopy(f1_ref)
+        f2_ref["identity"] = f"{f1_ref['identity']}-SECOND"
+
+        fi2 = copy.deepcopy(raw["field_inputs"][0])
+        fi2["ref"] = copy.deepcopy(f2_ref)
+        raw["field_inputs"].append(fi2)
+
+        kr2 = copy.deepcopy(raw["knowledge_records"][0])
+        kr2["ref"] = copy.deepcopy(k2_ref)
+        kr2["required_field_refs"] = [copy.deepcopy(f2_ref), copy.deepcopy(f1_ref)]
+        raw["knowledge_records"].append(kr2)
+
+        raw["operations"]["selected_knowledge_refs"] = [
+            copy.deepcopy(k1_ref),
+            copy.deepcopy(k2_ref),
+            copy.deepcopy(k1_ref),
+        ]
+        _rebuild_source_graph(raw)
+        res, _, _ = self._run_selected_knowledge(raw)
+
+        self.assertEqual(res["findings"], [])
+        mat = res["material"]
+        self.assertEqual(
+            [r["identity"] for r in mat["selected_knowledge_refs"]],
+            [k1_ref["identity"], k2_ref["identity"], k1_ref["identity"]],
+        )
+        self.assertEqual(
+            [r["identity"] for r in mat["usable_candidate_refs"]],
+            [k1_ref["identity"], k2_ref["identity"], k1_ref["identity"]],
+        )
+        self.assertEqual(
+            [r["identity"] for r in mat["checked_field_refs"]],
+            [
+                f1_ref["identity"],
+                f2_ref["identity"],
+                f1_ref["identity"],
+                f1_ref["identity"],
+            ],
+        )
 
 
 if __name__ == "__main__":
