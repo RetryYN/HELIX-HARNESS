@@ -216,7 +216,6 @@ DERIVATION_MAP: dict[str, dict[str, Any]] = {
 
 FORBIDDEN_MATERIAL_KEYS_COMMON: set[str] = {
     "fixture_patch",
-    "same_invocation",
     "rfc6902_copy_ops",
     "rfc6902_patch",
     "literal_materialization_contract",
@@ -226,7 +225,10 @@ FORBIDDEN_MATERIAL_KEYS_COMMON: set[str] = {
     "full_return",
 }
 
-FORBIDDEN_MATERIAL_KEYS_L8L9: set[str] = FORBIDDEN_MATERIAL_KEYS_COMMON | {"seed"}
+FORBIDDEN_MATERIAL_KEYS_L8L9: set[str] = FORBIDDEN_MATERIAL_KEYS_COMMON | {
+    "seed",
+    "same_invocation",
+}
 
 ALLOWED_SHA256_ANCESTOR_KEYS: set[str] = {
     "source_pins",
@@ -785,6 +787,7 @@ def check_pair_bidir_id(
     right_data: dict[str, Any] | None = None,
     left_key: str | None = None,
     right_key: str | None = None,
+    left_layer: str | None = None,
 ) -> dict[str, Any]:
     """CHK-PAIR-BIDIR-ID: Verify 1-to-1 bidirectional ID links and /completion/* counts."""
     if left_data is None:
@@ -903,6 +906,58 @@ def check_pair_bidir_id(
             }
         )
 
+    eff_left_layer = left_layer or _infer_layer(left_path)
+    if eff_left_layer == "UNKNOWN" and left_key == "requirements":
+        eff_left_layer = "L3"
+
+    if eff_left_layer == "L3" or left_key == "requirements":
+        reverse_ref_keys: tuple[str, ...] = (
+            "requirement_ref",
+            "design_ref",
+            "contract_ref",
+            "detail_design_ref",
+            "function_design_ref",
+        )
+    elif eff_left_layer == "L4":
+        reverse_ref_keys = (
+            "design_ref",
+            "contract_ref",
+            "l4_contract_ref",
+            "requirement_ref",
+        )
+    elif eff_left_layer == "L5":
+        reverse_ref_keys = (
+            "l5_contract_ref",
+            "detail_design_ref",
+            "design_ref",
+            "contract_ref",
+            "requirement_ref",
+        )
+    elif eff_left_layer == "L6":
+        reverse_ref_keys = (
+            "function_design_ref",
+            "design_ref",
+            "contract_ref",
+            "requirement_ref",
+        )
+    else:
+        reverse_ref_keys = (
+            "design_ref",
+            "contract_ref",
+            "l4_contract_ref",
+            "l5_contract_ref",
+            "detail_design_ref",
+            "function_design_ref",
+            "requirement_ref",
+        )
+
+    def _pick_reverse_ref(ritem: dict[str, Any]) -> Any:
+        for rk in reverse_ref_keys:
+            val = ritem.get(rk)
+            if val:
+                return val
+        return None
+
     for iid, (i, item) in l_by_id.items():
         forward_ref = (
             item.get("oracle_ref")
@@ -924,13 +979,7 @@ def check_pair_bidir_id(
             )
             continue
         ri, ritem = r_by_id[forward_ref]
-        back_ref = (
-            ritem.get("requirement_ref")
-            or ritem.get("design_ref")
-            or ritem.get("contract_ref")
-            or ritem.get("detail_design_ref")
-            or ritem.get("function_design_ref")
-        )
+        back_ref = _pick_reverse_ref(ritem)
         if back_ref != iid:
             failures.append(
                 {
@@ -945,13 +994,7 @@ def check_pair_bidir_id(
             )
 
     for rid, (ri, ritem) in r_by_id.items():
-        back_ref = (
-            ritem.get("requirement_ref")
-            or ritem.get("design_ref")
-            or ritem.get("contract_ref")
-            or ritem.get("detail_design_ref")
-            or ritem.get("function_design_ref")
-        )
+        back_ref = _pick_reverse_ref(ritem)
         if not isinstance(back_ref, str) or back_ref not in l_by_id:
             failures.append(
                 {
@@ -1048,8 +1091,14 @@ def check_pair_bidir_id(
 
 
 def _infer_layer(file_path: str) -> str:
+    base = Path(file_path).name
     for tok in ("L10", "L3", "L4", "L5", "L6", "L7", "L8", "L9"):
-        if f"/{tok}-" in file_path or file_path.startswith(f"{tok}-"):
+        if (
+            f"/{tok}-" in file_path
+            or file_path.startswith(f"{tok}-")
+            or base == f"{tok}.json"
+            or base.startswith(f"{tok}_")
+        ):
             return tok
     return "UNKNOWN"
 
@@ -2572,8 +2621,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if ok else 1
 
     if args.command == "check-child":
-        p49 = check_pair_bidir_id(repo_root, args.l4, args.l9)
-        p58 = check_pair_bidir_id(repo_root, args.l5, args.l8)
+        p49 = check_pair_bidir_id(repo_root, args.l4, args.l9, left_layer="L4")
+        p58 = check_pair_bidir_id(repo_root, args.l5, args.l8, left_layer="L5")
         neg = check_neg_4way_match(repo_root, args.l4, args.l9, args.l8, args.l5)
         caps = [
             check_ownership_cap(repo_root, p)
