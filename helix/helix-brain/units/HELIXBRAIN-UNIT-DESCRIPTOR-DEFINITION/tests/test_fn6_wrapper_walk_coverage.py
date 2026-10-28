@@ -82,7 +82,8 @@ class TestFN6WrapperWalkCoverage(unittest.TestCase):
         raw_before, validated, result, calls = _run_public_fn0_fn1_fn6(self, raw)
 
         missing_axes = [
-            row for row in result["axes"]
+            row
+            for row in result["axes"]
             if row["axis"] == "dependency_reference" and row["state"] == "missing"
         ]
         selector_axes = [
@@ -99,10 +100,16 @@ class TestFN6WrapperWalkCoverage(unittest.TestCase):
             self.assertEqual(axis["state"], record["state"])
             self.assertEqual(axis["original_refs"], [record["source_ref"]])
             self.assertEqual(axis["backflow_owner"], "os_owner")
-            self.assertTrue(axis["reason"].startswith("受渡しstateを原recordから保持。"))
+            self.assertTrue(
+                axis["reason"].startswith("受渡しstateを原recordから保持。")
+            )
         self.assertEqual(result["axes"], missing_axes + selector_axes + handoff_axes)
         self.assertEqual(
-            [finding["reason"] for finding in result["findings"] if finding["rule_ref"] == R105],
+            [
+                finding["reason"]
+                for finding in result["findings"]
+                if finding["rule_ref"] == R105
+            ],
             [
                 "HELIXBRAIN-L3-032-F09で必要なidentity "
                 f"{identity} が入力 /dependencies/always_refs にない。"
@@ -113,7 +120,10 @@ class TestFN6WrapperWalkCoverage(unittest.TestCase):
         self.assertEqual(
             [row["reason"] for row in selector_axes],
             [
-                "条件selector " + selector + " が /dependencies/" + selector
+                "条件selector "
+                + selector
+                + " が /dependencies/"
+                + selector
                 + " にない。falseを既定せず、その条件のref集合を評価しない。"
                 for selector in SELECTORS
             ],
@@ -157,7 +167,11 @@ class TestFN6WrapperWalkCoverage(unittest.TestCase):
         self.assertEqual(len(calls), 1)
         self.assertIs(calls[0].args[0]["validated"], validated)
         self.assertEqual(
-            [finding["rule_ref"] for finding in result["findings"] if finding.get("rule_ref") == RULE87],
+            [
+                finding["rule_ref"]
+                for finding in result["findings"]
+                if finding.get("rule_ref") == RULE87
+            ],
             [RULE87],
         )
 
