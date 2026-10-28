@@ -5,8 +5,8 @@
   "parent": "HARNESS-L2-009",
   "status": "candidate_design_only",
   "authority_effect": "none",
-  "scope_ja": "WR89で凍結済みの公開関数5件と、FN03〜FN06の履歴freeze bindingに対応する4公開関数をL5契約・L8 oracle・L7対へ結ぶ。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
-  "pair_freeze_reference_scope_ja": "FN03〜FN06のpair_freeze_binding_refは2026-10-28時点の記録を指し、確認対象HEAD 75f51309e0b391604427fedcbdda0a2743aa690aでのfreeze成立を示さない。各記録のL5/L8全ファイルpinは当該HEADのSHAと不一致（L5 e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740→a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、L8 e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa→3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。一方、各記録のL5 public/private bindingとL8 oracle/unit-caseの対象pointer値はrequest_base_sha時点と当該HEADで全件一致する。これは対象pointerの継続確認であり、現行revisionのfreezeを生成しない。",
+  "scope_ja": "WR89で凍結済みの公開関数5件と、FN03〜FN06の履歴freeze bindingに対応する4公開関数をL5契約・L8 oracle・L7対へ結ぶ。FN04の10-29機械照合candidateは意味review pendingのまま参照する。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "pair_freeze_reference_scope_ja": "FN03/FN05/FN06のpair_freeze_binding_refとFN04のhistorical_pair_freeze_binding_refsは2026-10-28記録を履歴として保持する。FN03/FN05/FN06の10-28記録は当該HEAD 71cb9db86c2c2e7e0d9bfacaa01b5c1af14f9ddcでのfreeze成立を示さず、L5/L8全file pinは当該HEADと不一致（旧L5 e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740→現L5 a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、旧L8 e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa→現L8 3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。FN04のpair_freeze_binding_refは2026-10-29のWR139 record（revision 23ac2a9f32361c056952dce699f9015bd7799038、file SHA-256 ad2bec271261d6b2b2a74e900662176b07f0d65f5805df109b5f8785a9ec2c9b、/target_bindings/public_functions/0）を現行の機械照合candidateとして指す。同recordのsource_mainは75f51309e0b391604427fedcbdda0a2743aa690aで、L5/L8の全file SHAは当該source_mainおよびこの文書のbase HEAD 71cb9db86で同一（L5 a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、L8 3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。ただしcandidate recordのsemantic_review_statusはpending_independent_semantic_reviewであり、機械pointer照合のみを記録する。これはL5/L8の意味承認、正例・境界testの実行合格、またはこのHEADに対するfreeze成立を示さない。L7のexecution_state not_executedは維持する。",
   "source_pins": [
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
@@ -173,6 +173,19 @@
         "/target_bindings/private_detail_contract_pairs/1",
         "/target_bindings/private_detail_contract_pairs/2",
         "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "23ac2a9f32361c056952dce699f9015bd7799038",
+      "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
+      "file_sha256": "ad2bec271261d6b2b2a74e900662176b07f0d65f5805df109b5f8785a9ec2c9b",
+      "selected_pointers": [
+        "/record_id",
+        "/source_main",
+        "/target_bindings/public_functions/0",
+        "/semantic_review_status",
+        "/pins/L5_pre_sha256",
+        "/pins/L8_pre_sha256"
       ]
     }
   ],
@@ -349,7 +362,7 @@
         "pointer": "/normal_function_oracles/4"
       },
       "pair_freeze_binding_ref": {
-        "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+        "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-29.json",
         "pointer": "/target_bindings/public_functions/0"
       },
       "state_event_meaning_ja": "unit/connection/composite固有義務とrequirement→obligation→design→pair traceの不足・異版を個別に保ち、041抽出と025/026具体設計・対oracleを別能力として扱う。副作用なし。",
@@ -360,8 +373,19 @@
       "source_pin_refs": [
         "#/source_pins/14",
         "#/source_pins/15",
-        "#/source_pins/17"
-      ]
+        "#/source_pins/17",
+        "#/source_pins/20"
+      ],
+      "historical_pair_freeze_binding_refs": [
+        {
+          "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+          "pointer": "/target_bindings/public_functions/0",
+          "revision": "3c32df7b1e4736403ba428907455002b4199a173",
+          "file_sha256": "3c3817dd975ee927ea67e3acac49d69c1e00a56ba9aa19fdfc2810b662c81c06",
+          "role": "historical_2026-10-28_record"
+        }
+      ],
+      "pair_freeze_binding_status": "current_mechanical_candidate_semantic_review_pending"
     },
     {
       "id": "HARNESS-L6-009-FN05-compare_requirement_gaps_detail",
