@@ -175,7 +175,7 @@
       "l5_pointers": [
         "L5#/contracts/8",
         "L5#/functions/9/algorithm/0",
-        "L5#/failure_rules/72"
+        "L5#/failure_rules/74"
       ],
       "l8_pointers": [
         "L8#/cases/8/negative_cases/3",

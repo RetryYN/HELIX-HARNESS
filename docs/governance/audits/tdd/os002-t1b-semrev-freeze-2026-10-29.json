@@ -95,7 +95,8 @@
       "l3_pointer": "L3F#/requirements/8",
       "l3_clause": "欠落・競合・未接続・未合意・未実装・未検証を区別する。U-IDはP/QのScope object、requirement Ref、source RefをF01RecordInputのField型で与え、P.implementation=unconnectedとQ.verification=unagreedを保持する。",
       "l5_pointers": [
-        "L5#/functions/3/algorithm/0"
+        "L5#/functions/3/algorithm/0",
+        "L5#/failure_rules/72"
       ],
       "l8_pointers": [
         "L8#/function_cases/3",
@@ -131,7 +132,8 @@
       "l3_pointer": "L3F#/requirements/8",
       "l3_clause": "同一project Pのimplementation=supplied、verification=not_observed、release_kanban未提示という部分状態から、project全体完了を生成しない。U-IDはF01RecordInputのField<Scope>/Field<Ref>に従う。",
       "l5_pointers": [
-        "L5#/functions/3/algorithm/0"
+        "L5#/functions/3/algorithm/0",
+        "L5#/failure_rules/73"
       ],
       "l8_pointers": [
         "L8#/cases/2/negative_cases/3"
@@ -280,8 +282,8 @@
     "L8_f04_original_additional_branch_probes": 3
   },
   "pointer_resolution_summary": {
-    "checked_count": 80,
-    "expanded_target_count": 80,
+    "checked_count": 82,
+    "expanded_target_count": 82,
     "unresolved_count": 0,
     "passed": true
   },
