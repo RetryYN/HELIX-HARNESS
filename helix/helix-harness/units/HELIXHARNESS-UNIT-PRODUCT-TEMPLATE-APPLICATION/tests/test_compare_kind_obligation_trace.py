@@ -397,6 +397,36 @@ class TestCompareKindObligationTrace(unittest.TestCase):
         missing_ids = [r["identity"] for r in mat["missing_trace_refs"]]
         self.assertEqual(missing_ids, ["trace-required-2-forward"])
 
+    def test_f04_neg_04_design_revision_mismatch_without_design_in_identity(self):
+        """HARNESS-L8-009-F04-NEG-04: structural design endpoint resolution without 'design' substring."""
+        neg = self.f04_negative_cases["HARNESS-L8-009-F04-NEG-04"]
+        raw = self._apply_f04_mutation(neg)
+        for coll in ("trace_requirements", "trace_edges"):
+            for item in raw.get(coll, []):
+                for endpoint in ("from_ref", "to_ref"):
+                    ref = item.get(endpoint)
+                    if (
+                        isinstance(ref, dict)
+                        and ref.get("identity") == "synthetic-design-unit"
+                    ):
+                        ref["identity"] = "synthetic-artifact-unit"
+                        ref["owner"] = "synthetic-artifact-owner"
+        _rebuild_source_graph(raw)
+        res, validated, _ = self._run_trace(raw)
+
+        codes = [f["code"] for f in res["findings"]]
+        self.assertIn("design_revision_mismatch", codes)
+        finding = next(
+            f for f in res["findings"] if f["code"] == "design_revision_mismatch"
+        )
+        self.assertEqual(
+            finding["rule_ref"], "HARNESS-L5-009-R-design_revision_mismatch"
+        )
+        self.assertEqual(finding["axis"], "design.binding")
+        self.assertEqual(finding["state"], "conflict")
+        self.assertEqual(finding["backflow_owner"], "design_owner")
+        self.assertEqual(finding["subject_ref"]["identity"], "synthetic-artifact-unit")
+
     def test_f04_neg_05_pair_revision_mismatch(self):
         """HARNESS-L8-009-F04-NEG-05: pair_revision_mismatch."""
         neg = self.f04_negative_cases["HARNESS-L8-009-F04-NEG-05"]
@@ -442,6 +472,16 @@ class TestCompareKindObligationTrace(unittest.TestCase):
         self.assertEqual(finding["backflow_owner"], "design_owner")
         self.assertEqual(finding["binding"], raw["binding"])
         self.assertEqual(len(res["material"]["obligations"]), 1)
+
+        # Structural check without literal '041-extraction-success' string:
+        # design_complete claim lacking concrete design + paired oracle basis_refs
+        raw_struct = copy.deepcopy(raw)
+        raw_struct["claims"][0]["proposed_value"] = {"basis": "extraction-only"}
+        res_struct, _, _ = self._run_trace(raw_struct)
+        self.assertIn(
+            "extraction_as_design_complete",
+            [f["code"] for f in res_struct["findings"]],
+        )
 
     def test_f04_neg_07_composite_empty_without_reason(self):
         """HARNESS-L8-009-F04-NEG-07: composite_empty_without_reason."""
