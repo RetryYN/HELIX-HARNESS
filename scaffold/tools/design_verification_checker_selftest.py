@@ -416,6 +416,200 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertFalse(res_fail2["passed"])
         self.assertEqual(res_fail2["failures"][0]["attribute"], "side_effect_count")
 
+    def test_chk_neg_4way_expected_preserved_null_alignment_and_os002_reference(
+        self,
+    ) -> None:
+        def make_layers():
+            l4 = {
+                "contracts": [
+                    {
+                        "id": "L4-NULL-PRESERVED",
+                        "negative_classifications": [
+                            {
+                                "code": "predicate_only",
+                                "change": "a stated negative condition",
+                                "axis": "input",
+                                "state": "conflict",
+                                "expected": "reject while retaining source input",
+                                "backflow_owner": "CORE",
+                            }
+                        ],
+                    }
+                ]
+            }
+            l9 = {
+                "cases": [
+                    {
+                        "id": "L9-NULL-PRESERVED",
+                        "negative_cases": [
+                            {
+                                "id": "L9-N1",
+                                "code": "predicate_only",
+                                "change": "a stated negative condition",
+                                "axis": "input",
+                                "state": "conflict",
+                                "expected": "reject while retaining source input",
+                                "backflow_owner": "CORE",
+                                "expected_side_effect_count": 0,
+                            }
+                        ],
+                    }
+                ]
+            }
+            l8 = {
+                "cases": [
+                    {
+                        "id": "L8-NULL-PRESERVED",
+                        "negative_cases": [
+                            {
+                                "id": "L8-N1",
+                                "rule_ref": "L5-R-predicate_only",
+                                "function_ref": "L5-fn",
+                                "code": "predicate_only",
+                                "change": "a stated negative condition",
+                                "axis": "input",
+                                "state": "conflict",
+                                "expected": "reject while retaining source input",
+                                "backflow_owner": "CORE",
+                                "expected_side_effect_count": 0,
+                            }
+                        ],
+                    }
+                ]
+            }
+            l5 = {
+                "contracts": [{"id": "L5-NULL-PRESERVED"}],
+                "failure_rules": [
+                    {
+                        "id": "L5-R-predicate_only",
+                        "contract_ref": "L5-NULL-PRESERVED",
+                        "function_ref": "L5-fn",
+                        "code": "predicate_only",
+                        "condition": "a stated negative condition",
+                        "expected_axis": "input",
+                        "expected_state": "conflict",
+                        "expected": "reject while retaining source input",
+                        "backflow_owner": "CORE",
+                        "side_effect_count": 0,
+                        "predicate": "reject this condition and preserve the original input",
+                    }
+                ],
+            }
+            return l4, l9, l8, l5
+
+        l4, l9, l8, l5 = make_layers()
+        predicate_only_match = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", l4, l9, l8, l5
+        )
+        self.assertTrue(predicate_only_match["passed"])
+        self.assertEqual(predicate_only_match["matched_case_count"], 1)
+
+        one_layer_only = copy.deepcopy((l4, l9, l8, l5))
+        one_layer_only[0]["contracts"][0]["negative_classifications"][0][
+            "expected_preserved"
+        ] = {"source": "retained"}
+        one_layer_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *one_layer_only
+        )
+        self.assertFalse(one_layer_result["passed"])
+        self.assertTrue(
+            any(
+                failure["attribute"] == "expected_preserved"
+                for failure in one_layer_result["failures"]
+            )
+        )
+
+        literal_mismatch = copy.deepcopy((l4, l9, l8, l5))
+        for layer in literal_mismatch[:3]:
+            target = (
+                layer["contracts"][0]["negative_classifications"][0]
+                if "contracts" in layer
+                else layer["cases"][0]["negative_cases"][0]
+            )
+            target["expected_preserved"] = {"source": "same"}
+        literal_mismatch[3]["failure_rules"][0]["expected_preserved"] = {
+            "source": "different"
+        }
+        literal_result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *literal_mismatch
+        )
+        self.assertFalse(literal_result["passed"])
+        self.assertTrue(
+            any(
+                failure["attribute"] == "expected_preserved"
+                for failure in literal_result["failures"]
+            )
+        )
+
+        os002_paths = {
+            "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        }
+        os002_layers = {
+            layer: dvc._load_json(REPO_ROOT, path)
+            for layer, path in os002_paths.items()
+        }
+        os002_match = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            os002_paths["L4"],
+            os002_paths["L9"],
+            os002_paths["L8"],
+            os002_paths["L5"],
+            os002_layers["L4"],
+            os002_layers["L9"],
+            os002_layers["L8"],
+            os002_layers["L5"],
+            contract_index=0,
+        )
+        self.assertTrue(
+            os002_layers["L5"]["failure_rules"][0]["preserved_observation_ref"]
+        )
+        self.assertTrue(os002_match["passed"], msg=os002_match["failures"])
+        self.assertEqual(os002_match["matched_case_count"], 2)
+
+        os002_missing_upper_values = copy.deepcopy(os002_layers)
+        for layer in ("L4", "L9", "L8"):
+            rows = (
+                os002_missing_upper_values[layer]["contracts"][0][
+                    "negative_classifications"
+                ]
+                if layer == "L4"
+                else os002_missing_upper_values[layer]["cases"][0]["negative_cases"]
+            )
+            for row in rows:
+                row.pop("expected_preserved", None)
+        os002_missing_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            os002_paths["L4"],
+            os002_paths["L9"],
+            os002_paths["L8"],
+            os002_paths["L5"],
+            os002_missing_upper_values["L4"],
+            os002_missing_upper_values["L9"],
+            os002_missing_upper_values["L8"],
+            os002_missing_upper_values["L5"],
+            contract_index=0,
+        )
+        preserved_failures = [
+            failure
+            for failure in os002_missing_result["failures"]
+            if failure["attribute"] == "expected_preserved"
+        ]
+        self.assertFalse(os002_missing_result["passed"])
+        self.assertEqual(len(preserved_failures), 2)
+        self.assertTrue(
+            all(
+                failure["L4"] is None
+                and failure["L9"] is None
+                and failure["L8"] is None
+                and failure["L5"] is None
+                for failure in preserved_failures
+            )
+        )
+        self.assertEqual(os002_missing_upper_values["L5"], os002_layers["L5"])
+
     def test_chk_public_fn_freeze_pass_and_mutation_fail(self) -> None:
         l5 = {
             "functions": [
