@@ -48,8 +48,8 @@ class TestFn0SourceNumericExactness(unittest.TestCase):
         self.assertTrue(result["input_issues"])
         self.assertEqual(raw, before)
 
-    def test_inner_source_parse_compares_integer_and_integral_decimal_by_value(self):
-        raw = _raw_with_source_number('{"value":1}', {"value": 1.0})
+    def test_inner_source_decimal_token_equals_supplied_exact_integer_by_value(self):
+        raw = _raw_with_source_number('{"value":1.0}', {"value": 1})
         before = copy.deepcopy(raw)
 
         result = validate_supply_input(raw)
