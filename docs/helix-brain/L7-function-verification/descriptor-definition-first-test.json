@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "f7963c6a86e0f4ae1ffb15202a9fbd331c3f9488876528fd9a540e0070b09562",
+    "sha256": "e55ed1e63be8299b5a9984bc972b8c2fbe90ddaac9348ec938d09f05b315b134",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -1593,7 +1593,6 @@
     "r4_stop_coverage": {
       "public_reachable_frozen": {
         "supplied_claim_ports/multifact_pair_scope/applicability_supplied_ref/definition_meaning_operations_unclosed": "test_descriptor_definition_walk_full_contract.pyが各ID assert。",
-        "raw_distinct_binding_frames": "test_descriptor_definition_walk_population_stops.py",
         "oracle_predicate_source": "test_oracle_rule_projection_contract.pyのnomatch/role/Q非適合。",
         "oracle_binding_competition/oracle_oracle_correspondence": "test_oracle_rule_projection_contract.py＋test_oracle_revision_predicate.pyのfact/OB null。",
         "oracle_obligation_digest": "test_oracle_rule_projection_contract.py",
@@ -1616,6 +1615,18 @@
         "sort_ordinal_constant_zero": "event挿入順がordinal順、Python stable sortが同prefixの原順を保つので現producerでは等価。",
         "sort_source_refs_present_true": "現admitted source populationは必須array、全eventがNA[]を含む明示listを渡すのでTrue固定は現domainで等価。",
         "source_unattributed/known_meaning_acquisition/nonempty_pairs": "現typed carrier未実装のため到達不能。fake reader/private patchでkillを作らない。"
+      },
+      "resolved_public_reachable": {
+        "raw_distinct_binding_frames": {
+          "previous_stop_tests": [
+            "test_descriptor_definition_walk_population_stops.py::test_root_candidate_reaching_partial_slot_binding_stops_with_frame_id",
+            "test_descriptor_definition_walk_population_stops.py::test_root_binding_is_not_dropped_when_candidate_filter_is_empty"
+          ],
+          "previous_expected_stop": "NotImplementedError: F01/F02/unclosed/definition_meaning_walk/raw_distinct_binding_frames; Backflow HELIXBRAIN-L6-032-N03-PATH",
+          "replacement_test": "test_descriptor_walk_raw_distinct_frames.py::TestDescriptorWalkRawDistinctFrames.test_root_contract_and_original_slot_frame_both_keep_raw_values_and_links",
+          "scope": "Two synthetic variants (candidate absent; candidate matching the original slot Ref) with raw-different root/slot Binding values. Keep distinct root and original slot frames, original locators/order, 15 root missing definition axes, slot attribution/definition/applicability events, and same-walk assessment-to-final-axis links. Exact-root and unrelated-candidate controls remain in test_descriptor_definition_walk_population_stops.py.",
+          "not_closed": "Only this raw-distinct frame stop in the tested fixture. F02/required_kinds_outside_frozen_path, F02/descriptor_kind_duplicate_slot, meaning_pair_nonempty_unimplemented, other unclosed branches, and F02 full-domain closure remain outside this result."
+        }
       }
     },
     "r4_candidate_controls": {
@@ -2798,6 +2809,55 @@
         "command": "not recorded by retained execution outcome",
         "result": "3 tests ran; four assertion failures (one test contains two subtest failures); failures include zero reader calls, raw Ref branches stopping at raw_distinct_binding_frames, and a missing typed cross-pattern finding. No timeout or setup error is recorded.",
         "limits": "Historical observation only. The retained outcome does not bind a source/test SHA or commit, so it is not reproducible evidence for the current source candidate."
+      },
+      {
+        "target": "Seven new behavior cases added in Green commit 65135d826: two raw-distinct root/slot candidate variants, four FN1 replacement source-cohort tests, and one unrelated-provenance special-finding test.",
+        "old_source_revision": "037ac5fd44887071904b78cc56d5a2fffc3aa763",
+        "test_overlay_revision": "65135d8265b6aa26b811e82612d0f763acdec02f",
+        "test_source_sha256": {
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_walk_raw_distinct_frames.py": "e8e40de284e3ddb379d539afdddb1fadb2455b7b3bf988a6b8495566878531dd",
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definition_walk_population_stops.py": "236b3792157251086c447142d2a25d06493e06bd1b8018aa061873dd199cbe8d",
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn1_wrapper_walk_replacement_source_cohort.py": "14df3e88ddb1c2908f1540fd717881a802db490404a19d4164b9bc1fb97f5049",
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_descriptor_definitions.py": "c4e1b5be7464d049149eacf049d6e788d6f419ecf8c9fda489bfbac511b9be14"
+        },
+        "command": "In a separate scratch at old_source_revision, overlay the four listed test files from test_overlay_revision; then: python3 -B scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd <scratch> -- env PYTHONPATH=helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src:helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests python3 -B -m unittest -v test_descriptor_walk_raw_distinct_frames.TestDescriptorWalkRawDistinctFrames.test_root_contract_and_original_slot_frame_both_keep_raw_values_and_links test_fn1_wrapper_walk_replacement_source_cohort.TestFN1ReplacementSourceCohort.test_distinct_owner_group_tuples_keep_matching_support_without_guessing test_fn1_wrapper_walk_replacement_source_cohort.TestFN1ReplacementSourceCohort.test_identical_duplicate_owner_tuples_still_allow_slot_mirror_diagnostic test_fn1_wrapper_walk_replacement_source_cohort.TestFN1ReplacementSourceCohort.test_nested_closed_record_shape_failure_is_one_raw_decode_problem test_fn1_wrapper_walk_replacement_source_cohort.TestFN1ReplacementSourceCohort.test_source_and_record_partial_bindings_keep_their_own_problem_locator test_descriptor_definitions.TestDescriptorDefinitions.test_unrelated_provenance_problem_keeps_resolved_target_special_finding",
+        "result": {
+          "classification": "exit_nonzero",
+          "status": 1,
+          "unittest_test_methods": 6,
+          "raw_distinct_subtest_variants": 2,
+          "failures": 1,
+          "errors": 6,
+          "duration_ms": 268,
+          "reaped": true,
+          "timed_out": false,
+          "output_truncated": false,
+          "observations": [
+            {
+              "group": "raw-distinct variants",
+              "errors": 2,
+              "detail": "Both candidate_present=false/true subtests reached the previous explicit NotImplementedError raw_distinct_binding_frames stop. This is the declared pre-Green stop, not an assertion-level semantic mismatch."
+            },
+            {
+              "group": "four source-cohort tests",
+              "errors": 4,
+              "detail": "Each targeted invocation failed during module import because old source descriptor_definition_reads.py lacked read_definition_special_support. Import/setup errors; not semantic Red evidence for the four test assertions."
+            },
+            {
+              "group": "unrelated provenance test",
+              "failures": 1,
+              "detail": "The test collected and asserted; actual findings were [descriptor_07_missing], while the expected cross_pattern_field_substitution finding was absent. This is the one assertion-level behavior mismatch in this replay."
+            }
+          ]
+        },
+        "green_followup_ref": "/fn1_fn6_wrapper_via_walk_verification/latest_main_trial_after_format/full_unit_suite",
+        "limits": "The replay uses old source commit 037ac5fd4 with only the specified test overlay from Green commit 65135d826. Preserve errors versus assertion failures: the two raw-distinct errors expose the declared old stop; the four source-cohort errors are import/setup failures and do not establish semantic Red; only unrelated-provenance is an assertion failure. Subsequent full-suite evidence at candidate head 0ddba80cc passed 461 tests including the committed test set; it does not turn import/setup errors into semantic Red or expand this fixture scope.",
+        "source_snapshot_kind": "037ac5fd4 is a test-only commit parent to the Green source commit 65135d826; the source files below are the pre-Green bytes observed in that snapshot.",
+        "old_source_file_sha256": {
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_walk.py": "fa8f35b8b60182a34398f5063354ff1c6c2e6be76d09e5fb851ecc64b0b31601",
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definition_reads.py": "9920bc6440ce41896f40f9f985866ac62383912481c1db6fe1a1e2c54093adc1",
+          "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/descriptor_definitions.py": "5d282c9e43f2f4cf8e69254afac28b2fa666f1b511597c2756516e0a49016317"
+        }
       }
     ],
     "green_evidence": [
@@ -2879,6 +2939,12 @@
         "old": "An unrelated malformed provenance occurrence was expected to suppress the special finding.",
         "new": "The unrelated problem is retained while the independently resolved original target and cross-pattern support produce cross_pattern_field_substitution.",
         "basis": "L4 /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special/activation and /dependency_semantic_ports/descriptor_target_contract/definition_consumer_boundary/replacement_special/nonfire"
+      },
+      {
+        "test": "test_descriptor_definition_walk_population_stops.py::test_root_candidate_reaching_partial_slot_binding_stops_with_frame_id; test_descriptor_definition_walk_population_stops.py::test_root_binding_is_not_dropped_when_candidate_filter_is_empty; replacement test_descriptor_walk_raw_distinct_frames.py::TestDescriptorWalkRawDistinctFrames.test_root_contract_and_original_slot_frame_both_keep_raw_values_and_links",
+        "old": "When comparable root and slot Bindings had raw-different template Refs, the walk stopped with raw_distinct_binding_frames and Backflow HELIXBRAIN-L6-032-N03-PATH; the candidate-absent and slot-matching-candidate variants were not completed.",
+        "new": "For the two bounded candidate variants, retain distinct raw root and original-slot Binding frames and their locators/order instead of collapsing on Binding comparison alone. The fixture keeps 15 root required-kind missing definition axes, original slot attribution/definition/applicability events, missing findings, and same-walk assessment-to-final-axis links. This resolves only the raw_distinct_binding_frames stop in this fixture.",
+        "basis": "L4 /definition_meaning_resolution_contract/evaluation_populations/duplicates_and_order and L5 /source_return_contract/descriptor_target_dataflow/definition_meaning_core/event_and_field_contract/single_walk_algorithm_candidate/1"
       }
     ],
     "l8_expectation_check": {
@@ -2886,7 +2952,7 @@
       "finding": "No U-ID/oracle row directly specifies the old C,C,B2 ordering or use_basis_ref_sha_diff nonfiring expectation; no L8 value was changed."
     },
     "remaining_boundaries": {
-      "F02": "The current public suite still preserves required_kinds_outside_frozen_path and descriptor_kind_duplicate_slot stops, plus the nonempty meaning pair unimplemented stop. They are not claimed resolved by wrapper connection.",
+      "F02": "The raw_distinct_binding_frames stop is resolved only for the two variants in test_descriptor_walk_raw_distinct_frames.py. Remaining public stops are F02/required_kinds_outside_frozen_path, F02/descriptor_kind_duplicate_slot, and meaning_pair_nonempty_unimplemented. This does not close all F02 branches, other unclosed paths, or nonempty meaning-pair behavior.",
       "support_link_unknown": "No real public frame with a formed target event plus a typed support whose template identity is unresolved was constructible under existing same-call source/record Binding correspondence. The L5 all-local-support link rule is not claimed exercised for this unformed branch."
     },
     "static_checks": {
