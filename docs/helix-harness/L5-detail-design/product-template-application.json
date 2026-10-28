@@ -274,9 +274,13 @@
           "right_ref": "Ref",
           "same_meaning": "boolean|null",
           "source_ref": "Ref|null",
-          "reason": "string|null"
+          "reason": "string|null",
+          "basis_kind": "semantic_meaning | count_only"
         },
-        "meaning": "同subject/revision/scopeのqualified意味比較根拠。文字列一致/AI名/件数/自己expectedを意味等価性にしない。COREはこれと対象bindingの一致を検査する。"
+        "meaning": "同subject/revision/scopeのqualified比較basis record。basis_kindは当該recordが主張するbasis種別だけを示し、真偽・source資格・対象bindingを証明しない。semantic_meaningはtyped sourceによる意味比較、count_onlyは件数のみの比較を表す。件数・文字列一致・AI名・自己expectedだけを意味等価性にしない。COREは従来どおり左右Ref・source・対象bindingを照合し、basis_kind欠落は意味比較basisへ既定化しない。",
+        "optional_fields": [
+          "basis_kind"
+        ]
       },
       "ApplicationPolicy": {
         "fields": {
@@ -442,13 +446,17 @@
           "meaning_deltas": "MeaningDelta[]",
           "impact_evidence": "ImpactEvidence[]",
           "claims": "Claim[]",
+          "ai_name": "string|null",
+          "language_name": "string|null",
           "nonsemantic_metadata": "RawValue",
           "semantic_records": "SemanticRecord[]",
           "trace_requirements": "TraceRequirement[]",
           "input_ref": "Ref"
         },
-        "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。 AI/言語/project表示名はnonsemantic_metadataへ保存し適用理由へ使わない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。 source-result projectionが扱うApplicationInput.input_refは同じsnapshotの任意原Refとして保持し、未供給時に他fieldから生成しない。",
+        "meaning": "immutable原snapshot。必要集合を現入力から消さない。source resolver/authorityは外部owner境界の供給根拠へ照合し、ここで新設しない。AI/言語/project表示名はmetadataとして適用理由に使わない。B02-NEG-01/02で一軸差を識別するai_name/language_nameは独立optional typed memberに分ける。project表示名および追加metadataのnonsemantic_metadata RawValueはopaqueのまま保持し、そこから名前を抽出・aliasしない。製品scope/要求kind/domain等の意味をmetadata扱いへ落とさない。source-result projectionが扱うApplicationInput.input_refは同じsnapshotの任意原Refとして保持し、未供給時に他fieldから生成しない。",
         "optional_fields": [
+          "ai_name",
+          "language_name",
           "input_ref"
         ]
       },
@@ -4760,8 +4768,8 @@
       "B_private_caller_pair": {
         "description": "既存FN8を一snapshotずつ呼び、二つのactual Comparison returnと、それぞれの実ValidatedApplication snapshot/source/recordsをprivate callerへ束縛する案。",
         "selected": true,
-        "sufficient_with_existing_declared_types": "NEG-03は既存typed memberが実供給されqualifiedな場合に限る。NEG-01/02はnonsemantic_metadata RawValue内の未宣言keyをAI名/言語名として識別できないためcase-level stop。NEG-04はbasis-onlyのassertionを既存typeが表現できる場合に限り、そうでない形はcase-level stop。",
-        "reason_ja": "Public FN8のCompareSemanticEquivalenceContext/return/wire shapeを不変にできる。新しいtype memberは導入せず、private recordのslotsは既存ValidatedApplicationとComparisonを参照する。",
+        "sufficient_with_existing_declared_types": "NEG-03は既存typed memberが実供給されqualifiedな場合に限る。NEG-01/02は本L5設計候補のdirect optional ai_name/language_name memberを実producer/validator/consumerへ接続するまでcase-level stop。NEG-04はoptional basis_kind候補だけでは不十分。actual returnへのbasis refと完全な左右義務集合対応carrierが未定義のためcase-level stopを維持する。",
+        "reason_ja": "Public FN8のCompareSemanticEquivalenceContext/return/wire shapeを不変にできる。private recordのslotsは既存ValidatedApplicationとComparisonを参照する。",
         "existing_consumer_impact": "既存public contextとComparison consumerに変更なし。新private callerだけが2 snapshot/2 returnの既存型を消費する。"
       }
     },
@@ -4779,14 +4787,14 @@
         "semantic_relations": "/semantic_comparisons: SemanticComparison[]; /semantic_records: SemanticRecord[]",
         "classification_and_boundary": "/axis_facts: AxisFact[]|null; /binding: ApplicationBinding; /universes: CandidateUniverse[]|null",
         "application_and_obligations": "/templates: TemplateSnapshot[]; /conditions: ConditionBinding[]; /application_policies: ApplicationPolicy[]; /obligations: KindObligation[]",
-        "metadata": "/nonsemantic_metadata: RawValue (read as supplied; never reclassify domain/risk/scope as metadata)"
+        "metadata": "/ai_name:string|null and /language_name:string|null are proposed optional typed labels; /nonsemantic_metadata: RawValue remains opaque and is read only as supplied. Never reclassify domain/risk/scope as metadata."
       },
       "pair_input_rules": [
         "四slotは各snapshotで実在する同一validation callの入力/返却を渡す。片側をbaseline source/bodyから合成しない。",
         "各Comparison.producer_symbolはcompare_semantic_equivalence。各input_bindingは対応するsnapshot.input.bindingの全Ref identity/revision/scope/ownerとJSON値で一致させる。",
         "各Comparison.material.obligation_refsは対応snapshot.input.obligationsのref列へ原順/重複を保って照合する。返却順・欠落・追加を別々に観測し、baseline refsでvariant refsを上書きしない。",
         "各SourceEnvelope.ref/source_refを同じsnapshot内のSourceEnvelope、Qualification.subject_ref/owner/scope/sha256、qualification_rootsへ解決する。資格rootの実trust判断は外部owner境界のままで、candidate/fixtureがqualification成立を証明したとはしない。",
-        "SemanticComparisonはfull Ref・left_ref/right_ref・same_meaning・source_refを2 snapshotのrecord/source集合へ結ぶ。各recordのowner snapshot内source、Qualification、rootを確認し、left/rightは該当するbaseline/variant recordへ完全Refで結ぶ。reason文字列、Claim、自己申告はsource資格/meaning basisの代替にしない。",
+        "SemanticComparisonはfull Ref・left_ref/right_ref・same_meaning・source_ref・optional basis_kindを2 snapshotのrecord/source集合へ結ぶ。各recordのowner snapshot内source、Qualification、rootを確認し、left/rightは該当するbaseline/variant recordへ完全Refで結ぶ。basis_kind=count_onlyは件数比較の記録でありsemantic equalityとして消費しない。application_required_axes.py、application_applicability_condition_evaluation.py、application_meaning_impacts.pyのsame_meaning利用はcount_onlyを意味根拠へ昇格しないようconsumer接続時に明示guardする。basis_kind欠落もsemantic_meaningへ既定化しない。reason文字列、Claim、自己申告はsource資格/meaning basisの代替にしない。",
         "nonsemantic_metadataは宣言上RawValueであり、その任意object keyはopaque値として保持する。fixture内にai_name/language_name keyがあっても型付きApplicationInput memberの根拠にせず、private callerはそのkeyを意味分類・単軸差分の識別子として読まない。既存のL5下流設計と独立reviewで型付き識別carrierが定まり、実producer/consumerへ接続されるまではNEG-01/02の観測を停止する。上流B02の意味は維持し、別の人手承認gateを追加しない。",
         "Finding code/state/expected set/L9 expected textは入力に含めない。private callerは既存Finding[]で観測結果を返し、各rule_refはL5 failure_rules/8..11へ結ぶ。",
         "現FN8 return.material.comparison_basis_refsは空である。これをpair basisとして読まず、将来FN8 producerが自動補完すると仮定しない。pair callerは既にinputに供給されたsemantic_comparisonsとqualified sourcesだけを使い、欠落時はcase停止を維持する。"
@@ -4812,10 +4820,10 @@
           "baseline_return.material",
           "variant_return.material"
         ],
-        "observable_condition": "B02はAI名だけで義務を増減しない意味を承認しているが、現行ApplicationInputではnonsemantic_metadata: RawValueのみが宣言されai_nameのtyped memberは無い。RawValue object上の任意key差だけではAI名の差と特定できないため、現行carrierではこのcaseの入力条件を識別できない。fixture keyを型承認・意味分類へ昇格しない。",
-        "result": "現行carrierではfindingを生成せず、HARNESS-L8-009-B02-NEG-01をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
+        "observable_condition": "B02はAI名だけで義務を増減しない意味を承認している。L5設計候補ではai_name:string|nullを独立optional ApplicationInput memberとするが、現source producer/validatorはこのmemberを供給・保持せず、fixture内nonsemantic_metadata:RawValueの任意key差ではAI名差を特定できない。実typed memberが両snapshotに供給されるまではcase inputを識別できない。fixture keyを型承認・意味分類へ昇格しない。",
+        "result": "実producer/validator/consumer接続まではHARNESS-L8-009-B02-NEG-01をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-01",
-        "stop_if": "ai_nameを表すtyped input memberまたはそれと同義の既存typed sourceが入力から供給されていない間は停止する。再開には既存L5下流設計・独立reviewで型宣言、wire/schema mirror、実producer、validation/normalization、全consumer接続を整合させ、AI名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "ai_nameを表すtyped memberが実snapshotへ供給され、同一call producer/validatorで保持されるまで停止する。設計候補の型宣言だけでは再開しない。実装時はAI名の単軸差と他の意味入力不変をtyped carrierから観測する。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
       },
       "neg_02": {
         "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
@@ -4828,10 +4836,10 @@
           "baseline_return.material",
           "variant_return.material"
         ],
-        "observable_condition": "B02は言語差だけで論点を増減しない意味を承認しているが、現行ApplicationInputではnonsemantic_metadata: RawValueのみが宣言されlanguage_nameのtyped memberは無い。RawValue object上の任意key差だけでは言語名の差と特定できないため、現行carrierではこのcaseの入力条件を識別できない。fixture keyを型承認・意味分類へ昇格しない。",
-        "result": "現行carrierではfindingを生成せず、HARNESS-L8-009-B02-NEG-02をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
+        "observable_condition": "B02は言語差だけで論点を増減しない意味を承認している。L5設計候補ではlanguage_name:string|nullを独立optional ApplicationInput memberとするが、現source producer/validatorはこのmemberを供給・保持せず、fixture内nonsemantic_metadata:RawValueの任意key差では言語名差を特定できない。実typed memberが両snapshotに供給されるまではcase inputを識別できない。fixture keyを型承認・意味分類へ昇格しない。",
+        "result": "実producer/validator/consumer接続まではHARNESS-L8-009-B02-NEG-02をstopped_missing_typed_metadata_memberとして保持する。上流B02の要件意味は維持し、未評価を義務差なしや同等の証拠へ変換しない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-02",
-        "stop_if": "language_nameを表すtyped input memberまたはそれと同義の既存typed sourceが入力から供給されていない間は停止する。再開には既存L5下流設計・独立reviewで型宣言、wire/schema mirror、実producer、validation/normalization、全consumer接続を整合させ、言語名の単軸差と他の意味入力不変をそのcarrierから観測できる根拠が必要。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
+        "stop_if": "language_nameを表すtyped memberが実snapshotへ供給され、同一call producer/validatorで保持されるまで停止する。設計候補の型宣言だけでは再開しない。実装時は言語名の単軸差と他の意味入力不変をtyped carrierから観測する。L3/L10 B02の意味を変える提案がない限り、この停止は追加の人手承認gateを意味しない。fixtureの任意key、RawValue全体hash、FN8 comparison_basis_refs=[]は代替根拠にならない。"
       },
       "neg_03": {
         "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
@@ -4864,33 +4872,44 @@
         "observable_condition": "両qualified obligation arraysは同件数だが、Ref identityまたはqualified KindObligation.meaningが異なる。既存snapshot.input.semantic_comparisonsにsame_meaning=trueのpair recordが実在する場合、そのleft/right refsとsource_refを照合する。",
         "result": "basisが欠けた異義務pairはunknownとして具体identity/meaning差分と未評価義務を保持し、件数一致を同等にしない。",
         "stop_id": "HARNESS-L8-009-B02-NEG-04",
-        "stop_reason": "SemanticComparisonにbasis kind/memberはなく、comparison_basis_refsは現在空のRef[]、reasonはstring|null。既存SourceEnvelope.bodyもRawValueでbasis種別のclosed fieldがないため、count-onlyの主張を数が等しい・meaningが違うという相関だけから推測できない。snapshot内にsource-qualifiedな実basisがtypedに供給され、basis種別を識別できる場合以外、count_as_semantic_equivalence findingを主張しない。",
-        "required_decision": "basis種別memberまたはそれと同義の既存typed sourceが無い場合、その型追加と影響consumerは別設計判断へ戻す。候補影響先はSemanticComparisonのtype_contract、wire schema/source_value mirror、CoreSemanticComparison partial carrier、ApplicationInput.semantic_comparisons利用関数（compare_applicability / compare_candidate_universe / compare_semantic_equivalence）であり、本変更では足さない。"
+        "stop_reason": "設計候補ではSemanticComparison.basis_kindをoptional closed enum semantic_meaning|count_onlyとして識別するが、current FN8 comparison_basis_refsは空で、recordから二返却の完全な義務集合対応を結ぶtyped memberもない。basis_kindは宣言されたbasis種別であり真偽・資格・集合対応を証明しない。count_onlyとsame_meaning=trueだけで異なる集合を等価と確定せず、完全集合対応を示す実carrierがない限りcount_as_semantic_equivalence判定はstopped_missing_qualified_materialのままにする。数の一致と意味差の相関からbasisを推測しない。",
+        "required_decision": "再開にはactual FN8 returnへ解決するbasis refsと、左右CandidateUniverse/KindObligation全体を一意に対応付ける既存型付きcarrierが必要。現行SemanticComparison.left_ref/right_refは単一Ref端で集合全体のmember pairingを定義せず、CandidateUniverse.membersも義務Refとの全単射を宣言しないため、完全集合対応は未解決。型の追加推測や期待値入力はせず、L5下流consumer接続を別設計へ戻す。候補影響先はApplicationInput.semantic_comparisons利用関数（application_required_axes.py, application_applicability_condition_evaluation.py, application_meaning_impacts.py, application_semantic_equivalence.py）とwire/native mirrorである。"
       }
     },
     "typed_metadata_member_gap": {
       "authority_meaning": "HARNESS-L3-009-B02とHARNESS-L10-009-B02はAI/言語差だけで必要論点を増減しない意味を承認している。これは入力carrier上の特定key名や型memberの承認を意味しない。",
       "current_typed_source_observation": {
-        "L5_application_input_type": "/type_contract/types/ApplicationInput/fields/nonsemantic_metadata = RawValue",
-        "L5_wire_schema": "/wire_codec_contract/schema/$defs/ApplicationInput/properties/nonsemantic_metadata = {$ref: #/$defs/RawValue}",
+        "L5_application_input_type": "current implementation carrier remains nonsemantic_metadata:RawValue; this L5 design proposes optional typed /type_contract/types/ApplicationInput/fields/ai_name and /language_name",
+        "L5_wire_schema": "current implementation schema has only nonsemantic_metadata RawValue; this L5 design proposes matching optional nullable string properties under /wire_codec_contract/schema/$defs/ApplicationInput/properties",
         "L5_core_partial_carrier": "/f05_detail_contract/types/CoreApplicationInput.native_leaf_type = CoreJsonValue; schema_pointer = /wire_codec_contract/schema/$defs/ApplicationInput",
-        "implementation": "application_input_schema.pyの_CARRIERS.ApplicationInput.nonsemantic_metadataはraw。ソース検索ではApplicationInput内にai_name/language_nameを型付き宣言するmemberやそれを読む実装consumerは見つからない。FN8実返却はcomparison_basis_refs=[]。",
+        "implementation": "現source application_input_schema.pyの_CARRIERS.ApplicationInput.nonsemantic_metadataはrawで、ai_name/language_nameの実typed input producer/validator/consumer接続は未実装。FN8実返却はcomparison_basis_refs=[]。この文書のtype/schema追加はL5設計候補であり、現実装が供給することを意味しない。",
         "fixture_limit": "test_compare_semantic_equivalence.pyはRawValue object内にai_name/language_name任意keyを置くが、それはfixture入力の形を示すだけでtyped field宣言やauthorityを追加しない。L5 opaque_and_extensionもRawValue内の任意keyをopaque値として保持し未知keyを意味/authorityへaliasしないと規定する。"
       },
-      "not_added": "ai_name/language_nameのfield、RawValue key allowlist、暗黙alias、validator規則は追加しない。B02の承認済み意味やL3/L10は変更しない。",
-      "possible_type_change_surface_if_reopened": [
+      "selected_design_ja": "B02-NEG-01/02の単軸差をfixtureの任意RawValue keyで推測しないため、ApplicationInputへ独立optional ai_name:string|nullとlanguage_name:string|nullを設計候補として追加する。nonsemantic_metadata:RawValueは閉じずopaqueに保持し、RawValue key allowlist/aliasは追加しない。現source implementation/producer/validator/consumerは未変更で、接続・独立review前は両case停止を維持する。B02の承認済み意味やL3/L10は変更しない。",
+      "basis_kind_design_ja": "SemanticComparisonへoptional closed basis_kind=semantic_meaning|count_only候補を追加する。欠落値をsemantic_meaningと解釈せず、このlabelだけでsource資格、same_meaningの真偽、binding、集合対応を証明しない。既存consumerはsame_meaningを参照しており、count_onlyを意味根拠へ使わないguardをconsumer接続時に要する。",
+      "representation_alternatives": {
+        "selected_direct_optional_members": "ai_name/language_nameだけをclosed ApplicationInputのoptional nullable typed memberに置き、nonsemantic_metadata:RawValueはopaque extension carrierとして保持する。",
+        "rejected_closed_metadata_record": "nonsemantic_metadata自体を閉じたrecordに変えると任意RawValueの保存/extension意味が変わり、既存wire additionalProperties=false schema、opaque codec/native mirror、既存fixtureとround-trip/consumerを一括移行する必要がある。B02はRawValue全体の閉型化を要求しておらず、選ばない。",
+        "legacy_search_range_and_result": "旧L4/L5 design-template authority、旧L4/L5 design文書とarchive srcのAI名/言語名/semantic comparison/count-only/equivalence語を検索。LEGACY-ASSET-4F5A1F0739EC1111D91DおよびLEGACY-ASSET-98372FEE8A3AC8F9C299に直接対応するai_name/language_name typed memberまたはbasis_kindは見つからない。旧commonize記述は全consumerとdrift absorptionを照合する意味のみを保持する。従ってtyped member/enumはB02から再導出する新L5下流設計候補であり旧仕様の完全一致再利用ではない。"
+      },
+      "implementation_connection_surface": [
         "/type_contract/types/ApplicationInput/fields",
+        "/type_contract/types/SemanticComparison/fields",
         "/wire_codec_contract/schema/$defs/ApplicationInput/properties",
+        "/wire_codec_contract/schema/$defs/SemanticComparison/properties",
         "/f05_detail_contract/types/CoreApplicationInput",
-        "application_input_schema.py:_CARRIERS.ApplicationInput",
-        "application_validation.py:validate_application_input と上流raw-to-ApplicationInput producer"
+        "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_input_schema.py:_CARRIERS.ApplicationInput",
+        "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_validation_detail.py shape/locator path",
+        "upstream raw-to-ApplicationInput producer (not identified in current source search)"
       ],
       "possible_consumer_impact_if_reopened": [
-        "上流producerが新しいtyped valueを入力carrierへ供給し、shape/absence/null/opaque-preservation規則を満たす必要がある。",
-        "private pair callerとcompare_semantic_equivalence設計はそのtyped memberのみでAI名/言語名の単軸差を判定する。",
-        "ApplicationInputを保持・射影する既存consumerとwire/native crosswalkが追加memberを落とさず、unknown keyとして拒否も別意味へのaliasもしないか再照合する。現source検索ではnonsemantic_metadataのnested keyを読む実装consumerは未発見。"
+        "上流raw-to-ApplicationInput producer、application_input_schema.py:_CARRIERS.ApplicationInputとapplication_validation_detail.pyのshape/locator経路が新しいnullable typed valueを供給・保持し、absence/null/opaque-preservationを区別する必要がある。",
+        "private pair callerとhelix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.pyはそのtyped memberのみでAI名/言語名の単軸差を判定し、domain/risk/scopeなどのtyped meaning inputsは従来どおり別軸に保持する。",
+        "ApplicationInput.semantic_comparisons consumers helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py, application_applicability_condition_evaluation.py, application_meaning_impacts.pyはbasis_kind=count_onlyをsemantic meaning evidenceとして使わず、basis_kind欠落もsemantic_meaningへ既定化しないguardが必要。",
+        "ApplicationInputを保持・射影するwire/native crosswalkとCoreApplicationInputはoptional memberを落とさず、既存unknown/opaque handlingと整合するか再照合する。現source検索ではnonsemantic_metadataのnested keyを読む実装consumerは未発見。",
+        "tests/fixtures/application_input.jsonとtest_compare_semantic_equivalence.py、test_compare_required_axes.py、test_compare_applicability.py、test_compare_meaning_impacts.pyを、L5設計の実装・test作業で更新範囲として再照合する。本WR158ではfixture/test/sourceは変更しない。"
       ],
-      "reentry_condition": "既存L5下流設計と独立reviewで、L3/L10の既存意味を変えずに型付きcarrierの必要性・owner/source・producer・closed schema/validator・全consumer互換を具体化し、型memberが実入力から供給されるまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。人の判断は上流意味を変える場合、またはauthority-state modelが対象revisionのdecisionを要求する場合に限る。この記載は別承認gateを追加しない。"
+      "reentry_condition": "L5設計候補の独立review後、既存source input producer/validatorへnullable typed fieldsを接続し、全consumerが保存・解釈境界を守って実snapshotへ供給するまでNEG-01/02はstopped_missing_typed_metadata_memberを維持する。count_only追加時は既存same_meaning consumerをsemantic basisへ昇格させないguardを接続する。人の判断は上流意味を変える場合、またはauthority-state modelが対象revisionのdecisionを要求する場合に限る。この記載は別承認gateを追加しない。"
     },
     "legacy_and_failure_basis": [
       {
@@ -4934,9 +4953,9 @@
       "L3/L10 B02、L4/L9意味、L8 U-ID行、fixturesを変更しない。L10/L9 execution_stateはnot_executedのまま。",
       "個別B02 entryはapproved e509 revisionと一致するが、全file SHA差を理由に後続全revisionの承認を主張しない。",
       "Qualification dataの存在/一致は実trust root成立を意味しない。owner resolverとL6/L7 oracle実行は既存境界へ残す。",
-      "NEG-01/02はai_name/language_nameのtyped memberが無いためcase ID付きで停止し、必要型変更/consumer判断を別作業へ送る。NEG-04 basis-kindが既存type memberで表せない範囲もcase ID付きで停止し、必要型変更/consumer判断を別作業へ送る。"
+      "NEG-01/02はL5設計候補にtyped ai_name/language_nameを置くが、実producer/validator/consumer接続がないためcase ID付きで停止する。NEG-04はbasis_kind候補でも完全な集合対応carrierが不足するためcase ID付きで停止する。"
     ],
-    "design_disposition_ja": "B案を選択。既存FN8 public closed shapeは変えず、2実snapshot（ValidatedApplication）、それぞれの実FN8 Comparison返却、各snapshot input内に実在するqualified SourceEnvelope/Qualification/SemanticComparison/AxisFact/CandidateUniverse/KindObligationをprivate callerに束縛する。current FN8 return.material.comparison_basis_refs=[]であり、将来producer補完は前提にしない。NEG-03だけは必要input membersが実在・qualifiedな場合に条件付き観測可能。NEG-01/02はnonsemantic_metadataがRawValueでAI名/言語名のtyped memberがないため、NEG-04はbasis種別を示すtyped memberがないため、それぞれcase ID付き停止を維持する。同件数・異義務だけからcount-only basisを推定しない。型/member追加は推測せず別判断へ戻す。L3/L10意味変更や新承認は求めない。"
+    "design_disposition_ja": "B案を選択。既存FN8 public function/context/return closed shapeは変えず、2実snapshot（ValidatedApplication）、それぞれの実FN8 Comparison返却、各snapshot input内に実在するqualified SourceEnvelope/Qualification/SemanticComparison/AxisFact/CandidateUniverse/KindObligationをprivate callerに束縛する。ApplicationInputのnullable ai_name/language_nameとSemanticComparison.basis_kindはこのL5文書の候補型定義のみで、src/producer/validator/consumer接続は未実施。nonsemantic_metadata:RawValueはopaque維持。current FN8 return.material.comparison_basis_refs=[]であり、将来producer補完は前提にしない。NEG-03だけは必要input membersが実在・qualifiedな場合に条件付き観測可能。NEG-01/02は実typed metadata未供給、NEG-04はbasis_kind候補があってもactual return refsと完全な集合対応がないため、それぞれcase ID付き停止を維持する。同件数・異義務だけからcount-only basisを推定しない。L3/L10意味変更や新承認は求めない。"
   },
   "wire_codec_contract": {
     "id": "HARNESS-L5-009-WIRE-CODEC",
@@ -6307,6 +6326,26 @@
                 "$ref": "#/$defs/Claim"
               }
             },
+            "ai_name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+            "language_name": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
             "nonsemantic_metadata": {
               "$ref": "#/$defs/RawValue"
             },
@@ -6685,6 +6724,13 @@
                 {
                   "type": "null"
                 }
+              ]
+            },
+            "basis_kind": {
+              "type": "string",
+              "enum": [
+                "semantic_meaning",
+                "count_only"
               ]
             }
           },
