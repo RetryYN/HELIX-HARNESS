@@ -3,6 +3,7 @@
   "layer": "L7",
   "authority_effect": "none",
   "status": "not_executed",
+  "pair_freeze_reference_scope_ja": "FN03〜FN06のpair_freeze_binding_refは2026-10-28時点の記録を指し、確認対象HEAD 75f51309e0b391604427fedcbdda0a2743aa690aでのfreeze成立や実行を示さない。各記録のL5/L8全ファイルpinは当該HEADのSHAと不一致（L5 e4780a713ec9703194913a44d3f12803a7d117d48176fc1e469195059d763740→a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503、L8 e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa→3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021）。一方、各記録のL5 public/private bindingとL8 oracle/unit-caseの対象pointer値はrequest_base_sha時点と当該HEADで全件一致する。これは対象pointerの継続確認であり、L7 status not_executedを変更しない。",
   "contract_refs": [
     {
       "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
@@ -204,6 +205,291 @@
         "pointer": "/target_bindings/public_functions/1"
       },
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HARNESS-L7-009-FN03-compare_applicability",
+      "function_design_ref": "HARNESS-L6-009-FN03-compare_applicability",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/3"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/3"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/cases/4"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/10"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/11"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/12"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/condition_meaning_lookup_miss_oracle"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/3"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn3-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_applicability.py",
+      "tdd_history_refs": [
+        {
+          "red_commit": "6aea6198ccecb7891c933cc472332b23af0dbd43",
+          "green_commit": "04d6f85ee5a2416f1de7fd35d91ceaa974434b34",
+          "test_names": [
+            "test_normal_compare_applicability_oracle",
+            "test_add11_qualified_na_all_four",
+            "test_add12_conditional_raw_false_preserved",
+            "test_add13_unknown_not_na",
+            "test_lookup_miss_matrix_qualified_true",
+            "test_lookup_miss_matrix_qualified_null",
+            "test_lookup_miss_matrix_requested_ref_lookup_miss",
+            "test_lookup_miss_unexercised_guard_boundaries",
+            "test_producer_condition_presence_probes",
+            "test_application_policies_collection_presence_rule"
+          ]
+        }
+      ],
+      "execution_state": "not_executed",
+      "source_pin_refs": [
+        "#/source_pins/0",
+        "#/source_pins/1",
+        "#/source_pins/2"
+      ]
+    },
+    {
+      "id": "HARNESS-L7-009-FN04-compare_kind_obligation_trace",
+      "function_design_ref": "HARNESS-L6-009-FN04-compare_kind_obligation_trace",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/4"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/4"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/cases/5"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/13"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/4"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_kind_obligation_trace.py",
+      "tdd_history_refs": [
+        {
+          "red_commit": "096236d9a305c659094fea4fe08ec45b9cbe0248",
+          "green_commit": "ae62c56abf2e4872bff65aad1d0c4cfc7c7a259b",
+          "test_names": [
+            "test_normal_oracle_compare_kind_obligation_trace",
+            "test_add_14_independent_three_kinds",
+            "test_all_f04_negative_cases_preserve_input_and_emit_expected_finding"
+          ]
+        },
+        {
+          "red_commit": "4d0715da52b9fa2e108fc78f58dfd08d39080de2",
+          "green_commit": "98ec841cc6f5519e19d3db41dd77289a12e359de",
+          "test_names": [
+            "test_f04_neg_04_design_revision_mismatch_without_design_in_identity"
+          ]
+        }
+      ],
+      "execution_state": "not_executed",
+      "source_pin_refs": [
+        "#/source_pins/0",
+        "#/source_pins/1",
+        "#/source_pins/3"
+      ]
+    },
+    {
+      "id": "HARNESS-L7-009-FN05-compare_requirement_gaps_detail",
+      "function_design_ref": "HARNESS-L6-009-FN05-compare_requirement_gaps_detail",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/5"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/5"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/cases/6"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/14"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/15"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_explicit_skip_binding_absent_full_return_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_g1_g2_collection_read_partial_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_native_normal_full_return_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_native_nine_source_known_known_scope_full_five_return_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/input_scope_knowledge_gap_native_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_native_seven_member_caller_full_return_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f05_same_scan_argument_binding_verification"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/f13_knowledge_recipient_leaf_verification"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/5"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_requirement_gaps.py",
+      "tdd_history_refs": [
+        {
+          "red_commit": "f1a73a6179a49278bbba2c9db45e6de96c6f18f2",
+          "green_commit": "1c4fbb9dc01e6ec39f9b08896ded03d8ae300dd0",
+          "test_names": [
+            "test_normal_compare_requirement_gaps_oracle",
+            "test_all_f05_negative_cases_preserve_input_and_emit_expected_finding",
+            "test_add_15_four_return_materials_and_non_oracle_kind_check",
+            "test_add_16_known_definition_value_unknown"
+          ]
+        },
+        {
+          "red_commit": "35ff351d2d6097bed3f16826af481b6db07827c0",
+          "green_commit": "5e2159de0d00c8803db0c8411c3044840ccf6efa",
+          "test_names": [
+            "test_identifier_rename_invariance_and_structural_predicates"
+          ]
+        },
+        {
+          "red_commit": "6b6e9eacd3d2fe2e8b460c2574b3558739445d02",
+          "green_commit": "2c170bf1029abdf65411860bd98992268a220687",
+          "test_names": [
+            "test_f05_neg_05_other_template_compensation"
+          ]
+        }
+      ],
+      "execution_state": "not_executed",
+      "source_pin_refs": [
+        "#/source_pins/0",
+        "#/source_pins/1",
+        "#/source_pins/4"
+      ]
+    },
+    {
+      "id": "HARNESS-L7-009-FN06-compare_selected_knowledge",
+      "function_design_ref": "HARNESS-L6-009-FN06-compare_selected_knowledge",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/6"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/6"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/cases/7"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/additional_unit_cases/16"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/normal_function_oracles/6/brain_definition_source_read_oracle"
+        },
+        {
+          "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+          "pointer": "/normal_function_oracles/6/brain_definition_source_return_oracle"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/6"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-fn6-function-pair-freeze-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_selected_knowledge.py",
+      "tdd_history_refs": [
+        {
+          "red_commit": "bda0b325acd3b084be5b3f7c6a512032888f03b1",
+          "green_commit": "9961fad83491c78d075c94f1d8e3fb9afff3ba69",
+          "test_names": [
+            "test_normal_compare_selected_knowledge_oracle",
+            "test_add_17_unselected_reference_preserved",
+            "test_all_f06_negative_cases_preserve_input_and_emit_expected_finding",
+            "test_brain_definition_source_correspondence_read_and_return_oracle"
+          ]
+        },
+        {
+          "red_commit": "31c55c0811b75cda34b04fa32065fe38ff71f5ec",
+          "green_commit": "ade8d134f54f5b5df917f638ed97ceb6842722e0",
+          "test_names": [
+            "test_material_multiplicity_and_order_preserved_on_repeated_selection"
+          ]
+        }
+      ],
+      "execution_state": "not_executed",
+      "source_pin_refs": [
+        "#/source_pins/0",
+        "#/source_pins/1",
+        "#/source_pins/5"
+      ]
     }
   ],
   "validate_application_input_tdd": {
@@ -515,5 +801,105 @@
   "out_of_scope_ja": [
     "HARNESS-L3-009-B01 O3-O5はchecker-reconcile D-H009-T1aでretained_not_frozenとされたまま維持し、本対で凍結・実装しない。",
     "reentry D-H009-T3bは対象外。WR89はfunctions/0,1,2,8,11のL6/L7設計対のみ。"
-  ]
+  ],
+  "source_pins": [
+    {
+      "revision": "75f51309e0b391604427fedcbdda0a2743aa690a",
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "file_sha256": "a39ed7f57b961595e148ee23ce36b482dbfcd9641e94eb8c07978c89b703b503",
+      "selected_pointers": [
+        "/f05_detail_contract",
+        "/functions/3",
+        "/functions/3/condition_meaning_lookup_miss_writer",
+        "/functions/4",
+        "/functions/5",
+        "/functions/6",
+        "/functions/6/brain_definition_source_read_binding",
+        "/functions/6/brain_definition_source_return_writer",
+        "/selected_brain_field_definition_application_detail",
+        "/selected_source_caller_detail"
+      ]
+    },
+    {
+      "revision": "75f51309e0b391604427fedcbdda0a2743aa690a",
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "file_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+      "selected_pointers": [
+        "/additional_unit_cases/10",
+        "/additional_unit_cases/11",
+        "/additional_unit_cases/12",
+        "/additional_unit_cases/13",
+        "/additional_unit_cases/14",
+        "/additional_unit_cases/15",
+        "/additional_unit_cases/16",
+        "/cases/4",
+        "/cases/5",
+        "/cases/6",
+        "/cases/7",
+        "/condition_meaning_lookup_miss_oracle",
+        "/condition_meaning_lookup_miss_oracle/coverage/unexercised",
+        "/condition_meaning_lookup_miss_oracle/nonclaims/0",
+        "/f05_explicit_skip_binding_absent_full_return_oracle",
+        "/f05_g1_g2_collection_read_partial_oracle",
+        "/f05_native_nine_source_known_known_scope_full_five_return_oracle",
+        "/f05_native_normal_full_return_oracle",
+        "/f05_native_seven_member_caller_full_return_oracle",
+        "/f05_same_scan_argument_binding_verification",
+        "/f13_knowledge_recipient_leaf_verification",
+        "/input_scope_knowledge_gap_native_oracle",
+        "/normal_function_oracles/3",
+        "/normal_function_oracles/4",
+        "/normal_function_oracles/5",
+        "/normal_function_oracles/6",
+        "/normal_function_oracles/6/brain_definition_source_read_oracle",
+        "/normal_function_oracles/6/brain_definition_source_return_oracle",
+        "/selected_brain_field_definition_application_detail_verification",
+        "/selected_brain_field_definition_application_detail_verification/cases",
+        "/selected_brain_field_definition_application_detail_verification/reader_probe_gap/direct_reader_finite_cases",
+        "/selected_brain_field_definition_application_detail_verification/unmaterialized_and_limits",
+        "/selected_source_caller_detail_verification",
+        "/selected_source_caller_detail_verification/connection_expectations",
+        "/selected_source_caller_detail_verification/expected_return_binding"
+      ]
+    },
+    {
+      "revision": "3c5eb00dec02494cf863b0847875b19f77527dbd",
+      "path": "docs/governance/audits/tdd/h009-fn3-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "e98837d37b420b75d4036bfe64537dbdbfaccf885c80e5f31255e769614cdc5c",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "3c32df7b1e4736403ba428907455002b4199a173",
+      "path": "docs/governance/audits/tdd/h009-fn4-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "3c3817dd975ee927ea67e3acac49d69c1e00a56ba9aa19fdfc2810b662c81c06",
+      "selected_pointers": [
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "8551cff59615b5529e00729d4026ca07f8b34375",
+      "path": "docs/governance/audits/tdd/h009-fn5-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "32cb97b3a121fd149712e9c435efb5b93e77fc99cde94b6b581c954e5f7acb61",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/private_detail_contract_pairs/1",
+        "/target_bindings/public_functions/0"
+      ]
+    },
+    {
+      "revision": "6d145f481ed28e2579cbb6bab7aaec07c3386417",
+      "path": "docs/governance/audits/tdd/h009-fn6-function-pair-freeze-2026-10-28.json",
+      "file_sha256": "462493417a3ce7159c5e86bfa93852c8f568b356b3a522567fdc25232b5b58f2",
+      "selected_pointers": [
+        "/target_bindings/private_detail_contract_pairs/0",
+        "/target_bindings/private_detail_contract_pairs/1",
+        "/target_bindings/private_detail_contract_pairs/2",
+        "/target_bindings/public_functions/0"
+      ]
+    }
+  ],
+  "source_pin_ref_rule_ja": "FN03〜FN06の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。"
 }
