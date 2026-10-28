@@ -9482,6 +9482,9 @@
       "schema_id": "helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint",
       "schema_version": "1.0.0",
       "visibility": "public_cross_mechanism_contract",
+      "symbol": "evaluate_selected_field_values_public",
+      "signature": "(context:F03BasicContext)->F03Evaluation",
+      "basic_function_ref": "/field_value_applicability_contract/functions/3",
       "upstream_connection_basis": {
         "brain_l2_handoff_refs": [
           "HELIXBRAIN-L2-019",
@@ -9500,15 +9503,13 @@
         "po_decision_ref": "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md#L62-L70"
       },
       "request_contract": {
-        "input_types": [
-          "/field_value_applicability_contract/closed_types/F03BasicContext",
-          "/field_value_applicability_contract/closed_types/F03FieldDefinitionRequest"
-        ],
+        "input_type": "/field_value_applicability_contract/closed_types/F03BasicContext",
+        "field_request_type": "/field_value_applicability_contract/closed_types/F03FieldDefinitionRequest",
         "raw_presence_types": [
           "/field_value_applicability_contract/closed_types/F03BRawValue",
           "/field_value_applicability_contract/closed_types/F03BPresenceRaw"
         ],
-        "snapshot_binding_rule": "供給元のimmutable snapshot/revision/scopeと対象SectionField/Bindingの原出現を保持し、BRAIN内部の単一walk索引やL5 private runner状態（SupplyAnalysisやDescriptorTargetCallObservationとの3-member private tuple）を引数・返却に要求しない。"
+        "snapshot_binding_rule": "単一入力型F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}を取り、供給元のimmutable snapshot/revision/scopeと対象SectionField/Bindingの原出現を保持する。BRAIN内部の単一walk索引やL5 private runner状態（SupplyAnalysisやDescriptorTargetCallObservationとの3-member private tuple）を引数・返却に要求しない。"
       },
       "response_contract": {
         "evaluation_type": "/field_value_applicability_contract/closed_types/F03Evaluation",

@@ -4375,7 +4375,7 @@
     }
    ]
   },
-  "comparison_scope": "F03BasicContext(snapshot,definitions)全値と公開端点契約（public_selected_field_evaluation_endpoint: schema_id=helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint, schema_version=1.0.0）が返すF03Evaluationの基本port全return/判断/原source全出現/Comparison4member全期待。L5 private runner型や3-member private_returnを機構間境界やfixtureに要求しない。",
+  "comparison_scope": "F03BasicContext(snapshot,definitions)全値と公開端点契約（public_selected_field_evaluation_endpoint: symbol=evaluate_selected_field_values_public, schema_id=helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint, schema_version=1.0.0）が返すF03Evaluationの基本port全return/判断/原source全出現/Comparison4member全期待。L5 private runner型や3-member private_returnを機構間境界やfixtureに要求しない。",
   "execution_state": "not_executed",
   "fixed_semantic_read_primitive": {
    "source_revision": "fc48948137e8749ece2b7560ae82dc6804a686ac",
