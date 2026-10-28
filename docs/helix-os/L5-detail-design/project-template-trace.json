@@ -3335,7 +3335,7 @@
   "implementation_preparation": {
     "state": "not_ready",
     "remaining": [
-      "【B:スライス別L5/L8詳細対凍結】本L5/L8詳細対13組（T:296..308）のうち、共通入口/集約（fn0 validate_record_trace_input・fn13 build_record_trace_analysis）・wire_codec純粋境界およびT:296（B01: fn1 check_record_claims B01分）・T:297（B02: fn2 compare_operation_dependencies）はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3 compare_project_stages）・T:300（F03: fn5 compare_event_obligation_trace）はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4 compare_template_sets・core_proposal_receiving_detail private 4関数/shared_template_set_comparison）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301前半（F04前半: fn6 compare_core_dispositions・fn14 decode_f04_source_projection_profile・fn15 compare_f04_source_projection_join・fn16 run_f04_source_projection_operation・fn17 compare_core_dispositions_typed・fn18 compare_core_dispositions_with_source_projection_profile、およびf04_source_projection_profile_detail・f04_source_member_detail）はD-OS002-T2a（os002-t2a-f04-projection-member-freeze-2026-10-28.json）でA=0を確認し関数単位で凍結済み。残る詳細対T:301後半（F04後半: f04_source_original_correspondence・fn19..22 / D-OS002-T2b）, 302..308（F05..F09, N01, N02）は後続スライスD-OS002-T2b〜T4で順次精査・凍結する。",
+      "【B:スライス別L5/L8詳細対凍結】本L5/L8詳細対13組（T:296..308）のうち、共通入口/集約（fn0 validate_record_trace_input・fn13 build_record_trace_analysis）・wire_codec純粋境界およびT:296（B01: fn1 check_record_claims B01分）・T:297（B02: fn2 compare_operation_dependencies）はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3 compare_project_stages）・T:300（F03: fn5 compare_event_obligation_trace）はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4 compare_template_sets・core_proposal_receiving_detail private 4関数/shared_template_set_comparison）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301（F04前半: fn6 compare_core_dispositions・fn14 decode_f04_source_projection_profile・fn15 compare_f04_source_projection_join・fn16 run_f04_source_projection_operation・fn17 compare_core_dispositions_typed・fn18 compare_core_dispositions_with_source_projection_profile・f04_source_projection_profile_detail・f04_source_member_detail はD-OS002-T2a［os002-t2a-f04-projection-member-freeze-2026-10-28.json］、F04後半: f04_source_original_correspondence_detail・private fn19..22およびfn14/15/16/18後半結線はD-OS002-T2b［os002-t2b-f04-original-correspondence-freeze-2026-10-28.json］）でA=0を確認し関数単位で凍結済み。残る詳細対T:302..308（F05..F09, N01, N02）は後続スライスD-OS002-T3a/T3b/T4で順次精査・凍結する。",
       "【C:外部owner・実基盤境界】正式record schema/codec/source resolver/trust root供給元・実custodyと各外部owner（BRAIN/CORE/LABO/SECURITY/CONNECT・他OS機構）の実binding（本L5純粋論理契約の外）",
       "【C:OS053実保存・接続実証境界】OS053実保存/authority/隔離/資源閾値と実接続の証拠（本L5はeffect=none・authority_generated=falseの純粋比較材料に限定）",
       "【C:下流L6/L7・実装TDD境界】下流L6関数設計/L7関数検証、および実装前test/oracle凍結→Red実観測→最小実装→Green→Refactor",
@@ -10642,7 +10642,7 @@
       }
     ],
     "remaining": [
-      "【B/C整理】B（L5/L8純粋規則）：13sectionのcarrier/子型schema対応と、carrier root受理を全section意味decode完了にしない境界は固定済み（T:296/297はD-OS002-T1a、T:298/300はD-OS002-T1b、T:299［fn4・core_proposal_receiving］はD-OS002-T1c、T:301前半［fn6,14..18］はD-OS002-T2aで凍結、T:301後半/302..308はD-OS002-T2b〜T4で順次凍結）。C（外部owner・実resolver境界）：CaseInput/CaseObservation各実context/selector/原owner bodyの実契約接続と正式実resolver閉包は外部owner・下流統合へ戻す。",
+      "【B/C整理】B（L5/L8純粋規則）：13sectionのcarrier/子型schema対応と、carrier root受理を全section意味decode完了にしない境界は固定済み（T:296/297はD-OS002-T1a、T:298/300はD-OS002-T1b、T:299［fn4・core_proposal_receiving］はD-OS002-T1c、T:301［F04前半 D-OS002-T2a・F04後半 D-OS002-T2b］で凍結、T:302..308はD-OS002-T3a/T3b/T4で順次凍結）。C（外部owner・実resolver境界）：CaseInput/CaseObservation各実context/selector/原owner bodyの実契約接続と正式実resolver閉包は外部owner・下流統合へ戻す。",
       "【C:外部owner・実custody・保存境界】実資格root供給元/実source custody/原source許容集合の実運用契約、BRAIN/CORE/OS/CONNECT両端実通信schema/互換/receipt、OS053実保存/023Backflow実証は本L5純粋設計の外。新署名/truststore/承認gate/資源閾値/実ライブラリを新設しない。",
       "【B/C整理】B（L5/L8純粋規則）：小数/指数/1e400/encode非JSON値の純粋保持・不丸め・失敗分離規則はunfixed_numeric_and_encode_range/0..2のとおり固定済み。C（下流L6/L7・実装・全体閉包境界）：具体float/Unicode/resource実行時挙動、L6関数設計/L7関数検証、層外実装前test/oracle凍結→Red→Green→Refactor、独立review/実受入、全92親430対閉包と実装Readyは下流層・全体統制へ戻す。"
     ],
@@ -11809,11 +11809,11 @@
       "reason": "source rowのcopy/候補自己一致だけではF04の原条件/各未完義務への追跡を閉じず、値の自動cast/zipでは原意味を失う。"
     },
     "remaining": [
-      "型・schemaと論理呼出しの契約を記述したもので、業務evaluator・実codecの成立証拠は未供給。有限期待の型適合だけで実行成立を認定しない。",
-      "型外Presence2callerの新component/semantic suffixだけ先固定。旧join全値/最終F04 wholeは未固定。",
-      "旧25は元のjoin/native/member各phase比較を保持するが新original全Analysis whole25は未導出。旧fn0全返却比較はprivate projection設計でそのまま保持する。",
-      "実provider/caller/原operation/custody/実資格/transport/L6/L7/runtime/CIは未成立。論理詳細の新入場gateにしない。",
-      "remaining basicのnative endpoint不成立・混在縮約・closed tuple等は有限対照外を全域成立としない。"
+      "【B:U-ID単体検証対固定・C:実行環境境界】B（L5/L8純粋規則）：型・schema・論理呼出し契約（fn19 validate_record_trace_with_origins・fn20 resolve_f04_projection_sources・fn21 lookup_f04_original_native・fn22 compare_f04_source_original_correspondence）とL8 U-ID単体検証行はD-OS002-T2b（os002-t2b-f04-original-correspondence-freeze-2026-10-28.json）でA=0を確認し固定済み。C（下流L6/L7・実基盤境界）：業務evaluator・実codecの実行成立証拠は下流L6/L7・実装層へ戻し、有限期待の型適合だけで実行成立を認定しない。",
+      "【B:private return/component単体検証充足・C:L8 whole非追加（#3510）】B（L5/L8純粋規則）：型外Presence 2 caller（CORE-CONDITION/OBLIGATION-MALFORMED-PRESENCE）の新component/semantic suffixはbranch_cases/4,9で、fn19/14/20/22の4段階private returnはprivate_return_whole_cases/0..1およびprivate_return_expectation_recipes/cases/0..1で固定済み。C（#3510方針）：L8へさらなる旧join全値/最終F04 whole JSON・fixture・hash・COPYは追加しない。",
+      "【B:公開fn0/旧25/旧9の境界維持・C:新original全Analysis whole25非追加（#3510）】B（L5/L8純粋規則）：旧25件（PROJECTION-01..18・OCCURRENCE-01..07）は元のjoin/native/member各phase比較およびprivate bundleからのpublic fn0全返却projection比較をそのまま保持し、旧member 9件はwhole_cases/0..8で新original 3所見付き全RecordTraceAnalysisを比較する。C（#3510方針）：旧25件に対する新original全Analysis whole 25件の全文列挙はL8へ追加しない。",
+      "【C:外部owner・下流L6/L7・実行基盤境界】実provider/caller/原operation/custody/実資格/transport/L6/L7/runtime/CIは本L5純粋論理詳細の外であり、論理詳細の新入場gateにしない。",
+      "【B:remaining basic 3分岐の単体probe固定】L4/L9 remaining basicがD-OS002-T2bへ委ねたnative endpoint不成立（condition_correspondence_state/internal_operands）・混在縮約（same_relation_state_reduction）・両role既知not_requestedおよびclosed_record_tuple_rules 4表現は、本L5 state_tables/state_reduction/diagnostic_code_bindingおよびL8#/f04_source_original_correspondence_verification/additional_branch_probes/0..2で単体対照を固定済み（有限対照外を全域実行成立とは称さない）。"
     ],
     "diagnostic_code_binding": {
       "condition_native_endpoint_conflict": {
