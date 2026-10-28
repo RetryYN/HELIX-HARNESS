@@ -108,6 +108,28 @@
       "/cases/9/negative_cases",
       "/additional_unit_cases/17",
       "/additional_unit_cases/18"
+    ],
+    "fn8_add20_case_reference": {
+      "source_path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "source_revision": "5b0c94a3b7416f7dc34b5d2501739708cf73de52",
+      "source_whole_file_sha256": "3cf3f3f2c9457bfecbcc9b96b31840d487ae23c796361cf1f4efd72fcfee5021",
+      "source_pointer": "/additional_unit_cases/19",
+      "material_kind": "scenario and expectation pointer only; concrete metadata labels are synthetic test values",
+      "fixture_pointer": "tests/test_compare_semantic_equivalence.py::test_metadata_only_change_and_bulk_identifier_rename_do_not_change_result_state"
+    },
+    "fn8_add20_recipe_reference": {
+      "source_path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "source_revision": "d4d68f1354153682b7b6e41c99bbdf949279e5c0",
+      "source_whole_file_sha256": "2473e4c32d5c75b2ef48be662f27ba9e1710b6767ce9110f66883761df967776",
+      "source_pointer": "/fixture_contract/additional_input_recipes/16",
+      "material_kind": "input recipe copied from pinned L8; not an expected output",
+      "fixture_pointer": "/recipes/27"
+    },
+    "d4d68f13_fn8_recipe_pointers": [
+      "/fixture_contract/additional_input_recipes/16"
+    ],
+    "current_l8_fn8_pointers": [
+      "/additional_unit_cases/19"
     ]
   },
   "normal_input": {
@@ -38525,6 +38547,20 @@
       "id": "CORE-ADD-INPUT-19",
       "base_input_fixture_ref": "CORE-SUPPORT-IMPACT-UNAFFECTED",
       "input_overrides": {},
+      "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
+      "final_input_changes": []
+    },
+    {
+      "id": "CORE-ADD-INPUT-20",
+      "kind": "logical_unit_input_candidate_not_executed",
+      "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+      "input_overrides": {
+        "nonsemantic_metadata": {
+          "ai_name": "synthetic-ai-B",
+          "language_name": "synthetic-language-B",
+          "project_display_name": "synthetic-project"
+        }
+      },
       "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
       "final_input_changes": []
     }
