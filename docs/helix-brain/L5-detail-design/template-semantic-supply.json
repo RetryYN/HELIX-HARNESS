@@ -1960,7 +1960,8 @@
       "expected_axis": "product_selection_claim",
       "expected_state": "conflict",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "各代替と反例/限界を保持し採用0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-receipt_as_product_discharge",
@@ -1974,7 +1975,8 @@
       "expected_axis": "obligation_discharge_claim",
       "expected_state": "unknown",
       "backflow_owner": "os_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "知識受領/適用/記録を独立軸。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-receipt_as_na",
@@ -1988,7 +1990,8 @@
       "expected_axis": "applicability_claim",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "案件N/A理由/判定者/revision/再評価条件を推定しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_meaning_collision",
@@ -2002,7 +2005,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "label一致で意味同一にしない。両sourceを保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-relation_endpoint_missing",
@@ -2016,7 +2020,8 @@
       "expected_axis": "relation.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "kind/方向/残る端を保持し、関係完全としない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-relation_direction_missing",
@@ -2030,7 +2035,8 @@
       "expected_axis": "relation.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "端の名前類似から方向を生成しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-harness_contract_redefined",
@@ -2044,7 +2050,8 @@
       "expected_axis": "harness_contract",
       "expected_state": "conflict",
       "backflow_owner": "harness_contract_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "原HARNESS参照を保持し、BRAINの再定義を成立結果にしない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-cross_pattern_section_substitution",
@@ -2058,7 +2065,8 @@
       "expected_axis": "required section.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元項目missing、別Pattern成功を相殺にしない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution",
@@ -2072,7 +2080,8 @@
       "expected_axis": "required field.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元項目missing、field単位の不足を保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_01_missing",
@@ -2086,7 +2095,8 @@
       "expected_axis": "template identity.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_01_undefined",
@@ -2100,7 +2110,8 @@
       "expected_axis": "template identity.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_01_contradictory",
@@ -2114,7 +2125,8 @@
       "expected_axis": "template identity.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_02_missing",
@@ -2128,7 +2140,8 @@
       "expected_axis": "version.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_02_undefined",
@@ -2142,7 +2155,8 @@
       "expected_axis": "version.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_02_contradictory",
@@ -2156,7 +2170,8 @@
       "expected_axis": "version.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_03_missing",
@@ -2170,7 +2185,8 @@
       "expected_axis": "layer/pair.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_03_undefined",
@@ -2184,7 +2200,8 @@
       "expected_axis": "layer/pair.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_03_contradictory",
@@ -2198,7 +2215,8 @@
       "expected_axis": "layer/pair.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_04_missing",
@@ -2212,7 +2230,8 @@
       "expected_axis": "applicability.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_04_undefined",
@@ -2226,7 +2245,8 @@
       "expected_axis": "applicability.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_04_contradictory",
@@ -2240,7 +2260,8 @@
       "expected_axis": "applicability.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_05_missing",
@@ -2254,7 +2275,8 @@
       "expected_axis": "required input.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_05_undefined",
@@ -2268,7 +2290,8 @@
       "expected_axis": "required input.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_05_contradictory",
@@ -2282,7 +2305,8 @@
       "expected_axis": "required input.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_06_missing",
@@ -2296,7 +2320,8 @@
       "expected_axis": "required section.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_06_undefined",
@@ -2310,7 +2335,8 @@
       "expected_axis": "required section.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_06_contradictory",
@@ -2324,7 +2350,8 @@
       "expected_axis": "required section.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_07_missing",
@@ -2338,7 +2365,8 @@
       "expected_axis": "required field.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_07_undefined",
@@ -2352,7 +2380,8 @@
       "expected_axis": "required field.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_07_contradictory",
@@ -2366,7 +2395,8 @@
       "expected_axis": "required field.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_08_missing",
@@ -2380,7 +2410,8 @@
       "expected_axis": "relation.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_08_undefined",
@@ -2394,7 +2425,8 @@
       "expected_axis": "relation.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_08_contradictory",
@@ -2408,7 +2440,8 @@
       "expected_axis": "relation.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_09_missing",
@@ -2422,7 +2455,8 @@
       "expected_axis": "意味owner.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_09_undefined",
@@ -2436,7 +2470,8 @@
       "expected_axis": "意味owner.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_09_contradictory",
@@ -2450,7 +2485,8 @@
       "expected_axis": "意味owner.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_10_missing",
@@ -2464,7 +2500,8 @@
       "expected_axis": "trace.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_10_undefined",
@@ -2478,7 +2515,8 @@
       "expected_axis": "trace.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_10_contradictory",
@@ -2492,7 +2530,8 @@
       "expected_axis": "trace.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_11_missing",
@@ -2506,7 +2545,8 @@
       "expected_axis": "negative oracle.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_11_undefined",
@@ -2520,7 +2560,8 @@
       "expected_axis": "negative oracle.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_11_contradictory",
@@ -2534,7 +2575,8 @@
       "expected_axis": "negative oracle.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_12_missing",
@@ -2548,7 +2590,8 @@
       "expected_axis": "measurement.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_12_undefined",
@@ -2562,7 +2605,8 @@
       "expected_axis": "measurement.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_12_contradictory",
@@ -2576,7 +2620,8 @@
       "expected_axis": "measurement.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_13_missing",
@@ -2590,7 +2635,8 @@
       "expected_axis": "completion.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_13_undefined",
@@ -2604,7 +2650,8 @@
       "expected_axis": "completion.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_13_contradictory",
@@ -2618,7 +2665,8 @@
       "expected_axis": "completion.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_14_missing",
@@ -2632,7 +2680,8 @@
       "expected_axis": "downstream kind.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_14_undefined",
@@ -2646,7 +2695,8 @@
       "expected_axis": "downstream kind.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_14_contradictory",
@@ -2660,7 +2710,8 @@
       "expected_axis": "downstream kind.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_15_missing",
@@ -2674,7 +2725,8 @@
       "expected_axis": "supersession.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_15_undefined",
@@ -2688,7 +2740,8 @@
       "expected_axis": "supersession.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-descriptor_15_contradictory",
@@ -2702,7 +2755,8 @@
       "expected_axis": "supersession.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対象項目identity/knowledge revision/source/原因を返し、他項目の既知内容を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-unknown_as_na",
@@ -2716,7 +2770,8 @@
       "expected_axis": "field.value",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "definitionと元value不足を保全。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-definition_as_value_gap",
@@ -2730,7 +2785,8 @@
       "expected_axis": "field.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "定義missingの戻し先をCORE値不足へ付替えない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-applicability_unknown_as_na",
@@ -2744,7 +2800,8 @@
       "expected_axis": "applicability.evaluation",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "N/A理由を創作しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-section_na_all_fields",
@@ -2758,7 +2815,8 @@
       "expected_axis": "field.applicability",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "各fieldの原適用条件/根拠を個別保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-source_missing",
@@ -2772,7 +2830,8 @@
       "expected_axis": "source",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "未評価、同名source/latest補完0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-version_missing",
@@ -2786,7 +2845,8 @@
       "expected_axis": "template.version",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "knowledge/pack版を代替しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-scope_missing",
@@ -2800,7 +2860,8 @@
       "expected_axis": "scope",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "他scopeへ補完せず未評価。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-compatibility_unknown",
@@ -2814,7 +2875,8 @@
       "expected_axis": "compatibility",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "当該利用を許さない。compatibility_unknown / compatibility / unknown分類を保つ。原record.source_refが明示nullの場合は、L4 bilateral finite cause precedenceが定めるcause文字列null（JSON nullではない）を保持し、left_owner_unprovided/right_owner_unprovidedで上書きしない。各原recordのreason値は原値のまま原record順で保持する。公開RefはL4 bilateral順とし、nullのsource_refは公開Ref列に含めず原recordには保持する。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-compatibility_mismatch",
@@ -2828,7 +2890,8 @@
       "expected_axis": "compatibility",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "最新や別candidate成功で補わない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-oracle_revision_mismatch",
@@ -2842,7 +2905,8 @@
       "expected_axis": "oracle.binding",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元oracleと期待revisionを残す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-image_identity_inference",
@@ -2856,7 +2920,8 @@
       "expected_axis": "template.identity",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "画像からidentity/版を採番しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-tool_node_identity_inference",
@@ -2870,7 +2935,8 @@
       "expected_axis": "template.version",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "tool nodeを意味revisionへ変換しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-filename_identity_join",
@@ -2884,7 +2950,8 @@
       "expected_axis": "identity_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "原別identity保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-version_target_as_actual",
@@ -2898,7 +2965,8 @@
       "expected_axis": "template.version_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "能力版印と実artifact版を分ける。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-view_measurement_repair",
@@ -2912,7 +2980,8 @@
       "expected_axis": "measurement.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "表示生成成功でも原missing保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-view_completion_repair",
@@ -2926,7 +2995,8 @@
       "expected_axis": "completion.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "JSONの項目をviewから更新しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-view_as_semantic_update",
@@ -2940,7 +3010,8 @@
       "expected_axis": "meaning_update_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元JSONと原stateを保持、write0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-unrelated_measurement",
@@ -2954,7 +3025,8 @@
       "expected_axis": "measurement.binding",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "義務/oracleの相違を返す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-completion_oracle_revision",
@@ -2968,7 +3040,8 @@
       "expected_axis": "completion.binding",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "当該成立条件未成立、project消込0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-generation_as_completion",
@@ -2982,7 +3055,8 @@
       "expected_axis": "completion.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "対oracleによる成立を推定しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-threshold_fabricated",
@@ -2996,7 +3070,8 @@
       "expected_axis": "measurement.value",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "定義knownと案件値unknownを別に返す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-product_values_as_generic",
@@ -3010,7 +3085,8 @@
       "expected_axis": "generic_definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元製品値はCORE材料へ残し、汎用化成立にしない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-brain_selects_template",
@@ -3024,7 +3100,8 @@
       "expected_axis": "product_selection_claim",
       "expected_state": "conflict",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "候補提供とCORE採用を分離。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-brain_agrees_requirements",
@@ -3038,7 +3115,8 @@
       "expected_axis": "requirements_agreement_claim",
       "expected_state": "conflict",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "既存要求authorityを代行しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-brain_finishes_design",
@@ -3052,7 +3130,8 @@
       "expected_axis": "design_completion_claim",
       "expected_state": "conflict",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "completion定義と案件完成を区別。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-brain_closes_obligation",
@@ -3066,7 +3145,8 @@
       "expected_axis": "obligation_discharge_claim",
       "expected_state": "conflict",
       "backflow_owner": "os_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "OS記録write/消込0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-generation_as_promotion",
@@ -3080,7 +3160,8 @@
       "expected_axis": "promotion",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "候補生成と運用採否を別軸。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-evaluation_scope_missing",
@@ -3094,7 +3175,8 @@
       "expected_axis": "promotion",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "不足scopeと既存採否ownerを返す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-independent_verification_missing",
@@ -3108,7 +3190,8 @@
       "expected_axis": "promotion",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元運用stateを保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-limited_content_as_promotion",
@@ -3122,7 +3205,8 @@
       "expected_axis": "promotion_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "内容採否と運用stateは別。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-receipt_as_definition",
@@ -3136,7 +3220,8 @@
       "expected_axis": "handoff",
       "expected_state": "not_received",
       "backflow_owner": "os_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "definition保持、未受領と定義不足を分離。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-selected_source_substitution",
@@ -3150,7 +3235,8 @@
       "expected_axis": "selected_source",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "選択scope/sourceの元欠落を残す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-reference_as_authority",
@@ -3164,7 +3250,8 @@
       "expected_axis": "authority_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "限定内容採択と参考資料を分ける。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-reference_as_required_definition",
@@ -3178,7 +3265,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元required欠落を保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-future_receipt_as_precondition",
@@ -3192,7 +3280,8 @@
       "expected_axis": "precondition_claim",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "未受領でも局所候補提供を継続。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-unselected_source_success",
@@ -3206,7 +3295,8 @@
       "expected_axis": "unselected_source",
       "expected_state": "unobserved",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "未観測保持、評価成功0。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-mixed_knowledge_revision",
@@ -3220,7 +3310,8 @@
       "expected_axis": "descriptor.trace",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "template/knowledge/sourceの原組を保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-silent_supersession",
@@ -3234,7 +3325,8 @@
       "expected_axis": "descriptor.trace",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "原旧revision/sourceと明示supersession不足を保全し、latestで同一意味にしない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-missing_as_empty",
@@ -3248,7 +3340,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "不足identity/理由を保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-unknown_fallback",
@@ -3262,7 +3355,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元revision/sourceを返す。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-hash_as_complete",
@@ -3276,7 +3370,8 @@
       "expected_axis": "completion_claim",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "意味不足を相殺しない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-lower_green_as_complete",
@@ -3290,7 +3385,8 @@
       "expected_axis": "completion_claim",
       "expected_state": "unknown",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元各状態を維持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_missing",
@@ -3304,7 +3400,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "missing",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_unknown",
@@ -3318,7 +3415,8 @@
       "expected_axis": "field.value",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_conflict",
@@ -3332,7 +3430,8 @@
       "expected_axis": "descriptor.definition",
       "expected_state": "conflict",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_not_applicable",
@@ -3346,7 +3445,8 @@
       "expected_axis": "field.applicability",
       "expected_state": "not_applicable",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_unobserved",
@@ -3360,7 +3460,8 @@
       "expected_axis": "unselected_source",
       "expected_state": "unobserved",
       "backflow_owner": "knowledge_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-state_preservation_not_received",
@@ -3374,7 +3475,8 @@
       "expected_axis": "handoff",
       "expected_state": "not_received",
       "backflow_owner": "os_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "元状態/理由/revision/source/戻し先を保全。原非適用は非適用のままで全体成功ではない。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-fixture_timeout_default",
@@ -3388,7 +3490,8 @@
       "expected_axis": "operation_value",
       "expected_state": "unknown",
       "backflow_owner": "core_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "値/根拠/operation owner未決保持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-fixture_cpu_default",
@@ -3402,7 +3505,8 @@
       "expected_axis": "resource_value",
       "expected_state": "unknown",
       "backflow_owner": "infrastructure_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "実資源未供給を維持。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-fixture_memory_default",
@@ -3416,7 +3520,8 @@
       "expected_axis": "resource_value",
       "expected_state": "unknown",
       "backflow_owner": "infrastructure_owner",
-      "effect": "元axisとclaimを独立保持。実作用なし。"
+      "effect": "元axisとclaimを独立保持。実作用なし。",
+      "expected": "fixtureと実計測を区別。"
     },
     {
       "id": "HELIXBRAIN-L5-032-R-required_dependency_missing",
@@ -11412,7 +11517,7 @@
     "documents": [
       {
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "sha256": "51f1279bda601caf6590688e2dcfe5bbfad53553d53466da41488da85f79ed2f",
+        "sha256": "3f05bf3fc133ebd3e983276c97fc2248e95c377dd32fac757bd87db1a02d1d06",
         "pointers": [
           "/dependency_semantic_ports",
           "/definition_meaning_resolution_contract"
@@ -11420,7 +11525,7 @@
       },
       {
         "path": "docs/helix-brain/L9-integration-verification/template-semantic-supply.json",
-        "sha256": "c66ae91b359098360cd3680ed27f84dbb72181f1e7446dffad400fc819bf0a52"
+        "sha256": "81c7a0255ec5de0a2d746bdba61e3951b1dfa6b47ddd66c272690e4a3a75615b"
       }
     ],
     "scope": "既存target portと原owner意味/NA判断の論理契約。source_pins内の旧revisionは元導出の歴史pinとして保持する。実provider/実資格を成立したという記録ではない。",
