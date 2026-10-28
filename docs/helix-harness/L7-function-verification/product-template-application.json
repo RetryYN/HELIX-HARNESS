@@ -256,9 +256,8 @@
         "source_pin_ref": "#/source_pins/15",
         "test": "test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop",
         "result": "FN8 core/exportあり・locator保持修正前にvalidator経由の単独testを実行し、1 test failure。例外reasonはvalidated input binding unavailableで、/obligations/0/ref/identityを含まず、locator欠落を検出した。",
-        "bounded_command": "python3 scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd <worktree-at-revision> -- env PYTHONPATH=helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src:helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests python3 -B -m unittest test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop -v",
-        "artifact_path": "/tmp/wr143-3851-prelocator-locator-test-20261029.json",
-        "artifact_sha256": "b48e93d2a0700a2ff89715cadc4af1b1a67aa0b9298901561078a932eb5f4a3a"
+        "bounded_command": "python3 scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd . -- env PYTHONPATH=helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src:helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests python3 -B -m unittest test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop -v",
+        "test_revision": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53"
       }
     },
     {
@@ -1182,5 +1181,5 @@
       "selected_pointers": []
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAIL結果artifactと、同revisionのsource whole-file SHAを結ぶ。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。"
 }
