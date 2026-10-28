@@ -1267,6 +1267,26 @@ def _check_negative_equivalence_mode(
             )
         return left == right
 
+    def key_json_value(value: Any) -> Any:
+        """Build a hashable JSON type-preserving key component."""
+        if isinstance(value, dict):
+            return (
+                "object",
+                tuple((key, key_json_value(value[key])) for key in sorted(value)),
+            )
+        if isinstance(value, list):
+            return ("array", tuple(key_json_value(item) for item in value))
+        return (type(value).__name__, value)
+
+    def valid_axis(value: Any) -> bool:
+        return (
+            isinstance(value, str)
+            and bool(value.strip())
+            or isinstance(value, list)
+            and bool(value)
+            and all(isinstance(item, str) and item.strip() for item in value)
+        )
+
     def fail(
         attribute: str,
         *,
@@ -1423,7 +1443,7 @@ def _check_negative_equivalence_mode(
             side_effect_count = raw.get(
                 "side_effect_count", raw.get("expected_side_effect_count")
             )
-            if not isinstance(axis, str) or not axis.strip():
+            if not valid_axis(axis):
                 fail(
                     "expected_axis",
                     layer=layer,
@@ -1449,16 +1469,51 @@ def _check_negative_equivalence_mode(
                     reason="class_invariant_not_zero",
                 )
 
+            function_ref = raw.get("function_ref") if layer == "L5" else None
+            contract_ref = raw.get("contract_ref") if layer == "L5" else None
+            owner_ref: tuple[str, str] | None = None
+            if layer == "L5":
+                if "function_ref" in raw:
+                    if isinstance(function_ref, str) and function_ref.strip():
+                        owner_ref = ("function_ref", function_ref)
+                    else:
+                        fail(
+                            "owner_ref",
+                            layer=layer,
+                            case_id=class_id,
+                            reason="declared_function_ref_invalid_no_contract_fallback",
+                        )
+                elif "contract_ref" in raw:
+                    if isinstance(contract_ref, str) and contract_ref.strip():
+                        owner_ref = ("contract_ref", contract_ref)
+                    else:
+                        fail(
+                            "owner_ref",
+                            layer=layer,
+                            case_id=class_id,
+                            reason="declared_contract_ref_invalid",
+                        )
+                else:
+                    fail(
+                        "owner_ref",
+                        layer=layer,
+                        case_id=class_id,
+                        reason="rule_owner_ref_missing_or_invalid",
+                    )
             key = (
                 classification,
                 tuple(codes),
                 owner if isinstance(owner, str) else None,
+                key_json_value(axis),
+                state,
+                owner_ref,
             )
             item = {
                 "id": class_id,
                 "key": key,
                 "partial_key": (classification, tuple(codes)),
                 "owner_present": isinstance(owner, str),
+                "owner_ref": owner_ref,
                 "axis": axis,
                 "state": state,
                 "side_effect_count": side_effect_count,
@@ -1554,14 +1609,115 @@ def _check_negative_equivalence_mode(
             )
             continue
         function_by_id[function["id"]] = function
+    contracts = l5_data.get("contracts", []) if isinstance(l5_data, dict) else []
+    contract_by_id: dict[str, dict[str, Any]] = {}
+    if not isinstance(contracts, list):
+        fail("contract_ref", layer="L5", reason="contracts_not_array")
+        contracts = []
+    for index, contract in enumerate(contracts):
+        if not isinstance(contract, dict) or not isinstance(contract.get("id"), str):
+            fail(
+                "contract_ref",
+                layer="L5",
+                case_id=index,
+                reason="contract_id_missing_or_invalid",
+            )
+            continue
+        if contract["id"] in contract_by_id:
+            fail(
+                "contract_ref",
+                layer="L5",
+                case_id=contract["id"],
+                reason="duplicate_contract_id",
+            )
+            continue
+        contract_by_id[contract["id"]] = contract
 
     l8_owner_observations: dict[str, set[str]] = {}
     l8_seen_l9_ids: set[str] = set()
+    rules_by_id: dict[str, list[dict[str, Any]]] = {}
+    for row in raw_class_rows["L5"]:
+        if isinstance(row, dict) and isinstance(row.get("id"), str):
+            rules_by_id.setdefault(row["id"], []).append(row)
     rules = {
-        row.get("id"): row
-        for row in raw_class_rows["L5"]
-        if isinstance(row, dict) and isinstance(row.get("id"), str)
+        rule_id: rule_rows[0]
+        for rule_id, rule_rows in rules_by_id.items()
+        if len(rule_rows) == 1
     }
+    for rule_id, rule in rules.items():
+        function_ref = rule.get("function_ref")
+        contract_ref = rule.get("contract_ref")
+        if "function_ref" in rule:
+            if not isinstance(function_ref, str) or not function_ref.strip():
+                fail(
+                    "function_ref",
+                    layer="L5",
+                    case_id=rule_id,
+                    reason="declared_function_ref_invalid_no_contract_fallback",
+                )
+            elif function_ref not in function_by_id:
+                fail(
+                    "function_ref",
+                    layer="L5",
+                    case_id=rule_id,
+                    reason="rule_function_ref_unresolved",
+                )
+        elif not isinstance(contract_ref, str) or not contract_ref.strip():
+            fail(
+                "owner_ref",
+                layer="L5",
+                case_id=rule_id,
+                reason="rule_owner_ref_missing_or_invalid",
+            )
+        if isinstance(contract_ref, str) and contract_ref.strip():
+            contract = contract_by_id.get(contract_ref)
+            if contract is None:
+                fail(
+                    "contract_ref",
+                    layer="L5",
+                    case_id=rule_id,
+                    reason="rule_contract_ref_unresolved",
+                )
+            elif (
+                isinstance(function_ref, str)
+                and function_ref.strip()
+                and contract.get("function") != function_ref
+            ):
+                fail(
+                    "contract_ref",
+                    layer="L5",
+                    case_id=rule_id,
+                    reason="rule_function_ref_disagrees_with_contract",
+                )
+    rules_by_integration_case: dict[str, list[dict[str, Any]]] = {}
+    for rule in rules.values():
+        case_ref = rule.get("integration_case_ref")
+        if isinstance(case_ref, str) and case_ref.strip():
+            rules_by_integration_case.setdefault(case_ref, []).append(rule)
+    l4_parent_contract_refs: dict[str, set[str]] = {}
+    l4_contracts = l4_data.get("contracts", []) if isinstance(l4_data, dict) else []
+    if isinstance(l4_contracts, list):
+        for l4_contract in l4_contracts:
+            if not isinstance(l4_contract, dict):
+                continue
+            l4_contract_id = l4_contract.get("id")
+            classifications = l4_contract.get("negative_classifications", [])
+            if not isinstance(l4_contract_id, str) or not isinstance(
+                classifications, list
+            ):
+                continue
+            for classification in classifications:
+                if not isinstance(classification, dict):
+                    continue
+                classification_id = classification.get(
+                    "class_id", classification.get("id")
+                )
+                if isinstance(classification_id, str) and classification_id.strip():
+                    l4_parent_contract_refs.setdefault(classification_id, set()).add(
+                        l4_contract_id
+                    )
+    l8_owner_refs: dict[str, set[tuple[str, str]]] = {}
+    l9_owner_refs: dict[str, set[tuple[str, str]]] = {}
     for l8_id, l8_row in l8_cases.items():
         case_ref = l8_row.get("integration_case_ref")
         if not isinstance(case_ref, str) or case_ref not in l9_cases:
@@ -1664,14 +1820,14 @@ def _check_negative_equivalence_mode(
                 ("expected_state", class_row["state"]),
             ):
                 value = row.get(field)
-                if not isinstance(value, str) or not value.strip():
+                if not valid_axis(value):
                     fail(
                         field,
                         layer=layer,
                         case_id=l8_id,
                         reason="case_class_invariant_missing_or_invalid",
                     )
-                elif value != class_value:
+                elif not json_values_equal(value, class_value):
                     fail(
                         field,
                         layer=layer,
@@ -1783,7 +1939,7 @@ def _check_negative_equivalence_mode(
                 )
             continue
         owner9 = next(iter(owners9))
-        if class8["partial_key"] + (owner9,) != class9["key"]:
+        if class8["partial_key"] != class9["partial_key"] or owner9 != class9["key"][2]:
             fail(
                 "equivalence_key",
                 case_id=l8_id,
@@ -1811,13 +1967,16 @@ def _check_negative_equivalence_mode(
 
         rule_ref, function_ref = l8_row.get("rule_ref"), l8_row.get("function_ref")
         if not isinstance(rule_ref, str) or rule_ref not in rules:
-            fail("rule_ref", layer="L8", case_id=l8_id, reason="rule_ref_unresolved")
-        elif not isinstance(function_ref, str) or function_ref not in function_by_id:
             fail(
-                "function_ref",
+                "rule_ref",
                 layer="L8",
                 case_id=l8_id,
-                reason="function_ref_unresolved",
+                reason=(
+                    "rule_ref_ambiguous"
+                    if isinstance(rule_ref, str)
+                    and len(rules_by_id.get(rule_ref, [])) > 1
+                    else "rule_ref_unresolved"
+                ),
             )
         else:
             rule = rules[rule_ref]
@@ -1829,19 +1988,17 @@ def _check_negative_equivalence_mode(
                     case_id=l8_id,
                     reason="rule_ref_class_invalid",
                 )
-            elif resolved_rule_class["key"] != class9["key"]:
+            elif (
+                resolved_rule_class["partial_key"] != class9["partial_key"]
+                or resolved_rule_class["axis"] != class9["axis"]
+                or resolved_rule_class["state"] != class9["state"]
+                or resolved_rule_class["key"][2] != class9["key"][2]
+            ):
                 fail(
                     "rule_ref",
                     layer="L8",
                     case_id=l8_id,
                     reason="rule_ref_points_to_different_class",
-                )
-            if rule.get("function_ref") != function_ref:
-                fail(
-                    "function_ref",
-                    layer="L8",
-                    case_id=l8_id,
-                    reason="function_ref_disagrees_with_rule",
                 )
             if rule.get("code") != class8["partial_key"][0]:
                 fail(
@@ -1850,6 +2007,163 @@ def _check_negative_equivalence_mode(
                     case_id=l8_id,
                     reason="rule_code_disagrees_with_case_class",
                 )
+            rule_function_ref = rule.get("function_ref")
+            rule_contract_ref = rule.get("contract_ref")
+            contract = None
+            if isinstance(rule_contract_ref, str) and rule_contract_ref.strip():
+                contract = contract_by_id.get(rule_contract_ref)
+                if contract is None:
+                    fail(
+                        "contract_ref",
+                        layer="L5",
+                        case_id=l8_id,
+                        reason="rule_contract_ref_unresolved",
+                    )
+
+            if "function_ref" in rule:
+                if (
+                    not isinstance(rule_function_ref, str)
+                    or not rule_function_ref.strip()
+                ):
+                    fail(
+                        "function_ref",
+                        layer="L5",
+                        case_id=l8_id,
+                        reason="declared_function_ref_invalid_no_contract_fallback",
+                    )
+                elif (
+                    not isinstance(function_ref, str)
+                    or function_ref not in function_by_id
+                ):
+                    fail(
+                        "function_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="function_ref_unresolved_for_function_owned_rule",
+                    )
+                elif function_ref != rule_function_ref:
+                    fail(
+                        "function_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="function_ref_disagrees_with_rule",
+                    )
+            elif (
+                not isinstance(rule_contract_ref, str) or not rule_contract_ref.strip()
+            ):
+                fail(
+                    "owner_ref",
+                    layer="L5",
+                    case_id=l8_id,
+                    reason="rule_owner_ref_missing_or_invalid",
+                )
+
+            if contract is not None:
+                case_contract_ref = l8_row.get("contract_ref")
+                requirement_trace = l8_row.get("requirement_trace")
+                source_trace = l8_row.get("source_trace")
+                has_contract_trace = False
+                requirement_ref = contract.get("requirement_ref")
+
+                if "source_trace" in l8_row and not isinstance(source_trace, dict):
+                    fail(
+                        "contract_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="case_source_trace_invalid",
+                    )
+
+                if "contract_ref" in l8_row:
+                    has_contract_trace = True
+                    if case_contract_ref != rule_contract_ref:
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_contract_ref_disagrees_with_rule",
+                        )
+
+                if "requirement_trace" in l8_row:
+                    has_contract_trace = True
+                    if isinstance(requirement_trace, str):
+                        trace_values = [requirement_trace]
+                    elif isinstance(requirement_trace, list):
+                        trace_values = requirement_trace
+                        if any(not isinstance(value, str) for value in trace_values):
+                            fail(
+                                "contract_ref",
+                                layer="L8",
+                                case_id=l8_id,
+                                reason="case_requirement_trace_contains_non_string",
+                            )
+                    else:
+                        trace_values = []
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_requirement_trace_invalid",
+                        )
+                    if (
+                        not isinstance(requirement_ref, str)
+                        or requirement_ref not in trace_values
+                    ):
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_requirement_trace_disagrees_with_rule_contract",
+                        )
+
+                if isinstance(source_trace, dict) and "requirement_ref" in source_trace:
+                    has_contract_trace = True
+                    trace_requirement_ref = source_trace["requirement_ref"]
+                    if not isinstance(trace_requirement_ref, str):
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_source_trace_requirement_ref_invalid",
+                        )
+                    elif trace_requirement_ref != requirement_ref:
+                        fail(
+                            "contract_ref",
+                            layer="L8",
+                            case_id=l8_id,
+                            reason="case_source_trace_requirement_ref_disagrees_with_rule_contract",
+                        )
+
+                if not has_contract_trace and "function_ref" not in rule:
+                    fail(
+                        "contract_ref",
+                        layer="L8",
+                        case_id=l8_id,
+                        reason="case_contract_trace_missing_for_contract_owned_rule",
+                    )
+            if isinstance(rule_function_ref, str) and isinstance(
+                rule_contract_ref, str
+            ):
+                contract = contract_by_id.get(rule_contract_ref)
+                if contract is None:
+                    fail(
+                        "contract_ref",
+                        layer="L5",
+                        case_id=l8_id,
+                        reason="rule_contract_ref_unresolved",
+                    )
+                elif contract.get("function") != rule_function_ref:
+                    fail(
+                        "contract_ref",
+                        layer="L5",
+                        case_id=l8_id,
+                        reason="rule_function_ref_disagrees_with_contract",
+                    )
+            owner_ref = (
+                resolved_rule_class.get("owner_ref") if resolved_rule_class else None
+            )
+            if owner_ref is not None:
+                l8_owner_refs.setdefault(ref8, set()).add(owner_ref)
+                l9_owner_refs.setdefault(ref9, set()).add(owner_ref)
         matched_case_count += 1
 
     for case_id in sorted(set(l9_cases) - l8_seen_l9_ids):
@@ -1859,6 +2173,166 @@ def _check_negative_equivalence_mode(
             case_id=case_id,
             reason="integration_case_not_referenced_from_l8",
         )
+
+    def bind_class_owner_ref(
+        layer: str,
+        class_id: str,
+        owner_refs: set[tuple[str, str]],
+    ) -> None:
+        item = class_indexes[layer].get(class_id)
+        if item is None:
+            return
+        if len(owner_refs) != 1:
+            fail(
+                "owner_ref",
+                layer=layer,
+                case_id=class_id,
+                reason=(
+                    "class_owner_ref_unresolved"
+                    if not owner_refs
+                    else "class_members_have_different_owner_refs"
+                ),
+            )
+            return
+        owner_ref = next(iter(owner_refs))
+        item["owner_ref"] = owner_ref
+        item["key"] = (*item["key"][:5], owner_ref)
+
+    for class_id, owner_refs in l8_owner_refs.items():
+        bind_class_owner_ref("L8", class_id, owner_refs)
+    for class_id, owner_refs in l9_owner_refs.items():
+        bind_class_owner_ref("L9", class_id, owner_refs)
+
+    l5_rows_by_key: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
+    for row in normalized_rows["L5"]:
+        l5_rows_by_key.setdefault(tuple(row["key"]), []).append(row)
+    for rows in l5_rows_by_key.values():
+        if len(rows) > 1:
+            for row in rows:
+                fail(
+                    "owner_ref",
+                    layer="L5",
+                    case_id=row["id"],
+                    reason="multiple_l5_rules_share_equivalence_key",
+                )
+
+    l5_owner_refs_by_key: dict[tuple[Any, ...], set[tuple[str, str]]] = {}
+    for row in normalized_rows["L5"]:
+        if row.get("owner_ref") is not None:
+            l5_owner_refs_by_key.setdefault(
+                (
+                    row["partial_key"],
+                    row["key"][2],
+                    key_json_value(row["axis"]),
+                    row["state"],
+                ),
+                set(),
+            ).add(row["owner_ref"])
+    for row in normalized_rows["L4"]:
+        raw = row["raw"]
+        case_ref = raw.get("integration_case_ref")
+        owner_refs: set[tuple[str, str]] = set()
+        if "integration_case_ref" in raw and not isinstance(case_ref, str):
+            fail(
+                "integration_case_ref",
+                layer="L4",
+                case_id=row["id"],
+                reason="l4_integration_case_ref_invalid",
+            )
+        elif isinstance(case_ref, str):
+            matching_rules = rules_by_integration_case.get(case_ref, [])
+            if len(matching_rules) == 1:
+                matching_rule = matching_rules[0]
+                l5_item = class_indexes["L5"].get(matching_rule.get("id"))
+                if l5_item and l5_item.get("owner_ref") is not None:
+                    owner_refs.add(l5_item["owner_ref"])
+                rule_contract_ref = matching_rule.get("contract_ref")
+                if isinstance(rule_contract_ref, str) and rule_contract_ref.strip():
+                    l5_contract = contract_by_id.get(rule_contract_ref)
+                    parent_contract_refs = l4_parent_contract_refs.get(row["id"], set())
+                    if len(parent_contract_refs) != 1:
+                        fail(
+                            "contract_ref",
+                            layer="L4",
+                            case_id=row["id"],
+                            reason="l4_contract_parent_missing_or_ambiguous",
+                        )
+                    elif l5_contract is None:
+                        fail(
+                            "contract_ref",
+                            layer="L5",
+                            case_id=row["id"],
+                            reason="rule_contract_ref_unresolved",
+                        )
+                    else:
+                        declared_l4_refs: list[str] = []
+                        for field in ("l4_contract_ref", "basic_design_ref"):
+                            if field not in l5_contract:
+                                continue
+                            value = l5_contract[field]
+                            if not isinstance(value, str) or not value.strip():
+                                fail(
+                                    "contract_ref",
+                                    layer="L5",
+                                    case_id=row["id"],
+                                    reason="rule_l4_parent_ref_invalid",
+                                )
+                            else:
+                                declared_l4_refs.append(value)
+                        if not declared_l4_refs:
+                            fail(
+                                "contract_ref",
+                                layer="L5",
+                                case_id=row["id"],
+                                reason="rule_l4_parent_ref_missing",
+                            )
+                        if len(set(declared_l4_refs)) > 1:
+                            fail(
+                                "contract_ref",
+                                layer="L5",
+                                case_id=row["id"],
+                                reason="rule_l4_parent_refs_disagree",
+                            )
+                        if (
+                            len(parent_contract_refs) == 1
+                            and declared_l4_refs
+                            and next(iter(parent_contract_refs)) != declared_l4_refs[0]
+                        ):
+                            fail(
+                                "contract_ref",
+                                layer="L4",
+                                case_id=row["id"],
+                                reason="rule_contract_ref_disagrees_with_l4_parent",
+                            )
+            else:
+                fail(
+                    "owner_ref",
+                    layer="L4",
+                    case_id=row["id"],
+                    reason=(
+                        "integration_case_ref_has_no_l5_rule"
+                        if not matching_rules
+                        else "integration_case_ref_matches_multiple_l5_rules"
+                    ),
+                )
+        else:
+            owner_refs = l5_owner_refs_by_key.get(
+                (
+                    row["partial_key"],
+                    row["key"][2],
+                    key_json_value(row["axis"]),
+                    row["state"],
+                ),
+                set(),
+            )
+            if len(owner_refs) > 1:
+                fail(
+                    "owner_ref",
+                    layer="L4",
+                    case_id=row["id"],
+                    reason="multiple_l5_owner_refs_without_l4_case_binding",
+                )
+        bind_class_owner_ref("L4", row["id"], owner_refs)
 
     invariant_by_key: dict[tuple[Any, ...], tuple[Any, Any, Any]] = {}
     for layer in ("L4", "L9", "L8", "L5"):
@@ -1876,8 +2350,18 @@ def _check_negative_equivalence_mode(
                         else "class_has_no_negative_members",
                     )
                     continue
-                key = row["partial_key"] + (next(iter(owners)),)
-            invariant = (row["axis"], row["state"], row["side_effect_count"])
+                key = (
+                    *row["partial_key"],
+                    next(iter(owners)),
+                    key_json_value(row["axis"]),
+                    row["state"],
+                    row["owner_ref"],
+                )
+            invariant = (
+                key_json_value(row["axis"]),
+                row["state"],
+                row["side_effect_count"],
+            )
             previous = invariant_by_key.get(key)
             if previous is not None and previous != invariant:
                 for field, old, new in zip(
@@ -1936,6 +2420,9 @@ def _check_negative_equivalence_mode(
             "expected_classification↔code",
             "ordered_expected.finding_codes",
             "backflow_owner",
+            "expected_axis",
+            "expected_state",
+            "owner_ref(kind, id); L5 function_ref wins over contract_ref",
         ],
         "class_invariants": [
             "class_rows_and_negative_case_rows",
@@ -1961,7 +2448,9 @@ def _check_negative_equivalence_mode(
         ],
         "case_references": [
             "L8.rule_ref(string ID)→L5.failure_rules.id",
-            "L8.function_ref(string ID)→L5.functions.id",
+            "function-owned rule: L8.function_ref(string ID)→L5.functions.id and equals rule.function_ref",
+            "contract-only rule: L8.contract_ref or L8.requirement_trace→L5 rule.contract_ref and its declared requirement_ref; L8.function_ref is not required",
+            "rule declaring both refs: function_ref determines owner_ref; contract_ref must resolve and its declared function must match",
             "L5.failure_rules.code↔case class",
         ],
         "case_population": "only_supplied_rows; simultaneous_omission_is_not_detected",

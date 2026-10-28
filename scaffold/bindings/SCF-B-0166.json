@@ -10,7 +10,7 @@
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "b2b6862651be02e5a59f3d86bc97317e3a14f2b9ca39422cff31f63c7456a1ad",
+      "sha256": "b4b832290999d6074546be4f3b54589cc8fbf7e980e3b204dfbd80d411420416",
       "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeを含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
     },
     {
@@ -67,7 +67,7 @@
   "role": "design-verification-checker-and-freeze-generator-scaffold",
   "obligations": [
     "docs/governance/design-verification-quality-assurance.md Section 6.1の承認済みL3/L10契約とSection 2.1の旧HELIX asset（行番号付き）を導出元として記録し、同書に無い検査・gate・容量上限（byte/KB長の一律FAIL）を追加しない。",
-    "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCHはmarkerなしの従来casewise照合を保持し、明示modeではL4全failure_classifications/L5全failure_rulesをsourceにしたclass key・class invariantと、L8↔L9の個別case属性・case行不変条件・L5 rule/function参照を照合する。両modeと比較scopeを区別してSection 4のJSON形式で出力し、明示modeのrule_ref/function_refはL5同一文書内のstring IDに限る。",
+    "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCHはmarkerなしの従来casewise照合を保持し、明示modeではL4全failure_classifications/L5全failure_rulesをsourceにした6要素class key（分類、ordered finding_codes、backflow_owner、axis、state、型付きowner_ref）・class invariantと、L8↔L9の個別case属性・case行不変条件・L5 rule/function/contract参照を照合する。L5は同じ6-keyを持つ複数ruleを拒否し、L4 case-bound rowは一意のL5 rule ownerとL4親contractの明示結線を照合する。L8はfunction ownerまたはcontract-only traceを照合し、明示されたrequirement/source traceの型と値を独立に確かめる。両modeと比較scopeを区別してSection 4のJSON形式で出力し、明示modeの参照はL5同一文書内のstring IDに限る。",
     "CHK-PUBLIC-FN-FREEZEおよびCHK-L3-OBLIGATION-MAPは、機械で判定できる部分（公開関数/private detailの対象列挙、L5#/functions/*とvisibility検査、L8 unit_case_refs/oracle_ref解決、private detailの戻し先/結線先有無、O1..OnのL5/L8 pointer非空、blocking_a_count==0、未参照branch一覧）を出力し、人の意味判断が要る部分はhuman_judgment_pendingとして明示出力する。",
     "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、negative照合結果・mode/scope、head_entity_counts、verification）の一致・差分を出力できること。明示modeは供給されたL8/L9 case集合のみ照合し、独立rosterがないため両層同時に省略されたcaseの網羅を主張しない。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。"
   ],
@@ -125,8 +125,8 @@
       "CHK-PIN-SHA256: corrupt raw SHA-256 and canonical_json_sha256",
       "CHK-JSON-POINTER: out-of-range 0..N index and unpinned removed material reference",
       "CHK-NEG-4WAY-MATCH legacy mode: 4-layer case count/7-attribute mismatch, missing 0-side-effect proof, plus explicit legacy_casewise_four_layer result metadata",
-      "CHK-NEG-4WAY-MATCH explicit mode: partial marker fail-close, all L4/L5 source rows, ordered three-part class key, repeated class rows/invariants, missing/null/wrong-type finding_codes, and zero-population not_evaluated",
-      "CHK-NEG-4WAY-MATCH explicit mode: L8 unit_cases↔L9 integration_cases state/full-class-key/case-invariant/case-attribute/ref consistency, L5 same-document string-ID rule/function resolution (pointer/object forms fail-close), separate class-row/case-row counts, and supplied-population limitation",
+      "CHK-NEG-4WAY-MATCH explicit mode: partial marker fail-close, all L4/L5 source rows, six-part class key with typed owner_ref, L5 one-rule-per-full-key, repeated L4/L8/L9 class rows and invariant validation, missing/null/wrong-type finding_codes, and zero-population not_evaluated",
+      "CHK-NEG-4WAY-MATCH explicit mode: L8 unit_cases↔L9 integration_cases state/full-class-key/case-invariant/case-attribute/ref consistency; function, contract-only, and both-ref L5 rule binding; independent type/value validation of requirement_trace and source_trace; L4 integration_case_ref to rule and parent-contract binding; same-document string-ID resolution (pointer/object forms fail-close); separate class-row/case-row counts and supplied-population limitation",
       "CHK-PAIR-BIDIR-ID: asymmetric reverse link and /completion/negative_case_count mismatch",
       "CHK-OWNERSHIP-CAP-L8L9 / L3L6: forbidden key in L8 and L3, plus scope_pointer filtering",
       "CHK-PUBLIC-FN-FREEZE: private function frozen as public, unresolved unit_case_refs, missing reentry owner, and unparsed_record_shape vs design violation (F3)",
