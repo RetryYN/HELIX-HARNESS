@@ -311,7 +311,7 @@ Refs #3510
             "`L5#/functions/4`, `L5#/failure_rules/68..74`, `L5#/type_contract/types/Claim`, "
             "`docs/helix-harness/L8-unit-verification/product-template-application.json#/cases/5`, "
             "`L8#/cases/5/negative_cases/0..6`, `L8#/normal_function_oracles/4`, `L8#/additional_unit_cases/13`\n"
-            "- L6/L7: `L6#/reconstruction`, `L7#/reconstruction`, "
+            "- L6/L7: `L6#/document_id`, `L7#/reconstruction`, "
             "`docs/helix-harness/L7-function-verification/product-template-application.json#/reconstruction`\n"
         )
         commits = [
