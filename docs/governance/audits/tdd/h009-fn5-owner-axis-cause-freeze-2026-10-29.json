@@ -209,7 +209,7 @@
     "L5",
     "L8"
   ],
-  "remaining_scope_ja": "本combined recordはFN5 detail pair（L5/L8）とL4/L9 basic pairの双方を再凍結する。S4は両Read presentかつ既知直接差でlink数/結果に依存せず成立し、linkが0件ならS3も[S4,S3]順で併記する。source_wrapper_relationはAND三値集約で既知falseをunestablishedより優先する。残るSTOP-OWNER-CAUSE-WRAPPER-RELATION-01、STOP-OWNER-CAUSE-QUAL-READ-01、selection_unestablished writer none_foundは未閉包。basic_pair_bindings fieldは宣言的対応であり専用checkerによるsemantic validationを受けない。単独basic_pair_l4_l9_freeze_recordをmechanical passできない既存checker制約は WR154-R2-STOP-BASIC-PAIR-CHECKER-01 として別依頼に残し、detail functionをbasic pairへ偽装しない。公開API全体、runtime/test実行、独立semantic review、上流承認は含まない。",
+  "remaining_scope_ja": "本combined recordはFN5 detail pair（L5/L8）とL4/L9 basic pairの双方を再凍結する。source_wrapper_relationの唯一writerはL5 owner_binding_contract/source_wrapper。必要qualification_owner/root_owner linkがnot_applicable等ならunestablishedとし、correspondingへ短絡せずCause anchorがなければSTOPする。Cause aggregationは既形成relationを消費し、source-wrapper Causeの後に各RoleOwnerPairの局所Causeをrelation値にかかわらず原順保持する。OwnerBinding.resultは別の共通AND／role候補OR集約。L8 ADD-37はRoleOwnerPair.relation=correspondingを含むpositive候補を持つが未実行。S4は両Read presentかつ既知直接差でlink数/結果に依存せずCauseを作り、linkが0件ならS3も[S4,S3]順で併記する。STOP-OWNER-CAUSE-WRAPPER-RELATION-01、STOP-OWNER-CAUSE-QUAL-READ-01、selection_unestablished writer none_foundは未閉包。L9にwrapper非corresponding時のrole-pair局所Cause専用caseはなく、この振舞いはL5設計記述でありruntime観測ではない。ADD-37のpositive RoleOwnerPairはcorrespondingで、L5 technical expectation上はpair Causeを持たない。basic_pair_bindings fieldは宣言的対応であり専用checkerによるsemantic validationを受けない。単独basic_pair_l4_l9_freeze_recordをmechanical passできない既存checker制約はWR154-R2-STOP-BASIC-PAIR-CHECKER-01として別依頼に残す。公開API全体、runtime/test実行、上流承認は含まない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
   "target": "FN5 detailのOwnerBinding/RoleOwnerPair Cause writerとdefinition AxisFact Cause writer、およびL4/L9 basic pairのCauseKind vocabulary・negative logical casesを同時に再凍結するcombined record。L4/L9のbasic pairとL5/L8のdetail pairを宣言し、各層のpre/post SHAを記録する。",
@@ -221,11 +221,11 @@
     "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L4_post_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
     "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L9_post_sha256": "0fa96815d5d964c7117c3c3f79731964f90e93743b6cdbab5b52a97c6e6fab1b",
+    "L9_post_sha256": "b57f4ae85a3cb5716bbd3a60b5c12582d6da1e61c5469e1737f3a597c67cd7d8",
     "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
-    "L5_post_sha256": "80342b79c5ef387990663011724c953d307224dae9b9ebf3a4ebd9de3d9904fa",
+    "L5_post_sha256": "999aada42206b2a29f2fa4d5468b7621bf0fcbbbd57ebce95dd1d74f822c32ca",
     "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
-    "L8_post_sha256": "f40139ce93bfaced3ed59e55bc5fe93ca2b706acc160731dab9f7fb91dffe8d9"
+    "L8_post_sha256": "bf010300794adbc0f90dab7db15d25952d0a23c37164d8f2295eca9f45f67197"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
