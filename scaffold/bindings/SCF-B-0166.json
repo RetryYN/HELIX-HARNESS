@@ -6,12 +6,12 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS 設計検証・ペア凍結・品質保証機構（HARNESS-L3-001/003/004/005/015/040/041/056、HELIXOS-L3-020）",
   "state": "registered",
-  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『いつまで手書きを増やすのか』『品質保証どうやってるのか謎』への対応順序決定）およびPR #3774でmergeされた docs/governance/design-verification-quality-assurance.md のSection 2〜6に基づき、Section 4の機械検査（CHK-PIN-SHA256、CHK-JSON-POINTER、CHK-PAIR-BIDIR-ID、CHK-OWNERSHIP-CAP-L8L9/L3L6、CHK-NEG-4WAY-MATCH、およびCHK-PUBLIC-FN-FREEZE・CHK-L3-OBLIGATION-MAPの機械出力部分と判断待ち出力）とSection 5の凍結記録の機械生成・既存凍結記録4件の照合監査をscaffold/tools/に実装する。正式な新世代CI（HARNESS005/OS020 L4〜L7）が構築されるまでの仮設checkerとしてScaffold Binding下で管理する。",
+  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『いつまで手書きを増やすのか』『品質保証どうやってるのか謎』への対応順序決定）およびPR #3774でmergeされた docs/governance/design-verification-quality-assurance.md のSection 2〜6に基づき、Section 4の機械検査（CHK-PIN-SHA256、CHK-JSON-POINTER、CHK-PAIR-BIDIR-ID、CHK-OWNERSHIP-CAP-L8L9/L3L6、CHK-NEG-4WAY-MATCHの従来casewise modeと明示equivalence-class mode、およびCHK-PUBLIC-FN-FREEZE・CHK-L3-OBLIGATION-MAPの機械出力部分と判断待ち出力）とSection 5の凍結記録の機械生成・既存凍結記録4件の照合監査をscaffold/tools/に実装する。正式な新世代CI（HARNESS005/OS020 L4〜L7）が構築されるまでの仮設checkerとしてScaffold Binding下で管理する。",
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "d4204c0db76ea037dee07b7322e89b3533dc6ed668bb92ff32edabdcce029e08",
-      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
+      "sha256": "b2b6862651be02e5a59f3d86bc97317e3a14f2b9ca39422cff31f63c7456a1ad",
+      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeを含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -67,9 +67,9 @@
   "role": "design-verification-checker-and-freeze-generator-scaffold",
   "obligations": [
     "docs/governance/design-verification-quality-assurance.md Section 6.1の承認済みL3/L10契約とSection 2.1の旧HELIX asset（行番号付き）を導出元として記録し、同書に無い検査・gate・容量上限（byte/KB長の一律FAIL）を追加しない。",
-    "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCH（L4↔L9↔L8↔L5の負例件数・7属性・副作用0一致）をSection 4のJSON形式で出力する。",
+    "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCHはmarkerなしの従来casewise照合を保持し、明示modeではL4全failure_classifications/L5全failure_rulesをsourceにしたclass key・class invariantと、L8↔L9の個別case属性・case行不変条件・L5 rule/function参照を照合する。両modeと比較scopeを区別してSection 4のJSON形式で出力し、明示modeのrule_ref/function_refはL5同一文書内のstring IDに限る。",
     "CHK-PUBLIC-FN-FREEZEおよびCHK-L3-OBLIGATION-MAPは、機械で判定できる部分（公開関数/private detailの対象列挙、L5#/functions/*とvisibility検査、L8 unit_case_refs/oracle_ref解決、private detailの戻し先/結線先有無、O1..OnのL5/L8 pointer非空、blocking_a_count==0、未参照branch一覧）を出力し、人の意味判断が要る部分はhuman_judgment_pendingとして明示出力する。",
-    "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、4層負例一致、head_entity_counts、verification）の一致・差分を出力できること。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。"
+    "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、negative照合結果・mode/scope、head_entity_counts、verification）の一致・差分を出力できること。明示modeは供給されたL8/L9 case集合のみ照合し、独立rosterがないため両層同時に省略されたcaseの網羅を主張しない。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。"
   ],
   "connections": {
     "consumers": [
@@ -124,9 +124,11 @@
     "negative_cases": [
       "CHK-PIN-SHA256: corrupt raw SHA-256 and canonical_json_sha256",
       "CHK-JSON-POINTER: out-of-range 0..N index and unpinned removed material reference",
+      "CHK-NEG-4WAY-MATCH legacy mode: 4-layer case count/7-attribute mismatch, missing 0-side-effect proof, plus explicit legacy_casewise_four_layer result metadata",
+      "CHK-NEG-4WAY-MATCH explicit mode: partial marker fail-close, all L4/L5 source rows, ordered three-part class key, repeated class rows/invariants, missing/null/wrong-type finding_codes, and zero-population not_evaluated",
+      "CHK-NEG-4WAY-MATCH explicit mode: L8 unit_cases↔L9 integration_cases state/full-class-key/case-invariant/case-attribute/ref consistency, L5 same-document string-ID rule/function resolution (pointer/object forms fail-close), separate class-row/case-row counts, and supplied-population limitation",
       "CHK-PAIR-BIDIR-ID: asymmetric reverse link and /completion/negative_case_count mismatch",
       "CHK-OWNERSHIP-CAP-L8L9 / L3L6: forbidden key in L8 and L3, plus scope_pointer filtering",
-      "CHK-NEG-4WAY-MATCH: 4-layer count mismatch, 7-attribute mismatch, and missing 0-side-effect proof",
       "CHK-PUBLIC-FN-FREEZE: private function frozen as public, unresolved unit_case_refs, missing reentry owner, and unparsed_record_shape vs design violation (F3)",
       "CHK-L3-OBLIGATION-MAP: empty l8_pointers in string/dict obligation (F1), self-reported status override (F1), non-zero blocking_a_count, and unreferenced L9 branch",
       "Zero-count fail-close (F2): 0 checked items or missing layer documents yield status=not_evaluated (with reason) and passed=False across PIN, PTR, PAIR, NEG, FN, OBL, and head_entity_counts",

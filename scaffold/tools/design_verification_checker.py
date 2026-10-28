@@ -1225,6 +1225,767 @@ def _normalize_neg_item(item: dict[str, Any], layer: str) -> dict[str, Any]:
     }
 
 
+_NEGATIVE_EQUIVALENCE_CLASSES = "negative_equivalence_classes"
+
+
+def _has_negative_equivalence_marker(data: Any) -> bool:
+    if not isinstance(data, dict):
+        return False
+    if _NEGATIVE_EQUIVALENCE_CLASSES in data:
+        return True
+    for collection_name in ("contracts", "functions"):
+        rows = data.get(collection_name)
+        if isinstance(rows, list) and any(
+            isinstance(row, dict) and _NEGATIVE_EQUIVALENCE_CLASSES in row
+            for row in rows
+        ):
+            return True
+    return False
+
+
+def _check_negative_equivalence_mode(
+    l4_data: Any,
+    l9_data: Any,
+    l8_data: Any,
+    l5_data: Any,
+) -> dict[str, Any]:
+    """Compare explicit class tables and supplied case rows without casewise L4/L5 copies."""
+    failures: list[dict[str, Any]] = []
+    matched_case_count = 0
+
+    def json_values_equal(left: Any, right: Any) -> bool:
+        """Compare parsed JSON values without Python's bool/int equality alias."""
+        if type(left) is not type(right):
+            return False
+        if isinstance(left, dict):
+            return left.keys() == right.keys() and all(
+                json_values_equal(left[key], right[key]) for key in left
+            )
+        if isinstance(left, list):
+            return len(left) == len(right) and all(
+                json_values_equal(a, b) for a, b in zip(left, right)
+            )
+        return left == right
+
+    def fail(
+        attribute: str,
+        *,
+        layer: str | None = None,
+        case_id: Any = None,
+        reason: str,
+    ) -> None:
+        item: dict[str, Any] = {
+            "check": "CHK-NEG-4WAY-MATCH",
+            "attribute": attribute,
+            "reason": reason,
+        }
+        if layer is not None:
+            item["layer"] = layer
+        if case_id is not None:
+            item["case_id"] = case_id
+        failures.append(item)
+
+    def declared_source_rows(data: Any, layer: str, source_rows: str) -> list[Any]:
+        if not isinstance(data, dict):
+            fail("explicit_mode", layer=layer, reason="layer_not_object")
+            return []
+        marker = data.get(_NEGATIVE_EQUIVALENCE_CLASSES)
+        if marker != {"source_rows": source_rows}:
+            fail("explicit_mode", layer=layer, reason="class_source_marker_invalid")
+            return []
+        rows = data.get(source_rows)
+        if not isinstance(rows, list):
+            fail("explicit_mode", layer=layer, reason=f"{source_rows}_not_array")
+            return []
+        return rows
+
+    def explicit_class_rows(data: Any, layer: str) -> list[Any]:
+        if not isinstance(data, dict):
+            fail("explicit_mode", layer=layer, reason="layer_not_object")
+            return []
+        if _NEGATIVE_EQUIVALENCE_CLASSES not in data:
+            fail("explicit_mode", layer=layer, reason="class_table_marker_missing")
+            return []
+        rows = data[_NEGATIVE_EQUIVALENCE_CLASSES]
+        if not isinstance(rows, list):
+            fail("explicit_mode", layer=layer, reason="class_table_not_array")
+            return []
+        return rows
+
+    raw_class_rows: dict[str, list[Any]] = {
+        "L4": declared_source_rows(l4_data, "L4", "failure_classifications"),
+        "L5": declared_source_rows(l5_data, "L5", "failure_rules"),
+        "L8": explicit_class_rows(l8_data, "L8"),
+        "L9": explicit_class_rows(l9_data, "L9"),
+    }
+
+    def build_class_index(
+        rows: list[Any], layer: str
+    ) -> tuple[dict[str, dict[str, Any]], list[dict[str, Any]]]:
+        by_id: dict[str, dict[str, Any]] = {}
+        normalized: list[dict[str, Any]] = []
+        for index, raw in enumerate(rows):
+            if not isinstance(raw, dict):
+                fail(
+                    "equivalence_class",
+                    layer=layer,
+                    case_id=index,
+                    reason="class_row_not_object",
+                )
+                continue
+            class_id = raw.get("class_id", raw.get("id"))
+            if not isinstance(class_id, str) or not class_id.strip():
+                fail(
+                    "equivalence_class",
+                    layer=layer,
+                    case_id=index,
+                    reason="class_id_missing_or_invalid",
+                )
+                continue
+            if class_id in by_id:
+                fail(
+                    "equivalence_class",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="duplicate_class_id",
+                )
+                continue
+
+            if layer in ("L4", "L5"):
+                classification = raw.get("code")
+                declared_classification = raw.get("expected_classification")
+                if (
+                    declared_classification is not None
+                    and declared_classification != classification
+                ):
+                    fail(
+                        "equivalence_key",
+                        layer=layer,
+                        case_id=class_id,
+                        reason="code_disagrees_with_classification",
+                    )
+            else:
+                classification = raw.get("expected_classification")
+            if not isinstance(classification, str) or not classification.strip():
+                fail(
+                    "equivalence_key",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="classification_missing_or_invalid",
+                )
+                continue
+
+            expected = raw.get("expected")
+            if not isinstance(expected, dict) or "finding_codes" not in expected:
+                fail(
+                    "equivalence_key",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="finding_codes_missing",
+                )
+                continue
+            codes = expected["finding_codes"]
+            if not isinstance(codes, list) or any(
+                not isinstance(code, str) or not code.strip() for code in codes
+            ):
+                fail(
+                    "equivalence_key",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="finding_codes_not_string_array",
+                )
+                continue
+
+            owner = raw.get("backflow_owner")
+            if layer != "L8" and (not isinstance(owner, str) or not owner.strip()):
+                fail(
+                    "equivalence_key",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="backflow_owner_missing_or_invalid",
+                )
+                continue
+            if (
+                layer == "L8"
+                and "backflow_owner" in raw
+                and (not isinstance(owner, str) or not owner.strip())
+            ):
+                fail(
+                    "equivalence_key",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="backflow_owner_invalid",
+                )
+                continue
+
+            axis = raw.get("expected_axis")
+            state = raw.get("expected_state")
+            side_effect_count = raw.get(
+                "side_effect_count", raw.get("expected_side_effect_count")
+            )
+            if not isinstance(axis, str) or not axis.strip():
+                fail(
+                    "expected_axis",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="class_invariant_missing_or_invalid",
+                )
+            if not isinstance(state, str) or not state.strip():
+                fail(
+                    "expected_state",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="class_invariant_missing_or_invalid",
+                )
+            if (
+                isinstance(side_effect_count, bool)
+                or not isinstance(side_effect_count, int)
+                or side_effect_count != 0
+            ):
+                fail(
+                    "side_effect_count",
+                    layer=layer,
+                    case_id=class_id,
+                    reason="class_invariant_not_zero",
+                )
+
+            key = (
+                classification,
+                tuple(codes),
+                owner if isinstance(owner, str) else None,
+            )
+            item = {
+                "id": class_id,
+                "key": key,
+                "partial_key": (classification, tuple(codes)),
+                "owner_present": isinstance(owner, str),
+                "axis": axis,
+                "state": state,
+                "side_effect_count": side_effect_count,
+                "raw": raw,
+            }
+            by_id[class_id] = item
+            normalized.append(item)
+        return by_id, normalized
+
+    class_indexes: dict[str, dict[str, dict[str, Any]]] = {}
+    normalized_rows: dict[str, list[dict[str, Any]]] = {}
+    for layer in ("L4", "L9", "L8", "L5"):
+        class_indexes[layer], normalized_rows[layer] = build_class_index(
+            raw_class_rows[layer], layer
+        )
+
+    def case_array(
+        data: Any, member: str, layer: str, id_field: str
+    ) -> tuple[dict[str, dict[str, Any]], int]:
+        if not isinstance(data, dict):
+            return {}, 0
+        rows = data.get(member)
+        if not isinstance(rows, list):
+            fail("case_identity", layer=layer, reason=f"{member}_missing_or_not_array")
+            return {}, 0
+        by_id: dict[str, dict[str, Any]] = {}
+        for index, row in enumerate(rows):
+            if not isinstance(row, dict):
+                fail(
+                    "case_identity",
+                    layer=layer,
+                    case_id=index,
+                    reason="case_row_not_object",
+                )
+                continue
+            case_id = row.get(id_field)
+            if not isinstance(case_id, str) or not case_id.strip():
+                fail(
+                    "case_identity",
+                    layer=layer,
+                    case_id=index,
+                    reason="case_id_missing_or_invalid",
+                )
+                continue
+            if case_id in by_id:
+                fail(
+                    "case_identity",
+                    layer=layer,
+                    case_id=case_id,
+                    reason="duplicate_case_id",
+                )
+                continue
+            state = row.get("population_state")
+            if state not in ("positive", "negative", "unknown"):
+                fail(
+                    "population_state",
+                    layer=layer,
+                    case_id=case_id,
+                    reason="population_state_missing_or_invalid",
+                )
+            elif state == "unknown":
+                fail(
+                    "population_state",
+                    layer=layer,
+                    case_id=case_id,
+                    reason="population_state_unknown",
+                )
+            by_id[case_id] = row
+        return by_id, len(rows)
+
+    l8_cases, l8_case_row_count = case_array(l8_data, "unit_cases", "L8", "case_id")
+    l9_cases, l9_case_row_count = case_array(l9_data, "integration_cases", "L9", "id")
+    functions = l5_data.get("functions", []) if isinstance(l5_data, dict) else []
+    function_by_id: dict[str, dict[str, Any]] = {}
+    if not isinstance(functions, list):
+        fail("function_ref", layer="L5", reason="functions_not_array")
+        functions = []
+    for index, function in enumerate(functions):
+        if not isinstance(function, dict) or not isinstance(function.get("id"), str):
+            fail(
+                "function_ref",
+                layer="L5",
+                case_id=index,
+                reason="function_id_missing_or_invalid",
+            )
+            continue
+        if function["id"] in function_by_id:
+            fail(
+                "function_ref",
+                layer="L5",
+                case_id=function["id"],
+                reason="duplicate_function_id",
+            )
+            continue
+        function_by_id[function["id"]] = function
+
+    l8_owner_observations: dict[str, set[str]] = {}
+    l8_seen_l9_ids: set[str] = set()
+    rules = {
+        row.get("id"): row
+        for row in raw_class_rows["L5"]
+        if isinstance(row, dict) and isinstance(row.get("id"), str)
+    }
+    for l8_id, l8_row in l8_cases.items():
+        case_ref = l8_row.get("integration_case_ref")
+        if not isinstance(case_ref, str) or case_ref not in l9_cases:
+            fail(
+                "integration_case_ref",
+                layer="L8",
+                case_id=l8_id,
+                reason="integration_case_ref_unresolved",
+            )
+            continue
+        if case_ref in l8_seen_l9_ids:
+            fail(
+                "integration_case_ref",
+                layer="L8",
+                case_id=l8_id,
+                reason="integration_case_ref_not_one_to_one",
+            )
+            continue
+        l8_seen_l9_ids.add(case_ref)
+        l9_row = l9_cases[case_ref]
+        state8, state9 = l8_row.get("population_state"), l9_row.get("population_state")
+        if state8 != state9:
+            fail(
+                "population_state",
+                case_id=l8_id,
+                reason="population_state_differs_across_layers",
+            )
+            continue
+
+        l8_condition = l8_row.get("condition", l8_row.get("change"))
+        l9_condition = l9_row.get("change", l9_row.get("condition"))
+        for attr, left, right in (
+            ("case_condition", l8_condition, l9_condition),
+            ("expected", l8_row.get("expected"), l9_row.get("expected")),
+            (
+                "expected_preserved",
+                l8_row.get("expected_preserved"),
+                l9_row.get("expected_preserved"),
+            ),
+        ):
+            present8 = attr in l8_row
+            present9 = attr in l9_row
+            if not json_values_equal(left, right) or present8 != present9:
+                fail(attr, case_id=l8_id, reason="case_attribute_differs_across_l8_l9")
+        if ("condition" not in l8_row and "change" not in l8_row) or (
+            "change" not in l9_row and "condition" not in l9_row
+        ):
+            fail("case_condition", case_id=l8_id, reason="case_condition_missing")
+        if "expected" not in l8_row or "expected" not in l9_row:
+            fail("expected", case_id=l8_id, reason="case_expected_missing")
+        if "expected_preserved" not in l8_row or "expected_preserved" not in l9_row:
+            fail(
+                "expected_preserved",
+                case_id=l8_id,
+                reason="case_expected_preserved_missing",
+            )
+
+        if state8 == "positive":
+            if "negative_class_ref" in l8_row or "negative_class_ref" in l9_row:
+                fail(
+                    "negative_class_ref",
+                    case_id=l8_id,
+                    reason="positive_case_has_class_ref",
+                )
+            continue
+        if state8 != "negative":
+            continue
+
+        ref8, ref9 = l8_row.get("negative_class_ref"), l9_row.get("negative_class_ref")
+        if not isinstance(ref8, str) or ref8 not in class_indexes["L8"]:
+            fail(
+                "negative_class_ref",
+                layer="L8",
+                case_id=l8_id,
+                reason="negative_case_class_ref_missing_or_unresolved",
+            )
+            continue
+        if not isinstance(ref9, str) or ref9 not in class_indexes["L9"]:
+            fail(
+                "negative_class_ref",
+                layer="L9",
+                case_id=l8_id,
+                reason="negative_case_class_ref_missing_or_unresolved",
+            )
+            continue
+        class8, class9 = class_indexes["L8"][ref8], class_indexes["L9"][ref9]
+
+        if class8["partial_key"] != class9["partial_key"]:
+            fail(
+                "equivalence_key",
+                case_id=l8_id,
+                reason="paired_case_classification_or_findings_differ",
+            )
+
+        def check_case_invariants(
+            row: dict[str, Any], class_row: dict[str, Any], layer: str
+        ) -> None:
+            for field, class_value in (
+                ("expected_axis", class_row["axis"]),
+                ("expected_state", class_row["state"]),
+            ):
+                value = row.get(field)
+                if not isinstance(value, str) or not value.strip():
+                    fail(
+                        field,
+                        layer=layer,
+                        case_id=l8_id,
+                        reason="case_class_invariant_missing_or_invalid",
+                    )
+                elif value != class_value:
+                    fail(
+                        field,
+                        layer=layer,
+                        case_id=l8_id,
+                        reason="case_class_invariant_differs_from_class",
+                    )
+
+            side_effect_count = row.get(
+                "side_effect_count", row.get("expected_side_effect_count")
+            )
+            if (
+                isinstance(side_effect_count, bool)
+                or not isinstance(side_effect_count, int)
+                or side_effect_count != 0
+                or side_effect_count != class_row["side_effect_count"]
+            ):
+                fail(
+                    "side_effect_count",
+                    layer=layer,
+                    case_id=l8_id,
+                    reason="case_class_invariant_not_zero_or_differs_from_class",
+                )
+
+        check_case_invariants(l8_row, class8, "L8")
+        check_case_invariants(l9_row, class9, "L9")
+
+        property8 = l8_row.get("expected_property")
+        if not isinstance(property8, dict):
+            fail(
+                "equivalence_key",
+                layer="L8",
+                case_id=l8_id,
+                reason="case_observation_missing_or_invalid",
+            )
+            continue
+        case_classification8 = property8.get("condition")
+        case_codes8 = property8.get("finding_codes")
+        if case_classification8 != class8["partial_key"][0] or case_codes8 != list(
+            class8["partial_key"][1]
+        ):
+            fail(
+                "equivalence_key",
+                layer="L8",
+                case_id=l8_id,
+                reason="case_observation_disagrees_with_class",
+            )
+        if class8["owner_present"]:
+            l8_owner_observations.setdefault(ref8, set()).add(class8["key"][2])
+
+        observation9 = l9_row.get("compact_whole_observation")
+        if not isinstance(observation9, dict):
+            fail(
+                "equivalence_key",
+                layer="L9",
+                case_id=l8_id,
+                reason="case_observation_missing_or_invalid",
+            )
+            continue
+        findings9 = observation9.get("ordered_findings")
+        if not isinstance(findings9, list):
+            fail(
+                "equivalence_key",
+                layer="L9",
+                case_id=l8_id,
+                reason="ordered_findings_missing_or_invalid",
+            )
+            continue
+        codes9: list[str] = []
+        owners9: set[str] = set()
+        malformed = False
+        for finding_index, finding in enumerate(findings9):
+            if not isinstance(finding, dict):
+                fail(
+                    "equivalence_key",
+                    layer="L9",
+                    case_id=l8_id,
+                    reason=f"finding_{finding_index}_not_object",
+                )
+                malformed = True
+                continue
+            code, owner = finding.get("code"), finding.get("return_owner")
+            if not isinstance(code, str) or not code.strip():
+                fail(
+                    "equivalence_key",
+                    layer="L9",
+                    case_id=l8_id,
+                    reason=f"finding_{finding_index}_code_missing_or_invalid",
+                )
+                malformed = True
+                continue
+            if not isinstance(owner, str) or not owner.strip():
+                fail(
+                    "owner_unresolved",
+                    layer="L9",
+                    case_id=l8_id,
+                    reason="finding_owner_missing_or_invalid",
+                )
+                malformed = True
+                continue
+            codes9.append(code)
+            owners9.add(owner)
+        if malformed or len(owners9) != 1:
+            if not malformed:
+                fail(
+                    "owner_unresolved",
+                    layer="L9",
+                    case_id=l8_id,
+                    reason="finding_owners_not_unique",
+                )
+            continue
+        owner9 = next(iter(owners9))
+        if class8["partial_key"] + (owner9,) != class9["key"]:
+            fail(
+                "equivalence_key",
+                case_id=l8_id,
+                reason="paired_case_class_keys_differ",
+            )
+        if (
+            observation9.get("condition") != class9["partial_key"][0]
+            or tuple(codes9) != class9["partial_key"][1]
+            or class9["key"][2] != owner9
+        ):
+            fail(
+                "equivalence_key",
+                layer="L9",
+                case_id=l8_id,
+                reason="case_observation_disagrees_with_class",
+            )
+        if class8["owner_present"] and class8["key"][2] != owner9:
+            fail(
+                "equivalence_key",
+                layer="L8",
+                case_id=l8_id,
+                reason="explicit_owner_disagrees_with_l9_findings",
+            )
+        l8_owner_observations.setdefault(ref8, set()).add(owner9)
+
+        rule_ref, function_ref = l8_row.get("rule_ref"), l8_row.get("function_ref")
+        if not isinstance(rule_ref, str) or rule_ref not in rules:
+            fail("rule_ref", layer="L8", case_id=l8_id, reason="rule_ref_unresolved")
+        elif not isinstance(function_ref, str) or function_ref not in function_by_id:
+            fail(
+                "function_ref",
+                layer="L8",
+                case_id=l8_id,
+                reason="function_ref_unresolved",
+            )
+        else:
+            rule = rules[rule_ref]
+            resolved_rule_class = class_indexes["L5"].get(rule_ref)
+            if resolved_rule_class is None:
+                fail(
+                    "rule_ref",
+                    layer="L8",
+                    case_id=l8_id,
+                    reason="rule_ref_class_invalid",
+                )
+            elif resolved_rule_class["key"] != class9["key"]:
+                fail(
+                    "rule_ref",
+                    layer="L8",
+                    case_id=l8_id,
+                    reason="rule_ref_points_to_different_class",
+                )
+            if rule.get("function_ref") != function_ref:
+                fail(
+                    "function_ref",
+                    layer="L8",
+                    case_id=l8_id,
+                    reason="function_ref_disagrees_with_rule",
+                )
+            if rule.get("code") != class8["partial_key"][0]:
+                fail(
+                    "equivalence_key",
+                    layer="L5",
+                    case_id=l8_id,
+                    reason="rule_code_disagrees_with_case_class",
+                )
+        matched_case_count += 1
+
+    for case_id in sorted(set(l9_cases) - l8_seen_l9_ids):
+        fail(
+            "integration_case_ref",
+            layer="L9",
+            case_id=case_id,
+            reason="integration_case_not_referenced_from_l8",
+        )
+
+    invariant_by_key: dict[tuple[Any, ...], tuple[Any, Any, Any]] = {}
+    for layer in ("L4", "L9", "L8", "L5"):
+        for row in normalized_rows[layer]:
+            key = row["key"]
+            if layer == "L8" and not row["owner_present"]:
+                owners = l8_owner_observations.get(row["id"], set())
+                if len(owners) != 1:
+                    fail(
+                        "owner_unresolved" if owners else "equivalence_class",
+                        layer="L8",
+                        case_id=row["id"],
+                        reason="class_owner_unresolved"
+                        if owners
+                        else "class_has_no_negative_members",
+                    )
+                    continue
+                key = row["partial_key"] + (next(iter(owners)),)
+            invariant = (row["axis"], row["state"], row["side_effect_count"])
+            previous = invariant_by_key.get(key)
+            if previous is not None and previous != invariant:
+                for field, old, new in zip(
+                    ("expected_axis", "expected_state", "side_effect_count"),
+                    previous,
+                    invariant,
+                ):
+                    if old != new:
+                        fail(
+                            field,
+                            layer=layer,
+                            case_id=row["id"],
+                            reason="class_invariant_differs_within_equivalence_class",
+                        )
+            else:
+                invariant_by_key.setdefault(key, invariant)
+            row["key"] = key
+
+    # L8 owner is derived from its L9 member findings before comparing class sets.
+    keys_by_layer: dict[str, set[tuple[Any, ...]]] = {}
+    row_counts: dict[str, int] = {}
+    for layer in ("L4", "L9", "L8", "L5"):
+        keys_by_layer[layer] = {
+            tuple(row["key"])
+            for row in normalized_rows[layer]
+            if row.get("key") is not None
+        }
+        row_counts[layer] = len(raw_class_rows[layer])
+    for layer in ("L4", "L9", "L8", "L5"):
+        for key in keys_by_layer["L4"] - keys_by_layer[layer]:
+            fail("equivalence_key", layer=layer, reason="class_key_missing_from_layer")
+            fail(
+                "equivalence_class", layer=layer, reason="class_key_missing_from_layer"
+            )
+        for key in keys_by_layer[layer] - keys_by_layer["L4"]:
+            fail("equivalence_key", layer=layer, reason="unexpected_class_key")
+            fail("equivalence_class", layer=layer, reason="unexpected_class_key")
+    class_counts = {
+        layer: len(keys_by_layer[layer]) for layer in ("L4", "L9", "L8", "L5")
+    }
+    zero_negative_population = (
+        not failures
+        and all(count == 0 for count in class_counts.values())
+        and all(row.get("population_state") == "positive" for row in l8_cases.values())
+        and all(row.get("population_state") == "positive" for row in l9_cases.values())
+    )
+    status = "evaluated"
+    not_evaluated_reason = None
+    if zero_negative_population:
+        status = "not_evaluated"
+        not_evaluated_reason = "zero_negative_equivalence_classes"
+        fail("counts", case_id="<none>", reason=f"not_evaluated:{not_evaluated_reason}")
+
+    comparison_scope = {
+        "class_key": [
+            "expected_classification↔code",
+            "ordered_expected.finding_codes",
+            "backflow_owner",
+        ],
+        "class_invariants": [
+            "class_rows_and_negative_case_rows",
+            "expected_axis",
+            "expected_state",
+            "side_effect_count=0",
+        ],
+        "class_rows": {
+            "L4": "all failure_classifications rows",
+            "L5": "all failure_rules rows",
+            "L8": "all negative_equivalence_classes rows",
+            "L9": "all negative_equivalence_classes rows",
+        },
+        "case_rows": ["L8.unit_cases", "L9.integration_cases"],
+        "case_attributes": [
+            "change↔condition",
+            "expected",
+            "expected_preserved",
+            "integration_case_ref",
+            "expected_axis↔class",
+            "expected_state↔class",
+            "side_effect_count=0↔class",
+        ],
+        "case_references": [
+            "L8.rule_ref(string ID)→L5.failure_rules.id",
+            "L8.function_ref(string ID)→L5.functions.id",
+            "L5.failure_rules.code↔case class",
+        ],
+        "case_population": "only_supplied_rows; simultaneous_omission_is_not_detected",
+        "not_checked": ["full_legacy_per_case_four_layer_attribute_tuple"],
+    }
+    return {
+        "check": "CHK-NEG-4WAY-MATCH",
+        "comparison_mode": "explicit_negative_equivalence_classes",
+        "comparison_scope": comparison_scope,
+        "count_unit": "unique_equivalence_class_keys_per_layer",
+        "matched_case_count_unit": "paired_negative_L8_L9_case_rows",
+        "status": status,
+        "not_evaluated_reason": not_evaluated_reason,
+        "zero_count_rationale": None,
+        "passed": not failures,
+        "counts": class_counts,
+        "class_row_counts": row_counts,
+        "case_row_counts": {"L8": l8_case_row_count, "L9": l9_case_row_count},
+        "matched_case_count": matched_case_count,
+        "failures": failures,
+        "derived_from": DERIVATION_MAP["CHK-NEG-4WAY-MATCH"],
+    }
+
+
 def check_neg_4way_match(
     repo_root: Path,
     l4_path: str,
@@ -1246,6 +2007,12 @@ def check_neg_4way_match(
         l8_data = _load_json(repo_root, l8_path) or {}
     if l5_data is None:
         l5_data = _load_json(repo_root, l5_path) or {}
+
+    if any(
+        _has_negative_equivalence_marker(data)
+        for data in (l4_data, l9_data, l8_data, l5_data)
+    ):
+        return _check_negative_equivalence_mode(l4_data, l9_data, l8_data, l5_data)
 
     l4_contracts = l4_data.get("contracts", [])
     l4_top_fc = l4_data.get("failure_classifications", [])
@@ -1619,6 +2386,28 @@ def check_neg_4way_match(
 
     return {
         "check": "CHK-NEG-4WAY-MATCH",
+        "comparison_mode": "legacy_casewise_four_layer",
+        "comparison_scope": {
+            "case_rows": [
+                "L4.contracts[].negative_classifications",
+                "L9.cases[].negative_cases",
+                "L8.cases[].negative_cases",
+                "L5.failure_rules",
+            ],
+            "case_attributes": [
+                "change_or_condition",
+                "classification_or_code",
+                "expected_axis",
+                "expected_state",
+                "expected",
+                "expected_preserved",
+                "backflow_owner",
+            ],
+            "side_effect_count": "zero_across_L4_L9_L8_L5",
+            "case_identity": "existing_casewise_identity_rules",
+        },
+        "count_unit": "negative_case_rows_per_layer",
+        "matched_case_count_unit": "matched_negative_case_rows",
         "status": "not_evaluated" if not_evaluated else "evaluated",
         "not_evaluated_reason": not_evaluated_reason,
         "zero_count_rationale": zero_rationale,
@@ -2605,6 +3394,22 @@ def generate_freeze_record(
         "failure_count": len(neg_res["failures"]),
         "passed": neg_res["passed"],
     }
+    if "comparison_mode" in neg_res:
+        out["negative_case_4way_verification"].update(
+            {
+                "comparison_mode": neg_res["comparison_mode"],
+                "comparison_scope": neg_res["comparison_scope"],
+                "count_unit": neg_res["count_unit"],
+                "matched_case_count_unit": neg_res["matched_case_count_unit"],
+            }
+        )
+        if "class_row_counts" in neg_res:
+            out["negative_case_4way_verification"]["class_row_counts"] = neg_res[
+                "class_row_counts"
+            ]
+            out["negative_case_4way_verification"]["case_row_counts"] = neg_res[
+                "case_row_counts"
+            ]
     out["resolved_function_rows"] = fn_res["resolved_function_rows"]
     out["human_judgment_pending"] = (
         fn_res["human_judgment_pending"] + obl_res["human_judgment_pending"]
@@ -2613,6 +3418,14 @@ def generate_freeze_record(
     ver = dict(out.get("verification") or {})
     ver["all_pointers_resolved"] = ptr_res["passed"]
     ver["negative_4way_matched_count"] = neg_res["matched_case_count"]
+    if "comparison_mode" in neg_res:
+        ver["negative_4way_comparison_mode"] = neg_res["comparison_mode"]
+        ver["negative_4way_comparison_scope"] = neg_res["comparison_scope"]
+        ver["negative_4way_count_unit"] = neg_res["count_unit"]
+        ver["negative_4way_matched_count_unit"] = neg_res["matched_case_count_unit"]
+        if "class_row_counts" in neg_res:
+            ver["negative_4way_class_row_counts"] = neg_res["class_row_counts"]
+            ver["negative_4way_case_row_counts"] = neg_res["case_row_counts"]
     ver["l8_full_return_or_fixture_or_hash_added"] = len(added_l8_forbidden) > 0
     ver["scfctl_stale_count"] = 0
     out["verification"] = ver
