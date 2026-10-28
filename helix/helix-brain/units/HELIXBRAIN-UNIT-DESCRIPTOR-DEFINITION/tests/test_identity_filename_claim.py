@@ -165,9 +165,18 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         self.assertTrue(all(row["subject_ref"] == template_a for row in template_identity_rows))
         self.assertTrue(all(row["binding"] == raw_before["binding"] for row in template_identity_rows))
 
-        # fn1の既存の別Binding停止は維持し、fn1結果をfn3へ混ぜない。
-        with self.assertRaisesRegex(NotImplementedError, "F02/descriptor_slot_binding_unresolved"):
-            compare_descriptor_definitions({"validated": validated})
+        # L4 evaluation_populations: 明示candidate Bの原frameと14不足を保持。
+        fn1_result = compare_descriptor_definitions({"validated": validated})
+        binding_b = raw_before["descriptors"][-1]["binding"]
+        self.assertEqual(fn1_result["input_binding"], raw_before["binding"])
+        b_missing = [row for row in fn1_result["axes"]
+                     if row["binding"] == binding_b and row["state"] == "missing"]
+        self.assertEqual(len(b_missing), 14)
+        self.assertTrue(all(row["subject_ref"] == binding_b["knowledge_ref"] for row in b_missing))
+        self.assertEqual([row["state"] for row in fn1_result["axes"]
+                          if row["binding"] == binding_b and row["axis"] == "descriptor.attribution"], ["known"])
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
 
         _prefix, separator, diagnostic = finding["reason"].partition("\n")
         self.assertTrue(separator)
@@ -185,7 +194,7 @@ class TestFilenameIdentityClaim(unittest.TestCase):
             for row in result["axes"]
         ))
 
-    def test_unqualified_candidate_cannot_support_R66_and_fn1_unfrozen_binding_remains_stopped(self):
+    def test_unqualified_candidate_cannot_support_R66_and_fn1_keeps_local_unknown(self):
         raw, _source_a, source_b, _claim, _template_a, _template_b = _filename_identity_claim_input()
         qualification_b = next(
             row for row in raw["qualifications"]
@@ -203,8 +212,17 @@ class TestFilenameIdentityClaim(unittest.TestCase):
         self.assertTrue(any(
             row["source_ref"] == source_b["ref"] for row in validated["input_issues"]
         ))
-        with self.assertRaisesRegex(NotImplementedError, "F02/descriptor_slot_binding_unresolved"):
-            compare_descriptor_definitions({"validated": validated})
+        # 資格の不成立はcandidate選択を消さず、原B frameのunknownへ局所保持。
+        validated_before = copy.deepcopy(validated)
+        fn1_result = compare_descriptor_definitions({"validated": validated})
+        binding_b = raw_before["descriptors"][-1]["binding"]
+        self.assertEqual(fn1_result["input_binding"], raw_before["binding"])
+        self.assertEqual(len([row for row in fn1_result["axes"]
+                              if row["binding"] == binding_b and row["state"] == "missing"]), 14)
+        self.assertEqual([row["state"] for row in fn1_result["axes"]
+                          if row["binding"] == binding_b and row["axis"] == "descriptor.attribution"], ["unknown"])
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated, validated_before)
 
         # Bのqualification不成立を、無関係なAの成功や新identity_claim行へ置換しない。
         result = compare_identity_versions_and_trace({"validated": validated})
