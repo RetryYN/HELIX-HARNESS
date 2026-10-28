@@ -12322,7 +12322,14 @@
     "selection_scope": "期待値はこのcaseの固定literalが選ぶfield-Aまたはproposal-0、およびそれらの原Ref/source/body occurrenceに局所化する。local_unestablishedとunfinished_obligation_refsは当該selected operandから観測した項目だけを表し、同call C全体の原因・義務一覧、未提示枝の消去、義務完了を意味しない。",
     "unfinished_obligation_scope": "元GapProposalのunfinished_obligation_refsのselected raw順/反復を保持する有限projection。これ以外のC義務集合を網羅せず、候補分類による消込をしない。",
     "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
-    "logical_input_root_pointer": "/input/projection_operand"
+    "logical_input_root_pointer": "/input/projection_operand",
+    "l4_meaning_ja": "L4 field_definition_evidence_body.absent_guard / undecided_guard: 原definition_refs operandの未解決時は元Ref/所在と取得不成立を保持し、既存owner候補を残したfield judgmentをunformedにする。",
+    "selected_operand_expectation_ja": "対象FieldInput.definition_refsの同じ原Ref出現についてaxis_facts/semantic_recordsの両検索domainに対応recordが0件の場合のみfield-level未形成を観測する。片方のdomainに一致recordがある入力はこの未解決caseでない。null/absent/未到達parentや他fieldを混ぜない。",
+    "expected_semantic_observation_ja": "両collectionに対応recordがない選択fieldのfield judgmentはunformed。元field/ref、両collection Read/presence、既存owner evidence候補を保持し、definition missing/unknownを生成しない。L5 Cause数/right Readの具体表現は未形成でありこの意味期待には含めない。",
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: source/template/revision/field/義務/evidence/scopeと不足4候補を保持する",
+     "L10#/cases/27: definition absenceとvalue undecidedを混同せず、分類不明を補完しない"
+    ]
    },
    {
     "id": "HARNESS-L9-009-F05-EVIDENCE-QUESTION-CONTRACT",
@@ -12447,6 +12454,96 @@
     "conditional_qualification_premise": "形成済み候補の期待は、同snapshot fn0 contextにある全対象Refのqualificationとsource/body対応を前提とする条件付き期待。fixtureはqualificationを含まず実qualificationを主張しない。前提が与えられない場合、該当候補はsource_unusable/unestablishedとなる。",
     "asserted_output_scope": "asserted_output_pathsはこのcaseで選んだfield/proposal/roleに対する有限projectionを示す。/local_unestablishedと/unfinished_obligation_refsはC全体の配列同値ではない。",
     "logical_input_root_pointer": "/input/projection_operand"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-SOURCE-REF-LOOKUP-MISS",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/3"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+     }
+    ],
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: 根拠sourceとrevision/scopeを保持する",
+     "L10#/cases/27: source未取得を定義missing/value unknownへ補完しない"
+    ],
+    "input_mutation_ja": "同一snapshotの選択FieldInput.definition_refsが指す既存SemanticRecordとそのfull Refは実在する。SemanticRecord.source_refはpresent non-nullだが、同入力sourcesに一致するSourceEnvelopeは存在しない。fixtureはqualification・外部trustを主張しない。",
+    "expected_semantic_observation_ja": "そのevidenceのsource/body意味は未形成で、field/proposalに属する元Refとrecordは保持する。定義missing/unknown、body成功、他fieldへの停止伝播を生成しない。",
+    "asserted_output_paths": [
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/domain_observations/field_inputs/0"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択field外の全出力"
+    ],
+    "fixture_source_ref": "HARNESS-L8-009-ADD-41"
+   },
+   {
+    "id": "HARNESS-L9-009-F05-EVIDENCE-BODY-PAYLOAD-MISMATCH",
+    "source_basis": [
+     {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "pointer": "/requirements/27"
+     },
+     {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "pointer": "/cases/27"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/2"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+     }
+    ],
+    "l3_l10_meaning_basis": [
+     "L3#/requirements/27: 元source/evidenceと対象field/scopeへの対応を保持する",
+     "L10#/cases/27: 根拠の不成立を分類成功へ補完しない"
+    ],
+    "input_mutation_ja": "同一snapshotに元SemanticRecordと同full Ref SourceEnvelope/body entryを一件ずつ置く。collection/refは対応するが、body payloadの元member又はpresenceの一つが元record（source_refだけ外付け）の値と既知不一致である。",
+    "expected_semantic_observation_ja": "対応しないevidence/body出現は当該fieldに局所化して未形成のまま全左右資料を保持する。異なる有効evidenceや兄弟fieldを消さず、definition missing/unknownや意味候補を通さない。",
+    "asserted_output_paths": [
+     "/definition_evidence_results",
+     "/local_unestablished",
+     "/domain_observations/field_inputs/0"
+    ],
+    "uninstantiated_output_paths": [
+     "/original_context",
+     "/domain_observations/gap_proposals"
+    ],
+    "not_full_return": [
+     "/original_context の全leaf",
+     "選択field外の全出力"
+    ],
+    "fixture_source_ref": "HARNESS-L8-009-ADD-42"
    }
   ],
   "unexercised_and_unverified": {
@@ -12464,15 +12561,7 @@
      "status": "未行使"
     },
     {
-     "role": "misbound/body mismatch",
-     "status": "未行使"
-    },
-    {
      "role": "requested operandを持たないsource-backed question",
-     "status": "未行使"
-    },
-    {
-     "role": "source qualification不成立またはbody/content対応不一致",
      "status": "未行使"
     },
     {
@@ -12486,6 +12575,30 @@
     {
      "role": "role_owner_bindingの既知owner不一致分岐",
      "status": "未行使"
+    },
+    {
+     "role": "対象body entry 0件（collection観測済み）",
+     "status": "STOP-F05-BODY-ENTRY-ABSENT-01: 既存L4にCause意味対応なし。L9期待を作らず未評価のまま。"
+    },
+    {
+     "role": "body collection absent/null/type外",
+     "status": "未行使: この追補のL9有限caseは対象に含めない。"
+    },
+    {
+     "role": "別Ref candidate/複数body entry/Qualification未成立/他source各不一致",
+     "status": "未行使: この追補の有限caseから一般branch網羅を主張しない。"
+    },
+    {
+     "role": "GapProposal body欠落/未形成からの意味分類",
+     "status": "STOP-F05-GAP-PROPOSAL-BODY-ORACLE-01: metadataからbody/分類を合成しない。"
+    },
+    {
+     "role": "proposition_operand_unresolved cause",
+     "status": "STOP-F05-CAUSE-PROPOSITION-OPERAND-01: L3/L10に独立guardなし。"
+    },
+    {
+     "role": "constraint_mismatch cause",
+     "status": "STOP-F05-CAUSE-CONSTRAINT-MISMATCH-01: L3/L10に独立guardなし."
     }
    ],
    "context_unverified": [

@@ -5142,6 +5142,143 @@
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
    "fixture_refinement": "L4/L9の集約保持境界から導いた独立意味期待（U-ID設計行のみ）。具体fixture・全返却・hashはなく未実行。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-45",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "定義Ref取得失敗をcontent_unresolvedとして保持",
+   "input_fixture_ref": "条件を記述した設計行。入力fixtureは未作成。",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract"
+    }
+   ],
+   "typed_mutation_plan": "実FieldInput.definition_refs[0]のfull Refを維持し、同じsnapshot input.axis_factsとinput.semantic_recordsを実配列として供給するが、両collectionにRef照合一致recordを置かない。他の同field owner evidenceがあれば原wholeを維持する。",
+   "expected_observation": "両collectionに対応recordがない選択fieldのDefinitionAssessment.judgmentはunformed。元definition Ref、両collection Read/presence、他fieldおよび既存evidence候補を保持し、definition missing/unknownを生成しない。Cause件数/rightの具体表現はSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01のため未規定。",
+   "l5_technical_expectation": {
+    "writer_state": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+    "read_rule": "既存Cause.rightは単一collection Read。axis_factsとsemantic_records両Readの非合成対応およびCause件数/順序が未定のため、具体Cause期待を定義しない。片側lookup missをfield未解決にしない。"
+   },
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-46",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "SemanticRecordのsource_ref取得失敗",
+   "input_fixture_ref": "条件を記述した設計行。入力fixtureは未作成。",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract"
+    }
+   ],
+   "typed_mutation_plan": "既存有効なSemanticRecordとFieldInput.definition_refsのfull Ref対応は保ち、当該SemanticRecord.source_refへpresent non-null Refを設定する。同snapshot input.sourcesを実配列で供給するが、そのRefに一致するSourceEnvelopeを置かない。metadataからsource/bodyを合成しない。",
+   "expected_observation": "元SemanticRecordとfield operandは保持されるが、そのevidenceは未形成。定義missing/unknownをsource不在から生成しない。兄弟field/evidenceは継続する。",
+   "l5_technical_expectation": {
+    "writer_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0",
+    "cause_storage_pointer": "/f05_detail_contract/types/RecordOccurrence/members/causes",
+    "read_rule": "present non-null source_ref Readと実sources collection Readをsource_unresolved Causeの左右に結び、source_observation_indices/body_occurrencesへ架空indexを作らない。"
+   },
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
+  },
+  {
+   "id": "HARNESS-L8-009-ADD-47",
+   "function_ref": "HARNESS-L5-009-compare_requirement_gaps",
+   "name": "対応body entryのpayload不一致",
+   "input_fixture_ref": "条件を記述した設計行。入力fixtureは未作成。",
+   "source_basis": [
+    {
+     "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+     "pointer": "/requirements/27"
+    },
+    {
+     "path": "docs/helix-harness/L10-verification/functional-verification.json",
+     "pointer": "/cases/27"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/ordered_source_materialization/3"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_semantic_evidence_contract/common_target_guards/4"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/cause_patterns/content_unresolved"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/field_content_source_failure_writer_contract"
+    }
+   ],
+   "typed_mutation_plan": "元SemanticRecordと同full RefのSourceEnvelope、body.records entryを一件ずつ実在させる。body entryのcollection/refは一致させたまま、source_refだけ外付けした元recordと比較してpayloadの既存member又はpresenceを一か所だけ異ならせる。source/body bytes・Qualification等の無関係な条件は条件付き前提として固定し、新しいcauseを混ぜない。",
+   "expected_observation": "当該source/body occurrenceは原左右値を保持して未形成のまま残る。該当definition evidenceをknown/missing/unknownとして通さず、独立した有効兄弟は維持する。",
+   "l5_technical_expectation": {
+    "writer_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1",
+    "cause_storage_pointer": "/f05_detail_contract/types/BodyOccurrence/members/causes",
+    "read_rule": "実body entry payload Readと元SemanticRecord原member Readが既存比較でknown differentのときだけsource_body_mismatch。body entryが存在しない入力へはこの期待を適用しない。"
+   },
+   "expected_side_effect_count": 0,
+   "execution_state": "not_executed",
+   "fixture_refinement": "U-ID設計のみ。実fixture・全返却・hashは未作成、未実行。"
   }
  ],
  "normal_function_oracles": [

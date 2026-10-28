@@ -1797,7 +1797,10 @@
         "HARNESS-L8-009-F05-NEG-07",
         "HARNESS-L8-009-ADD-15",
         "HARNESS-L8-009-ADD-16",
-        "HARNESS-L8-009-ADD-25"
+        "HARNESS-L8-009-ADD-25",
+        "HARNESS-L8-009-ADD-45",
+        "HARNESS-L8-009-ADD-46",
+        "HARNESS-L8-009-ADD-47"
       ],
       "oracle_ref": "HARNESS-L8-009-NORMAL-compare_requirement_gaps",
       "logical_producer_symbol": "compare_requirement_gaps",
@@ -13668,7 +13671,8 @@
       "knowledge版不足→BRAINは承認済F05の保持義務。f13_knowledge_recipient_leaf_verification（2件）とinput_scope_knowledge_gap_native_oracle（19件）を記載済み（B）であり、knowledge_revision_gap_boundaryのL5/L8契約対照はA（Q-H009-2、D-H009-T2c-2）、上流ownerの独立版不足命題source供給はBRAIN032/030（C）へ分離する。unresolved又は局所未形成を返せたことを要求の意味変更/完了根拠にしない。",
       "global全KindTrace Ref保全と、個々のfield/proposalの当該未完scope確定は別。field_obligation_scope_writer_contractとnine_source_known_known_scope oracle（1件）を記載済み（B）であり、L9 field_obligation_scope_verification（21件）とのU-ID対照はA（Q-H009-2、D-H009-T2c-2）、外部ownerの局所scope profile実供給は各owner（C）へ分離し、全列保存から当該未完の新selector又は消込を生成しない。",
       "HARNESS返却先は原適用contract不整合の根拠に対応する範囲（B）。application_contract_recipient_boundaryのL5/L8対照はA（Q-H009-2、D-H009-T2c-2）へ渡し、元process資料が適用contract不整合へ対応する外部owner根拠の供給はHARNESS上流owner（C）へ戻す。",
-      "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影（B）。source_result_reference_projectionのfn10 optional引き渡しとF05詳細返却連携はA（D-H009-T2a/T3b）へ渡し、実caller統合や外部runtimeは下流L6/L7（C）へ戻す。"
+      "roleのlocal semantic-use usabilityと公開fn0 bytes/body/qualification診断/Ref membershipは同原材料の別投影（B）。source_result_reference_projectionのfn10 optional引き渡しとF05詳細返却連携はA（D-H009-T2a/T3b）へ渡し、実caller統合や外部runtimeは下流L6/L7（C）へ戻す。",
+      "WR154-R2の追補はL4既存guardで閉じるcontent/source/body Cause writerのみ。body entry 0件、proposition_operand_unresolved、constraint_mismatch、gap proposal body oracle、既存STOP-OWNER-CAUSE-WRAPPER-RELATION-01/STOP-OWNER-CAUSE-QUAL-READ-01は未解決として止め、意味を補完しない。"
     ],
     "advice_history_boundary": "local corrected5b2c及びevidence-content-separated1d3は著述相談入力に限る。規範の各型/guardは上記tracked原sourceへ結び、ignored助言を必要な解読依存にしない。",
     "type_dependencies": {
@@ -18940,22 +18944,25 @@
           "l5_storage_member_pointers": [
             "/f05_detail_contract/types/SourceCheck/members/causes",
             "/f05_detail_contract/types/QualificationObservation/members/causes",
-            "/f05_detail_contract/types/ValidationSourceObservation/members/causes"
+            "/f05_detail_contract/types/ValidationSourceObservation/members/causes",
+            "/f05_detail_contract/types/RecordOccurrence/members/causes"
           ],
           "l5_writer_or_mapping_pointers": [
             "/f05_detail_contract/validation_cause_diagnostic_contract/lookup_patterns/0",
             "/f05_detail_contract/validation_cause_diagnostic_contract/lookup_patterns/1",
             "/f05_detail_contract/validation_cause_diagnostic_contract/lookup_patterns/2",
             "/f05_detail_contract/validation_cause_diagnostic_contract/lookup_patterns/3",
-            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/1"
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/1",
+            "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0"
           ],
           "l5_writer_state": "writer_or_mapping_pointer_listed",
           "boundary_ja": "L4 basic viewのcause vocabularyに同じCauseKindがある。格納先とwriterは上記のL5実ポインタに限り、実行済み観測を意味しない。",
-          "l5_storage_route_ja": "check由来はSourceCheck.causes、lookup由来は直近のSource/Qualification observation.causesに置き、validation aggregationで親へ原順複写する。",
+          "l5_storage_route_ja": "check由来はSourceCheck.causes、lookup由来は直近のSource/Qualification observation.causesに置き、validation aggregationで親へ原順複写する。 F05のpresent non-null SemanticRecord.source_refが同snapshot sources collectionで0件の場合はRecordOccurrence.causesへsource_unresolvedを保持する。",
           "l5_storage_path_pointers": [
             "/f05_detail_contract/types/SourceCheck/members/causes",
             "/f05_detail_contract/types/QualificationObservation/members/causes",
-            "/f05_detail_contract/types/ValidationSourceObservation/members/causes"
+            "/f05_detail_contract/types/ValidationSourceObservation/members/causes",
+            "/f05_detail_contract/types/RecordOccurrence/members/causes"
           ]
         },
         {
@@ -18987,16 +18994,19 @@
           "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
           "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
           "l5_storage_member_pointers": [
-            "/f05_detail_contract/types/SourceCheck/members/causes"
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/BodyOccurrence/members/causes"
           ],
           "l5_writer_or_mapping_pointers": [
-            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/0"
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/0",
+            "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1"
           ],
           "l5_writer_state": "writer_or_mapping_pointer_listed",
           "boundary_ja": "L4 basic viewのcause vocabularyに同じCauseKindがある。格納先とwriterは上記のL5実ポインタに限り、実行済み観測を意味しない。",
-          "l5_storage_route_ja": "直接生成先は当該content_bytes_body SourceCheck.causes。",
+          "l5_storage_route_ja": "直接生成先は当該content_bytes_body SourceCheck.causes。 対応実body entryのpayloadと元recordが既存full比較でknown differentの場合はBodyOccurrence.causesへ保持する。",
           "l5_storage_path_pointers": [
-            "/f05_detail_contract/types/SourceCheck/members/causes"
+            "/f05_detail_contract/types/SourceCheck/members/causes",
+            "/f05_detail_contract/types/BodyOccurrence/members/causes"
           ]
         },
         {
@@ -19136,12 +19146,25 @@
           "l4_pointer": "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
           "l4_closed_type_pointer": "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
           "l5_kind_member_pointer": "L5:/f05_detail_contract/types/Cause/members/kind",
-          "l5_storage_member_pointers": [],
+          "l5_storage_member_pointers": [
+            "/f05_detail_contract/types/RefOperand/members/causes",
+            "/f05_detail_contract/types/DefinitionEvidenceInterpretation/members/causes",
+            "/f05_detail_contract/types/DefinitionAssessment/members/causes",
+            "/f05_detail_contract/types/DefinitionAssessment/members/judgment",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes"
+          ],
           "l5_writer_or_mapping_pointers": [],
-          "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
-          "boundary_ja": "L5内でCauseKind literalを生成するwriterは確認できない。型に格納先があっても、実writerがないものはnone_foundとして区別する。",
-          "l5_storage_route_ja": "該当するL5 CauseKind literal writerと具体Cause[]格納先は確認できない（none_found）。",
-          "l5_storage_path_pointers": []
+          "l5_writer_state": "none_found_for_exact_dual_collection_case",
+          "boundary_ja": "L4のfield guardは両lookup miss時にfield judgmentをunformedにする。一方、2つの原collection Readを一Cause.rightへ非合成で結ぶ既存writer表現は未形成。",
+          "l5_storage_route_ja": "格納先の型memberは存在するが、今回の両collection missをどのCause件数・right原Readで格納するかは未形成。STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01。",
+          "l5_storage_path_pointers": [
+            "/f05_detail_contract/types/RefOperand/members/causes",
+            "/f05_detail_contract/types/DefinitionEvidenceInterpretation/members/causes",
+            "/f05_detail_contract/types/DefinitionAssessment/members/causes",
+            "/f05_detail_contract/types/DefinitionAssessment/members/judgment",
+            "/f05_detail_contract/types/Formation/variants/unformed/causes"
+          ],
+          "stop_id": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01"
         },
         {
           "kind": "proposition_operand_unresolved",
@@ -19152,9 +19175,10 @@
           "l5_storage_member_pointers": [],
           "l5_writer_or_mapping_pointers": [],
           "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
-          "boundary_ja": "L5内でCauseKind literalを生成するwriterは確認できない。型に格納先があっても、実writerがないものはnone_foundとして区別する。",
+          "boundary_ja": "L5内でCauseKind literalを生成するwriterは確認できない。型に格納先があっても、実writerがないものはnone_foundとして区別する。 L3/L10 F05に導出可能な独立guardがなく、この語からCause writerを推測しない。停止ID=STOP-F05-CAUSE-PROPOSITION-OPERAND-01",
           "l5_storage_route_ja": "該当するL5 CauseKind literal writerと具体Cause[]格納先は確認できない（none_found）。",
-          "l5_storage_path_pointers": []
+          "l5_storage_path_pointers": [],
+          "stop_id": "STOP-F05-CAUSE-PROPOSITION-OPERAND-01"
         },
         {
           "kind": "constraint_mismatch",
@@ -19165,9 +19189,10 @@
           "l5_storage_member_pointers": [],
           "l5_writer_or_mapping_pointers": [],
           "l5_writer_state": "none_found_for_kind_literal_in_current_L5_writer",
-          "boundary_ja": "L5内でCauseKind literalを生成するwriterは確認できない。型に格納先があっても、実writerがないものはnone_foundとして区別する。",
+          "boundary_ja": "L5内でCauseKind literalを生成するwriterは確認できない。型に格納先があっても、実writerがないものはnone_foundとして区別する。 L3/L10 F05に導出可能な独立guardがなく、この語からCause writerを推測しない。停止ID=STOP-F05-CAUSE-CONSTRAINT-MISMATCH-01",
           "l5_storage_route_ja": "該当するL5 CauseKind literal writerと具体Cause[]格納先は確認できない（none_found）。",
-          "l5_storage_path_pointers": []
+          "l5_storage_path_pointers": [],
+          "stop_id": "STOP-F05-CAUSE-CONSTRAINT-MISMATCH-01"
         },
         {
           "kind": "aggregation_unestablished",
@@ -19400,6 +19425,148 @@
           ]
         }
       ]
+    },
+    "field_content_source_failure_writer_contract": {
+      "id": "HARNESS-L5-009-F05-CONTENT-SOURCE-FAILURE-WRITER",
+      "scope_ja": "既存F05のSemanticRecord.source_ref lookup miss、実body entry payload不一致の2経路を既存L4 Cause意味のまま局所Read/Causeへ書く技術契約。definition Ref lookup missのfield-level unformed意味はL4にあるが、両collection Readを既存Cause型で表す技術writerはSTOPに残す。新public state/Finding、source取得口、資格判定又はGapProposalからの意味生成を追加しない。",
+      "source_basis": [
+        {
+          "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+          "pointer": "/requirements/27",
+          "meaning_scope": "不足4候補、source/template/revision/field/義務/scope/evidence/返却先保持の対象F05のみ。"
+        },
+        {
+          "path": "docs/helix-harness/L10-verification/functional-verification.json",
+          "pointer": "/cases/27",
+          "meaning_scope": "lookup失敗やbody差をmissing/unknownへ補完しない有限期待の上流根拠。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_source_materialization_contract/ordered_source_materialization/2",
+          "meaning_scope": "definition_refs/value_fact_refsを原role・順・presenceのまま読む。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_source_materialization_contract/ordered_source_materialization/3",
+          "meaning_scope": "Ref lookup missをmember absentと混同せず、架空index/bodyを作らない。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/field_definition_evidence_body/absent_guard",
+          "meaning_scope": "definition_refs lookup missから定義missingを作らず、原evidence候補を保持してfield summaryをunformedにする。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/wrapper_and_source_contract/source_payload",
+          "meaning_scope": "同source_refのbody collection/ref/payloadと全原member/presenceを照合する。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/common_target_guards/3",
+          "meaning_scope": "full Refのidentity/revision/scope/ownerと供給digest条件を既存比較で照合し、所在をidentityにしない。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/common_target_guards/4",
+          "meaning_scope": "record/source/body対応しない原出現・同Ref異本文・型外を局所原因へ保存する。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
+          "meaning_scope": "既存private Cause語彙だけを使う。"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+          "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+          "lines": "33–108",
+          "use_ja": "I/O・failure・consumer/trace、unknownの保持を参考にし、旧registry/runtimeは移植しない。",
+          "revision": "5a111532e81fa04a1420df190fc2d2171d5056c6",
+          "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
+        },
+        {
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+          "lines": "80,86–87",
+          "use_ja": "UTW-014欠損→空、UTW-020 aggregate診断の粗さ、UTW-021自己申告completionを照合。新要求/gateは生成しない。",
+          "revision": "5a111532e81fa04a1420df190fc2d2171d5056c6",
+          "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause",
+          "meaning_scope": "Causeの閉型と左右Readの構造だけを確認する。field lookupとの意味同一性は主張しない。"
+        },
+        {
+          "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+          "pointer": "/field_semantic_evidence_contract/basic_candidate_return/fields/definition_evidence_results",
+          "meaning_scope": "L4のfield evidence resultは形成済judgment又はunformed{causes}を返す。Cause causes variantを正本として参照する。"
+        }
+      ],
+      "writers": [
+        {
+          "id": "F05-SOURCE-REF-LOOKUP-UNRESOLVED",
+          "trigger_ja": "実SemanticRecord RecordOccurrence.source_ref_readがpresentかつnon-nullのRefで、同snapshot validation.input.sourcesを全探索して同一RefのSourceEnvelopeが0件の場合。source_ref自体のabsent/null、collection未観測/型外、複数又はqualification未成立はこのcaseでcause化しない。",
+          "cause": {
+            "kind": "source_unresolved",
+            "target": "当該RecordOccurrence.source_ref_readのLocation",
+            "left": "元SemanticRecord.source_refのRead<CoreRef>",
+            "right": "実sources collectionのRead<CoreJsonValue>",
+            "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/0"
+          },
+          "storage": "当該RecordOccurrence.causesへ一件保持し、元operand/field局所のmaterialization cause chainから親へ既定順でcopyする。source_observation_indices/body_occurrencesへ架空indexやentryを追加しない。",
+          "preserve_ja": "元record/source_ref、全候補SourceEnvelopeとRef比較結果、source collectionの原Readを別々に保持する。source_locatorだけで同一性を決めない。source未解決だけでdefinition missing/value unknownを生成しない。"
+        },
+        {
+          "id": "F05-SOURCE-BODY-PAYLOAD-MISMATCH",
+          "trigger_ja": "source_refの同一Ref SourceEnvelopeと同body.records内の実entryが存在し、collection/refは元recordに対応する一方、payloadの元member/presenceが元record（source_refだけenvelope側へ外付け）と既存full比較でknown differentの場合。body collection/対象entryが無い場合へは適用しない。",
+          "cause": {
+            "kind": "source_body_mismatch",
+            "target": "実body entry payloadのLocation",
+            "left": "元SemanticRecord全原member/presenceのRead",
+            "right": "対応body entry payloadのRead<CoreJsonValue>",
+            "rule_pointer": "/f05_detail_contract/field_content_source_failure_writer_contract/writers/1"
+          },
+          "storage": "当該BodyOccurrence.causesへ一件保持し、対応RecordOccurrence及びfield/proposal局所materialization chainへ規定順copyする。payload_relation=differentとCauseは既存Source/body対応結果であり、Causeから新checkを再実行しない。",
+          "preserve_ja": "SourceEnvelope、実body entry whole、collection/ref/payload各Read、元record wholeとRef/bindingを両方保持する。body側を修復・選択せず、他の有効entryや兄弟fieldを消さない。"
+        }
+      ],
+      "unclosed_stops": [
+        {
+          "id": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
+          "condition_ja": "present definition_refs Refがaxis_factsとsemantic_recordsの両lookupで不一致の場合、L4はfield judgmentをcontent_unresolvedとしてunformedにする意味を定めるが、Cause.rightは単一のactual collection Readである。双方の原Readを非合成でどう保持するか、又はCause件数をいくつにするかを定める既存writer/独立oracleは見つかっていない。片側Missだけでは発生しない。",
+          "owner": "HARNESS-CORE L5 detail design owner",
+          "reentry_ja": "L4/L5に両collectionの原Readを既存Cause型のまま結ぶ明示設計又は個別Causeの件数/順序を意味拡張せず決める根拠があり、L8 technical rowと独立L9 semantic caseが一致した後。"
+        },
+        {
+          "id": "STOP-F05-BODY-ENTRY-ABSENT-01",
+          "condition_ja": "source/envelope/body.records collectionは観測できるが、対象record Refに対応するbody entryが0件である場合。L4にはこのexact caseのCause分類がなく、source_unresolved/body_unformed/content_unresolvedへの読み替えはしない。",
+          "owner": "HARNESS-CORE L4/L5 design owner",
+          "reentry_ja": "L4がこの実入力形と既存Cause意味の対応を明示し、独立L9 caseが意味期待を照合した後。"
+        },
+        {
+          "id": "STOP-F05-CAUSE-PROPOSITION-OPERAND-01",
+          "condition_ja": "proposition_operand_unresolvedは現L4 cause vocabulary上の語だけで、L3/L10 F05から独立したCause guardを導ける記述・L4 guard・L9 oracleが確認できない。Causeを生成しない。",
+          "owner": "HARNESS-CORE上流要求/L4 design owner",
+          "reentry_ja": "F05承認済みL3/L10の具体的義務pointerがこのCause分岐を明示的に支え、L4 guardと独立L9 oracleが形成された場合に限る。"
+        },
+        {
+          "id": "STOP-F05-CAUSE-CONSTRAINT-MISMATCH-01",
+          "condition_ja": "constraint_mismatchは現L4 cause vocabulary上の語だけで、L3/L10 F05から独立したCause guardを導ける記述・L4 guard・L9 oracleが確認できない。Causeを生成しない。",
+          "owner": "HARNESS-CORE上流要求/L4 design owner",
+          "reentry_ja": "F05承認済みL3/L10の具体的義務pointerがこのCause分岐を明示的に支え、L4 guardと独立L9 oracleが形成された場合に限る。"
+        },
+        {
+          "id": "STOP-F05-GAP-PROPOSAL-BODY-ORACLE-01",
+          "condition_ja": "提案metadata（kind/reason/backflow_owner/subject等）だけから原命題bodyを生成・分類する有限oracleがない。GapProposal bodyを捏造せず、質問/矛盾/derived requirement/N/A意味を成功扱いしない。",
+          "owner": "元命題の意味を持つHARNESS/BRAIN等の既存ownerとHARNESS-CORE verification design owner",
+          "reentry_ja": "既存owner由来の独立原statement/bodyと同じoperation scopeへのL4 guardがあり、その差を明示する有限L9 input/expectedが揃った場合。"
+        }
+      ],
+      "preserve_change_reason_ja": {
+        "preserve": "L4の既存意味、元Ref/collection/source/body/Qualificationの原Read、F05 private Cause boundary、公開Comparison/FieldCheck/Finding意味、既存owner STOP-IDs。",
+        "change": "source_unresolved/source_body_mismatchの既存CauseKindについて、上記二つの閉じたwriter/storage経路のみを具体化する。definition content_unresolvedの意味は維持し、原因件数/rightの型境界は未形成STOPに残す。",
+        "reason": "UTW-014/020/021を防ぎ、未取得を空/成功にせず、source/body差をdomain missing/unknownへ混ぜない。失敗から新要求/gateを生成しない。"
+      }
     }
   },
   "selected_source_occurrence_array_builder_detail": {
