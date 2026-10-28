@@ -338,6 +338,8 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             layer="L7",
         )
         self.assertTrue(l7["passed"], msg=l7["failures"])
+        self.assertEqual(l7["status"], "not_applicable")
+        self.assertTrue(l7["reason"])
 
     def test_l6_l8_l9_reject_l7_full_test_material(self) -> None:
         material = ownership_cap_test_material()

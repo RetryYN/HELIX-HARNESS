@@ -1070,6 +1070,17 @@ def check_ownership_cap(
     eff_layer = layer or _infer_layer(file_path)
     is_l8_l9 = eff_layer in ("L8", "L9")
     check_id = "CHK-OWNERSHIP-CAP-L8L9" if is_l8_l9 else "CHK-OWNERSHIP-CAP-L3L6"
+    if eff_layer == "L7":
+        return {
+            "check": check_id,
+            "passed": True,
+            "status": "not_applicable",
+            "reason": "L7 owns full verification material; this ownership cap applies to consuming layers.",
+            "layer": eff_layer,
+            "file": file_path,
+            "failures": [],
+            "derived_from": DERIVATION_MAP[check_id],
+        }
     forbidden_keys = (
         FORBIDDEN_MATERIAL_KEYS_L8L9 if is_l8_l9 else FORBIDDEN_MATERIAL_KEYS_COMMON
     )
