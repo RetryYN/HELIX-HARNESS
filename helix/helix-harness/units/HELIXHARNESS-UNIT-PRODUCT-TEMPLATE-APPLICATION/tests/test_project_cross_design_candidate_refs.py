@@ -61,7 +61,7 @@ def _rename_reference_identifiers(value, in_scope=False):
                 renamed[key] = "renamed::" + item
             else:
                 renamed[key] = _rename_reference_identifiers(
-                    item, in_scope=in_scope or key == "scope"
+                    item, in_scope=in_scope or key in {"scope", "product_scope"}
                 )
         return renamed
     return value
@@ -270,8 +270,10 @@ class TestProjectCrossDesignCandidateRefs(unittest.TestCase):
         def reverse_universe_order(p):
             a=copy.deepcopy(p["core_application"]["universes"][0]); b=copy.deepcopy(a)
             b["ref"]["identity"]="universe-B"; b["ref"]["scope"]={"product":"other"}; b["binding"]["product_scope"]={"product":"other"}
-            b["members"]=[ref(scope={"product":"other","tenant":"tenant-A"})]
-            t=copy.deepcopy(p["core_application"]["templates"][0]); t["ref"]=copy.deepcopy(b["members"][0]); t["binding"]["product_scope"]={"product":"other","tenant":"tenant-A"}
+            candidate=copy.deepcopy(p["brain_supply_analysis"]["candidate_refs"][0])
+            member=copy.deepcopy(candidate); member["scope"]={"product":"other","tenant":"tenant-A"}
+            b["members"]=[member]
+            t=copy.deepcopy(p["core_application"]["templates"][0]); t["ref"]=copy.deepcopy(member); t["binding"]["product_scope"]={"product":"other","tenant":"tenant-A"}
             p["core_application"]["universes"]=[b,a]; p["core_application"]["templates"].append(t)
         add(rows, "HARNESS-L8-009-XBD-CORE009-F01-PROJ-UNIVERSE-ORDER-22", reverse_universe_order,
             {"links[0].universe_results[0].universe_index": 0,
@@ -384,7 +386,9 @@ class TestProjectCrossDesignCandidateRefs(unittest.TestCase):
              "links[0].unresolved_fields": ["identity"]})
         def probe_b(p):
             u=copy.deepcopy(p["core_application"]["universes"][0]); u["members"]=[]
-            other=copy.deepcopy(u); other["members"]=[ref(revision="rev-B")]
+            other=copy.deepcopy(u)
+            revised=copy.deepcopy(p["brain_supply_analysis"]["candidate_refs"][0]); revised["revision"]="rev-B"
+            other["members"]=[revised]
             p["core_application"]["universes"]=[u,other]
         add(rows, "HARNESS-L8-009-R1-CE-B-EMPTY-MEMBER-PLUS-REVISION-DIFFERENCE", probe_b,
             {"links[0].universe_results[0].projection_state": "no_universe_member",
@@ -392,7 +396,9 @@ class TestProjectCrossDesignCandidateRefs(unittest.TestCase):
              "links[0].universe_results[1].different_fields": ["revision"]})
         def probe_c(p):
             u=copy.deepcopy(p["core_application"]["universes"][0]); u["members"]=None
-            other=copy.deepcopy(u); other["members"]=[ref(revision="rev-B")]
+            other=copy.deepcopy(u)
+            revised=copy.deepcopy(p["brain_supply_analysis"]["candidate_refs"][0]); revised["revision"]="rev-B"
+            other["members"]=[revised]
             p["core_application"]["universes"]=[u,other]
         add(rows, "HARNESS-L8-009-R1-CE-C-NULL-MEMBER-PLUS-REVISION-DIFFERENCE", probe_c,
             {"links[0].universe_results[0].universe_members_presence": "null",
