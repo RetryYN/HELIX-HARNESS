@@ -51,14 +51,16 @@
   "l3_obligation_decomposition": [
     {
       "element_id": "O1",
-      "obligation_ja": "HARNESS-COREのPython意味処理は適用set/義務/不足質問/意味影響の材料を導く。BRAINは汎用知識版/state、OSは案件選択/使用set/版の登録と運転を持つ。CORE出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。",
+      "obligation_ja": "HARNESS-COREのPython意味処理は適用set/義務/不足質問/意味影響の材料を導く。BRAINは汎用知識版/state、OSは案件選択/使用set/版の登録と運転を持つ。",
       "l5_pointers": [
         "L5#/contracts/0",
         "L5#/functions/9",
         "L5#/functions/9/oracle_binding_boundary",
         "L5#/functions/9/knowledge_correspondence_consumer_binding",
-        "L5#/failure_rules/0",
-        "L5#/failure_rules/1",
+        "L5#/failure_rules/2",
+        "L5#/failure_rules/3",
+        "L5#/failure_rules/6",
+        "L5#/failure_rules/7",
         "L5#/type_contract/types/CheckApplicationClaimsContext",
         "L5#/type_contract/types/Claim",
         "L5#/type_contract/types/Comparison",
@@ -74,38 +76,7 @@
         "L5#/f05_detail_contract/leaf_writer_ledger/25",
         "L5#/f05_detail_contract/native_context_crosswalk/check_application_claims",
         "L5#/f05_detail_contract/consumer_interpretation_binding",
-        "L5#/f05_detail_contract/existing_type_and_writer_changes/2"
-      ],
-      "l8_pointers": [
-        "L8#/cases/0",
-        "L8#/cases/0/negative_cases/0",
-        "L8#/cases/0/negative_cases/1",
-        "L8#/normal_function_oracles/9"
-      ],
-      "basis_pointers": [
-        "L3B#/requirements/4",
-        "L10B#/cases/4",
-        "L4#/contracts/0",
-        "L9#/cases/0",
-        "L9#/cases/0/negative_cases/0",
-        "L9#/cases/0/negative_cases/1",
-        "DISP1#/dispositions/12",
-        "DISP2#/dispositions/5",
-        "DISP2#/dispositions/18"
-      ]
-    },
-    {
-      "element_id": "O2",
-      "obligation_ja": "OS受領だけでproject完了、知識提供を製品適用済み、不足候補をBackflow ticket発行済み、返却候補から設計成立/pair成功へ昇格させず、任意claimは原事実から分離して原known/未完を上書きしない。",
-      "l5_pointers": [
-        "L5#/contracts/0",
-        "L5#/functions/9",
-        "L5#/functions/9/oracle_binding_boundary",
-        "L5#/functions/9/knowledge_correspondence_consumer_binding",
-        "L5#/failure_rules/2",
-        "L5#/failure_rules/3",
-        "L5#/failure_rules/6",
-        "L5#/failure_rules/7",
+        "L5#/f05_detail_contract/existing_type_and_writer_changes/2",
         "L5#/selected_brain_field_definition_application_detail/writer_and_call_contract/fn9_original_axes_projection",
         "L5#/selected_brain_field_definition_application_detail/writer_and_call_contract/output_member_mapping/fn9_applied_claims"
       ],
@@ -129,6 +100,35 @@
         "L9#/cases/0/negative_cases/3",
         "L9#/cases/0/negative_cases/6",
         "L9#/cases/0/negative_cases/7",
+        "DISP1#/dispositions/12",
+        "DISP2#/dispositions/5",
+        "DISP2#/dispositions/18"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "obligation_ja": "CORE出力にDB/Git/GitHub write、割当、lease、実行、認可を与えない。",
+      "l5_pointers": [
+        "L5#/contracts/0",
+        "L5#/functions/9",
+        "L5#/functions/9/oracle_binding_boundary",
+        "L5#/functions/9/knowledge_correspondence_consumer_binding",
+        "L5#/failure_rules/0",
+        "L5#/failure_rules/1"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0",
+        "L8#/cases/0/negative_cases/0",
+        "L8#/cases/0/negative_cases/1",
+        "L8#/normal_function_oracles/9"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L10B#/cases/4",
+        "L4#/contracts/0",
+        "L9#/cases/0",
+        "L9#/cases/0/negative_cases/0",
+        "L9#/cases/0/negative_cases/1",
         "DISP1#/dispositions/12",
         "DISP2#/dispositions/5",
         "DISP2#/dispositions/18"
@@ -296,7 +296,7 @@
   "authority_effect": "none",
   "source_main": "36c7751647e19eca3cb68b9e140fe4e6c569a893",
   "request_base_sha": "36c7751647e19eca3cb68b9e140fe4e6c569a893",
-  "recorded_at_utc": "2026-10-28T10:59:05+00:00",
+  "recorded_at_utc": "2026-10-28T11:04:23+00:00",
   "pins": {
     "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
     "L10B_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
