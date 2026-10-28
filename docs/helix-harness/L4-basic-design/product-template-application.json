@@ -9704,7 +9704,7 @@
     "paired_verification_ref": "HARNESS-L9-009-F05-BRAIN-FIELD-DEFINITION-APPLICATION",
     "scope": "既存ApplicationInputBindingが一つの同call selected/targeted CORE FieldInputと一つの原BRAIN SectionField/F03 field-definition readの間に明示された適用関係を受け、その全支持をCOREのF05定義評価へ私有枝で結ぶ。製品定義operandごとの対応、双方の原identity/Binding/source/read、F05 native返却とforeign適用結果を並行保持し、fn9/fn10の専用私有consumer入口まで定義する。全field・全source chain・全ApplicationInput assemblyの閉包ではない。",
     "authority_effect": "承認済みF01/F05/F03の意味を変更しない。CORE ApplicationInputBindingが当該操作の明示適用requestを供給する。別の承認者、issuer、registry、BRAINへの製品意味責務、新しいauthority/gateを作らない。BRAINはgeneric field meaningを保有し、COREは製品FieldInputへの適用と製品値を保有し、OSは案件記録を保有する。",
-    "operation_effect": "BRAIN既存private full-runner portとCORE既存C01/native producerの各一回のlogical callを同一操作contextへ束ね、F05の新private variantとfn9/fn10の新private consumer variantへ渡す設計を定める。local/remote配置、transport、runtime、実接続は固定しない。未実装portを実在のdispatch/deliveryとして扱わない。",
+    "operation_effect": "BRAIN公開端点契約（public_selected_field_evaluation_endpoint: symbol=evaluate_selected_field_values_public, schema_id=helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint, schema_version=1.0.0）を受けるCORE側logical adapter portとCORE既存C01/native producerの各一回のlogical callを同一操作contextへ束ね、F05の新private variantとfn9/fn10の新private consumer variantへ渡す設計を定める。BRAIN内部private runnerを直接呼出し・pinしない。local/remote配置、transport、runtime、実接続は固定しない。未実装portを実在のdispatch/deliveryとして扱わない。",
     "source_basis": [
       {
         "kind": "approved_requirement",
@@ -9801,8 +9801,8 @@
       {
         "kind": "fixed_existing_BRAIN_basic_design",
         "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
-        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
-        "sha256": "0aa27b7d2085456d9eefffda1be4a1cd493ad26cf10ca433d229f6411f92ad80",
+        "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+        "sha256": "f3ed3cec71f1f09eb78bf9caaa7623030de7911e1559b83d2cc9ff1b1b6ecba0",
         "pointers": [
           "/field_value_applicability_contract/functions/2",
           "/field_value_applicability_contract/closed_types/F03FieldDefinitionRead",
@@ -9810,24 +9810,26 @@
           "/field_value_applicability_contract/field_definition_cause_table",
           "/field_value_applicability_contract/field_definition_judgment_writer",
           "/field_value_applicability_contract/projection_order/reads",
-          "/field_value_applicability_contract/projection_order/claims"
+          "/field_value_applicability_contract/projection_order/claims",
+          "/field_value_applicability_contract/public_selected_field_evaluation_endpoint"
         ],
-        "role": "原BRAIN producer/meaning/causeの固定技術source。新設要求や実装証拠ではない。"
+        "role": "原BRAIN producer/meaning/causeおよびF03公開端点契約（public_selected_field_evaluation_endpoint）の固定技術source。新設要求や実装証拠ではない。"
       },
       {
         "kind": "fixed_existing_BRAIN_detail_design",
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
-        "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
-        "sha256": "3d97d1333333f99a064a88a0b559365dac4207110c1a980a9e94bedfb8dd3142",
+        "revision": "c406e8360707a4d45c42cda33efb357ab9c24de2",
+        "sha256": "6420f2b133255fe572c847ca98361cdb7787fca8d33532948f0d848d6bf23250",
         "pointers": [
-          "/field_value_applicability_detail/public_and_private_callers/private_full_runner",
+          "/functions/9",
+          "/field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint",
           "/field_value_applicability_detail/not_closed_here",
           "/type_contract/types/Binding",
           "/type_contract/types/SupplyInput",
           "/type_contract/types/QualifiedSource",
           "/type_contract/types/SupplyAnalysis"
         ],
-        "role": "実同call F03Evaluationを返す既存private full-runner portの契約。SupplyAnalysisはその全原source/read/supportを代替しない。"
+        "role": "実同call F03Evaluationを返すBRAIN公開端点契約（evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation）。BRAIN内部private runnerや3-member返却wholeには結合せず、SupplyAnalysisはその全原source/read/supportを代替しない。"
       },
       {
         "kind": "fixed_existing_CORE_basic_design",
@@ -9868,7 +9870,7 @@
     ],
     "source_and_identity_contract": {
       "CORE_field": "同一CORE operationの実Selectionがtargetedとした、validated.input.field_inputs[i]の一出現。field index、全FieldInput、full field Ref、template_ref、ApplicationBinding、definition_refsの原whole/presence/orderを結ぶ。Selectionが未形成/outside/raw_onlyならこの適用枝は未呼出し。",
-      "BRAIN_field": "同一BRAIN immutable snapshotのinput.section_fields[f]原一出現と、その原full Ref/BindingをF03 field owner/target/fact/meaning readへつなぐ。BRAIN full-runnerが返すF03Evaluationを実際のsupport正本とする。CORE FieldInput.refとBRAIN SectionField.refは異なってよい。",
+      "BRAIN_field": "同一BRAIN immutable snapshotのinput.section_fields[f]原一出現と、その原full Ref/BindingをF03 field owner/target/fact/meaning readへつなぐ。BRAIN公開端点契約（evaluate_selected_field_values_public）が返すF03Evaluationを実際のsupport正本とする。CORE FieldInput.refとBRAIN SectionField.refは異なってよい。",
       "binding_separation": "BRAIN BindingとCORE ApplicationBindingは別の閉型・identity空間として保持する。owner名、field名、Ref文字列、revision/scope類似、配列位置、source_locatorから相互同一性/資格/適用を推論しない。",
       "operand_link": "CORE ApplicationInputBindingがoperation requestで、CORE definition_refs[k]の実occurrence/full Refごとに対応を明示する。通常はBRAIN meaning_fact_refs[m]の実occurrence/full RefとF03 meaning-read/support occurrenceをlinkする。BRAIN meaning_refs_emptyの場合は存在しないmを作らず、当該F03FieldDefinitionReadのowner対応済みempty判断を明示的なfield-level support端としてlinkする。CORE field-level関係も同じrequestに明示し、いずれかの原Refを別Refへrename/castしない。既存CORE native Ref lookupのdifferent/unresolved結果はそのまま別に残す。これらoccurrence linksは所在対応であって意味適用の宣言ではない。",
       "coverage": "relationは同operationのCORE input/application snapshot identity+revisionとBRAIN validated snapshot identity+revisionへそれぞれ束縛する。入力にある全CORE definition_refs occurrenceを列挙し、対応したもの/未対応のものを原順で保持する。未対応operand、duplicate occurrence、unknown raw値は消さず、選択BRAIN fieldの一つのknown支持だけからfield全体をknownにしない。対応端は実BRAIN meaning support occurrence、又はmeaning_refs_emptyのときに限りowner対応済みF03FieldDefinitionRead empty judgmentである。すべてのCORE operandと当該fieldに関係するBRAIN support occurrenceをrelationへ接続し、さらにCORE actual application statement/reason/basisが形成した範囲だけsummary候補を作る。対応やstatementの一つでも未形成ならsummary未形成。",
@@ -9878,7 +9880,7 @@
     "statement_reader_contract": {
       "symbol": "_read_core_field_definition_application_statement",
       "placement": "既存ApplicationInputBinding内のprivate reader。新public API/schema、別issuer、恒常追加gateではない。呼出し元は同operationの元requestを保全し、readerはその原sourceをlosslessに読む。",
-      "input": "CoreFieldDefinitionApplicationStatementInput = {operation_request_raw: callerが同じApplicationInputBinding operationから明示供給する原request wholeとpresence、core_detail_return: 同call CoreApplicationDetailReturn whole、selected_core_field_index: 実targeted field index、application_relation: operand occurrence links全件、brain_f03_return: 同operation BRAIN full-runnerが実際に返したF03Evaluation whole}。operation_request_rawはprivate wrapperへの実引数であり、公開wire schema/APIの新設や既定値ではない。含まれるindex-only relationとtyped definition_application bodyを別memberとして保存し、body/sourceをRelationから生成しない。",
+      "input": "CoreFieldDefinitionApplicationStatementInput = {operation_request_raw: callerが同じApplicationInputBinding operationから明示供給する原request wholeとpresence、core_detail_return: 同call CoreApplicationDetailReturn whole、selected_core_field_index: 実targeted field index、application_relation: operand occurrence links全件、brain_f03_return: 同operation BRAIN公開端点契約（evaluate_selected_field_values_public）が実際に返したF03Evaluation whole}。operation_request_rawはprivate wrapperへの実引数であり、公開wire schema/APIの新設や既定値ではない。含まれるindex-only relationとtyped definition_application bodyを別memberとして保存し、body/sourceをRelationから生成しない。",
       "minimum_original_body": "definition_applicationはtyped owner-operation body。必須原項目はkind literal=definition_application、同operationのoperation/application scopeとrevisionへの原Ref、CORE product FieldInput occurrence/full Ref/full ApplicationBinding、全definition_refs operand occurrence/full Ref、BRAIN SectionField occurrence/full Ref/full Binding、対応するF03 support occurrence参照全件、owner_assertion、application_reason、independent_basis_refsである。owner_assertionの最小形は{target_core_operand_occurrence, supporting_brain_occurrence_refs[], proposition: RawValue}。propositionはownerがこのoperationで宣言したgeneric meaningを当該製品定義へ適用する内容の原値であり、単なる対応/indexではない。application_reasonは当該主張の理由を表す別原値、independent_basis_refsは主張を支える原occurrence/sourceを指す。これらは判定結果のknown/missing/unknown/conflict stateを格納する欄ではなく、識別子・state文字列だけでも代替できない。追加原memberもwholeに残す。これは局所private readerの技術carrierであり、外部wire/public schemaを定義しない。",
       "read_result": "CoreFieldApplicationStatementRead = {tag=present, original_operation_request: PresenceJsonValue, statement_source_observation: ValidationSourceObservation (既存CORE source観測domainの閉型), body_pointer: JSONPointer, body_presence_and_raw: PresenceJsonValue, operation_scope_read: original ref/read, core_field_and_binding_reads: original occurrences, operand_reads: original ordered occurrences, brain_field_and_support_reads: original ordered occurrences, application_meaning_raw: PresenceJsonValue, reason_raw: PresenceJsonValue, basis_reads: original ordered ValidationSourceObservation/Ref occurrences, extra_members_raw: original whole}|{tag=unformed, original_operation_request: PresenceJsonValue, original_core_detail_return: CoreApplicationDetailReturn, original_brain_f03_return: F03Evaluation, original_relation: all supplied links, source_observations: all reached ValidationSourceObservation values, causes: local missing/unresolved/mismatch causes}. CORE側のsource observationはL5 /f05_detail_contract/types/ValidationSourceObservationをそのまま保持する。BRAIN側F03 source observationとは別domain・別閉型として原wholeを保持し、相互castせずsource資格を生成しない。",
       "formation": "presentは同operation requestから実sourceを読み、対象ValidationSourceObservationを既存ref/owner/scope/revision/locator/bytes規則で辿り、typed bodyの全必須memberとCORE field/operand・BRAIN field/support端をそれぞれ元index/full Refへ対応できた場合だけ形成する。source自体の欠落/null/type外、参照未解決、operation/snapshot不一致、required raw member欠落、support端未対応、意味本文/理由/basisの所在不明はunformed。読めた原raw値・presence・ValidationSourceObservationは失敗枝にも残し、修復・既定・他sourceへの置換をしない。意味適用として形成できる条件を満たさないindex-only relationはrelationとして保持するが、application statement/resultはunformed。",
@@ -9891,7 +9893,7 @@
         "visibility": "CORE private only; public schema/APIではない",
         "members": [
           "core_caller_inputs: 既存のclosed CallerInputsを原値のまま一回呼出し用に保持",
-          "brain_same_call_request: BRAIN existing private_full_runnerが必要とする原snapshot/request context。既存SupplyInput/Bindingを新変換せずその原wholeとimmutable revisionを保持",
+          "brain_same_call_request: BRAIN public_selected_field_evaluation_endpoint（evaluate_selected_field_values_public）が必要とする原snapshot/request context（F03BasicContextへ結ぶ原SupplyInput/Binding）。既存SupplyInput/Bindingを新変換せずその原wholeとimmutable revisionを保持",
           "operation_request_raw: callerが同一ApplicationInputBinding operationについて明示供給する原request whole/presence。explicit_application_relationとownerのtyped definition_application body/source occurrenceを原値で保持し、公開wire schema/APIの新設や既定値にしない",
           "explicit_application_relation: source_and_identity_contract/operand_linkの両端mappingとoccurrence links。位置関係だけで意味適用を主張しない",
           "core_application_statement: _read_core_field_definition_application_statementが読む同operation typed definition_application原source/read。index-only relationと分離し、欠落時はapplication未形成。単独boolでowner意味を発行しない",
@@ -9901,7 +9903,7 @@
       "call_order": [
         "1. ApplicationInputBindingのprivate wrapperは、まず既存build_application_analysis_detail(CallerInputs) / C01を同一CallerInputsで一回呼び、実CoreApplicationDetailReturn wholeを取得する。二回目のC01や入力再decode/合成はしない。",
         "2. wrapperはCoreApplicationDetailReturn.validation.validatedとvalidation.source_observations、f05、producer_observations、claims、analysis、causes、input_scope_knowledge_gapをwholeのまま保持する。targeted Selection/FieldInput occurrenceはこの実C01返却のf05.formed.value.owner_material.evaluated.field_results内で元field_index=iのFieldResultを探し、evaluated枝ならvalue.selection、raw_only枝ならselectionを読む。targetedはevaluated.value.selectionとvalidation.validated.input.field_inputs[i]を対応させ、raw_only/outside/unestablished、owner_material/F05/field result未形成、unobservedならnative wholeを返しforeign枝をforeign_not_calledとして局所未形成にする。",
-        "3. Selectionが同callで一つのtargeted fieldと対応operandを形成し、明示request relationがある場合に限り、wrapperはBRAIN既存private_full_runnerを一回呼び実F03Evaluation wholeとBRAIN snapshot/source originを保持する。SupplyAnalysis、公開Comparison/Event、case fixtureから再構成しない。BRAIN呼出し不能/原条件未成立はlocal not_calledとしCORE native wholeを変更しない。",
+        "3. Selectionが同callで一つのtargeted fieldと対応operandを形成し、明示request relationがある場合に限り、wrapperはCORE側logical adapter経由でBRAIN公開端点契約（evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation）を一回呼び実F03Evaluation wholeとBRAIN snapshot/source originを保持する。BRAIN内部private runnerを直接呼ばず、SupplyAnalysis、公開Comparison/Event、case fixtureから再構成しない。BRAIN呼出し不能/原条件未成立はlocal not_calledとしCORE native wholeを変更しない。",
         "4. _read_core_field_definition_application_statementは同operation raw request、CoreApplicationDetailReturn、relation、実BRAIN F03Evaluationを受けてtyped owner operation statementを読む。mapping/request欠落、statement source不在、参照/meaning/reason/basis未形成はprivate application resultだけunformedにし、CORE native F05/producer結果、BRAIN全support、原linksを保持する。",
         "5. build_f05_brain_definition_application_variantは実CoreApplicationDetailReturn whole、BRAIN F03 whole、relation、statement readを保持し、native F05DetailedReturnを変更せずforeign support/applied definition viewを形成する。続いてcompare_requirement_gaps_with_brain_definition_applicationが同じF05責務を明示mappingで拡張実行し、既存closed public shapeのCoreComparisonを別のapplied_f05_comparisonとして返す。native F05 comparisonがunformedなら、それを上書きせず、完全なF05 materialを再構成できる条件を満たすときだけ別出力を形成する。",
         "6. fn9 private variantはapplied_f05_comparisonをcompare_requirement_gapsへ持つ新private enriched contextと、同callの他native producer observationsを受け、既存fn9のwriter責務で新しいpublic-shape CoreComparisonを計算する。これはC01が返したclaims/producer_observationではなく、別操作の適用mode結果である。",
@@ -9938,7 +9940,7 @@
       },
       "f05_variant": {
         "symbol": "compare_requirement_gaps_with_brain_definition_application",
-        "request_type": "F05BrainDefinitionApplicationRequest (called枝専用) = {original_caller_inputs: CallerInputs, core_application_detail_return: CoreApplicationDetailReturn whole, native_f05_return: F05DetailedReturn (outer.f05 formed valueのみ), brain_f03_return: F03Evaluation (private_full_runner実returnのみ), explicit_application_relation, core_application_statement, source_preparation_observation?}。呼出し前提が成立しない場合、この型を作らず外側invocationをnot_calledにする。",
+        "request_type": "F05BrainDefinitionApplicationRequest (called枝専用) = {original_caller_inputs: CallerInputs, core_application_detail_return: CoreApplicationDetailReturn whole, native_f05_return: F05DetailedReturn (outer.f05 formed valueのみ), brain_f03_return: F03Evaluation (public_selected_field_evaluation_endpoint実returnのみ), explicit_application_relation, core_application_statement, source_preparation_observation?}。呼出し前提が成立しない場合、この型を作らず外側invocationをnot_calledにする。",
         "return_type": "F05BrainDefinitionApplicationReturn (called枝専用) = {original_caller_inputs: CallerInputs whole, core_application_detail_return: CoreApplicationDetailReturn whole, native_f05_return: 実取得F05DetailedReturn, brain_f03_return: 実取得F03Evaluation whole, foreign_definition_support, application_relation, core_application_statement, applied_definition_view, applied_f05_comparison: F05AppliedComparisonOutcome(formed|unformed), causes}。",
         "immutability": "既存OwnerMaterial/FieldOwnerResult/DefinitionAssessment/DefinitionJudgment/DefinitionEvidenceInterpretation/BasisOccurrence/OriginRoot/CallerInputs/F05DetailedReturnのclosed shapeを変更しない。BRAIN resultは別private memberのまま保持し、CORE native bytes/body/qualificationを再構築しない。"
       },
@@ -10105,10 +10107,10 @@
       "revision": "491e9dcd7c6a03640b8e52dd079e98faff704817",
       "lines": "34–58",
       "sha256": "6561d660925cb2d607f90c8a3fb4477dba959a2aecd48365156a025ce580b57b",
-      "additional_source_ref": "対L9のsource_basis/25に固定したJSON authority本文と、同/26の資産台帳。",
-      "retained": "I/O・失敗・state・consumer/oracleの意味境界、原sourceと型のidentityを分ける。定義知識と製品適用・案件値を混同しない。",
-      "changed": "旧DomainGraph/registry/gate/runtimeを移植せず、既存ApplicationInputBinding内に一fieldの原BRAIN支持とCORE製品適用を結ぶ私有接続を記述する。",
-      "reason": "旧inventory-firstと意味署名の比較を、現在の承認済みF01/F05/F03と両端閉型へ再導出する。同形JSONや同名だけで原支持・適用判断を統合しない。"
+      "additional_source_ref": "対L9のsource_basis/25に固定したJSON authority本文と、同/26の資産台帳。加えてadapter境界根拠としてLEGACY-ASSET-BD13CC67526B48D461F9（archive/legacy-generation-2026-09-14/root/docs/adr/ADR-003-runtime-adapter-boundary-subscription-cli.md lines 8–45, sha256 ffbe51c4a34cdaf4c072393a0864d916c7a4e1d6eaf4788bb0260e8280291f37, 失敗A-71）およびdocs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md lines 62–70を参照。",
+      "retained": "I/O・失敗・state・consumer/oracleの意味境界、原sourceと型のidentityを分ける。定義知識と製品適用・案件値を混同しない。ADR-003（A-71）のadapter境界による責務分離・変更影響局所化を保持する。",
+      "changed": "旧DomainGraph/registry/gate/runtimeや外部CLI起動隔離をそのまま移植せず、BRAINの公開端点契約（public_selected_field_evaluation_endpoint: evaluate_selected_field_values_public）とCORE側logical adapter mappingで一fieldの原BRAIN支持とCORE製品適用を結び、相手機構の内部private runner（run_descriptor_target_flow_with_field_value_detail）や3-member private return wholeへの直接結合を排する。",
+      "reason": "旧inventory-firstと意味署名の比較およびADR-003のadapter境界・9/26 PO判断（疎結合connector原則）を、現在の承認済みF01/F05/F03と両端閉型へ再導出する。同形JSONや同名だけで原支持・適用判断を統合しない。"
     },
     "failure_basis_ref": {
       "local_document_pointer": "/failure_basis",
