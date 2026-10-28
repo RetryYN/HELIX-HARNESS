@@ -4360,6 +4360,10 @@
      "pointer": "/f05_detail_contract/projection_contract/failure"
     },
     {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/cause_kind_crosswalk/values/15"
+    },
+    {
      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
      "pointer": "/field_semantic_evidence_verification/cause_kind_extension_cases/1"
     },
@@ -4372,11 +4376,12 @@
    "expected_observation": "実ProjectionAttempt.result=unformedでprojection_unformed Causeを一件保持。targetは実不一致宣言member Read.location、leftは同宣言member全値、rightは対応AxisFact content record whole Read、rule_pointer=/f05_detail_contract/projection_contract/failure。実宣言/content Read全値を保持し、native_definition_whole/V0/D0へ置換しない。DefinitionAssessmentへCauseを伝えない。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
-   "fixture_refinement": "U-IDのみ。具体fixture・full return・hashはない。",
+   "fixture_refinement": "U-IDのみ。projection_unformedのL4 basic_view_vocabularyへの対応根拠はL5 /f05_detail_contract/cause_kind_crosswalk/values/15に記録する。具体fixture・full return・hashはない。",
    "l5_technical_expectation": {
     "source_pointers": [
      "/f05_detail_contract/definition_axis_projection_cause_writer_contract/declaration_failure_cause",
      "/f05_detail_contract/projection_contract/failure",
+      "/f05_detail_contract/cause_kind_crosswalk/values/15",
      "/f05_detail_contract/types/Formation/variants/unformed/causes"
     ],
     "cause_shape": {
