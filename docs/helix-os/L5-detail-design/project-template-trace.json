@@ -4191,7 +4191,7 @@
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
       "state": "unknown",
-      "predicate": "template-selection/use operation is selected, but set/version/CORE applicability output is missing or inconsistent and claims treat the operation as usable/complete.",
+      "predicate": "template選択/使用操作が選択済みだが、set/版/CORE適用出力が欠落または不整合で、claimが使用可能/完了として扱う。",
       "backflow_owner": "BRAIN/CORE/OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
@@ -4202,7 +4202,7 @@
       "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
       "axis": "operation_dependency",
       "state": "unknown",
-      "predicate": "evaluation_selected=true, but selected LABO scope/required input/SECURITY permission evidence is missing or unresolved and claims send or treat the evaluation as complete.",
+      "predicate": "evaluation_selected=trueだが、選択LABO scope/必要入力/SECURITY許可根拠が欠落または未解決で、claimが送信または完了扱いとする。",
       "backflow_owner": "OS002/LABO/SECURITY",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0

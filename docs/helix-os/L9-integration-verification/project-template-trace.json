@@ -286,28 +286,28 @@
         },
         {
           "code": "selected_template_operation_unchecked",
-          "change": "template selection/use operation is treated as usable without matching the selected set, version, and CORE applicability output (including missing or inconsistent source material)",
+          "change": "set/版が未解決、CORE適用出力が欠落した選択済みtemplate操作を使用可能・完了として扱う。",
           "axis": "operation_dependency",
           "state": "unknown",
           "backflow_owner": "BRAIN/CORE/OS002",
-          "expected": "選択されたtemplate操作のset・version・CORE適用出力が未照合または不足のままなら不成立/未解決として保持し、使用可能・完了へ進めず、元sourceと非対象Qを保持する。",
+          "expected": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
           "expected_preserved": {
             "original_binding": "選択operationの原project/scope/requirement revision/template identityとsource refs",
-            "observable": "選択されたtemplate操作のset・version・CORE適用出力が未照合または不足のままなら不成立/未解決として保持し、使用可能・完了へ進めず、元sourceと非対象Qを保持する。",
+            "observable": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0
         },
         {
           "code": "selected_evaluation_operation_unchecked",
-          "change": "evaluation-selected operation is sent without resolving the selected LABO scope, required inputs, and SECURITY permission evidence",
+          "change": "evaluation_selected=trueでLABO scope/必要入力が未解決、SECURITY許可根拠が未確認の操作を送信・評価成立として扱う。",
           "axis": "operation_dependency",
           "state": "unknown",
           "backflow_owner": "OS002/LABO/SECURITY",
-          "expected": "評価選択時のLABO scope/必要入力/SECURITYの利用許可根拠が未照合または不足なら未解決として送信不成立を保持し、評価成立を生成せず、許可の意味や判定をOSが新設しない。",
+          "expected": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
           "expected_preserved": {
             "original_binding": "選択evaluation operationの原project/scope/requirement revisionとowner source refs",
-            "observable": "評価選択時のLABO scope/必要入力/SECURITYの利用許可根拠が未照合または不足なら未解決として送信不成立を保持し、評価成立を生成せず、許可の意味や判定をOSが新設しない。",
+            "observable": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0

@@ -905,96 +905,194 @@
         },
         {
           "code": "selected_template_operation_unchecked",
-          "change": "template selection/use operation is treated as usable without matching the selected set, version, and CORE applicability output (including missing or inconsistent source material)",
+          "change": "set/版が未解決、CORE適用出力が欠落した選択済みtemplate操作を使用可能・完了として扱う。",
           "axis": "operation_dependency",
           "state": "unknown",
           "backflow_owner": "BRAIN/CORE/OS002",
-          "expected": "選択されたtemplate操作のset・version・CORE適用出力が未照合または不足のままなら不成立/未解決として保持し、使用可能・完了へ進めず、元sourceと非対象Qを保持する。",
+          "expected": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
           "expected_preserved": {
             "original_binding": "選択operationの原project/scope/requirement revision/template identityとsource refs",
-            "observable": "選択されたtemplate操作のset・version・CORE適用出力が未照合または不足のままなら不成立/未解決として保持し、使用可能・完了へ進めず、元sourceと非対象Qを保持する。",
+            "observable": "owner資料の照合が成立していない選択template操作は未解決のまま保持し、使用可能/完了を生成せず、元sourceと非対象Qを保持する。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0,
           "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
           "input_state_minimum": {
-            "operation": "template selection/use (selected)",
             "binding": {
-              "project_scope": "P",
-              "requirement_ref": "REQ-P",
-              "HARNESS_contract_ref": "HARNESS-P",
-              "template_ref": "TPL-P",
-              "semantic_contract_ref": "SEM-P"
+              "project_scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "requirement_ref": {
+                "identity": "REQ-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "OS002"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "OS002"
+              },
+              "template_ref": {
+                "identity": "TPL-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "SEM-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "BRAIN"
+              }
             },
-            "source_event_ref": "EVENT-P",
-            "OS001_contract_ref": "CONTRACT-P",
-            "owner_material_status": {
-              "selected_set": "unresolved",
-              "selected_version": "unresolved",
-              "CORE_applicability_output": "missing"
+            "operation": "template-selection/use",
+            "source_event_ref": {
+              "identity": "EVENT-P",
+              "revision": "REV-P",
+              "scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "owner": "BRAIN"
+            },
+            "OS001_contract_ref": {
+              "identity": "CONTRACT-P",
+              "revision": "REV-P",
+              "scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "owner": "OS001"
             }
           },
           "mutations": [
             {
               "op": "append_claim",
               "path": "claims",
-              "value": {
-                "name": "selected_template_operation_unchecked",
-                "target_ref": "P",
-                "value": "Treat selected template operation as usable despite unresolved set/version and missing CORE applicability output.",
-                "basis_refs": []
-              }
+              "value": "owner資料の照合が未成立なのに、Pの選択template操作を使用可能として扱う。"
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "owner_evidence_coverage": "検証条件: 選択set/版およびCORE適用出力が未解決/不足。これはwire input memberではない。L5 B02RecordInputにset/版/CORE出力memberもowner資料の取得路/typeもないため、caseは宣言的で実行可能入力fixtureではない。owner資料供給経路が未形成としてBRAIN/COREへ戻し、OS002は許可・適用意味を新設しない。"
         },
         {
           "code": "selected_evaluation_operation_unchecked",
-          "change": "evaluation-selected operation is sent without resolving the selected LABO scope, required inputs, and SECURITY permission evidence",
+          "change": "evaluation_selected=trueでLABO scope/必要入力が未解決、SECURITY許可根拠が未確認の操作を送信・評価成立として扱う。",
           "axis": "operation_dependency",
           "state": "unknown",
           "backflow_owner": "OS002/LABO/SECURITY",
-          "expected": "評価選択時のLABO scope/必要入力/SECURITYの利用許可根拠が未照合または不足なら未解決として送信不成立を保持し、評価成立を生成せず、許可の意味や判定をOSが新設しない。",
+          "expected": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
           "expected_preserved": {
             "original_binding": "選択evaluation operationの原project/scope/requirement revisionとowner source refs",
-            "observable": "評価選択時のLABO scope/必要入力/SECURITYの利用許可根拠が未照合または不足なら未解決として送信不成立を保持し、評価成立を生成せず、許可の意味や判定をOSが新設しない。",
+            "observable": "LABO scope/必要入力/SECURITY許可根拠が照合できない選択evaluation operationは未解決・送信不成立のまま保持し、評価成立を生成しない。許可意味はOSで新設しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0,
           "fixture_ref": "HELIXOS-L8-002-FIXTURE-B02",
           "input_state_minimum": {
-            "operation": "evaluation handoff (selected)",
-            "evaluation_selected": true,
             "binding": {
-              "project_scope": "P",
-              "requirement_ref": "REQ-P",
-              "HARNESS_contract_ref": "HARNESS-P",
-              "template_ref": "TPL-P",
-              "semantic_contract_ref": "SEM-P"
+              "project_scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "requirement_ref": {
+                "identity": "REQ-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "OS002"
+              },
+              "HARNESS_contract_ref": {
+                "identity": "HARNESS-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "OS002"
+              },
+              "template_ref": {
+                "identity": "TPL-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "BRAIN"
+              },
+              "semantic_contract_ref": {
+                "identity": "SEM-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "T",
+                  "environment": "E"
+                },
+                "owner": "BRAIN"
+              }
             },
-            "source_event_ref": "EVENT-P",
-            "OS001_contract_ref": "CONTRACT-P",
-            "owner_material_status": {
-              "LABO_scope": "missing",
-              "required_inputs": "unresolved",
-              "SECURITY_permission_evidence": "unverified"
-            }
+            "operation": "evaluation-handoff",
+            "source_event_ref": {
+              "identity": "EVENT-P",
+              "revision": "REV-P",
+              "scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "owner": "LABO"
+            },
+            "OS001_contract_ref": {
+              "identity": "CONTRACT-P",
+              "revision": "REV-P",
+              "scope": {
+                "project": "P",
+                "tenant": "T",
+                "environment": "E"
+              },
+              "owner": "OS001"
+            },
+            "evaluation_selected": true
           },
           "mutations": [
             {
               "op": "append_claim",
               "path": "claims",
-              "value": {
-                "name": "selected_evaluation_operation_unchecked",
-                "target_ref": "P",
-                "value": "Send selected evaluation despite missing LABO scope, unresolved required inputs, and unverified SECURITY permission evidence.",
-                "basis_refs": []
-              }
+              "value": "LABO scope/必要入力/SECURITY証拠が未照合なのに、Pの選択evaluation operationを送信して評価成立として扱う。"
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
-          "execution_state": "not_executed"
+          "execution_state": "not_executed",
+          "owner_evidence_coverage": "検証条件: LABO scope/必要入力は未解決、SECURITY利用許可根拠は未確認。これらはwire input memberではない。L5 B02RecordInputにLABO scope/inputs/SECURITY証拠memberもowner資料の取得路/typeもないため、caseは宣言的で実行可能入力fixtureではない。owner資料供給経路が未形成としてLABO/SECURITYへ戻す。利用許可の意味/判定はOS002で定義しない。"
         }
       ],
       "execution_state": "not_executed"
