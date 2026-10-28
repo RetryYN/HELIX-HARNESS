@@ -240,7 +240,7 @@
         "failure_observation": "当該記録/受渡しの不足だけを解消先へ返し、無関係な有効scopeを保持する。",
         "execution_state": "not_executed"
       },
-      "expected_observation": "初回記録入力は照合可能。未発生result/receipt、非選択評価は未観測。評価不足をQ有効作業の停止へ拡大しない。",
+      "expected_observation": "初回記録入力は照合可能。未発生result/receipt、非選択評価は未観測。評価不足をQ有効作業の停止へ拡大しない。 template選択/使用operationに限り、process/application contract Refを別々に保持する。共有HARNESS_contract_refは従来役割のまま、三者の対応を推定しない。template selection/use時のF02 selected/used membershipはqualified F02 original recordから操作roleごとに解決し、record selector RefとF02 selected_source/used_sourceは別memberとして保持する。",
       "negative_cases": [
         {
           "code": "future_receipt_gate",
@@ -311,11 +311,149 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/permission意味の新設/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_process_contract_ref_missing",
+          "change": "template選択/使用operationでapplication contract Refと既存共有HARNESS_contract_refだけを供給し、process contract Refの欠落を充足扱いする。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "process_contract_refはmissingのまま保持する。application_contract_refや共有HARNESS_contract_refからprocess recordを解決・補完しない。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと供給済みapplication contract Ref、共通HARNESS_contract_refの原値",
+            "observable": "process_contract_refがmissingであることを保持し、application側の供給値と既存共有HARNESS_contract_refを別々に保持する。",
+            "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_application_contract_ref_missing",
+          "change": "template選択/使用operationでprocess contract Refと既存共有HARNESS_contract_refだけを供給し、application contract Refの欠落を充足扱いする。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "application_contract_refはmissingのまま保持する。process_contract_refや共有HARNESS_contract_refからapplication recordを解決・補完しない。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと供給済みprocess contract Ref、共通HARNESS_contract_refの原値",
+            "observable": "application_contract_refがmissingであることを保持し、process側の供給値と既存共有HARNESS_contract_refを別々に保持する。",
+            "effects": "原source/qualification、他の有効scope、owner未解決を保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_missing",
+          "change": "template-selection operationのselected_set_record_refが欠落し、used_set_record_refだけが存在する。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "OS002",
+          "expected": "selected_set_record_refがmissingのためselected側のF02 recordを解決しない。selected membershipをmissingとして返し、供給済みused側recordとその全member/sourceは保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingとqualified F02 used record、selected record ref欠落の原状態",
+            "observable": "selected_set_record_refとselected membershipのmissingを局所化し、used側record/ref/membership/provenanceを保持する。",
+            "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "used_template_set_record_missing",
+          "change": "template-use operationのused_set_record_refが欠落し、selected_set_record_refだけが存在する。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "OS002",
+          "expected": "used_set_record_refがmissingのためused側のF02 recordを解決しない。used membershipをmissingとして返し、供給済みselected側recordとその全member/sourceは保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingとqualified F02 selected record、used record ref欠落の原状態",
+            "observable": "used_set_record_refとused membershipのmissingを局所化し、selected側record/ref/membership/provenanceを保持する。",
+            "effects": "原record、他scope、同source recordの他memberを保持。authority/使用完了/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_unqualified",
+          "change": "selected_set_record_refに一致するF02 recordが未資格sourceにだけ存在する。",
+          "axis": "operation_dependency",
+          "state": "unknown",
+          "backflow_owner": "OS002",
+          "expected": "未資格recordをselected setの原入力として採らず、既存資格結果とmissing/unresolved状態を保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 binding、selected_set_record_ref、未資格sourceとQualificationの原値",
+            "observable": "selected membershipは未解決のまま、未資格原因を元sourceへ結び、qualified siblingを保持する。",
+            "effects": "qualified records/source refs、他scope、未資格sourceの診断を保持。authority/使用成立なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "selected_template_set_record_conflict",
+          "change": "同じselected_set_record_ref/section_keyに結ぶ複数のqualified F02原recordが相反するmembershipを持つ。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "相反F02 recordを一方選択せずconflictとして返し、両原recordとsourceを保持する。",
+          "expected_preserved": {
+            "original_binding": "B02 bindingと相反するqualified F02 records、両selected membership/各source",
+            "observable": "selected membershipの一意解決なしをconflictとして保持し、どちらも採用しない。",
+            "effects": "全相反record、qualification/ref分類、他scopeを保持。authority/使用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_process_application_contract_refs_swapped",
+          "change": "template選択/使用operationにおいて、互いに異なるprocess/application contract Refを役割と逆のmemberへ割り当てる。",
+          "axis": "operation_dependency",
+          "state": "conflict",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "process/application各memberを役割別の原Ref/sourceに照合し、逆割当をconflictとして局所化する。",
+          "expected_preserved": {
+            "original_binding": "B02 binding、異なるprocess/application原Refと各供給元の全値",
+            "observable": "process/applicationの役割不一致をconflictとして返し、両原Ref/source/presenceを保持する。",
+            "effects": "各原source/qualification、他の有効scope、owner未解決を保持。authority/適用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "harness_shared_contract_ref_cannot_substitute",
+          "change": "template選択operationでprocess_contract_refとapplication_contract_refの両方がmissingだが、既存共有HARNESS_contract_refだけは供給されている。",
+          "axis": "operation_dependency",
+          "state": "missing",
+          "backflow_owner": "HARNESS009/OS002",
+          "expected": "両operation memberをmissingのまま保持し、共有HARNESS_contract_refからいずれのrecordも解決・補完しない。",
+          "expected_preserved": {
+            "original_binding": "template選択operation、供給済み共有HARNESS_contract_ref、missingのprocess_contract_ref/application_contract_ref",
+            "observable": "process/application両operation memberのmissingを別々に保持し、共有Refを代替解決に使わない。",
+            "effects": "共有型とowner原値、他の有効scopeを保持。authority/適用成立/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed",
       "proof_needed": "原ref/版/scope/ownerと各内容、非対象作業・原event・未完の保持、実input/output、副作用。型/件数/hash一致だけでは意味合格なし。",
-      "content_comparison": "原ref identity/revision/scope/owner、各内容と個別状態を照合。record_count等は補助観測であり意味合格を代替しない。"
+      "content_comparison": "原ref identity/revision/scope/owner、各内容と個別状態を照合。record_count等は補助観測であり意味合格を代替しない。",
+      "independent_branch_expectations": [
+        {
+          "id": "B02-HARNESS-CONTRACT-ROLE-SEPARATION",
+          "input_ja": "template選択/使用operationに限り、H009 process_contract_ref/application_contract_refをB02 operation入力へ別々に供給し、既存の共有binding.HARNESS_contract_refは従来roleで保持する。",
+          "expected_semantic_proposal": "各operation memberを対応するH009原Refと個別照合し、欠落/逆roleの割当てを局所化する。既存共有Refとのidentity・包含・代替関係は推定しない。非対象operationは2 Refを要求しない。",
+          "preserved_ja": "共有binding型と従来memberの意味を保ち、owner対応が未形成であることを残す。HARNESSの適用/authorityを生成しない。"
+        },
+        {
+          "id": "B02-F02-SELECTED-MEMBERSHIP",
+          "input_ja": "selection operationとqualified F02 OwnerRecord (section_key=F02) を同一RecordTraceInput.sourcesに供給し、B02.selected_set_record_refをF02.subject_refへ結ぶ。F02.bindingはB02 bindingと一致し、selected_refsとused_refsは異なる。",
+          "expected_semantic_proposal": "F02.selected_refs/selected_sourceを選択集合として読み、B02 record selector Refとselected_sourceは同一視しない。",
+          "preserved_ja": "used_refs/used_sourceを別に保ち、CORE/BRAIN適用やOS登録成立を生成しない。"
+        },
+        {
+          "id": "B02-F02-USED-MEMBERSHIP",
+          "input_ja": "use operationと同じ資格済みF02 recordを供給し、B02.used_set_record_refをF02.subject_refへ結ぶ。",
+          "expected_semantic_proposal": "F02.used_refs/used_source/used_empty_basisを使用集合として読み、selected_refsから補完しない。",
+          "preserved_ja": "selected_refs/selected_sourceとused側を別々に保持し、実使用を作らない。"
+        },
+        {
+          "id": "B02-SHARED-REF-NO-SUBSTITUTION",
+          "input_ja": "template選択operationで共有binding.HARNESS_contract_refを供給しつつ、process_contract_refをmissingとする。",
+          "expected_semantic_proposal": "共有Refは欠落operation memberを補完しない。欠落を保持し、既存共有Refはそのroleに留める。",
+          "preserved_ja": "共有Refの原presence/valueと不足memberを別々に保持。ownerとの対応・実trustは未形成。"
+        }
+      ]
     },
     {
       "id": "HELIXOS-L9-002-F01",
@@ -5420,7 +5558,7 @@
     "meaning_coverage": "unproven",
     "global92_430_completion": "unproven",
     "contract_count": 13,
-    "negative_case_count": 77,
+    "negative_case_count": 85,
     "remaining": "基本対13組（B:296..300,302..308の③維持およびB:301のD-OS002-B1基本pair凍結）のL4/L9対設計と正負caseは構成済み（B）。下流L5/L8詳細対（T:296..308：D-OS002-T1a〜T4）の関数別精査・独立review・pair凍結、およびL6/L7実装・実input/output/副作用の実行観測は各下流責務へ戻す（C）。"
   },
   "legacy_facet_dispositions": [

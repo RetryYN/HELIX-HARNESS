@@ -540,7 +540,11 @@
           "result_state": "Field<string>",
           "receipt_state": "Field<string>",
           "evaluation_selected": "Field<boolean>",
-          "Q_work_state": "Field<B02RecordInputQworkstate>"
+          "Q_work_state": "Field<B02RecordInputQworkstate>",
+          "HARNESS_process_contract_ref": "Field<Ref>",
+          "HARNESS_application_contract_ref": "Field<Ref>",
+          "selected_set_record_ref": "Field<Ref>",
+          "used_set_record_ref": "Field<Ref>"
         },
         "meaning": "原recordの各属性を同identity/revision/scope/sourceへ結合して保持。内容は対応関数と原要求に従い比較する。"
       },
@@ -1933,10 +1937,24 @@
       "algorithm": [
         "context.operationに対応する原契約から常時binding/source/要求版と選択操作条件を照合。first-recordではfuture result/receiptのnot_occurredを欠落へ変えない。",
         "template selection/useとevaluation selected時だけ各原契約の集合/版/CORE出力、LABO必要集合/利用条件を照合。未選択のsourceはunobserved。",
-        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。"
+        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。",
+        "template選択/使用operationに限り、H009 Bindingから写すprocess_contract_ref/application_contract_refを別memberとしてrole別に照合する。既存共有binding.HARNESS_contract_refは変更せず、三Refの対応はowner依存で未形成。",
+        "selection/use operationに限り、B02.selected_set_record_ref/used_set_record_refでqualified OS F02 OwnerRecord.subject_refを選ぶ。F02.selected_refs/used_refsと各source provenanceを別roleで読む。subject Refはselected_source/used_sourceではなく、B02へ集合配列を複写しない。"
       ],
       "unit_case_refs": [
-        "HELIXOS-L8-002-B02"
+        "HELIXOS-L8-002-B02",
+        "HELIXOS-L8-002-ADD-38",
+        "HELIXOS-L8-002-ADD-39",
+        "HELIXOS-L8-002-ADD-40",
+        "HELIXOS-L8-002-ADD-41",
+        "HELIXOS-L8-002-ADD-42",
+        "HELIXOS-L8-002-ADD-43",
+        "HELIXOS-L8-002-ADD-44",
+        "HELIXOS-L8-002-ADD-45",
+        "HELIXOS-L8-002-ADD-46",
+        "HELIXOS-L8-002-ADD-47",
+        "HELIXOS-L8-002-ADD-48",
+        "HELIXOS-L8-002-ADD-49"
       ],
       "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_operation_dependencies"
     },
@@ -3009,8 +3027,65 @@
       "algorithm": [
         "context.operationに対応する原契約から常時binding/source/要求版と選択操作条件を照合。first-recordではfuture result/receiptのnot_occurredを欠落へ変えない。",
         "template selection/useとevaluation selected時だけ各原契約の集合/版/CORE出力、LABO必要集合/利用条件を照合。未選択のsourceはunobserved。",
-        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。"
-      ]
+        "未来receipt/全seed gateや非対象Q停止のclaimを原選択と比較し返す。Pの当該不足からQ状態を失効させない。",
+        "template選択/使用operationだけで、H009 Bindingの原process_contract_refとapplication_contract_refをB02RecordInputの別memberとして個別に保持・照合する。B02RecordInputbinding.HARNESS_contract_refは変更せず既存roleのまま保持し、二つのH009 Refとの同一性・包含・代替関係を推定しない。別operationでは二つのoperation memberを要求しない。",
+        "template-selection/use operationでは各roleのselected_set_record_ref/used_set_record_refをOwnerRecord.subject_refとして、同一RecordTraceInput.sources内のqualified recordから解決する。ownerは資格済みsourceの実値、section_key=F02の宣言型で選び、record_kind固定・first match・source refの代用をしない。",
+        "解決したF02 recordのbindingをB02 bindingと各memberごとに原値比較する。selectionはselected_refs/selected_source、useはused_refs/used_source/used_empty_basisをそれぞれ読む。record selector Refと各payload source Refは別roleであり、集合配列をB02へ複写しない。missing/unqualified/conflicting occurrenceは既存source issue/statusを保持し、反対roleやbinding.template_refでfallbackしない。"
+      ],
+      "operation_specific_input_members": {
+        "contract_refs": {
+          "members": [
+            "B02RecordInput.HARNESS_process_contract_ref",
+            "B02RecordInput.HARNESS_application_contract_ref"
+          ],
+          "meaning": "template選択/使用operationに限り、H009 Bindingのprocess_contract_refとapplication_contract_refの原RefをB02RecordInputの別memberとして保持する。共通B02RecordInputbinding.HARNESS_contract_refは変更せず既存roleのまま。",
+          "source_boundary": "template選択/使用operationの各RefはH009 Bindingの原値を別々に照合する。共有HARNESS_contract_refとのidentity/包含/対応関係はowner依存で未形成。HARNESS側の選択・適用・authorityを生成しない。非対象operationにこの2 Refを要求しない。",
+          "status": "B02 template選択/使用operationに限るOSのconsumer入力。共有binding型/F01/F02等は不変。三Ref間の対応はHARNESS owner依存で未形成。",
+          "owner_source_basis": {
+            "H009_L4_process_contract_ref": {
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+              "sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
+              "pointer": "/contracts/4/source_result_reference_projection/calculation_rules/operation_binding_required_members/members_in_order/2"
+            },
+            "H009_L4_application_contract_ref": {
+              "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+              "revision": "1b50e0e105f0d51b902b26ba0e48d66381705360",
+              "sha256": "a8164bd513a72c59fc2c1f121737f664070ccc10e4658f57defe22d85fe6f76d",
+              "pointer": "/contracts/4/source_result_reference_projection/calculation_rules/operation_binding_required_members/members_in_order/3"
+            },
+            "H009_L5_ApplicationBinding_process_contract_ref": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+              "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+              "pointer": "/type_contract/types/ApplicationBinding/fields/process_contract_ref"
+            },
+            "H009_L5_ApplicationBinding_application_contract_ref": {
+              "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+              "revision": "d6a3c2e1bba751d4254fd039e86599dbbdbdc235",
+              "sha256": "bd031871e97f05b871a04a90bb51658a6875128aa467160ca432c8a4702985c8",
+              "pointer": "/type_contract/types/ApplicationBinding/fields/application_contract_ref"
+            }
+          }
+        },
+        "template_set_membership_record_refs": {
+          "members": [
+            "B02RecordInput.selected_set_record_ref",
+            "B02RecordInput.used_set_record_ref"
+          ],
+          "meaning": "B02のselection/use operationから、OS F02 native owner recordを選ぶRef。対象はqualified OwnerRecord.subject_ref、同recordのsection_keyはF02契約selector。これはF02 payload内のselected_source/used_source provenance Refとは別のRefである。",
+          "record_resolution": "RecordTraceInput.sources内でqualification済みの同一OwnerRecord occurrenceを選び、subject_refをrecord selectorとする。F02 section payloadを既存input_types_by_contract.F02でdecodeし、F02.bindingをB02 bindingの各共通memberと原値比較する。ownerはQualificationRootで実際に資格づけられた値を使い、固定literalを要求しない。record_kind固定値やfirst-match fallbackを追加しない。",
+          "membership_source_of_truth": "F02 payload.selected_refs/used_refsと対応するselected_source/used_source/used_empty_basisを保持し、B02に集合配列を複写しない。operation roleに対応するFieldだけを読む。",
+          "status": "このWRで追加するOS内consumer crosswalk設計。base mainにはB02→F02 record選択経路は存在しなかった。外部owner意味・source authorityを生成しない。",
+          "section_selector_basis": {
+            "L5_pointer": "/type_contract/input_types_by_contract/F02 (F02RecordInputに対応する契約selector)",
+            "L8_pointer": "docs/helix-os/L8-unit-verification/project-template-trace.json#/normal_fixtures/3/source_sections/OS-original-owner (F02 fixtureでbindingとselected/used各memberの供給元を区別。qualification_stateはsynthetic fixed roots only / real trust unestablished。)",
+            "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json#/normal_fixtures/3/source_sections/OS-original-owner（F02 fixtureでbindingとselected/used各memberの供給元を区別。qualification_stateは「合成固定rootのみ・実trust未成立」とする。）"
+          },
+          "record_kind_policy": "OwnerRecord.record_kindは元recordの値として保持し、既存の共通record解決規則に従って比較する。L3/F02 fixtureにはB02/F02固有の固定record_kind値が定義されていないため新設しない。その意味でのselectorは未形成として残す。",
+          "qualification_policy": "同一の資格済みsource occurrenceに属するOwnerRecord.ownerとsubject_refの実値を使う。Qualification.root_refを独立供給QualificationRootへ解決し、既存のowner/subject/source/hash許容集合を照合する。owner名の一致だけでは資格を成立させない。OS002を含む固定owner literalを条件にしない。"
+        }
+      }
     },
     {
       "requirement_ref": "HELIXOS-L3-002-F01",
@@ -3339,7 +3414,8 @@
       "【C:外部owner・実基盤境界】正式record schema/codec/source resolver/trust root供給元・実custodyと各外部owner（BRAIN/CORE/LABO/SECURITY/CONNECT・他OS機構）の実binding（本L5純粋論理契約の外）",
       "【C:OS053実保存・接続実証境界】OS053実保存/authority/隔離/資源閾値と実接続の証拠（本L5はeffect=none・authority_generated=falseの純粋比較材料に限定）",
       "【C:下流L6/L7・実装TDD境界】下流L6関数設計/L7関数検証、および実装前test/oracle凍結→Red実観測→最小実装→Green→Refactor",
-      "【C:実運用・PO受入・全体閉包境界】未観測/held-outの独立実input、PO L11実物受入、全92親430対閉包、通常L3再開"
+      "【C:実運用・PO受入・全体閉包境界】未観測/held-outの独立実input、PO L11実物受入、全92親430対閉包、通常L3再開",
+      "【C:owner依存・未形成】B02選択/使用operationのH009 process/application原Refと共有binding.HARNESS_contract_refの対応、および実資格source取得路。OS002は同一性・包含・代替を推定しない。HARNESS ownerが対応契約・取得路を公開した後、適用L5に型付きで結びL8/L9へ反映して再評価する。"
     ]
   },
   "fixture_source_construction": {
@@ -4204,6 +4280,94 @@
       "state": "unknown",
       "predicate": "evaluation_selected=trueだが、選択LABO scope/必要入力/SECURITY許可根拠が欠落または未解決で、claimが送信または完了扱いとする。",
       "backflow_owner": "OS002/LABO/SECURITY",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "harness_process_contract_ref_missing",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "missing",
+      "predicate": "template選択/使用operationでprocess_contract_refがmissing。application_contract_refおよび共有binding.HARNESS_contract_refをprocess recordの取得根拠にしない。",
+      "backflow_owner": "HARNESS009/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "harness_application_contract_ref_missing",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "missing",
+      "predicate": "template選択/使用operationでapplication_contract_refがmissing。process_contract_refおよび共有binding.HARNESS_contract_refをapplication recordの取得根拠にしない。",
+      "backflow_owner": "HARNESS009/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "selected_template_set_record_missing",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "missing",
+      "predicate": "template-selection operationでselected_set_record_refがmissing。selected側record lookupをせず、used側Ref/record/memberは保持する。",
+      "backflow_owner": "OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "used_template_set_record_missing",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "missing",
+      "predicate": "template-use operationでused_set_record_refがmissing。used側record lookupをせず、selected側Ref/record/memberは保持する。",
+      "backflow_owner": "OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "selected_template_set_record_unqualified",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "unknown",
+      "predicate": "selected_set_record_refに一致するF02 record occurrenceがQualificationRootで資格づけられていないsourceからのみ到達する。",
+      "backflow_owner": "OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "selected_template_set_record_conflict",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "conflict",
+      "predicate": "同一owner/section_key=F02/subject_refの複数qualified OwnerRecordが相反payloadを持つ。first recordを選ばない。",
+      "backflow_owner": "OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "harness_process_application_contract_refs_swapped",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "conflict",
+      "predicate": "template選択/使用operationにおいて、互いに異なる有資格process/application contract Refを反対roleのB02RecordInput memberへ供給し、各memberがrole別の原Refと一致しない。",
+      "backflow_owner": "HARNESS009/OS002",
+      "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
+      "side_effect_count": 0
+    },
+    {
+      "code": "harness_shared_contract_ref_cannot_substitute",
+      "contract_ref": "HELIXOS-L5-002-B02",
+      "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
+      "axis": "operation_dependency",
+      "state": "missing",
+      "predicate": "template-selection operationでprocess_contract_refとapplication_contract_refがともにmissingだが、共有binding.HARNESS_contract_refが供給されている。共有Refからどちらのowner recordも解決・補完しない。",
+      "backflow_owner": "HARNESS009/OS002",
       "preserved_observation_ref": "HELIXOS-L8-002-FIXTURE-B02.expected_material",
       "side_effect_count": 0
     }
@@ -5434,6 +5598,28 @@
         ]
       }
     ],
+    "schema_extension_basis": {
+      "baseline_source": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/type_contract/types/B02RecordInput/fields"
+      },
+      "extension_source": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "6c7778c85f254289f062bdc92910e057dec7872d",
+        "whole_file_sha256": "d026cd208f77b379188a76d635e12ff38877f1c7e97784fa13f7b264c277d39a",
+        "json_pointer": "/type_contract/types/B02RecordInput/fields",
+        "source_value": {
+          "HARNESS_process_contract_ref": "Field<Ref>",
+          "HARNESS_application_contract_ref": "Field<Ref>",
+          "selected_set_record_ref": "Field<Ref>",
+          "used_set_record_ref": "Field<Ref>"
+        }
+      },
+      "baseline_limit_ja": "36d3b8e2のsource_valueはB02RecordInputの8個のlogical Field memberだけを含む。snapshot自体にwire_codec_contractも今回追加する4 memberも存在しないため、過去snapshotから4 memberやformal schemaを再導出したとは扱わない。",
+      "current_derivation_ja": "現在のtype_contract/types/B02RecordInput/fieldsに明示されたHARNESS_process_contract_ref、HARNESS_application_contract_ref、selected_set_record_ref、used_set_record_refを、現行のclosed wire schemaへ各々optional propertyとして追加する。Field<Ref>のmissing/supplied(null)/supplied(Ref)をwireで保持するため各propertyはRefまたはnullを受け、追加propertyは引き続き拒否する。"
+    },
     "legacy_comparison": [
       {
         "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
@@ -6662,6 +6848,46 @@
               "anyOf": [
                 {
                   "$ref": "#/$defs/B02RecordInputQworkstate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "HARNESS_process_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "HARNESS_application_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_set_record_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_set_record_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
                 },
                 {
                   "type": "null"
