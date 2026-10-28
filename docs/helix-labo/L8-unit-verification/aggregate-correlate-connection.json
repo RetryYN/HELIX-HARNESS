@@ -6415,7 +6415,7 @@
     "case_pointer": "/cases/46",
     "case_count": 47,
     "preexisting_count": 46,
-    "expected_source": "全input、typed argumentsおよびfull return材料はL7 test materialsに保持し、L8はcompact observationを保持する。fixed_source_refsは元hashを維持し、新caseやcurrent candidate bytesへ自動追随させない。",
+    "expected_source": "本節の明示current L4/L9 bindingを使い、L9新case literalとL4原句を照合する。全input/全4return/typed引数はdocs/helix-labo/L7-function-verification/aggregate-correlate-connection.jsonのtest materialsに保持し、本documentはcompact observationと参照を保持する。ignored local復元を要求しない。fixed_source_refsは元の固定source snapshot値を保持し、新caseや現在candidate bytesへ自動追随させない。",
     "history_scope": "scopeとcandidate_followup_scopeの42/46件表記は各先行段階の履歴。現在の検証対象件数はこの47件表示及びverification_constraintsによる。旧history source pins/旧46caseは不変。",
     "authoring_history": {
       "role": "先固定著述来歴。規範sourceや期待の唯一依存にはしない。"
