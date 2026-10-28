@@ -444,7 +444,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertEqual(
             result["comparison_scope"]["class_invariants"],
             [
-                "class_rows_and_negative_case_rows",
+                "class_rows_only; negative cases inherit by negative_class_ref",
                 "expected_axis",
                 "expected_state",
                 "side_effect_count=0",
@@ -457,10 +457,168 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "expected",
                 "expected_preserved",
                 "integration_case_ref",
-                "expected_axis↔class",
-                "expected_state↔class",
-                "side_effect_count=0↔class",
+                "negative_class_ref→class key (case key fields optional; if present, exact match)",
+                "L8.expected_property (optional class projection; if present, exact match)",
             ],
+        )
+
+    def test_chk_neg_4way_explicit_mode_inherits_case_key_from_class_reference(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        for case in layers[2]["unit_cases"]:
+            if case["population_state"] != "negative":
+                continue
+            for field in (
+                "expected_axis",
+                "expected_state",
+                "side_effect_count",
+                "expected_side_effect_count",
+                "expected_property",
+            ):
+                case.pop(field, None)
+
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(
+            result["passed"],
+            msg=(
+                "negative_class_ref must supply the L8 class key without copied "
+                f"axis/state/side-effect/expected_property fields: {result}"
+            ),
+        )
+        self.assertEqual(result["matched_case_count"], 4)
+        self.assertEqual(result["case_row_counts"], {"L8": 5, "L9": 5})
+
+    def test_chk_neg_4way_explicit_mode_rejects_case_key_mismatch(self) -> None:
+        baseline = self._equivalence_mode_layers()
+        mutations = (
+            (
+                "classification",
+                lambda layers: layers[2]["unit_cases"][0]["expected_property"].__setitem__(
+                    "condition", "different-classification"
+                ),
+                "equivalence_key",
+            ),
+            (
+                "finding_codes",
+                lambda layers: layers[2]["unit_cases"][0]["expected_property"].__setitem__(
+                    "finding_codes", ["different-finding"]
+                ),
+                "equivalence_key",
+            ),
+            (
+                "partial_expected_property_projection",
+                lambda layers: layers[2]["unit_cases"][0]["expected_property"].pop(
+                    "finding_codes"
+                ),
+                "equivalence_key",
+            ),
+            (
+                "null_expected_property_projection",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "expected_property", None
+                ),
+                "equivalence_key",
+            ),
+            (
+                "backflow_owner",
+                lambda layers: layers[1]["integration_cases"][0][
+                    "compact_whole_observation"
+                ]["ordered_findings"][0].__setitem__("return_owner", "different-owner"),
+                "equivalence_key",
+            ),
+            (
+                "expected_axis",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "expected_axis", "different-axis"
+                ),
+                "expected_axis",
+            ),
+            (
+                "expected_state",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "expected_state", "different-state"
+                ),
+                "expected_state",
+            ),
+            (
+                "owner_ref",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "rule_ref", "L5-RULE-CONFLICT"
+                ),
+                "rule_ref",
+            ),
+            (
+                "side_effect_count",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "side_effect_count", 1
+                ),
+                "side_effect_count",
+            ),
+            (
+                "null_expected_side_effect_count_alias",
+                lambda layers: layers[2]["unit_cases"][0].__setitem__(
+                    "expected_side_effect_count", None
+                ),
+                "side_effect_count",
+            ),
+        )
+        for name, mutate, expected_attribute in mutations:
+            with self.subTest(key_component=name):
+                mismatched = copy.deepcopy(baseline)
+                mutate(mismatched)
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT,
+                    "L4",
+                    "L9",
+                    "L8",
+                    "L5",
+                    mismatched[0],
+                    mismatched[1],
+                    mismatched[2],
+                    mismatched[3],
+                )
+                self.assertFalse(result["passed"], msg=result)
+                self.assertTrue(
+                    any(
+                        failure.get("attribute") == expected_attribute
+                        for failure in result["failures"]
+                    ),
+                    msg=f"{name} mutation must fail on {expected_attribute}: {result}",
+                )
+
+    def test_chk_neg_4way_explicit_mode_rejects_unresolved_case_class_ref(self) -> None:
+        layers = self._equivalence_mode_layers()
+        layers[2]["unit_cases"][0]["negative_class_ref"] = "NO-SUCH-CLASS"
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertFalse(result["passed"], msg=result)
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "negative_class_ref"
+                and failure.get("reason") == "negative_case_class_ref_missing_or_unresolved"
+                for failure in result["failures"]
+            ),
+            msg=result,
         )
 
     @classmethod
@@ -1016,12 +1174,6 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     mutations.append(
                         (f"{label}_case_{field}_boolean", mutated, expected_attribute)
                     )
-                mutated = copy.deepcopy(baseline)
-                mutated[layer_index][case_member][0].pop(field)
-                mutations.append(
-                    (f"{label}_case_{field}_missing", mutated, expected_attribute)
-                )
-
         bad_rule_ref = copy.deepcopy(baseline)
         bad_rule_ref[2]["unit_cases"][0]["rule_ref"] = "NO-SUCH-RULE"
         mutations.append(("L8_rule_ref", bad_rule_ref, "rule_ref"))
