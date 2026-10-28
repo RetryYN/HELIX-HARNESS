@@ -4353,27 +4353,39 @@
      "pointer": "/field_semantic_evidence_contract/role_owner_binding/definition"
     },
     {
-     "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-     "pointer": "/field_semantic_evidence_verification/cases/0"
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/private_declaration_body_contract"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/private_declaration_body_contract/member_applicability/definition"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/private_declaration_body_contract/form_compatibility"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_source_materialization_contract/carrier_projection_table/0"
     },
     {
      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
-     "pointer": "/field_semantic_evidence_verification/cases/4"
-    },
-    {
-     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/projection_contract/declaration_reader"
-    },
-    {
-     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/projection_contract/forms/axis_value"
+     "pointer": "/field_source_materialization_verification/cases/7"
     }
    ],
    "typed_mutation_plan": "同field/binding/material Refの実field_material_projection_declarationがmaterial_role=definition, material_carrier=AxisFact, payload_form=axis_valueを明示し、source/body/owner/basisの全対応を満たす。",
-   "expected_observation": "ProjectionBasis.declarationを介したformed definition projectionは実AxisFact.value Read wholeをpayloadとして保持し、内部値へunwrapしない。Causeなし。DefinitionAssessment known/missing/unknownは同宣言だけから生成しない。",
+   "expected_observation": "対応する宣言がdefinition roleのAxisFact axis_valueを規定する場合、projected definition materialはformedとなり、実AxisFact.value Read全体をpayloadとして無変換で保持する。内部値へunwrapせず、Causeを生成しない。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
-   "fixture_refinement": "U-ID設計行のみ。正例fixture・full return・hashはなく、候補実行なし。"
+   "fixture_refinement": "L4/L9の型付き論理条件のみ。positive fixture、全返却、hashはなく、候補実行なし。",
+   "expected_preserved": "原AxisFact.reasonの値・presence・所在、field/material/binding/Refの対応を保持する。この投影だけでdefinition_state=knownを認定しない。",
+   "l5_technical_expectation": {
+    "source_pointers": [
+     "/f05_detail_contract/projection_contract/declaration_reader",
+     "/f05_detail_contract/projection_contract/forms/axis_value"
+    ],
+    "expectation_ja": "L5のreader/form実装が独立したL4/L9 oracleの投影whole・reason保持に適合することを確認する。これらのL5 pointerを意味上の独立oracleとしては扱わない。"
+   }
   },
   {
    "id": "HARNESS-L8-009-ADD-29",
@@ -4490,6 +4502,10 @@
     {
      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
      "pointer": "/f05_detail_contract/qualification_check_link_writer/traversal"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
     }
    ],
    "typed_mutation_plan": "wrapper/source owner Readsはpresent。同じ実CheckLinkが指すRootObservation.checksのroot_owner SourceCheckはdifferent、RoleOwnerPairはpositive correspondingとする。",
@@ -4734,34 +4750,34 @@
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
      "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/Cause"
     },
     {
      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
      "pointer": "/field_semantic_evidence_verification/owner_relation_cause_cases/1"
-    },
-    {
-     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S3_both_reads_present_but_no_qualification_owner_or_root_owner_link"
-    },
-    {
-     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference"
-    },
-    {
-     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
-     "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
     }
    ],
    "input_condition": "wrapper_owner/source_owner Readが両方presentで原値は既知に異なる。qualification_owner/root_owner check linkは0件。",
-   "expected_observation": "OwnerBinding.causesはsource-wrapper segmentで[S4,S3]の順。S4はowner_mismatch一件（target=wrapper_owner Read.present.location、left/rightは両full original Read、rule_pointer=/f05_detail_contract/owner_binding_contract/source_wrapper）。S3はowner_binding_unestablished一件（target=validation_source_observations/source_occurrences/{source_observation_index}/qualification_occurrences、left/right同じfull original Read、同rule_pointer）。source_wrapper_relation=different。架空CheckLink/indexやdelegation/authority関係は生成しない。",
-   "expected_preserved": "両Read全値と順序を保持し、S4の既知差がS3の未成立を上書きせず両Causeを順序付きで記録する。",
+   "expected_observation": "両owner Readがpresentで既知に異なり、qualification_owner/root_owner linkがない場合、source_wrapper_relation=different。owner_mismatchとowner_binding_unestablishedの両Causeを保持し、すべての原Ref・owner・presenceを維持する。L4からCause順は導かない。",
+   "expected_preserved": "両Read全値・原順を保持し、owner_mismatchとowner_binding_unestablishedを両方記録する。原因の順序はこの独立意味期待に含めない。",
    "expected_side_effect_count": 0,
-   "result": "not_executed"
+   "result": "not_executed",
+   "l5_technical_expectation": {
+    "source_pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
+    "expected_order": [
+     "S4",
+     "S3"
+    ],
+    "expectation_ja": "L5実装適合の技術順序として、OwnerBinding.causesのsource-wrapper segmentはS4の後にS3を置く。これはL4/L9の独立意味期待ではない。"
+   }
   }
  ],
  "normal_function_oracles": [
