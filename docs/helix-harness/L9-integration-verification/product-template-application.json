@@ -12498,7 +12498,7 @@
      "/original_context の全leaf",
      "選択field外の全出力"
     ],
-    "fixture_source_ref": "HARNESS-L8-009-ADD-41",
+    "fixture_source_ref": "HARNESS-L8-009-ADD-46",
     "execution_state": "not_executed"
    },
    {
@@ -12544,7 +12544,7 @@
      "/original_context の全leaf",
      "選択field外の全出力"
     ],
-    "fixture_source_ref": "HARNESS-L8-009-ADD-42",
+    "fixture_source_ref": "HARNESS-L8-009-ADD-47",
     "execution_state": "not_executed"
    }
   ],

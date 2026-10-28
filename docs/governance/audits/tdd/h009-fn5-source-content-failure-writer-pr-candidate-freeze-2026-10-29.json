@@ -49,9 +49,9 @@
         "L5#/f05_detail_contract/types/DefinitionAssessment"
       ],
       "l8_pointers": [
-        "L8#/additional_unit_cases/40",
-        "L8#/additional_unit_cases/41",
-        "L8#/additional_unit_cases/42"
+        "L8#/additional_unit_cases/45",
+        "L8#/additional_unit_cases/46",
+        "L8#/additional_unit_cases/47"
       ],
       "l4_pointers": [
         "L4#/field_source_materialization_contract/ordered_source_materialization/3",
@@ -86,13 +86,13 @@
         "symbol": "f05_field_content_source_failure_writer_contract",
         "visibility": "private_detail_contract_for_fn5",
         "owner": "HARNESS-CORE",
-        "reentry_slice": "D-H009-FN5-SOURCE-CONTENT-FAILURE-WRITER",
+        "reentry_slice": "STOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01",
         "bound_public_function": "HARNESS-L5-009-compare_requirement_gaps",
-        "l8_oracle_pointer": "L8#/additional_unit_cases/41",
+        "l8_oracle_pointer": "L8#/additional_unit_cases/46",
         "unit_case_pointers": [
-          "L8#/additional_unit_cases/40",
-          "L8#/additional_unit_cases/41",
-          "L8#/additional_unit_cases/42"
+          "L8#/additional_unit_cases/45",
+          "L8#/additional_unit_cases/46",
+          "L8#/additional_unit_cases/47"
         ],
         "basis_pointers": [
           "L4#/field_source_materialization_contract/ordered_source_materialization/3",
@@ -106,11 +106,11 @@
       }
     ]
   },
-  "remaining_scope_ja": "対象はFN5のsource/body failure writer sliceのみ。ADD-40の両collection missに対するcontent_unresolved Cause数/right ReadはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01で未形成。source/body lookup miss・実body payload mismatchの2 writerは静的設計で、fixture/test/full-return未実行。body entry 0件、proposition/constraint cause、gap proposal body、既存owner STOPは各STOPのまま。公開producerの実接続・独立意味review・freeze承認を主張しない。",
+  "remaining_scope_ja": "対象はFN5のsource/body failure writer sliceのみ。ADD-45の両collection missに対するcontent_unresolved Cause数/right ReadはSTOP-F05-CONTENT-UNRESOLVED-CAUSE-PAIR-01で未形成。source/body lookup miss・実body payload mismatchの2 writerは静的設計で、fixture/test/full-return未実行。body entry 0件、proposition/constraint cause、gap proposal body、既存owner STOPは各STOPのまま。公開producerの実接続・独立意味review・freeze承認を主張しない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
-  "source_main": "5a111532e81fa04a1420df190fc2d2171d5056c6",
-  "request_base_sha": "5a111532e81fa04a1420df190fc2d2171d5056c6",
+  "source_main": "b9cd2a6151a974b9aba1c181c5dcf64da7d2a852",
+  "request_base_sha": "b9cd2a6151a974b9aba1c181c5dcf64da7d2a852",
   "modified_aliases": [
     "L5",
     "L8",
@@ -120,7 +120,7 @@
     "l8_full_return_or_fixture_or_hash_added": false,
     "scfctl_stale_count": 0,
     "all_pointers_resolved": true,
-    "negative_4way_matched_count": 106,
+    "negative_4way_matched_count": 107,
     "negative_4way_parent_link_mode": "legacy",
     "negative_4way_comparison_mode": "legacy_casewise_four_layer",
     "negative_4way_comparison_scope": {
@@ -145,27 +145,27 @@
     "negative_4way_count_unit": "negative_case_rows_per_layer",
     "negative_4way_matched_count_unit": "matched_negative_case_rows"
   },
-  "change_reason_ja": "PR候補はmain 5a111532からのL5/L8/L9修正commitだけで構成し、過去の不成立候補記録は含めない。L9の既存unexercised_finite_roles 9行/indexを維持し、新source/body caseは未実行と明示。mainをbase revisionとして文書pre/post hashをgenerate-freezeで記録する。",
+  "change_reason_ja": "PR候補はmain b9cd2a61以降のL5/L8/L9修正commitだけで構成し、過去の不成立候補記録は含めない。L8の既存ADD-40..44を維持し、FN5のsource/body U-IDをADD-45..47（additional_unit_cases/45..47）へ追加。L9 fixture_source_ref、L5 compare_requirement_gaps.unit_case_refs、freeze pointerを整合させた。L9の既存unexercised_finite_roles 9行/indexを維持し、新source/body caseは未実行と明示。mainをbase revisionとして文書pre/post hashをgenerate-freezeで記録する。",
   "recorded_at_utc": "2026-10-28T22:45:25+00:00",
   "pins": {
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
     "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
-    "L4_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
-    "L9_pre_sha256": "10a09093e2d1b8c90c8995bc7288df47718d46a56bf985b766890f071a3e414d",
-    "L9_post_sha256": "ec16909270bf8940b5d4e103a33f80cc80eb64c81f1fdfa9adbb3b36af245889",
-    "L5_pre_sha256": "e15fbf4547d2cb59544a508889528d6a86e0880ac2f0e8b38ba5245d91044620",
-    "L5_post_sha256": "efc8c6a2ff675bea12bbfc46fc02cee3b79e20f2fdab0bc01017eea562c60d46",
-    "L8_pre_sha256": "620c47c689a3933d400b4115496a6c62d026772763211e7a1cf58a3ba62d7eea",
-    "L8_post_sha256": "b332391183ecbb78b40efab18b334e078ec60b3dbcde997f632046f09e52f77e"
+    "L4_sha256": "009da68d79547770e32a91362a410e014ed1951e0cfe9f67a6f6b31fd4c16824",
+    "L9_pre_sha256": "b9dec5bf678d5e4263e3dcbdbb00ee647af435db0b6ff2342ba77987ad90f5f1",
+    "L9_post_sha256": "2384d2fec666055a1fbef2f5ff3e4752ba2dd60a12543b7663fae8f814332b94",
+    "L5_pre_sha256": "5396d9a840c6f318a66fb23ede9619976f6eb02a8263d03d0b9c1248d5ebfd10",
+    "L5_post_sha256": "c91d90bb018b86889e951739e6860187f7d45422676b863db8510137ddac45bf",
+    "L8_pre_sha256": "44a1ec97e245276e1fb2749cf5038bf42e47b21eaddb07634933baccc468a05b",
+    "L8_post_sha256": "5bd6786b06ec804f43080c5999544b101774751f82464c9a42a775443a6a1768"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
     "L5_functions": 14,
-    "L5_failure_rules": 107,
+    "L5_failure_rules": 108,
     "L8_cases": 11,
-    "L8_negative_cases_total": 106,
+    "L8_negative_cases_total": 107,
     "L8_normal_function_oracles": 13,
-    "L8_additional_unit_cases": 43,
+    "L8_additional_unit_cases": 48,
     "L5_source_pins": 21,
     "L8_source_pins": 21,
     "L8_wire_codec_cases": 36,
@@ -178,19 +178,19 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 40,
-    "expanded_target_count": 40,
+    "checked_count": 42,
+    "expanded_target_count": 42,
     "unresolved_count": 0,
     "passed": true
   },
   "negative_case_4way_verification": {
     "counts": {
-      "L4": 106,
-      "L9": 106,
-      "L8": 106,
-      "L5": 106
+      "L4": 107,
+      "L9": 107,
+      "L8": 107,
+      "L5": 107
     },
-    "matched_case_count": 106,
+    "matched_case_count": 107,
     "failure_count": 0,
     "passed": true,
     "parent_link_mode": "legacy",
