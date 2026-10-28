@@ -25157,6 +25157,14 @@
       ],
       "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
       "final_input_changes": []
+    },
+    {
+      "id": "CORE-ADD-INPUT-17",
+      "kind": "logical_unit_input_candidate_not_executed",
+      "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+      "input_overrides": {},
+      "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
+      "final_input_changes": []
     }
   ],
   "compare_required_axes_oracle": {
@@ -27576,5 +27584,282 @@
       "project_value": "unknown",
       "backflow_owner": "HARNESS008; preserve BRAIN definition"
     }
+  },
+  "compare_selected_knowledge_oracle": {
+    "id": "HARNESS-L8-009-NORMAL-compare_selected_knowledge",
+    "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+    "input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+    "context_type": "CompareSelectedKnowledgeContext",
+    "expected_observation": "選択knowledgeのrequired field/版/source/usabilityを個別照合。非選択はreference/未観測、promotion/実適用なし。",
+    "execution_state": "not_executed",
+    "expected_output_rule": "Exact material/ref/state/set observations. Human explanation reason strings may differ if nonempty and bound to the stated original grounds; absent or unrelated grounds fail.",
+    "brain_definition_source_read_oracle": {
+      "basis": "既存L4 /selected_brain_definition_source_contractと対L9 /selected_brain_definition_source_verificationから先に固定した取得・非干渉期待。L5の出力値を正解として導かない。",
+      "normal_control": "元CORE-NORMAL-UNIT-REQUIREDにはこのkindのrecordが無い。元context/input fixture/expected_output全値と配列順をそのまま保持する。新capture必須による正常例の拒否は退行。",
+      "explicit_record": "同snapshotの実record/use/template/sourceの全原出現を読む。各sourceの必要operandと資格条件の照合は独立で、空unusable_source_refs又は一方のsource成立だけを正資格証拠にした取得は不合格。",
+      "call_unformed": "原Comparisonへのpointerとsymbol/Bindingが合っても原call対応根拠が無ければ同call成立にしない。原public Comparisonへ存在しないmemberを補完せず、元材料を未形成のまま保持する。",
+      "locality": "非選択knowledgeだけの不足は無関係の選択Kの元返却を変更しない。対象Refが未形成なら架空target又は全選択への一括失効を生成しない。",
+      "preservation": "source whole/余剰member/absence/null/原順/反復、BRAIN Binding/全axis/reason/owner/refsとCore原field_refsを保持する。別Pattern knownで原missingを消さない。",
+      "scope": "L4 /selected_brain_definition_source_contractとL9 /selected_brain_definition_source_verification（6件）に対応する取得規範の静的対期待を記載済み（B）。return_oracleとのU-ID対照・fn6関数別pair凍結はA（Q-H009-3、D-H009-T2d）へ渡し、全native fixture展開・domain/reader実行・設計Red/Green・実資格はBRAIN032/CONNECT/SECURITY・下流L6/L7（C）へ戻す。",
+      "execution_state": "not_executed"
+    },
+    "brain_definition_source_return_oracle": {
+      "basis": "7c13f01fのL4/L9の原期待を先に固定。以下は既存public形の返却規範を照合する論理対期待で、L5出力の自己一致テストではない。原CORE state値は上位未指定のため下位技術選定を別記する。",
+      "selected_missing": "原対応成立した選択KにBRAIN required field.definition missing＋別Pattern known。selected/実Core checked fields/非選択列は元全値/順/反復を保持し、usable候補だけは当該実Kを含まない。原不足と全sourceを保存し、BRAIN descriptor由来の製品fieldを作らない。",
+      "core_local_axis": "対象原missing axisごとに実K.ref/K.bindingのknowledge.usability unknownを、元axesに追加する。original_refsは実record.ref→対応根拠source.ref→capture source.refの3原wholeの順、原reason/原axis所在と原owner/nullを保持。原BRAIN missingをCORE missingへ転記せず、元CORE axes/findingsを全保持する。",
+      "no_record": "新kindが無い旧normalは既存Context/fixture/expected_output全5member・material4member・配列順/反復を変更しない。新capture gateを課さない。",
+      "unselected": "正しく非選択K2だけへ対応するrecordはK1の元返却を変えない。対象未形成を非選択とみなす実装は不合格。",
+      "unformed_with_record_ref": "実record.refの有無にかかわらず未形成原recordをcorrespondence_issuesで識別する。原record index locator、実未形成理由/既知相違、実対応根拠source Ref又はnullを全保持し、knowledge.definition_correspondenceの疑似axisは返さない。無関係有資格候補を一律失効しない。",
+      "unformed_without_record_ref": "kindで識別できる原recordにref memberがなく対応source Refも取得できない場合、少なくとも{locator:/semantic_records/{実原index},reason:Ref未供給と実未形成理由の非空説明,source_ref:null}という既存InputIssue全3memberを返す。{}や隣接RefによるAxisResult生成は不合格。元recordのabsenceと原値は保持する。",
+      "all_public_members": "Comparisonは元5member。producer_symbol/root binding/findingsとformed_missing axesは既存規範どおり、materialは元必須4ref列＋診断がある場合だけoptional correspondence_issues。診断なしの旧normalはmember absentで元全返却一致。",
+      "technical_choices": "formed_missingのknowledge.usability unknownはCORE利用支持判定として保持。未形成record診断は新axisではなく既存InputIssueへ統一する。公開logical materialの4＋optional1という差分を明示し、純Refactor・上位要求文字列・fn0診断生成と混同しない。",
+      "evidence_scope": "条件付きの全5member返却規範（selected_missing/core_local_axis/no_record/unselected/unformed_with_record_ref/unformed_without_record_ref）を記載済み（B）。L9 6件とのU-ID対照・fn6関数別pair凍結はA（Q-H009-3、D-H009-T2d）へ渡し、閉じたnative全入力/全返却fixture実行・reader/domain実行・設計Red/Green/Refactor実観測は下流L6/L7（C）へ戻す。",
+      "execution_state": "not_executed",
+      "source_reference_ambiguity": "診断source_refは全実候補の原Ref whole値/presenceが一意な時だけcopy、未取得又は異なる複数wholeがあればnull。first/latestによる選択や資格生成をしない。全候補と非一意理由は原入力/診断理由に保持。",
+      "consumer_expectation": "実caller.producer_observations[4].comparisonとfn10 Analysis.comparisons内の同Comparisonは、optional診断whole/presence/全member/原順を保持する。fn9 axes投影は実原axesだけを従来順で連結し、issuesを疑似axisへ変換しない。fn9は当該原record依存claimの原支持を照合し、未形成を成功へ昇格させず無関係有資格範囲を維持する。全consumer実意味評価の成立をこの静的期待だけから主張しない。",
+      "source_absence_example": {
+        "input_boundary": "原recordのkindは識別可能でref member自体はabsent。source_refも取得できない。同ApplicationInputと評価headerの実在を前提にした論理条件。",
+        "expected_issue_shape": {
+          "locator": "/semantic_records/0",
+          "reason": "原record.refが未供給で追加接続の対象対応を形成できない。原operandは同入力に保持する。",
+          "source_ref": null
+        },
+        "status": "条件付きの既存型表現例であり、全native入力fixture/domain返却又は設計Red/Green実観測ではない。"
+      }
+    }
+  },
+  "f06_negative_cases": [
+    {
+      "id": "HARNESS-L8-009-F06-NEG-01",
+      "change": "選択knowledgeのstale版を有効として使う",
+      "expected_classification": "stale_template_allowed",
+      "expected_axis": "knowledge.usability",
+      "expected_state": "conflict",
+      "expected": "原stale理由/knowledge版と当該製品未完義務を保存する。stale候補を利用成立にせず無関係有効候補は保持する。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "原stale理由/knowledge版と当該製品未完義務を保存する。stale候補を利用成立にせず無関係有効候補は保持する。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "brain_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-01",
+      "rule_ref": "HARNESS-L5-009-R-stale_template_allowed",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "knowledge_records[chosen].operational_state + claims",
+        "operation": "replace_and_append",
+        "synthetic_value": {
+          "state": "owner-stale-with-reason",
+          "claim_kind": "knowledge_usable"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-02",
+      "change": "未承認候補を適用authorityに使う",
+      "expected_classification": "unapproved_template_allowed",
+      "expected_axis": "knowledge.authority",
+      "expected_state": "unknown",
+      "expected": "知識候補の元state/採否根拠不足を保存する。利用authority unknownと当該義務の未完を返し採択しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "知識候補の元state/採否根拠不足を保存する。利用authority unknownと当該義務の未完を返し採択しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "brain_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-02",
+      "rule_ref": "HARNESS-L5-009-R-unapproved_template_allowed",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "knowledge_records[chosen].authority_ref + claims",
+        "operation": "remove_and_append",
+        "synthetic_value": {
+          "authority_ref": null,
+          "claim_kind": "knowledge_usable"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-03",
+      "change": "別製品版を有効templateとして使う",
+      "expected_classification": "foreign_product_template_allowed",
+      "expected_axis": "knowledge.binding",
+      "expected_state": "conflict",
+      "expected": "選択knowledgeの原製品scopeと対象製品scopeの相違を示す。別製品での有効性を当該製品の成立へ変えない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "選択knowledgeの原製品scopeと対象製品scopeの相違を示す。別製品での有効性を当該製品の成立へ変えない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-03",
+      "rule_ref": "HARNESS-L5-009-R-foreign_product_template_allowed",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "knowledge_records[chosen].binding.product_scope",
+        "operation": "replace",
+        "synthetic_value": "product-Q",
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-04",
+      "change": "該当なしで任意templateを選ぶ",
+      "expected_classification": "no_match_arbitrary_selection",
+      "expected_axis": "application",
+      "expected_state": "unknown",
+      "expected": "該当なしと検索/比較境界を返す。任意fallbackを採用せず、必要な質問/未完義務を上流へ残す。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "該当なしと検索/比較境界を返す。任意fallbackを採用せず、必要な質問/未完義務を上流へ残す。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-04",
+      "rule_ref": "HARNESS-L5-009-R-no_match_arbitrary_selection",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "claims",
+        "operation": "append",
+        "synthetic_value": {
+          "kind": "template_selected",
+          "value": "arbitrary-template",
+          "basis": "no-matching-template"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-05",
+      "change": "選択knowledgeの必須field不足を任意fallbackで埋める",
+      "expected_classification": "knowledge_gap_fallback",
+      "expected_axis": "knowledge.required_input",
+      "expected_state": "missing",
+      "expected": "選択knowledgeの欠けたrequired field identity/元版/sourceとBRAINへの戻し先を保存する。他knowledgeを補完sourceにしない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "選択knowledgeの欠けたrequired field identity/元版/sourceとBRAINへの戻し先を保存する。他knowledgeを補完sourceにしない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "brain_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-05",
+      "rule_ref": "HARNESS-L5-009-R-knowledge_gap_fallback",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "knowledge_records[chosen].required_field_refs + field_inputs",
+        "operation": "remove_selected",
+        "synthetic_value": {
+          "field": "required-field-A",
+          "fallback": "unqualified-default"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-06",
+      "change": "非選択knowledge/旧例を適用authorityに変える",
+      "expected_classification": "reference_as_application_authority",
+      "expected_axis": "authority_claim",
+      "expected_state": "conflict",
+      "expected": "非選択knowledge/旧例をreference-only/未観測として保存する。適用authorityを生成せず既存有資格sourceを保持する。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "非選択knowledge/旧例をreference-only/未観測として保存する。適用authorityを生成せず既存有資格sourceを保持する。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-06",
+      "rule_ref": "HARNESS-L5-009-R-reference_as_application_authority",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "claims",
+        "operation": "append",
+        "synthetic_value": {
+          "kind": "application_authority",
+          "basis_role": "reference_only"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F06-NEG-07",
+      "change": "templateから要求合意を生成",
+      "expected_classification": "template_as_requirement_agreement",
+      "expected_axis": "requirements_agreement_claim",
+      "expected_state": "conflict",
+      "expected": "template意味と要求形成の候補は保存し、人の要求合意未成立を残す。templateから要求authorityを生成しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "template意味と要求形成の候補は保存し、人の要求合意未成立を残す。templateから要求authorityを生成しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "requirement_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F06-NEG-07",
+      "rule_ref": "HARNESS-L5-009-R-template_as_requirement_agreement",
+      "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "claims",
+        "operation": "append",
+        "synthetic_value": {
+          "kind": "requirements_agreement",
+          "basis": "template-body"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    }
+  ],
+  "add_17_case": {
+    "id": "HARNESS-L8-009-ADD-17",
+    "function_ref": "HARNESS-L5-009-compare_selected_knowledge",
+    "name": "unselected-reference-preserved",
+    "input_fixture_ref": "CORE-ADD-INPUT-17",
+    "typed_mutation_plan": "非選択knowledge/旧例入力",
+    "expected_observation": "reference_only/unobserved。局所選択knowledgeの有効候補継続",
+    "expected_side_effect_count": 0,
+    "execution_state": "not_executed",
+    "fixture_refinement": "explicit concrete input overrides and final raw changes supplied; not executed",
+    "expected_unobserved_refs": [
+      {
+        "identity": "synthetic-unselected-reference",
+        "revision": "synthetic-A",
+        "scope": {
+          "product": "SYNTHETIC-P",
+          "tenant": "SYNTHETIC-T",
+          "environment": "SYNTHETIC-E"
+        },
+        "owner": "synthetic-brain-owner",
+        "source_locator": null
+      }
+    ]
   }
 }
