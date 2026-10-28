@@ -121826,7 +121826,7 @@
     },
     "existing_recipe_basis": [
       "docs/helix-security/L8-unit-verification/credential-value-boundary.json#/literal_materialization_contract",
-      "docs/helix-labo/L8-unit-verification/worker-level-evidence.json#/literal_materialization_contract"
+      "1aa0676fa54049c9efdc4eaf188c995a2ce8d574:docs/helix-labo/L8-unit-verification/worker-level-evidence.json#/literal_materialization_contract"
     ],
     "consumer_boundary": "L5 scope_content_correction.oracle_referenceの/cases/46と、L8 scope_content_correctionの4returns/whole hashは全copy展開後に読む。既存fixed_source_refsとcandidate_followup_binding.current_source_pinsは歴史snapshotとして保持する。実装済みreader/製品TDD/資格/配送/実受入の成立は主張しない。",
     "legacy_rederivation": {
