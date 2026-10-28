@@ -1730,8 +1730,7 @@ def _check_negative_equivalence_mode(
             )
     parent_link_mode = "legacy"
     has_top_level_parent_link = any(
-        isinstance(row, dict) and "design_ref" in row
-        for row in raw_class_rows["L4"]
+        isinstance(row, dict) and "design_ref" in row for row in raw_class_rows["L4"]
     )
     has_reverse_parent_link = isinstance(l4_contracts, list) and any(
         isinstance(contract, dict) and "negative_class_refs" in contract
@@ -4092,9 +4091,7 @@ def generate_freeze_record(
     ver = dict(out.get("verification") or {})
     ver["all_pointers_resolved"] = ptr_res["passed"]
     ver["negative_4way_matched_count"] = neg_res["matched_case_count"]
-    ver["negative_4way_parent_link_mode"] = neg_res.get(
-        "parent_link_mode", "legacy"
-    )
+    ver["negative_4way_parent_link_mode"] = neg_res.get("parent_link_mode", "legacy")
     if "comparison_mode" in neg_res:
         ver["negative_4way_comparison_mode"] = neg_res["comparison_mode"]
         ver["negative_4way_comparison_scope"] = neg_res["comparison_scope"]

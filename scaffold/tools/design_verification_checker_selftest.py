@@ -355,9 +355,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "contracts": [
                     {
                         "id": "L4-contract-A",
-                        "negative_class_refs": [
-                            row["class_id"] for row in l4_classes
-                        ],
+                        "negative_class_refs": [row["class_id"] for row in l4_classes],
                     }
                 ],
                 "negative_equivalence_classes": {
@@ -476,9 +474,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         layers = list(self._equivalence_mode_layers())
         class_id = layers[0]["failure_classifications"][0]["class_id"]
         layers[0]["contracts"][0]["negative_class_refs"].remove(class_id)
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertEqual(result["parent_link_mode"], "new_parent_link")
         self.assertFalse(result["passed"], msg=result)
         self.assertIn(
@@ -490,9 +486,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         layers = list(self._equivalence_mode_layers())
         class_id = layers[0]["failure_classifications"][0]["class_id"]
         layers[0]["contracts"][0]["negative_class_refs"].append(class_id)
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertEqual(result["parent_link_mode"], "new_parent_link")
         self.assertFalse(result["passed"], msg=result)
         self.assertIn(
@@ -505,9 +499,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         layers[0]["contracts"][0]["negative_classifications"] = [
             copy.deepcopy(layers[0]["failure_classifications"][0])
         ]
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertEqual(result["parent_link_mode"], "new_parent_link")
         self.assertFalse(result["passed"], msg=result)
         self.assertIn(
@@ -515,7 +507,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             {item["reason"] for item in result["failures"]},
         )
 
-    def test_chk_neg_4way_explicit_legacy_parent_mode_rejects_nested_duplicate(self) -> None:
+    def test_chk_neg_4way_explicit_legacy_parent_mode_rejects_nested_duplicate(
+        self,
+    ) -> None:
         layers = list(self._equivalence_mode_layers())
         l4 = layers[0]
         for row in l4["failure_classifications"]:
@@ -524,9 +518,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l4["contracts"][0]["negative_classifications"] = [
             copy.deepcopy(l4["failure_classifications"][0])
         ]
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *layers
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
         self.assertEqual(
             result["comparison_mode"], "explicit_negative_equivalence_classes"
         )
@@ -2575,7 +2567,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 self.assertIn("seed", rejected)
                 self.assertIn("materialization_sha256", rejected)
 
-    def test_chk_neg_4way_casewise_mode_ignores_partial_top_level_parent_links(self) -> None:
+    def test_chk_neg_4way_casewise_mode_ignores_partial_top_level_parent_links(
+        self,
+    ) -> None:
         l4 = {
             "contracts": [
                 {
@@ -3264,9 +3258,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             generated["negative_case_4way_verification"]["parent_link_mode"],
             "legacy",
         )
-        self.assertIn(
-            "negative_4way_parent_link_mode", generated["verification"]
-        )
+        self.assertIn("negative_4way_parent_link_mode", generated["verification"])
         self.assertEqual(
             generated["negative_case_4way_verification"]["count_unit"],
             "negative_case_rows_per_layer",
