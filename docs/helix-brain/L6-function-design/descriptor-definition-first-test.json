@@ -2287,6 +2287,66 @@
         "qualification_selection": "統制6456950754条件2の資格と候補選択の混同をrootがL4と実入力で指摘し、6457024900で訂正確認。raw candidate Bが明示ならsource資格不成立でも要求frame/14missingは保持し、元Issue/unusable/B帰属unknownを局所保持。raw candidatesからBを除いた場合だけ非対象frame/missing0。新qualification gateは追加しない。",
         "readability_followup": "統制6456950754の自己比較意図確認に対し、既存Ref比較成立を保持する注記とroot自己比較のloop外化だけをca3cd2701で追加。slot/rootの受理predicateは同じ。",
         "non_target_fact_test": "TestFN1CandidateFrames.test_candidate_b_omission_keeps_root_and_b_slot_without_unrequested_missing_rowsがcandidate Aのみ/[]各caseでpublicのB原fact軸とwalkの原slot15/fact0/meaning_reads1件を確認し、Bのrequired missing0と区別する。"
+      },
+      "consumer_alignment_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-ORACLE-CLAIM-PORTS-3547-20261028-68",
+        "request_base": "d2b546551e36696b2451646b9e1409b8f06e01d0",
+        "working_base": "19738407c1606f462ecf9fb47ef46740045184fb",
+        "scope": "fill-only target/ClaimUseを消費する4箇所の設計照合。新しい非fill意味/use/intent/target/route/rowを作らず、FN7有限域を他consumerへ適用しない。",
+        "FN7_detail": {
+          "source": "src/claim_boundaries.py",
+          "classification": "既存有限域内の件数/index条件は設計と整合、変更不要。",
+          "L4_pointers": [
+            "/claim_boundary_projection_contract/finite_domain/claims"
+          ],
+          "L5_pointers": [
+            "/source_return_contract/descriptor_target_dataflow/consumer/reads",
+            "/source_return_contract/descriptor_target_dataflow/consumer/use_order"
+          ],
+          "boundary": "このwriterの全Claimはfillなので全raw件数とcompact usesは一致する。一般nonfill/混在writerは別の未閉責務。"
+        },
+        "FN4_finite_carry": {
+          "source": "src/oracle_finite_carry.py",
+          "classification": "この有限枝で全Claim=fillを照合する件数/index条件は整合し、変更不要。",
+          "L4_pointers": [
+            "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/claims",
+            "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/other_claims",
+            "/oracle_view_boundary_contract/nonnull_claim_target_reuse"
+          ],
+          "boundary": "他kindを無関係と思っても本枝外で非発火認定しない。他の未完成predicateや有限枝全域の成立まで認定しない。"
+        },
+        "FN4_oracle_claim_ports": {
+          "source": "src/oracle_binding_rules.py",
+          "classification": "nonfillを含む一般FN4の返却/carry/stop境界は設計未閉。現stopを削ってsuccessへ進めない。",
+          "L4_pointers": [
+            "/oracle_view_boundary_contract/nonfire_read_plan/raw_domain/other_claims",
+            "/oracle_view_boundary_contract/nonnull_claim_target_reuse/call"
+          ],
+          "L5_pointers": [
+            "/functions/4/algorithm/3",
+            "/source_return_contract/descriptor_target_dataflow/consumer/fn4_read_binding"
+          ],
+          "owner": "HELIXBRAIN-L6-032-FN4-ORACLEに対応するL4/L5設計owner。元意味資料と既存stopのbackflowはknowledge_ownerを維持し、新roleを作らない。",
+          "required_design": "nonfill Claim存在時の原Comparison carry/stopと既存rule68–74の対象operandを明示し、L5 fn4_read_bindingの非null Claimのどのkindが既読fill-only target_readを消費するかを確定する。",
+          "reentry": "このL4/L5 pairに当該範囲の振舞が明記された後、同じBinding/revision/scope/実inputからtest-firstへ戻る。ここで無関係/nonfireや新targetを推定しない。"
+        },
+        "FN6_mixed_alignment": {
+          "source": "src/dependencies_handoff.py",
+          "classification": "既存fill-only consumer契約に対する件数/index/理由traceの実装gap。別のFN6限定PRでtest-first閉包する。",
+          "L5_pointers": [
+            "/functions/6/algorithm/3",
+            "/source_return_contract/descriptor_target_dataflow/consumer/reads",
+            "/source_return_contract/descriptor_target_dataflow/consumer/use_order",
+            "/source_return_contract/descriptor_target_dataflow/transport_types/DescriptorClaimUse/closed_fields/claim_locator",
+            "/source_return_contract/descriptor_target_dataflow/public_output/reason_interpolation",
+            "/source_return_contract/descriptor_target_dataflow/public_output/reason_templates/rule87"
+          ],
+          "behavior": "全raw Claimを保持して原順に走査し、fill出現数とtarget_reads/claim_uses件数を厳密に対応。fill原index iは/claims/i、compact use index jは/frame/claim_uses/j。非fill既存B02経路はuseを参照せず保持し、nonfill-onlyへ新gateを足さない。",
+          "current_gap": "件数検査とuse[index]はfill枝内だけにあり、mixed inputで全raw数とfill-only数/原indexとpacked indexを混同する。public wrapperはfillがある場合だけ実walk/frameを作り、nonfill-onlyは既存経路を使う。"
+        },
+        "legacy": "既存B_prerequisiteのLEGACY-ASSET-4F5A1F0739EC1111D91D旧L4:16–45、98372FEE8A3AC8F9C299旧L5:33–77、A127DEC3EEE6ED63CF17旧監査:80–89(UTW014/020/021)。原source/identity/owner/不足を保持し、欠落を空成功・位置を意味へ変えない点を再導出。旧runtime/test/CIを移植・実行しない。",
+        "authority": "承認済みB01/F07/N02 L3/L10六項目と既存L4/L5 pinsを維持。要求意味/新gateを追加せず、上の未閉FN4は統制へ返す。",
+        "completion": "この判定ではsource/testを変更せず既存matrix・旧値を保持。FN6閉包でもFN4停止や全6Comparison成立、WR13 B/L8/OS/Issue完了を生成しない。"
       }
     }
   }

@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "b814069f2f79a71081da61f6b57d4193d040910efe3ec3e68b3ce17653281e7c",
+    "sha256": "466deb29383d10dbfa68d2afb0d3327a710ccb578357d422347099eb0f5f0f98",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -4062,6 +4062,15 @@
         },
         "full_unit_green": "root-wr66-s2-unit-green-R2.json:417PASS26171ms、reaped=true/output_truncated=false。旧415PASS/2FAIL、旧fileSHA/理由は上記履歴に保持。",
         "qualification_selection_probe": "root-wr66-s2-qualification-selection-probe-R2.json:215ms、source/tests/raw/V不変。qualifiedとqualificationだけ変更したinputはraw候補/Binding/required_kind不変でB14missing、帰属はknown/unknown。raw B候補除去ではmissing0/帰属known。観測であり期待根拠はL4 required_contract_domain/fixed_kinds。R1の帰属axis filter名誤りは訂正しR2を用いる。"
+      },
+      "consumer_alignment_design_audit": {
+        "request": "WR-CLAUDE-BRAIN032-FN7B-ORACLE-CLAIM-PORTS-3547-20261028-68",
+        "working_base": "19738407c1606f462ecf9fb47ef46740045184fb",
+        "evidence": "root-wr68-consumer-design-audit-R2.jsonをrootが現sourceと各JSON pointerで直接照合。FN6の全nonfillがuse参照するという初稿誤記を訂正し、fill分岐内だけのmixed count/index gapとした。",
+        "baseline": "先行WR65/d2は11FN4、S4/2b28は15FN4、S2/19738407は16FN4/残1FN1 S3。各17raw同SHAの段階観測を区別。現baselineでもpipelineのFN6後続結果は未観測、all6成立0。",
+        "auxiliary_probe": "root-wr68-fn6-mixed-input-probe-R1.json:正規bounded_exec326ms/reaped/nontruncated。原17rawとは別の既存finite rule87＋B02 receipt型補助5raw。全FN0clean/real public FN1形成、nonfill-onlyは既存receipt所見、fill-onlyは既存rule87所見、N-F/F-N/N-F-Nは既存FN6 claim_call_frame_shapeで停止。FN4を通さない公開FN6直接callであり、FN4解除やTDD Redとは扱わない。",
+        "probe_integrity": "同Bindingを確認した既存raw依存入力、receipt source/資格helper、原Claimを再利用。Comparison/frame/ClaimUseは補作せずraw/V/definitions/src/testsは不変。",
+        "verification": "文書revision/pointer/ID/責務の静的照合だけ。FN6source修正と新test凍結/Redは次段、旧test変更なし。"
       }
     }
   }
