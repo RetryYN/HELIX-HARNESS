@@ -18,11 +18,12 @@
           "/cases/1/negative_cases/4"
         ],
         "source_refs": [
-          "HELIXOS-L3-002-F02",
-          "HELIXOS-L10-002-F02",
+          "HELIXOS-L3-002-B02",
+          "HELIXOS-L10-002-B02",
           "HELIXOS-L4-002-B02",
           "HELIXOS-L9-002-B02"
         ],
+        "supplemental_refs": ["HELIXOS-L3-002-F02", "HELIXOS-L10-002-F02"],
         "L4_pointer": "/contracts/1",
         "L9_pointer": "/cases/1"
       },
@@ -61,14 +62,14 @@
   },
   "requirement_basis": [
     {
-      "id": "HELIXOS-L3-002-F02",
-      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/9",
-      "obligation": "project/製品scope、要求identity/revision、HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補と根拠、BRAIN template identity/version/意味契約revision/利用状態を照合する。提案set・案件が選択したset・実際に使用したsetを分け、各記録の所属setを示す。"
+      "id": "HELIXOS-L3-002-B02",
+      "path": "docs/helix-os/L3-requirements/business-requirements.json#/requirements/2",
+      "obligation": "常時必要は記録対象project/scope、source/要求revisionと該当契約参照。特定template選択/使用操作ではset/版/適用出力、評価へ送る操作では選択評価scope/必要入力/利用許可を照合する。関係しない知識/全seedや今回初めて生じる結果/受領証拠を開始前提にしない。"
     },
     {
-      "id": "HELIXOS-L10-002-F02",
-      "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/9",
-      "expectation": "異なる三集合とその根拠/選択/使用の出所を与えて再構築する。"
+      "id": "HELIXOS-L10-002-B02",
+      "path": "docs/helix-os/L10-verification/business-verification.json#/cases/2",
+      "expectation": "初回記録時に未発生の義務/結果/receiptを未発生として保持し、操作ごとに必要な入力のみ照合する。開始前提と操作時前提、未発生と欠落を区別し、未来receiptなしでも該当初回記録を妨げない。"
     },
     {
       "id": "HELIXOS-L3-002-F07",
@@ -89,6 +90,20 @@
       "id": "HELIXOS-L10-002-F08",
       "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/15",
       "expectation": "二project以上と異なるtemplate版/期間を与え、選択評価scopeに対する原記録集合と欠測/除外/重複を再構築する。"
+    }
+  ],
+  "related_functional_context": [
+    {
+      "id": "HELIXOS-L3-002-F02",
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json#/requirements/9",
+      "role": "B02の補助的な機能要件コンテキスト。B02 business requirementの代替ではない。",
+      "obligation": "project/製品scope、要求identity/revision、HARNESS契約版、CORE009の選択/判定/義務/不足/意味影響候補と根拠、BRAIN template identity/version/意味契約revision/利用状態を照合する。提案set・案件が選択したset・実際に使用したsetを分け、各記録の所属setを示す。"
+    },
+    {
+      "id": "HELIXOS-L10-002-F02",
+      "path": "docs/helix-os/L10-verification/functional-verification.json#/cases/9",
+      "role": "B02の補助的な機能oracleコンテキスト。B02 business oracleの代替ではない。",
+      "expectation": "異なる三集合とその根拠/選択/使用の出所を与えて再構築する。"
     }
   ],
   "owner_findings": [
@@ -406,6 +421,16 @@
   },
   "source_pins": [
     {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
       "path": "docs/helix-os/L3-requirements/functional-requirements.json",
       "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
       "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
@@ -511,27 +536,32 @@
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
-      "revision": "legacy-generation-2026-09-14",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "legacy_snapshot": "legacy-generation-2026-09-14",
       "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
-      "revision": "legacy-generation-2026-09-14",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "legacy_snapshot": "legacy-generation-2026-09-14",
       "sha256": "3015d4f3d65cd1f8205f88f29dd59c4f1f7ef42c729d8144f2319e49fe20d830"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/product-data-connector.md",
-      "revision": "legacy-generation-2026-09-14",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "legacy_snapshot": "legacy-generation-2026-09-14",
       "sha256": "2b42c26f7e4d387a6e2b178de05c2c27ac946646f266faee95aa08a65e803b04"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/candidates/security-engagement-authority-requirements.md",
-      "revision": "legacy-generation-2026-09-14",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "legacy_snapshot": "legacy-generation-2026-09-14",
       "sha256": "38a68e48ca26cb277b6f5d88439b33b58aecf48f5b650f7596aec04e438b6b16"
     },
     {
       "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
-      "revision": "legacy-generation-2026-09-14",
+      "revision": "0eb9a606591061b2904586d96e17cc832426d8dd",
+      "legacy_snapshot": "legacy-generation-2026-09-14",
       "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
     },
     {
@@ -543,7 +573,7 @@
   "verification": {
     "mode": "bounded_static_only",
     "json_parse": "passed: python3 -m json.tool on this audit record",
-    "source_pin_and_pointer_check": "passed: 22 source SHA-256 pins, 56 owner pointers, and 12 L3/L10 plus L4/L9 pointers resolved with no errors",
+    "source_pin_and_pointer_check": "passed: 24 source SHA-256 pins, 56 owner pointers, and 14 L3/L10 plus L4/L9 pointers resolved with no errors",
     "check_pair": "passed: design_verification_checker.py check-pair; L4/L9 pair 13/13, no failures",
     "check_child": "passed: design_verification_checker.py check-child; L4/L9/L5/L8 negative rows 77 each, 77 matched, no failures",
     "diff_check": "passed: git diff --check",
