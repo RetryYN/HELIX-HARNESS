@@ -1,0 +1,257 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T4",
+  "request_id": "WR108-OS002-T3B-T4-GENERATE-FREEZE",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6457411605",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "発生元の操作/利用許可とdata classを対象scopeへ結び既存SECURITY条件に従って不一致共有を未成立にし許可外dataを評価/別projectへ渡さないこと（N01）、ならびに非選択sourceを未観測・未発生義務/結果を未発生として保ち、未観測/観測期間不足を欠陥0や改善成功へ変換せず、入力整合/登録件数/fixture存在を実記録/handoff/接続/全seed/旧atom被覆/実受入にしないこと（N02）を保持。",
+    "change": "10/12 PO判断および #3510 6457411605 決定1・4に基づき、L3N/L10N/L4/L9本文からN01/N02の義務要素O1..O4を独立に導出し、fn1 check_record_claims については D-OS002-T1a 記録の B01 分（contracts/0, algorithm/0..1, normal_fixtures/0, cases/0）と重ならない N02 専用境界（contracts/12, algorithm/2..3, normal_fixtures/12, cases/12）に限定して target_bindings と O3/O4 を構成し、design_verification_checker.py generate-freeze により D-OS002-T4 凍結記録を機械生成した。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みおよび凍結記録の手書き肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化"
+    ]
+  },
+  "path_aliases": {
+    "L3N": "docs/helix-os/L3-requirements/nfr-grade.json",
+    "L10N": "docs/helix-os/L10-verification/nfr-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/12",
+        "function_id": "HELIXOS-L5-002-compare_security_use_binding",
+        "symbol": "compare_security_use_binding"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/1",
+        "function_id": "HELIXOS-L5-002-check_record_claims",
+        "symbol": "check_record_claims"
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3N#/requirements/2",
+      "l3_clause": "N01正常系として、compare_security_use_bindingはexisting_permission_outputを既存SECURITY原出力へ解決し、発生元のsource_operation・data_class・permission_scope・target_scope・recipientを対象scopeへ個別照合し、利用許可/data class/scopeの欠落と不一致では該当共有だけ未成立とし、記録整合だけで新しい利用許可を発行したり許可外dataを評価/別projectへ渡す共有操作を行わない（L10N#/cases/2/positive_input, expected_observation; L4#/contracts/11/behavior; L9#/cases/11/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/11",
+        "L5#/functions/12/algorithm/0",
+        "L5#/functions/12/algorithm/1",
+        "L5#/type_contract/types/N01RecordInput",
+        "L5#/type_contract/types/N01RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/12",
+        "L8#/normal_fixtures/11"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L10N#/cases/2/negative_input",
+      "l3_clause": "N01負例として、compare_security_use_bindingは共有入力のpermission/data_class/scope欠落3件（permission_missing, data_class_missing, scope_missing → axis=permission/data_class/scope, state=missing, backflow_owner=SECURITY）、別scope許可転用（foreign_permission）と後付け許可による過去無許可処理の成功訂正（retroactive_permission）の2件（axis=permission_scope, state=conflict, backflow_owner=SECURITY）、および有資格SECURITY原出力とのpermission/data_class/scope不一致3件（permission_mismatch, data_class_mismatch, scope_mismatch → axis=permission/data_class/scope, state=conflict, backflow_owner=SECURITY）の計8件を検出し、該当共有を拒否または既存条件で隔離して原記録・既存許可出力・無関係有効共有を保存する（L10N#/cases/2/failure_observation; L4#/contracts/11/negative_classifications; L9#/cases/11/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/60",
+        "L5#/failure_rules/61",
+        "L5#/failure_rules/62",
+        "L5#/failure_rules/63",
+        "L5#/failure_rules/64",
+        "L5#/failure_rules/65",
+        "L5#/failure_rules/66",
+        "L5#/failure_rules/67"
+      ],
+      "l8_pointers": [
+        "L8#/cases/11"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3N#/requirements/3",
+      "l3_clause": "N02正常系（check_record_claimsのN02分、D-OS002-T1aのB01分 algorithm/0..1・normal_fixtures/0 と非重複）として、check_record_claimsは非選択source（source_selected=false）をunobserved、未発生の義務/結果（future_result）をnot_occurred、観測期間不足（period insufficient）を区別して保持し、held_out/実runtime evidenceの未供給を残してfield存在/件数一致だけでは未評価scopeを合格にしない（L10N#/cases/3/positive_input, expected_observation; L4#/contracts/12/behavior; L9#/cases/12/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/12",
+        "L5#/functions/1/algorithm/2",
+        "L5#/functions/1/algorithm/3",
+        "L5#/type_contract/types/N02RecordInput",
+        "L5#/type_contract/types/N02RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/1/fixture_refs/1",
+        "L8#/function_cases/1/expected/material_refs/1",
+        "L8#/normal_fixtures/12"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L10N#/cases/3/negative_input",
+      "l3_clause": "N02負例（check_record_claimsのN02分、D-OS002-T1aのB01分 cases/0 と非重複）として、check_record_claimsは一経路成功で全scope評価済みとするclaim（one_path_all_scopes）、未観測/観測期間不足を欠陥0や改善成功へ変換するclaim（unobserved_zero）、および入力整合/登録件数/fixture・文書存在を実記録/handoff/接続/全seed/旧atom被覆/実受入（Accepted）とするclaim（fixture_as_accepted）の計3件（axis=observation_proof, state=unknown, backflow_owner=該当検証owner/PO）を検出し、未観測/未回収/未評価scopeと原revisionを保持して実受入や全体成立を主張しない（L10N#/cases/3/failure_observation; L4#/contracts/12/negative_classifications; L9#/cases/12/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/68",
+        "L5#/failure_rules/69",
+        "L5#/failure_rules/70"
+      ],
+      "l8_pointers": [
+        "L8#/cases/12"
+      ]
+    }
+  ],
+  "source_main": "50820700dcc80db3aaced7f20f9a1e87e68c4c5d",
+  "request_base_sha": "50820700dcc80db3aaced7f20f9a1e87e68c4c5d",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "recorded_at_utc": "2026-10-28T08:16:36+00:00",
+  "pins": {
+    "L3N_sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84",
+    "L10N_sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81",
+    "L4_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L9_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L5_sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3",
+    "L8_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 46,
+    "expanded_target_count": 46,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_security_use_binding",
+      "id": "HELIXOS-L5-002-compare_security_use_binding",
+      "l5_pointer": "L5#/functions/12",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_security_use_binding",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "check_record_claims",
+      "id": "HELIXOS-L5-002-check_record_claims",
+      "l5_pointer": "L5#/functions/1",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-check_record_claims",
+      "unit_case_refs_count": 2,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_security_use_binding",
+      "l5_pointer": "L5#/functions/12",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "check_record_claims",
+      "l5_pointer": "L5#/functions/1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
