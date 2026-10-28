@@ -531,13 +531,14 @@
         "oracle_projection_writer.py": 36,
         "oracle_view_boundary.py": 92,
         "supply_validation.py": 613,
-        "values_applicability.py": 304,
+        "values_applicability.py": 305,
         "values_applicability_definition_reads.py": 484,
         "values_applicability_read_support.py": 286,
         "values_applicability_reads.py": 694,
         "values_applicability_rows.py": 749
       },
-      "verification": "root-wr79-root-static-proof-R3.jsonに全235関数/44移動/74定数、旧tests全bytes不変、移動先と旧aliasを記録。元417件にWR68追加4件を含む同一421unitを前後確認。FN4未閉/WR82設計は別責務のまま。"
+      "verification": "root-wr79-root-static-proof-R3.jsonに全235関数/44移動/74定数、旧tests全bytes不変、移動先と旧aliasを記録。元417件にWR68追加4件を含む同一421unitを前後確認。FN4未閉/WR82設計は別責務のまま。",
+      "R2_import_compatibility": "独立R1 no_findings6458646961で旧values_applicabilityから_JUDGMENT_CAUSE_TABLEのimport bindingが消えたことを確認。参照consumerは無いが、旧名保持の記述に合わせ同じ定数objectを同moduleで明示re-exportする。import-only json module名は関数/定数APIに含めず変更を要求しない。"
     }
   },
   "fn1_kind_slot_and_substitution_preparation": {

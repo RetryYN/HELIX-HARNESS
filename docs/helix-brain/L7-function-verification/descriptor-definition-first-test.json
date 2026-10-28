@@ -9,7 +9,7 @@
   "scope": "L6の最小参照設計を既存L8部分oracleと実TDD証拠へ結ぶ対検証設計。L8の全fixture/返却を再保存しない。",
   "paired_working_binding": {
     "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
-    "sha256": "356e38663f6d0e73612d3a1b15ba443b813cda28e55492f61eafb21b500d903d",
+    "sha256": "57d3f390c4a548aae8af403d40933aba6f7b9deb6df2b4928b755543b3bb6643",
     "binding_kind": "current_working_whole_file_utf8_bytes"
   },
   "oracle_binding_ref": {
@@ -1118,7 +1118,13 @@
       "root_finding_and_fix": "初回root Ruffがendpoint owner readerのsupport import2個不足をF821で検出、unitR1は421中215errors23404ms。終了を待って_fn3_left_owner_body_formed/_fn3_range_declaration_formedのimportだけを補正。function AST/全test bytesは変更しない。",
       "green": "root-wr79-unit-after-R2.json:421PASS28455ms、reaped=true/output_truncated=false。root-wr79-ruff-check-R2.json30ms PASS、format-check-R1.json34msで36files既整形。source修正に応じた再検証以外の反復なし。",
       "boundaries": "source15files(旧7+新8)、設計意味/要求/source資格/意味判定/routeを変えない。残749/787非空行の2moduleはL6理由付きで維持し閾値は変更しない。旧判断記録/監査snapshot/テスト期待の書換えなし。最新base試験mergeのscfctl validate/staleはPR review記録へ残す。",
-      "completion": "純粋refactorの限定証拠。WR13 B/L8/OS/Issue完了を生成しない。WR82のFN4未閉設計やWR80公開端点化と混在させない。"
+      "completion": "純粋refactorの限定証拠。WR13 B/L8/OS/Issue完了を生成しない。WR82のFN4未閉設計やWR80公開端点化と混在させない。",
+      "R2_import_compatibility": {
+        "scope": "values_applicabilityへ既存private定数alias1行だけ追加。関数AST/定数値AST/全tests不変。",
+        "static": "root-wr79-root-static-proof-R4.json235functions/44moved/74constants + oldconstant aliasobject identity PASS。",
+        "unit": "root-wr79-unit-after-R3.json421PASS26778ms、reaped/nontruncated。Ruffcheck-R3/format-check-R3ともPASS。",
+        "counts": "current values_applicability.pyは304→305非空行。L6実測inventoryと対hashを再照合する。"
+      }
     }
   },
   "fn1_kind_slot_and_substitution_verification": {

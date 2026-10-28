@@ -20,6 +20,7 @@ from descriptor_definitions import (
 )
 from values_applicability_reads import (
     N03_BACKFLOW_ID,
+    _JUDGMENT_CAUSE_TABLE as _JUDGMENT_CAUSE_TABLE,
     _f03_stop,
     _has_f03_carriers_or_null_applicability,
     _read_f03_fact_meaning,
