@@ -215,10 +215,9 @@ def _project_rule70_claim(validated, evaluation, claim_index, claim, binding):
         _unknown_reentry("witness", "knowledge_owner")
     for _, sem_src in semantic_sources:
         for _, view_src in view_matches:
-            if _ref_same(sem_src.get("ref"), view_src.get("ref")) or (
-                sem_src["ref"].get("identity") == view_src["ref"].get("identity")
-                and sem_src["ref"].get("revision") == view_src["ref"].get("revision")
-            ):
+            if sem_src["ref"].get("identity") == view_src["ref"].get(
+                "identity"
+            ) and sem_src["ref"].get("revision") == view_src["ref"].get("revision"):
                 _unknown_reentry("witness", "knowledge_owner")
 
     witness_indices = {index for index, _ in semantic_sources + view_matches}
@@ -306,25 +305,16 @@ def _project_rule74_claim(validated, evaluation, claim_index, claim, binding):
     if not isinstance(basis_refs, list):
         _unknown_reentry("witness", "core_owner")
     raw = validated["input"]
-    basis_witnesses = []
     for basis_ref in basis_refs:
         if not _known_ref(basis_ref):
             _unknown_reentry("witness", "core_owner")
         if _usable_source_matches(validated, basis_ref, required_role="semantic_json"):
             _unknown_reentry("witness", "core_owner")
-        ref_only = _usable_source_matches(
-            validated, basis_ref, required_role="reference_only"
-        )
-        if not ref_only:
-            _unknown_reentry("witness", "core_owner")
-        for item in ref_only:
-            if item not in basis_witnesses:
-                basis_witnesses.append(item)
 
     fact_matches = _matching_descriptor_facts(
         raw, evaluation, claim["subject_ref"], binding, kind_filter="measurement"
     )
-    if not fact_matches or len(fact_matches) != 1:
+    if not fact_matches:
         _unknown_reentry("subject", "core_owner")
 
     values = raw["values"] if "values" in raw else []
@@ -351,7 +341,7 @@ def _project_rule74_claim(validated, evaluation, claim_index, claim, binding):
     if not value_sources:
         _unknown_reentry("witness", "core_owner")
 
-    witness_indices = {index for index, _ in value_sources + basis_witnesses}
+    witness_indices = {index for index, _ in value_sources}
     source_refs = [
         copy.deepcopy(source["ref"])
         for index, source in enumerate(raw["sources"])

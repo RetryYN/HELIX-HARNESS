@@ -635,6 +635,92 @@ class TestOracleNonfillClaimDispatch(unittest.TestCase):
         self.assertIn("F05/F06/unknown_reentry/", str(caught.exception))
         self.assertEqual(raw_masked, raw_before)
 
+    def test_rule70_and_rule74_counterexamples_reject_same_revision_owner_basis_and_head_selection(
+        self,
+    ):
+        """L5 rule_operands/1 & /4: (a) semantic/view同identity・revision、(b) rule74資格semantic_json basis、(c) 複数ValueFact/descriptor factで先頭選択せずunknown_reentry停止する（M2/M4/M9/M10反例）。"""
+        # (a) M2 kill: semantic_json source and derived_view source share same identity & revision -> unknown_reentry (knowledge_owner)
+        raw_same_id_rev = base_input(load_document())
+        _slot, fact = _slot_and_fact(raw_same_id_rev, "measurement")
+        sem_ref = raw_same_id_rev["sources"][0]["ref"]
+        fact["source_ref"] = copy.deepcopy(sem_ref)
+        same_view_ref = _add_qualified_source(
+            raw_same_id_rev,
+            identity=sem_ref["identity"],
+            revision=sem_ref["revision"],
+            role="derived_view",
+            content={
+                "binding": copy.deepcopy(raw_same_id_rev["binding"]),
+                "rendered_view": "表示のみ（semantic_jsonと同identity/revision）",
+            },
+            owner=sem_ref["owner"],
+        )
+        raw_same_id_rev["claims"] = [
+            {
+                "subject_ref": copy.deepcopy(fact["ref"]),
+                "binding": copy.deepcopy(raw_same_id_rev["binding"]),
+                "actor": "BRAIN",
+                "kind": "meaning_revision_update",
+                "proposed_value": {"semantic_json_change_ref": None},
+                "basis_refs": [copy.deepcopy(same_view_ref)],
+            }
+        ]
+        raw_before, _v, context = _public_context(raw_same_id_rev, self)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        self.assertIn("F05/F06/unknown_reentry/witness", str(caught.exception))
+        self.assertIn("owner=knowledge_owner", str(caught.exception))
+        self.assertIn(BACKFLOW, str(caught.exception))
+        self.assertEqual(raw_same_id_rev, raw_before)
+
+        # (b) M4 kill: rule74 basis_refs has qualified semantic_json source -> unknown_reentry (core_owner)
+        raw_r74_sem_basis = _f06_neg04_input()
+        raw_r74_sem_basis["claims"][0]["basis_refs"] = [
+            copy.deepcopy(raw_r74_sem_basis["sources"][1]["ref"])
+        ]
+        raw_before, _v, context = _public_context(raw_r74_sem_basis, self)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        self.assertIn("F05/F06/unknown_reentry/witness", str(caught.exception))
+        self.assertIn("owner=core_owner", str(caught.exception))
+        self.assertIn(BACKFLOW, str(caught.exception))
+        self.assertEqual(raw_r74_sem_basis, raw_before)
+
+        # (c1) M9 kill: 2 ValueFacts for the same subject_ref -> do not select head, stop with unknown_reentry (core_owner)
+        raw_dup_vfact = _f06_neg04_input()
+        second_vfact = copy.deepcopy(raw_dup_vfact["values"][0])
+        second_vfact["ref"] = copy.deepcopy(second_vfact["ref"])
+        second_vfact["ref"]["identity"] = second_vfact["ref"]["identity"] + "-dup"
+        second_vfact["value"] = "competing-known-threshold"
+        raw_dup_vfact["values"].append(second_vfact)
+        _sync_values_source(raw_dup_vfact)
+        raw_before, _v, context = _public_context(raw_dup_vfact, self)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        self.assertIn("F05/F06/unknown_reentry/subject", str(caught.exception))
+        self.assertIn("owner=core_owner", str(caught.exception))
+        self.assertIn(BACKFLOW, str(caught.exception))
+        self.assertEqual(raw_dup_vfact, raw_before)
+
+        # (c2) M10 kill: 2 descriptor facts for the same subject_ref -> do not select head, stop with unknown_reentry (knowledge_owner)
+        raw_dup_dfact = _f05_neg03_input()
+        _mslot, mfact = _slot_and_fact(raw_dup_dfact, "measurement")
+        _cslot, cfact = _slot_and_fact(raw_dup_dfact, "completion")
+        cfact["ref"] = copy.deepcopy(mfact["ref"])
+        sem_src = raw_dup_dfact["sources"][0]
+        sem_content = copy.deepcopy(sem_src["content"])
+        for dslot in sem_content.get("descriptors", []):
+            if dslot.get("descriptor_kind") == "completion":
+                dslot["facts"][0]["ref"] = copy.deepcopy(mfact["ref"])
+        _rewrite_qualified_source_body(raw_dup_dfact, sem_src, sem_content)
+        raw_before, _v, context = _public_context(raw_dup_dfact, self)
+        with self.assertRaises(NotImplementedError) as caught:
+            compare_oracle_and_view_boundary(context)
+        self.assertIn("F05/F06/unknown_reentry/subject", str(caught.exception))
+        self.assertIn("owner=knowledge_owner", str(caught.exception))
+        self.assertIn(BACKFLOW, str(caught.exception))
+        self.assertEqual(raw_dup_dfact, raw_before)
+
 
 if __name__ == "__main__":
     unittest.main()
