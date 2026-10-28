@@ -171,6 +171,8 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "L4-C-UNKNOWN-OTHER-OWNER", **keys["K-UNKNOWN-OTHER-OWNER"]
             ),
         ]
+        for class_row in l4_classes:
+            class_row["design_ref"] = "L4-contract-A"
         l5_classes = [
             cls._equivalence_class("L5-RULE-CONFLICT", **keys["K-CONFLICT"]),
             cls._equivalence_class("L5-RULE-UNKNOWN", **keys["K-UNKNOWN"]),
@@ -350,7 +352,12 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             row["expected_preserved"] = {"case": row["id"]}
         return (
             {
-                "contracts": [{"id": "L4-contract-A"}],
+                "contracts": [
+                    {
+                        "id": "L4-contract-A",
+                        "negative_class_refs": [row["class_id"] for row in l4_classes],
+                    }
+                ],
                 "negative_equivalence_classes": {
                     "source_rows": "failure_classifications"
                 },
@@ -422,6 +429,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertEqual(
             result["comparison_mode"], "explicit_negative_equivalence_classes"
         )
+        self.assertEqual(result["parent_link_mode"], "new_parent_link")
         self.assertEqual(
             result["count_unit"], "unique_equivalence_class_keys_per_layer"
         )
@@ -441,6 +449,101 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             result["comparison_scope"]["not_checked"],
             ["full_legacy_per_case_four_layer_attribute_tuple"],
         )
+
+    def test_chk_neg_4way_new_parent_link_partial_declaration_fails(self) -> None:
+        for missing_field in ("design_ref", "negative_class_refs"):
+            with self.subTest(missing_field=missing_field):
+                layers = list(self._equivalence_mode_layers())
+                if missing_field == "design_ref":
+                    layers[0]["failure_classifications"][2].pop("design_ref")
+                    expected_reason = "l4_top_level_design_ref_missing_or_invalid"
+                else:
+                    layers[0]["contracts"][0].pop("negative_class_refs")
+                    expected_reason = "l4_negative_class_refs_missing"
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT, "L4", "L9", "L8", "L5", *layers
+                )
+                self.assertEqual(result["parent_link_mode"], "new_parent_link")
+                self.assertFalse(result["passed"], msg=result)
+                self.assertIn(
+                    expected_reason,
+                    {item["reason"] for item in result["failures"]},
+                )
+
+    def test_chk_neg_4way_new_parent_link_one_direction_only_fails(self) -> None:
+        layers = list(self._equivalence_mode_layers())
+        class_id = layers[0]["failure_classifications"][0]["class_id"]
+        layers[0]["contracts"][0]["negative_class_refs"].remove(class_id)
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertEqual(result["parent_link_mode"], "new_parent_link")
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "l4_parent_reverse_link_missing_or_ambiguous",
+            {item["reason"] for item in result["failures"]},
+        )
+
+    def test_chk_neg_4way_new_parent_link_duplicate_fails(self) -> None:
+        layers = list(self._equivalence_mode_layers())
+        class_id = layers[0]["failure_classifications"][0]["class_id"]
+        layers[0]["contracts"][0]["negative_class_refs"].append(class_id)
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertEqual(result["parent_link_mode"], "new_parent_link")
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "l4_negative_class_ref_duplicate",
+            {item["reason"] for item in result["failures"]},
+        )
+
+    def test_chk_neg_4way_new_and_nested_parent_definitions_conflict(self) -> None:
+        layers = list(self._equivalence_mode_layers())
+        layers[0]["contracts"][0]["negative_classifications"] = [
+            copy.deepcopy(layers[0]["failure_classifications"][0])
+        ]
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertEqual(result["parent_link_mode"], "new_parent_link")
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "l4_class_dual_definition_nested_and_top_level",
+            {item["reason"] for item in result["failures"]},
+        )
+
+    def test_chk_neg_4way_explicit_legacy_parent_mode_rejects_nested_duplicate(
+        self,
+    ) -> None:
+        layers = list(self._equivalence_mode_layers())
+        l4 = layers[0]
+        for row in l4["failure_classifications"]:
+            row.pop("design_ref", None)
+        l4["contracts"][0].pop("negative_class_refs", None)
+        l4["contracts"][0]["negative_classifications"] = [
+            copy.deepcopy(l4["failure_classifications"][0])
+        ]
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *layers)
+        self.assertEqual(
+            result["comparison_mode"], "explicit_negative_equivalence_classes"
+        )
+        self.assertEqual(result["parent_link_mode"], "legacy")
+        self.assertFalse(result["passed"], msg=result)
+        self.assertIn(
+            "l4_class_dual_definition_nested_and_top_level",
+            {item["reason"] for item in result["failures"]},
+        )
+
+    def test_chk_neg_4way_verification_discipline_old_parent_form_passes(self) -> None:
+        paths = (
+            "docs/helix-harness/L4-basic-design/verification-discipline.json",
+            "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+            "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+            "docs/helix-harness/L5-detail-design/verification-discipline.json",
+        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, *paths)
+        self.assertEqual(
+            result["comparison_mode"], "explicit_negative_equivalence_classes"
+        )
+        self.assertEqual(result["parent_link_mode"], "legacy")
+        self.assertTrue(result["passed"], msg=result)
+        self.assertEqual(result["counts"], {"L4": 84, "L9": 84, "L8": 84, "L5": 84})
+        self.assertEqual(result["matched_case_count"], 84)
         self.assertEqual(
             result["comparison_scope"]["class_invariants"],
             [
@@ -657,14 +760,13 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l4["contracts"] = [
             {
                 "id": "L4-CONTRACT-A",
-                "negative_classifications": [
-                    {
-                        **copy.deepcopy(l4["failure_classifications"][0]),
-                        "integration_case_ref": "CASE-UNKNOWN-1",
-                    }
+                "negative_class_refs": [
+                    row["class_id"] for row in l4["failure_classifications"]
                 ],
             }
         ]
+        for row in l4["failure_classifications"]:
+            row["design_ref"] = "L4-CONTRACT-A"
         l4["failure_classifications"][0]["integration_case_ref"] = "CASE-UNKNOWN-1"
         for row in l4["failure_classifications"]:
             if row.get("backflow_owner") == "owner-x":
@@ -698,6 +800,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             duplicate_l4["class_id"] = "L4-C-UNKNOWN-CONTRACT-B"
             duplicate_l4["id"] = "L4-C-UNKNOWN-CONTRACT-B"
             duplicate_l4["integration_case_ref"] = "CASE-UNKNOWN-CONTRACT-B"
+            duplicate_l4["design_ref"] = "L4-CONTRACT-B"
             l4["failure_classifications"].append(duplicate_l4)
 
             duplicate_l5 = copy.deepcopy(rule)
@@ -779,7 +882,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             l4["contracts"].append(
                 {
                     "id": "L4-CONTRACT-B",
-                    "negative_classifications": [duplicate_l4],
+                    "negative_class_refs": [duplicate_l4["class_id"]],
                 }
             )
 
@@ -841,6 +944,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         layers = self._contract_owned_equivalence_layers()
         l4, _l9, l8, l5 = layers
         l4["contracts"][0]["id"] = "HELIXOS-L4-015-F01"
+        for row in l4["failure_classifications"]:
+            if row.get("design_ref") == "L4-CONTRACT-A":
+                row["design_ref"] = "HELIXOS-L4-015-F01"
         l5["contracts"][0].update(
             {
                 "id": "HELIXOS-L5-015-P-F01",
@@ -1287,6 +1393,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         duplicate_l4["id"] = "L4-C-UNKNOWN-DUP"
         duplicate_l4["class_id"] = "L4-C-UNKNOWN-DUP"
         layers[0]["failure_classifications"].append(duplicate_l4)
+        layers[0]["contracts"][0]["negative_class_refs"].append(
+            duplicate_l4["class_id"]
+        )
 
         duplicate_l8 = copy.deepcopy(layers[2]["negative_equivalence_classes"][0])
         duplicate_l8["class_id"] = "L8-CLASS-UNKNOWN-DUP"
@@ -1712,7 +1821,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             state="unresolved",
         )
         l4_row.update({"id": l4_row["class_id"], "code": "fixture_unknown"})
+        l4_row["design_ref"] = "L4-contract-A"
         l4["failure_classifications"].append(l4_row)
+        l4["contracts"][0]["negative_class_refs"].append(l4_row["class_id"])
 
         l5_row = self._equivalence_class(
             "L5-RULE-UNKNOWN-DIFFERENT-AXIS",
@@ -1933,6 +2044,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             data[
                 "failure_classifications" if layer_index == 0 else "failure_rules"
             ] = []
+        positive_only[0]["contracts"][0]["negative_class_refs"] = []
         positive_only[1]["negative_equivalence_classes"] = []
         positive_only[2]["negative_equivalence_classes"] = []
         positive_only[2]["unit_cases"] = [positive_only[2]["unit_cases"][3]]
@@ -2455,7 +2567,9 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 self.assertIn("seed", rejected)
                 self.assertIn("materialization_sha256", rejected)
 
-    def test_chk_neg_4way_match_pass_and_mutation_fail(self) -> None:
+    def test_chk_neg_4way_casewise_mode_ignores_partial_top_level_parent_links(
+        self,
+    ) -> None:
         l4 = {
             "contracts": [
                 {
@@ -2539,6 +2653,27 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         self.assertTrue(res_pass["passed"])
         self.assertEqual(res_pass["matched_case_count"], 1)
+        self.assertEqual(res_pass["comparison_mode"], "legacy_casewise_four_layer")
+        self.assertEqual(res_pass["parent_link_mode"], "legacy")
+
+        # A partial design_ref in legacy casewise input remains inert.
+        partial_parent_l4 = copy.deepcopy(l4)
+        partial_parent_l4["failure_classifications"] = [
+            {"class_id": "top-level-linked", "design_ref": "L4-01"},
+            {"class_id": "top-level-unlinked"},
+        ]
+        partial_parent = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            partial_parent_l4,
+            l9,
+            l8,
+            l5,
+        )
+        self.assertEqual(partial_parent, res_pass)
 
         # Mutation 1: change backflow_owner on L8
         mut_l8 = copy.deepcopy(l8)
@@ -3119,6 +3254,11 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             generated["negative_case_4way_verification"]["comparison_mode"],
             "legacy_casewise_four_layer",
         )
+        self.assertEqual(
+            generated["negative_case_4way_verification"]["parent_link_mode"],
+            "legacy",
+        )
+        self.assertIn("negative_4way_parent_link_mode", generated["verification"])
         self.assertEqual(
             generated["negative_case_4way_verification"]["count_unit"],
             "negative_case_rows_per_layer",
