@@ -844,7 +844,7 @@
     "execution_state": "not_executed"
   },
   "out_of_scope_ja": [
-    "FN00・FN13はfreeze記録の部分scopeが残るため、関数全体のL7行を追加しない。FN01はT1a(B01)とT4(N02)のscopeを分け、両方のfreeze bindingとU-IDを参照する。",
+    "FN00はT1a /function_freeze_rows/0でADD-01..11と共通入力・invalid-rootを凍結済みだが、残るL5#/functions/0のHELIXOS-L8-002-F04（L8#/cases/5）とHELIXOS-L8-002-F04-SOURCE-MEMBER-01..09（L8#/f04_source_member_verification/whole_cases/0..8）は、T2a /function_freeze_rowsにFN00行がなく、T2a /private_detail_bindings/0,1のbound_public_functionsにもL5#/functions/0がない。T2a /function_freeze_rows/0のunit_case_refs_and_shared_function_refs_dispositionはこれらの存在・結線確認を記録するがFN00の関数pair凍結ではない。T2b /private_detail_bindings/0,1はL5#/functions/0をbound_public_functionsに含むものの、対象はsource_original_correspondence detailとprivate fn19であり、上記T2a U-ID群のFN00 public pair bindingを補わないため、FN00のL7行を追加しない。FN13はT1a /function_freeze_rows/3でnormal oracleとHELIXOS-L8-002-F04-DISPATCH-NO-F04（L8#/function_cases/16、dispatch_boundary_cases/cases/1）を凍結済み。T2a /private_detail_bindings/0のdispositionはfn13接続を記すが、bound_public_functionsはL5#/functions/14..18のみでL5#/functions/13を含まず、公開FN13のF04 profile scopeを結ぶfreeze pointerがないため、FN13のL7行も追加しない。T1a/T2a/T2bは独立review済み（#3754 R1、#3764 R1、#3769 R1 no findings）だが、この境界不足は別に残る。FN01はT1a(B01)とT4(N02)のscopeを分け、両方のfreeze bindingとU-IDを参照する。",
     "D-OS002-T3a/T3b/T4はgenerate-freezeのdeclaration manifest target_bindingsと独立review記録を参照する。checker-reconcileというファイル名だけを理由にfreeze根拠から除外しない。",
     "H009 #3788のGeneralProposalExchangeCarrier受領関数およびL5#/functions/19..22のprivate detailは、公開関数のL7表へ昇格させない。",
     "fixture・全返却値・hashはL7 test code側の責務であり、本書へ複製しない。実行証拠は作成せずexecution_stateはnot_executedとする。"
