@@ -193,7 +193,11 @@
           },
           "failure_rule_ref": "HARNESS-L5-009-R-ai_name_changes_obligations",
           "status": "stopped_missing_qualified_material",
-          "missing_qualified_material_ja": "同scope・同意味・同適用契約のAI名だけの差について、具体的な期待/返却義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約のAI名だけの差について、具体的な期待/返却義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。",
+          "carrier_query_event_id": "WR151-FN8-OBLIGATION-CARRIER-QUERY-R1",
+          "missing_carrier_backflow_owner": "core_owner",
+          "permitted_metamorphic_observation_ja": "ai_nameだけを個別に変え、同じinput内の義務refsを維持した比較で義務材料不変を確認する。これはAI名による義務差分やai_name_changes_obligations findingを示さず、case全体は停止中。",
+          "metamorphic_test_ref": "test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_ai_name_only_change_does_not_change_obligation_material"
         },
         {
           "case_id": "HARNESS-L8-009-B02-NEG-02",
@@ -203,7 +207,11 @@
           },
           "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
           "status": "stopped_missing_qualified_material",
-          "missing_qualified_material_ja": "同scope・同意味・同適用契約の言語だけの差について、省略前後の具体的な義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約の言語だけの差について、省略前後の具体的な義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。",
+          "carrier_query_event_id": "WR151-FN8-OBLIGATION-CARRIER-QUERY-R1",
+          "missing_carrier_backflow_owner": "core_owner",
+          "permitted_metamorphic_observation_ja": "language_nameだけを個別に変え、同じinput内の義務refsを維持した比較で義務材料不変を確認する。これは言語による論点省略やlanguage_changes_obligations findingを示さず、case全体は停止中。",
+          "metamorphic_test_ref": "test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_language_only_change_does_not_change_obligation_material"
         },
         {
           "case_id": "HARNESS-L8-009-B02-NEG-03",
@@ -213,7 +221,9 @@
           },
           "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
           "status": "stopped_missing_qualified_material",
-          "missing_qualified_material_ja": "異なるdomain/risk/scopeを示す別binding、対応するqualified candidate set、および境界を比較するqualifiedなSemanticComparisonがない。"
+          "missing_qualified_material_ja": "異なるdomain/risk/scopeを示す別binding、対応するqualified candidate set、および境界を比較するqualifiedなSemanticComparisonがない。",
+          "carrier_query_event_id": "WR151-FN8-OBLIGATION-CARRIER-QUERY-R1",
+          "missing_carrier_backflow_owner": "core_owner"
         },
         {
           "case_id": "HARNESS-L8-009-B02-NEG-04",
@@ -223,10 +233,12 @@
           },
           "failure_rule_ref": "HARNESS-L5-009-R-count_as_semantic_equivalence",
           "status": "stopped_missing_qualified_material",
-          "missing_qualified_material_ja": "同件数で内容が異なることを示す2つのqualified義務集合と、件数だけで同等としないためのqualifiedなSemanticComparisonがない。"
+          "missing_qualified_material_ja": "同件数で内容が異なることを示す2つのqualified義務集合と、件数だけで同等としないためのqualifiedなSemanticComparisonがない。",
+          "carrier_query_event_id": "WR151-FN8-OBLIGATION-CARRIER-QUERY-R1",
+          "missing_carrier_backflow_owner": "core_owner"
         }
       ],
-      "l7_fixture_followup_ja": "4 subassertionに必要な比較材料は、L5 failure_rules/8..11およびL4/L9から独立に導き、L7のfixtureとtestを作る後続依頼へ戻す。L8はU-ID行のまま維持し、今回の未実装4件についてfindingを生成しない。",
+      "l7_fixture_followup_ja": "L5 failure_rules/8..11とL4/L9の意味を維持し、L8はU-ID行のままにする。NEG-01/02では単一metadata fieldだけを変えた同一snapshotの不変性testを実行できるが、qualifiedな2義務集合とSemanticComparisonが無いためfinding subassertionは停止のまま。NEG-03/04も必要なqualified材料が無いため停止を維持する。Claim.proposed_value等を集合carrierに流用しない。戻し先core_owner、照会WR151-FN8-OBLIGATION-CARRIER-QUERY-R1。",
       "execution_state": "not_executed",
       "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
       "tdd_history_refs": [
@@ -250,7 +262,8 @@
         "#/source_pins/14",
         "#/source_pins/15",
         "#/source_pins/44",
-        "#/source_pins/45"
+        "#/source_pins/45",
+        "#/source_pins/46"
       ],
       "review_r1_resolution_ja": "M1/M2: unit外L8文書をimport時に読むtest_fn8_b02_negative_claim_refinement.pyを再構築branchへ含めず、B02-NEG-01..04はstopped_semantic_subassertionsの停止記録に留める。locator保持はvalidatorでinput=nullとなる入力を使うtest_validator_input_issue_locators_are_retained_in_fn8_stopを、FN8未実装の最新main起点でRedに含めた。Red時は公開FN8関数がなく5件すべて失敗し、source-only Greenで5件が通る。",
       "locator_intermediate_observation": {
@@ -298,7 +311,19 @@
           ],
           "description_ja": "validator input issue locator保持のsource-only修正。tdd_history_refs/0/green_commitが指す最終Green。"
         }
-      ]
+      ],
+      "limited_metamorphic_test_observation": {
+        "test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
+        "test_revision": "29f52c7975f979059c3b9c5d52665b67063e74af",
+        "test_file_sha256": "30fda5d0feae05843f4db24781f8d76dd600d211bbd77f8b5aa4d4c6ad7011ea",
+        "source_pin_ref": "#/source_pins/46",
+        "test_names": [
+          "test_ai_name_only_change_does_not_change_obligation_material",
+          "test_language_only_change_does_not_change_obligation_material"
+        ],
+        "result": "test-only commit上でbounded pytestを実行し、追加した2 testが初回Green（2 passed, 5 deselected）。Redを作為的に作っておらず、この観測はAI名単独・言語名単独の変更に対する限定的な義務材料不変性のみを示す。4件のfinding停止を解消せず、formal execution_stateを変更しない。",
+        "bounded_command": "python3 scaffold/tools/bounded_exec.py --timeout-ms 120000 --max-output-bytes 200000 -- python3 -m pytest -q helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py -k 'ai_name_only_change_does_not_change_obligation_material or language_only_change_does_not_change_obligation_material'"
+      }
     },
     {
       "id": "HARNESS-L7-009-FN11-project_cross_design_candidate_refs",
@@ -1561,7 +1586,13 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
       "file_sha256": "b2f0ff6524a4b76463ba86b8819b29064cb745cdb7ff2bf2408dec62721b3e7d",
       "selected_pointers": []
+    },
+    {
+      "revision": "29f52c7975f979059c3b9c5d52665b67063e74af",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
+      "file_sha256": "30fda5d0feae05843f4db24781f8d76dd600d211bbd77f8b5aa4d4c6ad7011ea",
+      "role": "test_only_source"
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN08のlimited_metamorphic_test_observationはtest-only commitとtest file SHAをsource_pinsで束縛し、初回Greenの限定観測を記録するがformal execution_stateはnot_executedのまま維持する。"
 }
