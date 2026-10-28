@@ -991,7 +991,21 @@
             {
               "op": "append_claim",
               "path": "claims",
-              "value": "owner資料の照合が未成立なのに、Pの選択template操作を使用可能として扱う。"
+              "value": {
+                "name": "selected_template_operation_unchecked",
+                "target_ref": {
+                  "identity": "BIND-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                },
+                "value": "owner資料の照合が未成立なのに、Pの選択template操作を使用可能として扱う。",
+                "basis_refs": []
+              }
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
@@ -1087,7 +1101,21 @@
             {
               "op": "append_claim",
               "path": "claims",
-              "value": "LABO scope/必要入力/SECURITY証拠が未照合なのに、Pの選択evaluation operationを送信して評価成立として扱う。"
+              "value": {
+                "name": "selected_evaluation_operation_unchecked",
+                "target_ref": {
+                  "identity": "BIND-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                },
+                "value": "LABO scope/必要入力/SECURITY証拠が未照合なのに、Pの選択evaluation operationを送信して評価成立として扱う。",
+                "basis_refs": []
+              }
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_operation_dependencies",
@@ -1196,7 +1224,7 @@
               "value": {
                 "name": "unconnected_unagreed_collapsed",
                 "target_ref": null,
-                "value": "Treat P.implementation=unconnected and Q.verification=unagreed as one state.",
+                "value": "Pのimplementation=unconnectedとQのverification=unagreedを同じ状態へまとめる。",
                 "basis_refs": []
               }
             }
@@ -1207,31 +1235,137 @@
             "project_states": [
               {
                 "binding": {
-                  "project_scope": "P",
-                  "requirement_ref": "REQ-P"
+                  "project_scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "requirement_ref": {
+                    "identity": "REQ-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "OS002"
+                  },
+                  "HARNESS_contract_ref": {
+                    "identity": "HARNESS-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "OS002"
+                  },
+                  "template_ref": {
+                    "identity": "TPL-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  "semantic_contract_ref": {
+                    "identity": "SEM-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "BRAIN"
+                  }
                 },
-                "implementation": "unconnected"
+                "implementation": "unconnected",
+                "source_ref": {
+                  "identity": "SRC-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                }
               },
               {
                 "binding": {
-                  "project_scope": "Q",
-                  "requirement_ref": "REQ-Q"
+                  "project_scope": {
+                    "project": "Q",
+                    "tenant": "TENANT-Q",
+                    "environment": "ENV-Q"
+                  },
+                  "requirement_ref": {
+                    "identity": "REQ-Q",
+                    "revision": "REV-Q",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "TENANT-Q",
+                      "environment": "ENV-Q"
+                    },
+                    "owner": "OS002"
+                  },
+                  "HARNESS_contract_ref": {
+                    "identity": "HARNESS-Q",
+                    "revision": "REV-Q",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "TENANT-Q",
+                      "environment": "ENV-Q"
+                    },
+                    "owner": "OS002"
+                  },
+                  "template_ref": {
+                    "identity": "TPL-Q",
+                    "revision": "REV-Q",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "TENANT-Q",
+                      "environment": "ENV-Q"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  "semantic_contract_ref": {
+                    "identity": "SEM-Q",
+                    "revision": "REV-Q",
+                    "scope": {
+                      "project": "Q",
+                      "tenant": "TENANT-Q",
+                      "environment": "ENV-Q"
+                    },
+                    "owner": "BRAIN"
+                  }
                 },
-                "verification": "unagreed"
+                "verification": "unagreed",
+                "source_ref": {
+                  "identity": "SRC-Q",
+                  "revision": "REV-Q",
+                  "scope": {
+                    "project": "Q",
+                    "tenant": "TENANT-Q",
+                    "environment": "ENV-Q"
+                  },
+                  "owner": "OS002"
+                }
               }
             ]
           }
         },
         {
           "code": "same_project_partial_completion",
-          "change": "同一project Pでimplementation=supplied、verification=not_observed（他の工程も未完）の部分成功を、P全体の完了へ昇格",
+          "change": "同一project Pでimplementation=supplied、verification=not_observed、release_kanban未提示という部分状態をproject全体完了へ昇格する。",
           "axis": "project_scope",
           "state": "conflict",
           "backflow_owner": "OS002",
-          "expected": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+          "expected": "Pのimplementation=supplied、verification=not_observed、release_kanban未提示を個別に保持し、部分成功からproject全体完了を生成しない。",
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
-            "observable": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+            "observable": "Pのimplementation=supplied、verification=not_observed、release_kanban未提示を個別に保持し、部分成功からproject全体完了を生成しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0,
@@ -1243,7 +1377,7 @@
               "value": {
                 "name": "same_project_partial_completion",
                 "target_ref": null,
-                "value": "P complete from implementation=supplied while verification=not_observed.",
+                "value": "Pのimplementation=suppliedだけからproject全体を完了として扱う。",
                 "basis_refs": []
               }
             }
@@ -1254,11 +1388,64 @@
             "project_states": [
               {
                 "binding": {
-                  "project_scope": "P",
-                  "requirement_ref": "REQ-P"
+                  "project_scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "requirement_ref": {
+                    "identity": "REQ-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "OS002"
+                  },
+                  "HARNESS_contract_ref": {
+                    "identity": "HARNESS-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "OS002"
+                  },
+                  "template_ref": {
+                    "identity": "TPL-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "BRAIN"
+                  },
+                  "semantic_contract_ref": {
+                    "identity": "SEM-P",
+                    "revision": "REV-P",
+                    "scope": {
+                      "project": "P",
+                      "tenant": "TENANT-P",
+                      "environment": "ENV-P"
+                    },
+                    "owner": "BRAIN"
+                  }
                 },
                 "implementation": "supplied",
-                "verification": "not_observed"
+                "verification": "not_observed",
+                "source_ref": {
+                  "identity": "SRC-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                }
               }
             ]
           }
@@ -4955,14 +5142,14 @@
         },
         {
           "code": "reassessment_pending_as_complete",
-          "change": "project PでCORE影響がaffectedかつ再評価待ち、旧版利用/移管未完を保持する入力に、再評価済み・影響なし・使用履歴移管完了のclaimを加える",
+          "change": "CORE原資料が再評価待ちを示す場合に、その状態を再評価済み・影響なし・移管済みとして扱う。",
           "axis": "impact_history",
           "state": "conflict",
           "backflow_owner": "CORE/OS002",
-          "expected": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+          "expected": "CORE原資料が再評価待ちを示す場合、その状態と移管未完を完了へ昇格せず、無関係なQの有効結果を保つ。現行入力から再評価待ちを表現できるとは主張しない。",
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
-            "observable": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+            "observable": "CORE原資料が再評価待ちを示す場合、その状態と移管未完を完了へ昇格せず、無関係なQの有効結果を保つ。現行入力から再評価待ちを表現できるとは主張しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0,
@@ -4974,43 +5161,17 @@
               "value": {
                 "name": "reassessment_pending_as_complete",
                 "target_ref": null,
-                "value": "P reassessment complete, impact unaffected, and TPL-OLD history migrated.",
+                "value": "CORE原資料の再評価待ちを再評価済み・影響なし・移管済みとして扱う。",
                 "basis_refs": []
               }
             }
           ],
           "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
           "execution_state": "not_executed",
-          "input_state_minimum": {
-            "used_ref": "TPL-OLD",
-            "candidate_ref": "TPL-CANDIDATE",
-            "CORE_impacts": [
-              {
-                "binding": {
-                  "project_scope": "P",
-                  "requirement_ref": "REQ-P",
-                  "template_ref": "TPL-OLD"
-                },
-                "target_obligation_ref": "OBL-P",
-                "state": "affected",
-                "reason": "semantic impact requires reassessment",
-                "old_used_ref": "TPL-OLD",
-                "new_candidate_ref": "TPL-CANDIDATE"
-              },
-              {
-                "binding": {
-                  "project_scope": "Q",
-                  "requirement_ref": "REQ-Q",
-                  "template_ref": "TPL-OLD"
-                },
-                "target_obligation_ref": "OBL-Q",
-                "state": "unaffected",
-                "reason": "unrelated scope",
-                "old_used_ref": "TPL-OLD",
-                "new_candidate_ref": "TPL-CANDIDATE"
-              }
-            ],
-            "migration_receipt": null
+          "owner_material_coverage": "未形成条件: L5 F07RecordInput.CORE_impacts.stateはField<string>であるが、F07 algorithmはaffected/unknown/unaffectedを指定し、再評価待ちを直接表すnative member/valueやCORE owner出力の取得路を記述していない。F07専用L7 expected_materialも確認できない。したがって本U-IDは要求の宣言的追跡のみで、再評価待ちの実入力や挙動を表すケースは未形成・未実行である。",
+          "owner_and_reentry": {
+            "owner": "CORE",
+            "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を示し、承認済みL5 F07 input typeに反映され、L7 expected_materialで期待が明示された後に再照合・再凍結する。OS002は状態を推定しない。"
           }
         }
       ],
@@ -5183,14 +5344,14 @@
         },
         {
           "code": "undecided_labo_scope_as_complete",
-          "change": "LABO_scopeの指定/合意scopeまたはrequired_record_refsが未決/未供給の入力に、選択評価complete/evaluatedのclaimを加える",
+          "change": "LABO_scopeを持つ入力でrequired_record_refsとrequired_set_source_refが未供給の状態を、評価完了として扱う。",
           "axis": "evaluation_inputs",
           "state": "unknown",
           "backflow_owner": "LABO/OS005/024",
-          "expected": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
+          "expected": "LABO_scopeの必要記録集合・取得根拠が未供給なら不完全を保持し、評価完了を生成しない。OSはLABO scopeや必要集合を推定しない。",
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
-            "observable": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
+            "observable": "LABO_scopeの必要記録集合・取得根拠が未供給なら不完全を保持し、評価完了を生成しない。OSはLABO scopeや必要集合を推定しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0,
@@ -5202,7 +5363,7 @@
               "value": {
                 "name": "undecided_labo_scope_as_complete",
                 "target_ref": null,
-                "value": "Evaluation complete although LABO scope and required record set are undecided.",
+                "value": "required_record_refsとrequired_set_source_refが未供給でも評価完了として扱う。",
                 "basis_refs": []
               }
             }
@@ -5210,16 +5371,71 @@
           "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
           "execution_state": "not_executed",
           "input_state_minimum": {
-            "evaluation_selected": true,
             "LABO_scope": {
-              "ref": "LABO-P",
+              "ref": {
+                "identity": "LABO-SCOPE-P",
+                "revision": "REV-P",
+                "scope": {
+                  "project": "P",
+                  "tenant": "TENANT-P",
+                  "environment": "ENV-P"
+                },
+                "owner": "LABO"
+              },
               "binding": {
-                "project_scope": "P",
-                "requirement_ref": "REQ-P",
-                "template_ref": "TPL-P"
+                "project_scope": {
+                  "project": "P",
+                  "tenant": "TENANT-P",
+                  "environment": "ENV-P"
+                },
+                "requirement_ref": {
+                  "identity": "REQ-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                },
+                "HARNESS_contract_ref": {
+                  "identity": "HARNESS-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "OS002"
+                },
+                "template_ref": {
+                  "identity": "TPL-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "BRAIN"
+                },
+                "semantic_contract_ref": {
+                  "identity": "SEM-P",
+                  "revision": "REV-P",
+                  "scope": {
+                    "project": "P",
+                    "tenant": "TENANT-P",
+                    "environment": "ENV-P"
+                  },
+                  "owner": "BRAIN"
+                }
               },
               "period": "PERIOD-P"
             }
+          },
+          "owner_material_coverage": "input_state_minimumはL5 F08RecordInput.LABO_scopeに定義されたnative Field<Ref>/Field<B02RecordInputbinding>/Field<string>だけを用い、required_record_refsとrequired_set_source_refは欠落Fieldとして表現する。F08専用L7 expected_materialは確認できず、L8/L10 oracleのみからL7期待の存在・意味を推定しない。実行・独立意味判定は未了。",
+          "owner_and_reentry": {
+            "owner": "LABO",
+            "reentry_condition": "LABOがscopeのrequired_record_refs/required_set_source_refと原資料を供給し、F08専用L7 expected_materialで未供給時の期待を独立に記録した後に再照合する。OS002は必要集合を推定しない。"
           }
         }
       ],

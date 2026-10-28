@@ -127,7 +127,7 @@
     {
       "element_id": "O5",
       "l3_pointer": "L3F#/requirements/15",
-      "l3_clause": "LABO指定/合意の範囲と必要入力が未決なら不完全として示す。U-IDでLABO_scope/required_record_refsを未決・未供給として与え、選択評価complete/evaluated claimを退ける。L7にOS002専用expected_materialは無い。",
+      "l3_clause": "LABO指定/合意の範囲と必要入力が未決なら不完全として示す。U-IDはnative LABO_scope Field内のrequired_record_refs/required_set_source_ref欠落を明示する。専用L7 expected_materialは確認できず、実行・独立意味判定は未了。",
       "l4_pointers": [
         "L4#/contracts/9/behavior",
         "L4#/contracts/9/negative_classifications/5"
@@ -143,7 +143,12 @@
       ],
       "l9_pointers": [
         "L9#/cases/9/negative_cases/5"
-      ]
+      ],
+      "owner_and_reentry": {
+        "owner": "LABO",
+        "unresolved": "L5 F08RecordInputには型付きLABO_scope fieldがあるためrequired_record_refs/required_set_source_refの欠落は表せる。一方でL7にOS002 FN10専用expected_materialがなく、負例の期待観測と独立意味reviewは成立していない。",
+        "reentry_condition": "LABOが権威あるrequired-set refsを供給し、FN10のL7 expected_materialに不足時の観測を独立に記録した後に再開する。L8/L10からL7期待を推定しない。"
+      }
     }
   ],
   "source_main": "54606e0d60149dc2cc4d89707d7b7834536c3b90",

@@ -93,7 +93,7 @@
     {
       "element_id": "O2",
       "l3_pointer": "L3F#/requirements/8",
-      "l3_clause": "欠落・競合・未接続・未合意・未実装・未検証を区別する。U-IDでP.implementation=unconnectedとQ.verification=unagreedの別状態を維持し、両者を他の状態へ丸めない。",
+      "l3_clause": "欠落・競合・未接続・未合意・未実装・未検証を区別する。U-IDはP/QのScope object、requirement Ref、source RefをF01RecordInputのField型で与え、P.implementation=unconnectedとQ.verification=unagreedを保持する。",
       "l5_pointers": [
         "L5#/functions/3/algorithm/0"
       ],
@@ -129,7 +129,7 @@
     {
       "element_id": "O4",
       "l3_pointer": "L3F#/requirements/8",
-      "l3_clause": "部分成功で全体完了にしない。U-IDで同一Pのimplementation=suppliedとverification=not_observed（他工程未完）を与え、P全体完了を生成しない。",
+      "l3_clause": "同一project Pのimplementation=supplied、verification=not_observed、release_kanban未提示という部分状態から、project全体完了を生成しない。U-IDはF01RecordInputのField<Scope>/Field<Ref>に従う。",
       "l5_pointers": [
         "L5#/functions/3/algorithm/0"
       ],
