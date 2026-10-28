@@ -1,0 +1,476 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-WR159-FN00-FN13",
+  "request_id": "WR159-OS002-FN00-FN13-PAIR-FREEZE",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3862#issuecomment-6478499724",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "上流の適用判定とownerの裁定をOSが生成せず、比較材料・未観測・未発生・不足を区別して保持する。L5/L8の既存意味とprivate detail境界を保持する。",
+    "change": "PR #3862 R1の独立review指摘とFN00/FN13のL5 unit_case_refs・normal oracle、L8 U-ID行の再照合に基づき、T1a/T2a/T2bで既に凍結されたscopeを変更せず、FN00・FN13の公開関数pair bindingとU-ID pointer対応を本スライスで追補凍結する。SOURCE-MEMBER-01..09はT2a selected source-member validation内の関数0返却期待をFN00に結び、T2bの同ID whole caseはoriginal-correspondence private detailという別scopeとして区別する。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みによる肥大化",
+      "Issue #3547: remaining記述への既充足事項・他層責務・後続スライス対象混在による凍結境界不明確化",
+      "PR #3862 R1: FN00/FN13の公開pair freeze対象漏れと過剰停止"
+    ]
+  },
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/0",
+        "function_id": "HELIXOS-L5-002-validate_record_trace_input",
+        "symbol": "validate_record_trace_input"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/13",
+        "function_id": "HELIXOS-L5-002-build_record_trace_analysis",
+        "symbol": "build_record_trace_analysis"
+      }
+    ],
+    "private_detail_contract_pairs": [
+      {
+        "entry_kind": "private_detail_contract_pair",
+        "detail_pointer": "L5#/f04_source_projection_profile_detail",
+        "bound_public_functions": [
+          "L5#/functions/0",
+          "L5#/functions/13"
+        ],
+        "l8_verification_pointers": [
+          "L8#/function_call_path_bindings/calls/2",
+          "L8#/function_cases/15",
+          "L8#/function_cases/16",
+          "L8#/function_cases/20",
+          "L8#/function_cases/21",
+          "L8#/dispatch_boundary_cases/cases",
+          "L8#/function_call_path_bindings/calls/3"
+        ],
+        "disposition": "既存F04 profile decoder/dispatchの共通入口・集約関数に関する既凍結private detail。T2aのprivate detail記録および本manifestの公開関数・U-ID対応を相互参照する。private detail自体を公開関数とは扱わない。"
+      },
+      {
+        "entry_kind": "private_detail_contract_pair",
+        "detail_pointer": "L5#/f04_source_member_detail",
+        "bound_public_functions": [
+          "L5#/functions/0"
+        ],
+        "l8_verification_pointers": [
+          "L8#/f04_source_member_verification/whole_cases",
+          "L8#/function_call_path_bindings/calls/6"
+        ],
+        "disposition": "選択source-memberのwhole validation期待を関数0のValidatedRecordTrace返却へ結ぶ。T2a selected source-member detailのcase_input/validated_record_trace bindingを使用。T2b original-correspondence whole casesはprivate FN22/FN18経路の別scopeであり、本FN00返却期待へ統合しない。"
+      }
+    ]
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3F#/requirements/11",
+      "l10_pointer": "L10F#/cases/11",
+      "l4_pointer": "L4#/contracts/5",
+      "l9_pointer": "L9#/cases/5",
+      "l3_clause": "F04のCORE適用判定、source projection/member観測、未確定・未評価・未実行境界を上流sourceと出力参照へ追跡し、OS独自の適用判断を加えない。",
+      "l5_pointers": [
+        "L5#/functions/0",
+        "L5#/functions/13",
+        "L5#/functions/0/unit_case_refs",
+        "L5#/functions/13/unit_case_refs",
+        "L5#/functions/0/f04_candidate_decode_binding",
+        "L5#/functions/13/profile_dispatch_binding",
+        "L5#/f04_source_projection_profile_detail",
+        "L5#/f04_source_member_detail"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/0",
+        "L8#/function_cases/13",
+        "L8#/cases/5",
+        "L8#/function_cases/15",
+        "L8#/function_cases/16",
+        "L8#/dispatch_boundary_cases/cases/0",
+        "L8#/dispatch_boundary_cases/cases/1",
+        "L8#/f04_source_member_verification/whole_cases"
+      ]
+    }
+  ],
+  "unit_case_pointer_maps": [
+    {
+      "function_id": "HELIXOS-L5-002-validate_record_trace_input",
+      "l5_pointer": "L5#/functions/0",
+      "normal_oracle": "HELIXOS-L8-002-NORMAL-validate_record_trace_input",
+      "normal_pointer": "L8#/function_cases/0",
+      "unit_cases": [
+        {
+          "id": "HELIXOS-L8-002-ADD-01",
+          "pointer": "L8#/additional_cases/0"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-02",
+          "pointer": "L8#/additional_cases/1"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-03",
+          "pointer": "L8#/additional_cases/2"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-04",
+          "pointer": "L8#/additional_cases/3"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-05",
+          "pointer": "L8#/additional_cases/4"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-06",
+          "pointer": "L8#/additional_cases/5"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-07",
+          "pointer": "L8#/additional_cases/6"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-08",
+          "pointer": "L8#/additional_cases/7"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-09",
+          "pointer": "L8#/additional_cases/8"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-10",
+          "pointer": "L8#/additional_cases/9"
+        },
+        {
+          "id": "HELIXOS-L8-002-ADD-11",
+          "pointer": "L8#/additional_cases/10"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04",
+          "pointer": "L8#/cases/5"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-DISPATCH-INVALID-ROOT",
+          "pointer": "L8#/function_cases/15",
+          "dispatch_pointer": "L8#/dispatch_boundary_cases/cases/0"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-01",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/0",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/0/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/0"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-02",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/1",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/1/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/1"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-03",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/2",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/2/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/2"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-04",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/3",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/3/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/3"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-05",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/4",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/4/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/4"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-06",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/5",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/5/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/5"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-07",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/6",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/6/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/6"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-08",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/7",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/7/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/7"
+        },
+        {
+          "id": "HELIXOS-L8-002-F04-SOURCE-MEMBER-09",
+          "pointer": "L8#/f04_source_member_verification/whole_cases/8",
+          "return_expectation": "L8#/f04_source_member_verification/whole_cases/8/expected_validator_output_ref",
+          "source_oracle": "L9#/cases/5/selected_source_member_correspondence_oracles/cases/8"
+        }
+      ]
+    },
+    {
+      "function_id": "HELIXOS-L5-002-build_record_trace_analysis",
+      "l5_pointer": "L5#/functions/13",
+      "normal_oracle": "HELIXOS-L8-002-NORMAL-build_record_trace_analysis",
+      "normal_pointer": "L8#/function_cases/13",
+      "unit_cases": [
+        {
+          "id": "HELIXOS-L8-002-F04-DISPATCH-NO-F04",
+          "pointer": "L8#/function_cases/16",
+          "dispatch_pointer": "L8#/dispatch_boundary_cases/cases/1"
+        }
+      ],
+      "profile_dispatch_binding": "L5#/functions/13/profile_dispatch_binding",
+      "profile_call_path": "L8#/function_call_path_bindings/calls/3"
+    }
+  ],
+  "prior_freeze_coverage": [
+    {
+      "record": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json#/function_freeze_rows/0",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
+      "coverage": "FN00 common entry, ADD-01..11, invalid-root; F04 source member deferred to T2a/T2b."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json#/function_freeze_rows/3",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
+      "coverage": "FN13 common builder/default dispatch and no-F04; explicit profile path deferred."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json#/private_detail_bindings/0",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3764#issuecomment-6455979090",
+      "coverage": "F04 source projection profile and selected source-member verification; FN00 return expectation is /validated_record_trace."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t2b-f04-original-correspondence-freeze-2026-10-28.json#/private_detail_bindings/0",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3769#issuecomment-6456918326",
+      "coverage": "F04 original-correspondence private scope; repeated SOURCE-MEMBER IDs are not the FN00 selected-source return expectation."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t3a-f05-f07-checker-reconcile-2026-10-28.json#/",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
+      "coverage": "T3a checker reconciliation only; not represented as a generate-freeze function pair."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t3b-f08-f09-checker-reconcile-2026-10-28.json#/",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3814#issuecomment-6463971614",
+      "coverage": "T3b checker reconciliation only; not represented as a generate-freeze function pair."
+    },
+    {
+      "record": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json#/",
+      "independent_review": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
+      "coverage": "T4 checker reconciliation only; not represented as a generate-freeze function pair."
+    }
+  ],
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
+  "request_base_sha": "b7c9d82ce6761e966e0c3a0513c88a85c6b0e5b7",
+  "recorded_at_utc": "2026-10-28T19:40:08+00:00",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L9_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L5_sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3",
+    "L8_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 89,
+    "expanded_target_count": 89,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true,
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "validate_record_trace_input",
+      "id": "HELIXOS-L5-002-validate_record_trace_input",
+      "l5_pointer": "L5#/functions/0",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-validate_record_trace_input",
+      "unit_case_refs_count": 22,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "build_record_trace_analysis",
+      "id": "HELIXOS-L5-002-build_record_trace_analysis",
+      "l5_pointer": "L5#/functions/13",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-build_record_trace_analysis",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "L5#/f04_source_projection_profile_detail",
+      "l5_pointer": "L5#/f04_source_projection_profile_detail",
+      "visibility": "private_detail_not_in_L5_functions",
+      "has_owner_or_caller_disposition": true
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "L5#/f04_source_member_detail",
+      "l5_pointer": "L5#/f04_source_member_detail",
+      "visibility": "private_detail_not_in_L5_functions",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "validate_record_trace_input",
+      "l5_pointer": "L5#/functions/0",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "build_record_trace_analysis",
+      "l5_pointer": "L5#/functions/13",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "L5#/f04_source_projection_profile_detail",
+      "l5_pointer": "L5#/f04_source_projection_profile_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "L5#/f04_source_member_detail",
+      "l5_pointer": "L5#/f04_source_member_detail",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows",
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
