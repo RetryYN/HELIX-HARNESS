@@ -1,0 +1,352 @@
+{
+  "schema": "function-pair-judgment-manifest.v1",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3547#issuecomment-6447511779",
+  "path_aliases": {
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L4": "docs/helix-harness/L4-basic-design/product-template-application.json",
+    "L9": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+    "L5": "docs/helix-harness/L5-detail-design/product-template-application.json",
+    "L8": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+    "DISP1": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t1-2026-10-28.json",
+    "DISP2": "docs/governance/audits/tdd/h009-l5l8-remaining-disposition-t2t3-2026-10-28.json",
+    "T1A": "docs/governance/audits/tdd/h009-b01-function-pair-freeze-2026-10-28.json"
+  },
+  "record_id": "HARNESS009-B01-CHECKER-RECONCILE-20261028",
+  "record_kind": "function_scoped_l5_l8_pair_freeze_record",
+  "slice_id": "D-H009-T1a",
+  "request_id": "WR-CLAUDE-H009-T1A-3547-20261028-50",
+  "resolves_disposition_ref": "DISP1#/dispositions/12",
+  "legacy_and_failure_basis": [
+    {
+      "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+      "lines": "16–60, 81–92",
+      "keep_ja": "適用条件、exact set、未確定理由、N/Aと不足返却を保持する。",
+      "change_ja": "CORE/BRAIN/OSの役割を現L3/L4の境界へ割り当てる。"
+    },
+    {
+      "asset_id": "LEGACY-ASSET-98372FEE8A3AC8F9C299",
+      "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/design-template-json-authority.md",
+      "lines": "33–108",
+      "keep_ja": "I/O、副作用、failure、consumer/oracle境界を意味比較する。",
+      "change_ja": "現在の層ごとに対象と参照を分けて宣言する。"
+    }
+  ],
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "obligation_ja": "HARNESS-COREの意味処理が適用候補・義務・不足質問・意味影響の材料を導く義務を保持する。入力受領側では要求/工程/適用/knowledgeのowner-qualified原snapshotと任意claimを分離し、raw形不正はInputIssue/input=null、意味null/欠落/相反は保持してuniverse/axisを空配列へ丸めない。check_application_claimsの既存logical subsetは過去freezeの範囲を保ち、現functions/9詳細signatureの意味出力pairはD-H009-T3bへ戻し、この記録で詳細signatureを凍結しない。",
+      "l5_pointers": [
+        "L5#/functions/0",
+        "L5#/functions/9/oracle_binding_boundary"
+      ],
+      "l8_pointers": [
+        "L8#/normal_function_oracles/0",
+        "L8#/additional_unit_cases/0",
+        "L8#/additional_unit_cases/1",
+        "L8#/additional_unit_cases/2",
+        "L8#/normal_function_oracles/9",
+        "L8#/cases/0"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L3B#/requirements/4/obligation",
+        "L10B#/cases/4",
+        "L10B#/cases/4/positive_input",
+        "L10B#/cases/4/expected_observation",
+        "L4#/contracts/0",
+        "L4#/contracts/0/input",
+        "L4#/contracts/0/output",
+        "L9#/cases/0",
+        "T1A#/independent_expectation_derivation/derived_obligations/0"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "obligation_ja": "validate_application_inputはraw source bytes/digest/body一致とqualification_root→owner/subject/revision/scopeを独立照合する。digest一致だけで資格を成立させず、資格不足を依存項目へ局所化し、無関係な有資格scopeと相反factsを保持する。",
+      "l5_pointers": [
+        "L5#/functions/0"
+      ],
+      "l8_pointers": [
+        "L8#/normal_function_oracles/0",
+        "L8#/additional_unit_cases/3",
+        "L8#/additional_unit_cases/4",
+        "L8#/additional_unit_cases/5",
+        "L8#/additional_unit_cases/6"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L3B#/requirements/4/obligation",
+        "L10B#/cases/4",
+        "L10B#/cases/4/expected_observation",
+        "L4#/contracts/0",
+        "L9#/cases/0",
+        "T1A#/independent_expectation_derivation/derived_obligations/1"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "obligation_ja": "BRAINは汎用knowledge version/stateを、OSは案件選択・使用set・版の登録と運転を持つ。CORE出力へDB/Git/GitHub write、割当、lease、実行、認可を与えず、元の意味候補材料は保持し副作用を生じさせない。この論理claim側要素はHARNESS-CORE ownerのD-H009-T3b reentryとして保持し、本D-H009-T1a記録では現functions/9詳細signatureを凍結しない。",
+      "owner": "HARNESS-CORE",
+      "reentry_slice": "D-H009-T3b",
+      "scope_status": "retained_not_frozen_in_D-H009-T1a",
+      "l5_pointers": [
+        "L5#/functions/9/oracle_binding_boundary",
+        "L5#/failure_rules/0",
+        "L5#/failure_rules/1"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0/negative_cases/0",
+        "L8#/cases/0/negative_cases/1"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L3B#/requirements/4/obligation",
+        "L10B#/cases/4",
+        "L10B#/cases/4/negative_input",
+        "L10B#/cases/4/failure_observation",
+        "L4#/contracts/0",
+        "L4#/contracts/0/behavior",
+        "L4#/contracts/0/backflow",
+        "L9#/cases/0",
+        "T1A#/independent_expectation_derivation/derived_obligations/2",
+        "T1A#/function_freeze_rows/1"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "obligation_ja": "OS受領だけでproject完了、BRAIN knowledge提供だけで製品適用済み、不足候補だけでBackflow ticket発行済み、返却候補だけで設計成立/pair成功へ昇格させない。裏付けのないclaimで原known/未完も上書きしない。この論理claim側要素はHARNESS-CORE ownerのD-H009-T3b reentryとして保持し、本D-H009-T1a記録では現functions/9詳細signatureを凍結しない。",
+      "owner": "HARNESS-CORE",
+      "reentry_slice": "D-H009-T3b",
+      "scope_status": "retained_not_frozen_in_D-H009-T1a",
+      "l5_pointers": [
+        "L5#/functions/9/oracle_binding_boundary",
+        "L5#/failure_rules/2",
+        "L5#/failure_rules/3",
+        "L5#/failure_rules/6",
+        "L5#/failure_rules/7"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0/negative_cases/2",
+        "L8#/cases/0/negative_cases/3",
+        "L8#/cases/0/negative_cases/6",
+        "L8#/cases/0/negative_cases/7",
+        "L8#/additional_unit_cases/20"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L3B#/requirements/4/obligation",
+        "L10B#/cases/4",
+        "L10B#/cases/4/negative_input",
+        "L10B#/cases/4/expected_observation",
+        "L10B#/cases/4/failure_observation",
+        "L4#/contracts/0",
+        "L9#/cases/0",
+        "T1A#/independent_expectation_derivation/derived_obligations/3",
+        "T1A#/function_freeze_rows/1"
+      ]
+    },
+    {
+      "element_id": "O5",
+      "obligation_ja": "受渡し先の完了receiptや全seed採用が無いことだけでは初回候補提供を停止しない。当該操作に必要な意味入力が揃う場合は、選択された有効sourceの範囲で局所候補と不足材料を返し、receiver未完・未選択seedの未観測は別に保持する。この論理claim側要素はHARNESS-CORE ownerのD-H009-T3b reentryとして保持し、本D-H009-T1a記録では現functions/9詳細signatureを凍結しない。",
+      "owner": "HARNESS-CORE",
+      "reentry_slice": "D-H009-T3b",
+      "scope_status": "retained_not_frozen_in_D-H009-T1a",
+      "l5_pointers": [
+        "L5#/functions/9/oracle_binding_boundary",
+        "L5#/failure_rules/4",
+        "L5#/failure_rules/5"
+      ],
+      "l8_pointers": [
+        "L8#/cases/0/negative_cases/4",
+        "L8#/cases/0/negative_cases/5"
+      ],
+      "basis_pointers": [
+        "L3B#/requirements/4",
+        "L3B#/requirements/4/obligation",
+        "L10B#/cases/4",
+        "L10B#/cases/4/positive_input",
+        "L10B#/cases/4/negative_input",
+        "L10B#/cases/4/expected_observation",
+        "L4#/contracts/0",
+        "L9#/cases/0",
+        "T1A#/independent_expectation_derivation/derived_obligations/4",
+        "T1A#/function_freeze_rows/1"
+      ]
+    }
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/0",
+        "function_id": "HARNESS-L5-009-validate_application_input",
+        "symbol": "validate_application_input",
+        "l8_oracle_pointer": "L8#/normal_function_oracles/0",
+        "unit_case_pointers": [
+          "L8#/additional_unit_cases/0",
+          "L8#/additional_unit_cases/1",
+          "L8#/additional_unit_cases/2",
+          "L8#/additional_unit_cases/3",
+          "L8#/additional_unit_cases/4",
+          "L8#/additional_unit_cases/5",
+          "L8#/additional_unit_cases/6"
+        ]
+      }
+    ],
+    "private_detail_contract_pairs": [
+      {
+        "detail_pointer": "L5#/functions/9/oracle_binding_boundary",
+        "symbol": "check_application_claims_detail.oracle_binding_boundary",
+        "visibility": "private_detail_boundary_not_current_signature_freeze",
+        "owner": "HARNESS-CORE",
+        "reentry_slice": "D-H009-T3b",
+        "historical_oracle_pointer": "L8#/normal_function_oracles/9",
+        "historical_case_pointer": "L8#/cases/0",
+        "historical_freeze_pointer": "T1A#/function_freeze_rows/1",
+        "boundary_ja": "L5のoracle_binding_boundaryは、L8 normal oracle 9が旧logical check_application_claims Context→Comparisonだけを指すと明記する。現在のfunctions/9はcheck_application_claims_detail(CheckApplicationClaimsDetailedContext)→CoreComparisonであり、旧oracleをこの詳細署名のoracleとして再利用しない。既存T1a freezeのlogical subsetは変更せず、現詳細caller・F05/F06連携・N01側pairはD-H009-T3bへ戻す。"
+      }
+    ]
+  },
+  "historical_scope_boundary": {
+    "historical_freeze_pointer": "T1A#/function_freeze_rows/1",
+    "historical_l5_pointer": "L5#/functions/9/oracle_binding_boundary",
+    "historical_l8_pointers": [
+      "L8#/normal_function_oracles/9",
+      "L8#/cases/0"
+    ],
+    "reentry_owner": "HARNESS-CORE",
+    "reentry_slice": "D-H009-T3b",
+    "scope_ja": "現manifestの新規公開関数pairはvalidate_application_inputに限定する。B01の論理claim部分は既存freezeを保持し、functions/9の現詳細signatureをこの旧logical oracleで凍結しない。"
+  },
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "source_main": "730e46c955def9d3b27cf280a62b886568028aa3",
+  "request_base_sha": "730e46c955def9d3b27cf280a62b886568028aa3",
+  "recorded_at_utc": "2026-10-28T04:09:43+00:00",
+  "pins": {
+    "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
+    "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
+    "L10B_sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319",
+    "L10F_sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2",
+    "L4_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
+    "L9_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
+    "L5_pre_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+    "L5_post_sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3",
+    "L8_pre_sha256": "39196e34b55106befc020563a0511e35624195d7af1402f2b8f988c0e0366df0",
+    "L8_post_sha256": "39196e34b55106befc020563a0511e35624195d7af1402f2b8f988c0e0366df0",
+    "DISP1_sha256": "e857e3a030b77075ad360bf5e736b3d159b1dd5b90c179062decad766f659c0b",
+    "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb",
+    "T1A_sha256": "d907f76095e0bc061b9997c53442125b35e5f8403154651dc756d16fb2a2f072"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 11,
+    "L5_functions": 14,
+    "L5_failure_rules": 107,
+    "L8_cases": 11,
+    "L8_negative_cases_total": 106,
+    "L8_normal_function_oracles": 13,
+    "L8_additional_unit_cases": 25,
+    "L5_source_pins": 21,
+    "L8_source_pins": 21,
+    "L8_wire_codec_cases": 36,
+    "L8_encoder_obligations": 3,
+    "L8_proposal_formation_cases": 13,
+    "L8_proposal_native_record_cases": 7,
+    "L8_opp_component_checks": 7,
+    "L8_general_proposal_exchange_family_contracts": 8,
+    "L8_general_proposal_exchange_finite_cases": 11
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 100,
+    "expanded_target_count": 100,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 106,
+      "L9": 106,
+      "L8": 106,
+      "L5": 106
+    },
+    "matched_case_count": 106,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "validate_application_input",
+      "id": "HARNESS-L5-009-validate_application_input",
+      "l5_pointer": "L5#/functions/0",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HARNESS-L8-009-NORMAL-validate_application_input",
+      "unit_case_refs_count": 7,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "private_detail_contract_pair",
+      "symbol": "check_application_claims_detail.oracle_binding_boundary",
+      "l5_pointer": "L5#/functions/9/oracle_binding_boundary",
+      "visibility": "private_detail_boundary_not_current_signature_freeze",
+      "has_owner_or_caller_disposition": true
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "validate_application_input",
+      "l5_pointer": "L5#/functions/0",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "check_application_claims_detail.oracle_binding_boundary",
+      "l5_pointer": "L5#/functions/9/oracle_binding_boundary",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm private detail boundary and reentry slice/owner assignment preserve caller contract without premature public freeze (#3763 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 106,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}
