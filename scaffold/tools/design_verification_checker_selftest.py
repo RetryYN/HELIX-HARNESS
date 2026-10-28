@@ -117,10 +117,15 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         classification: str,
         finding_codes: list[str],
         owner: str,
+        axis: str = "binding",
+        state: str = "incomplete",
     ) -> dict[str, object]:
         return {
             "class_id": class_id,
             "expected_classification": classification,
+            "expected_axis": axis,
+            "expected_state": state,
+            "side_effect_count": 0,
             "expected": {"finding_codes": list(finding_codes)},
             "backflow_owner": owner,
         }
@@ -137,11 +142,22 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "classification": "fixture_unknown",
                 "finding_codes": ["field_unknown"],
                 "owner": "owner-x",
+                "axis": "identity",
+                "state": "unresolved",
             },
             "K-CONFLICT": {
                 "classification": "fixture_conflict",
                 "finding_codes": ["field_conflict", "field_conflict_detail"],
                 "owner": "owner-y",
+                "axis": "scope",
+                "state": "conflict",
+            },
+            "K-UNKNOWN-OTHER-OWNER": {
+                "classification": "fixture_unknown",
+                "finding_codes": ["field_unknown"],
+                "owner": "owner-z",
+                "axis": "identity",
+                "state": "unresolved",
             },
         }
 
@@ -151,18 +167,30 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         l4_classes = [
             cls._equivalence_class("L4-C-UNKNOWN", **keys["K-UNKNOWN"]),
             cls._equivalence_class("L4-C-CONFLICT", **keys["K-CONFLICT"]),
+            cls._equivalence_class(
+                "L4-C-UNKNOWN-OTHER-OWNER", **keys["K-UNKNOWN-OTHER-OWNER"]
+            ),
         ]
         l5_classes = [
-            cls._equivalence_class("L5-F-CONFLICT", **keys["K-CONFLICT"]),
-            cls._equivalence_class("L5-F-UNKNOWN", **keys["K-UNKNOWN"]),
+            cls._equivalence_class("L5-RULE-CONFLICT", **keys["K-CONFLICT"]),
+            cls._equivalence_class("L5-RULE-UNKNOWN", **keys["K-UNKNOWN"]),
+            cls._equivalence_class(
+                "L5-RULE-UNKNOWN-OTHER-OWNER", **keys["K-UNKNOWN-OTHER-OWNER"]
+            ),
         ]
         l8_classes = [
             cls._equivalence_class("L8-CLASS-1", **keys["K-UNKNOWN"]),
             cls._equivalence_class("L8-CLASS-2", **keys["K-CONFLICT"]),
+            cls._equivalence_class("L8-CLASS-3", **keys["K-UNKNOWN-OTHER-OWNER"]),
         ]
+        for class_row in l8_classes:
+            # L8 rows do not provide finding owners; the checker resolves them
+            # through the matching L9 case's original findings.
+            class_row.pop("backflow_owner")
         l9_classes = [
             cls._equivalence_class("L9-CLASS-B", **keys["K-CONFLICT"]),
             cls._equivalence_class("L9-CLASS-A", **keys["K-UNKNOWN"]),
+            cls._equivalence_class("L9-CLASS-C", **keys["K-UNKNOWN-OTHER-OWNER"]),
         ]
 
         l8_rows = [
@@ -197,6 +225,15 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 "case_id": "CASE-POSITIVE",
                 "population_state": "positive",
                 "expected_property": {"condition": "fixture_ok", "finding_codes": []},
+            },
+            {
+                "case_id": "CASE-UNKNOWN-OTHER-OWNER",
+                "population_state": "negative",
+                "negative_class_ref": "L8-CLASS-3",
+                "expected_property": {
+                    "condition": "fixture_unknown",
+                    "finding_codes": ["field_unknown"],
+                },
             },
         ]
         l9_rows = [
@@ -245,14 +282,71 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                     "ordered_findings": [],
                 },
             },
+            {
+                "id": "CASE-UNKNOWN-OTHER-OWNER",
+                "population_state": "negative",
+                "negative_class_ref": "L9-CLASS-C",
+                "compact_whole_observation": {
+                    "condition": "fixture_unknown",
+                    "ordered_findings": [
+                        {"code": "field_unknown", "return_owner": "owner-z"}
+                    ],
+                },
+            },
         ]
+
+        class_rule_refs = {
+            "L8-CLASS-1": ("L5-RULE-UNKNOWN", "L5-fn-A"),
+            "L8-CLASS-2": ("L5-RULE-CONFLICT", "L5-fn-D"),
+            "L8-CLASS-3": ("L5-RULE-UNKNOWN-OTHER-OWNER", "L5-fn-D"),
+        }
+        l5_rules = []
+        for class_id, function_id in (
+            ("L5-RULE-UNKNOWN", "L5-fn-A"),
+            ("L5-RULE-CONFLICT", "L5-fn-D"),
+            ("L5-RULE-UNKNOWN-OTHER-OWNER", "L5-fn-D"),
+        ):
+            class_row = next(row for row in l5_classes if row["class_id"] == class_id)
+            l5_rules.append(
+                {
+                    "id": class_id,
+                    "code": class_row["expected_classification"],
+                    "function_ref": function_id,
+                    "class_id": class_id,
+                    "expected_classification": class_row["expected_classification"],
+                    "expected_axis": class_row["expected_axis"],
+                    "expected_state": class_row["expected_state"],
+                    "side_effect_count": class_row["side_effect_count"],
+                    "expected": copy.deepcopy(class_row["expected"]),
+                    "backflow_owner": class_row.get("backflow_owner"),
+                }
+            )
+        for row in l8_rows:
+            class_ref = row.get("negative_class_ref")
+            if class_ref in class_rule_refs:
+                row["rule_ref"], row["function_ref"] = class_rule_refs[class_ref]
+            row["integration_case_ref"] = row["case_id"]
+            row["condition"] = row["expected_property"]["condition"]
+            row["expected"] = f"expected:{row['case_id']}"
+            row["expected_preserved"] = {"case": row["case_id"]}
+        for row in l9_rows:
+            row["change"] = row["compact_whole_observation"]["condition"]
+            row["expected"] = f"expected:{row['id']}"
+            row["expected_preserved"] = {"case": row["id"]}
         return (
             {
-                "contracts": [
-                    {"id": "L4-contract-A"},
-                    {"id": "L4-contract-B", "negative_equivalence_classes": l4_classes},
-                    {"id": "L4-contract-C"},
-                ]
+                "contracts": [{"id": "L4-contract-A"}],
+                "negative_equivalence_classes": {
+                    "source_rows": "failure_classifications"
+                },
+                "failure_classifications": [
+                    {
+                        **row,
+                        "id": row["class_id"],
+                        "code": row["expected_classification"],
+                    }
+                    for row in l4_classes
+                ],
             },
             {
                 "integration_cases": l9_rows,
@@ -265,11 +359,13 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             },
             {
                 "functions": [
-                    {"id": "L5-fn-A", "negative_equivalence_classes": l5_classes},
+                    {"id": "L5-fn-A"},
                     {"id": "L5-fn-B"},
                     {"id": "L5-fn-C"},
                     {"id": "L5-fn-D"},
-                ]
+                ],
+                "failure_rules": l5_rules,
+                "negative_equivalence_classes": {"source_rows": "failure_rules"},
             },
         )
 
@@ -277,6 +373,18 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self,
     ) -> None:
         layers = self._equivalence_mode_layers()
+        function_ids = {row["id"] for row in layers[3]["functions"]}
+        rules_by_id = {row["id"]: row for row in layers[3]["failure_rules"]}
+        l9_ids = {row["id"] for row in layers[1]["integration_cases"]}
+        for row in layers[2]["unit_cases"]:
+            if row["population_state"] == "positive":
+                continue
+            self.assertIn(row["integration_case_ref"], l9_ids)
+            self.assertIn(row["rule_ref"], rules_by_id)
+            self.assertIn(row["function_ref"], function_ids)
+            self.assertEqual(
+                rules_by_id[row["rule_ref"]]["function_ref"], row["function_ref"]
+            )
         result = dvc.check_neg_4way_match(
             REPO_ROOT,
             "L4",
@@ -296,6 +404,232 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 f"contract/function array positions: {result}"
             ),
         )
+        self.assertEqual(
+            result["comparison_mode"], "explicit_negative_equivalence_classes"
+        )
+        self.assertEqual(
+            result["count_unit"], "unique_equivalence_class_keys_per_layer"
+        )
+        self.assertEqual(
+            result["matched_case_count_unit"], "paired_negative_L8_L9_case_rows"
+        )
+        self.assertEqual(result["counts"], {"L4": 3, "L9": 3, "L8": 3, "L5": 3})
+        self.assertEqual(
+            result["class_row_counts"], {"L4": 3, "L9": 3, "L8": 3, "L5": 3}
+        )
+        self.assertEqual(result["case_row_counts"], {"L8": 5, "L9": 5})
+        self.assertEqual(
+            result["comparison_scope"]["case_population"],
+            "only_supplied_rows; simultaneous_omission_is_not_detected",
+        )
+        self.assertEqual(
+            result["comparison_scope"]["not_checked"],
+            ["legacy_per_case_four_layer_attribute_tuple"],
+        )
+        self.assertEqual(
+            result["comparison_scope"]["class_invariants"],
+            ["expected_axis", "expected_state", "side_effect_count=0"],
+        )
+        self.assertEqual(
+            result["comparison_scope"]["case_attributes"],
+            [
+                "change↔condition",
+                "expected",
+                "expected_preserved",
+                "integration_case_ref",
+            ],
+        )
+
+    def test_chk_neg_4way_equivalence_mode_checks_invariants_case_fields_and_l5_refs(
+        self,
+    ) -> None:
+        baseline = self._equivalence_mode_layers()
+
+        def check(layers: tuple[dict[str, object], ...]) -> dict[str, object]:
+            return dvc.check_neg_4way_match(
+                REPO_ROOT,
+                "L4",
+                "L9",
+                "L8",
+                "L5",
+                layers[0],
+                layers[1],
+                layers[2],
+                layers[3],
+            )
+
+        result = check(baseline)
+        self.assertTrue(
+            result["passed"],
+            msg=f"the full synthetic class/case/ref fixture is valid: {result}",
+        )
+
+        mutations: list[tuple[str, tuple[dict[str, object], ...], str]] = []
+        for layer in range(4):
+            for field, bad_value in (
+                ("expected_axis", "different-axis"),
+                ("expected_state", "different-state"),
+                ("side_effect_count", 1),
+            ):
+                mutated = copy.deepcopy(baseline)
+                if layer == 0:
+                    row = mutated[layer]["failure_classifications"][0]
+                elif layer == 3:
+                    row = mutated[layer]["failure_rules"][0]
+                else:
+                    row = mutated[layer]["negative_equivalence_classes"][0]
+                row[field] = bad_value
+                mutations.append((f"L{layer + 4}_{field}", mutated, field))
+
+        case_mutations = (
+            ("case_condition", lambda row: row.__setitem__("condition", "other")),
+            ("expected", lambda row: row.__setitem__("expected", "other")),
+            (
+                "expected_preserved",
+                lambda row: row.__setitem__("expected_preserved", {"case": "other"}),
+            ),
+            (
+                "integration_case_ref",
+                lambda row: row.__setitem__("integration_case_ref", "NO-SUCH-L9-ID"),
+            ),
+        )
+        for attribute, mutate in case_mutations:
+            for case_index, label in ((0, "negative"), (3, "positive")):
+                mutated = copy.deepcopy(baseline)
+                mutate(mutated[2]["unit_cases"][case_index])
+                mutations.append((f"L8_{label}_{attribute}", mutated, attribute))
+                mutated = copy.deepcopy(baseline)
+                if attribute == "case_condition":
+                    mutated[1]["integration_cases"][case_index]["change"] = "other"
+                elif attribute == "integration_case_ref":
+                    mutated[1]["integration_cases"][case_index]["id"] = "OTHER-ID"
+                else:
+                    mutate(mutated[1]["integration_cases"][case_index])
+                mutations.append((f"L9_{label}_{attribute}", mutated, attribute))
+
+        bad_rule_ref = copy.deepcopy(baseline)
+        bad_rule_ref[2]["unit_cases"][0]["rule_ref"] = "NO-SUCH-RULE"
+        mutations.append(("L8_rule_ref", bad_rule_ref, "rule_ref"))
+
+        wrong_resolving_rule_ref = copy.deepcopy(baseline)
+        wrong_resolving_rule_ref[2]["unit_cases"][0]["rule_ref"] = "L5-RULE-CONFLICT"
+        mutations.append(
+            (
+                "L8_rule_ref_resolves_to_other_class",
+                wrong_resolving_rule_ref,
+                "rule_ref",
+            )
+        )
+
+        bad_function_ref = copy.deepcopy(baseline)
+        bad_function_ref[2]["unit_cases"][0]["function_ref"] = "NO-SUCH-FUNCTION"
+        mutations.append(("L8_function_ref", bad_function_ref, "function_ref"))
+
+        wrong_resolving_function_ref = copy.deepcopy(baseline)
+        wrong_resolving_function_ref[2]["unit_cases"][0]["function_ref"] = "L5-fn-D"
+        mutations.append(
+            (
+                "L8_function_ref_resolves_to_other_function",
+                wrong_resolving_function_ref,
+                "function_ref",
+            )
+        )
+
+        wrong_valid_case_ref = copy.deepcopy(baseline)
+        wrong_valid_case_ref[2]["unit_cases"][0]["integration_case_ref"] = (
+            "CASE-UNKNOWN-2"
+        )
+        mutations.append(
+            (
+                "L8_integration_case_ref_points_to_other_case",
+                wrong_valid_case_ref,
+                "integration_case_ref",
+            )
+        )
+
+        wrong_l4_code = copy.deepcopy(baseline)
+        wrong_l4_code[0]["failure_classifications"][0]["code"] = "different-code"
+        mutations.append(
+            ("L4_code_disagrees_with_classification", wrong_l4_code, "equivalence_key")
+        )
+
+        wrong_rule_code = copy.deepcopy(baseline)
+        wrong_rule_code[3]["failure_rules"][0]["code"] = "different-code"
+        mutations.append(("L5_rule_code", wrong_rule_code, "equivalence_key"))
+
+        rule_function_mismatch = copy.deepcopy(baseline)
+        rule_function_mismatch[3]["failure_rules"][0]["function_ref"] = "L5-fn-A"
+        mutations.append(
+            ("L5_rule_function_ref", rule_function_mismatch, "function_ref")
+        )
+
+        for name, mutated, expected_attribute in mutations:
+            with self.subTest(mutation=name):
+                result = check(mutated)
+                self.assertFalse(result["passed"], msg=result)
+                self.assertEqual(result["status"], "evaluated", msg=result)
+                self.assertTrue(
+                    any(
+                        failure.get("attribute") == expected_attribute
+                        for failure in result["failures"]
+                    ),
+                    msg=(
+                        f"{name} must fail on {expected_attribute}, not an unrelated "
+                        f"population result: {result}"
+                    ),
+                )
+
+    def test_chk_neg_4way_equivalence_mode_allows_repeated_class_rows_but_checks_each(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        duplicate_l4 = copy.deepcopy(layers[0]["failure_classifications"][0])
+        duplicate_l4["id"] = "L4-C-UNKNOWN-DUP"
+        duplicate_l4["class_id"] = "L4-C-UNKNOWN-DUP"
+        layers[0]["failure_classifications"].append(duplicate_l4)
+
+        duplicate_l5 = copy.deepcopy(layers[3]["failure_rules"][1])
+        duplicate_l5["id"] = "L5-RULE-UNKNOWN-DUP"
+        duplicate_l5["class_id"] = "L5-RULE-UNKNOWN-DUP"
+        layers[3]["failure_rules"].append(duplicate_l5)
+
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(result["passed"], msg=result)
+        self.assertEqual(result["counts"], {"L4": 3, "L9": 3, "L8": 3, "L5": 3})
+        self.assertEqual(
+            result["class_row_counts"], {"L4": 4, "L9": 3, "L8": 3, "L5": 4}
+        )
+
+        duplicate_l4["expected_axis"] = "inconsistent-duplicate"
+        mismatch = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertFalse(mismatch["passed"], msg=mismatch)
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "expected_axis"
+                for failure in mismatch["failures"]
+            ),
+            msg=mismatch,
+        )
 
     def test_chk_neg_4way_explicit_equivalence_mode_fails_closed_on_bad_membership(
         self,
@@ -309,7 +643,10 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
 
         negative_lacks_ref = copy.deepcopy(baseline)
         negative_lacks_ref[2]["unit_cases"][0].pop("negative_class_ref")
-        mutations["negative_lacks_class_ref"] = (negative_lacks_ref, "negative_class_ref")
+        mutations["negative_lacks_class_ref"] = (
+            negative_lacks_ref,
+            "negative_class_ref",
+        )
 
         unknown_state = copy.deepcopy(baseline)
         unknown_state[1]["integration_cases"][0]["population_state"] = "unknown"
@@ -344,7 +681,10 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
 
         partial_mode_marker = copy.deepcopy(baseline)
         partial_mode_marker[2].pop("negative_equivalence_classes")
-        mutations["partial_explicit_mode_marker"] = (partial_mode_marker, "explicit_mode")
+        mutations["partial_explicit_mode_marker"] = (
+            partial_mode_marker,
+            "explicit_mode",
+        )
 
         empty_class_with_negative_case = copy.deepcopy(baseline)
         empty_class_with_negative_case[1]["negative_equivalence_classes"] = []
@@ -354,12 +694,43 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
 
         class_missing_from_l4 = copy.deepcopy(baseline)
-        class_missing_from_l4[0]["contracts"][1]["negative_equivalence_classes"].pop(0)
-        mutations["class_missing_from_l4"] = (class_missing_from_l4, "equivalence_class")
+        class_missing_from_l4[0]["failure_classifications"].pop(0)
+        mutations["class_missing_from_l4"] = (
+            class_missing_from_l4,
+            "equivalence_class",
+        )
 
         class_missing_from_l5 = copy.deepcopy(baseline)
-        class_missing_from_l5[3]["functions"][0]["negative_equivalence_classes"].pop(1)
-        mutations["class_missing_from_l5"] = (class_missing_from_l5, "equivalence_class")
+        class_missing_from_l5[3]["failure_rules"].pop(0)
+        mutations["class_missing_from_l5"] = (
+            class_missing_from_l5,
+            "equivalence_class",
+        )
+
+        wrong_type_marker = copy.deepcopy(baseline)
+        wrong_type_marker[0]["negative_equivalence_classes"] = "not-a-source-map"
+        mutations["class_marker_wrong_type"] = (wrong_type_marker, "explicit_mode")
+
+        wrong_type_l8_marker = copy.deepcopy(baseline)
+        wrong_type_l8_marker[2]["negative_equivalence_classes"] = {"not": "an array"}
+        mutations["l8_class_marker_wrong_type"] = (
+            wrong_type_l8_marker,
+            "equivalence_class",
+        )
+
+        wrong_type_l5_marker = copy.deepcopy(baseline)
+        wrong_type_l5_marker[3]["negative_equivalence_classes"] = None
+        mutations["l5_class_marker_wrong_type"] = (
+            wrong_type_l5_marker,
+            "explicit_mode",
+        )
+
+        wrong_type_l9_marker = copy.deepcopy(baseline)
+        wrong_type_l9_marker[1]["negative_equivalence_classes"] = "not-an-array"
+        mutations["l9_class_marker_wrong_type"] = (
+            wrong_type_l9_marker,
+            "equivalence_class",
+        )
 
         class_key_mismatch = copy.deepcopy(baseline)
         class_key_mismatch[2]["negative_equivalence_classes"][0]["expected"][
@@ -368,15 +739,13 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         mutations["key_finding_codes_differ"] = (class_key_mismatch, "equivalence_key")
 
         missing_finding_codes = copy.deepcopy(baseline)
-        missing_finding_codes[0]["contracts"][1]["negative_equivalence_classes"][0][
-            "expected"
-        ].pop("finding_codes")
+        missing_finding_codes[0]["failure_classifications"][0]["expected"].pop(
+            "finding_codes"
+        )
         mutations["finding_codes_missing"] = (missing_finding_codes, "equivalence_key")
 
         null_finding_codes = copy.deepcopy(baseline)
-        null_finding_codes[3]["functions"][0]["negative_equivalence_classes"][1][
-            "expected"
-        ]["finding_codes"] = None
+        null_finding_codes[3]["failure_rules"][0]["expected"]["finding_codes"] = None
         mutations["finding_codes_null"] = (null_finding_codes, "equivalence_key")
 
         wrong_type_finding_codes = copy.deepcopy(baseline)
@@ -416,22 +785,44 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
 
         owner_mismatch = copy.deepcopy(baseline)
-        owner_mismatch[3]["functions"][0]["negative_equivalence_classes"][1][
-            "backflow_owner"
-        ] = "different-owner"
+        owner_mismatch[3]["failure_rules"][1]["backflow_owner"] = "different-owner"
         mutations["key_owner_differs"] = (owner_mismatch, "equivalence_key")
+
+        l8_explicit_owner_mismatch = copy.deepcopy(baseline)
+        l8_explicit_owner_mismatch[2]["negative_equivalence_classes"][0][
+            "backflow_owner"
+        ] = "not-owner-x"
+        mutations["l8_explicit_owner_disagrees_with_l9"] = (
+            l8_explicit_owner_mismatch,
+            "equivalence_key",
+        )
 
         code_order_mismatch = copy.deepcopy(baseline)
         code_order_mismatch[1]["negative_equivalence_classes"][0]["expected"][
             "finding_codes"
         ] = ["field_conflict_detail", "field_conflict"]
-        mutations["finding_code_order_differs"] = (code_order_mismatch, "equivalence_key")
+        mutations["finding_code_order_differs"] = (
+            code_order_mismatch,
+            "equivalence_key",
+        )
 
         owner_unresolved = copy.deepcopy(baseline)
         owner_unresolved[1]["integration_cases"][0]["compact_whole_observation"][
             "ordered_findings"
         ][0].pop("return_owner")
         mutations["l9_owner_unresolved"] = (owner_unresolved, "owner_unresolved")
+
+        owner_missing = copy.deepcopy(baseline)
+        owner_missing[1]["integration_cases"][0]["compact_whole_observation"][
+            "ordered_findings"
+        ] = []
+        mutations["l9_owner_has_zero_findings"] = (owner_missing, "owner_unresolved")
+
+        owner_ambiguous = copy.deepcopy(baseline)
+        owner_ambiguous[1]["integration_cases"][2]["compact_whole_observation"][
+            "ordered_findings"
+        ][1]["return_owner"] = "another-owner"
+        mutations["l9_owner_ambiguous"] = (owner_ambiguous, "owner_unresolved")
 
         l9_finding_code_mismatch = copy.deepcopy(baseline)
         l9_finding_code_mismatch[1]["integration_cases"][0][
@@ -452,21 +843,21 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
 
         population_state_mismatch = copy.deepcopy(baseline)
-        population_state_mismatch[1]["integration_cases"][3][
-            "population_state"
-        ] = "negative"
-        population_state_mismatch[1]["integration_cases"][3][
-            "negative_class_ref"
-        ] = "L9-CLASS-A"
+        population_state_mismatch[1]["integration_cases"][3]["population_state"] = (
+            "negative"
+        )
+        population_state_mismatch[1]["integration_cases"][3]["negative_class_ref"] = (
+            "L9-CLASS-A"
+        )
         mutations["same_case_state_differs_across_l8_l9"] = (
             population_state_mismatch,
             "population_state",
         )
 
         l9_positive_has_ref = copy.deepcopy(baseline)
-        l9_positive_has_ref[1]["integration_cases"][3][
-            "negative_class_ref"
-        ] = "L9-CLASS-A"
+        l9_positive_has_ref[1]["integration_cases"][3]["negative_class_ref"] = (
+            "L9-CLASS-A"
+        )
         mutations["l9_positive_has_class_ref"] = (
             l9_positive_has_ref,
             "negative_class_ref",
@@ -530,12 +921,12 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self,
     ) -> None:
         layers = self._equivalence_mode_layers()
-        layers[0]["contracts"].reverse()
+        layers[0]["failure_classifications"].reverse()
         layers[1]["negative_equivalence_classes"].reverse()
         layers[1]["integration_cases"].reverse()
         layers[2]["negative_equivalence_classes"].reverse()
         layers[2]["unit_cases"].reverse()
-        layers[3]["functions"].reverse()
+        layers[3]["failure_rules"].reverse()
         result = dvc.check_neg_4way_match(
             REPO_ROOT,
             "L4",
@@ -552,13 +943,88 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             msg=f"class/case order is not part of the equivalence key: {result}",
         )
 
+    def test_chk_neg_4way_explicit_equivalence_mode_accepts_consistent_l8_owner(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        owners = {
+            "L8-CLASS-1": "owner-x",
+            "L8-CLASS-2": "owner-y",
+            "L8-CLASS-3": "owner-z",
+        }
+        for class_row in layers[2]["negative_equivalence_classes"]:
+            class_row["backflow_owner"] = owners[class_row["class_id"]]
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(
+            result["passed"],
+            msg=f"an explicit L8 owner agreeing with its L9 findings is valid: {result}",
+        )
+
+    def test_chk_neg_4way_explicit_equivalence_mode_zero_population_not_evaluated(
+        self,
+    ) -> None:
+        positive_only = self._equivalence_mode_layers()
+        for layer_index in (0, 3):
+            data = positive_only[layer_index]
+            data["negative_equivalence_classes"] = {
+                "source_rows": (
+                    "failure_classifications" if layer_index == 0 else "failure_rules"
+                )
+            }
+            data[
+                "failure_classifications" if layer_index == 0 else "failure_rules"
+            ] = []
+        positive_only[1]["negative_equivalence_classes"] = []
+        positive_only[2]["negative_equivalence_classes"] = []
+        positive_only[2]["unit_cases"] = [positive_only[2]["unit_cases"][3]]
+        positive_only[2]["case_count"] = 1
+        positive_only[1]["integration_cases"] = [
+            positive_only[1]["integration_cases"][3]
+        ]
+
+        empty_population = copy.deepcopy(positive_only)
+        empty_population[2]["unit_cases"] = []
+        empty_population[2]["case_count"] = 0
+        empty_population[1]["integration_cases"] = []
+
+        for label, layers in (
+            ("positive_only", positive_only),
+            ("empty_case_populations", empty_population),
+        ):
+            with self.subTest(population=label):
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT,
+                    "L4",
+                    "L9",
+                    "L8",
+                    "L5",
+                    layers[0],
+                    layers[1],
+                    layers[2],
+                    layers[3],
+                )
+                self.assertFalse(result["passed"], msg=result)
+                self.assertEqual(result["status"], "not_evaluated", msg=result)
+                self.assertEqual(
+                    result["not_evaluated_reason"],
+                    "zero_negative_equivalence_classes",
+                )
+
     def test_chk_neg_4way_explicit_mode_preserves_legacy_casewise_mode(self) -> None:
         legacy = self._repeated_code_layers(
             {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
         )
-        result = dvc.check_neg_4way_match(
-            REPO_ROOT, "L4", "L9", "L8", "L5", *legacy
-        )
+        result = dvc.check_neg_4way_match(REPO_ROOT, "L4", "L9", "L8", "L5", *legacy)
         self.assertTrue(result["passed"], msg=result["failures"])
         self.assertEqual(result["matched_case_count"], 2)
 
