@@ -321,3 +321,19 @@ def evaluate_field_values_detail(context: dict[str, Any]) -> dict[str, Any]:
     )
     f03_comparison = _write_f03b_comparison_from_existing_comparison(public)
     return {"comparison": f03_comparison, "rows": rows, "problems": problems}
+
+
+def evaluate_selected_field_values_public(context: dict[str, Any]) -> dict[str, Any]:
+    """fn9: 単一入力型F03BasicContextを受け、evaluate_field_values_detailへ1回委譲して閉じたF03Evaluationを返す公開端点。"""
+    if not isinstance(context, dict):
+        raise _f03_stop("context_or_input_shape", "F03BasicContext closed shape")
+    evaluation = evaluate_field_values_detail(context)
+    if (
+        not isinstance(evaluation, dict)
+        or set(evaluation) != {"comparison", "rows", "problems"}
+        or not isinstance(evaluation.get("comparison"), dict)
+        or not isinstance(evaluation.get("rows"), list)
+        or not isinstance(evaluation.get("problems"), list)
+    ):
+        raise _f03_stop("context_or_input_shape", "F03Evaluation closed shape")
+    return evaluation

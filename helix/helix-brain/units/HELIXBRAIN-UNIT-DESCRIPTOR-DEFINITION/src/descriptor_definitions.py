@@ -345,6 +345,17 @@ def compare_values_and_applicability(context: dict[str, object]) -> dict[str, ob
     return _write_existing_comparison_from_f03(evaluation["comparison"])
 
 
+def evaluate_selected_field_values_public(
+    context: dict[str, object],
+) -> dict[str, object]:
+    """fn9: 単一入力型F03BasicContextを受け、evaluate_field_values_detailへ1回委譲して閉じたF03Evaluationを返す公開端点。"""
+    from values_applicability import (
+        evaluate_selected_field_values_public as _fn9,
+    )
+
+    return _fn9(context)
+
+
 def compare_dependencies_and_handoff(context: dict[str, object]) -> dict[str, object]:
     from dependencies_handoff import compare_dependencies_and_handoff as _fn6
 

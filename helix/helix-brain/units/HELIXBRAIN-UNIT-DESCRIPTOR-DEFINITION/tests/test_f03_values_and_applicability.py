@@ -3578,6 +3578,309 @@ class TestF03ValuesAndApplicability(unittest.TestCase):
 
         self.assertEqual(sorted(tested_tags), sorted(expected_l7_tags))
 
+    def test_public_selected_field_evaluation_endpoint_single_delegation_and_equivalence(
+        self,
+    ) -> None:
+        import unittest.mock
+        import descriptor_definitions
+        import values_applicability
+        from descriptor_definitions import _write_existing_comparison_from_f03
+
+        l4_ep = self.l4_doc["field_value_applicability_contract"][
+            "public_selected_field_evaluation_endpoint"
+        ]
+        l5_fn9 = self.l5_doc["functions"][9]
+        l5_ep = self.l5_doc["field_value_applicability_detail"][
+            "public_and_private_callers"
+        ]["public_selected_field_evaluation_endpoint"]
+        self.assertEqual(l4_ep["symbol"], "evaluate_selected_field_values_public")
+        self.assertEqual(l4_ep["l5_function_pointer"], "/functions/9")
+        self.assertEqual(
+            l5_fn9["id"], "HELIXBRAIN-L5-032-evaluate_selected_field_values_public"
+        )
+        self.assertEqual(l5_fn9["symbol"], "evaluate_selected_field_values_public")
+        self.assertEqual(l5_fn9["visibility"], "public")
+        self.assertEqual(l5_fn9["input"], "F03BasicContext")
+        self.assertEqual(l5_fn9["output"], "F03Evaluation")
+        self.assertEqual(l5_fn9["effect"], "none")
+        self.assertEqual(
+            l5_fn9["oracle_ref"],
+            "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+        )
+        self.assertEqual(
+            l5_fn9["unit_case_refs"],
+            ["HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"],
+        )
+        self.assertEqual(l5_ep["symbol"], "evaluate_selected_field_values_public")
+        self.assertEqual(
+            l5_fn9["private_detail_binding"]["symbol"],
+            "evaluate_field_values_detail",
+        )
+
+        self.assertTrue(
+            hasattr(descriptor_definitions, "evaluate_selected_field_values_public"),
+            "L5#/functions/9 public endpoint must be exported from descriptor_definitions",
+        )
+        self.assertTrue(
+            hasattr(values_applicability, "evaluate_selected_field_values_public"),
+            "L5#/functions/9 public endpoint must be exported from values_applicability",
+        )
+        pub_fn = descriptor_definitions.evaluate_selected_field_values_public
+        va_pub_fn = values_applicability.evaluate_selected_field_values_public
+
+        # Build representative F03/N03 scenarios:
+        # 1) Normal F03 known definition + applicable + supplied value
+        raw_normal = base_input(self.document)
+        _, field0_norm = self._prep_f03_field0(
+            raw_normal, with_meaning=True, clear_values=False
+        )
+        core_src_norm = _ref_from(
+            raw_normal["binding"]["template_ref"],
+            "SYNTHETIC-F03-EP-CORE-NORM",
+            owner="synthetic-core-owner",
+        )
+        val0_norm = raw_normal["values"][0]
+        val0_norm.update(
+            {
+                "value": "concrete-field-value",
+                "origin": "project_owner",
+                "reason": "案件供給値",
+                "source_ref": copy.deepcopy(core_src_norm),
+                "applicability_ref": None,
+            }
+        )
+        app0_norm = raw_normal["applicability_records"][0]
+        app0_norm.update(
+            {
+                "owner": "synthetic-core-owner",
+                "decision": "applicable",
+                "reason": "適用",
+                "reentry_condition": {"when": "常時"},
+                "source_ref": copy.deepcopy(core_src_norm),
+            }
+        )
+        self._add_f03_core_and_mapping_sources(
+            raw_normal, [field0_norm], value_facts=[val0_norm], app_records=[app0_norm]
+        )
+
+        # 2) F03-NEG-01 (rule 54 unknown_as_na) & F03-NEG-03 (rule 56 applicability_unknown_as_na)
+        raw_neg54 = copy.deepcopy(raw_normal)
+        raw_neg54["values"][0]["value"] = None
+        raw_neg54["values"][0]["origin"] = "absent"
+        for s in raw_neg54["sources"]:
+            if s["ref"]["identity"] == "SYNTHETIC-F03-EP-CORE-NORM":
+                s["content"]["value_facts"][0]["value"] = None
+                s["content"]["value_facts"][0]["origin"] = "absent"
+                s["ref"]["sha256"] = hashlib.sha256(
+                    canonical_json_bytes(s["content"])
+                ).hexdigest()
+        raw_neg54["claims"] = [
+            _claim(
+                field0_norm["ref"],
+                raw_neg54["binding"],
+                "field_not_applicable",
+                "not_applicable",
+            )
+        ]
+
+        raw_neg56 = copy.deepcopy(raw_neg54)
+        raw_neg56["applicability_records"][0]["decision"] = "unknown"
+        for s in raw_neg56["sources"]:
+            if s["ref"]["identity"] == "SYNTHETIC-F03-EP-CORE-NORM":
+                s["content"]["field_applicability_records"][0]["decision"] = "unknown"
+                s["ref"]["sha256"] = hashlib.sha256(
+                    canonical_json_bytes(s["content"])
+                ).hexdigest()
+
+        # 3) F03-NEG-02 (rule 55 definition_as_value_gap)
+        raw_neg55 = base_input(self.document)
+        f55 = raw_neg55["section_fields"][0]
+        for k in (
+            "meaning_fact_refs",
+            "requiredness_fact_refs",
+            "normative_rule_refs",
+            "oracle_refs",
+            "value_fact_refs",
+        ):
+            f55[k] = []
+        f55["parent_section_ref"] = None
+        f55["applicability_ref"] = None
+        raw_neg55["values"] = []
+        raw_neg55["applicability_records"] = []
+        _add_qualified_semantic_source(
+            raw_neg55,
+            identity="SYNTHETIC-F03-EP-MAP-55",
+            owner="synthetic-knowledge-owner",
+            content={
+                "binding": copy.deepcopy(raw_neg55["binding"]),
+                "descriptor_targets": [
+                    {
+                        "target_ref": copy.deepcopy(f55["descriptor_slot_ref"]),
+                        "slot_identity": "synthetic-descriptor-7",
+                        "descriptor_kind": "required field",
+                    }
+                ],
+                "section_field_records": [{"record": copy.deepcopy(f55)}],
+            },
+            add_to_knowledge_provenance=True,
+        )
+        raw_neg55["claims"] = [
+            _claim(
+                f55["ref"],
+                raw_neg55["binding"],
+                "value_only_gap",
+                "unknown",
+            )
+        ]
+
+        # 4) N03-NEG-01..03 (rules 102..104)
+        raw_n03 = base_input(self.document)
+
+        for case_label, raw_case in (
+            ("normal_f03", raw_normal),
+            ("f03_neg01_rule54", raw_neg54),
+            ("f03_neg02_rule55", raw_neg55),
+            ("f03_neg03_rule56", raw_neg56),
+            ("n03_default_claims", raw_n03),
+        ):
+            with self.subTest(case=case_label):
+                validated = validate_supply_input(raw_case)
+                self.assertEqual(validated["input_issues"], [])
+                definitions = compare_descriptor_definitions({"validated": validated})
+                f03_context = {
+                    "snapshot": copy.deepcopy(validated),
+                    "definitions": copy.deepcopy(definitions),
+                }
+                f03_context_before = copy.deepcopy(f03_context)
+                expected_detail = _evaluate_field_values_detail(
+                    copy.deepcopy(f03_context)
+                )
+                expected_public_cmp = compare_values_and_applicability(
+                    {
+                        "validated": copy.deepcopy(validated),
+                        "definitions": copy.deepcopy(definitions),
+                    }
+                )
+
+                with unittest.mock.patch.object(
+                    values_applicability,
+                    "evaluate_field_values_detail",
+                    wraps=values_applicability.evaluate_field_values_detail,
+                ) as spy_detail:
+                    result = pub_fn(f03_context)
+                    self.assertEqual(
+                        spy_detail.call_count,
+                        1,
+                        "evaluate_selected_field_values_public must delegate to evaluate_field_values_detail exactly once",
+                    )
+                    self.assertEqual(spy_detail.call_args.args, (f03_context,))
+                    self.assertEqual(spy_detail.call_args.kwargs, {})
+
+                self.assertEqual(
+                    f03_context,
+                    f03_context_before,
+                    "evaluate_selected_field_values_public must have 0 side effects on input context",
+                )
+                self._assert_f03_evaluation_schema(result)
+                self.assertEqual(
+                    set(result.keys()),
+                    {"comparison", "rows", "problems"},
+                )
+                for forbidden_private_key in (
+                    "supply_analysis",
+                    "descriptor_target_call_observation",
+                    "field_value_evaluation",
+                ):
+                    self.assertNotIn(forbidden_private_key, result)
+                self.assertEqual(result, expected_detail)
+                self.assertEqual(
+                    _write_existing_comparison_from_f03(result["comparison"]),
+                    expected_public_cmp,
+                )
+                self.assertEqual(va_pub_fn(copy.deepcopy(f03_context)), expected_detail)
+
+        # Boundary checks: non-dict context, missing/extra keys, invalid snapshot/definitions, and invalid internal return shape
+        base_val = validate_supply_input(raw_normal)
+        base_defs = compare_descriptor_definitions({"validated": base_val})
+        for bad_label, bad_ctx in (
+            ("none_ctx", None),
+            ("list_with_key_names", ["snapshot", "definitions"]),
+            ("int_ctx", 123),
+            ("missing_definitions", {"snapshot": base_val}),
+            ("missing_snapshot", {"definitions": base_defs}),
+            (
+                "extra_member",
+                {"snapshot": base_val, "definitions": base_defs, "extra": None},
+            ),
+            ("invalid_snapshot", {"snapshot": {}, "definitions": base_defs}),
+            ("invalid_definitions", {"snapshot": base_val, "definitions": {}}),
+        ):
+            with self.subTest(boundary=bad_label):
+                with self.assertRaises(NotImplementedError) as caught:
+                    pub_fn(bad_ctx)  # type: ignore[arg-type]
+                self.assertIn("F03/context_or_input_shape", str(caught.exception))
+                self.assertIn(F03_BACKFLOW_ID, str(caught.exception))
+
+        valid_ctx = {"snapshot": base_val, "definitions": base_defs}
+        valid_detail = _evaluate_field_values_detail(copy.deepcopy(valid_ctx))
+        for bad_ret_label, bad_ret in (
+            ("non_dict_return", None),
+            (
+                "private_3tuple_exposed",
+                {
+                    "supply_analysis": {},
+                    "descriptor_target_call_observation": {},
+                    "field_value_evaluation": valid_detail,
+                },
+            ),
+            (
+                "extra_private_key_with_3members",
+                {
+                    **valid_detail,
+                    "field_value_evaluation": valid_detail,
+                },
+            ),
+            (
+                "missing_problems",
+                {
+                    "comparison": valid_detail["comparison"],
+                    "rows": valid_detail["rows"],
+                },
+            ),
+            (
+                "comparison_not_dict",
+                {"comparison": [], "rows": valid_detail["rows"], "problems": []},
+            ),
+            (
+                "rows_not_list",
+                {
+                    "comparison": valid_detail["comparison"],
+                    "rows": {},
+                    "problems": [],
+                },
+            ),
+            (
+                "problems_not_list",
+                {
+                    "comparison": valid_detail["comparison"],
+                    "rows": valid_detail["rows"],
+                    "problems": {},
+                },
+            ),
+        ):
+            with self.subTest(bad_return=bad_ret_label):
+                with unittest.mock.patch.object(
+                    values_applicability,
+                    "evaluate_field_values_detail",
+                    return_value=bad_ret,
+                ):
+                    with self.assertRaises(NotImplementedError) as caught_ret:
+                        pub_fn(copy.deepcopy(valid_ctx))
+                    self.assertIn(
+                        "F03/context_or_input_shape", str(caught_ret.exception)
+                    )
+                    self.assertIn(F03_BACKFLOW_ID, str(caught_ret.exception))
+
 
 if __name__ == "__main__":
     unittest.main()

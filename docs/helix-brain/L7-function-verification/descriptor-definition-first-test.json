@@ -4139,5 +4139,41 @@
     ],
     "tdd_sequence": "test-only commitを先行して現source（src/oracle_binding_rules.py の oracle_claim_ports 停止及び src/oracle_finite_carry.py の fill_definition 限定）上でRedを確認し、次commitで src/oracle_binding_rules.py と src/oracle_finite_carry.py を最小実装してGreenにする。",
     "authority_effect": "none"
+  },
+  "fn9_public_field_value_evaluation_endpoint_verification": {
+    "sibling_of": "n03_path_fn0_fn1_fn2_verification",
+    "design_ref": {
+      "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
+      "pointer": "/fn9_public_field_value_evaluation_endpoint_preparation"
+    },
+    "request": "WR91-BRAIN032-PUBLIC-ENDPOINT-IMPL",
+    "test_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_f03_values_and_applicability.py",
+    "l8_case_refs": [
+      "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+      "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT",
+      "HELIXBRAIN-L8-032-F03-NEG-01",
+      "HELIXBRAIN-L8-032-F03-NEG-02",
+      "HELIXBRAIN-L8-032-F03-NEG-03",
+      "HELIXBRAIN-L8-032-F03-NEG-04",
+      "HELIXBRAIN-L8-032-N03-NEG-01",
+      "HELIXBRAIN-L8-032-N03-NEG-02",
+      "HELIXBRAIN-L8-032-N03-NEG-03"
+    ],
+    "expectation_basis": [
+      "L4 /field_value_applicability_contract/public_selected_field_evaluation_endpoint",
+      "L4 /field_value_applicability_contract/closed_types/F03BasicContext",
+      "L4 /field_value_applicability_contract/closed_types/F03Evaluation",
+      "L5 /functions/9",
+      "L5 /field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint",
+      "L8 /function_oracles/9 (HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public)",
+      "L8 /additional_unit_cases/41 (HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT)"
+    ],
+    "independent_expectations": [
+      "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public / HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT: evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation は context={snapshot:F03BValidatedSnapshot,definitions:F03BComparison} を受け、内部 evaluate_field_values_detail(context) をちょうど1回呼び、返却 F03Evaluation（comparison, rows, problems の3-member閉型）を変換・欠落なしにそのまま返す。",
+      "BRAIN内部 private_full_runner の3-member closed_private_caller_result（supply_analysis, descriptor_target_call_observation, field_value_evaluation）を露出せず、公開Comparison射影 _write_existing_comparison_from_f03(result[\"comparison\"]) が compare_values_and_applicability({\"validated\": snapshot, \"definitions\": definitions}) の返却と完全一致し、F03-NEG-01..04（rule 54..57）および N03-NEG-01..03（rule 102..104）の全ケースで evaluate_field_values_detail(context) と全member等価・入力不変（副作用0）を保つ。",
+      "非object context、必須2key（snapshot, definitions）過不足、不正snapshot/definitions形状、または内部返却が3-member閉型 F03Evaluation（comparison:dict, rows:list, problems:list）を満たさない場合は F03/context_or_input_shape (Backflow HELIXBRAIN-L6-032-F03-FN2-PATH) で fail-close 停止する。"
+    ],
+    "tdd_sequence": "test-only commitを先行して現source（src/descriptor_definitions.py 及び src/values_applicability.py に evaluate_selected_field_values_public 未定義）上でRedを実観測し、次commitで src/values_applicability.py と src/descriptor_definitions.py に evaluate_selected_field_values_public を最小実装してGreenにする。",
+    "authority_effect": "none"
   }
 }
