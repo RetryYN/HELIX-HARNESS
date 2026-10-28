@@ -5337,6 +5337,21 @@
       }
     },
     {
+      "code": "unobserved_knowledge_forced_equal",
+      "design_ref": "HARNESS-L4-009-B02",
+      "oracle_ref": "HARNESS-L9-009-B02-NEG-05",
+      "condition": "未観測知識まで既知対象と同一setへ固定する",
+      "expected_axis": "comparison_boundary",
+      "expected_state": "unknown",
+      "backflow_owner": "core_owner",
+      "effect": "未観測知識の範囲をunobservedのまま保持し、既知対象との同一set固定や意味同値を主張しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "未観測知識の範囲をunobservedのまま保持し、既知対象との同一set固定や意味同値を主張しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      }
+    },
+    {
       "code": "axis_01_missing",
       "design_ref": "HARNESS-L4-009-F01",
       "oracle_ref": "HARNESS-L9-009-F01-NEG-01",
