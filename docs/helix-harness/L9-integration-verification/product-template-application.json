@@ -12738,11 +12738,15 @@
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+      "pointer": "/field_obligation_scope_contract/role_owner_binding/eligible_operands"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-      "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair"
+      "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair/members/operand_role"
+     },
+     {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
      },
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12761,17 +12765,17 @@
       "pointer": "/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8"
      }
     ],
-    "condition": "対象fieldのidentity/fullbinding/template/原義務対応は成立する。wrapper_owner/source_owner Readは両方presentで既知に異なりowner check linkは0件。原順の適用RolePairはfield.refが一件で、そのoperand_owner Readはpresentかつwrapper_ownerと既知に異なる。",
+    "condition": "対象fieldのidentity/fullbinding/template/原義務対応と当該Field Selectionのpolicy index/fullRef/template/binding対応が成立する。wrapper_owner/source_owner Readは両方presentで既知に異なりowner check linkは0件。原順の適用RolePairはselected_policy.refが一件で、そのoperand_owner Readはpresentかつwrapper_ownerと既知に異なる。",
     "expected_observation": {
      "source_wrapper_relation": "different",
      "role_pair": {
-      "operand_role": "field.ref",
+      "operand_role": "selected_policy.ref",
       "relation": "different",
       "cause_kind": "owner_mismatch"
      },
      "owner_binding_result": "different"
     },
-    "expected_preserved": "共通source-wrapperのdifferentとfield.ref RolePair自身のdifferent/causeを別の局所関係として保持する。既知のwrapper差を候補pairで相殺せず、全原Ref・owner・presenceを保持する。Cause順、target、left/right、rule_pointer、parentへのCause配列順はこの独立期待で定めない。",
+    "expected_preserved": "共通source-wrapperのdifferentとselected_policy.ref RolePair自身のdifferent/causeを別の局所関係として保持する。既知のwrapper差を候補pairで相殺せず、全原Ref・owner・presenceを保持する。Cause順、target、left/right、rule_pointer、parentへのCause配列順はこの独立期待で定めない。",
     "expected_side_effect_count": 0
    }
   ]

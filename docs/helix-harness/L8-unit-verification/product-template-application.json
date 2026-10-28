@@ -4816,11 +4816,19 @@
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+     "pointer": "/field_obligation_scope_contract/role_owner_binding/eligible_operands"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
-     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair"
+     "pointer": "/field_obligation_scope_contract/basic_view_contract/types/RolePair/members/operand_role"
+    },
+    {
+     "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+     "pointer": "/field_obligation_scope_contract/role_owner_binding/combination"
+    },
+    {
+     "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+     "pointer": "/f05_detail_contract/owner_binding_contract/role_pairs"
     },
     {
      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -4839,10 +4847,10 @@
      "pointer": "/field_semantic_evidence_verification/owner_relation_cause_cases/2"
     }
    ],
-   "typed_mutation_plan": "wrapper_owner/source_owner Readを両方presentかつ既知に異なる原値にし、qualification_owner/root_owner linkを0件とする。唯一の適用RolePairはfield.refで、operand_owner Readもpresentかつwrapper_ownerと既知に異なる。field/binding/template/義務のidentity対応は成立させる。",
-   "input_condition": "L9 owner_relation_cause_cases/2の型付き条件と同じ。fixture/全return/hashは未作成。",
-   "expected_observation": "source_wrapper_relation=different、field.ref RolePair.relation=different、そのpair局所cause kind=owner_mismatch、OwnerBinding.result=different。RolePair Causeは外側wrapper relationの再計算や相殺に使わない。",
-   "expected_preserved": "source-wrapperとRolePairの全原Ref・owner・presenceを保持する。Causeの順序とtarget/left/right/rule_pointerは独立意味期待に混ぜない。",
+   "typed_mutation_plan": "wrapper_owner/source_owner Readを両方presentかつ既知に異なる原値にし、qualification_owner/root_owner linkを0件とする。field selectionとApplicationPolicy.refの対応を成立させ、唯一の適用RolePairはselected_policy.refとする。そのoperand_owner Readはpresentかつwrapper_ownerと既知に異なる。field/binding/template/義務identity対応も成立させる。",
+   "input_condition": "L9 owner_relation_cause_cases/2の型付き条件と同じ。selected_policy.refはL4のeligible operand/閉じたRolePair enumにあり、L5はpolicyをApplicationPolicy.ref候補として定義する。fixture/全return/hashは未作成。",
+   "expected_observation": "source_wrapper_relation=different、selected_policy.ref RolePair.relation=different、そのpair局所cause kind=owner_mismatch、OwnerBinding.result=different。RolePair Causeは外側wrapper relationの再計算や相殺に使わない。",
+   "expected_preserved": "source-wrapperとselected_policy.ref RolePairの全原Ref・owner・presenceを保持する。Causeの順序とtarget/left/right/rule_pointerは独立意味期待に混ぜない。",
    "expected_side_effect_count": 0,
    "execution_state": "not_executed",
    "fixture_refinement": "L4/L9の型付き論理条件のみ。fixture、全返却、hashはなく、実行していない。",
