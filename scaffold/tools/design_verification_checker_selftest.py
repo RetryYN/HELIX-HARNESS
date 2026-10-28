@@ -2887,6 +2887,284 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         self.assertEqual(os002_missing_upper_values["L5"], os002_layers["L5"])
 
+    def test_legacy_additional_negative_state_and_scope_are_four_layer_checked(
+        self,
+    ) -> None:
+        paths = {
+            "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        }
+        layers = {key: dvc._load_json(REPO_ROOT, path) for key, path in paths.items()}
+        baseline = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(baseline["passed"], baseline["failures"])
+        self.assertEqual(baseline["counts"], {"L4": 85, "L9": 85, "L8": 85, "L5": 85})
+
+        # ADD-41/42 are deliberately referenced through L8 additional_cases;
+        # the ordinary cases[] copies stay unchanged to exercise the missing
+        # consumer path that previously allowed this state drift.
+        changed = copy.deepcopy(layers["L8"])
+        changed["additional_cases"][40]["expected_state"] = "unknown"
+        mutated = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=changed,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(mutated["passed"])
+        state_failure = next(
+            failure
+            for failure in mutated["failures"]
+            if failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+            and failure.get("attribute") == "expected_state"
+        )
+        self.assertEqual(
+            {key: state_failure[key] for key in ("L4", "L8", "L9", "L5")},
+            {"L4": "missing", "L8": "unknown", "L9": "missing", "L5": "missing"},
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in baseline["failures"]
+            )
+        )
+        add50 = layers["L8"]["additional_cases"][49]
+        self.assertEqual(add50["expected_state"], "absent")
+        self.assertEqual(
+            add50["function_ref"], "HELIXOS-L5-002-compare_operation_dependencies"
+        )
+        add50_function = next(
+            row
+            for row in layers["L5"]["functions"]
+            if row["id"] == add50["function_ref"]
+        )
+        self.assertNotIn(add50["id"], add50_function["unit_case_refs"])
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L5"]["failure_rules"]
+            )
+        )
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L4"]["contracts"][1]["negative_classifications"]
+            )
+        )
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L9"]["cases"][1]["negative_cases"]
+            )
+        )
+
+        missing_function = copy.deepcopy(layers["L8"])
+        missing_function["additional_cases"][40]["function_ref"] = None
+        missing_function_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=missing_function,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_function_scope"
+                for failure in missing_function_result["failures"]
+            )
+        )
+
+        # An identical code in a different L4 parent cannot replace or add a
+        # counterpart for ADD-41's L5 function/contract scope.
+        unrelated_code = copy.deepcopy(layers["L4"])
+        unrelated_code["contracts"][0]["negative_classifications"].append(
+            {"code": "harness_process_contract_ref_missing", "state": "missing"}
+        )
+        unrelated_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=unrelated_code,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_counterpart"
+                and failure.get("layer") == "L4"
+                and failure.get("actual_count") != 1
+                for failure in unrelated_result["failures"]
+            )
+        )
+
+        # A partial counterpart must fail closed, not silently reclassify the
+        # additional row as out of scope. ADD-50 remains explicitly nonnegative
+        # and is therefore outside this negative four-layer comparison.
+        partial = copy.deepcopy(layers["L4"])
+        partial["contracts"][1]["negative_classifications"] = [
+            row
+            for row in partial["contracts"][1]["negative_classifications"]
+            if row.get("code") != "harness_process_contract_ref_missing"
+        ]
+        partial_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=partial,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_counterpart"
+                and failure.get("layer") == "L4"
+                for failure in partial_result["failures"]
+            )
+        )
+
+    def test_basic_pair_freeze_row_recomputes_ids_links_counts_and_dispositions(
+        self,
+    ) -> None:
+        freeze_path = (
+            "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json"
+        )
+        record = dvc._load_json(REPO_ROOT, freeze_path)
+        aliases = record["path_aliases"]
+        loaded = {
+            alias: dvc._load_json(REPO_ROOT, path)
+            for alias, path in aliases.items()
+            if alias in {"L3F", "L10F", "L4", "L9"}
+        }
+        result = dvc._check_basic_pair_freeze_row(record, aliases, loaded)
+        # The immutable source freeze has one stale declared sub-oracle ID;
+        # audit must report it rather than repair or reinterpret the record.
+        mismatch = [
+            failure
+            for failure in result["failures"]
+            if failure.get("error") == "child_id_mismatch"
+        ]
+        self.assertEqual(len(mismatch), 1)
+        self.assertEqual(
+            mismatch[0]["pointer"],
+            "L9#/cases/5/selected_source_member_correspondence_oracles",
+        )
+        self.assertEqual(
+            mismatch[0]["expected_id"],
+            "HELIXOS-L9-002-F04-SOURCE-MEMBER-CORRESPONDENCE",
+        )
+        self.assertEqual(mismatch[0]["actual_id"], "HELIXOS-L9-002-F04-SOURCE-MEMBERS")
+
+        repaired_copy = copy.deepcopy(record)
+        repaired_copy["basic_pair_freeze_row"]["l9_sub_oracles"][4]["id"] = mismatch[0][
+            "actual_id"
+        ]
+        repaired_result = dvc._check_basic_pair_freeze_row(
+            repaired_copy, aliases, loaded
+        )
+        self.assertTrue(repaired_result["passed"], repaired_result["failures"])
+
+        mutated = copy.deepcopy(repaired_copy)
+        mutated["basic_pair_freeze_row"]["l9_sub_oracles"][1]["count"] += 1
+        mutated_result = dvc._check_basic_pair_freeze_row(mutated, aliases, loaded)
+        self.assertTrue(
+            any(
+                failure.get("error") == "child_count_mismatch"
+                for failure in mutated_result["failures"]
+            )
+        )
+
+    def test_basic_pair_generate_and_audit_recompute_without_semantic_approval(
+        self,
+    ) -> None:
+        freeze_path = (
+            "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json"
+        )
+        record = dvc._load_json(REPO_ROOT, freeze_path)
+        current_head = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True
+        ).strip()
+        manifest = copy.deepcopy(record)
+        for key in (
+            "pins",
+            "verification",
+            "basic_pair_freeze_verification",
+            "negative_case_4way_verification",
+            "pointer_resolution_summary",
+            "resolved_function_rows",
+            "head_entity_counts",
+        ):
+            manifest.pop(key, None)
+        manifest["source_main"] = current_head
+        manifest["request_base_sha"] = current_head
+        manifest["basic_pair_freeze_row"]["l9_sub_oracles"][4]["id"] = (
+            "HELIXOS-L9-002-F04-SOURCE-MEMBERS"
+        )
+        manifest["human_judgment_pending"] = [
+            {"status": "pending_human_semantic_review"}
+        ]
+
+        generated = dvc.generate_freeze_record(
+            REPO_ROOT, manifest, base_rev=current_head, head_rev=current_head
+        )
+        self.assertTrue(generated["basic_pair_freeze_verification"]["passed"])
+        self.assertEqual(generated["authority_effect"], "none")
+        self.assertEqual(
+            generated["human_judgment_pending"],
+            [{"status": "pending_human_semantic_review"}],
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            generated_path = Path(tmpdir) / "generated-basic-pair-freeze.json"
+            generated_path.write_text(
+                json.dumps(generated, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            audited = dvc.audit_freeze_record(
+                REPO_ROOT, str(generated_path), use_creation_commit=False
+            )
+        self.assertTrue(
+            audited["mechanical_match"],
+            audited["comparison_with_existing_record"],
+        )
+
+        broken = copy.deepcopy(manifest)
+        broken["basic_pair_freeze_row"]["l9_case_pointer"] = "L9#/cases/99"
+        bad_generation = dvc.generate_freeze_record(
+            REPO_ROOT, broken, base_rev=current_head, head_rev=current_head
+        )
+        self.assertFalse(bad_generation["basic_pair_freeze_verification"]["passed"])
+        self.assertGreater(
+            bad_generation["basic_pair_freeze_verification"]["failure_count"], 0
+        )
+
     def test_chk_public_fn_freeze_pass_and_mutation_fail(self) -> None:
         l5 = {
             "functions": [
