@@ -1502,7 +1502,13 @@
      "execution_state": "not_executed"
     }
    ],
-   "execution_state": "not_executed"
+   "execution_state": "not_executed",
+   "nonfill_execution_boundary": {
+    "design_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/oracle_view_boundary_contract/claim_dispatch",
+    "system_oracle": "表示変更からJSON意味更新を成立させず、汎用既定閾値でowner値unknownを埋めない。元stateと実作用0を観測する。",
+    "unknown_boundary": "必要な実operand/subject/Bindingが未形成なら評価済みComparisonが返らないこと、原context/readを保持して既存ownerへ戻すことを観測する。停止を成功又はdomain違反に数えない。",
+    "execution_state": "not_executed"
+   }
   },
   {
    "id": "HELIXBRAIN-L9-032-F06",
@@ -1561,7 +1567,13 @@
     }
    ],
    "oracle_boundary_property": "HELIXBRAIN-L4-032-F05-F06-ORACLE-VIEW-PROJECTIONの7既存rule・partial contextの有限性質を照合する（not_executed）。",
-   "execution_state": "not_executed"
+   "execution_state": "not_executed",
+   "nonfill_execution_boundary": {
+    "design_ref": "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/oracle_view_boundary_contract/claim_dispatch",
+    "system_oracle": "表示変更からJSON意味更新を成立させず、汎用既定閾値でowner値unknownを埋めない。元stateと実作用0を観測する。",
+    "unknown_boundary": "必要な実operand/subject/Bindingが未形成なら評価済みComparisonが返らないこと、原context/readを保持して既存ownerへ戻すことを観測する。停止を成功又はdomain違反に数えない。",
+    "execution_state": "not_executed"
+   }
   },
   {
    "id": "HELIXBRAIN-L9-032-F07",

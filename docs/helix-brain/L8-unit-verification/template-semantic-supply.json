@@ -1943,7 +1943,11 @@
      "expected_state": "conflict",
      "backflow_owner": "knowledge_owner",
      "expected_side_effect_count": 0,
-     "execution_state": "not_executed"
+     "execution_state": "not_executed",
+     "design_property_refs": [
+      "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/fn4_nonfill_claim_detail/dispatch/1",
+      "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/fn4_nonfill_claim_detail/unknown_return"
+     ]
     }
    ],
    "execution_state": "not_executed",
@@ -2051,7 +2055,11 @@
      "expected_state": "unknown",
      "backflow_owner": "core_owner",
      "expected_side_effect_count": 0,
-     "execution_state": "not_executed"
+     "execution_state": "not_executed",
+     "design_property_refs": [
+      "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/fn4_nonfill_claim_detail/dispatch/2",
+      "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/fn4_nonfill_claim_detail/unknown_return"
+     ]
     }
    ],
    "oracle_boundary_property": "HELIXBRAIN-L4-032-F05-F06-ORACLE-VIEW-PROJECTIONの7既存rule発火時のtyped対応・原出現順を照合する（not_executed）。",
@@ -3654,7 +3662,11 @@
     "HELIXBRAIN-L8-032-F06-NEG-04",
     "HELIXBRAIN-L8-032-ADD-15"
    ],
-   "execution_state": "not_executed"
+   "execution_state": "not_executed",
+   "design_property_refs": [
+    "docs/helix-brain/L5-detail-design/template-semantic-supply.json#/fn4_nonfill_claim_detail",
+    "docs/helix-brain/L4-basic-design/template-semantic-supply.json#/oracle_view_boundary_contract/claim_dispatch"
+   ]
   },
   {
    "id": "HELIXBRAIN-L8-032-NORMAL-compare_knowledge_promotion",
