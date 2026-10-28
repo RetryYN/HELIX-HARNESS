@@ -40,7 +40,7 @@
   "l3_obligation_decomposition": [
     {
       "element_id": "O1-owner-cause",
-      "obligation_ja": "F05で定めたwrapper/source/qualificationと各meaning-role owner relationのdifferent/unestablishedを区別し、元Read・Cause・orderを保持して親cause列へ伝える。owner名だけから委任や意味権限を生成しない。source_wrapperは必須ANDの三値論理を用い、既知false（S4またはS2のdifferent）はunestablishedより優先し、S4とS3は各条件成立時に併記する。",
+      "obligation_ja": "F05で定めたwrapper/source/qualificationと各meaning-role owner relationのdifferent/unestablishedを区別し、元Read・local Causeを保持して親Cause列へ伝える。source_wrapperは共通ANDの三値論理を用い、既知false（S4またはS2のdifferent）はunestablishedより優先し、S4とS3は各条件成立時に併記する。L4/L9の意味期待はCause順を定めず、親Cause列の順序はL5の技術選択として分ける。",
       "l3_pointers": [
         "L3F#/requirements/27",
         "L10F#/cases/27"
@@ -60,16 +60,21 @@
         "L8#/additional_unit_cases/34",
         "L8#/additional_unit_cases/35",
         "L8#/additional_unit_cases/36",
-        "L8#/additional_unit_cases/37"
+        "L8#/additional_unit_cases/37",
+        "L8#/additional_unit_cases/38"
       ],
       "l4_pointers": [
         "L4#/field_semantic_evidence_contract/role_owner_binding/common",
         "L4#/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
-        "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+        "L4#/field_obligation_scope_contract/role_owner_binding/combination",
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair",
+        "L4#/field_obligation_scope_contract/basic_view_contract/types/OwnerView"
       ],
       "l9_pointers": [
         "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/0",
-        "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+        "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1",
+        "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/2"
       ]
     },
     {
@@ -124,14 +129,19 @@
           "L8#/additional_unit_cases/34",
           "L8#/additional_unit_cases/35",
           "L8#/additional_unit_cases/36",
-          "L8#/additional_unit_cases/37"
+          "L8#/additional_unit_cases/37",
+          "L8#/additional_unit_cases/38"
         ],
         "basis_pointers": [
           "L4#/field_semantic_evidence_contract/role_owner_binding/common",
           "L4#/field_semantic_evidence_contract/role_owner_binding/definition",
           "L9#/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/7",
           "L9#/field_semantic_evidence_verification/unexercised_and_unverified/unexercised_finite_roles/8",
-          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1",
+          "L4#/field_obligation_scope_contract/role_owner_binding/combination",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/RolePair",
+          "L4#/field_obligation_scope_contract/basic_view_contract/types/OwnerView",
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/2"
         ]
       },
       {
@@ -170,7 +180,8 @@
         ],
         "case_pointers": [
           "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/0",
-          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1"
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/1",
+          "L9#/field_semantic_evidence_verification/owner_relation_cause_cases/2"
         ],
         "note_ja": "L4 cause_vocabularyとL9 owner relation logical casesの対応宣言。checkerのbasic_pair_bindings専用semantic validatorは存在せず、check-pairの構造結果と人手reviewを別途保持する。"
       },
@@ -209,7 +220,7 @@
     "L5",
     "L8"
   ],
-  "remaining_scope_ja": "本combined recordはFN5 detail pair（L5/L8）とL4/L9 basic pairの双方を再凍結する。source_wrapper_relationの唯一writerはL5 owner_binding_contract/source_wrapper。必要qualification_owner/root_owner linkがnot_applicable等ならunestablishedとし、correspondingへ短絡せずCause anchorがなければSTOPする。Cause aggregationは既形成relationを消費し、source-wrapper Causeの後に各RoleOwnerPairの局所Causeをrelation値にかかわらず原順保持する。OwnerBinding.resultは別の共通AND／role候補OR集約。L8 ADD-37はRoleOwnerPair.relation=correspondingを含むpositive候補を持つが未実行。S4は両Read presentかつ既知直接差でlink数/結果に依存せずCauseを作り、linkが0件ならS3も[S4,S3]順で併記する。STOP-OWNER-CAUSE-WRAPPER-RELATION-01、STOP-OWNER-CAUSE-QUAL-READ-01、selection_unestablished writer none_foundは未閉包。L9にwrapper非corresponding時のrole-pair局所Cause専用caseはなく、この振舞いはL5設計記述でありruntime観測ではない。ADD-37のpositive RoleOwnerPairはcorrespondingで、L5 technical expectation上はpair Causeを持たない。basic_pair_bindings fieldは宣言的対応であり専用checkerによるsemantic validationを受けない。単独basic_pair_l4_l9_freeze_recordをmechanical passできない既存checker制約はWR154-R2-STOP-BASIC-PAIR-CHECKER-01として別依頼に残す。公開API全体、runtime/test実行、上流承認は含まない。",
+  "remaining_scope_ja": "本combined recordはFN5 detail pair（L5/L8）とL4/L9 basic pairの双方を再凍結する。source_wrapper_relationの唯一writerはL5 owner_binding_contract/source_wrapper。必要qualification_owner/root_owner linkがnot_applicable等ならunestablishedとし、correspondingへ短絡せずCause anchorがなければSTOPする。Cause aggregationは既形成relationを消費し、source-wrapper Causeの後に各RoleOwnerPairの局所Causeをrelation値にかかわらず原順保持する。OwnerBinding.resultは別の共通AND／role候補OR集約。L8 ADD-37はRoleOwnerPair.relation=correspondingを含むpositive候補を持つが未実行。S4は両Read presentかつ既知直接差でlink数/結果に依存せずCauseを作り、linkが0件ならS3も[S4,S3]順で併記する。STOP-OWNER-CAUSE-WRAPPER-RELATION-01、STOP-OWNER-CAUSE-QUAL-READ-01、selection_unestablished writer none_foundは未閉包。L9 owner_relation_cause_cases/2とL8 ADD-38は、wrapper relation=differentでも別RolePairのlocal owner_mismatchが保持される意味条件を追加したが未実行。Cause anchor/orderはL5 technical expectationに限定し、runtime観測とは扱わない。ADD-37のpositive RoleOwnerPairはcorrespondingで、L5 technical expectation上はpair Causeを持たない。basic_pair_bindings fieldは宣言的対応であり専用checkerによるsemantic validationを受けない。単独basic_pair_l4_l9_freeze_recordをmechanical passできない既存checker制約はWR154-R2-STOP-BASIC-PAIR-CHECKER-01として別依頼に残す。公開API全体、runtime/test実行、上流承認は含まない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
   "target": "FN5 detailのOwnerBinding/RoleOwnerPair Cause writerとdefinition AxisFact Cause writer、およびL4/L9 basic pairのCauseKind vocabulary・negative logical casesを同時に再凍結するcombined record。L4/L9のbasic pairとL5/L8のdetail pairを宣言し、各層のpre/post SHAを記録する。",
@@ -221,11 +232,11 @@
     "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L4_post_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
     "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L9_post_sha256": "b57f4ae85a3cb5716bbd3a60b5c12582d6da1e61c5469e1737f3a597c67cd7d8",
+    "L9_post_sha256": "a8d81dee424bccb369754516927a454c5e57aa53b1429c1f2995a6781e26e75e",
     "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
     "L5_post_sha256": "e15fbf4547d2cb59544a508889528d6a86e0880ac2f0e8b38ba5245d91044620",
     "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
-    "L8_post_sha256": "bf010300794adbc0f90dab7db15d25952d0a23c37164d8f2295eca9f45f67197"
+    "L8_post_sha256": "34a9e4fb3c7fed19cb69a3b2326883d1b337cbf5666d67447e8f0ae7a3b982ac"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
@@ -234,7 +245,7 @@
     "L8_cases": 11,
     "L8_negative_cases_total": 106,
     "L8_normal_function_oracles": 13,
-    "L8_additional_unit_cases": 38,
+    "L8_additional_unit_cases": 39,
     "L5_source_pins": 21,
     "L8_source_pins": 21,
     "L8_wire_codec_cases": 36,
@@ -247,8 +258,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 144,
-    "expanded_target_count": 250,
+    "checked_count": 155,
+    "expanded_target_count": 261,
     "unresolved_count": 0,
     "passed": true
   },
