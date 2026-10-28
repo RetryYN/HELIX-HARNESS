@@ -8,6 +8,7 @@ from application_requirement_gaps import (
     compare_requirement_gaps,
     compare_requirement_gaps_detail,
 )
+from application_selected_knowledge import compare_selected_knowledge
 from application_validation import validate_application_input
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "compare_required_axes",
     "compare_requirement_gaps",
     "compare_requirement_gaps_detail",
+    "compare_selected_knowledge",
     "validate_application_input",
 ]
