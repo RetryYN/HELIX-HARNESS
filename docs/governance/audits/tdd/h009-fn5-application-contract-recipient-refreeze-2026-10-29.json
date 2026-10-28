@@ -220,7 +220,7 @@
         "symbol": "f05_detail_contract",
         "visibility": "private_detail_contract_for_fn5_fn9_fn10",
         "owner": "HARNESS-CORE",
-        "reentry_slice": "D-H009-T3a / D-H009-T3b",
+        "reentry_slice": "D-H009-T3b",
         "l8_oracle_pointer": "L8#/f05_native_nine_source_known_known_scope_full_five_return_oracle",
         "unit_case_pointers": [
           "L8#/f05_explicit_skip_binding_absent_full_return_oracle",
@@ -251,10 +251,10 @@
   },
   "source_main": "576053040b55c8561828f07946f5be7a930db75b",
   "request_base_sha": "576053040b55c8561828f07946f5be7a930db75b",
-  "remaining_scope_ja": "D15（recipient境界）の限定再凍結。DISP2 D16（A、D-H009-T2c-3）のselected_brain_field_definition_application_detailは未解消のまま別scopeとして維持し、本記録のtarget bindingに含めない。",
+  "remaining_scope_ja": "D15（recipient境界）の限定再凍結。D16（D-H009-T2c-3）は既存FN5 freezeがDISP2#/dispositions/13..15の解消を宣言しており、元DISP2 category A行は履歴として保持する。本SEMREV-FN5-R1はD16を再開せず、この記録もD16を再開しない。",
   "evidence_kind": "slice_level_function_pair_freeze",
   "authority_effect": "none",
-  "recorded_at_utc": "2026-10-28T19:58:35+00:00",
+  "recorded_at_utc": "2026-10-28T20:01:21+00:00",
   "pins": {
     "L3B_sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d",
     "L3F_sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be",
@@ -263,9 +263,9 @@
     "L4_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L9_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
     "L5_pre_sha256": "d83639abb156dbbb9860804eed33f211e31b6949271b60abee51d5e79a4566d3",
-    "L5_post_sha256": "72c3d53b97e000133a0afe03abce125919c4b23518187d6c89783fd1a3f51121",
+    "L5_post_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
     "L8_pre_sha256": "9deeb8c15c4b549c6d588de82c1481f476a61036b253725418df5dbdd027f943",
-    "L8_post_sha256": "7bf5e456c9bcdd63742d7cbf69814c5b3d60288be97d8b633175e33971fb06e5",
+    "L8_post_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
     "L7_sha256": "af4cd7fcf641eb1445b6df29cbed83a8b27a62e813f5aaa3d81a9143194b6b85",
     "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb"
   },
@@ -289,8 +289,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 148,
-    "expanded_target_count": 148,
+    "checked_count": 149,
+    "expanded_target_count": 151,
     "unresolved_count": 0,
     "passed": true
   },
