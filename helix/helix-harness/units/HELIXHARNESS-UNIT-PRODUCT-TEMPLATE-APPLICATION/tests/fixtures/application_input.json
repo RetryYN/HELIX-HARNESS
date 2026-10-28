@@ -12,20 +12,26 @@
       "/fixture_contract/additional_input_recipes/4",
       "/fixture_contract/additional_input_recipes/5",
       "/fixture_contract/additional_input_recipes/6",
-      "/fixture_contract/additional_input_recipes/7"
+      "/fixture_contract/additional_input_recipes/7",
+      "/fixture_contract/additional_input_recipes/8",
+      "/fixture_contract/additional_input_recipes/9"
     ],
     "normal_input_canonical_sha256": "cc8037f461134678fd4976213cb223ab8d54a835dfe2c0026391ef4376e80825",
     "material_kind": "fixed current-generation L8 test input/recipe material; not an expected output",
-    "current_l8_revision": "9556e5c5554fe84140288bf33082ceb4dc47ee3a",
+    "current_l8_revision": "97bfea3462bf53ab96994d9135336ba265424570",
     "current_l8_whole_file_sha256": "e8d02da7d49bde75f2ae8b69bb4ffaed8d038fc60295a3b2bc5844c2d1ae11fa",
     "normal_oracle_pointers": [
-      "/normal_function_oracles/1"
+      "/normal_function_oracles/1",
+      "/normal_function_oracles/2"
     ],
     "negative_case_pointers": [
-      "/cases/2/negative_cases"
+      "/cases/2/negative_cases",
+      "/cases/3/negative_cases"
     ],
     "additional_unit_case_pointers": [
-      "/additional_unit_cases/7"
+      "/additional_unit_cases/7",
+      "/additional_unit_cases/8",
+      "/additional_unit_cases/9"
     ]
   },
   "normal_input": {
@@ -19666,6 +19672,270 @@
       "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
       "final_input_changes": [],
       "kind": "logical_unit_input_candidate_not_executed"
+    },
+    {
+      "id": "CORE-ADD-INPUT-09",
+      "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+      "input_overrides": {
+        "universes": [
+          {
+            "ref": {
+              "identity": "universe",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "requirement_ref": {
+                "identity": "synthetic-requirement",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "product_scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "process_contract_ref": {
+                "identity": "synthetic-process-contract",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-harness-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "application_contract_ref": {
+                "identity": "synthetic-application-contract",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-harness-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "template_ref": {
+                "identity": "SYNTHETIC-T-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-brain-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-K-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-brain-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-pair-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            },
+            "members": [],
+            "boundary_refs": [
+              {
+                "identity": "synthetic-application-contract",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-harness-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "source_ref": {
+              "identity": "source-synthetic-harness-owner",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-harness-owner",
+              "source_locator": null,
+              "sha256": null
+            }
+          }
+        ]
+      },
+      "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
+      "final_input_changes": [],
+      "kind": "logical_unit_input_candidate_not_executed"
+    },
+    {
+      "id": "CORE-ADD-INPUT-10",
+      "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+      "input_overrides": {
+        "claims": [
+          {
+            "ref": {
+              "identity": "claim-candidate-exact-set",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-core-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "subject_ref": {
+              "identity": "SYNTHETIC-T-unit",
+              "revision": "synthetic-A",
+              "scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "owner": "synthetic-brain-owner",
+              "source_locator": null,
+              "sha256": null
+            },
+            "binding": {
+              "requirement_ref": {
+                "identity": "synthetic-requirement",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-requirement-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "product_scope": {
+                "product": "SYNTHETIC-P",
+                "tenant": "SYNTHETIC-T",
+                "environment": "SYNTHETIC-E"
+              },
+              "process_contract_ref": {
+                "identity": "synthetic-process-contract",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-harness-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "application_contract_ref": {
+                "identity": "synthetic-application-contract",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-harness-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "template_ref": {
+                "identity": "SYNTHETIC-T-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-brain-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "knowledge_ref": {
+                "identity": "SYNTHETIC-K-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-brain-owner",
+                "source_locator": null,
+                "sha256": null
+              },
+              "oracle_ref": {
+                "identity": "synthetic-pair-unit",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-oracle-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            },
+            "actor": "synthetic-core-owner",
+            "kind": "candidate-exact-set",
+            "proposed_value": [
+              {
+                "identity": "SYNTHETIC-T-EXTRA",
+                "revision": "synthetic-A",
+                "scope": {
+                  "product": "SYNTHETIC-P",
+                  "tenant": "SYNTHETIC-T",
+                  "environment": "SYNTHETIC-E"
+                },
+                "owner": "synthetic-brain-owner",
+                "source_locator": null,
+                "sha256": null
+              }
+            ],
+            "basis_refs": []
+          }
+        ]
+      },
+      "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01",
+      "final_input_changes": [],
+      "kind": "logical_unit_input_candidate_not_executed"
     }
   ],
   "compare_required_axes_oracle": {
@@ -20796,5 +21066,239 @@
     "expected_side_effect_count": 0,
     "execution_state": "not_executed",
     "fixture_refinement": "explicit concrete input overrides and final raw changes supplied; not executed"
+  },
+  "compare_candidate_universe_oracle": {
+    "id": "HARNESS-L8-009-NORMAL-compare_candidate_universe",
+    "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+    "input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
+    "context_type": "CompareCandidateUniverseContext",
+    "expected_observation": "適用条件と入力axisを比較し、有資格の検討対象exact set・各要素の適用/不適用/未解決理由・比較境界・要求/製品scope・知識/適用契約版を原identity/版/scopeで結果候補へ返す。candidate/proposed setとOS selected/used setを分離しmember差分を観測。",
+    "execution_state": "not_executed",
+    "expected_output_rule": "Exact material/ref/state/set observations. Human explanation reason strings may differ if nonempty and bound to the stated original grounds; absent or unrelated grounds fail."
+  },
+  "f02_negative_cases": [
+    {
+      "id": "HARNESS-L8-009-F02-NEG-01",
+      "change": "母集合に同template identityを重複収載",
+      "expected_classification": "duplicate_template_identity",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "expected": "衝突した要素と元source/版を個別に返す。黙ってdedupして完全setにせず、衝突しない有効要素は保持する。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "衝突した要素と元source/版を個別に返す。黙ってdedupして完全setにせず、衝突しない有効要素は保持する。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-01",
+      "rule_ref": "HARNESS-L5-009-R-duplicate_template_identity",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "universes[0].members",
+        "operation": "append_existing_member",
+        "synthetic_value": "template-TU",
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F02-NEG-02",
+      "change": "検討母集合を未供給にし任意候補を返す",
+      "expected_classification": "universe_missing",
+      "expected_axis": "candidate_universe",
+      "expected_state": "missing",
+      "expected": "母集合の未供給と比較境界不明を返す。未知母集合を空集合成功へ変えず、供給済み要求axis/sourceを保存する。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "母集合の未供給と比較境界不明を返す。未知母集合を空集合成功へ変えず、供給済み要求axis/sourceを保存する。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-02",
+      "rule_ref": "HARNESS-L5-009-R-universe_missing",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "universes",
+        "operation": "replace",
+        "synthetic_value": null,
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F02-NEG-03",
+      "change": "当該binding外のtemplate revisionを収載",
+      "expected_classification": "foreign_revision_in_set",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "expected": "当該binding外の要素と期待版を具体的に示す。同scope有効要素の版を更新せず、異版の混入を完全setにしない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "当該binding外の要素と期待版を具体的に示す。同scope有効要素の版を更新せず、異版の混入を完全setにしない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-03",
+      "rule_ref": "HARNESS-L5-009-R-foreign_revision_in_set",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "universes[0].members[0].revision",
+        "operation": "replace",
+        "synthetic_value": "other-template-revision",
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F02-NEG-04",
+      "change": "別製品scopeのtemplateを収載",
+      "expected_classification": "foreign_product_in_set",
+      "expected_axis": "candidate_set",
+      "expected_state": "conflict",
+      "expected": "別製品要素と当該scopeの対応不成立を示す。同scope有効要素を保存し、別scopeを同集合へ統合しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "別製品要素と当該scopeの対応不成立を示す。同scope有効要素を保存し、別scopeを同集合へ統合しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "core_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-04",
+      "rule_ref": "HARNESS-L5-009-R-foreign_product_in_set",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "universes[0].members[0].scope",
+        "operation": "replace",
+        "synthetic_value": "product-Q",
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F02-NEG-05",
+      "change": "提案集合をOSの使用済みexact setへ変換",
+      "expected_classification": "proposed_as_used",
+      "expected_axis": "used_set_claim",
+      "expected_state": "conflict",
+      "expected": "提案集合を候補として保持し、原OS selected/used集合と登録未成立を分けて返す。OS集合を変更しない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "提案集合を候補として保持し、原OS selected/used集合と登録未成立を分けて返す。OS集合を変更しない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "os_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-05",
+      "rule_ref": "HARNESS-L5-009-R-proposed_as_used",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "claims",
+        "operation": "append",
+        "synthetic_value": {
+          "kind": "os_used_set",
+          "basis": "proposed-set"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    },
+    {
+      "id": "HARNESS-L8-009-F02-NEG-06",
+      "change": "正しい件数だが違うtemplateを返す",
+      "expected_classification": "same_count_wrong_member",
+      "expected_axis": "candidate_set_equivalence",
+      "expected_state": "conflict",
+      "expected": "期待memberと実memberのmissing/extra差分をidentity/版/scopeごとに返す。同件数でも誤memberを等価/適用完了にしない。",
+      "expected_preserved": {
+        "original_binding": "要求/template/knowledge/適用contractの元identity/revision/scope/sourceを保持。",
+        "observable": "期待memberと実memberのmissing/extra差分をidentity/版/scopeごとに返す。同件数でも誤memberを等価/適用完了にしない。",
+        "effects": "原記録・採択・権限・使用set・未完義務への実write/実消込なし。"
+      },
+      "preserved_control": "原qualified facts/版/scope/各case expected_preservedを維持。必要局所入力と無関係有効scopeを保存。期待code/stateは入力しない。",
+      "backflow_owner": "oracle_owner",
+      "expected_side_effect_count": 0,
+      "execution_state": "not_executed",
+      "integration_case_ref": "HARNESS-L9-009-F02-NEG-06",
+      "rule_ref": "HARNESS-L5-009-R-same_count_wrong_member",
+      "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+      "input_refinement_status": "defined_candidate_not_executed",
+      "typed_mutation": {
+        "target": "claims",
+        "operation": "append",
+        "synthetic_value": {
+          "kind": "candidate_members",
+          "value": [
+            "template-TU",
+            "template-foreign"
+          ],
+          "basis": "same-count"
+        },
+        "notation": "logical fixture construction plan; selectors refer to fixture refs, not runtime operators"
+      }
+    }
+  ],
+  "add_09_case": {
+    "id": "HARNESS-L8-009-ADD-09",
+    "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+    "name": "explicit-empty-with-boundary",
+    "input_fixture_ref": "CORE-ADD-INPUT-09",
+    "typed_mutation_plan": "有資格理由付きempty母集合",
+    "expected_observation": "emptyという原集合と適用該当なしを保存。母集合missingと区別",
+    "expected_side_effect_count": 0,
+    "execution_state": "not_executed",
+    "fixture_refinement": "explicit concrete input overrides and final raw changes supplied; not executed",
+    "expected_original_set": []
+  },
+  "add_10_case": {
+    "id": "HARNESS-L8-009-ADD-10",
+    "function_ref": "HARNESS-L5-009-compare_candidate_universe",
+    "name": "missing-extra-equal-count",
+    "input_fixture_ref": "CORE-ADD-INPUT-10",
+    "typed_mutation_plan": "同件数違うmemberをclaim",
+    "expected_observation": "具体missing/extraを返す。件数で同等なし",
+    "expected_side_effect_count": 0,
+    "execution_state": "not_executed",
+    "fixture_refinement": "explicit concrete input overrides and final raw changes supplied; not executed",
+    "expected_member_difference": {
+      "missing": [
+        {
+          "identity": "SYNTHETIC-T-unit",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-P",
+            "tenant": "SYNTHETIC-T",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null
+        }
+      ],
+      "extra": [
+        {
+          "identity": "SYNTHETIC-T-EXTRA",
+          "revision": "synthetic-A",
+          "scope": {
+            "product": "SYNTHETIC-P",
+            "tenant": "SYNTHETIC-T",
+            "environment": "SYNTHETIC-E"
+          },
+          "owner": "synthetic-brain-owner",
+          "source_locator": null
+        }
+      ]
+    }
   }
 }
