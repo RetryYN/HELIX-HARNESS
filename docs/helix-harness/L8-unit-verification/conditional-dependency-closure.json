@@ -1171,7 +1171,7 @@
     "qualified_fixture": "原意味とcondition/mapping/observations/owner根拠を別body bytes/Ref/envelopeにする。fixture資格はsyntheticのみ。各body変更時はowner fixture sourceも更新し、digest不一致で意味負例を遮蔽しない。self qualification負例だけ資格を未解決にする。",
     "observation": "出力集合/slot/condition原状態/差分/owner/利用状態を全て比較。単にheldだけをoracleにしない。",
     "purity": "immutable input deep equality、clock/env/network/filesystem/process/DB/dispatch/保存呼出し0を別検証。",
-    "negative_coverage": "全44原負例のchange/expected_classification/expected/backflow_owner/expected_utilizationは同bytesの文字列を保持。"
+    "negative_coverage": "全44原負例のchange/expected_classification/expected/backflow_owner/expected_stateは同bytesの文字列を保持。"
   },
   "completion": {
     "execution_state": "not_executed",
