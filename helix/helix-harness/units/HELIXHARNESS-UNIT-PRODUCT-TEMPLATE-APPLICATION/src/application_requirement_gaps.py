@@ -236,28 +236,41 @@ def _verify_gap_proposal_kind(proposal, raw, unusable_refs, binding):
     return "unresolved"
 
 
-def _is_knowledge_or_definition_gap(proposal, field_checks, binding):
+def _is_knowledge_or_definition_gap(proposal, field_checks, raw, binding):
+    k_ref = binding.get("knowledge_ref") if isinstance(binding, dict) else None
+    brain_owner = k_ref.get("owner") if isinstance(k_ref, dict) else None
+    knowledge_or_def_refs = []
+    if isinstance(k_ref, dict):
+        knowledge_or_def_refs.append(k_ref)
+    for fi in raw.get("field_inputs") or []:
+        if isinstance(fi, dict):
+            for dr in fi.get("definition_refs") or []:
+                if isinstance(dr, dict):
+                    knowledge_or_def_refs.append(dr)
+    for ku in raw.get("knowledge_uses") or []:
+        if isinstance(ku, dict):
+            if isinstance(ku.get("knowledge_ref"), dict):
+                knowledge_or_def_refs.append(ku["knowledge_ref"])
+            if isinstance(ku.get("ref"), dict):
+                knowledge_or_def_refs.append(ku["ref"])
+    for fc in field_checks:
+        if (
+            isinstance(fc, dict)
+            and fc.get("definition_state") != "known"
+            and isinstance(fc.get("field_ref"), dict)
+        ):
+            knowledge_or_def_refs.append(fc["field_ref"])
+
     subj = proposal.get("subject_ref")
     if isinstance(subj, dict):
-        if subj.get("owner") == "synthetic-brain-owner" or subj.get("identity") in (
-            "field-definition",
-            "SYNTHETIC-K-unit",
-            "knowledge-use-basis",
+        if (brain_owner and subj.get("owner") == brain_owner) or any(
+            _same_ref_ignoring_sha(subj, kr) for kr in knowledge_or_def_refs
         ):
             return True
-        for fc in field_checks:
-            if (
-                _same_ref_ignoring_sha(subj, fc.get("field_ref"))
-                and fc.get("definition_state") == "missing"
-            ):
-                return True
-    k_ref = binding.get("knowledge_ref")
     for sr in proposal.get("source_refs") or []:
         if isinstance(sr, dict):
-            if _same_ref_ignoring_sha(sr, k_ref) or sr.get("identity") in (
-                "field-definition",
-                "SYNTHETIC-K-unit",
-                "knowledge-use-basis",
+            if (brain_owner and sr.get("owner") == brain_owner) or any(
+                _same_ref_ignoring_sha(sr, kr) for kr in knowledge_or_def_refs
             ):
                 return True
     return False
@@ -379,8 +392,12 @@ def compare_requirement_gaps(context):
                 prop, raw, unusable_refs, binding
             )
 
-        if _is_knowledge_or_definition_gap(prop, field_checks, binding):
-            if prop.get("backflow_owner") not in ("BRAIN", "brain_owner"):
+        k_ref_owner = (binding.get("knowledge_ref") or {}).get("owner")
+        expected_brain_owners = {"BRAIN", "brain_owner"}
+        if isinstance(k_ref_owner, str) and k_ref_owner:
+            expected_brain_owners.add(k_ref_owner)
+        if _is_knowledge_or_definition_gap(prop, field_checks, raw, binding):
+            if prop.get("backflow_owner") not in expected_brain_owners:
                 findings.append(
                     {
                         "code": "wrong_gap_owner",
@@ -418,7 +435,25 @@ def compare_requirement_gaps(context):
                 ):
                     unfinished_obligation_refs.append(copy.deepcopy(ob_ref))
 
-    template_id = (binding.get("template_ref") or {}).get("identity")
+    t_ref = binding.get("template_ref") if isinstance(binding, dict) else {}
+    if not isinstance(t_ref, dict):
+        t_ref = {}
+    other_template_refs = []
+    for tmpl in raw.get("templates") or []:
+        if isinstance(tmpl, dict) and isinstance(tmpl.get("ref"), dict):
+            if not _same_ref_ignoring_sha(tmpl["ref"], t_ref):
+                other_template_refs.append(tmpl["ref"])
+    for univ in raw.get("universes") or []:
+        if isinstance(univ, dict):
+            for tr in univ.get("template_refs") or []:
+                if isinstance(tr, dict) and not _same_ref_ignoring_sha(tr, t_ref):
+                    other_template_refs.append(tr)
+    proposal_refs = [
+        cp["ref"]
+        for cp in candidate_proposals
+        if isinstance(cp, dict) and isinstance(cp.get("ref"), dict)
+    ]
+
     for claim in raw.get("claims") or []:
         if not isinstance(claim, dict):
             continue
@@ -430,7 +465,6 @@ def compare_requirement_gaps(context):
             for r in (claim.get("basis_refs") or [])
             if isinstance(r, dict)
         ]
-        proposed = claim.get("proposed_value")
 
         if ckind == "value_only_gap":
             for fc in field_checks:
@@ -480,12 +514,17 @@ def compare_requirement_gaps(context):
                     )
 
         elif ckind in ("gap_resolved", "classification_complete"):
-            foreign_template_basis = (
-                isinstance(proposed, dict)
-                and proposed.get("basis") == "template-TE-success"
-            ) or any(
-                b.get("identity") != template_id
-                and str(b.get("identity", "")).startswith(("SYNTHETIC-T-", "template-"))
+            foreign_template_basis = any(
+                not _same_ref_ignoring_sha(b, t_ref)
+                and not any(_same_ref_ignoring_sha(b, pr) for pr in proposal_refs)
+                and (
+                    any(_same_ref_ignoring_sha(b, otr) for otr in other_template_refs)
+                    or _same_ref_ignoring_sha(c_subj, t_ref)
+                    or (
+                        bool(t_ref.get("owner"))
+                        and b.get("owner") == t_ref.get("owner")
+                    )
+                )
                 for b in c_basis
             )
             has_gaps = bool(candidate_proposals) or any(
@@ -528,18 +567,21 @@ def compare_requirement_gaps(context):
                 )
 
         elif ckind == "requirements_agreement":
-            derived_ids = {
-                cp["ref"]["identity"]
-                for cp in candidate_proposals
-                if cp.get("kind") == "derived_requirement_candidate"
-                and isinstance(cp.get("ref"), dict)
-            } | {"gap-evidence-derived_requirement_candidate"}
-            is_derived_promotion = (
-                isinstance(proposed, dict)
-                and proposed.get("basis") == "derived-candidate"
-            ) or (
-                c_subj.get("identity") in derived_ids
-                or any(b.get("identity") in derived_ids for b in c_basis)
+            derived_refs = []
+            for cp in candidate_proposals:
+                if (
+                    isinstance(cp, dict)
+                    and cp.get("kind") == "derived_requirement_candidate"
+                ):
+                    if isinstance(cp.get("ref"), dict):
+                        derived_refs.append(cp["ref"])
+                    for sr in cp.get("source_refs") or []:
+                        if isinstance(sr, dict):
+                            derived_refs.append(sr)
+            is_derived_promotion = any(
+                _same_ref_ignoring_sha(c_subj, dr) for dr in derived_refs
+            ) or any(
+                _same_ref_ignoring_sha(b, dr) for b in c_basis for dr in derived_refs
             )
             if is_derived_promotion:
                 findings.append(
