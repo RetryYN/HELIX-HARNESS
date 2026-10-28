@@ -26,6 +26,20 @@ with FIXTURE_PATH.open("r", encoding="utf-8") as _STREAM:
     _FIXTURE = json.load(_STREAM)
 
 
+def _replace_kind_tokens(obj, src_kind, dst_kind):
+    if isinstance(obj, dict):
+        return {k: _replace_kind_tokens(v, src_kind, dst_kind) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_replace_kind_tokens(x, src_kind, dst_kind) for x in obj]
+    if isinstance(obj, str):
+        if obj == src_kind:
+            return dst_kind
+        suffix = f"-{src_kind}"
+        if obj.endswith(suffix):
+            return f"{obj[: -len(suffix)]}-{dst_kind}"
+    return obj
+
+
 def _resolve_recipe_raw(recipe_id):
     if recipe_id == "CORE-NORMAL-UNIT-REQUIRED":
         return _fixture_normal_input()
@@ -37,15 +51,18 @@ def _resolve_recipe_raw(recipe_id):
         raw = copy.deepcopy(_FIXTURE["normal_input"])
     else:
         raw = _resolve_recipe_raw(base_ref)
+    kr = recipe.get("kind_replacement")
+    if isinstance(kr, dict):
+        raw = _replace_kind_tokens(raw, kr["from"], kr["to"])
     for collection, value in recipe.get("input_overrides", {}).items():
         raw[collection] = copy.deepcopy(value)
-    if recipe.get("source_preparation") == "CORE-FIXTURE-SOURCE-REBUILD-01":
-        _rebuild_source_graph(raw)
     for change in recipe.get("final_input_changes", []):
         if change.get("property_present") is False:
             _remove_path(raw, change["property_path"])
         else:
             _set_path(raw, change["property_path"], change["value"])
+    if recipe.get("source_preparation") == "CORE-FIXTURE-SOURCE-REBUILD-01":
+        _rebuild_source_graph(raw)
     return raw
 
 
