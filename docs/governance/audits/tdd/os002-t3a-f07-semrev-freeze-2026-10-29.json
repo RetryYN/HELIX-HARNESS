@@ -187,7 +187,7 @@
       "owner_and_reentry": {
         "owner": "CORE",
         "unresolved": "L5 F07RecordInput/algorithmには再評価待ちを表す専用member/valueもCORE資料の取得路も記載されていない。L7にOS002 FN09専用expected_materialもない。したがってU-IDは宣言的であり、実行可能な負例ではない。",
-        "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、承認済みL5入力型に反映したうえで、L7がFN09用expected_materialを独立に記録した後に再開する。affected/unknownやmigration receipt欠落から再評価待ちを推定しない。"
+        "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、対象L5設計のF07入力型へ反映した差分が独立reviewで確認され、L7がFN09用expected_materialを独立に記録した後に再開する。affected/unknownやmigration receipt欠落から再評価待ちを推定しない。新たな承認条件は設けない。"
       }
     }
   ],
@@ -206,7 +206,7 @@
     "L5_pre_sha256": "e82782f392d79e6ee9661c5243dbbec99c83ace2d76e5863c3855c8de2048d9e",
     "L5_post_sha256": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18",
     "L8_pre_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5",
-    "L8_post_sha256": "9d2be9b2c4054a4c8162cd0324191cb003b112c18e66573f0b2b2b4546285a3a"
+    "L8_post_sha256": "8143e23723d97c12f6257c6bc104839e26b813d8583fd58bcaa620b071404f24"
   },
   "head_entity_counts": {
     "L5_contracts": 13,
