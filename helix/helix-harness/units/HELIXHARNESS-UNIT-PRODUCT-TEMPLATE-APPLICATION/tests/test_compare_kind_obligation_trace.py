@@ -54,15 +54,17 @@ def _resolve_recipe_raw(recipe_id):
     kr = recipe.get("kind_replacement")
     if isinstance(kr, dict):
         raw = _replace_kind_tokens(raw, kr["from"], kr["to"])
+        for change in kr.get("changes", []):
+            _set_path(raw, change["property_path"], change["value"])
     for collection, value in recipe.get("input_overrides", {}).items():
         raw[collection] = copy.deepcopy(value)
+    if recipe.get("source_preparation") == "CORE-FIXTURE-SOURCE-REBUILD-01":
+        _rebuild_source_graph(raw)
     for change in recipe.get("final_input_changes", []):
         if change.get("property_present") is False:
             _remove_path(raw, change["property_path"])
         else:
             _set_path(raw, change["property_path"], change["value"])
-    if recipe.get("source_preparation") == "CORE-FIXTURE-SOURCE-REBUILD-01":
-        _rebuild_source_graph(raw)
     return raw
 
 

@@ -23809,29 +23809,30 @@
       "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
       "kind_replacement": {
         "from": "unit",
-        "to": "connection"
+        "to": "connection",
+        "changes": [
+          {
+            "property_path": [
+              "obligations",
+              0,
+              "meaning",
+              "obligation"
+            ],
+            "value": "受渡しの向き/所有/順序/retry/部分失敗"
+          },
+          {
+            "property_path": [
+              "semantic_records",
+              7,
+              "meaning",
+              "meaning"
+            ],
+            "value": "対象kindがconnectionである合成適用条件"
+          }
+        ]
       },
       "input_overrides": {},
-      "final_input_changes": [
-        {
-          "property_path": [
-            "obligations",
-            0,
-            "meaning",
-            "obligation"
-          ],
-          "value": "受渡しの向き/所有/順序/retry/部分失敗"
-        },
-        {
-          "property_path": [
-            "semantic_records",
-            7,
-            "meaning",
-            "meaning"
-          ],
-          "value": "対象kindがconnectionである合成適用条件"
-        }
-      ],
+      "final_input_changes": [],
       "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01"
     },
     {
@@ -23840,29 +23841,30 @@
       "base_input_fixture_ref": "CORE-NORMAL-UNIT-REQUIRED",
       "kind_replacement": {
         "from": "unit",
-        "to": "composite"
+        "to": "composite",
+        "changes": [
+          {
+            "property_path": [
+              "obligations",
+              0,
+              "meaning",
+              "obligation"
+            ],
+            "value": "全体invariant/end-to-end/recovery/観測"
+          },
+          {
+            "property_path": [
+              "semantic_records",
+              7,
+              "meaning",
+              "meaning"
+            ],
+            "value": "対象kindがcompositeである合成適用条件"
+          }
+        ]
       },
       "input_overrides": {},
-      "final_input_changes": [
-        {
-          "property_path": [
-            "obligations",
-            0,
-            "meaning",
-            "obligation"
-          ],
-          "value": "全体invariant/end-to-end/recovery/観測"
-        },
-        {
-          "property_path": [
-            "semantic_records",
-            7,
-            "meaning",
-            "meaning"
-          ],
-          "value": "対象kindがcompositeである合成適用条件"
-        }
-      ],
+      "final_input_changes": [],
       "source_preparation": "CORE-FIXTURE-SOURCE-REBUILD-01"
     },
     {
