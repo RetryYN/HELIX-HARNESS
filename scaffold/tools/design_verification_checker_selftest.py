@@ -1442,37 +1442,60 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             )
 
     def test_chk_json_pointer_large_real_ranges_resolve(self) -> None:
-        doc = {
-            "path_aliases": {
-                "OS007": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json",
-                "OS015": "docs/helix-os/L8-unit-verification/management-authority-source-record.json",
-            },
-            "refs": [
-                "OS007#/case_bindings/0..944",
-                "OS015#/cases/0..582/calls/0",
-            ],
-        }
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            f945 = root / "docs" / "range_945.json"
+            f583 = root / "docs" / "range_583.json"
+            f945.parent.mkdir(parents=True, exist_ok=True)
+            f945.write_text(
+                json.dumps({"case_bindings": [{"id": f"CB-{i}"} for i in range(945)]}),
+                encoding="utf-8",
+            )
+            f583.write_text(
+                json.dumps(
+                    {"cases": [{"calls": [{"fn": f"FN-{i}"}]} for i in range(583)]}
+                ),
+                encoding="utf-8",
+            )
+            doc = {
+                "path_aliases": {
+                    "R945": "docs/range_945.json",
+                    "R583": "docs/range_583.json",
+                },
+                "refs": [
+                    "R945#/case_bindings/0..944",
+                    "R583#/cases/0..582/calls/0",
+                ],
+            }
 
-        result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", doc)
+            result = dvc.check_json_pointer(root, "freeze.json", doc)
 
-        self.assertTrue(result["passed"], msg=result["failures"][:3])
-        self.assertEqual(result["checked_count"], 2)
-        self.assertEqual(result["expanded_target_count"], 945 + 583)
+            self.assertTrue(result["passed"], msg=result["failures"][:3])
+            self.assertEqual(result["checked_count"], 2)
+            self.assertEqual(result["expanded_target_count"], 945 + 583)
 
     def test_chk_json_pointer_large_range_still_rejects_missing_end(self) -> None:
-        doc = {
-            "path_aliases": {
-                "OS007": "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
-            },
-            "refs": ["OS007#/case_bindings/0..945"],
-        }
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            f945 = root / "docs" / "range_945.json"
+            f945.parent.mkdir(parents=True, exist_ok=True)
+            f945.write_text(
+                json.dumps({"case_bindings": [{"id": f"CB-{i}"} for i in range(945)]}),
+                encoding="utf-8",
+            )
+            doc = {
+                "path_aliases": {"R945": "docs/range_945.json"},
+                "refs": ["R945#/case_bindings/0..945"],
+            }
 
-        result = dvc.check_json_pointer(REPO_ROOT, "freeze.json", doc)
+            result = dvc.check_json_pointer(root, "freeze.json", doc)
 
-        self.assertFalse(result["passed"])
-        self.assertEqual(result["expanded_target_count"], 946)
-        self.assertEqual(len(result["failures"]), 1)
-        self.assertEqual(result["failures"][0]["target_pointer"], "/case_bindings/945")
+            self.assertFalse(result["passed"])
+            self.assertEqual(result["expanded_target_count"], 946)
+            self.assertEqual(len(result["failures"]), 1)
+            self.assertEqual(
+                result["failures"][0]["target_pointer"], "/case_bindings/945"
+            )
 
     def test_chk_json_pointer_small_and_reverse_range_behavior(self) -> None:
         path = "docs/helix-os/L8-unit-verification/log-feedback-memory-lineage.json"
