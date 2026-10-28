@@ -1,0 +1,357 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T3a",
+  "request_id": "WR165-OS002-SEMREV-F01-FIX-T3A-F07",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6479420996",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "Backflowの返却先・停止理由・未完義務・受領/ACK・受信側受理・意味判断/解決・対象revision/scopeの消込証拠の分離とOS023未完義務受理/元ticket完了条件（F05）、原eventと訂正・分類projectionの分離とschema/engine版変更後の旧失敗/旧scope/旧分類/stale/新分類追跡（F06）、および同projectの使用template旧新版とCOREの意味影響対象/理由の要求・義務・成果・pair revision/scopeへの結合と旧版利用/stale/再評価待ち/影響Unknown・無関係な有効scopeの区別（F07）を保持。",
+    "change": "10/12 PO判断および #3510 6457411605 決定1・4に基づき、L3/L10/L4/L9本文からF05/F06/F07の義務要素O1..O6を独立に導出し、判断項目（Group A）のみの宣言manifestから design_verification_checker.py generate-freeze により公開関数3件（fn7 compare_backflow_evidence, fn8 compare_correction_history, fn9 compare_core_impact_history）の D-OS002-T3a 凍結記録を機械生成した。 WR165に基づきF07「再評価待ちを不完全のまま区別する」専用4層負例を追加し、既存3公開関数pairをgenerate-freezeで新規生成する。L7 OS002専用expected_materialが無いことを記録し、L3/L4/L9と既存L5/L8仕様から追加対象を判定。 旧L4検索範囲は archive/.../L4-basic-design/。該当F07（旧版利用/stale/再評価待ち/impact Unknownを区別）の専用対応分類は見つからず、下流反例として記録。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みおよび凍結記録の手書き肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化",
+      "Issue #3510 comment 6479420996: L7 F07専用expected_material未発見; F07専用負例なし"
+    ]
+  },
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [
+    "L4",
+    "L5",
+    "L8",
+    "L9"
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/7",
+        "function_id": "HELIXOS-L5-002-compare_backflow_evidence",
+        "symbol": "compare_backflow_evidence"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/8",
+        "function_id": "HELIXOS-L5-002-compare_correction_history",
+        "symbol": "compare_correction_history"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/9",
+        "function_id": "HELIXOS-L5-002-compare_core_impact_history",
+        "symbol": "compare_core_impact_history"
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3F#/requirements/12",
+      "l3_clause": "F05正常系として、compare_backflow_evidenceは原返却event（original_return_event）のevent_ref/binding/backflow_ref/source_ref/correlation_refに返却先（return_target）と停止理由（stop_reason）を独立結合してcandidate各値の欠落・別案件値を個別比較しつつ原値を保持し、Backflowの返却・ACK・受信側受理（receiver_acceptance）・意味解決（meaning_resolution）・元義務消込（original_discharge）を別eventとして解決し（nullは未供給のまま保持）、OS023原契約が求める受信側未完義務受理と適用契約の対象revision/scopeの消込証拠を照合して未完義務U1と残る義務を辿れるようにする（L10F#/cases/12/positive_input, expected_observation; L4#/contracts/6/behavior; L9#/cases/6/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/6",
+        "L5#/functions/7/algorithm/0",
+        "L5#/functions/7/algorithm/1",
+        "L5#/functions/7/algorithm/2",
+        "L5#/type_contract/types/F05RecordInput",
+        "L5#/type_contract/types/F05RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/7",
+        "L8#/normal_fixtures/6"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L10F#/cases/12/negative_input",
+      "l3_clause": "F05負例として、compare_backflow_evidenceはACKを意味解決とするclaim（ack_as_resolution）、受信側未受理での元義務消込（no_acceptance_discharge）、文書生成/checkboxでの設計完成（document_as_completion）、別義務成功でのU1消込（other_obligation_compensation）の4件（axis=handoff_discharge, state=unknown, backflow_owner=OS023/原義務owner）および原返却event由来の返却先・停止理由の欠落/別案件置換4件（backflow_return_target_missing/conflict, backflow_stop_reason_missing/conflict → axis=backflow_return_target/backflow_stop_reason, state=missing/conflict, backflow_owner=OS023/原返却event owner）の計8件を検出し、不足する受理/解決/消込証拠と戻し先・U1未完を保持してticketや義務の完了を生成しない（L10F#/cases/12/failure_observation; L4#/contracts/6/negative_classifications; L9#/cases/6/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/37",
+        "L5#/failure_rules/38",
+        "L5#/failure_rules/39",
+        "L5#/failure_rules/40",
+        "L5#/failure_rules/41",
+        "L5#/failure_rules/42",
+        "L5#/failure_rules/43",
+        "L5#/failure_rules/44"
+      ],
+      "l8_pointers": [
+        "L8#/cases/6"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3F#/requirements/13",
+      "l3_clause": "F06正常系として、compare_correction_historyは原event（original_event）と旧分類（old_projection）・訂正（correction）・新分類（new_projection）を原ownerの各ref/bindingへ解決し、後からの分類や訂正でE1旧失敗・旧scope・actor/source/correlationを消さず、schema/engine版変更（engine A→B / schema A→B）後もC1のfailure分類とstale状態をstale_basis原根拠へ結び、C2をcurrent（supersedes C1）としてC1と区別し、旧/新engine・schema版未供給は原状態として保持してOSが独自に分類やstaleを裁定しない（L10F#/cases/13/positive_input, expected_observation; L4#/contracts/7/behavior; L9#/cases/7/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/7",
+        "L5#/functions/8/algorithm/0",
+        "L5#/functions/8/algorithm/1",
+        "L5#/functions/8/algorithm/2",
+        "L5#/type_contract/types/F06RecordInput",
+        "L5#/type_contract/types/F06RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/8",
+        "L8#/normal_fixtures/7"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L10F#/cases/13/negative_input",
+      "l3_clause": "F06負例として、compare_correction_historyは新分類での原event E1上書き（overwrite_original）、旧失敗/C1削除（remove_failure）、分類schema未提示を理由に原記録の出所を推定（schema_as_provenance）の3件（axis=original_history, state=conflict, backflow_owner=OS007/019/原event owner）および訂正後のC1をstaleにせずcurrentとして返す（old_projection_not_stale → state=conflict）・C1を出力から削除する（old_projection_removed → state=missing）の2件（axis=projection_currency_history, backflow_owner=OS007/019/原分類owner）の計5件を検出し、E1原失敗/旧scopeとC1/C2訂正履歴・未分類/未解決を副作用0で保存する（L10F#/cases/13/failure_observation; L4#/contracts/7/negative_classifications; L9#/cases/7/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/45",
+        "L5#/failure_rules/46",
+        "L5#/failure_rules/47",
+        "L5#/failure_rules/48",
+        "L5#/failure_rules/49"
+      ],
+      "l8_pointers": [
+        "L8#/cases/7"
+      ]
+    },
+    {
+      "element_id": "O5",
+      "l3_pointer": "L3F#/requirements/14",
+      "l3_clause": "F07正常系として、compare_core_impact_historyは同projectの使用template旧版（used_ref）と新候補版（candidate_ref）を分け、各CORE_impactsを対象要求・義務・成果・pairのrevision/scope（binding/old_used/new_candidate）へ結び、affected/unknown/unaffectedをCORE原内容へ照合して旧版利用・stale・再評価待ち・影響Unknownを区別し、view_only_sourceのsemantic_differenceとmigration_receiptを別々に扱い、意味影響をOSが独自算出せず無関係な有効scopeを保持する（L10F#/cases/14/positive_input, expected_observation; L4#/contracts/8/behavior; L9#/cases/8/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/8",
+        "L5#/functions/9/algorithm/0",
+        "L5#/functions/9/algorithm/1",
+        "L5#/type_contract/types/F07RecordInput",
+        "L5#/type_contract/types/F07RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/9",
+        "L8#/normal_fixtures/8"
+      ]
+    },
+    {
+      "element_id": "O6",
+      "l3_pointer": "L10F#/cases/14/negative_input",
+      "l3_clause": "F07負例として、compare_core_impact_historyは影響UnknownをUnaffectedへ丸めるclaim（unknown_as_unaffected）、filename/digest/表示更新だけで使用履歴移管完了とするclaim（digest_as_migrated）、一変更で無関係な全scope（Q等）を失効/staleにするclaim（all_scope_stale）の計3件（axis=impact_history, state=conflict, backflow_owner=CORE/OS002）を検出し、当該履歴/影響不足を保持して関係しない有効作業を止めない（L10F#/cases/14/failure_observation; L4#/contracts/8/negative_classifications; L9#/cases/8/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/50",
+        "L5#/failure_rules/51",
+        "L5#/failure_rules/52"
+      ],
+      "l8_pointers": [
+        "L8#/cases/8"
+      ]
+    },
+    {
+      "element_id": "O7",
+      "l3_pointer": "L3F#/requirements/14",
+      "l3_clause": "L3は旧版利用/stale/再評価待ち/影響Unknownの区別を求める。再評価待ち専用U-IDは要求を宣言的に追跡するが、L5 F07RecordInput/algorithmに専用native状態・CORE取得路がなく、L7専用expected_materialも未確認のため、実入力ケースは未形成・未実行。",
+      "l4_pointers": [
+        "L4#/contracts/8/behavior",
+        "L4#/contracts/8/negative_classifications/3"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/8",
+        "L5#/functions/9/algorithm/0",
+        "L5#/failure_rules/74"
+      ],
+      "l8_pointers": [
+        "L8#/cases/8/negative_cases/3",
+        "L8#/function_cases/9"
+      ],
+      "l9_pointers": [
+        "L9#/cases/8/negative_cases/3"
+      ],
+      "owner_and_reentry": {
+        "owner": "CORE",
+        "unresolved": "L5 F07RecordInput/algorithmには再評価待ちを表す専用member/valueもCORE資料の取得路も記載されていない。L7にOS002 FN09専用expected_materialもない。したがってU-IDは宣言的であり、実行可能な負例ではない。",
+        "reentry_condition": "COREが再評価待ちを示す権威ある出力memberと取得路を供給し、対象L5設計のF07入力型へ反映した差分が独立reviewで確認され、L7がFN09用expected_materialを独立に記録した後に再開する。affected/unknownやmigration receipt欠落から再評価待ちを推定しない。新たな承認条件は設けない。"
+      }
+    }
+  ],
+  "source_main": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "request_base_sha": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "recorded_at_utc": "2026-10-28T20:28:19+00:00",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L9_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L5_sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3",
+    "L8_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 72,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 71,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 69,
+    "expanded_target_count": 69,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 71,
+      "L9": 71,
+      "L8": 71,
+      "L5": 71
+    },
+    "matched_case_count": 71,
+    "failure_count": 0,
+    "passed": true
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_backflow_evidence",
+      "id": "HELIXOS-L5-002-compare_backflow_evidence",
+      "l5_pointer": "L5#/functions/7",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_backflow_evidence",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_correction_history",
+      "id": "HELIXOS-L5-002-compare_correction_history",
+      "l5_pointer": "L5#/functions/8",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_correction_history",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_core_impact_history",
+      "id": "HELIXOS-L5-002-compare_core_impact_history",
+      "l5_pointer": "L5#/functions/9",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_core_impact_history",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_backflow_evidence",
+      "l5_pointer": "L5#/functions/7",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_correction_history",
+      "l5_pointer": "L5#/functions/8",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_core_impact_history",
+      "l5_pointer": "L5#/functions/9",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O6",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 71,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0
+  }
+}

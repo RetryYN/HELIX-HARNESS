@@ -1,0 +1,340 @@
+{
+  "schema": "design-verification-declaration-manifest.v1",
+  "slice_id": "D-OS002-T3b",
+  "request_id": "WR165-OS002-SEMREV-F01-FIX-T3B-F08",
+  "decision_ref": "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6479420996",
+  "legacy_and_failure_basis": {
+    "derivation_kind": "semantic_rederivation",
+    "legacy_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+        "lines": "24, 36, 58, 86, 91",
+        "sha256": "e254d995d1d9fbbcc74bb53b3356b4499ac20cca2280eeafde1412d08630c4cb"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-18F7940E7994634D39A1",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L1-requirements/pillar-requirements.md",
+        "lines": "54, 56, 58",
+        "sha256": "7a73fa86acde02982a944eb1c67c35d42dc082b0c1b49d478580e95dc7cf9a6e"
+      },
+      {
+        "asset_id": "UTW-014/020/021",
+        "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+        "lines": "80, 86, 87",
+        "sha256": "bab121404c956a0a4b403e589bea1c414af59b5996989bea5fab9f98f42f6872"
+      }
+    ],
+    "preserve": "005/024を通じLABOへ渡す選択評価scopeについてproject・要求revision・使用template版・期間、原記録集合と抽出根拠、包含/除外対象と理由、重複/再送の対応、未接続/未観測/未回収/比較不能を結び、LABO指定/合意範囲・必要入力未決を不完全として示すこと（F08）、ならびに不足/過剰要求/誤選定/再作業/欠陥流出の5種finding候補を発生元・対象義務・使用版・再作業・受入・運用原記録へ結び、因果未決は未決として渡してLABO評価やBRAIN採否の成立にしないこと（F09）を保持。",
+    "change": "10/12 PO判断および #3510 6457411605 決定1・4に基づき、L3F/L10F/L4/L9本文からF08/F09の義務要素O1..O4を独立に導出し、判断項目（Group A）のみの宣言manifestから design_verification_checker.py generate-freeze により公開関数2件（fn10 compare_labo_record_selection, fn11 compare_finding_causal_trace）の D-OS002-T3b 凍結記録を機械生成した。 WR165に基づきF08のLABO指定/合意scopeまたは必要入力未決を不完全のまま保持する専用4層負例を追加し、既存2公開関数pairをgenerate-freezeで新規生成する。L7 OS002専用expected_materialが無いことを記録し、L3/L4/L9と既存L5/L8仕様から追加対象を判定。 旧L4検索範囲は archive/.../L4-basic-design/。LABO指定/合意scopeまたは必要入力の未決を不完全とするF08専用対応分類は見つからず、下流反例として記録。",
+    "failure_refs": [
+      "Issue #3510: 検証層JSONへの全文返却・巨大fixture埋め込みおよび凍結記録の手書き肥大化",
+      "Issue #3547: remaining記述への既充足事項（B）・他層責務（C）・後続スライス対象（A）混在による凍結境界不明確化",
+      "Issue #3510 comment 6479420996: L7 F08専用expected_material未発見; F08未決scope専用負例なし"
+    ]
+  },
+  "path_aliases": {
+    "L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+    "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+    "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+    "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json"
+  },
+  "modified_aliases": [
+    "L4",
+    "L5",
+    "L8",
+    "L9"
+  ],
+  "target_bindings": {
+    "public_functions": [
+      {
+        "l5_function_pointer": "L5#/functions/10",
+        "function_id": "HELIXOS-L5-002-compare_labo_record_selection",
+        "symbol": "compare_labo_record_selection"
+      },
+      {
+        "l5_function_pointer": "L5#/functions/11",
+        "function_id": "HELIXOS-L5-002-compare_finding_causal_trace",
+        "symbol": "compare_finding_causal_trace"
+      }
+    ],
+    "private_detail_contract_pairs": []
+  },
+  "l3_obligation_decomposition": [
+    {
+      "element_id": "O1",
+      "l3_pointer": "L3F#/requirements/15",
+      "l3_clause": "F08正常系として、compare_labo_record_selectionは005/024を通じLABOへ渡す選択評価scope（LABO_scope）のbinding（project/要求revision/使用template版）・period・required_record_refs・required_set_source_refを有資格LABO原契約へ解決して供給済recordから必要母集合を作らず、original_recordsの原event・版/scope/period・retry_of原関係（重複/再送の対応）を照合し、選択scopeの原集合と抽出根拠・再送対応・包含/除外対象と理由・未接続/未観測/未回収（E3 missing等）/比較不能範囲を独立に返してLABO指定/合意範囲と必要入力の不足を識別できるようにする（L10F#/cases/15/positive_input, expected_observation; L4#/contracts/9/behavior; L9#/cases/9/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/9",
+        "L5#/functions/10/algorithm/0",
+        "L5#/functions/10/algorithm/1",
+        "L5#/functions/10/algorithm/2",
+        "L5#/type_contract/types/F08RecordInput",
+        "L5#/type_contract/types/F08RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/10",
+        "L8#/normal_fixtures/9"
+      ]
+    },
+    {
+      "element_id": "O2",
+      "l3_pointer": "L10F#/cases/15/negative_input",
+      "l3_clause": "F08負例として、compare_labo_record_selectionは欠落/未回収対象E3を黙示除外するclaim（silent_exclusion）、E2再送を別利用へ水増しするclaim（retry_as_use）、別project Qの異版/期間を無条件比較するclaim（cross_version_compare）、未回収を空集合成功とするclaim（missing_as_empty）、およびOSがLABO母集団/測定定義/因果効果を新設するclaim（os_evaluation_population）の計5件（axis=evaluation_inputs, state=conflict, backflow_owner=LABO/OS005/024）を検出し、E1/E2原集合/再送対応・E3不足・Q除外理由/比較不能を保持して評価成立を生成しない（L10F#/cases/15/failure_observation; L4#/contracts/9/negative_classifications; L9#/cases/9/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/53",
+        "L5#/failure_rules/54",
+        "L5#/failure_rules/55",
+        "L5#/failure_rules/56",
+        "L5#/failure_rules/57"
+      ],
+      "l8_pointers": [
+        "L8#/cases/9"
+      ]
+    },
+    {
+      "element_id": "O3",
+      "l3_pointer": "L3F#/requirements/16",
+      "l3_clause": "F09正常系として、compare_finding_causal_traceは不足/過剰要求/誤選定/再作業/欠陥流出の5種finding候補（finding_candidates）を発生元（origin）・対象義務・使用template版・再作業・受入・運用原記録へ同binding原sourceで逆照合し、causal_basis_refが独立causal_evidenceのorigin/target/sourceと一致するものだけ原因果既知として辿り、未供給は理由付き未決（unresolved）として渡し、LABO評価やBRAIN採否を外部owner出力のまま区別する（L10F#/cases/16/positive_input, expected_observation; L4#/contracts/10/behavior; L9#/cases/10/expected_observation）。",
+      "l5_pointers": [
+        "L5#/contracts/10",
+        "L5#/functions/11/algorithm/0",
+        "L5#/functions/11/algorithm/1",
+        "L5#/functions/11/algorithm/2",
+        "L5#/type_contract/types/F09RecordInput",
+        "L5#/type_contract/types/F09RecordObservation"
+      ],
+      "l8_pointers": [
+        "L8#/function_cases/11",
+        "L8#/normal_fixtures/10"
+      ]
+    },
+    {
+      "element_id": "O4",
+      "l3_pointer": "L10F#/cases/16/negative_input",
+      "l3_clause": "F09負例として、compare_finding_causal_traceは時間的な近さ/path一致だけで因果確定とするclaim（temporal_as_cause）および利用回数/AI自己評価から改善成功または知識昇格とするclaim（self_evaluation_promotion）の計2件（axis=causal_evaluation, state=unknown, backflow_owner=LABO/BRAIN）を検出し、5候補の原義務/使用版/実績と未決因果を保存して候補を評価/昇格済みにしない（L10F#/cases/16/failure_observation; L4#/contracts/10/negative_classifications; L9#/cases/10/negative_cases）。",
+      "l5_pointers": [
+        "L5#/failure_rules/58",
+        "L5#/failure_rules/59"
+      ],
+      "l8_pointers": [
+        "L8#/cases/10"
+      ]
+    },
+    {
+      "element_id": "O5",
+      "l3_pointer": "L3F#/requirements/15",
+      "l3_clause": "LABO指定/合意の範囲と必要入力が未決なら不完全として示す。U-IDはnative LABO_scope Field内のrequired_record_refs/required_set_source_ref欠落を明示する。専用L7 expected_materialは確認できず、実行・独立意味判定は未了。",
+      "l4_pointers": [
+        "L4#/contracts/9/behavior",
+        "L4#/contracts/9/negative_classifications/5"
+      ],
+      "l5_pointers": [
+        "L5#/contracts/9",
+        "L5#/functions/10/algorithm/0",
+        "L5#/failure_rules/75"
+      ],
+      "l8_pointers": [
+        "L8#/cases/9/negative_cases/5",
+        "L8#/function_cases/10"
+      ],
+      "l9_pointers": [
+        "L9#/cases/9/negative_cases/5"
+      ],
+      "owner_and_reentry": {
+        "owner": "LABO",
+        "unresolved": "L5 F08RecordInputには型付きLABO_scope fieldがあるためrequired_record_refs/required_set_source_refの欠落は表せる。一方でL7にOS002 FN10専用expected_materialがなく、負例の期待観測と独立意味reviewは成立していない。",
+        "reentry_condition": "LABOが権威あるrequired-set refsを供給し、FN10のL7 expected_materialに不足時の観測を独立に記録した後に再開する。L8/L10からL7期待を推定しない。"
+      }
+    }
+  ],
+  "source_main": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "request_base_sha": "54606e0d60149dc2cc4d89707d7b7834536c3b90",
+  "evidence_kind": "slice_level_function_pair_freeze",
+  "authority_effect": "none",
+  "recorded_at_utc": "2026-10-28T20:28:19+00:00",
+  "pins": {
+    "L3F_sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02",
+    "L10F_sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a",
+    "L4_pre_sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48",
+    "L4_post_sha256": "9f4c08530cb3830dccdd147cffaebffaa4e027b6ec72e1519c656132dda51737",
+    "L9_pre_sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed",
+    "L9_post_sha256": "4c3ad78c0701ec3df177428c6ab236141d9ce17cdcb1fd5c083b384ef92af035",
+    "L5_pre_sha256": "e82782f392d79e6ee9661c5243dbbec99c83ace2d76e5863c3855c8de2048d9e",
+    "L5_post_sha256": "351dde4bbc080fba64f0b6ca2d90efab6a81165b45d074c574e95d1781b7ec18",
+    "L8_pre_sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5",
+    "L8_post_sha256": "8143e23723d97c12f6257c6bc104839e26b813d8583fd58bcaa620b071404f24"
+  },
+  "head_entity_counts": {
+    "L5_contracts": 13,
+    "L5_functions": 23,
+    "L5_failure_rules": 78,
+    "L8_cases": 13,
+    "L8_negative_cases_total": 77,
+    "L8_normal_function_oracles": 0,
+    "L8_additional_unit_cases": 0,
+    "L5_core_proposal_receiving_entry_point": 1,
+    "L5_source_pins": 31,
+    "L8_source_pins": 29,
+    "L8_function_cases": 22,
+    "L8_additional_cases": 37,
+    "L8_normal_fixtures": 14,
+    "L8_wire_codec_cases": 43,
+    "L8_encoder_obligations": 3,
+    "L8_dispatch_boundary_cases": 5,
+    "L5_core_proposal_receiving_private_functions": 3,
+    "L8_core_proposal_receiving_family_contracts": 8,
+    "L8_core_proposal_receiving_finite_cases": 11,
+    "L8_core_proposal_receiving_additional_branch_probes": 7,
+    "L5_f04_private_functions": 4,
+    "L8_f04_original_component_cases": 12,
+    "L8_f04_original_branch_cases": 17,
+    "L8_f04_original_origin_cases": 4,
+    "L8_f04_original_whole_cases": 9,
+    "L8_f04_original_private_return_whole_cases": 3,
+    "L8_f04_original_private_return_negative_controls": 3,
+    "L8_f04_original_additional_branch_probes": 3
+  },
+  "pointer_resolution_summary": {
+    "checked_count": 56,
+    "expanded_target_count": 56,
+    "unresolved_count": 0,
+    "passed": true
+  },
+  "negative_case_4way_verification": {
+    "counts": {
+      "L4": 77,
+      "L9": 77,
+      "L8": 77,
+      "L5": 77
+    },
+    "matched_case_count": 77,
+    "failure_count": 0,
+    "passed": true,
+    "comparison_mode": "legacy_casewise_four_layer",
+    "comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "count_unit": "negative_case_rows_per_layer",
+    "matched_case_count_unit": "matched_negative_case_rows"
+  },
+  "resolved_function_rows": [
+    {
+      "kind": "public_function",
+      "symbol": "compare_labo_record_selection",
+      "id": "HELIXOS-L5-002-compare_labo_record_selection",
+      "l5_pointer": "L5#/functions/10",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_labo_record_selection",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    },
+    {
+      "kind": "public_function",
+      "symbol": "compare_finding_causal_trace",
+      "id": "HELIXOS-L5-002-compare_finding_causal_trace",
+      "l5_pointer": "L5#/functions/11",
+      "visibility": "public",
+      "input_type": null,
+      "output_type": null,
+      "oracle_ref": "HELIXOS-L8-002-NORMAL-compare_finding_causal_trace",
+      "unit_case_refs_count": 1,
+      "unresolved_unit_case_refs": []
+    }
+  ],
+  "human_judgment_pending": [
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_labo_record_selection",
+      "l5_pointer": "L5#/functions/10",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-PUBLIC-FN-FREEZE",
+      "target": "compare_finding_causal_trace",
+      "l5_pointer": "L5#/functions/11",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm L5 precondition/postcondition/invariant and L8 U-ID expectations are independently derived from L3/L10 and L4/L9 (DT-VT-105)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O1",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O2",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O3",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O4",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    },
+    {
+      "check": "CHK-L3-OBLIGATION-MAP",
+      "item_id": "O5",
+      "status": "pending_human_or_independent_semantic_review",
+      "judgment_required": "Confirm O1..On decomposition has no natural-language semantic omission from parent L3 requirement text (#3759 R1-m1)."
+    }
+  ],
+  "verification": {
+    "all_pointers_resolved": true,
+    "negative_4way_matched_count": 77,
+    "l8_full_return_or_fixture_or_hash_added": false,
+    "scfctl_stale_count": 0,
+    "negative_4way_comparison_mode": "legacy_casewise_four_layer",
+    "negative_4way_comparison_scope": {
+      "case_rows": [
+        "L4.contracts[].negative_classifications",
+        "L9.cases[].negative_cases",
+        "L8.cases[].negative_cases",
+        "L5.failure_rules"
+      ],
+      "case_attributes": [
+        "change_or_condition",
+        "classification_or_code",
+        "expected_axis",
+        "expected_state",
+        "expected",
+        "expected_preserved",
+        "backflow_owner"
+      ],
+      "side_effect_count": "zero_across_L4_L9_L8_L5",
+      "case_identity": "existing_casewise_identity_rules"
+    },
+    "negative_4way_count_unit": "negative_case_rows_per_layer",
+    "negative_4way_matched_count_unit": "matched_negative_case_rows"
+  }
+}
