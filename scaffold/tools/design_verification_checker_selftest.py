@@ -111,6 +111,457 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             {"contracts": [{"id": "L5-01"}], "failure_rules": l5_rows},
         )
 
+    @staticmethod
+    def _equivalence_class(
+        class_id: str,
+        classification: str,
+        finding_codes: list[str],
+        owner: str,
+    ) -> dict[str, object]:
+        return {
+            "class_id": class_id,
+            "expected_classification": classification,
+            "expected": {"finding_codes": list(finding_codes)},
+            "backflow_owner": owner,
+        }
+
+    @classmethod
+    def _equivalence_mode_layers(
+        cls,
+    ) -> tuple[
+        dict[str, object], dict[str, object], dict[str, object], dict[str, object]
+    ]:
+        """Synthetic opt-in shape; this is not the current L4/L5/L8/L9 schema."""
+        keys = {
+            "K-UNKNOWN": {
+                "classification": "fixture_unknown",
+                "finding_codes": ["field_unknown"],
+                "owner": "owner-x",
+            },
+            "K-CONFLICT": {
+                "classification": "fixture_conflict",
+                "finding_codes": ["field_conflict", "field_conflict_detail"],
+                "owner": "owner-y",
+            },
+        }
+
+        # Deliberately use different class IDs and place rows at different
+        # contract/function positions. Equivalence is by the three-part key,
+        # not cross-layer class ID or array position.
+        l4_classes = [
+            cls._equivalence_class("L4-C-UNKNOWN", **keys["K-UNKNOWN"]),
+            cls._equivalence_class("L4-C-CONFLICT", **keys["K-CONFLICT"]),
+        ]
+        l5_classes = [
+            cls._equivalence_class("L5-F-CONFLICT", **keys["K-CONFLICT"]),
+            cls._equivalence_class("L5-F-UNKNOWN", **keys["K-UNKNOWN"]),
+        ]
+        l8_classes = [
+            cls._equivalence_class("L8-CLASS-1", **keys["K-UNKNOWN"]),
+            cls._equivalence_class("L8-CLASS-2", **keys["K-CONFLICT"]),
+        ]
+        l9_classes = [
+            cls._equivalence_class("L9-CLASS-B", **keys["K-CONFLICT"]),
+            cls._equivalence_class("L9-CLASS-A", **keys["K-UNKNOWN"]),
+        ]
+
+        l8_rows = [
+            {
+                "case_id": "CASE-UNKNOWN-1",
+                "population_state": "negative",
+                "negative_class_ref": "L8-CLASS-1",
+                "expected_property": {
+                    "condition": "fixture_unknown",
+                    "finding_codes": ["field_unknown"],
+                },
+            },
+            {
+                "case_id": "CASE-UNKNOWN-2",
+                "population_state": "negative",
+                "negative_class_ref": "L8-CLASS-1",
+                "expected_property": {
+                    "condition": "fixture_unknown",
+                    "finding_codes": ["field_unknown"],
+                },
+            },
+            {
+                "case_id": "CASE-CONFLICT",
+                "population_state": "negative",
+                "negative_class_ref": "L8-CLASS-2",
+                "expected_property": {
+                    "condition": "fixture_conflict",
+                    "finding_codes": ["field_conflict", "field_conflict_detail"],
+                },
+            },
+            {
+                "case_id": "CASE-POSITIVE",
+                "population_state": "positive",
+                "expected_property": {"condition": "fixture_ok", "finding_codes": []},
+            },
+        ]
+        l9_rows = [
+            {
+                "id": "CASE-UNKNOWN-1",
+                "population_state": "negative",
+                "negative_class_ref": "L9-CLASS-A",
+                "compact_whole_observation": {
+                    "condition": "fixture_unknown",
+                    "ordered_findings": [
+                        {"code": "field_unknown", "return_owner": "owner-x"}
+                    ],
+                },
+            },
+            {
+                "id": "CASE-UNKNOWN-2",
+                "population_state": "negative",
+                "negative_class_ref": "L9-CLASS-A",
+                "compact_whole_observation": {
+                    "condition": "fixture_unknown",
+                    "ordered_findings": [
+                        {"code": "field_unknown", "return_owner": "owner-x"}
+                    ],
+                },
+            },
+            {
+                "id": "CASE-CONFLICT",
+                "population_state": "negative",
+                "negative_class_ref": "L9-CLASS-B",
+                "compact_whole_observation": {
+                    "condition": "fixture_conflict",
+                    "ordered_findings": [
+                        {"code": "field_conflict", "return_owner": "owner-y"},
+                        {
+                            "code": "field_conflict_detail",
+                            "return_owner": "owner-y",
+                        },
+                    ],
+                },
+            },
+            {
+                "id": "CASE-POSITIVE",
+                "population_state": "positive",
+                "compact_whole_observation": {
+                    "condition": "fixture_ok",
+                    "ordered_findings": [],
+                },
+            },
+        ]
+        return (
+            {
+                "contracts": [
+                    {"id": "L4-contract-A"},
+                    {"id": "L4-contract-B", "negative_equivalence_classes": l4_classes},
+                    {"id": "L4-contract-C"},
+                ]
+            },
+            {
+                "integration_cases": l9_rows,
+                "negative_equivalence_classes": l9_classes,
+            },
+            {
+                "case_count": len(l8_rows),
+                "unit_cases": l8_rows,
+                "negative_equivalence_classes": l8_classes,
+            },
+            {
+                "functions": [
+                    {"id": "L5-fn-A", "negative_equivalence_classes": l5_classes},
+                    {"id": "L5-fn-B"},
+                    {"id": "L5-fn-C"},
+                    {"id": "L5-fn-D"},
+                ]
+            },
+        )
+
+    def test_chk_neg_4way_explicit_equivalence_mode_passes_synthetic_classes(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(
+            result["passed"],
+            msg=(
+                "explicit equivalence mode must compare the ordered three-part key, "
+                "pair L8/L9 supplied cases by case ID, and ignore class IDs and "
+                f"contract/function array positions: {result}"
+            ),
+        )
+
+    def test_chk_neg_4way_explicit_equivalence_mode_fails_closed_on_bad_membership(
+        self,
+    ) -> None:
+        baseline = self._equivalence_mode_layers()
+        mutations: dict[str, tuple[tuple[dict[str, object], ...], str]] = {}
+
+        positive_has_ref = copy.deepcopy(baseline)
+        positive_has_ref[2]["unit_cases"][3]["negative_class_ref"] = "L8-CLASS-1"
+        mutations["positive_has_class_ref"] = (positive_has_ref, "negative_class_ref")
+
+        negative_lacks_ref = copy.deepcopy(baseline)
+        negative_lacks_ref[2]["unit_cases"][0].pop("negative_class_ref")
+        mutations["negative_lacks_class_ref"] = (negative_lacks_ref, "negative_class_ref")
+
+        unknown_state = copy.deepcopy(baseline)
+        unknown_state[1]["integration_cases"][0]["population_state"] = "unknown"
+        mutations["unknown_case_state"] = (unknown_state, "population_state")
+
+        missing_state = copy.deepcopy(baseline)
+        missing_state[2]["unit_cases"][0].pop("population_state")
+        mutations["missing_case_state"] = (missing_state, "population_state")
+
+        missing_l9_case = copy.deepcopy(baseline)
+        missing_l9_case[1]["integration_cases"].pop(0)
+        mutations["case_missing_from_l9"] = (missing_l9_case, "case_identity")
+
+        missing_l8_case = copy.deepcopy(baseline)
+        missing_l8_case[2]["unit_cases"].pop(0)
+        missing_l8_case[2]["case_count"] -= 1
+        mutations["case_missing_from_l8"] = (missing_l8_case, "case_identity")
+
+        l9_negative_lacks_ref = copy.deepcopy(baseline)
+        l9_negative_lacks_ref[1]["integration_cases"][0].pop("negative_class_ref")
+        mutations["l9_negative_lacks_class_ref"] = (
+            l9_negative_lacks_ref,
+            "negative_class_ref",
+        )
+
+        bad_class_ref = copy.deepcopy(baseline)
+        bad_class_ref[2]["unit_cases"][0]["negative_class_ref"] = "NO-SUCH-CLASS"
+        mutations["case_ref_does_not_resolve_locally"] = (
+            bad_class_ref,
+            "negative_class_ref",
+        )
+
+        partial_mode_marker = copy.deepcopy(baseline)
+        partial_mode_marker[2].pop("negative_equivalence_classes")
+        mutations["partial_explicit_mode_marker"] = (partial_mode_marker, "explicit_mode")
+
+        empty_class_with_negative_case = copy.deepcopy(baseline)
+        empty_class_with_negative_case[1]["negative_equivalence_classes"] = []
+        mutations["empty_class_table_with_negative_cases"] = (
+            empty_class_with_negative_case,
+            "equivalence_class",
+        )
+
+        class_missing_from_l4 = copy.deepcopy(baseline)
+        class_missing_from_l4[0]["contracts"][1]["negative_equivalence_classes"].pop(0)
+        mutations["class_missing_from_l4"] = (class_missing_from_l4, "equivalence_class")
+
+        class_missing_from_l5 = copy.deepcopy(baseline)
+        class_missing_from_l5[3]["functions"][0]["negative_equivalence_classes"].pop(1)
+        mutations["class_missing_from_l5"] = (class_missing_from_l5, "equivalence_class")
+
+        class_key_mismatch = copy.deepcopy(baseline)
+        class_key_mismatch[2]["negative_equivalence_classes"][0]["expected"][
+            "finding_codes"
+        ] = ["field_unknown", "field_extra"]
+        mutations["key_finding_codes_differ"] = (class_key_mismatch, "equivalence_key")
+
+        missing_finding_codes = copy.deepcopy(baseline)
+        missing_finding_codes[0]["contracts"][1]["negative_equivalence_classes"][0][
+            "expected"
+        ].pop("finding_codes")
+        mutations["finding_codes_missing"] = (missing_finding_codes, "equivalence_key")
+
+        null_finding_codes = copy.deepcopy(baseline)
+        null_finding_codes[3]["functions"][0]["negative_equivalence_classes"][1][
+            "expected"
+        ]["finding_codes"] = None
+        mutations["finding_codes_null"] = (null_finding_codes, "equivalence_key")
+
+        wrong_type_finding_codes = copy.deepcopy(baseline)
+        wrong_type_finding_codes[2]["negative_equivalence_classes"][0]["expected"][
+            "finding_codes"
+        ] = "field_unknown"
+        mutations["finding_codes_wrong_type"] = (
+            wrong_type_finding_codes,
+            "equivalence_key",
+        )
+
+        l8_case_condition_mismatch = copy.deepcopy(baseline)
+        l8_case_condition_mismatch[2]["unit_cases"][0]["expected_property"][
+            "condition"
+        ] = "different_case_condition"
+        mutations["l8_case_condition_disagrees_with_class"] = (
+            l8_case_condition_mismatch,
+            "equivalence_key",
+        )
+
+        l8_case_codes_mismatch = copy.deepcopy(baseline)
+        l8_case_codes_mismatch[2]["unit_cases"][0]["expected_property"][
+            "finding_codes"
+        ] = ["field_unknown", "unexpected_code"]
+        mutations["l8_case_codes_disagree_with_class"] = (
+            l8_case_codes_mismatch,
+            "equivalence_key",
+        )
+
+        classification_mismatch = copy.deepcopy(baseline)
+        classification_mismatch[2]["negative_equivalence_classes"][0][
+            "expected_classification"
+        ] = "different_classification"
+        mutations["key_classification_differs"] = (
+            classification_mismatch,
+            "equivalence_key",
+        )
+
+        owner_mismatch = copy.deepcopy(baseline)
+        owner_mismatch[3]["functions"][0]["negative_equivalence_classes"][1][
+            "backflow_owner"
+        ] = "different-owner"
+        mutations["key_owner_differs"] = (owner_mismatch, "equivalence_key")
+
+        code_order_mismatch = copy.deepcopy(baseline)
+        code_order_mismatch[1]["negative_equivalence_classes"][0]["expected"][
+            "finding_codes"
+        ] = ["field_conflict_detail", "field_conflict"]
+        mutations["finding_code_order_differs"] = (code_order_mismatch, "equivalence_key")
+
+        owner_unresolved = copy.deepcopy(baseline)
+        owner_unresolved[1]["integration_cases"][0]["compact_whole_observation"][
+            "ordered_findings"
+        ][0].pop("return_owner")
+        mutations["l9_owner_unresolved"] = (owner_unresolved, "owner_unresolved")
+
+        l9_finding_code_mismatch = copy.deepcopy(baseline)
+        l9_finding_code_mismatch[1]["integration_cases"][0][
+            "compact_whole_observation"
+        ]["ordered_findings"][0]["code"] = "different_finding_code"
+        mutations["l9_finding_code_disagrees_with_class"] = (
+            l9_finding_code_mismatch,
+            "equivalence_key",
+        )
+
+        l9_finding_owner_mismatch = copy.deepcopy(baseline)
+        l9_finding_owner_mismatch[1]["integration_cases"][0][
+            "compact_whole_observation"
+        ]["ordered_findings"][0]["return_owner"] = "different-owner"
+        mutations["l9_finding_owner_disagrees_with_class"] = (
+            l9_finding_owner_mismatch,
+            "equivalence_key",
+        )
+
+        population_state_mismatch = copy.deepcopy(baseline)
+        population_state_mismatch[1]["integration_cases"][3][
+            "population_state"
+        ] = "negative"
+        population_state_mismatch[1]["integration_cases"][3][
+            "negative_class_ref"
+        ] = "L9-CLASS-A"
+        mutations["same_case_state_differs_across_l8_l9"] = (
+            population_state_mismatch,
+            "population_state",
+        )
+
+        l9_positive_has_ref = copy.deepcopy(baseline)
+        l9_positive_has_ref[1]["integration_cases"][3][
+            "negative_class_ref"
+        ] = "L9-CLASS-A"
+        mutations["l9_positive_has_class_ref"] = (
+            l9_positive_has_ref,
+            "negative_class_ref",
+        )
+
+        duplicate_case = copy.deepcopy(baseline)
+        duplicate_case[2]["unit_cases"][1]["case_id"] = "CASE-UNKNOWN-1"
+        mutations["duplicate_case_id"] = (duplicate_case, "case_identity")
+
+        duplicate_class = copy.deepcopy(baseline)
+        duplicate_class[2]["negative_equivalence_classes"][1]["class_id"] = (
+            duplicate_class[2]["negative_equivalence_classes"][0]["class_id"]
+        )
+        mutations["duplicate_class_id_within_layer"] = (
+            duplicate_class,
+            "equivalence_class",
+        )
+
+        finding_code_multiplicity_mismatch = copy.deepcopy(baseline)
+        finding_code_multiplicity_mismatch[1]["negative_equivalence_classes"][0][
+            "expected"
+        ]["finding_codes"] = [
+            "field_conflict",
+            "field_conflict",
+            "field_conflict_detail",
+        ]
+        mutations["finding_code_multiplicity_differs"] = (
+            finding_code_multiplicity_mismatch,
+            "equivalence_key",
+        )
+
+        # A case omitted from both L8 and L9 together with its class is not
+        # claimed detectable because no independent roster exists.
+        for name, (mutated, expected_attribute) in mutations.items():
+            with self.subTest(mutation=name):
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT,
+                    "L4",
+                    "L9",
+                    "L8",
+                    "L5",
+                    mutated[0],
+                    mutated[1],
+                    mutated[2],
+                    mutated[3],
+                )
+                self.assertFalse(result["passed"], msg=result)
+                self.assertEqual(result["status"], "evaluated", msg=result)
+                self.assertTrue(
+                    any(
+                        failure.get("attribute") == expected_attribute
+                        for failure in result["failures"]
+                    ),
+                    msg=(
+                        f"{name} must be rejected by {expected_attribute}, "
+                        f"not by an unrelated empty/not-evaluated result: {result}"
+                    ),
+                )
+
+    def test_chk_neg_4way_explicit_equivalence_mode_ignores_class_and_case_order(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        layers[0]["contracts"].reverse()
+        layers[1]["negative_equivalence_classes"].reverse()
+        layers[1]["integration_cases"].reverse()
+        layers[2]["negative_equivalence_classes"].reverse()
+        layers[2]["unit_cases"].reverse()
+        layers[3]["functions"].reverse()
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(
+            result["passed"],
+            msg=f"class/case order is not part of the equivalence key: {result}",
+        )
+
+    def test_chk_neg_4way_explicit_mode_preserves_legacy_casewise_mode(self) -> None:
+        legacy = self._repeated_code_layers(
+            {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
+        )
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT, "L4", "L9", "L8", "L5", *legacy
+        )
+        self.assertTrue(result["passed"], msg=result["failures"])
+        self.assertEqual(result["matched_case_count"], 2)
+
     def test_chk_neg_4way_repeated_code_matches_each_explicit_case(self) -> None:
         layers = self._repeated_code_layers(
             {layer: ["A", "B"] for layer in ("L4", "L9", "L8", "L5")}
