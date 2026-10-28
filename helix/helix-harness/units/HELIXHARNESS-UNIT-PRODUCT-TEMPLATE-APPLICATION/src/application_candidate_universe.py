@@ -139,6 +139,7 @@ def _evaluate_universe_claims(claims, binding, universe_refs, candidate_member_r
             if missing or extra:
                 missing_member_refs.extend(missing)
                 extra_member_refs.extend(extra)
+            if (missing or extra) and len(proposed_refs) == len(candidate_member_refs):
                 code = "same_count_wrong_member"
                 findings.append(
                     {
