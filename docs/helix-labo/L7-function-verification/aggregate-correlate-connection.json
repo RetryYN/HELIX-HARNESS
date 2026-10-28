@@ -121377,51 +121377,51 @@
   "source_reference_bindings": [
     {
       "origin_object_pointer": "/cases/46/normative_basis/L5",
-      "origin_pointer": "/logical_contract/functions/0/algorithm/1",
-      "source_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "source_revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
-      "source_file_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
-      "current_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "current_pointer": "/functions/0/algorithm/1",
-      "source_value_sha256": "c4eb4d16ab370f658d536bf281fa09b871a698a4dbfa020528796994bc5cc0da",
-      "current_value_sha256": "c4eb4d16ab370f658d536bf281fa09b871a698a4dbfa020528796994bc5cc0da",
-      "resolved_value_equal": true
+      "historical_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
+        "pointer": "/logical_contract/functions/0/algorithm/1"
+      },
+      "current_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "pointer": "/functions/0/algorithm/1"
+      }
     },
     {
       "origin_object_pointer": "/cases/46/normative_basis/L5",
-      "origin_pointer": "/logical_contract/functions/1/algorithm/3",
-      "source_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "source_revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
-      "source_file_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
-      "current_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "current_pointer": "/functions/1/algorithm/3",
-      "source_value_sha256": "f39374a14f51b02554abf61ad729fe30366169365b3c48ddd1c03c7131251793",
-      "current_value_sha256": "f39374a14f51b02554abf61ad729fe30366169365b3c48ddd1c03c7131251793",
-      "resolved_value_equal": true
+      "historical_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
+        "pointer": "/logical_contract/functions/1/algorithm/3"
+      },
+      "current_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "pointer": "/functions/1/algorithm/3"
+      }
     },
     {
       "origin_object_pointer": "/cases/46/normative_basis/L5",
-      "origin_pointer": "/logical_contract/functions/3/algorithm/0",
-      "source_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "source_revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
-      "source_file_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
-      "current_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "current_pointer": "/functions/3/algorithm/0",
-      "source_value_sha256": "78aaa0588e448bf3b49bb263c3ce417de5e4045b5597a72f2af720508eb04a9f",
-      "current_value_sha256": "78aaa0588e448bf3b49bb263c3ce417de5e4045b5597a72f2af720508eb04a9f",
-      "resolved_value_equal": true
+      "historical_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
+        "pointer": "/logical_contract/functions/3/algorithm/0"
+      },
+      "current_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "pointer": "/functions/3/algorithm/0"
+      }
     },
     {
       "origin_object_pointer": "/cases/46/normative_basis/L5",
-      "origin_pointer": "/logical_contract/functions/3/algorithm/5",
-      "source_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "source_revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
-      "source_file_sha256": "e0b722eb83d466b7613f38e6caefca34759d8c94519249b4a4f00e350ddedcbc",
-      "current_path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
-      "current_pointer": "/functions/3/algorithm/5",
-      "source_value_sha256": "e3ac0cf52e0954cb3fffa31493a1e9d396d2587174387add8243e85bab705645",
-      "current_value_sha256": "e3ac0cf52e0954cb3fffa31493a1e9d396d2587174387add8243e85bab705645",
-      "resolved_value_equal": true
+      "historical_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "revision": "f0eff6abc6afdffa6a6f4f631bb4ba35179969b6",
+        "pointer": "/logical_contract/functions/3/algorithm/5"
+      },
+      "current_ref": {
+        "path": "docs/helix-labo/L5-detail-design/aggregate-correlate-connection.json",
+        "pointer": "/functions/3/algorithm/5"
+      }
     }
   ]
 }
