@@ -19016,6 +19016,7 @@
             "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/unestablished_with_missing_owner_read",
             "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/qualification_link_present_but_source_wrapper_still_unestablished",
             "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/unestablished_with_both_reads_present",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
             "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
             "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9",
             "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
@@ -19045,6 +19046,7 @@
             "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S2_both_owner_reads_present_and_owner_check_different_or_unestablished",
             "/f05_detail_contract/owner_relation_cause_writer_contract/source_wrapper_cause/S4_both_owner_reads_present_direct_known_difference",
             "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/different",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
             "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
             "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9",
             "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
