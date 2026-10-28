@@ -131,12 +131,26 @@ class TestDescriptorMissingOrigins(unittest.TestCase):
         for name in (
             "meaning_reads",
             "applicability_reads",
-            "special_reads",
             "pair_reads",
             "applicability_judgment_batches",
             "meaning_read_origins",
         ):
             self.assertEqual(walk["native_material"][name], [])
+        self.assertEqual(
+            walk["native_material"]["special_reads"],
+            [
+                {
+                    "request": {
+                        "request_kind": "replacement_claim",
+                        "request_locator": "/claims/0",
+                    },
+                    "acquisition_state": "unknown",
+                    "source_occurrences": [],
+                    "supports": [],
+                    "problems": [],
+                }
+            ],
+        )
 
         for ordinal, (kind, code, failure_rule_index) in enumerate(EXPECTED_MISSING):
             axis_name = f"{kind}.definition"

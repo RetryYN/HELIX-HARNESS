@@ -359,7 +359,33 @@ class TestDescriptorDefinitionWalkFullContract(unittest.TestCase):
             {"validated": validate_supply_input(baseline)}
         )
         self.assertEqual(walk["evaluation"], baseline_walk["evaluation"])
-        self.assertEqual(walk["native_material"], baseline_walk["native_material"])
+        self.assertEqual(
+            walk["native_material"]["special_reads"],
+            [
+                {
+                    "request": {
+                        "request_kind": "replacement_claim",
+                        "request_locator": "/claims/0",
+                    },
+                    "acquisition_state": "unknown",
+                    "source_occurrences": [],
+                    "supports": [],
+                    "problems": [],
+                }
+            ],
+        )
+        self.assertEqual(
+            {
+                key: value
+                for key, value in walk["native_material"].items()
+                if key != "special_reads"
+            },
+            {
+                key: value
+                for key, value in baseline_walk["native_material"].items()
+                if key != "special_reads"
+            },
+        )
         self.assertEqual(raw, raw_before)
         self.assertEqual(validated, validated_before)
 

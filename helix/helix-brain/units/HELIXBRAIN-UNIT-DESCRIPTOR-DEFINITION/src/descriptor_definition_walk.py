@@ -85,6 +85,7 @@ def _axis_event(
     axis: dict[str, Any],
     slot: dict[str, Any],
     slot_locator: str | None,
+    slot_locators: list[str] | None = None,
     fact_locators: list[str],
     cause: str,
     branch: str,
@@ -96,6 +97,8 @@ def _axis_event(
     applicability_judgment_links: list[dict[str, int]] | None = None,
     meaning_problem_links: list[dict[str, int]] | None = None,
     meaning_support_links: list[dict[str, int]] | None = None,
+    special_read_indices: list[int] | None = None,
+    special_support_links: list[dict[str, int]] | None = None,
     sort_source_refs: list[Any] | None = None,
     assessment_key: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
@@ -111,7 +114,8 @@ def _axis_event(
         if assessment_key is not None
         else _key_for_slot(slot)
     )
-    slot_locators = [slot_locator] if isinstance(slot_locator, str) else []
+    if slot_locators is None:
+        slot_locators = [slot_locator] if isinstance(slot_locator, str) else []
     return {
         "axis": copy.deepcopy(axis),
         "slot": slot,
@@ -151,13 +155,66 @@ def _axis_event(
             "sort_source_refs": _presence(source_refs)
             if sort_source_refs is not None
             else {"presence": "absent"},
-            "special_read_indices": [],
+            "special_read_indices": copy.deepcopy(special_read_indices or []),
             "pair_origin_links": copy.deepcopy(pair_origin_links or []),
             "applicability_judgment_links": copy.deepcopy(
                 applicability_judgment_links or []
             ),
             "meaning_support_links": copy.deepcopy(meaning_support_links or []),
             "meaning_problem_links": copy.deepcopy(meaning_problem_links or []),
+            "special_support_links": copy.deepcopy(special_support_links or []),
+        },
+    }
+
+
+def _unformed_required_slot_event(kind: str, binding: dict[str, Any]) -> dict[str, Any]:
+    """Retain a required-slot event when its typed subject cannot be formed."""
+    key = {
+        "binding": _presence(binding),
+        "slot_identity": {"presence": "absent"},
+        "descriptor_kind": copy.deepcopy(kind),
+    }
+    axis_name = f"{kind}.definition"
+    return {
+        "axis": None,
+        "slot": {},
+        "findings": [],
+        "sort_source_refs": [],
+        "sort_source_refs_present": False,
+        "assessment": {
+            "key": copy.deepcopy(key),
+            "state": "missing",
+            "origin_branch": "required_slot_absent",
+            "slot_locators": [],
+            "fact_locators": [],
+            "comparison_axis_indices": [],
+            "comparison_finding_indices": [],
+            "original_axes": [],
+            "axis_name": axis_name,
+        },
+        "origin": {
+            "ordinal": -1,
+            "assessment_key": copy.deepcopy(key),
+            "branch": "required_slot_absent",
+            "state": "missing",
+            "cause": "required_slot_absent",
+            "slot_locators": [],
+            "fact_locators": [],
+            "meaning_read_indices": [],
+            "applicability_read_indices": [],
+            "subject_ref": {"presence": "absent"},
+            "binding": _presence(binding),
+            "axis_name": axis_name,
+            "original_refs": [],
+            "reason": _MISSING_REASON,
+            "backflow_owner": "knowledge_owner",
+            "finding_rule_indices": [_MISSING_RULE_FAILURE_INDICES[kind]],
+            "sort_source_refs": {"presence": "absent"},
+            "special_read_indices": [],
+            "pair_origin_links": [],
+            "applicability_judgment_links": [],
+            "meaning_support_links": [],
+            "meaning_problem_links": [],
             "special_support_links": [],
         },
     }
@@ -190,7 +247,7 @@ def evaluate_descriptor_definition_walk(
     if not isinstance(raw_binding, dict):
         _stop("input_binding_shape")
     from definition_comparison import _fn1_scope_guard
-    from supply_validation import _binding_same, _json_equal
+    from supply_validation import _binding_same
 
     # L4 shares zero occurrences for absent/[] while keeping the real snapshot
     # unchanged. The existing structural guard receives only a local view;
@@ -200,17 +257,7 @@ def evaluate_descriptor_definition_walk(
         structural_view, raw_binding, allow_missing_facts=True
     )
 
-    # Keep the existing stop for a raw-distinct slot that only compares equal
-    # to root through nullable Ref members. A distinct full candidate frame is
-    # handled from the shared population instead of being globally stopped.
     frames = population["frames"]
-    if any(
-        _binding_same(frames[left]["binding"], frames[right]["binding"])
-        and not _json_equal(frames[left]["binding"], frames[right]["binding"])
-        for left in range(len(frames))
-        for right in range(left + 1, len(frames))
-    ):
-        _stop("raw_distinct_binding_frames")
     # These declared producer carriers need native special readers. Their
     # discovery precedes qualification; unknown candidates cannot become an
     # empty successful special-read population.
@@ -274,7 +321,8 @@ def evaluate_descriptor_definition_walk(
             if not isinstance(subject, dict):
                 subject = frame_binding.get("template_ref")
             if not isinstance(subject, dict):
-                _stop("input_binding_shape")
+                events.append(_unformed_required_slot_event(kind, frame_binding))
+                continue
             axis_name = f"{kind}.definition"
             axis = {
                 "subject_ref": copy.deepcopy(subject),
@@ -592,8 +640,40 @@ def evaluate_descriptor_definition_walk(
                 )
             )
 
+    target_reads: list[dict[str, Any]] = []
+    intent_reads: list[dict[str, Any]] = []
+    if claims:
+        from dependencies_handoff_ports import read_claim_intent
+        from descriptor_target_reader import read_descriptor_replacement_target
+
+        for claim_index, claim in enumerate(claims):
+            if claim.get("kind") != "fill_definition":
+                continue
+            claim_locator = f"/claims/{claim_index}"
+            target_reads.append(
+                read_descriptor_replacement_target(validated, claim, claim_locator)
+            )
+            intent_reads.append(read_claim_intent(claim, claim_locator))
+
+    if claims:
+        from descriptor_definition_special_claims import project_replacement_claims
+
+        native["special_reads"] = project_replacement_claims(
+            validated,
+            claims,
+            target_reads,
+            intent_reads,
+            events,
+            _axis_event,
+            _stop,
+        )
+
     ordered = sorted(
-        enumerate(events),
+        (
+            (event_index, event)
+            for event_index, event in enumerate(events)
+            if isinstance(event.get("axis"), dict)
+        ),
         key=lambda item: _public_axis_sort_key(
             item[1]["axis"],
             item[1]["slot"],
@@ -640,21 +720,6 @@ def evaluate_descriptor_definition_walk(
         event["origin"]["ordinal"] = ordinal
         assessments.append(event["assessment"])
         native["judgment_origins"].append(event["origin"])
-
-    target_reads: list[dict[str, Any]] = []
-    intent_reads: list[dict[str, Any]] = []
-    if claims:
-        from dependencies_handoff_ports import read_claim_intent
-        from descriptor_target_reader import read_descriptor_replacement_target
-
-        for claim_index, claim in enumerate(claims):
-            if claim.get("kind") != "fill_definition":
-                continue
-            claim_locator = f"/claims/{claim_index}"
-            target_reads.append(
-                read_descriptor_replacement_target(validated, claim, claim_locator)
-            )
-            intent_reads.append(read_claim_intent(claim, claim_locator))
 
     return {
         "evaluation": {
