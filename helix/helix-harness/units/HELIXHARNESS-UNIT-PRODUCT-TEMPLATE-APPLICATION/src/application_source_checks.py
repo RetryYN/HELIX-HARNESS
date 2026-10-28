@@ -82,9 +82,9 @@ def _problem_target(
 ) -> str:
     if relation == "different":
         return left_path
-    if left is _MISSING or left is None:
+    if left is _MISSING:
         return left_path
-    if right is _MISSING or right is None:
+    if right is _MISSING:
         return right_path
     return left_path
 
