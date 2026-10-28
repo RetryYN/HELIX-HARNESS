@@ -68,10 +68,10 @@
       "id": "HELIXBRAIN-L3-032-B02/F04/F09",
       "paths": [
         "docs/helix-brain/L3-requirements/business-requirements.json#/requirements/1",
-        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/5",
-        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/10"
+        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/3",
+        "docs/helix-brain/L3-requirements/functional-requirements.json#/requirements/8"
       ],
-      "text": "knowledge receipt、CORE適用、OS記録を分離する。template/knowledge/packのidentity・version軸を区別し、選択sourceだけを条件付き依存として扱う。"
+      "text": "B02: BRAIN030の知識受領可能性、CORE009の適用/N/A・不足、OS002の記録成立を分離する。F04: template identity/version、knowledge identity/revision/state、pack identity/contract/artifact/dependency版を別々に照合し、source/版/scopeの欠落を未評価、互換性unknown/mismatchを利用不可とする。F09: 常時依存と条件別依存を区別し、未選択sourceを未観測とする。"
     }
   ],
   "source_member_shapes": {
@@ -169,8 +169,8 @@
       "H009_relation": "HARNESS L3 F01/L4 F01はrequirement/product scopeおよびprocess/application contractのidentity・revisionを常時必要とする。",
       "BRAIN_relation": "BRAIN Bindingはrequirement_ref/template_ref/knowledge_refを持つ。BRAIN L4 B02はknowledge receipt、CORE適用、OS記録を分離する。",
       "closed_mapping": [
-        "OS requirement_ref ↔ H009 ApplicationBinding.requirement_ref および BRAIN Binding.requirement_ref は型上対応候補として存在する。原sourceに基づきidentity/revision/scopeを比較する。",
-        "BRAIN L4/L5 F09のprivate incoming routeは、限定されたfn6 claim branchでBinding.requirement_ref/template_refをOS original_project_bindingの各Refへref_sameし、requirement_ref.scopeのproject/tenant/environmentをOS Scopeの各componentへexact比較する。"
+        "BRAIN L4/L5 F09のprivate incoming routeは、限定されたfn6 claim branchでBinding.requirement_ref/template_refをOS original_project_bindingの各Refへ既存ref_sameし、requirement_ref.scopeのproject/tenant/environmentをOS Scopeの各componentへexact比較する。",
+        "この限定route以外について、Ref型memberの存在は候補にとどまり、閉じた対応ではない。"
       ],
       "unformed": [
         "OS HARNESS_contract_refは1個のRefだが、H009 process_contract_refとapplication_contract_refは別々に必要な2個のRefである。OS fieldがいずれか一方または両方を指すかを定めるmappingがない。",
@@ -178,7 +178,11 @@
         "OS project_scope ↔ H009 product_scope:RawValueのB02全体に適用できるprojection/owner-registration mappingは未形成。H009 L4の別publication endpointは両者を異なる原roleとし、直接等置を禁じる。",
         "BRAIN F09の明示scope comparatorはprivate incoming branch限定であり、BRAIN SupplyAnalysis/function/8の出力全体とOS B02 bindingのsource-linked routeを宣言しない。"
       ],
-      "result": "BRAIN private incoming routeではrequirement/template refsとscope componentの比較が限定的に成立する。H009 scope・contract ref・semantic/knowledge refおよびB02全体のoperation bindingは未形成。"
+      "result": "BRAIN private incoming routeではrequirement/template refsとscope componentの比較が限定的に成立する。H009 scope・contract ref・semantic/knowledge refおよびB02全体のoperation bindingは未形成。",
+      "candidate_member_links": [
+        "OS requirement_ref、H009 ApplicationBinding.requirement_ref、BRAIN Binding.requirement_refは各schemaにRef型memberとして存在する。しかし型の一致だけでは同一operation、同一source、identity/revision/scopeの対応を閉じない。",
+        "OS template_ref、H009 ApplicationBinding.template_ref、BRAIN Binding.template_refもRef型memberとして存在する。型の一致だけではowner間mappingは成立しない。BRAIN F09 private incoming routeの比較範囲は、その限定branch内だけで閉じる。"
+      ]
     },
     {
       "operation": "template_selection",
