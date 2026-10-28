@@ -79,23 +79,40 @@ def _known_values(record: Any) -> list[dict[str, Any]]:
     return result
 
 
-def _occurrence_owner(relation: str, candidate_presence: list[dict[str, Any]], different: list[str]) -> list[dict[str, str]]:
+def _occurrence_owner(
+    relation: str, candidate_presence: list[dict[str, Any]], different: list[str]
+) -> list[dict[str, str]]:
     if relation == "exact_ref" or relation == "unrelated_known_ref":
         return []
     if relation == "target_field_unresolved":
         return [_owner("classification_unresolved")]
     if relation == "candidate_field_unresolved":
         missing_identity_or_revision = any(
-            row["field"] in {"identity", "revision"} and row["presence"] in {"absent", "null"}
+            row["field"] in {"identity", "revision"}
+            and row["presence"] in {"absent", "null"}
             for row in candidate_presence
         )
-        return [_owner("knowledge_definition_or_version" if missing_identity_or_revision else "classification_unresolved")]
+        return [
+            _owner(
+                "knowledge_definition_or_version"
+                if missing_identity_or_revision
+                else "classification_unresolved"
+            )
+        ]
     if relation == "same_identity_revision_or_scope_mismatch":
-        return [_owner("knowledge_definition_or_version" if "revision" in different else "classification_unresolved")]
+        return [
+            _owner(
+                "knowledge_definition_or_version"
+                if "revision" in different
+                else "classification_unresolved"
+            )
+        ]
     return []
 
 
-def compare_occurrence(candidate: Any, target: Any, side: str, target_index: int) -> dict[str, Any]:
+def compare_occurrence(
+    candidate: Any, target: Any, side: str, target_index: int
+) -> dict[str, Any]:
     candidate_presence = _field_presence(candidate)
     target_presence = _field_presence(target)
     different = []
@@ -114,7 +131,11 @@ def compare_occurrence(candidate: Any, target: Any, side: str, target_index: int
         candidate_missing = any(
             row["presence"] in {"absent", "null"} for row in candidate_presence
         )
-        relation = "candidate_field_unresolved" if candidate_missing else "target_field_unresolved"
+        relation = (
+            "candidate_field_unresolved"
+            if candidate_missing
+            else "target_field_unresolved"
+        )
     else:
         left_identity_state, left_identity = _field_state(candidate, "identity")
         _, right_identity = _field_state(target, "identity")
@@ -133,23 +154,33 @@ def compare_occurrence(candidate: Any, target: Any, side: str, target_index: int
         "target_index": target_index,
         "relation": relation,
         "candidate_record_presence": record_presence(candidate),
-        "target_record_presence": record_presence(target, absent_allowed=target is ABSENT),
+        "target_record_presence": record_presence(
+            target, absent_allowed=target is ABSENT
+        ),
         "candidate_field_presence": candidate_presence,
         "target_field_presence": target_presence,
         "different_fields": different,
         "unresolved_fields": unresolved,
         "candidate_values": _known_values(candidate),
         "target_values": _known_values(target),
-        "return_owner_candidates": _occurrence_owner(relation, candidate_presence, different),
+        "return_owner_candidates": _occurrence_owner(
+            relation, candidate_presence, different
+        ),
     }
 
 
 def _relation_state(comparisons: list[dict[str, Any]], target_count: int) -> str:
     if any(row["relation"] == "exact_ref" for row in comparisons):
         return "exact"
-    if any(row["relation"] in {"candidate_field_unresolved", "target_field_unresolved"} for row in comparisons):
+    if any(
+        row["relation"] in {"candidate_field_unresolved", "target_field_unresolved"}
+        for row in comparisons
+    ):
         return "unknown"
-    if any(row["relation"] == "same_identity_revision_or_scope_mismatch" for row in comparisons):
+    if any(
+        row["relation"] == "same_identity_revision_or_scope_mismatch"
+        for row in comparisons
+    ):
         return "mismatch"
     if target_count == 0:
         return "empty"
@@ -176,7 +207,11 @@ def _context_state(universe: Any, candidate: Any, snapshot: Any) -> str:
     if any(value is ABSENT or value is None for value in values):
         return "unknown"
     first = values[0]
-    return "coherent" if all(json_equal(first, value) for value in values[1:]) else "incoherent"
+    return (
+        "coherent"
+        if all(json_equal(first, value) for value in values[1:])
+        else "incoherent"
+    )
 
 
 def _state_owner(state: str) -> list[dict[str, str]]:
@@ -231,17 +266,27 @@ def _universe_result(
             "context_state": "not_evaluated",
             "projection_state": "unresolved_universe_members_invalid_type",
             "aggregate_classification": "unknown",
-            "return_owner_candidates": _state_owner("unresolved_universe_members_invalid_type"),
+            "return_owner_candidates": _state_owner(
+                "unresolved_universe_members_invalid_type"
+            ),
             "context_return_owner_candidates": [],
         }
 
     universe_ref = read_member(universe, "ref")
     members_value = read_member(universe, "members")
-    members_slot = CollectionSlot("absent") if members_value is ABSENT else CollectionSlot(
-        "null" if members_value is None else
-        "invalid_type" if not isinstance(members_value, list) else
-        "empty" if not members_value else "value",
-        members_value,
+    members_slot = (
+        CollectionSlot("absent")
+        if members_value is ABSENT
+        else CollectionSlot(
+            "null"
+            if members_value is None
+            else "invalid_type"
+            if not isinstance(members_value, list)
+            else "empty"
+            if not members_value
+            else "value",
+            members_value,
+        )
     )
     result = {
         "universe_index": universe_index,
@@ -272,16 +317,23 @@ def _universe_result(
         ]
         result["member_comparison_occurrences"] = member_comparisons
         result["matching_universe_member_indices"] = [
-            row["target_index"] for row in member_comparisons if row["relation"] == "exact_ref"
+            row["target_index"]
+            for row in member_comparisons
+            if row["relation"] == "exact_ref"
         ]
         member_relation = _relation_state(member_comparisons, len(members_slot.value))
     result["different_fields"] = _unique_fields(member_comparisons, "different_fields")
-    result["unresolved_fields"] = _unique_fields(member_comparisons, "unresolved_fields")
+    result["unresolved_fields"] = _unique_fields(
+        member_comparisons, "unresolved_fields"
+    )
 
     state = None
     snapshot_comparisons = []
     context_states = []
-    if any(_field_state(candidate, field)[0] in {"absent", "null"} for field in COMPARE_FIELDS):
+    if any(
+        _field_state(candidate, field)[0] in {"absent", "null"}
+        for field in COMPARE_FIELDS
+    ):
         state = "unknown_ref_fields"
     elif members_slot.presence == "absent":
         state = "unresolved_universe_members_absent"
@@ -310,7 +362,9 @@ def _universe_result(
             snapshot_comparisons = [
                 compare_occurrence(
                     candidate,
-                    read_member(snapshot, "ref") if isinstance(snapshot, dict) else snapshot,
+                    read_member(snapshot, "ref")
+                    if isinstance(snapshot, dict)
+                    else snapshot,
                     "template_snapshot_ref",
                     index,
                 )
@@ -318,9 +372,13 @@ def _universe_result(
             ]
             result["snapshot_comparison_occurrences"] = snapshot_comparisons
             result["matching_template_snapshot_indices"] = [
-                row["target_index"] for row in snapshot_comparisons if row["relation"] == "exact_ref"
+                row["target_index"]
+                for row in snapshot_comparisons
+                if row["relation"] == "exact_ref"
             ]
-            snapshot_relation = _relation_state(snapshot_comparisons, len(templates_slot.value))
+            snapshot_relation = _relation_state(
+                snapshot_comparisons, len(templates_slot.value)
+            )
             if snapshot_relation == "unknown":
                 state = "unknown_ref_fields"
             elif snapshot_relation == "mismatch":
@@ -329,7 +387,9 @@ def _universe_result(
                 state = "not_corresponding"
             else:
                 for index in result["matching_template_snapshot_indices"]:
-                    context_states.append(_context_state(universe, candidate, templates_slot.value[index]))
+                    context_states.append(
+                        _context_state(universe, candidate, templates_slot.value[index])
+                    )
                 if any(value == "unknown" for value in context_states):
                     result["context_state"] = "unknown"
                     state = "universe_scope_unresolved"
@@ -341,8 +401,12 @@ def _universe_result(
                     state = "corresponding_in_fixture"
 
     result["snapshot_comparison_occurrences"] = snapshot_comparisons
-    result["different_fields"] = _unique_fields(member_comparisons + snapshot_comparisons, "different_fields")
-    result["unresolved_fields"] = _unique_fields(member_comparisons + snapshot_comparisons, "unresolved_fields")
+    result["different_fields"] = _unique_fields(
+        member_comparisons + snapshot_comparisons, "different_fields"
+    )
+    result["unresolved_fields"] = _unique_fields(
+        member_comparisons + snapshot_comparisons, "unresolved_fields"
+    )
     result["projection_state"] = state
     classes = {
         "corresponding_in_fixture": "corresponding",
@@ -353,21 +417,41 @@ def _universe_result(
     result["aggregate_classification"] = classes.get(state, "unknown")
 
     if state == "universe_scope_unresolved":
-        result["context_return_owner_candidates"] = [_owner("classification_unresolved")]
+        result["context_return_owner_candidates"] = [
+            _owner("classification_unresolved")
+        ]
     if state == "corresponding_in_fixture":
         owners = []
     else:
         member_exact = member_relation == "exact"
-        snapshot_exact = _relation_state(snapshot_comparisons, len(snapshot_comparisons)) == "exact"
+        snapshot_exact = (
+            _relation_state(snapshot_comparisons, len(snapshot_comparisons)) == "exact"
+        )
         occurrence_owners = []
         if not member_exact:
-            occurrence_owners.extend(owner for row in member_comparisons for owner in row["return_owner_candidates"])
+            occurrence_owners.extend(
+                owner
+                for row in member_comparisons
+                for owner in row["return_owner_candidates"]
+            )
         if member_exact and not snapshot_exact:
-            occurrence_owners.extend(owner for row in snapshot_comparisons for owner in row["return_owner_candidates"])
+            occurrence_owners.extend(
+                owner
+                for row in snapshot_comparisons
+                for owner in row["return_owner_candidates"]
+            )
         owners = occurrence_owners + _state_owner(state)
     result["return_owner_candidates"] = _dedupe_owners(owners)
     return result
 
 
-def project_universe(candidate: Any, candidate_index: int, universe: Any, universe_index: int, templates_slot: CollectionSlot) -> dict[str, Any]:
-    return _universe_result(candidate, candidate_index, universe, universe_index, templates_slot)
+def project_universe(
+    candidate: Any,
+    candidate_index: int,
+    universe: Any,
+    universe_index: int,
+    templates_slot: CollectionSlot,
+) -> dict[str, Any]:
+    return _universe_result(
+        candidate, candidate_index, universe, universe_index, templates_slot
+    )

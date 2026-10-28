@@ -32,7 +32,9 @@ def project_cross_design_candidate_refs(raw_root: Any) -> dict[str, Any]:
             for index, candidate in enumerate(candidates.value)
         ]
 
-    universe_count = len(universes.value) if universes.presence in {"empty", "value"} else None
+    universe_count = (
+        len(universes.value) if universes.presence in {"empty", "value"} else None
+    )
     result = {
         "candidate_refs_presence": candidates.presence,
         "links": links,

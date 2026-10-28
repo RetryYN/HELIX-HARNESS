@@ -95,14 +95,22 @@ def canonical_json_text(value: Any) -> str:
     if isinstance(value, list):
         return "[" + ",".join(canonical_json_text(item) for item in value) + "]"
     if isinstance(value, dict):
-        keys = sorted(value, key=lambda key: str(key).encode("utf-16-be", "surrogatepass"))
-        return "{" + ",".join(
-            json.dumps(str(key), ensure_ascii=False, separators=(",", ":"))
-            + ":"
-            + canonical_json_text(value[key])
-            for key in keys
-        ) + "}"
-    raise TypeError(f"value is outside the JSON RawValue domain: {type(value).__name__}")
+        keys = sorted(
+            value, key=lambda key: str(key).encode("utf-16-be", "surrogatepass")
+        )
+        return (
+            "{"
+            + ",".join(
+                json.dumps(str(key), ensure_ascii=False, separators=(",", ":"))
+                + ":"
+                + canonical_json_text(value[key])
+                for key in keys
+            )
+            + "}"
+        )
+    raise TypeError(
+        f"value is outside the JSON RawValue domain: {type(value).__name__}"
+    )
 
 
 def canonical_sha256(value: Any) -> str:

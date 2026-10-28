@@ -34,7 +34,9 @@ def _field_union(results: list[dict[str, Any]], key: str) -> list[str]:
     return [field for field in COMPARE_FIELDS if field in fields]
 
 
-def _link_state(universes_slot: CollectionSlot, results: list[dict[str, Any]]) -> tuple[str, str]:
+def _link_state(
+    universes_slot: CollectionSlot, results: list[dict[str, Any]]
+) -> tuple[str, str]:
     outer = {
         "absent": ("not_compared_universes_absent", "not_compared"),
         "null": ("not_compared_universes_null", "not_compared"),
@@ -64,8 +66,16 @@ def project_link(
             for index, raw in enumerate(universes_slot.value)
         ]
     state, classification = _link_state(universes_slot, universe_results)
-    owners = [] if classification == "corresponding" else _dedupe(
-        [owner for result in universe_results for owner in result["return_owner_candidates"]]
+    owners = (
+        []
+        if classification == "corresponding"
+        else _dedupe(
+            [
+                owner
+                for result in universe_results
+                for owner in result["return_owner_candidates"]
+            ]
+        )
     )
     return {
         "candidate_index": candidate_index,
