@@ -317,7 +317,7 @@
     "L5_pre_sha256": "e15fbf4547d2cb59544a508889528d6a86e0880ac2f0e8b38ba5245d91044620",
     "L5_post_sha256": "5396d9a840c6f318a66fb23ede9619976f6eb02a8263d03d0b9c1248d5ebfd10",
     "L8_pre_sha256": "620c47c689a3933d400b4115496a6c62d026772763211e7a1cf58a3ba62d7eea",
-    "L8_post_sha256": "4b1b8d091a6b72339f1bbce9c763c0262c76dd7e8b7ac49d4af8101939551b4e",
+    "L8_post_sha256": "15655182bf0d0581b4154d42e9a6006a24d0211a0df1fc745f7fe949693093e4",
     "L7_sha256": "af4cd7fcf641eb1445b6df29cbed83a8b27a62e813f5aaa3d81a9143194b6b85",
     "DISP2_sha256": "306f6539dcdd37ff66f0727499c9b0cea02d67eae7f60a2d79b5ad54b60b9ccb"
   },
@@ -341,8 +341,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 168,
-    "expanded_target_count": 168,
+    "checked_count": 176,
+    "expanded_target_count": 176,
     "unresolved_count": 0,
     "passed": true
   },
