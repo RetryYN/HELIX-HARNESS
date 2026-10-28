@@ -478,6 +478,17 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             ):
                 case.pop(field, None)
 
+        for case in layers[1]["integration_cases"]:
+            if case["population_state"] != "negative":
+                continue
+            for field in (
+                "expected_axis",
+                "expected_state",
+                "side_effect_count",
+                "expected_side_effect_count",
+            ):
+                case.pop(field, None)
+
         result = dvc.check_neg_4way_match(
             REPO_ROOT,
             "L4",
@@ -492,7 +503,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(
             result["passed"],
             msg=(
-                "negative_class_ref must supply the L8 class key without copied "
+                "negative_class_ref must supply the L8/L9 class key without copied "
                 f"axis/state/side-effect/expected_property fields: {result}"
             ),
         )
