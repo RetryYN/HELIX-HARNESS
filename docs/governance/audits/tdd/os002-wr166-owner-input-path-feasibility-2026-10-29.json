@@ -23,7 +23,10 @@
           "HELIXOS-L4-002-B02",
           "HELIXOS-L9-002-B02"
         ],
-        "supplemental_refs": ["HELIXOS-L3-002-F02", "HELIXOS-L10-002-F02"],
+        "supplemental_refs": [
+          "HELIXOS-L3-002-F02",
+          "HELIXOS-L10-002-F02"
+        ],
         "L4_pointer": "/contracts/1",
         "L9_pointer": "/cases/1"
       },
