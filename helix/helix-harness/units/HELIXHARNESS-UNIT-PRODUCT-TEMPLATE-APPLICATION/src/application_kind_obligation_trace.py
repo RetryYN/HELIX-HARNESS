@@ -171,6 +171,24 @@ def compare_kind_obligation_trace(context):
 
     present_kinds = {ob.get("kind") for ob in valid_obligations}
 
+    raw_trace_reqs = raw.get("trace_requirements")
+    raw_trace_edges = raw.get("trace_edges")
+    trace_reqs = raw_trace_reqs if isinstance(raw_trace_reqs, list) else []
+    trace_edges = raw_trace_edges if isinstance(raw_trace_edges, list) else []
+
+    design_endpoint_refs = [
+        req.get("to_ref")
+        for req in trace_reqs
+        if isinstance(req, dict)
+        and not _is_source_unusable(req.get("source_ref"), unusable_refs)
+        and req.get("direction") == "forward"
+        and any(
+            _same_ref_ignoring_sha(req.get("from_ref"), ob.get("ref"))
+            for ob in valid_obligations
+        )
+        and isinstance(req.get("to_ref"), dict)
+    ]
+
     raw_claims = raw.get("claims")
     if isinstance(raw_claims, list):
         for claim in raw_claims:
@@ -227,7 +245,19 @@ def compare_kind_obligation_trace(context):
                         "backflow_owner": "core_owner",
                     }
                 )
-            elif c_kind == "design_complete" and c_basis == "041-extraction-success":
+            elif c_kind == "design_complete" and not (
+                isinstance(claim.get("basis_refs"), list)
+                and design_endpoint_refs
+                and any(
+                    _same_ref_ignoring_sha(b_ref, d_ref)
+                    for b_ref in claim["basis_refs"]
+                    for d_ref in design_endpoint_refs
+                )
+                and any(
+                    _same_ref_ignoring_sha(b_ref, binding.get("oracle_ref"))
+                    for b_ref in claim["basis_refs"]
+                )
+            ):
                 findings.append(
                     {
                         "code": "extraction_as_design_complete",
@@ -241,11 +271,6 @@ def compare_kind_obligation_trace(context):
                         "backflow_owner": "design_owner",
                     }
                 )
-
-    raw_trace_reqs = raw.get("trace_requirements")
-    raw_trace_edges = raw.get("trace_edges")
-    trace_reqs = raw_trace_reqs if isinstance(raw_trace_reqs, list) else []
-    trace_edges = raw_trace_edges if isinstance(raw_trace_edges, list) else []
 
     required_trace_refs = []
     matched_edge_refs = []
@@ -307,8 +332,6 @@ def compare_kind_obligation_trace(context):
             sup_to = mismatched_edge["to_ref"]
             exp_rev = req_to.get("revision")
             sup_rev = sup_to.get("revision")
-            to_id = str(req_to.get("identity") or "")
-            to_owner = str(req_to.get("owner") or "")
             edge_sources = _collect_source_refs(
                 [
                     req.get("source_ref"),
@@ -317,8 +340,12 @@ def compare_kind_obligation_trace(context):
                 ],
                 binding,
             )
+            is_obligation_to_design = req_dir == "forward" and any(
+                _same_ref_ignoring_sha(req_from, ob.get("ref"))
+                for ob in valid_obligations
+            )
 
-            if "design" in to_id:
+            if is_obligation_to_design:
                 findings.append(
                     {
                         "code": "design_revision_mismatch",
