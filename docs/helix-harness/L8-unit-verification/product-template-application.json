@@ -4784,14 +4784,16 @@
    "l5_technical_expectation": {
     "source_pointers": [
      "/f05_detail_contract/owner_binding_contract/source_wrapper",
-     "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
+     "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
+     "/f05_detail_contract/owner_relation_cause_writer_contract/role_pair_cause/corresponding"
     ],
     "cause_order_pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation",
     "expected_cause_order": [
      "S4",
      "S3"
     ],
-    "expectation_ja": "L5のCause aggregation順はS4の後にS3。source_wrapper_relation自体はowner_binding_contract/source_wrapperが一度だけ形成し、L8意味期待の順序とは区別する。"
+    "expectation_ja": "L5でsource_wrapper_relationはowner_binding_contract/source_wrapperが一度だけ形成し、Cause aggregation順はS4の後にS3。positive RoleOwnerPairは保持し、そのrelation=correspondingならpair Causeなし。これらはL5実装適合の技術期待であり、L8の独立意味期待の順序・authorityとしては扱わない。",
+    "expected_role_pair_cause": "RoleOwnerPair.relation=correspondingのpairにはCauseを生成しない。"
    }
   }
  ],

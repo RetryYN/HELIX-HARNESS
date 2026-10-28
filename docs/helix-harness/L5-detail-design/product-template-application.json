@@ -18650,9 +18650,12 @@
             "L4:/field_semantic_evidence_contract/role_owner_binding/derived_requirement_candidate",
             "L4:/field_semantic_evidence_contract/role_owner_binding/na_candidate",
             "L4:/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary",
-            "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind"
+            "L4:/field_obligation_scope_contract/basic_view_contract/types/Cause/members/kind",
+            "L4:/field_obligation_scope_contract/role_owner_binding/combination",
+            "L4:/field_obligation_scope_contract/basic_view_contract/types/RolePair",
+            "L4:/field_obligation_scope_contract/basic_view_contract/types/OwnerView"
           ],
-          "use": "各既存意味roleで比較対象となる実原Ref ownerを示し、既知不一致/必要関係未供給の局所outcomeを定める。新delegationや全field owner一致を作らない。"
+          "use": "各既存意味roleの対応する原Ref owner、common owner要件、source_wrapper共通AND／role候補OR、closed basic viewのRolePair/OwnerView/Cause型を根拠にする。既知不一致・必要owner関係未供給の局所outcomeを保ち、新delegationや全field owner一致を作らない。"
         },
         {
           "l5_objects": [
@@ -18665,9 +18668,12 @@
             "/f05_detail_contract/owner_binding_contract/aggregate",
             "/f05_detail_contract/source_material_leaf_writer_contract/owner_binding_leaf",
             "/f05_detail_contract/validation_cause_diagnostic_contract/check_cause_leaf_writer",
-            "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order"
+            "/f05_detail_contract/field_summary_and_custody_writer_contract/cause_propagation_order",
+            "/f05_detail_contract/types/CheckResult",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/6",
+            "/f05_detail_contract/validation_cause_diagnostic_contract/check_kind_table/9"
           ],
-          "use": "RoleOwnerPair/OwnerBindingの閉shape、relation algebra、順序/保持境界、validation cause writerの既存leaf規則との違いを示す。"
+          "use": "RoleOwnerPair/OwnerBinding/Relation/CheckResultの閉型、source_wrapper唯一relation writer、role pairsとaggregate、Cause順/保持、check_kind_table/6・9からCauseKindへ写す境界、validation Cause writerとの違いを示す。"
         },
         {
           "l9_objects": [
@@ -18676,7 +18682,7 @@
             "L9:/field_semantic_evidence_verification/owner_relation_cause_cases/0",
             "L9:/field_semantic_evidence_verification/owner_relation_cause_cases/1"
           ],
-          "use": "owner relation未供給と既知不一致がL9有限oracleで未行使と明記された境界。L4のrole別規則を独立期待のauthorityとし、L9記述を成功観測やsource literalとしない。"
+          "use": "L9 owner_relation_cause_cases/0..1はsource-wrapper known difference（0件ではS3との同時Causeも含む）を有限caseとして記録する。L9にwrapper非corresponding時のRoleOwnerPair局所Causeを直接検査するcaseはなく、その動作をL9観測済みと主張しない。"
         },
         {
           "legacy_failure_ids": [
@@ -18801,12 +18807,6 @@
         "S4は両Read presentかつ既知の直接差でCauseを生成する。linkが0件なら独立条件S3のCauseも保持する。relationそのものはowner_binding_contract/source_wrapperだけが形成する。"
       ],
       "closed_cause_rules": {
-        "relation_cases": [
-          "S1: wrapper/source owner Readが不在",
-          "S4: 両owner Readが存在し、link有無にかかわらず既知の直接差がある",
-          "S2: qualification_owner/root_ownerのlink先checkがdifferent又はunestablished",
-          "S3: 両owner Readが存在するがqualification_owner/root_ownerのlinkがない。直接差が既知ならS4と併存する"
-        ],
         "role_pair_cases": [
           "source_wrapper_relationの値にかかわらず、両operand_owner/wrapper_ownerがpresentでRoleOwnerPair.relation=differentならpair局所owner_mismatch Causeを保持する",
           "source_wrapper_relationの値にかかわらず、operand_owner又はwrapper_ownerがabsent/unreachedでRoleOwnerPair.relation=unestablishedならpair局所owner_binding_unestablished Causeを保持する",
@@ -18818,8 +18818,16 @@
           "STOP-OWNER-CAUSE-WRAPPER-RELATION-01",
           "STOP-OWNER-CAUSE-QUAL-READ-01"
         ],
-        "source_wrapper_relation_writer_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper"
-      }
+        "source_wrapper_relation_writer_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper",
+        "source_wrapper_cause_cases": [
+          "S1: wrapper/source owner Readが不在",
+          "S4: 両owner Readが存在し、link有無にかかわらず既知の直接差がある",
+          "S2: qualification_owner/root_ownerのlink先checkがdifferent又はunestablished",
+          "S3: 両owner Readが存在するがqualification_owner/root_ownerのlinkがない。直接差が既知ならS4と併存する"
+        ],
+        "source_wrapper_cause_note": "この有限表はsource-wrapper cause guardsだけを列挙する。OwnerBinding.source_wrapper_relationの値はowner_binding_contract/source_wrapperが唯一形成し、このcause writer/表はRelationを導出・更新しない。"
+      },
+      "source_wrapper_relation_writer_pointer": "/f05_detail_contract/owner_binding_contract/source_wrapper"
     },
     "cause_kind_crosswalk": {
       "l4_binding_kind_enum": [
