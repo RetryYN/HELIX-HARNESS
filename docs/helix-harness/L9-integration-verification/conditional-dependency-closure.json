@@ -154,7 +154,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/4/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-02",
@@ -164,7 +166,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-03",
@@ -174,7 +178,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-04",
@@ -184,7 +190,9 @@
           "backflow_owner": "PO",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-05",
@@ -194,7 +202,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-06",
@@ -204,7 +214,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/18/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-07",
@@ -214,7 +226,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/26/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-08",
@@ -224,7 +238,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L9-023-F01-NEG-09",
@@ -234,7 +250,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "rejected",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F01-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F01-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/7/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -258,7 +276,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-02",
@@ -268,7 +288,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-03",
@@ -278,7 +300,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/9/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-04",
@@ -288,7 +312,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/13/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-05",
@@ -298,7 +324,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/12/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-06",
@@ -308,7 +336,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/1/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-07",
@@ -318,7 +348,9 @@
           "backflow_owner": "authority_owner_or_PO",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-08",
@@ -328,7 +360,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-09",
@@ -338,7 +372,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/8/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-10",
@@ -348,7 +384,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-10"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-10",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L9-023-F02-NEG-11",
@@ -358,7 +396,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F02-NEG-11"
+          "integration_case_ref": "HARNESS-L9-023-F02-NEG-11",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -382,7 +422,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/21/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-02",
@@ -392,7 +434,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-03",
@@ -402,7 +446,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/22/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-04",
@@ -412,7 +458,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-05",
@@ -422,7 +470,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/2/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-06",
@@ -432,7 +482,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/10/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-07",
@@ -442,7 +494,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/24/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-08",
@@ -452,7 +506,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-08"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-08",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/17/effect"
         },
         {
           "id": "HARNESS-L9-023-F03-NEG-09",
@@ -462,7 +518,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F03-NEG-09"
+          "integration_case_ref": "HARNESS-L9-023-F03-NEG-09",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/11/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -486,7 +544,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/3/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-02",
@@ -496,7 +556,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/16/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-03",
@@ -506,7 +568,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/25/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-04",
@@ -516,7 +580,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/6/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-05",
@@ -526,7 +592,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-05"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-05",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/0/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-06",
@@ -536,7 +604,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-06"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-06",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/15/effect"
         },
         {
           "id": "HARNESS-L9-023-F04-NEG-07",
@@ -546,7 +616,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-F04-NEG-07"
+          "integration_case_ref": "HARNESS-L9-023-F04-NEG-07",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/5/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -570,7 +642,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
         },
         {
           "id": "HARNESS-L9-023-N01-NEG-02",
@@ -580,7 +654,9 @@
           "backflow_owner": "pack_contract_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/19/effect"
         },
         {
           "id": "HARNESS-L9-023-N01-NEG-03",
@@ -590,7 +666,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         },
         {
           "id": "HARNESS-L9-023-N01-NEG-04",
@@ -600,7 +678,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-N01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-N01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         }
       ],
       "execution_state": "not_executed"
@@ -624,7 +704,9 @@
           "backflow_owner": "authority_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-01"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-01",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
         },
         {
           "id": "HARNESS-L9-023-B01-NEG-02",
@@ -634,7 +716,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-02"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-02",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/14/effect"
         },
         {
           "id": "HARNESS-L9-023-B01-NEG-03",
@@ -644,7 +728,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-03"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-03",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/20/effect"
         },
         {
           "id": "HARNESS-L9-023-B01-NEG-04",
@@ -654,7 +740,9 @@
           "backflow_owner": "call_owner",
           "expected_state": "held",
           "execution_state": "not_executed",
-          "integration_case_ref": "HARNESS-L9-023-B01-NEG-04"
+          "integration_case_ref": "HARNESS-L9-023-B01-NEG-04",
+          "expected_side_effect_count": 0,
+          "basis_ref": "docs/helix-harness/L4-basic-design/conditional-dependency-closure.json#/failure_classifications/23/effect"
         }
       ],
       "execution_state": "not_executed"
