@@ -27,8 +27,8 @@ LANES = {
     "devin": ("worker",),
     "antigravity": ("execution", "review_merge"),
 }
-# 同じ役割を同時に二つのruntimeへ割り当てない役割。workerは複数のruntimeが並んで持てる。
-EXCLUSIVE_LANES = ("execution", "review_merge")
+# 同じ役割を同時に二つのruntimeへ割り当てない役割。executionとworkerは複数のruntimeが並んで持てる。
+EXCLUSIVE_LANES = ("review_merge",)
 HOOK_EVENTS = {
     "claude": ("SessionStart", "Stop", "ConfigChange"),
     "codex": ("SessionStart", "Stop"),
