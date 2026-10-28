@@ -135,7 +135,7 @@ class FakeScenarioRunner:
         if (
             len(argv) >= 5
             and argv[:2] == ["git", "-C"]
-            and argv[3:] == ["rev-parse", "HEAD^{{tree}}"]
+            and argv[3:] == ["rev-parse", "HEAD^{tree}"]
         ):
             return subprocess.CompletedProcess(argv, 0, self.trial_tree + "\n", "")
         if argv[:3] == ["git", "worktree", "remove"]:
@@ -532,6 +532,191 @@ class MergeAdmissionTest(unittest.TestCase):
         )
         self.assertFalse(res_pkt_findings["ok"])
         self.assertEqual(res_pkt_findings["reason"], "review_not_no_findings")
+
+    def test_real_git_worktree_trial_merge_and_read_after(self) -> None:
+        origin_dir = self.tmp_dir / "origin.git"
+        repo_dir = self.tmp_dir / "repo"
+        remote_wt = self.tmp_dir / "remote_wt"
+
+        subprocess.run(
+            ["git", "init", "--bare", "-b", "main", str(origin_dir)],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "clone", str(origin_dir), str(repo_dir)],
+            check=True,
+            capture_output=True,
+        )
+        for cfg in [
+            ["git", "-C", str(repo_dir), "config", "user.name", "Test User"],
+            ["git", "-C", str(repo_dir), "config", "user.email", "test@example.com"],
+        ]:
+            subprocess.run(cfg, check=True, capture_output=True)
+
+        scf_dir = repo_dir / "scaffold" / "tools"
+        scf_dir.mkdir(parents=True, exist_ok=True)
+        (scf_dir / "scfctl.py").write_text(
+            "import sys\nprint('stale=0')\nsys.exit(0)\n",
+            encoding="utf-8",
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "add", "scaffold/tools/scfctl.py"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "commit", "-m", "initial main"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "push", "-u", "origin", "main"],
+            check=True,
+            capture_output=True,
+        )
+        base_sha = subprocess.run(
+            ["git", "-C", str(repo_dir), "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "checkout", "-b", "feature/pr1"],
+            check=True,
+            capture_output=True,
+        )
+        (repo_dir / "feature.txt").write_text("hello\n", encoding="utf-8")
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "add", "feature.txt"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "commit", "-m", "add feature"],
+            check=True,
+            capture_output=True,
+        )
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "push", "-u", "origin", "feature/pr1"],
+            check=True,
+            capture_output=True,
+        )
+        head_sha = subprocess.run(
+            ["git", "-C", str(repo_dir), "rev-parse", "HEAD"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        subprocess.run(
+            ["git", "-C", str(repo_dir), "checkout", "main"],
+            check=True,
+            capture_output=True,
+        )
+
+        merge_commit_holder = {"oid": ""}
+
+        def hybrid_runner(
+            argv: list[str], cwd: Path | None = None
+        ) -> subprocess.CompletedProcess[str]:
+            if argv[:3] == ["gh", "pr", "view"]:
+                if argv[-1] == "state,mergeCommit":
+                    return subprocess.CompletedProcess(
+                        argv,
+                        0,
+                        json.dumps(
+                            {
+                                "state": "MERGED",
+                                "mergeCommit": {"oid": merge_commit_holder["oid"]},
+                            }
+                        ),
+                        "",
+                    )
+                return subprocess.CompletedProcess(
+                    argv,
+                    0,
+                    json.dumps(
+                        {
+                            "state": "OPEN",
+                            "isDraft": False,
+                            "headRefOid": head_sha,
+                            "autoMergeRequest": None,
+                            "mergeStateStatus": "CLEAN",
+                        }
+                    ),
+                    "",
+                )
+            if argv[:3] == ["gh", "pr", GH_SUBCMD]:
+                subprocess.run(
+                    ["git", "clone", str(origin_dir), str(remote_wt)],
+                    check=True,
+                    capture_output=True,
+                )
+                subprocess.run(
+                    ["git", "-C", str(remote_wt), "config", "user.name", "Test User"],
+                    check=True,
+                    capture_output=True,
+                )
+                subprocess.run(
+                    [
+                        "git",
+                        "-C",
+                        str(remote_wt),
+                        "config",
+                        "user.email",
+                        "test@example.com",
+                    ],
+                    check=True,
+                    capture_output=True,
+                )
+                subprocess.run(
+                    [
+                        "git",
+                        "-C",
+                        str(remote_wt),
+                        "merge",
+                        "-q",
+                        "--no-ff",
+                        "--no-edit",
+                        head_sha,
+                    ],
+                    check=True,
+                    capture_output=True,
+                )
+                subprocess.run(
+                    ["git", "-C", str(remote_wt), "push", "origin", "main"],
+                    check=True,
+                    capture_output=True,
+                )
+                mc = subprocess.run(
+                    ["git", "-C", str(remote_wt), "rev-parse", "HEAD"],
+                    check=True,
+                    capture_output=True,
+                    text=True,
+                ).stdout.strip()
+                merge_commit_holder["oid"] = mc
+                return subprocess.CompletedProcess(argv, 0, "", "")
+            return merge_admission.default_runner(argv, cwd)
+
+        res = merge_admission.run_merge_admission(
+            pr=1,
+            head=head_sha,
+            review_comment="IC_REAL",
+            repo_root=repo_dir,
+            worktree_parent=self.tmp_dir,
+            runner=hybrid_runner,
+            sleep_fn=lambda _: None,
+        )
+        self.assertTrue(res["ok"], msg=json.dumps(res, ensure_ascii=False))
+        self.assertEqual(res["status"], "merged")
+        self.assertEqual(res["base_main_sha"], base_sha)
+        self.assertEqual(res["merge_commit"], merge_commit_holder["oid"])
+        self.assertEqual(res["parents"], [base_sha, head_sha])
+        self.assertTrue(res["tree_matched"])
+        self.assertTrue(res["is_ancestor"])
+        self.assertTrue(res["worktree_removed"])
+        self.assertTrue(merge_admission.HEX40_RE.match(res["trial_tree"]))
 
 
 if __name__ == "__main__":

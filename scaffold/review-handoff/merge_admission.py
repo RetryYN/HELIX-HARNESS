@@ -376,7 +376,7 @@ def run_merge_admission(
             }
 
         tree_proc = runner(
-            ["git", "-C", str(wt_dir), "rev-parse", "HEAD^{{tree}}"],
+            ["git", "-C", str(wt_dir), "rev-parse", "HEAD^{tree}"],
             repo_root,
         )
         if tree_proc.returncode != 0:
