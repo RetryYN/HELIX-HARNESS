@@ -2952,7 +2952,7 @@
   "remaining_typed_case_refs": [],
   "remaining": "合成source/ref資格と関数入出力対応の意味照合・追加fixtureの完全具体化・独立review、formal wire/parser/実root resolver/実資源、L6関数設計/L7対検証の成立条件は未成立。F09の追加unit局所ケースはNEG-07〜13とADD-25〜28。NEG-01〜06のみL9へ接続する。L2-018/020/025の限定条件mappingはL4/L5及び本fileのF09対検証で具体化済みで、025を両selectorへ一律必須としない。原operation/body供給・実資格と未観測分岐・全意味閉包の未成立は別に保持する。19型のprovided-member shape/presence候補を追加。構造受理は意味oracle充足ではなく、欠落とnullと空配列を別に原状態保存する。 実producer/実資格は各source owner、formal parser/resolver/資源とL6関数設計/L7対検証は後続の各owner、実fixture/oracleとpairの凍結は別作業、独立reviewはreview側へ戻す。上流のL5/L8追随と未照合の有限期待はdisposition監査へ残し、候補記載から充足・全域閉包を生成しない。",
   "additional_unit_case_count": 35,
-  "normal_function_oracle_count": 9,
+  "normal_function_oracle_count": 10,
   "f09_local_negative_case_count": 13,
   "f09_l9_integration_case_count": 6,
   "f09_local_non_l9_case_ids": [
@@ -3493,6 +3493,37 @@
    "legacy_comparison_ja": "98372/F2C2/5841/B1F1/A127の段階的promotionと未確定・曖昧値のauthority非昇格保持を継承し、旧lifecycle/runtimeは移植しない。",
    "execution_state": "not_executed",
    "effect": "none"
+  },
+  {
+   "id": "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT",
+   "name": "public-selected-field-evaluation-endpoint-single-delegation-and-no-private-tuple-exposure",
+   "function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+   "function_oracle_ref": "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+   "oracle_refs": [
+    "HELIXBRAIN-L8-032-F03-NEG-01",
+    "HELIXBRAIN-L8-032-F03-NEG-02",
+    "HELIXBRAIN-L8-032-F03-NEG-03",
+    "HELIXBRAIN-L8-032-F03-NEG-04"
+   ],
+   "integration_case_ref": "HELIXBRAIN-L9-032-F03-FIELD-MATERIAL",
+   "integration_case_status": "paired_contract_defined_not_executed",
+   "contract_source": {
+    "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
+    "pointer": "/functions/9",
+    "detail_pointer": "/field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint",
+    "binding_kind": "current_candidate_bytes"
+   },
+   "upstream_source": {
+    "path": "docs/helix-brain/L4-basic-design/template-semantic-supply.json",
+    "pointer": "/field_value_applicability_contract/public_selected_field_evaluation_endpoint",
+    "binding_kind": "current_candidate_bytes"
+   },
+   "property_ja": "公開端点関数evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluationは、単一入力型context:F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}を受け、内部evaluate_field_values_detail(context:F03BasicContext)をちょうど一回呼び、返却F03Evaluation（comparison, rows, problemsの3-member閉型）を変換・欠落なしにそのまま返す。BRAIN内部private_full_runner（run_descriptor_target_flow_with_field_value_detail）の3-member closed_private_caller_result（supply_analysis, descriptor_target_call_observation, field_value_evaluation）を機構間境界へ露出せず、同一F03BasicContextに対して公開端点返却F03Evaluationとprivate_full_runner.field_value_evaluationが全member等価である。",
+   "expected_observation": "固定L9 7 golden（/field_value_applicability_detail_verification/fixed_goldens/0..6）の各materialized /input（F03BasicContext）に対し、evaluate_selected_field_values_public(context)の返却F03Evaluation全member（comparison, rows, problems）が同caseのexpected F03Evaluationおよびprivate_full_runner.field_value_evaluationと一致し、公開Comparison射影write_existing_comparison_from_f03(result.comparison)がcompare_values_and_applicabilityの返却と一致する。副作用0。",
+   "expected_side_effect_count": 0,
+   "legacy_comparison_ja": "LEGACY-ASSET-BD13CC67526B48D461F9（ADR-003 lines 8–45, A-71）のadapter境界による責務分離・変更隔離を保持し、BRAIN内部private runner symbol・3-member private_returnへの外部機構結合を排して公開端点関数契約へ再導出する。",
+   "execution_state": "not_executed",
+   "effect": "none"
   }
  ],
  "function_oracles": [
@@ -3799,6 +3830,29 @@
     "HELIXBRAIN-L8-032-BUILDER-BINDING-ABSENT",
     "HELIXBRAIN-L8-032-BUILDER-CANDIDATES-ABSENT",
     "HELIXBRAIN-L8-032-BUILDER-INPUT-ISSUE-ORDER"
+   ],
+   "execution_state": "not_executed"
+  },
+  {
+   "id": "HELIXBRAIN-L8-032-NORMAL-evaluate_selected_field_values_public",
+   "function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+   "contract_refs": [
+    "HELIXBRAIN-L5-032-F03",
+    "HELIXBRAIN-L5-032-N03"
+   ],
+   "expected_observation": "公開端点関数evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluationは内部evaluate_field_values_detail(context:F03BasicContext)をちょうど一回呼び、返却F03Evaluation（comparison, rows, problemsの3-member閉型）を変換・欠落なしにそのまま返す。private_full_runnerの3-member closed_private_caller_resultを外部機構へ露出せず、同一F03BasicContextに対してprivate_full_runner.field_value_evaluationと全member等価であり、write_existing_comparison_from_f03(result.comparison)がcompare_values_and_applicabilityの返却と一致する。副作用0。",
+   "unit_case_refs": [
+    "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"
+   ],
+   "negative_case_refs": [
+    "HELIXBRAIN-L8-032-F03-NEG-01",
+    "HELIXBRAIN-L8-032-F03-NEG-02",
+    "HELIXBRAIN-L8-032-F03-NEG-03",
+    "HELIXBRAIN-L8-032-F03-NEG-04",
+    "HELIXBRAIN-L8-032-N03-NEG-01",
+    "HELIXBRAIN-L8-032-N03-NEG-02",
+    "HELIXBRAIN-L8-032-N03-NEG-03",
+    "HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT"
    ],
    "execution_state": "not_executed"
   }
@@ -13456,8 +13510,9 @@
   "invocation_oracle": {
    "detail_target": "L5のF03 detail fn2相当のprivate detail invocation。新しいpublic signature、wire/schema、型をこのL8節から追加しない。",
    "single_walk": "同じValidatedSupplyと既存fn1 walkから一度だけF03Evaluation全memberを作り、同一walkでfieldごとのdefinition_readと nested meaning resultを保存する。別snapshot/別decode/second semantic walk/cache注入は同一性の証拠にならない。",
-   "raw_fullrunner": "新fullrunnerが同じsnapshot、既存fn1 walk一回、そのcomparisonを供給する境界を静的に確認する。新fullrunnerの成功actual fixtureはこの範囲に存在しない。opaque actualが後日観測されても、受取・保存の形だけでJSON schema、成功、資格、意味成立を宣言しない。",
-   "projection": "同一F03Evaluationから既存public fn2 Comparison及び旧run_descriptor_target_flowの二返却/SupplyAnalysisへ透明投影する。公開signature/shapeを維持することと、旧未実行normal期待値が成立することは別であり、function_oracles/2/source_rebaselineの原資料不足訂正を適用する。旧ObservationへF03の新memberを足さない。",
+   "public_endpoint_target": "L5 /field_value_applicability_detail/public_and_private_callers/public_selected_field_evaluation_endpoint の公開端点関数evaluate_selected_field_values_public(context:F03BasicContext)->F03Evaluation（対U-ID: /additional_unit_cases/41 HELIXBRAIN-L8-032-F03-PUBLIC-EVAL-ENDPOINT）。単一入力型F03BasicContextからevaluate_field_values_detailを一回委譲呼出ししてF03Evaluation全値を返し、3-member private_returnを機構間へ露出しない。",
+   "raw_fullrunner": "新fullrunnerが同じsnapshot、既存fn1 walk一回、そのcomparisonを供給するBRAIN内部境界を静的に確認する。3-member private_return（supply_analysis, descriptor_target_call_observation, field_value_evaluation）はBRAIN内部L8詳細oracle専用（cross_mechanism_visibility=brain_internal_only_prohibited_for_external_mechanisms）であり、他機構への受渡しはpublic_selected_field_evaluation_endpoint（evaluate_selected_field_values_public, schema_id=helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint, schema_version=1.0.0）の公開契約F03Evaluationを使う。新fullrunnerの成功actual fixtureはこの範囲に存在しない。opaque actualが後日観測されても、受取・保存の形だけでJSON schema、成功、資格、意味成立を宣言しない。",
+   "projection": "同一F03Evaluationから公開端点evaluate_selected_field_values_publicのF03Evaluation返却、既存public fn2 Comparison、及び旧run_descriptor_target_flowの二返却/SupplyAnalysisへ透明投影する。公開signature/shapeを維持することと、旧未実行normal期待値が成立することは別であり、function_oracles/2/source_rebaselineの原資料不足訂正を適用する。旧ObservationへF03の新memberを足さない。",
    "read_bundle": "各原field出現のdefinition_read全体を保存し、owner_read/target_read/fact_reads/pair_reads/judgments/problemsの全返却と、fact_reads内のnested attribution_read/meaning_readを対応する同call原fact/sourceへ結ぶ。出現順・重複・全支持・元locator/index/reason/basisを保ち、known supportでunknown/conflict siblingを消さない。",
    "axis_separation": "field.definitionのread/judgment、project field.value、field/value applicability、parent applicabilityを別の原readとして保つ。definition body/default/exampleは案件値にならず、project valueやparent N/Aは定義read/field適用を変更しない。",
    "golden_argument": {

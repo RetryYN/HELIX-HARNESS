@@ -9477,6 +9477,52 @@
       ],
       "raw_value_domain": "suppliedのF03BPresenceRaw.valueは、JSON null/object/scalar/arrayの原値をcastせずそのまま保持する。absentとsupplied nullを区別し、欠落keyを追加しない。",
       "formed_guard": "既存の局所guardが原型と同じsource/subject/frameへの対応を確認した後にだけ、必要な型付きF03BBinding/F03BRef viewを下流で使う。元schemaで任意のkeyの不在をnullへ補完せず、absent/null/型外からRefやBindingを作文しない。型受理だけを資格又は意味knownへ昇格しない。"
+    },
+    "public_selected_field_evaluation_endpoint": {
+      "schema_id": "helix.brain.template_semantic_supply.selected_field_f03_evaluation_endpoint",
+      "schema_version": "1.0.0",
+      "visibility": "public_cross_mechanism_contract",
+      "symbol": "evaluate_selected_field_values_public",
+      "signature": "(context:F03BasicContext)->F03Evaluation",
+      "basic_function_ref": "/field_value_applicability_contract/functions/3",
+      "l5_function_ref": "HELIXBRAIN-L5-032-evaluate_selected_field_values_public",
+      "l5_function_pointer": "/functions/9",
+      "upstream_connection_basis": {
+        "brain_l2_handoff_refs": [
+          "HELIXBRAIN-L2-019",
+          "HELIXBRAIN-L2-022",
+          "HELIXBRAIN-L2-030",
+          "HELIXBRAIN-L2-032"
+        ],
+        "connector_requirement_refs": [
+          "HELIXCONNECT-L3-001-F01",
+          "HELIXCONNECT-L3-001-F02",
+          "HELIXCONNECT-L3-002-F01",
+          "HELIXCONNECT-L3-002-F02",
+          "HELIXCONNECT-L3-003-F01",
+          "HELIXCONNECT-L3-006-F01"
+        ],
+        "po_decision_ref": "docs/governance/decisions/labo-core-engine-po-decisions-2026-09-26.md#L62-L70"
+      },
+      "request_contract": {
+        "input_type": "/field_value_applicability_contract/closed_types/F03BasicContext",
+        "field_request_type": "/field_value_applicability_contract/closed_types/F03FieldDefinitionRequest",
+        "raw_presence_types": [
+          "/field_value_applicability_contract/closed_types/F03BRawValue",
+          "/field_value_applicability_contract/closed_types/F03BPresenceRaw"
+        ],
+        "snapshot_binding_rule": "単一入力型F03BasicContext={snapshot:F03BValidatedSnapshot,definitions:F03BComparison}を取り、供給元のimmutable snapshot/revision/scopeと対象SectionField/Bindingの原出現を保持する。BRAIN内部の単一walk索引やL5 private runner状態（SupplyAnalysisやDescriptorTargetCallObservationとの3-member private tuple）を引数・返却に要求しない。"
+      },
+      "response_contract": {
+        "evaluation_type": "/field_value_applicability_contract/closed_types/F03Evaluation",
+        "row_type": "/field_value_applicability_contract/closed_types/F03Row",
+        "field_definition_read_type": "/field_value_applicability_contract/closed_types/F03FieldDefinitionRead",
+        "field_fact_read_type": "/field_value_applicability_contract/closed_types/F03FieldFactRead",
+        "judgment_type": "/field_value_applicability_contract/closed_types/F03FieldDefinitionJudgment",
+        "problem_type": "/field_value_applicability_contract/closed_types/F03Problem",
+        "cause_table_ref": "/field_value_applicability_contract/field_definition_cause_table",
+        "source_and_evidence_preservation": "comparison・rows・problemsの3-member閉型F03Evaluationと、各rowのfield_locator/field/definition_read/value_reads/applicability_read/parent_reads/events/axis_indices/finding_indices、および31原因表に基づく未決・失敗・定義欠落・根拠付きN/Aの分離をそのまま公開契約として返す。BRAIN L5内部private runner（run_descriptor_target_flow_with_field_value_detail）の3-member返却wholeは機構間境界へ露出しない。"
+      }
     }
   },
   "identity_version_trace_contract": {
