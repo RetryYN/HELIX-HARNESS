@@ -162,7 +162,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         }
 
         # Deliberately use different class IDs and place rows at different
-        # contract/function positions. Equivalence is by the three-part key,
+        # contract/function positions. Equivalence uses declared owner refs,
         # not cross-layer class ID or array position.
         l4_classes = [
             cls._equivalence_class("L4-C-UNKNOWN", **keys["K-UNKNOWN"]),
@@ -414,7 +414,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(
             result["passed"],
             msg=(
-                "explicit equivalence mode must compare the ordered three-part key, "
+                "explicit equivalence mode must compare the ordered class key, "
                 "pair L8/L9 supplied cases by case ID, and ignore class IDs and "
                 f"contract/function array positions: {result}"
             ),
@@ -463,6 +463,315 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             ],
         )
 
+    @classmethod
+    def _contract_owned_equivalence_layers(
+        cls, *, split_same_five_key: bool = False
+    ) -> tuple[
+        dict[str, object], dict[str, object], dict[str, object], dict[str, object]
+    ]:
+        layers = cls._equivalence_mode_layers()
+        l4, l9, l8, l5 = layers
+        rule = next(
+            row for row in l5["failure_rules"] if row["id"] == "L5-RULE-UNKNOWN"
+        )
+        rule.pop("function_ref")
+        rule["contract_ref"] = "L5-CONTRACT-A"
+        rule["integration_case_ref"] = "CASE-UNKNOWN-1"
+        l5["contracts"] = [
+            {
+                "id": "L5-CONTRACT-A",
+                "l4_contract_ref": "L4-CONTRACT-A",
+                "requirement_ref": "REQ-A",
+            }
+        ]
+        l4["contracts"] = [
+            {
+                "id": "L4-CONTRACT-A",
+                "negative_classifications": [
+                    {
+                        **copy.deepcopy(l4["failure_classifications"][0]),
+                        "integration_case_ref": "CASE-UNKNOWN-1",
+                    }
+                ],
+            }
+        ]
+        l4["failure_classifications"][0]["integration_case_ref"] = (
+            "CASE-UNKNOWN-1"
+        )
+        for row in l4["failure_classifications"]:
+            if row.get("backflow_owner") == "owner-x":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l5["failure_rules"]:
+            if row.get("id") == "L5-RULE-UNKNOWN":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l8["negative_equivalence_classes"]:
+            if row.get("class_id") == "L8-CLASS-1":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l9["negative_equivalence_classes"]:
+            if row.get("class_id") == "L9-CLASS-A":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l8["unit_cases"]:
+            if row.get("negative_class_ref") == "L8-CLASS-1":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l9["integration_cases"]:
+            if row.get("negative_class_ref") == "L9-CLASS-A":
+                row["expected_axis"] = ["/fixture/owner"]
+        for row in l8["unit_cases"]:
+            if row.get("negative_class_ref") == "L8-CLASS-1":
+                row.pop("function_ref", None)
+                row["rule_ref"] = "L5-RULE-UNKNOWN"
+                if row["case_id"] == "CASE-UNKNOWN-1":
+                    row["contract_ref"] = "L5-CONTRACT-A"
+                else:
+                    row["requirement_trace"] = ["REQ-A"]
+
+        if split_same_five_key:
+            duplicate_l4 = copy.deepcopy(l4["failure_classifications"][0])
+            duplicate_l4["class_id"] = "L4-C-UNKNOWN-CONTRACT-B"
+            duplicate_l4["id"] = "L4-C-UNKNOWN-CONTRACT-B"
+            duplicate_l4["integration_case_ref"] = "CASE-UNKNOWN-CONTRACT-B"
+            l4["failure_classifications"].append(duplicate_l4)
+            l4["contracts"][0]["negative_classifications"].append(
+                duplicate_l4
+            )
+
+            duplicate_l5 = copy.deepcopy(rule)
+            duplicate_l5.update(
+                {
+                    "id": "L5-RULE-UNKNOWN-CONTRACT-B",
+                    "class_id": "L5-RULE-UNKNOWN-CONTRACT-B",
+                    "contract_ref": "L5-CONTRACT-B",
+                    "integration_case_ref": "CASE-UNKNOWN-CONTRACT-B",
+                }
+            )
+            l5["failure_rules"].append(duplicate_l5)
+            l5["contracts"].append(
+                {
+                    "id": "L5-CONTRACT-B",
+                    "l4_contract_ref": "L4-CONTRACT-B",
+                    "requirement_ref": "REQ-B",
+                }
+            )
+
+            duplicate_l8_class = copy.deepcopy(
+                next(row for row in l8["negative_equivalence_classes"] if row["class_id"] == "L8-CLASS-1")
+            )
+            duplicate_l8_class["class_id"] = "L8-CLASS-UNKNOWN-CONTRACT-B"
+            l8["negative_equivalence_classes"].append(duplicate_l8_class)
+            duplicate_l9_class = copy.deepcopy(
+                next(row for row in l9["negative_equivalence_classes"] if row["class_id"] == "L9-CLASS-A")
+            )
+            duplicate_l9_class["class_id"] = "L9-CLASS-UNKNOWN-CONTRACT-B"
+            l9["negative_equivalence_classes"].append(duplicate_l9_class)
+
+            new_l8_case = copy.deepcopy(
+                next(row for row in l8["unit_cases"] if row["case_id"] == "CASE-UNKNOWN-1")
+            )
+            new_l8_case.update(
+                {
+                    "case_id": "CASE-UNKNOWN-CONTRACT-B",
+                    "negative_class_ref": "L8-CLASS-UNKNOWN-CONTRACT-B",
+                    "integration_case_ref": "CASE-UNKNOWN-CONTRACT-B",
+                    "rule_ref": "L5-RULE-UNKNOWN-CONTRACT-B",
+                    "contract_ref": "L5-CONTRACT-B",
+                    "requirement_trace": ["REQ-B"],
+                    "expected": "expected:CASE-UNKNOWN-CONTRACT-B",
+                    "expected_preserved": {"case": "CASE-UNKNOWN-CONTRACT-B"},
+                }
+            )
+            l8["unit_cases"].append(new_l8_case)
+
+            new_l9_case = copy.deepcopy(
+                next(row for row in l9["integration_cases"] if row["id"] == "CASE-UNKNOWN-1")
+            )
+            new_l9_case.update(
+                {
+                    "id": "CASE-UNKNOWN-CONTRACT-B",
+                    "negative_class_ref": "L9-CLASS-UNKNOWN-CONTRACT-B",
+                    "expected": "expected:CASE-UNKNOWN-CONTRACT-B",
+                    "expected_preserved": {"case": "CASE-UNKNOWN-CONTRACT-B"},
+                }
+            )
+            l9["integration_cases"].append(new_l9_case)
+            l8["case_count"] += 1
+
+            l4["contracts"].append(
+                {
+                    "id": "L4-CONTRACT-B",
+                    "negative_classifications": [duplicate_l4],
+                }
+            )
+            l4["contracts"][1]["negative_classifications"].append(
+                copy.deepcopy(duplicate_l4)
+            )
+
+        return layers
+
+    def test_chk_neg_4way_explicit_owner_ref_uses_function_ref_when_declared(
+        self,
+    ) -> None:
+        layers = self._equivalence_mode_layers()
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(result["passed"], msg=result)
+        self.assertEqual(
+            result["comparison_scope"]["class_key"][-1],
+            "owner_ref(kind, id); L5 function_ref wins over contract_ref",
+        )
+
+    def test_chk_neg_4way_explicit_owner_ref_accepts_contract_only_rule_trace(
+        self,
+    ) -> None:
+        layers = self._contract_owned_equivalence_layers()
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(result["passed"], msg=result)
+        self.assertEqual(result["counts"], {"L4": 3, "L9": 3, "L8": 3, "L5": 3})
+        self.assertFalse(
+            any(failure.get("attribute") == "function_ref" for failure in result["failures"]),
+            msg=result,
+        )
+
+    def test_chk_neg_4way_explicit_owner_ref_separates_same_five_key_contracts(
+        self,
+    ) -> None:
+        layers = self._contract_owned_equivalence_layers(split_same_five_key=True)
+        result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            "L4",
+            "L9",
+            "L8",
+            "L5",
+            layers[0],
+            layers[1],
+            layers[2],
+            layers[3],
+        )
+        self.assertTrue(result["passed"], msg=result)
+        self.assertEqual(result["counts"], {"L4": 4, "L9": 4, "L8": 4, "L5": 4})
+
+    def test_chk_neg_4way_explicit_owner_ref_fails_closed_on_bad_bindings(self) -> None:
+        baseline = self._contract_owned_equivalence_layers()
+        mutations: list[tuple[str, tuple[dict[str, object], ...], str]] = []
+
+        missing_trace = copy.deepcopy(baseline)
+        for row in missing_trace[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row.pop("requirement_trace", None)
+                row.pop("contract_ref", None)
+        mutations.append(("contract_trace_missing", missing_trace, "contract_ref"))
+
+        wrong_trace = copy.deepcopy(baseline)
+        for row in wrong_trace[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["requirement_trace"] = ["REQ-OTHER"]
+        mutations.append(("contract_trace_mismatch", wrong_trace, "contract_ref"))
+
+        invalid_function_no_fallback = copy.deepcopy(baseline)
+        rule = next(
+            row
+            for row in invalid_function_no_fallback[3]["failure_rules"]
+            if row["id"] == "L5-RULE-UNKNOWN"
+        )
+        rule["function_ref"] = "NO-SUCH-FUNCTION"
+        mutations.append(
+            ("invalid_function_does_not_fall_back_to_contract", invalid_function_no_fallback, "function_ref")
+        )
+
+        both_refs_disagree = copy.deepcopy(baseline)
+        rule = next(
+            row
+            for row in both_refs_disagree[3]["failure_rules"]
+            if row["id"] == "L5-RULE-UNKNOWN"
+        )
+        rule["function_ref"] = "L5-fn-A"
+        both_refs_disagree[3]["contracts"][0]["function"] = "L5-fn-D"
+        for row in both_refs_disagree[2]["unit_cases"]:
+            if row.get("rule_ref") == "L5-RULE-UNKNOWN":
+                row["function_ref"] = "L5-fn-A"
+        mutations.append(
+            ("both_declared_refs_must_agree", both_refs_disagree, "contract_ref")
+        )
+
+        duplicate_function_id = copy.deepcopy(baseline)
+        duplicate_function_id[3]["functions"].append(
+            copy.deepcopy(duplicate_function_id[3]["functions"][0])
+        )
+        mutations.append(
+            ("duplicate_function_id", duplicate_function_id, "function_ref")
+        )
+
+        duplicate_contract_id = copy.deepcopy(baseline)
+        duplicate_contract_id[3]["contracts"].append(
+            copy.deepcopy(duplicate_contract_id[3]["contracts"][0])
+        )
+        mutations.append(
+            ("duplicate_contract_id", duplicate_contract_id, "contract_ref")
+        )
+
+        same_class_different_owners = copy.deepcopy(baseline)
+        case = next(
+            row
+            for row in same_class_different_owners[2]["unit_cases"]
+            if row["case_id"] == "CASE-UNKNOWN-2"
+        )
+        case["rule_ref"] = "L5-RULE-UNKNOWN-OTHER-OWNER"
+        case["function_ref"] = "L5-fn-D"
+        mutations.append(
+            ("same_class_has_different_owner_refs", same_class_different_owners, "owner_ref")
+        )
+
+        ambiguous_rule_ref = copy.deepcopy(baseline)
+        duplicate_rule = copy.deepcopy(
+            next(
+                row
+                for row in ambiguous_rule_ref[3]["failure_rules"]
+                if row["id"] == "L5-RULE-UNKNOWN"
+            )
+        )
+        ambiguous_rule_ref[3]["failure_rules"].append(duplicate_rule)
+        mutations.append(("duplicate_rule_ref", ambiguous_rule_ref, "rule_ref"))
+
+        for name, layers, expected_attribute in mutations:
+            with self.subTest(mutation=name):
+                result = dvc.check_neg_4way_match(
+                    REPO_ROOT,
+                    "L4",
+                    "L9",
+                    "L8",
+                    "L5",
+                    layers[0],
+                    layers[1],
+                    layers[2],
+                    layers[3],
+                )
+                self.assertFalse(result["passed"], msg=result)
+                self.assertTrue(
+                    any(
+                        failure.get("attribute") == expected_attribute
+                        for failure in result["failures"]
+                    ),
+                    msg=result,
+                )
+
     def test_chk_neg_4way_equivalence_mode_checks_invariants_case_fields_and_l5_refs(
         self,
     ) -> None:
@@ -502,7 +811,14 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
                 else:
                     row = mutated[layer]["negative_equivalence_classes"][0]
                 row[field] = bad_value
-                mutations.append((f"L{layer + 4}_{field}", mutated, field))
+                expected_attribute = (
+                    "equivalence_key"
+                    if field in ("expected_axis", "expected_state")
+                    else field
+                )
+                mutations.append(
+                    (f"L{layer + 4}_{field}", mutated, expected_attribute)
+                )
 
         case_mutations = (
             ("case_condition", lambda row: row.__setitem__("condition", "other")),
@@ -699,7 +1015,7 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertFalse(mismatch["passed"], msg=mismatch)
         self.assertTrue(
             any(
-                failure.get("attribute") == "expected_axis"
+                failure.get("attribute") in ("expected_axis", "equivalence_key")
                 for failure in mismatch["failures"]
             ),
             msg=mismatch,
