@@ -248,7 +248,9 @@
         "#/source_pins/12",
         "#/source_pins/13",
         "#/source_pins/14",
-        "#/source_pins/15"
+        "#/source_pins/15",
+        "#/source_pins/44",
+        "#/source_pins/45"
       ],
       "review_r1_resolution_ja": "M1/M2: unit外L8文書をimport時に読むtest_fn8_b02_negative_claim_refinement.pyを再構築branchへ含めず、B02-NEG-01..04はstopped_semantic_subassertionsの停止記録に留める。locator保持はvalidatorでinput=nullとなる入力を使うtest_validator_input_issue_locators_are_retained_in_fn8_stopを、FN8未実装の最新main起点でRedに含めた。Red時は公開FN8関数がなく5件すべて失敗し、source-only Greenで5件が通る。",
       "locator_intermediate_observation": {
@@ -258,7 +260,45 @@
         "result": "FN8 core/exportあり・locator保持修正前にvalidator経由の単独testを実行し、1 test failure。例外reasonはvalidated input binding unavailableで、/obligations/0/ref/identityを含まず、locator欠落を検出した。",
         "bounded_command": "python3 scaffold/tools/bounded_exec.py --timeout-ms 30000 --max-output-bytes 65536 --cwd . -- env PYTHONPATH=helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src:helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests python3 -B -m unittest test_compare_semantic_equivalence.TestCompareSemanticEquivalence.test_validator_input_issue_locators_are_retained_in_fn8_stop -v",
         "test_revision": "6cc54f6dbdded6cf31f3be2e27b0ad8048e8df53"
-      }
+      },
+      "source_change_history": [
+        {
+          "revision": "76a9edc415e2492ae95a5e87a443ad1c5246bec4",
+          "change_kind": "initial_source_only",
+          "source_paths": [
+            "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py",
+            "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py"
+          ],
+          "source_pin_refs": [
+            "#/source_pins/44",
+            "#/source_pins/45"
+          ],
+          "description_ja": "初回source-only実装。Red後の初回実装commitとして記録する。最終Greenや、このcommit単独でのtest passは主張しない。"
+        },
+        {
+          "revision": "75ed6bfdcf10a3134c512a4d61f9cdd4f51cfc28",
+          "change_kind": "format_only",
+          "source_paths": [
+            "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py"
+          ],
+          "source_pin_refs": [
+            "#/source_pins/15"
+          ],
+          "description_ja": "FN8 source moduleのformat-only commit。locator保持前の中間sourceであり、単独testの失敗観測はlocator_intermediate_observationに記録する。"
+        },
+        {
+          "revision": "f4df86a6c241bc981df24a4019c7bc38344c9278",
+          "change_kind": "locator_fix_final_green",
+          "source_paths": [
+            "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py"
+          ],
+          "source_pin_refs": [
+            "#/source_pins/13",
+            "#/source_pins/14"
+          ],
+          "description_ja": "validator input issue locator保持のsource-only修正。tdd_history_refs/0/green_commitが指す最終Green。"
+        }
+      ]
     },
     {
       "id": "HARNESS-L7-009-FN11-project_cross_design_candidate_refs",
@@ -1509,6 +1549,18 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_project_cross_design_candidate_refs_cases.py",
       "file_sha256": "24845a71a6cc4d0e78d77dea32e38fba17a0f080ea2cb92911ece4800e6bc228",
       "role": "test_only_source"
+    },
+    {
+      "revision": "76a9edc415e2492ae95a5e87a443ad1c5246bec4",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_semantic_equivalence.py",
+      "file_sha256": "02db83400e26daa949aee984b8c15b96e94ee36c1ae2230674468382779dd457",
+      "selected_pointers": []
+    },
+    {
+      "revision": "76a9edc415e2492ae95a5e87a443ad1c5246bec4",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "b2f0ff6524a4b76463ba86b8819b29064cb745cdb7ff2bf2408dec62721b3e7d",
+      "selected_pointers": []
     }
   ],
   "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。"
