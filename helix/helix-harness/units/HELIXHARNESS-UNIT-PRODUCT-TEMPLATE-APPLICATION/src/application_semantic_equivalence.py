@@ -20,8 +20,7 @@ def _is_raw_value(value: Any) -> bool:
         return all(_is_raw_value(item) for item in value)
     if isinstance(value, dict):
         return all(
-            isinstance(key, str) and _is_raw_value(item)
-            for key, item in value.items()
+            isinstance(key, str) and _is_raw_value(item) for key, item in value.items()
         )
     return False
 
@@ -74,8 +73,7 @@ def compare_semantic_equivalence(context: Any) -> dict[str, Any]:
             )
         if "ref" not in obligation:
             raise NotImplementedError(
-                "HARNESS-L5-009-compare_semantic_equivalence: "
-                f"{pointer}/ref is missing"
+                f"HARNESS-L5-009-compare_semantic_equivalence: {pointer}/ref is missing"
             )
         ref_error = _ref_shape_error(obligation["ref"])
         if ref_error is not None:
