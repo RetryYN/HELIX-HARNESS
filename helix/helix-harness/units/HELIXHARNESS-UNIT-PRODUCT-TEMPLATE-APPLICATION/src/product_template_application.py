@@ -1,4 +1,5 @@
-def validate_application_input(raw):
-    raise NotImplementedError(
-        "WR90 bootstrap: HARNESS-L5-009-validate_application_input /functions/0"
-    )
+"""Public HARNESS009 application-input endpoint."""
+
+from application_validation import validate_application_input
+
+__all__ = ["validate_application_input"]
