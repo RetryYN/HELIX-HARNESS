@@ -72,9 +72,7 @@ class TestFn0SourceNumericExactness(unittest.TestCase):
         self.assertEqual(raw, before)
 
     def test_unrepresentable_decimal_exponent_keeps_source_unusable(self):
-        raw = _raw_with_source_number(
-            '{"value":1e99999999999999999999}', {"value": 1}
-        )
+        raw = _raw_with_source_number('{"value":1e99999999999999999999}', {"value": 1})
         before = copy.deepcopy(raw)
         source_ref = copy.deepcopy(raw["sources"][0]["ref"])
 

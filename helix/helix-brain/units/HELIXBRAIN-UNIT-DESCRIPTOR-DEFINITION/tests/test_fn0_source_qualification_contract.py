@@ -59,7 +59,7 @@ class TestFn0SourceQualificationContract(unittest.TestCase):
 
     def test_unencodable_source_text_is_unusable_and_preserved(self):
         raw = _raw()
-        raw["sources"][0]["content_bytes"] = "{\"unpaired\": \ud800}"
+        raw["sources"][0]["content_bytes"] = '{"unpaired": \ud800}'
         self.assert_source_unusable_without_losing_snapshot(raw)
 
     def test_strict_source_json_rejects_duplicate_keys_and_non_json_constants(self):
@@ -114,7 +114,8 @@ class TestFn0SourceQualificationContract(unittest.TestCase):
         qualification_index = next(
             i
             for i, row in enumerate(raw["qualifications"])
-            if row["ref"]["identity"] == raw["sources"][0]["qualification_ref"]["identity"]
+            if row["ref"]["identity"]
+            == raw["sources"][0]["qualification_ref"]["identity"]
         )
         original_source_ref = copy.deepcopy(raw["sources"][0]["ref"])
         raw["qualifications"][qualification_index]["applicable_scope"] = {

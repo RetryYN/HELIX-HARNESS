@@ -124,11 +124,7 @@ def _json_equal(left: Any, right: Any) -> bool:
 def _source_body_equal(decoded: Any, supplied: Any) -> bool:
     """Compare exact source JSON numbers without promoting host floats."""
     if isinstance(decoded, Decimal):
-        return (
-            decoded.is_finite()
-            and type(supplied) is int
-            and decoded == supplied
-        )
+        return decoded.is_finite() and type(supplied) is int and decoded == supplied
     if type(decoded) is not type(supplied):
         return False
     if isinstance(decoded, dict):
