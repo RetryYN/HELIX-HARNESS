@@ -420,6 +420,17 @@ def read_original_definition_meaning(
     return read_original_definition_meaning_bundle(validated, request)["read"]  # type: ignore[return-value]
 
 
+def read_definition_special_support(
+    validated: dict[str, Any], request: dict[str, Any]
+) -> dict[str, object]:
+    """Read one original replacement Claim's basis support without projecting it."""
+    from descriptor_definition_special_reads import (
+        _read_definition_special_support as read,
+    )
+
+    return read(validated, request)
+
+
 def read_original_definition_applicability(
     validated: dict[str, Any], request: dict[str, Any]
 ) -> dict[str, object]:

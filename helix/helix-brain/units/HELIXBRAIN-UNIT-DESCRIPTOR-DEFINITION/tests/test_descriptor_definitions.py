@@ -747,9 +747,7 @@ class TestDescriptorDefinitions(unittest.TestCase):
         )
         b_ref = copy.deepcopy(claim0["basis_refs"][0])
 
-        # claim0: basis_refs=[B, B2]。Bに2要素、B2に0要素 -> 要素単位では [B, B] (R1のsource単位では [B, B2])。
-        # claim1: basis_refs=[B, C]。Bに2要素、Cに1要素 -> 要素単位では [B, B, C] (R1のsource単位では [B, C])。
-        # 要素単位では [B, B, C] < [B, B] (JSON文字列で ',' < ']') となるため claim1 の3行が claim0 の2行より先に整列する。
+        # 各special readのsource_occurrences全列をsort列に使い、同じsort keyはClaim/read順を保つ。
         claim0["basis_refs"] = [copy.deepcopy(b_ref), copy.deepcopy(b2_ref)]
         claim1 = copy.deepcopy(claim0)
         claim1["proposed_value"] = "claim1-val"
@@ -796,9 +794,9 @@ class TestDescriptorDefinitions(unittest.TestCase):
         self.assertEqual(
             [a["original_refs"][1]["identity"] for a in cross_axes],
             [
-                "synthetic-semantic-source-C",
-                "synthetic-semantic-source-C",
                 "synthetic-semantic-source-B2",
+                "synthetic-semantic-source-C",
+                "synthetic-semantic-source-C",
             ],
         )
 
@@ -857,12 +855,6 @@ class TestDescriptorDefinitions(unittest.TestCase):
                             r["knowledge_records"][0]["provenance_refs"].pop()
                         ],
                     }
-                ),
-            ),
-            (
-                "target_prov_shape_bad",
-                lambda r: r["knowledge_records"][0]["provenance_refs"][-1].__setitem__(
-                    "extra", 1
                 ),
             ),
             (
@@ -1117,15 +1109,6 @@ class TestDescriptorDefinitions(unittest.TestCase):
                 ),
             ),
             (
-                "use_basis_ref_sha_diff",
-                lambda r: (
-                    r["sources"][6]["content"]["replacement_basis_uses"][0][
-                        "basis_ref"
-                    ].__setitem__("sha256", "0" * 64),
-                    _rebind_source_digest(r["sources"][6], r["qualifications"][6]),
-                ),
-            ),
-            (
                 "use_basis_binding_bad",
                 lambda r: (
                     r["sources"][6]["content"]["replacement_basis_uses"][0].__setitem__(
@@ -1268,6 +1251,45 @@ class TestDescriptorDefinitions(unittest.TestCase):
                 mutate(raw)
                 assert_unresolved_unknown(raw)
 
+        # L5 ref_same treats a null SHA as matching a known SHA; this remains a positive
+        # basis correspondence and therefore retains the cross-pattern finding.
+        raw_sha_unknown = self._neg02_input()
+        claim = raw_sha_unknown["claims"][-1]
+        use = raw_sha_unknown["sources"][6]["content"]["replacement_basis_uses"][0]
+        self.assertIsNone(claim["basis_refs"][0]["sha256"])
+        use["basis_ref"]["sha256"] = "0" * 64
+        _rebind_source_digest(
+            raw_sha_unknown["sources"][6], raw_sha_unknown["qualifications"][6]
+        )
+        result_sha_unknown = self._compare(
+            raw_sha_unknown, added_sources=raw_sha_unknown["sources"][5:]
+        )
+        self.assertEqual(
+            [finding["code"] for finding in result_sha_unknown["findings"]],
+            [MISSING_CODE, CROSS_CODE],
+        )
+        cross_sha_unknown = [
+            finding
+            for finding in result_sha_unknown["findings"]
+            if finding["code"] == CROSS_CODE
+        ]
+        self.assertEqual(len(cross_sha_unknown), 1)
+        self.assertEqual(cross_sha_unknown[0]["reason"], CROSS_FIELD_REASON)
+        self.assertEqual(
+            cross_sha_unknown[0]["source_refs"],
+            [
+                claim["basis_refs"][0],
+                raw_sha_unknown["sources"][5]["content"]["descriptor_targets"][0][
+                    "target_ref"
+                ],
+                raw_sha_unknown["sources"][5]["ref"],
+                raw_sha_unknown["sources"][6]["ref"],
+                use["basis_ref"],
+                use["fact"]["ref"],
+                use["fact"]["source_ref"],
+            ],
+        )
+
         # Group C: 既知owner kindがrequired input以外（例: version）で確定した場合はrule8も第3枝unknownも非発火。
         raw_non_req_input = self._neg02_input()
         raw_non_req_input["sources"][6]["content"]["replacement_basis_uses"][0][
@@ -1342,6 +1364,53 @@ class TestDescriptorDefinitions(unittest.TestCase):
         ]
         self.assertEqual(len(mixed_axes), 1)
         self.assertEqual(mixed_axes[0]["state"], "missing")
+
+    def test_unrelated_provenance_problem_keeps_resolved_target_special_finding(self):
+        """L4 activates on a resolved original target match and retains unrelated problems."""
+        raw = self._neg02_input()
+        raw["knowledge_records"][0]["provenance_refs"][-1]["extra"] = 1
+        raw_before = copy.deepcopy(raw)
+        validated = validate_supply_input(raw)
+        self.assertIsNotNone(validated["input"])
+        self.assertEqual(validated["input_issues"], [])
+
+        from descriptor_target_reader import read_descriptor_replacement_target
+
+        target_read = read_descriptor_replacement_target(
+            validated, raw["claims"][-1], f"/claims/{len(raw['claims']) - 1}"
+        )
+        self.assertEqual(target_read["state"], "resolved")
+        self.assertEqual(len(target_read["matches"]), 1)
+        self.assertEqual(
+            target_read["matches"][0]["declaration_locators"],
+            ["/sources/5/content/descriptor_targets/0"],
+        )
+        self.assertEqual(
+            target_read["problems"],
+            [
+                {
+                    "kind": "owner_source_unresolved",
+                    "locator": "/knowledge_records/0/provenance_refs/0",
+                    "reason": "同knowledge原record/provenanceから既存資格を満たすowner sourceへ解決できない。原所在と不足を保持する。",
+                    "source_ref": {"presence": "absent"},
+                }
+            ],
+        )
+
+        result = compare_descriptor_definitions({"validated": validated})
+        self.assertEqual(
+            [finding["code"] for finding in result["findings"]],
+            [MISSING_CODE, CROSS_CODE],
+        )
+        cross = next(
+            finding for finding in result["findings"] if finding["code"] == CROSS_CODE
+        )
+        self.assertEqual(cross["axis"], "required field.definition")
+        self.assertEqual(cross["state"], "missing")
+        self.assertEqual(cross["reason"], CROSS_FIELD_REASON)
+        self.assertEqual(cross["backflow_owner"], "knowledge_owner")
+        self.assertEqual(raw, raw_before)
+        self.assertEqual(validated["input"], raw_before)
 
     def test_base_control_preserves_unknown_without_substitution(self):
         result = self._compare(copy.deepcopy(self.base))

@@ -31,7 +31,9 @@ from identity_input_fixtures import normal_input
 MISSING_CODE = "descriptor_07_missing"
 CROSS_CODE = "cross_pattern_field_substitution"
 CROSS_RULE = "HELIXBRAIN-L5-032-R-cross_pattern_field_substitution"
-CROSS_REASON = "当該required fieldの定義不足を別Patternのrequired inputで補うことはできない。"
+CROSS_REASON = (
+    "当該required fieldの定義不足を別Patternのrequired inputで補うことはできない。"
+)
 
 
 class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
@@ -42,7 +44,9 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
         fixture.setUp()
         return fixture._neg02_input()
 
-    def test_fill_occurrences_are_read_once_in_order_and_only_supported_positive_projects(self):
+    def test_fill_occurrences_are_read_once_in_order_and_only_supported_positive_projects(
+        self,
+    ):
         raw = self._cross_pattern_raw()
         primary_claim = copy.deepcopy(raw["claims"][0])
 
@@ -115,14 +119,26 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
             for i in range(3)
         ]
         check("special reader call count", len(reader_calls), 3)
-        check("special reader ValidatedSupply identity", all(call[0] is validated for call in reader_calls), True)
-        check("special reader request order", [call[1] for call in reader_calls], expected_requests)
+        check(
+            "special reader ValidatedSupply identity",
+            all(call[0] is validated for call in reader_calls),
+            True,
+        )
+        check(
+            "special reader request order",
+            [call[1] for call in reader_calls],
+            expected_requests,
+        )
 
         walk = captured_walks[0] if captured_walks else None
         reads = walk["native_material"]["special_reads"] if walk is not None else []
         check("saved special-read count", len(reads), 3)
         if len(reads) == 3:
-            check("saved request order", [read.get("request") for read in reads], expected_requests)
+            check(
+                "saved request order",
+                [read.get("request") for read in reads],
+                expected_requests,
+            )
             expected_fields = [
                 "request",
                 "acquisition_state",
@@ -132,17 +148,32 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
             ]
             for index, read in enumerate(reads):
                 check(f"special-read {index} field order", list(read), expected_fields)
-                for occurrence_index, occurrence in enumerate(read.get("source_occurrences", [])):
+                for occurrence_index, occurrence in enumerate(
+                    read.get("source_occurrences", [])
+                ):
                     check(
                         f"special-read {index} occurrence {occurrence_index} field order",
                         list(occurrence),
-                        ["source_ref", "source_index", "record_index", "locator", "original_record"],
+                        [
+                            "source_ref",
+                            "source_index",
+                            "record_index",
+                            "locator",
+                            "original_record",
+                        ],
                     )
                 for support_index, support in enumerate(read.get("supports", [])):
                     check(
                         f"special-read {index} support {support_index} field order",
                         list(support),
-                        ["source_ref", "source_index", "record_index", "locator", "support_kind", "record"],
+                        [
+                            "source_ref",
+                            "source_index",
+                            "record_index",
+                            "locator",
+                            "support_kind",
+                            "record",
+                        ],
                     )
 
             source_index = next(
@@ -154,37 +185,80 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
             )
             source = raw_before["sources"][source_index]
             use = source["content"]["replacement_basis_uses"][0]
-            occurrence_locator = f"/sources/{source_index}/content/replacement_basis_uses/0"
-            expected_occurrence = {
-                "source_ref": source["ref"],
-                "source_index": source_index,
-                "record_index": 0,
-                "locator": occurrence_locator,
-                "original_record": use,
-            }
-            check("positive read acquisition", reads[0].get("acquisition_state"), "resolved")
-            check("positive raw occurrence", reads[0].get("source_occurrences"), [expected_occurrence])
+            occurrence_locator = (
+                f"/sources/{source_index}/content/replacement_basis_uses/0"
+            )
+            expected_occurrences = [
+                {
+                    "source_ref": candidate["ref"],
+                    "source_index": candidate_index,
+                    "record_index": record_index,
+                    "locator": (
+                        f"/sources/{candidate_index}/content/"
+                        f"replacement_basis_uses/{record_index}"
+                    ),
+                    "original_record": record,
+                }
+                for candidate_index, candidate in enumerate(raw_before["sources"])
+                if isinstance(candidate, dict)
+                and candidate.get("role") == "semantic_json"
+                and isinstance(candidate.get("content"), dict)
+                and isinstance(candidate["content"].get("replacement_basis_uses"), list)
+                for record_index, record in enumerate(
+                    candidate["content"]["replacement_basis_uses"]
+                )
+            ]
+            check(
+                "positive read acquisition",
+                reads[0].get("acquisition_state"),
+                "resolved",
+            )
+            check(
+                "positive raw occurrence",
+                reads[0].get("source_occurrences"),
+                expected_occurrences,
+            )
             check(
                 "positive typed support",
                 reads[0].get("supports"),
-                [{
-                    "source_ref": source["ref"],
-                    "source_index": source_index,
-                    "record_index": 0,
-                    "locator": occurrence_locator,
-                    "support_kind": "replacement_claim",
-                    "record": use,
-                }],
+                [
+                    {
+                        "source_ref": source["ref"],
+                        "source_index": source_index,
+                        "record_index": 0,
+                        "locator": occurrence_locator,
+                        "support_kind": "replacement_claim",
+                        "record": use,
+                    }
+                ],
             )
             check("positive read problems", reads[0].get("problems"), [])
             for index in (1, 2):
-                check(f"nonfiring read {index} acquisition", reads[index].get("acquisition_state"), "unknown")
-                check(f"nonfiring read {index} occurrences", reads[index].get("source_occurrences"), [])
-                check(f"nonfiring read {index} supports", reads[index].get("supports"), [])
+                check(
+                    f"nonfiring read {index} acquisition",
+                    reads[index].get("acquisition_state"),
+                    "unknown",
+                )
+                check(
+                    f"nonfiring read {index} occurrences",
+                    reads[index].get("source_occurrences"),
+                    expected_occurrences,
+                )
+                check(
+                    f"nonfiring read {index} supports", reads[index].get("supports"), []
+                )
 
         finding_codes = [finding["code"] for finding in result["findings"]]
-        check("one original required-field missing finding", finding_codes.count(MISSING_CODE), 1)
-        check("one supported positive cross-pattern finding", finding_codes.count(CROSS_CODE), 1)
+        check(
+            "one original required-field missing finding",
+            finding_codes.count(MISSING_CODE),
+            1,
+        )
+        check(
+            "one supported positive cross-pattern finding",
+            finding_codes.count(CROSS_CODE),
+            1,
+        )
         cross = next((f for f in result["findings"] if f["code"] == CROSS_CODE), None)
         if cross is not None:
             for key, expected in {
@@ -207,7 +281,11 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
             ),
             False,
         )
-        check("public producer", result["producer_symbol"], "compare_descriptor_definitions")
+        check(
+            "public producer",
+            result["producer_symbol"],
+            "compare_descriptor_definitions",
+        )
         check("public input binding", result["input_binding"], raw_before["binding"])
         check("raw snapshot unchanged", raw, raw_before)
         check("ValidatedSupply unchanged", validated, validated_before)
@@ -231,18 +309,25 @@ class TestFN1WrapperWalkReplacementSpecial(unittest.TestCase):
                 try:
                     result = compare_descriptor_definitions({"validated": validated})
                 except NotImplementedError as exc:
-                    self.fail(f"FN1 must keep this raw-distinct optional Ref in scope: {exc}")
+                    self.fail(
+                        f"FN1 must keep this raw-distinct optional Ref in scope: {exc}"
+                    )
                 self.assertEqual(
-                    list(result), ["axes", "findings", "producer_symbol", "input_binding"]
+                    list(result),
+                    ["axes", "findings", "producer_symbol", "input_binding"],
                 )
-                self.assertEqual(result["producer_symbol"], "compare_descriptor_definitions")
+                self.assertEqual(
+                    result["producer_symbol"], "compare_descriptor_definitions"
+                )
                 self.assertEqual(result["input_binding"], raw_before["binding"])
                 self.assertIsInstance(result["axes"], list)
                 self.assertIsInstance(result["findings"], list)
                 self.assertEqual(raw, raw_before)
                 self.assertEqual(validated["input"], raw_before)
 
-    def test_unformable_missing_subject_returns_no_typed_row_and_keeps_original_binding(self):
+    def test_unformable_missing_subject_returns_no_typed_row_and_keeps_original_binding(
+        self,
+    ):
         raw = base_input(load_document())
         raw["descriptors"] = []
         raw["required_descriptor_kinds"] = ["template identity"]

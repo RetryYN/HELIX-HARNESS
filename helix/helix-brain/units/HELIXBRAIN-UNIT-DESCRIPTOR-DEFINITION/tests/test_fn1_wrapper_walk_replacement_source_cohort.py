@@ -232,6 +232,85 @@ class TestFN1ReplacementSourceCohort(unittest.TestCase):
         self.assertEqual(problem["source_index"], 6)
         self.assertEqual(raw, original)
 
+    def test_source_and_record_partial_bindings_keep_their_own_problem_locator(self):
+        for side in ("source", "record"):
+            with self.subTest(side=side):
+                builder = test_descriptor_definitions.TestDescriptorDefinitions(
+                    "test_neg02_cross_pattern_field_substitution"
+                )
+                builder.setUp()
+                raw = builder._neg02_input()
+                source = raw["sources"][6]
+                qualification = raw["qualifications"][6]
+                use = source["content"]["replacement_basis_uses"][0]
+                if side == "source":
+                    source["content"]["binding"].pop("pack_contract_version")
+                    expected_locator = "/sources/6/content/binding"
+                    expected_value = source["content"]["binding"]
+                else:
+                    use["basis_binding"].pop("pack_contract_version")
+                    expected_locator = (
+                        "/sources/6/content/replacement_basis_uses/0/basis_binding"
+                    )
+                    expected_value = use["basis_binding"]
+                _rebind_source_digest(source, qualification)
+                original = copy.deepcopy(raw)
+
+                validated = validate_supply_input(raw)
+                self.assertIsInstance(validated["input"], dict)
+                self.assertEqual(validated["input_issues"], [])
+                self.assertNotIn(source["ref"], validated["unusable_source_refs"])
+
+                read = read_definition_special_support(
+                    validated,
+                    {
+                        "request_kind": "replacement_claim",
+                        "request_locator": "/claims/0",
+                    },
+                )
+                self.assertEqual(read["supports"], [])
+                self.assertEqual(len(read["problems"]), 1)
+                problem = read["problems"][0]
+                self.assertEqual(problem["cause"], "binding_unresolved")
+                self.assertEqual(problem["locator"], expected_locator)
+                self.assertEqual(
+                    problem["original_value"],
+                    {"presence": "supplied", "value": expected_value},
+                )
+                self.assertEqual(raw, original)
+
+    def test_nested_closed_record_shape_failure_is_one_raw_decode_problem(self):
+        builder = test_descriptor_definitions.TestDescriptorDefinitions(
+            "test_neg02_cross_pattern_field_substitution"
+        )
+        builder.setUp()
+        raw = builder._neg02_input()
+        source = raw["sources"][6]
+        qualification = raw["qualifications"][6]
+        use = source["content"]["replacement_basis_uses"][0]
+        use["fact"]["unexpected_member"] = "raw evidence"
+        _rebind_source_digest(source, qualification)
+        original = copy.deepcopy(raw)
+
+        validated = validate_supply_input(raw)
+        self.assertIsInstance(validated["input"], dict)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertNotIn(source["ref"], validated["unusable_source_refs"])
+        read = read_definition_special_support(
+            validated,
+            {"request_kind": "replacement_claim", "request_locator": "/claims/0"},
+        )
+        self.assertEqual(len(read["source_occurrences"]), 1)
+        self.assertEqual(read["source_occurrences"][0]["original_record"], use)
+        self.assertEqual(read["supports"], [])
+        self.assertEqual(len(read["problems"]), 1)
+        self.assertEqual(read["problems"][0]["cause"], "record_decode_failed")
+        self.assertEqual(
+            read["problems"][0]["locator"],
+            "/sources/6/content/replacement_basis_uses/0",
+        )
+        self.assertEqual(raw, original)
+
     def test_typed_slot_and_kind_mirror_differences_keep_the_original_field(self):
         for member, value, expected_cause, expected_reason in (
             (
@@ -543,6 +622,73 @@ class TestFN1ReplacementSourceCohort(unittest.TestCase):
         self.assertEqual(raw, original)
         self.assertEqual(validated, validated_before)
         self.assertEqual(claim, original["claims"][-1])
+
+    def test_distinct_owner_group_tuples_keep_matching_support_without_guessing(self):
+        builder = test_descriptor_definitions.TestDescriptorDefinitions(
+            "test_neg02_cross_pattern_field_substitution"
+        )
+        builder.setUp()
+        raw = builder._neg02_input()
+        source = raw["sources"][6]
+        qualification = raw["qualifications"][6]
+        original_group = source["content"]["descriptor_facts"][0]
+        other_group = copy.deepcopy(original_group)
+        other_group["slot_identity"] = "synthetic-distinct-owner-group"
+        other_group["descriptor_kind"] = "required section"
+        source["content"]["descriptor_facts"].append(other_group)
+        _rebind_source_digest(source, qualification)
+        original = copy.deepcopy(raw)
+
+        validated = validate_supply_input(raw)
+        self.assertIsInstance(validated["input"], dict)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["input"], original)
+
+        read = read_definition_special_support(
+            validated,
+            {"request_kind": "replacement_claim", "request_locator": "/claims/0"},
+        )
+        self.assertEqual(len(read["source_occurrences"]), 1)
+        self.assertEqual(len(read["supports"]), 1)
+        self.assertEqual(
+            read["supports"][0]["record"],
+            source["content"]["replacement_basis_uses"][0],
+        )
+        self.assertEqual(read["problems"], [])
+        self.assertEqual(raw, original)
+
+    def test_identical_duplicate_owner_tuples_still_allow_slot_mirror_diagnostic(self):
+        builder = test_descriptor_definitions.TestDescriptorDefinitions(
+            "test_neg02_cross_pattern_field_substitution"
+        )
+        builder.setUp()
+        raw = builder._neg02_input()
+        source = raw["sources"][6]
+        qualification = raw["qualifications"][6]
+        group = source["content"]["descriptor_facts"][0]
+        source["content"]["descriptor_facts"].append(copy.deepcopy(group))
+        use = source["content"]["replacement_basis_uses"][0]
+        use["slot_identity"] = "synthetic-known-different-slot"
+        _rebind_source_digest(source, qualification)
+        original = copy.deepcopy(raw)
+
+        validated = validate_supply_input(raw)
+        self.assertIsInstance(validated["input"], dict)
+        self.assertEqual(validated["input_issues"], [])
+        self.assertEqual(validated["input"], original)
+        read = read_definition_special_support(
+            validated,
+            {"request_kind": "replacement_claim", "request_locator": "/claims/0"},
+        )
+        self.assertEqual(len(read["source_occurrences"]), 1)
+        self.assertEqual(read["supports"], [])
+        self.assertEqual(len(read["problems"]), 1)
+        self.assertEqual(read["problems"][0]["cause"], "slot_differs")
+        self.assertEqual(
+            read["problems"][0]["locator"],
+            "/sources/6/content/replacement_basis_uses/0/slot_identity",
+        )
+        self.assertEqual(raw, original)
 
 
 if __name__ == "__main__":

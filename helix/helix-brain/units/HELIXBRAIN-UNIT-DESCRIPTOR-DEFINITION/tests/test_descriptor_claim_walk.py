@@ -102,12 +102,40 @@ class TestDescriptorClaimWalk(unittest.TestCase):
         return result
 
     def _assert_existing_evaluation_unchanged(self, raw, result):
-        """No-Claim output is only the metamorphic baseline for preexisting data."""
+        """No-Claim baseline covers existing rows, not scheduled special reads."""
         baseline_raw = copy.deepcopy(raw)
         baseline_raw["claims"] = []
         baseline = self._walk(baseline_raw)
         self.assertEqual(result["evaluation"], baseline["evaluation"])
-        self.assertEqual(result["native_material"], baseline["native_material"])
+        expected_special_reads = [
+            {
+                "request": {
+                    "request_kind": "replacement_claim",
+                    "request_locator": f"/claims/{index}",
+                },
+                "acquisition_state": "unknown",
+                "source_occurrences": [],
+                "supports": [],
+                "problems": [],
+            }
+            for index, claim in enumerate(raw["claims"])
+            if claim.get("kind") == "fill_definition"
+        ]
+        self.assertEqual(
+            result["native_material"]["special_reads"], expected_special_reads
+        )
+        self.assertEqual(
+            {
+                key: value
+                for key, value in result["native_material"].items()
+                if key != "special_reads"
+            },
+            {
+                key: value
+                for key, value in baseline["native_material"].items()
+                if key != "special_reads"
+            },
+        )
 
     def test_fill_definition_with_explicit_null_keeps_supplied_intent_and_target(self):
         raw = descriptor_claim_input("positive")
