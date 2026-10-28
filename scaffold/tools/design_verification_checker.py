@@ -2255,6 +2255,7 @@ def audit_freeze_record(
         and neg_res["passed"]
         and fn_res["passed"]
         and obl_res["passed"]
+        and cap_post["passed"]
         and len(count_diffs) == 0
         and len(ver_diffs) == 0
     )
@@ -2274,6 +2275,7 @@ def audit_freeze_record(
             "CHK-NEG-4WAY-MATCH": neg_res,
             "CHK-PUBLIC-FN-FREEZE": fn_res,
             "CHK-L3-OBLIGATION-MAP": obl_res,
+            "CHK-OWNERSHIP-CAP-L8": cap_post,
             "CHK-OWNERSHIP-CAP-L8-DIFF": {
                 "added_forbidden_keys": added_l8_forbidden,
                 "full_file_existing_violations": cap_post["failures"],
