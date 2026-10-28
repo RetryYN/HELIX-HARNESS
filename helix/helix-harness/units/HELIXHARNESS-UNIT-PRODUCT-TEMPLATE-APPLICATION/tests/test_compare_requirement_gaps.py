@@ -1,7 +1,6 @@
 """Unit tests for H009 L5#/functions/5 compare_requirement_gaps."""
 
 import copy
-import hashlib
 import json
 from pathlib import Path
 import sys
@@ -10,6 +9,12 @@ import unittest
 UNIT_ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_PATH = UNIT_ROOT / "tests" / "fixtures" / "application_input.json"
 sys.path.insert(0, str(UNIT_ROOT / "src"))
+from _requirement_gaps_test_helpers import (
+    _rename_all_identifiers,
+    _rename_id,
+    _replace_kind_tokens,
+    _same_ref_core,
+)  # noqa: E402
 
 from product_template_application import (  # noqa: E402
     compare_applicability,
@@ -27,20 +32,6 @@ from test_application_input import (  # noqa: E402
 
 with FIXTURE_PATH.open("r", encoding="utf-8") as _STREAM:
     _FIXTURE = json.load(_STREAM)
-
-
-def _replace_kind_tokens(obj, src_kind, dst_kind):
-    if isinstance(obj, dict):
-        return {k: _replace_kind_tokens(v, src_kind, dst_kind) for k, v in obj.items()}
-    if isinstance(obj, list):
-        return [_replace_kind_tokens(x, src_kind, dst_kind) for x in obj]
-    if isinstance(obj, str):
-        if obj == src_kind:
-            return dst_kind
-        suffix = f"-{src_kind}"
-        if obj.endswith(suffix):
-            return f"{obj[: -len(suffix)]}-{dst_kind}"
-    return obj
 
 
 def _resolve_recipe_raw(recipe_id):
@@ -76,41 +67,6 @@ def _resolve_recipe_raw(recipe_id):
         else:
             _set_path(raw, change["property_path"], change["value"])
     return raw
-
-
-def _rename_id(val):
-    return "id-" + hashlib.sha256(val.encode("utf-8")).hexdigest()[:12]
-
-
-def _rename_all_identifiers(obj):
-    """Recursively obfuscate all synthetic/fixture identifiers so no literal substring survives."""
-    if isinstance(obj, dict):
-        out = {}
-        for k, v in obj.items():
-            if k in ("identity", "owner", "actor", "decider"):
-                out[k] = _rename_id(v) if isinstance(v, str) else v
-            elif k in (
-                "field",
-                "template",
-                "application_contract",
-                "subject",
-            ) and isinstance(v, str):
-                out[k] = _rename_id(v)
-            else:
-                out[k] = _rename_all_identifiers(v)
-        return out
-    if isinstance(obj, list):
-        return [_rename_all_identifiers(x) for x in obj]
-    return obj
-
-
-def _same_ref_core(left, right):
-    if not isinstance(left, dict) or not isinstance(right, dict):
-        return False
-    for key in ("identity", "revision", "scope", "owner", "source_locator"):
-        if left.get(key) != right.get(key):
-            return False
-    return True
 
 
 class TestCompareRequirementGaps(unittest.TestCase):
