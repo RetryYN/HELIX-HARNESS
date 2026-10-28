@@ -128,7 +128,8 @@
             "predicate_ref": "R-hidden_input",
             "utilization": "held",
             "fixture_condition": "valid declared_input観測のundeclared read参照がinput_contract_refのrequired input集合に含まれない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-F01-NEG-02",
@@ -143,7 +144,8 @@
             "predicate_ref": "R-hidden_input",
             "utilization": "held",
             "fixture_condition": "valid declared_input観測のundeclared read参照がinput_contract_refのrequired input集合に含まれない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-F01-NEG-03",
@@ -158,7 +160,8 @@
             "predicate_ref": "R-hidden_dependency",
             "utilization": "held",
             "fixture_condition": "valid runtime_dependency観測のundeclared required_refがruntime_binding_requirementsに含まれない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-F01-NEG-04",
@@ -173,7 +176,8 @@
             "predicate_ref": "R-hidden_dependency",
             "utilization": "held",
             "fixture_condition": "valid runtime_dependency観測のundeclared required_refがruntime_binding_requirementsに含まれない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-F01-NEG-05",
@@ -188,7 +192,8 @@
             "predicate_ref": "R-meaning_mismatch",
             "utilization": "unproven",
             "fixture_condition": "qualified052 comparisonが同宣言入力に対してdifferentで、差分根拠が未宣言sourceに束縛されている。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-F01-NEG-06",
@@ -203,7 +208,8 @@
             "predicate_ref": "R-scope_expansion",
             "utilization": "rejected",
             "fixture_condition": "valid parent_scope観測がweb_scopeで対象親011 scope外の成果を含む。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F01-NEG-06"
         }
       ],
       "execution_state": "not_executed",
@@ -239,7 +245,8 @@
             "predicate_ref": "R-axis_substitution",
             "utilization": "held",
             "fixture_condition": "requested契約版の値が版根拠ではなくStage/version_target/maturity参照から供給されている境界観測を照合。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-F02-NEG-02",
@@ -254,7 +261,8 @@
             "predicate_ref": "R-unsupported_contract",
             "utilization": "held",
             "fixture_condition": "requested/resolved contract版が異なり、当該contract pairのowner-qualified MappingBodyが無い。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-F02-NEG-03",
@@ -269,7 +277,8 @@
             "predicate_ref": "R-dependency_unknown",
             "utilization": "held",
             "fixture_condition": "required dependencyのobserved_refがmissing/unknown。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-F02-NEG-04",
@@ -284,7 +293,8 @@
             "predicate_ref": "R-dependency_mismatch",
             "utilization": "held",
             "fixture_condition": "required dependencyのrequested/observed revision pairがvalid MappingBody.allowed_revision_pairsに無い。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-F02-NEG-05",
@@ -299,7 +309,8 @@
             "predicate_ref": "R-stale_binding",
             "utilization": "held",
             "fixture_condition": "contract/configuration対応Resolution.state=stale。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-F02-NEG-06",
@@ -314,7 +325,8 @@
             "predicate_ref": "R-capability_mismatch",
             "utilization": "rejected",
             "fixture_condition": "input.binding.capability_nameとvalid ContractBody.capability_nameの不一致。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F02-NEG-06"
         }
       ],
       "execution_state": "not_executed",
@@ -349,7 +361,8 @@
             "predicate_ref": "R-authority_missing",
             "utilization": "held",
             "fixture_condition": "required action/resourceについてauthority owner判断Refがmissing。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-F03-NEG-02",
@@ -364,7 +377,8 @@
             "predicate_ref": "R-isolation_mismatch",
             "utilization": "rejected",
             "fixture_condition": "AuthorityBody又はvalid access観測のproject/tenant/environmentがcurrent bindingと異なる。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-F03-NEG-03",
@@ -379,7 +393,8 @@
             "predicate_ref": "R-internal_shared_dependency",
             "utilization": "held",
             "fixture_condition": "valid runtime_dependency観測がhelix_internal_sharedかつcallerに必須である。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-F03-NEG-04",
@@ -394,7 +409,8 @@
             "predicate_ref": "R-authority_unverified",
             "utilization": "held",
             "fixture_condition": "authority判断のissuer/qualificationを正当ownerの根拠へ解決できない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-F03-NEG-05",
@@ -409,7 +425,8 @@
             "predicate_ref": "R-authority_stale",
             "utilization": "rejected",
             "fixture_condition": "authority validity/revocation観測が失効又は元scope不適合。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-F03-NEG-06",
@@ -424,7 +441,8 @@
             "predicate_ref": "R-unauthorized_effect",
             "utilization": "rejected",
             "fixture_condition": "valid effect観測のresource/actionが許可対象外でobserved_applied。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F03-NEG-06"
         }
       ],
       "execution_state": "not_executed",
@@ -461,7 +479,8 @@
             "predicate_ref": "R-progress_result_conflation",
             "utilization": "unproven",
             "fixture_condition": "qualified result_claimがprogress endedだけをsuccess根拠にする。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-F04-NEG-02",
@@ -476,7 +495,8 @@
             "predicate_ref": "R-evidence_cross_binding",
             "utilization": "unproven",
             "fixture_condition": "headerのnonnull binding memberがcurrent Bindingと不一致。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-F04-NEG-03",
@@ -491,7 +511,8 @@
             "predicate_ref": "R-correlation_missing",
             "utilization": "unproven",
             "fixture_condition": "観測header EvidenceBinding.correlation_idがnull。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-F04-NEG-04",
@@ -506,7 +527,8 @@
             "predicate_ref": "R-evidence_cross_binding",
             "utilization": "unproven",
             "fixture_condition": "headerのnonnull binding memberがcurrent Bindingと不一致。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-F04-NEG-05",
@@ -521,7 +543,8 @@
             "predicate_ref": "R-unproven_persistence",
             "utilization": "unproven",
             "fixture_condition": "保存がrequiredなのにrecord subject/binding一致receiptが無く、表示又はresult successを保存根拠にする。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-F04-NEG-06",
@@ -536,7 +559,8 @@
             "predicate_ref": "R-result_unproven",
             "utilization": "unproven",
             "fixture_condition": "reported successのrequired意味output根拠が空又はexit0だけで未成立。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F04-NEG-06"
         }
       ],
       "execution_state": "not_executed",
@@ -571,7 +595,8 @@
             "predicate_ref": "R-checkpoint_missing",
             "utilization": "held",
             "fixture_condition": "resumeの記録済みcheckpoint又は同subject/origin binding保存receiptがmissing。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-02",
@@ -586,7 +611,8 @@
             "predicate_ref": "R-resume_identity_conflict",
             "utilization": "rejected",
             "fixture_condition": "origin/currentのattempt条件又はcall/input/scope/契約/相関/意味キー条件が不一致。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-03",
@@ -601,7 +627,8 @@
             "predicate_ref": "R-expiry_success",
             "utilization": "held",
             "fixture_condition": "now>=expiryかつqualified result_claimが対象call全体successを主張。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-04",
@@ -616,7 +643,8 @@
             "predicate_ref": "R-stop_unobserved",
             "utilization": "held",
             "fixture_condition": "stop ACKが有るが実停止ownerのsource_refsが未解決又は無い。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-05",
@@ -631,7 +659,8 @@
             "predicate_ref": "R-duplicate_effect_risk",
             "utilization": "held",
             "fixture_condition": "resume origin作用にunobserved stepが有り、そのstepを再候補に要求。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-06",
@@ -646,7 +675,8 @@
             "predicate_ref": "R-deadline_substitution",
             "utilization": "held",
             "fixture_condition": "origin deadlineと供給deadlineが異なり正当continuation根拠が無い。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-06"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-07",
@@ -661,7 +691,8 @@
             "predicate_ref": "R-unproven_execution",
             "utilization": "unproven",
             "fixture_condition": "qualified execution_claimが052 same又は局所greenを実exactly-once receipt根拠にしている。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-07"
         },
         {
           "id": "HARNESS-L8-011-F05-NEG-08",
@@ -676,7 +707,8 @@
             "predicate_ref": "R-configuration_drift",
             "utilization": "held",
             "fixture_condition": "resume current configuration_refがorigin checkpoint構成と不一致。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-F05-NEG-08"
         }
       ],
       "execution_state": "not_executed",
@@ -712,7 +744,8 @@
             "predicate_ref": "R-observation_missing",
             "utilization": "unproven",
             "fixture_condition": "effect_planのrequired stepに資格付き実観測Refが無く、宣言/hashしかない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-01"
         },
         {
           "id": "HARNESS-L8-011-N01-NEG-02",
@@ -727,7 +760,8 @@
             "predicate_ref": "R-observation_insufficient",
             "utilization": "unproven",
             "fixture_condition": "必要実境界のsource qualificationがmock/局所scopeで、実作用/未作用のscopeを覆わない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-02"
         },
         {
           "id": "HARNESS-L8-011-N01-NEG-03",
@@ -742,7 +776,8 @@
             "predicate_ref": "R-partial_success",
             "utilization": "unproven",
             "fixture_condition": "qualified result_claimが一部のみ完了したeffect_planを全体successと主張。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-03"
         },
         {
           "id": "HARNESS-L8-011-N01-NEG-04",
@@ -757,7 +792,8 @@
             "predicate_ref": "R-absence_blindness",
             "utilization": "unproven",
             "fixture_condition": "effect unobserved又は観測不能なrequired resourceを、valid result_claimがobserved_not_appliedへ変換したと示す。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-04"
         },
         {
           "id": "HARNESS-L8-011-N01-NEG-05",
@@ -772,7 +808,8 @@
             "predicate_ref": "R-observation_insufficient",
             "utilization": "unproven",
             "fixture_condition": "必要実境界のsource qualificationがmock/局所scopeで、実作用/未作用のscopeを覆わない。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-05"
         },
         {
           "id": "HARNESS-L8-011-N01-NEG-06",
@@ -787,7 +824,8 @@
             "predicate_ref": "R-coverage_shrink",
             "utilization": "unproven",
             "fixture_condition": "valid result_claimの観測被覆集合がeffect_plan全required stepから未完stepを除き全体成立を主張。"
-          }
+          },
+          "integration_case_ref": "HARNESS-L9-011-N01-NEG-06"
         }
       ],
       "execution_state": "not_executed",
