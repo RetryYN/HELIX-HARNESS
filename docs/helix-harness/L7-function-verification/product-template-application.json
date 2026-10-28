@@ -86,7 +86,94 @@
         "path": "docs/governance/audits/tdd/h009-b01-checker-reconcile-2026-10-28.json",
         "pointer": "/target_bindings/public_functions/0"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "stopped_tdd_history_candidates": [
+        {
+          "candidate_commit": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+          "candidate_kind": "mixed_src_test_fixture_candidate",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src",
+            "fixture",
+            "test"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/__init__.py",
+              "category": "src",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/46"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+              "category": "src",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/47"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+              "category": "fixture",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/48"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_application_input.py",
+              "category": "test",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/49"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/46",
+            "#/source_pins/47",
+            "#/source_pins/48",
+            "#/source_pins/49"
+          ],
+          "stop_reason_ja": "src/__init__.py・公開wrapper src/product_template_application.py・fixture・test_application_input.pyを同時追加しており、test-onlyのRed commitにならない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        },
+        {
+          "candidate_commit": "78d0c44f2fc102acf029101a2a893899c55c843b",
+          "candidate_kind": "src_only_candidate_without_test_only_red",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_validation.py",
+              "category": "src",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/50"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/51"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/50",
+            "#/source_pins/51"
+          ],
+          "stop_reason_ja": "変更fileはsrcのみ（src/application_validation.py・src/product_template_application.py）だが、先行候補7905fffa2b687ff8a1a30895d46f9bf9f0e9e380がsrc・fixture・test混在でtest-onlyのRed commitでないため、Red→Greenの組として確定しない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        }
+      ],
+      "tdd_history_stop_reason_ja": "導入候補commitがsrc・test・fixtureを同一commitで変更しており、test-onlyのRed commitを確定できないため、TDD履歴を推測で埋めずに停止する。",
+      "tdd_history_owner": "HARNESS-CORE",
+      "tdd_history_resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）",
+      "source_pin_refs": [
+        "#/source_pins/46",
+        "#/source_pins/47",
+        "#/source_pins/48",
+        "#/source_pins/49",
+        "#/source_pins/50",
+        "#/source_pins/51"
+      ]
     },
     {
       "id": "HARNESS-L7-009-FN01-compare_required_axes",
@@ -117,7 +204,127 @@
         "path": "docs/governance/audits/tdd/h009-f01-checker-reconcile-2026-10-28.json",
         "pointer": "/target_bindings/public_functions/0"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "stopped_tdd_history_candidates": [
+        {
+          "candidate_commit": "378ffac61a75b0a0eb6fe9d24b7287a7afd4b86a",
+          "candidate_kind": "mixed_src_test_fixture_candidate",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src",
+            "fixture",
+            "test"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+              "category": "src",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/52"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/53"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+              "category": "fixture",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/54"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_required_axes.py",
+              "category": "test",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/55"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/52",
+            "#/source_pins/53",
+            "#/source_pins/54",
+            "#/source_pins/55"
+          ],
+          "stop_reason_ja": "src/application_required_axes.py・公開wrapper src/product_template_application.py・fixture・test_compare_required_axes.pyを同時変更しており、test-onlyのRed commitにならない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        },
+        {
+          "candidate_commit": "c79bb4c943032b7aaceaa6426b5e75ed072d50b3",
+          "candidate_kind": "mixed_src_test_fixture_candidate",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src",
+            "fixture",
+            "test"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/56"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+              "category": "fixture",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/57"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_required_axes.py",
+              "category": "test",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/58"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/56",
+            "#/source_pins/57",
+            "#/source_pins/58"
+          ],
+          "stop_reason_ja": "test rewriteでもsrc/application_required_axes.py・fixture・test_compare_required_axes.pyを同時変更しており、test-onlyのRed commitにならない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        },
+        {
+          "candidate_commit": "d32c5d7adf6e80df12a30f77ca1573c47de0cb94",
+          "candidate_kind": "src_only_candidate_without_test_only_red",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/59"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/59"
+          ],
+          "stop_reason_ja": "変更fileはsrcのみ（src/application_required_axes.py）だが、先行候補378ffac61a75b0a0eb6fe9d24b7287a7afd4b86aと後続候補c79bb4c943032b7aaceaa6426b5e75ed072d50b3がいずれもsrc・fixture・test混在でtest-onlyのRed commitを特定できないため、Red→Greenの組として確定しない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        }
+      ],
+      "tdd_history_stop_reason_ja": "導入候補commitがsrc・test・fixtureを同一commitで変更しており、test-onlyのRed commitを確定できないため、TDD履歴を推測で埋めずに停止する。",
+      "tdd_history_owner": "HARNESS-CORE",
+      "tdd_history_resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）",
+      "source_pin_refs": [
+        "#/source_pins/52",
+        "#/source_pins/53",
+        "#/source_pins/54",
+        "#/source_pins/55",
+        "#/source_pins/56",
+        "#/source_pins/57",
+        "#/source_pins/58",
+        "#/source_pins/59"
+      ]
     },
     {
       "id": "HARNESS-L7-009-FN02-compare_candidate_universe",
@@ -152,7 +359,86 @@
         "path": "docs/governance/audits/tdd/h009-f02a-checker-reconcile-2026-10-28.json",
         "pointer": "/target_bindings/public_functions/0"
       },
-      "execution_state": "not_executed"
+      "execution_state": "not_executed",
+      "stopped_tdd_history_candidates": [
+        {
+          "candidate_commit": "ce92723c63c9dce5862b6dbc2312c90fdf38c714",
+          "candidate_kind": "mixed_src_test_fixture_candidate",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src",
+            "fixture",
+            "test"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
+              "category": "src",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/60"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/61"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+              "category": "fixture",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/62"
+            },
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_candidate_universe.py",
+              "category": "test",
+              "change_status": "A",
+              "source_pin_ref": "#/source_pins/63"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/60",
+            "#/source_pins/61",
+            "#/source_pins/62",
+            "#/source_pins/63"
+          ],
+          "stop_reason_ja": "src/application_candidate_universe.py・公開wrapper src/product_template_application.py・fixture・test_compare_candidate_universe.pyを同時変更しており、test-onlyのRed commitにならない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        },
+        {
+          "candidate_commit": "60ea4680e24a85b6941583615b6c8af5590a3144",
+          "candidate_kind": "src_only_candidate_without_test_only_red",
+          "status": "stopped_red_not_test_only",
+          "changed_file_categories": [
+            "src"
+          ],
+          "changed_files": [
+            {
+              "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
+              "category": "src",
+              "change_status": "M",
+              "source_pin_ref": "#/source_pins/64"
+            }
+          ],
+          "source_pin_refs": [
+            "#/source_pins/64"
+          ],
+          "stop_reason_ja": "変更fileはsrcのみ（src/application_candidate_universe.py）だが、先行候補ce92723c63c9dce5862b6dbc2312c90fdf38c714がsrc・fixture・test混在でtest-onlyのRed commitでないため、Red→Greenの組として確定しない。",
+          "owner": "HARNESS-CORE",
+          "resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）"
+        }
+      ],
+      "tdd_history_stop_reason_ja": "導入候補commitがsrc・test・fixtureを同一commitで変更しており、test-onlyのRed commitを確定できないため、TDD履歴を推測で埋めずに停止する。",
+      "tdd_history_owner": "HARNESS-CORE",
+      "tdd_history_resumption_condition_ja": "未定（L5 /implementation_preparation/nextとL8 /evidence_contract/real_executionはL6関数設計/L7対検証のtest/oracle凍結→実装前Red→最小実装→Greenを下流・各ownerへ戻すと定めるが、既存src実装が存在する関数に対して後からtest-onlyのRed commitを追加して履歴を再構成する再開条件はL5/L8に規定されていないため未定とする）",
+      "source_pin_refs": [
+        "#/source_pins/60",
+        "#/source_pins/61",
+        "#/source_pins/62",
+        "#/source_pins/63",
+        "#/source_pins/64"
+      ]
     },
     {
       "id": "HARNESS-L7-009-FN08-compare_semantic_equivalence",
@@ -1561,7 +1847,121 @@
       "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
       "file_sha256": "b2f0ff6524a4b76463ba86b8819b29064cb745cdb7ff2bf2408dec62721b3e7d",
       "selected_pointers": []
+    },
+    {
+      "revision": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/__init__.py",
+      "file_sha256": "eb46fda67a8ca5abd8e729e8c3ba204bed3ce68011be45f3a9d39221347158b2",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "d9f5458e64d4cc1f467716534605728139e386b838a7fb9211507c03ef1804d6",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "70c0e4be3471ef571cdaf1496e81bca9644ccc1845ef59bd3c51a3ab44655ee9",
+      "role": "stopped_tdd_candidate_fixture"
+    },
+    {
+      "revision": "7905fffa2b687ff8a1a30895d46f9bf9f0e9e380",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_application_input.py",
+      "file_sha256": "d6a76876d76bedca27a62adee3328d9042a0c05fc90a46dd59d71ff044284dac",
+      "role": "stopped_tdd_candidate_test"
+    },
+    {
+      "revision": "78d0c44f2fc102acf029101a2a893899c55c843b",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_validation.py",
+      "file_sha256": "1f7616db2ee5cdb8c0c7403d989b78f85ea04e19a463fff7d42f3a1ff824d64e",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "78d0c44f2fc102acf029101a2a893899c55c843b",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "c5f77bd70c1407b4b473cd792661f8ea98dcb1964974e9b681c445db102a2bc8",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "378ffac61a75b0a0eb6fe9d24b7287a7afd4b86a",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+      "file_sha256": "7ed65ac19ee11a126e0ba8b566785f4c52565f3e910d9442854fc1b6e1a12ef1",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "378ffac61a75b0a0eb6fe9d24b7287a7afd4b86a",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "316b26da0896754de54d9ccd9f0300950f5b06403e62d17832ff6b2792366b05",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "378ffac61a75b0a0eb6fe9d24b7287a7afd4b86a",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "eddbdf0b1a5bca021b1adddad0cbce203b503dfdb759db3961a5022790287050",
+      "role": "stopped_tdd_candidate_fixture"
+    },
+    {
+      "revision": "378ffac61a75b0a0eb6fe9d24b7287a7afd4b86a",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_required_axes.py",
+      "file_sha256": "94e09f8b734e4f72999f7ed38520a10460f1642aafd50f36017d2fe43dcc7c9d",
+      "role": "stopped_tdd_candidate_test"
+    },
+    {
+      "revision": "c79bb4c943032b7aaceaa6426b5e75ed072d50b3",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+      "file_sha256": "065003d9aecea572afe41dc46210e177f71dbc33378507d87d7278773e5462aa",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "c79bb4c943032b7aaceaa6426b5e75ed072d50b3",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "33ebccea74d0cb707972490a74af94e6577a73d78d569604a9d8657e725cbfb0",
+      "role": "stopped_tdd_candidate_fixture"
+    },
+    {
+      "revision": "c79bb4c943032b7aaceaa6426b5e75ed072d50b3",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_required_axes.py",
+      "file_sha256": "8e5f84f6a99d756ee555a704f6ca06744b5ae2e09a53317d9b9d75c8a8bd917a",
+      "role": "stopped_tdd_candidate_test"
+    },
+    {
+      "revision": "d32c5d7adf6e80df12a30f77ca1573c47de0cb94",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_required_axes.py",
+      "file_sha256": "5b72533fc1176e899ca2bb45608b536905dd183060209a879ce7a90d6108952a",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "ce92723c63c9dce5862b6dbc2312c90fdf38c714",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
+      "file_sha256": "5210dcd96f9e3141404ba8b558484e2367926788525145c82c782a7814840711",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "ce92723c63c9dce5862b6dbc2312c90fdf38c714",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/product_template_application.py",
+      "file_sha256": "30e468f694afdea550df5c63166128fbdd985d8d9d0ec260cac06a894c0c0cf1",
+      "role": "stopped_tdd_candidate_src"
+    },
+    {
+      "revision": "ce92723c63c9dce5862b6dbc2312c90fdf38c714",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/fixtures/application_input.json",
+      "file_sha256": "5a63ccca3e8266550f47dd5a2dc2f9ea4e962cf7a581906b0aa8909f6cb72660",
+      "role": "stopped_tdd_candidate_fixture"
+    },
+    {
+      "revision": "ce92723c63c9dce5862b6dbc2312c90fdf38c714",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_candidate_universe.py",
+      "file_sha256": "3775999b8203c175b2150ed8cdb40e7926a1ec42d3694365d3eabe0ad5dc1786",
+      "role": "stopped_tdd_candidate_test"
+    },
+    {
+      "revision": "60ea4680e24a85b6941583615b6c8af5590a3144",
+      "path": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/src/application_candidate_universe.py",
+      "file_sha256": "c4931b2bbb026bc609a40c7d32882fd8544fff2504f75ee3c322e7e5b35bcd4a",
+      "role": "stopped_tdd_candidate_src"
     }
   ],
-  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。"
+  "source_pin_ref_rule_ja": "FN03〜FN07の各行source_pin_refsは同じ文書のsource_pinsを指す。L5/L8 pinは確認対象HEADの全file SHAと選択pointer集合を束縛し、各freeze pinはrecord追加commitの全file SHAとtarget binding pointerを束縛する。 FN07の現行source_pinsはL5 /functions/7、L8 /normal_function_oracles/7とfreeze unit_case_pointers（/cases/8、/cases/9、/additional_unit_cases/17、/additional_unit_cases/18）を束縛し、freeze source pinは記録追加commitのrevision・全file SHA・target binding pointerを束縛する。 FN08のTDD source_pin_refsは、Red test/fixture、Red基点の公開entrypoint、Green source moduleおよび公開entrypointのcommit別whole-file SHAを束縛する。 FN08のlocator_intermediate_observationは、Red testをcore実装・locator保持前のsource commitへ適用した単独FAILの再現可能なcommit・command・観測結果と、同revisionのsource whole-file SHAを結ぶ。 FN11のsource_pinsはtest_only追加commit・Red test-only commit・Green src-only commitの各file SHAを束縛し、tdd_history_refsは各test_only追加・Red時点の直接test名を列挙する。test_only履歴entryはred_commit/green_commitをnullとする。 FN00〜FN02のsource_pin_refsは、stopped_tdd_history_candidatesが記録する導入候補commitの各変更file（src/test/fixture）のwhole-file SHAを束縛する。"
 }
