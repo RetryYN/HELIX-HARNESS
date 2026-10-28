@@ -2911,6 +2911,53 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(baseline["passed"], baseline["failures"])
         self.assertEqual(baseline["counts"], {"L4": 85, "L9": 85, "L8": 85, "L5": 85})
 
+        malformed = copy.deepcopy(layers["L8"])
+        malformed["additional_cases"][40] = None
+        malformed_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=malformed,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(malformed_result["passed"])
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "additional_case_row"
+                and failure.get("index") == 40
+                and failure.get("reason") == "expected_object"
+                for failure in malformed_result["failures"]
+            ),
+            malformed_result["failures"],
+        )
+
+        malformed_container = copy.deepcopy(layers["L8"])
+        malformed_container["additional_cases"] = None
+        malformed_container_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=malformed_container,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(malformed_container_result["passed"])
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "additional_cases"
+                and failure.get("reason") == "expected_array"
+                for failure in malformed_container_result["failures"]
+            ),
+            malformed_container_result["failures"],
+        )
+
         # ADD-41/42 are deliberately referenced through L8 additional_cases;
         # the ordinary cases[] copies stay unchanged to exercise the missing
         # consumer path that previously allowed this state drift.
@@ -3367,6 +3414,47 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
             repaired_copy, aliases, loaded
         )
         self.assertTrue(repaired_result["passed"], repaired_result["failures"])
+        self.assertEqual(
+            repaired_result["coverage_completeness"], "not_independently_verified"
+        )
+
+        # The criterion is prose, not an independent machine-readable child
+        # roster. Local reference validity cannot prove that this selected list
+        # contains every intended child, so report that limit explicitly.
+        reduced_child_lists = copy.deepcopy(repaired_copy)
+        reduced_child_lists["basic_pair_freeze_row"]["l4_subcontracts"] = (
+            reduced_child_lists["basic_pair_freeze_row"]["l4_subcontracts"][:1]
+        )
+        reduced_child_lists["basic_pair_freeze_row"]["l9_sub_oracles"] = (
+            reduced_child_lists["basic_pair_freeze_row"]["l9_sub_oracles"][:1]
+        )
+        reduced_result = dvc._check_basic_pair_freeze_row(
+            reduced_child_lists, aliases, loaded
+        )
+        self.assertTrue(reduced_result["passed"], reduced_result["failures"])
+        self.assertEqual(
+            reduced_result["verification_scope"], "declared_reference_integrity_only"
+        )
+        self.assertEqual(
+            reduced_result["coverage_completeness"], "not_independently_verified"
+        )
+
+        empty_dispositions = copy.deepcopy(repaired_copy)
+        empty_dispositions["remaining_dispositions"] = []
+        empty_dispositions["disposition_counts"] = {
+            "A_count": 0,
+            "B_count": 0,
+            "C_count": 0,
+        }
+        empty_dispositions["basic_pair_freeze_row"]["remaining_A_count"] = 0
+        empty_result = dvc._check_basic_pair_freeze_row(
+            empty_dispositions, aliases, loaded
+        )
+        self.assertTrue(empty_result["passed"], empty_result["failures"])
+        self.assertIn(
+            "remaining_disposition_target_basis_and_reentry_semantics",
+            empty_result["scope_limits"],
+        )
 
         mutated = copy.deepcopy(repaired_copy)
         mutated["basic_pair_freeze_row"]["l9_sub_oracles"][1]["count"] += 1
@@ -3487,6 +3575,75 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         self.assertTrue(
             audited["mechanical_match"],
             audited["comparison_with_existing_record"],
+        )
+        self.assertEqual(
+            audited["checks"]["CHK-PAIR-BIDIR-ID"]["basic_pair_freeze_row"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
+        )
+
+        for bad_aliases in ([], None, "L4=bad"):
+            bad_alias_manifest = copy.deepcopy(manifest)
+            bad_alias_manifest["path_aliases"] = bad_aliases
+            with tempfile.TemporaryDirectory() as tmpdir:
+                bad_alias_path = Path(tmpdir) / "bad-alias-freeze.json"
+                bad_alias_path.write_text(
+                    json.dumps(bad_alias_manifest, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                bad_alias_audit = dvc.audit_freeze_record(
+                    REPO_ROOT, str(bad_alias_path), use_creation_commit=False
+                )
+            self.assertFalse(bad_alias_audit["mechanical_match"])
+            pointer_check = bad_alias_audit["checks"]["CHK-JSON-POINTER"]
+            self.assertFalse(pointer_check["passed"])
+            self.assertTrue(
+                any(
+                    failure.get("field") == "path_aliases"
+                    and failure.get("error") == "expected_object"
+                    for failure in pointer_check["failures"]
+                ),
+                pointer_check["failures"],
+            )
+
+        # The record has no independent child/disposition inventory. A new
+        # generated record must state that limitation instead of representing
+        # local consistency as proof of complete semantic coverage.
+        reduced_manifest = copy.deepcopy(manifest)
+        row = reduced_manifest["basic_pair_freeze_row"]
+        row["l4_subcontracts"] = row["l4_subcontracts"][:1]
+        row["l9_sub_oracles"] = row["l9_sub_oracles"][:1]
+        reduced_manifest["remaining_dispositions"] = []
+        reduced_manifest["disposition_counts"] = {
+            "A_count": 0,
+            "B_count": 0,
+            "C_count": 0,
+        }
+        generated_reduced = dvc.generate_freeze_record(
+            REPO_ROOT, reduced_manifest, base_rev=current_head, head_rev=current_head
+        )
+        self.assertEqual(
+            generated_reduced["basic_pair_freeze_verification"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            reduced_path = Path(tmpdir) / "reduced-basic-pair-freeze.json"
+            reduced_path.write_text(
+                json.dumps(generated_reduced, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            reduced_audit = dvc.audit_freeze_record(
+                REPO_ROOT, str(reduced_path), use_creation_commit=False
+            )
+        self.assertTrue(reduced_audit["mechanical_match"])
+        self.assertEqual(
+            reduced_audit["checks"]["CHK-PAIR-BIDIR-ID"]["basic_pair_freeze_row"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
         )
 
         broken = copy.deepcopy(manifest)

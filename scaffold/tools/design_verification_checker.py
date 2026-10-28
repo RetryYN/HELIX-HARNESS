@@ -3030,7 +3030,18 @@ def check_neg_4way_match(
     # four-layer code counterpart establishes scope.  A partially represented
     # row is an error; a wholly unrelated/private or non-negative row is not.
     l8_additional = l8_data.get("additional_cases", [])
-    if isinstance(l8_additional, list):
+    if not isinstance(l8_additional, list):
+        if "additional_cases" in l8_data:
+            failures.append(
+                {
+                    "check": "CHK-NEG-4WAY-MATCH",
+                    "case_id": "<none>",
+                    "attribute": "additional_cases",
+                    "reason": "expected_array",
+                    "actual_type": type(l8_additional).__name__,
+                }
+            )
+    else:
         l5_functions = l5_data.get("functions", [])
 
         def _rows_by_key(rows: Any, key: str) -> dict[str, list[dict[str, Any]]]:
@@ -3045,8 +3056,18 @@ def check_neg_4way_match(
         l5_contracts_by_id = _rows_by_key(l5_contracts, "id")
         l4_contracts_by_id = _rows_by_key(l4_contracts, "id")
         l9_cases_by_design = _rows_by_key(l9_cases, "design_ref")
-        for additional in l8_additional:
+        for additional_index, additional in enumerate(l8_additional):
             if not isinstance(additional, dict):
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": "<unknown>",
+                        "attribute": "additional_case_row",
+                        "index": additional_index,
+                        "reason": "expected_object",
+                        "actual_type": type(additional).__name__,
+                    }
+                )
                 continue
             code = additional.get("code")
             state = additional.get("expected_state")
@@ -4054,6 +4075,36 @@ def compute_head_entity_counts(
     return counts
 
 
+def _validated_path_aliases(value: Any) -> tuple[dict[str, str], list[dict[str, Any]]]:
+    """Return usable aliases and structured failures for malformed alias maps."""
+    if not isinstance(value, dict):
+        return {}, [
+            {
+                "check": "CHK-JSON-POINTER",
+                "field": "path_aliases",
+                "error": "expected_object",
+                "actual_type": type(value).__name__,
+            }
+        ]
+    aliases: dict[str, str] = {}
+    failures: list[dict[str, Any]] = []
+    for key, path in value.items():
+        if not isinstance(key, str) or not key or not isinstance(path, str) or not path:
+            failures.append(
+                {
+                    "check": "CHK-JSON-POINTER",
+                    "field": "path_aliases",
+                    "alias": key if isinstance(key, str) else None,
+                    "error": "invalid_alias_name_or_path",
+                    "alias_type": type(key).__name__,
+                    "path_type": type(path).__name__,
+                }
+            )
+            continue
+        aliases[key] = path
+    return aliases, failures
+
+
 def _check_basic_pair_freeze_row(
     record: dict[str, Any],
     aliases: dict[str, str],
@@ -4434,6 +4485,15 @@ def _check_basic_pair_freeze_row(
     return {
         "passed": not failures,
         "failures": failures,
+        # This check validates declared references and local counts only. The
+        # source prose has no independent, machine-readable roster for the
+        # selected L4/L9 children or the meaning/completeness of dispositions.
+        "verification_scope": "declared_reference_integrity_only",
+        "coverage_completeness": "not_independently_verified",
+        "scope_limits": [
+            "l4_subcontracts_and_l9_sub_oracles_selection_completeness",
+            "remaining_disposition_target_basis_and_reentry_semantics",
+        ],
         "pair_ids": {
             key: value.get("id")
             for key, value in resolved.items()
@@ -4475,7 +4535,10 @@ def audit_freeze_record(
         repo_root, freeze_path, rec_data, base_rev=base_rev, head_rev=head_rev
     )
 
-    aliases = rec_data.get("path_aliases", {})
+    aliases, alias_failures = _validated_path_aliases(rec_data.get("path_aliases", {}))
+    if alias_failures:
+        ptr_res["failures"].extend(alias_failures)
+        ptr_res["passed"] = False
     l4_path = aliases.get("L4", "")
     l9_path = aliases.get("L9", "")
     l5_path = aliases.get("L5", "")
@@ -4634,9 +4697,18 @@ def audit_freeze_record(
             "failure_count": len(basic_pair_audit["failures"])
             if basic_pair_audit
             else 0,
+            "verification_scope": basic_pair_audit["verification_scope"]
+            if basic_pair_audit
+            else "declared_reference_integrity_only",
+            "coverage_completeness": basic_pair_audit["coverage_completeness"]
+            if basic_pair_audit
+            else "not_independently_verified",
+            "scope_limits": basic_pair_audit["scope_limits"]
+            if basic_pair_audit
+            else [],
         }
         for key, actual in computed_basic.items():
-            if recorded_basic.get(key) != actual:
+            if key in recorded_basic and recorded_basic.get(key) != actual:
                 ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
                     "recorded": recorded_basic.get(key),
                     "computed": actual,
@@ -4741,7 +4813,7 @@ def generate_freeze_record(
             timespec="seconds"
         )
 
-    aliases = out.get("path_aliases", {})
+    aliases, alias_failures = _validated_path_aliases(out.get("path_aliases", {}))
     pins: dict[str, str] = {}
     modified_aliases = set(out.get("modified_aliases", ["L5", "L8"]))
     for alias, rel_path in aliases.items():
@@ -4778,6 +4850,9 @@ def generate_freeze_record(
         base_rev=eff_base,
         head_rev=head_rev,
     )
+    if alias_failures:
+        ptr_res["failures"].extend(alias_failures)
+        ptr_res["passed"] = False
     neg_res = check_neg_4way_match(
         repo_root,
         l4_path,
@@ -4893,6 +4968,9 @@ def generate_freeze_record(
             "subcontract_count": basic_result["subcontract_count"],
             "suboracle_count": basic_result["suboracle_count"],
             "failure_count": len(basic_result["failures"]),
+            "verification_scope": basic_result["verification_scope"],
+            "coverage_completeness": basic_result["coverage_completeness"],
+            "scope_limits": basic_result["scope_limits"],
         }
         ver["basic_pair_freeze_passed"] = basic_result["passed"]
         ver["basic_pair_freeze_failure_count"] = len(basic_result["failures"])
