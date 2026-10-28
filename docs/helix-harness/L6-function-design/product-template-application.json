@@ -1,0 +1,220 @@
+{
+  "document_id": "HARNESS-L6-009-PRODUCT-TEMPLATE-APPLICATION",
+  "layer": "L6",
+  "paired_document": "docs/helix-harness/L7-function-verification/product-template-application.json",
+  "parent": "HARNESS-L2-009",
+  "status": "candidate_design_only",
+  "authority_effect": "none",
+  "scope_ja": "WR89で凍結済みの公開関数5件だけをL5契約・L8 oracle・L7対へ結ぶ。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "source_pins": [
+    {
+      "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "fc641fb62189b6664386ba688f3c95250e2cc2a16a1a7b295ed56102bcd036b3"
+    },
+    {
+      "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "39196e34b55106befc020563a0511e35624195d7af1402f2b8f988c0e0366df0"
+    },
+    {
+      "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3"
+    },
+    {
+      "path": "docs/helix-harness/L9-integration-verification/product-template-application.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/business-requirements.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "25e0e8f8ee8acbc220483ab6854155218193861086cf757f933e2cd6263f444d"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "a3b907cdc316117d4684632f9a1cbf36125eb6e6172f9cfc286060617583d7be"
+    },
+    {
+      "path": "docs/helix-harness/L3-requirements/nfr-grade.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "b62f823d1c2edfd192ba8aeccb71159f3322aab17fa991d7ceb85712d8fbd486"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/business-verification.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "3a9982ef2e59e3d027ce8e5cd72b9879b6224a8e4ea74b657bf9b67c90934319"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/functional-verification.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "fc58ad2268746d7924ac9be33e8f3f75e6d3c2cc619e27fbc1ddc34edd065cb2"
+    },
+    {
+      "path": "docs/helix-harness/L10-verification/nfr-verification.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "578b1b368bdd3878ade8fcab77cc47320b8acc1d2d967af1708b333bea2f36b0"
+    },
+    {
+      "path": "docs/governance/audits/tdd/h009-b01-checker-reconcile-2026-10-28.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "97953e21b967af8cff564cd7343c8420441de06d026038ef042581b61ea733c4"
+    },
+    {
+      "path": "docs/governance/audits/tdd/h009-b02-checker-reconcile-2026-10-28.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "ec0c5d23f98362e4860a28cd57b3ff929f67472b9a7fcb1fa96c4ef838068f1e"
+    },
+    {
+      "path": "docs/governance/audits/tdd/h009-f01-checker-reconcile-2026-10-28.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "fe8e83b931eaab071a17cb00e508be9f09efd1fcbe7774d5f7ed7acc497ec9a7"
+    },
+    {
+      "path": "docs/governance/audits/tdd/h009-f02a-checker-reconcile-2026-10-28.json",
+      "revision": "c478577ab66829df8530be9fe12f97e1b370369d",
+      "sha256": "9b5eccc9b3c963672ccb2d15e462a72ab67f5844d2f9ac1b1afd078d8ce41b94"
+    }
+  ],
+  "legacy_rederivation": {
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "lines": "36-60,81-92",
+    "reuse_mode": "semantic_rederivation",
+    "keep_ja": "exact set、unknown適用、理由付きN/A、不足Backflow、義務/対oracle/版traceの照合。",
+    "change_ja": "BRAIN汎用契約、CORE製品適用、OS使用記録を分離し、旧planner/schema/runtimeを移植しない。"
+  },
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65-101",
+    "ids": [
+      "UTW-014",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "meaning_ja": "欠損を空集合へ変換する、部分不足をaggregateで隠す、自己申告/件数/hashで完了扱いする失敗を避ける。"
+  },
+  "quality_basis_ref": {
+    "path": "docs/governance/design-verification-quality-assurance.md",
+    "locator": "§3 L6/L7"
+  },
+  "contracts": [
+    {
+      "id": "HARNESS-L6-009-FN00-validate_application_input",
+      "symbol": "validate_application_input",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/0"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN00-validate_application_input",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/0"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-b01-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "decode invalid と decode済み意味unknownを区別し、原input・source・qualification状態を保持する。副作用なし。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/0"
+      }
+    },
+    {
+      "id": "HARNESS-L6-009-FN01-compare_required_axes",
+      "symbol": "compare_required_axes",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/1"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN01-compare_required_axes",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/1"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-f01-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "required axisのstateと原source/revisionを区別する。非選択操作専用の入力を常時gateへ昇格しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/1"
+      }
+    },
+    {
+      "id": "HARNESS-L6-009-FN02-compare_candidate_universe",
+      "symbol": "compare_candidate_universe",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/2"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN02-compare_candidate_universe",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/2"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-f02a-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "candidate/proposed setとOS selected/used setを分け、欠落・明示empty・unknownと候補のdisposition理由を区別する。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/2"
+      }
+    },
+    {
+      "id": "HARNESS-L6-009-FN08-compare_semantic_equivalence",
+      "symbol": "compare_semantic_equivalence",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/8"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN08-compare_semantic_equivalence",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/normal_function_oracles/8"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-b02-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "同意味条件でAI/言語/project表示名だけから義務を増減せず、domain/risk/scope差と未評価を保持する。件数/hashで意味同等性を成立させない。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/3"
+      }
+    },
+    {
+      "id": "HARNESS-L6-009-FN11-project_cross_design_candidate_refs",
+      "symbol": "project_cross_design_candidate_refs",
+      "l5_contract_ref": {
+        "path": "docs/helix-harness/L5-detail-design/product-template-application.json",
+        "pointer": "/functions/11"
+      },
+      "oracle_ref": "HARNESS-L7-009-FN11-project_cross_design_candidate_refs",
+      "l8_oracle_ref": {
+        "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+        "pointer": "/cross_design_candidate_ref_projection"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/h009-f01-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "state_event_meaning_ja": "原presenceと参照対応を投影し、qualification/selectionは成立させない。effect=none。",
+      "l7_test_ref": {
+        "path": "docs/helix-harness/L7-function-verification/product-template-application.json",
+        "pointer": "/cases/4"
+      }
+    }
+  ],
+  "out_of_scope_ja": [
+    "B01 O3-O5はD-H009-T1aでretained_not_frozenのまま維持し、本対で凍結・実装しない。",
+    "reentry D-H009-T3bは対象外。",
+    "runtime、正式wire schema、実source資格、OS登録/使用、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
+  ]
+}
