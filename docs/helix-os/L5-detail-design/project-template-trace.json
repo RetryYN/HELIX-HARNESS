@@ -5598,6 +5598,28 @@
         ]
       }
     ],
+    "schema_extension_basis": {
+      "baseline_source": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "36d3b8e25c4fb0fb45a081b0395f7d357d5ec0e0",
+        "whole_file_sha256": "be5052acb26625928207a4d8538a2c9db342c223b2c699c660b5735ad86a360b",
+        "json_pointer": "/type_contract/types/B02RecordInput/fields"
+      },
+      "extension_source": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "revision": "6c7778c85f254289f062bdc92910e057dec7872d",
+        "whole_file_sha256": "d026cd208f77b379188a76d635e12ff38877f1c7e97784fa13f7b264c277d39a",
+        "json_pointer": "/type_contract/types/B02RecordInput/fields",
+        "source_value": {
+          "HARNESS_process_contract_ref": "Field<Ref>",
+          "HARNESS_application_contract_ref": "Field<Ref>",
+          "selected_set_record_ref": "Field<Ref>",
+          "used_set_record_ref": "Field<Ref>"
+        }
+      },
+      "baseline_limit_ja": "36d3b8e2のsource_valueはB02RecordInputの8個のlogical Field memberだけを含む。snapshot自体にwire_codec_contractも今回追加する4 memberも存在しないため、過去snapshotから4 memberやformal schemaを再導出したとは扱わない。",
+      "current_derivation_ja": "現在のtype_contract/types/B02RecordInput/fieldsに明示されたHARNESS_process_contract_ref、HARNESS_application_contract_ref、selected_set_record_ref、used_set_record_refを、現行のclosed wire schemaへ各々optional propertyとして追加する。Field<Ref>のmissing/supplied(null)/supplied(Ref)をwireで保持するため各propertyはRefまたはnullを受け、追加propertyは引き続き拒否する。"
+    },
     "legacy_comparison": [
       {
         "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
@@ -6826,6 +6848,46 @@
               "anyOf": [
                 {
                   "$ref": "#/$defs/B02RecordInputQworkstate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "HARNESS_process_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "HARNESS_application_contract_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selected_set_record_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "used_set_record_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/Ref"
                 },
                 {
                   "type": "null"
