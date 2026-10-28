@@ -262,6 +262,7 @@
     "matched_case_count": 106,
     "failure_count": 0,
     "passed": true,
+    "parent_link_mode": "legacy",
     "comparison_mode": "legacy_casewise_four_layer",
     "comparison_scope": {
       "case_rows": [
@@ -487,6 +488,7 @@
       "negative_4way": {
         "check": "CHK-NEG-4WAY-MATCH",
         "comparison_mode": "legacy_casewise_four_layer",
+        "parent_link_mode": "legacy",
         "comparison_scope": {
           "case_rows": [
             "L4.contracts[].negative_classifications",
@@ -723,6 +725,7 @@
           }
         }
       ]
-    }
+    },
+    "negative_4way_parent_link_mode": "legacy"
   }
 }
