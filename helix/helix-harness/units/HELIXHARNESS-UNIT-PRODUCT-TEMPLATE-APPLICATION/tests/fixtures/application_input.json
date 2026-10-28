@@ -69,6 +69,28 @@
       "/cases/6/negative_cases",
       "/additional_unit_cases/14",
       "/additional_unit_cases/15"
+    ],
+    "d4d68f13_fn6_recipe_pointers": [
+      "/fixture_contract/additional_input_recipes/15"
+    ],
+    "current_l8_fn6_pointers": [
+      "/normal_function_oracles/6",
+      "/cases/7/negative_cases",
+      "/additional_unit_cases/16"
+    ],
+    "d4d68f13_fn7_recipe_pointers": [
+      "/fixture_contract/additional_support_fixtures/1",
+      "/fixture_contract/additional_support_fixtures/2",
+      "/fixture_contract/additional_support_fixtures/3",
+      "/fixture_contract/additional_input_recipes/20",
+      "/fixture_contract/additional_input_recipes/21"
+    ],
+    "current_l8_fn7_pointers": [
+      "/normal_function_oracles/7",
+      "/cases/8/negative_cases",
+      "/cases/9/negative_cases",
+      "/additional_unit_cases/17",
+      "/additional_unit_cases/18"
     ]
   },
   "normal_input": {
