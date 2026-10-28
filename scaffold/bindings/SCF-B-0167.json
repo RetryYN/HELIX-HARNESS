@@ -10,8 +10,8 @@
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "df5c00fde741e84e703daeac4b1e70bff4e76486ca4da29696ea04f2bde0c06c",
-      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeで、case key省略時のclass参照導出・明示不一致の検出を含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeで、case key省略時のclass参照導出・明示不一致の検出を含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。 WR170追補: record_kind=basic_pair_l4_l9_freeze_recordの機械照合と、legacy CHK-NEGのL8 additional_cases負状態照合を含む。"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",

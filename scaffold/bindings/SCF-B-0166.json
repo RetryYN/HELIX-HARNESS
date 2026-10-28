@@ -6,12 +6,12 @@
   "product": "HELIX-HARNESS",
   "owner_candidate": "HELIX-HARNESS 設計検証・ペア凍結・品質保証機構（HARNESS-L3-001/003/004/005/015/040/041/056、HELIXOS-L3-020）",
   "state": "registered",
-  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『いつまで手書きを増やすのか』『品質保証どうやってるのか謎』への対応順序決定）およびPR #3774でmergeされた docs/governance/design-verification-quality-assurance.md のSection 2〜6に基づき、Section 4の機械検査（CHK-PIN-SHA256、CHK-JSON-POINTER、CHK-PAIR-BIDIR-ID、CHK-OWNERSHIP-CAP-L8L9/L3L6、CHK-NEG-4WAY-MATCHの従来casewise modeと明示equivalence-class mode、およびCHK-PUBLIC-FN-FREEZE・CHK-L3-OBLIGATION-MAPの機械出力部分と判断待ち出力）とSection 5の凍結記録の機械生成・既存凍結記録4件の照合監査をscaffold/tools/に実装する。正式な新世代CI（HARNESS005/OS020 L4〜L7）が構築されるまでの仮設checkerとしてScaffold Binding下で管理する。",
+  "reason": "Issue #3510 comment 6457411605（2026-10-28 PO指摘『いつまで手書きを増やすのか』『品質保証どうやってるのか謎』への対応順序決定）およびPR #3774でmergeされた docs/governance/design-verification-quality-assurance.md のSection 2〜6に基づき、Section 4の機械検査（CHK-PIN-SHA256、CHK-JSON-POINTER、CHK-PAIR-BIDIR-ID、CHK-OWNERSHIP-CAP-L8L9/L3L6、CHK-NEG-4WAY-MATCHの従来casewise modeと明示equivalence-class mode、およびCHK-PUBLIC-FN-FREEZE・CHK-L3-OBLIGATION-MAPの機械出力部分と判断待ち出力）とSection 5の凍結記録の機械生成・既存凍結記録4件の照合監査をscaffold/tools/に実装する。正式な新世代CI（HARNESS005/OS020 L4〜L7）が構築されるまでの仮設checkerとしてScaffold Binding下で管理する。 WR170-CHECKER-BASIC-PAIR-FREEZEで、L8 additional_casesのoperation-specific negative stateをfunction/contract/parentで4層照合し、record_kind=basic_pair_l4_l9_freeze_recordの対象pointer・child・dispositionを既存CHK出力内で再計算する。既存freeze JSONは変更しない。",
   "upstream": [
     {
       "path": "docs/governance/design-verification-quality-assurance.md",
-      "sha256": "df5c00fde741e84e703daeac4b1e70bff4e76486ca4da29696ea04f2bde0c06c",
-      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeを含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。"
+      "sha256": "f5751e236dc073fe67114c1fcb4b0f64b3d746290b25d75b61e60a08e3c99c85",
+      "note": "正本仕様（Section 2〜6）：L3〜L10各層の合格条件・持ち物上限・Section 4の機械検査仕様（CHK-NEGのlegacy casewise modeと明示class modeを含む）・Section 5の手書き凍結廃止とchecker再計算・Section 6.1の承認済みL3/L10導出元。 WR170追補: record_kind=basic_pair_l4_l9_freeze_recordの機械照合（宣言済み参照の整合性。child選択網羅性とremaining disposition意味は独立review対象）と、legacy CHK-NEGのL8 additional_cases負状態照合を含む。"
     },
     {
       "path": "docs/helix-harness/L3-requirements/functional-requirements.json",
@@ -69,7 +69,9 @@
     "docs/governance/design-verification-quality-assurance.md Section 6.1の承認済みL3/L10契約とSection 2.1の旧HELIX asset（行番号付き）を導出元として記録し、同書に無い検査・gate・容量上限（byte/KB長の一律FAIL）を追加しない。",
     "CHK-PIN-SHA256（pre=base/post=headおよび固定revisionに対するUTF-8 bytes SHA-256・canonical JSON SHA-256再計算）、CHK-JSON-POINTER（alias展開・0..N範囲展開・removed sidecarのunpinned参照拒否を含むpointer解決）、CHK-PAIR-BIDIR-ID（L3↔L10、L4↔L9、L5↔L8の双方向1対1対応と/completion/*件数一致）、CHK-OWNERSHIP-CAP-L8L9/L3L6（禁止材料keyのみ）、CHK-NEG-4WAY-MATCHはmarkerなしの従来casewise照合を保持し、明示modeではL4全failure_classifications/L5全failure_rulesをsourceにした6要素class key（分類、ordered finding_codes、backflow_owner、axis、state、型付きowner_ref）を検査する。negative caseは各層のnegative_class_refでclassに所属し、caseのaxis/state/side-effect値は省略時にclassから導出、明示時にのみ厳密照合する。L8 expected_propertyは任意のclass投影で、存在時のみclass一致を検査する。L9 compact_whole_observationはcase固有system oracleとして保持する。L8↔L9のcase属性とL5 rule/function/contract参照は従来どおり照合する。L5は同じ6-keyを持つ複数ruleを拒否し、L4 case-bound rowは一意のL5 rule ownerとL4親contractの明示結線を照合する。L8はfunction ownerまたはcontract-only traceを照合し、明示されたrequirement/source traceの型と値を独立に確かめる。両modeと比較scopeを区別してSection 4のJSON形式で出力し、明示modeの参照はL5同一文書内のstring IDに限る。",
     "CHK-PUBLIC-FN-FREEZEおよびCHK-L3-OBLIGATION-MAPは、機械で判定できる部分（公開関数/private detailの対象列挙、L5#/functions/*とvisibility検査、L8 unit_case_refs/oracle_ref解決、private detailの戻し先/結線先有無、O1..OnのL5/L8 pointer非空、blocking_a_count==0、未参照branch一覧）を出力し、人の意味判断が要る部分はhuman_judgment_pendingとして明示出力する。",
-    "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、negative照合結果・mode/scope、head_entity_counts、verification）の一致・差分を出力できること。明示modeは供給されたL8/L9 case集合のみ照合し、独立rosterがないため両層同時に省略されたcaseの網羅を主張しない。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。"
+    "既存の手書き凍結記録4件（os002-t2a、h009-f02a、os002-t1c、os002-t2b）を書き換えずにcheck-freezeで監査し、機械項目（pins、pointer解決、negative照合結果・mode/scope、head_entity_counts、verification）の一致・差分を出力できること。明示modeは供給されたL8/L9 case集合のみ照合し、独立rosterがないため両層同時に省略されたcaseの網羅を主張しない。新規凍結記録は宣言項目（Section 5区分A）からgenerate-freezeで機械項目（区分B）を再計算生成する。",
+    "markerなしlegacy CHK-NEG-4WAY-MATCHでは、L8 additional_casesのcode付きnegative expected_stateを、L5 function/unit_case_refs/contract refs・L4/L9 parent links・L5 handler/codeで一意に対応付けて4層state照合する。部分counterpart・曖昧joinはFAIL、全層nonnegative/private/detailは比較対象外とする。",
+    "record_kind=basic_pair_l4_l9_freeze_recordではCHK-PAIR-BIDIR-ID出力内でL3/L10・L4/L9の記録pointer/ID/逆リンクと、宣言済みL4 subcontract/L9 sub-oracle child pointer/ID/name/count、disposition class/count集計を対象文書から再計算する。自然言語criterionとの照合、選択child一覧の網羅性、remaining dispositionのtarget/basis/reentry意味は独立検証しない。summaryにverification_scope=declared_reference_integrity_only・coverage_completeness=not_independently_verifiedを記録し、機械合格が意味review・authority・承認状態を生成・置換しないことを明示する。"
   ],
   "connections": {
     "consumers": [
@@ -135,7 +137,11 @@
       "TICKET-CI-PROFILE-DEFERRAL: missing ci_profile_deferral_ticket and missing required subfield",
       "CHK-NEG-4WAY-MATCH explicit mode: L8 negative cases omit class-projection fields and inherit the six-part key from negative_class_ref plus L5 rule and L9 observation (PASS).",
       "CHK-NEG-4WAY-MATCH explicit mode: present case projection disagrees with any of the six class-key components or zero-side-effect invariant (FAIL); explicit null/partial projection also fails, while an omitted optional projection passes.",
-      "CHK-NEG-4WAY-MATCH explicit mode: unresolved or invalid negative_class_ref fails closed; it is not rescued by another reference."
+      "CHK-NEG-4WAY-MATCH explicit mode: unresolved or invalid negative_class_ref fails closed; it is not rescued by another reference.",
+      "CHK-NEG-4WAY-MATCH legacy mode: L8 additional_cases ADD-41/42のstate不一致、部分counterpart欠落、function scope欠落、別parentの同codeは誤結合しない。ADD-50はfunction_refがあってもstate=absent・unit_case_refs/four-layer negative counterpartなしのため比較対象外。",
+      "CHK-PAIR-BIDIR-ID basic-pair record:実L3/L10とL4/L9 pointers/ID/links、child ID/name/count、remaining disposition集計の再計算、および凍結recordの不一致を修復せずFAILとして出す。",
+      "WR170 fail-closed extension: applicable L8 additional expected_state set to absent, unknown string, null, or deleted is detected via code/typed four-layer counterpart; duplicate L5 contract ID, L4 parent ID, and L9 design_ref cannot be silently last-write-wins.",
+      "WR170 basic-pair fail-closed extension: malformed selected-parent pointer, empty L4/L9 child array, unknown freeze_state, and non-object/unknown disposition class fail structurally rather than crash or disappear from counts."
     ]
   },
   "replacement": {

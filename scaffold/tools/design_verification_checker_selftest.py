@@ -2887,6 +2887,868 @@ class DesignVerificationCheckerSelfTest(unittest.TestCase):
         )
         self.assertEqual(os002_missing_upper_values["L5"], os002_layers["L5"])
 
+    def test_legacy_additional_negative_state_and_scope_are_four_layer_checked(
+        self,
+    ) -> None:
+        paths = {
+            "L4": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "L5": "docs/helix-os/L5-detail-design/project-template-trace.json",
+            "L8": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+            "L9": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+        }
+        layers = {key: dvc._load_json(REPO_ROOT, path) for key, path in paths.items()}
+        baseline = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(baseline["passed"], baseline["failures"])
+        self.assertEqual(baseline["counts"], {"L4": 85, "L9": 85, "L8": 85, "L5": 85})
+
+        malformed = copy.deepcopy(layers["L8"])
+        malformed["additional_cases"][40] = None
+        malformed_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=malformed,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(malformed_result["passed"])
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "additional_case_row"
+                and failure.get("index") == 40
+                and failure.get("reason") == "expected_object"
+                for failure in malformed_result["failures"]
+            ),
+            malformed_result["failures"],
+        )
+
+        malformed_container = copy.deepcopy(layers["L8"])
+        malformed_container["additional_cases"] = None
+        malformed_container_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=malformed_container,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(malformed_container_result["passed"])
+        self.assertTrue(
+            any(
+                failure.get("attribute") == "additional_cases"
+                and failure.get("reason") == "expected_array"
+                for failure in malformed_container_result["failures"]
+            ),
+            malformed_container_result["failures"],
+        )
+
+        # ADD-41/42 are deliberately referenced through L8 additional_cases;
+        # the ordinary cases[] copies stay unchanged to exercise the missing
+        # consumer path that previously allowed this state drift.
+        changed = copy.deepcopy(layers["L8"])
+        changed["additional_cases"][40]["expected_state"] = "unknown"
+        mutated = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=changed,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(mutated["passed"])
+        state_failure = next(
+            failure
+            for failure in mutated["failures"]
+            if failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+            and failure.get("attribute") == "expected_state"
+        )
+        self.assertEqual(
+            {key: state_failure[key] for key in ("L4", "L8", "L9", "L5")},
+            {"L4": "missing", "L8": "unknown", "L9": "missing", "L5": "missing"},
+        )
+        for bad_state in ("absent", "not-a-state", None):
+            invalid_state = copy.deepcopy(layers["L8"])
+            invalid_state["additional_cases"][40]["expected_state"] = bad_state
+            result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=invalid_state,
+                l5_data=layers["L5"],
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "expected_state"
+                    and failure.get("error") == "missing_or_invalid_negative_state"
+                    for failure in result["failures"]
+                )
+            )
+        # Container-valued states used to reach set membership and raise
+        # TypeError. They must be reported as structured invalid states.
+        for bad_state in ([], {}):
+            invalid_state = copy.deepcopy(layers["L8"])
+            invalid_state["additional_cases"][40]["expected_state"] = bad_state
+            result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=invalid_state,
+                l5_data=layers["L5"],
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "expected_state"
+                    and failure.get("error") == "missing_or_invalid_negative_state"
+                    for failure in result["failures"]
+                )
+            )
+        # A valid but unrelated code still reaches comparison via ADD-41's
+        # declared negative state and L5 unit_case_refs, then fails because
+        # the corresponding four-layer rows are absent.
+        unrelated_code_mutation = copy.deepcopy(layers["L8"])
+        unrelated_code_mutation["additional_cases"][40]["code"] = (
+            "unrelated_negative_code"
+        )
+        unrelated_code_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=unrelated_code_mutation,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            all(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "additional_case_counterpart"
+                    and failure.get("layer") == layer
+                    and failure.get("actual_count") == 0
+                    for failure in unrelated_code_result["failures"]
+                )
+                for layer in ("L4", "L9", "L5")
+            )
+        )
+        self.assertFalse(unrelated_code_result["passed"])
+        deleted_state = copy.deepcopy(layers["L8"])
+        del deleted_state["additional_cases"][40]["expected_state"]
+        deleted_state_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=deleted_state,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "expected_state"
+                and failure.get("error") == "missing_or_invalid_negative_state"
+                for failure in deleted_state_result["failures"]
+            )
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in baseline["failures"]
+            )
+        )
+        add50 = layers["L8"]["additional_cases"][49]
+        self.assertEqual(add50["expected_state"], "absent")
+        self.assertEqual(
+            add50["function_ref"], "HELIXOS-L5-002-compare_operation_dependencies"
+        )
+        add50_function = next(
+            row
+            for row in layers["L5"]["functions"]
+            if row["id"] == add50["function_ref"]
+        )
+        self.assertNotIn(add50["id"], add50_function["unit_case_refs"])
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L5"]["failure_rules"]
+            )
+        )
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L4"]["contracts"][1]["negative_classifications"]
+            )
+        )
+        self.assertFalse(
+            any(
+                row.get("code") == add50["code"]
+                for row in layers["L9"]["cases"][1]["negative_cases"]
+            )
+        )
+
+        missing_function = copy.deepcopy(layers["L8"])
+        missing_function["additional_cases"][40]["function_ref"] = None
+        missing_function_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=missing_function,
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_function_scope"
+                for failure in missing_function_result["failures"]
+            )
+        )
+
+        # Malformed owner references are reported as failures instead of
+        # escaping through dict lookup/hash operations.
+        owner_function = next(
+            row
+            for row in layers["L5"]["functions"]
+            if "HELIXOS-L8-002-ADD-41" in row["unit_case_refs"]
+        )
+        for malformed_refs, expected_attribute in (
+            ({"bad": "shape"}, "invalid_l5_function_contract_refs"),
+            ([{}], "invalid_l5_contract_ref_type"),
+        ):
+            malformed_l5 = copy.deepcopy(layers["L5"])
+            next(
+                row
+                for row in malformed_l5["functions"]
+                if row["id"] == owner_function["id"]
+            )["contract_refs"] = malformed_refs
+            malformed_result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=layers["L8"],
+                l5_data=malformed_l5,
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == expected_attribute
+                    for failure in malformed_result["failures"]
+                )
+            )
+
+        for malformed_design_ref in ([], {}):
+            malformed_l5 = copy.deepcopy(layers["L5"])
+            owner_contract_id = owner_function["contract_refs"][0]
+            next(
+                row
+                for row in malformed_l5["contracts"]
+                if row["id"] == owner_contract_id
+            )["basic_design_ref"] = malformed_design_ref
+            malformed_result = dvc.check_neg_4way_match(
+                REPO_ROOT,
+                paths["L4"],
+                paths["L9"],
+                paths["L8"],
+                paths["L5"],
+                l4_data=layers["L4"],
+                l9_data=layers["L9"],
+                l8_data=layers["L8"],
+                l5_data=malformed_l5,
+            )
+            self.assertTrue(
+                any(
+                    failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                    and failure.get("attribute") == "invalid_l5_basic_design_ref"
+                    for failure in malformed_result["failures"]
+                )
+            )
+
+        # An identical code in a different L4 parent cannot replace or add a
+        # counterpart for ADD-41's L5 function/contract scope.
+        unrelated_code = copy.deepcopy(layers["L4"])
+        unrelated_code["contracts"][0]["negative_classifications"].append(
+            {"code": "harness_process_contract_ref_missing", "state": "missing"}
+        )
+        unrelated_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=unrelated_code,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_counterpart"
+                and failure.get("layer") == "L4"
+                and failure.get("actual_count") != 1
+                for failure in unrelated_result["failures"]
+            )
+        )
+
+        # ADD-50 is a nonnegative private operation. Reusing an unrelated
+        # negative code must not make its row part of the four-layer scope.
+        private_code_collision = copy.deepcopy(layers["L8"])
+        collision_code = "private_scope_collision"
+        private_code_collision["additional_cases"][49]["code"] = collision_code
+        private_collision_l4 = copy.deepcopy(layers["L4"])
+        private_collision_l4["contracts"][0]["negative_classifications"].append(
+            {"code": collision_code, "state": "missing"}
+        )
+        collision_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=private_collision_l4,
+            l9_data=layers["L9"],
+            l8_data=private_code_collision,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in collision_result["failures"]
+            )
+        )
+        private_missing_code = copy.deepcopy(layers["L8"])
+        del private_missing_code["additional_cases"][49]["code"]
+        private_missing_code_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=private_missing_code,
+            l5_data=layers["L5"],
+        )
+        self.assertFalse(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-50"
+                for failure in private_missing_code_result["failures"]
+            )
+        )
+
+        duplicate_l5_contract = copy.deepcopy(layers["L5"])
+        duplicate_l5_contract["contracts"].append(
+            copy.deepcopy(duplicate_l5_contract["contracts"][1])
+        )
+        duplicate_l5_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=duplicate_l5_contract,
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l5_contract_ref_ambiguity"
+                for failure in duplicate_l5_result["failures"]
+            )
+        )
+
+        duplicate_l4_parent = copy.deepcopy(layers["L4"])
+        duplicate_l4_parent["contracts"].append(
+            copy.deepcopy(duplicate_l4_parent["contracts"][1])
+        )
+        duplicate_l4_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=duplicate_l4_parent,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l4_parent_ref_ambiguity"
+                for failure in duplicate_l4_result["failures"]
+            )
+        )
+
+        duplicate_l9_parent = copy.deepcopy(layers["L9"])
+        duplicate_l9_parent["cases"].append(
+            copy.deepcopy(duplicate_l9_parent["cases"][1])
+        )
+        duplicate_l9_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=layers["L4"],
+            l9_data=duplicate_l9_parent,
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "l9_design_ref_ambiguity"
+                for failure in duplicate_l9_result["failures"]
+            )
+        )
+
+        # A partial counterpart must fail closed, not silently reclassify the
+        # additional row as out of scope. ADD-50 remains explicitly nonnegative
+        # and is therefore outside this negative four-layer comparison.
+        partial = copy.deepcopy(layers["L4"])
+        partial["contracts"][1]["negative_classifications"] = [
+            row
+            for row in partial["contracts"][1]["negative_classifications"]
+            if row.get("code") != "harness_process_contract_ref_missing"
+        ]
+        partial_result = dvc.check_neg_4way_match(
+            REPO_ROOT,
+            paths["L4"],
+            paths["L9"],
+            paths["L8"],
+            paths["L5"],
+            l4_data=partial,
+            l9_data=layers["L9"],
+            l8_data=layers["L8"],
+            l5_data=layers["L5"],
+        )
+        self.assertTrue(
+            any(
+                failure.get("case_id") == "HELIXOS-L8-002-ADD-41"
+                and failure.get("attribute") == "additional_case_counterpart"
+                and failure.get("layer") == "L4"
+                for failure in partial_result["failures"]
+            )
+        )
+
+    def test_basic_pair_freeze_row_recomputes_ids_links_counts_and_dispositions(
+        self,
+    ) -> None:
+        freeze_path = (
+            "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json"
+        )
+        record = dvc._load_json(REPO_ROOT, freeze_path)
+        aliases = record["path_aliases"]
+        loaded = {
+            alias: dvc._load_json(REPO_ROOT, path)
+            for alias, path in aliases.items()
+            if alias in {"L3F", "L10F", "L4", "L9"}
+        }
+        result = dvc._check_basic_pair_freeze_row(record, aliases, loaded)
+        # The immutable source freeze has one stale declared sub-oracle ID;
+        # audit must report it rather than repair or reinterpret the record.
+        mismatch = [
+            failure
+            for failure in result["failures"]
+            if failure.get("error") == "child_id_mismatch"
+        ]
+        self.assertEqual(len(mismatch), 1)
+        self.assertEqual(
+            mismatch[0]["pointer"],
+            "L9#/cases/5/selected_source_member_correspondence_oracles",
+        )
+        self.assertEqual(
+            mismatch[0]["expected_id"],
+            "HELIXOS-L9-002-F04-SOURCE-MEMBER-CORRESPONDENCE",
+        )
+        self.assertEqual(mismatch[0]["actual_id"], "HELIXOS-L9-002-F04-SOURCE-MEMBERS")
+
+        repaired_copy = copy.deepcopy(record)
+        repaired_copy["basic_pair_freeze_row"]["l9_sub_oracles"][4]["id"] = mismatch[0][
+            "actual_id"
+        ]
+        repaired_result = dvc._check_basic_pair_freeze_row(
+            repaired_copy, aliases, loaded
+        )
+        self.assertTrue(repaired_result["passed"], repaired_result["failures"])
+        self.assertEqual(
+            repaired_result["coverage_completeness"], "not_independently_verified"
+        )
+
+        # The criterion is prose, not an independent machine-readable child
+        # roster. Local reference validity cannot prove that this selected list
+        # contains every intended child, so report that limit explicitly.
+        reduced_child_lists = copy.deepcopy(repaired_copy)
+        reduced_child_lists["basic_pair_freeze_row"]["l4_subcontracts"] = (
+            reduced_child_lists["basic_pair_freeze_row"]["l4_subcontracts"][:1]
+        )
+        reduced_child_lists["basic_pair_freeze_row"]["l9_sub_oracles"] = (
+            reduced_child_lists["basic_pair_freeze_row"]["l9_sub_oracles"][:1]
+        )
+        reduced_result = dvc._check_basic_pair_freeze_row(
+            reduced_child_lists, aliases, loaded
+        )
+        self.assertTrue(reduced_result["passed"], reduced_result["failures"])
+        self.assertEqual(
+            reduced_result["verification_scope"], "declared_reference_integrity_only"
+        )
+        self.assertEqual(
+            reduced_result["coverage_completeness"], "not_independently_verified"
+        )
+
+        empty_dispositions = copy.deepcopy(repaired_copy)
+        empty_dispositions["remaining_dispositions"] = []
+        empty_dispositions["disposition_counts"] = {
+            "A_count": 0,
+            "B_count": 0,
+            "C_count": 0,
+        }
+        empty_dispositions["basic_pair_freeze_row"]["remaining_A_count"] = 0
+        empty_result = dvc._check_basic_pair_freeze_row(
+            empty_dispositions, aliases, loaded
+        )
+        self.assertTrue(empty_result["passed"], empty_result["failures"])
+        self.assertIn(
+            "remaining_disposition_target_basis_and_reentry_semantics",
+            empty_result["scope_limits"],
+        )
+
+        mutated = copy.deepcopy(repaired_copy)
+        mutated["basic_pair_freeze_row"]["l9_sub_oracles"][1]["count"] += 1
+        mutated_result = dvc._check_basic_pair_freeze_row(mutated, aliases, loaded)
+        self.assertTrue(
+            any(
+                failure.get("error") == "child_count_mismatch"
+                for failure in mutated_result["failures"]
+            )
+        )
+
+        empty_child_refs = copy.deepcopy(repaired_copy)
+        empty_child_refs["basic_pair_freeze_row"]["l4_subcontracts"] = []
+        empty_child_refs["basic_pair_freeze_row"]["l9_sub_oracles"] = []
+        empty_result = dvc._check_basic_pair_freeze_row(
+            empty_child_refs, aliases, loaded
+        )
+        self.assertEqual(
+            sum(
+                failure.get("error") == "empty_required_array"
+                for failure in empty_result["failures"]
+            ),
+            2,
+        )
+
+        invalid_parent = copy.deepcopy(repaired_copy)
+        invalid_parent["basic_pair_freeze_row"]["l4_contract_pointer"] = (
+            "L4#/contracts/999"
+        )
+        invalid_parent_result = dvc._check_basic_pair_freeze_row(
+            invalid_parent, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "unresolved_or_non_object_pair_pointer"
+                for failure in invalid_parent_result["failures"]
+            )
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "child_pointer_outside_selected_parent"
+                for failure in invalid_parent_result["failures"]
+            )
+        )
+
+        unknown_state = copy.deepcopy(repaired_copy)
+        unknown_state["basic_pair_freeze_row"]["freeze_state"] = "frozen-ish"
+        unknown_state_result = dvc._check_basic_pair_freeze_row(
+            unknown_state, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "missing_or_unknown_freeze_state"
+                for failure in unknown_state_result["failures"]
+            )
+        )
+
+        unknown_class = copy.deepcopy(repaired_copy)
+        unknown_class["remaining_dispositions"][0]["class"] = "D"
+        unknown_class_result = dvc._check_basic_pair_freeze_row(
+            unknown_class, aliases, loaded
+        )
+        self.assertTrue(
+            any(
+                failure.get("error") == "invalid_disposition_class_or_row"
+                for failure in unknown_class_result["failures"]
+            )
+        )
+
+    def test_basic_pair_generate_and_audit_recompute_without_semantic_approval(
+        self,
+    ) -> None:
+        freeze_path = (
+            "docs/governance/audits/tdd/os002-b1-f04-basic-freeze-2026-10-28.json"
+        )
+        record = dvc._load_json(REPO_ROOT, freeze_path)
+        current_head = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True
+        ).strip()
+        manifest = copy.deepcopy(record)
+        for key in (
+            "pins",
+            "verification",
+            "basic_pair_freeze_verification",
+            "negative_case_4way_verification",
+            "pointer_resolution_summary",
+            "resolved_function_rows",
+            "head_entity_counts",
+        ):
+            manifest.pop(key, None)
+        manifest["source_main"] = current_head
+        manifest["request_base_sha"] = current_head
+        manifest["basic_pair_freeze_row"]["l9_sub_oracles"][4]["id"] = (
+            "HELIXOS-L9-002-F04-SOURCE-MEMBERS"
+        )
+        manifest["human_judgment_pending"] = [
+            {"status": "pending_human_semantic_review"}
+        ]
+
+        generated = dvc.generate_freeze_record(
+            REPO_ROOT, manifest, base_rev=current_head, head_rev=current_head
+        )
+        self.assertTrue(generated["basic_pair_freeze_verification"]["passed"])
+        self.assertEqual(generated["authority_effect"], "none")
+        self.assertEqual(
+            generated["human_judgment_pending"],
+            [{"status": "pending_human_semantic_review"}],
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            generated_path = Path(tmpdir) / "generated-basic-pair-freeze.json"
+            generated_path.write_text(
+                json.dumps(generated, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            audited = dvc.audit_freeze_record(
+                REPO_ROOT, str(generated_path), use_creation_commit=False
+            )
+        self.assertTrue(
+            audited["mechanical_match"],
+            audited["comparison_with_existing_record"],
+        )
+        self.assertEqual(
+            audited["checks"]["CHK-PAIR-BIDIR-ID"]["basic_pair_freeze_row"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
+        )
+
+        required_summary_fields = (
+            "passed",
+            "pair_ids",
+            "subcontract_count",
+            "suboracle_count",
+            "failure_count",
+        )
+        for missing_field in required_summary_fields:
+            malformed_summary = copy.deepcopy(generated)
+            del malformed_summary["basic_pair_freeze_verification"][missing_field]
+            with tempfile.TemporaryDirectory() as tmpdir:
+                malformed_path = Path(tmpdir) / "missing-summary-field.json"
+                malformed_path.write_text(
+                    json.dumps(malformed_summary, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                malformed_audit = dvc.audit_freeze_record(
+                    REPO_ROOT, str(malformed_path), use_creation_commit=False
+                )
+            self.assertFalse(malformed_audit["mechanical_match"])
+            diff_key = f"basic_pair_freeze_verification.{missing_field}"
+            self.assertIn(
+                diff_key,
+                malformed_audit["comparison_with_existing_record"][
+                    "verification_fields_diffs"
+                ],
+            )
+            self.assertEqual(
+                malformed_audit["comparison_with_existing_record"][
+                    "verification_fields_diffs"
+                ][diff_key]["error"],
+                "missing_required_basic_pair_summary_field",
+            )
+
+        missing_summary = copy.deepcopy(generated)
+        missing_summary.pop("basic_pair_freeze_verification")
+        with tempfile.TemporaryDirectory() as tmpdir:
+            missing_summary_path = Path(tmpdir) / "missing-summary.json"
+            missing_summary_path.write_text(
+                json.dumps(missing_summary, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            missing_summary_audit = dvc.audit_freeze_record(
+                REPO_ROOT, str(missing_summary_path), use_creation_commit=False
+            )
+        self.assertFalse(missing_summary_audit["mechanical_match"])
+        self.assertEqual(
+            missing_summary_audit["comparison_with_existing_record"][
+                "verification_fields_diffs"
+            ]["basic_pair_freeze_verification"]["error"],
+            "missing_or_invalid_basic_pair_summary",
+        )
+
+        for row_shape in ("missing", None, []):
+            malformed_row_manifest = copy.deepcopy(manifest)
+            if row_shape == "missing":
+                malformed_row_manifest.pop("basic_pair_freeze_row")
+            else:
+                malformed_row_manifest["basic_pair_freeze_row"] = row_shape
+            malformed_row_generated = dvc.generate_freeze_record(
+                REPO_ROOT,
+                malformed_row_manifest,
+                base_rev=current_head,
+                head_rev=current_head,
+            )
+            malformed_summary = malformed_row_generated[
+                "basic_pair_freeze_verification"
+            ]
+            self.assertFalse(malformed_summary["passed"])
+            self.assertGreater(malformed_summary["failure_count"], 0)
+            self.assertEqual(malformed_summary["pair_ids"], {})
+            with tempfile.TemporaryDirectory() as tmpdir:
+                malformed_row_path = Path(tmpdir) / "malformed-basic-pair-row.json"
+                malformed_row_path.write_text(
+                    json.dumps(malformed_row_generated, ensure_ascii=False, indent=2)
+                    + "\n",
+                    encoding="utf-8",
+                )
+                malformed_row_audit = dvc.audit_freeze_record(
+                    REPO_ROOT,
+                    str(malformed_row_path),
+                    use_creation_commit=False,
+                )
+            self.assertFalse(malformed_row_audit["mechanical_match"])
+            basic_pair_check = malformed_row_audit["checks"]["CHK-PAIR-BIDIR-ID"]
+            self.assertFalse(basic_pair_check["basic_pair_freeze_row"]["passed"])
+            self.assertTrue(
+                any(
+                    failure.get("error") == "missing_basic_pair_freeze_row"
+                    for failure in basic_pair_check["basic_pair_freeze_row"]["failures"]
+                )
+            )
+
+        for bad_aliases in ([], None, "L4=bad"):
+            bad_alias_manifest = copy.deepcopy(manifest)
+            bad_alias_manifest["path_aliases"] = bad_aliases
+            with tempfile.TemporaryDirectory() as tmpdir:
+                bad_alias_path = Path(tmpdir) / "bad-alias-freeze.json"
+                bad_alias_path.write_text(
+                    json.dumps(bad_alias_manifest, ensure_ascii=False, indent=2) + "\n",
+                    encoding="utf-8",
+                )
+                bad_alias_audit = dvc.audit_freeze_record(
+                    REPO_ROOT, str(bad_alias_path), use_creation_commit=False
+                )
+            self.assertFalse(bad_alias_audit["mechanical_match"])
+            pointer_check = bad_alias_audit["checks"]["CHK-JSON-POINTER"]
+            self.assertFalse(pointer_check["passed"])
+            self.assertTrue(
+                any(
+                    failure.get("field") == "path_aliases"
+                    and failure.get("error") == "expected_object"
+                    for failure in pointer_check["failures"]
+                ),
+                pointer_check["failures"],
+            )
+
+        # The record has no independent child/disposition inventory. A new
+        # generated record must state that limitation instead of representing
+        # local consistency as proof of complete semantic coverage.
+        reduced_manifest = copy.deepcopy(manifest)
+        row = reduced_manifest["basic_pair_freeze_row"]
+        row["l4_subcontracts"] = row["l4_subcontracts"][:1]
+        row["l9_sub_oracles"] = row["l9_sub_oracles"][:1]
+        reduced_manifest["remaining_dispositions"] = []
+        reduced_manifest["disposition_counts"] = {
+            "A_count": 0,
+            "B_count": 0,
+            "C_count": 0,
+        }
+        generated_reduced = dvc.generate_freeze_record(
+            REPO_ROOT, reduced_manifest, base_rev=current_head, head_rev=current_head
+        )
+        self.assertEqual(
+            generated_reduced["basic_pair_freeze_verification"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
+        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            reduced_path = Path(tmpdir) / "reduced-basic-pair-freeze.json"
+            reduced_path.write_text(
+                json.dumps(generated_reduced, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            reduced_audit = dvc.audit_freeze_record(
+                REPO_ROOT, str(reduced_path), use_creation_commit=False
+            )
+        self.assertTrue(reduced_audit["mechanical_match"])
+        self.assertEqual(
+            reduced_audit["checks"]["CHK-PAIR-BIDIR-ID"]["basic_pair_freeze_row"][
+                "coverage_completeness"
+            ],
+            "not_independently_verified",
+        )
+
+        broken = copy.deepcopy(manifest)
+        broken["basic_pair_freeze_row"]["l9_case_pointer"] = "L9#/cases/99"
+        bad_generation = dvc.generate_freeze_record(
+            REPO_ROOT, broken, base_rev=current_head, head_rev=current_head
+        )
+        self.assertFalse(bad_generation["basic_pair_freeze_verification"]["passed"])
+        self.assertGreater(
+            bad_generation["basic_pair_freeze_verification"]["failure_count"], 0
+        )
+
     def test_chk_public_fn_freeze_pass_and_mutation_fail(self) -> None:
         l5 = {
             "functions": [

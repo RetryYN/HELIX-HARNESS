@@ -3024,6 +3024,304 @@ def check_neg_4way_match(
             if case_ok:
                 matched_case_count += 1
 
+    # Some OS specifications keep additional operation-specific negative rows
+    # outside the ordinary L8 ``cases[].negative_cases`` array.  Compare those
+    # rows only when their typed L5 function/case membership or an existing
+    # four-layer code counterpart establishes scope.  A partially represented
+    # row is an error; a wholly unrelated/private or non-negative row is not.
+    l8_additional = l8_data.get("additional_cases", [])
+    if not isinstance(l8_additional, list):
+        if "additional_cases" in l8_data:
+            failures.append(
+                {
+                    "check": "CHK-NEG-4WAY-MATCH",
+                    "case_id": "<none>",
+                    "attribute": "additional_cases",
+                    "reason": "expected_array",
+                    "actual_type": type(l8_additional).__name__,
+                }
+            )
+    else:
+        l5_functions = l5_data.get("functions", [])
+
+        def _rows_by_key(rows: Any, key: str) -> dict[str, list[dict[str, Any]]]:
+            result: dict[str, list[dict[str, Any]]] = {}
+            if isinstance(rows, list):
+                for candidate in rows:
+                    value = candidate.get(key) if isinstance(candidate, dict) else None
+                    if isinstance(value, str):
+                        result.setdefault(value, []).append(candidate)
+            return result
+
+        l5_contracts_by_id = _rows_by_key(l5_contracts, "id")
+        l4_contracts_by_id = _rows_by_key(l4_contracts, "id")
+        l9_cases_by_design = _rows_by_key(l9_cases, "design_ref")
+        for additional_index, additional in enumerate(l8_additional):
+            if not isinstance(additional, dict):
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": "<unknown>",
+                        "attribute": "additional_case_row",
+                        "index": additional_index,
+                        "reason": "expected_object",
+                        "actual_type": type(additional).__name__,
+                    }
+                )
+                continue
+            code = additional.get("code")
+            state = additional.get("expected_state")
+            if not isinstance(code, str) or not code:
+                continue
+
+            case_id = additional.get("id") or code
+            function_ref = additional.get("function_ref")
+            function_matches = (
+                [
+                    row
+                    for row in l5_functions
+                    if isinstance(row, dict) and row.get("id") == function_ref
+                ]
+                if isinstance(l5_functions, list) and isinstance(function_ref, str)
+                else []
+            )
+            function = function_matches[0] if len(function_matches) == 1 else None
+            member_ids = function.get("unit_case_refs", []) if function else []
+            member_declares_case = (
+                isinstance(member_ids, list) and case_id in member_ids
+            )
+            case_owner_functions = (
+                [
+                    row
+                    for row in l5_functions
+                    if isinstance(row, dict)
+                    and isinstance(row.get("unit_case_refs"), list)
+                    and case_id in row["unit_case_refs"]
+                ]
+                if isinstance(l5_functions, list)
+                else []
+            )
+
+            # Candidate counterparts are scoped through the L5 function's
+            # declared contracts, then through L4/L9 parent links and the L5
+            # handler.  Code equality alone is insufficient to join rows.
+            scoped: dict[str, list[dict[str, Any]]] = {"L4": [], "L9": [], "L5": []}
+            scope_link_failures: list[dict[str, Any]] = []
+            if len(case_owner_functions) > 1:
+                scope_link_failures.append(
+                    {
+                        "attribute": "additional_case_owner_ambiguity",
+                        "function_ids": [row.get("id") for row in case_owner_functions],
+                    }
+                )
+            scope_function = (
+                case_owner_functions[0] if len(case_owner_functions) == 1 else function
+            )
+            if scope_function:
+                contract_refs = scope_function.get("contract_refs", [])
+                if not isinstance(contract_refs, list):
+                    scope_link_failures.append(
+                        {
+                            "attribute": "invalid_l5_function_contract_refs",
+                            "function_ref": scope_function.get("id"),
+                            "actual_type": type(contract_refs).__name__,
+                        }
+                    )
+                else:
+                    for contract_ref in contract_refs:
+                        if not isinstance(contract_ref, str):
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "invalid_l5_contract_ref_type",
+                                    "function_ref": scope_function.get("id"),
+                                    "actual_type": type(contract_ref).__name__,
+                                }
+                            )
+                            continue
+                        contract5_rows = l5_contracts_by_id.get(contract_ref, [])
+                        if len(contract5_rows) != 1:
+                            if contract5_rows:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "l5_contract_ref_ambiguity",
+                                        "contract_ref": contract_ref,
+                                        "match_count": len(contract5_rows),
+                                    }
+                                )
+                            continue
+                        contract5 = contract5_rows[0]
+                        design_ref = contract5.get("basic_design_ref")
+                        if not isinstance(design_ref, str) or not design_ref:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "invalid_l5_basic_design_ref",
+                                    "contract_ref": contract_ref,
+                                    "actual_type": type(design_ref).__name__,
+                                }
+                            )
+                            continue
+                        l4_rows = l4_contracts_by_id.get(design_ref, [])
+                        l9_rows = l9_cases_by_design.get(design_ref, [])
+                        if len(l4_rows) > 1:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "l4_parent_ref_ambiguity",
+                                    "design_ref": design_ref,
+                                    "match_count": len(l4_rows),
+                                }
+                            )
+                        if len(l9_rows) > 1:
+                            scope_link_failures.append(
+                                {
+                                    "attribute": "l9_design_ref_ambiguity",
+                                    "design_ref": design_ref,
+                                    "match_count": len(l9_rows),
+                                }
+                            )
+                        l4_contract = l4_rows[0] if len(l4_rows) == 1 else None
+                        l9_case = l9_rows[0] if len(l9_rows) == 1 else None
+                        handler_ref = scope_function.get("id")
+                        rules = [
+                            row
+                            for row in l5_rules_all
+                            if isinstance(row, dict)
+                            and row.get("contract_ref") == contract_ref
+                            and row.get("handler_ref") == handler_ref
+                            and _extract_neg_key(row) == code
+                        ]
+                        if l4_contract:
+                            l4_rows_for_code = l4_contract.get(
+                                "negative_classifications", []
+                            )
+                            if isinstance(l4_rows_for_code, list):
+                                scoped["L4"].extend(
+                                    row
+                                    for row in l4_rows_for_code
+                                    if isinstance(row, dict)
+                                    and _extract_neg_key(row) == code
+                                )
+                            else:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "invalid_l4_negative_classifications",
+                                        "design_ref": design_ref,
+                                        "actual_type": type(l4_rows_for_code).__name__,
+                                    }
+                                )
+                        if l9_case:
+                            l9_rows_for_code = l9_case.get("negative_cases", [])
+                            if isinstance(l9_rows_for_code, list):
+                                scoped["L9"].extend(
+                                    row
+                                    for row in l9_rows_for_code
+                                    if isinstance(row, dict)
+                                    and _extract_neg_key(row) == code
+                                )
+                            else:
+                                scope_link_failures.append(
+                                    {
+                                        "attribute": "invalid_l9_negative_cases",
+                                        "design_ref": design_ref,
+                                        "actual_type": type(l9_rows_for_code).__name__,
+                                    }
+                                )
+                        scoped["L5"].extend(rules)
+
+            any_scoped_counterpart = any(scoped[layer] for layer in scoped)
+            # Code equality outside the case owner's declared contract chain
+            # is not scope evidence. A private/positive row can reuse a code
+            # without becoming part of this negative population.
+            any_case_owner_code_counterpart = bool(
+                scoped["L5"] or scoped["L4"] or scoped["L9"]
+            )
+            state_is_negative = isinstance(state, str) and state in {
+                "missing",
+                "unknown",
+                "conflict",
+                "invalid_shape",
+            }
+            # Fully out-of-scope rows (for example ADD-50's non-template
+            # operation with state=absent) were filtered above. A negative row
+            # with neither declared function membership nor a counterpart is
+            # also outside this legacy four-layer population.
+            in_scope = (
+                any_scoped_counterpart
+                or any_case_owner_code_counterpart
+                or (member_declares_case and bool(scope_link_failures))
+                or (member_declares_case and state_is_negative)
+            )
+            if not in_scope:
+                continue
+
+            if scope_link_failures:
+                for link_failure in scope_link_failures:
+                    failures.append(
+                        {
+                            "check": "CHK-NEG-4WAY-MATCH",
+                            "case_id": case_id,
+                            "attribute": link_failure.pop("attribute"),
+                            **link_failure,
+                        }
+                    )
+
+            for layer, rows in scoped.items():
+                if len(rows) != 1:
+                    failures.append(
+                        {
+                            "check": "CHK-NEG-4WAY-MATCH",
+                            "case_id": case_id,
+                            "attribute": "additional_case_counterpart",
+                            "layer": layer,
+                            "expected_count": 1,
+                            "actual_count": len(rows),
+                            "code": code,
+                            "function_ref": function_ref,
+                        }
+                    )
+            if not function or len(function_matches) != 1 or not member_declares_case:
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": case_id,
+                        "attribute": "additional_case_function_scope",
+                        "function_ref": function_ref,
+                        "resolved_function_count": len(function_matches),
+                        "member_declares_case": member_declares_case,
+                    }
+                )
+            if not isinstance(state, str) or state not in {
+                "missing",
+                "unknown",
+                "conflict",
+                "invalid_shape",
+            }:
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": case_id,
+                        "attribute": "expected_state",
+                        "L8": state,
+                        "error": "missing_or_invalid_negative_state",
+                    }
+                )
+            states = {
+                "L4": scoped["L4"][0].get("state") if len(scoped["L4"]) == 1 else None,
+                "L9": scoped["L9"][0].get("state") if len(scoped["L9"]) == 1 else None,
+                "L8": state,
+                "L5": scoped["L5"][0].get("state") if len(scoped["L5"]) == 1 else None,
+            }
+            if len(scoped["L4"]) == len(scoped["L9"]) == len(scoped["L5"]) == 1 and any(
+                value != state for layer, value in states.items() if layer != "L8"
+            ):
+                failures.append(
+                    {
+                        "check": "CHK-NEG-4WAY-MATCH",
+                        "case_id": case_id,
+                        "attribute": "expected_state",
+                        **states,
+                    }
+                )
+
     docs_missing = not (l4_data and l9_data and l8_data and l5_data)
     all_zero = all(v == 0 for v in total_counts.values())
     zero_rationale = None
@@ -3777,6 +4075,448 @@ def compute_head_entity_counts(
     return counts
 
 
+def _validated_path_aliases(value: Any) -> tuple[dict[str, str], list[dict[str, Any]]]:
+    """Return usable aliases and structured failures for malformed alias maps."""
+    if not isinstance(value, dict):
+        return {}, [
+            {
+                "check": "CHK-JSON-POINTER",
+                "field": "path_aliases",
+                "error": "expected_object",
+                "actual_type": type(value).__name__,
+            }
+        ]
+    aliases: dict[str, str] = {}
+    failures: list[dict[str, Any]] = []
+    for key, path in value.items():
+        if not isinstance(key, str) or not key or not isinstance(path, str) or not path:
+            failures.append(
+                {
+                    "check": "CHK-JSON-POINTER",
+                    "field": "path_aliases",
+                    "alias": key if isinstance(key, str) else None,
+                    "error": "invalid_alias_name_or_path",
+                    "alias_type": type(key).__name__,
+                    "path_type": type(path).__name__,
+                }
+            )
+            continue
+        aliases[key] = path
+    return aliases, failures
+
+
+def _check_basic_pair_freeze_row(
+    record: dict[str, Any],
+    aliases: dict[str, str],
+    loaded: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    """Recompute the reference/count portion of a basic L4/L9 freeze row."""
+    failures: list[dict[str, Any]] = []
+    row = record.get("basic_pair_freeze_row")
+    if not isinstance(row, dict):
+        return {
+            "passed": False,
+            "failures": [{"error": "missing_basic_pair_freeze_row"}],
+            "verification_scope": "declared_reference_integrity_only",
+            "coverage_completeness": "not_independently_verified",
+            "scope_limits": [
+                "l4_subcontracts_and_l9_sub_oracles_selection_completeness",
+                "remaining_disposition_target_basis_and_reentry_semantics",
+            ],
+            "pair_ids": {},
+            "subcontract_count": 0,
+            "suboracle_count": 0,
+        }
+
+    def resolve_ref(ref: Any) -> tuple[bool, Any, str | None, str | None]:
+        if not isinstance(ref, str) or "#" not in ref:
+            return False, None, None, None
+        alias, pointer = ref.split("#", 1)
+        doc = loaded.get(alias)
+        if not isinstance(doc, dict):
+            return False, None, alias, pointer
+        ok, value = resolve_json_pointer(doc, pointer)
+        return ok, value, alias, pointer
+
+    resolved: dict[str, Any] = {}
+    for pointer_key, id_key, expected_alias in (
+        ("requirement_ref", "requirement_id", "L3F"),
+        ("system_oracle_ref", "system_oracle_id", "L10F"),
+        ("l4_contract_pointer", "l4_contract_id", "L4"),
+        ("l9_case_pointer", "l9_case_id", "L9"),
+    ):
+        ok, value, found_alias, pointer = resolve_ref(row.get(pointer_key))
+        if not ok or not isinstance(value, dict):
+            failures.append(
+                {
+                    "pointer": row.get(pointer_key),
+                    "error": "unresolved_or_non_object_pair_pointer",
+                }
+            )
+            continue
+        resolved[pointer_key] = value
+        if found_alias != expected_alias:
+            failures.append(
+                {
+                    "pointer": row.get(pointer_key),
+                    "expected_alias": expected_alias,
+                    "actual_alias": found_alias,
+                    "error": "pair_pointer_layer_mismatch",
+                }
+            )
+        actual_id = value.get("id")
+        if actual_id != row.get(id_key):
+            failures.append(
+                {
+                    "pointer": row.get(pointer_key),
+                    "id_field": id_key,
+                    "expected": row.get(id_key),
+                    "actual": actual_id,
+                    "error": "pair_id_mismatch",
+                }
+            )
+    relation_checks = (
+        ("requirement_ref", "oracle_ref", row.get("system_oracle_id")),
+        ("system_oracle_ref", "requirement_ref", row.get("requirement_id")),
+        ("l4_contract_pointer", "system_oracle_ref", row.get("system_oracle_id")),
+        ("l9_case_pointer", "design_ref", row.get("l4_contract_id")),
+    )
+    for pointer_key, link_key, expected in relation_checks:
+        source = resolved.get(pointer_key)
+        if isinstance(source, dict) and source.get(link_key) != expected:
+            failures.append(
+                {
+                    "pointer": row.get(pointer_key),
+                    "link": link_key,
+                    "expected": expected,
+                    "actual": source.get(link_key),
+                    "error": "pair_link_mismatch",
+                }
+            )
+    l10_id = row.get("system_oracle_id")
+    l9_id = row.get("l9_case_id")
+    if (
+        isinstance(resolved.get("system_oracle_ref"), dict)
+        and resolved["system_oracle_ref"].get("id") != l10_id
+    ):
+        failures.append(
+            {
+                "pointer": row.get("system_oracle_ref"),
+                "expected": l10_id,
+                "actual": resolved["system_oracle_ref"].get("id"),
+                "error": "system_oracle_id_mismatch",
+            }
+        )
+    l9_doc = loaded.get("L9", {})
+    l9_index = resolve_ref(row.get("l9_case_pointer"))
+    if isinstance(l9_doc, dict) and isinstance(resolved.get("l9_case_pointer"), dict):
+        l9_matches = [
+            item
+            for item in l9_doc.get("cases", [])
+            if isinstance(item, dict) and item.get("id") == l9_id
+        ]
+        if len(l9_matches) != 1:
+            failures.append(
+                {
+                    "pointer": row.get("l9_case_pointer"),
+                    "match_count": len(l9_matches),
+                    "error": "l9_case_id_not_unique",
+                }
+            )
+
+    l4 = resolved.get("l4_contract_pointer")
+    l9 = resolved.get("l9_case_pointer")
+    for list_key, parent, label in (
+        ("l4_subcontracts", l4, "L4"),
+        ("l9_sub_oracles", l9, "L9"),
+    ):
+        entries = row.get(list_key)
+        if not isinstance(entries, list):
+            failures.append({"field": list_key, "error": "expected_array"})
+            continue
+        if not entries:
+            failures.append({"field": list_key, "error": "empty_required_array"})
+            continue
+        for i, entry in enumerate(entries):
+            if not isinstance(entry, dict):
+                failures.append(
+                    {"field": list_key, "index": i, "error": "expected_object"}
+                )
+                continue
+            ok, target, target_alias, pointer = resolve_ref(entry.get("pointer"))
+            if not ok:
+                failures.append(
+                    {
+                        "field": list_key,
+                        "index": i,
+                        "pointer": entry.get("pointer"),
+                        "error": "unresolved_child_pointer",
+                    }
+                )
+                continue
+            # Ensure a listed subreference remains inside the selected parent.
+            parent_ptr = row.get(
+                "l4_contract_pointer" if label == "L4" else "l9_case_pointer"
+            )
+            parent_alias: str | None = None
+            parent_path: str | None = None
+            if isinstance(parent_ptr, str) and "#" in parent_ptr:
+                parent_alias, parent_path = parent_ptr.split("#", 1)
+            if (
+                parent_alias != label
+                or not isinstance(parent_path, str)
+                or not parent_path
+                or target_alias != parent_alias
+                or not isinstance(pointer, str)
+                or not pointer.startswith(parent_path.rstrip("/") + "/")
+            ):
+                failures.append(
+                    {
+                        "field": list_key,
+                        "index": i,
+                        "pointer": entry.get("pointer"),
+                        "error": "child_pointer_outside_selected_parent",
+                    }
+                )
+            if "id" in entry and (
+                not isinstance(target, dict) or target.get("id") != entry["id"]
+            ):
+                failures.append(
+                    {
+                        "field": list_key,
+                        "index": i,
+                        "pointer": entry.get("pointer"),
+                        "expected_id": entry.get("id"),
+                        "actual_id": target.get("id")
+                        if isinstance(target, dict)
+                        else None,
+                        "error": "child_id_mismatch",
+                    }
+                )
+            leaf_name = pointer.rsplit("/", 1)[-1] if isinstance(pointer, str) else None
+            if "name" in entry and entry["name"] != leaf_name:
+                failures.append(
+                    {
+                        "field": list_key,
+                        "index": i,
+                        "pointer": entry.get("pointer"),
+                        "name": entry.get("name"),
+                        "actual_leaf": leaf_name,
+                        "error": "child_name_mismatch",
+                    }
+                )
+            if (
+                label == "L9"
+                and entry.get("kind") == "expected_observation"
+                and entry.get("count") != 1
+            ):
+                failures.append(
+                    {
+                        "field": list_key,
+                        "index": i,
+                        "count_field": "count",
+                        "expected": entry.get("count"),
+                        "actual": 1,
+                        "error": "child_count_mismatch",
+                    }
+                )
+            if label == "L9" and isinstance(target, list):
+                count_field = next(
+                    (
+                        k
+                        for k in (
+                            "count",
+                            "case_count",
+                            "cases_count",
+                            "branch_contrasts_count",
+                            "occurrence_and_relevance_contrasts_count",
+                            "direct_boundary_contrasts_count",
+                            "carrier_domain_priority_cases_count",
+                            "partial_case_count",
+                            "d2_component_case_count",
+                            "source_packet_count",
+                        )
+                        if k in entry
+                    ),
+                    None,
+                )
+                if count_field:
+                    if count_field == "count":
+                        actual_count = (
+                            1
+                            if entry.get("kind") == "expected_observation"
+                            else len(target)
+                        )
+                    else:
+                        actual_count = len(target)
+                    if entry[count_field] != actual_count:
+                        failures.append(
+                            {
+                                "field": list_key,
+                                "index": i,
+                                "count_field": count_field,
+                                "expected": entry[count_field],
+                                "actual": actual_count,
+                                "error": "child_count_mismatch",
+                            }
+                        )
+            elif label == "L9" and isinstance(target, dict):
+                for count_field in (
+                    "case_count",
+                    "cases_count",
+                    "branch_contrasts_count",
+                    "occurrence_and_relevance_contrasts_count",
+                    "direct_boundary_contrasts_count",
+                    "carrier_domain_priority_cases_count",
+                    "partial_case_count",
+                    "d2_component_case_count",
+                    "source_packet_count",
+                ):
+                    if count_field in entry:
+                        target_key = count_field.removesuffix("_count")
+                        if count_field in {"case_count", "cases_count"}:
+                            target_key = "cases" if "cases" in target else target_key
+                        if count_field == "d2_component_case_count":
+                            target_key = "D2_component_case"
+                            actual_count = 1 if target_key in target else 0
+                        elif count_field in {
+                            "partial_case_count",
+                            "source_packet_count",
+                        }:
+                            target_key = (
+                                "partial_cases"
+                                if count_field == "partial_case_count"
+                                else "source_packets"
+                            )
+                            values = target.get(target_key)
+                            actual_count = (
+                                len(values) if isinstance(values, list) else 0
+                            )
+                        elif count_field == "carrier_domain_priority_cases_count":
+                            nested = target.get("carrier_domain_priority_oracles")
+                            values = (
+                                nested.get("cases")
+                                if isinstance(nested, dict)
+                                else None
+                            )
+                            actual_count = (
+                                len(values) if isinstance(values, list) else 0
+                            )
+                        else:
+                            value = target.get(target_key)
+                            actual_count = (
+                                len(value)
+                                if isinstance(value, list)
+                                else (1 if value is not None else 0)
+                            )
+                        if entry[count_field] != actual_count:
+                            failures.append(
+                                {
+                                    "field": list_key,
+                                    "index": i,
+                                    "count_field": count_field,
+                                    "expected": entry[count_field],
+                                    "actual": actual_count,
+                                    "error": "child_count_mismatch",
+                                }
+                            )
+
+    dispositions = record.get("remaining_dispositions")
+    counts = record.get("disposition_counts")
+    if not isinstance(dispositions, list) or not isinstance(counts, dict):
+        failures.append(
+            {
+                "field": "remaining_dispositions/disposition_counts",
+                "error": "missing_or_invalid_disposition_summary",
+            }
+        )
+    else:
+        for index, item in enumerate(dispositions):
+            if not isinstance(item, dict) or item.get("class") not in {"A", "B", "C"}:
+                failures.append(
+                    {
+                        "field": "remaining_dispositions",
+                        "index": index,
+                        "actual": item.get("class") if isinstance(item, dict) else None,
+                        "error": "invalid_disposition_class_or_row",
+                    }
+                )
+        computed = {
+            cls: sum(
+                1
+                for item in dispositions
+                if isinstance(item, dict) and item.get("class") == cls
+            )
+            for cls in ("A", "B", "C")
+        }
+        expected = {
+            "A_count": computed["A"],
+            "B_count": computed["B"],
+            "C_count": computed["C"],
+        }
+        if counts != expected:
+            failures.append(
+                {
+                    "field": "disposition_counts",
+                    "expected": expected,
+                    "actual": counts,
+                    "error": "disposition_counts_mismatch",
+                }
+            )
+        if row.get("remaining_A_count") != computed["A"]:
+            failures.append(
+                {
+                    "field": "basic_pair_freeze_row/remaining_A_count",
+                    "expected": computed["A"],
+                    "actual": row.get("remaining_A_count"),
+                    "error": "remaining_A_count_mismatch",
+                }
+            )
+        if row.get("freeze_state") == "basic_pair_frozen" and computed["A"] != 0:
+            failures.append(
+                {
+                    "field": "basic_pair_freeze_row/freeze_state",
+                    "expected_remaining_A_count": 0,
+                    "actual": computed["A"],
+                    "error": "frozen_with_unresolved_A",
+                }
+            )
+        if row.get("freeze_state") != "basic_pair_frozen":
+            failures.append(
+                {
+                    "field": "basic_pair_freeze_row/freeze_state",
+                    "expected": "basic_pair_frozen",
+                    "actual": row.get("freeze_state"),
+                    "error": "missing_or_unknown_freeze_state",
+                }
+            )
+
+    return {
+        "passed": not failures,
+        "failures": failures,
+        # This check validates declared references and local counts only. The
+        # source prose has no independent, machine-readable roster for the
+        # selected L4/L9 children or the meaning/completeness of dispositions.
+        "verification_scope": "declared_reference_integrity_only",
+        "coverage_completeness": "not_independently_verified",
+        "scope_limits": [
+            "l4_subcontracts_and_l9_sub_oracles_selection_completeness",
+            "remaining_disposition_target_basis_and_reentry_semantics",
+        ],
+        "pair_ids": {
+            key: value.get("id")
+            for key, value in resolved.items()
+            if isinstance(value, dict)
+        },
+        "subcontract_count": len(row.get("l4_subcontracts", []))
+        if isinstance(row.get("l4_subcontracts"), list)
+        else 0,
+        "suboracle_count": len(row.get("l9_sub_oracles", []))
+        if isinstance(row.get("l9_sub_oracles"), list)
+        else 0,
+    }
+
+
 def audit_freeze_record(
     repo_root: Path,
     freeze_path: str,
@@ -3804,7 +4544,10 @@ def audit_freeze_record(
         repo_root, freeze_path, rec_data, base_rev=base_rev, head_rev=head_rev
     )
 
-    aliases = rec_data.get("path_aliases", {})
+    aliases, alias_failures = _validated_path_aliases(rec_data.get("path_aliases", {}))
+    if alias_failures:
+        ptr_res["failures"].extend(alias_failures)
+        ptr_res["passed"] = False
     l4_path = aliases.get("L4", "")
     l9_path = aliases.get("L9", "")
     l5_path = aliases.get("L5", "")
@@ -3834,8 +4577,51 @@ def audit_freeze_record(
         l8_data=l8_data,
         l5_data=l5_data,
     )
-    fn_res = check_public_fn_freeze(rec_data, l5_data, l8_data)
-    obl_res = check_l3_obligation_map(rec_data, l5_data, l8_data, l9_data)
+    is_basic_pair = rec_data.get("record_kind") == "basic_pair_l4_l9_freeze_record"
+    pair_audit = None
+    basic_pair_audit = None
+    if is_basic_pair:
+        l3_path = aliases.get("L3F", "")
+        l10_path = aliases.get("L10F", "")
+        l3_data = _load_json(repo_root, l3_path, head_rev) if l3_path else {}
+        l10_data = _load_json(repo_root, l10_path, head_rev) if l10_path else {}
+        pair_audit = check_pair_bidir_id(
+            repo_root,
+            l3_path,
+            l10_path,
+            l3_data,
+            l10_data,
+            left_key="requirements",
+            right_key="cases",
+            left_layer="L3",
+        )
+        loaded = {
+            **extra_docs,
+            "L3F": l3_data,
+            "L10F": l10_data,
+            "L4": l4_data,
+            "L9": l9_data,
+        }
+        basic_pair_audit = _check_basic_pair_freeze_row(rec_data, aliases, loaded)
+        fn_res = {
+            "check": "CHK-PUBLIC-FN-FREEZE",
+            "status": "not_applicable",
+            "passed": True,
+            "failures": [],
+            "human_judgment_pending": [],
+            "not_evaluated_reason": "basic_pair_record_kind",
+        }
+        obl_res = {
+            "check": "CHK-L3-OBLIGATION-MAP",
+            "status": "not_applicable",
+            "passed": True,
+            "failures": [],
+            "human_judgment_pending": [],
+            "not_evaluated_reason": "basic_pair_record_kind",
+        }
+    else:
+        fn_res = check_public_fn_freeze(rec_data, l5_data, l8_data)
+        obl_res = check_l3_obligation_map(rec_data, l5_data, l8_data, l9_data)
 
     # Check if any forbidden material key was added to L8 between base_rev and head_rev
     cap_post = check_ownership_cap(repo_root, l8_path, l8_data, layer="L8")
@@ -3859,7 +4645,9 @@ def audit_freeze_record(
         extra_docs=extra_docs,
     )
     counts_not_evaluated = (
-        not isinstance(recorded_counts, dict) or len(recorded_counts) == 0
+        is_basic_pair
+        or not isinstance(recorded_counts, dict)
+        or len(recorded_counts) == 0
     )
     counts_not_evaluated_reason = (
         "no_head_entity_counts_in_record" if counts_not_evaluated else None
@@ -3870,6 +4658,9 @@ def audit_freeze_record(
             comp_v = computed_counts.get(k)
             if rec_v != comp_v:
                 count_diffs[k] = {"recorded": rec_v, "computed": comp_v}
+    elif is_basic_pair:
+        count_diffs = {}
+        counts_not_evaluated_reason = "not_applicable_basic_pair_record"
     else:
         count_diffs["<head_entity_counts>"] = {
             "recorded": None,
@@ -3899,6 +4690,66 @@ def audit_freeze_record(
                     "computed": computed_added,
                 }
 
+    if is_basic_pair:
+        recorded_basic = rec_data.get("basic_pair_freeze_verification")
+        computed_basic = {
+            "passed": basic_pair_audit["passed"] if basic_pair_audit else False,
+            "pair_ids": basic_pair_audit["pair_ids"] if basic_pair_audit else {},
+            "subcontract_count": basic_pair_audit["subcontract_count"]
+            if basic_pair_audit
+            else 0,
+            "suboracle_count": basic_pair_audit["suboracle_count"]
+            if basic_pair_audit
+            else 0,
+            "failure_count": len(basic_pair_audit["failures"])
+            if basic_pair_audit
+            else 0,
+            "verification_scope": basic_pair_audit["verification_scope"]
+            if basic_pair_audit
+            else "declared_reference_integrity_only",
+            "coverage_completeness": basic_pair_audit["coverage_completeness"]
+            if basic_pair_audit
+            else "not_independently_verified",
+            "scope_limits": basic_pair_audit["scope_limits"]
+            if basic_pair_audit
+            else [],
+        }
+        required_basic_keys = {
+            "passed",
+            "pair_ids",
+            "subcontract_count",
+            "suboracle_count",
+            "failure_count",
+        }
+        if not isinstance(recorded_basic, dict):
+            ver_diffs["basic_pair_freeze_verification"] = {
+                "recorded": recorded_basic,
+                "computed": "object with required mechanical fields",
+                "error": "missing_or_invalid_basic_pair_summary",
+            }
+        else:
+            for key, actual in computed_basic.items():
+                if key not in recorded_basic:
+                    if key in required_basic_keys:
+                        ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
+                            "recorded": None,
+                            "computed": actual,
+                            "error": "missing_required_basic_pair_summary_field",
+                        }
+                    continue
+                if recorded_basic[key] != actual:
+                    ver_diffs[f"basic_pair_freeze_verification.{key}"] = {
+                        "recorded": recorded_basic[key],
+                        "computed": actual,
+                    }
+    if is_basic_pair and isinstance(recorded_ver, dict) and basic_pair_audit:
+        for key, actual in (
+            ("basic_pair_freeze_passed", basic_pair_audit["passed"]),
+            ("basic_pair_freeze_failure_count", len(basic_pair_audit["failures"])),
+        ):
+            if key in recorded_ver and recorded_ver[key] != actual:
+                ver_diffs[key] = {"recorded": recorded_ver[key], "computed": actual}
+
     mechanical_match = (
         pin_res["passed"]
         and ptr_res["passed"]
@@ -3908,6 +4759,8 @@ def audit_freeze_record(
         and cap_post["passed"]
         and len(count_diffs) == 0
         and len(ver_diffs) == 0
+        and (basic_pair_audit is None or basic_pair_audit["passed"])
+        and (pair_audit is None or pair_audit["passed"])
     )
 
     return {
@@ -3923,6 +4776,12 @@ def audit_freeze_record(
             "CHK-PIN-SHA256": pin_res,
             "CHK-JSON-POINTER": ptr_res,
             "CHK-NEG-4WAY-MATCH": neg_res,
+            "CHK-PAIR-BIDIR-ID": {
+                "L3_L10": pair_audit,
+                "basic_pair_freeze_row": basic_pair_audit,
+                "passed": (pair_audit is None or pair_audit["passed"])
+                and (basic_pair_audit is None or basic_pair_audit["passed"]),
+            },
             "CHK-PUBLIC-FN-FREEZE": fn_res,
             "CHK-L3-OBLIGATION-MAP": obl_res,
             "CHK-OWNERSHIP-CAP-L8": cap_post,
@@ -3969,7 +4828,12 @@ def generate_freeze_record(
         )
         eff_base = proc.stdout.strip()
 
-    out["evidence_kind"] = out.get("evidence_kind", "slice_level_function_pair_freeze")
+    default_evidence_kind = (
+        "basic_pair_l4_l9_freeze_record"
+        if out.get("record_kind") == "basic_pair_l4_l9_freeze_record"
+        else "slice_level_function_pair_freeze"
+    )
+    out["evidence_kind"] = out.get("evidence_kind", default_evidence_kind)
     out["authority_effect"] = "none"
     out["source_main"] = out.get("source_main") or eff_base
     out["request_base_sha"] = out.get("request_base_sha") or eff_base
@@ -3978,7 +4842,7 @@ def generate_freeze_record(
             timespec="seconds"
         )
 
-    aliases = out.get("path_aliases", {})
+    aliases, alias_failures = _validated_path_aliases(out.get("path_aliases", {}))
     pins: dict[str, str] = {}
     modified_aliases = set(out.get("modified_aliases", ["L5", "L8"]))
     for alias, rel_path in aliases.items():
@@ -4015,6 +4879,9 @@ def generate_freeze_record(
         base_rev=eff_base,
         head_rev=head_rev,
     )
+    if alias_failures:
+        ptr_res["failures"].extend(alias_failures)
+        ptr_res["passed"] = False
     neg_res = check_neg_4way_match(
         repo_root,
         l4_path,
@@ -4026,8 +4893,13 @@ def generate_freeze_record(
         l8_data=l8_data,
         l5_data=l5_data,
     )
-    fn_res = check_public_fn_freeze(out, l5_data, l8_data)
-    obl_res = check_l3_obligation_map(out, l5_data, l8_data, l9_data)
+    is_basic_pair = out.get("record_kind") == "basic_pair_l4_l9_freeze_record"
+    if is_basic_pair:
+        fn_res = {"resolved_function_rows": [], "human_judgment_pending": []}
+        obl_res = {"human_judgment_pending": []}
+    else:
+        fn_res = check_public_fn_freeze(out, l5_data, l8_data)
+        obl_res = check_l3_obligation_map(out, l5_data, l8_data, l9_data)
 
     cap_post = check_ownership_cap(repo_root, l8_path, l8_data, layer="L8")
     cap_pre = (
@@ -4047,13 +4919,16 @@ def generate_freeze_record(
         if ak in aliases:
             extra_docs[ak] = _load_json(repo_root, aliases[ak], head_rev) or {}
 
-    existing_counts = out.get("head_entity_counts")
-    out["head_entity_counts"] = compute_head_entity_counts(
-        l5_data,
-        l8_data,
-        reference_counts=existing_counts if isinstance(existing_counts, dict) else None,
-        extra_docs=extra_docs,
-    )
+    if not is_basic_pair:
+        existing_counts = out.get("head_entity_counts")
+        out["head_entity_counts"] = compute_head_entity_counts(
+            l5_data,
+            l8_data,
+            reference_counts=existing_counts
+            if isinstance(existing_counts, dict)
+            else None,
+            extra_docs=extra_docs,
+        )
     out["pointer_resolution_summary"] = {
         "checked_count": ptr_res["checked_count"],
         "expanded_target_count": ptr_res["expanded_target_count"],
@@ -4083,10 +4958,12 @@ def generate_freeze_record(
             out["negative_case_4way_verification"]["case_row_counts"] = neg_res[
                 "case_row_counts"
             ]
-    out["resolved_function_rows"] = fn_res["resolved_function_rows"]
-    out["human_judgment_pending"] = (
-        fn_res["human_judgment_pending"] + obl_res["human_judgment_pending"]
-    )
+    if not is_basic_pair:
+        out["resolved_function_rows"] = fn_res["resolved_function_rows"]
+    if not is_basic_pair:
+        out["human_judgment_pending"] = (
+            fn_res["human_judgment_pending"] + obl_res["human_judgment_pending"]
+        )
 
     ver = dict(out.get("verification") or {})
     ver["all_pointers_resolved"] = ptr_res["passed"]
@@ -4103,6 +4980,30 @@ def generate_freeze_record(
     ver["l8_full_return_or_fixture_or_hash_added"] = len(added_l8_forbidden) > 0
     ver["scfctl_stale_count"] = 0
     out["verification"] = ver
+
+    if out.get("record_kind") == "basic_pair_l4_l9_freeze_record":
+        l3_path = aliases.get("L3F", "")
+        l10_path = aliases.get("L10F", "")
+        l3_data = _load_json(repo_root, l3_path, head_rev) if l3_path else {}
+        l10_data = _load_json(repo_root, l10_path, head_rev) if l10_path else {}
+        basic_result = _check_basic_pair_freeze_row(
+            out,
+            aliases,
+            {"L3F": l3_data, "L10F": l10_data, "L4": l4_data, "L9": l9_data},
+        )
+        out["basic_pair_freeze_verification"] = {
+            "passed": basic_result["passed"],
+            "pair_ids": basic_result["pair_ids"],
+            "subcontract_count": basic_result["subcontract_count"],
+            "suboracle_count": basic_result["suboracle_count"],
+            "failure_count": len(basic_result["failures"]),
+            "verification_scope": basic_result["verification_scope"],
+            "coverage_completeness": basic_result["coverage_completeness"],
+            "scope_limits": basic_result["scope_limits"],
+        }
+        ver["basic_pair_freeze_passed"] = basic_result["passed"]
+        ver["basic_pair_freeze_failure_count"] = len(basic_result["failures"])
+        out["verification"] = ver
 
     return out
 
