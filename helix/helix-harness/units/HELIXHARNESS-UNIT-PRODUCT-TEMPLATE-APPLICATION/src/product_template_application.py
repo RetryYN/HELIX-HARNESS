@@ -12,6 +12,7 @@ from application_requirement_gaps import (
     compare_requirement_gaps_detail,
 )
 from application_selected_knowledge import compare_selected_knowledge
+from application_source_result_references import project_source_result_references
 from application_validation import validate_application_input
 
 __all__ = [
@@ -25,5 +26,6 @@ __all__ = [
     "compare_requirement_gaps",
     "compare_requirement_gaps_detail",
     "compare_selected_knowledge",
+    "project_source_result_references",
     "validate_application_input",
 ]
