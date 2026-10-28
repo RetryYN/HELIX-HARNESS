@@ -12605,7 +12605,7 @@
     "id": "HARNESS-L9-009-F05-OWNER-WRAPPER-S4-DIRECT-DIFFERENCE",
     "name": "source-wrapper-direct-owner-difference-with-corresponding-check-links",
     "execution_state": "not_executed",
-    "logical_input_status": "case-authored typed condition; no input fixture materialized",
+    "logical_input_status": "型付き条件を記述した論理case。入力fixtureは未作成。",
     "source_basis": [
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12624,22 +12624,22 @@
       "pointer": "/field_semantic_evidence_contract/basic_candidate_return/cause_vocabulary"
      }
     ],
-    "condition": "wrapper_owner and source_owner are both present; their original CoreJsonValue values are known to differ; every existing qualification_owner/root_owner check link is corresponding.",
+    "condition": "wrapper_owner/source_owner Readは両方presentで、その元CoreJsonValueは既知に異なる。既存のqualification_owner/root_owner check linkはすべてcorresponding。",
     "expected_cause": {
      "kind": "owner_mismatch",
      "target": "wrapper_owner Read.present.location",
-     "left": "whole original wrapper_owner Read",
-     "right": "whole original source_owner Read",
+     "left": "wrapper_ownerの元Read全体",
+     "right": "source_ownerの元Read全体",
      "rule_pointer": "/field_semantic_evidence_contract/role_owner_binding/common"
     },
-    "expected_preserved": "OwnerBinding.source_wrapper_relation=different。これは観測済みowner差の報告であり、delegation/authority関係を生成しない。RoleOwnerPair positiveで打ち消さない。",
+    "expected_preserved": "OwnerBinding.source_wrapper_relation=different。これは観測済みowner値差の記録であり、delegation/authority関係を生成しない。RoleOwnerPairがcorrespondingでも差を打ち消さない。",
     "expected_side_effect_count": 0
    },
    {
     "id": "HARNESS-L9-009-F05-OWNER-WRAPPER-S4-S3-ZERO-LINK-DIRECT-DIFFERENCE",
     "name": "source-wrapper-direct-owner-difference-with-zero-owner-check-links",
     "execution_state": "not_executed",
-    "logical_input_status": "case-authored typed condition; no input fixture materialized",
+    "logical_input_status": "型付き条件を記述した論理case。入力fixtureは未作成。",
     "source_basis": [
      {
       "path": "docs/helix-harness/L4-basic-design/product-template-application.json",
@@ -12662,13 +12662,13 @@
       "pointer": "/f05_detail_contract/owner_relation_cause_writer_contract/owner_binding_aggregate_and_propagation"
      }
     ],
-    "condition": "wrapper_owner/source_owner Readが両方presentで原値が既知に異なり、qualification_owner/root_owner check linkが0件。",
+    "condition": "wrapper_owner/source_owner Readは両方presentで、その元値は既知に異なる。qualification_owner/root_owner check linkは0件。",
     "expected_cause_order": [
      "owner_mismatch (S4)",
      "owner_binding_unestablished (S3)"
     ],
     "expected_relation": "source_wrapper_relation=different。AND三値集約では既知の不一致が未成立の必須項目より優先し、S3 Causeは別に保持される。",
-    "expected_preserved": "両full original Read、Causeの左右順/生成順を保持。架空CheckLink/indexやdelegation/authorityを生成しない。",
+    "expected_preserved": "両full original ReadとCauseの左右順・生成順を保持する。架空CheckLink/indexやdelegation/authority関係を生成しない。",
     "expected_side_effect_count": 0
    }
   ]
