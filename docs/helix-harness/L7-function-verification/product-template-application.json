@@ -226,7 +226,7 @@
           "missing_qualified_material_ja": "同件数で内容が異なることを示す2つのqualified義務集合と、件数だけで同等としないためのqualifiedなSemanticComparisonがない。"
         }
       ],
-      "l8_refinement_return_ja": "4 subassertionのtyped_mutation具体化は、WR138 SYNTHETIC-T-EXTRAと同じくL8設計の後続作業へ戻す。今回はL5/L8の意味を変更せず、材料のないNEG findingを生成しない。",
+      "l7_fixture_followup_ja": "4 subassertionに必要な比較材料は、L5 failure_rules/8..11およびL4/L9から独立に導き、L7のfixtureとtestを作る後続依頼へ戻す。L8はU-ID行のまま維持し、今回の未実装4件についてfindingを生成しない。",
       "execution_state": "not_executed",
       "tdd_test_file": "helix/helix-harness/units/HELIXHARNESS-UNIT-PRODUCT-TEMPLATE-APPLICATION/tests/test_compare_semantic_equivalence.py",
       "tdd_history_refs": [
