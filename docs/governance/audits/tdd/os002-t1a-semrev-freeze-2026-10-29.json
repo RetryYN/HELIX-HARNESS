@@ -224,7 +224,7 @@
     {
       "element_id": "O9",
       "l3_pointer": "L3B#/requirements/2",
-      "l3_clause": "特定template選択/使用操作では選択されたset・版・適用出力を照合する。専用負例は選択済みoperationとowner資料不足条件を宣言するが、L5 B02RecordInputにset/版/CORE出力memberまたはowner資料の取得路/typeがないため、実行可能入力・動作結果は未形成であり未実行のまま扱う。",
+      "l3_clause": "特定template選択/使用操作では選択されたset・版・適用出力を照合する。専用負例は選択済みoperationとowner資料不足条件を宣言するが、L5 B02RecordInputにset/版/CORE出力memberまたはowner資料の取得路/typeがないため、実行可能入力・動作結果は未形成であり未実行のまま扱う。 意味対応は宣言的であり、実行可能入力・型解決・実装着手可を意味しない。",
       "l5_pointers": [
         "L5#/contracts/1",
         "L5#/functions/2/algorithm/1",
@@ -241,12 +241,17 @@
       "l4_pointers": [
         "L4#/contracts/1/behavior",
         "L4#/contracts/1/negative_classifications/3"
-      ]
+      ],
+      "owner_and_reentry": {
+        "owner": "BRAIN/CORE (owner source/material supply); OS002 records unresolved comparison only.",
+        "unresolved": "L5 B02RecordInput has no set/version/CORE applicability-output members and L5 defines no owner-material acquisition path/type. The U-ID is declarative; it is not an executable input, type-resolved contract, or implementation-ready requirement. No template authority/application meaning is created by OS002.",
+        "reentry_condition": "Re-evaluate only after BRAIN/CORE-defined owner source/material and a typed acquisition route are present in the applicable L5 design and represented by L8/L9 inputs; then regenerate the function-pair freeze. Any change to upstream template/application meaning remains with its authority owner."
+      }
     },
     {
       "element_id": "O10",
       "l3_pointer": "L3B#/requirements/2",
-      "l3_clause": "評価へ送る選択操作では選択評価scope・必要入力・利用許可を照合する。専用負例はevaluation_selected=trueとowner資料不足条件を宣言するが、L5 B02RecordInputにLABO scope/inputs/SECURITY evidence memberまたは取得路/typeがないため、実行可能入力・動作結果は未形成であり未実行のまま扱う。許可意味・判定をOSで新設しない。",
+      "l3_clause": "評価へ送る選択操作では選択評価scope・必要入力・利用許可を照合する。専用負例はevaluation_selected=trueとowner資料不足条件を宣言するが、L5 B02RecordInputにLABO scope/inputs/SECURITY evidence memberまたは取得路/typeがないため、実行可能入力・動作結果は未形成であり未実行のまま扱う。許可意味・判定をOSで新設しない。 意味対応は宣言的であり、実行可能入力・型解決・実装着手可を意味しない。",
       "l5_pointers": [
         "L5#/contracts/1",
         "L5#/functions/2/algorithm/1",
@@ -263,7 +268,12 @@
       "l4_pointers": [
         "L4#/contracts/1/behavior",
         "L4#/contracts/1/negative_classifications/4"
-      ]
+      ],
+      "owner_and_reentry": {
+        "owner": "LABO (selected evaluation scope/required inputs) and SECURITY (permission source/meaning); OS002 records unresolved comparison only.",
+        "unresolved": "L5 B02RecordInput has no LABO scope/required-input/SECURITY-evidence members and L5 defines no owner-material acquisition path/type. The U-ID is declarative; it is not an executable input, type-resolved contract, or implementation-ready requirement. OS002 does not define permission meaning or decide permission.",
+        "reentry_condition": "Re-evaluate only after LABO and SECURITY supply their authoritative materials and typed acquisition routes in the applicable L5 design, represented by L8/L9 inputs; then regenerate the function-pair freeze. Permission criteria must come from SECURITY authority, not OS002."
+      }
     },
     {
       "element_id": "O11",
