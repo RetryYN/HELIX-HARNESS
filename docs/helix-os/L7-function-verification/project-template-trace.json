@@ -319,6 +319,8 @@
     {
       "id": "HELIXOS-L7-002-FN02-compare_operation_dependencies",
       "function_design_ref": "HELIXOS-L6-002-FN02-compare_operation_dependencies",
+      "test_target_ja": "開始時と操作時の依存入力の照合。",
+      "observation_ja": "未発生・未観測と欠落の区別、当該初回入力と非対象scopeの有効作業の保持を観測する。",
       "l5_contract_ref": {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/2"
@@ -341,11 +343,14 @@
         "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/2"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
       "execution_state": "not_executed"
     },
     {
       "id": "HELIXOS-L7-002-FN03-compare_project_stages",
       "function_design_ref": "HELIXOS-L6-002-FN03-compare_project_stages",
+      "test_target_ja": "projectごとの工程状態と提供状態の照合。",
+      "observation_ja": "各projectの未実装・未検証と提供状態の未提示を、他projectの成功やGitHub状態で補わず保持することを観測する。",
       "l5_contract_ref": {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/3"
@@ -368,11 +373,14 @@
         "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/0"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
       "execution_state": "not_executed"
     },
     {
       "id": "HELIXOS-L7-002-FN05-compare_event_obligation_trace",
       "function_design_ref": "HELIXOS-L6-002-FN05-compare_event_obligation_trace",
+      "test_target_ja": "event・義務・成果と元のproject・scope・revisionの対応。",
+      "observation_ja": "各記録の不足・取り違えと非該当根拠を個別に辿り、他project・版・義務の成果で不足を埋めないことを観測する。",
       "l5_contract_ref": {
         "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
         "pointer": "/functions/5"
@@ -395,6 +403,7 @@
         "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/1"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
       "execution_state": "not_executed"
     }
   ],
@@ -597,8 +606,8 @@
     "execution_state": "not_executed"
   },
   "out_of_scope_ja": [
-    "FN00・FN01・FN13はfreeze記録の部分scope、または未凍結scopeとhuman_judgment_pendingが残るため、関数全体のL7行を追加しない。",
-    "FN07..FN12はD-OS002-T3a/T3b/T4のchecker-reconcileにhuman_judgment_pendingがあり、freeze記録がないため追加しない。checker-reconcileをfreezeとして扱わない。",
+    "FN00・FN01・FN13はfreeze記録の部分scope、または未凍結scopeが残るため、関数全体のL7行を追加しない。",
+    "FN07..FN12はD-OS002-T3a/T3b/T4のfreeze記録がないため追加しない。checker-reconcileをfreezeとして扱わない。",
     "H009 #3788のGeneralProposalExchangeCarrier受領関数およびL5#/functions/19..22のprivate detailは、公開関数のL7表へ昇格させない。",
     "fixture・全返却値・hashはL7 test code側の責務であり、本書へ複製しない。実行証拠は作成せずexecution_stateはnot_executedとする。"
   ]

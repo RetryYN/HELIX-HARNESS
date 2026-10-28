@@ -5,7 +5,7 @@
   "parent": "HELIXOS-L2-002",
   "status": "candidate_design_only",
   "authority_effect": "none",
-  "scope_ja": "checker照合済みの凍結記録5件（os002-t1a/t1b/t1c/t2a/t2b）に含まれる公開関数のうち、全関数scopeが凍結しhuman_judgment_pendingがない10件をL5契約・L8 oracle・L7対へ結ぶ。既存7件に加え、FN02・FN03・FN05を追加する。既存L5契約を再定義せず、関数algorithm、fixture、全返却、hash、実行結果を複製しない。部分scopeの凍結は関数全体の凍結として扱わない。",
+  "scope_ja": "凍結記録と独立reviewの対象scopeを確認した公開関数10件をL5契約・L8 oracle・L7対へ結ぶ。既存7件に加え、FN02・FN03・FN05を追加する。checker記録のhuman_judgment_pendingは生成時の意味review対象を示し、凍結PRの独立review記録と併せて読む。既存L5契約を再定義せず、fixture、全返却、実行結果を複製しない。部分scopeの凍結は関数全体の凍結として扱わない。",
   "source_pins": [
     {
       "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
@@ -291,6 +291,7 @@
         "path": "docs/governance/audits/tdd/os002-t1a-b01-b02-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/2"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3754#issuecomment-6453081634",
       "state_event_meaning_ja": "開始時と操作時の依存入力を原契約へ照合し、未発生・未観測を欠落へせず、非対象scopeを失効させない。",
       "l7_test_ref": {
         "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
@@ -313,6 +314,7 @@
         "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/0"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
       "state_event_meaning_ja": "各projectの要求から運用までの状態を個別照合し、原状態と欠落・競合・未接続・未合意・未実装・未検証を保持する。GitHub Issue/PR状態から提供状態を生成しない。",
       "l7_test_ref": {
         "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
@@ -335,6 +337,7 @@
         "path": "docs/governance/audits/tdd/os002-t1b-f01-f03-freeze-2026-10-28.json",
         "pointer": "/function_freeze_rows/1"
       },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3761#issuecomment-6455302679",
       "state_event_meaning_ja": "event・義務・artifact/pairを元のproject・scope・要求/テンプレートrevisionへ結び、unit/connection/composite別の非該当根拠を保持する。未知や空欄からN/A・架空端・他義務の完了を生成しない。",
       "l7_test_ref": {
         "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
@@ -344,8 +347,8 @@
   ],
   "out_of_scope_ja": [
     "L5#/functions/0（FN00）および L5#/functions/13 は、freeze recordが共通入口・builderの部分scopeのみを凍結し、F04 profile関連scopeを後続記録へ送っているため、関数全体の行として追加しない。",
-    "L5#/functions/1（FN01）はD-OS002-T1aでT:296/B01のみが凍結され、T:308/N02が未凍結。D-OS002-T4 checker-reconcileのhuman_judgment_pendingも残るため追加しない。",
-    "L5#/functions/7..9（FN07..FN09）、/functions/10..11（FN10..FN11）、/functions/12（FN12）は、それぞれD-OS002-T3a/T3b/T4のchecker-reconcileにhuman_judgment_pendingが残り、freeze記録がないため追加しない。",
+    "L5#/functions/1（FN01）はD-OS002-T1aでT:296/B01のみが凍結され、T:308/N02が未凍結のため追加しない。",
+    "L5#/functions/7..9（FN07..FN09）、/functions/10..11（FN10..FN11）、/functions/12（FN12）は、D-OS002-T3a/T3b/T4のfreeze記録がないため追加しない。",
     "D-OS002-T3a/T3b/T4のchecker-reconcile記録をfreezeとして扱わない。",
     "H009 #3788のGeneralProposalExchangeCarrierを受領するL5#/core_proposal_receiving_detail（receive_core_proposal_exchange等）およびL5#/functions/19..20は凍結記録上でOS privateと定義されているため、公開関数表へ昇格させない。L5#/functions/19..22のprivate detailも公開関数表へ昇格させない。",
     "runtime、正式wire schema、実source資格、OS登録/使用完了、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
