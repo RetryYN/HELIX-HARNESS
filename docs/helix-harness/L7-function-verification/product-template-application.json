@@ -183,6 +183,50 @@
         "path": "docs/governance/audits/tdd/h009-b02-checker-reconcile-2026-10-28.json",
         "pointer": "/target_bindings/public_functions/0"
       },
+      "normal_single_snapshot_boundary_ja": "normal oracleのCORE-NORMAL-UNIT-REQUIRED単一snapshotでは、元obligation refsを保ちcomparison_state=not_evaluated・not_evaluated_refsとして返し、findingなしとする。これはsnapshot間の意味同等性を主張しない。ADD-20はnonsemantic_metadataだけを変えた入力でfindingなし・義務不変を観測する範囲であり、NEG-01..04のqualifiedな対照義務集合やSemanticComparisonを補わない。",
+      "stopped_semantic_subassertions": [
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-01",
+          "case_ref": {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/cases/1/negative_cases/0"
+          },
+          "failure_rule_ref": "HARNESS-L5-009-R-ai_name_changes_obligations",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約のAI名だけの差について、具体的な期待/返却義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-02",
+          "case_ref": {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/cases/1/negative_cases/1"
+          },
+          "failure_rule_ref": "HARNESS-L5-009-R-language_changes_obligations",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同scope・同意味・同適用契約の言語だけの差について、省略前後の具体的な義務集合の対と、それらを結ぶqualifiedなSemanticComparisonがない。Claimの自己申告は代替根拠にしない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-03",
+          "case_ref": {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/cases/1/negative_cases/2"
+          },
+          "failure_rule_ref": "HARNESS-L5-009-R-different_domain_forced_equal",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "異なるdomain/risk/scopeを示す別binding、対応するqualified candidate set、および境界を比較するqualifiedなSemanticComparisonがない。"
+        },
+        {
+          "case_id": "HARNESS-L8-009-B02-NEG-04",
+          "case_ref": {
+            "path": "docs/helix-harness/L8-unit-verification/product-template-application.json",
+            "pointer": "/cases/1/negative_cases/3"
+          },
+          "failure_rule_ref": "HARNESS-L5-009-R-count_as_semantic_equivalence",
+          "status": "stopped_missing_qualified_material",
+          "missing_qualified_material_ja": "同件数で内容が異なることを示す2つのqualified義務集合と、件数だけで同等としないためのqualifiedなSemanticComparisonがない。"
+        }
+      ],
+      "l8_refinement_return_ja": "4 subassertionのtyped_mutation具体化は、WR138 SYNTHETIC-T-EXTRAと同じくL8設計の後続作業へ戻す。今回はL5/L8の意味を変更せず、材料のないNEG findingを生成しない。",
       "execution_state": "not_executed"
     },
     {
