@@ -335,6 +335,34 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "unconnected_unagreed_collapsed",
+          "change": "同一入力でproject Pのimplementation=unconnected、project Qのverification=unagreedとした状態を、一方または両方とも欠落・競合・未実装・未検証へ置換する、またはP/Qを同一状態に丸める",
+          "axis": "project_state",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "same_project_partial_completion",
+          "change": "同一project Pでimplementation=supplied、verification=not_observed（他の工程も未完）の部分成功を、P全体の完了へ昇格",
+          "axis": "project_scope",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed",
@@ -4975,6 +5003,20 @@
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
+        },
+        {
+          "code": "reassessment_pending_as_complete",
+          "change": "project PでCORE影響がaffectedかつ再評価待ち、旧版利用/移管未完を保持する入力に、再評価済み・影響なし・使用履歴移管完了のclaimを加える",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
         }
       ],
       "execution_state": "not_executed",
@@ -5066,6 +5108,20 @@
           "expected_preserved": {
             "original_binding": "変異対象の原record/project/scope/要求・template版",
             "observable": "E1/E2原集合/再送対応、E3不足、Q除外理由/比較不能を保持。評価成立なし。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0
+        },
+        {
+          "code": "undecided_labo_scope_as_complete",
+          "change": "LABO_scopeの指定/合意scopeまたはrequired_record_refsが未決/未供給の入力に、選択評価complete/evaluatedのclaimを加える",
+          "axis": "evaluation_inputs",
+          "state": "unknown",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
             "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
           },
           "expected_side_effect_count": 0
@@ -5336,7 +5392,7 @@
     "meaning_coverage": "unproven",
     "global92_430_completion": "unproven",
     "contract_count": 13,
-    "negative_case_count": 71,
+    "negative_case_count": 75,
     "remaining": "基本対13組（B:296..300,302..308の③維持およびB:301のD-OS002-B1基本pair凍結）のL4/L9対設計と正負caseは構成済み（B）。下流L5/L8詳細対（T:296..308：D-OS002-T1a〜T4）の関数別精査・独立review・pair凍結、およびL6/L7実装・実input/output/副作用の実行観測は各下流責務へ戻す（C）。"
   },
   "legacy_facet_dispositions": [

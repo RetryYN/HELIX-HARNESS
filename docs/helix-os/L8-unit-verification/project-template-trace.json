@@ -983,6 +983,94 @@
           ],
           "handler_ref": "HELIXOS-L5-002-compare_project_stages",
           "execution_state": "not_executed"
+        },
+        {
+          "code": "unconnected_unagreed_collapsed",
+          "change": "同一入力でproject Pのimplementation=unconnected、project Qのverification=unagreedとした状態を、一方または両方とも欠落・競合・未実装・未検証へ置換する、またはP/Qを同一状態に丸める",
+          "axis": "project_state",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=unconnectedとQのverification=unagreedを異なる状態として保持し、欠落・競合・未実装・未検証と混同せず、全体完了を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0,
+          "fixture_ref": "HELIXOS-L8-002-FIXTURE-F01",
+          "mutations": [
+            {
+              "op": "append_claim",
+              "path": "claims",
+              "value": {
+                "name": "unconnected_unagreed_collapsed",
+                "target_ref": null,
+                "value": "Treat P.implementation=unconnected and Q.verification=unagreed as one state.",
+                "basis_refs": []
+              }
+            }
+          ],
+          "handler_ref": "HELIXOS-L5-002-compare_project_stages",
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "project_states": [
+              {
+                "binding": {
+                  "project_scope": "P",
+                  "requirement_ref": "REQ-P"
+                },
+                "implementation": "unconnected"
+              },
+              {
+                "binding": {
+                  "project_scope": "Q",
+                  "requirement_ref": "REQ-Q"
+                },
+                "verification": "unagreed"
+              }
+            ]
+          }
+        },
+        {
+          "code": "same_project_partial_completion",
+          "change": "同一project Pでimplementation=supplied、verification=not_observed（他の工程も未完）の部分成功を、P全体の完了へ昇格",
+          "axis": "project_scope",
+          "state": "conflict",
+          "backflow_owner": "OS002",
+          "expected": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pのimplementation=suppliedとverification=not_observedおよび他の未完工程を個別に保持し、同じprojectの部分成功から全体完了を生成しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0,
+          "fixture_ref": "HELIXOS-L8-002-FIXTURE-F01",
+          "mutations": [
+            {
+              "op": "append_claim",
+              "path": "claims",
+              "value": {
+                "name": "same_project_partial_completion",
+                "target_ref": null,
+                "value": "P complete from implementation=supplied while verification=not_observed.",
+                "basis_refs": []
+              }
+            }
+          ],
+          "handler_ref": "HELIXOS-L5-002-compare_project_stages",
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "project_states": [
+              {
+                "binding": {
+                  "project_scope": "P",
+                  "requirement_ref": "REQ-P"
+                },
+                "implementation": "supplied",
+                "verification": "not_observed"
+              }
+            ]
+          }
         }
       ],
       "execution_state": "not_executed"
@@ -4673,6 +4761,66 @@
           ],
           "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
           "execution_state": "not_executed"
+        },
+        {
+          "code": "reassessment_pending_as_complete",
+          "change": "project PでCORE影響がaffectedかつ再評価待ち、旧版利用/移管未完を保持する入力に、再評価済み・影響なし・使用履歴移管完了のclaimを加える",
+          "axis": "impact_history",
+          "state": "conflict",
+          "backflow_owner": "CORE/OS002",
+          "expected": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "Pの再評価待ちを未完として保持し、旧使用/移管未完/影響Unknownと無関係なQ有効結果を維持する。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0,
+          "fixture_ref": "HELIXOS-L8-002-FIXTURE-F07",
+          "mutations": [
+            {
+              "op": "append_claim",
+              "path": "claims",
+              "value": {
+                "name": "reassessment_pending_as_complete",
+                "target_ref": null,
+                "value": "P reassessment complete, impact unaffected, and TPL-OLD history migrated.",
+                "basis_refs": []
+              }
+            }
+          ],
+          "handler_ref": "HELIXOS-L5-002-compare_core_impact_history",
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "used_ref": "TPL-OLD",
+            "candidate_ref": "TPL-CANDIDATE",
+            "CORE_impacts": [
+              {
+                "binding": {
+                  "project_scope": "P",
+                  "requirement_ref": "REQ-P",
+                  "template_ref": "TPL-OLD"
+                },
+                "target_obligation_ref": "OBL-P",
+                "state": "affected",
+                "reason": "semantic impact requires reassessment",
+                "old_used_ref": "TPL-OLD",
+                "new_candidate_ref": "TPL-CANDIDATE"
+              },
+              {
+                "binding": {
+                  "project_scope": "Q",
+                  "requirement_ref": "REQ-Q",
+                  "template_ref": "TPL-OLD"
+                },
+                "target_obligation_ref": "OBL-Q",
+                "state": "unaffected",
+                "reason": "unrelated scope",
+                "old_used_ref": "TPL-OLD",
+                "new_candidate_ref": "TPL-CANDIDATE"
+              }
+            ],
+            "migration_receipt": null
+          }
         }
       ],
       "execution_state": "not_executed"
@@ -4841,6 +4989,47 @@
           ],
           "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
           "execution_state": "not_executed"
+        },
+        {
+          "code": "undecided_labo_scope_as_complete",
+          "change": "LABO_scopeの指定/合意scopeまたはrequired_record_refsが未決/未供給の入力に、選択評価complete/evaluatedのclaimを加える",
+          "axis": "evaluation_inputs",
+          "state": "unknown",
+          "backflow_owner": "LABO/OS005/024",
+          "expected": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
+          "expected_preserved": {
+            "original_binding": "変異対象の原record/project/scope/要求・template版",
+            "observable": "scope/必要入力の未決を不完全として保持し評価成立なし。OSはLABO評価scopeや必要集合を推定しない。",
+            "effects": "原event/未完/非対象Qの有効作業は保持。新authority/OS外裁定/全体完了なし。"
+          },
+          "expected_side_effect_count": 0,
+          "fixture_ref": "HELIXOS-L8-002-FIXTURE-F08",
+          "mutations": [
+            {
+              "op": "append_claim",
+              "path": "claims",
+              "value": {
+                "name": "undecided_labo_scope_as_complete",
+                "target_ref": null,
+                "value": "Evaluation complete although LABO scope and required record set are undecided.",
+                "basis_refs": []
+              }
+            }
+          ],
+          "handler_ref": "HELIXOS-L5-002-compare_labo_record_selection",
+          "execution_state": "not_executed",
+          "input_state_minimum": {
+            "evaluation_selected": true,
+            "LABO_scope": {
+              "ref": "LABO-P",
+              "binding": {
+                "project_scope": "P",
+                "requirement_ref": "REQ-P",
+                "template_ref": "TPL-P"
+              },
+              "period": "PERIOD-P"
+            }
+          }
         }
       ],
       "execution_state": "not_executed"
@@ -7036,9 +7225,9 @@
     "state": "draft_incomplete",
     "runtime_execution": "not_executed",
     "contract_count": 13,
-    "negative_case_count": 71,
+    "negative_case_count": 75,
     "full92_430_completion": "unproven",
-    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存71変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4・cases/3原負例3件・ADD-12・NORMAL-compare_template_sets・core_proposal_receiving_verification 8 family/finite_cases 11件/additional_branch_probes 7件）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301（F04前半: fn6,14..18、cases/5原負例8件・association_projection 47件・f04_full_composition・f04_source_projection_profile_cases 25件・dispatch_boundary_cases 5件・function_call_path_bindings・f04_source_member_verification 9whole/9private/18shape/4role はD-OS002-T2a［os002-t2a-f04-projection-member-freeze-2026-10-28.json］、F04後半: f04_source_original_correspondence_verification 12component/17branch/4origin/9whole/3private_whole/3private_negative/3additional_branch_probes・private fn19..22およびfn14/15/16/18後半結線はD-OS002-T2b［os002-t2b-f04-original-correspondence-freeze-2026-10-28.json］）でA=0を確認し凍結済み。残るT:302..308（F05..F09, N01, N02）はD-OS002-T3a/T3b/T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
+    "remaining": "【B:スライス別L5/L8単体検証対凍結】13契約・既存75変異（cases/0..12/negative_cases）・関数正常22例（function_cases/0..21）・追加37例（additional_cases/0..36）・wire_codec 43例（wire_codec_verification/cases/0..42）・独立dispatch境界5例（dispatch_boundary_cases/cases/0..4）のうち、共通入口/集約（fn0・fn13）・wire_codec境界およびT:296（B01: fn1 B01分）・T:297（B02: fn2）の単体検証対はD-OS002-T1a（os002-t1a-b01-b02-freeze-2026-10-28.json）、T:298（F01: fn3）・T:300（F03: fn5）の単体検証対はD-OS002-T1b（os002-t1b-f01-f03-freeze-2026-10-28.json）、T:299（F02: fn4・cases/3原負例3件・ADD-12・NORMAL-compare_template_sets・core_proposal_receiving_verification 8 family/finite_cases 11件/additional_branch_probes 7件）はD-OS002-T1c（os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json）、T:301（F04前半: fn6,14..18、cases/5原負例8件・association_projection 47件・f04_full_composition・f04_source_projection_profile_cases 25件・dispatch_boundary_cases 5件・function_call_path_bindings・f04_source_member_verification 9whole/9private/18shape/4role はD-OS002-T2a［os002-t2a-f04-projection-member-freeze-2026-10-28.json］、F04後半: f04_source_original_correspondence_verification 12component/17branch/4origin/9whole/3private_whole/3private_negative/3additional_branch_probes・private fn19..22およびfn14/15/16/18後半結線はD-OS002-T2b［os002-t2b-f04-original-correspondence-freeze-2026-10-28.json］）でA=0を確認し凍結済み。残るT:302..308（F05..F09, N01, N02）はD-OS002-T3a/T3b/T4で順次精査・凍結する。【C:下流L6/L7・実行・外部接続境界】製品関数実行（runtime_execution=not_executed）、L6/L7関数設計・検証、実source資格/OS053保存/外部接続/実装oracle凍結は本L8純粋単体検証仕様の外。独立review記録は対象HEADのPR commentおよびdocs/governance/audits/tdd/で照合する。",
     "F04_source_projection_cases": {
       "total": 25,
       "join_result": 23,
@@ -14254,5 +14443,6 @@
     "meaning": "V字右側（L8、L5との照合）に実装前に書き込まれていた照合の実行材料（f04_source_original_correspondence_verificationのmaterials / private_return_expectation_recipes具体値、cases[*].negative_casesのexpected_output、f04_full_compositionのpresence_controls raw_input/expected_validated_return、function_casesのinvocationsや大型record projection、f04_source_member_verificationのprivate_units case_input_patch / expected_observation_recipe_patch、normal_fixturesのoriginal_input/input/expected_material/normal_expected_output、additional_casesのinput_construction / expected_existing_f04_preservation / output_assertions、hash固定等）をallowlist方式で撤去した。残したのはcase行・小さな反例（mutations / mutation / wire_codecのraw_utf8・raw_octets_hex / private_return_negative_controlsのinput）と反例に対する期待文（negative_casesのexpected・expected_preserved、function_casesのexpected、additional_casesのexpected_preserved・expected_behavior・expected_join_projection、private_unitsのexpected_new_trace_findings_recipe等）・観点・oracle ID・rule/axis/state/owner・境界文・source_pins等の参照。撤去対象を指すunpinned pointer objectには撤去前revision c5960e04259bed1520fa9072ba84f0f8f1198e14を付与した。過去本文はrevision c5960e04259bed1520fa9072ba84f0f8f1198e14の同pathで辿る。",
     "removed_key_rule": "allowlist（L8_NORMAL_FIXTURE_ALLOWLIST / L8_CASE_ALLOWLIST / L8_NEGATIVE_CASE_ALLOWLIST / L8_ASSOC_PROJ_CASE_ALLOWLIST / L8_F04_FULL_COMPOSITION_CASE_ALLOWLIST / L8_F04_PRESENCE_CONTROL_ALLOWLIST / L8_F04_ERC_COMPLETE_CONTRAST_ALLOWLIST / L8_FUNCTION_CASE_ALLOWLIST / L8_ADDITIONAL_CASE_ALLOWLIST / L8_DISPATCH_BOUNDARY_CASE_ALLOWLIST / L8_WIRE_CODEC_CASE_ALLOWLIST / L8_F04_SOC_CASE_ALLOWLIST / L8_F04_SOC_PRIVATE_WHOLE_CASE_ALLOWLIST / L8_F04_SOC_PRIVATE_NEG_CONTROL_ALLOWLIST / L8_F04_SMV_WHOLE_CASE_ALLOWLIST / L8_F04_SMV_SHAPE_CASE_ALLOWLIST / L8_F04_SMV_PRIVATE_UNIT_CASE_ALLOWLIST / L8_F04_SMV_ORPO_CASE_ALLOWLIST）にない材料key全部、およびpath＋revisionを持つ固定source参照のsha256/file_sha256以外のsha256を含むkey全部を撤去。規則はPR本文のslim.py。",
     "use_boundary": "旧材料は照合用の参考に限る（DT-VT-105の同源化禁止）。L7の期待値はL5の契約から独立に導く。実装後のL8照合結果は、対象caseごとに1行（passed/failed/unknownと証拠参照）で追記する。"
-  }
+  },
+  "fixture_boundary": "合成固定rawのcarrier/Field/原bytes対照。既存normal_fixtures/75変異/22関数case/37追加case/原source期待は変更しない。fixture expectedをowner入力へ混ぜない。"
 }
