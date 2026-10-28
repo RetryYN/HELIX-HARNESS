@@ -4182,7 +4182,7 @@
       "path": "docs/helix-brain/L6-function-design/descriptor-definition-first-test.json",
       "pointer": "/fn0_qualification_boundary_preparation"
     },
-    "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+    "source_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
     "oracle_refs": [
       {
         "path": "docs/helix-brain/L5-detail-design/template-semantic-supply.json",
@@ -4206,8 +4206,8 @@
     "test_bindings": [
       {
         "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_qualification_contract.py",
-        "sha256": "2d8163eac9049c6de34b4ffe97b890279cae8d602bc2ea766162a63f991135f9",
-        "commit": "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+        "sha256": "fc95ce8ccf93fa7e271024e33c54cc29c0cbe0877b592efe587a2cd5571ad088",
+        "commit": "59f21fd7023172c063590b48385bdc060b2743d9",
         "methods": [
           "test_unencodable_source_text_is_unusable_and_preserved",
           "test_strict_source_json_rejects_duplicate_keys_and_non_json_constants",
@@ -4220,18 +4220,20 @@
       },
       {
         "path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/tests/test_fn0_source_numeric_exactness.py",
-        "sha256": "89c39758670c90085d620012c61417f01b700a184deeddb8b8cc13cafae318c9",
+        "sha256": "1e5628edfe5a50361ed1d34978eb90beb7b527a1ba1320c51b456f7047715f25",
         "commits": [
-          "9b5d798c7d",
-          "a75fc4119c",
-          "dfb2c55827",
-          "a5db3d155"
+          "9b5d798c7db2bf6419690b9fc7e9415beec3ccd6",
+          "a75fc4119c0a67c82e01091647b5d47504dc0523",
+          "dfb2c55827b9312eff4eafa8f3563776690b350b",
+          "a5db3d155b0051433cfd60de2a113ff33caa212e",
+          "59f21fd7023172c063590b48385bdc060b2743d9"
         ],
         "methods": [
           "test_inner_source_parse_does_not_round_distinct_decimal_values_together",
           "test_inner_source_decimal_token_equals_supplied_exact_integer_by_value",
           "test_inner_source_decimal_does_not_gain_host_float_equality",
           "test_finite_float_outside_source_body_remains_valid_input",
+          "test_unrepresentable_decimal_exponent_keeps_source_unusable",
           "test_unrepresentable_decimal_exponent_keeps_source_unusable"
         ]
       }
@@ -4246,67 +4248,125 @@
     },
     "red_evidence": [
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-qualification-red-B-R1.json",
-        "classification": "exit_nonzero",
-        "duration_ms": 246,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "7 tests; 2 assertion failures; 0 errors."
+        "phase": "qualification Ref identity and scope oracle Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_qualification_contract",
+        "test_commit": "4a25c0db05ca88d8faf170d5398ecb721f52d984",
+        "source_revision": "026afb1c21846fac233561f40057a5bd4f4bc8ac",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 246,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 7,
+          "assertion_failures": 2,
+          "errors": 0
+        }
       },
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-red-B-R3.json",
-        "classification": "exit_nonzero",
-        "duration_ms": 116,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "4 tests; 3 assertion failures; 0 errors. The outside-source finite-float control passed."
+        "phase": "numeric source parse/equality Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness",
+        "test_commit": "dfb2c55827b9312eff4eafa8f3563776690b350b",
+        "source_revision": "a75fc4119c0a67c82e01091647b5d47504dc0523",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 116,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 4,
+          "assertion_failures": 3,
+          "errors": 0,
+          "control_passed": "finite float outside source body remains accepted"
+        }
       },
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-decimal-exponent-red-R1.json",
-        "classification": "exit_nonzero",
-        "duration_ms": 64,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "The single test exposed uncaught decimal.InvalidOperation from a valid extreme exponent token; this was the targeted Red."
+        "phase": "extreme Decimal exponent Red",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness.TestFn0SourceNumericExactness.test_unrepresentable_decimal_exponent_keeps_source_unusable",
+        "test_commit": "a5db3d155b0051433cfd60de2a113ff33caa212e",
+        "source_revision": "d8ea41e23db9534a471518301c109c1ffda3bde9",
+        "result": {
+          "classification": "exit_nonzero",
+          "wrapper_duration_ms": 64,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 1,
+          "assertion_failures": 0,
+          "errors": 1,
+          "error": "decimal.InvalidOperation escaped strict source parsing; this was the targeted behavior, not setup/import failure"
+        }
       }
     ],
     "green_evidence": [
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-b-green-focused-R2.json",
-        "classification": "ok",
-        "duration_ms": 389,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "14 tests passed; source qualification boundary and prior fn0 controls."
+        "phase": "focused fn0 qualification/numeric/control suite before formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness test_fn0_source_qualification_contract test_fn0_identity_wire_and_qualifications test_supply_input test_source_integrity",
+        "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 413,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 19,
+          "failures": 0,
+          "errors": 0
+        }
       },
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-focused-R2.json",
-        "classification": "ok",
-        "duration_ms": 413,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "19 focused fn0 tests passed after DecimalException handling."
+        "phase": "focused fn0 qualification/numeric/control suite after formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest test_fn0_source_numeric_exactness test_fn0_source_qualification_contract test_fn0_identity_wire_and_qualifications test_supply_input test_source_integrity",
+        "source_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 432,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 19,
+          "failures": 0,
+          "errors": 0
+        }
       },
       {
-        "path": "scaffold/review-handoff/local/brain032-l8-d27-3547-20261023/root-wr128-source-numeric-unit-green-R2.json",
-        "classification": "ok",
-        "duration_ms": 28045,
-        "reaped": true,
-        "output_truncated": false,
-        "result": "441 unit tests passed."
+        "phase": "whole descriptor-definition unit suite before formatting",
+        "bounded_executor": "python3 scaffold/tools/bounded_exec.py",
+        "command": "env PYTHONPATH=src:tests python3 -m unittest discover -s tests",
+        "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+        "result": {
+          "classification": "ok",
+          "wrapper_duration_ms": 28045,
+          "reaped": true,
+          "output_truncated": false,
+          "tests": 441,
+          "failures": 0,
+          "errors": 0,
+          "format_relation": "The three subsequently formatted owned files had identical AST dumps before and after formatting; the format commit changed no AST."
+        }
       }
     ],
     "implemented_boundary": {
       "source_commit": "756023176520cb2a4f308b22dbd80f5362553d99",
       "source_path": "helix/helix-brain/units/HELIXBRAIN-UNIT-DESCRIPTOR-DEFINITION/src/supply_validation.py",
-      "source_sha256": "3deea6cf8a669e6858140f31e80a256e0e64c8e6d376aa178df7cb1b5c595e7f",
-      "behavior": "Source content_bytes is strict-parsed with Decimal numeric tokens and compared recursively to supplied body. Exact numeric values compare to strict native int; supplied host float inside source body does not qualify. Outer finite-float raw shape acceptance is retained. Decimal representation exceptions during source parsing use the same existing unusable-source/InputIssue result; no exponent ceiling was added."
+      "source_sha256": "391dde873da38777b8a01072d06715caa57cde0e66e8f5ed002122a51c382f96",
+      "behavior": "Source content_bytes is strict-parsed with Decimal numeric tokens and compared recursively to supplied body. Exact numeric values compare to strict native int; supplied host float inside source body does not qualify. Outer finite-float raw shape acceptance is retained. Decimal representation exceptions during source parsing use the same existing unusable-source/InputIssue result; no exponent ceiling was added.",
+      "formatted_revision": "59f21fd7023172c063590b48385bdc060b2743d9"
     },
     "limits": [
       "The passing unit tests establish the selected synthetic fn0 boundary only, not an operational qualification resolver or origin-authentication system.",
       "No public numeric type, float adapter, or full JSON codec completion is claimed. Existing qualification_body remains opaque.",
       "No qualification/body/source behavior outside the enumerated cases is inferred."
     ],
-    "execution_state": "bounded Red and Green completed; full unit suite passed 441 tests."
+    "execution_state": "bounded Red/Green observed; formatted focused fn0 suite 19 PASS; pre-format full unit suite 441 PASS with identical AST across formatting.",
+    "format_confirmation": {
+      "tool": "Ruff 0.17.1",
+      "commands": [
+        "ruff format <the three owned source/test files>",
+        "ruff format --check <the three owned source/test files>",
+        "ruff check <the three owned source/test files>"
+      ],
+      "result": "3 files reformatted; then 3 already formatted; all checks passed. Python AST dumps for supply_validation.py, test_fn0_source_numeric_exactness.py, and test_fn0_source_qualification_contract.py were identical before/after formatting. The full 441-test run is explicitly against the pre-format bytes; the focused 19-test run was repeated after formatting."
+    }
   }
 }

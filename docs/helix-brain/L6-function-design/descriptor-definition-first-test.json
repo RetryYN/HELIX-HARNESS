@@ -2540,7 +2540,7 @@
   },
   "fn0_qualification_boundary_preparation": {
     "scope": "fn0のsource bytes/body/digest、独立Qualification join、Qualification Refのidentity比較、適用scope診断、およびcontent_bytes内数値のstrict exact比較に限る。既存NORMAL/ADD04 nodeは変更しない。",
-    "source_revision": "756023176520cb2a4f308b22dbd80f5362553d99",
+    "source_revision": "59f21fd7023172c063590b48385bdc060b2743d9",
     "entry": "既存validate_supply_input(raw) -> ValidatedSupplyとsource qualification順序を維持する。資格成功adapter、public numeric carrier、floatからExactJsonNumberへの変換は追加しない。",
     "contract_refs": [
       {
