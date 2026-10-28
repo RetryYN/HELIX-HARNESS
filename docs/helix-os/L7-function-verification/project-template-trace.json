@@ -95,6 +95,11 @@
       "path": "docs/governance/audits/tdd/os002-t4-n01-n02-checker-reconcile-2026-10-28.json",
       "revision": "f85e7ba1303d6965bcbe56e0c61e367874943078",
       "sha256": "e4c7d6b651c21a2f71656d6a1c39028a96ff99d83179c619106a7e53c4dacfd6"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-fn00-fn13-public-pair-freeze-2026-10-29.json",
+      "revision": "d93f8cc706e56b52d2a17ecbfbc7adcf603de956",
+      "sha256": "baa6d7501d8097ee2b7ba51f13fe6eb7fddc69aa506419cd820e03a629ea9176"
     }
   ],
   "cases": [
@@ -643,6 +648,176 @@
       },
       "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3815#issuecomment-6464285803",
       "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN00-validate_record_trace_input",
+      "function_design_ref": "HELIXOS-L6-002-FN00-validate_record_trace_input",
+      "test_target_ja": "Raw inputのnormal/ADD境界、F04・invalid-root、selected SOURCE-MEMBERのFN00返却期待。",
+      "observation_ja": "SOURCE-MEMBER-01..09はfunction_refがFN16だが、expected_validator_output_refのcase_input#/validated_record_traceがFN00返却を指す。実装testは現行mainに存在せず、未実行。",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/0"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/0"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/0"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/1"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/2"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/3"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/4"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/5"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/6"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/7"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/8"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/9"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/10"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/5"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/15"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/dispatch_boundary_cases/cases/0"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/0"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/1"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/2"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/3"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/4"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/5"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/6"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/7"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases/8"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/0"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-fn00-fn13-public-pair-freeze-2026-10-29.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3866#issuecomment-6479056836",
+      "execution_state": "not_executed",
+      "stopped_tdd_history_candidates": [],
+      "tdd_history_stop_reason_ja": "revision d93f8cc のtracked treeにOS002実装・test sourceがなく、git history（--all）の対象path/symbol検索でも候補commitを確認できない。L5 implementation_preparation=not_ready、L8 runtime_execution=not_executedのため、Red/Greenを推測せずTDD履歴を停止記録する。",
+      "tdd_history_owner": "HELIX-OS（OS002）",
+      "tdd_history_resumption_condition_ja": "L5 implementation_preparationの下流L6/L7・実装TDD境界に従い、対象実装作業でoracle/testを先に固定し、test-onlyのRed実観測、source-onlyの最小Green、その後のRefactorを実際に行った時点で各変更fileのrevisionとwhole-file SHA-256を束縛して履歴を再開する。",
+      "source_pin_refs": [
+        "#/source_pins/18"
+      ]
+    },
+    {
+      "id": "HELIXOS-L7-002-FN13-build_record_trace_analysis",
+      "function_design_ref": "HELIXOS-L6-002-FN13-build_record_trace_analysis",
+      "test_target_ja": "ValidatedRecordTraceの通常集約、NO-F04境界、F04 profile dispatch path binding。",
+      "observation_ja": "normal oracleはL8 function_cases/13、NO-F04はfunction_cases/16とdispatch boundary case 1、F04 profile経路はL5 profile_dispatch_bindingとL8 calls/3で結ぶ。実装testは現行mainに存在せず、未実行。",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/13"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/13"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/16"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/dispatch_boundary_cases/cases/1"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_call_path_bindings/calls/3"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/13"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-fn00-fn13-public-pair-freeze-2026-10-29.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "independent_review_ref": "https://github.com/RetryYN/HELIX-HARNESS/pull/3866#issuecomment-6479056836",
+      "execution_state": "not_executed",
+      "stopped_tdd_history_candidates": [],
+      "tdd_history_stop_reason_ja": "revision d93f8cc のtracked treeにOS002実装・test sourceがなく、git history（--all）の対象path/symbol検索でも候補commitを確認できない。L5 implementation_preparation=not_ready、L8 runtime_execution=not_executedのため、Red/Greenを推測せずTDD履歴を停止記録する。",
+      "tdd_history_owner": "HELIX-OS（OS002）",
+      "tdd_history_resumption_condition_ja": "L5 implementation_preparationの下流L6/L7・実装TDD境界に従い、対象実装作業でoracle/testを先に固定し、test-onlyのRed実観測、source-onlyの最小Green、その後のRefactorを実際に行った時点で各変更fileのrevisionとwhole-file SHA-256を束縛して履歴を再開する。",
+      "source_pin_refs": [
+        "#/source_pins/18"
+      ]
     }
   ],
   "compare_template_sets_tdd": {
@@ -844,7 +1019,7 @@
     "execution_state": "not_executed"
   },
   "out_of_scope_ja": [
-    "FN00はT1a /function_freeze_rows/0でADD-01..11と共通入力・invalid-rootを凍結済みだが、残るL5#/functions/0のHELIXOS-L8-002-F04（L8#/cases/5）とHELIXOS-L8-002-F04-SOURCE-MEMBER-01..09（L8#/f04_source_member_verification/whole_cases/0..8）は、T2a /function_freeze_rowsにFN00行がなく、T2a /private_detail_bindings/0,1のbound_public_functionsにもL5#/functions/0がない。T2a /function_freeze_rows/0のunit_case_refs_and_shared_function_refs_dispositionはこれらの存在・結線確認を記録するがFN00の関数pair凍結ではない。T2b /private_detail_bindings/0,1はL5#/functions/0をbound_public_functionsに含むものの、対象はsource_original_correspondence detailとprivate fn19であり、上記T2a U-ID群のFN00 public pair bindingを補わないため、FN00のL7行を追加しない。FN13はT1a /function_freeze_rows/3でnormal oracleとHELIXOS-L8-002-F04-DISPATCH-NO-F04（L8#/function_cases/16、dispatch_boundary_cases/cases/1）を凍結済み。T2a /private_detail_bindings/0のdispositionはfn13接続を記すが、bound_public_functionsはL5#/functions/14..18のみでL5#/functions/13を含まず、公開FN13のF04 profile scopeを結ぶfreeze pointerがないため、FN13のL7行も追加しない。T1a/T2a/T2bは独立review済み（#3754 R1、#3764 R1、#3769 R1 no findings）だが、この境界不足は別に残る。FN01はT1a(B01)とT4(N02)のscopeを分け、両方のfreeze bindingとU-IDを参照する。",
+    "WR162（#3866 freeze merge d93f8cc）でFN00/FN13のL6/L7対応行を追加した。FN00 SOURCE-MEMBER-01..09はL8 expected_validator_output_refがFN00返却を指すこと、FN13 profile pathはL5 /functions/13/profile_dispatch_bindingとL8 calls/3を参照する。f04_source_projection_profile_detail・f04_source_member_detailは独立public行にせず既存private境界を保つ。",
     "D-OS002-T3a/T3b/T4はgenerate-freezeのdeclaration manifest target_bindingsと独立review記録を参照する。checker-reconcileというファイル名だけを理由にfreeze根拠から除外しない。",
     "H009 #3788のGeneralProposalExchangeCarrier受領関数およびL5#/functions/19..22のprivate detailは、公開関数のL7表へ昇格させない。",
     "fixture・全返却値・hashはL7 test code側の責務であり、本書へ複製しない。実行証拠は作成せずexecution_stateはnot_executedとする。"
