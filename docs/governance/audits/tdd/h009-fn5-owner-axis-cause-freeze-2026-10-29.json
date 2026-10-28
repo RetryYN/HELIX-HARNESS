@@ -100,7 +100,8 @@
       ],
       "l9_pointers": [
         "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/0",
-        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
+        "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1",
+        "L9#/field_source_materialization_verification/cases/7"
       ]
     }
   ],
@@ -185,11 +186,23 @@
           "L9#/field_semantic_evidence_verification/cause_kind_extension_cases/1"
         ],
         "note_ja": "L4 cause_vocabularyとL9 Axis cause logical casesの対応宣言。checkerのbasic_pair_bindings専用semantic validatorは存在せず、check-pairの構造結果と人手reviewを別途保持する。"
+      },
+      {
+        "binding_id": "L4-L9-FN5-axisfact-definition-declaration-positive",
+        "left_pointer": "L4#/field_source_materialization_contract/carrier_projection_table/0",
+        "right_pointer": "L9#/field_source_materialization_verification/cases/7",
+        "obligation_ids": [
+          "O2-definition-axis-projection"
+        ],
+        "case_pointers": [
+          "L9#/field_source_materialization_verification/cases/7"
+        ],
+        "note_ja": "L4のAxisFact/axis_value carrier投影と、definition roleのpositive L9 oracleの対応宣言。独立reviewで意味対応を判断する。"
       }
     ]
   },
-  "source_main": "df87a91e268f9a4c0265cc5a1d9738d033b291f3",
-  "request_base_sha": "df87a91e268f9a4c0265cc5a1d9738d033b291f3",
+  "source_main": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
+  "request_base_sha": "212ac7dcbc56abf3040f79300f88c6b497db66bc",
   "modified_aliases": [
     "L4",
     "L9",
@@ -208,11 +221,11 @@
     "L4_pre_sha256": "4330847017a409ef45500e14d73dfc1170489549b23d0f642f6927322d6bb4b3",
     "L4_post_sha256": "ac172f7512a1246472eeb07f03b1aadaa877efc62f6bf3ae11569a34160823ff",
     "L9_pre_sha256": "d4b9f0f4078a09061da9cc0eaf250095ecda8e10024f7b078d3b0a7dbc329f84",
-    "L9_post_sha256": "658e341c7a652878e071c44ab84d2f56c3540d34356557835791ed58372ff923",
+    "L9_post_sha256": "0fa96815d5d964c7117c3c3f79731964f90e93743b6cdbab5b52a97c6e6fab1b",
     "L5_pre_sha256": "8eaf2ec3914857c08191831423259c417927e61e30caee53d2fd9dd6af162dfb",
     "L5_post_sha256": "80342b79c5ef387990663011724c953d307224dae9b9ebf3a4ebd9de3d9904fa",
     "L8_pre_sha256": "d3beadc3b1fca94117e8d57ca601fa961244c6a66f7ed2cf69e237a0da604ee9",
-    "L8_post_sha256": "aef4d919b8e0e72e47f97ae9049dccc3c9fefcffd7e3060e28aa1b4de3a274fa"
+    "L8_post_sha256": "f40139ce93bfaced3ed59e55bc5fe93ca2b706acc160731dab9f7fb91dffe8d9"
   },
   "head_entity_counts": {
     "L5_contracts": 11,
@@ -234,8 +247,8 @@
     "L8_general_proposal_exchange_additional_branch_probes": 9
   },
   "pointer_resolution_summary": {
-    "checked_count": 140,
-    "expanded_target_count": 246,
+    "checked_count": 144,
+    "expanded_target_count": 250,
     "unresolved_count": 0,
     "passed": true
   },
