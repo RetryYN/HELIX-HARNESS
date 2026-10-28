@@ -442,10 +442,6 @@ def bind(data, runtime, session, lane, ttl, now):
         not prior or prior["expires"] <= now or prior["session"] == session,
         "生存中レーンの別sessionへの上書き禁止。unbindが必要",
     )
-    p.require(
-        not prior or prior["expires"] <= now or prior["lane"] == lane,
-        "同じruntimeがexecutionとreview_mergeを兼ねられない。unbindが必要",
-    )
     if lane in EXCLUSIVE_LANES:
         for other_runtime, other in data["lanes"].items():
             p.require(

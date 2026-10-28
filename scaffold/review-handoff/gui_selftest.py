@@ -643,7 +643,7 @@ class GuiChecks(unittest.TestCase):
         with self.assertRaises(ValueError):
             g.bind(self.data, "claude", "other", "review_merge", 60, self.now)
         with self.assertRaises(ValueError):
-            g.bind(self.data, "claude", "claude-gui", "execution", 60, self.now)
+            g.bind(self.data, "codex", "codex-gui", "review_merge", 60, self.now)
 
     def test_tamper(self):
         m = self.send()
@@ -1681,20 +1681,18 @@ class GuiChecks(unittest.TestCase):
         g.bind(self.data, "antigravity", "agy-gui", "execution", 60, self.now)
         self.assertEqual(self.data["lanes"]["codex"]["lane"], "execution")
         self.assertEqual(self.data["lanes"]["antigravity"]["lane"], "execution")
-        # 同じruntimeは生存中レーンと別のレーン（executionとreview_merge）を兼ねられない。
-        with self.assertRaisesRegex(
-            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
-        ):
+        # review_mergeは排他レーンのため、Claudeが保持中は別runtimeが同時にbindできない。
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
             g.bind(self.data, "antigravity", "agy-gui", "review_merge", 60, self.now)
-        with self.assertRaisesRegex(
-            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
-        ):
+        with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
             g.bind(self.data, "codex", "codex-gui", "review_merge", 60, self.now)
-        with self.assertRaisesRegex(
-            ValueError, "同じruntimeがexecutionとreview_mergeを兼ねられない"
-        ):
-            g.bind(self.data, "claude", "claude-gui", "execution", 60, self.now)
-        # review_mergeは排他レーンのため、別runtimeが同時にbindできない。
+        # 同じruntimeは1つのレーンしか持てず、executionへ切り替えるとreview_mergeは残らない（両レーンを兼ねない）。
+        g.bind(self.data, "claude", "claude-gui", "execution", 60, self.now)
+        self.assertEqual(self.data["lanes"]["claude"]["lane"], "execution")
+        self.assertNotIn(
+            "review_merge",
+            [entry["lane"] for entry in self.data["lanes"].values()],
+        )
         g.bind(self.data, "claude", "claude-gui", "review_merge", 60, self.now + 61)
         with self.assertRaisesRegex(ValueError, "同じ役割への二重binding"):
             g.bind(
