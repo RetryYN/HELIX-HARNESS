@@ -1,0 +1,708 @@
+{
+  "schema": "ci-design-source-inventory-audit.v1",
+  "record_id": "GOV-AUDIT-CI-DESIGN-SOURCE-INVENTORY-20261028",
+  "request_id": "WR126-CI-DESIGN-SOURCE-INVENTORY",
+  "issue": 3510,
+  "po_directive_refs": [
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6324741206",
+    "https://github.com/RetryYN/HELIX-HARNESS/issues/3510#issuecomment-6457411605"
+  ],
+  "evidence_kind": "audit",
+  "authority_effect": "none",
+  "execution_venue_decision": {
+    "decided": false,
+    "note": "ローカル実行にするかGitHub Actions実行にするかは本記録では決定しない。判断に必要な上流契約・旧HELIX対応・欠落層の材料のみを記録する。"
+  },
+  "boundary_constraints": {
+    "creates_requirement_meaning_or_approval": false,
+    "creates_new_gate_or_required_check": false,
+    "places_files_under_github_workflows": false,
+    "executes_legacy_ci_hooks_or_archive_tests": false
+  },
+  "path_aliases": {
+    "L2": "docs/helix-harness/L2-requirements/product-requirements.md",
+    "L11": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+    "L3F": "docs/helix-harness/L3-requirements/functional-requirements.json",
+    "L10F": "docs/helix-harness/L10-verification/functional-verification.json",
+    "L3B": "docs/helix-harness/L3-requirements/business-requirements.json",
+    "L10B": "docs/helix-harness/L10-verification/business-verification.json",
+    "L3N": "docs/helix-harness/L3-requirements/nfr-grade.json",
+    "L10N": "docs/helix-harness/L10-verification/nfr-verification.json",
+    "OS_L3F": "docs/helix-os/L3-requirements/functional-requirements.json",
+    "OS_L10F": "docs/helix-os/L10-verification/functional-verification.json",
+    "H005_L4": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+    "H005_L9": "docs/helix-harness/L9-integration-verification/verification-discipline.json",
+    "H005_L5": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+    "H005_L8": "docs/helix-harness/L8-unit-verification/verification-discipline.json",
+    "H034_L4": "docs/helix-harness/L4-basic-design/verification-measurement-contract.json",
+    "H034_L9": "docs/helix-harness/L9-integration-verification/verification-measurement-contract.json",
+    "H034_L5": "docs/helix-harness/L5-detail-design/verification-measurement-contract.json",
+    "H034_L8": "docs/helix-harness/L8-unit-verification/verification-measurement-contract.json",
+    "H022_L4": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+    "H022_L9": "docs/helix-harness/L9-integration-verification/stage-verification-acceptance.json",
+    "H022_L5": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+    "H022_L8": "docs/helix-harness/L8-unit-verification/stage-verification-acceptance.json",
+    "H015_L4": "docs/helix-harness/L4-basic-design/tdd-development-flow.json",
+    "H015_L9": "docs/helix-harness/L9-integration-verification/tdd-development-flow.json",
+    "H015_L5": "docs/helix-harness/L5-detail-design/tdd-development-flow.json",
+    "H015_L8": "docs/helix-harness/L8-unit-verification/tdd-development-flow.json",
+    "H004_L4": "docs/helix-harness/L4-basic-design/trace-impact-reconfirmation.json",
+    "H004_L9": "docs/helix-harness/L9-integration-verification/trace-impact-reconfirmation.json",
+    "H004_L5": "docs/helix-harness/L5-detail-design/trace-impact-reconfirmation.json",
+    "H004_L8": "docs/helix-harness/L8-unit-verification/trace-impact-reconfirmation.json",
+    "H040_L4": "docs/helix-harness/L4-basic-design/layer-ledger-catalog.json",
+    "H040_L9": "docs/helix-harness/L9-integration-verification/layer-ledger-catalog.json",
+    "H040_L5": "docs/helix-harness/L5-detail-design/layer-ledger-catalog.json",
+    "H040_L8": "docs/helix-harness/L8-unit-verification/layer-ledger-catalog.json",
+    "H041_L4": "docs/helix-harness/L4-basic-design/template-obligation-extraction.json",
+    "H041_L9": "docs/helix-harness/L9-integration-verification/template-obligation-extraction.json",
+    "H041_L5": "docs/helix-harness/L5-detail-design/template-obligation-extraction.json",
+    "H041_L8": "docs/helix-harness/L8-unit-verification/template-obligation-extraction.json"
+  },
+  "investigated_sources": {
+    "current_helix_harness_documents": [
+      {
+        "parent_l2": "HARNESS-L2-005",
+        "layer": "L4",
+        "path": "docs/helix-harness/L4-basic-design/verification-discipline.json",
+        "sha256": "f5aaccff49e5e6d0584169af009e15aaf59d963018f8f8cceb230d45de321ebb",
+        "lines": 2103,
+        "document_status": "draft_candidate_not_independently_reviewed",
+        "authority_state": "unreviewed_draft_candidate",
+        "pointers": [
+          "H005_L4#/contracts/0..11"
+        ]
+      },
+      {
+        "parent_l2": "HARNESS-L2-005",
+        "layer": "L5",
+        "path": "docs/helix-harness/L5-detail-design/verification-discipline.json",
+        "sha256": "be6610e89b305cf1118b56ef4f877b1c1208a2fcf8062ef45297703874e2adef",
+        "lines": 11860,
+        "document_status": "draft_incomplete_not_independently_reviewed",
+        "authority_state": "unreviewed_draft_candidate_unfrozen",
+        "pointers": [
+          "H005_L5#/contracts/0..11",
+          "H005_L5#/functions/0..11"
+        ]
+      },
+      {
+        "parent_l2": "HARNESS-L2-034",
+        "layer": "L4",
+        "path": "docs/helix-harness/L4-basic-design/verification-measurement-contract.json",
+        "sha256": "29f5e01533f2349fb6b813fc093edaff2fef622f3abe77a8e74983a3c0f5e407",
+        "lines": 523,
+        "document_status": "draft_basic_contracts_initial_cases_pending_qualification_detail_review",
+        "authority_state": "unreviewed_draft_candidate",
+        "pointers": [
+          "H034_L4#/contracts/0..12"
+        ]
+      },
+      {
+        "parent_l2": "HARNESS-L2-034",
+        "layer": "L5",
+        "path": "docs/helix-harness/L5-detail-design/verification-measurement-contract.json",
+        "sha256": "412bfaafbf5b6c111d5ad201627c93e9e2ec6a6eccb342cd192291537866d2e1",
+        "lines": 8109,
+        "document_status": "draft_limited_prerequisite_design_not_reviewed",
+        "authority_state": "unreviewed_draft_candidate_unfrozen",
+        "pointers": [
+          "H034_L5#/contracts/0..12",
+          "H034_L5#/pure_function_signatures/0..12"
+        ]
+      },
+      {
+        "parent_l2": "HARNESS-L2-022",
+        "layer": "L4",
+        "path": "docs/helix-harness/L4-basic-design/stage-verification-acceptance.json",
+        "sha256": "db5e0e57c793deccaf6a5a0c3292473de2de79031798567c7e3cda859cd306a7",
+        "lines": 1138,
+        "document_status": "draft_basic_design_independent_review_pending",
+        "authority_state": "unreviewed_draft_candidate",
+        "pointers": [
+          "H022_L4#/contracts/0..5"
+        ]
+      },
+      {
+        "parent_l2": "HARNESS-L2-022",
+        "layer": "L5",
+        "path": "docs/helix-harness/L5-detail-design/stage-verification-acceptance.json",
+        "sha256": "1b8c9479fc3bcfa5923cd0022f673856b1ca69c061f8aafef1f7420818cb4d44",
+        "lines": 7142,
+        "document_status": "draft_partial_detail_design_independent_review_pending",
+        "authority_state": "unreviewed_draft_candidate_unfrozen",
+        "pointers": [
+          "H022_L5#/functions/0..5"
+        ]
+      },
+      {
+        "parent_l2": "NCI-HARNESS-001..004",
+        "layer": "candidate",
+        "path": "docs/helix-harness/candidates/next-generation-ci-requirements.md",
+        "sha256": "565a2107e1e31cdfd2d6c53cdb1385be151a99c35f1d3a228b09d1ee4533f9cb",
+        "lines": 25,
+        "document_status": "candidate",
+        "authority_state": "candidate_reference_only_authority_effect_none",
+        "note": "旧 docs/governance/candidates/next-generation-ci-requirements.md は 2026-09-25 PO配置判断（docs/governance/decisions/mechanism-placement-po-decisions-2026-09-25.md:76-90）により docs/helix-harness/candidates/next-generation-ci-requirements.md（NCI-HARNESS-001..004）と docs/helix-os/candidates/next-generation-ci-requirements.md（NCI-OS-001..008）へ分割移設済み。"
+      },
+      {
+        "parent_l2": "NCI-OS-001..008",
+        "layer": "candidate",
+        "path": "docs/helix-os/candidates/next-generation-ci-requirements.md",
+        "sha256": "4eae5f8dd485ed8c77d2ea7b6b0407028093c02566e5b92fce9d05a89307a49d",
+        "lines": 97,
+        "document_status": "candidate",
+        "authority_state": "candidate_reference_only_authority_effect_none"
+      },
+      {
+        "parent_l2": "HARNESS-L2-036",
+        "layer": "L2_and_L11_only",
+        "l2_path": "docs/helix-harness/L2-requirements/product-requirements.md",
+        "l2_lines": "734-780",
+        "l2_sha256": "e755aa99f9d8b7add908974ca6254d048fe614e58463c01178a3538e6ce3df13",
+        "l11_path": "docs/helix-harness/L11-acceptance/product-acceptance.md",
+        "l11_lines": "494-525",
+        "l11_sha256": "671fbea2bae0cf6a7e9d726c04b368df02d95b9f5d78e463f0196a92190d3ffb",
+        "l2_l11_authority_state": "adopted_by_po_decision_2026_09_29",
+        "l2_l11_decision_ref": "docs/governance/decisions/po-decision-2026-09-29-57candidates.md:41",
+        "l3_l10_present_in_current_main": false,
+        "l3_l10_note": "L2本文736行には起草時の『未採択』表記が残存しているが、2026-09-29 PO判断（MPR-RC-HARNESS-L2-036-002）でL2/L11採択済み。一方、旧Stage 3のL3/L10委任承認（helix-harness-stage3-parent036-l3-l10-po-decision-2026-10-06.md）は 2026-10-10 の巻き戻し判断（rollback-to-requirements-closure-po-decision-2026-10-10.md:66,78）で失効し、2026-10-12 の限定再開18親に含まれなかったため、現在 L3/L10・L4/L9・L5/L8・L6/L7 はすべて不在。"
+      }
+    ],
+    "legacy_helix_assets": [
+      {
+        "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+        "ledger_line": 441,
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+        "lines": "1-141 (especially 27-90 §0, CIS-R-01..15)",
+        "sha256": "65400847881f1a72b273f0bdeff503a5ea302705cd0e71d7913fc7d0f8dd18fb",
+        "disposition": "unresolved",
+        "keep_ja": "承認済み要求と意味影響から verification obligation（local/boundary/global_invariant）を導出し、required verificationの無断削除・緩和・先送りを禁止する（CIS-R-04..08）。",
+        "change_ja": "旧 helix doctor / harness-check.yml 固定段数を廃止し、HARNESS（検証義務契約 005）と HELIX-OS（CI編成・隔離実行・再開 020）へ責務分離。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-79B70809D0A1EE2D5392",
+        "ledger_line": 450,
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/github-ci-performance-requirements.md",
+        "lines": "1-35 (GH-NFR-009..011)",
+        "sha256": "7a9b3534671516be8810e40a8c96119e885eb431a4753518b56fe2479b9263d1",
+        "disposition": "unresolved",
+        "keep_ja": "変更層・上下隣接層・対応V-pair・trace consumerのimpact検査、unknown時のfail-close、correctness欠陥と性能の分離。",
+        "change_ja": "2026-09-26 PO判断（HDEC-HARNESS-V-VALLEY-2026-09-26）により、merge直後全件実行とnightly cron補完を廃止し、ticket起点（Forward小/中/大）＋合流先ticketでの省略回収へ変更。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-D888FB040D52499EE09E",
+        "ledger_line": 512,
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/impact-ci-recovery.md",
+        "lines": "1-113",
+        "sha256": "04e44d8382a5029a1dbe6e8bc69d6882ea15ee1410c3fc781136aad7db6b2391",
+        "disposition": "unresolved",
+        "keep_ja": "Impact-Scoped CI Selector（影響解決とunknown時のfull_fallback=true）およびRecovery Mode Router（correctness vs performance）。",
+        "change_ja": "diff単独推測から ticket種別・変更範囲・risk（HARNESS-L3-005-F03 / HELIXOS-L3-020-F01）を起点とする編成へ意味再導出。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-8DB8241A44EA54EF17A0",
+        "ledger_line": 561,
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L5-detail/impact-ci-recovery.md",
+        "lines": "1-191",
+        "sha256": "1340f9a3f74b2d78c9c901c284ae478b54ff186f1df0d90e138867980f49812b",
+        "disposition": "unresolved",
+        "keep_ja": "ImpactCiScopeの決定論的な影響範囲導出、未知パス・共有契約変更時のfail-close規則。",
+        "change_ja": "旧TS関数・harness-check.yml結線を移植せず、Python純関数契約（HARNESS-L5-005 / HELIXOS-L5-020）へ意味再導出。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-961CEACE51E1887AC197",
+        "ledger_line": 379,
+        "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L6-function-design/development-ci-bounded-time.md",
+        "lines": "1-33",
+        "sha256": "6f2c7c4995cbf693d8a5ccba05a58699f305a41ee6f716e01365cf8abe8c6b01",
+        "disposition": "unresolved",
+        "keep_ja": "required verification stepの順序保持、critical correctness checkの非省略、省略stepの回収先必須。",
+        "change_ja": "post-merge/nightly回収ではなく、合流先統合ticket（HELIXOS-L3-020-F01 / HARNESS-L3-005-F03）での回収へ変更。"
+      },
+      {
+        "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+        "ledger_line": 50,
+        "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+        "lines": "1-1147 (160-212 PR traceability, 213-216/518-558 lint, 220-260 unit tests)",
+        "sha256": "7c18b3f208886c443957f4cdbf919de77da233e6759007b8501624c054e7d099",
+        "disposition": "unresolved",
+        "keep_ja": "機械検査を人間reviewより先に回し、失敗分類・証拠を残す原則（読取り専用参照のみ、非実行）。",
+        "change_ja": "旧workflowはarchive隔離済み。新世代では承認済みHARNESS検証契約と対象製品要求から導出後にのみ .github/workflows/ へ配置する。"
+      }
+    ],
+    "decision_records_and_workflow_boundary": [
+      {
+        "path": "docs/governance/decisions/stage1-implementation-and-ci-unlock-po-decision-2026-10-09.md",
+        "lines": "66-75 (Decision 2), 85-92 (Legacy comparison)",
+        "sha256": "8bd88041061415390bc4f844a8bc6f255067dd212e7e8e80cefa89e7e02949a6",
+        "authority_state": "superseded_by_rollback_2026_10_10",
+        "note": "判断2の考え方（承認済み要求と凍結済み検証設計 L10/L9/L8/L7 から必要oracleを導出し、旧harness-check.ymlをそのまま復活させない）は歴史資料として参照。ただし解禁の効力は docs/governance/decisions/rollback-to-requirements-closure-po-decision-2026-10-10.md:81 により失効。"
+      },
+      {
+        "path": "docs/governance/decisions/requirements-entry-restart-po-decision-2026-10-12.md",
+        "lines": "25-35 (especially line 31 Stage 2)",
+        "sha256": "994a81b2d5eb4cbf291951b688fca85fa2b1353848091c0ab4cfac91fb8c131b",
+        "authority_state": "approved_active_po_decision",
+        "note": "31行（段階2）：対象範囲のL3/L10委任承認、設計知識（MSG004/SDOP001）の限定採用判断、対の設計・test oracleの凍結、必要な操作authority・実隔離・実資源の成立を確認した後にのみ、選択対象の実装・検証・対象CIへ進む。"
+      },
+      {
+        "path": ".github/workflows/README.md",
+        "lines": "1-8",
+        "sha256": "f9aacf18ab16d324cb921302222fbc01bc6cf9296d6dc94d7068680db37e850c",
+        "authority_state": "active_boundary",
+        "note": "新世代では、承認済みのHELIX-HARNESS検証契約と対象製品要求から新しいCIを導出した後にのみ、このディレクトリへworkflowを配置する。"
+      }
+    ]
+  },
+  "candidate_ci_checks": [
+    {
+      "check_id": "CI-CAND-01",
+      "candidate_name": "ruff (ruff check --no-fix --no-cache & ruff format --no-cache --check)",
+      "approved_upstream_requirement_pointers": [
+        "L2:149-182 (HARNESS-L2-005)",
+        "L2:734-780 (HARNESS-L2-036)",
+        "L3F#/requirements/31..33 (HARNESS-L3-005-F01..F03)",
+        "L10F#/cases/31..33 (HARNESS-L10-005-F01..F03)",
+        "OS_L3F#/requirements/37..38 (HELIXOS-L3-020-F01..F02)",
+        "OS_L10F#/cases/37..38 (HELIXOS-L10-020-F01..F02)"
+      ],
+      "current_design_and_governance_pointers": [
+        "H005_L4#/contracts/1..3 (HARNESS-L4-005-F01..F03)",
+        "H005_L9#/cases/1..3 (HARNESS-L9-005-F01..F03)",
+        "H005_L5#/contracts/1..3 (HARNESS-L5-005-F01..F03)",
+        "H005_L5#/functions/1..3 (derive_verification_duties, compare_proof_composition, plan_ticket_verification)",
+        "H005_L8#/cases/1..3 (HARNESS-L8-005-F01..F03)",
+        "docs/helix-harness/L5-detail-design/pack-boundary.json#/config_sections",
+        "docs/governance/decisions/python-format-lint-tool-selection-2026-10-28.md:13-31,61-87",
+        "docs/governance/python-tooling.md:1-34",
+        "docs/governance/design-verification-quality-assurance.md:82 (CHK-SCFCTL-FORMAT)"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-4B835ADBEFBCCC13C1C0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+          "lines": "17, 33-78, 138"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+          "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+          "lines": "213-216, 518-558"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-5429AA05B022E9F49B0A",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/harness/L1-requirements/nfr.md",
+          "lines": "51 (NFR-13)"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (旧TS/BiomeからPython/Ruff 0.17.1へ再導出; 旧HELIX内のPython formatter不在は HDEC-PYTHON-FORMAT-LINT-2026-10-28:51-59 に検索記録済み)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-036": "L3/L10 から起こす必要がある（L3/L10・L4/L9・L5/L8・L6/L7 すべて未作成）",
+        "HARNESS-L2-005_and_HELIXOS-L2-020": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要（L3/L10は承認済み、L4/L9・L5/L8は未凍結draft）"
+      }
+    },
+    {
+      "check_id": "CI-CAND-02",
+      "candidate_name": "unittest (PYTHONPATH=src:tests python3 -B -m unittest discover -s tests -t tests -v)",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/31,37,38 (HARNESS-L3-005-F01,F07,F08)",
+        "L10F#/cases/31,37,38 (HARNESS-L10-005-F01,F07,F08)",
+        "L3F#/requirements/40..42 (HARNESS-L3-015-F01..F03)",
+        "L10F#/cases/40..42 (HARNESS-L10-015-F01..F03)",
+        "L3F#/requirements/60 (HARNESS-L3-022-F01)",
+        "L10F#/cases/60 (HARNESS-L10-022-F01)",
+        "L3F#/requirements/81,84 (HARNESS-L3-034-F01,F04)",
+        "L10F#/cases/81,84 (HARNESS-L10-034-F01,F04)"
+      ],
+      "current_design_and_governance_pointers": [
+        "H005_L4#/contracts/7..8 (HARNESS-L4-005-F07..F08)",
+        "H005_L9#/cases/7..8 (HARNESS-L9-005-F07..F08)",
+        "H005_L5#/contracts/7..8 (HARNESS-L5-005-F07..F08)",
+        "H005_L5#/functions/7..8 (compare_tdd_observation_order, compare_behavior_oracle)",
+        "H005_L8#/cases/7..8 (HARNESS-L8-005-F07..F08)",
+        "H015_L4#/contracts/1..3 (HARNESS-L4-015-F01..F03)",
+        "H015_L5#/contracts/1..3 (HARNESS-L5-015-F01..F03)",
+        "H015_L5#/pure_function_signatures/0..2 (F-015-01..03)",
+        "H034_L4#/contracts/0,3 (HARNESS-L4-034-F01,F04)",
+        "H034_L5#/contracts/0,3 (HARNESS-L5-034-F01,F04)",
+        "H022_L4#/contracts/0 (HARNESS-L4-022-F01)",
+        "H022_L5#/functions/1 (HARNESS-L5-022-F01)",
+        "docs/governance/python-tooling.md:47-51"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-4B835ADBEFBCCC13C1C0",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/coding-rules.md",
+          "lines": "17, 138"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "lines": "51-54, 138 (test-oracle-strength / DDD-INV-004)"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+          "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+          "lines": "220-260"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (旧vitestからPython標準ライブラリ unittest へ再導出)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-005_015_022_034": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要（L3/L10は承認済み、L4/L9・L5/L8は未凍結draft）"
+      }
+    },
+    {
+      "check_id": "CI-CAND-03",
+      "candidate_name": "scfctl stale/validate (python3 -B scaffold/tools/scfctl.py stale & validate)",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/69..73 (HARNESS-L3-004-F01..F05)",
+        "L10F#/cases/69..73 (HARNESS-L10-004-F01..F05)",
+        "L3F#/requirements/54..57 (HARNESS-L3-040-F01..F04)",
+        "L10F#/cases/54..57 (HARNESS-L10-040-F01..F04)",
+        "docs/helix-os/L2-requirements/governance-requirements.md (HELIXOS-L2-052 base drift re-verification, adopted in po-decision-2026-09-29-57candidates.md:75)"
+      ],
+      "current_design_and_governance_pointers": [
+        "H004_L4#/contracts/0..6",
+        "H004_L5#/functions/0..6",
+        "H040_L4#/contracts/0..5",
+        "H040_L5#/contracts/0..5",
+        "H040_L5#/pure_function_signatures/0..5",
+        "docs/governance/github-upstream-operating-model.md:264,411,486",
+        "docs/governance/design-verification-quality-assurance.md:82 (CHK-SCFCTL-FORMAT)"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "lines": "96, 108-110 (removal_trigger / consumer_zero)"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-A127DEC3EEE6ED63CF17",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/audits/predecessor-harness-full-weakness-audit-2026-07-20.md",
+          "lines": "65-101"
+        }
+      ],
+      "derivation_classification": "新規案 (検索範囲: archive/legacy-generation-2026-09-14/ 全域および docs/governance/legacy-asset-disposition.jsonl を scfctl, scaffold, SCF-B- で検索し該当0件。旧 ddd-tdd-rules.md の removal_trigger と前身監査の仮置き残留問題を起点に、新世代移行期の scaffold/ 管理機構として新設)",
+      "missing_layers_to_author_from": {
+        "HELIXOS-L2-052": "L3/L10 から起こす必要がある（10/10巻き戻しにより L3/L10 未承認、L4〜L9 未作成）",
+        "HARNESS-L2-004_040": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要"
+      }
+    },
+    {
+      "check_id": "CI-CAND-04",
+      "candidate_name": "design_verification_checker check-freeze",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/58 (HARNESS-L3-001-F01) <-> L10F#/cases/58",
+        "L3F#/requirements/64,66 (HARNESS-L3-003-F01,F03) <-> L10F#/cases/64,66",
+        "L3F#/requirements/69 (HARNESS-L3-004-F01) <-> L10F#/cases/69",
+        "L3F#/requirements/36..39 (HARNESS-L3-005-F06..F09) <-> L10F#/cases/36..39",
+        "L3F#/requirements/40..43 (HARNESS-L3-015-F01..F04) <-> L10F#/cases/40..43",
+        "L3F#/requirements/54..57 (HARNESS-L3-040-F01..F04) <-> L10F#/cases/54..57",
+        "L3F#/requirements/44..46 (HARNESS-L3-041-F01..F03) <-> L10F#/cases/44..46",
+        "L3F#/requirements/51..52 (HARNESS-L3-056-F01..F02) <-> L10F#/cases/51..52"
+      ],
+      "current_design_and_governance_pointers": [
+        "H005_L4#/contracts/6..9",
+        "H005_L5#/contracts/6..9",
+        "H015_L4#/contracts/1..4",
+        "H015_L5#/contracts/1..4",
+        "H040_L4#/contracts/0..3",
+        "H040_L5#/contracts/0..3",
+        "H041_L4#/contracts/0..2",
+        "H041_L5#/functions/0..2",
+        "docs/governance/design-verification-quality-assurance.md:54-114 (Sections 3-6.1)",
+        "scaffold/bindings/SCF-B-0166.json"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-08BD701EF2577835D9F7",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/scrum-reverse-verification-engine.md",
+          "lines": "19-40 (SRV-FR-001..014, pair_freeze_pass)"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+          "lines": "27-90 (CIS-R-04..08)"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (旧 pair_freeze_pass と再発findingのdetector昇格を起点に、#3510 comment 6457411605 の手書き凍結記録増殖の失敗事例を踏まえ、関数1つ＋対L8 U-ID行＋担うL3義務の機械再計算・照合へ再導出)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-003_004_005_015_040_041_056": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7（正式製品実装）の作成が必要（現在は SCF-B-0166 管理下の仮設checker）"
+      }
+    },
+    {
+      "check_id": "CI-CAND-05",
+      "candidate_name": "Red->Green 順序 (凍結oracleに対する本体変更前のRed実観測 -> 最小Green -> 意味保存Refactor、Red後tests/fixtures不変)",
+      "approved_upstream_requirement_pointers": [
+        "docs/concept/helix-principles.md:45-52 (Principle 3: DDD and TDD)",
+        "L3F#/requirements/37 (HARNESS-L3-005-F07) <-> L10F#/cases/37 (HARNESS-L10-005-F07)",
+        "L3F#/requirements/40..42 (HARNESS-L3-015-F01..F03) <-> L10F#/cases/40..42 (HARNESS-L10-015-F01..F03)",
+        "L3F#/requirements/64,66 (HARNESS-L3-003-F01,F03) <-> L10F#/cases/64,66 (HARNESS-L10-003-F01,F03)"
+      ],
+      "current_design_and_governance_pointers": [
+        "H005_L4#/contracts/7 (HARNESS-L4-005-F07)",
+        "H005_L9#/cases/7 (HARNESS-L9-005-F07)",
+        "H005_L5#/contracts/7 (HARNESS-L5-005-F07)",
+        "H005_L5#/functions/7 (compare_tdd_observation_order)",
+        "H005_L8#/cases/7 (HARNESS-L8-005-F07)",
+        "H015_L4#/contracts/1..3 (HARNESS-L4-015-F01..F03)",
+        "H015_L9#/cases/1..3 (HARNESS-L9-015-F01..F03)",
+        "H015_L5#/contracts/1..3 (HARNESS-L5-015-F01..F03)",
+        "H015_L5#/pure_function_signatures/0..2 (F-015-01..03)",
+        "H015_L8#/cases/6..28",
+        "docs/governance/decisions/design-as-code-tdd-po-decision-2026-10-21.md:13-32",
+        "docs/governance/feature-tickets/FT-GOV-TDDORDER-001.md:1-20",
+        "docs/governance/design-verification-quality-assurance.md:62,82 (CHK-L7-TDD-MUTATION)"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-5E22432B0A5A8F7CC8B3",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/governance/ddd-tdd-rules.md",
+          "lines": "23-24, 48-50 (red-first-evidence), 137 (DDD-INV-003: red_at <= green_at), 150-152"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (旧 ddd-tdd-rules.md の red-first-evidence / DDD-INV-003 を保持し、旧PLAN frontmatterから新世代のL5/L8関数単位凍結記録＋Red/Greenコミット系列・実観測証拠へ再導出)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-005_015": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要（また design_verification_checker.py に CHK-L7-TDD-MUTATION の専用サブコマンドは未実装）"
+      }
+    },
+    {
+      "check_id": "CI-CAND-06",
+      "candidate_name": "PR本文の ID・pointer 実在 (PR本文や監査記録の requirement/contract/oracle ID・40桁/短縮SHA・RFC6901 JSON Pointer が対象revision上で実在解決すること)",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/54..57 (HARNESS-L3-040-F01..F04) <-> L10F#/cases/54..57",
+        "L3F#/requirements/69 (HARNESS-L3-004-F01) <-> L10F#/cases/69",
+        "L3F#/requirements/51..52 (HARNESS-L3-056-F01..F02) <-> L10F#/cases/51..52",
+        "docs/helix-os/L2-requirements/governance-requirements.md (HELIXOS-L2-035 PR event intake & HELIXOS-L2-046 PR atomicity/scope verification, adopted in po-decision-2026-09-29-57candidates.md:58,69)"
+      ],
+      "current_design_and_governance_pointers": [
+        "H040_L4#/contracts/2..3 (HARNESS-L4-040-F03..F04)",
+        "H040_L5#/contracts/2..3 (HARNESS-L5-040-F03..F04)",
+        "H040_L5#/pure_function_signatures/2..3 (compare_f03, compare_f04)",
+        "H004_L4#/contracts/1 (HARNESS-L4-004-F01)",
+        "H004_L5#/functions/3 (HARNESS-L5-004-F01)",
+        "docs/governance/github-upstream-operating-model.md:69-78,258-275,414,484-485",
+        "docs/governance/design-verification-quality-assurance.md:76-77 (CHK-JSON-POINTER, CHK-PAIR-BIDIR-ID)"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-1C7E5C0B33364FBF9EC6",
+          "path": "archive/legacy-generation-2026-09-14/root/.github/workflows/harness-check.yml",
+          "lines": "160-212 (PR traceability check)"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16-60"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (旧 harness-check.yml の PR traceability check と JSON正本化方針を起点に、PR #3759..#3770, #3827..#3829 のPR本文pointer/ID/SHA不一致の失敗事例を踏まえて RFC6901 JSON Pointer・ID・SHA実在検査へ再導出)",
+      "missing_layers_to_author_from": {
+        "HELIXOS-L2-035_046": "L3/L10 から起こす必要がある（10/10巻き戻しにより L3/L10 未承認、L4〜L9 未作成）",
+        "HARNESS-L2-004_040_056": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要"
+      }
+    },
+    {
+      "check_id": "CI-CAND-07",
+      "candidate_name": "L3 義務文の逐語一致 (凍結記録・設計・検証が束縛する親L3要件の id/title/obligation が承認済み L3-requirements/*.json の原文と逐語一致し省略・緩和がないこと)",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/45..46 (HARNESS-L3-041-F02..F03) <-> L10F#/cases/45..46",
+        "L3F#/requirements/71..72 (HARNESS-L3-004-F03..F04) <-> L10F#/cases/71..72",
+        "L3F#/requirements/31,36,38 (HARNESS-L3-005-F01,F06,F08) <-> L10F#/cases/31,36,38"
+      ],
+      "current_design_and_governance_pointers": [
+        "H041_L4#/contracts/1..2 (HARNESS-L4-041-F02..F03)",
+        "H041_L9#/verification_obligations/1..2",
+        "H041_L5#/functions/1..2 (HARNESS-L5-041-F02..F03)",
+        "H041_L8#/verification_obligations/1..2",
+        "H041_L8#/cases/9..45 (H041-F02-ATOM-DIGEST-MISMATCH et al.)",
+        "H004_L4#/contracts/3..4 (HARNESS-L4-004-F03..F04)",
+        "H004_L5#/functions/0,4 (HARNESS-L5-004-F04,F03)",
+        "docs/governance/design-verification-quality-assurance.md:39,60,80 (PR #3759 R1-m1 failure basis, CHK-L3-OBLIGATION-MAP)"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-DA012A9B04D5BE9419CE",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L3-requirements/ci-system-synthesis-requirements.md",
+          "lines": "27-90 (CIS-R-04..08)"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16-60"
+        }
+      ],
+      "derivation_classification": "semantic_rederivation (上流要件の無損失・無緩和継承とRequirement JSON正本一致を起点に、PR #3694 R1 A3・PR #3759 R1-m1 のL3義務文要約/欠落失敗を踏まえて逐語一致検査へ再導出)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-041_004_005": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要（現行 design_verification_checker.py の check_l3_obligation_map は pointer 非空を検査し自然言語照合は human_judgment_pending 出力のため、L3原文文字列との機械的逐語一致チェックの実装が必要）"
+      }
+    },
+    {
+      "check_id": "CI-CAND-08",
+      "candidate_name": "撤去済み材料の不使用 (L8/L9 の removed_materials で撤去された実行材料 key が L8/L9・tests/・fixtures に混入していないこと、および撤去済み副ファイルへの unpinned 参照がないこと)",
+      "approved_upstream_requirement_pointers": [
+        "L3F#/requirements/58 (HARNESS-L3-001-F01) <-> L10F#/cases/58",
+        "L3F#/requirements/64,66 (HARNESS-L3-003-F01,F03) <-> L10F#/cases/64,66",
+        "L3F#/requirements/54..57 (HARNESS-L3-040-F01..F04) <-> L10F#/cases/54..57",
+        "L3F#/requirements/36..39 (HARNESS-L3-005-F06..F09) <-> L10F#/cases/36..39",
+        "L3F#/requirements/40..43 (HARNESS-L3-015-F01..F04) <-> L10F#/cases/40..43"
+      ],
+      "current_design_and_governance_pointers": [
+        "docs/helix-harness/L8-unit-verification/product-template-application.json#/removed_materials",
+        "H040_L8#/removed_materials",
+        "H004_L8#/removed_materials",
+        "docs/governance/design-verification-quality-assurance.md:58-65,75-76,81 (CHK-OWNERSHIP-CAP-L8L9, CHK-OWNERSHIP-CAP-L3L6, CHK-JSON-POINTER)",
+        "scaffold/tools/design_verification_checker.py:217-229,1057-1128,2190-2203"
+      ],
+      "legacy_helix_correspondence": [
+        {
+          "asset_id": "LEGACY-ASSET-68D46138F1FA40748C52",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/process/modes/reverse.md",
+          "lines": "1-50"
+        },
+        {
+          "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+          "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+          "lines": "16-60"
+        }
+      ],
+      "derivation_classification": "新規案 (検索範囲: archive/legacy-generation-2026-09-14/ 全域および docs/governance/legacy-asset-disposition.jsonl を removed_materials, FORBIDDEN_MATERIAL_KEYS, expected_full_return で検索し該当0件。旧 reverse.md の最小契約原則と DT-VT-105 同源化禁止を保持しつつ、新世代で起きた L8/L9 74MB肥大 [#3510 comment 6408252809, 6447665479] と PR #3827 R1 F1 の失敗事例を起点に具体化した検査)",
+      "missing_layers_to_author_from": {
+        "HARNESS-L2-001": "L5/L8 関数単位凍結記録（docs/governance/audits/tdd/harness001-v12-layer-contract-pair-freeze-2026-10-28.json）と L6/L7 candidate は配置済み、L6/L7 凍結・製品実装が必要",
+        "HARNESS-L2-003_005_015_040": "L4/L9・L5/L8 の独立review/関数単位pair凍結および L6/L7 の作成が必要（また tests/・fixtures 内の撤去済みkey混入検査は design_verification_checker.py には未収録で WR127 の pre-review check で仮組み対象）"
+      }
+    }
+  ],
+  "layer_gap_matrix": [
+    {
+      "parent_l2_id": "HARNESS-L2-001",
+      "title": "12層と6つのV字ペアによる統合トレーサビリティ",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2946)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "function_pair_frozen (docs/governance/audits/tdd/harness001-v12-layer-contract-pair-freeze-2026-10-28.json)",
+      "l6_l7_state": "candidate_present (docs/helix-harness/L6-function-design/v12-layer-contract.json, L7-function-verification/v12-layer-contract.json)",
+      "start_layer_needed": "L6/L7 review/freeze and product implementation"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-003",
+      "title": "工程状態とVの谷の進行制御",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2947)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-004",
+      "title": "要求から対設計・検証への追跡と影響再確定",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2947)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-005",
+      "title": "検証規律とチケット起点CI範囲",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2943)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-015",
+      "title": "TDD開発フローとRed→Green→Refactor",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2943)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-022",
+      "title": "段階別検証・受入状態",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2946)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-034",
+      "title": "検証・計測契約（14項目）",
+      "l2_l11_state": "adopted (2026-09-29)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2948)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-036",
+      "title": "検証観点の完全性とローカル・CIの同一契約",
+      "l2_l11_state": "adopted (2026-09-29 po-decision-2026-09-29-57candidates.md:41; L2 line 736 still has stale text)",
+      "l3_l10_state": "missing (2026-10-06 Stage 3 approval invalidated by 2026-10-10 rollback; excluded from 2026-10-12 restart 18 parents)",
+      "l4_l9_state": "missing",
+      "l5_l8_state": "missing",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L3/L10 から起こす必要がある（L3/L10 -> L4/L9 -> L5/L8 -> L6/L7）"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-040",
+      "title": "12層台帳カタログと双方向追跡",
+      "l2_l11_state": "adopted (2026-09-29)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2945)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-041",
+      "title": "テンプレートからの義務抽出と被覆・ギャップ識別",
+      "l2_l11_state": "adopted (2026-09-29)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2944)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HARNESS-L2-056",
+      "title": "6つのV字ペア結果の局所化とフィードバック",
+      "l2_l11_state": "adopted (2026-09-30)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2944)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HELIXOS-L2-020",
+      "title": "CIプロファイル編成・隔離実行・失敗分類・再開",
+      "l2_l11_state": "adopted (2026-09-28)",
+      "l3_l10_state": "delegated_approved (2026-10-12 PR #2952)",
+      "l4_l9_state": "draft_candidate_present (unreviewed)",
+      "l5_l8_state": "draft_candidate_present (unfrozen)",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L4/L9 and L5/L8 review/function-pair freeze, then L6/L7"
+    },
+    {
+      "parent_l2_id": "HELIXOS-L2-035 / HELIXOS-L2-046 / HELIXOS-L2-052",
+      "title": "PRイベント摂取・PR原子性/範囲照合・base drift再照合",
+      "l2_l11_state": "adopted (2026-09-29 po-decision-2026-09-29-57candidates.md:58,69,75)",
+      "l3_l10_state": "missing (invalidated by 2026-10-10 rollback; excluded from 2026-10-12 restart)",
+      "l4_l9_state": "missing",
+      "l5_l8_state": "missing",
+      "l6_l7_state": "missing",
+      "start_layer_needed": "L3/L10 から起こす必要がある（L3/L10 -> L4/L9 -> L5/L8 -> L6/L7）"
+    }
+  ]
+}
