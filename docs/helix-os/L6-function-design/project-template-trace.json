@@ -1,0 +1,256 @@
+{
+  "document_id": "HELIXOS-L6-002-PROJECT-TEMPLATE-TRACE",
+  "layer": "L6",
+  "paired_document": "docs/helix-os/L7-function-verification/project-template-trace.json",
+  "parent": "HELIXOS-L2-002",
+  "status": "candidate_design_only",
+  "authority_effect": "none",
+  "scope_ja": "checker照合でall_mechanical_matched=trueの凍結記録3件（os002-t1c-f02-proposal-receiving-freeze、os002-t2a-f04-projection-member-freeze、os002-t2b-original-correspondence-checker-reconcile）に載るL5公開関数7件だけをL5契約・L8 oracle・L7対へ結ぶ。既存L5契約を再定義せず、関数algorithm、fixture、全返却、実行結果を複製しない。",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "8ad6e690e4e74f40636c2b95341d16cba78bf0a191d5853a92b70bdcdbed033b"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "208fcf87282dc38bf7a0a78d66aabfcf99d1558934c3c691535a7e0678f8babd"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b6289826727953685a6375d54938cb7d090c2789b1250b21251b689c3f49645b"
+    }
+  ],
+  "legacy_rederivation": {
+    "asset_id": "LEGACY-ASSET-4F5A1F0739EC1111D91D",
+    "path": "archive/legacy-generation-2026-09-14/root/docs/design/helix/L4-basic-design/design-template-json-authority.md",
+    "lines": "24,36,58,86,91",
+    "reuse_mode": "semantic_rederivation",
+    "keep_ja": "carried facetに限り案件記録のtemplate/要求/義務traceとexact set・Backflow・scope責務分離を意味再導出する。",
+    "change_ja": "BRAIN汎用契約、CORE製品適用、OS使用記録を分離し、旧TPL grammar/整数版/lifecycle/DB収束gateを採用しない。"
+  },
+  "failure_basis": {
+    "path": "archive/legacy-generation-2026-09-14/root/docs/governance/predecessor-harness-full-weakness-audit-2026-07-20.md",
+    "lines": "65-101",
+    "ids": [
+      "UTW-002",
+      "UTW-005",
+      "UTW-020",
+      "UTW-021"
+    ],
+    "meaning_ja": "正本とprojection、revision、部分失敗、自己申告の混同を原採択条件の反例として照合し、新要求やgateへ昇格しない。"
+  },
+  "contracts": [
+    {
+      "id": "HELIXOS-L6-002-FN04-compare_template_sets",
+      "symbol": "compare_template_sets",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/4"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN04-compare_template_sets",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/4"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+        "pointer": "/frozen_function_pairs/0"
+      },
+      "state_event_meaning_ja": "提案set・選択set・使用setと6 facet（project_scope・requirement_ref・HARNESS_contract_ref・CORE009提案根拠・template_ref・semantic_contract_ref）・used_empty_basisを原sourceへ照合し、候補受領を実使用へ混同しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/0"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN06-compare_core_dispositions",
+      "symbol": "compare_core_dispositions",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/6"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN06-compare_core_dispositions",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/6"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/0"
+      },
+      "state_event_meaning_ja": "ValidatedRecordTraceから通常F04経路の四判定・N/A根拠・conditional条件・未完義務（未実施/不合格/未評価）・source_output_associationを原sourceへ照合し、OS独自判断や完了変換を行わない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/1"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN14-decode_f04_source_projection_profile",
+      "symbol": "decode_f04_source_projection_profile",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/14"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN14-decode_f04_source_projection_profile",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "state_event_meaning_ja": "source_projection_join profileの宣言memberのみを型検証してF04ProjectionTypedInputsへ変換し、precheck後のcandidate不一致・欠落時はtyped配列を合成しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/2"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN15-compare_f04_source_projection_join",
+      "symbol": "compare_f04_source_projection_join",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/15"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN15-compare_f04_source_projection_join",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "state_event_meaning_ja": "qualified OS CoreOutputAssociationからCORE SourceResultProjectionRowへの参照解決を行い、重複・順序・missing/unknown状態を保持してCORE rowを捏造しない。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/3"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN16-run_f04_source_projection_operation",
+      "symbol": "run_f04_source_projection_operation",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/16"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN16-run_f04_source_projection_operation",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/2"
+      },
+      "state_event_meaning_ja": "source_projection_join profileの最外公開runnerとしてvalidator・profile decode・基本analysis・profile比較を統合し、既存F04観測と独立させてRecordTraceAnalysisを返す。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/4"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN17-compare_core_dispositions_typed",
+      "symbol": "compare_core_dispositions_typed",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/17"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN17-compare_core_dispositions_typed",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/19"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/1"
+      },
+      "state_event_meaning_ja": "通常F04経路とsource_projection_join profile経路の共通typed比較核として、native 4観測フィールドとsource_output_associationを無損失で保持する。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/5"
+      }
+    },
+    {
+      "id": "HELIXOS-L6-002-FN18-compare_core_dispositions_with_source_projection_profile",
+      "symbol": "compare_core_dispositions_with_source_projection_profile",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/18"
+      },
+      "oracle_ref": "HELIXOS-L7-002-FN18-compare_core_dispositions_with_source_projection_profile",
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/3"
+      },
+      "state_event_meaning_ja": "typed比較核・source_projection_join・selected_source_member_correspondence・source_original_correspondenceを結合し、既存F04観測を変えずにprofile観測とfindingを付加する。",
+      "l7_test_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/cases/6"
+      }
+    }
+  ],
+  "out_of_scope_ja": [
+    "all_mechanical_matched=trueではない記録（os002-t1a、os002-t1b、os002-t3a、os002-t3b）に属するL5関数は本対に含めない。",
+    "H009 #3788のGeneralProposalExchangeCarrierを受領するL5#/core_proposal_receiving_detail（receive_core_proposal_exchange等）およびL5#/functions/19..20は凍結記録上でOS private（private_detail_bindings / private_units）と定義されており、公開関数表には昇格させず、公開compare_template_sets（fn4）との共用kernel同値検証（L7#/compare_template_sets_tdd）で境界を保つ。",
+    "runtime、正式wire schema、実source資格、OS登録/使用完了、Backflow ticket発行、L10 Verified、L11 Acceptedは生成しない。"
+  ]
+}

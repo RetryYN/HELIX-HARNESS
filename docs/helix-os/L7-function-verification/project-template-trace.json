@@ -1,0 +1,508 @@
+{
+  "document_id": "HELIXOS-L7-002-PROJECT-TEMPLATE-TRACE",
+  "layer": "L7",
+  "paired_document": "docs/helix-os/L6-function-design/project-template-trace.json",
+  "parent": "HELIXOS-L2-002",
+  "status": "not_executed",
+  "authority_effect": "none",
+  "source_pins": [
+    {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "fe82988caa111bf90785f63f70f9e95ccaff638be11fbc701129a4bb60eadbe3"
+    },
+    {
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "f12ced9dae6796e8a994744eefbfb03b439d845fe3646bc897e2ab7eccb1d7b5"
+    },
+    {
+      "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b3f9d54662f4ba27bbd4e3ea0ea846d71011bc085c4bdbb4ae854fc55a5cce48"
+    },
+    {
+      "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "3e4c00b6d99a099b2b52c4a06fc3b759c811f61576161258c58ab39657beb0ed"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/business-requirements.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "0df11c612e3e0b531d2103d058471d5be2be8b8df965d10b69e06b0e506488c7"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "e86254a35b476ed71ebb112e41ccd2b48f89a8d0393e6495dc11cac7a7cf4e02"
+    },
+    {
+      "path": "docs/helix-os/L3-requirements/nfr-grade.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "15d710e2a822b8b6ae167c6a0138ced6b08b60f98b60221c6e7cdfdf91dd5f84"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/business-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "215e1d4a99f73151aa4b3225947a65567fbc3b97bec0cf9eac8d1a6456cbc3dd"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/functional-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "583020f951672e48bc37fcd35cb916de5ccd9866f41dd04731f6519325ae500a"
+    },
+    {
+      "path": "docs/helix-os/L10-verification/nfr-verification.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b01babb8ff6e1270b6a07c4e59053aff10f0e80d7b3be6e80ec5ef9c4ca43e81"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "8ad6e690e4e74f40636c2b95341d16cba78bf0a191d5853a92b70bdcdbed033b"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "208fcf87282dc38bf7a0a78d66aabfcf99d1558934c3c691535a7e0678f8babd"
+    },
+    {
+      "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+      "revision": "639056d4603be4ef8883fbd6bb10675095ba9c74",
+      "sha256": "b6289826727953685a6375d54938cb7d090c2789b1250b21251b689c3f49645b"
+    }
+  ],
+  "cases": [
+    {
+      "id": "HELIXOS-L7-002-FN04-compare_template_sets",
+      "function_design_ref": "HELIXOS-L6-002-FN04-compare_template_sets",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/4"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/4"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/3"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/11"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/core_proposal_receiving_verification/legacy_fn4_equivalence"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L7-function-verification/project-template-trace.json",
+        "pointer": "/compare_template_sets_tdd"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t1c-f02-proposal-receiving-freeze-2026-10-28.json",
+        "pointer": "/frozen_function_pairs/0"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN06-compare_core_dispositions",
+      "function_design_ref": "HELIXOS-L6-002-FN06-compare_core_dispositions",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/6"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/6"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/5"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/6"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/0"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN14-decode_f04_source_projection_profile",
+      "function_design_ref": "HELIXOS-L6-002-FN14-decode_f04_source_projection_profile",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/14"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/17"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_projection_profile_cases"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_original_correspondence_verification/whole_cases"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/0"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN15-compare_f04_source_projection_join",
+      "function_design_ref": "HELIXOS-L6-002-FN15-compare_f04_source_projection_join",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/15"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/18"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/21"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_projection_profile_cases"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN16-run_f04_source_projection_operation",
+      "function_design_ref": "HELIXOS-L6-002-FN16-run_f04_source_projection_operation",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/16"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/12"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_original_correspondence_verification/whole_cases"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/2"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN17-compare_core_dispositions_typed",
+      "function_design_ref": "HELIXOS-L6-002-FN17-compare_core_dispositions_typed",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/17"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/19"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/19"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2a-f04-projection-member-freeze-2026-10-28.json",
+        "pointer": "/function_freeze_rows/1"
+      },
+      "execution_state": "not_executed"
+    },
+    {
+      "id": "HELIXOS-L7-002-FN18-compare_core_dispositions_with_source_projection_profile",
+      "function_design_ref": "HELIXOS-L6-002-FN18-compare_core_dispositions_with_source_projection_profile",
+      "l5_contract_ref": {
+        "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+        "pointer": "/functions/18"
+      },
+      "l8_oracle_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "l8_case_refs": [
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/20"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_member_verification/whole_cases"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_original_correspondence_verification/whole_cases"
+        },
+        {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/f04_source_original_correspondence_verification/branch_cases"
+        }
+      ],
+      "test_design_ref": {
+        "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+        "pointer": "/function_cases/14"
+      },
+      "pair_freeze_binding_ref": {
+        "path": "docs/governance/audits/tdd/os002-t2b-original-correspondence-checker-reconcile-2026-10-28.json",
+        "pointer": "/target_bindings/public_functions/3"
+      },
+      "execution_state": "not_executed"
+    }
+  ],
+  "compare_template_sets_tdd": {
+    "function_design_ref": "HELIXOS-L6-002-FN04-compare_template_sets",
+    "l5_contract_ref": {
+      "path": "docs/helix-os/L5-detail-design/project-template-trace.json",
+      "pointer": "/functions/4"
+    },
+    "l8_normal_oracle_ref": {
+      "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+      "pointer": "/function_cases/4"
+    },
+    "h009_proposal_exchange_boundary_ja": "H009 #3788のpublish_general_proposal_exchange_publicが出力するGeneralProposalExchangeCarrierを受領するL5#/core_proposal_receiving_detail（receive_core_proposal_exchange / compare_received_proposal_sets）はD-OS002-T1cでOS privateと凍結されており公開関数表へ昇格させない。一方、公開compare_template_sets（L5#/functions/4）は共用kernel（compare_template_sets_kernel）を介して三集合比較・6 facet照合を共有し、legacy_fn4_equivalenceによって旧経路へ新F02-detail-required gateを課さない同値境界を検証する。",
+    "case_sequence": [
+      {
+        "case_id": "HELIXOS-L8-002-NORMAL-compare_template_sets",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/function_cases/4"
+        }
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#proposal_as_used",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/3/negative_cases/0"
+        }
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#arbitrary_fallback",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/3/negative_cases/1"
+        }
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#other_template_compensation",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/cases/3/negative_cases/2"
+        }
+      },
+      {
+        "case_id": "HELIXOS-L8-002-ADD-12#used_set_missing",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/additional_cases/11"
+        }
+      },
+      {
+        "case_id": "HELIXOS-L8-002-CORE-PROPOSAL-RECEIVING#legacy_fn4_equivalence",
+        "l8_case_ref": {
+          "path": "docs/helix-os/L8-unit-verification/project-template-trace.json",
+          "pointer": "/core_proposal_receiving_verification/legacy_fn4_equivalence"
+        }
+      }
+    ],
+    "independent_expectations": [
+      {
+        "case_id": "HELIXOS-L8-002-NORMAL-compare_template_sets",
+        "expectation_ja": "提案set（T1,T2）・選択set（T1）・実使用set（空＋used_empty_basis）の三集合と6 facetを原sourceへ辿り、候補受領と実使用を混同せずcorrespondingとして保持する。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3"
+          }
+        ]
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#proposal_as_used",
+        "expectation_ja": "提案setを実使用setへ代入した入力ではaxis=template_set, state=conflict, backflow_owner=CORE/OS002を返し、提案受領を使用済みに変換しない。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3/negative_classifications/0"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3"
+          }
+        ]
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#arbitrary_fallback",
+        "expectation_ja": "未登録/stale/conflict/必要input不足を任意様式fallbackで埋めた入力ではaxis=template_set, state=conflictを返し、原集合と不成立を保持する。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3/negative_classifications/1"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3"
+          }
+        ]
+      },
+      {
+        "case_id": "HELIXOS-L8-002-F02#other_template_compensation",
+        "expectation_ja": "別template成功で不足templateを消去・補完した入力ではaxis=template_set, state=conflictを返し、各templateの不足を独立に保持する。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3/negative_classifications/2"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3"
+          }
+        ]
+      },
+      {
+        "case_id": "HELIXOS-L8-002-ADD-12#used_set_missing",
+        "expectation_ja": "used_refs欠落を明示empty（used_empty_basis付き空集合）へ補完せず、axis=template_set, state=missingとして保持する。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3"
+          }
+        ]
+      },
+      {
+        "case_id": "HELIXOS-L8-002-CORE-PROPOSAL-RECEIVING#legacy_fn4_equivalence",
+        "expectation_ja": "ValidatedRecordTraceを入力とするlegacy_adapter→compare_template_sets_kernel経路が既存compare_template_setsの公開署名・全TraceSectionResult[]と同値であり、新CORE提案受領detailの必須gateを既存fn4経路へ波及させない。",
+        "basis_refs": [
+          {
+            "path": "docs/helix-os/L3-requirements/functional-requirements.json",
+            "pointer": "/requirements/9"
+          },
+          {
+            "path": "docs/helix-os/L10-verification/functional-verification.json",
+            "pointer": "/cases/9"
+          },
+          {
+            "path": "docs/helix-os/L4-basic-design/project-template-trace.json",
+            "pointer": "/contracts/3/core_proposal_receiving"
+          },
+          {
+            "path": "docs/helix-os/L9-integration-verification/project-template-trace.json",
+            "pointer": "/cases/3/core_proposal_receiving_oracles"
+          }
+        ]
+      }
+    ],
+    "red_green_sequence_ja": [
+      "凍結L5 functions/4およびL4#/contracts/3・L9#/cases/3から三集合比較・4反例・共用kernel同値境界の独立期待を先に固定する（DT-VT-105）。",
+      "本体変更前に公開compare_template_setsを呼ぶtestを追加し、各caseについて意味assertionのRedを確認する。setup/import/type errorはRedに数えない。",
+      "観測したRedを説明する最小実装でGreenにし、原集合・6 facet・used_empty_basis・side_effect_count=0を保持する。",
+      "意味を一つだけ壊すmutation（提案→使用混同、used欠落の空配列補完、別template成功による消込等）で対応assertionが失敗することを確認する。",
+      "実行前の本設計状態はnot_executed。実資格、実OS登録/使用、L10 Verified、L11 Acceptedは主張しない。"
+    ],
+    "execution_state": "not_executed"
+  }
+}
